@@ -7,7 +7,7 @@ FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Paramete
 {
     mParameters.addEnum(kCriteria, "criteria", 0);
     mParameters.addEnumItem(kOneNeighbour, "one");
-    mParameters.addEnumItem(kTwoNeighbours, "two");
+    mParameters.addEnumItem(kTwoNeighbours, "two", true);
     mParameters.addEnumItem(kThreeNeighbours, "three");
     mParameters.addEnumItem(kFourNeighbours, "four");
 
@@ -137,11 +137,11 @@ bool checkPeak<1>(const double *data, double threshold, unsigned long i)
 
 // Refinement
 
-template <void Func(double *, double *, const double *, unsigned long)>
+template <void Func(double *, double *, const double *, unsigned long, unsigned long)>
 void refinePeaks(double *positions, double *values, const double *data, unsigned long *peaks, unsigned long nPeaks)
 {
     for (unsigned long i = 0; i < nPeaks; i++)
-        Func(positions, values, data, peaks[i]);
+        Func(positions, values, data, i, peaks[i]);
 }
 
 void parabolicInterp(double& position, double& value, double idx, double vm1, double v_0, double vp1)
@@ -149,34 +149,32 @@ void parabolicInterp(double& position, double& value, double idx, double vm1, do
     const double divisor = vm1 + vp1 - (2.0 * v_0);
     const double correction = divisor ? (0.5 * (vm1 - vp1)) / divisor : 0.0;
     
-    // N.B - Leave amplitude in a log format
-    
     position = idx + correction;
     value = v_0 - (0.25 * (vm1 - vp1) * correction);
 }
 
-void refineNone(double *positions, double *values, const double *data, unsigned long idx)
+void refineNone(double *positions, double *values, const double *data, unsigned long peak, unsigned long idx)
 {
-    positions[idx] = idx;
-    values[idx] = data[idx];
+    positions[peak] = idx;
+    values[peak] = data[idx];
 }
 
-void refineParabolic(double *positions, double *values, const double *data, unsigned long idx)
+void refineParabolic(double *positions, double *values, const double *data, unsigned long peak, unsigned long idx)
 {
-    parabolicInterp(positions[idx], values[idx], idx, data[idx-1], data[idx], data[idx+1]);
+    parabolicInterp(positions[peak], values[peak], idx, data[idx-1], data[idx], data[idx+1]);
 }
 
-void refineParabolicLog(double *positions, double *values, const double *data, unsigned long idx)
+void refineParabolicLog(double *positions, double *values, const double *data, unsigned long peak, unsigned long idx)
 {
-    // Take log values (avoiding values that are too low) - doens't work for negative values
-    
-    auto logLim = [](double x) { return std::min(-500.0, log(std::max(x, 0.0))); };
+    // Take log values (avoiding values that are too low) - doesn't work for negative values
+    // FIX - clip value is arbitrary
+    auto logLim = [](double x) { return std::max(-1000.0, log(std::max(x, 0.0))); };
     double position, value;
     
     parabolicInterp(position, value, idx, logLim(data[idx-1]), logLim(data[idx]), logLim(data[idx+1]));
     
-    positions[idx] = position;
-    values[idx] = exp(value);
+    positions[peak] = position;
+    values[peak] = exp(value);
 }
 
 // Process
@@ -208,6 +206,9 @@ void FrameLib_Peaks::process()
     double *data = edgeFilled + padding;
     unsigned long *indices = alloc<unsigned long>(sizeIn);
 
+    if (!edgeFilled || !indices)
+        return;
+    
     // Copy input and prepare edges
     
     copyVector(data, input, sizeIn);
@@ -267,13 +268,15 @@ void FrameLib_Peaks::process()
             {
                 case kMinimum:
                 {
-                    auto it = std::min_element(data + indices[peak] + 1, data + indices[peak + 1] - 1);
+                    // FIX - check
+                    auto it = std::min_element(data + indices[peak] + 1, data + indices[peak + 1]);
                     peakEnd = std::distance(data, it);
                     break;
                 }
                 
                 case kMidpoint:
                 {
+                    // FIX - check
                     peakEnd = (indices[peak] + indices[peak + 1]) / 2;
                     break;
                 }
