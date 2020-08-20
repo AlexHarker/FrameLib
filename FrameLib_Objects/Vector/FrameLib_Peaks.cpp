@@ -167,7 +167,7 @@ void refineParabolic(double *positions, double *values, const double *data, unsi
 void refineParabolicLog(double *positions, double *values, const double *data, unsigned long peak, unsigned long idx)
 {
     // Take log values (avoiding values that are too low) - doesn't work for negative values
-    // FIX - clip value is arbitrary
+    // FIX - clip value is arbitrary and creates major overshoot
     auto logLim = [](double x) { return std::max(-1000.0, log(std::max(x, 0.0))); };
     double position, value;
     
@@ -272,7 +272,6 @@ void FrameLib_Peaks::process()
             {
                 case kMinimum:
                 {
-                    // FIX - check
                     auto it = std::min_element(data + indices[peak] + 1, data + indices[peak + 1]);
                     peakEnd = std::distance(data, it);
                     break;
@@ -280,8 +279,8 @@ void FrameLib_Peaks::process()
                 
                 case kMidpoint:
                 {
-                    // FIX - check
-                    peakEnd = (indices[peak] + indices[peak + 1]) / 2;
+                    // FIX - think about using floating point versions?
+                    peakEnd = (indices[peak] + indices[peak + 1] + 1) / 2;
                     break;
                 }
             }
