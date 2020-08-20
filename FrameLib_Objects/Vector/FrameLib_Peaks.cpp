@@ -186,8 +186,8 @@ void FrameLib_Peaks::process()
     Boundaries boundary = static_cast<Boundaries>(mParameters.getInt(kBoundary));
     Edges edges = static_cast<Edges>(mParameters.getInt(kEdges));
     
-    const double padValue = mParameters.getValue(kPadding);
-    const double threshold = mParameters.getValue(kThreshold);
+    double padValue = mParameters.getValue(kPadding);
+    double threshold = mParameters.getValue(kThreshold);
 
     const static int padding = 4;
     
@@ -195,7 +195,6 @@ void FrameLib_Peaks::process()
     
     unsigned long sizeIn, sizeOut1, sizeOut2, sizeOut3;
     unsigned long nPeaks = 0;
-    
     
     const double *input = getInput(0, &sizeIn);
     
@@ -206,6 +205,11 @@ void FrameLib_Peaks::process()
     double *data = edgeFilled + padding;
     unsigned long *indices = alloc<unsigned long>(sizeIn);
 
+    // N.B. parabolic log interpolation can only work on +ve values
+    
+    if (refine == kParabolicLog)
+        threshold = std::max(0.0, threshold);
+    
     if (!edgeFilled || !indices)
         return;
     
