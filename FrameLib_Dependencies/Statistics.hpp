@@ -338,12 +338,12 @@ template <class T> double statCrest(const T input, size_t size)
 
 template <class T> double statMaxPosition(const T input, size_t size)
 {
-    return size ? std::distance(input, std::max_element(input, input + size)) :  -std::numeric_limits<double>::infinity();
+    return size ? std::distance(input, std::max_element(input, input + size)) : -std::numeric_limits<double>::infinity();
 }
 
 template <class T> double statMinPosition(const T input, size_t size)
 {
-    return size ? std::distance(input, std::min_element(input, input + size)) :  -std::numeric_limits<double>::infinity();
+    return size ? std::distance(input, std::min_element(input, input + size)) : -std::numeric_limits<double>::infinity();
 }
 
 #endif /* Statistics_h */
