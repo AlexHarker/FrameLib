@@ -279,8 +279,8 @@ void FrameLib_Peaks::process()
                 
                 case kMidpoint:
                 {
-                    // FIX - think about using floating point versions?
-                    peakEnd = (indices[peak] + indices[peak + 1] + 1) / 2;
+                    // FIX - check
+                    peakEnd = roundToUInt((output2[peak] + output2[peak + 1]) / 2.0);
                     break;
                 }
             }
