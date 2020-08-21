@@ -322,7 +322,7 @@ public:
             return false;
         }
         
-        static void flush(FrameLib_Global **globalHandle)
+        static void flushIgnore(FrameLib_Global **globalHandle, t_object *ignore = nullptr)
         {
             auto reports = (*globalHandle)->getErrors();
 
@@ -336,6 +336,8 @@ public:
                 
                 if (userObject)
                 {
+                    if (object == ignore)
+                        continue;
                     if (it->getSource() == kErrorDSP)
                         object_error_obtrusive(userObject, errorText.c_str());
                     else
@@ -349,6 +351,11 @@ public:
                 error("*** FrameLib - too many errors - reporting only some ***");
         }
         
+        static void flush(FrameLib_Global **globalHandle)
+        {
+            flushIgnore(globalHandle);
+        }
+
         Qelem mQelem;
     };
     
@@ -516,6 +523,11 @@ public:
         }
     }
     
+    void flushErrors(FrameLib_Context c, FrameLib_MaxProxy *proxy)
+    {
+        ErrorNotifier::flushIgnore(data<kKey>(c).mRealtime ? &mRTGlobal : &mNRTGlobal, proxy->mMaxObject);
+    }
+
     bool isRealtime(FrameLib_Context c) const   { return c.getGlobal() == mRTGlobal; }
     t_object *getPatch(FrameLib_Context c)      { return data<kKey>(c).mPatch; }
     Lock *getLock(FrameLib_Context c)           { return &data<kLock>(c); }
@@ -1751,6 +1763,7 @@ private:
         
         mGlobal->retainContext(context);
         mGlobal->releaseContext(current);
+        mGlobal->flushErrors(context, mFrameLibProxy.get());
         
         mObject.reset(newObject);
     }
