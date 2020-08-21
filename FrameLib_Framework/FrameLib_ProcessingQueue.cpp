@@ -195,11 +195,8 @@ void FrameLib_ProcessingQueue::calculateTimeOutMax()
     
     const double maxRelativeTime = timeConvert(vectorTime * mRelativeTimeOut);
     const double maxAbsoluteTime = timeConvert(mAbsoluteTimeOut);
-    
-    const double time1 = maxRelativeTime ? maxRelativeTime : maxAbsoluteTime;
-    const double time2 = maxAbsoluteTime ? maxAbsoluteTime : maxRelativeTime;
-    
-    mMaxTime = static_cast<long long>(round(std::min(time1, time2)));
+
+    mMaxTime = static_cast<long long>(round(std::max(maxRelativeTime, maxAbsoluteTime)));
 }
 
 FrameLib_TimeFormat FrameLib_ProcessingQueue::getBlockStartTime() const

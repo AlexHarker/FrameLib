@@ -495,9 +495,9 @@ public:
             // Set timeouts
 
             if (key.mRealtime)
-                (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(8.0, 1.0);
+                (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(16.0, 1.0);
             else
-                (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(10.0, 0.0);
+                (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(100.0, 30.0);
 		}
         else
             std::get<kCount>(*item)++;
