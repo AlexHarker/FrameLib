@@ -269,7 +269,11 @@ void FrameLib_Peaks::process()
     requestOutputSize(2, nPeaks);
     
     if (!allocateOutputs())
+    {
+        dealloc(edgeFilled);
+        dealloc(indices);
         return;
+    }
     
     double *output1 = getOutput(0, &sizeOut1);
     double *output2 = getOutput(1, &sizeOut2);
