@@ -33,7 +33,7 @@ FrameLib_Window::FrameLib_Window(FrameLib_Context context, const FrameLib_Parame
     mParameters.addEnumItem(kOff, "off");
     mParameters.addEnumItem(kLinear, "linear");
     mParameters.addEnumItem(kPower, "power");
-    mParameters.addEnumItem(kPowerOverLinear, "powoverlin");
+    mParameters.addEnumItem(kReconstruct, "reconstruct");
     
     mParameters.addEnum(kEndPoints, "endpoints");
     mParameters.addEnumItem(kFirst, "first");

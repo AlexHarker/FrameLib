@@ -13,7 +13,7 @@ class FrameLib_Window final : public FrameLib_Processor
     // Parameter Enums and Info
 
     enum ParameterList { kWindowType, kSize, kSqrt, kCompensation, kEndPoints };
-    enum Compensation { kOff, kLinear, kPower, kPowerOverLinear };
+    enum Compensation { kOff, kLinear, kPower, kReconstruct };
     enum EndPoints { kFirst, kLast, kBoth, kNone };
     enum WindowTypes { kHann, kHamming, kTriangle, kCosine, kBlackman, kBlackman62, kBlackman70, kBlackman74, kBlackman92, kBlackmanHarris, kFlatTop, kRectangle };
 
