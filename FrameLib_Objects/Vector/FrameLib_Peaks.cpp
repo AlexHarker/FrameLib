@@ -189,6 +189,10 @@ void FrameLib_Peaks::process()
     double padValue = mParameters.getValue(kPadding);
     double threshold = mParameters.getValue(kThreshold);
 
+    // FIX - param
+    
+    bool alwaysMakeOnePeak = true;
+    
     const static int padding = 4;
     
     // Get Input
@@ -236,11 +240,26 @@ void FrameLib_Peaks::process()
         case kFourNeighbours:   nPeaks = findPeaks<checkPeak<4>>(indices, data, sizeIn, threshold);     break;
     }
     
-    // FIX - no peaks?
+    // If needed reate a single peak at the maximum, (place central to multiple consecutive maxima)
     
+    if (!nPeaks && alwaysMakeOnePeak)
+    {
+        double *fwd1 = data;
+        double *fwd2 = data + sizeIn;
+        std::reverse_iterator<double *> rev1(data + sizeIn);
+        std::reverse_iterator<double *> rev2(data);
+        
+        unsigned long max = std::distance(data, std::max_element(fwd1, fwd2));
+        unsigned long beg = std::distance(fwd1, std::find(fwd1, fwd2, data[max]));
+        unsigned long end = sizeIn  - (std::distance(rev1, std::find(rev1, rev2, data[max])) + 1);
+        unsigned long centre = (beg + end) >> 1;
+        
+        indices[nPeaks++] = data[centre] == data[max] ? centre : max;
+    }
+        
     // Allocate outputs
     
-    requestOutputSize(0, sizeIn);
+    requestOutputSize(0, nPeaks ? sizeIn : 0);
     requestOutputSize(1, nPeaks);
     requestOutputSize(2, nPeaks);
     
