@@ -307,8 +307,7 @@ void FrameLib_Peaks::process()
                 
                 case kMidpoint:
                 {
-                    // FIX - check
-                    peakEnd = roundToUInt((output2[peak] + output2[peak + 1]) / 2.0);
+                    peakEnd = static_cast<unsigned long>(ceil((output2[peak] + output2[peak + 1]) / 2.0));
                     break;
                 }
             }
