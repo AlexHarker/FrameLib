@@ -171,8 +171,11 @@ void refineParabolic(double *positions, double *values, const double *data, unsi
 void refineParabolicLog(double *positions, double *values, const double *data, unsigned long peak, unsigned long idx)
 {
     // Take log values (avoiding values that are too low) - doesn't work for negative values
-    // FIX - clip value is arbitrary and creates major overshoot
-    auto logLim = [](double x) { return std::max(-1000.0, log(std::max(x, 0.0))); };
+    // N.B. we assume a max of -80dB difference between samples to prevent extreme overshoot
+
+    double limit = std::max(std::max(data[idx-1], data[idx+1]) * 0.0001, std::numeric_limits<double>::min());
+    auto logLim = [&](double x) { return log(std::max(x, limit)); };
+    
     double position, value;
     
     parabolicInterp(position, value, idx, logLim(data[idx-1]), logLim(data[idx]), logLim(data[idx+1]));
