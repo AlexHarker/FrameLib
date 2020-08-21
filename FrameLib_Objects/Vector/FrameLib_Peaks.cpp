@@ -31,6 +31,8 @@ FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Paramete
     mParameters.addEnumItem(kMinimum, "minimum");
     mParameters.addEnumItem(kMidpoint, "midpoint");
     
+    mParameters.addBool(kAlwaysDetect, "always_detect", true, 5);
+    
     mParameters.set(serialisedParameters);
 }
 
@@ -188,10 +190,8 @@ void FrameLib_Peaks::process()
     
     double padValue = mParameters.getValue(kPadding);
     double threshold = mParameters.getValue(kThreshold);
-
-    // FIX - param
     
-    bool alwaysMakeOnePeak = true;
+    bool alwaysDetect = mParameters.getBool(kAlwaysDetect);
     
     const static int padding = 4;
     
@@ -242,7 +242,7 @@ void FrameLib_Peaks::process()
     
     // If needed reate a single peak at the maximum, (place central to multiple consecutive maxima)
     
-    if (!nPeaks && alwaysMakeOnePeak)
+    if (!nPeaks && alwaysDetect)
     {
         double *fwd1 = data;
         double *fwd2 = data + sizeIn;
