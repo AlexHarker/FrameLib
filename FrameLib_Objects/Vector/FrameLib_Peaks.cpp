@@ -34,6 +34,8 @@ FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Paramete
     mParameters.addBool(kAlwaysDetect, "always_detect", true, 5);
     
     mParameters.set(serialisedParameters);
+    
+    addParameterInput();
 }
 
 // Info
