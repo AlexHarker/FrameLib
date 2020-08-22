@@ -127,6 +127,7 @@ private:
     void objectReset() override
     {
         resize(0, 0);
+        resetSize(0, 0);
         mLastNumFrames = 0;
         mLastResetTime = FrameLib_TimeFormat(0);
     }
