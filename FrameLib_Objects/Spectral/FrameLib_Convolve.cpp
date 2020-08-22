@@ -12,12 +12,12 @@ FrameLib_Convolve::FrameLib_Convolve(FrameLib_Context context, const FrameLib_Pa
     mParameters.addEnumItem(kReal, "real");
     mParameters.addEnumItem(kComplex, "complex");
     mParameters.setInstantiation();
-    mParameters.addEnum(kEdgeMode, "edges", 2);
-    mParameters.addEnumItem(EdgeMode::kEdgeLinear, "linear");
-    mParameters.addEnumItem(EdgeMode::kEdgeWrap, "circular");
-    mParameters.addEnumItem(EdgeMode::kEdgeWrapCentre, "wrap");
-    mParameters.addEnumItem(EdgeMode::kEdgeFold, "fold");
-    mParameters.addEnumItem(EdgeMode::kEdgeFoldRepeat, "mirror");
+    mParameters.addEnum(kEdges, "edges", 2);
+    mParameters.addEnumItem(Edges::kEdgeLinear, "linear");
+    mParameters.addEnumItem(Edges::kEdgeWrap, "circular");
+    mParameters.addEnumItem(Edges::kEdgeWrapCentre, "wrap");
+    mParameters.addEnumItem(Edges::kEdgeFold, "fold");
+    mParameters.addEnumItem(Edges::kEdgeFoldRepeat, "mirror");
     mParameters.setInstantiation();
 
     mParameters.set(serialisedParameters);
@@ -88,7 +88,7 @@ FrameLib_Convolve::ParameterInfo::ParameterInfo()
 
 void FrameLib_Convolve::process()
 {
-    EdgeMode edgeMode = mParameters.getEnum<EdgeMode>(kEdgeMode);
+    Edges edges = mParameters.getEnum<Edges>(kEdges);
     
     if (mMode == kReal)
     {
@@ -100,7 +100,7 @@ void FrameLib_Convolve::process()
         
         // Get Output Size / Check for Processing Size Errors
         
-        unsigned long sizeOut = static_cast<unsigned long>(mProcessor.convolved_size(sizeIn1, sizeIn2, edgeMode));
+        unsigned long sizeOut = static_cast<unsigned long>(mProcessor.convolved_size(sizeIn1, sizeIn2, edges));
         
         if (sizeOut == 0 && sizeIn1 && sizeIn2)
             getReporter()(kErrorObject, getProxy(), "convolution processing size is larger than maximum processing size (#)", mProcessor.max_fft_size());
@@ -110,7 +110,7 @@ void FrameLib_Convolve::process()
         requestOutputSize(0, sizeOut);
         
         if (allocateOutputs())
-            mProcessor.convolve(getOutput(0, &sizeOut), {input1, sizeIn1}, {input2, sizeIn2}, edgeMode);
+            mProcessor.convolve(getOutput(0, &sizeOut), {input1, sizeIn1}, {input2, sizeIn2}, edges);
     }
     else
     {
@@ -125,7 +125,7 @@ void FrameLib_Convolve::process()
         
         // Get Output Size / Check for Processing Size Errors
 
-        unsigned long sizeOut = static_cast<unsigned long>(mProcessor.convolved_size(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edgeMode));
+        unsigned long sizeOut = static_cast<unsigned long>(mProcessor.convolved_size(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edges));
         
         if (sizeOut == 0 && std::max(sizeR1, sizeI1) && std::max(sizeR2, sizeI2))
             getReporter()(kErrorObject, getProxy(), "convolution processing size is larger than maximum processing size (#)", mProcessor.max_fft_size());
@@ -140,7 +140,7 @@ void FrameLib_Convolve::process()
             double *rOut = getOutput(0, &sizeOut);
             double *iOut = getOutput(1, &sizeOut);
         
-            mProcessor.convolve(rOut, iOut, {inR1, sizeR1}, {inI1, sizeI1}, {inR2, sizeR2}, {inI2, sizeI2}, edgeMode);
+            mProcessor.convolve(rOut, iOut, {inR1, sizeR1}, {inI1, sizeI1}, {inR2, sizeR2}, {inI2, sizeI2}, edges);
         }
     }
 }
