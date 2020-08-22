@@ -12,9 +12,9 @@ class FrameLib_Window final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kWindowType, kSize, kSqrt, kCompensation, kEndPoints };
+    enum ParameterList { kWindowType, kSize, kSqrt, kCompensation, kEndpoints };
     enum Compensation { kOff, kLinear, kPower, kReconstruct };
-    enum EndPoints { kFirst, kLast, kBoth, kNone };
+    enum Endpoints { kBoth, kFirst, kLast, kNone };
     enum WindowTypes { kHann, kHamming, kTriangle, kCosine, kBlackman, kBlackman62, kBlackman70, kBlackman74, kBlackman92, kBlackmanHarris, kFlatTop, kRectangle };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
@@ -36,7 +36,7 @@ private:
 
     // Helpers
     
-    void updateWindow (unsigned long inSize, EndPoints ends);
+    void updateWindow (unsigned long inSize, Endpoints ends);
     double linearInterp(double pos);
     
     // Process
@@ -79,7 +79,7 @@ private:
     double *mWindow;
 
     WindowTypes mWindowType;
-    EndPoints mEnds;
+    Endpoints mEnds;
     
     unsigned long mSize;
 

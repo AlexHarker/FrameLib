@@ -35,10 +35,10 @@ FrameLib_Window::FrameLib_Window(FrameLib_Context context, const FrameLib_Parame
     mParameters.addEnumItem(kPower, "power");
     mParameters.addEnumItem(kReconstruct, "reconstruct");
     
-    mParameters.addEnum(kEndPoints, "endpoints");
-    mParameters.addEnumItem(kFirst, "first");
-    mParameters.addEnumItem(kLast, "last");
+    mParameters.addEnum(kEndpoints, "endpoints");
     mParameters.addEnumItem(kBoth, "both");
+    mParameters.addEnumItem(kFirst, "first", true);
+    mParameters.addEnumItem(kLast, "last");
     mParameters.addEnumItem(kNone, "none");
     
     mParameters.set(serialisedParameters);
@@ -98,7 +98,7 @@ FrameLib_Window::ParameterInfo::ParameterInfo()
 
 // Helpers
 
-void FrameLib_Window::updateWindow(unsigned long inSize, EndPoints ends)
+void FrameLib_Window::updateWindow(unsigned long inSize, Endpoints ends)
 {
     WindowTypes windowType = (WindowTypes) mParameters.getInt(kWindowType);
     bool sqrtWindow = mParameters.getBool(kSqrt);
@@ -197,7 +197,7 @@ void FrameLib_Window::process()
     if (sizeOut)
     {
         Compensation compensate = static_cast<Compensation>(mParameters.getInt(kCompensation));
-        EndPoints ends = (EndPoints) mParameters.getInt(kEndPoints);
+        Endpoints ends = static_cast<Endpoints>(mParameters.getInt(kEndpoints));
         
         sizeFactor = ends == kBoth ? sizeIn - 1 : sizeIn;
         sizeFactor = ends == kNone ? sizeIn + 1 : sizeFactor;

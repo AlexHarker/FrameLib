@@ -24,7 +24,7 @@ FrameLib_Ramp::FrameLib_Ramp(FrameLib_Context context, const FrameLib_Parameters
     mParameters.addEnumItem(kScaleSeconds, "seconds");
     mParameters.addEnumItem(kScaleNormalised, "normalised");
 
-    mParameters.addEnum(kEdges, "edges", 4);
+    mParameters.addEnum(kEndpoints, "endpoints", 4);
     mParameters.addEnumItem(kBoth, "both");
     mParameters.addEnumItem(kFirst, "first");
     mParameters.addEnumItem(kLast, "last");
@@ -122,9 +122,9 @@ void FrameLib_Ramp::process()
         case kScaleSamples:         multiplier = 1.0;                       break;
         case kScaleNormalised:
         {
-            Edges edges = static_cast<Edges>(mParameters.getInt(kEdges));
+            Endpoints ends = static_cast<Endpoints>(mParameters.getInt(kEndpoints));
 
-            switch (edges)
+            switch (ends)
             {
                 case kBoth:
                     normalisedScale = static_cast<double>(sizeOut - 1);
@@ -142,7 +142,7 @@ void FrameLib_Ramp::process()
             
             multiplier = 1.0 / normalisedScale;
             
-            if (edges == kNone || edges == kLast)
+            if (ends == kNone || ends == kLast)
                 offset = 1.0 / normalisedScale;
         
             break;
