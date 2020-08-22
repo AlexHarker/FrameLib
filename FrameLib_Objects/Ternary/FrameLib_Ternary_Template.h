@@ -83,7 +83,7 @@ public:
         
         mParameters.set(serialisedParameters);
         
-        mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
+        mMismatchMode = mParameters.getEnum<MismatchModes>(kMismatchMode);
     }
     
     std::string objectInfo(bool verbose) override

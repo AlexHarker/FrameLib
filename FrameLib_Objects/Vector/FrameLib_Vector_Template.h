@@ -4,11 +4,11 @@
 
 #include "FrameLib_DSP.h"
 
-enum FrameLib_Vector_EmptyModes { kDefaultZero, kDefaultOne, kDefaultPosInf, kDefaultNegInf, kAlwaysCalculate };
+enum FrameLib_Vector_Defaults { kDefaultZero, kDefaultOne, kDefaultPosInf, kDefaultNegInf, kAlwaysCalculate };
 
 // Vector Base
 
-template <unsigned long nParams = 0, FrameLib_Vector_EmptyModes emptyMode = kDefaultZero>
+template <unsigned long nParams = 0, FrameLib_Vector_Defaults emptyDefault = kDefaultZero>
 class FrameLib_VectorBase : public FrameLib_Processor
 {
     enum ParameterList { kEmptyMode = nParams, kDefault };
@@ -31,7 +31,7 @@ protected:
     
     std::string formatObjectInfo(const char *basic, bool verbose)
     {
-        if (emptyMode == kAlwaysCalculate)
+        if (emptyDefault == kAlwaysCalculate)
             return formatInfo("#: The output is a single value.",
                               "#.", basic, verbose);
         else
@@ -50,7 +50,7 @@ protected:
     
     void addDefaultParameters()
     {
-        if (emptyMode != kAlwaysCalculate)
+        if (emptyDefault != kAlwaysCalculate)
         {
             double defaultValue = 0.0;
             
@@ -59,7 +59,7 @@ protected:
             mParameters.addEnumItem(kUseDefault, "default");
             mParameters.setInstantiation();
             
-            switch (emptyMode)
+            switch (emptyDefault)
             {
                 case kDefaultOne:       defaultValue = 1.0;                                         break;
                 case kDefaultPosInf:    defaultValue = std::numeric_limits<double>::infinity();     break;
@@ -83,8 +83,9 @@ private:
         unsigned long sizeIn, sizeOut;
         const double *input = getInput(0, &sizeIn);
         
-        bool calculate = (sizeIn != 0) || (emptyMode == kAlwaysCalculate);
-        bool useDefault = (emptyMode != kAlwaysCalculate) && mParameters.getInt(kEmptyMode);
+        bool alwaysCalculate = emptyDefault == kAlwaysCalculate;
+        bool calculate = (sizeIn != 0) || alwaysCalculate;
+        bool useDefault = !alwaysCalculate && mParameters.getEnum<EmptyModes>(kEmptyMode) == kUseDefault;
         
         requestOutputSize(0, (calculate || useDefault) ? 1 : 0);
         allocateOutputs();
@@ -103,10 +104,10 @@ private:
 
 // Vector (Function Version)
 
-template <double func(const double *, size_t), FrameLib_Vector_EmptyModes emptyMode = kDefaultZero>
-class FrameLib_Vector final : public FrameLib_VectorBase<0, emptyMode>
+template <double func(const double *, size_t), FrameLib_Vector_Defaults emptyDefault = kDefaultZero>
+class FrameLib_Vector final : public FrameLib_VectorBase<0, emptyDefault>
 {
-    using Base = FrameLib_VectorBase<0, emptyMode>;
+    using Base = FrameLib_VectorBase<0, emptyDefault>;
  
     // Parameter Enums and Info
     

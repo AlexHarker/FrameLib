@@ -64,7 +64,7 @@ void FrameLib_Sort::process()
     
     if (!mParameters.getBool(kOutputIndices))
     {
-        switch (static_cast<Orders>(mParameters.getInt(kOrder)))
+        switch (mParameters.getEnum<Orders>(kOrder))
         {
             case kUp:       sortAscending(output, input, size);     break;
             case kDown:     sortDescending(output, input, size);    break;
@@ -76,7 +76,7 @@ void FrameLib_Sort::process()
         
         if (indices)
         {
-            switch (static_cast<Orders>(mParameters.getInt(kOrder)))
+            switch (mParameters.getEnum<Orders>(kOrder))
             {
                 case kUp:       sortIndicesAscending(indices, input, size);     break;
                 case kDown:     sortIndicesDescending(indices, input, size);    break;

@@ -94,8 +94,8 @@ void FrameLib_Ticks::objectReset()
 
 void FrameLib_Ticks::process()
 {
-    Direction dir = static_cast<Direction>(mParameters.getInt(kDirection));
-    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
+    Direction dir = mParameters.getEnum<Direction>(kDirection);
+    Modes mode = mParameters.getEnum<Modes>(kMode);
     unsigned long sizeOut;
     long limit = mParameters.getInt(kLimit);
     bool reset = mCounter == -1;
@@ -147,7 +147,7 @@ void FrameLib_Ticks::process()
     
     mCounter = std::min(std::max(0L, mCounter), limit - 1);
     
-    sizeOut = idle && mParameters.getInt(kIdleMode) == kEmpty ? 0 : 1;
+    sizeOut = idle && mParameters.getEnum<IdleModes>(kIdleMode) == kEmpty ? 0 : 1;
     requestOutputSize(0, sizeOut);
     
     if (allocateOutputs())

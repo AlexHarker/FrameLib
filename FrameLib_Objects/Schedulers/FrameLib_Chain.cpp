@@ -99,7 +99,7 @@ FrameLib_Chain::SchedulerInfo FrameLib_Chain::schedule(bool newFrame, bool noAdv
         mSize = mTimes ? sizeIn : 0;
         mPosition = 0;
         
-        Units units = static_cast<Units>(mParameters.getInt(kUnits));
+        Units units = mParameters.getEnum<Units>(kUnits);
                                          
         if (mTimes && mSize)
         {

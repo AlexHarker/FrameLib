@@ -54,10 +54,10 @@ public:
 
         mParameters.set(serialisedParameters);
                                     
-        mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
+        mMismatchMode = mParameters.getEnum<MismatchModes>(kMismatchMode);
         mPadValue = mParameters.getValue(kPadding);
         
-        TriggerModes triggers = (TriggerModes) mParameters.getInt(kTriggers);
+        TriggerModes triggers = mParameters.getEnum<TriggerModes>(kTriggers);
         
         if (triggers == kLeft)
             setInputMode(1, false, false, false);

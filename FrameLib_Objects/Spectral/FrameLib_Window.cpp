@@ -100,7 +100,7 @@ FrameLib_Window::ParameterInfo::ParameterInfo()
 
 void FrameLib_Window::updateWindow(unsigned long inSize, Endpoints ends)
 {
-    WindowTypes windowType = (WindowTypes) mParameters.getInt(kWindowType);
+    WindowTypes windowType = mParameters.getEnum<WindowTypes>(kWindowType);
     bool sqrtWindow = mParameters.getBool(kSqrt);
     uint32_t windowSize = static_cast<uint32_t>(mParameters.getInt(kSize));
     
@@ -196,8 +196,8 @@ void FrameLib_Window::process()
     
     if (sizeOut)
     {
-        Compensation compensate = static_cast<Compensation>(mParameters.getInt(kCompensation));
-        Endpoints ends = static_cast<Endpoints>(mParameters.getInt(kEndpoints));
+        Compensation compensate = mParameters.getEnum<Compensation>(kCompensation);
+        Endpoints ends = mParameters.getEnum<Endpoints>(kEndpoints);
         
         sizeFactor = ends == kBoth ? sizeIn - 1 : sizeIn;
         sizeFactor = ends == kNone ? sizeIn + 1 : sizeFactor;

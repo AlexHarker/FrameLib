@@ -70,7 +70,7 @@ void FrameLib_Shift::process()
     unsigned long sizeIn, sizeOut;
     const double *input = getInput(0, &sizeIn);
     double padValue = mParameters.getValue(kPadding);
-    Units units = (Units) mParameters.getInt(kUnits);
+    Units units = mParameters.getEnum<Units>(kUnits);
     
     requestOutputSize(0, sizeIn);
     allocateOutputs();
@@ -90,7 +90,7 @@ void FrameLib_Shift::process()
     
     if (sizeOut)
     {
-        if ((Modes) mParameters.getInt(kMode) == kWrap)
+        if (mParameters.getEnum<Modes>(kMode) == kWrap)
         {
             // Wrap in case of large shift sizes
             

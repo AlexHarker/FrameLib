@@ -36,11 +36,7 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters
     mParameters.addBool(kBound, "bound", true, 5);
     
     mParameters.set(serialisedParameters);
-    
-    mChan = mParameters.getInt(kChannel);
-    mInterpolation = (Interpolation) mParameters.getInt(kInterpolation);
-    mUnits = (Units) mParameters.getInt(kUnits);
-    
+        
     setParameterInput(1);
         
     if (mProxy)
@@ -91,23 +87,20 @@ void FrameLib_Read::update()
 {
     if (mProxy)
         mProxy->update(mParameters.getString(kBuffer));
-    
-    mChan = mParameters.getInt(kChannel);
-    mInterpolation = (Interpolation) mParameters.getInt(kInterpolation);
-    mUnits = (Units) mParameters.getInt(kUnits);
 }
 
 // Process
 
 void FrameLib_Read::process()
 {
-    EdgeType edges = static_cast<EdgeType>(mParameters.getInt(kEdges));
+    EdgeType edges = mParameters.getEnum<EdgeType>(kEdges);
+    Interpolation interpolation = mParameters.getEnum<Interpolation>(kInterpolation);
     InterpType interpType = kInterpNone;
 
     double *positions = nullptr;
 
     unsigned long size;
-    long chan = mChan - 1;
+    long chan = mParameters.getInt(kChannel) - 1;
     bool bound = mParameters.getBool(kBound);
     bool doInterpolation = false;
     
@@ -139,7 +132,7 @@ void FrameLib_Read::process()
         if (!samplingRate)
             samplingRate = mSamplingRate;
         
-        switch (mUnits)
+        switch (mParameters.getEnum<Units>(kUnits))
         {
             case kSamples:      scale = 1.0;                                    break;
             case kMS:           scale = samplingRate / 1000.0;                  break;
@@ -156,9 +149,9 @@ void FrameLib_Read::process()
             doInterpolation |= ((positions[i] - ((int32_t) positions[i])) != 0.0);
         }
 
-        if (doInterpolation || mInterpolation == kInterpCubicBSpline || edges == kExtrapolate)
+        if (doInterpolation || interpolation == kBSpline || edges == kExtrapolate)
         {
-            switch (mInterpolation)
+            switch (interpolation)
             {
                 case kNone:         break;
                 case kLinear:       interpType = kInterpLinear;             break;

@@ -61,7 +61,7 @@ void FrameLib_Interval::calculateInterval()
 {
     FrameLib_TimeFormat interval = mParameters.getValue(kInterval);
     
-    switch (static_cast<Units>(mParameters.getInt(kUnits)))
+    switch (mParameters.getEnum<Units>(kUnits))
     {
         case kSamples:      break;
         case kMS:           interval = msToSamples(interval);           break;

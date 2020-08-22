@@ -251,7 +251,7 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, const FrameLi
 
     mParameters.set(serialisedParameters);
     
-    MismatchModes mode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
+    MismatchModes mode = mParameters.getEnum<MismatchModes>(kMismatchMode);
     
     const double *triggers = mParameters.getArray(kTriggers);
     unsigned long triggersSize = mParameters.getArraySize(kTriggers);

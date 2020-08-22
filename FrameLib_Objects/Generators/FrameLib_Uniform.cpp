@@ -70,7 +70,7 @@ unsigned long FrameLib_Uniform::getLength()
 {
     double time = mParameters.getValue(kLength);
     
-    switch (static_cast<Units>(mParameters.getInt(kUnits)))
+    switch (mParameters.getEnum<Units>(kUnits))
     {
         case kSamples:  break;
         case kMS:       time = msToSamples(time);       break;
@@ -88,7 +88,7 @@ void FrameLib_Uniform::process()
     
     getInput(0, &sizeIn);
     
-    sizeOut = ((Modes) mParameters.getInt(kMode)) == kInLength ? sizeIn : getLength();
+    sizeOut = mParameters.getEnum<Modes>(kMode) == kInLength ? sizeIn : getLength();
     requestOutputSize(0, sizeOut);
 
     if (allocateOutputs())

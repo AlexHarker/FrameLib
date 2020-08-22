@@ -89,7 +89,7 @@ protected:
 
     unsigned long getNumFrames(bool forceValid = false) const
     {
-        bool valid = forceValid || mParameters.getInt(kMode) == kValid;
+        bool valid = forceValid || mParameters.getEnum<Modes>(kMode) == kValid;
         
         if (valid)
             return std::min(getRequestedNumFrames(), getValidFrames() + 1);
@@ -137,7 +137,7 @@ private:
     {
         unsigned long sizeIn, sizeReset, sizeOut, sizeEdge;
 
-        Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
+        Modes mode = mParameters.getEnum<Modes>(kMode);
         double pad = mParameters.getValue(kDefault);
         
         unsigned long numFrames;

@@ -148,10 +148,10 @@ void refineParabolicLog(double *positions, double *values, const double *data, u
 
 void FrameLib_Peaks::process()
 {
-    Criteria criterion = static_cast<Criteria>(mParameters.getInt(kCriteria));
-    Refinements refine = static_cast<Refinements>(mParameters.getInt(kRefinement));
-    Boundaries boundary = static_cast<Boundaries>(mParameters.getInt(kBoundary));
-    Edges edges = static_cast<Edges>(mParameters.getInt(kEdges));
+    Criteria criterion = mParameters.getEnum<Criteria>(kCriteria);
+    Refinements refine = mParameters.getEnum<Refinements>(kRefinement);
+    Boundaries boundary = mParameters.getEnum<Boundaries>(kBoundary);
+    Edges edges = mParameters.getEnum<Edges>(kEdges);
     
     double padValue = mParameters.getValue(kPadding);
     double threshold = mParameters.getValue(kThreshold);

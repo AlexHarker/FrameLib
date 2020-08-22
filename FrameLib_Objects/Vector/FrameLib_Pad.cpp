@@ -67,7 +67,7 @@ void FrameLib_Pad::process()
     unsigned long sizeIn, sizeOut, padStart, padEnd;
     const double *input = getInput(0, &sizeIn);
     double padValue = mParameters.getValue(kPadding);
-    Units units = (Units) mParameters.getInt(kUnits);
+    Units units = mParameters.getEnum<Units>(kUnits);
     
     // Calculate pad amounts
     

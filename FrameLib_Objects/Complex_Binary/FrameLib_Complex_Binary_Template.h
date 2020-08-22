@@ -95,11 +95,11 @@ public:
         
         mParameters.set(serialisedParameters);
                                     
-        mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
+        mMismatchMode = mParameters.getEnum<MismatchModes>(kMismatchMode);
         mRealPad = mParameters.getArray(kPadding)[0];
         mImagPad = mParameters.getArray(kPadding)[1];
         
-        TriggerModes triggers = (TriggerModes) mParameters.getInt(kTriggers);
+        TriggerModes triggers = mParameters.getEnum<TriggerModes>(kTriggers);
         
         if (triggers == kLeft)
         {

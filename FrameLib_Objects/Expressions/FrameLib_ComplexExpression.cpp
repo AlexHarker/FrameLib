@@ -298,7 +298,7 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
     const double *triggers = mParameters.getArray(kTriggers);
     unsigned long triggersSize = mParameters.getArraySize(kTriggers);
     
-    MismatchModes mode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
+    MismatchModes mode = mParameters.getEnum<MismatchModes>(kMismatchMode);
 
     Graph graph;
     Parser parser;

@@ -51,7 +51,6 @@ private:
     // Data
     
     std::unique_ptr<Proxy> mProxy;
-    Units mUnits;
     
     static ParameterInfo sParamInfo;
 };

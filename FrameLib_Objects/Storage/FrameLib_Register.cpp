@@ -13,7 +13,7 @@ FrameLib_Register::FrameLib_Register(FrameLib_Context context, const FrameLib_Pa
         
     mParameters.set(serialisedParameters);
     
-    Modes mode = (Modes) mParameters.getInt(kMode);
+    Modes mode = mParameters.getEnum<Modes>(kMode);
     
     if (mode == kStore)
         setInputMode(1, false, false, false, kFrameAny);

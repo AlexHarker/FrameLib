@@ -58,9 +58,6 @@ private:
     
     // Data
     
-    long mChan;
-    Interpolation mInterpolation;
-    Units mUnits;
     std::unique_ptr<Proxy> mProxy;
 
     static ParameterInfo sParamInfo;

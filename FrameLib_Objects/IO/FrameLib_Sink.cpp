@@ -68,7 +68,7 @@ FrameLib_Sink::ParameterInfo::ParameterInfo()
 
 unsigned long FrameLib_Sink::convertTimeToSamples(double time)
 {
-    switch (static_cast<Units>(mParameters.getInt(kUnits)))
+    switch (mParameters.getEnum<Units>(kUnits))
     {
         case kSamples:  break;
         case kMS:       time = msToSamples(time);       break;

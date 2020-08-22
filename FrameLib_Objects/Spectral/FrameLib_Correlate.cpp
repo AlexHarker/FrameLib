@@ -24,7 +24,7 @@ FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, const FrameLib_
         
     mProcessor.set_max_fft_size(mParameters.getInt(kMaxLength));
     
-    mMode = static_cast<Modes>(mParameters.getInt(kMode));
+    mMode = mParameters.getEnum<Modes>(kMode);
     
     if (mMode  == kComplex)
         setIO(4, 2);
@@ -88,7 +88,7 @@ FrameLib_Correlate::ParameterInfo::ParameterInfo()
 
 void FrameLib_Correlate::process()
 {
-    EdgeMode edgeMode = static_cast<EdgeMode>(mParameters.getInt(kEdgeMode));
+    EdgeMode edgeMode = mParameters.getEnum<EdgeMode>(kEdgeMode);
 
     if (mMode == kReal)
     {

@@ -113,7 +113,7 @@ void FrameLib_Tag::process()
     const Serial *preTagged = getInput(mNumIns);
     unsigned long sizeIn;
     
-    EmptyModes mode = (EmptyModes) mParameters.getInt(kEmptyMode);
+    EmptyModes mode = mParameters.getEnum<EmptyModes>(kEmptyMode);
     
     requestOutputSize(0, 0);
     

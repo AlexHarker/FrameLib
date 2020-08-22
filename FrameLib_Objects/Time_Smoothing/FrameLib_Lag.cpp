@@ -80,7 +80,7 @@ void FrameLib_Lag::process()
 {
     unsigned long sizeIn, sizeReset, sizeOut, sizeEdge;
 
-    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
+    Modes mode = mParameters.getEnum<Modes>(kMode);
     unsigned long maxFrames = mParameters.getInt(kMaxFrames);
     unsigned long requestedFrames = mParameters.getInt(kNumFrames);
     

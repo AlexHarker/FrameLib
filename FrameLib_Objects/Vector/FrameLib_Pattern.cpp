@@ -74,8 +74,8 @@ void FrameLib_Pattern::objectReset()
 
 void FrameLib_Pattern::process()
 {
-    Direction dir = static_cast<Direction>(mParameters.getInt(kDirection));
-    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
+    Direction dir = mParameters.getEnum<Direction>(kDirection);
+    Modes mode = mParameters.getEnum<Modes>(kMode);
     bool reset = mPosition == -1;
     bool idle = false;
     unsigned long sizeIn, sizeOut;
@@ -130,7 +130,7 @@ void FrameLib_Pattern::process()
     
     mPosition = std::min(std::max(0L, mPosition), limit - 1);
 
-    sizeOut = idle && mParameters.getInt(kIdleMode) == kEmpty ? 0 : 1;
+    sizeOut = idle && mParameters.getEnum<IdleModes>(kIdleMode) == kEmpty ? 0 : 1;
     requestOutputSize(0, sizeOut);
     
     if (allocateOutputs())

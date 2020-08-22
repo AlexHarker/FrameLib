@@ -88,7 +88,7 @@ unsigned long FrameLib_Ramp::getLength()
 {
     double time = mParameters.getValue(kLength);
     
-    switch (static_cast<Units>(mParameters.getInt(kUnits)))
+    switch (mParameters.getEnum<Units>(kUnits))
     {
         case kScaleSamples:  break;
         case kScaleMS:       time = msToSamples(time);       break;
@@ -106,7 +106,7 @@ void FrameLib_Ramp::process()
     
     getInput(0, &sizeIn);
     
-    sizeOut = ((Modes) mParameters.getInt(kMode)) == kInLength ? sizeIn : getLength();
+    sizeOut = mParameters.getEnum<Modes>(kMode) == kInLength ? sizeIn : getLength();
     requestOutputSize(0, sizeOut);
     allocateOutputs();
     
@@ -115,14 +115,14 @@ void FrameLib_Ramp::process()
     double offset = 0.0;
     double normalisedScale = 0.0;
     
-    switch (static_cast<Scales>(mParameters.getInt(kScale)))
+    switch (mParameters.getEnum<Scales>(kScale))
     {
         case kScaleMS:              multiplier = 1000.0 / mSamplingRate;    break;
         case kScaleSeconds:         multiplier = 1.0 / mSamplingRate;       break;
         case kScaleSamples:         multiplier = 1.0;                       break;
         case kScaleNormalised:
         {
-            Endpoints ends = static_cast<Endpoints>(mParameters.getInt(kEndpoints));
+            Endpoints ends = mParameters.getEnum<Endpoints>(kEndpoints);
 
             switch (ends)
             {

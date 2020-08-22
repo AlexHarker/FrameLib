@@ -132,7 +132,7 @@ FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, const FrameLib_Pa
     
     mParameters.set(serialisedParameters);
     
-    mMode = static_cast<Modes>(mParameters.getInt(kMode));
+    mMode = mParameters.getEnum<Modes>(kMode);
     
     setOutputType(0, mMode == kValues ? kFrameNormal : kFrameTagged);
     

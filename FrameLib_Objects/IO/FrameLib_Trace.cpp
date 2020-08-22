@@ -87,7 +87,7 @@ FrameLib_Trace::ParameterInfo::ParameterInfo()
 
 unsigned long FrameLib_Trace::convertTimeToSamples(double time)
 {
-    switch (static_cast<Units>(mParameters.getInt(kUnits)))
+    switch (mParameters.getEnum<Units>(kUnits))
     {
         case kSamples:  break;
         case kMS:       time = msToSamples(time);       break;
@@ -165,7 +165,7 @@ void FrameLib_Trace::process()
     FrameLib_TimeFormat frameTime = getFrameTime();
     FrameLib_TimeFormat delayTime = convertTimeToSamples(mParameters.getValue(kDelay));
 
-    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
+    Modes mode = mParameters.getEnum<Modes>(kMode);
     
     const double *input = getInput(0, &sizeIn);
     unsigned long sizeToWrite = mode != kFull ? std::min(sizeIn, 1UL) : sizeIn;

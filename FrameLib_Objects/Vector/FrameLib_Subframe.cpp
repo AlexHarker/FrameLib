@@ -64,7 +64,7 @@ void FrameLib_Subframe::process()
     
     unsigned long start, end;
     
-    Units units = (Units) mParameters.getInt(kUnits);
+    Units units = mParameters.getEnum<Units>(kUnits);
     
     if (units == kSamples)
     {

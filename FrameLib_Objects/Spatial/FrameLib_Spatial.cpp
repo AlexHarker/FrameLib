@@ -118,7 +118,7 @@ void FrameLib_Spatial::process()
     
     Cartesian panPosition;
     
-    if ((static_cast<InputModes>(mParameters.getInt(kInputMode))) == kPolar)
+    if (mParameters.getEnum<InputModes>(kInputMode) == kPolar)
     {
         double azimuth = sizeIn > 0 ? input[0] : 0.0;
         double elevation = sizeIn > 1 ? input[1] : 0.0;

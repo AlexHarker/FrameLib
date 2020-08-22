@@ -136,7 +136,7 @@ void FrameLib_MedianFilter::process()
     
     long width = mParameters.getInt(kWidth);
     double pad = mParameters.getValue(kPadding);
-    Edges edges = static_cast<Edges>(mParameters.getInt(kEdges));
+    Edges edges = mParameters.getEnum<Edges>(kEdges);
     unsigned long pos = roundToUInt(mParameters.getValue(kPercentile) * (width - 1) / 100.0);
     
     pos = std::min(pos, static_cast<unsigned long>(width - 1));

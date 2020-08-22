@@ -65,7 +65,7 @@ void FrameLib_Constant::process()
         
         double value = 1.0;
         
-        switch (static_cast<Constants>(mParameters.getInt(kConstant)))
+        switch (mParameters.getEnum<Constants>(kConstant))
         {
             case kPI:           value = M_PI;           break;
             case kInvPI:        value = M_1_PI;         break;

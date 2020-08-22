@@ -81,8 +81,8 @@ void FrameLib_Lookup::process()
 {
     double scaleFactor;
     
-    EdgeType edges = static_cast<EdgeType>(mParameters.getInt(kEdges));
-    Scales scale = (Scales) mParameters.getInt(kScale);
+    EdgeType edges = mParameters.getEnum<EdgeType>(kEdges);
+    Scales scale = mParameters.getEnum<Scales>(kScale);
     InterpType interp = kInterpNone;
     bool bound = mParameters.getBool(kBound);
     bool adjustScaling = edges == kWrap || edges == kMirror;
@@ -104,7 +104,7 @@ void FrameLib_Lookup::process()
     
     // Set interp[olation
     
-    switch ((Interpolation) mParameters.getInt(kInterpolation))
+    switch (mParameters.getEnum<Interpolation>(kInterpolation))
     {
         case kNone:         interp = kInterpNone;               break;
         case kLinear:       interp = kInterpLinear;             break;

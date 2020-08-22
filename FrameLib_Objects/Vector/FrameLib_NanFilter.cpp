@@ -57,7 +57,7 @@ void FrameLib_NanFilter::process()
     unsigned long sizeIn;
     unsigned long sizeOut = 0;
     
-    Modes mode = (Modes) mParameters.getInt(kMode);
+    Modes mode = mParameters.getEnum<Modes>(kMode);
     double value = mParameters.getValue(kValue);
     
     const double *input = getInput(0, &sizeIn);

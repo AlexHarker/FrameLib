@@ -84,7 +84,7 @@ unsigned long FrameLib_Gaussian::getLength()
 {
     double time = mParameters.getValue(kLength);
     
-    switch (static_cast<Units>(mParameters.getInt(kUnits)))
+    switch (mParameters.getEnum<Units>(kUnits))
     {
         case kSamples:  break;
         case kMS:       time = msToSamples(time);       break;
@@ -121,12 +121,12 @@ void generate(FrameLib_RandGen& gen, double *output, T mean, U stddev, V& i, V l
 void FrameLib_Gaussian::process()
 {
     unsigned long sizeIn1, sizeIn2, sizeOut;
-    bool extend = mParameters.getInt(kMismatchMode) == kExtend;
+    bool extend = mParameters.getEnum<MismatchModes>(kMismatchMode) == kExtend;
 
     const double *means = getInput(0, &sizeIn1);
     const double *stddevs = getInput(1, &sizeIn2);
     
-    sizeOut = ((Modes) mParameters.getInt(kMode)) == kInLength ? std::max(sizeIn1, sizeIn2) : getLength();
+    sizeOut = mParameters.getEnum<Modes>(kMode) == kInLength ? std::max(sizeIn1, sizeIn2) : getLength();
     requestOutputSize(0, sizeOut);
     allocateOutputs();
     

@@ -61,7 +61,7 @@ void FrameLib_Prioritise::process()
         
     // Find the prioritised input
     
-    Modes mode = (Modes) mParameters.getInt(kMode);
+    Modes mode = mParameters.getEnum<Modes>(kMode);
     
     switch (mode)
     {

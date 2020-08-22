@@ -65,7 +65,7 @@ FrameLib_Convert::ParameterInfo::ParameterInfo()
 
 void FrameLib_Convert::setScaling()
 {
-    switch (static_cast<Modes>(mParameters.getInt(kMode)))
+    switch (mParameters.getEnum<Modes>(kMode))
     {
         case kDBtoA:            mConvertor.setDBToAmplitude();         break;
         case kAtoDB:            mConvertor.setAmplitudeToDB();         break;

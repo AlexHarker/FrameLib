@@ -623,11 +623,13 @@ private:
     
     // Params
     
+    ParamMode paramMode() const { return mParameters.getEnum<ParamMode>(ParamModeIndex); }
+    size_t getMode() const { return DoesModes ? mParameters.getEnum<size_t>(ModeIndex) : 0; }
+
     bool isMulti() const    { return DoesMulti && mParameters.getBool(MultiIndex); }
-    bool isDynamic() const  { return mParameters.getInt(ParamModeIndex) == kDynamic; }
-    bool isTagged() const   { return mParameters.getInt(ParamModeIndex) == kTagged; }
+    bool isDynamic() const  { return paramMode() == kDynamic; }
+    bool isTagged() const   { return paramMode() == kTagged; }
     bool getReset() const   { return !DoesCoefficients && mParameters.getBool(ResetIndex); }
-    size_t getMode() const  { return DoesModes ? static_cast<size_t>(mParameters.getInt(ModeIndex)) : 0; }
     
     // Info
     

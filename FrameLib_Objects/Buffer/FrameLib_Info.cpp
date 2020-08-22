@@ -16,8 +16,6 @@ FrameLib_Info::FrameLib_Info(FrameLib_Context context, const FrameLib_Parameters
     
     mParameters.set(serialisedParameters);
     
-    mUnits = (Units) mParameters.getInt(kUnits);
-    
     setParameterInput(1);
         
     if (mProxy)
@@ -68,9 +66,7 @@ FrameLib_Info::ParameterInfo::ParameterInfo()
 void FrameLib_Info::update()
 {
     if (mProxy)
-        mProxy->update(mParameters.getString(kBuffer));
-    
-    mUnits = (Units) mParameters.getInt(kUnits);
+        mProxy->update(mParameters.getString(kBuffer));    
 }
 
 // Process
@@ -99,7 +95,7 @@ void FrameLib_Info::process()
     if (mProxy)
         mProxy->acquire(length, samplingRate, chans);
     
-    switch (mUnits)
+    switch (mParameters.getEnum<Units>(kUnits))
     {
         case kSamples:      conversionFactor = 1.0;                         break;
         case kMS:           conversionFactor = samplingRate / 1000;         break;
