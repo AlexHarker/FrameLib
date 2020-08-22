@@ -760,11 +760,16 @@ public:
     double getValue(unsigned long idx) const                                { return mParameters[idx]->getValue(); }
     double getValue(const char *name) const                                 { return getValue(getIdx(name)); }
     
-    long getInt(unsigned long idx) const                                    { return (long) getValue(idx); }
+    long getInt(unsigned long idx) const                                    { return static_cast<long>(getValue(idx)); }
     long getInt(const char *name) const                                     { return getInt(getIdx(name)); }
     
-    bool getBool(unsigned long idx) const                                   { return (bool) getValue(idx); }
-    bool getBool(const char *name) const                                    { return (bool) getValue(getIdx(name)); }
+    bool getBool(unsigned long idx) const                                   { return static_cast<bool>(getValue(idx)); }
+    bool getBool(const char *name) const                                    { return getBool(getIdx(name)); }
+    
+    template <typename T>
+    T getEnum(unsigned long idx) const                                      { return static_cast<T>(getValue(idx)); }
+    template <typename T>
+    T getEnum(const char *name) const                                       { return getEnum<T>(getIdx(name)); }
     
     const char *getString(unsigned long idx) const                          { return mParameters[idx]->getString(); }
     const char *getString(const char *name) const                           { return getString(getIdx(name)); }
