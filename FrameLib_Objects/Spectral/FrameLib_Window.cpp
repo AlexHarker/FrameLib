@@ -212,7 +212,7 @@ void FrameLib_Window::process()
             case kOff:                  gain = 1.0;                         break;
             case kLinear:               gain = mLinearGain;                 break;
             case kPower:                gain = mPowerGain;                  break;
-            case kPowerOverLinear:      gain = mPowerGain / mLinearGain;    break;
+            case kReconstruct:          gain = mPowerGain / mLinearGain;    break;
         }
         
         if (mSize % sizeFactor)
