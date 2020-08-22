@@ -52,7 +52,7 @@ bool FrameLib_Unpack::inputUpdate()
         
         // Store current value
         
-        mOutputs.clear();
+        mOutputs[i].clear();
             
         if (exists)
             mOutputs[i].push_back(getInputChan(0, i));
