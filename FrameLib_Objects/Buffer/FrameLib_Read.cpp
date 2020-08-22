@@ -26,11 +26,13 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters
     mParameters.addEnumItem(kLagrange, "lagrange");
     
     mParameters.addEnum(kEdges, "edges", 4);
-    mParameters.addEnumItem(kExtrapolate, "extrapolate");
+    mParameters.addEnumItem(kZeroPad, "zero");
     mParameters.addEnumItem(kExtend, "extend");
     mParameters.addEnumItem(kWrap, "wrap");
-    mParameters.addEnumItem(kZeroPad, "zero", true);
-    
+    mParameters.addEnumItem(kFold, "fold");
+    mParameters.addEnumItem(kMirror, "mirror");
+    mParameters.addEnumItem(kExtrapolate, "extrapolate");
+
     mParameters.addBool(kBound, "bound", true, 5);
     
     mParameters.set(serialisedParameters);
@@ -129,6 +131,8 @@ void FrameLib_Read::process()
     
     if (positions)
     {
+        bool adjustScaling = edges == kWrap || edges == kMirror;
+        
         double scale = 1.0;
         double lengthM1 = length - 1.0;
         
@@ -140,7 +144,7 @@ void FrameLib_Read::process()
             case kSamples:      scale = 1.0;                                    break;
             case kMS:           scale = samplingRate / 1000.0;                  break;
             case kSeconds:      scale = samplingRate;                           break;
-            case kNormalised:   scale = lengthM1 + (edges == kWrap ? 1 : 0);    break;
+            case kNormalised:   scale = lengthM1 + (adjustScaling ? 1 : 0);     break;
         }
 
         for (unsigned long i = 0; i < size; i++)
@@ -152,7 +156,7 @@ void FrameLib_Read::process()
             doInterpolation |= ((positions[i] - ((int32_t) positions[i])) != 0.0);
         }
 
-        if (doInterpolation || edges == kExtrapolate)
+        if (doInterpolation || mInterpolation == kInterpCubicBSpline || edges == kExtrapolate)
         {
             switch (mInterpolation)
             {

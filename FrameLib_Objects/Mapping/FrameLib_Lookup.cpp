@@ -10,10 +10,12 @@ FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, const FrameLib_Parame
     mParameters.addEnumItem(kBipolar, "bipolar");
     
     mParameters.addEnum(kEdges, "edges", 1);
-    mParameters.addEnumItem(kExtrapolate, "extrapolate");
+    mParameters.addEnumItem(kZeroPad, "zero");
     mParameters.addEnumItem(kExtend, "extend");
     mParameters.addEnumItem(kWrap, "wrap");
-    mParameters.addEnumItem(kZeroPad, "zero");
+    mParameters.addEnumItem(kFold, "fold");
+    mParameters.addEnumItem(kMirror, "mirror");
+    mParameters.addEnumItem(kExtrapolate, "extrapolate", true);
 
     mParameters.addBool(kBound, "bound", true, 2);
     
@@ -83,7 +85,8 @@ void FrameLib_Lookup::process()
     Scales scale = (Scales) mParameters.getInt(kScale);
     InterpType interp = kInterpNone;
     bool bound = mParameters.getBool(kBound);
-    
+    bool adjustScaling = edges == kWrap || edges == kMirror;
+
     unsigned long sizeIn1, sizeIn2, sizeOut;
     
     const double *input1 = getInput(0, &sizeIn1);
@@ -130,14 +133,14 @@ void FrameLib_Lookup::process()
             break;
             
         case kNormalised:
-            scaleFactor = static_cast<double>(sizeIn2 - (edges == kWrap ? 0 : 1));
+            scaleFactor = static_cast<double>(sizeIn2 - (adjustScaling ? 0 : 1));
             
             for (unsigned long i = 0; i < sizeIn1; i++)
                 temp[i] = input1[i] * scaleFactor;
             break;
             
         case kBipolar:
-            scaleFactor = static_cast<double>(sizeIn2 - (edges == kWrap ? 0 : 1)) / 2.0;
+            scaleFactor = static_cast<double>(sizeIn2 - (adjustScaling ? 0 : 1)) / 2.0;
             
             for (unsigned long i = 0; i < sizeIn1; i++)
                 temp[i] = (input1[i] + 1.0) * scaleFactor;

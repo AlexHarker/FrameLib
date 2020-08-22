@@ -2500,6 +2500,7 @@
 		B8F83EAA19C79C8900230CD4 /* FrameLib_Ramp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ramp.h; sourceTree = "<group>"; };
 		B8F83EBA19C79CC900230CD4 /* fl.ramp~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.ramp~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F83EBC19C79D0200230CD4 /* fl.ramp~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.ramp~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B8FAA16024F0831D00089391 /* FrameLib_Edges.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Edges.h; sourceTree = "<group>"; };
 		B8FD919D197F0F6C00437EB5 /* FrameLib_FixedPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_FixedPoint.h; sourceTree = "<group>"; };
 		B8FD919E197F40B200437EB5 /* FrameLib_Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Types.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -4445,6 +4446,7 @@
 		B85753501F2E1ED200478E9F /* Common_Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				B8FAA16024F0831D00089391 /* FrameLib_Edges.h */,
 				B8D383D624B7340B00E8D807 /* FrameLib_NeumaierSum.h */,
 				B8D383D724B796E600E8D807 /* FrameLib_PaddedVector.h */,
 				B8886F7E1FB7D715001C843E /* FrameLib_RingBuffer.h */,
