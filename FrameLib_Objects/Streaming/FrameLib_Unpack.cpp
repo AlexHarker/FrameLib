@@ -7,12 +7,12 @@ FrameLib_Unpack::FrameLib_Unpack(FrameLib_Context context, const FrameLib_Parame
 : FrameLib_Multistream(kProcessor, context, proxy, false, 1)
 , mParameters(context, proxy, &sParamInfo)
 {
-    mParameters.addInt(kOutputs, "num_outs", 2, 0);
+    mParameters.addInt(kNumOuts, "num_outs", 2, 0);
     mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
     
-    setIO(1, mParameters.getInt(kOutputs));
+    setIO(1, mParameters.getInt(kNumOuts));
     
     mSerialisedParameters.write(serialisedParameters);
 }

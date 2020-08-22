@@ -8,7 +8,7 @@
 
 class FrameLib_Pack final : public FrameLib_Multistream
 {
-    enum ParameterList { kInputs };
+    enum ParameterList { kNumIns };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     
