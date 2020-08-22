@@ -1,5 +1,6 @@
 
 #include "FrameLib_Peaks.h"
+#include "FrameLib_Edges.h"
 #include <algorithm>
 
 FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
@@ -14,11 +15,11 @@ FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Paramete
     mParameters.addDouble(kThreshold, "threshold", 0.0, 1);
     
     mParameters.addEnum(kEdges, "edges", 2);
-    mParameters.addEnumItem(kPad, "pad");
-    mParameters.addEnumItem(kExtend, "extend");
-    mParameters.addEnumItem(kWrap, "wrap");
-    mParameters.addEnumItem(kFold, "fold");
-    mParameters.addEnumItem(kMirror, "mirror");
+    mParameters.addEnumItem(kEdgePad, "pad");
+    mParameters.addEnumItem(kEdgeExtend, "extend");
+    mParameters.addEnumItem(kEdgeWrap, "wrap");
+    mParameters.addEnumItem(kEdgeFold, "fold");
+    mParameters.addEnumItem(kEdgeMirror, "mirror");
 
     mParameters.addDouble(kPadding, "padding", 0.0, 3);
                           
@@ -62,54 +63,13 @@ std::string FrameLib_Peaks::outputInfo(unsigned long idx, bool verbose)
 
 // Edges
 
-void padEdges(double *data, unsigned long size, unsigned long edgeSize, double padValue)
+template <class T>
+void createEdges(double *output, T data, unsigned long size, int edgeSize)
 {
-    for (unsigned long i = 0; i < edgeSize; i++)
+    for (int i = 0; i < edgeSize; i++)
     {
-        data[-(i + 1)] = padValue;
-        data[size + i] = padValue;
-    }
-}
-
-void extendEdges(double *data, unsigned long size, unsigned long edgeSize)
-{
-    for (unsigned long i = 0; i < edgeSize; i++)
-    {
-        data[-(i + 1)] = data[0];
-        data[size + i] = data[size - 1];
-    }
-}
-
-void wrapEdges(double *data, unsigned long size, unsigned long edgeSize)
-{
-    for (unsigned long i = 0; i < edgeSize; i++)
-    {
-        data[-(i + 1)] = data[size - (i + 1)];
-        data[size + i] = data[i];
-    }
-}
-
-void foldEdges(double *data, unsigned long size, unsigned long edgeSize)
-{
-    if (size == 1)
-    {
-        extendEdges(data, size, edgeSize);
-        return;
-    }
-    
-    for (unsigned long i = 0; i < edgeSize; i++)
-    {
-        data[-(i + 1)] = data[i + 1];
-        data[size + i] = data[size - (i + 2)];
-    }
-}
-
-void mirrorEdges(double *data, unsigned long size, unsigned long edgeSize)
-{
-    for (unsigned long i = 0; i < edgeSize; i++)
-    {
-        data[-(i + 1)] = data[i];
-        data[size + i] = data[size - (i + 1)];
+        output[-(i + 1)] = data(-(i + 1));
+        output[size + i] = data(size + i);
     }
 }
 
@@ -228,11 +188,11 @@ void FrameLib_Peaks::process()
     
     switch (edges)
     {
-        case kPad:      padEdges(data, sizeIn, padding, padValue);  break;
-        case kExtend:   extendEdges(data, sizeIn, padding);         break;
-        case kWrap:     wrapEdges(data, sizeIn, padding);           break;
-        case kFold:     foldEdges(data, sizeIn, padding);           break;
-        case kMirror:   mirrorEdges(data, sizeIn, padding);         break;
+        case kEdgePad:      createEdges(data, EdgesPad(data, sizeIn, padValue), sizeIn, padding);   break;
+        case kEdgeExtend:   createEdges(data, EdgesExtend(data, sizeIn), sizeIn, padding);          break;
+        case kEdgeWrap:     createEdges(data, EdgesWrap(data, sizeIn), sizeIn, padding);            break;
+        case kEdgeFold:     createEdges(data, EdgesFold(data, sizeIn), sizeIn, padding);            break;
+        case kEdgeMirror:   createEdges(data, EdgesMirror(data, sizeIn), sizeIn, padding);          break;
     }
     
     // Find and store peaks

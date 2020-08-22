@@ -8,7 +8,6 @@ class FrameLib_Peaks final : public FrameLib_Processor
 {
     enum Parameters { kCriteria, kThreshold, kEdges, kPadding, kRefinement, kBoundary, kAlwaysDetect };
     enum Criteria { kOneNeighbour, kTwoNeighbours, kThreeNeighbours, kFourNeighbours };
-    enum Edges { kPad, kExtend, kWrap, kFold, kMirror };
     enum Refinements { kNone, kParabolic, kParabolicLog };
     enum Boundaries { kMinimum, kMidpoint };
 
