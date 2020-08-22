@@ -14,7 +14,7 @@ FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, const Fra
     
     mParameters.addDouble(kPadding, "pad", 0.0, 1);
     
-    mParameters.addEnum(kEdges, "mode", 2);
+    mParameters.addEnum(kEdges, "edges", 2);
     mParameters.addEnumItem(kEdgePad, "pad");
     mParameters.addEnumItem(kEdgeExtend, "extend");
     mParameters.addEnumItem(kEdgeWrap, "wrap");
