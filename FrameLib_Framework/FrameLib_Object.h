@@ -458,15 +458,9 @@ protected:
     void removeLocalAllocator()                                     { mLocalAllocator = nullptr; }
     void pruneAllocator()                                           { mAllocator->prune(); }
     
-    FrameLib_ContextAllocator::Storage *registerStorage(const char *name)
+    FrameLib_ContextAllocator::StoragePtr registerStorage(const char *name)
     {
         return mAllocator->registerStorage(name);
-    }
-    
-    void releaseStorage(FrameLib_ContextAllocator::Storage *&storage)
-    {
-        mAllocator->releaseStorage(storage->getName());
-        storage = nullptr;
     }
     
     // Info Helpers

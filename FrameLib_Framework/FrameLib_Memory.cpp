@@ -331,6 +331,30 @@ void FrameLib_ContextAllocator::Storage::resize(bool tagged, unsigned long size)
     }
 }
 
+// Context Local Storage Pointer
+
+void FrameLib_ContextAllocator::StoragePtr::release()
+{
+    if (!mStorage)
+        return;
+    
+    if (mStorage->decrement() <= 0)
+    {
+        for (auto it = mAllocator->mStorage.begin(); it != mAllocator->mStorage.end(); it++)
+        {
+            if (*it == mStorage)
+            {
+                mAllocator->mStorage.erase(it);
+                break;
+            }
+        }
+        
+        delete mStorage;
+    }
+    
+    mStorage = nullptr;
+}
+
 // ************************************************************************************** //
 
 // Thread Local Allocator
@@ -516,29 +540,18 @@ void FrameLib_ContextAllocator::prune()
 
 // Register and Release Storage
 
-FrameLib_ContextAllocator::Storage *FrameLib_ContextAllocator::registerStorage(const char *name)
+FrameLib_ContextAllocator::StoragePtr FrameLib_ContextAllocator::registerStorage(const char *name)
 {
     auto it = findStorage(name);
     
     if (it != mStorage.end())
     {
         (*it)->increment();
-        return *it;
+        return StoragePtr(this, *it);
     }
     
     mStorage.push_back(new Storage(name, *this));
-    return mStorage.back();
-}
-
-void FrameLib_ContextAllocator::releaseStorage(const char *name)
-{
-    auto it = findStorage(name);
-    
-    if (it != mStorage.end() && (*it)->decrement() <= 0)
-    {
-        delete *it;
-        mStorage.erase(it);
-    }
+    return StoragePtr(this, mStorage.back());
 }
 
 // Find Storage by Name

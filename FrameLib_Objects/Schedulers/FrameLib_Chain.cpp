@@ -95,6 +95,8 @@ FrameLib_Chain::SchedulerInfo FrameLib_Chain::schedule(bool newFrame, bool noAdv
                                          
         if (mTimes && mSize)
         {
+            // FIX - no enum for modes
+            
             if (mParameters.getInt(kMode))
             {
                 for (unsigned long i = 0; i < mSize; i++)

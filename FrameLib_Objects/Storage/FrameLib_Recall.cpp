@@ -19,11 +19,6 @@ FrameLib_Recall::FrameLib_Recall(FrameLib_Context context, const FrameLib_Parame
     setOutputType(0, kFrameAny);
 }
 
-FrameLib_Recall::~FrameLib_Recall()
-{
-    releaseStorage(mStorage);
-}
-
 // Info
 
 std::string FrameLib_Recall::objectInfo(bool verbose)
@@ -48,7 +43,6 @@ std::string FrameLib_Recall::outputInfo(unsigned long idx, bool verbose)
 
 void FrameLib_Recall::setStream(void *streamOwner, unsigned long stream)
 {
-    releaseStorage(mStorage);
     mStorage = registerStorage(numberedString(mName.c_str(), stream).c_str());
 }
 

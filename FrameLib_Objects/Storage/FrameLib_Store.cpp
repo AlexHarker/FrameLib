@@ -20,11 +20,6 @@ FrameLib_Store::FrameLib_Store(FrameLib_Context context, const FrameLib_Paramete
     setOutputType(0, kFrameAny);
 }
 
-FrameLib_Store::~FrameLib_Store()
-{
-    releaseStorage(mStorage);
-}
-
 // Info
 
 std::string FrameLib_Store::objectInfo(bool verbose)
@@ -49,7 +44,6 @@ std::string FrameLib_Store::outputInfo(unsigned long idx, bool verbose)
 
 void FrameLib_Store::setStream(void *streamOwner, unsigned long stream)
 {
-    releaseStorage(mStorage);
     mStorage = registerStorage(numberedString(mName.c_str(), stream).c_str());
 }
 
