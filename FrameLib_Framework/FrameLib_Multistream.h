@@ -94,6 +94,8 @@ protected:
     unsigned long getOrderingConnectionNumStreams(unsigned long idx);
     BlockConnection getOrderingConnectionChan(unsigned long idx, unsigned long chan);
 
+    MultistreamOutput& getMultistreamOutput(unsigned long i) { return mOutputs[i]; }
+    
 private:
 
     // Connection Methods (private)
@@ -105,13 +107,9 @@ private:
 
     void inputCheck(InputStack& stack);
 
-protected:
-
     // Outputs
     
     std::vector<MultistreamOutput> mOutputs;
-    
-private:
     
     unsigned long mNumStreams;
     unsigned long mInCount;
@@ -162,7 +160,7 @@ public:
         // Make initial output connections
         
         for (unsigned long i = 0; i < getNumOuts(); i++)
-            mOutputs[i].push_back(BlockConnection(mBlocks[0].get(), i));
+            getMultistreamOutput(i).push_back(BlockConnection(mBlocks[0].get(), i));
         
         // Check for ordering support
         
@@ -327,11 +325,11 @@ private:
             // Redo output connection lists
             
             for (unsigned long i = 0; i < getNumOuts(); i++)
-                mOutputs[i].clear();
+                getMultistreamOutput(i).clear();
             
             for (unsigned long i = 0; i < getNumOuts(); i++)
                 for (unsigned long j = 0; j < nChannels; j++)
-                    mOutputs[i].push_back(BlockConnection(mBlocks[j].get(), i));
+                    getMultistreamOutput(i).push_back(BlockConnection(mBlocks[j].get(), i));
             
             // Update Fixed Inputs
             

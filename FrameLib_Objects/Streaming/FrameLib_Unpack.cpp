@@ -43,19 +43,19 @@ bool FrameLib_Unpack::inputUpdate()
     for (unsigned long i = 0; i < getNumOuts(); i++)
     {
         bool exists = i < getInputNumStreams(0);
-        bool slotExists = mOutputs[i].size();
+        bool slotExists = getMultistreamOutput(i).size();
         
         // Check for changes
         
         change |= exists != slotExists;
-        change |= exists && slotExists && getInputChan(0, i) != mOutputs[i][0];
+        change |= exists && slotExists && getInputChan(0, i) != getMultistreamOutput(i)[0];
         
         // Store current value
         
-        mOutputs[i].clear();
+        getMultistreamOutput(i).clear();
             
         if (exists)
-            mOutputs[i].push_back(getInputChan(0, i));
+            getMultistreamOutput(i).push_back(getInputChan(0, i));
     }
     
     return change;

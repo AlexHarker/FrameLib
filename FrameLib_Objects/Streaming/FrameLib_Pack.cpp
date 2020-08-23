@@ -47,9 +47,9 @@ bool FrameLib_Pack::inputUpdate()
     for (unsigned long i = 0; i < getNumIns(); i++)
         size += getInputNumStreams(i);
     
-    if (size != mOutputs[0].size())
+    if (size != getMultistreamOutput(0).size())
     {
-        mOutputs[0].resize(size);
+        getMultistreamOutput(0).resize(size);
         change = true;
     }
     
@@ -59,8 +59,8 @@ bool FrameLib_Pack::inputUpdate()
     {
         for (unsigned long j = 0; j < getInputNumStreams(i); j++, k++)
         {
-            change |= getInputChan(i, j) != mOutputs[0][k];
-            mOutputs[0][k] = getInputChan(i, j);
+            change |= getInputChan(i, j) != getMultistreamOutput(0)[k];
+            getMultistreamOutput(0)[k] = getInputChan(i, j);
         }
     }
     
