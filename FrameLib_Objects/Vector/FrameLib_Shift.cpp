@@ -69,19 +69,19 @@ long limit(long x, long a, long b) { return std::max(std::min(x, b), a); }
 template <class T>
 void doShift(T edgeReader, double *out, const double *in, unsigned long size, long shift)
 {
-    const long loop1 = limit(-shift, 0, size);
-    const long loop2 = size - limit(shift, 0, size);
+    const long loop1 = limit(shift, 0, size);
+    const long loop2 = size - limit(-shift, 0, size);
 
     long i = 0;
 
     for (; i < loop1; i++)
-        out[i] = edgeReader(i + shift);
+        out[i] = edgeReader(i - shift);
             
     for (; i < loop2; i++)
-        out[i] = in[i + shift];
+        out[i] = in[i - shift];
         
     for (; i < size; i++)
-        out[i] = edgeReader(i + shift);
+        out[i] = edgeReader(i - shift);
 }
 
 // Process
