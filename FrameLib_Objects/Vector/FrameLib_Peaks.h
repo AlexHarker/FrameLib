@@ -6,7 +6,7 @@
 
 class FrameLib_Peaks final : public FrameLib_Processor
 {
-    enum Parameters { kCriteria, kThreshold, kEdges, kPadding, kRefinement, kBoundary, kAlwaysDetect };
+    enum Parameters { kCriteria, kThreshold, kPadding, kEdges, kRefinement, kBoundary, kAlwaysDetect };
     enum Criteria { kOneNeighbour, kTwoNeighbours, kThreeNeighbours, kFourNeighbours };
     enum Refinements { kNone, kParabolic, kParabolicLog };
     enum Boundaries { kMinimum, kMidpoint };

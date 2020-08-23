@@ -14,15 +14,15 @@ FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Paramete
 
     mParameters.addDouble(kThreshold, "threshold", 0.0, 1);
     
-    mParameters.addEnum(kEdges, "edges", 2);
+    mParameters.addDouble(kPadding, "padding", 0.0, 2);
+
+    mParameters.addEnum(kEdges, "edges", 3);
     mParameters.addEnumItem(kEdgePad, "pad");
     mParameters.addEnumItem(kEdgeExtend, "extend");
     mParameters.addEnumItem(kEdgeWrap, "wrap");
     mParameters.addEnumItem(kEdgeFold, "fold");
     mParameters.addEnumItem(kEdgeMirror, "mirror");
-
-    mParameters.addDouble(kPadding, "padding", 0.0, 3);
-                          
+    
     mParameters.addEnum(kRefinement, "refine", 4);
     mParameters.addEnumItem(kNone, "none");
     mParameters.addEnumItem(kParabolic, "parabolic", true);
