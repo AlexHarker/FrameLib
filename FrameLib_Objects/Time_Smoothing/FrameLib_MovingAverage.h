@@ -16,11 +16,9 @@ class FrameLib_MovingAverage final : public FrameLib_Processor
 
 public:
     
-    // Constructor / Destructor
+    // Constructor
     
     FrameLib_MovingAverage(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-    
-    ~FrameLib_MovingAverage();
     
     // Info
     
@@ -40,8 +38,8 @@ private:
     
     // Data
     
-    double *mAverageFrame;
-    double *mVarianceFrame;
+    AutoArray<double> mAverageFrame;
+    AutoArray<double> mVarianceFrame;
     unsigned long mFrameSize;
     
     FrameLib_TimeFormat mLastAvgResetTime;

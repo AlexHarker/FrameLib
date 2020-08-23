@@ -9,11 +9,9 @@ class FrameLib_TimeStdDev final : public FrameLib_TimeBuffer<FrameLib_TimeStdDev
 {
 public:
     
-    // Constructor / Destructor
+    // Constructor
 
     FrameLib_TimeStdDev(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-
-    ~FrameLib_TimeStdDev();
 
     // Info
     
@@ -33,8 +31,8 @@ private:
 
     // Data
     
-    NeumaierSum *mSum;
-    NeumaierSum *mSqSum;
+    AutoArray<NeumaierSum> mSum;
+    AutoArray<NeumaierSum> mSqSum;
 };
 
 #endif

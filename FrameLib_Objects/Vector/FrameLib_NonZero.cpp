@@ -36,7 +36,7 @@ void FrameLib_NonZero::process()
     
     // Allocate temporary memory for working to avoid double looping (cheaper for large lists)
     
-    double *indices = alloc<double>(sizeIn);
+    auto indices = allocAutoArray<double>(sizeIn);
     sizeIn = indices ? sizeIn : 0;
     
     for (unsigned long i = 0; i < sizeIn; i++)
@@ -50,6 +50,4 @@ void FrameLib_NonZero::process()
     double *output = getOutput(0, &sizeOut);
 
     copyVector(output, indices, sizeOut);
-    
-    dealloc(indices);
 }

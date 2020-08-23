@@ -16,25 +16,19 @@ class FrameLib_Complex_BinaryOp final : public FrameLib_Processor
     public:
         
         PaddedInput(FrameLib_Complex_BinaryOp *owner, const double *input, unsigned long size, unsigned long paddedSize)
-        : mOwner(owner), mAllocated(nullptr)
+        : mOwner(owner)
         {
             if (paddedSize > size)
             {
-                mAllocated = owner->alloc<double>(paddedSize);
-                if (mAllocated)
+                mAllocated = owner->allocAutoArray<double>(paddedSize);
+                if ((mPtr = mAllocated))
                 {
                     copyVector(mAllocated, input, size);
                     zeroVector(mAllocated + size, paddedSize - size);
                 }
-                mPtr = mAllocated;
             }
             else
                 mPtr = input;
-        }
-        
-        ~PaddedInput()
-        {
-            mOwner->dealloc(mAllocated);
         }
         
         const double &operator [](size_t idx) { return mPtr[idx]; }
@@ -49,7 +43,7 @@ class FrameLib_Complex_BinaryOp final : public FrameLib_Processor
         // Data
         
         FrameLib_Complex_BinaryOp *mOwner;
-        double *mAllocated;
+        FrameLib_Complex_BinaryOp::AutoArray<double> mAllocated;
         const double *mPtr;
     };
     

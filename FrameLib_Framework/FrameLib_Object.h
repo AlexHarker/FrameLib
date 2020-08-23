@@ -73,6 +73,63 @@ public:
     using Queue = FrameLib_MethodQueue<T>;
     using Connection = FrameLib_Connection<T, unsigned long>;
 
+    // A managed dynamic array
+    
+    template <typename U>
+    class AutoArray
+    {
+        friend class FrameLib_Object;
+        
+        AutoArray(FrameLib_Object *object, unsigned long size = 0)
+        : mObject(object), mMemory(size ? mObject->alloc<U>(size) : nullptr) {}
+        
+    public:
+        
+        AutoArray() : mObject(nullptr), mMemory(nullptr) {}
+        ~AutoArray() { release(); }
+        
+        AutoArray(const AutoArray&) = delete;
+        AutoArray& operator=(const AutoArray&) = delete;
+        
+        AutoArray(AutoArray&& b) : mObject(b.mObject), mMemory(b.mMemory)
+        {
+            b.mObject = nullptr;
+            b.mMemory = nullptr;
+        }
+        
+        AutoArray& operator=(AutoArray&& b)
+        {
+            release();
+            
+            mObject = b.mObject;
+            mMemory = b.mMemory;
+            b.mObject = nullptr;
+            b.mMemory = nullptr;
+            
+            return *this;
+        }
+        
+        operator U*()                       { return mMemory; }
+        const operator U*() const           { return mMemory; }
+        
+        U* get()                            { return mMemory; }
+        const U* get() const                { return mMemory; }
+        
+    private:
+        
+        void release()
+        {
+            if (mObject && mMemory)
+            {
+                mObject->dealloc(mMemory);
+                mMemory = nullptr;
+            }
+        }
+        
+        FrameLib_Object *mObject;
+        U *mMemory;
+    };
+    
     // An allocator that you can pass to other objects/code whilst this object exists
     
     class Allocator
@@ -82,10 +139,13 @@ public:
         Allocator(FrameLib_Object& object) : mObject(object) {}
         
         template <class U>
-        U *allocate(size_t N)       { return mObject.alloc<U>(N); }
+        U *allocate(size_t N)               { return mObject.alloc<U>(N); }
         
         template <class U>
-        void deallocate(U *& ptr)   { mObject.dealloc(ptr); }
+        void deallocate(U *& ptr)           { mObject.dealloc(ptr); }
+        
+        template <class U>
+        AutoArray<U> allocAutoArray(size_t N)  { return mObject.allocAutoArray<U>(N); }
         
     private:
         
@@ -363,6 +423,12 @@ protected:
     void enableOrderingConnections()                         { mSupportsOrderingConnections = true; }
 
     // Memory Allocation
+    
+    template <class U>
+    AutoArray<U> allocAutoArray(size_t N)
+    {
+        return AutoArray<U>(this, N);
+    }
     
     template <class U>
     U *alloc(size_t N)

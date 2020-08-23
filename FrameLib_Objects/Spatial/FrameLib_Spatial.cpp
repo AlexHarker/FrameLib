@@ -156,13 +156,11 @@ void FrameLib_Spatial::process()
     
     if (maxSpeakers < numSpeakers)
     {
-        unsigned long *indices = alloc<unsigned long>(numSpeakers);
+        auto indices = allocAutoArray<unsigned long>(numSpeakers);
         sortIndicesDescending(indices, output, numSpeakers);
         
         for (unsigned long i = maxSpeakers; i < numSpeakers; i++)
             output[indices[i]] = 0.0;
-        
-        dealloc(indices);
     }
     
     // Interpolate to points

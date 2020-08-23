@@ -5,13 +5,7 @@
 
 FrameLib_TimeMean::FrameLib_TimeMean(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_TimeBuffer<FrameLib_TimeMean>(context, serialisedParameters, proxy)
-, mSum(nullptr)
 {}
-
-FrameLib_TimeMean::~FrameLib_TimeMean()
-{
-    dealloc(mSum);
-}
 
 // Info
 
@@ -42,8 +36,7 @@ std::string FrameLib_TimeMean::outputInfo(unsigned long idx, bool verbose)
 
 void FrameLib_TimeMean::resetSize(unsigned long maxFrames, unsigned long size)
 {
-    dealloc(mSum);
-    mSum = alloc<NeumaierSum>(size);
+    mSum = allocAutoArray<NeumaierSum>(size);
     
     for (unsigned long i = 0; i < size; i++)
         mSum[i].clear();

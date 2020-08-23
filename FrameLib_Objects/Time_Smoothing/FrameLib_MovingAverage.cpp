@@ -4,7 +4,9 @@
 
 // Constructor / Destructor
 
-FrameLib_MovingAverage::FrameLib_MovingAverage(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 5, 2), mAverageFrame(nullptr), mVarianceFrame(nullptr), mFrameSize(0)
+FrameLib_MovingAverage::FrameLib_MovingAverage(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 5, 2)
+, mFrameSize(0)
 {
     mParameters.addDouble(kAlphaUp, "alpha_up", 0.5, 0);
     mParameters.setClip(0.0, 1.0);
@@ -19,12 +21,6 @@ FrameLib_MovingAverage::FrameLib_MovingAverage(FrameLib_Context context, const F
     mParameters.set(serialisedParameters);
     
     setParameterInput(4);
-}
-
-FrameLib_MovingAverage::~FrameLib_MovingAverage()
-{
-    dealloc(mAverageFrame);
-    dealloc(mVarianceFrame);
 }
 
 // Info
@@ -96,10 +92,8 @@ void FrameLib_MovingAverage::process()
     
     if (mFrameSize != sizeIn)
     {
-        dealloc(mAverageFrame);
-        dealloc(mVarianceFrame);
-        mAverageFrame = alloc<double>(sizeIn);
-        mVarianceFrame = alloc<double>(sizeIn);
+        mAverageFrame = allocAutoArray<double>(sizeIn);
+        mVarianceFrame = allocAutoArray<double>(sizeIn);
         mFrameSize = mAverageFrame && mVarianceFrame ? sizeIn : 0;
         resetAverage = true;
         resetDeviation = true;

@@ -11,16 +11,10 @@ public:
     // Constructor
     
     FrameLib_VectorSet(FrameLib_DSP *owner)
-    : mFrames(nullptr)
-    , mNumFrames(0)
+    : mNumFrames(0)
     , mFrameLength(0)
     , mAllocator(*owner)
     {}
-    
-    ~FrameLib_VectorSet()
-    {
-        deallocVector(mFrames);
-    }
     
     // Getters
     
@@ -32,7 +26,7 @@ public:
     
     void reset(double initial = 0.0)
     {
-        std::fill_n(mFrames, getNumFrames() * getFrameLength(), initial);
+        std::fill_n(mFrames.get(), getNumFrames() * getFrameLength(), initial);
     }
     
     // Resize without resetting the memory
@@ -43,10 +37,7 @@ public:
         unsigned long totalSize = frameLength * numFrames;
         
         if (oldSize != totalSize)
-        {
-            deallocVector(mFrames);
-            mFrames = allocVector(totalSize);
-        }
+            mFrames = mAllocator.allocAutoArray<double>(totalSize);
         
         mNumFrames = mFrames ? numFrames : 0;
         mFrameLength = mFrames ? frameLength : 0;
@@ -61,18 +52,8 @@ public:
     }
 
 private:
-    
-    double *allocVector(unsigned long N)
-    {
-        return mAllocator.allocate<double>(N);
-    }
-    
-    void deallocVector(double *& ptr)
-    {
-        mAllocator.deallocate(ptr);
-    }
 
-    double *mFrames;
+    FrameLib_DSP::AutoArray<double> mFrames;
     unsigned long mNumFrames;
     unsigned long mFrameLength;
     

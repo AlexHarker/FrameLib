@@ -9,11 +9,9 @@ class FrameLib_TimeMean final : public FrameLib_TimeBuffer<FrameLib_TimeMean>
 {
 public:
     
-    // Constructor / Destructor
+    // Constructor
     
     FrameLib_TimeMean(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-
-    ~FrameLib_TimeMean();
 
     // Info
     
@@ -33,7 +31,7 @@ private:
     
     // Data
     
-    NeumaierSum *mSum;
+    AutoArray<NeumaierSum> mSum;
 };
 
 #endif

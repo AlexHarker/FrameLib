@@ -43,7 +43,6 @@ FrameLib_Window::FrameLib_Window(FrameLib_Context context, const FrameLib_Parame
     
     mParameters.set(serialisedParameters);
     
-    mWindow = nullptr;
     mWindowType = kHann;
     mSize = 0;
     mSqrtWindow = false;
@@ -52,11 +51,6 @@ FrameLib_Window::FrameLib_Window(FrameLib_Context context, const FrameLib_Parame
     mEnds = kNone;
     
     setParameterInput(1);
-}
-
-FrameLib_Window::~FrameLib_Window()
-{
-    dealloc(mWindow);
 }
 
 // Info
@@ -113,10 +107,7 @@ void FrameLib_Window::updateWindow(unsigned long inSize, Endpoints ends)
         return;
     
     if (mSize != windowSize)
-    {
-        dealloc(mWindow);
-        mWindow = alloc<double>(windowSize + 2);
-    }
+        mWindow = allocAutoArray<double>(windowSize + 2);
     
     sWindowCalculator.calculate(windowType, mWindow, windowSize, windowSize + 1);
     

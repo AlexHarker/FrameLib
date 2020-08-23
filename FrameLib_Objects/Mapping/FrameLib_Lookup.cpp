@@ -92,7 +92,7 @@ void FrameLib_Lookup::process()
     const double *input1 = getInput(0, &sizeIn1);
     const double *input2 = getInput(1, &sizeIn2);
     const double *positions = input1;
-    double *temp = nullptr;
+    AutoArray<double> temp;
 
     // Before allocating check that we have a table and if not produce an empty frame
     
@@ -117,7 +117,7 @@ void FrameLib_Lookup::process()
     
     if (scale != kSamples)
     {
-        temp = alloc<double>(sizeIn1);
+        temp = allocAutoArray<double>(sizeIn1);
         positions = temp;
         
         if (!temp)
@@ -150,7 +150,4 @@ void FrameLib_Lookup::process()
     // Calculate output
     
     table_read_edges(Fetcher(input2, sizeIn2), output, positions, sizeIn1, 1.0, interp, edges, bound);
-    
-    if (scale != kSamples)
-        dealloc(temp);
 }

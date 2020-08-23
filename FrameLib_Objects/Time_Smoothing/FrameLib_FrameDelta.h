@@ -12,8 +12,6 @@ public:
 
     FrameLib_FrameDelta(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
-    ~FrameLib_FrameDelta();
-    
     // Info
     
     std::string objectInfo(bool verbose) override;
@@ -32,7 +30,7 @@ private:
     
     // Data
     
-    double *mLastFrame;
+    AutoArray<double> mLastFrame;
     unsigned long mFrameSize;
 };
 

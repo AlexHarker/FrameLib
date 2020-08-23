@@ -4,7 +4,6 @@
 
 FrameLib_Chain::FrameLib_Chain(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Scheduler(context, proxy, &sParamInfo, 2, 1)
-, mTimes(nullptr)
 , mPosition(0)
 {
     mParameters.addEnum(kUnits, "units", 1);
@@ -19,11 +18,6 @@ FrameLib_Chain::FrameLib_Chain(FrameLib_Context context, const FrameLib_Paramete
     mParameters.set(serialisedParameters);
     
     setParameterInput(0);
-}
-
-FrameLib_Chain::~FrameLib_Chain()
-{
-    dealloc(mTimes);
 }
 
 // Info
@@ -61,8 +55,7 @@ FrameLib_Chain::ParameterInfo::ParameterInfo()
 
 void FrameLib_Chain::objectReset()
 {
-    dealloc(mTimes);
-    mTimes = nullptr;
+    mTimes = allocAutoArray<FrameLib_TimeFormat>(0);
     mPosition = 0;
     mSize = 0;
 }
@@ -94,8 +87,7 @@ FrameLib_Chain::SchedulerInfo FrameLib_Chain::schedule(bool newFrame, bool noAdv
     {
         const double* input = getInput(0, &sizeIn);
      
-        dealloc(mTimes);
-        mTimes = alloc<FrameLib_TimeFormat>(sizeIn);
+        mTimes = allocAutoArray<FrameLib_TimeFormat>(sizeIn);
         mSize = mTimes ? sizeIn : 0;
         mPosition = 0;
         
@@ -108,7 +100,7 @@ FrameLib_Chain::SchedulerInfo FrameLib_Chain::schedule(bool newFrame, bool noAdv
                 for (unsigned long i = 0; i < mSize; i++)
                     mTimes[i] = convertTime(input[i], units) + FrameLib_TimeFormat(1);
   
-                sortAscending(mTimes, mSize);
+                sortAscending(mTimes.get(), mSize);
             }
             else
             {

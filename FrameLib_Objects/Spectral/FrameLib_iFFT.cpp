@@ -120,14 +120,17 @@ void FrameLib_iFFT::process()
     requestOutputSize(0, sizeOut);
     if (mMode == kComplex)
         requestOutputSize(1, sizeOut);
-    allocateOutputs();
+    if (!allocateOutputs())
+        return;
     
     // Setup output and temporary memory
     
     double *outputR = getOutput(0, &sizeOut);
     double *outputI = nullptr;
     
-    if (mMode == kComplex && sizeOut)
+    auto temp = allocAutoArray<double>(mMode == kReal ? sizeOut : 0);
+    
+    if (mMode == kComplex)
     {
         outputI = getOutput(1, &sizeOut);
         
@@ -138,13 +141,13 @@ void FrameLib_iFFT::process()
     }
     else
     {
-        spectrum.realp = alloc<double>(sizeOut ? sizeOut * sizeof(double) : 0);
+        spectrum.realp = temp;
         spectrum.imagp = spectrum.realp + (sizeOut >> 1);
         
         spectrumSize = sizeOut >> 1;
     }
     
-    if (sizeOut && spectrum.realp)
+    if (spectrum.realp)
     {
         double scale = mNormalise ? 0.5 : 1.0 / static_cast<double>(1 << FFTSizeLog2);
         
@@ -176,8 +179,6 @@ void FrameLib_iFFT::process()
         
             mProcessor.rifft(outputR, spectrum, FFTSizeLog2);
             mProcessor.scale_vector(outputR, sizeOut, scale);
-        
-            dealloc(spectrum.realp);
         }
     }
 }

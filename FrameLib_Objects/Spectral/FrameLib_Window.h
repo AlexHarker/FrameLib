@@ -21,10 +21,9 @@ class FrameLib_Window final : public FrameLib_Processor
 
 public:
 
-    // Constructor / Destructor
+    // Constructor
     
     FrameLib_Window(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-    ~FrameLib_Window();
     
     // Info
     
@@ -76,7 +75,7 @@ private:
     // Data
     
     static WindowCalculator sWindowCalculator;
-    double *mWindow;
+    AutoArray<double> mWindow;
 
     WindowTypes mWindowType;
     Endpoints mEnds;

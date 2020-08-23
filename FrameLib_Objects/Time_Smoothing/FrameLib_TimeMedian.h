@@ -14,11 +14,9 @@ class FrameLib_TimeMedian final : public FrameLib_TimeBuffer<FrameLib_TimeMedian
     
 public:
     
-    // Constructor / Destructor
+    // Constructor
 
     FrameLib_TimeMedian(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-
-    ~FrameLib_TimeMedian();
 
     // Info
     
@@ -32,7 +30,7 @@ public:
 
 private:
 
-    double *getChannel(unsigned long idx) const;
+    double *getChannel(unsigned long idx);
 
     void add(const double *newFrame, unsigned long size) override;
     void remove(const double *oldFrame, unsigned long size) override;
@@ -41,7 +39,7 @@ private:
     
     // Data
         
-    double *mOrdered;
+    AutoArray<double> mOrdered;
     unsigned long mNumFrames;
 };
 

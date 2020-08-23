@@ -170,9 +170,9 @@ void FrameLib_Peaks::process()
     if (!sizeIn)
         return;
     
-    double *edgeFilled = alloc<double>(sizeIn + padding * 2);
+    auto edgeFilled = allocAutoArray<double>(sizeIn + padding * 2);
+    auto indices = allocAutoArray<unsigned long>(sizeIn);
     double *data = edgeFilled + padding;
-    unsigned long *indices = alloc<unsigned long>(sizeIn);
 
     // N.B. parabolic log interpolation can only work on +ve values
     
@@ -229,11 +229,7 @@ void FrameLib_Peaks::process()
     requestOutputSize(2, nPeaks);
     
     if (!allocateOutputs())
-    {
-        dealloc(edgeFilled);
-        dealloc(indices);
         return;
-    }
     
     double *output1 = getOutput(0, &sizeOut1);
     double *output2 = getOutput(1, &sizeOut2);
@@ -276,7 +272,4 @@ void FrameLib_Peaks::process()
         for (; samples < peakEnd; samples++)
             output1[samples] = peak;
     }
-    
-    dealloc(edgeFilled);
-    dealloc(indices);
 }

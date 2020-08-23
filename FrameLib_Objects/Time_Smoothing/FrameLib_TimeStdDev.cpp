@@ -5,15 +5,7 @@
 
 FrameLib_TimeStdDev::FrameLib_TimeStdDev(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_TimeBuffer<FrameLib_TimeStdDev>(context, serialisedParameters, proxy)
-, mSum(nullptr)
-, mSqSum(nullptr)
 {}
-
-FrameLib_TimeStdDev::~FrameLib_TimeStdDev()
-{
-    dealloc(mSum);
-    dealloc(mSqSum);
-}
 
 // Info
 
@@ -44,11 +36,8 @@ std::string FrameLib_TimeStdDev::outputInfo(unsigned long idx, bool verbose)
 
 void FrameLib_TimeStdDev::resetSize(unsigned long maxFrames, unsigned long size)
 {
-    dealloc(mSum);
-    dealloc(mSqSum);
-    
-    mSum = alloc<NeumaierSum>(size);
-    mSqSum = alloc<NeumaierSum>(size);
+    mSum = allocAutoArray<NeumaierSum>(size);
+    mSqSum = allocAutoArray<NeumaierSum>(size);
 
     for (unsigned long i = 0; i < size; i++)
         mSum[i].clear();

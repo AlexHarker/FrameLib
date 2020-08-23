@@ -5,14 +5,8 @@
 
 FrameLib_FrameDelta::FrameLib_FrameDelta(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, nullptr, 1, 1)
-, mLastFrame(nullptr)
 , mFrameSize(0)
 {}
-
-FrameLib_FrameDelta::~FrameLib_FrameDelta()
-{
-    dealloc(mLastFrame);
-}
 
 // Info
 
@@ -45,8 +39,7 @@ void FrameLib_FrameDelta::process()
     
     if (mFrameSize != sizeIn)
     {
-        dealloc(mLastFrame);
-        mLastFrame = alloc<double>(sizeIn);
+        mLastFrame = allocAutoArray<double>(sizeIn);
         mFrameSize = mLastFrame ? sizeIn : 0;
         reset = true;
     }

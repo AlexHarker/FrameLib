@@ -15,11 +15,13 @@ class FrameLib_TernaryOp final : public FrameLib_Processor
     public:
         
         EnlargedInput(FrameLib_TernaryOp *owner, const double *input, unsigned long size, unsigned long extendedSize, MismatchModes mode)
-            : mOwner(owner), mAllocated(nullptr)
+            : mOwner(owner)
         {
             if (extendedSize > size)
             {
-                if ((mPtr = mAllocated = owner->alloc<double>(extendedSize)))
+                mAllocated = owner->allocAutoArray<double>(extendedSize);
+                
+                if ((mPtr = mAllocated))
                 {
                     switch (mode)
                     {
@@ -31,11 +33,6 @@ class FrameLib_TernaryOp final : public FrameLib_Processor
             }
             else
                 mPtr = input;
-        }
-        
-        ~EnlargedInput()
-        {
-            mOwner->dealloc(mAllocated);
         }
         
         bool isValid() const { return mPtr; }
@@ -52,7 +49,7 @@ class FrameLib_TernaryOp final : public FrameLib_Processor
         // Data
         
         FrameLib_TernaryOp *mOwner;
-        double *mAllocated;
+        FrameLib_TernaryOp::AutoArray<double> mAllocated;
         const double *mPtr;
     };
     

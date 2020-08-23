@@ -44,13 +44,13 @@ FrameLib_Percentile::ParameterInfo::ParameterInfo()
 double FrameLib_Percentile::compute(const double *input, size_t size)
 {
     double result = 0.0;
-    double *temp = alloc<double>(size + 1);
+    auto temp = allocAutoArray<double>(size + 1);
     
     if (temp)
     {
         double position = (mParameters.getValue(kPercentile) * (size - 1) / 100.0);
         
-        sortAscending(temp, input, static_cast<unsigned long>(size));
+        sortAscending(temp.get(), input, static_cast<unsigned long>(size));
         
         // Copy last value
         
@@ -68,8 +68,6 @@ double FrameLib_Percentile::compute(const double *input, size_t size)
         else
             result = temp[roundToUInt(position)];
     }
-    
-    dealloc(temp);
     
     return result;
 }

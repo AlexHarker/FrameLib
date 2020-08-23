@@ -79,7 +79,7 @@ void FrameLib_NanFilter::process()
         
         case kRemove:
         {
-            double* temp = alloc<double>(sizeIn);
+            auto temp = allocAutoArray<double>(sizeIn);
             sizeIn = temp ? sizeIn : 0;
             
             for (unsigned long i = 0; i < sizeIn; i++)
@@ -92,9 +92,7 @@ void FrameLib_NanFilter::process()
             allocateOutputs();
             
             double *output = getOutput(0, &sizeOut);
-            copyVector(output, temp, sizeOut);
-            dealloc(temp);
-            
+            copyVector(output, temp, sizeOut);            
             break;
         }
     }

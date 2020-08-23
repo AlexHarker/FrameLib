@@ -97,8 +97,6 @@ void FrameLib_Read::process()
     Interpolation interpolation = mParameters.getEnum<Interpolation>(kInterpolation);
     InterpType interpType = kInterpNone;
 
-    double *positions = nullptr;
-
     unsigned long size;
     long chan = mParameters.getInt(kChannel) - 1;
     bool bound = mParameters.getBool(kBound);
@@ -119,8 +117,7 @@ void FrameLib_Read::process()
     if (mProxy)
          mProxy->acquire(length, samplingRate);
     
-    if (size && length)
-        positions = alloc<double>(size);
+    auto positions = allocAutoArray<double>(size && length ? size : 0);
     
     if (positions)
     {
@@ -162,8 +159,6 @@ void FrameLib_Read::process()
         }
                 
         mProxy->read(output, positions, size, chan, interpType, edges, bound);
-        
-        dealloc(positions);
     }
     else
     {

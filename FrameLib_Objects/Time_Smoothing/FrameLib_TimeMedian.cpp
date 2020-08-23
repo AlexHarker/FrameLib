@@ -5,18 +5,12 @@
 
 FrameLib_TimeMedian::FrameLib_TimeMedian(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_TimeBuffer<FrameLib_TimeMedian, 1>(context, serialisedParameters, proxy)
-, mOrdered(nullptr)
 , mNumFrames(0)
 {
     mParameters.addDouble(kPercentile, "percentile", 50.0, kPercentile);
     mParameters.setClip(0.0, 100.0);
 
     completeDefaultParameters(serialisedParameters);
-}
-
-FrameLib_TimeMedian::~FrameLib_TimeMedian()
-{
-    dealloc(mOrdered);
 }
 
 // Info
@@ -53,8 +47,7 @@ std::string FrameLib_TimeMedian::outputInfo(unsigned long idx, bool verbose)
 
 void FrameLib_TimeMedian::resetSize(unsigned long maxFrames, unsigned long size)
 {
-    dealloc(mOrdered);
-    mOrdered = alloc<double>(size * maxFrames);
+    mOrdered = allocAutoArray<double>(size * maxFrames);
     mNumFrames = 0;
 }
 
@@ -101,9 +94,9 @@ unsigned long find(double input, double *channel, unsigned long numFrames)
 
 // Process
 
-double *FrameLib_TimeMedian::getChannel(unsigned long idx) const
+double *FrameLib_TimeMedian::getChannel(unsigned long idx)
 {
-    return mOrdered + (idx * getMaxFrames());
+    return mOrdered.get() + (idx * getMaxFrames());
 }
 
 void FrameLib_TimeMedian::exchange(const double *newFrame, const double *oldFrame, unsigned long size)

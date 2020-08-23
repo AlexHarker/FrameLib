@@ -150,8 +150,8 @@ void FrameLib_MedianFilter::process()
     allocateOutputs();
     
     double *output = getOutput(0, &sizeOut);    
-    double *data = alloc<double>(width);
-    unsigned long *indices = alloc<unsigned long>(width);
+    auto data = allocAutoArray<double>(width);
+    auto indices = allocAutoArray<unsigned long>(width);
     
     // Do filtering
     
@@ -174,7 +174,4 @@ void FrameLib_MedianFilter::process()
             getReporter()(kErrorObject, getProxy(), "couldn't allocate temporary memory");
         }
     }
-    
-    dealloc(data);
-    dealloc(indices);
 }

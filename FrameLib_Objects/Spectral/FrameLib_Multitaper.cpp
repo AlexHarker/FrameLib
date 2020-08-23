@@ -96,18 +96,18 @@ void FrameLib_Multitaper::process()
     allocateOutputs();
     
     double *output = getOutput(0, &sizeOut);
-    double *tempMem = alloc<double>((FFTSize + 1) << 1);
+    auto temp = allocAutoArray<double>((FFTSize + 1) << 1);
     
     unsigned long nTapers = mParameters.getInt(kNumTapers);
     
     // Transform
     
-    if (tempMem && sizeOut && output)
+    if (temp && sizeOut && output)
     {
         FFT_SPLIT_COMPLEX_D spectrum;
         
-        spectrum.realp = ((double *) tempMem);
-        spectrum.imagp = ((double *) tempMem) + (FFTSize + 1);
+        spectrum.realp = ((double *) temp);
+        spectrum.imagp = ((double *) temp) + (FFTSize + 1);
         
         // Take the real fft
         
@@ -158,8 +158,5 @@ void FrameLib_Multitaper::process()
                 output[j] += ((r3 * r3) + (i3 * i3)) * taperScale;
             }
         }
-        
     }
-    
-    dealloc(tempMem);
 }

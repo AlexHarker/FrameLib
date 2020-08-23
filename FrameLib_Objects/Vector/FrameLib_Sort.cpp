@@ -72,7 +72,7 @@ void FrameLib_Sort::process()
     }
     else
     {
-        unsigned long *indices = alloc<unsigned long>(size);
+        auto indices = allocAutoArray<unsigned long>(size);
         
         if (indices)
         {
@@ -90,7 +90,5 @@ void FrameLib_Sort::process()
             zeroVector(output, size);
             getReporter()(kErrorObject, getProxy(), "couldn't allocate temporary memory");
         }
-        
-        dealloc(indices);
     }
 }
