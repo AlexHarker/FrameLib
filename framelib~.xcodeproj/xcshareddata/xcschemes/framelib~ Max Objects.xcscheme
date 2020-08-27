@@ -1162,20 +1162,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8D67A1C1B84D88F00519310"
-               BuildableName = "fl.coordinatesystem~.mxo"
-               BlueprintName = "fl.coordinatesystem~"
-               ReferencedContainer = "container:framelib~.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8D8DB7F1B89D74B000203E5"
                BuildableName = "fl.select~.mxo"
                BlueprintName = "fl.select~"

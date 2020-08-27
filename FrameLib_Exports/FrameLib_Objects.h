@@ -64,7 +64,8 @@
 
 // Spatial
 
-#include "../FrameLib_Objects/Spatial/FrameLib_CoordinateSystem.h"
+#include "../FrameLib_Objects/Spatial/FrameLib_Cartopol.h"
+#include "../FrameLib_Objects/Spatial/FrameLib_Poltocar.h"
 #include "../FrameLib_Objects/Spatial/FrameLib_Spatial.h"
 
 // Spectral
@@ -139,8 +140,6 @@
 // Complex Operators
 
 #include "../FrameLib_Objects/Complex_Unary/FrameLib_Complex_Unary_Objects.h"
-#include "../FrameLib_Objects/Complex_Unary/FrameLib_Cartopol.h"
-#include "../FrameLib_Objects/Complex_Unary/FrameLib_Poltocar.h"
 #include "../FrameLib_Objects/Complex_Binary/FrameLib_Complex_Binary_Objects.h"
 
 #endif /* FRAMELIB_OBJECTS_H */

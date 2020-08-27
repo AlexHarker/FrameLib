@@ -77,7 +77,8 @@ FrameLib_PerBlock,
 
 // Spatial
 
-FrameLib_CoordinateSystem,
+FrameLib_Cartopol,
+FrameLib_Poltocar,
 FrameLib_Spatial,
 
 // Spectral
@@ -236,9 +237,6 @@ FrameLib_Complex_Exp,
 
 FrameLib_Complex_Sqrt,
 FrameLib_Complex_Conj,
-
-FrameLib_Cartopol,
-FrameLib_Poltocar,
 
 // Complex Binary Operators
 

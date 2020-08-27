@@ -1,7 +1,7 @@
 
 #include "SC_PlugIn.h"
+#include "../FrameLib_Exports/FrameLib_Objects.h"
 
-#include "FrameLib_Objects.h"
 
 static InterfaceTable *ft;
 
