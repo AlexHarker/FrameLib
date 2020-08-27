@@ -113,7 +113,6 @@
 		B845440F230DC266000E42DE /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8454410230DC266000E42DE /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8454417230DC31A000E42DE /* fl.contextcontrol~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8454403230DC130000E42DE /* fl.contextcontrol~.cpp */; };
-		B845551424E069860075395D /* fl.movingaverage~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B845551324E069860075395D /* fl.movingaverage~.cpp */; };
 		B845551724E06A1F0075395D /* FrameLib_MovingAverage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B845551524E069DD0075395D /* FrameLib_MovingAverage.cpp */; };
 		B845551824E06A360075395D /* fl.movingaverage~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B845551324E069860075395D /* fl.movingaverage~.cpp */; };
 		B845551924E06D050075395D /* FrameLib_MovingAverage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B845551524E069DD0075395D /* FrameLib_MovingAverage.cpp */; };
@@ -11880,7 +11879,6 @@
 				B8A1F5BE1D5370DE00FA5FFC /* NumericTesting.cpp in Sources */,
 				B8B961DD1F1000D500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
 				B80059BF1DAF96340073A866 /* FrameLib_RandGen.cpp in Sources */,
-				B845551424E069860075395D /* fl.movingaverage~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

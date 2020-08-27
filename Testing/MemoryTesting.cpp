@@ -202,7 +202,7 @@ uintptr_t globalAllocTest1(uintptr_t count)
 {
     std::vector<void *> ptrs(count);
     
-    FrameLib_GlobalAllocator allocator(reporter);
+    FrameLib_GlobalAllocator allocator(FrameLib_Thread::defaultPriorities(), reporter);
     
     for (uintptr_t i = 0; i < count; i++)
         ptrs[i] = allocator.alloc(randomSize());
@@ -215,7 +215,7 @@ uintptr_t globalAllocTest1(uintptr_t count)
 
 uintptr_t globalAllocTest2(uintptr_t count)
 {
-    FrameLib_GlobalAllocator allocator(reporter);
+    FrameLib_GlobalAllocator allocator(FrameLib_Thread::defaultPriorities(), reporter);
     
     for (uintptr_t i = 0; i < count; i++)
         allocator.dealloc(allocator.alloc(randomSize()));
@@ -227,7 +227,7 @@ uintptr_t globalAllocTest3(uintptr_t count)
 {
     std::vector<void *> ptrs(count);
     
-    FrameLib_GlobalAllocator allocator(reporter);
+    FrameLib_GlobalAllocator allocator(FrameLib_Thread::defaultPriorities(), reporter);
     
     for (uintptr_t i = 0; i < count; i++)
         ptrs[i] = allocator.alloc(i);
@@ -248,7 +248,7 @@ uintptr_t localAllocTest1(uintptr_t count)
 {
     std::vector<void *> ptrs(count);
     
-    FrameLib_GlobalAllocator gAllocator(reporter);
+    FrameLib_GlobalAllocator gAllocator(FrameLib_Thread::defaultPriorities(), reporter);
     FrameLib_LocalAllocator allocator(gAllocator);
     
     for (uintptr_t i = 0; i < count; i++)
@@ -262,7 +262,7 @@ uintptr_t localAllocTest1(uintptr_t count)
 
 uintptr_t localAllocTest2(uintptr_t count)
 {
-    FrameLib_GlobalAllocator gAllocator(reporter);
+    FrameLib_GlobalAllocator gAllocator(FrameLib_Thread::defaultPriorities(), reporter);
     FrameLib_LocalAllocator allocator(gAllocator);
     
     for (uintptr_t i = 0; i < count; i++)
@@ -275,7 +275,7 @@ uintptr_t localAllocTest3(uintptr_t count)
 {
     std::vector<void *> ptrs(count);
     
-    FrameLib_GlobalAllocator gAllocator(reporter);
+    FrameLib_GlobalAllocator gAllocator(FrameLib_Thread::defaultPriorities(), reporter);
     FrameLib_LocalAllocator allocator(gAllocator);
     
     for (uintptr_t i = 0; i < count; i++)
@@ -299,7 +299,7 @@ uintptr_t localAllocTest3(uintptr_t count)
 
 // Speed tests
 
-FrameLib_GlobalAllocator globalAllocator(reporter);
+FrameLib_GlobalAllocator globalAllocator(FrameLib_Thread::defaultPriorities(), reporter);
 FrameLib_LocalAllocator localallocator(globalAllocator);
 
 void mallocAllocTest(uintptr_t count)
