@@ -21,7 +21,7 @@ namespace FrameLib_Spatial_Ops
             
             const double radius = sqrt(x * x + y * y + z * z);
             double azimuth = atan2(x, y) * mAngleFactor;
-            double elevation = asin(z / radius) * mAngleFactor;
+            double elevation = radius ? asin(z / radius) * mAngleFactor : 0.0;
             
             return Value3D(radius, azimuth, elevation);
         }
