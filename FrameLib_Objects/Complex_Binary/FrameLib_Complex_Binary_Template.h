@@ -2,8 +2,9 @@
 #ifndef FRAMELIB_COMPLEX_BINARY_TEMPLATE_H
 #define FRAMELIB_COMPLEX_BINARY_TEMPLATE_H
 
-#include <complex>
 #include "FrameLib_DSP.h"
+
+#include <complex>
 
 // Complex Binary Operator
 

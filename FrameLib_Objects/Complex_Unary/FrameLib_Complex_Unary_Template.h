@@ -2,8 +2,9 @@
 #ifndef FRAMELIB_COMPLEX_UNARY_TEMPLATE_H
 #define FRAMELIB_COMPLEX_UNARY_TEMPLATE_H
 
-#include <complex>
 #include "FrameLib_DSP.h"
+
+#include <complex>
 
 // Complex Unary (Operator Version)
 
@@ -110,6 +111,6 @@ struct Complex_Unary_Functor
 // Complex Unary (Function Version)
 
 template <std::complex<double> func(const std::complex<double> &)>
-using  FrameLib_Complex_Unary = FrameLib_Complex_UnaryOp<Complex_Unary_Functor<func>>;
+using FrameLib_Complex_Unary = FrameLib_Complex_UnaryOp<Complex_Unary_Functor<func>>;
 
 #endif
