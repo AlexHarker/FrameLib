@@ -18,6 +18,17 @@ namespace FrameLib_Spatial_Ops
 template <typename Op>
 class FrameLib_Spatial_Convertor final : public FrameLib_Processor
 {
+    // Parameter Enums and Info
+    
+    struct ParameterInfo : public FrameLib_Parameters::Info
+    {
+        ParameterInfo()
+        {
+            add("Sets the number of dimensions");
+            add("Sets the units used for angles.");
+        }
+    };
+    
     enum Parameters { kDimensions, kAngleUnits };
     enum Dimensions { k2D, k3D };
     enum AngleUnits { kRadians, kDegrees };
@@ -41,7 +52,7 @@ public:
     // Constructor
     
     FrameLib_Spatial_Convertor(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-    : FrameLib_Processor(context, proxy, nullptr)
+    : FrameLib_Processor(context, proxy, getParameterInfo())
     {
         mParameters.addEnum(kDimensions, "dimensions", 0);
         mParameters.addEnumItem(k2D, "2d");
@@ -169,7 +180,11 @@ private:
         }
     }
     
-private:
+    ParameterInfo *getParameterInfo()
+    {
+        static ParameterInfo info;
+        return &info;
+    }
     
     bool m2D;
     bool mDegrees;
