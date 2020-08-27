@@ -41,7 +41,7 @@ public:
     // Constructor
     
     FrameLib_Spatial_Convertor(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-    : FrameLib_Processor(context, proxy, nullptr, 2, 2)
+    : FrameLib_Processor(context, proxy, nullptr)
     {
         mParameters.addEnum(kDimensions, "dimensions", 0);
         mParameters.addEnumItem(k2D, "2d");
@@ -53,10 +53,14 @@ public:
         mParameters.addEnumItem(kDegrees, "degrees");
         mParameters.setInstantiation();
 
+        mParameters.set(serialisedParameters);
+        
         m2D = mParameters.getEnum<Dimensions>(kDimensions) == k2D;
         mDegrees = mParameters.getEnum<AngleUnits>(kAngleUnits) == kDegrees;
         
-        mParameters.set(serialisedParameters);
+        unsigned long io = m2D ? 2 : 3;
+ 
+        setIO(io, io);
     }
     
     // Info
