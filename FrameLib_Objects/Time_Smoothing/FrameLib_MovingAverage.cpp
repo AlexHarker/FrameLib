@@ -2,7 +2,7 @@
 #include "FrameLib_MovingAverage.h"
 #include "../../FrameLib_Dependencies/Interpolation.hpp"
 
-// Constructor / Destructor
+// Constructor
 
 FrameLib_MovingAverage::FrameLib_MovingAverage(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 5, 2)

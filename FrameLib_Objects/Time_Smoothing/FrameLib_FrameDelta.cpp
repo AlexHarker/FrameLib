@@ -1,7 +1,7 @@
 
 #include "FrameLib_FrameDelta.h"
 
-// Constructor / Destructor
+// Constructor
 
 FrameLib_FrameDelta::FrameLib_FrameDelta(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, nullptr, 1, 1)

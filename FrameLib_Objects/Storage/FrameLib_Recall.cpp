@@ -1,7 +1,7 @@
 
 #include "FrameLib_Recall.h"
 
-// Constructor / Destructor
+// Constructor
 
 FrameLib_Recall::FrameLib_Recall(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)

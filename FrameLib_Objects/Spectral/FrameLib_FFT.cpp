@@ -1,7 +1,7 @@
 
 #include "FrameLib_FFT.h"
 
-// Constructor / Destructor
+// Constructor
 
 FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 1, 2)

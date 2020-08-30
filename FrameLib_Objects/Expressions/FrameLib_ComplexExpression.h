@@ -71,7 +71,7 @@ public:
     static constexpr ObjectType sType = kProcessor;
     static constexpr bool sHandlesAudio = false;
     
-    // Constructor / Destructor
+    // Constructor
     
     FrameLib_ComplexExpression(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
  

@@ -1,7 +1,7 @@
 
 #include "FrameLib_Multitaper.h"
 
-// Constructor / Destructor
+// Constructor
 
 FrameLib_Multitaper::FrameLib_Multitaper(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)

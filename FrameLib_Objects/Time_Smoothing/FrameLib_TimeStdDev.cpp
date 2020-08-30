@@ -1,7 +1,7 @@
 
 #include "FrameLib_TimeStdDev.h"
 
-// Constructor / Destructor
+// Constructor
 
 FrameLib_TimeStdDev::FrameLib_TimeStdDev(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_TimeBuffer<FrameLib_TimeStdDev>(context, serialisedParameters, proxy)

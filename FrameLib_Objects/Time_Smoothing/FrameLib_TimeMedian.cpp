@@ -1,7 +1,7 @@
 
 #include "FrameLib_TimeMedian.h"
 
-// Constructor / Destructor
+// Constructor
 
 FrameLib_TimeMedian::FrameLib_TimeMedian(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_TimeBuffer<FrameLib_TimeMedian, 1>(context, serialisedParameters, proxy)

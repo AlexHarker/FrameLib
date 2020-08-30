@@ -5,7 +5,7 @@
 
 FrameLib_Window::WindowCalculator FrameLib_Window::sWindowCalculator;
 
-// Constructor / Destructor
+// Constructor
 
 FrameLib_Window::FrameLib_Window(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
