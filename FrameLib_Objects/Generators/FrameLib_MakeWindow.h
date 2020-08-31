@@ -3,7 +3,7 @@
 #define FRAMELIB_MAKEWINDOW_H
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_WindowFunctions.h"
+#include "FrameLib_WindowGenerator.h"
 
 class FrameLib_MakeWindow final : public FrameLib_Processor
 {
@@ -39,7 +39,7 @@ private:
     
     // Data
     
-    FrameLib_WindowFunctions mGenerator;
+    FrameLib_WindowGenerator mGenerator;
 
     static ParameterInfo sParamInfo;
 };

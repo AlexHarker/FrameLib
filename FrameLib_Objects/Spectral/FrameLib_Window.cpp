@@ -5,12 +5,12 @@
 
 // FIX - parameters! (after validation)
 FrameLib_Window::CompareWindowParams::CompareWindowParams()
-: mWindowType(FrameLib_WindowFunctions::kHann)
+: mWindowType(FrameLib_WindowGenerator::kHann)
 , mExponent(0.0)
-, mEndpoints(FrameLib_WindowFunctions::kBoth)
+, mEndpoints(FrameLib_WindowGenerator::kBoth)
 , mSize(0) {}
 
-FrameLib_Window::CompareWindowParams::CompareWindowParams(FrameLib_WindowFunctions& generator, unsigned long size)
+FrameLib_Window::CompareWindowParams::CompareWindowParams(FrameLib_WindowGenerator& generator, unsigned long size)
 : mWindowType(generator.getType())
 , mExponent(generator.getExponent())
 , mEndpoints(generator.getEndpoints())

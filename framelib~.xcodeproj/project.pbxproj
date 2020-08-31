@@ -2244,7 +2244,7 @@
 		B88F556C207A5904007774AD /* fl.reverse~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.reverse~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B88F556F207A59E9007774AD /* fl.reverse~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.reverse~.cpp"; sourceTree = "<group>"; };
 		B88F558E207AB15C007774AD /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		B898098424FCECB500FFE4E2 /* FrameLib_WindowFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_WindowFunctions.h; sourceTree = "<group>"; };
+		B898098424FCECB500FFE4E2 /* FrameLib_WindowGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_WindowGenerator.h; sourceTree = "<group>"; };
 		B898099424FCFA1E00FFE4E2 /* fl.makewindow~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.makewindow~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B898099624FCFA6200FFE4E2 /* fl.makewindow~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.makewindow~.cpp"; sourceTree = "<group>"; };
 		B898099924FCFA8B00FFE4E2 /* FrameLib_MakeWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_MakeWindow.cpp; sourceTree = "<group>"; };
@@ -4453,12 +4453,12 @@
 				B8D383D624B7340B00E8D807 /* FrameLib_NeumaierSum.h */,
 				B8D383D724B796E600E8D807 /* FrameLib_PaddedVector.h */,
 				B8886F7E1FB7D715001C843E /* FrameLib_RingBuffer.h */,
-				B8886F7F1FB7D715001C843E /* FrameLib_VectorSet.h */,
-				B898098424FCECB500FFE4E2 /* FrameLib_WindowFunctions.h */,
 				B8F3EE171F34DB6C00D0E98E /* FrameLib_Scaling_Functions.h */,
 				B861EB9F19CA2DCE00B89477 /* FrameLib_Sort_Functions.h */,
 				B8C680371B80F2B800B74B90 /* FrameLib_RandGen.h */,
 				B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */,
+				B898098424FCECB500FFE4E2 /* FrameLib_WindowGenerator.h */,
+				B8886F7F1FB7D715001C843E /* FrameLib_VectorSet.h */,
 			);
 			path = Common_Utilities;
 			sourceTree = "<group>";

@@ -5,7 +5,7 @@
 #include "FrameLib_Parameters.h"
 #include "../../FrameLib_Dependencies/WindowFunctions.hpp"
 
-class FrameLib_WindowFunctions
+class FrameLib_WindowGenerator
 {
     using Generator = window_functions::indexed_generator<double
     , window_functions::hann<double>
@@ -31,7 +31,7 @@ public:
     
     enum Endpoints { kBoth, kFirst, kLast, kNone };
     
-    FrameLib_WindowFunctions(FrameLib_Parameters& parameters)
+    FrameLib_WindowGenerator(FrameLib_Parameters& parameters)
     : mParameters(parameters) {}
     
     void addWindowType(unsigned long idx, long argIdx = -1)

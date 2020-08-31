@@ -3,21 +3,21 @@
 #define FRAMELIB_WINDOW_H
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_WindowFunctions.h"
+#include "FrameLib_WindowGenerator.h"
 #include "../../FrameLib_Dependencies/TableReader.hpp"
 
 // FIX - review gain calculation
 
 class FrameLib_Window final : public FrameLib_Processor
 {
-    using WindowTypes = FrameLib_WindowFunctions::WindowTypes;
-    using Compensation = FrameLib_WindowFunctions::Compensation;
-    using Endpoints = FrameLib_WindowFunctions::Endpoints;
+    using WindowTypes = FrameLib_WindowGenerator::WindowTypes;
+    using Compensation = FrameLib_WindowGenerator::Compensation;
+    using Endpoints = FrameLib_WindowGenerator::Endpoints;
 
     struct CompareWindowParams
     {
         CompareWindowParams();
-        CompareWindowParams(FrameLib_WindowFunctions& generator, unsigned long size);
+        CompareWindowParams(FrameLib_WindowGenerator& generator, unsigned long size);
         
         bool operator == (const CompareWindowParams& a);
         
@@ -74,7 +74,7 @@ private:
     
     AutoArray<double> mWindow;
 
-    FrameLib_WindowFunctions mGenerator;
+    FrameLib_WindowGenerator mGenerator;
     
     static ParameterInfo sParamInfo;
 };
