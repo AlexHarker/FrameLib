@@ -90,9 +90,9 @@ unsigned long FrameLib_Ramp::getLength()
     
     switch (mParameters.getEnum<Units>(kUnits))
     {
-        case kScaleSamples:  break;
-        case kScaleMS:       time = msToSamples(time);       break;
-        case kScaleSeconds:  time = secondsToSamples(time);  break;
+        case kSamples:  break;
+        case kMS:       time = msToSamples(time);       break;
+        case kSeconds:  time = secondsToSamples(time);  break;
     }
     
     return roundToUInt(time);
