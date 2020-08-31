@@ -81,7 +81,7 @@ public:
         friend class FrameLib_Object;
         
         AutoArray(FrameLib_Object *object, unsigned long size = 0)
-        : mObject(object), mMemory(size ? mObject->alloc<U>(size) : nullptr) {}
+        : mObject(object), mMemory(size ? mObject->alloc<U>(size) : nullptr), mSize(mMemory ? size : 0) {}
         
     public:
         
@@ -91,10 +91,11 @@ public:
         AutoArray(const AutoArray&) = delete;
         AutoArray& operator=(const AutoArray&) = delete;
         
-        AutoArray(AutoArray&& b) : mObject(b.mObject), mMemory(b.mMemory)
+        AutoArray(AutoArray&& b) : mObject(b.mObject), mMemory(b.mMemory), mSize(b.mSize)
         {
             b.mObject = nullptr;
             b.mMemory = nullptr;
+            b.mSize = 0;
         }
         
         AutoArray& operator=(AutoArray&& b)
@@ -103,9 +104,11 @@ public:
             
             mObject = b.mObject;
             mMemory = b.mMemory;
+            mSize = b.mSize;
             b.mObject = nullptr;
             b.mMemory = nullptr;
-            
+            b.mSize = 0;
+
             return *this;
         }
         
@@ -114,6 +117,8 @@ public:
         
         U* get()                            { return mMemory; }
         const U* get() const                { return mMemory; }
+        
+        unsigned long size() const          { return mSize; }
         
     private:
         
@@ -128,6 +133,7 @@ public:
         
         FrameLib_Object *mObject;
         U *mMemory;
+        unsigned long mSize;
     };
     
     // An allocator that you can pass to other objects/code whilst this object exists
