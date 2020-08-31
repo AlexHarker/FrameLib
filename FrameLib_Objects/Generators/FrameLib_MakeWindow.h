@@ -15,6 +15,8 @@ class FrameLib_MakeWindow final : public FrameLib_Processor
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
+    using Generator = FrameLib_WindowGenerator<kWindowType, kParameters, kExponent, kCompensation, kEndpoints>;
+    
 public:
     
     // Constructor
@@ -35,7 +37,7 @@ private:
 
     // Update
     
-    void update() override { mGenerator.updateParameters(getReporter()); }
+    void update() override { mGenerator.updateParameters(); }
 
     // Process
     
@@ -43,7 +45,7 @@ private:
     
     // Data
     
-    FrameLib_WindowGenerator mGenerator;
+    Generator mGenerator;
 
     static ParameterInfo sParamInfo;
 };

@@ -10,14 +10,25 @@
 
 class FrameLib_Window final : public FrameLib_Processor
 {
-    using WindowTypes = FrameLib_WindowGenerator::WindowTypes;
-    using Compensation = FrameLib_WindowGenerator::Compensation;
-    using Endpoints = FrameLib_WindowGenerator::Endpoints;
+    // Parameter Enums and Info
+    
+    enum ParameterList { kWindowType, kSize, kExponent, kCompensation, kParameters, kEndpoints };
+    //enum ParameterList { kWindowType, kSize, kSqrt, kCompensation, kEndpoints };
+    
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
+    
+    // Types (depend on the parameter enum)
+    
+    using Generator = FrameLib_WindowGenerator<kWindowType, kParameters, kExponent, kCompensation, kEndpoints>;
+
+    using WindowTypes = Generator::WindowTypes;
+    using Compensation = Generator::Compensation;
+    using Endpoints = Generator::Endpoints;
 
     struct CompareWindowParams
     {
         CompareWindowParams();
-        CompareWindowParams(FrameLib_WindowGenerator& generator, unsigned long size);
+        CompareWindowParams(Generator& generator, unsigned long size);
         
         bool operator == (const CompareWindowParams& a);
         
@@ -37,13 +48,6 @@ class FrameLib_Window final : public FrameLib_Processor
         
         const double *mData;
     };
-    
-    // Parameter Enums and Info
-
-    enum ParameterList { kWindowType, kSize, kExponent, kCompensation, kParameters, kEndpoints };
-    //enum ParameterList { kWindowType, kSize, kSqrt, kCompensation, kEndpoints };
-
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
 
@@ -66,7 +70,7 @@ private:
     
     // Update
     
-    void update() override { mGenerator.updateParameters(getReporter()); }
+    void update() override { mGenerator.updateParameters(); }
 
     // Process
     
@@ -80,7 +84,7 @@ private:
     
     AutoArray<double> mWindow;
 
-    FrameLib_WindowGenerator mGenerator;
+    Generator mGenerator;
     
     static ParameterInfo sParamInfo;
 };

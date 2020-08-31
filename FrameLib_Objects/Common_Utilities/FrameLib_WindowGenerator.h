@@ -2,9 +2,12 @@
 #ifndef FRAMELIB_WINDOWFUNCTIONS_H
 #define FRAMELIB_WINDOWFUNCTIONS_H
 
-#include "FrameLib_Parameters.h"
+#include "FrameLib_Object.h"
+
 #include "../../FrameLib_Dependencies/WindowFunctions.hpp"
 
+template <unsigned long TypeIdx, unsigned long ParamsIdx, unsigned long ExponentIdx,
+unsigned long CompensateIdx, unsigned long EndpointsIdx>
 class FrameLib_WindowGenerator
 {
     using Generator = window_functions::indexed_generator<double
@@ -31,14 +34,12 @@ public:
     
     enum Endpoints { kBoth, kFirst, kLast, kNone };
     
-    FrameLib_WindowGenerator(FrameLib_Parameters& parameters)
-    : mParameters(parameters), mParamSize(0) {}
+    FrameLib_WindowGenerator(FrameLib_Block& owner, FrameLib_Parameters& parameters)
+    : mOwner(owner), mParameters(parameters), mParamSize(0) {}
     
-    void addWindowType(unsigned long idx, long argIdx = -1)
+    void addWindowType(long argIdx = -1)
     {
-        mTypeIdx = idx;
-        
-        mParameters.addEnum(idx, "window", argIdx);
+        mParameters.addEnum(TypeIdx, "window", argIdx);
         mParameters.addEnumItem(kHann, "hann");
         mParameters.addEnumItem(kHamming, "hamming");
         mParameters.addEnumItem(kTriangle, "triangle");
@@ -54,34 +55,28 @@ public:
         mParameters.addEnumItem(kRectangle, "rectangle");
     }
     
-    void addWindowParameters(unsigned long idx)
+    void addWindowParameters()
     {
-        mParametersIdx = idx;
-        mParameters.addVariableDoubleArray(idx, "parameters", 0.0, 5, 0);
+        mParameters.addVariableDoubleArray(ParamsIdx, "parameters", 0.0, 5, 0);
     }
     
-    void addExponent(unsigned long idx, long argIdx = -1)
+    void addExponent(long argIdx = -1)
     {
-        mExponentIdx = idx;
-        mParameters.addDouble(idx, "exponent", 1.0, argIdx);
+        mParameters.addDouble(ExponentIdx, "exponent", 1.0, argIdx);
     }
     
-    void addCompensation(unsigned long idx, long argIdx = -1)
+    void addCompensation(long argIdx = -1)
     {
-        mCompensationIdx = idx;
-        
-        mParameters.addEnum(idx, "compensate", argIdx);
+        mParameters.addEnum(CompensateIdx, "compensate", argIdx);
         mParameters.addEnumItem(kOff, "off");
         mParameters.addEnumItem(kLinear, "linear");
         mParameters.addEnumItem(kPower, "power");
         mParameters.addEnumItem(kReconstruct, "reconstruct");
     }
     
-    void addEndpoints(unsigned long idx, long argIdx = -1)
+    void addEndpoints(long argIdx = -1)
     {
-        mEndpointsIdx = idx;
-        
-        mParameters.addEnum(idx, "endpoints", argIdx);
+        mParameters.addEnum(EndpointsIdx, "endpoints", argIdx);
         mParameters.addEnumItem(kBoth, "both");
         mParameters.addEnumItem(kFirst, "first", true);
         mParameters.addEnumItem(kLast, "last");
@@ -95,7 +90,11 @@ public:
         
         window_functions::params p(mValidParams, static_cast<int>(mParamSize), getExponent());
         
-        mGenerator(getType(), window, N, begin, end, p);
+        uint32_t typedN = static_cast<uint32_t>(N);
+        uint32_t typedBegin = static_cast<uint32_t>(begin);
+        uint32_t typedEnd = static_cast<uint32_t>(end);
+        
+        mGenerator(getType(), window, typedN, typedBegin, typedEnd, p);
         
         if (calcGains)
             calculateGains(window, begin, end);
@@ -136,7 +135,7 @@ public:
     
     double gainCompensation()
     {
-        switch (mParameters.getEnum<Compensation>(mCompensationIdx))
+        switch (mParameters.getEnum<Compensation>(CompensateIdx))
         {
             case kOff:          return 1.0;
             case kLinear:       return 1.0 / mLinGain;
@@ -145,22 +144,25 @@ public:
         }
     }
     
-    void updateParameters(FrameLib_ErrorReporter& reporter)
+    void updateParameters()
     {
         unsigned long arraySize;
-        const double *parameters = mParameters.getArray(mParametersIdx, &arraySize);
+        const double *parameters = mParameters.getArray(ParamsIdx, &arraySize);
         
         // FIX - replace with proper validation and type selection!
         
-        for (unsigned long i = 0; i < arraySize; i++)
-            mValidParams[i] = parameters[i];
+        if (mParameters.changed(TypeIdx) || mParameters.changed(ParamsIdx))
+        {
+            for (unsigned long i = 0; i < arraySize; i++)
+                mValidParams[i] = parameters[i];
         
-        mParamSize = arraySize;
+            mParamSize = arraySize;
+        }
     }
     
-    WindowTypes getType() const     { return mParameters.getEnum<WindowTypes>(mTypeIdx); }
-    Endpoints getEndpoints() const  { return mParameters.getEnum<Endpoints>(mEndpointsIdx); }
-    double getExponent() const      { return mParameters.getValue(mExponentIdx); }
+    WindowTypes getType() const     { return mParameters.getEnum<WindowTypes>(TypeIdx); }
+    Endpoints getEndpoints() const  { return mParameters.getEnum<Endpoints>(EndpointsIdx); }
+    double getExponent() const      { return mParameters.getValue(ExponentIdx); }
     
     void getValidatedParameters(double *params, unsigned long *size) const
     {
@@ -172,13 +174,8 @@ public:
     
 private:
     
-    FrameLib_Parameters &mParameters;
-    
-    unsigned long mTypeIdx;
-    unsigned long mParametersIdx;
-    unsigned long mExponentIdx;
-    unsigned long mCompensationIdx;
-    unsigned long mEndpointsIdx;
+    FrameLib_Block& mOwner;
+    FrameLib_Parameters& mParameters;
     
     unsigned long mParamSize;
     double mValidParams[5];

@@ -5,7 +5,7 @@
 
 FrameLib_MakeWindow::FrameLib_MakeWindow(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
-, mGenerator(mParameters)
+, mGenerator(*this, mParameters)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kRequestedLength, "requested");
@@ -19,15 +19,15 @@ FrameLib_MakeWindow::FrameLib_MakeWindow(FrameLib_Context context, const FrameLi
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
     
-    mGenerator.addWindowType(kWindowType, 3);
-    mGenerator.addExponent(kExponent, 4);
-    mGenerator.addCompensation(kCompensation);
-    mGenerator.addWindowParameters(kParameters);
-    mGenerator.addEndpoints(kEndpoints); // see ramp
+    mGenerator.addWindowType(3);
+    mGenerator.addExponent(4);
+    mGenerator.addCompensation();
+    mGenerator.addWindowParameters();
+    mGenerator.addEndpoints(); // see ramp
     
     mParameters.set(serialisedParameters);
     
-    mGenerator.updateParameters(getReporter());
+    mGenerator.updateParameters();
     
     setParameterInput(1);
 }
