@@ -10,21 +10,7 @@ template <unsigned long TypeIdx, unsigned long ParamsIdx, unsigned long Exponent
 unsigned long CompensateIdx, unsigned long EndpointsIdx>
 class FrameLib_WindowGenerator
 {
-    using Generator = window_functions::indexed_generator<double
-    , window_functions::hann<double>
-    , window_functions::hamming<double>
-    , window_functions::triangle<double>
-    , window_functions::trapezoid<double>
-    , window_functions::tukey<double>
-    , window_functions::sine<double>
-    , window_functions::kaiser<double>
-    , window_functions::blackman<double>
-    , window_functions::blackman_harris_92dB<double>
-    , window_functions::nuttall_1st_93dB<double>
-    , window_functions::nuttall_minimal_98dB<double>
-    , window_functions::heinzel_flat_top_95dB<double>
-    , window_functions::rect<double>
-    >;
+    using Generator = window_functions::window_generator<double>;
     
 public:
     
@@ -35,7 +21,7 @@ public:
     enum Endpoints { kBoth, kFirst, kLast, kNone };
     
     FrameLib_WindowGenerator(FrameLib_Block& owner, FrameLib_Parameters& parameters)
-    : mOwner(owner), mParameters(parameters), mParamSize(0) {}
+    : mOwner(owner), mParameters(parameters), mParamSize(0) , mGenerator(nullptr) {}
     
     void addWindowType(long argIdx = -1)
     {
@@ -85,16 +71,13 @@ public:
     
     void generate(double *window, unsigned long N, unsigned long begin, unsigned long end, bool calcGains)
     {
-        
-        // FIX - validation and errors!
-        
         window_functions::params p(mValidParams, static_cast<int>(mParamSize), getExponent());
         
         uint32_t typedN = static_cast<uint32_t>(N);
         uint32_t typedBegin = static_cast<uint32_t>(begin);
         uint32_t typedEnd = static_cast<uint32_t>(end);
         
-        mGenerator(getType(), window, typedN, typedBegin, typedEnd, p);
+        mGenerator(window, typedN, typedBegin, typedEnd, p);
         
         if (calcGains)
             calculateGains(window, begin, end);
@@ -149,14 +132,49 @@ public:
         unsigned long arraySize;
         const double *parameters = mParameters.getArray(ParamsIdx, &arraySize);
         
-        // FIX - replace with proper validation and type selection!
+        using namespace window_functions;
+
+        // FIX - complete validation and type selection!
         
         if (mParameters.changed(TypeIdx) || mParameters.changed(ParamsIdx))
         {
-            for (unsigned long i = 0; i < arraySize; i++)
-                mValidParams[i] = parameters[i];
-        
-            mParamSize = arraySize;
+            switch (getType())
+            {
+                case kHann:                 mGenerator = hann<double>;                      break;
+                case kHamming:              mGenerator = hamming<double>;                   break;
+                case kTriangle:             mGenerator = triangle<double>;                  break;
+                case kTrapezoid:            mGenerator = trapezoid<double>;                 break;
+                case kTukey:                mGenerator = tukey<double>;                     break;
+                case kSine:                 mGenerator = sine<double>;                      break;
+                case kKaiser:               mGenerator = kaiser<double>;                    break;
+                case kBlackman:             mGenerator = blackman<double>;                  break;
+                case kBlackmanHarris:       mGenerator = blackman_harris_92dB<double>;      break;
+                case kNuttallContinuous:    mGenerator = nuttall_1st_93dB<double>;          break;
+                case kNuttallMinimal:       mGenerator = nuttall_minimal_98dB<double>;      break;
+                case kFlatTop:              mGenerator = heinzel_flat_top_95dB<double>;     break;
+                case kRectangle:            mGenerator = rect<double>;                      break;
+                    break;
+            }
+            
+            switch (getType())
+            {
+                case kTrapezoid:        // SPECIAL CASE
+                case kTukey:            // SPECIAL CASE
+                case kKaiser:           // SPECIAL CASE
+                    for (unsigned long i = 0; i < arraySize; i++)
+                        mValidParams[i] = parameters[i];
+                    
+                    mParamSize = arraySize;
+                    break;
+                    
+                default:
+                    if (arraySize)
+                    {
+                        mOwner.getReporter()(kErrorObject, mOwner.getProxy(), "window takes no parameters");
+                        mParamSize = 0;
+                    }
+                    break;
+            }
         }
     }
     
@@ -183,7 +201,7 @@ private:
     double mLinGain;
     double mPowGain;
     
-    Generator mGenerator;
+    Generator *mGenerator;
 };
 
 #endif
