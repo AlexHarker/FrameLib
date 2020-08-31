@@ -22,9 +22,11 @@ class FrameLib_Window final : public FrameLib_Processor
         bool operator == (const CompareWindowParams& a);
         
         WindowTypes mWindowType;
-        double mExponent;
         Endpoints mEndpoints;
-        unsigned long mSize = 0;
+        double mParams[5];
+        double mExponent;
+        unsigned long mParamSize;
+        unsigned long mSize;
     };
    
     struct Fetch : table_fetcher<double>
@@ -62,6 +64,10 @@ private:
     void updateWindow (unsigned long sizeIn);
     double linearInterp(double pos);
     
+    // Update
+    
+    void update() override { mGenerator.updateParameters(); }
+
     // Process
     
     void process() override;

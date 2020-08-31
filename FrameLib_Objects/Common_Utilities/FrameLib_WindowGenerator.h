@@ -32,7 +32,7 @@ public:
     enum Endpoints { kBoth, kFirst, kLast, kNone };
     
     FrameLib_WindowGenerator(FrameLib_Parameters& parameters)
-    : mParameters(parameters) {}
+    : mParameters(parameters), mParamSize(0) {}
     
     void addWindowType(unsigned long idx, long argIdx = -1)
     {
@@ -57,7 +57,7 @@ public:
     void addWindowParameters(unsigned long idx)
     {
         mParametersIdx = idx;
-        mParameters.addVariableDoubleArray(idx, "parameters", 0.0, 6, 0);
+        mParameters.addVariableDoubleArray(idx, "parameters", 0.0, 5, 0);
     }
     
     void addExponent(unsigned long idx, long argIdx = -1)
@@ -90,11 +90,10 @@ public:
     
     void generate(double *window, unsigned long N, unsigned long begin, unsigned long end, bool calcGains)
     {
-        unsigned long arraySize;
-        const double *parameters = mParameters.getArray(mParametersIdx, &arraySize);
+        
         // FIX - validation and errors!
         
-        window_functions::params p(parameters, static_cast<int>(arraySize), getExponent());
+        window_functions::params p(mValidParams, static_cast<int>(mParamSize), getExponent());
         
         mGenerator(getType(), window, N, begin, end, p);
         
@@ -146,9 +145,30 @@ public:
         }
     }
     
+    void updateParameters()
+    {
+        unsigned long arraySize;
+        const double *parameters = mParameters.getArray(mParametersIdx, &arraySize);
+        
+        // FIX - replace with proper validation and type selection!
+        
+        for (unsigned long i = 0; i < arraySize; i++)
+            mValidParams[i] = parameters[i];
+        
+        mParamSize = arraySize;
+    }
+    
     WindowTypes getType() const     { return mParameters.getEnum<WindowTypes>(mTypeIdx); }
     Endpoints getEndpoints() const  { return mParameters.getEnum<Endpoints>(mEndpointsIdx); }
     double getExponent() const      { return mParameters.getValue(mExponentIdx); }
+    
+    void getValidatedParameters(double *params, unsigned long *size) const
+    {
+        for (unsigned long i = 0; i < mParamSize; i++)
+            params[i] = mValidParams[i];
+
+        *size = mParamSize;
+    }
     
 private:
     
@@ -159,6 +179,9 @@ private:
     unsigned long mExponentIdx;
     unsigned long mCompensationIdx;
     unsigned long mEndpointsIdx;
+    
+    unsigned long mParamSize;
+    double mValidParams[5];
     
     double mLinGain;
     double mPowGain;

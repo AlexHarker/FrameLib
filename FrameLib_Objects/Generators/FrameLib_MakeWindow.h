@@ -33,6 +33,10 @@ private:
     
     unsigned long getLength();
 
+    // Update
+    
+    void update() override { mGenerator.updateParameters(); }
+
     // Process
     
     void process() override;

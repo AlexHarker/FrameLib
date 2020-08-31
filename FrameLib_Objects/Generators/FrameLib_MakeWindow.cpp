@@ -20,16 +20,14 @@ FrameLib_MakeWindow::FrameLib_MakeWindow(FrameLib_Context context, const FrameLi
     mParameters.addEnumItem(kSeconds, "seconds");
     
     mGenerator.addWindowType(kWindowType, 3);
-
     mGenerator.addExponent(kExponent, 4);
-    
     mGenerator.addCompensation(kCompensation);
-    
     mGenerator.addWindowParameters(kParameters);
-    
     mGenerator.addEndpoints(kEndpoints); // see ramp
     
     mParameters.set(serialisedParameters);
+    
+    mGenerator.updateParameters();
     
     setParameterInput(1);
 }

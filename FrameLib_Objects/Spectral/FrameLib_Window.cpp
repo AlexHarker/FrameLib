@@ -3,19 +3,22 @@
 
 // Window Parameter Comparison
 
-// FIX - parameters! (after validation)
 FrameLib_Window::CompareWindowParams::CompareWindowParams()
 : mWindowType(FrameLib_WindowGenerator::kHann)
-, mExponent(0.0)
 , mEndpoints(FrameLib_WindowGenerator::kBoth)
-, mSize(0) {}
+, mExponent(0.0)
+, mSize(0)
+, mParamSize(0)
+{}
 
 FrameLib_Window::CompareWindowParams::CompareWindowParams(FrameLib_WindowGenerator& generator, unsigned long size)
 : mWindowType(generator.getType())
-, mExponent(generator.getExponent())
 , mEndpoints(generator.getEndpoints())
+, mExponent(generator.getExponent())
 , mSize(size)
-{}
+{
+    generator.getValidatedParameters(mParams, &mParamSize);
+}
 
 bool FrameLib_Window::CompareWindowParams::operator == (const CompareWindowParams& a)
 {
@@ -26,7 +29,15 @@ bool FrameLib_Window::CompareWindowParams::operator == (const CompareWindowParam
     equal &= mEndpoints == a.mEndpoints;
     equal &= mSize == a.mSize;
     
-    return equal;
+    if (mParamSize == a.mParamSize)
+    {
+        for (unsigned long i = 0; i < mParamSize; i++)
+            equal &= mParams[i] == a.mParams[i];
+        
+        return equal;
+    }
+    
+    return false;
 }
 
 // Constructor
@@ -41,15 +52,14 @@ FrameLib_Window::FrameLib_Window(FrameLib_Context context, const FrameLib_Parame
     mParameters.setMin(0.0);
     
     mGenerator.addExponent(kExponent, 2);
-    
     mGenerator.addCompensation(kCompensation);
-    
     mGenerator.addWindowParameters(kParameters);
-
     mGenerator.addEndpoints(kEndpoints);
     
     mParameters.set(serialisedParameters);
     
+    mGenerator.updateParameters();
+
     setParameterInput(1);
 }
 
