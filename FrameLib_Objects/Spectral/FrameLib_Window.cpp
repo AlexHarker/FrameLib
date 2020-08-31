@@ -7,8 +7,8 @@ FrameLib_Window::CompareWindowParams::CompareWindowParams()
 : mWindowType(FrameLib_WindowGenerator::kHann)
 , mEndpoints(FrameLib_WindowGenerator::kBoth)
 , mExponent(0.0)
-, mSize(0)
 , mParamSize(0)
+, mSize(0)
 {}
 
 FrameLib_Window::CompareWindowParams::CompareWindowParams(FrameLib_WindowGenerator& generator, unsigned long size)
@@ -58,7 +58,7 @@ FrameLib_Window::FrameLib_Window(FrameLib_Context context, const FrameLib_Parame
     
     mParameters.set(serialisedParameters);
     
-    mGenerator.updateParameters();
+    mGenerator.updateParameters(getReporter());
 
     setParameterInput(1);
 }

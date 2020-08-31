@@ -27,7 +27,7 @@ FrameLib_MakeWindow::FrameLib_MakeWindow(FrameLib_Context context, const FrameLi
     
     mParameters.set(serialisedParameters);
     
-    mGenerator.updateParameters();
+    mGenerator.updateParameters(getReporter());
     
     setParameterInput(1);
 }

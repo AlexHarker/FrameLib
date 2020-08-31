@@ -145,7 +145,7 @@ public:
         }
     }
     
-    void updateParameters()
+    void updateParameters(FrameLib_ErrorReporter& reporter)
     {
         unsigned long arraySize;
         const double *parameters = mParameters.getArray(mParametersIdx, &arraySize);

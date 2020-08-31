@@ -66,7 +66,7 @@ private:
     
     // Update
     
-    void update() override { mGenerator.updateParameters(); }
+    void update() override { mGenerator.updateParameters(getReporter()); }
 
     // Process
     
