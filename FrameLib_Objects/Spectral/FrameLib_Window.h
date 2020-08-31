@@ -3,19 +3,43 @@
 #define FRAMELIB_WINDOW_H
 
 #include "FrameLib_DSP.h"
-#include "../../FrameLib_Dependencies/WindowFunctions.hpp"
+#include "FrameLib_WindowFunctions.h"
 #include "../../FrameLib_Dependencies/TableReader.hpp"
 
 // FIX - review gain calculation
 
 class FrameLib_Window final : public FrameLib_Processor
 {
+    using WindowTypes = FrameLib_WindowFunctions::WindowTypes;
+    using Compensation = FrameLib_WindowFunctions::Compensation;
+    using Endpoints = FrameLib_WindowFunctions::Endpoints;
+
+    struct CompareWindowParams
+    {
+        CompareWindowParams();
+        CompareWindowParams(FrameLib_WindowFunctions& generator, unsigned long size);
+        
+        bool operator == (const CompareWindowParams& a);
+        
+        WindowTypes mWindowType;
+        double mExponent;
+        Endpoints mEndpoints;
+        unsigned long mSize = 0;
+    };
+   
+    struct Fetch : table_fetcher<double>
+    {
+        Fetch(const double *data, intptr_t size) : table_fetcher(size, 1.0), mData(data) {}
+        
+        double operator()(intptr_t offset) { return mData[offset]; }
+        
+        const double *mData;
+    };
+    
     // Parameter Enums and Info
 
-    enum ParameterList { kWindowType, kSize, kSqrt, kCompensation, kEndpoints };
-    enum Compensation { kOff, kLinear, kPower, kReconstruct };
-    enum Endpoints { kBoth, kFirst, kLast, kNone };
-    enum WindowTypes { kHann, kHamming, kTriangle, kCosine, kBlackman, kBlackman62, kBlackman70, kBlackman74, kBlackman92, kBlackmanHarris, kFlatTop, kRectangle };
+    enum ParameterList { kWindowType, kSize, kExponent, kCompensation, kParameters, kEndpoints };
+    //enum ParameterList { kWindowType, kSize, kSqrt, kCompensation, kEndpoints };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -35,7 +59,7 @@ private:
 
     // Helpers
     
-    void updateWindow (unsigned long inSize, Endpoints ends);
+    void updateWindow (unsigned long sizeIn);
     double linearInterp(double pos);
     
     // Process
@@ -43,49 +67,14 @@ private:
     void process() override;
 
 private:
-
-    struct Fetch : table_fetcher<double>
-    {
-        Fetch(const double *data, intptr_t size) : table_fetcher(size, 1.0), mData(data) {}
-        
-        double operator()(intptr_t offset) { return mData[offset]; }
-        
-        const double *mData;
-    };
-    
-    struct WindowCalculator : public WindowFunctions<double *, WindowTypes>
-    {
-        WindowCalculator()
-        {
-            add(kHann, window_hann);
-            add(kHamming, window_hamming);
-            add(kTriangle, window_triangle);
-            add(kCosine, window_cosine);
-            add(kBlackman, window_blackman);
-            add(kBlackman62, window_blackman_62);
-            add(kBlackman70, window_blackman_70);
-            add(kBlackman74, window_blackman_62);
-            add(kBlackman92, window_blackman_92);
-            add(kBlackmanHarris, window_blackman_harris);
-            add(kFlatTop, window_kaiser);
-            add(kRectangle, window_rect);
-        }
-    };
     
     // Data
     
-    static WindowCalculator sWindowCalculator;
+    CompareWindowParams mCompare;
+    
     AutoArray<double> mWindow;
 
-    WindowTypes mWindowType;
-    Endpoints mEnds;
-    
-    unsigned long mSize;
-
-    bool mSqrtWindow;
-
-    double mLinearGain;
-    double mPowerGain;
+    FrameLib_WindowFunctions mGenerator;
     
     static ParameterInfo sParamInfo;
 };

@@ -196,6 +196,7 @@ extern "C" void framelib_pd_setup(void)
     // Generators
     
     FrameLib_PDClass_Expand<FrameLib_Gaussian>::makeClass("fl.gaussian~");
+    FrameLib_PDClass_Expand<FrameLib_MakeWindow>::makeClass("fl.makewindow~");
     FrameLib_PDClass_Expand<FrameLib_Ramp>::makeClass("fl.ramp~");
     FrameLib_PDClass_Expand<FrameLib_Random>::makeClass("fl.random~");
     FrameLib_PDClass_Expand<FrameLib_Uniform>::makeClass("fl.uniform~");

@@ -1,54 +1,54 @@
 
 #include "FrameLib_Window.h"
 
-// Window Calculator
+// Window Parameter Comparison
 
-FrameLib_Window::WindowCalculator FrameLib_Window::sWindowCalculator;
+// FIX - parameters! (after validation)
+FrameLib_Window::CompareWindowParams::CompareWindowParams()
+: mWindowType(FrameLib_WindowFunctions::kHann)
+, mExponent(0.0)
+, mEndpoints(FrameLib_WindowFunctions::kBoth)
+, mSize(0) {}
+
+FrameLib_Window::CompareWindowParams::CompareWindowParams(FrameLib_WindowFunctions& generator, unsigned long size)
+: mWindowType(generator.getType())
+, mExponent(generator.getExponent())
+, mEndpoints(generator.getEndpoints())
+, mSize(size)
+{}
+
+bool FrameLib_Window::CompareWindowParams::operator == (const CompareWindowParams& a)
+{
+    bool equal = true;
+    
+    equal &= mWindowType == a.mWindowType;
+    equal &= mExponent == a.mExponent;
+    equal &= mEndpoints == a.mEndpoints;
+    equal &= mSize == a.mSize;
+    
+    return equal;
+}
 
 // Constructor
 
 FrameLib_Window::FrameLib_Window(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+, mGenerator(mParameters)
 {
-    mParameters.addEnum(kWindowType, "window", 0);
-    mParameters.addEnumItem(kHann, "hann");
-    mParameters.addEnumItem(kHamming, "hamming");
-    mParameters.addEnumItem(kTriangle, "triangle");
-    mParameters.addEnumItem(kCosine, "cosine");
-    mParameters.addEnumItem(kBlackman, "blackman");
-    mParameters.addEnumItem(kBlackman62, "blackman62");
-    mParameters.addEnumItem(kBlackman70, "blackman70");
-    mParameters.addEnumItem(kBlackman74, "blackman74");
-    mParameters.addEnumItem(kBlackman92, "blackman92");
-    mParameters.addEnumItem(kBlackmanHarris, "blackmanharris");
-    mParameters.addEnumItem(kFlatTop, "flattop");
-    mParameters.addEnumItem(kRectangle, "rectangle");
+    mGenerator.addWindowType(kWindowType, 0);
     
     mParameters.addDouble(kSize, "size", 0, 1);
     mParameters.setMin(0.0);
     
-    mParameters.addBool(kSqrt, "sqrt", false, 2);
+    mGenerator.addExponent(kExponent, 2);
     
-    mParameters.addEnum(kCompensation, "compensate");
-    mParameters.addEnumItem(kOff, "off");
-    mParameters.addEnumItem(kLinear, "linear");
-    mParameters.addEnumItem(kPower, "power");
-    mParameters.addEnumItem(kReconstruct, "reconstruct");
+    mGenerator.addCompensation(kCompensation);
     
-    mParameters.addEnum(kEndpoints, "endpoints");
-    mParameters.addEnumItem(kBoth, "both");
-    mParameters.addEnumItem(kFirst, "first", true);
-    mParameters.addEnumItem(kLast, "last");
-    mParameters.addEnumItem(kNone, "none");
+    mGenerator.addWindowParameters(kParameters);
+
+    mGenerator.addEndpoints(kEndpoints);
     
     mParameters.set(serialisedParameters);
-    
-    mWindowType = kHann;
-    mSize = 0;
-    mSqrtWindow = false;
-    mLinearGain = 0.0;
-    mPowerGain = 0.0;
-    mEnds = kNone;
     
     setParameterInput(1);
 }
@@ -92,69 +92,34 @@ FrameLib_Window::ParameterInfo::ParameterInfo()
 
 // Helpers
 
-void FrameLib_Window::updateWindow(unsigned long inSize, Endpoints ends)
+void FrameLib_Window::updateWindow(unsigned long sizeIn)
 {
-    WindowTypes windowType = mParameters.getEnum<WindowTypes>(kWindowType);
-    bool sqrtWindow = mParameters.getBool(kSqrt);
-    uint32_t windowSize = static_cast<uint32_t>(mParameters.getInt(kSize));
+    unsigned long size = mParameters.getInt(kSize);
+    size = mGenerator.sizeAdjustForEndpoints(!size ? sizeIn : size);
     
-    windowSize = !windowSize ? static_cast<uint32_t>(inSize) : windowSize;
+    // Check for changes and exit if none, else ersize and stoe new parameters
     
-    windowSize = ends == kBoth ? windowSize - 1 : windowSize;
-    windowSize = ends == kNone ? windowSize + 1 : windowSize;
+    CompareWindowParams compare(mGenerator, size);
     
-    if (windowSize == mSize && windowType == mWindowType && sqrtWindow == mSqrtWindow && ends == mEnds)
+    if (mCompare == compare)
         return;
     
-    if (mSize != windowSize)
-        mWindow = allocAutoArray<double>(windowSize + 2);
+    if (mCompare.mSize != size)
+        mWindow = allocAutoArray<double>(size + 2);
     
-    sWindowCalculator.calculate(windowType, mWindow, windowSize, windowSize + 1);
+    mCompare = compare;
     
-    mWindow[windowSize + 1] = mWindow[windowSize];
+    // Generate
     
-    if (sqrtWindow)
-        for (unsigned long i = 0; i <= windowSize + 1; i++)
-            mWindow[i] = sqrt(mWindow[i]);
-    
-    // Store window parameters
-    
-    mWindowType = windowType;
-    mSize = windowSize;
-    mSqrtWindow = sqrtWindow;
-    mEnds = ends;
+    mGenerator.generate(mWindow, size, 0, size + 1, false);
+    mWindow[size + 1] = mWindow[size];
     
     // Calculate the gain of the window
     
-    double linearGain = 0.0;
-    double powerGain = 0.0;
+    unsigned long begin = mGenerator.doFirst() ? 0 : 1;
+    unsigned long end = size - (mGenerator.doLast() ? 1 : 2);
     
-    for (unsigned long i = 1; i < windowSize; i++)
-        linearGain += mWindow[i];
-    
-    for (unsigned long i = 1; i < windowSize; i++)
-        powerGain += mWindow[i] * mWindow[i];
-    
-    unsigned long sizeNorm = mSize;
-    
-    if (ends == kFirst || ends == kBoth)
-    {
-        linearGain += mWindow[0];
-        powerGain += mWindow[0] * mWindow[0];
-    }
-    
-    if (ends == kLast || ends == kBoth)
-    {
-        linearGain += mWindow[mSize - 1];
-        powerGain += mWindow[mSize - 1] * mWindow[mSize - 1];
-        sizeNorm++;
-    }
-    
-    if (ends == kNone)
-        sizeNorm--;
-    
-    mLinearGain = (double) sizeNorm / linearGain;
-    mPowerGain = (double) sizeNorm / powerGain;
+    mGenerator.calculateGains(mWindow, begin, end);
 }
 
 double FrameLib_Window::linearInterp(double pos)
@@ -172,12 +137,14 @@ double FrameLib_Window::linearInterp(double pos)
 
 void FrameLib_Window::process()
 {
-    const int VecSize = SIMDLimits<double>::max_size;
-    using VectorType = SIMDType<double, VecSize>;
+    const int vecSize = SIMDLimits<double>::max_size;
+    const int workSize = vecSize * 8;
+    
+    using VectorType = SIMDType<double, vecSize>;
     
     // Get Input
     
-    unsigned long sizeIn, sizeOut, sizeFactor;
+    unsigned long sizeIn, sizeOut;
     const double *input = getInput(0, &sizeIn);
     
     requestOutputSize(0, sizeIn);
@@ -187,65 +154,50 @@ void FrameLib_Window::process()
     
     if (sizeOut)
     {
-        Compensation compensate = mParameters.getEnum<Compensation>(kCompensation);
-        Endpoints ends = mParameters.getEnum<Endpoints>(kEndpoints);
-        
-        sizeFactor = ends == kBoth ? sizeIn - 1 : sizeIn;
-        sizeFactor = ends == kNone ? sizeIn + 1 : sizeFactor;
-        
-        bool preIncrement = ends == kNone || ends == kLast;
-        double gain;
+        updateWindow(sizeIn);
 
-        updateWindow(sizeIn, ends);
-        
-        switch (compensate)
+        unsigned long sizeFactor = mGenerator.sizeAdjustForEndpoints(sizeIn);
+        unsigned long size = mCompare.mSize;
+
+        double gain = mGenerator.gainCompensation();
+
+        if (size % sizeFactor)
         {
-            case kOff:                  gain = 1.0;                         break;
-            case kLinear:               gain = mLinearGain;                 break;
-            case kPower:                gain = mPowerGain;                  break;
-            case kReconstruct:          gain = mPowerGain / mLinearGain;    break;
-        }
-        
-        if (mSize % sizeFactor)
-        {
-            const int workSize = VecSize * 8;
-            double incr = (double) mSize / (double) sizeFactor;
-            double pos = preIncrement ? incr : 0.0;
+            double delta = static_cast<double>(size) / static_cast<double>(sizeFactor);
+            double phase = !mGenerator.doFirst() ? delta : 0.0;
+            
             unsigned long i = 0;
             
-            if (sizeOut > (VecSize * 4))
+            for (; i + workSize - 1 < sizeIn; i += workSize)
             {
-                for (; i + workSize - 1 < sizeIn; i += workSize)
-                {
-                    const VectorType *VecInput = reinterpret_cast<const VectorType *>(input + i);
-                    VectorType *VecOutput = reinterpret_cast<VectorType *>(output + i);
+                const VectorType *vecIn = reinterpret_cast<const VectorType *>(input + i);
+                VectorType *vecOut = reinterpret_cast<VectorType *>(output + i);
 
-                    // Accumulate positions
+                // Accumulate phases
                 
-                    for (unsigned long j = 0; j < workSize; j++, pos += incr)
-                        output[i + j] = pos;
+                for (unsigned long j = 0; j < workSize; j++, phase += delta)
+                    output[i + j] = phase;
                 
-                    // Interpolate from the window
+                // Interpolate from the window
                 
-                    table_read(Fetch(mWindow, mSize + 2), output + i, output + i, workSize, 1.0, kInterpLinear);
+                table_read(Fetch(mWindow, size + 2), output + i, output + i, workSize, gain, kInterpLinear);
                 
-                    // Multiply
+                // Multiply
                 
-                    for (unsigned long j = 0; j + VecSize - 1 < workSize; j += VecSize)
-                        *VecOutput++ *= *VecInput++;
-                }
+                for (unsigned long j = 0; j + vecSize - 1 < workSize; j += vecSize)
+                    *vecOut++ *= *vecIn++;
             }
             
-            for (; i < sizeIn; i++, pos += incr)
-                output[i] = input[i] * gain * linearInterp(pos);
+            for (; i < sizeIn; i++, phase += delta)
+                output[i] = input[i] * gain * linearInterp(phase);
         }
         else
         {
-            unsigned long incr =  mSize / sizeFactor;
-            unsigned long pos = preIncrement ? incr : 0;
+            unsigned long delta = size / sizeFactor;
+            unsigned long phase = !mGenerator.doFirst() ? delta : 0;
             
-            for (unsigned long i = 0; i < sizeIn; i++, pos += incr)
-                output[i] = input[i] * gain * mWindow[pos];
+            for (unsigned long i = 0; i < sizeIn; i++, phase += delta)
+                output[i] = input[i] * gain * mWindow[phase];
         }
     }
 }

@@ -23,6 +23,7 @@
 // Generators
 
 #include "../FrameLib_Objects/Generators/FrameLib_Gaussian.h"
+#include "../FrameLib_Objects/Generators/FrameLib_MakeWindow.h"
 #include "../FrameLib_Objects/Generators/FrameLib_Ramp.h"
 #include "../FrameLib_Objects/Generators/FrameLib_Random.h"
 #include "../FrameLib_Objects/Generators/FrameLib_Uniform.h"

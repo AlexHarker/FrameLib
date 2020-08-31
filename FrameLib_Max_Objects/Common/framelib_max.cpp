@@ -46,6 +46,7 @@ extern "C" int C74_EXPORT main(void)
     // Generators
     
     FrameLib_MaxClass_Expand<FrameLib_Gaussian>::makeClass("fl.gaussian~");
+    FrameLib_MaxClass_Expand<FrameLib_MakeWindow>::makeClass("fl.makewindow~");
     FrameLib_MaxClass_Expand<FrameLib_Ramp>::makeClass("fl.ramp~");
     FrameLib_MaxClass_Expand<FrameLib_Random>::makeClass("fl.random~");
     FrameLib_MaxClass_Expand<FrameLib_Uniform>::makeClass("fl.uniform~");
@@ -245,7 +246,6 @@ extern "C" int C74_EXPORT main(void)
 
     FrameLib_MaxClass_Expand<FrameLib_Complex_Sqrt>::makeClass("fl.complex.sqrt~");
     FrameLib_MaxClass_Expand<FrameLib_Complex_Conj>::makeClass("fl.complex.conj~");
-    
     
     // Complex Binary Operators
     
