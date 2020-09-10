@@ -1098,7 +1098,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "python3 \"${SRCROOT}/Documentation/Max Documentation/0_generate_Max_Object_List.h.py\" fl.kernelsmooth~ fl.context~";
+			shellScript = "python3 \"${SRCROOT}/Documentation/Max Documentation/0_generate_Max_Object_List.h.py\" fl.contextcontrol~";
 		};
 /* End PBXShellScriptBuildPhase section */
 
