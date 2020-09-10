@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -92,8 +92,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "bang" ],
-					"patching_rect" : [ 10.0, 161.0, 57.0, 21.0 ],
-					"text" : "play~ rain"
+					"patching_rect" : [ 10.0, 161.0, 86.0, 21.0 ],
+					"text" : "play~ fl.tut1.rain"
 				}
 
 			}
@@ -104,8 +104,8 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 140.0, 214.0, 131.0, 21.0 ],
-					"text" : "wave~ window @interp 4"
+					"patching_rect" : [ 140.0, 214.0, 161.0, 21.0 ],
+					"text" : "wave~ fl.tut1.window @interp 4"
 				}
 
 			}
@@ -128,10 +128,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 10.0, 298.0, 41.0, 21.0 ],
-					"saved_object_attributes" : 					{
-						"attr_comment" : ""
-					}
-,
 					"text" : "out~ 1"
 				}
 
@@ -156,10 +152,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 10.0, 12.0, 28.0, 21.0 ],
-					"saved_object_attributes" : 					{
-						"attr_comment" : ""
-					}
-,
 					"text" : "in 1"
 				}
 
@@ -171,7 +163,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 339.0, 174.0, 56.0, 21.0 ],
+					"patching_rect" : [ 361.0, 174.0, 56.0, 21.0 ],
 					"text" : "mute 0, 1"
 				}
 
@@ -183,7 +175,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 281.0, 174.0, 56.0, 21.0 ],
+					"patching_rect" : [ 303.0, 174.0, 56.0, 21.0 ],
 					"text" : "mute 1, 0"
 				}
 
@@ -195,7 +187,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 281.0, 133.0, 56.0, 21.0 ],
+					"patching_rect" : [ 303.0, 133.0, 56.0, 21.0 ],
 					"text" : "loadbang"
 				}
 
@@ -205,9 +197,9 @@
 					"id" : "obj-1",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "int", "int" ],
-					"patching_rect" : [ 281.0, 214.0, 54.0, 21.0 ],
+					"numoutlets" : 3,
+					"outlettype" : [ "int", "int", "int" ],
+					"patching_rect" : [ 303.0, 214.0, 54.0, 21.0 ],
 					"text" : "thispoly~"
 				}
 
@@ -244,6 +236,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-4", 0 ],
+					"midpoints" : [ 162.5, 192.0, 237.5, 192.0, 237.5, 163.0, 312.5, 163.0 ],
 					"source" : [ "obj-15", 1 ]
 				}
 
@@ -314,7 +307,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-7", 0 ],
-					"midpoints" : [ 32.5, 78.0, 348.5, 78.0 ],
+					"midpoints" : [ 32.5, 78.0, 370.5, 78.0 ],
 					"source" : [ "obj-9", 1 ]
 				}
 

@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 0,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -130,7 +130,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -690,7 +690,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -892,7 +892,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1215,9 +1215,9 @@
 				"box" : 				{
 					"id" : "obj-24",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"numinlets" : 3,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 92.0, 556.0, 102.0, 21.0 ],
 					"text" : "fl.timemean~ 30 10"
 				}
@@ -1295,8 +1295,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 8.0, 331.0, 113.0, 21.0 ],
-					"text" : "fl.0dfsvf~ 500 0.5 bpf"
+					"patching_rect" : [ 8.0, 331.0, 96.0, 21.0 ],
+					"text" : "fl.svf~ 500 0.5 bpf"
 				}
 
 			}
@@ -1309,8 +1309,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 8.0, 463.0, 97.0, 21.0 ],
-					"text" : "fl.window~ cosine"
+					"patching_rect" : [ 8.0, 463.0, 83.0, 21.0 ],
+					"text" : "fl.window~ sine"
 				}
 
 			}
@@ -1324,8 +1324,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 8.0, 271.0, 130.0, 21.0 ],
-					"text" : "fl.read~ jongles /units ms"
+					"patching_rect" : [ 8.0, 271.0, 149.0, 21.0 ],
+					"text" : "fl.read~ fl.tut1.jongl /units ms"
 				}
 
 			}
@@ -1502,7 +1502,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-109", 1 ],
-					"midpoints" : [ 425.5, 327.0, 111.5, 327.0 ],
+					"midpoints" : [ 425.5, 327.0, 94.5, 327.0 ],
 					"order" : 0,
 					"source" : [ "obj-6", 0 ]
 				}
