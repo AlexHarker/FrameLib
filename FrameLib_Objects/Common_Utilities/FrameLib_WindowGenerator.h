@@ -136,7 +136,7 @@ public:
 
         // FIX - complete validation and type selection!
         
-        if (mParameters.changed(TypeIdx) || mParameters.changed(ParamsIdx))
+        if (!mGenerator || mParameters.changed(TypeIdx) || mParameters.changed(ParamsIdx))
         {
             switch (getType())
             {
