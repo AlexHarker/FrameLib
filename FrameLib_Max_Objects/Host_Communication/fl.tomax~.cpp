@@ -1,6 +1,6 @@
 
 #include "FrameLib_ToHost.h"
-#include <FrameLib_MaxClass.h>
+#include "FrameLib_MaxClass.h"
 #include <algorithm>
 
 // Max Class
