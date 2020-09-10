@@ -4,17 +4,21 @@
 
 // Constructor
 
-FrameLib_AudioTrigger::FrameLib_AudioTrigger(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Scheduler(context, proxy, nullptr, 0, 1, 1)
+FrameLib_AudioTrigger::FrameLib_AudioTrigger(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Scheduler(context, proxy, nullptr, 0, 1, 1)
 {
     objectReset();
+    mParameters.set(serialisedParameters);
 }
 
 // Info
 
 std::string FrameLib_AudioTrigger::objectInfo(bool verbose)
 {
-    return formatInfo("Translates non-zero samples into trigger frames: The output is an empty frame. Any non-zero audio sample triggers a frame.",
-                   "Translates non-zero samples into trigger frames.", verbose);
+    return formatInfo("Translates non-zero samples into trigger frames: "
+                      "The output is an empty frame. "
+                      "Any non-zero audio sample triggers a frame.",
+                      "Translates non-zero samples into trigger frames.", verbose);
 }
 
 std::string FrameLib_AudioTrigger::outputInfo(unsigned long idx, bool verbose)

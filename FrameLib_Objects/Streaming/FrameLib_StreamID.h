@@ -6,11 +6,11 @@
 
 class FrameLib_StreamID final : public FrameLib_Processor
 {
-    public:
+public:
     
     // Constructor
     
-    FrameLib_StreamID(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_StreamID(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     

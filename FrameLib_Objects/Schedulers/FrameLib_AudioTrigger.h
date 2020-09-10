@@ -8,12 +8,11 @@
 
 class FrameLib_AudioTrigger final : public FrameLib_Scheduler
 {
-
 public:
     
     // Constructor
     
-    FrameLib_AudioTrigger(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_AudioTrigger(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     

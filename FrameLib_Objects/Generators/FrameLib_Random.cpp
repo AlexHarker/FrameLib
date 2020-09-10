@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_Random::FrameLib_Random(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_Random::FrameLib_Random(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kRequestedLength, "requested");
@@ -26,9 +27,10 @@ FrameLib_Random::FrameLib_Random(FrameLib_Context context, FrameLib_Parameters::
 
 std::string FrameLib_Random::objectInfo(bool verbose)
 {
-    return formatInfo("Generates frames of linearly distributed random values in the range [0-1]: The size of the output is dependent on the mode. "
-                   "The output size may either be set as a parameter, or be set to match that of the triggering input.",
-                   "Generates frames of linearly distributed random values in the range [0-1].", verbose);
+    return formatInfo("Generates linearly distributed random values in the range [0-1]: "
+                      "The length of the output is dependent on the mode. "
+                      "Output length may be set by parameter or based on that of the trigger input.",
+                      "Generates linearly distributed random values in the range [0-1].", verbose);
 }
 
 std::string FrameLib_Random::inputInfo(unsigned long idx, bool verbose)
@@ -36,12 +38,12 @@ std::string FrameLib_Random::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Trigger Frame - triggers generation of output", "Trigger Frame", verbose);
+        return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
 }
 
 std::string FrameLib_Random::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Frame of Random Values";
+    return "Output";
 }
 
 // Parameter Info
@@ -51,9 +53,9 @@ FrameLib_Random::ParameterInfo FrameLib_Random::sParamInfo;
 FrameLib_Random::ParameterInfo::ParameterInfo()
 {
     add("Controls how the output length is determined: "
-        "requested - the output frame size is set by the length parameter. "
-        "input - the output frame size will match the input size.");
-    add("Sets the length of the output when the mode is set to requested. Set in the units specified by the units parameter.");
+        "requested - the output length is set by the length parameter. "
+        "input - the output length follows the length of the trigger input.");
+    add("Sets the requested output length in the units specified by the units parameter.");
     add("Sets the units for specified output lengths.");
 }
 
@@ -63,7 +65,7 @@ unsigned long FrameLib_Random::getLength()
 {
     double time = mParameters.getValue(kLength);
     
-    switch (static_cast<Units>(mParameters.getInt(kUnits)))
+    switch (mParameters.getEnum<Units>(kUnits))
     {
         case kSamples:  break;
         case kMS:       time = msToSamples(time);       break;
@@ -81,7 +83,7 @@ void FrameLib_Random::process()
     
     getInput(0, &sizeIn);
     
-    sizeOut = ((Modes) mParameters.getInt(kMode)) == kInLength ? sizeIn : getLength();
+    sizeOut = mParameters.getEnum<Modes>(kMode) == kInLength ? sizeIn : getLength();
     requestOutputSize(0, sizeOut);
     allocateOutputs();
     

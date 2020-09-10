@@ -7,11 +7,12 @@ PRODUCT_NAME = $(TARGET_NAME)
 
 ARCHS = i386 x86_64
 
-//GCC_VERSION = com.apple.compilers.llvm.clang.1_0
 MACOSX_DEPLOYMENT_TARGET = 10.7
 CLANG_CXX_LANGUAGE_STANDARD = c++11
 CLANG_CXX_LIBRARY = libc++
 CLANG_X86_VECTOR_INSTRUCTIONS = avx
 
+LLVM_LTO = Monolithic
+
 OTHER_CFLAGS = -fvisibility=hidden
-OTHER_CPLUSPLUSFLAGS = -fvisibility=hidden -Winconsistent-missing-override
+OTHER_CPLUSPLUSFLAGS = -fvisibility=hidden -Winconsistent-missing-override -Wno-missing-braces

@@ -5,13 +5,17 @@
 
 // Constructor
 
-FrameLib_Dispatch::Select::Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long numIns, long num) : FrameLib_Processor(context, proxy, nullptr, numIns, 1), mNumIns(numIns)
+FrameLib_Dispatch::Select::Select(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long numIns, long num)
+: FrameLib_Processor(context, proxy, nullptr, numIns, 1)
+, mNumIns(numIns)
 {
     const int strBufSize = 32;
     char name[strBufSize];
-    snprintf(name, strBufSize, "input_%2ld", num + 1);
+    snprintf(name, strBufSize, "input_%02ld", num + 1);
     mParameters.addInt(kActiveIn, name, 0);
     
+    // FIX - this means that we don't get errors at all... this needs review
+
     mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
     
@@ -44,15 +48,15 @@ void FrameLib_Dispatch::Select::process()
     prepareCopyInputToOutput(mActiveIn, 0);
     allocateOutputs();
     copyInputToOutput(mActiveIn, 0);
-
 }
 
 // Main Class
 
 // Constructor
 
-FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Block(kProcessor, context, proxy), mParameters(context, proxy, &sParamInfo)
+FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Block(kProcessor, context, proxy)
+, mParameters(context, proxy, &sParamInfo)
 {
     mParameters.addDouble(kNumIns, "num_ins", 2, 0);
     mParameters.setClip(2, 32);
@@ -61,7 +65,9 @@ FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Paramete
     mParameters.setClip(2, 32);
     mParameters.setInstantiation();
     
+    mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
+    mParameters.setErrorReportingEnabled(true);
     
     mNumIns = mParameters.getInt(kNumIns);
     mNumOuts = mParameters.getInt(kNumOuts);
@@ -70,7 +76,7 @@ FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Paramete
     {
         const int strBufSize = 32;
         char name[strBufSize];
-        snprintf(name, strBufSize, "input_%2ld", i + 1);
+        snprintf(name, strBufSize, "input_%02ld", i + 1);
         mParameters.addInt(kActiveIn1 + i, name, 0);
     }
               
@@ -91,7 +97,10 @@ FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Paramete
 
 std::string FrameLib_Dispatch::objectInfo(bool verbose)
 {
-    return formatInfo("Dispatches multiple input frame streams dynamically to multiple outputs. Each output can be independently connected to any one (or none) of a number of incoming input frame streams, or turned off: The number of inputs and outputs is variable. The selected input for each output is changed with a parameter.",
+    return formatInfo("Dispatches multiple inputs dynamically to multiple outputs: "
+                      "Each output can be independently connected to any one input. "
+                      "The number of inputs and outputs is variable. "
+                      "The selected input for each output is changed with a parameter.",
                       "Dispatches multiple input frame streams dynamically to multiple outputs.", verbose);
 }
 
@@ -117,7 +126,7 @@ FrameLib_Dispatch::ParameterInfo::ParameterInfo()
     add("Sets the number of inputs.");
     add("Sets the number of outputs.");
     for (long i = 0; i < 32; i++)
-        add(formatInfo("Sets the current input for output # counting from 1 (off if out of range).", "", i, false));
+        add(formatInfo("Sets the current input for output # counting from 1 (off if out of range).", "", i, true));
 }
 
 // Reset

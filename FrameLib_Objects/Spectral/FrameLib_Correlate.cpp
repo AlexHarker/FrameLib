@@ -1,27 +1,30 @@
 
 #include "FrameLib_Correlate.h"
 
-FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mProcessor(*this)
+FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+, mProcessor(*this)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
-    mParameters.addEnum(kMode, "mode", 2);
+    mParameters.addEnum(kMode, "mode", 1);
     mParameters.addEnumItem(kReal, "real");
     mParameters.addEnumItem(kComplex, "complex");
     mParameters.setInstantiation();
-    mParameters.addEnum(kEdgeMode, "edges");
-    mParameters.addEnumItem(EdgeMode::kEdgeLinear, "linear");
-    mParameters.addEnumItem(EdgeMode::kEdgeWrap, "circular");
-    mParameters.addEnumItem(EdgeMode::kEdgeWrapCentre, "wrap");
-    mParameters.addEnumItem(EdgeMode::kEdgeFold, "fold");
+    mParameters.addEnum(kEdges, "edges", 2);
+    mParameters.addEnumItem(Edges::kEdgeLinear, "linear");
+    mParameters.addEnumItem(Edges::kEdgeWrap, "circular");
+    mParameters.addEnumItem(Edges::kEdgeWrapCentre, "wrap");
+    mParameters.addEnumItem(Edges::kEdgeFold, "fold");
+    mParameters.addEnumItem(Edges::kEdgeFoldRepeat, "mirror");
     mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
         
     mProcessor.set_max_fft_size(mParameters.getInt(kMaxLength));
     
-    mMode = static_cast<Mode>(mParameters.getInt(kMode));
+    mMode = mParameters.getEnum<Modes>(kMode);
     
     if (mMode  == kComplex)
         setIO(4, 2);
@@ -31,9 +34,10 @@ FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, FrameLib_Parame
 
 std::string FrameLib_Correlate::objectInfo(bool verbose)
 {
-    return formatInfo("Calculate the correlation of two input frames, (using frequency domain processing internally): "
-                   "The output is a frame of length M + N - 1 where M and N are the lengths of the two inputs respectively",
-                   "Calculate the correlation of two input frames, (using frequency domain processing internally).", verbose);
+    return formatInfo("Correlate two inputs (either real or complex): "
+                      "The output length depends on the edges parameter, which sets the edge behaviour. "
+                      "It will be no longer than M + N - 1 where M and N are the lengths of the two inputs respectively.",
+                      "Correlate two inputs (either real or complex).", verbose);
 }
 
 std::string FrameLib_Correlate::inputInfo(unsigned long idx, bool verbose)
@@ -54,13 +58,13 @@ std::string FrameLib_Correlate::inputInfo(unsigned long idx, bool verbose)
 std::string FrameLib_Correlate::outputInfo(unsigned long idx, bool verbose)
 {
     if (mMode == kReal)
-        return "Correlated Output";
+        return "Output";
     
     if (idx)
-        return formatInfo("Correlated Imaginary Output", "Correlated Imag Output", idx, verbose);
+        return formatInfo("Imaginary Output", "Imag Output", idx, verbose);
     else
         
-        return formatInfo("Correlated Real Output", "Correlated Real Output", idx, verbose);
+        return formatInfo("Real Output", "Real Output", idx, verbose);
 }
 
 // Parameter Info
@@ -69,15 +73,22 @@ FrameLib_Correlate::ParameterInfo FrameLib_Correlate::sParamInfo;
 
 FrameLib_Correlate::ParameterInfo::ParameterInfo()
 {
-    add("Sets the maximum output length. The output length will be M + N - 1 where M and N are the sizes of the two inputs respectively");
-    add("Sets the type of input expected / output produced.");
+    add("Sets the maximum processing length. "
+        "The processing length is M + N - 1 where M and N are the sizes of the two inputs respectively.");
+    add("Sets the input and output mode.");
+    add("Sets the edge behaviour of the correlation process. "
+        "linear - the output is the full processing length without wrapping or folding. "
+        "circular - output length is the maximum of the input lengths with excess wrapped/added to the beginning. "
+        "wrap - similar to circular mode, but rotated such that wrapping occurs equally at both ends. "
+        "fold - as wrap but folding at the edges. "
+        "mirror - as fold but with repeated edge values.");
 }
 
 // Process
 
 void FrameLib_Correlate::process()
 {
-    EdgeMode edgeMode = static_cast<EdgeMode>(mParameters.getInt(kEdgeMode));
+    Edges edges = mParameters.getEnum<Edges>(kEdges);
 
     if (mMode == kReal)
     {
@@ -88,16 +99,19 @@ void FrameLib_Correlate::process()
         const double *input1 = getInput(0, &sizeIn1);
         const double *input2 = getInput(1, &sizeIn2);
         
-        // Get Output Size
+        // Get Output Size / Check for Processing Size Errors
+
+        unsigned long sizeOut = static_cast<unsigned long>(mProcessor.correlated_size(sizeIn1, sizeIn2, edges));
         
-        unsigned long sizeOut = mProcessor.correlated_size(sizeIn1, sizeIn2, edgeMode);
+        if (sizeOut == 0 && sizeIn1 && sizeIn2)
+            getReporter()(kErrorObject, getProxy(), "correlation processing size is larger than maximum processing size (#)", mProcessor.max_fft_size());
         
-        // Get output
+        // Get Output
         
         requestOutputSize(0, sizeOut);
         
         if (allocateOutputs())
-            mProcessor.correlate(getOutput(0, &sizeOut), {input1, sizeIn1}, {input2, sizeIn2}, edgeMode);
+            mProcessor.correlate(getOutput(0, &sizeOut), {input1, sizeIn1}, {input2, sizeIn2}, edges);
     }
     else
     {
@@ -110,11 +124,14 @@ void FrameLib_Correlate::process()
         const double *inR2 = getInput(2, &sizeR2);
         const double *inI2 = getInput(3, &sizeI2);
         
-        // Get Output Size
+        // Get Output Size / Check for Processing Size Errors
 
-        unsigned long sizeOut = mProcessor.correlated_size(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edgeMode);
+        unsigned long sizeOut = static_cast<unsigned long>(mProcessor.correlated_size(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edges));
 
-        // Get output
+        if (sizeOut == 0 && std::max(sizeR1, sizeI1) && std::max(sizeR2, sizeI2))
+            getReporter()(kErrorObject, getProxy(), "correlation processing size is larger than maximum processing size (#)", mProcessor.max_fft_size());
+        
+        // Get Output
         
         requestOutputSize(0, sizeOut);
         requestOutputSize(1, sizeOut);
@@ -124,7 +141,7 @@ void FrameLib_Correlate::process()
             double *rOut = getOutput(0, &sizeOut);
             double *iOut = getOutput(1, &sizeOut);
         
-            mProcessor.correlate(rOut, iOut, {inR1, sizeR1}, {inI1, sizeI1}, {inR2, sizeR2}, {inI2, sizeI2}, edgeMode);
+            mProcessor.correlate(rOut, iOut, {inR1, sizeR1}, {inI1, sizeI1}, {inR2, sizeR2}, {inI2, sizeI2}, edges);
         }
     }
 }

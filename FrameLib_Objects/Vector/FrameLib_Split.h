@@ -4,8 +4,6 @@
 
 #include "FrameLib_DSP.h"
 
-// FIX - consider multi-output version later
-
 class FrameLib_Split final : public FrameLib_Processor
 {
     // Parameter Enums and Info
@@ -19,7 +17,7 @@ public:
 
     // Constructor
     
-    FrameLib_Split(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_Split(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     

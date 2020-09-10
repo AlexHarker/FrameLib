@@ -6,7 +6,7 @@
 #if defined(__arm__) || defined(__arm64)
 #include <arm_neon.h>
 #include <memory.h>
-#else
+#elif defined(__APPLE__) || defined(__LINUX__) || defined(_WIN32)
 #if defined(_WIN32)
 #include <malloc.h>
 #include <intrin.h>
@@ -79,7 +79,17 @@ namespace hisstools_fft_impl{
         posix_memalign(&mem, SIMDLimits<T>::max_size * sizeof(T), size * sizeof(T));
         return static_cast<T *>(mem);
     }
-    
+
+#elif defined(__EMSCRIPTEN__)
+
+    template <class T>
+    T *allocate_aligned(size_t size)
+    {
+        void *mem;
+        posix_memalign(&mem, 16, size * sizeof(T));
+        return static_cast<T *>(mem);
+    }
+
 #elif defined(__arm__) || defined(__arm64__)
     
     template <class T>
@@ -195,8 +205,8 @@ namespace hisstools_fft_impl{
         
         static void deinterleave(const SIMDVector *input, SIMDVector *outReal, SIMDVector *outImag)
         {
-            *outReal = _mm_unpacklo_ps(input[0].mVal, input[1].mVal);
-            *outImag = _mm_unpackhi_ps(input[0].mVal, input[1].mVal);
+            *outReal = _mm_shuffle_ps(input[0].mVal, input[1].mVal, 0x88);
+            *outImag = _mm_shuffle_ps(input[0].mVal, input[1].mVal, 0xDD);
         }
         
         static void interleave(const SIMDVector *inReal, const SIMDVector *inImag, SIMDVector *output)
@@ -249,14 +259,20 @@ namespace hisstools_fft_impl{
         
         static void deinterleave(const SIMDVector *input, SIMDVector *outReal, SIMDVector *outImag)
         {
-            *outReal = _mm256_unpacklo_ps(input[0].mVal, input[1].mVal);
-            *outImag = _mm256_unpackhi_ps(input[0].mVal, input[1].mVal);
+            const __m256 v1 = _mm256_permute2f128_ps(input[0].mVal, input[1].mVal, 0x20);
+            const __m256 v2 = _mm256_permute2f128_ps(input[0].mVal, input[1].mVal, 0x31);
+            
+            *outReal = _mm256_shuffle_ps(v1, v2, 0x88);
+            *outImag = _mm256_shuffle_ps(v1, v2, 0xDD);
         }
         
         static void interleave(const SIMDVector *inReal, const SIMDVector *inImag, SIMDVector *output)
         {
-            output[0] = _mm256_unpacklo_ps(inReal->mVal, inImag->mVal);
-            output[1] = _mm256_unpackhi_ps(inReal->mVal, inImag->mVal);
+            const __m256 v1 = _mm256_unpacklo_ps(inReal->mVal, inImag->mVal);
+            const __m256 v2 = _mm256_unpackhi_ps(inReal->mVal, inImag->mVal);
+            
+            output[0] = _mm256_permute2f128_ps(v1, v2, 0x20);
+            output[1] = _mm256_permute2f128_ps(v1, v2, 0x31);
         }
     };
     

@@ -2,13 +2,15 @@
 #ifndef FRAMELIB_PERCENTILE_H
 #define FRAMELIB_PERCENTILE_H
 
-#include "FrameLib_DSP.h"
+#include "FrameLib_Vector_Template.h"
 
-class FrameLib_Percentile final : public FrameLib_Processor
+class FrameLib_Percentile final : public FrameLib_VectorBase<2>
 {
+    using Base = FrameLib_VectorBase<2>;
+    
     // Parameter Enums and Info
 
-    enum ParameterList { kPercentile };
+    enum ParameterList { kPercentile, kInterpolate };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -16,19 +18,17 @@ public:
     
     // Constructor
     
-    FrameLib_Percentile(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_Percentile(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     
     std::string objectInfo(bool verbose) override;
-    std::string inputInfo(unsigned long idx, bool verbose) override;
-    std::string outputInfo(unsigned long idx, bool verbose) override;
-
+ 
 private:
 
-    // Process
+    // Compute
 
-    void process() override;
+    double compute(const double *input, size_t size) override;
     
     // Data
     

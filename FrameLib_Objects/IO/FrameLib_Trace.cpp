@@ -2,11 +2,12 @@
 #include "FrameLib_Trace.h"
 #include <algorithm>
 
-// FIX - trace is only sample accurate (not subsample) - double the buffer and add a function to interpolate if neceesary
+// FIX - trace is only sample accurate (not subsample) - double the buffer and add a function to interpolate if necessary
 
 // Constructor
 
-FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_AudioOutput(context, proxy, &sParamInfo, 2, 0, 1)
+FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_AudioOutput(context, proxy, &sParamInfo, 2, 0, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kFull, "full");
@@ -15,6 +16,8 @@ FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, FrameLib_Parameters::Se
     mParameters.addEnumItem(kSpecified, "specified");
     mParameters.addEnumItem(kRatio, "ratio");
     
+    // FIX - defaults for when the units are not in samples!
+
     mParameters.addDouble(kBufferSize, "buffer_size", 250000, 1);
     mParameters.setMin(0.0);
     mParameters.setInstantiation();
@@ -43,10 +46,10 @@ FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, FrameLib_Parameters::Se
 std::string FrameLib_Trace::objectInfo(bool verbose)
 {
     return formatInfo("Outputs audio frames (or values from the frame) to the host environment without overlapping, continuing the last value till a new frame arrives: "
-                   "The mode parameter determines the value(s) that are output. "
-                    "This is intended for tracking control type values. The length of the internal buffer determines the maximum frame length. "
-                   "Output suffers no latency.",
-                   "Outputs audio frames  (or values from the frame) to the host environment without overlapping, continuing the final value till a new frame arrives.", verbose);
+                      "The mode parameter determines the value(s) that are output. "
+                      "This is intended for tracking control type values. The length of the internal buffer determines the maximum frame length. "
+                      "Output suffers no latency.",
+                      "Outputs audio frames  (or values from the frame) to the host environment without overlapping, continuing the final value till a new frame arrives.", verbose);
 }
 
 std::string FrameLib_Trace::inputInfo(unsigned long idx, bool verbose)
@@ -84,7 +87,7 @@ FrameLib_Trace::ParameterInfo::ParameterInfo()
 
 unsigned long FrameLib_Trace::convertTimeToSamples(double time)
 {
-    switch (static_cast<Units>(mParameters.getInt(kUnits)))
+    switch (mParameters.getEnum<Units>(kUnits))
     {
         case kSamples:  break;
         case kMS:       time = msToSamples(time);       break;
@@ -162,7 +165,7 @@ void FrameLib_Trace::process()
     FrameLib_TimeFormat frameTime = getFrameTime();
     FrameLib_TimeFormat delayTime = convertTimeToSamples(mParameters.getValue(kDelay));
 
-    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
+    Modes mode = mParameters.getEnum<Modes>(kMode);
     
     const double *input = getInput(0, &sizeIn);
     unsigned long sizeToWrite = mode != kFull ? std::min(sizeIn, 1UL) : sizeIn;

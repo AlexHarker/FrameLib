@@ -3,6 +3,7 @@
 #define FRAMELIB_MAX_CLASS_H
 
 #include "MaxClass_Base.h"
+#include "MaxBuffer.h"
 
 #include "FrameLib_Global.h"
 #include "FrameLib_Context.h"
@@ -13,12 +14,251 @@
 
 #include <algorithm>
 #include <cctype>
+#include <deque>
+#include <queue>
 #include <string>
+#include <tuple>
 #include <vector>
+#include <unordered_map>
 
 struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
 {
     t_object *mMaxObject;
+    
+    // Override for objects that require max messages to be sent from framelib
+    
+    virtual void sendMessage(unsigned long stream, t_symbol *s, short ac, t_atom *av) {}
+};
+
+struct FrameLib_MaxNRTAudio
+{
+    FrameLib_Multistream *mObject;
+    t_symbol *mBuffer;
+};
+
+struct FrameLib_MaxContext
+{
+    bool mRealtime;
+    t_object *mPatch;
+    t_symbol *mName;
+    
+    bool operator == (const FrameLib_MaxContext& b) const
+    {
+        return mRealtime == b.mRealtime && mPatch == b.mPatch && mName == b.mName;
+    }
+};
+
+//////////////////////////////////////////////////////////////////////////
+/////////////////////////// Messaging Classes ////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+struct MessageInfo
+{
+    MessageInfo(FrameLib_MaxProxy* proxy, FrameLib_TimeFormat time, t_ptr_uint order, unsigned long stream)
+    : mProxy(proxy), mTime(time), mOrder(order), mStream(stream) {}
+    
+    FrameLib_MaxProxy* mProxy;
+    FrameLib_TimeFormat mTime;
+    t_ptr_uint mOrder;
+    unsigned long mStream;
+};
+
+struct Message
+{
+    Message(const MessageInfo& info, const double *values, unsigned long N)
+    : mInfo(info), mType(kFrameNormal), mVector(values, values + N) {}
+    
+    Message(const MessageInfo& info, const FrameLib_Parameters::Serial *serial)
+    : mInfo(info), mType(kFrameTagged), mSerial(*serial) {}
+    
+    Message(const Message&) = delete;
+    Message& operator=(const Message&) = delete;
+    Message(Message&&) = default;
+    Message& operator=(Message&&) = default;
+    
+    MessageInfo mInfo;
+    FrameType mType;
+    std::vector<double> mVector;
+    FrameLib_Parameters::AutoSerial mSerial;
+};
+
+class MessageHandler : public MaxClass_Base
+{
+    struct MessageCompare
+    {
+        bool operator()(const Message& a, const Message& b) const
+        {
+            bool time = a.mInfo.mTime > b.mInfo.mTime;
+    
+            if (a.mInfo.mTime != b.mInfo.mTime)
+                return time;
+    
+            bool order = a.mInfo.mOrder > b.mInfo.mOrder;
+            
+            if (a.mInfo.mOrder != b.mInfo.mOrder)
+                return order;
+            
+            // N.B. Streams run in reverse order
+            
+            return a.mInfo.mStream < b.mInfo.mStream;
+        }
+    };
+    
+    struct MessageBlock
+    {
+        class Queue : public std::priority_queue<Message, std::vector<Message>, MessageCompare>
+        {
+            friend MessageBlock;
+            std::vector<Message>& container() { return c; }
+        };
+
+        Queue mQueue;
+        unsigned long mMaxSize = 1;
+        
+        void flush(FrameLib_MaxProxy *proxy)
+        {
+            for (auto it = mQueue.container().begin(); it != mQueue.container().end(); it++)
+                it->mInfo.mProxy = it->mInfo.mProxy == proxy ? nullptr : it->mInfo.mProxy;
+        }
+    };
+    
+public:
+    
+    MessageHandler(t_object *x, t_symbol *sym, long ac, t_atom *av) {}
+    
+    void add(const MessageInfo& info, const double *values, unsigned long N)
+    {
+        // Lock, get vector size and copy
+        
+        FrameLib_SpinLockHolder lock(&mLock);
+        mData.mMaxSize = std::max(limit(N), mData.mMaxSize);
+        mData.mQueue.emplace(info, values, N);
+    }
+    
+    void add(const MessageInfo& info, const FrameLib_Parameters::Serial *serial)
+    {
+        // Lock, determine maximum vector size and copy
+
+        FrameLib_SpinLockHolder lock(&mLock);
+        
+        for (auto it = serial->begin(); it != serial->end(); it++)
+        {
+            if (it.getType() == kVector)
+            {
+                unsigned long size = it.getVectorSize();
+                mData.mMaxSize = std::max(limit(size), mData.mMaxSize);
+            }
+        }
+        
+        mData.mQueue.emplace(info, serial);
+    }
+    
+    void schedule()
+    {
+        // Lock, copy onto the output queue and schedule
+        
+        FrameLib_SpinLockHolder lock(&mLock);
+        
+        if (!mData.mQueue.size())
+            return;
+        
+        mOutput.emplace_back();
+        std::swap(mData, mOutput.back());
+        lock.destroy();
+        
+        schedule_delay(*this, (method)&service, 0, nullptr, 0, nullptr);
+    }
+    
+    void flush(FrameLib_MaxProxy *proxy)
+    {
+        FrameLib_SpinLockHolder flushLock(&mFlushLock);
+        FrameLib_SpinLockHolder lock(&mLock);
+        
+        mData.flush(proxy);
+        
+        for (auto it = mOutput.begin(); it != mOutput.end(); it++)
+            it->flush(proxy);
+    }
+    
+    static void service(MessageHandler* handler, t_symbol *s, short ac, t_atom *av)
+    {
+        FrameLib_SpinLockHolder flushLock(&handler->mFlushLock);
+        MessageBlock data;
+        
+        // Swap data
+        
+        FrameLib_SpinLockHolder lock(&handler->mLock);
+        if (!handler->mOutput.empty())
+        {
+            std::swap(handler->mOutput.front(), data);
+            handler->mOutput.pop_front();
+        }
+        lock.destroy();
+        
+        // Allocate temporary t_atoms and output
+        
+        std::vector<t_atom> out(data.mMaxSize);
+        
+        while (!data.mQueue.empty())
+        {
+            output(data.mQueue.top(), out.data());
+            data.mQueue.pop();
+        }
+    }
+    
+private:
+    
+    static void output(const Message& message, t_atom *output)
+    {
+        FrameLib_MaxProxy *proxy = message.mInfo.mProxy;
+        
+        if (!proxy)
+            return;
+        
+        if (message.mType == kFrameNormal)
+        {
+            unsigned long N = limit(static_cast<unsigned long>(message.mVector.size()));
+            
+            for (unsigned long i = 0; i < N; i++)
+                atom_setfloat(output + i, message.mVector[i]);
+            
+            proxy->sendMessage(message.mInfo.mStream, nullptr, static_cast<short>(N), output);
+        }
+        else
+        {
+            // Iterate over tags
+            
+            for (auto it = message.mSerial.begin(); it != message.mSerial.end(); it++)
+            {
+                t_symbol *tag = gensym(it.getTag());
+                unsigned long size = 0;
+                
+                if (it.getType() == kVector)
+                {
+                    const double *vector = it.getVector(&size);
+                    size = limit(size);
+                    
+                    for (unsigned long i = 0; i < size; i++)
+                        atom_setfloat(output + i, vector[i]);
+                }
+                else
+                {
+                    size = 1;
+                    atom_setsym(output, gensym(it.getString()));
+                }
+                
+                proxy->sendMessage(message.mInfo.mStream, tag, static_cast<short>(size), output);
+            }
+        }
+    }
+    
+    static unsigned long limit(unsigned long N) { return std::min(N, 32767UL); }
+    
+    mutable FrameLib_SpinLock mLock;
+    mutable FrameLib_SpinLock mFlushLock;
+
+    MessageBlock mData;
+    std::deque<MessageBlock> mOutput;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -27,6 +267,45 @@ struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
 
 class FrameLib_MaxGlobals : public MaxClass_Base
 {
+public:
+    
+    enum ConnectionMode : t_ptr_int { kConnect, kConfirm, kDoubleCheck };
+
+    using MaxConnection = FrameLib_Connection<t_object, long>;
+    using Lock = FrameLib_SpinLock;
+
+private:
+    
+    struct Hash
+    {
+        size_t operator()(void *a, void *b) const
+        {
+            size_t hash = 0;
+            hash ^= std::hash<void *>()(a) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+            hash ^= std::hash<void *>()(b) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+            
+            return hash;
+        }
+        
+        size_t operator()(const FrameLib_Context& context) const
+        {
+            return operator()(context.getGlobal(), context.getReference());
+        }
+        
+        size_t operator()(const FrameLib_MaxContext& key) const
+        {
+            // N.B. Realtime state isn't used in the hash, but used during full lookup
+            
+            return operator()(key.mPatch, key.mName);
+        }
+    };
+    
+    enum RefDataItem { kKey, kCount, kLock, kFinal, kHandler, kQueuePtr };
+
+    using QueuePtr = std::unique_ptr<FrameLib_Context::ProcessingQueue>;
+    using RefData = std::tuple<FrameLib_MaxContext, int, Lock, t_object *, unique_object_ptr, QueuePtr>;
+    using RefMap = std::unordered_map<FrameLib_MaxContext, std::unique_ptr<RefData>, Hash>;
+    using ResolveMap = std::unordered_map<FrameLib_Context, t_object *, Hash>;
     
 public:
     
@@ -34,36 +313,31 @@ public:
     
     struct ErrorNotifier : public FrameLib_ErrorReporter::HostNotifier
     {
-        ErrorNotifier(FrameLib_MaxGlobals *maxGlobals)
-        {
-            mQelem = qelem_new(maxGlobals, (method) &errorReport);
-        }
-        
-        ~ErrorNotifier()
-        {
-            qelem_free(mQelem);
-        }
+        ErrorNotifier(FrameLib_Global **globalHandle)
+        : mQelem(globalHandle, (method) &flush) {}
         
         bool notify(const FrameLib_ErrorReporter::ErrorReport& report) override
         {
-            qelem_set(mQelem);
+            mQelem.set();
             return false;
         }
         
-        static void errorReport(FrameLib_MaxGlobals* x)
+        static void flushIgnore(FrameLib_Global **globalHandle, t_object *ignore = nullptr)
         {
-            auto reports = x->mGlobal->getErrors();
+            auto reports = (*globalHandle)->getErrors();
 
             for (auto it = reports->begin(); it != reports->end(); it++)
             {
                 std::string errorText;
                 t_object *object = it->getReporter() ? dynamic_cast<FrameLib_MaxProxy *>(it->getReporter())->mMaxObject : nullptr;
-                t_object *userObject = object ? (t_object *) object_method(object, gensym("__fl.get_user_object")) : nullptr;
+                t_object *userObject = object ? objectMethod<t_object *>(object, gensym("__fl.get_user_object")) : nullptr;
                 
                 it->getErrorText(errorText);
                 
                 if (userObject)
                 {
+                    if (object == ignore)
+                        continue;
                     if (it->getSource() == kErrorDSP)
                         object_error_obtrusive(userObject, errorText.c_str());
                     else
@@ -77,14 +351,18 @@ public:
                 error("*** FrameLib - too many errors - reporting only some ***");
         }
         
-        t_qelem mQelem;
+        static void flush(FrameLib_Global **globalHandle)
+        {
+            flushIgnore(globalHandle);
+        }
+
+        Qelem mQelem;
     };
     
     // Sync Check Class
     
     class SyncCheck
     {
-        
     public:
         
         enum Mode { kDownOnly, kDown, kAcross };
@@ -138,20 +416,6 @@ public:
         Mode mMode;
     };
 
-    // ConnectionInfo Struct
-    
-    struct ConnectionInfo
-    {
-        enum Mode { kConnect, kConfirm, kDoubleCheck };
-
-        ConnectionInfo(t_object *object, long index, Mode mode) : mObject(object), mIndex(index), mMode(mode) {}
-        
-        t_object *mObject;
-        long mIndex;
-        Mode mMode;
-        
-    };
-
     // Convenience Pointer for automatic deletion and RAII
     
     struct ManagedPointer
@@ -159,48 +423,178 @@ public:
         ManagedPointer() : mPointer(get()) {}
         ~ManagedPointer() { mPointer->release(); }
         
-        FrameLib_MaxGlobals *operator->() { return mPointer; }
-        
-    private:
-        
-        // Deleted
-        
         ManagedPointer(const ManagedPointer&) = delete;
         ManagedPointer& operator=(const ManagedPointer&) = delete;
 
+        FrameLib_MaxGlobals *operator->() { return mPointer; }
+        const FrameLib_MaxGlobals *operator->() const { return mPointer; }
+
+    private:
+        
         FrameLib_MaxGlobals *mPointer;
     };
     
-    // Constructor and Destructor (public for the max API, but use the ManagedPointer for use from outside this class)
+    // Constructor and Destructor (public for max API, but use ManagedPointer from outside this class)
     
-    FrameLib_MaxGlobals(t_symbol *sym, long ac, t_atom *av)
-    : mNotifier(new ErrorNotifier(this)), mGlobal(nullptr), mConnectionInfo(nullptr), mSyncCheck(nullptr)
+    FrameLib_MaxGlobals(t_object *x, t_symbol *sym, long ac, t_atom *av)
+    : mReportContextErrors(false), mRTNotifier(&mRTGlobal), mNRTNotifier(&mNRTGlobal), mRTGlobal(nullptr), mNRTGlobal(nullptr), mQelem(*this, (method) &serviceContexts), mSyncCheck(nullptr)
     {}
 
-    // Getters and setters for max global items
+    // Max global item methods
     
-    FrameLib_Global *getGlobal() const                          { return mGlobal; }
+    void clearQueue()                           { mQueue.clear(); }
+    void pushToQueue(t_object * object)         { return mQueue.push_back(object); }
     
-    const ConnectionInfo *getConnectionInfo() const             { return mConnectionInfo; }
-    void setConnectionInfo(ConnectionInfo *info = nullptr)      { mConnectionInfo = info; }
+    t_object *popFromQueue()
+    {
+        t_object *object = mQueue.empty() ? nullptr : mQueue.front();
+        
+        if (object)
+            mQueue.pop_front();
+        
+        return object;
+    }
+
+    void addContextToResolve(FrameLib_Context context, t_object *object)
+    {
+        mUnresolvedContexts[context] = object;
+        mQelem.set();
+    }
     
-    SyncCheck *getSyncCheck() const                             { return mSyncCheck; }
-    void setSyncCheck(SyncCheck *check = nullptr)               { mSyncCheck = check; }
+    void contextMessages(FrameLib_Context c)
+    {
+        MessageHandler::service(getHandler(c), nullptr, 0, nullptr);
+    }
+    
+    void contextMessages(FrameLib_Context c, t_object *object)
+    {
+        if (data<kFinal>(c) == object)
+            getHandler(c)->schedule();
+    }
+    
+    MessageHandler *getHandler(FrameLib_Context c)
+    {
+        return reinterpret_cast<MessageHandler *>(data<kHandler>(c).get());
+    }
+    
+    FrameLib_Context makeContext(const FrameLib_MaxContext& key)
+    {
+        std::unique_ptr<RefData>& item = mContextRefs[key];
+        
+		if (!item)
+		{
+            item.reset(new RefData());
+            FrameLib_Context context(key.mRealtime ? mRTGlobal : mNRTGlobal, item.get());
+            
+			std::get<kKey>(*item) = key;
+            std::get<kCount>(*item) = 1;
+			std::get<kFinal>(*item) = nullptr;
+            std::get<kHandler>(*item) = unique_object_ptr((t_object *)object_new_typed(CLASS_NOBOX, gensym("__fl.message.handler"), 0, nullptr));
+            std::get<kQueuePtr>(*item) = QueuePtr(new FrameLib_Context::ProcessingQueue(context));
+            
+            // Set timeouts
+
+            if (key.mRealtime)
+                (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(16.0, 1.0);
+            else
+                (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(100.0, 30.0);
+		}
+        else
+            std::get<kCount>(*item)++;
+        
+        return FrameLib_Context(key.mRealtime ? mRTGlobal : mNRTGlobal, item.get());
+    }
+    
+    void retainContext(FrameLib_Context c)      { data<kCount>(c)++; }
+    void releaseContext(FrameLib_Context c)     { if (--data<kCount>(c) == 0) mContextRefs.erase(data<kKey>(c)); }
+
+    void flushContext(FrameLib_Context c, FrameLib_MaxProxy *proxy)
+    {
+        ErrorNotifier::flush(data<kKey>(c).mRealtime ? &mRTGlobal : &mNRTGlobal);
+        
+        getHandler(c)->flush(proxy);
+     
+        auto it = mUnresolvedContexts.find(c);
+
+        if (it != mUnresolvedContexts.end())
+        {
+            objectMethod(it->second, gensym("__fl.resolve_context"));
+            mUnresolvedContexts.erase(it);
+        }
+    }
+    
+    void flushErrors(FrameLib_Context c, FrameLib_MaxProxy *proxy)
+    {
+        ErrorNotifier::flushIgnore(data<kKey>(c).mRealtime ? &mRTGlobal : &mNRTGlobal, proxy->mMaxObject);
+    }
+
+    bool isRealtime(FrameLib_Context c) const   { return c.getGlobal() == mRTGlobal; }
+    t_object *getPatch(FrameLib_Context c)      { return data<kKey>(c).mPatch; }
+    Lock *getLock(FrameLib_Context c)           { return &data<kLock>(c); }
+    t_object *&finalObject(FrameLib_Context c)  { return data<kFinal>(c); }
+
+    void setReportContextErrors(bool report)    { mReportContextErrors = report; }
+    bool getReportContextErrors() const         { return mReportContextErrors; }
+
+    void setConnection(MaxConnection c)         { mConnection = c; }
+    void setConnectionMode(ConnectionMode m)    { mConnectionMode = m; }
+    MaxConnection getConnection() const         { return mConnection; }
+    ConnectionMode getConnectionMode() const    { return mConnectionMode; }
+    
+    SyncCheck *getSyncCheck() const             { return mSyncCheck; }
+    void setSyncCheck(SyncCheck *check)         { mSyncCheck = check; }
     
 private:
+    
+    // Context methods
+    
+    static void serviceContexts(FrameLib_MaxGlobals *x)
+    {
+        for (auto it = x->mUnresolvedContexts.begin(); it != x->mUnresolvedContexts.end(); it++)
+            objectMethod(it->second, gensym("__fl.resolve_context"));
+            
+        x->mUnresolvedContexts.clear();
+    }
+    
+    template <size_t N>
+    typename std::tuple_element<N, RefData>::type& data(FrameLib_Context context)
+    {
+        return std::get<N>(*static_cast<RefData *>(context.getReference()));
+    }
+    
+    // Generate some relevant thread priorities
+    
+    static FrameLib_Thread::Priorities priorities(bool realtime)
+    {
+#ifdef __APPLE__
+        if (!realtime)
+            return { 31, 31, 31, SCHED_OTHER, true };
+
+        if (maxversion() >= 0x800)
+            return { 31, 31, 43, SCHED_RR, false };
+#else
+		if (!realtime)
+			return { 31, 31, 31, 0, true };
+#endif
+        return FrameLib_Thread::defaultPriorities();
+    }
     
     // Get and release the max global items (singleton)
     
     static FrameLib_MaxGlobals *get()
     {
         const char maxGlobalClass[] = "__fl.max_global_items";
+        const char messageClassName[] = "__fl.message.handler";
         t_symbol *nameSpace = gensym("__fl.framelib_private");
         t_symbol *globalTag = gensym("__fl.max_global_tag");
      
-        // Make sure the max globals class exists
+        // Make sure the max globals and message handler classes exist
 
         if (!class_findbyname(CLASS_NOBOX, gensym(maxGlobalClass)))
             makeClass<FrameLib_MaxGlobals>(CLASS_NOBOX, maxGlobalClass);
+        
+        if (!class_findbyname(CLASS_NOBOX, gensym(messageClassName)))
+            MessageHandler::makeClass<MessageHandler>(CLASS_NOBOX, messageClassName);
         
         // See if an object is registered (otherwise make object and register it...)
         
@@ -209,27 +603,45 @@ private:
         if (!x)
             x = (FrameLib_MaxGlobals *) object_register(nameSpace, globalTag, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClass), 0, nullptr));
         
-        FrameLib_Global::get(&x->mGlobal, x->mNotifier.get());
+        FrameLib_Global::get(&x->mRTGlobal, priorities(true), &x->mRTNotifier);
+        FrameLib_Global::get(&x->mNRTGlobal, priorities(false), &x->mNRTNotifier);
         
         return x;
     }
     
     void release()
     {
-        FrameLib_Global::release(&mGlobal);
-        
-        if (!mGlobal)
+        FrameLib_Global::release(&mRTGlobal);
+        FrameLib_Global::release(&mNRTGlobal);
+
+        if (!mRTGlobal)
         {
+            assert(!mNRTGlobal && "Reference counting error");
+            
             object_unregister(this);
             object_free(this);
         }
     }
     
-    // Pointers
+    // Connection Info
     
-    std::unique_ptr<ErrorNotifier> mNotifier;
-    FrameLib_Global *mGlobal;
-    ConnectionInfo *mConnectionInfo;
+    MaxConnection mConnection;
+    ConnectionMode mConnectionMode;
+    bool mReportContextErrors;
+    
+    // Member Objects / Pointers
+    
+    ErrorNotifier mRTNotifier;
+    ErrorNotifier mNRTNotifier;
+    
+    std::deque<t_object *> mQueue;
+    ResolveMap mUnresolvedContexts;
+    RefMap mContextRefs;
+
+    FrameLib_Global *mRTGlobal;
+    FrameLib_Global *mNRTGlobal;
+    
+    Qelem mQelem;
     SyncCheck *mSyncCheck;
 };
 
@@ -239,13 +651,16 @@ private:
 
 class Mutator : public MaxClass_Base
 {
+    using SyncCheck = FrameLib_MaxGlobals::SyncCheck;
+    using FLObject = FrameLib_Multistream;
     
 public:
     
-    Mutator(t_symbol *sym, long ac, t_atom *av)
+    Mutator(t_object *x, t_symbol *sym, long ac, t_atom *av)
     {
-        mObject = ac ? atom_getobj(av) : nullptr;
-        mMode = object_method(mObject, gensym("__fl.is_output")) ? FrameLib_MaxGlobals::SyncCheck::kDownOnly : FrameLib_MaxGlobals::SyncCheck::kDown;
+        mObject = reinterpret_cast<t_object *>(ac ? atom_getobj(av) : nullptr);
+        FLObject *object = mObject ? objectMethod<FLObject *>(mObject, gensym("__fl.get_framelib_object")) : nullptr;
+        mMode = object && object->getType() == kOutput ? SyncCheck::kDownOnly : SyncCheck::kDown;
     }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
@@ -256,15 +671,15 @@ public:
     void mutate(t_symbol *sym, long ac, t_atom *av)
     {
         mSyncChecker.sync(mObject, gettime(), mMode);
-        object_method(mObject, gensym("sync"));
+        objectMethod(mObject, gensym("sync"));
         mSyncChecker.sync();
     }
     
 private:
     
-    FrameLib_MaxGlobals::SyncCheck mSyncChecker;
-    FrameLib_MaxGlobals::SyncCheck::Mode mMode;
-    void *mObject;
+    SyncCheck mSyncChecker;
+    SyncCheck::Mode mMode;
+    t_object *mObject;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -274,16 +689,16 @@ private:
 template <class T>
 class Wrapper : public MaxClass_Base
 {
-    
 public:
     
     // Initialise Class
     
-    static method *sigMethodCache()
+    template <int>
+    static method *methodCache()
     {
-        static method sigMethod;
+        static method theMethod;
         
-        return &sigMethod;
+        return &theMethod;
     }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
@@ -294,28 +709,37 @@ public:
         addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "anything");
         addMethod<Wrapper<T>, &Wrapper<T>::sync>(c, "sync");
         addMethod<Wrapper<T>, &Wrapper<T>::dsp>(c);
-        addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
-        addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
-        addMethod(c, (method) &externalWrapperInternalObject, "__fl.wrapper_internal_object");
-        addMethod(c, (method) &externalWrapperIsWrapper, "__fl.wrapper_is_wrapper");
 
         // N.B. MUST add signal handling after dspInit to override the builtin responses
         
         dspInit(c);
-        *sigMethodCache() = class_method(c, gensym("signal"));
+        *methodCache<0>() = class_method(c, gensym("signal"));
+        *methodCache<1>() = class_method(c, gensym("userconnect"));
         addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "signal");
         
+        addMethod(c, (method) &dblclick, "dblclick");
+        addMethod(c, (method) &userConnect, "userconnect");
+        addMethod(c, (method) &patchLineUpdate, "patchlineupdate");
+        addMethod(c, (method) &connectionAccept, "connectionaccept");
+        addMethod(c, (method) &unwrap, "__fl.wrapper_unwrap");
+        addMethod(c, (method) &isWrapper, "__fl.wrapper_is_wrapper");
+
         // Make sure the mutator class exists
         
         const char mutatorClassName[] = "__fl.signal.mutator";
         
         if (!class_findbyname(CLASS_NOBOX, gensym(mutatorClassName)))
             Mutator::makeClass<Mutator>(CLASS_NOBOX, mutatorClassName);
+        
+        // Declare attribute in wrapper as well as FrameLib_MaxClass
+        
+        CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
+        CLASS_ATTR_ACCESSORS(c, "buffer", &Wrapper<T>::bufferGet, &Wrapper<T>::bufferSet);
     }
 
     // Constructor and Destructor
     
-    Wrapper(t_symbol *s, long argc, t_atom *argv) : mParentPatch(gensym("#P")->s_thing)
+    Wrapper(t_object *x, t_symbol *s, long argc, t_atom *argv) : mParentPatch(gensym("#P")->s_thing)
     {
         // Create patcher (you must report this as a subpatcher to get audio working)
         
@@ -327,9 +751,9 @@ public:
         atom_setparse(&ac, &av, "@defrect 0 0 300 300");
         attr_args_dictionary(d, static_cast<short>(ac), av);
         atom_setobj(&a, d);
-        mPatch = (t_object *)object_new_typed(CLASS_NOBOX, gensym("jpatcher"),1, &a);
+        mPatch = toUnique(object_new_typed(CLASS_NOBOX, gensym("jpatcher"),1, &a));
         
-        // Get box text (and strip object name from the top - relace with stored name in case the object name is an alias)
+        // Get box text (and strip object name - replace with stored name in case the name is an alias)
         
         t_object *textfield = nullptr;
         const char *text = nullptr;
@@ -339,7 +763,7 @@ public:
         
         if ((textfield = jbox_get_textfield(textfield)))
         {
-            text = (char *) object_method(textfield, gensym("getptr"));
+            text = objectMethod<char *>(textfield, gensym("getptr"));
             text = strchr(text, ' ');
             
             if (text)
@@ -348,84 +772,77 @@ public:
         
         // Set the patch association
         
-        object_method(mPatch, gensym("setassoc"), this);
+        objectMethod(mPatch.get(), gensym("setassoc"), this);
         
         // Make internal object and disallow editing
 
-        mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch, "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", newObjectText.c_str()));
-        object_method(mPatch, gensym("noedit"));
-        
-        // Make Mutator (with argument referencing the internal object)
-        
-        atom_setobj(&a, mObject);
-        mMutator = (t_object *) object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 1, &a);
+        mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch.get(), "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", newObjectText.c_str()));
+        objectMethod(mPatch.get(), gensym("noedit"));
         
         // Free the dictionary
-    
+        
         object_free(d);
+        
+        // For realtime versions setup DSP and make/connect mutator
+        
+        if (isRealtime())
+        {
+            dspSetup(1);
+            
+            atom_setobj(&a, mObject);
+            mMutator = toUnique(object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 1, &a));
+            
+            outlet_add(outlet_nth(mObject, 0), inlet_nth(mMutator.get(), 0));
+        }
+        else
+            mMutator = nullptr;
         
         // Get the object itself (typed)
         
-        T *internal = internalObject();
+        T *internal = object();
         
         long numIns = internal->getNumIns() + (internal->supportsOrderingConnections() ? 1 : 0);
         long numOuts = internal->getNumOuts();
         long numAudioIns = internal->getNumAudioIns();
         long numAudioOuts = internal->getNumAudioOuts();
+        long numLocalAudioIns = std::max(0L, numAudioIns - 1);
+        long numLocalAudioOuts = std::max(0L, numAudioOuts - 1);
         
         // Create I/O
         
-        mInOutlets.resize(numIns + numAudioIns - 1);
-        mProxyIns.resize(numIns + numAudioIns - 1);
-        mAudioOuts.resize(numAudioOuts - 1);
+        mInOutlets.resize(numIns + numLocalAudioIns);
+        mProxyIns.resize(numIns + numLocalAudioIns);
         mOuts.resize(numOuts);
         
         // Inlets for messages/signals (we need one audio in for the purposes of sync)
-        
-        dspSetup(1);
 
-        for (long i = numIns + numAudioIns - 2; i >= 0 ; i--)
+        for (long i = numIns + numLocalAudioIns - 1; i >= 0 ; i--)
         {
-            mInOutlets[i] = (t_object *) outlet_new(nullptr, nullptr);
-            mProxyIns[i] = (t_object *)  (i ? proxy_new(this, i, &mProxyNum) : nullptr);
+            mInOutlets[i] = toUnique(outlet_new(nullptr, nullptr));
+            mProxyIns[i] = toUnique(i ? proxy_new(this, i, &mProxyNum) : nullptr);
         }
         
         // Outlets for messages/signals
         
         for (long i = numOuts - 1; i >= 0 ; i--)
-            mOuts[i] = (t_object *) outlet_new(this, nullptr);
-        for (long i = numAudioOuts - 2; i >= 0 ; i--)
-            mAudioOuts[i] = (t_object *) outlet_new(this, "signal");
-        
-        // Connect first signal outlet to the mutator
-        
-        outlet_add(outlet_nth(mObject, 0), inlet_nth(mMutator, 0));
+            mOuts[i] = outlet_new(this, nullptr);
+        for (long i = numLocalAudioOuts - 1; i >= 0 ; i--)
+            outlet_new(this, "signal");
         
         // Connect inlets (all types)
         
-        for (long i = 0; i < numAudioIns + numIns - 1; i++)
-            outlet_add(mInOutlets[i], inlet_nth(mObject, i + 1));
+        for (long i = 0; i < numLocalAudioIns + numIns; i++)
+        {
+            // Get the inlet (if there is none then add the object directly as it has only one inlet)
+            
+            void *p = inlet_nth(mObject, offset(i));
+            outlet_add(mInOutlets[i].get(), p ? p : mObject);
+        }
         
         // Connect non-audio outlets
         
         for (long i = 0; i < numOuts; i++)
             outlet_add(outlet_nth(mObject, i + numAudioOuts), mOuts[i]);
-    }
-    
-    ~Wrapper()
-    {
-        // Delete ins and proxies
-        
-        for (auto it = mProxyIns.begin(); it != mProxyIns.end(); it++)
-            object_free(*it);
-        
-        for (auto it = mInOutlets.begin(); it != mInOutlets.end(); it++)
-            object_free(*it);
-        
-        // Free objects - N.B. - free the patch, but not the object within it (which will be freed by deleting the patch)
-        
-        object_free(mMutator);
-        object_free(mPatch);
     }
     
     // Standard methods
@@ -437,32 +854,33 @@ public:
     
     void *subpatcher(long index, void *arg)
     {
-        return (((t_ptr_uint) arg <= 1) || ((t_ptr_uint) arg > 1 && !NOGOOD(arg))) && index == 0 ? (void *) mPatch : nullptr;
+        return (((t_ptr_uint) arg <= 1) || ((t_ptr_uint) arg > 1 && !NOGOOD(arg))) && index == 0 ? mPatch.get() : nullptr;
     }
     
     void assist(void *b, long m, long a, char *s)
     {
-        internalObject()->assist(b, m, a + 1, s);
+        object()->assist(b, m, offset(a), s);
     }
     
     void sync()
     {
-        // Must set the order of the wrapper after the internal object before calling internal sync
+        // Set the order of the wrapper after the owned object by doing this before calling internal sync
         
-        (*sigMethodCache())(this);
+        if (isRealtime())
+            (*methodCache<0>())(this);
         
-        internalObject()->sync();
+        object()->sync();
     }
     
     void dsp(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
     {
-        if (internalObject()->getType() == kOutput)
+        if (isRealtime() && object()->getType() == kOutput)
             addPerform<Wrapper, &Wrapper<T>::perform>(dsp64);
     }
     
     void perform(t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam)
     {
-        std::vector<double*> &internalOuts = internalObject()->getAudioOuts();
+        std::vector<double*> &internalOuts = object()->getAudioOuts();
         
         // Copy to output
         
@@ -472,44 +890,78 @@ public:
     
     void anything(t_symbol *sym, long ac, t_atom *av)
     {
-        outlet_anything(mInOutlets[getInlet()], sym, static_cast<int>(ac), av);
+        outlet_anything(mInOutlets[getInlet()].get(), sym, static_cast<int>(ac), av);
+    }
+    
+    // Double-click for buffer viewing
+    
+    static void dblclick(Wrapper *x)
+    {
+        T::dblclick(x->object());
+    }
+    
+    // Buffer attribute
+    
+    static t_max_err bufferGet(Wrapper *x, t_object *attr, long *argc, t_atom **argv)
+    {
+        char alloc;
+        atom_alloc(argc, argv, &alloc);
+        atom_setsym(*argv, x->object()->mBuffer);
+        
+        return MAX_ERR_NONE;
+    }
+    
+    static t_max_err bufferSet(Wrapper *x, t_object *attr, long argc, t_atom *argv)
+    {
+        x->object()->mBuffer = argv ? atom_getsym(argv) : gensym("");
+        
+        return MAX_ERR_NONE;
     }
     
     // External methods (A_CANT)
     
-    static t_max_err externalPatchLineUpdate(Wrapper *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
+    static t_max_err patchLineUpdate(Wrapper *x, t_object *line, long type, t_object *src, long srcout, t_object *dst, long dstin)
     {
-        if ((t_object *) x == dst)
-            return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, src, srcout, x->mObject, dstin + 1);
+        if (*x == dst)
+            return T::extPatchLineUpdate(x->object(), line, type, src, srcout, x->mObject, x->offset(dstin));
         else
-            return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, x->mObject, srcout + 1, dst, dstin);
+            return T::extPatchLineUpdate(x->object(), line, type, x->mObject, x->offset(srcout), dst, dstin);
     }
     
-    static t_ptr_int externalConnectionAccept(Wrapper *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
+    static t_ptr_int connectionAccept(Wrapper *x, t_object *dst, long srcout, long dstin, t_object *op, t_object *ip)
     {
-        // Only called for sources / account for internal sync connections
-
-        return T::externalConnectionAccept(src->internalObject(), dst, srcout + 1, dstin, outlet, inlet);
+        return T::extConnectionAccept(x->object(), dst, x->offset(srcout), dstin, op, ip);
     }
     
-    static void *externalWrapperInternalObject(Wrapper *x)
+    static void *unwrap(Wrapper *x, long* idx)
     {
+        *idx = x->offset(*idx);
         return x->mObject;
     }
     
-    static void *externalWrapperIsWrapper(Wrapper *x)
+    static void *isWrapper(Wrapper *x)
     {
         return (void *) 1;
     }
     
+    static void userConnect(Wrapper *x)
+    {
+        if (x->isRealtime())
+            (*methodCache<1>())(x);
+    }
+    
 private:
     
-    T *internalObject() { return (T *) mObject; }
+    T *object() { return (T *) mObject; }
+
+    bool isRealtime() { return object()->isRealtime(); }
+    
+    long offset(long connectionIdx) { return isRealtime() ? connectionIdx + 1 : connectionIdx; }
 
     // Owned Objects (need freeing)
     
-    t_object *mPatch;
-    t_object *mMutator;
+    unique_object_ptr mPatch;
+    unique_object_ptr mMutator;
     
     // Unowned objects (the internal object is owned by the patch)
     
@@ -518,13 +970,12 @@ private:
     
     // Inlets (must be freed)
     
-    std::vector<t_object *> mInOutlets;
-    std::vector<t_object *> mProxyIns;
+    std::vector<unique_object_ptr> mInOutlets;
+    std::vector<unique_object_ptr> mProxyIns;
     
     // Outlets (don't need to free)
     
-    std::vector<t_object *> mAudioOuts;
-    std::vector<t_object *> mOuts;
+    std::vector<void *> mOuts;
     
     // Dummy for stuffloc on proxies
     
@@ -540,10 +991,32 @@ enum MaxObjectArgsMode { kAsParams, kAllInputs, kDistribute };
 template <class T, MaxObjectArgsMode argsMode = kAsParams>
 class FrameLib_MaxClass : public MaxClass_Base
 {
-    typedef FrameLib_Object<FrameLib_Multistream>::Connection FrameLibConnection;
-    typedef FrameLib_Connection<t_object, long> MaxConnection;
-    typedef FrameLib_MaxGlobals::ConnectionInfo ConnectionInfo;
-
+    using ConnectionMode = FrameLib_MaxGlobals::ConnectionMode;
+    using FLObject = FrameLib_Multistream;
+    using FLConnection = FrameLib_Object<FLObject>::Connection;
+    using MaxConnection = FrameLib_MaxGlobals::MaxConnection;
+    using LockHold = FrameLib_SpinLockHolder;
+    
+    struct ConnectionConfirmation
+    {
+        ConnectionConfirmation(MaxConnection connection, long inIdx)
+        : mConfirm(false), mConnection(connection), mInIndex(inIdx) {}
+        
+        bool confirm(MaxConnection connection, long inIdx)
+        {
+            bool result = inIdx == mInIndex && connection == mConnection;
+            
+            if (result)
+                mConfirm = true;
+            
+            return result;
+        }
+        
+        bool mConfirm;
+        MaxConnection mConnection;
+        long mInIndex;
+    };
+    
 public:
     
     // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxClass<>)
@@ -555,7 +1028,7 @@ public:
         
         std::string internalClassName = className;
         
-        if (T::handlesAudio())
+        if (T::sHandlesAudio)
         {
             Wrapper<U>:: template makeClass<Wrapper<U>>(CLASS_BOX, className);
             internalClassName.insert(0, "unsynced.");
@@ -571,28 +1044,42 @@ public:
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
-        addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
-        addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
-        addMethod(c, (method) &externalResolveConnections, "__fl.resolve_connections");
-        addMethod(c, (method) &externalMarkUnresolved, "__fl.mark_unresolved");
-        addMethod(c, (method) &externalAutoOrderingConnections, "__fl.auto_ordering_connections");
-        addMethod(c, (method) &externalClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
-        addMethod(c, (method) &externalIsConnected, "__fl.is_connected");
-        addMethod(c, (method) &externalConnectionConfirm, "__fl.connection_confirm");
-        addMethod(c, (method) &externalGetInternalObject, "__fl.get_internal_object");
-        addMethod(c, (method) &externalGetUserObject, "__fl.get_user_object");
-        addMethod(c, (method) &externalIsOutput, "__fl.is_output");
-        addMethod(c, (method) &externalGetNumAudioIns, "__fl.get_num_audio_ins");
-        addMethod(c, (method) &externalGetNumAudioOuts, "__fl.get_num_audio_outs");
-        class_addmethod(c, (method) &codeexport, "export", A_SYM, A_SYM, 0);
         
-        dspInit(c);
+        if (T::sHandlesAudio)
+        {
+            addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::reset>(c, "reset");
+            addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::process>(c, "process");
+
+            addMethod(c, (method) &dblclick, "dblclick");
+            addMethod(c, (method) &extFindAudio, "__fl.find_audio_objects");
+
+            dspInit(c);
+            
+            CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mBuffer);
+        }
+        
+        addMethod(c, (method) &extPatchLineUpdate, "patchlineupdate");
+        addMethod(c, (method) &extConnectionAccept, "connectionaccept");
+        addMethod(c, (method) &extResolveContext, "__fl.resolve_context");
+        addMethod(c, (method) &extResolveConnections, "__fl.resolve_connections");
+        addMethod(c, (method) &extMarkUnresolved, "__fl.mark_unresolved");
+        addMethod(c, (method) &extAutoOrderingConnections, "__fl.auto_ordering_connections");
+        addMethod(c, (method) &extClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
+        addMethod(c, (method) &extReset, "__fl.reset");
+        addMethod(c, (method) &extIsConnected, "__fl.is_connected");
+        addMethod(c, (method) &extConnectionConfirm, "__fl.connection_confirm");
+        addMethod(c, (method) &extConnectionUpdate, "__fl.connection_update");
+        addMethod(c, (method) &extGetFLObject, "__fl.get_framelib_object");
+        addMethod(c, (method) &extGetUserObject, "__fl.get_user_object");
+        addMethod(c, (method) &extGetNumAudioIns, "__fl.get_num_audio_ins");
+        addMethod(c, (method) &extGetNumAudioOuts, "__fl.get_num_audio_outs");
     }
 
     // Check if a patch in memory matches a symbol representing a path
     
     static bool comparePatchWithName(t_object *patch, t_symbol *name)
     {
+        const char *patchName = jpatcher_get_filename(patch)->s_name;
         char fileName[MAX_FILENAME_CHARS];
         t_fourcc validTypes[TYPELIST_SIZE];
         short outvol = 0, numTypes = 0;
@@ -602,12 +1089,14 @@ public:
         strncpy_zero(fileName, name->s_name, MAX_FILENAME_CHARS);
         locatefile_extended(fileName, &outvol, &outtype, validTypes, numTypes);
         
-        const char *name1 = fileName;
-        const char *name2 = jpatcher_get_filename(patch)->s_name;
-        auto endString = [](const char *str) { return str + strlen(str); };
-        auto ciComp = [](char c1, char c2) { return std::tolower(c1) < std::tolower(c2); };
+        if (strlen(patchName) != strlen(fileName))
+            return false;
         
-        return !std::lexicographical_compare(name2, endString(name2), name1, endString(name1), ciComp);
+        for (size_t i = 0; fileName[i]; i++)
+            if (std::tolower(fileName[i]) != std::tolower(patchName[i]))
+                return false;
+        
+        return true;
     }
     
     // Find the patcher for the context
@@ -618,12 +1107,11 @@ public:
         
         for (t_object *parent = nullptr; traverse && (parent = jpatcher_get_parentpatcher(patch)); patch = traverse ? parent : patch)
         {
-            t_object *assoc = 0;
-            object_method(patch, gensym("getassoc"), &assoc);
+            t_object *assoc = getAssociation(patch);
             
             // Traverse if the patch is in a box (subpatcher or abstraction) it belongs to a wrapper
             
-            traverse = jpatcher_get_box(patch) || (assoc && object_method(assoc, gensym("__fl.wrapper_is_wrapper")));
+            traverse = jpatcher_get_box(patch) || (assoc && objectMethod(assoc, gensym("__fl.wrapper_is_wrapper")));
             
             if (!traverse && !assoc)
             {
@@ -633,7 +1121,7 @@ public:
                 
                 for (t_object *b = jpatcher_get_firstobject(parent); b && !text; b = jbox_get_nextobject(b))
                     if (jbox_get_maxclass(b) == gensym("newobj") && jbox_get_textfield(b))
-                        text = (char *) object_method(jbox_get_textfield(b), gensym("getptr"));
+                        text = objectMethod<char *>(jbox_get_textfield(b), gensym("getptr"));
 
                 if (text)
                 {
@@ -662,36 +1150,102 @@ public:
         return patch;
     }
     
+    // Context Parsing
+    
+    static FrameLib_MaxContext parseContext(bool realtime, t_object *patch, long argc, t_atom *argv)
+    {
+        FrameLib_MaxContext context{realtime, patch, gensym("")};
+        
+        for (long i = 0; i < argc; i++)
+        {
+            if ((i + 1) < argc && isContextTag(atom_getsym(argv + i)) && !isTag(argv + i + 1))
+            {
+                if (isContextNameTag(atom_getsym(argv + i++)))
+                    context.mName = atom_getsym(argv + i);
+                else
+                    context.mRealtime = atom_getlong(argv + i);
+            }
+        }
+        
+        return context;
+    }
+    
     // Detect the user object at load time
     
     t_object *detectUserObjectAtLoad()
     {
-        t_object *assoc = 0;
         t_object *patch = gensym("#P")->s_thing;
-        object_method(patch, gensym("getassoc"), &assoc);
+        t_object *assoc = getAssociation(patch);
     
-        return (assoc && object_method(assoc, gensym("__fl.wrapper_is_wrapper"))) ? assoc : *this;
+        return (assoc && objectMethod(assoc, gensym("__fl.wrapper_is_wrapper"))) ? assoc : *this;
+    }
+    
+    // Tag checks
+    
+    static bool isContextNameTag(t_symbol *sym)
+    {
+        return !strcmp(sym->s_name, "{id}");
+    }
+    
+    static bool isContextTag(t_symbol *sym)
+    {
+        return isContextNameTag(sym) || !strcmp(sym->s_name, "{rt}");
+    }
+    
+    static bool isParameterTag(t_symbol *sym)
+    {
+        return strlen(sym->s_name) > 1 && sym->s_name[0] == '/';
+    }
+    
+    static bool isInputTag(t_symbol *sym)
+    {
+        size_t len = strlen(sym->s_name);
+        
+        if (len > 2)
+            return (sym->s_name[0] == '[' && sym->s_name[len - 1] == ']');
+        
+        return false;
+    }
+    
+    static bool isTag(t_atom *a)
+    {
+        t_symbol *sym = atom_getsym(a);
+        return isParameterTag(sym) || isInputTag(sym) || isContextTag(sym);
     }
     
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy()) : mFrameLibProxy(proxy), mConfirmObject(nullptr), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mPatch(gensym("#P")->s_thing), mContextPatch(contextPatcher(mPatch)), mSyncIn(nullptr), mUserObject(detectUserObjectAtLoad()), mNeedsResolve(true)
+    FrameLib_MaxClass(t_object *x, t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy())
+    : mFrameLibProxy(proxy)
+    , mConfirmation(nullptr)
+    , mContextPatch(contextPatcher(gensym("#P")->s_thing))
+    , mUserObject(detectUserObjectAtLoad())
+    , mSpecifiedStreams(1)
+    , mConnectionsUpdated(false)
+    , mResolved(false)
+    , mBuffer(gensym(""))
     {
-        // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
+        // Deal with attributes for non-realtime objects (and to correctly report issues otherwise)
         
-        unsigned long nStreams = 1;
+        attr_args_process(this, static_cast<short>(argc), argv);
+        argc = attr_args_offset(static_cast<short>(argc), argv);
+        
+        // Stream count
         
         if (argc && getStreamCount(argv))
         {
-            nStreams = getStreamCount(argv);
+            mSpecifiedStreams = getStreamCount(argv);
             argv++;
             argc--;
         }
         
+        // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
+
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
+        FrameLib_Context context = mGlobal->makeContext(parseContext(T::sHandlesAudio, mContextPatch, argc, argv));
         mFrameLibProxy->mMaxObject = *this;
-        mObject.reset(new T(FrameLib_Context(mGlobal->getGlobal(), mContextPatch), &serialisedParameters, mFrameLibProxy.get(), nStreams));
+        mObject.reset(new T(context, &serialisedParameters, mFrameLibProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
         
         long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
@@ -701,45 +1255,49 @@ public:
         
         // Create frame inlets and outlets
         
-        // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
+        // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles realtime audio)
         
         for (long i = numIns - 1; i >= 0; i--)
-            mInputs[i] = (t_object *) ((i || handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : nullptr);
+            mInputs[i] = toUnique((i || handlesRealtimeAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : nullptr);
         
         for (long i = getNumOuts(); i > 0; i--)
             mOutputs[i - 1] = outlet_new(this, nullptr);
         
         // Setup for audio, even if the object doesn't handle it, so that dsp recompile works correctly
         
-        dspSetup(getNumAudioIns());
-        
-        for (long i = 0; i < getNumAudioOuts(); i++)
-            outlet_new(this, "signal");
-        
-        // Add a sync outlet if we need to handle audio
-        
-        if (handlesAudio())
+        if (handlesRealtimeAudio())
         {
-            mSyncIn = (t_object *) outlet_new(nullptr, nullptr);
-            outlet_add(mSyncIn, inlet_nth(*this, 0));
+            dspSetup(getNumAudioIns());
+            
+            for (long i = 0; i < getNumAudioOuts(); i++)
+                outlet_new(this, "signal");
+        
+            // Add a sync outlet if we need to handle audio
+        
+            mSyncIn = toUnique(outlet_new(nullptr, nullptr));
+            outlet_add(mSyncIn.get(), inlet_nth(*this, 0));
         }
     }
 
     ~FrameLib_MaxClass()
     {
-        dspFree();
-
-        for (auto it = mInputs.begin(); it != mInputs.end(); it++)
-            object_free(*it);
+        if (isRealtime())
+        {
+            if (handlesAudio())
+                dspFree();
+            else
+                dspSetBroken();
+        }
         
-        object_free(mSyncIn);
+        mGlobal->flushContext(getContext(), mFrameLibProxy.get());
+        mGlobal->releaseContext(getContext());
     }
     
     void assist(void *b, long m, long a, char *s)
     {
         if (m == ASSIST_OUTLET)
         {
-            if (a == 0 && handlesAudio())
+            if (a == 0 && handlesRealtimeAudio())
                 sprintf(s,"(signal) Audio Synchronisation Output" );
             else if (a < getNumAudioOuts())
                 sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
@@ -748,7 +1306,7 @@ public:
         }
         else
         {
-            if (a == 0 && handlesAudio())
+            if (a == 0 && handlesRealtimeAudio())
                 sprintf(s,"(signal) Audio Synchronisation Input");
             else if (a < getNumAudioIns())
                 sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
@@ -760,22 +1318,6 @@ public:
                     sprintf(s,"(frame) %s", mObject->inputInfo(a - getNumAudioIns()).c_str());
             }
         }
-    }
-    
-    static void codeexport(FrameLib_MaxClass *x, t_symbol *className, t_symbol *path)
-    {
-        char conformedPath[MAX_PATH_CHARS];
-        
-        if (!sys_getdspobjdspstate(*x))
-            x->resolveGraph(true);
-
-        path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
-        ExportError error = exportGraph(x->mObject.get(), conformedPath, className->s_name);
-        
-        if (error == kExportPathError)
-            object_error(x->mUserObject, "couldn't write to or find specified path");
-        else if (error == kExportWriteError)
-            object_error(x->mUserObject, "couldn't write file");
     }
     
     void info(t_symbol *sym, long ac, t_atom *av)
@@ -821,7 +1363,7 @@ public:
                 object_post(mUserObject, "N.B. - arguments set the fixed array values for all inputs.");
             if (argsMode == kDistribute)
                 object_post(mUserObject, "N.B - arguments are distributed one per input.");
-            for (long i = 0; i < (long) mObject->getNumAudioIns(); i++)
+            for (long i = 0; i < static_cast<long>(mObject->getNumAudioIns()); i++)
                 object_post(mUserObject, "Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
             for (long i = 0; i < getNumIns(); i++)
                 object_post(mUserObject, "Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose).c_str());
@@ -832,7 +1374,7 @@ public:
         if (flags & kInfoOutputs)
         {
             object_post(mUserObject, "--- Output List ---");
-            for (long i = 0; i < (long) mObject->getNumAudioOuts(); i++)
+            for (long i = 0; i < static_cast<long>(mObject->getNumAudioOuts()); i++)
                 object_post(mUserObject, "Audio Output %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
             for (long i = 0; i < getNumOuts(); i++)
                 object_post(mUserObject, "Frame Output %ld [%s]: %s", i + 1, frameTypeString(mObject->outputType(i)), mObject->outputInfo(i, verbose).c_str());
@@ -891,17 +1433,26 @@ public:
         }
     }
 
-    // IO Helpers
+    // Helpers (IO / context / mode / streams)
     
-    bool supportsOrderingConnections()  { return mObject->supportsOrderingConnections(); }
+    ObjectType getType() const                  { return mObject->getType(); }
     
-    bool handlesAudio() const           { return T::handlesAudio(); }
+    FrameLib_Context getContext() const         { return mObject->getContext(); }
+
+    bool isRealtime() const                     { return mGlobal->isRealtime(getContext()); }
+    bool handlesAudio() const                   { return T::sHandlesAudio; }
+    bool handlesRealtimeAudio() const           { return handlesAudio() && isRealtime(); }
+    bool supportsOrderingConnections() const    { return mObject->supportsOrderingConnections(); }
+
+    long audioIOSize(long chans) const          { return isRealtime() ? (chans + (handlesAudio() ? 1 : 0)) : 0; }
+
+    long getNumIns() const                      { return static_cast<long>(mObject->getNumIns()); }
+    long getNumOuts() const                     { return static_cast<long>(mObject->getNumOuts()); }
+    long getNumAudioIns() const                 { return audioIOSize(mObject->getNumAudioIns()); }
+    long getNumAudioOuts() const                { return audioIOSize(mObject->getNumAudioOuts()); }
     
-    long getNumAudioIns() const         { return (long) mObject->getNumAudioIns() + (handlesAudio() ? 1 : 0); }
-    long getNumAudioOuts() const        { return (long) mObject->getNumAudioOuts() + (handlesAudio() ? 1 : 0); }
-    long getNumIns() const              { return (long) mObject->getNumIns(); }
-    long getNumOuts() const             { return (long) mObject->getNumOuts(); }
-    
+    unsigned long getSpecifiedStreams() const   { return mSpecifiedStreams; }
+
     // Perform and DSP
 
     void perform(t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam)
@@ -915,16 +1466,21 @@ public:
         // N.B. Plus one due to sync inputs
         
         mObject->blockUpdate(ins + 1, outs + 1, vec_size);
+        
+        mGlobal->contextMessages(getContext(), *this);
     }
 
     void dsp(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
     {
+        if (!isRealtime())
+            return;
+        
         mSigOuts.clear();
         
         // Resolve connections (in case there are no schedulers left in the patch) and mark unresolved for next time
         
         resolveConnections();
-        mNeedsResolve = true;
+        mResolved = false;
         
         // Reset DSP
         
@@ -933,34 +1489,105 @@ public:
         // Add a perform routine to the chain if the object handles audio
         
         if (handlesAudio())
+        {
             addPerform<FrameLib_MaxClass, &FrameLib_MaxClass<T>::perform>(dsp64);
+            mGlobal->finalObject(getContext()) = *this;
+        }
     }
 
-    // Get Audio Outputs
+    // Non-realtime processing
     
-    std::vector<double *> &getAudioOuts()
+    static unsigned long maxBlockSize() { return 16384UL; }
+    
+    void reset(def_double sampleRate = 0.0)
     {
-        return mSigOuts;
+        if (!isRealtime())
+        {
+            LockHold lock(mGlobal->getLock(getContext()));
+            resolveNRTGraph(sampleRate > 0.0 ? sampleRate.mValue : sys_getsr(), true);
+        }
     }
     
-    // Type
-    
-    ObjectType getType()
+    void process(t_atom_long length)
     {
-        return mObject->getType();
+        unsigned long updateLength = length > 0 ? static_cast<unsigned long>(length) : 0UL;
+        unsigned long time = static_cast<unsigned long>(mObject->getBlockTime());
+        
+        if (!updateLength || isRealtime())
+            return;
+        
+        LockHold lock(mGlobal->getLock(getContext()));
+
+        resolveNRTGraph(0.0, false);
+        
+        // Retrieve all the audio objects in a list
+        
+        std::vector<FrameLib_MaxNRTAudio> audioObjects;
+        traversePatch(gensym("__fl.find_audio_objects"), &audioObjects);
+        
+        // Set up buffers
+        
+        unsigned long maxAudioIO = 0;
+        
+        for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
+            maxAudioIO = std::max(maxAudioIO, it->mObject->getNumAudioChans());
+        
+        std::vector<double> audioBuffer(maxBlockSize() * maxAudioIO);
+        std::vector<double *> ioBuffers(maxAudioIO);
+        
+        for (unsigned long i = 0; i < maxAudioIO; i++)
+            ioBuffers[i] = audioBuffer.data() + i * maxBlockSize();
+        
+        // Loop to process audio
+        
+        for (unsigned long i = 0; i < updateLength; i += maxBlockSize())
+        {
+            unsigned long blockSize = std::min(maxBlockSize(), updateLength - i);
+            
+            // Process inputs and schedulers (block controls object lifetime)
+            
+            if (true)
+            {
+                FrameLib_AudioQueue queue;
+                
+                for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
+                {
+                    if (it->mObject->getType() == kOutput)
+                        continue;
+                    
+                    read(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioIns(), blockSize, time + i);
+                    it->mObject->blockUpdate(ioBuffers.data(), nullptr, blockSize, queue);
+                }
+            }
+            
+            // Process outputs
+            
+            for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
+            {
+                if (it->mObject->getType() != kOutput)
+                    continue;
+                
+                it->mObject->blockUpdate(nullptr, ioBuffers.data(), blockSize);
+                write(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioOuts(), blockSize, time + i);
+            }
+        }
+        
+        // Process Messages
+        
+        mGlobal->contextMessages(getContext());
     }
     
     // Audio Synchronisation
     
     void sync()
     {
-        FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), externalIsOutput(this));
+        FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), getType() == kOutput);
        
-        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && mNeedsResolve)
-            resolveGraph(false);
+        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && !mResolved)
+            resolveGraph(false, true);
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
-            outlet_anything(mSyncIn, gensym("signal"), 0, nullptr);
+            outlet_anything(mSyncIn.get(), gensym("signal"), 0, nullptr);
         
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete)
         {
@@ -971,161 +1598,195 @@ public:
             {
                 for (long i = 0; i < getNumIns(); i++)
                     if (isConnected(i))
-                        object_method(getConnection(i).mObject, gensym("sync"));
+                        objectMethod(getConnection(i).mObject, gensym("sync"));
                 
                 if (supportsOrderingConnections())
                     for (long i = 0; i < getNumOrderingConnections(); i++)
-                        object_method(getOrderingConnection(i).mObject, gensym("sync"));
+                        objectMethod(getOrderingConnection(i).mObject, gensym("sync"));
                 
                 mSyncChecker.restoreMode();
             }
         }
     }
     
-    // Connection Routines
+    // Double-click for buffer viewing
+    
+    static void dblclick(FrameLib_MaxClass *x)
+    {
+        if (x->isRealtime())
+            return;
+        
+        MaxBufferAccess(*x, x->mBuffer).display();
+    }
+    
+    // Frame method
     
     void frame()
     {
-        const ConnectionInfo *info = mGlobal->getConnectionInfo();
+        const MaxConnection connection = mGlobal->getConnection();
+        
         long index = getInlet() - getNumAudioIns();
         
-        if (!info)
+        if (!connection.mObject)
             return;
         
-        switch (info->mMode)
+        if (mGlobal->getConnectionMode() == ConnectionMode::kConnect)
         {
-            case ConnectionInfo::kConnect:
-                connect(info->mObject, info->mIndex, index);
-                break;
-                
-            case ConnectionInfo::kConfirm:
-            case ConnectionInfo::kDoubleCheck:
-
-                if (index == mConfirmInIndex && mConfirmObject == info->mObject && mConfirmOutIndex == info->mIndex)
-                {
-                    mConfirm = true;
-                    if (info->mMode == ConnectionInfo::kDoubleCheck)
-                        object_error(mUserObject, "extra connection to input %ld", index + 1);
-                }
-                break;
+            connect(connection, index);
+        }
+        else if (mConfirmation)
+        {
+            if (mConfirmation->confirm(connection, index) && mGlobal->getConnectionMode() == ConnectionMode::kDoubleCheck)
+                object_error(mUserObject, "extra connection to input %ld", index + 1);
         }
     }
-
+    
+    // Get Audio Outputs
+    
+    std::vector<double *> &getAudioOuts()
+    {
+        return mSigOuts;
+    }
+    
     // External methods (A_CANT)
     
-    static t_ptr_int externalConnectionAccept(FrameLib_MaxClass *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
+    static t_ptr_int extConnectionAccept(FrameLib_MaxClass *x, t_object *dst, long srcout, long dstin, t_object *op, t_object *ip)
     {
-        return src->connectionAccept(dst, srcout, dstin, outlet, inlet);
+        return (t_ptr_int) x->connectionAccept(dst, srcout, dstin, op, ip);
     }
     
-    static t_max_err externalPatchLineUpdate(FrameLib_MaxClass *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
+    static t_max_err extPatchLineUpdate(FrameLib_MaxClass *x, t_object *line, long type, t_object *src, long srcout, t_object *dst, long dstin)
     {
-        return x->patchLineUpdate(patchline, updatetype, src, srcout, dst, dstin);
+        return x->patchLineUpdate(line, type, src, srcout, dst, dstin);
     }
 
-    static void externalResolveConnections(FrameLib_MaxClass *x)
+    static void extFindAudio(FrameLib_MaxClass *x, std::vector<FrameLib_MaxNRTAudio> objects)
     {
-        x->resolveConnections();
+        objects.push_back(FrameLib_MaxNRTAudio{x->mObject.get(), x->mBuffer});
     }
     
-    static void externalMarkUnresolved(FrameLib_MaxClass *x)
+    static void extResolveContext(FrameLib_MaxClass *x)
     {
-        x->mNeedsResolve = true;
+        x->resolveContext();
     }
     
-    static void externalAutoOrderingConnections(FrameLib_MaxClass *x)
+    static void extResolveConnections(FrameLib_MaxClass *x, t_ptr_int *flag)
+    {
+		bool updated = x->resolveConnections();
+		*flag = *flag || updated;
+    }
+    
+    static void extMarkUnresolved(FrameLib_MaxClass *x)
+    {
+        x->mResolved = false;
+    }
+    
+    static void extAutoOrderingConnections(FrameLib_MaxClass *x)
     {
         x->mObject->autoOrderingConnections();
     }
     
-    static void externalClearAutoOrderingConnections(FrameLib_MaxClass *x)
+    static void extClearAutoOrderingConnections(FrameLib_MaxClass *x)
     {
         x->mObject->clearAutoOrderingConnections();
     }
 
-    static t_ptr_int externalIsConnected(FrameLib_MaxClass *x, unsigned long index)
+    static void extReset(FrameLib_MaxClass *x, const double *samplerate, t_ptr_int maxvectorsize)
     {
-        return x->confirmConnection(index, ConnectionInfo::kConfirm);
+        x->mObject->reset(*samplerate, static_cast<unsigned long>(maxvectorsize));
     }
     
-    static void externalConnectionConfirm(FrameLib_MaxClass *x, unsigned long index, FrameLib_MaxGlobals::ConnectionInfo::Mode mode)
+    static void extConnectionUpdate(FrameLib_MaxClass *x, t_ptr_int state)
     {
-        x->makeConnection(index, mode);
+        x->mConnectionsUpdated = state;
     }
     
-    static FrameLib_Multistream *externalGetInternalObject(FrameLib_MaxClass *x)
+    static FLObject *extGetFLObject(FrameLib_MaxClass *x)
     {
         return x->mObject.get();
     }
     
-    static t_object *externalGetUserObject(FrameLib_MaxClass *x)
+    static t_object *extGetUserObject(FrameLib_MaxClass *x)
     {
         return x->mUserObject;
     }
     
-    static t_ptr_int externalIsOutput(FrameLib_MaxClass *x)
+    static void extConnectionConfirm(FrameLib_MaxClass *x, unsigned long index, ConnectionMode mode)
     {
-        return x->handlesAudio() && (x->getNumAudioOuts() > 1);
+        x->makeConnection(index, mode);
     }
     
-    static t_ptr_int externalGetNumAudioIns(FrameLib_MaxClass *x)
+    static t_ptr_int extIsConnected(FrameLib_MaxClass *x, unsigned long index)
+    {
+        return (t_ptr_int) x->confirmConnection(index, ConnectionMode::kConfirm);
+    }
+    
+    static t_ptr_int extGetNumAudioIns(FrameLib_MaxClass *x)
     {
         return x->getNumAudioIns();
     }
     
-    static t_ptr_int externalGetNumAudioOuts(FrameLib_MaxClass *x)
+    static t_ptr_int extGetNumAudioOuts(FrameLib_MaxClass *x)
     {
         return x->getNumAudioOuts();
     }
 
 private:
     
-    // Unwrapping connections
+    // Attempt to match the context to that of a given framelib object
     
-    void unwrapConnection(t_object *& object, long& connection)
+    void matchContext(t_object *object)
     {
-        t_object *wrapped = (t_object *) object_method(object, gensym("__fl.wrapper_internal_object"));
+        FrameLib_Context current = getContext();
+        FrameLib_Context context = toFLObject(object)->getContext();
         
-        if (wrapped)
-        {
-            object = wrapped;
-            connection++;
-        }
-    }
-    
-    // Get an internal object from a generic pointer safely
-    
-    FrameLib_Multistream *getInternalObject(t_object *x)
-    {
-        return (FrameLib_Multistream *) object_method(x, gensym("__fl.get_internal_object"));
-    }
-    
-    // Get the number of audio ins safely from a generic pointer
-    
-    long getNumAudioInsRemote(t_object *x)
-    {
-        t_ptr_int numAudioIns = reinterpret_cast<t_ptr_int>(object_method(x, gensym("__fl.get_num_audio_ins")));
-        return static_cast<long>(numAudioIns);
-    }
-    
-    // Get the number of audio outs safely from a generic pointer
+        bool mismatchedNRT = mGlobal->isRealtime(context) != mGlobal->isRealtime(current);
+        bool mismatchedPatch = mGlobal->getPatch(current) != mGlobal->getPatch(context);
 
-    long getNumAudioOutsRemote(t_object *x)
-    {
-        t_ptr_int numAudioOuts = reinterpret_cast<t_ptr_int>(object_method(x, gensym("__fl.get_num_audio_outs")));
-        return static_cast<long>(numAudioOuts);
+        unsigned long size = 0;
+
+        if (getType() == kScheduler || (handlesAudio() && mismatchedNRT) || mismatchedPatch || current == context)
+            return;
+        
+        mResolved = false;
+        
+        mGlobal->pushToQueue(*this);
+        
+        T *newObject = new T(context, mObject->getSerialised(), mFrameLibProxy.get(), mSpecifiedStreams);
+        
+        for (unsigned long i = 0; i < mObject->getNumIns(); i++)
+            if (const double *values = mObject->getFixedInput(i, &size))
+                newObject->setFixedInput(i, values, size);
+                
+        if (mGlobal->isRealtime(context) || mGlobal->isRealtime(current))
+            dspSetBroken();
+        
+        mGlobal->retainContext(context);
+        mGlobal->releaseContext(current);
+        mGlobal->flushErrors(context, mFrameLibProxy.get());
+        
+        mObject.reset(newObject);
     }
     
-    // Private connection methods
+    // Get the association of a patch
     
-    void traversePatch(t_patcher *p, t_symbol *method, t_object *contextAssoc)
+    static t_object *getAssociation(t_object *patch)
     {
         t_object *assoc = 0;
-        object_method(p, gensym("getassoc"), &assoc);
+        objectMethod(patch, gensym("getassoc"), &assoc);
+        return assoc;
+    }
+    
+    // Graph methods
+    
+    template <typename...Args>
+    void traversePatch(t_patcher *p, t_object *contextAssoc, t_symbol *theMethod, Args...args)
+    {
+        t_object *assoc = getAssociation(p);
         
         // Avoid recursion into a poly / pfft / etc. - If the subpatcher is a wrapper we do need to deal with it
-         
-        if (assoc != contextAssoc && !object_method(assoc, gensym("__fl.wrapper_is_wrapper")))
+        
+        if (assoc != contextAssoc && !objectMethod(assoc, gensym("__fl.wrapper_is_wrapper")))
             return;
         
         // Search for subpatchers, and call method on objects that don't have subpatchers
@@ -1135,249 +1796,298 @@ private:
             long index = 0;
             
             while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
-                traversePatch(p, method, contextAssoc);
-
-            object_method(jbox_get_object(b), method);
+                traversePatch(p, contextAssoc, theMethod, args...);
+            
+            FLObject *object = toFLObject(jbox_get_object(b));
+            
+            if (object && object->getContext() == getContext())
+                objectMethod(jbox_get_object(b), theMethod, args...);
         }
     }
-
-    void resolveGraph(bool markUnresolved)
+    
+    template <typename...Args>
+    void traversePatch(t_symbol *theMethod, Args...args)
     {
-        t_object *assoc = 0;
-        object_method(mContextPatch, gensym("getassoc"), &assoc);
+        // Clear the queue and after traversing call objects added to the queue
         
-        traversePatch(mContextPatch, gensym("__fl.resolve_connections"), assoc);
-        traversePatch(mContextPatch, gensym("__fl.clear_auto_ordering_connections"), assoc);
-        traversePatch(mContextPatch, gensym("__fl.auto_ordering_connections"), assoc);
-        if (markUnresolved)
-            traversePatch(mContextPatch, gensym("__fl.mark_unresolved"), assoc);
+        mGlobal->clearQueue();
+        
+        traversePatch(mContextPatch, getAssociation(mContextPatch), theMethod, args...);
+        
+        while (t_object *object = mGlobal->popFromQueue())
+            objectMethod(object, theMethod, args...);
     }
     
-    void resolveConnections()
+    bool resolveGraph(bool markUnresolved, bool forceRealtime = false)
     {
-        if (mNeedsResolve)
-        {
-            // Confirm input connections
-                    
-            for (long i = 0; i < getNumIns(); i++)
-                confirmConnection(i, ConnectionInfo::kConfirm);
-            
-            // Confirm ordering connections
-            
-            for (long i = 0; i < getNumOrderingConnections(); i++)
-                confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionInfo::kConfirm);
-            
-            // Make output connections
-            
-            for (long i = getNumOuts(); i > 0; i--)
-                makeConnection(i - 1, ConnectionInfo::kConnect);
-            
-            mNeedsResolve = false;
-        }
-    }
-
-    void makeConnection(unsigned long index, ConnectionInfo::Mode mode)
-    {
-        ConnectionInfo info(*this, index, mode);
-        
-        mGlobal->setConnectionInfo(&info);
-        outlet_anything(mOutputs[index], gensym("frame"), 0, nullptr);
-        mGlobal->setConnectionInfo();
-    }
-    
-    bool confirmConnection(unsigned long inIndex, ConnectionInfo::Mode mode)
-    {
-        if (!validInput(inIndex))
+        if (!forceRealtime && isRealtime() && dspIsRunning())
             return false;
         
+        t_ptr_int updated = false;
+        
+        mGlobal->setReportContextErrors(true);
+        traversePatch(gensym("__fl.mark_unresolved"));
+        traversePatch(gensym("__fl.resolve_connections"), &updated);
+        traversePatch(gensym("__fl.connection_update"), t_ptr_int(false));
+        mGlobal->setReportContextErrors(false);
+
+        // If updated then redo auto ordering connections
+        
+        if (updated)
+        {
+            traversePatch(gensym("__fl.clear_auto_ordering_connections"));
+            traversePatch(gensym("__fl.auto_ordering_connections"));
+        }
+        
+        if (markUnresolved)
+            traversePatch(gensym("__fl.mark_unresolved"));
+        
+        return updated;
+    }
+    
+    void resolveNRTGraph(double sampleRate, bool forceReset)
+    {
+        bool updated = resolveGraph(false);
+        
+        if (updated || forceReset)
+            traversePatch(gensym("__fl.reset"), &sampleRate, static_cast<t_ptr_int>(maxBlockSize()));
+    }
+    
+    void resolveContext()
+    {
+        if (isRealtime())
+            resolveGraph(true);
+        else
+        {
+            LockHold lock(mGlobal->getLock(getContext()));
+            resolveNRTGraph(0.0, false);
+        }
+    }
+    
+    // Convert from framelib object to max object and vice versa
+    
+    static FLObject *toFLObject(t_object *x)
+    {
+        return objectMethod<FLObject *>(x, gensym("__fl.get_framelib_object"));
+    }
+    
+    static t_object *toMaxObject(FLObject *object)
+    {
+        return object ? (dynamic_cast<FrameLib_MaxProxy *>(object->getProxy()))->mMaxObject : nullptr;
+    }
+    
+    // Get the number of audio ins/outs safely from a generic pointer
+    
+    static long getNumAudioIns(t_object *x)
+    {
+        t_ptr_int numAudioIns = objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_ins"));
+        return static_cast<long>(numAudioIns);
+    }
+    
+    static long getNumAudioOuts(t_object *x)
+    {
+        t_ptr_int numAudioOuts = objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_outs"));
+        return static_cast<long>(numAudioOuts);
+    }
+    
+    // Helpers for connection methods
+    
+    static bool isOrderingInput(long index, FLObject *object)
+    {
+        return object && object->supportsOrderingConnections() && index == static_cast<long>(object->getNumIns());
+    }
+    
+    bool isOrderingInput(long index) const                  { return isOrderingInput(index, mObject.get()); }
+    bool isConnected(long index) const                      { return mObject->isConnected(index); }
+    
+    static bool validIO(long index, unsigned long count)    { return index >= 0 && index < static_cast<long>(count); }
+    static bool validInput(long index, FLObject *object)    { return object && validIO(index, object->getNumIns()); }
+    static bool validOutput(long index, FLObject *object)   { return object && validIO(index, object->getNumOuts()); }
+    
+    bool validInput(long index) const                       { return validInput(index, mObject.get()); }
+    bool validOutput(long index) const                      { return validOutput(index, mObject.get()); }
+    
+    MaxConnection getConnection(long index)                 { return toMaxConnection(mObject->getConnection(index)); }
+    MaxConnection getOrderingConnection(long index)         { return toMaxConnection(mObject->getOrderingConnection(index)); }
+    
+    long getNumOrderingConnections() const                  { return  static_cast<long>(mObject->getNumOrderingConnections()); }
+    
+    static MaxConnection toMaxConnection(FLConnection c)    { return MaxConnection(toMaxObject(c.mObject), c.mIndex); }
+    static FLConnection toFLConnection(MaxConnection c)     { return FLConnection(toFLObject(c.mObject), c.mIndex); }
+    
+    // Private connection methods
+
+    bool resolveConnections()
+    {
+        if (mResolved)
+            return false;
+
+        // Confirm input connections
+        
+        for (long i = 0; i < getNumIns(); i++)
+            confirmConnection(i, ConnectionMode::kConfirm);
+        
+        // Confirm ordering connections
+        
+        for (long i = 0; i < getNumOrderingConnections(); i++)
+            confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionMode::kConfirm);
+        
+        // Make output connections
+        
+        for (long i = getNumOuts(); i > 0; i--)
+            makeConnection(i - 1, ConnectionMode::kConnect);
+        
+        // Check if anything has updated since the last call to this method and make realtime resolved
+        
+        bool updated = mConnectionsUpdated;
+        mConnectionsUpdated = false;
+        mResolved = true;
+
+        return updated;
+    }
+
+    void makeConnection(unsigned long index, ConnectionMode mode)
+    {
+        mGlobal->setConnection(MaxConnection(*this, index));
+        mGlobal->setConnectionMode(mode);
+        outlet_anything(mOutputs[index], gensym("frame"), 0, nullptr);
+        mGlobal->setConnection(MaxConnection());
+    }
+    
+    bool confirmConnection(unsigned long inIndex, ConnectionMode mode)
+    {
         return confirmConnection(getConnection(inIndex), inIndex, mode);
     }
     
-    bool confirmConnection(MaxConnection connection, unsigned long inIndex, ConnectionInfo::Mode mode)
+    bool confirmConnection(MaxConnection connection, unsigned long inIndex, ConnectionMode mode)
     {
-        if (!validInput(inIndex))
+        if (!validInput(inIndex) || !connection.mObject)
             return false;
         
-        mConfirm = false;
-        mConfirmObject = connection.mObject;
-        mConfirmInIndex = inIndex;
-        mConfirmOutIndex = connection.mIndex;
-    
-        // Check for connection *only* if the internal object is connected (otherwise assume the previously connected object has been deleted)
+        ConnectionConfirmation confirmation(connection, inIndex);
+        mConfirmation = &confirmation;
+        objectMethod(connection.mObject, gensym("__fl.connection_confirm"), t_ptr_int(connection.mIndex), mode);
+        mConfirmation = nullptr;
         
-        if (mConfirmObject)
-            object_method(mConfirmObject, gensym("__fl.connection_confirm"), mConfirmOutIndex, mode);
+        if (!confirmation.mConfirm)
+            disconnect(connection, inIndex);
         
-        if (mConfirmObject && !mConfirm)
-            disconnect(mConfirmObject, mConfirmOutIndex, mConfirmInIndex);
-        
-        bool result = mConfirm;
-        mConfirm = false;
-        mConfirmObject = nullptr;
-        mConfirmInIndex = mConfirmOutIndex = -1;
-        
-        return result;
+        return confirmation.mConfirm;
     }
     
-    bool validInput(long index, FrameLib_Multistream *object) const
+    void connect(MaxConnection connection, long inIdx)
     {
-        return object && index >= 0 && static_cast<unsigned long>(index) < object->getNumIns();
-    }
-    
-    bool validOutput(long index, FrameLib_Multistream *object) const
-    {
-        return object && index >= 0 && static_cast<unsigned long>(index) < object->getNumOuts();
-        
-    }
-    bool isOrderingInput(long index, FrameLib_Multistream *object) const
-    {
-        return object && object->supportsOrderingConnections() && static_cast<unsigned long>(index) == object->getNumIns();
-        
-    }
-    
-    bool validInput(long index) const                                       { return validInput(index, mObject.get()); }
-    bool validOutput(long index) const                                      { return validOutput(index, mObject.get()); }
-    bool isOrderingInput(long index) const                                  { return isOrderingInput(index, mObject.get()); }
-    
-    bool isConnected(long index) const                                      { return mObject->isConnected(index); }
-    
-    MaxConnection getMaxConnection(const FrameLibConnection& connection) const
-    {
-        FrameLib_MaxProxy *proxy = dynamic_cast<FrameLib_MaxProxy *>(connection.mObject->getProxy());
-        t_object *object = proxy->mMaxObject;
-        return MaxConnection(object, connection.mIndex);
-    }
-    
-    MaxConnection getConnection(long index) const
-    {
-        if (isConnected(index))
-            return getMaxConnection(mObject->getConnection(index));
-        else
-            return MaxConnection();
-    }
-    
-    long getNumOrderingConnections() const
-    {
-        return (long) mObject->getNumOrderingConnections();
-    }
-    
-    MaxConnection getOrderingConnection(long index) const
-    {
-        return getMaxConnection(mObject->getOrderingConnection(index));
-    }
-    
-    bool matchConnection(t_object *src, long outIdx, long inIdx) const
-    {
-        MaxConnection connection = getConnection(inIdx);
-        return connection.mObject == src && connection.mIndex == outIdx;
-    }
-    
-    void connect(t_object *src, long outIdx, long inIdx)
-    {
-        FrameLib_Multistream *object = getInternalObject(src);
-        
-        if (!(validOutput(outIdx, object) && (isOrderingInput(inIdx) || (validInput(inIdx) && !matchConnection(src, outIdx, inIdx) && !confirmConnection(inIdx, ConnectionInfo::kDoubleCheck)))))
-            return;
-
         ConnectionResult result;
+        FLConnection internalConnection = toFLConnection(connection);
         
+        if (!(validOutput(connection.mIndex, internalConnection.mObject) && (isOrderingInput(inIdx) || (validInput(inIdx) && getConnection(inIdx) != connection && !confirmConnection(inIdx, ConnectionMode::kDoubleCheck)))))
+            return;
+        
+        matchContext(connection.mObject);
+
         if (isOrderingInput(inIdx))
-            result = mObject->addOrderingConnection(FrameLibConnection(object, outIdx));
+            result = mObject->addOrderingConnection(internalConnection);
         else
-            result = mObject->addConnection(FrameLibConnection(object, outIdx), inIdx);
+            result = mObject->addConnection(internalConnection, inIdx);
 
         switch (result)
         {
+            case kConnectSuccess:
+                mConnectionsUpdated = true;
+                objectMethod(connection.mObject, gensym("__fl.connection_update"), t_ptr_int(true));
+                break;
+                
             case kConnectFeedbackDetected:
                 object_error(mUserObject, "feedback loop detected");
                 break;
                 
             case kConnectWrongContext:
-                object_error(mUserObject, "cannot connect objects from different patching contexts");
+                if (mGlobal->getReportContextErrors())
+                    object_error(mUserObject, "can't connect objects in different patching contexts");
                 break;
                 
             case kConnectSelfConnection:
                 object_error(mUserObject, "direct feedback loop detected");
                 break;
                 
-            case kConnectSuccess:
             case kConnectNoOrderingSupport:
             case kConnectAliased:
                 break;
         }
     }
     
-    void disconnect(t_object *src, long outIdx, long inIdx)
+    void disconnect(MaxConnection connection, long inIdx)
     {
-        FrameLib_Multistream *object = getInternalObject(src);
-
-        if (!(isOrderingInput(inIdx) || (validInput(inIdx) && matchConnection(src, outIdx, inIdx))))
+        if (!(isOrderingInput(inIdx) || (validInput(inIdx) && getConnection(inIdx) == connection)))
             return;
         
         if (isOrderingInput(inIdx))
-            mObject->deleteOrderingConnection(FrameLibConnection(object, outIdx));
+            mObject->deleteOrderingConnection(toFLConnection(connection));
         else
             mObject->deleteConnection(inIdx);
+        
+        mConnectionsUpdated = true;
     }
 
     // Patchline connections
     
-    t_max_err patchLineUpdate(t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
+    void unwrapConnection(t_object *& object, long& connection)
     {
-        if (*this == dst)
-        {
-            unwrapConnection(src, srcout);
+        t_object *wrapped = objectMethod<t_object *>(object, gensym("__fl.wrapper_unwrap"), &connection);
+        object = wrapped ? wrapped : object;
+    }
+    
+    t_max_err patchLineUpdate(t_object *line, long type, t_object *src, long srcout, t_object *dst, long dstin)
+    {
+        if (*this != dst || type == JPATCHLINE_ORDER)
+            return MAX_ERR_NONE;
+        
+        // Unwrap and offset connections
             
-            srcout -= getNumAudioOutsRemote(src);
-            dstin -= getNumAudioIns();
-            
-            // Check load update before we check the dspchain (in case we are loading in poly~ etc.)
-            
-            short loadupdate = dsp_setloadupdate(false);
-            dsp_setloadupdate(loadupdate);
+        unwrapConnection(src, srcout);
+        srcout -= getNumAudioOuts(src);
+        dstin -= getNumAudioIns();
+        
+        if (!isOrderingInput(dstin) && !validInput(dstin))
+            return MAX_ERR_NONE;
 
-            if (loadupdate && sys_getdspobjdspstate(*this))
+        if (!isRealtime() || !dspSetBroken())
+        {
+            FLObject *object = toFLObject(src);
+            bool objectHandlesAudio = object && (object->getType() == kScheduler || object->getNumAudioChans());
+            
+            if (!objectHandlesAudio || object->getContext() == getContext())
             {
-                if ((isOrderingInput(dstin) || validInput(dstin)) && updatetype != JPATCHLINE_ORDER)
-                    dspchain_setbroken(dspchain_fromobject(*this));
+                if (type == JPATCHLINE_CONNECT)
+                    connect(MaxConnection(src, srcout), dstin);
+                else
+                    disconnect(MaxConnection(src, srcout), dstin);
             }
             else
-            {
-                switch (updatetype)
-                {
-                    case JPATCHLINE_CONNECT:        connect(src, srcout, dstin);        break;
-                    case JPATCHLINE_DISCONNECT:     disconnect(src, srcout, dstin);     break;
-                    case JPATCHLINE_ORDER:                                              break;
-                }
-            }
-        }
-        else
-        {
-            /*
-            srcout -= getNumAudioOuts();
-            
-            if (validOutput(srcout) && == JPATCHLINE_CONNECT)
-            {
-                double color[4] = { 0.0, 0.0, 1.0, 1.0 };
-                object_attr_setdouble_array(patchline, gensym("patchlinecolor"), 4, color);
-            }
-             */
+                mGlobal->addContextToResolve(object->getContext(), src);
         }
         
         return MAX_ERR_NONE;
     }
     
-    long connectionAccept(t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
+    long connectionAccept(t_object *dst, long srcout, long dstin, t_object *op, t_object *ip)
     {
         t_symbol *className = object_classname(dst);
         
-        if (!validOutput(srcout - getNumAudioOuts()) || className == gensym("outlet") || className == gensym("jpatcher"))
+        // Allow if connecting to an outlet or patcher
+        
+        if (className == gensym("outlet") || className == gensym("jpatcher"))
             return 1;
 
+        // Unwrap and offset connections
+
         unwrapConnection(dst, dstin);
-        dstin -= getNumAudioInsRemote(dst);
+        dstin -= getNumAudioIns(dst);
+        srcout -= getNumAudioOuts();
         
-        if (isOrderingInput(dstin, getInternalObject(dst)) || (validInput(dstin, getInternalObject(dst)) && !object_method(dst, gensym("__fl.is_connected"), dstin)))
+        // Allow connections - if not a frame outlet / to the ordering inlet / to a valid unconnected input
+        
+        if (!validOutput(srcout) || isOrderingInput(dstin, toFLObject(dst)) || (validInput(dstin, toFLObject(dst)) && !objectMethod(dst, gensym("__fl.is_connected"), t_ptr_int(dstin))))
             return 1;
         
         return 0;
@@ -1388,13 +2098,13 @@ private:
     void postSplit(const char *text, const char *firstLineTag, const char *lineTag)
     {
         std::string str(text);
-        size_t oldPos, pos;
+        size_t prev = 0;
         
-        for (oldPos = 0, pos = str.find_first_of(":."); oldPos < str.size(); pos = str.find_first_of(":.", pos + 1))
+        for (size_t pos = str.find_first_of(":."); prev < str.size(); pos = str.find_first_of(":.", pos + 1))
         {
             pos = pos == std::string::npos ? str.size() : pos;
-            object_post(mUserObject, "%s%s", oldPos ? lineTag : firstLineTag, str.substr(oldPos, (pos - oldPos) + 1).c_str());
-            oldPos = pos + 1;
+            object_post(mUserObject, "%s%s", prev ? lineTag : firstLineTag, str.substr(prev, (pos - prev) + 1).c_str());
+            prev = pos + 1;
         }
     }
     
@@ -1411,44 +2121,23 @@ private:
     
     // Parameter Parsing
     
-    unsigned long safeCount(char *str, unsigned long maxCount)
+    static unsigned long safeCount(char *str, unsigned long minCount, unsigned long maxCount)
     {
-        unsigned long number = std::max(1, atoi(str));
+        unsigned long number = std::max(minCount, static_cast<unsigned long>(atoi(str)));
         return std::min(maxCount, number);
     }
     
-    long getStreamCount(t_atom *a)
+    static long getStreamCount(t_atom *a)
     {
         if (atom_gettype(a) == A_SYM)
         {
             t_symbol *sym = atom_getsym(a);
             
             if (strlen(sym->s_name) > 1 && sym->s_name[0] == '=')
-                return safeCount(sym->s_name + 1, 1024);
+                return safeCount(sym->s_name + 1, 1, 1024);
         }
         
         return 0;
-    }
-    
-    bool isParameterTag(t_symbol *sym)
-    {        
-        return strlen(sym->s_name) > 1 && sym->s_name[0] == '/';
-    }
-    
-    bool isInputTag(t_symbol *sym)
-    {
-        size_t len = strlen(sym->s_name);
-        
-        if (len > 2)
-            return (sym->s_name[0] == '[' && sym->s_name[len - 1] == ']');
-        
-        return false;
-    }
-    
-    bool isTag(t_atom *a)
-    {
-        t_symbol *sym = atom_getsym(a);
-        return isParameterTag(sym) || isInputTag(sym);
     }
     
     long parseNumericalList(std::vector<double> &values, t_atom *argv, long argc, long idx)
@@ -1457,15 +2146,12 @@ private:
         
         // Collect doubles
         
-        for ( ; idx < argc; idx++)
+        for ( ; idx < argc && !isTag(argv + idx); idx++)
         {
-            if (isTag(argv + idx))
-                break;
-            
-            if (atom_gettype(argv + idx) == A_SYM && !atom_getfloat(argv + idx))
-                object_error(mUserObject, "string %s in entry list where value expected", atom_getsym(argv + idx)->s_name);
-            
             values.push_back(atom_getfloat(argv + idx));
+
+            if (atom_gettype(argv + idx) == A_SYM && !values.back())
+                object_error(mUserObject, "string %s in entry list where value expected", atom_getsym(argv + idx)->s_name);
         }
         
         return idx;
@@ -1473,31 +2159,24 @@ private:
     
     void parseParameters(FrameLib_Parameters::AutoSerial& serialisedParameters, long argc, t_atom *argv)
     {
-        t_symbol *sym = nullptr;
         std::vector<double> values;
         long i;
         
         // Parse arguments
         
-        for (i = 0; i < argc; i++)
+        for (i = 0; i < argc && !isTag(argv + i); i++)
         {
-            if (isTag(argv + i))
-                break;
-            
             if (argsMode == kAsParams)
             {
-                char argNames[64];
-                sprintf(argNames, "%ld", i);
-                
                 if (atom_gettype(argv + i) == A_SYM)
                 {
                     t_symbol *str = atom_getsym(argv + i);
-                    serialisedParameters.write(argNames, str->s_name);
+                    serialisedParameters.write(std::to_string(i).c_str(), str->s_name);
                 }
                 else
                 {
                     double value = atom_getfloat(argv + i);
-                    serialisedParameters.write(argNames, &value, 1);
+                    serialisedParameters.write(std::to_string(i).c_str(), &value, 1);
                 }
             }
         }
@@ -1506,56 +2185,41 @@ private:
         
         while (i < argc)
         {
-            // Strip stray items
-            
-            for (long j = 0; i < argc; i++, j++)
-            {
-                if (isTag(argv + i))
-                {
-                    sym = atom_getsym(argv + i);
-                    break;
-                }
-                
-                if (j == 0)
-                    object_error(mUserObject, "stray items after entry %s", sym->s_name);
-            }
-            
-            // Check for lack of values or end of list
-            
-            if ((++i >= argc) || isTag(argv + i))
-            {
-                if (i < (argc + 1))
-                    object_error(mUserObject, "no values given for entry %s", sym->s_name);
-                continue;
-            }
+            t_symbol *sym = atom_getsym(argv + i++);
             
             if (isParameterTag(sym))
             {
-                // Do strings or values
+                // Check for missing values
+                
+                if ((i >= argc) || isTag(argv + i))
+                {
+                    object_error(mUserObject, "no values given for parameter %s", sym->s_name);
+                    continue;
+                }
+                
+                // Add to parameters with stray item detection
                 
                 if (atom_getsym(argv + i) != gensym(""))
+                {
                     serialisedParameters.write(sym->s_name + 1, atom_getsym(argv + i++)->s_name);
+                    
+                    if (i < argc && !isTag(argv + i))
+                        object_error(mUserObject, "stray items after parameter %s", sym->s_name);
+                }
                 else
                 {
                     i = parseNumericalList(values, argv, argc, i);
                     serialisedParameters.write(sym->s_name + 1, values.data(), static_cast<unsigned long>(values.size()));
                 }
             }
-            else
-            {
-                // Advance to next tag
-                
-                for ( ; i < argc && !isTag(argv + i); i++);
-            }
-                
         }
     }
     
     // Input Parsing
     
-    unsigned long inputNumber(t_symbol *sym)
+    static unsigned long inputNumber(t_symbol *sym)
     {
-        return safeCount(sym->s_name + 1, 16384) - 1;
+        return safeCount(sym->s_name + 1, 0, 16384) - 1;
     }
     
     void parseInputs(long argc, t_atom *argv)
@@ -1568,6 +2232,7 @@ private:
         if (argsMode == kAllInputs || argsMode == kDistribute)
         {
             i = parseNumericalList(values, argv, argc, 0);
+            
             if (argsMode == kAllInputs)
             {
                 for (long j = 0; i && j < getNumIns(); j++)
@@ -1580,31 +2245,46 @@ private:
             }
         }
         
-        // Parse tags
+        // Parse input tags
         
         while (i < argc)
         {
-            // Advance to next input tag
+            t_symbol *sym = atom_getsym(argv + i++);
             
-            for ( ; i < argc && !isInputTag(atom_getsym(argv + i)); i++);
-            
-            // If there are values to read then do so
-            
-            if ((i + 1) < argc && !isTag(argv + i + 1))
+            if (isInputTag(sym))
             {
-                t_symbol *sym = atom_getsym(argv + i);
-                i = parseNumericalList(values, argv, argc, i + 1);
+                i = parseNumericalList(values, argv, argc, i);
                 mObject->setFixedInput(inputNumber(sym), values.data(), static_cast<unsigned long>(values.size()));
+                
+                if (inputNumber(sym) >= static_cast<unsigned long>(getNumIns()))
+                    object_error(mUserObject, "input %s out of bounds", sym->s_name);
             }
-            
-            if ((i + 1) >= argc)
-                break;
         }
     }
 
+    // Buffer access (read and write multichannel buffers)
+    
+    void read(t_symbol *buffer, double **outs, size_t numChans, size_t size, size_t offset)
+    {
+        MaxBufferAccess access(*this, buffer);
+        
+        for (size_t i = 0; i < numChans; i++)
+            access.read(outs[i], size, offset, i);
+    }
+    
+    void write(t_symbol *buffer, const double * const *ins, size_t numChans, size_t size, size_t offset)
+    {
+        MaxBufferAccess access(*this, buffer);
+        
+        for (size_t i = 0; i < numChans; i++)
+            access.write(ins[i], size, offset, i);
+    }
+
 protected:
-   
-    unsigned long getNumStreams() { return mObject->getNumStreams(); }
+    
+    MessageHandler *getHandler() { return mGlobal->getHandler(getContext()); }
+
+    // Proxy
     
     std::unique_ptr<FrameLib_MaxProxy> mFrameLibProxy;
     
@@ -1615,24 +2295,30 @@ private:
     FrameLib_MaxGlobals::ManagedPointer mGlobal;
     FrameLib_MaxGlobals::SyncCheck mSyncChecker;
     
-    std::unique_ptr<FrameLib_Multistream> mObject;
+    std::unique_ptr<FLObject> mObject;
     
-    std::vector<t_object *> mInputs;
+    std::vector<unique_object_ptr> mInputs;
     std::vector<void *> mOutputs;
     std::vector<double *> mSigOuts;
 
     long mProxyNum;
-    t_object *mConfirmObject;
-    long mConfirmInIndex;
-    long mConfirmOutIndex;
-    bool mConfirm;
+    ConnectionConfirmation *mConfirmation;
+
+    unique_object_ptr mSyncIn;
     
-    t_object *mPatch;
     t_object *mContextPatch;
-    t_object *mSyncIn;
     t_object *mUserObject;
     
-    bool mNeedsResolve;
+    unsigned long mSpecifiedStreams;
+
+    bool mConnectionsUpdated;
+    bool mResolved;
+    
+public:
+    
+    // Attribute
+    
+    t_symbol *mBuffer;
 };
 
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_MaxClass_Expand<T>::makeClass() to create)

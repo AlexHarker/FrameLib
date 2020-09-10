@@ -1,11 +1,12 @@
 
 #include "FrameLib_Source.h"
 
-// FIX - source is only sample accurate (not subsample) - add a function to interpolate if neceesary
+// FIX - source is only sample accurate (not subsample) - add a function to interpolate if necessary
 
 // Constructor
 
-FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_AudioInput(context, proxy, &sParamInfo, 2, 1, 1)
+FrameLib_Source::FrameLib_Source(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_AudioInput(context, proxy, &sParamInfo, 2, 1, 1)
 {
     // FIX - defaults for when the units are not in samples!
     
@@ -37,9 +38,11 @@ FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::
 
 std::string FrameLib_Source::objectInfo(bool verbose)
 {
-    return formatInfo("Captures audio from the host environment and outputs the most recent values as frames: The size of captured frames is variable. "
-                   "Latency is equivalent to the length of the captured frame. The length of the internal buffer determines the maximum frame length.",
-                   "Captures audio from the host environment and outputs the most recent values as frames.", verbose);
+    return formatInfo("Captures audio from the host environment and outputs the most recent values as frames: "
+                      "The size of captured frames is variable. "
+                      "Latency is equivalent to the length of the captured frame. "
+                      "The length of the internal buffer determines the maximum frame length.",
+                      "Captures audio from the host environment and outputs the most recent values as frames.", verbose);
 }
 
 std::string FrameLib_Source::inputInfo(unsigned long idx, bool verbose)
@@ -47,12 +50,12 @@ std::string FrameLib_Source::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Trigger Frame - triggers capture to output", "Trigger Frame", verbose);
+        return formatInfo("Trigger Input - triggers capture to output", "Trigger Input", verbose);
 }
 
 std::string FrameLib_Source::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Frame of Captured Values";
+    return "Captured Output";
 }
 
 std::string FrameLib_Source::audioInfo(unsigned long idx, bool verbose)
@@ -77,7 +80,7 @@ FrameLib_Source::ParameterInfo::ParameterInfo()
 
 unsigned long FrameLib_Source::convertTimeToSamples(double time)
 {    
-    switch (static_cast<Units>(mParameters.getInt(kUnits)))
+    switch (mParameters.getEnum<Units>(kUnits))
     {
         case kSamples:  break;
         case kMS:       time = msToSamples(time);       break;

@@ -9,18 +9,20 @@ namespace FrameLib_Ternary_Ops
     // Specification/signature taken from C++17 std::clamp, (although that specifies use of only < rather than < and >)
     // If v compares less than lo, returns lo; otherwise if hi compares less than v, returns hi; otherwise returns v.
 
-    template<class T>  T clip(T v,T lo, T hi)
+    template<class T>
+    T clip(T v,T lo, T hi)
     {
         if (lo > hi)
             std::swap(lo, hi);
         
-        return v < lo ? lo : (v > hi ? hi : v);
+        return std::max(std::min(v, hi), lo);
     }
 
     // Wrap is modified from PD's cyclone pong external
     // https://github.com/porres/pd-cyclone/blob/master/cyclone_objects/binaries/audio/pong.c
 
-    template <class T> T wrap(T v, T lo, T hi)
+    template <class T>
+    T wrap(T v, T lo, T hi)
     {
         if (lo > hi)
             std::swap(lo, hi);
@@ -49,7 +51,8 @@ namespace FrameLib_Ternary_Ops
     // Fold is modified from PD's cyclone pong external
     // https://github.com/porres/pd-cyclone/blob/master/cyclone_objects/binaries/audio/pong.c
 
-    template <class T> T fold(T v, T lo, T hi)
+    template <class T>
+    T fold(T v, T lo, T hi)
     {
         if (lo > hi)
             std::swap(lo, hi);
@@ -78,21 +81,20 @@ namespace FrameLib_Ternary_Ops
 template<>
 inline const char* FrameLib_Ternary<FrameLib_Ternary_Ops::clip<double>>::getDescriptionString()
 {
-    return "Clips the incoming frame to the range delimited by the low and high parameters.";
+    return "Clips the incoming frame to the range delimited by the two parameters";
 }
 
 template<>
 inline const char* FrameLib_Ternary<FrameLib_Ternary_Ops::wrap<double>>::getDescriptionString()
 {
-    return "Wraps the incoming frame into the range delimited by the low and high parameters.";
+    return "Wraps the incoming frame into the range delimited by the two parameters";
 }
 
 template<>
 inline const char* FrameLib_Ternary<FrameLib_Ternary_Ops::fold<double>>::getDescriptionString()
 {
-    return "Folds the incoming frame into the range delimited by the low and high parameters";
+    return "Folds the incoming frame into the range delimited by the two parameters";
 }
-
 
 typedef FrameLib_Ternary<FrameLib_Ternary_Ops::clip<double>> FrameLib_Clip;
 typedef FrameLib_Ternary<FrameLib_Ternary_Ops::wrap<double>> FrameLib_Wrap;

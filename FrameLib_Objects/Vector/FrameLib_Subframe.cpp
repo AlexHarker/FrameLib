@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_Subframe::FrameLib_Subframe(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_Subframe::FrameLib_Subframe(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addDouble(kStart, "start", 0.0, 0);
     mParameters.setMin(0.0);
@@ -24,7 +25,7 @@ FrameLib_Subframe::FrameLib_Subframe(FrameLib_Context context, FrameLib_Paramete
 
 std::string FrameLib_Subframe::objectInfo(bool verbose)
 {
-    return formatInfo("Output part of an input frame: The subframe is specified by a start and end point in the input frame.",
+    return formatInfo("Output part of an input frame: The subframe is specified by a start and end point in the input frame. The start point is included in the output frame, but the end point is not. Points may be specified in samples or as a ratio of the length of the input frame.",
                    "Output part of an input frame.", verbose);
 }
 
@@ -33,12 +34,12 @@ std::string FrameLib_Subframe::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return "Input Frames";
+        return "Input";
 }
 
 std::string FrameLib_Subframe::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Subframe Output";
+    return "Output";
 }
 
 // Parameter Info
@@ -63,7 +64,7 @@ void FrameLib_Subframe::process()
     
     unsigned long start, end;
     
-    Units units = (Units) mParameters.getInt(kUnits);
+    Units units = mParameters.getEnum<Units>(kUnits);
     
     if (units == kSamples)
     {
@@ -76,9 +77,8 @@ void FrameLib_Subframe::process()
         end = roundToUInt(mParameters.getValue(kEnd) * sizeIn);
     }
     
-    start = start > sizeIn ? sizeIn : start;
-    end = end > sizeIn ? sizeIn : end;
-    end = end < start ? start : end;
+    start = std::min(start, sizeIn);
+    end = std::max(start, std::min(end, sizeIn));
     
     requestOutputSize(0, end - start);
     allocateOutputs();

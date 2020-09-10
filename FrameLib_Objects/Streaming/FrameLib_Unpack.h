@@ -8,17 +8,20 @@
 
 class FrameLib_Unpack final : public FrameLib_Multistream
 {
-    enum AtrributeList { kOutputs };
+    enum ParameterList { kNumOuts };
     
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo() { add("Sets the number of outputs."); } };
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     
 public:
+    
+    static constexpr ObjectType sType = kProcessor;
+    static constexpr bool sHandlesAudio = false;
     
     // Constructor
 
     const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
     
-    FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams);
+    FrameLib_Unpack(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams);
     
     // Set Fixed Inputs
     
@@ -27,6 +30,8 @@ public:
     
     // Audio Processing
     
+    uint64_t getBlockTime() const override { return 0; }
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& notifier) override {}
     void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override {}
     void reset(double samplingRate, unsigned long maxBlockSize) override {}
     
@@ -52,7 +57,7 @@ private:
     
     // Input Update
     
-    virtual bool inputUpdate() override;
+    bool inputUpdate() override;
     
     // Data
 

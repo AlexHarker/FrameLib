@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 2)
+FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 1, 2)
 {
     const int strBufSize = 10;
     

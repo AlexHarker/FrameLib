@@ -15,10 +15,9 @@ class FrameLib_Chain final : public FrameLib_Scheduler
 
 public:
     
-    // Constructor / Destructor
+    // Constructor
     
-    FrameLib_Chain(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-    ~FrameLib_Chain();
+    FrameLib_Chain(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     
@@ -44,7 +43,7 @@ private:
     
     static ParameterInfo sParamInfo;
     
-    FrameLib_TimeFormat* mTimes;
+    AutoArray<FrameLib_TimeFormat> mTimes;
     unsigned long mSize;
     unsigned long mPosition;
 };

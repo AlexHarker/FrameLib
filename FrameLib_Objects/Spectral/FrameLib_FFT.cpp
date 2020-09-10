@@ -1,15 +1,19 @@
 
 #include "FrameLib_FFT.h"
 
-// Constructor / Destructor
+// Constructor
 
-FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 2), mProcessor(*this)
+FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 1, 2)
+, mProcessor(*this)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
-    mParameters.addBool(kNormalise, "normalise", false, 1);
+    
+    mParameters.addBool(kNormalise, "normalise", true, 1);
     mParameters.setInstantiation();
+    
     mParameters.addEnum(kMode, "mode", 2);
     mParameters.addEnumItem(kReal, "real");
     mParameters.addEnumItem(kComplex, "complex");
@@ -22,7 +26,7 @@ FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial
     
     // Store parameters
 
-    mMode = static_cast<Mode>(mParameters.getInt(kMode));
+    mMode = mParameters.getEnum<Modes>(kMode);
     mNormalise = mParameters.getBool(kNormalise);
     
     // If in complex mode create 2 inlets/outlets
@@ -35,23 +39,33 @@ FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial
 
 std::string FrameLib_FFT::objectInfo(bool verbose)
 {
-    return formatInfo("Calculate the real Fast Fourier Transform of an input frame: All FFTs performed will use a power of two size. "
-                   "Output frames will be (N / 2) + 1 in length where N is the FFT size. Inputs which are not a power of two are zero-padded to the next power of two. "
-                   "Real and imaginary values are output as separate frames.",
-                   "Calculate the real Fast Fourier Transform of an input frame.", verbose);
+    return formatInfo("Calculate the real or complex Fast Fourier Transform of the input(s): "
+                      "All FFTs use a power of two size, with zero-padding applied at the input(s) if necessary. "
+                      "The output length and expected input lengths depend on the mode parameter. "
+                      "The mode parameter is used to select either real or complex FFTs and the output type. "
+                      "Real and imaginary values are output as separate frames.",
+                      "Calculate the real or complex Fast Fourier Transform of the input(s).", verbose);
 }
 
 std::string FrameLib_FFT::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Time Domain Input - will be zero-padded if the length is not a power of two.", "Time Domain Input", verbose);
+    if (mMode == kComplex)
+    {
+        if (idx == 0)
+            return formatInfo("Real Input - zero-padded if the length is not a power of two.", "Real Input", verbose);
+        else
+            return formatInfo("Imaginary Input - zero-padded if the length is not a power of two.", "Imag Input", verbose);
+    }
+    else
+        return formatInfo("Input - zero-padded if the length is not a power of two.", "Input", verbose);
 }
 
 std::string FrameLib_FFT::outputInfo(unsigned long idx, bool verbose)
 {
     if (!idx)
-        return "Real Values";
+        return "Real Output";
     else
-        return "Imaginary Values";
+        return verbose ? "Imaginary Output" : "Imag Output";
 }
 
 // Parameter Info
@@ -60,9 +74,12 @@ FrameLib_FFT::ParameterInfo FrameLib_FFT::sParamInfo;
 
 FrameLib_FFT::ParameterInfo::ParameterInfo()
 {
-    add("Sets the maximum input length / FFT size.");
-    add("When on the output is normalised so that sine waves produce the same level output regardless of the FFT size.");
-    add("Sets the type of input expected / output produced.");
+    add("Sets the maximum input length and FFT size.");
+    add("Sets normalisation on such that a full-scale real sine wave produces an output amplitude of 1.");
+    add("Sets the type of input expected and the output produced. "
+        "real - real input (power of two length) and output without reflection (length is N / 2 + 1). "
+        "complex - complex input (two frames) with the same (power of two) input and output lengths. "
+        "fullspectrum - real input and output of the same (power of two) length with reflection of spectrum.");
 }
 
 // Process
@@ -84,14 +101,18 @@ void FrameLib_FFT::process()
     
     // Get FFT size log 2
     
-    unsigned long FFTSizeLog2 = mProcessor.calc_fft_size_log2(std::max(sizeInR, sizeInI));
+    unsigned long FFTSizeLog2 = static_cast<unsigned long>(mProcessor.calc_fft_size_log2(std::max(sizeInR, sizeInI)));
     unsigned long FFTSize = 1 << FFTSizeLog2;
     sizeOut = mMode == kReal ? (FFTSize >> 1) + 1 : FFTSize;
     
     // Check size
     
     if (FFTSize > mProcessor.max_fft_size() || (!sizeInR && !sizeInI))
+    {
+        if (FFTSize > mProcessor.max_fft_size())
+            getReporter()(kErrorObject, getProxy(), "requested FFT size (#) larger than maximum FFT size (#)", static_cast<size_t>(FFTSize), mProcessor.max_fft_size());
         sizeOut = 0;
+    }
     
     // Calculate output size
     
@@ -140,7 +161,7 @@ void FrameLib_FFT::process()
         
         // Scale
         
-        double scale = ((mMode == kComplex) ? 1.0 : 0.5) / (mNormalise ? (double) FFTSize : 1.0);
+        double scale = ((mMode == kComplex) ? 1.0 : 0.5) / (mNormalise ? (double) (FFTSize >> 1) : 1.0);
         
         mProcessor.scale_spectrum(spectrum, sizeOut, scale);
     }

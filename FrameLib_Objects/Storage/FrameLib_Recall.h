@@ -14,10 +14,9 @@ class FrameLib_Recall final : public FrameLib_Processor
 
 public:
     
-    // Constructor / Destructor
+    // Constructor
 
-    FrameLib_Recall(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-    ~FrameLib_Recall();
+    FrameLib_Recall(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     
@@ -37,7 +36,7 @@ private:
     
     // Data
     
-    FrameLib_LocalAllocator::Storage *mStorage;
+    FrameLib_ContextAllocator::StoragePtr mStorage;
         
     static ParameterInfo sParamInfo;
     

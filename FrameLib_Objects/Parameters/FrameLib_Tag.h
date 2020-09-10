@@ -13,7 +13,7 @@ class FrameLib_Tag final : public FrameLib_Processor
     // Parameter Enums and Info
 
     enum ParameterList { kNumIns, kEmptyMode, kNames };
-    enum EmptyMode { kIgnore, kReset };
+    enum EmptyModes { kIgnore, kReset };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -21,7 +21,7 @@ public:
     
     // Constructor
     
-    FrameLib_Tag(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     

@@ -27,7 +27,6 @@ class FrameLib_ComplexExpression : public FrameLib_Block
     
     class InputProcessor final : public FrameLib_Processor
     {
-        
     public:
         
         // Constructor
@@ -54,7 +53,7 @@ class FrameLib_ComplexExpression : public FrameLib_Block
         
         // Constructor
         
-        ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns, std::complex<double> value);
+        ConstantOut(FrameLib_Context context, const double *triggers, unsigned long triggersSize, unsigned long numIns, std::complex<double> value);
         
     private:
         
@@ -64,20 +63,18 @@ class FrameLib_ComplexExpression : public FrameLib_Block
         
         // Data
         
-        MismatchModes mMode;
         std::complex<double> mValue;
     };
     
 public:
     
-    // Constructor / Destructor
+    static constexpr ObjectType sType = kProcessor;
+    static constexpr bool sHandlesAudio = false;
     
-    FrameLib_ComplexExpression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-
-    // Object Type
+    // Constructor
     
-    static ObjectType getType() { return kProcessor; }
-    
+    FrameLib_ComplexExpression(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+ 
     // Info
     
     std::string objectInfo(bool verbose) override;
@@ -96,6 +93,8 @@ public:
     
     // Audio Processing
     
+    uint64_t getBlockTime() const override { return 0; }
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& notifier) override {}
     void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override {}
     void reset(double samplingRate, unsigned long maxBlockSize) override;
     

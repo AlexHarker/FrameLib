@@ -27,9 +27,9 @@
 
 class FrameLib_Global : public FrameLib_ErrorReporter
 {
-
     friend class FrameLib_Context;
-    
+    friend class FrameLib_ProcessingQueue;
+
 private:
 
     template <class T>
@@ -105,13 +105,14 @@ public:
      If the handle points to a nullptr, on return it will point to a valid FrameLib_Global object. Otherwise the reference count of the global object will be incremented. If a new global object is created it will use the object pointed to by notifier to report errors to the host.
      
      @param global a handle to a FrameLib_Global object.
+     @param priorities a set of values to set threading priorities.
      @param notifier a pointer to a class that extends FrameLib_ErrorReporter::HostNotifier.
 
      @sa release()
      
      */
     
-    static FrameLib_Global *get(FrameLib_Global **global, FrameLib_ErrorReporter::HostNotifier *notifier = nullptr);
+    static FrameLib_Global *get(FrameLib_Global **global, FrameLib_Thread::Priorities priorities, FrameLib_ErrorReporter::HostNotifier *notifier = nullptr);
     
     /** Release a FrameLib_Global object
      
@@ -128,8 +129,14 @@ private:
     
     // Constructor / Destructor
     
-    FrameLib_Global(FrameLib_ErrorReporter::HostNotifier *notifier)
-    : FrameLib_ErrorReporter(notifier), mAllocator(*this), mLocalAllocators(*this), mProcessingQueues(*this), mCount(0) {}
+    FrameLib_Global(FrameLib_Thread::Priorities priorities, FrameLib_ErrorReporter::HostNotifier *notifier)
+    : FrameLib_ErrorReporter(notifier), mAllocator(priorities, *this)
+    , mContextAllocators(*this)
+    , mProcessingQueues(*this)
+    , mPriorities(priorities)
+    , mCount(0)
+    {}
+    
     ~FrameLib_Global() {};
     
     // Non-copyable
@@ -142,9 +149,13 @@ private:
     void increment();
     FrameLib_Global *decrement();
     
-    // Conversion to allocator for initisation of local allocators
+    // Conversion to allocator for initialisation of context and local allocators
     
     operator FrameLib_GlobalAllocator& () { return mAllocator; }
+    
+    // Get thread priorities
+    
+    const FrameLib_Thread::Priorities& getPriorities() { return mPriorities; }
     
     // Member Variables
     
@@ -154,8 +165,12 @@ private:
     
     // Context-specific Resources
     
-    PointerSet<FrameLib_LocalAllocator> mLocalAllocators;
+    PointerSet<FrameLib_ContextAllocator> mContextAllocators;
     PointerSet<FrameLib_ProcessingQueue> mProcessingQueues;
+    
+    // Thread Priorities
+    
+    FrameLib_Thread::Priorities mPriorities;
     
     // Lock and Reference Count
     

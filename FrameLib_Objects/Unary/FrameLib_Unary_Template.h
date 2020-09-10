@@ -4,29 +4,32 @@
 
 #include "FrameLib_DSP.h"
 
-// OPT - vectorise where appropriate
-
 // Unary (Operator Version)
 
-template <typename Op> class FrameLib_UnaryOp final : public FrameLib_Processor
+template <typename Op>
+class FrameLib_UnaryOp final : public FrameLib_Processor
 {
-    
 public:
     
     // Constructor
     
-    FrameLib_UnaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 1) {}
+    FrameLib_UnaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+    : FrameLib_Processor(context, proxy, nullptr, 1, 1)
+    {
+        mParameters.set(serialisedParameters);
+    }
     
     // Info
     
     std::string objectInfo(bool verbose) override
     {
-        return formatInfo("Calculates the # of each value in the input frame: The output is a frame of the same size as the input.",
-                       "Calculates the # of each value in the input frame.", getOpString(), verbose);
+        return formatInfo("Calculates the # of each value in the input frame: "
+                          "The output is a frame of the same length as the input.",
+                          "Calculates the # of each value in the input frame.", getOpString(), verbose);
     }
 
     std::string inputInfo(unsigned long idx, bool verbose) override     { return "Input"; }
-    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Result"; }
+    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Output"; }
 
 private:
     
@@ -54,7 +57,7 @@ private:
 
 // Unary Functor
 
-template<double func(double)>
+template <double func(double)>
 struct Unary_Functor
 {
     double operator()(double x) { return func(x); }
@@ -62,7 +65,7 @@ struct Unary_Functor
 
 // Unary (Function Version)
 
-template<double func(double)>
+template <double func(double)>
 using FrameLib_Unary = FrameLib_UnaryOp<Unary_Functor<func>>;
 
 #endif

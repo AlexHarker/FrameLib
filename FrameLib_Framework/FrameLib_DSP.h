@@ -18,17 +18,31 @@
  
  @ingroup DSP
 
- @brief an abstract class containing the core of the DSP processing system, which handles single-stream scheduling.
+ @brief an abstract class containing the core of the DSP processing system, which handles single stream scheduling.
  
  */
 
-class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_DSP>
+class FrameLib_DSP
+: public FrameLib_Block
+, public FrameLib_MethodQueue<FrameLib_DSP>::Node
+, public FrameLib_ProcessingQueue::Node
 {
-    using Queue = FrameLib_Queueable<FrameLib_Block>::Queue;
-    using LocalQueue = FrameLib_Queueable<FrameLib_DSP>::Queue;
+    using BlockQueue = FrameLib_MethodQueue<FrameLib_Block>;
+    using LocalAllocator = FrameLib_LocalAllocator;
+    using LocalQueue = FrameLib_MethodQueue<FrameLib_DSP>;
+    using NotificationQueue = FrameLib_ProcessingQueue::PrepQueue;
     using Serial = FrameLib_Parameters::Serial;
     
     friend class FrameLib_ProcessingQueue;
+    friend class FrameLib_AudioQueue;
+    
+    enum NotificationType
+    {
+        kSelfConnection,
+        kOutputConnection,
+        kInputConnection,
+        kAudioBlock,
+    };
     
 protected:
     
@@ -133,6 +147,8 @@ public:
     
     // Audio Processing
     
+    uint64_t getBlockTime() const final { return mBlockEndTime.intVal(); }
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& queue) final;
     void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) final;
     void reset(double samplingRate, unsigned long maxBlockSize) final;
     
@@ -186,6 +202,9 @@ protected:
     FrameLib_TimeFormat getCurrentTime() const      { return getType() == kScheduler ? mValidTime : mFrameTime; }
     FrameLib_TimeFormat getBlockStartTime() const   { return getType() == kOutput ? mBlockEndTime : mBlockStartTime; }
     FrameLib_TimeFormat getBlockEndTime() const     { return mBlockEndTime; }
+    
+    FrameLib_TimeFormat getQueueBlockStartTime() const  { return mProcessingQueue->getBlockStartTime(); }
+    FrameLib_TimeFormat getQueueBlockEndTime() const    { return mProcessingQueue->getBlockEndTime(); }
     
     FrameLib_TimeFormat getInputFrameTime(unsigned long idx) const  { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : FrameLib_TimeFormat(0); }
     FrameLib_TimeFormat getInputValidTime(unsigned long idx) const  { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : FrameLib_TimeFormat(0); }
@@ -283,26 +302,28 @@ private:
     
     // Scheduling
     
-    // This returns true if the object requires notification from an audio thread (is a scheduler/has audio input)
+    // This returns true if the object needs notification from an audio thread (is a scheduler/has audio input)
     
-    bool requiresAudioNotification()    { return getType() == kScheduler || getNumAudioIns(); }
+    bool needsAudioNotification() { return getType() == kScheduler || getNumAudioIns(); }
     
     // Manage Output Memory
 
     inline void freeOutputMemory();
-    inline void releaseOutputMemory();
+    inline void releaseOutputMemory(LocalAllocator *allocator);
 
     // Dependency Notification
     
-    inline void dependencyNotify(bool releaseMemory, bool fromInput);
-    void dependenciesReady();
+    bool dependencyNotify(NotificationType type, bool releaseMemory, LocalAllocator *allocator);
+    void dependencyNotify(NotificationType type, bool releaseMemory, LocalAllocator *allocator, NotificationQueue &queue);
+    
+    void dependenciesReady(LocalAllocator *allocator);
     void incrementInputDependency();
     void resetOutputDependencyCount();
-    long getNumOuputDependencies()         { return static_cast<long>(mOutputDependencies.size()); }
+    int32_t getNumOuputDependencies()         { return static_cast<int32_t>(mOutputDependencies.size()); }
     
     // Connections
     
-    void connectionUpdate(Queue *queue) final;
+    void connectionUpdate(BlockQueue *queue) final;
     void autoOrderingConnections(LocalQueue *queue);
 
 protected:
@@ -323,7 +344,6 @@ private:
     // Processing Queue
     
     FrameLib_Context::ProcessingQueue mProcessingQueue;
-    FrameLib_DSP *mNext;
     
     // IO Info
     
@@ -335,9 +355,9 @@ private:
     
     // Dependency Counts
     
-    long mInputCount;
-    long mDependencyCount;
-    long mOutputMemoryCount;
+    std::atomic<int32_t> mInputCount;
+    std::atomic<int32_t> mDependencyCount;
+    std::atomic<int32_t> mOutputMemoryCount;
     
     // Frame and Block Timings
     
@@ -368,20 +388,19 @@ private:
 
 class FrameLib_Processor : public FrameLib_DSP
 {
-    
 public:
+    
+    static constexpr ObjectType sType = kProcessor;
+    static constexpr bool sHandlesAudio = false;
     
     FrameLib_Processor(FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0)
     : FrameLib_DSP(kProcessor, context, proxy, info, nIns, nOuts) {}
-    
-    static ObjectType getType() { return kProcessor; }
-    static bool handlesAudio()  { return false; }
 
 protected:
     
-    // This prevents the user from needing to implement this method - doing so will do nothing
+    // This prevents the user from needing to implement this method
     
-    virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) { return SchedulerInfo(); }
+    SchedulerInfo schedule(bool newFrame, bool noAdvance) final { return SchedulerInfo(); }
     
     void setIO(unsigned long nIns, unsigned long nOuts) { FrameLib_DSP::setIO(nIns, nOuts); }
 };
@@ -401,20 +420,19 @@ protected:
 
 class FrameLib_AudioInput : public FrameLib_DSP
 {
-    
 public:
+    
+    static constexpr ObjectType sType = kProcessor;
+    static constexpr bool sHandlesAudio = true;
     
     FrameLib_AudioInput(FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
     : FrameLib_DSP(kProcessor, context, proxy, info, nIns, nOuts, nAudioIns) {}
-
-    static ObjectType getType() { return kProcessor; }
-    static bool handlesAudio()  { return true; }
     
 protected:
     
-    // This prevents the user from needing to implement this method - doing so will do nothing
+    // This prevents the user from needing to implement this method
     
-    virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) { return SchedulerInfo(); }
+    SchedulerInfo schedule(bool newFrame, bool noAdvance) final { return SchedulerInfo(); }
 };
 
 
@@ -432,20 +450,19 @@ protected:
 
 class FrameLib_AudioOutput : public FrameLib_DSP
 {
-    
 public:
+    
+    static constexpr ObjectType sType = kOutput;
+    static constexpr bool sHandlesAudio = true;
     
     FrameLib_AudioOutput(FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioOuts = 0)
     : FrameLib_DSP(kOutput, context, proxy, info, nIns, nOuts, nAudioOuts) {}
-    
-    static ObjectType getType() { return kOutput; }
-    static bool handlesAudio()  { return true; }
-    
+
 protected:
     
-    // This prevents the user from needing to implement this method - doing so will do nothing
+    // This prevents the user from needing to implement this method
     
-    virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) { return SchedulerInfo(); }
+    SchedulerInfo schedule(bool newFrame, bool noAdvance) final { return SchedulerInfo(); }
 };
 
 
@@ -463,20 +480,19 @@ protected:
 
 class FrameLib_Scheduler : public FrameLib_DSP
 {
-
 public:
+    
+    static constexpr ObjectType sType = kScheduler;
+    static constexpr bool sHandlesAudio = true;
     
     FrameLib_Scheduler(FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
     : FrameLib_DSP(kScheduler, context, proxy, info, nIns, nOuts, nAudioIns) {}
     
-    static ObjectType getType() { return kScheduler; }
-    static bool handlesAudio()  { return true; }
-    
 protected:
 
-    // This prevents the user from needing to implement this method - doing so will do nothing
+    // This prevents the user from needing to implement this method
     
-    virtual void process() {}
+    void process() final {}
 };
 
 #endif

@@ -2,9 +2,9 @@
 	"patcher" : 	{
 		"fileversion" : 1,
 		"appversion" : 		{
-			"major" : 8,
-			"minor" : 0,
-			"revision" : 0,
+			"major" : 7,
+			"minor" : 3,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -155,7 +155,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 160.0, 575.0, 42.0, 22.0 ],
+					"patching_rect" : [ 201.0, 587.0, 42.0, 22.0 ],
 					"presentation_rect" : [ 160.0, 575.0, 42.0, 22.0 ],
 					"style" : "",
 					"text" : "*~ 0.3"
@@ -284,9 +284,8 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 31.0, 460.0, 132.0, 22.0 ],
-					"presentation_rect" : [ 31.0, 460.0, 132.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.0dfsvf~ 500. 0.75 bpf"
+					"text" : "fl.svf~ 500. 0.75 bpf"
 				}
 
 			}
@@ -296,7 +295,7 @@
 					"maxclass" : "ezdac~",
 					"numinlets" : 2,
 					"numoutlets" : 0,
-					"patching_rect" : [ 178.0, 623.0, 45.0, 45.0 ],
+					"patching_rect" : [ 178.0, 630.0, 45.0, 45.0 ],
 					"presentation_rect" : [ 178.0, 623.0, 45.0, 45.0 ],
 					"style" : ""
 				}
@@ -309,7 +308,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 31.0, 575.0, 42.0, 22.0 ],
+					"patching_rect" : [ 31.0, 582.0, 42.0, 22.0 ],
 					"presentation_rect" : [ 31.0, 575.0, 42.0, 22.0 ],
 					"style" : "",
 					"text" : "*~ 0.3"
@@ -351,7 +350,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 178.0, 709.0, 133.0, 22.0 ],
+					"patching_rect" : [ 178.0, 716.0, 133.0, 22.0 ],
 					"presentation_rect" : [ 178.0, 709.0, 133.0, 22.0 ],
 					"style" : "",
 					"text" : "buffer~ jongol jongly.aif"
@@ -436,7 +435,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
-					"patching_rect" : [ 31.0, 545.0, 172.0, 22.0 ],
+					"patching_rect" : [ 32.0, 547.0, 188.0, 22.0 ],
 					"presentation_rect" : [ 31.0, 545.0, 172.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.sink~ =2 /buffer_size 720000"
@@ -449,7 +448,7 @@
 					"maxclass" : "scope~",
 					"numinlets" : 2,
 					"numoutlets" : 0,
-					"patching_rect" : [ 31.0, 612.0, 130.0, 130.0 ],
+					"patching_rect" : [ 31.0, 619.0, 130.0, 130.0 ],
 					"presentation_rect" : [ 31.0, 612.0, 130.0, 130.0 ],
 					"style" : ""
 				}
@@ -506,9 +505,8 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 31.0, 255.0, 174.0, 22.0 ],
-					"presentation_rect" : [ 31.0, 255.0, 174.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.map~ exp 0 1 1200 20 /clip 0"
+					"text" : "fl.map~ exp 0 1 1200 90 /clip 0"
 				}
 
 			}
@@ -769,7 +767,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-23", 0 ],
-					"midpoints" : [ 40.5, 607.5, 187.5, 607.5 ],
+					"midpoints" : [ 40.5, 614.5, 187.5, 614.5 ],
 					"order" : 0,
 					"source" : [ "obj-22", 0 ]
 				}
@@ -842,7 +840,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-23", 1 ],
-					"midpoints" : [ 169.5, 602.5, 213.5, 602.5 ],
+					"midpoints" : [ 210.5, 609.5, 213.5, 609.5 ],
 					"source" : [ "obj-34", 0 ]
 				}
 
@@ -1027,7 +1025,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.0dfsvf~.mxo",
+				"name" : "fl.svf~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

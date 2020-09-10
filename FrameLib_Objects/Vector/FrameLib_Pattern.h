@@ -6,16 +6,18 @@
 
 class FrameLib_Pattern final : public FrameLib_Processor
 {
-    enum ParameterList { kMode };
-    enum Modes { kOnce, kLoop };
-    
+    enum ParameterList { kMode, kDirection, kReset, kIdleMode };
+    enum Modes { kRun, kLoop, kPause, kStop };
+    enum Direction { kForward, kBackward };
+    enum IdleModes { kRepeat, kEmpty };
+
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
     
     // Constructor
 
-    FrameLib_Pattern(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_Pattern(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     
@@ -35,8 +37,9 @@ private:
     
     // Data
     
-    FrameLib_TimeFormat mLastPatternTime;
-    unsigned long mPosition;
+    FrameLib_TimeFormat mLastResetTime;
+    
+    long mPosition;
     
     static ParameterInfo sParamInfo;
 };

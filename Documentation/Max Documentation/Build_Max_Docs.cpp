@@ -163,7 +163,7 @@ int main()
     // Create a Global, Proxy, Context and Parameters
     
     FrameLib_Global *global = nullptr;
-    FrameLib_Global::get(&global);
+    FrameLib_Global::get(&global, FrameLib_Thread::defaultPriorities());
     FrameLib_Proxy *proxy = new FrameLib_Proxy();
     FrameLib_Context context(global, nullptr);
     FrameLib_Parameters::AutoSerial parameters;

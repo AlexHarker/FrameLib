@@ -5,15 +5,13 @@
 #include "FrameLib_DSP.h"
 #include "../../FrameLib_Dependencies/TableReader.hpp"
 
-// FIX - consider adding anti-alising later....
-
 class FrameLib_Read final : public FrameLib_Processor
 {
     // Parameter Info and Enums
     
-    enum ParameterList { kBuffer, kChannel, kInterpolation, kUnits };
-    enum Interpolation { kHermite, kBSpline, kLagrange, kLinear, kNone };
-    enum Units { kMS, kSeconds, kSamples };
+    enum ParameterList { kBuffer, kChannel, kUnits, kInterpolation, kEdges, kBound };
+    enum Interpolation { kNone, kLinear, kHermite, kBSpline, kLagrange };
+    enum Units { kSamples, kMS, kSeconds, kNormalised };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -34,12 +32,16 @@ public:
         
         // Read
         
-        virtual void read(double *output, const double *positions, unsigned long size, long chan, InterpType interpType) = 0;
+        virtual void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeType edges, bool bound) = 0;
+        
+        // Clone (we need unique instances per object for threading reasons)
+        
+        virtual Proxy *clone() const = 0;
     };
     
     // Constructor
     
-    FrameLib_Read(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     
@@ -56,10 +58,7 @@ private:
     
     // Data
     
-    long mChan;
-    Interpolation mInterpolation;
-    Units mUnits;
-    Proxy *mProxy;
+    std::unique_ptr<Proxy> mProxy;
 
     static ParameterInfo sParamInfo;
 };

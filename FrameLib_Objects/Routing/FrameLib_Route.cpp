@@ -5,10 +5,14 @@
 
 // Constructor
 
-FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long num) : FrameLib_Processor(context, proxy, nullptr, 2, 1), mValveNumber(num)
+FrameLib_Route::Valve::Valve(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long num)
+: FrameLib_Processor(context, proxy, nullptr, 2, 1)
+, mValveNumber(num)
 {
     mParameters.addInt(kActiveValve, "output", 0);
 
+    // FIX - this means that we don't get errors at all... this needs review
+    
     mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
     
@@ -39,8 +43,9 @@ void FrameLib_Route::Valve::process()
 
 // Constructor
 
-FrameLib_Route::FrameLib_Route(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Block(kProcessor, context, proxy), mParameters(context, proxy, &sParamInfo)
+FrameLib_Route::FrameLib_Route(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Block(kProcessor, context, proxy)
+, mParameters(context, proxy, &sParamInfo)
 {
     mParameters.addDouble(kNumOuts, "num_outs", 2, 0);
     mParameters.setClip(2, 32);
@@ -67,16 +72,18 @@ FrameLib_Route::FrameLib_Route(FrameLib_Context context, FrameLib_Parameters::Se
 
 std::string FrameLib_Route::objectInfo(bool verbose)
 {
-    return formatInfo("Routes input frames to one of a number of outputs: The number of outputs is variable. The selected output can be changed with a parameter.",
-                      "Routes input frames to one of a number of outputs.", verbose);
+    return formatInfo("Routes the input to one of a number of outputs: "
+                      "The number of outputs is variable. "
+                      "The selected output can be changed with a parameter.",
+                      "Routes the input to one of a number of outputs.", verbose);
 }
 
 std::string FrameLib_Route::inputInfo(unsigned long idx, bool verbose)
 {
-    if (idx == mNumOuts)
+    if (idx)
         return parameterInputInfo(verbose);
     else
-        return "Input Frames";
+        return "Input";
 }
 
 std::string FrameLib_Route::outputInfo(unsigned long idx, bool verbose)

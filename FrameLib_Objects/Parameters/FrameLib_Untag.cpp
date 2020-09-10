@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo)
+FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo)
 {
     const int strBufSize = 10;
 

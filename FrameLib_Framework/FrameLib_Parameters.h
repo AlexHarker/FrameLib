@@ -50,7 +50,6 @@ public:
     
     class Serial
     {
-        
     public:
         
         // N.B. the assumption is that double is the largest type in use
@@ -111,7 +110,7 @@ public:
             
             // Match Tag
             
-            bool matchTag(const char *tag) const    {return !strcmp(tag, getTag()); }
+            bool matchTag(const char *tag) const    { return !strcmp(tag, getTag()); }
             
             // Reads
             
@@ -146,11 +145,13 @@ public:
         Serial(BytePointer ptr, unsigned long size);
         Serial();
         
-        // Non-copyable
+        // Non-copyable but movable
         
         Serial(const Serial&) = delete;
         Serial& operator=(const Serial&) = delete;
-        
+        Serial(Serial&&) = default;
+        Serial& operator=(Serial&&) = default;
+    
         // Size Calculations
         
         static unsigned long calcSize(const Serial *serialised)             { return serialised != nullptr ? serialised->mSize : 0; }
@@ -181,7 +182,7 @@ public:
         
         // Find Item
         
-        Iterator find(const char *tag)  const;
+        Iterator find(const char *tag) const;
         
         // Utility
         
@@ -273,6 +274,11 @@ public:
         AutoSerial(const char *tag, const double *values, unsigned long N)  { write(tag, values, N); }
         ~AutoSerial() { if (mPtr) delete[] mPtr; }
         
+        // Make movable
+        
+        AutoSerial(AutoSerial&&) = default;
+        AutoSerial& operator=(AutoSerial&&) = default;
+        
         // Write Items
         
         void write(const Serial *serialised)                                { if (checkSize(calcSize(serialised))) Serial::write(serialised); }
@@ -294,7 +300,6 @@ public:
     
     class Info
     {
-        
     public:
         
         void add(const char *str)               { mInfoStrings.push_back(str); }
@@ -318,7 +323,6 @@ private:
     
     class Parameter
     {
-        
     public:
         
         enum Flags { kFlagInstantiation = 0x1, kFlagBool = 0x2, kFlagInteger = 0x4, kFlagNonNumeric = 0x8 };
@@ -330,7 +334,7 @@ private:
         
         // Setters
         
-        virtual void addEnumItem(const char *str);
+        virtual void addEnumItem(unsigned long idx, const char *str, bool setAsDefault);
         
         void setInstantiation()                         { mFlags |= kFlagInstantiation; }
         void setBoolOnly()                              { mFlags |= kFlagBool | kFlagInteger; }
@@ -402,28 +406,27 @@ private:
     
     class Enum final : public Parameter
     {
-        
     public:
         
         Enum(const char *name, long argumentIdx);
         
         // Setters
         
-        void addEnumItem(const char *str) override;
+        void addEnumItem(unsigned long idx, const char *str, bool setAsDefault) override;
         
         SetError set(double value) override;
         SetError set(double *values, unsigned long N) override;
-        virtual SetError set(const char *str) override;
+        SetError set(const char *str) override;
         
         void clear() override { Enum::set(0.0); }
         
-        virtual Type type() override { return kEnum; }
+        Type type() override { return kEnum; }
         
         // Getters
         
-        virtual double getValue() const override                                { return mValue; }
-        virtual const char *getString() const override                          { return mItems[mValue].c_str(); }
-        virtual const char *getItemString(unsigned long item) const override    { return mItems[item].c_str(); }
+        double getValue() const override                                { return mValue; }
+        const char *getString() const override                          { return mItems[mValue].c_str(); }
+        const char *getItemString(unsigned long item) const override    { return mItems[item].c_str(); }
         
     private:
         
@@ -441,7 +444,6 @@ private:
     
     class Value final : public Parameter
     {
-        
     public:
         
         Value(const char *name, long argumentIdx, double defaultValue) : Parameter(name, argumentIdx), mValue(defaultValue)
@@ -510,7 +512,6 @@ private:
     
     class Array final : public Parameter, private std::vector<double>
     {
-        
     public:
         
         Array(const char *name, long argumentIdx, double defaultValue, unsigned long size);
@@ -619,9 +620,9 @@ public:
         addParameter(index, new Enum(name, argumentIdx));
     }
     
-    void addEnumItem(unsigned long index, const char *str)
+    void addEnumItem(unsigned long index, const char *str, bool setAsDefault = false)
     {
-        mParameters.back()->addEnumItem(str);
+        mParameters.back()->addEnumItem(index, str, setAsDefault);
     }
     
     void addBoolArray(unsigned long index, const char *name, bool defaultValue, unsigned long size, long argumentIdx = -1)
@@ -672,7 +673,7 @@ public:
     
     // Set Value
     
-    void set(Serial *serialised)                                { if (serialised) serialised->read(this); }
+    void set(const Serial *serialised)                          { if (serialised) serialised->read(this); }
     
     void set(unsigned long idx, bool value)                     { set(idx, (double) value); }
     void set(const char *name, bool value)                      { set(name, (double) value); }
@@ -759,11 +760,16 @@ public:
     double getValue(unsigned long idx) const                                { return mParameters[idx]->getValue(); }
     double getValue(const char *name) const                                 { return getValue(getIdx(name)); }
     
-    long getInt(unsigned long idx) const                                    { return (long) getValue(idx); }
+    long getInt(unsigned long idx) const                                    { return static_cast<long>(getValue(idx)); }
     long getInt(const char *name) const                                     { return getInt(getIdx(name)); }
     
-    long getBool(unsigned long idx) const                                   { return (bool) getValue(idx); }
-    bool getBool(const char *name) const                                    { return (bool) getValue(getIdx(name)); }
+    bool getBool(unsigned long idx) const                                   { return static_cast<bool>(getValue(idx)); }
+    bool getBool(const char *name) const                                    { return getBool(getIdx(name)); }
+    
+    template <typename T>
+    T getEnum(unsigned long idx) const                                      { return static_cast<T>(getValue(idx)); }
+    template <typename T>
+    T getEnum(const char *name) const                                       { return getEnum<T>(getIdx(name)); }
     
     const char *getString(unsigned long idx) const                          { return mParameters[idx]->getString(); }
     const char *getString(const char *name) const                           { return getString(getIdx(name)); }
@@ -794,22 +800,22 @@ private:
             switch (error)
             {
                 case kUnknownArgument:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "argument # out of range", idx + 1);
+                    mErrorReporter(kErrorParameter, mProxy, "argument # out of range", idx + 1);
                     break;
                 case kUnknownParameter:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "no parameter named '#'", arg);
+                    mErrorReporter(kErrorParameter, mProxy, "no parameter named '#'", arg);
                     break;
                 case kParameterNotSetByNumber:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "parameter '#' cannot be set by a number", mParameters[idx]->name());
+                    mErrorReporter(kErrorParameter, mProxy, "parameter '#' cannot be set by a number", mParameters[idx]->name());
                     break;
                 case kParameterNotSetByString:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "parameter '#' cannot be set by a string", mParameters[idx]->name());
+                    mErrorReporter(kErrorParameter, mProxy, "parameter '#' cannot be set by a string", mParameters[idx]->name());
                     break;
                 case kEnumUnknownIndex:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "enum parameter '#' does not contain an item numbered #", mParameters[idx]->name(), arg);
+                    mErrorReporter(kErrorParameter, mProxy, "enum parameter '#' does not contain an item numbered #", mParameters[idx]->name(), arg);
                     break;
                 case kEnumUnknownString:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "enum parameter '#' does not contain an item named '#'", mParameters[idx]->name(), arg);
+                    mErrorReporter(kErrorParameter, mProxy, "enum parameter '#' does not contain an item named '#'", mParameters[idx]->name(), arg);
                     break;
                 default:
                     break;

@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_ParamAlias::FrameLib_ParamAlias(FrameLib_Context context, unsigned long numOuts, FrameLib_Proxy *proxy, Parameters::Info *info) : FrameLib_Processor(context, proxy, info)
+FrameLib_ParamAlias::FrameLib_ParamAlias(FrameLib_Context context, unsigned long numOuts, FrameLib_Proxy *proxy, Parameters::Info *info)
+: FrameLib_Processor(context, proxy, info)
 {
     setIO(0, numOuts);
     addParameterInput();
@@ -165,7 +166,7 @@ std::string FrameLib_ParamAlias::outputInfo(unsigned long idx, bool verbose)
 void FrameLib_ParamAlias::process()
 {    
     const Serial *parametersIn = getInput(0);
-    Alias **matches = alloc<Alias *>(parametersIn ? parametersIn->numTags() : 0);
+    auto matches = allocAutoArray<Alias *>(parametersIn ? parametersIn->numTags() : 0);
 
     // Request zero sized outputs
     
@@ -203,6 +204,4 @@ void FrameLib_ParamAlias::process()
                 it.alias(getOutput(alias->mIndex), alias->mOutTag.c_str());
         }
     }
-    
-    dealloc(matches);
 }

@@ -9,14 +9,14 @@ class FrameLib_MaxClass_ToMax : public FrameLib_MaxClass_Expand<FrameLib_ToHost>
 {
     struct ToHostProxy : public FrameLib_ToHost::Proxy, public FrameLib_MaxProxy
     {
-        ToHostProxy(FrameLib_MaxClass_ToMax *object) : mObject(object){}
+        ToHostProxy(FrameLib_MaxClass_ToMax *object) : mObject(object) {}
         
-        void sendToHost(FrameLib_DSP::Allocator &allocator, unsigned long index, unsigned long stream, const double *values, unsigned long N)  override;
-        void sendToHost(FrameLib_DSP::Allocator &allocator, unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial)  override;
+        void sendToHost(unsigned long index, unsigned long stream, const double *values, unsigned long N, FrameLib_TimeFormat time)  override;
+        void sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial, FrameLib_TimeFormat time)  override;
+        
+        void sendMessage(unsigned long stream, t_symbol *s, short ac, t_atom *av) override;
         
     private:
-        
-        unsigned long limitSize(unsigned long N) { return std::min(N, 32767UL); }
         
         FrameLib_MaxClass_ToMax *mObject;
     };
@@ -29,95 +29,39 @@ public:
     
     // Constructor
     
-    FrameLib_MaxClass_ToMax(t_symbol *s, long argc, t_atom *argv);
-    
-    // Send to the Outlet
-    
-    static void toOutletExternal(FrameLib_MaxClass_ToMax *x, t_symbol *s, short ac, t_atom *av) { x->toOutlet(s, ac, av); }
-    
-    void toOutlet(t_symbol *s, short ac, t_atom *av);
+    FrameLib_MaxClass_ToMax(t_object *x, t_symbol *s, long argc, t_atom *argv);
     
 private:
     
     // Data
     
+    ToHostProxy *mProxy;
     std::vector<void *> mOutlets;
 };
 
 // Proxy Class
 
-void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(FrameLib_DSP::Allocator &allocator, unsigned long index, unsigned long stream, const double *values, unsigned long N)
+void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsigned long stream, const double *values, unsigned long N, FrameLib_TimeFormat time)
 {
-    method outletMethod = (method) &FrameLib_MaxClass_ToMax::toOutletExternal;
-    
-    N = limitSize(N + 1);
-    t_atom *output = allocator.allocate<t_atom>(N);
-    
-    if (output)
-    {
-        atom_setlong(output, stream);
-        
-        for (unsigned long i = 1; i < N; i++)
-            atom_setfloat(output + i, values[i - 1]);
-        
-        schedule_delay(mObject, outletMethod, 0, nullptr, static_cast<short>(N), output);
-        
-        allocator.deallocate(output);
-    }
+    mObject->getHandler()->add(MessageInfo(this, time, reinterpret_cast<t_ptr_uint>(this), stream), values, N);
 }
 
-void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(FrameLib_DSP::Allocator &allocator, unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial)
+void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial, FrameLib_TimeFormat time)
 {
-    method outletMethod = (method) &FrameLib_MaxClass_ToMax::toOutletExternal;
+    mObject->getHandler()->add(MessageInfo(this, time, reinterpret_cast<t_ptr_uint>(this), stream), serial);
+}
 
-    // Determine maximum required size
+void FrameLib_MaxClass_ToMax::ToHostProxy::sendMessage(unsigned long stream, t_symbol *s, short ac, t_atom *av)
+{
+    auto& outlets = mObject->mOutlets;
+    unsigned long idx = stream % outlets.size();
     
-    unsigned long maxSize = 0;
-    
-    for (auto it = serial->begin(); it != serial->end(); it++)
-    {
-        if (it.getType() == kVector)
-        {
-            unsigned long size = it.getVectorSize();
-            maxSize = std::max(size, maxSize);
-        }
-    }
-    
-    maxSize = std::max(limitSize(maxSize + 1), 2UL);
-    t_atom *output = allocator.allocate<t_atom>(maxSize);
-
-    if (!output)
-        return;
-    
-    // Store stream
-    
-    atom_setlong(output + 0, stream);
-
-    // Iterate over tags
-    
-    for (auto it = serial->begin(); it != serial->end(); it++)
-    {
-        t_symbol *tag = gensym(it.getTag());
-        unsigned long size = 0;
-        
-        if (it.getType() == kVector)
-        {
-            const double *vector = it.getVector(&size);
-            size = size >= maxSize ? maxSize : size + 1;
-            
-            for (unsigned long i = 1; i < size; i++)
-                atom_setfloat(output + i, vector[i - 1]);
-        }
-        else
-        {
-            size = 2;
-            atom_setsym(output + 1, gensym(it.getString()));
-        }
-        
-        schedule_delay(mObject, outletMethod, 0, tag, static_cast<short>(size), output);
-    }
-    
-    allocator.deallocate(output);
+    if (s)
+        outlet_anything(outlets[idx], s, ac, av);
+    else if (!ac)
+        outlet_bang(outlets[idx]);
+    else
+        outlet_list(outlets[idx], nullptr, ac, av);
 }
 
 // Max Class
@@ -131,30 +75,17 @@ void FrameLib_MaxClass_ToMax::classInit(t_class *c, t_symbol *nameSpace, const c
 
 // Constructor
 
-FrameLib_MaxClass_ToMax::FrameLib_MaxClass_ToMax(t_symbol *s, long argc, t_atom *argv)
-    : FrameLib_MaxClass(s, argc, argv, new ToHostProxy(this))
+FrameLib_MaxClass_ToMax::FrameLib_MaxClass_ToMax(t_object *x, t_symbol *s, long argc, t_atom *argv)
+: FrameLib_MaxClass(x, s, argc, argv, new ToHostProxy(this))
 {
-    unsigned long nStreams = getNumStreams();
+    unsigned long nStreams = getSpecifiedStreams();
     
     mOutlets.resize(nStreams);
     
     for (unsigned long i = nStreams; i > 0; i--)
         mOutlets[i - 1] = outlet_new(this, 0L);
-}
-
-// To Outlet
-
-void FrameLib_MaxClass_ToMax::toOutlet(t_symbol *s, short ac, t_atom *av)
-{
-    t_atom_long idx = atom_getlong(av) % static_cast<t_atom_long>(mOutlets.size());
-    ac--;
     
-    if (!ac)
-        outlet_bang(mOutlets[idx]);
-    else if (s)
-        outlet_anything(mOutlets[idx], s, ac, av + 1);
-    else
-        outlet_list(mOutlets[idx], nullptr, ac, av + 1);
+    mProxy = dynamic_cast<ToHostProxy *>(mFrameLibProxy.get());
 }
 
 // Assist
@@ -167,7 +98,6 @@ void FrameLib_MaxClass_Expand<FrameLib_ToHost>::assist(void *b, long m, long a, 
     else
         sprintf(s,"(frame) %s", mObject->inputInfo(a).c_str());
 }
-
 
 // Main
 

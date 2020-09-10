@@ -1,9 +1,10 @@
 
 #include "FrameLib_Store.h"
 
-// Constructor / Destructor
+// Constructor
 
-FrameLib_Store::FrameLib_Store(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+FrameLib_Store::FrameLib_Store(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.addString(kName, "name", 0);
     mParameters.setInstantiation();
@@ -19,37 +20,30 @@ FrameLib_Store::FrameLib_Store(FrameLib_Context context, FrameLib_Parameters::Se
     setOutputType(0, kFrameAny);
 }
 
-FrameLib_Store::~FrameLib_Store()
-{
-    releaseStorage(mStorage);
-}
-
 // Info
 
 std::string FrameLib_Store::objectInfo(bool verbose)
 {
-    return formatInfo("Stores a vector frame in named memory for recall: The output can be used to control ordering/synchronisation.",
-                   "Stores a vector frame in named memory for recall.", verbose);
+    return formatInfo("Stores frames remotely for later recall: "
+                      "The storage location is determined by the name parameter. "
+                      "The output / ordering input can be used to explicitly control ordering between related objects.",
+                      "Stores frames remotely for later recall.", verbose);
 }
 
 std::string FrameLib_Store::inputInfo(unsigned long idx, bool verbose)
 {
-    if (idx)
-        return formatInfo("Synchronisation Input - use to control ordering", "Synchronisation Input", verbose);
-    else
-        return "Input to Store";
+    return "Input to Store";
 }
 
 std::string FrameLib_Store::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Synchronisation Output";
+    return formatInfo("Ordering Output - used to control ordering", "Ordering Output", verbose);;
 }
 
 // Stream Awareness
 
 void FrameLib_Store::setStream(void *streamOwner, unsigned long stream)
 {
-    releaseStorage(mStorage);
     mStorage = registerStorage(numberedString(mName.c_str(), stream).c_str());
 }
 
@@ -59,14 +53,14 @@ FrameLib_Store::ParameterInfo FrameLib_Store::sParamInfo;
 
 FrameLib_Store::ParameterInfo::ParameterInfo()
 {
-    add("Sets the name of the memory location to use.");
+    add("Sets the name of the storage to use.");
 }
 
 // Object Rest
 
 void FrameLib_Store::objectReset()
 {
-    FrameLib_LocalAllocator::Storage::Access access(mStorage);
+    FrameLib_ContextAllocator::Storage::Access access(mStorage);
 
     access.resize(false, 0);
 }
@@ -77,7 +71,7 @@ void FrameLib_Store::process()
 {
     // Threadsafety
     
-    FrameLib_LocalAllocator::Storage::Access access(mStorage);
+    FrameLib_ContextAllocator::Storage::Access access(mStorage);
 
     // Resize storage
     

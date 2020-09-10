@@ -65,13 +65,13 @@ double FrameLib_RandGen::randDouble(double lo, double hi)
     return lo + randDouble() * (hi - lo);
 }
 
-// Return a 32 bit Random Double of Gaussian Distribution with given Mean / Deviation
+// Gaussian Helper
 
-double FrameLib_RandGen::randGaussian(double mean, double dev)
+void FrameLib_RandGen::randGaussians(double& x, double& y, double& R)
 {
-    double x = 0.0;
-    double y = 0.0;
-    double R = 0.0;
+    x = 0.0;
+    y = 0.0;
+    R = 0.0;
     
     while (R >= 1.0 || R == 0.0)
     {
@@ -80,9 +80,30 @@ double FrameLib_RandGen::randGaussian(double mean, double dev)
         R = (x * x) + (y * y);
     }
     
-    R = sqrt ((-2.0 * log(R)) / R);
+    R = sqrt((-2.0 * log(R)) / R);
+}
+
+// Return a 32 bit Random Double of Gaussian Distribution with given Mean / Deviation
+
+double FrameLib_RandGen::randGaussian(double mean, double dev)
+{
+    double x, y, R;
+    
+    randGaussians(x, y, R);
     
     return (R * x) * dev + mean;
+}
+
+// Generate two independent gaussians (Mean 0 and Deviation 1)
+
+void FrameLib_RandGen::randGaussians(double& x, double& y)
+{
+    double R;
+    
+    randGaussians(x, y, R);
+    
+    x *= R;
+    y *= R;
 }
 
 // Methods Specific to the RNG Algorithm

@@ -1,7 +1,7 @@
 
 #include "SC_PlugIn.h"
+#include "../FrameLib_Exports/FrameLib_Objects.h"
 
-#include "FrameLib_Objects.h"
 
 static InterfaceTable *ft;
 
@@ -48,7 +48,7 @@ struct SC_FrameLib_Global
     
     SC_FrameLib_Global() : mGlobal(nullptr)
     {
-        FrameLib_Global::get(&mGlobal, &mNotifier);
+        FrameLib_Global::get(&mGlobal, DEFAULT_THREAD_PRIORITIES, &mNotifier);
         mCalcFunc = (UnitCalcFunc) CalcFunc;
     }
     
@@ -232,16 +232,15 @@ struct ReadProxy : public FrameLib_Read::Proxy
     
     struct fetch : public table_fetcher<double>
     {
-        fetch(float *data, int length)
-        : table_fetcher(1.0), mData(data), mLength(length) {}
+        fetch(float *data, intptr_t size)
+        : table_fetcher(size, 1.0), mData(data) {}
         
         float operator()(intptr_t offset)
         {
-            return (offset < 0 || offset >= mLength) ? 0.f : mData[offset];
+            return mData[offset];
         }
         
         float *mData;
-        int mLength;
     };
     
     void update(const char *name) override
@@ -276,13 +275,18 @@ struct ReadProxy : public FrameLib_Read::Proxy
         //RELEASE_SNDBUF(mBuffer);
     }
     
-    void read(double *output, const double *positions, unsigned long size, long chan, InterpType interpType)  override
+    void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeType edges, bool bound) override
     {
         if (mBuffer)
         {
             chan = std::max(0L, std::min(chan, static_cast<long>(mBuffer->channels - 1)));
-            table_read(fetch(mBuffer->data, mBuffer->frames), output, positions, size, 1.0, interpType);
+            table_read_edges(fetch(mBuffer->data, mBuffer->frames), output, positions, size, 1.0, interp, edges, bound);
         }
+    }
+    
+    FrameLib_Read::Proxy *clone() const override
+    {
+        return new ReadProxy(*this);
     }
     
 private:
@@ -321,7 +325,7 @@ void FLTest_Ctor(FrameLib_SC_UGen* unit)
     int nStreams = 1;
     unit->mObject = new T(context, paramUGen->mSerial, unit->mProxy, nStreams);
     unit->mAudioBuffers = nullptr;
-    bool handlesAudio = T::handlesAudio();
+    bool handlesAudio = T::sHandlesAudio;
     
     unsigned long numUnitIns = unit->mNumInputs;
     unsigned long numAudioIns = unit->mObject->getNumAudioIns();
@@ -543,9 +547,9 @@ PluginLoad(FrameLib)
     
     // Binary Operators
     
+    DefineFrameLibExpUnit<FrameLib_Add>("FLAdd");
+    DefineFrameLibExpUnit<FrameLib_Subtract>("FLSub");
     DefineFrameLibExpUnit<FrameLib_Multiply>("FLMul");
-    DefineFrameLibExpUnit<FrameLib_Plus>("FLAdd");
-    DefineFrameLibExpUnit<FrameLib_Minus>("FLSub");
     DefineFrameLibExpUnit<FrameLib_Divide>("FLDiv");
     
     DefineFrameLibExpUnit<FrameLib_Pow>("FLPow");

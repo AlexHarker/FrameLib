@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_Convert::FrameLib_Convert(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_Convert::FrameLib_Convert(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kDBtoA, "db->amp");
@@ -64,16 +65,16 @@ FrameLib_Convert::ParameterInfo::ParameterInfo()
 
 void FrameLib_Convert::setScaling()
 {
-    switch (static_cast<Modes>(mParameters.getInt(kMode)))
+    switch (mParameters.getEnum<Modes>(kMode))
     {
-        case kDBtoA:            setDBToAmplitude();         break;
-        case kAtoDB:            setAmplitudeToDB();         break;
-        case kMtoF:             setMIDIToFreq();            break;
-        case kFtoM:             setFreqToMIDI();            break;
-        case kSemiToRatio:      setSemitonesToRatio();      break;
-        case kRatioToSemi:      setRatioToSemitones();      break;
-        case kDegToRad:         setDegreesToRadians();      break;
-        case kRadToDeg:         setRadiansToDegrees();      break;
+        case kDBtoA:            mConvertor.setDBToAmplitude();         break;
+        case kAtoDB:            mConvertor.setAmplitudeToDB();         break;
+        case kMtoF:             mConvertor.setMIDIToFreq();            break;
+        case kFtoM:             mConvertor.setFreqToMIDI();            break;
+        case kSemiToRatio:      mConvertor.setSemitonesToRatio();      break;
+        case kRatioToSemi:      mConvertor.setRatioToSemitones();      break;
+        case kDegToRad:         mConvertor.setDegreesToRadians();      break;
+        case kRadToDeg:         mConvertor.setRadiansToDegrees();      break;
     }
 }
 
@@ -95,5 +96,5 @@ void FrameLib_Convert::process()
     
     double *output = getOutput(0, &size);
         
-    scale(output, input, size);
+    mConvertor.scale(output, input, size);
 }

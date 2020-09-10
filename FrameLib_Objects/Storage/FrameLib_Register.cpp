@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_Register::FrameLib_Register(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_Register::FrameLib_Register(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kStore, "store");
@@ -12,7 +13,7 @@ FrameLib_Register::FrameLib_Register(FrameLib_Context context, FrameLib_Paramete
         
     mParameters.set(serialisedParameters);
     
-    Modes mode = (Modes) mParameters.getInt(kMode);
+    Modes mode = mParameters.getEnum<Modes>(kMode);
     
     if (mode == kStore)
         setInputMode(1, false, false, false, kFrameAny);
@@ -24,21 +25,23 @@ FrameLib_Register::FrameLib_Register(FrameLib_Context context, FrameLib_Paramete
 
 std::string FrameLib_Register::objectInfo(bool verbose)
 {
-    return formatInfo("Store and recall a vector frame locally: The left input triggers recall, whilst the right input stores (with or without output).",
-                   "Store and recall a vector frame locally.", verbose);
+    return formatInfo("Store and recall frames locally: "
+                      "The left input triggers recall, whilst the right input stores a frame. "
+                      "The mode paramter is used to set whether the right input causes output.",
+                      "Store and recall frames locally.", verbose);
 }
 
 std::string FrameLib_Register::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return formatInfo("Frame to Store - output is optional based on the mode parameter", "Frame to Store", verbose);
+        return "Frame to Store";
     else
-        return formatInfo("Trigger Input", "Trigger Input", verbose);
+        return "Trigger Input";
 }
 
 std::string FrameLib_Register::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Frames";
+    return "Output";
 }
 
 // Parameter Info

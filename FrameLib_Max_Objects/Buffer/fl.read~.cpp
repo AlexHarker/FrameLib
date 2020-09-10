@@ -28,10 +28,18 @@ class FrameLib_MaxClass_Read : public FrameLib_MaxClass_Expand<FrameLib_Read>
             mBuffer.release();
         };
         
-        void read(double *output, const double *positions, unsigned long size, long chan, InterpType interpType)  override
+        void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeType edges, bool bound) override
         {
             chan = std::max(0L, std::min(chan, static_cast<long>(mBuffer.get_num_chans() - 1)));
-            ibuffer_read(mBuffer, output, positions, size, chan, 1.0, interpType);
+            ibuffer_read_edges(mBuffer, output, positions, size, chan, 1.0, interp, edges, bound);
+        }
+        
+        FrameLib_Read::Proxy *clone() const override
+        {
+            ReadProxy *proxy = new ReadProxy();
+            proxy->mBufferName = mBufferName;
+            
+            return proxy;
         }
         
     private:
@@ -44,7 +52,8 @@ public:
      
     // Constructor
     
-    FrameLib_MaxClass_Read(t_symbol *s, long argc, t_atom *argv) : FrameLib_MaxClass(s, argc, argv, new ReadProxy()) {}
+    FrameLib_MaxClass_Read(t_object *x, t_symbol *s, long argc, t_atom *argv)
+    : FrameLib_MaxClass(x, s, argc, argv, new ReadProxy()) {}
 };
 
 // Max Object

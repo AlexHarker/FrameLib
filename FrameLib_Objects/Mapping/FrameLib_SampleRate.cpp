@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_SampleRate::FrameLib_SampleRate(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+FrameLib_SampleRate::FrameLib_SampleRate(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kValue, "value");
@@ -16,9 +17,10 @@ FrameLib_SampleRate::FrameLib_SampleRate(FrameLib_Context context, FrameLib_Para
     mParameters.addEnumItem(kHalfNormToFreq, "halfnorm->freq");
     mParameters.addEnumItem(kFreqToNorm, "freq->norm");
     mParameters.addEnumItem(kFreqToHalfNorm, "freq->halfnorm");
-    mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
+    
+    setParameterInput(1);
 }
 
 // Info
@@ -69,7 +71,7 @@ void FrameLib_SampleRate::process()
     
     const double *input = getInput(0, &sizeIn);
     
-    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
+    Modes mode = mParameters.getEnum<Modes>(kMode);
     bool outputValue = mode == kValue || mode == kNyquist;
     
     sizeOut = outputValue ? 1 : sizeIn;

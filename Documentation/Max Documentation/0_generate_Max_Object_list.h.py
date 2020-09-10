@@ -72,6 +72,10 @@ for folder in max_source_categories:
         extension = os.path.splitext(file_name)[1]
         if extension != '.cpp': file_list.remove(file_name)
 
+    for file_name in file_list:
+        extension = os.path.splitext(file_name)[1]
+        if extension != '.cpp': file_list.remove(file_name)
+
     for j in file_list:
         source_file_list.append([os.path.join(category_folder), j])
 

@@ -24,7 +24,7 @@ class FrameLib_Dispatch : public FrameLib_Block
         
         // Constructor
         
-        Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long numIns, long num);
+        Select(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long numIns, long num);
 
     private:
         
@@ -41,13 +41,12 @@ class FrameLib_Dispatch : public FrameLib_Block
     
 public:
     
+    static constexpr ObjectType sType = kProcessor;
+    static constexpr bool sHandlesAudio = false;
+    
     // Constructor
     
-    FrameLib_Dispatch(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-    
-    // Object Type
-    
-    static ObjectType getType() { return kProcessor; }
+    FrameLib_Dispatch(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     
@@ -67,6 +66,8 @@ public:
 
     // Audio Processing
     
+    uint64_t getBlockTime() const override { return 0; }
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& notifier) override {}
     void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override {}
     void reset(double samplingRate, unsigned long maxBlockSize) override;
     

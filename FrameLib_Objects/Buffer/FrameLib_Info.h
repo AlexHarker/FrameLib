@@ -3,14 +3,13 @@
 #define FRAMELIB_INFO_H
 
 #include "FrameLib_DSP.h"
-#include "../../FrameLib_Dependencies/TableReader.hpp"
 
 class FrameLib_Info final : public FrameLib_Processor
 {
     // Parameter Info and Enums
     
     enum ParameterList { kBuffer, kUnits };
-    enum Units { kMS, kSeconds, kSamples };
+    enum Units { kSamples, kMS, kSeconds };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     
@@ -26,11 +25,15 @@ public:
         
         virtual void acquire(unsigned long& length, double& samplingRate, unsigned long& chans) = 0;
         virtual void release() = 0;
+        
+        // Clone (we need unique instances per object for threading reasons)
+        
+        virtual Proxy *clone() const = 0;
     };
     
     // Constructor
     
-    FrameLib_Info(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_Info(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     
@@ -47,8 +50,7 @@ private:
     
     // Data
     
-    Proxy *mProxy;
-    Units mUnits;
+    std::unique_ptr<Proxy> mProxy;
     
     static ParameterInfo sParamInfo;
 };

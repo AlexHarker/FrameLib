@@ -3,8 +3,8 @@
 #define FRAMELIB_CONTEXT_H
 
 #include "FrameLib_Types.h"
-#include "FrameLib_Global.h"
 #include "FrameLib_Errors.h"
+#include "FrameLib_Global.h"
 
 /**
  
@@ -33,7 +33,6 @@ class FrameLib_Context
     template <class T, FrameLib_Global::PointerSet<T> FrameLib_Global::*PointerSet>
     class ManagedPointer
     {
-        
     public:
         
         // Constructor / Destructor
@@ -58,8 +57,10 @@ class FrameLib_Context
     
         // Pointer dereferencing
         
-        T *operator->()         { return mPointer; }
-        T& operator*()          { return *mPointer; }
+        T *operator->()                 { return mPointer; }
+        T& operator*()                  { return *mPointer; }
+        const T *operator->() const     { return mPointer; }
+        const T& operator*() const      { return *mPointer; }
         
     private:
         
@@ -88,9 +89,14 @@ public:
         return !(a == b);
     }
     
+    // Return members
+    
+    FrameLib_Global *getGlobal() const      { return mGlobal; }
+    void *getReference() const              { return mReference; }
+
     // Construct one of these objects to retain a relevant object
     
-    using Allocator = ManagedPointer<FrameLib_LocalAllocator, &FrameLib_Global::mLocalAllocators>;
+    using Allocator = ManagedPointer<FrameLib_ContextAllocator, &FrameLib_Global::mContextAllocators>;
     using ProcessingQueue = ManagedPointer<FrameLib_ProcessingQueue, &FrameLib_Global::mProcessingQueues>;
 
     // Get the global as a FrameLib_ErrorReporter from the context
@@ -104,6 +110,5 @@ private:
     FrameLib_Global *mGlobal;
     void *mReference;
 };
-
 
 #endif

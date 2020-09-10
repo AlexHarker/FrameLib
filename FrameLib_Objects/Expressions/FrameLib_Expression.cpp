@@ -144,7 +144,9 @@ FrameLib_Expression::Parser::Parser() : FrameLib_ExprParser::Parser<double>(7)
 
 // Constructor
 
-FrameLib_Expression::InputProcessor::InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns) : FrameLib_Processor(context, nullptr, nullptr, numIns, numIns), mMode(mode)
+FrameLib_Expression::InputProcessor::InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns)
+: FrameLib_Processor(context, nullptr, nullptr, numIns, numIns)
+, mMode(mode)
 {
     for (unsigned long i = 0; i < numIns; i++)
         setInputMode(i, false, (i < triggersSize) && triggers[i], false);
@@ -203,7 +205,9 @@ void FrameLib_Expression::InputProcessor::process()
 
 // Constructor
 
-FrameLib_Expression::ConstantOut::ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns, double value) : FrameLib_Processor(context, nullptr, nullptr, numIns, 1), mMode(mode), mValue(value)
+FrameLib_Expression::ConstantOut::ConstantOut(FrameLib_Context context, const double *triggers, unsigned long triggersSize, unsigned long numIns, double value)
+: FrameLib_Processor(context, nullptr, nullptr, numIns, 1)
+, mValue(value)
 {
     for (unsigned long i = 0; i < numIns; i++)
         setInputMode(i, false, (i < triggersSize) && triggers[i], false);
@@ -213,29 +217,21 @@ FrameLib_Expression::ConstantOut::ConstantOut(FrameLib_Context context, Mismatch
 
 void FrameLib_Expression::ConstantOut::process()
 {
-    unsigned long sizeMin, sizeMax, sizeIn, sizeOut;
+    unsigned long sizeOut;
     
-    getInput(0, &sizeMin);
-    getInput(0, &sizeMax);
-    
-    for (unsigned long i = 1; i < getNumIns(); i++)
-    {
-        getInput(i, &sizeIn);
-        sizeMin = std::min(sizeIn, sizeMin);
-        sizeMax = std::max(sizeIn, sizeMax);
-    }
-    
-    sizeOut = sizeMin ? (mMode == kShrink ? sizeMin : sizeMax) : 0;
+    requestOutputSize(0, 1);
     
     if (allocateOutputs())
-        std::fill_n(getOutput(0, &sizeOut), sizeOut, mValue);
+        getOutput(0, &sizeOut)[0] = mValue;
 }
 
 // Main Class
 
 // Constructor
 
-FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mParameters(context, proxy, &sParamInfo)
+FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Block(kProcessor, context, proxy)
+, mParameters(context, proxy, &sParamInfo)
 {
     typedef FrameLib_ExprParser::Graph<double> Graph;
     typedef FrameLib_Block::Connection Connection;
@@ -255,17 +251,20 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Para
 
     mParameters.set(serialisedParameters);
     
-    MismatchModes mode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
+    MismatchModes mode = mParameters.getEnum<MismatchModes>(kMismatchMode);
     
     const double *triggers = mParameters.getArray(kTriggers);
     unsigned long triggersSize = mParameters.getArraySize(kTriggers);
     
     Graph graph;
     Parser parser;
-    ExprParseError error = parser.parse(graph, mParameters.getString(kExpression));
-
+    ExprParseError error = parser.parse(graph, mParameters.getString(kExpression), getReporter(), proxy);
+    
     if (graph.mNumInputs > kMaxIns)
+    {
+        getReporter()(kErrorObject, proxy, "expression has more than the maximum number of inputs (#)", kMaxIns);
         graph = Graph();
+    }
     
     setIO(graph.mNumInputs, 1);
         
@@ -307,7 +306,7 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Para
     {
         // Build the graph if the result is constant (including an invalid expression)
 
-        mGraph.add(new ConstantOut(context, mode, triggers, triggersSize, graph.mNumInputs, graph.mConstant));
+        mGraph.add(new ConstantOut(context, triggers, triggersSize, graph.mNumInputs, graph.mConstant));
         for (long i = 0; i < graph.mNumInputs; i++)
             mGraph.back()->setInputAlias(Connection(this, i), i);
         mGraph.back()->setOutputAlias(Connection(this, 0), 0);

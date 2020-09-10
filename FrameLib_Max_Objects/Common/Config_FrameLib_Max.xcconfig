@@ -1,6 +1,4 @@
 
-#include "../../Config_FrameLib.xcconfig"
-
 // Paths
 
 C74SUPPORT = $(SRCROOT)/FrameLib_Max_Objects/_MaxSDK_/c74support

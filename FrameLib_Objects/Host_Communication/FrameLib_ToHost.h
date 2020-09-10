@@ -7,7 +7,6 @@
 
 class FrameLib_ToHost final : public FrameLib_Processor
 {
-    
 public:
     
     // The owner should inherit from this class and override these calls to receive messages
@@ -18,15 +17,15 @@ public:
         
         Proxy() {}
         
-        virtual void sendToHost(Allocator& allocator, unsigned long index, unsigned long stream, const double *values, unsigned long N) = 0;
-        virtual void sendToHost(Allocator& allocator, unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial)= 0;
+        virtual void sendToHost(unsigned long index, unsigned long stream, const double *values, unsigned long N, FrameLib_TimeFormat time) = 0;
+        virtual void sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial, FrameLib_TimeFormat time)= 0;
     };
     
 public:
     
     // Constructor / Destructor
     
-    FrameLib_ToHost(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_ToHost(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     ~FrameLib_ToHost();
     
     // Stream Awareness

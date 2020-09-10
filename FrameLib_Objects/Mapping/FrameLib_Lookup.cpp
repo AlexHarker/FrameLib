@@ -1,25 +1,30 @@
 
 #include "FrameLib_Lookup.h"
 
-FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 2, 1)
-{
-    // FIX - loads of different mode options here (mapping of positions + padding values
-    
-    mParameters.addEnum(kMode, "mode");
-    mParameters.addEnumItem(kZero, "zero");
-    mParameters.addEnumItem(kClip, "clip");
-    
-    mParameters.addEnum(kInterpolation, "interp");
-    mParameters.addEnumItem(kHermite, "hermite");
-    mParameters.addEnumItem(kBSpline, "bspline");
-    mParameters.addEnumItem(kLagrange, "lagrange");
-    mParameters.addEnumItem(kLinear, "linear");
-    mParameters.addEnumItem(kNone, "none");
-
-    mParameters.addEnum(kScaling, "scale");
+FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, nullptr, 2, 1)
+{    
+    mParameters.addEnum(kScale, "scale", 0);
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kNormalised, "normalised");
     mParameters.addEnumItem(kBipolar, "bipolar");
+    
+    mParameters.addEnum(kEdges, "edges", 1);
+    mParameters.addEnumItem(kZeroPad, "zero");
+    mParameters.addEnumItem(kExtend, "extend");
+    mParameters.addEnumItem(kWrap, "wrap");
+    mParameters.addEnumItem(kFold, "fold");
+    mParameters.addEnumItem(kMirror, "mirror");
+    mParameters.addEnumItem(kExtrapolate, "extrapolate", true);
+
+    mParameters.addBool(kBound, "bound", true, 2);
+    
+    mParameters.addEnum(kInterpolation, "interp", 3);
+    mParameters.addEnumItem(kNone, "none");
+    mParameters.addEnumItem(kLinear, "linear");
+    mParameters.addEnumItem(kHermite, "hermite", true);
+    mParameters.addEnumItem(kBSpline, "bspline");
+    mParameters.addEnumItem(kLagrange, "lagrange");
     
     mParameters.set(serialisedParameters);
     
@@ -74,11 +79,21 @@ FrameLib_Lookup::ParameterInfo::ParameterInfo()
 
 void FrameLib_Lookup::process()
 {
+    double scaleFactor;
+    
+    EdgeType edges = mParameters.getEnum<EdgeType>(kEdges);
+    Scales scale = mParameters.getEnum<Scales>(kScale);
+    InterpType interp = kInterpNone;
+    bool bound = mParameters.getBool(kBound);
+    bool adjustScaling = edges == kWrap || edges == kMirror;
+
     unsigned long sizeIn1, sizeIn2, sizeOut;
     
     const double *input1 = getInput(0, &sizeIn1);
     const double *input2 = getInput(1, &sizeIn2);
-    
+    const double *positions = input1;
+    AutoArray<double> temp;
+
     // Before allocating check that we have a table and if not produce an empty frame
     
     sizeIn1 = sizeIn2 ? sizeIn1 : 0;
@@ -86,25 +101,23 @@ void FrameLib_Lookup::process()
     allocateOutputs();
     
     double *output = getOutput(0, &sizeOut);
-    const double *positions = input1;
-    double *temp = nullptr;
-    double scaleFactor;
     
-    Scaling scaling = (Scaling) mParameters.getInt(kScaling);
-    InterpType interpType = kInterpNone;
+    // Set interp[olation
     
-    switch ((Interpolation) mParameters.getInt(kInterpolation))
+    switch (mParameters.getEnum<Interpolation>(kInterpolation))
     {
-        case kNone:         interpType = kInterpNone;               break;
-        case kLinear:       interpType = kInterpLinear;             break;
-        case kLagrange:     interpType = kInterpCubicLagrange;      break;
-        case kHermite:      interpType = kInterpCubicHermite;       break;
-        case kBSpline:      interpType = kInterpCubicBSpline;       break;
+        case kNone:         interp = kInterpNone;               break;
+        case kLinear:       interp = kInterpLinear;             break;
+        case kHermite:      interp = kInterpCubicHermite;       break;
+        case kBSpline:      interp = kInterpCubicBSpline;       break;
+        case kLagrange:     interp = kInterpCubicLagrange;      break;
     }
     
-    if (scaling != kSamples)
+    // Deal with scaling
+    
+    if (scale != kSamples)
     {
-        temp = alloc<double>(sizeIn1);
+        temp = allocAutoArray<double>(sizeIn1);
         positions = temp;
         
         if (!temp)
@@ -114,34 +127,27 @@ void FrameLib_Lookup::process()
         }
     }
     
-    switch (scaling)
+    switch (scale)
     {
         case kSamples:
             break;
             
         case kNormalised:
-            scaleFactor = static_cast<double>(sizeIn2 - 1);
+            scaleFactor = static_cast<double>(sizeIn2 - (adjustScaling ? 0 : 1));
             
             for (unsigned long i = 0; i < sizeIn1; i++)
                 temp[i] = input1[i] * scaleFactor;
             break;
             
         case kBipolar:
-            scaleFactor = static_cast<double>(sizeIn2 - 1) / 2.0;
+            scaleFactor = static_cast<double>(sizeIn2 - (adjustScaling ? 0 : 1)) / 2.0;
             
             for (unsigned long i = 0; i < sizeIn1; i++)
                 temp[i] = (input1[i] + 1.0) * scaleFactor;
             break;
     }
     
-    switch (static_cast<Mode>(mParameters.getInt(kMode)))
-    {
-        case kZero:     table_read(FetchZero(input2, sizeIn2), output, positions, sizeIn1, 1.0, interpType);   break;
-        case kClip:     table_read(FetchClip(input2, sizeIn2), output, positions, sizeIn1, 1.0, interpType);   break;
-        //case kWrap:   table_read(FetchWrap(input2, sizeIn2), output, input1, sizeIn1, 1.0, interpType);   break;
-        //case kPad:   table_read(FetchPad(input2, sizeIn2, padValue), output, input1, sizeIn1, 1.0, interpType);   break;
-    }
+    // Calculate output
     
-     if (scaling != kSamples)
-         dealloc(temp);
+    table_read_edges(Fetcher(input2, sizeIn2), output, positions, sizeIn1, 1.0, interp, edges, bound);
 }

@@ -1,7 +1,8 @@
 
 #include "FrameLib_Timer.h"
 
-FrameLib_Timer::FrameLib_Timer(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_Timer::FrameLib_Timer(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kUnits, "units", 0);
     mParameters.addEnumItem(kSamples, "samples");
@@ -19,21 +20,23 @@ FrameLib_Timer::FrameLib_Timer(FrameLib_Context context, FrameLib_Parameters::Se
 
 std::string FrameLib_Timer::objectInfo(bool verbose)
 {
-    return formatInfo("Calculates the time elapsed between trigger frame inputs and the subsequent reset frame: Time is reported in the specified units. Output is a single value.",
-                   "Calculates the time elapsed between the last reset and each trigger.", verbose);
+    return formatInfo("Calculates the time elapsed between trigger frame inputs and the subsequent reset frame: "
+                      "Time is reported in the specified units. "
+                      "Output is a single value.",
+                      "Calculates the time elapsed between the last reset and each trigger.", verbose);
 }
 
 std::string FrameLib_Timer::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return formatInfo("Trigger Input - input frames generate output", "Trigger Input", verbose);
+        return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
     else
-        return formatInfo("Reset Input - input frames do not generate output", "Reset Input", verbose);
+        return formatInfo("Reset Input - does not trigger output", "Reset Input", verbose);
 }
 
 std::string FrameLib_Timer::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Values";
+    return "Output";
 }
 
 // Parameter Info
@@ -49,11 +52,11 @@ FrameLib_Timer::ParameterInfo::ParameterInfo()
 
 void FrameLib_Timer::calculateMultiplier()
 {
-    switch (static_cast<Units>(mParameters.getInt(kUnits)))
+    switch (mParameters.getEnum<Units>(kUnits))
     {
+        case kSamples:  mMultiplier = FrameLib_TimeFormat(1);                           break;
         case kMS:       mMultiplier = 1000.0 / FrameLib_TimeFormat(mSamplingRate);      break;
         case kSeconds:  mMultiplier = 1.0 / FrameLib_TimeFormat(mSamplingRate);         break;
-        case kSamples:  mMultiplier = FrameLib_TimeFormat(1);                           break;
     }
 }
 

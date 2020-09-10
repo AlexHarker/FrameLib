@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_Pad::FrameLib_Pad(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_Pad::FrameLib_Pad(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addDouble(kPadding, "pad", 0.0, 0);
     
@@ -66,7 +67,7 @@ void FrameLib_Pad::process()
     unsigned long sizeIn, sizeOut, padStart, padEnd;
     const double *input = getInput(0, &sizeIn);
     double padValue = mParameters.getValue(kPadding);
-    Units units = (Units) mParameters.getInt(kUnits);
+    Units units = mParameters.getEnum<Units>(kUnits);
     
     // Calculate pad amounts
     

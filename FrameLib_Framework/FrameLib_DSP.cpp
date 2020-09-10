@@ -4,8 +4,14 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
-: FrameLib_Block(type, context, proxy), mSamplingRate(44100.0), mMaxBlockSize(4096), mParameters(context, proxy, info), mProcessingQueue(context), mNext(nullptr), mNoLiveInputs(true), mInUpdate(false)
-{
+: FrameLib_Block(type, context, proxy)
+, mSamplingRate(44100.0)
+, mMaxBlockSize(4096)
+, mParameters(context, proxy, info)
+, mProcessingQueue(context)
+, mNoLiveInputs(true)
+, mInUpdate(false)
+{    
     // Set IO
     
     setIO(nIns, nOuts, nAudioChans);
@@ -53,9 +59,17 @@ const double *FrameLib_DSP::getFixedInput(unsigned long idx, unsigned long *size
 
 // Audio Processing
 
-// Block updates for objects with audio IO
+// Block updates for objects with audio IO (calls through to the group notifier version)
 
 void FrameLib_DSP::blockUpdate(const double * const *ins, double **outs, unsigned long blockSize)
+{
+    FrameLib_AudioQueue queue;
+    blockUpdate(ins, outs, blockSize, queue);
+}
+
+// This version is usable for making block notifcations together, prinarily in FrameLib_Expand
+
+void FrameLib_DSP::blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& queue)
 {
     // Update block time and process the block
     
@@ -65,8 +79,11 @@ void FrameLib_DSP::blockUpdate(const double * const *ins, double **outs, unsigne
     
     // If the object is handling audio updates (but is not an output object) then notify
     
-    if (requiresAudioNotification())
-        dependencyNotify(false, true);
+    if (needsAudioNotification())
+    {
+        queue.setUser(this);
+        dependencyNotify(kAudioBlock, false, nullptr, queue);
+    }
 }
 
 // Reset
@@ -95,8 +112,9 @@ void FrameLib_DSP::reset(LocalQueue *queue)
     
     mUpdatingInputs = false;
     mInputCount = 0;
-    mOutputMemoryCount = 0;
-    mDependencyCount = ((requiresAudioNotification()) ? 1 : 0);
+    mDependencyCount = ((needsAudioNotification()) ? 1 : 0);
+    
+    resetOutputDependencyCount();
     
     for (auto it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
         if (!(*it)->mNoLiveInputs)
@@ -104,10 +122,6 @@ void FrameLib_DSP::reset(LocalQueue *queue)
     
     mNoLiveInputs = mDependencyCount == 0;
 
-    // Remove info about the processing queue
-    
-    mNext = nullptr;
-    
     // Reset output
     
     freeOutputMemory();
@@ -226,7 +240,7 @@ bool FrameLib_DSP::allocateOutputs()
         // Calculate allocation size, including necessary alignment padding and assuming success
         
         size_t unalignedSize = outs->mCurrentType == kFrameNormal ? outs->mRequestedSize * sizeof(double) : Serial::inPlaceSize(outs->mRequestedSize);
-        size_t alignedSize = FrameLib_LocalAllocator::alignSize(unalignedSize);
+        size_t alignedSize = FrameLib_ContextAllocator::alignSize(unalignedSize);
         
         outs->mCurrentSize = outs->mRequestedSize;
         outs->mPointerOffset = allocationSize;
@@ -343,27 +357,36 @@ void FrameLib_DSP::copyInputToOutput(unsigned long inIdx, unsigned long outIdx)
 
 // Dependency Notification
 
-inline void FrameLib_DSP::dependencyNotify(bool releaseMemory, bool fromInput)
+bool FrameLib_DSP::dependencyNotify(NotificationType type, bool releaseMemory, LocalAllocator *allocator)
 {
     if (mProcessingQueue->isTimedOut())
-        return;
+        return false;
     
     assert(((mDependencyCount > 0) || (mUpdatingInputs && (mInputCount > 0))) && "Dependency count is already zero");
     
     if (releaseMemory)
-        releaseOutputMemory();
+        releaseOutputMemory(allocator);
     
-    // If ready add to queue
+    bool useInputCount = mUpdatingInputs && (type == kInputConnection || type == kAudioBlock);
     
-    if (fromInput && mUpdatingInputs)
+    if ((useInputCount && --mInputCount == 0) || (!useInputCount && --mDependencyCount == 0))
     {
-        if (--mInputCount == 0)
-           mProcessingQueue->add(this);
+        // N.B. Avoid re-entrancy by increasing the dependency count before processing (plus matched notification)
+
+        assert((mDependencyCount > 0) || !mUpdatingInputs && "Dependency count shouldn't be zero if updating inputs");
+        mDependencyCount++;
+        return true;
     }
-    else if (--mDependencyCount == 0 && !mUpdatingInputs)
-        mProcessingQueue->add(this);
     
-    // N.B. For multithreading re-entrancy needs to be avoided by increasing the dependency count before adding to the queue (with matching notification)
+    return false;
+}
+
+void FrameLib_DSP::dependencyNotify(NotificationType type, bool releaseMemory, LocalAllocator *allocator, NotificationQueue &queue)
+{
+    // If ready then this item should be added to the processing queue
+
+    if (dependencyNotify(type, releaseMemory, allocator))
+        queue.push(this);
 }
 
 // For updating the correct input count
@@ -378,14 +401,13 @@ void FrameLib_DSP::incrementInputDependency()
 
 // Main code to control time flow (called when all input/output dependencies are ready)
 
-void FrameLib_DSP::dependenciesReady()
+void FrameLib_DSP::dependenciesReady(LocalAllocator *allocator)
 {
+    setLocalAllocator(allocator);
     
 #ifndef NDEBUG
-    FrameLib_TimeFormat prevInputTime = mInputTime;
+    FrameLib_TimeFormat inputTime = mInputTime;
 #endif
-    
-    mDependencyCount++;
     
     bool timeUpdated = false;
     bool callUpdate = false;
@@ -472,7 +494,7 @@ void FrameLib_DSP::dependenciesReady()
             process();
             resetOutputDependencyCount();
             if (mInputDependencies.size() == 1)
-                (*mInputDependencies.begin())->releaseOutputMemory();
+                (*mInputDependencies.begin())->releaseOutputMemory(allocator);
         }
         
         // Check for the frame times updating and if so check for completion of the frame
@@ -480,11 +502,11 @@ void FrameLib_DSP::dependenciesReady()
         if (mValidTime != prevValidTime)
         {
             timeUpdated = true;
-            mOutputDone = true;
+            mOutputDone = false;
 
             for (auto ins = mInputs.begin(); ins != mInputs.end(); ins++)
             {
-                if (ins->mObject && ((ins->mTrigger && !ins->mSwitchable) || (!ins->mObject->mOutputDone && ins->mSwitchable)) && (mValidTime == ins->mObject->mValidTime))
+                if (ins->mObject && (ins->mTrigger && !ins->mSwitchable) && (mValidTime == ins->mObject->mValidTime))
                 {
                     if ((mOutputDone = ins->mObject->mOutputDone))
                         break;
@@ -493,9 +515,9 @@ void FrameLib_DSP::dependenciesReady()
         }
     }
 
-    // Check for host alignment for objects requiring audio notification (treating the audio notification as a time dependency)
+    // Check for host alignment for objects needing audio notification (treating the audio notification as a time dependency)
 
-    bool hostAligned = requiresAudioNotification() && mInputTime >= mBlockEndTime;
+    bool hostAligned = needsAudioNotification() && mInputTime >= mBlockEndTime;
     
     if (hostAligned)
         mInputTime = mBlockEndTime;
@@ -506,7 +528,7 @@ void FrameLib_DSP::dependenciesReady()
     bool prevUpdatingInputs = mUpdatingInputs;
     mUpdatingInputs = mInputTime < mValidTime;
     
-    // Increment the input dependency for the audio update if necessary (must be after we know if we are updating inputs only)
+    // Increment  input dependency for the audio update if needed (must be after we know if we are updating inputs only)
     
     if (hostAligned)
         incrementInputDependency();
@@ -517,6 +539,8 @@ void FrameLib_DSP::dependenciesReady()
     
     // Notify input dependencies that can be released as they are up to date (releasing memory where relevant for objects with more than one input dependency)
     
+    NotificationQueue queue;
+    
     if (!endOfTime)
     {
         // Inputs cannot move beyond the end of time...
@@ -526,7 +550,7 @@ void FrameLib_DSP::dependenciesReady()
             if (mInputTime == (*it)->mValidTime)
             {
                 incrementInputDependency();
-                (*it)->dependencyNotify((getType() == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone, false);
+                (*it)->dependencyNotify(kOutputConnection, (getType() == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone, allocator, queue);
             }
         }
     }
@@ -535,25 +559,28 @@ void FrameLib_DSP::dependenciesReady()
     
     if (timeUpdated)
         for (auto it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-            (*it)->dependencyNotify(false, true);
+            (*it)->dependencyNotify(kInputConnection, false, allocator, queue);
     
+    removeLocalAllocator();
+
     // See if the updating input status has expired (must be done after resolving all other dependencies)
     
     if (mUpdatingInputs < prevUpdatingInputs)
-        dependencyNotify(false, false);
+        dependencyNotify(kSelfConnection, false, allocator, queue);
+    
+    // Debug (before re-entering)
+    
+    assert(!needsAudioNotification() || (inputTime >= mBlockStartTime && inputTime < mBlockEndTime) && "Out of sync with host");
+    assert(mInputTime > inputTime && "Failed to move time forward");
+    assert(mInputTime <= mValidTime && "Inputs are ahead of output");
+    assert(mFrameTime <= mInputTime && "Output is ahead of input dependencies");
     
     // Allow self-triggering if we haven't reached the end of time
     
     if (!endOfTime)
-        dependencyNotify(false, false);
+        dependencyNotify(kSelfConnection, false, allocator, queue);
     
-    // Debug
-    
-    if (requiresAudioNotification())
-        assert(prevInputTime >= mBlockStartTime && prevInputTime < mBlockEndTime && "Out of sync with host");
-    assert(mInputTime > prevInputTime && "Failed to move time forward");
-    assert(mInputTime <= mValidTime && "Inputs are ahead of output");
-    assert(mFrameTime <= mInputTime && "Output is ahead of input dependencies");
+    mProcessingQueue->add(queue, this);
 }
 
 void FrameLib_DSP::resetOutputDependencyCount()
@@ -579,15 +606,21 @@ inline void FrameLib_DSP::freeOutputMemory()
     }
 }
 
-inline void FrameLib_DSP::releaseOutputMemory()
+inline void FrameLib_DSP::releaseOutputMemory(LocalAllocator *allocator)
 {
+    assert(mOutputMemoryCount > 0 && "Output memory count is already zero");
+    
     if (--mOutputMemoryCount == 0)
+    {
+        setLocalAllocator(allocator);
         freeOutputMemory();
+        removeLocalAllocator();
+    }
 }
 
 // Connection Updating
 
-void FrameLib_DSP::connectionUpdate(Queue *queue)
+void FrameLib_DSP::connectionUpdate(BlockQueue *queue)
 {
     std::vector<FrameLib_DSP *>::iterator it;
     

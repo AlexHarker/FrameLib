@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_Select::FrameLib_Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo)
+FrameLib_Select::FrameLib_Select(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo)
 {
     mParameters.addDouble(kNumIns, "num_ins", 2, 0);
     mParameters.setClip(2, 32);
@@ -29,8 +30,10 @@ FrameLib_Select::FrameLib_Select(FrameLib_Context context, FrameLib_Parameters::
 
 std::string FrameLib_Select::objectInfo(bool verbose)
 {
-    return formatInfo("Selects between a number of input frame streams: The number of inputs is variable. The selected input can be changed with a parameter.",
-                   "Selects between a number of input frame streams.", verbose);
+    return formatInfo("Selects output from a number of inputs: "
+                      "The number of inputs is variable. "
+                      "The selected input can be changed with a parameter.",
+                      "Selects output from a number of inputs.", verbose);
 }
 
 std::string FrameLib_Select::inputInfo(unsigned long idx, bool verbose)
@@ -43,7 +46,7 @@ std::string FrameLib_Select::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Select::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Frames";
+    return "Output";
 }
 
 // Parameter Info

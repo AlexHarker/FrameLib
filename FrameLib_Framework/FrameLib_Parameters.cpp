@@ -457,7 +457,7 @@ FrameLib_Parameters::Parameter::Parameter(const char *name, long argumentIdx)
     mArgumentIdx = argumentIdx;
 }
 
-void FrameLib_Parameters::Parameter::addEnumItem(const char *str)
+void FrameLib_Parameters::Parameter::addEnumItem(unsigned long idx, const char *str, bool setAsDefault)
 {
     assert(0 && "cannot add enum items to non-enum parameter");
 }
@@ -540,8 +540,11 @@ FrameLib_Parameters::Enum::Enum(const char *name, long argumentIdx) : Parameter(
 
 // Setters
 
-void FrameLib_Parameters::Enum::addEnumItem(const char *str)
+void FrameLib_Parameters::Enum::addEnumItem(unsigned long idx, const char *str, bool setAsDefault)
 {
+    assert(idx == mItems.size() && "enum items added out of order");
+    if (setAsDefault)
+        mDefault = mValue = static_cast<unsigned long>(mItems.size());
     mItems.push_back(str);
     mMax += 1.0;
 }
@@ -741,7 +744,7 @@ std::string FrameLib_Parameters::getDefaultString(unsigned long idx) const
     if (type == kString)
         return "";
     else if (type == kEnum)
-        return getItemString(idx, 0);
+        return getItemString(idx, static_cast<unsigned long>(getDefault(idx)));
     else if (getNumericType(idx) == kNumericBool)
         return getDefault(idx) ? "true" : "false";
     

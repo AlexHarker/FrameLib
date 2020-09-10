@@ -7,14 +7,23 @@
 
 // Common Conversions
 
-template <class T> T dbtoa(T x) { return pow(10.0, x / 20.0); }
-template <class T> T atodb(T x) { return log10(x) * 20.0; }
+template <class T>
+T dbtoa(T x) { return pow(10.0, x / 20.0); }
 
-template <class T> T mtof(T x) { return exp2(x - 69.0) * 440.0; }
-template <class T> T ftom(T x) { return log2(x / 440.0) + 69.0; }
+template <class T>
+T atodb(T x) { return log10(x) * 20.0; }
 
-template <class T> T semitonesToRatio(T x) { return exp2(x / 12.0); }
-template <class T> T ratioToSemitones(T x) { return log2(x) * 12.0; }
+template <class T>
+T mtof(T x) { return exp2(x - 69.0) * 440.0; }
+
+template <class T>
+T ftom(T x) { return log2(x / 440.0) + 69.0; }
+
+template <class T>
+T semitonesToRatio(T x) { return exp2(x / 12.0); }
+
+template <class T>
+T ratioToSemitones(T x) { return log2(x) * 12.0; }
 
 // Scaling of Vectors
 
@@ -27,11 +36,13 @@ void scaleVector(T *output, const T *input, unsigned long size, ScaleOp scaler)
 
 // Basic Clipping
 
-template <class T> T clip(T x, T minVal, T maxVal) { return std::max(std::min(x, maxVal), minVal); }
+template <class T>
+T clip(T x, T minVal, T maxVal) { return std::max(std::min(x, maxVal), minVal); }
 
 // Scaling Base Struct
 
-template <class T> struct ScaleCoefficients
+template <class T>
+struct ScaleCoefficients
 {
     ScaleCoefficients() : mMul(1), mSub(0) {}
     ScaleCoefficients(T mul, T sub) : mMul(mul), mSub(sub) {}
@@ -44,7 +55,8 @@ template <class T> struct ScaleCoefficients
 
 // Lin, Log, Exp and Power Scaling Functors
 
-template <class T> struct LinScaler : public ScaleCoefficients<T>
+template <class T>
+struct LinScaler : public ScaleCoefficients<T>
 {
     LinScaler() : ScaleCoefficients<T>() {}
     LinScaler(T inLo, T inHi, T outLo, T outHi) : ScaleCoefficients<T>(inLo, inHi, outLo, outHi) {}
@@ -54,7 +66,8 @@ template <class T> struct LinScaler : public ScaleCoefficients<T>
     template <class U> void operator()(U *output, const U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
 };
 
-template <class T> struct LogScaler : public ScaleCoefficients<T>
+template <class T>
+struct LogScaler : public ScaleCoefficients<T>
 {
     LogScaler(T inLo, T inHi, T outLo, T outHi) : ScaleCoefficients<T>(log(inLo), log(inHi), outLo, outHi) {}
     LogScaler(const ScaleCoefficients<T>& coeff) : ScaleCoefficients<T>(coeff) {}
@@ -63,7 +76,8 @@ template <class T> struct LogScaler : public ScaleCoefficients<T>
     template <class U> void operator()(U *output, const U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
 };
 
-template <class T> struct ExpScaler : public ScaleCoefficients<T>
+template <class T>
+struct ExpScaler : public ScaleCoefficients<T>
 {
     ExpScaler(T inLo, T inHi, T outLo, T outHi) : ScaleCoefficients<T>(inLo, inHi, log(outLo), log(outHi)) {}
     ExpScaler(const ScaleCoefficients<T>& coeff) : ScaleCoefficients<T>(coeff) {}
@@ -72,7 +86,8 @@ template <class T> struct ExpScaler : public ScaleCoefficients<T>
     template <class U> void operator()(U *output, const U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
 };
 
-template <class T> struct PowScaler
+template <class T>
+struct PowScaler
 {
     PowScaler(T inLo, T inHi, T outLo, T outHi, T exponent) : mInputScaler(inLo, inHi, 0, 1), mOutputScaler(0, 1, outLo, outHi), mExponent(exponent) {}
     PowScaler(const ScaleCoefficients<T>& inCoeff, const ScaleCoefficients<T>& outCoeff, T exponent)
@@ -109,26 +124,30 @@ struct ClipScaler
 
 // ClipScaler Definitions (add clipping to functors)
 
-template <class T> struct LinClipScaler : public ClipScaler<T, LinScaler<T>>
+template <class T> struct
+LinClipScaler : public ClipScaler<T, LinScaler<T>>
 {
     LinClipScaler() : ClipScaler<T, LinScaler<T>>(LinScaler<T>(), 0, 1) {}
     LinClipScaler(T inLo, T inHi, T outLo, T outHi) : ClipScaler<T, LinScaler<T>>(LinScaler<T>(inLo, inHi, outLo, outHi), outLo, outHi) {}
     LinClipScaler(const ScaleCoefficients<T>& coeff, T min, T max) : ClipScaler<T, LinScaler<T>>(LinScaler<T>(coeff), min, max) {}
 };
 
-template <class T> struct LogClipScaler : public ClipScaler<T, LogScaler<T>>
+template <class T>
+struct LogClipScaler : public ClipScaler<T, LogScaler<T>>
 {
     LogClipScaler(T inLo, T inHi, T outLo, T outHi) : ClipScaler<T, LogScaler<T>>(log(inLo), log(inHi), outLo, outHi) {}
     LogClipScaler(const ScaleCoefficients<T>& coeff, T min, T max) : ClipScaler<T, LogScaler<T>>(LogScaler<T>(coeff), min, max) {}
 };
 
-template <class T> struct ExpClipScaler : public ClipScaler<T, ExpScaler<T>>
+template <class T>
+struct ExpClipScaler : public ClipScaler<T, ExpScaler<T>>
 {
     ExpClipScaler(T inLo, T inHi, T outLo, T outHi) : ClipScaler<T, ExpScaler<T>>(ExpScaler<T>(inLo, inHi, log(outLo), log(outHi)), outLo, outHi) {}
     ExpClipScaler(const ScaleCoefficients<T>& coeff, T min, T max) : ClipScaler<T, ExpScaler<T>>(ExpScaler<T>(coeff), min, max) {}
 };
 
-template <class T> struct PowClipScaler : public ClipScaler<T, PowScaler<T>>
+template <class T>
+struct PowClipScaler : public ClipScaler<T, PowScaler<T>>
 {
     PowClipScaler(T inLo, T inHi, T outLo, T outHi, T exponent)
     : ClipScaler<T, PowScaler<T>>(PowScaler<T>(inLo, inHi, log(outLo), log(outHi)), outLo, outHi, exponent) {}
@@ -138,7 +157,8 @@ template <class T> struct PowClipScaler : public ClipScaler<T, PowScaler<T>>
 
 // Variable Lin, Log or Exp Scaling
 
-template <class T>struct VariableScaler
+template <class T>
+struct VariableScaler
 {
     VariableScaler() : mMode(kScaleLin) {}
 
@@ -171,7 +191,8 @@ template <class T>struct VariableScaler
         }
     }
     
-    template <class U> U scale(const U x)
+    template <class U>
+    U scale(const U x)
     {
         switch (mMode)
         {
@@ -182,7 +203,8 @@ template <class T>struct VariableScaler
         }
     }
     
-    template <class U> void scale(U *output, const U* input, unsigned long size)
+    template <class U>
+    void scale(U *output, const U* input, unsigned long size)
     {
         switch (mMode)
         {
@@ -205,7 +227,8 @@ protected:
 
 // Variable Lin, Log or Exp Scaling With or Without Clipping
 
-template <class T> struct VariClipScaler : public VariableScaler<T>
+template <class T>
+struct VariClipScaler : public VariableScaler<T>
 {
     VariClipScaler() : mMin(0), mMax(1) {}
     
@@ -271,7 +294,8 @@ private:
 
 // Variable Scaling and Common Conversions
 
-template <class T> struct ScaleConverter : public VariableScaler<T>
+template <class T>
+struct ScaleConverter : public VariableScaler<T>
 {
     void setDBToAmplitude()     { Base::setExp(0, 20, 1, 10); }
     void setAmplitudeToDB()     { Base::setLog(1, 10, 0, 20); }

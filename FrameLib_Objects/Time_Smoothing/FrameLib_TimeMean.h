@@ -3,21 +3,15 @@
 #define FrameLib_TimeMean_H
 
 #include "FrameLib_TimeBuffer_Template.h"
+#include "FrameLib_NeumaierSum.h"
 
 class FrameLib_TimeMean final : public FrameLib_TimeBuffer<FrameLib_TimeMean>
 {
-    
 public:
     
     // Constructor
     
-    FrameLib_TimeMean(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-
-    ~FrameLib_TimeMean()
-    {
-        dealloc(mSum);
-        dealloc(mCompensate);
-    }
+    FrameLib_TimeMean(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
 
     // Info
     
@@ -31,18 +25,13 @@ public:
 
     void add(const double *newFrame, unsigned long size) override;
     void remove(const double *oldFrame, unsigned long size) override;
-    void result(double *output, unsigned long size) override;
+    void result(double *output, unsigned long size, Padded pad, unsigned long padSize) override;
     
 private:
     
-    // Object Reset
-    
-    void objectReset() override { smoothReset(); }
-    
     // Data
     
-    double *mSum;
-    double *mCompensate;    
+    AutoArray<NeumaierSum> mSum;
 };
 
 #endif

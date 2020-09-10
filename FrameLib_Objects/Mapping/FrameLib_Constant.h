@@ -9,7 +9,7 @@ class FrameLib_Constant final : public FrameLib_Processor
     // Parameter Enums and Info
 
     enum ParameterList { kConstant, kMultiplier };
-    enum Constants { kPI, kE, kSqrt2, kInvPI, kInvE, kInvSqrt2, kEpsilon };
+    enum Constants { kPI, kInvPI, kE, kInvE, kSqrt2, kInvSqrt2, kEpsilon };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -17,7 +17,7 @@ public:
     
     // Constructor
     
-    FrameLib_Constant(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_Constant(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     

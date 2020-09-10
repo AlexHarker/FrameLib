@@ -16,7 +16,7 @@ class FrameLib_Expression : public FrameLib_Block
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
-    // Interal Classes
+    // Internal Classes
     
     struct Parser : public FrameLib_ExprParser::Parser<double>
     {
@@ -25,7 +25,6 @@ class FrameLib_Expression : public FrameLib_Block
     
     class InputProcessor final : public FrameLib_Processor
     {
-        
     public:
         
         // Constructor
@@ -50,7 +49,7 @@ class FrameLib_Expression : public FrameLib_Block
         
         // Constructor
         
-        ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns, double value);
+        ConstantOut(FrameLib_Context context, const double *triggers, unsigned long triggersSize, unsigned long numIns, double value);
         
     private:
         
@@ -60,20 +59,18 @@ class FrameLib_Expression : public FrameLib_Block
         
         // Data
         
-        MismatchModes mMode;
         double mValue;
     };
     
 public:
     
+    static constexpr ObjectType sType = kProcessor;
+    static constexpr bool sHandlesAudio = false;
+    
     // Constructor 
     
-    FrameLib_Expression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_Expression(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
 
-    // Object Type
-    
-    static ObjectType getType() { return kProcessor; }
-    
     // Info
     
     std::string objectInfo(bool verbose) override;
@@ -92,6 +89,8 @@ public:
     
     // Audio Processing
     
+    uint64_t getBlockTime() const override { return 0; }
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& notifier) override {}
     void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override {}
     void reset(double samplingRate, unsigned long maxBlockSize) override;
     

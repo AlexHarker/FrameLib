@@ -29,6 +29,14 @@ class FrameLib_MaxClass_Info : public FrameLib_MaxClass_Expand<FrameLib_Info>
             mBuffer.release();
         };
         
+        FrameLib_Info::Proxy *clone() const override
+        {
+            ReadProxy *proxy = new ReadProxy();
+            proxy->mBufferName = mBufferName;
+            
+            return proxy;
+        }
+        
     private:
         
         ibuffer_data mBuffer;
@@ -39,7 +47,8 @@ public:
      
     // Constructor
     
-    FrameLib_MaxClass_Info(t_symbol *s, long argc, t_atom *argv) : FrameLib_MaxClass(s, argc, argv, new ReadProxy()) {}
+    FrameLib_MaxClass_Info(t_object *x, t_symbol *s, long argc, t_atom *argv)
+    : FrameLib_MaxClass(x, s, argc, argv, new ReadProxy()) {}
 };
 
 // Max Object

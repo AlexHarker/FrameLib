@@ -4,13 +4,14 @@
 
 // Constructor
 
-FrameLib_Sort::FrameLib_Sort(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_Sort::FrameLib_Sort(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kOrder, "order", 0);
     mParameters.addEnumItem(kUp, "up");
     mParameters.addEnumItem(kDown, "down");
     
-    mParameters.addBool(kOutputIndices, "indices_mode");
+    mParameters.addBool(kOutputIndices, "indices", false, 1);
     
     mParameters.set(serialisedParameters);
     
@@ -21,8 +22,9 @@ FrameLib_Sort::FrameLib_Sort(FrameLib_Context context, FrameLib_Parameters::Seri
 
 std::string FrameLib_Sort::objectInfo(bool verbose)
 {
-    return formatInfo("Sorts an input frame in ascending or descending order.",
-                   "Sorts an input frame in ascending or descending order.", verbose);
+    return formatInfo("Sorts an input frame into ascending or descending order. "
+                      "The output can either be the sorted values or the sorted indices, as set by the indices parameter.",
+                      "Sorts an input frame into ascending or descending order.", verbose);
 }
 
 std::string FrameLib_Sort::inputInfo(unsigned long idx, bool verbose)
@@ -30,12 +32,12 @@ std::string FrameLib_Sort::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return "Frames to Sort";
+        return "Input";
 }
 
 std::string FrameLib_Sort::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Sorted Frames";
+    return "Output";
 }
 
 // Parameter Info
@@ -45,6 +47,7 @@ FrameLib_Sort::ParameterInfo FrameLib_Sort::sParamInfo;
 FrameLib_Sort::ParameterInfo::ParameterInfo()
 {
     add("Sets the ordering of the sorted output.");
+    add("Performs the sort on the indices of the original frame, rather than the values.");
 }
 
 // Process
@@ -61,7 +64,7 @@ void FrameLib_Sort::process()
     
     if (!mParameters.getBool(kOutputIndices))
     {
-        switch (static_cast<Orders>(mParameters.getInt(kOrder)))
+        switch (mParameters.getEnum<Orders>(kOrder))
         {
             case kUp:       sortAscending(output, input, size);     break;
             case kDown:     sortDescending(output, input, size);    break;
@@ -69,11 +72,11 @@ void FrameLib_Sort::process()
     }
     else
     {
-        unsigned long *indices = alloc<unsigned long>(size);
+        auto indices = allocAutoArray<unsigned long>(size);
         
         if (indices)
         {
-            switch (static_cast<Orders>(mParameters.getInt(kOrder)))
+            switch (mParameters.getEnum<Orders>(kOrder))
             {
                 case kUp:       sortIndicesAscending(indices, input, size);     break;
                 case kDown:     sortIndicesDescending(indices, input, size);    break;
@@ -85,8 +88,7 @@ void FrameLib_Sort::process()
         else
         {
             zeroVector(output, size);
+            getReporter()(kErrorObject, getProxy(), "couldn't allocate temporary memory");
         }
-        
-        dealloc(indices);
     }
 }

@@ -2,14 +2,14 @@
 #ifndef FRAMELIB_COMPLEX_BINARY_TEMPLATE_H
 #define FRAMELIB_COMPLEX_BINARY_TEMPLATE_H
 
-#include <complex>
 #include "FrameLib_DSP.h"
 
-// OPT - vectorise where appropriate
+#include <complex>
 
 // Complex Binary Operator
 
-template <typename Op> class FrameLib_Complex_BinaryOp final : public FrameLib_Processor
+template <typename Op>
+class FrameLib_Complex_BinaryOp final : public FrameLib_Processor
 {
     class PaddedInput
     {
@@ -17,25 +17,19 @@ template <typename Op> class FrameLib_Complex_BinaryOp final : public FrameLib_P
     public:
         
         PaddedInput(FrameLib_Complex_BinaryOp *owner, const double *input, unsigned long size, unsigned long paddedSize)
-        : mOwner(owner), mAllocated(nullptr)
+        : mOwner(owner)
         {
             if (paddedSize > size)
             {
-                mAllocated = owner->alloc<double>(paddedSize);
-                if (mAllocated)
+                mAllocated = owner->allocAutoArray<double>(paddedSize);
+                if ((mPtr = mAllocated))
                 {
                     copyVector(mAllocated, input, size);
                     zeroVector(mAllocated + size, paddedSize - size);
                 }
-                mPtr = mAllocated;
             }
             else
                 mPtr = input;
-        }
-        
-        ~PaddedInput()
-        {
-            mOwner->dealloc(mAllocated);
         }
         
         const double &operator [](size_t idx) { return mPtr[idx]; }
@@ -50,7 +44,7 @@ template <typename Op> class FrameLib_Complex_BinaryOp final : public FrameLib_P
         // Data
         
         FrameLib_Complex_BinaryOp *mOwner;
-        double *mAllocated;
+        FrameLib_Complex_BinaryOp::AutoArray<double> mAllocated;
         const double *mPtr;
     };
     
@@ -62,10 +56,10 @@ template <typename Op> class FrameLib_Complex_BinaryOp final : public FrameLib_P
         {
             add("Sets the mode used when dealing with mismatched input lengths: "
                 "wrap - the smaller input is read modulo against the larger input. "
-                "shrink - the output length is set to the size of the smaller input. "
-                "pad_in - the smaller input is padded prior to calculation to match the size of the larger input. "
-                "pad_out - the output is padded to match the size of the larger input.");
-            add("Sets which inputs trigger output.");
+                "shrink - the output length is set to that of the smaller input. "
+                "pad_in - the smaller input is padded prior to calculation to match the larger input. "
+                "pad_out - the output is padded to match the length of the larger input.");
+            add("Sets which pairs of inputs trigger output.");
             add("Sets the complex value used for padding (for either pad_in or pad_out modes).");
         }
     };
@@ -78,7 +72,8 @@ public:
     
     // Constructor
     
-    FrameLib_Complex_BinaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, getParameterInfo(), 4, 2)
+    FrameLib_Complex_BinaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+    : FrameLib_Processor(context, proxy, getParameterInfo(), 4, 2)
     {
         mParameters.addEnum(kMismatchMode, "mismatch");
         mParameters.addEnumItem(kWrap, "wrap");
@@ -95,10 +90,11 @@ public:
         
         mParameters.set(serialisedParameters);
                                     
-        mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
-        mPadValue = mParameters.getValue(kPadding);
+        mMismatchMode = mParameters.getEnum<MismatchModes>(kMismatchMode);
+        mRealPad = mParameters.getArray(kPadding)[0];
+        mImagPad = mParameters.getArray(kPadding)[1];
         
-        TriggerModes triggers = (TriggerModes) mParameters.getInt(kTriggers);
+        TriggerModes triggers = mParameters.getEnum<TriggerModes>(kTriggers);
         
         if (triggers == kLeft)
         {
@@ -116,9 +112,13 @@ public:
     
     std::string objectInfo(bool verbose) override
     {
-        return formatInfo("#: Calculation is performed on pairs of complex values in turn (with each complex value split across two inputs). If there is a mismatch between frame lengths within each complex pair (within a single operand) the shorter input is padded with zeros before calculation and the longer size used). The outputs are frames at least as long as the smaller of the two input pairs. "
-                       "When complex pairs of frames (left and right operands) mismatch in size the result depends on the setting of the mismatch parameter. Either or both pairs of inputs may be set to trigger output.",
-                       "#.", getDescriptionString(), verbose);
+        return formatInfo("#: Calculation is performed on pairs of complex values. "
+                          "Both inputs and output are split into real and imaginary parts . "
+                          "The outputs are frames at least as long as the shorter of the two operands. "
+                          "If input pairs are mismatched then the shorter input is padded with zeros. "
+                          "When operands mismatch in length the result depends on the mismatch parameter. "
+                          "Either or both pairs of inputs may be set to trigger output.",
+                          "#.", getDescriptionString(), verbose);
     }
         
     std::string inputInfo(unsigned long idx, bool verbose) override
@@ -166,15 +166,15 @@ private:
         const double *input2R = getInput(2, &sizeIn2R);
         const double *input2I = getInput(3, &sizeIn2I);
         
-        double defaultValueR = mPadValue;
-        double defaultValueI = mPadValue;
+        double defaultValueR = mRealPad;
+        double defaultValueI = mImagPad;
         
         unsigned long sizeIn1 = std::max(sizeIn1R, sizeIn1I);
         unsigned long sizeIn2 = std::max(sizeIn2R, sizeIn2I);
         
         // Get common size
         
-        unsigned long sizeCommon = sizeIn1 < sizeIn2 ? sizeIn1 : sizeIn2;
+        unsigned long sizeCommon = std::min(sizeIn1, sizeIn2);
         
         // Calculate output size by mode
         
@@ -184,7 +184,7 @@ private:
                 sizeOut = sizeCommon;
                 break;
             default:
-                sizeOut = sizeIn1 > sizeIn2 ? sizeIn1 : sizeIn2;
+                sizeOut = std::max(sizeIn1, sizeIn2);
                 if (mode == kWrap)
                     sizeOut = sizeIn1 && sizeIn2 ? sizeOut : 0;
                 break;
@@ -197,7 +197,7 @@ private:
         allocateOutputs();
         double *outputR = getOutput(0, &sizeOut);
         double *outputI = getOutput(1, &sizeOut);
-        sizeCommon = sizeCommon > sizeOut ? sizeOut : sizeCommon;
+        sizeCommon = std::min(sizeCommon, sizeOut);
         
         PaddedInput in1R(this, input1R, sizeIn1R, sizeIn1);
         PaddedInput in1I(this, input1I, sizeIn1I, sizeIn1);
@@ -298,13 +298,14 @@ private:
     
     // Data
     
-    double mPadValue;
+    double mRealPad;
+    double mImagPad;
     MismatchModes mMismatchMode;
 };
 
 // Complex Binary Functor
 
-template<std::complex<double> func(const std::complex<double>&, const std::complex<double>&)>
+template <std::complex<double> func(const std::complex<double>&, const std::complex<double>&)>
 struct Complex_Binary_Functor
 {
     std::complex<double> operator()(const std::complex<double> &x, const std::complex<double> &y) { return func(x, y); }
@@ -312,9 +313,7 @@ struct Complex_Binary_Functor
 
 // Complex Binary (Function Version)
 
-template<std::complex<double> func(const std::complex<double>&, const std::complex<double>&)>
+template <std::complex<double> func(const std::complex<double>&, const std::complex<double>&)>
 using  FrameLib_Complex_Binary = FrameLib_Complex_BinaryOp<Complex_Binary_Functor<func>>;
-
-
 
 #endif

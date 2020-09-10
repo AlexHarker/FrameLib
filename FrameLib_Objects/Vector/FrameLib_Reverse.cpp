@@ -4,24 +4,27 @@
 
 // Constructor
 
-FrameLib_Reverse::FrameLib_Reverse(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 1)
-{}
+FrameLib_Reverse::FrameLib_Reverse(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, nullptr, 1, 1)
+{
+    mParameters.set(serialisedParameters);
+}
 
 // Info
 
 std::string FrameLib_Reverse::objectInfo(bool verbose)
 {
-    return "Reverses the order of a single frame's contents.";
+    return "Computes the reverse of the input frame";
 }
 
 std::string FrameLib_Reverse::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Input Frame";
+    return "Input";
 }
 
 std::string FrameLib_Reverse::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Reversed Frame";
+    return "Output";
 }
 
 // Process
@@ -37,5 +40,5 @@ void FrameLib_Reverse::process()
     double *output = getOutput(0, &size);
 
     if (output)
-        std::reverse_copy(input, input+size, output);
+        std::reverse_copy(input, input + size, output);
 }

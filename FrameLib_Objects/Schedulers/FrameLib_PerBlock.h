@@ -7,12 +7,11 @@
 
 class FrameLib_PerBlock final : public FrameLib_Scheduler
 {
-    
 public:
     
     // Constructor
     
-    FrameLib_PerBlock(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_PerBlock(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     

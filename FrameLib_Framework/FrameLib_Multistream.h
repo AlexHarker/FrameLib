@@ -22,15 +22,17 @@
  
  @ingroup Multistream
  
- @brief a abstract class proving multi-stream connnections and the means to the number of streams in a network.
+ @brief a abstract class proving multistream connnections and the means to the number of streams in a network.
  
  */
 
-class FrameLib_Multistream : public FrameLib_Object<FrameLib_Multistream>
+class FrameLib_Multistream
+: public FrameLib_Object<FrameLib_Multistream>
+, public FrameLib_Stack<FrameLib_Multistream, FrameLib_Multistream>::Node
 {
-    
 protected:
 
+    using InputStack = FrameLib_Stack<FrameLib_Multistream, FrameLib_Multistream>;
     using BlockConnection = FrameLib_Object<FrameLib_Block>::Connection;
     using MultistreamOutput = std::vector<BlockConnection>;
     using MultistreamConnection = FrameLib_Object::Connection;
@@ -41,12 +43,23 @@ public:
     
     // Constructors
 
-    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
-    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams)
-    { setIO(nIns, nOuts); }
+    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, bool ownsStreams, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
+    : FrameLib_Object(type, context, proxy)
+    , mNumStreams(nStreams)
+    , mInCount(0)
+    , mOwnsStreams(ownsStreams)
+    , mOutputChange(false)
+    {
+        setIO(nIns, nOuts);
+    }
     
-    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, unsigned long nStreams)
-    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams) {}
+    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, bool ownsStreams, unsigned long nStreams)
+    : FrameLib_Object(type, context, proxy)
+    , mNumStreams(nStreams)
+    , mInCount(0)
+    , mOwnsStreams(ownsStreams)
+    , mOutputChange(false)
+    {}
     
     // Destructor
     
@@ -56,10 +69,6 @@ public:
     
     FrameLib_Multistream(const FrameLib_Multistream&) = delete;
     FrameLib_Multistream& operator=(const FrameLib_Multistream&) = delete;
-
-    // Default is not to handle audio
-    
-    static bool handlesAudio() { return false; }
 
     // Number of Streams
     
@@ -79,34 +88,33 @@ protected:
     
     // Query Connections for Individual Channels
     
-    unsigned long getInputNumChans(unsigned long inIdx);
+    unsigned long getInputNumStreams(unsigned long inIdx);
     BlockConnection getInputChan(unsigned long inIdx, unsigned long chan);
     
-    unsigned long getOrderingConnectionNumChans(unsigned long idx);
+    unsigned long getOrderingConnectionNumStreams(unsigned long idx);
     BlockConnection getOrderingConnectionChan(unsigned long idx, unsigned long chan);
 
+    MultistreamOutput& getMultistreamOutput(unsigned long i) { return mOutputs[i]; }
+    
 private:
 
     // Connection Methods (private)
     
-    void connectionUpdate(Queue *queue) final
-    {
-        if (inputUpdate())
-            outputUpdate(queue);
-    }
+    void connectionUpdate(Queue *queue) final;
 
     virtual bool inputUpdate() = 0;
     void outputUpdate(Queue *queue);
-    
-protected:
+
+    void inputCheck(InputStack& stack);
 
     // Outputs
     
     std::vector<MultistreamOutput> mOutputs;
     
-private:
-    
     unsigned long mNumStreams;
+    unsigned long mInCount;
+    bool mOwnsStreams;
+    bool mOutputChange;
 };
 
 
@@ -116,20 +124,23 @@ private:
  
  @ingroup Multistream
 
- @brief a template class for providing multi-stream support to any FrameLib_Block class.
+ @brief a template class for providing multistream support to any FrameLib_Block class.
  
  */
 
 template <class T>
 class FrameLib_Expand final : public FrameLib_Multistream
 {
-
 public:
+    
+    static constexpr ObjectType sType = T::sType;
+    static constexpr bool sHandlesAudio = T::sHandlesAudio;
     
     const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
 
-    FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
-    : FrameLib_Multistream(T::getType(), context, proxy, nStreams), mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
+    FrameLib_Expand(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
+    : FrameLib_Multistream(T::sType, context, proxy, true, nStreams)
+    , mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
     {
         // Make first block
         
@@ -149,7 +160,7 @@ public:
         // Make initial output connections
         
         for (unsigned long i = 0; i < getNumOuts(); i++)
-            mOutputs[i].push_back(BlockConnection(mBlocks[0].get(), i));
+            getMultistreamOutput(i).push_back(BlockConnection(mBlocks[0].get(), i));
         
         // Check for ordering support
         
@@ -176,8 +187,10 @@ public:
     }
 
     // Audio Processing
-        
-    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override
+    
+    uint64_t getBlockTime() const override { return mBlocks[0]->getBlockTime(); }
+
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& queue) override
     {
         unsigned long internalNumIns = mBlocks[0]->getNumAudioIns();
         unsigned long internalNumOuts = mBlocks[0]->getNumAudioOuts();
@@ -201,7 +214,7 @@ public:
             unsigned long inStreamOffset = internalNumIns * (static_cast<unsigned long>(i) % getNumStreams());
             unsigned long outStreamOffset = internalNumOuts * (static_cast<unsigned long>(i) % getNumStreams());
             
-            mBlocks[i]->blockUpdate(ins + inStreamOffset, mAudioTemps.data(), blockSize);
+            mBlocks[i]->blockUpdate(ins + inStreamOffset, mAudioTemps.data(), blockSize, queue);
             
             for (unsigned long j = 0; j < internalNumOuts; j++)
                 for (unsigned long k = 0; k < blockSize; k++)
@@ -212,10 +225,14 @@ public:
         
         if (getNumAudioOuts())
            dealloc(mAudioTemps[0]);
-                
-        clearAllocator();
     }
-   
+    
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override
+    {
+        FrameLib_AudioQueue queue;
+        blockUpdate(ins, outs, blockSize, queue);
+    }
+    
     // Reset
     
     void reset(double samplingRate, unsigned long maxBlockSize) override
@@ -226,10 +243,6 @@ public:
         for (auto it = mBlocks.begin(); it != mBlocks.end(); it++)
             (*it)->reset(samplingRate, maxBlockSize);
     }
-    
-    // Handles Audio
-    
-    static bool handlesAudio() { return T::handlesAudio(); }
     
     // Info
     
@@ -284,8 +297,8 @@ private:
         unsigned long cChannels = static_cast<unsigned long>(mBlocks.size());
         
         for (unsigned long i = 0; i < getNumIns(); i++)
-            if (getInputNumChans(i) > nChannels)
-                nChannels = getInputNumChans(i);
+            if (getInputNumStreams(i) > nChannels)
+                nChannels = getInputNumStreams(i);
         
         nChannels = std::max(nChannels, getNumStreams());
         
@@ -312,11 +325,11 @@ private:
             // Redo output connection lists
             
             for (unsigned long i = 0; i < getNumOuts(); i++)
-                mOutputs[i].clear();
+                getMultistreamOutput(i).clear();
             
             for (unsigned long i = 0; i < getNumOuts(); i++)
                 for (unsigned long j = 0; j < nChannels; j++)
-                    mOutputs[i].push_back(BlockConnection(mBlocks[j].get(), i));
+                    getMultistreamOutput(i).push_back(BlockConnection(mBlocks[j].get(), i));
             
             // Update Fixed Inputs
             
@@ -328,10 +341,10 @@ private:
 
         for (unsigned long i = 0; i < getNumIns(); i++)
         {
-            if (getInputNumChans(i))
+            if (getInputNumStreams(i))
             {
                 for (unsigned long j = 0; j < nChannels; j++)
-                    mBlocks[j]->addConnection(getInputChan(i, j % getInputNumChans(i)), i);
+                    mBlocks[j]->addConnection(getInputChan(i, j % getInputNumStreams(i)), i);
             }
             else
             {
@@ -349,9 +362,9 @@ private:
         
         for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
         {
-            if (getOrderingConnectionNumChans(i))
+            if (getOrderingConnectionNumStreams(i))
                 for (unsigned long j = 0; j < nChannels; j++)
-                    mBlocks[j]->addOrderingConnection(getOrderingConnectionChan(i, j % getOrderingConnectionNumChans(i)));
+                    mBlocks[j]->addOrderingConnection(getOrderingConnectionChan(i, j % getOrderingConnectionNumStreams(i)));
         }
         
         return numChansChanged;

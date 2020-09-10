@@ -16,11 +16,11 @@ class spectral_processor
     using Setup = typename FFTTypes<T>::Setup;
     
     template <bool B>
-    using enable_if_t = typename std::enable_if<B>::type;
+    using enable_if_t = typename std::enable_if<B, int>::type;
     
 public:
     
-    enum EdgeMode { kEdgeLinear, kEdgeWrap, kEdgeWrapCentre, kEdgeFold };
+    enum EdgeMode { kEdgeLinear, kEdgeWrap, kEdgeWrapCentre, kEdgeFold, kEdgeFoldRepeat };
     
     struct in_ptr
     {
@@ -32,19 +32,19 @@ public:
     
     // Constructor
     
-    template <typename U = Allocator, typename = enable_if_t<std::is_default_constructible<U>::value>>
+    template <typename U = Allocator, enable_if_t<std::is_default_constructible<U>::value> = 0>
     spectral_processor() :  m_max_fft_size_log2(0)
     {
         set_max_fft_size(32768);
     }
     
-    template <typename U = Allocator, typename = enable_if_t<std::is_copy_constructible<U>::value>>
+    template <typename U = Allocator, enable_if_t<std::is_copy_constructible<U>::value> = 0>
     spectral_processor(const Allocator& allocator) : m_allocator(allocator), m_max_fft_size_log2(0)
     {
         set_max_fft_size(32768);
     }
     
-    template <typename U = Allocator, typename = enable_if_t<std::is_move_constructible<U>::value>>
+    template <typename U = Allocator, enable_if_t<std::is_move_constructible<U>::value> = 0>
     spectral_processor(Allocator&& allocator) : m_allocator(allocator), m_max_fft_size_log2(0)
     {
         set_max_fft_size(32768);
@@ -70,7 +70,7 @@ public:
         }
     }
     
-    uintptr_t max_fft_size() const { return 1 << m_max_fft_size_log2; }
+    uintptr_t max_fft_size() const { return uintptr_t(1) << m_max_fft_size_log2; }
     
     // Transforms
     
@@ -130,10 +130,10 @@ public:
     
     // Phase
     
-    void change_phase(T *output, const T *input, uintptr_t size, double phase)
+    void change_phase(T *output, const T *input, uintptr_t size, double phase, double time_multiplier = 1.0)
     {
-        uintptr_t fft_size_log2 = calc_fft_size_log2(size);
-        uintptr_t fft_size = 1 << fft_size_log2;
+        uintptr_t fft_size_log2 = calc_fft_size_log2((uintptr_t) std::round(size * time_multiplier));
+        uintptr_t fft_size = uintptr_t(1) << fft_size_log2;
         
         temporary_buffers<1> buffer(m_allocator, fft_size >> 1);
         
@@ -156,19 +156,15 @@ public:
     
     static uintptr_t calc_fft_size_log2(uintptr_t size)
     {
-        uintptr_t bit_shift = size;
-        uintptr_t bit_count = 0;
+        uintptr_t count = 0;
         
-        while (bit_shift)
-        {
-            bit_shift >>= 1U;
-            bit_count++;
-        }
+        while (size >> count)
+            count++;
         
-        if (bit_count && size == 1U << (bit_count - 1U))
-            return bit_count - 1U;
+        if (count && size == uintptr_t(1) << (count - 1U))
+            return count - uintptr_t(1);
         else
-            return bit_count;
+            return count;
     }
     
     // Scale Vector
@@ -246,195 +242,254 @@ protected:
             return p2++;
         }
         
-        const T *operator --()
-        {
-            std::swap(p1, --p2);
-            return p1;
-        }
-        
-        const T *operator --(int)
-        {
-            std::swap(p1, --p2);
-            return p2;
-        }
-        
     private:
         
         const T *p1, *p2;
     };
     
-    struct binary_sizes
+    struct op_sizes
     {
-        binary_sizes(uintptr_t size1, uintptr_t size2)
-        : m_size1(size1), m_size2(size2), m_fft_size_log2(calc_fft_size_log2(linear())) {}
+        op_sizes(uintptr_t size1, uintptr_t size2, EdgeMode mode)
+        : m_mode(mode), m_size1(size1), m_size2(size2), m_fft_size_log2(calc_fft_size_log2(calc_size()))
+        {}
         
-        uintptr_t linear() const        { return m_size1 + m_size2 - 1; }
+        EdgeMode mode() const           { return m_mode; }
+        
+        bool foldMode() const           { return m_mode == kEdgeFold || m_mode == kEdgeFoldRepeat; }
+
+        uintptr_t size1() const         { return m_size1; }
+        uintptr_t size2() const         { return m_size2; }
         uintptr_t min() const           { return std::min(m_size1, m_size2); }
         uintptr_t max() const           { return std::max(m_size1, m_size2); }
-        uintptr_t min_m1() const        { return min() - 1; }
-        uintptr_t fft() const           { return 1 << m_fft_size_log2; }
+        uintptr_t linear() const        { return m_size1 + m_size2 - 1; }
+        uintptr_t fold_copy() const     { return max() + (uintptr_t(1) << (min() >> 1)); }
+        uintptr_t fft() const           { return uintptr_t(1) << m_fft_size_log2; }
         uintptr_t fft_log2() const      { return m_fft_size_log2; }
         
     private:
+
+        uintptr_t calc_size() const
+        {
+            if (!foldMode())
+                return linear();
+            else
+                return fold_copy() + (min() - 1);
+        }
         
+        EdgeMode m_mode;
         uintptr_t m_size1, m_size2, m_fft_size_log2;
     };
     
+    // Folding copy
+    
+   static void fold(T* io, uintptr_t size, uintptr_t fold_size, bool repeat)
+    {
+        const T* first = io + fold_size;
+        const T* last = io + fold_size + size;
+        size_t offset = repeat ? 0 : 1;
+        
+        std::reverse_copy(first + offset, first + fold_size + offset, io);
+        std::reverse_copy(last - (fold_size + offset), last - offset, io + size + fold_size);
+    }
+    
+    static void copy_fold(T* output, in_ptr in, uintptr_t fold_size, bool repeat)
+    {
+        std::copy_n(in.m_ptr, in.m_size, output + fold_size);
+        fold(output, in.m_size, fold_size, repeat);
+    }
+    
+    static void copy_padded(T* output, in_ptr in, uintptr_t size, uintptr_t offset)
+    {
+        std::copy_n(in.m_ptr, in.m_size, output + offset);
+        std::fill_n(output + offset + in.m_size, size - in.m_size, 0);
+    }
+    
+    static void copy_fold_zero(Split& output, in_ptr in1, in_ptr in2, uintptr_t size, uintptr_t fold_size, bool repeat)
+    {
+        uintptr_t max_size = std::max(in1.m_size, in2.m_size);
+        uintptr_t folded = max_size + (fold_size << 1);
+        
+        copy_padded(output.realp, in1, max_size, fold_size);
+        fold(output.realp, max_size, fold_size, repeat);
+        std::fill_n(output.realp + folded, size - folded, 0);
+        copy_padded(output.imagp, in2, max_size, fold_size);
+        fold(output.imagp, max_size, fold_size, repeat);
+        std::fill_n(output.imagp + folded, size - folded, 0);
+    }
+    
     // Memory manipulation (complex)
     
-    static void copy_zero(T* output, in_ptr in, uintptr_t size)
+    static void copy(Split& output, const Split& spectrum, uintptr_t o_offset, uintptr_t offset, uintptr_t size)
     {
-        std::copy_n(in.m_ptr, in.m_size, output);
-        std::fill_n(output + in.m_size, size - in.m_size, 0.0);
+        std::copy_n(spectrum.realp + offset, size, output.realp + o_offset);
+        std::copy_n(spectrum.imagp + offset, size, output.imagp + o_offset);
     }
     
-    static void copy(Split& output, const Split& spectrum, uintptr_t oOffset, uintptr_t offset, uintptr_t size)
-    {
-        std::copy_n(spectrum.realp + offset, size, output.realp + oOffset);
-        std::copy_n(spectrum.imagp + offset, size, output.imagp + oOffset);
-    }
-    
-    static void wrap(Split& output, const Split& spectrum, uintptr_t oOffset, uintptr_t offset, uintptr_t size)
+    static void wrap(Split& output, const Split& spectrum, uintptr_t o_offset, uintptr_t offset, uintptr_t size)
     {
         for (uintptr_t i = 0; i < size; i++)
         {
-            output.realp[i + oOffset] += spectrum.realp[i + offset];
-            output.imagp[i + oOffset] += spectrum.imagp[i + offset];
+            output.realp[i + o_offset] += spectrum.realp[i + offset];
+            output.imagp[i + o_offset] += spectrum.imagp[i + offset];
         }
     }
     
-    static void fold(Split& output, const Split& spectrum, uintptr_t oOffset, uintptr_t offset, uintptr_t size)
+    static void zero(Split& output, uintptr_t start, uintptr_t end)
     {
-        for (uintptr_t i = 0; i < size; i++)
+        for (uintptr_t i = start; i < end; i++)
         {
-            output.realp[i + oOffset] += spectrum.realp[offset - (i + 1)];
-            output.imagp[i + oOffset] += spectrum.imagp[offset - (i + 1)];
+            output.realp[i] = T(0);
+            output.imagp[i] = T(0);
         }
     }
 
     // Memory manipulation (real)
     
-    static void copy(T *output, const Split& spectrum, uintptr_t oOffset, uintptr_t offset, uintptr_t size)
+    static void copy(T *output, const Split& spectrum, uintptr_t o_offset, uintptr_t offset, uintptr_t size)
     {
         zipped_pointer p(spectrum, offset);
 
         for (uintptr_t i = 0; i < size; i++)
-            output[oOffset + i] = *p++;
+            output[o_offset + i] = *p++;
     }
     
-    static void wrap(T *output, const Split& spectrum, uintptr_t oOffset, uintptr_t offset, uintptr_t size)
+    static void wrap(T *output, const Split& spectrum, uintptr_t o_offset, uintptr_t last, uintptr_t size)
     {
-        zipped_pointer p(spectrum, offset);
+        zipped_pointer p(spectrum, last - size);
         
         for (uintptr_t i = 0; i < size; i++)
-            output[oOffset + i] += *p++;
+            output[o_offset + i] += *p++;
     }
     
-    static void fold(T *output, const Split& spectrum, uintptr_t oOffset, uintptr_t offset, uintptr_t size)
+    static void zero(T *output, uintptr_t start, uintptr_t end)
     {
-        zipped_pointer p(spectrum, offset);
-        
-        for (uintptr_t i = 0; i < size; i++)
-            output[oOffset + i] += *--p;
+        for (uintptr_t i = start; i < end; i++)
+            output[i] = T(0);
     }
     
     // Arranges for convolution and correlation
     
     template <class U>
-    static void arrange_convolve(U output, Split spectrum, binary_sizes& sizes, EdgeMode mode)
+    static void arrange_convolve(U output, Split spectrum, op_sizes& sizes)
     {
-        uintptr_t folded = sizes.min() / 2;
-        uintptr_t wrapped1 = sizes.min_m1() / 2;
-        uintptr_t wrapped2 = sizes.min_m1() - wrapped1;
+        uintptr_t min_m1 = (sizes.min() - 1);
         
-        switch (mode)
+        switch (sizes.mode())
         {
             case kEdgeLinear:
+            {
                 copy(output, spectrum, 0, 0, sizes.linear());
                 break;
-
+            }
+                
             case kEdgeWrap:
+            {
                 copy(output, spectrum, 0, 0, sizes.max());
-                wrap(output, spectrum, 0, sizes.max(), sizes.min_m1());
+                wrap(output, spectrum, 0, sizes.linear(), min_m1);
                 break;
+            }
         
             case kEdgeWrapCentre:
-                copy(output, spectrum, 0, wrapped1, sizes.max());
-                wrap(output, spectrum, 0, sizes.linear() - wrapped2, wrapped2);
-                wrap(output, spectrum, sizes.max() - wrapped1, 0, wrapped1);
+            {
+                uintptr_t wrapped = min_m1 >> 1;
+                copy(output, spectrum, 0, wrapped, sizes.max());
+                wrap(output, spectrum, 0, sizes.linear(), min_m1 - wrapped);
+                wrap(output, spectrum, sizes.max() - wrapped, wrapped, wrapped);
                 break;
+            }
                 
             case kEdgeFold:
-                copy(output, spectrum, 0, sizes.min_m1() / 2, sizes.max());
-                fold(output, spectrum, 0, folded, folded);
-                fold(output, spectrum, sizes.max() - folded, sizes.linear(), folded);
+            case kEdgeFoldRepeat:
+            {
+                copy(output, spectrum, 0, min_m1, sizes.max());
                 break;
+            }
         }
     }
 
     template <class U>
-    static void arrange_correlate(U output, Split spectrum, binary_sizes& sizes, EdgeMode mode)
+    static void arrange_correlate(U output, Split spectrum, op_sizes& sizes)
     {
-        uintptr_t offset = sizes.min() / 2;
-        uintptr_t wrapped = sizes.min_m1() - offset;
-        uintptr_t fft_minus_min_m1 = sizes.fft() - sizes.min_m1();
-        
-        switch (mode)
+        uintptr_t size2_m1 = sizes.size2() - 1;
+    
+        switch (sizes.mode())
         {
             case kEdgeLinear:
-                copy(output, spectrum, 0, 0, sizes.max());
-                copy(output, spectrum, sizes.max(), fft_minus_min_m1, sizes.min_m1());
+            {
+                copy(output, spectrum, 0, 0, sizes.size1());
+                copy(output, spectrum, sizes.size1(), sizes.fft() - size2_m1, size2_m1);
                 break;
+            }
                 
             case kEdgeWrap:
-                copy(output, spectrum, 0, 0, sizes.max());
-                wrap(output, spectrum, sizes.max() - sizes.min_m1(), fft_minus_min_m1, sizes.min_m1());
+            {
+                copy(output, spectrum, 0, 0, sizes.size1());
+                zero(output, sizes.size1(), sizes.size2());
+                wrap(output, spectrum, sizes.max() - size2_m1, sizes.fft(), size2_m1);
                 break;
+            }
                 
             case kEdgeWrapCentre:
-                copy(output, spectrum, 0, sizes.fft() - offset, offset);
-                copy(output, spectrum, offset, 0, sizes.max() - offset);
-                wrap(output, spectrum, 0, sizes.max() - offset, offset);
-                wrap(output, spectrum, sizes.max() - wrapped, fft_minus_min_m1, wrapped);
+            {
+                uintptr_t wrapped1 = (sizes.min() - 1) >> 1;
+                uintptr_t wrapped2 = std::min(size2_m1, sizes.max() - wrapped1);
+                uintptr_t wrapped3 = size2_m1 - wrapped2;
+                
+                uintptr_t offset = wrapped3 ? 0 : sizes.max() - (size2_m1 + wrapped1);
+                
+                zero(output, 0, sizes.max());
+                copy(output, spectrum, 0, wrapped1, sizes.size1() - wrapped1);
+                copy(output, spectrum, sizes.max() - wrapped1, 0, wrapped1);
+                wrap(output, spectrum, offset, sizes.fft(), wrapped2);
+                wrap(output, spectrum, sizes.max() - wrapped3, sizes.fft() - wrapped2, wrapped3);
                 break;
+            }
             
             case kEdgeFold:
-                copy(output, spectrum, 0, sizes.fft() - offset, offset);
-                copy(output, spectrum, offset, 0, sizes.max() - offset);
-                fold(output, spectrum, 0, sizes.fft() + 1 - offset, offset);
-                fold(output, spectrum, sizes.max() - offset, sizes.max(), offset);
+            case kEdgeFoldRepeat:
+            {
+                if (sizes.size1() >= sizes.size2())
+                {
+                    copy(output, spectrum, 0, 0, sizes.max());
+                }
+                else
+                {
+                    uintptr_t copy_size = sizes.max() - 1;
+
+                    copy(output, spectrum, 0, 0, 1);
+                    copy(output, spectrum, 1, sizes.fft() - copy_size, copy_size);
+                }
                 break;
+            }
         }
     }
    
     // Binary Operations
     
     typedef void (*SpectralOp)(Split *, Split *, Split *, uintptr_t, T);
-    typedef void (*ComplexArrange)(Split, Split, binary_sizes&, EdgeMode);
-    typedef void (*RealArrange)(T *, Split, binary_sizes&, EdgeMode);
+    typedef void (*ComplexArrange)(Split, Split, op_sizes&);
+    typedef void (*RealArrange)(T *, Split, op_sizes&);
 
     uintptr_t calc_conv_corr_size(uintptr_t size1, uintptr_t size2, EdgeMode mode) const
     {
-        binary_sizes sizes(size1, size2);
+        op_sizes sizes(size1, size2, mode);
         
         if ((sizes.fft() > max_fft_size()) || !size1 || !size2)
             return 0;
         
-        uintptr_t size = mode != kEdgeLinear ? sizes.max() : sizes.linear();
-        
-        if (mode == kEdgeFold && !(sizes.min() & 1U))
-            return size + 1;
-        
-        return size;
+        return mode != kEdgeLinear ? sizes.max() : sizes.linear();
     }
     
     template<SpectralOp Op>
-    void binary_op(Split& io, Split& temp, binary_sizes& sizes, in_ptr r_in1, in_ptr i_in1, in_ptr r_in2, in_ptr i_in2)
+    void binary_op(Split& io, Split& temp, op_sizes& sizes, in_ptr r_in1, in_ptr i_in1, in_ptr r_in2, in_ptr i_in2)
     {
-        copy_zero(io.realp, r_in1, sizes.fft());
-        copy_zero(io.imagp, i_in1, sizes.fft());
-        copy_zero(temp.realp, r_in2, sizes.fft());
-        copy_zero(temp.imagp, i_in2, sizes.fft());
+        bool fold1 = sizes.foldMode() && sizes.size1() >= sizes.size2();
+        bool fold2 = sizes.foldMode() && !fold1;
+        bool repeat = sizes.mode() == kEdgeFoldRepeat;
+        uintptr_t fold_size = sizes.min() >> 1;
+        
+        copy_fold_zero(io, r_in1, i_in1, sizes.fft(), fold1 ? fold_size : 0, repeat);
+        copy_fold_zero(temp, r_in2, i_in2, sizes.fft(), fold2 ? fold_size : 0, repeat);
         
         fft(io, sizes.fft_log2());
         fft(temp, sizes.fft_log2());
@@ -464,7 +519,7 @@ protected:
         
         // Assign temporary memory
         
-        binary_sizes sizes(size1, size2);
+        op_sizes sizes(size1, size2, mode);
         temporary_buffers<2> buffers(m_allocator, sizes.fft());
         Split output {r_out, i_out};
         
@@ -473,16 +528,37 @@ protected:
         if (buffers)
         {
             binary_op<Op>(buffers.m_spectra[0], buffers.m_spectra[1], sizes, r_in1, i_in1, r_in2, i_in2);
-            arrange(output, buffers.m_spectra[0], sizes, mode);
+            arrange(output, buffers.m_spectra[0], sizes);
         }
     }
     
     template<SpectralOp Op>
-    void binary_op(Split& io, Split& temp, binary_sizes& sizes, in_ptr in1, in_ptr in2)
+    void binary_op(Split& io, Split& temp, op_sizes& sizes, in_ptr in1, in_ptr in2)
     {
-        rfft(io, in1.m_ptr, in1.m_size, sizes.fft_log2());
-        rfft(temp, in2.m_ptr, in2.m_size, sizes.fft_log2());
-    
+        if (!sizes.foldMode())
+        {
+            rfft(io, in1.m_ptr, in1.m_size, sizes.fft_log2());
+            rfft(temp, in2.m_ptr, in2.m_size, sizes.fft_log2());
+        }
+        else
+        {
+            uintptr_t fold_size = sizes.min() >> 1;
+            bool repeat = sizes.mode() == kEdgeFoldRepeat;
+
+            if (sizes.size1() >= sizes.size2())
+            {
+                copy_fold(temp.realp, in1, fold_size, repeat);
+                rfft(io, temp.realp, sizes.fold_copy(), sizes.fft_log2());
+                rfft(temp, in2.m_ptr, in2.m_size, sizes.fft_log2());
+            }
+            else
+            {
+                copy_fold(io.realp, in2, fold_size, repeat);
+                rfft(temp, io.realp, sizes.fold_copy(), sizes.fft_log2());
+                rfft(io, in1.m_ptr, in1.m_size, sizes.fft_log2());
+            }
+        }
+
         Op(&io, &io, &temp, sizes.fft(), 0.25 / (T) sizes.fft());
     
         rifft(io, sizes.fft_log2());
@@ -504,7 +580,7 @@ protected:
         
         // Assign temporary memory
         
-        binary_sizes sizes(in1.m_size, in2.m_size);
+        op_sizes sizes(in1.m_size, in2.m_size, mode);
         temporary_buffers<2> buffers(m_allocator, sizes.fft() >> 1);
         
         // Process
@@ -512,7 +588,7 @@ protected:
         if (buffers)
         {
             binary_op<Op>(buffers.m_spectra[0], buffers.m_spectra[1], sizes, in1, in2);
-            arrange(output, buffers.m_spectra[0], sizes, mode);
+            arrange(output, buffers.m_spectra[0], sizes);
         }
     }
     
