@@ -81,8 +81,8 @@ for folder in max_source_categories:
 
 # TODO - lookwithin and reaise this is not okay
 # Recreate full paths to open and parse for type cases
-counter = 0
-for category_folder, name in source_file_list:
+for counter, (category_folder, name) in enumerate(source_file_list):
+    print(name)
     with open(os.path.join(category_folder, name), "r") as cpp:
         # flatten it with no spaces whatsoever
         source_file = cpp.read().replace("\n", "").replace(" ", "")
