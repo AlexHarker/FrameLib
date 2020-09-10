@@ -39,7 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
-		"globalpatchername" : "Tutorial_1[1][1][1]",
+		"globalpatchername" : "Tutorial_1[1][1]",
 		"title" : "Tutorial 2: Learn by example - what does FrameLib do?",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -630,8 +630,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -696,7 +696,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 724.0, 706.0 ],
+						"rect" : [ 0.0, 26.0, 724.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -880,8 +880,8 @@
 													"numinlets" : 1,
 													"numoutlets" : 2,
 													"outlettype" : [ "float", "bang" ],
-													"patching_rect" : [ 50.0, 157.0, 170.0, 22.0 ],
-													"text" : "buffer~ window @samps 1024"
+													"patching_rect" : [ 50.0, 157.0, 203.0, 22.0 ],
+													"text" : "buffer~ fl.tut1.window @samps 1024"
 												}
 
 											}
@@ -903,7 +903,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 373.0, 533.0, 89.0, 22.0 ],
+									"patching_rect" : [ 414.0, 533.0, 89.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1007,8 +1007,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 233.0, 533.0, 135.0, 22.0 ],
-									"text" : "buffer~ rain rainstick.aif"
+									"patching_rect" : [ 233.0, 533.0, 165.0, 22.0 ],
+									"text" : "buffer~ fl.tut2.rain rainstick.aif"
 								}
 
 							}
@@ -1199,8 +1199,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1464,8 +1464,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1530,7 +1530,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 724.0, 706.0 ],
+						"rect" : [ 34.0, 105.0, 724.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1878,8 +1878,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2858,8 +2858,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3122,8 +3122,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 325.5, 525.0, 140.0, 22.0 ],
-									"text" : "buffer~ jongles jongly.aif"
+									"patching_rect" : [ 325.5, 525.0, 157.0, 22.0 ],
+									"text" : "buffer~ fl.tut1.jongl jongly.aif"
 								}
 
 							}
@@ -3455,8 +3455,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4045,8 +4045,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4118,28 +4118,28 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-9::obj-38" : [ "live.dial", "Frame 1 Interval (Samples)", 0 ],
-			"obj-9::obj-21::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
-			"obj-9::obj-9" : [ "live.dial[6]", "Frame 1 Length (Samples)", 0 ],
-			"obj-2::obj-6" : [ "live.text", "live.text", 0 ],
 			"obj-9::obj-12" : [ "live.dial[8]", "mod", 0 ],
 			"obj-3::obj-26::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
-			"obj-9::obj-69" : [ "live.tab", "live.tab", 0 ],
-			"obj-2::obj-47" : [ "live.text[1]", "live.text[1]", 0 ],
+			"obj-2::obj-6" : [ "live.text", "live.text", 0 ],
 			"obj-9::obj-7" : [ "live.dial[5]", "Frame 2 Interval (Samples)", 0 ],
+			"obj-9::obj-38" : [ "live.dial", "Frame 1 Interval (Samples)", 0 ],
 			"obj-9::obj-10" : [ "live.dial[7]", "Frame 2 Length (Samples)", 0 ],
+			"obj-9::obj-69" : [ "live.tab", "live.tab", 0 ],
 			"obj-116::obj-4" : [ "live.text[3]", "live.text", 0 ],
+			"obj-2::obj-47" : [ "live.text[1]", "live.text[1]", 0 ],
+			"obj-9::obj-9" : [ "live.dial[6]", "Frame 1 Length (Samples)", 0 ],
+			"obj-9::obj-21::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-9::obj-21::obj-50" : 				{
-					"parameter_longname" : "live.gain~[3]"
-				}
-,
 				"obj-3::obj-26::obj-50" : 				{
 					"parameter_longname" : "live.gain~[4]"
+				}
+,
+				"obj-9::obj-21::obj-50" : 				{
+					"parameter_longname" : "live.gain~[3]"
 				}
 
 			}
@@ -4351,6 +4351,10 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "fl.svf~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.frommax~.mxo",
 				"type" : "iLaX"
 			}
@@ -4505,8 +4509,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",
