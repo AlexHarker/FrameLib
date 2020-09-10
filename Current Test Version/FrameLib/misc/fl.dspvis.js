@@ -29,13 +29,127 @@ sinePoints = get_sine_points();
 drawMode   = 0;
 drawY      = true;
 
+// -----------------------------------------------------
+// Frame
+frameCalcMode = 0; // 0 = proportionate, 1 = fixed.
+frameDraw     = false;
+frameInfo     = [10, 0, 0.25, 0.0]; // numSamples, offset in samples, proporional size, proportional offset.
+frame_calc();
+
+frameStyle = [
+                [0.192, 0.553, 0.792, 1.000],
+                [0.192, 0.553, 0.792, 0.500],
+                2
+            ];
+
+function frame_calc_mode(x){
+    frameCalcMode = x;
+    frame_calc();
+    mgraphics.redraw();
+}
+
+function set_frame_len(x){
+    if(frameCalcMode == 0){
+        frameInfo[2] = x;
+    } else if (frameCalcMode == 1){
+        frameInfo[0] = x;
+    }
+
+    frame_calc();
+    mgraphics.redraw();
+}
+
+function set_frame_offset(x){
+    if(frameCalcMode == 0){
+        frameInfo[3] = x;
+    } else if (frameCalcMode == 1){
+        frameInfo[1] = x;
+    }
+
+    frame_calc();
+    mgraphics.redraw();
+}
+
+function frame_calc(){
+    if(frameCalcMode == 0){
+        frameInfo[0] = Math.floor(sinePoints.length * frameInfo[2]);
+        frameInfo[1] = Math.floor(sinePoints.length * frameInfo[3]);
+    } else if(frameCalcMode == 1){
+        frameInfo[2] = frameInfo[0] / maxSineX;
+        frameInfo[3] = frameInfo[1] / maxSineX;
+    }
+}
+
+function frame_tog(x){
+    if(x == 0){
+        frameDraw = false;
+    } else{
+        frameDraw = true;
+    }
+
+    mgraphics.redraw();
+}
+
+function frame_draw(){
+    with(mgraphics){
+        if(frameInfo[1] < 0){
+            x = - 10;
+        } else if(frameInfo[1] > sinePoints.length - 1){
+            x = boxSize[0] + 10;
+        } else{
+            x = sinePoints[frameInfo[1]][0];
+        }
+
+        if((frameInfo[0] + frameInfo[1]) - 1 < 0){
+            x2 = -10;
+        } else if((frameInfo[0] + frameInfo[1]) - 1 > sinePoints.length - 1){
+            x2 = boxSize[0] + 10;
+        } else{
+            x2 = sinePoints[(frameInfo[0] + frameInfo[1]) - 1][0];
+        }
+
+        if(frameInfo[1] + frameInfo[0] - 1 < 0 && frameInfo[1] < 0){
+            w = 0;
+        } else if(frameInfo[1] + frameInfo[0] - 1 > sinePoints.length - 1 && frameInfo[1] > sinePoints.length - 1){
+            w = boxSize[0] + 10;
+        } else if(frameInfo[1] < 0){
+            w = sinePoints[(frameInfo[1] + frameInfo[0] - 1)][0] + sinePoints[0][0] + style[5];
+        } else if(frameInfo[1] + frameInfo[0] - 1 < 0){
+            w = 0;
+        } else if(frameInfo[1] > sinePoints.length - 1){
+            w = boxSize[0] + 10;
+        } else if(frameInfo[1] + frameInfo[0] - 1 > sinePoints.length - 1){
+            w = boxSize[0] + 10;
+        } else{
+            w = sinePoints[(frameInfo[1] + frameInfo[0] - 1)][0] - sinePoints[frameInfo[1]][0];
+        }
+
+        set_source_rgba(frameStyle[1]);
+        rectangle(x, 0, w, boxSize[1]);
+        fill();
+
+        set_source_rgba(frameStyle[0]);
+        set_line_width(frameStyle[2]);
+        move_to(x, 0);
+        line_to(x, boxSize[1]);
+        stroke();
+        move_to(x2, 0);
+        line_to(x2, boxSize[1]);
+        stroke();
+    }
+}
+// -----------------------------------------------------
+
 function paint(){
     draw_background();
-
 
     draw_y();
 
     draw_sine();
+
+    if(frameDraw){
+        frame_draw();
+    }
 
     draw_x_axis();
 
@@ -44,6 +158,7 @@ function paint(){
 	set_x_range(6.285);
 }
 
+
 function reset_params(){
     res      = 512;
     drawMode = 0;
@@ -51,6 +166,10 @@ function reset_params(){
     drawY    = true; 
     sinePoints = get_sine_points();
     mgraphics.redraw();
+}
+
+function draw_frame(){
+
 }
 
 function set_x_range(x){
@@ -78,6 +197,7 @@ function set_draw_mode(x){
 function set_res(x){
     res = x;
     sinePoints = get_sine_points();
+    frame_calc();
     mgraphics.redraw();
 }
 
