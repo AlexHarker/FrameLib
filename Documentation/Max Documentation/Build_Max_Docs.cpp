@@ -169,7 +169,6 @@ int main()
     FrameLib_Parameters::AutoSerial parameters;
 
     // Loop over objects using template list
-    
     FrameLib_DSPList::execute<DocumentationGenerator>(context, &parameters, proxy);
 
     // Cleanup
