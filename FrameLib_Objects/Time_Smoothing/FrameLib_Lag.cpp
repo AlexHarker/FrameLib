@@ -17,7 +17,7 @@ FrameLib_Lag::FrameLib_Lag(FrameLib_Context context, const FrameLib_Parameters::
     mParameters.addDouble(kDefault, "default", 0.0, 2);
     
     mParameters.addEnum(kMode, "mode");
-    mParameters.addEnumItem(kDefault, "default");
+    mParameters.addEnumItem(kUseDefault, "default");
     mParameters.addEnumItem(kValid, "valid");
     
     mParameters.set(serialisedParameters);
