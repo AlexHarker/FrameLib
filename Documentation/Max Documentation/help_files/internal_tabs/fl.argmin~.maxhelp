@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -49,8 +49,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -110,8 +110,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -164,7 +164,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 147.25, 195.0, 255.0, 21.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Add 37 to every value in the input frame."
 								}
 
@@ -187,7 +186,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 347.5, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 359.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -198,7 +197,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 318.0, 50.0, 23.0 ],
+									"patching_rect" : [ 15.0, 330.0, 50.0, 23.0 ],
 									"text" : "0."
 								}
 
@@ -210,7 +209,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 279.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 285.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -271,7 +270,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 67.0, 323.5, 60.25, 15.0 ]
+									"patching_rect" : [ 67.0, 335.5, 60.25, 15.0 ]
 								}
 
 							}
@@ -282,7 +281,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 129.25, 315.5, 260.0, 79.0 ],
+									"patching_rect" : [ 129.25, 327.5, 264.0, 79.0 ],
 									"text" : "The first value of fl.ramp~ will always be the minimum so we would expect 0 for output.\n\nRemember, argmin returns the position of the minimum, not the minimum itself."
 								}
 
@@ -294,7 +293,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.25, 140.5, 166.0, 36.0 ],
+									"patching_rect" : [ 315.25, 140.5, 168.0, 36.0 ],
 									"text" : "Frame counting from 0 to 1 with 1024 discrete points."
 								}
 
@@ -333,7 +332,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-17", 1 ],
-									"midpoints" : [ 24.5, 309.5, 55.5, 309.5 ],
+									"midpoints" : [ 24.5, 315.5, 55.5, 315.5 ],
 									"source" : [ "obj-14", 0 ]
 								}
 
@@ -401,7 +400,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1

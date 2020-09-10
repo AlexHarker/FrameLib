@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 0,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,7 +50,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -111,7 +111,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -151,7 +151,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 330.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 364.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -162,7 +162,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 120.0, 156.0, 102.0, 23.0 ],
+									"patching_rect" : [ 120.0, 165.0, 102.0, 23.0 ],
 									"text" : "fl.register~ 0 5 2"
 								}
 
@@ -174,7 +174,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 156.0, 102.0, 23.0 ],
+									"patching_rect" : [ 15.0, 165.0, 102.0, 23.0 ],
 									"text" : "fl.register~ 1 2 3"
 								}
 
@@ -186,7 +186,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 288.0, 55.0, 23.0 ],
+									"patching_rect" : [ 15.0, 322.0, 55.0, 23.0 ],
 									"text" : "1. 5. 3."
 								}
 
@@ -210,7 +210,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 248.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 270.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -222,7 +222,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 204.0, 124.0, 23.0 ],
+									"patching_rect" : [ 15.0, 219.0, 124.0, 23.0 ],
 									"text" : "fl.max~"
 								}
 
@@ -247,6 +247,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-22", 1 ],
+									"midpoints" : [ 24.5, 301.0, 60.5, 301.0 ],
 									"source" : [ "obj-10", 0 ]
 								}
 
@@ -262,6 +263,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-41", 0 ],
+									"midpoints" : [ 24.5, 146.0, 129.5, 146.0 ],
 									"order" : 0,
 									"source" : [ "obj-12", 0 ]
 								}

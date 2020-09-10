@@ -3,8 +3,8 @@
         "fileversion": 1,
         "appversion": {
             "major": 8,
-            "minor": 0,
-            "revision": 6,
+            "minor": 1,
+            "revision": 0,
             "architecture": "x64",
             "modernui": 1
         },
@@ -13,7 +13,7 @@
             34.0,
             79.0,
             662.0,
-            793.0
+            787.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -57,8 +57,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -67,7 +67,7 @@
                             34.0,
                             105.0,
                             662.0,
-                            767.0
+                            761.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -140,23 +140,6 @@
                                         630.0,
                                         150.0
                                     ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "fontsize": 13.0,
-                                    "id": "obj-3",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        400.0,
-                                        735.0,
-                                        245.0,
-                                        21.0
-                                    ],
-                                    "text": "Traverse the tabs for more information!",
-                                    "textjustification": 2
                                 }
                             },
                             {
@@ -237,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -307,8 +290,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -360,10 +343,9 @@
                                     "patching_rect": [
                                         277.0,
                                         589.625,
-                                        223.0,
+                                        227.0,
                                         36.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "Observe where each parameter goes to in the Max console."
                                 }
                             },
@@ -412,7 +394,6 @@
                                         223.0,
                                         36.0
                                     ],
-                                    "presentation_linecount": 3,
                                     "text": "We set the tags we want to filter out in the arugments of fl.filtertags~"
                                 }
                             },
@@ -445,7 +426,6 @@
                                         169.0,
                                         36.0
                                     ],
-                                    "presentation_linecount": 3,
                                     "text": "Combine the three tagged frames into a single frame"
                                 }
                             },
@@ -504,9 +484,9 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        270.0,
-                                        360.0,
-                                        105.0
+                                        255.0,
+                                        358.0,
+                                        120.0
                                     ],
                                     "proportion": 0.5
                                 }
@@ -1038,21 +1018,21 @@
         "dependency_cache": [
             {
                 "name": "fldocs.getparams.maxpat",
-                "bootpath": "~/FrameLib/Current Test Version/FrameLib/misc",
+                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
                 "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
                 "type": "JSON",
                 "implicit": 1
             },
             {
                 "name": "fl.getname.js",
-                "bootpath": "~/FrameLib/Current Test Version/FrameLib/misc",
+                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
                 "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
                 "type": "TEXT",
                 "implicit": 1
             },
             {
                 "name": "fl.helpdetails.js",
-                "bootpath": "~/FrameLib/Current Test Version/FrameLib/misc",
+                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
                 "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
                 "type": "TEXT",
                 "implicit": 1

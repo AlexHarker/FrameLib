@@ -183,7 +183,10 @@ void runTimeCompareTest(std::string name, std::string name1, std::string name2, 
 
 struct NoNotifier : FrameLib_ErrorReporter::HostNotifier
 {
-    void notify() override {}
+    bool notify(const FrameLib_ErrorReporter::ErrorReport& report) override
+    {
+        return false;
+    }
 };
 
 NoNotifier notifier;

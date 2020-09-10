@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -49,8 +49,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -110,8 +110,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -152,8 +152,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 277.0, 589.625, 223.0, 36.0 ],
-									"presentation_linecount" : 2,
+									"patching_rect" : [ 277.0, 589.625, 227.0, 36.0 ],
 									"text" : "Observe where each parameter goes to in the Max console."
 								}
 
@@ -190,7 +189,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 207.0, 473.5, 223.0, 36.0 ],
-									"presentation_linecount" : 3,
 									"text" : "We set the tags we want to filter out in the arugments of fl.filtertags~"
 								}
 
@@ -215,7 +213,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 322.5, 398.5, 169.0, 36.0 ],
-									"presentation_linecount" : 3,
 									"text" : "Combine the three tagged frames into a single frame"
 								}
 
@@ -255,7 +252,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 270.0, 360.0, 105.0 ],
+									"patching_rect" : [ 15.0, 255.0, 358.0, 120.0 ],
 									"proportion" : 0.5
 								}
 
@@ -595,6 +592,13 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "fl.filtertags~.mxo",
 				"type" : "iLaX"
 			}

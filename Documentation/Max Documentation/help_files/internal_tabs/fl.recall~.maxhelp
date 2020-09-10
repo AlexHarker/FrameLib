@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -49,14 +49,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 584.0, 667.0 ],
+						"rect" : [ 0.0, 26.0, 584.0, 667.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -376,7 +376,6 @@
 					}
 ,
 					"patching_rect" : [ 345.0, 230.0, 102.0, 22.0 ],
-					"presentation_linecount" : 4,
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -399,8 +398,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -460,14 +459,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 584.0, 667.0 ],
+						"rect" : [ 34.0, 105.0, 584.0, 667.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -502,8 +501,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 455.5, 225.0, 79.0 ],
-									"presentation_linecount" : 8,
+									"patching_rect" : [ 330.0, 440.5, 225.0, 79.0 ],
 									"text" : "Recall the number stored in 'nyc' every 1000ms. Note, the scheduler driving storage and recall are not synchronised and are decoupled from each other in timing."
 								}
 
@@ -515,7 +513,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 202.5, 150.0, 65.0 ],
+									"patching_rect" : [ 195.0, 157.5, 150.0, 65.0 ],
 									"text" : "Generate some random numbers very fast and store them in the fl.store~ named 'nyc'"
 								}
 
@@ -541,7 +539,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 495.0, 270.0, 135.0 ],
+									"patching_rect" : [ 30.0, 480.0, 270.0, 135.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 50
 								}
@@ -554,7 +552,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 450.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 435.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -566,7 +564,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 360.0, 122.0, 23.0 ],
+									"patching_rect" : [ 30.0, 345.0, 122.0, 23.0 ],
 									"text" : "fl.interval~ 1000 ms"
 								}
 
@@ -578,7 +576,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 225.0, 131.0, 23.0 ],
+									"patching_rect" : [ 30.0, 180.0, 131.0, 23.0 ],
 									"text" : "fl.random~ /length 50"
 								}
 
@@ -590,7 +588,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 165.0, 101.0, 23.0 ],
+									"patching_rect" : [ 30.0, 120.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 1024"
 								}
 
@@ -602,7 +600,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 285.0, 79.0, 23.0 ],
+									"patching_rect" : [ 30.0, 240.0, 79.0, 23.0 ],
 									"text" : "fl.store~ nyc"
 								}
 
@@ -614,7 +612,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 405.0, 81.0, 23.0 ],
+									"patching_rect" : [ 30.0, 390.0, 81.0, 23.0 ],
 									"text" : "fl.recall~ nyc"
 								}
 
@@ -647,7 +645,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 345.0, 300.0, 300.0 ],
+									"patching_rect" : [ 15.0, 330.0, 300.0, 300.0 ],
 									"proportion" : 0.5
 								}
 
@@ -664,7 +662,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 155.0, 165.0, 160.0 ],
+									"patching_rect" : [ 15.0, 110.0, 165.0, 160.0 ],
 									"proportion" : 0.5
 								}
 
@@ -725,7 +723,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1

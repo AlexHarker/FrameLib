@@ -1,0 +1,18 @@
+-- fl.ew --
+fl.ewma~
+fl.ewmsd~
+
+-- weird ones --
+fl.peaks~
+fl.pattern~
+fl.multitaper~
+fl.spread~
+fl.kurtosis~
+
+-- Might go --
+fl.spatial~
+fl.coordinatesystem~
+
+-- Broken or subject to change --
+fl.samplerate~
+fl.dispatch~

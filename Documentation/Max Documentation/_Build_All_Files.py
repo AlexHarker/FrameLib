@@ -7,12 +7,10 @@ parse_to_jlookup = __import__("7_parse_to_jlookup")
 create_tutorial_coll = __import__("8_create_tutorial_coll")
 cleanup = __import__("9_cleanup")
 template_help = __import__("10_template_help")
-merge_help = __import__("12_merge_help")
+merge = __import__("11_merge_help")
+mmti = __import__("12_mmti")
 
-import os
-from FrameLibDocs.utils import cd_up, get_path, sign_off, space, hyp
-from FrameLibDocs.variables import max_docs_dir
-
+from FrameLibDocs.utils import sign_off, space, hyp
 
 def main():
     sign_off()
@@ -75,10 +73,14 @@ def main():
     template_help.main()
     hyp()
 
+    print("11. Merging master templates with internal patchers")
+    merge.main()
+    hyp()
+
     # Merges the hard coded tabs with the templates
     # This creates the finished help file
-    print("12. Merging master templates with internal patchers")
-    merge_help.main()
+    print("12. Adding mismatch and trigger_ins tabs")
+    mmti.main()
     hyp()
 
     print("Completed all python scripts.")

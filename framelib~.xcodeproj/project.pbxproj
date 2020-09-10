@@ -337,9 +337,7 @@
 		B8A20FF622FCD7E300DF86D8 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8A20FF722FCD7E300DF86D8 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8A20FFF22FCD82700DF86D8 /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
-		B8A2100122FCD84500DF86D8 /* fl.firphase~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A2100022FCD84500DF86D8 /* fl.firphase~.cpp */; };
 		B8A2100222FCD84500DF86D8 /* fl.firphase~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A2100022FCD84500DF86D8 /* fl.firphase~.cpp */; };
-		B8A2100522FCD88F00DF86D8 /* FrameLib_FIRPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A2100322FCD88E00DF86D8 /* FrameLib_FIRPhase.cpp */; };
 		B8A2100622FCD88F00DF86D8 /* FrameLib_FIRPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A2100322FCD88E00DF86D8 /* FrameLib_FIRPhase.cpp */; };
 		B8A2100722FCD88F00DF86D8 /* FrameLib_FIRPhase.h in Headers */ = {isa = PBXBuildFile; fileRef = B8A2100422FCD88E00DF86D8 /* FrameLib_FIRPhase.h */; };
 		B8A2100822FCDC8800DF86D8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F558E207AB15C007774AD /* Accelerate.framework */; };
@@ -2302,7 +2300,7 @@
 		B8ACCAA320AF14FD0054E1E0 /* FrameLib_NanFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_NanFilter.h; sourceTree = "<group>"; };
 		B8ACCAA620AF15410054E1E0 /* fl.nanfilter~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.nanfilter~.cpp"; sourceTree = "<group>"; };
 		B8AD883419C7C2B500FFA238 /* SIMDSupport.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SIMDSupport.hpp; sourceTree = "<group>"; };
-		B8AD883519C7C2B500FFA238 /* ibuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ibuffer.h; sourceTree = "<group>"; };
+		B8AD883519C7C2B500FFA238 /* ibuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ibuffer.hpp; sourceTree = "<group>"; };
 		B8AD883619C7C2B500FFA238 /* ibuffer_access.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ibuffer_access.cpp; sourceTree = "<group>"; };
 		B8AD883719C7C2B500FFA238 /* ibuffer_access.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ibuffer_access.hpp; sourceTree = "<group>"; };
 		B8AD883819C7C2FA00FFA238 /* fl.read~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.read~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -4813,7 +4811,7 @@
 		B8AD883119C7C2B500FFA238 /* ibuffer */ = {
 			isa = PBXGroup;
 			children = (
-				B8AD883519C7C2B500FFA238 /* ibuffer.h */,
+				B8AD883519C7C2B500FFA238 /* ibuffer.hpp */,
 				B8AD883719C7C2B500FFA238 /* ibuffer_access.hpp */,
 				B8AD883619C7C2B500FFA238 /* ibuffer_access.cpp */,
 			);
@@ -12030,10 +12028,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8A2100522FCD88F00DF86D8 /* FrameLib_FIRPhase.cpp in Sources */,
 				B8A1F5BE1D5370DE00FA5FFC /* NumericTesting.cpp in Sources */,
 				B8B961DD1F1000D500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
-				B8A2100122FCD84500DF86D8 /* fl.firphase~.cpp in Sources */,
 				B80059BF1DAF96340073A866 /* FrameLib_RandGen.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

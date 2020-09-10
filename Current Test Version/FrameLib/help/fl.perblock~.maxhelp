@@ -3,8 +3,8 @@
         "fileversion": 1,
         "appversion": {
             "major": 8,
-            "minor": 0,
-            "revision": 6,
+            "minor": 1,
+            "revision": 0,
             "architecture": "x64",
             "modernui": 1
         },
@@ -13,7 +13,7 @@
             34.0,
             79.0,
             662.0,
-            793.0
+            787.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -57,8 +57,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -67,7 +67,7 @@
                             34.0,
                             105.0,
                             662.0,
-                            767.0
+                            761.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -140,23 +140,6 @@
                                         630.0,
                                         150.0
                                     ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "fontsize": 13.0,
-                                    "id": "obj-3",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        400.0,
-                                        735.0,
-                                        245.0,
-                                        21.0
-                                    ],
-                                    "text": "Traverse the tabs for more information!",
-                                    "textjustification": 2
                                 }
                             },
                             {
@@ -237,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -307,8 +290,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -352,6 +335,101 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "id": "obj-14",
+                                    "linecount": 6,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        75.0,
+                                        233.5,
+                                        150.0,
+                                        94.0
+                                    ],
+                                    "presentation_linecount": 6,
+                                    "text": "Difference in time between scheduled frames of fl.perblock~. The time difference will match the signal vector size set in the host."
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-13",
+                                    "linecount": 2,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        315.0,
+                                        233.5,
+                                        150.0,
+                                        36.0
+                                    ],
+                                    "text": "Signal vector size in Max audio settings"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "fontsize": 13.0,
+                                    "format": 6,
+                                    "id": "obj-11",
+                                    "maxclass": "flonum",
+                                    "numinlets": 1,
+                                    "numoutlets": 2,
+                                    "outlettype": [
+                                        "",
+                                        "bang"
+                                    ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [
+                                        255.66666666666669,
+                                        240.0,
+                                        50.0,
+                                        23.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-7",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 4,
+                                    "outlettype": [
+                                        "int",
+                                        "float",
+                                        "int",
+                                        "int"
+                                    ],
+                                    "patching_rect": [
+                                        225.0,
+                                        150.0,
+                                        65.0,
+                                        23.0
+                                    ],
+                                    "text": "dspstate~"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "format": 6,
+                                    "id": "obj-6",
+                                    "maxclass": "flonum",
+                                    "numinlets": 1,
+                                    "numoutlets": 2,
+                                    "outlettype": [
+                                        "",
+                                        "bang"
+                                    ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        240.0,
+                                        50.0,
+                                        23.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-4",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -361,11 +439,47 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        105.0,
-                                        108.0,
+                                        195.0,
+                                        62.0,
                                         23.0
                                     ],
-                                    "text": "fl.interval~ 44100"
+                                    "text": "fl.tomax~"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-2",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        15.0,
+                                        150.0,
+                                        79.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.timedelta~"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-1",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        15.0,
+                                        105.0,
+                                        75.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.perblock~"
                                 }
                             },
                             {
@@ -374,7 +488,9 @@
                                     "filename": "fl.helpname.js",
                                     "id": "obj-3",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.perblock~",
+                                    "jsarguments": [
+                                        "fl.perblock~"
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -391,7 +507,56 @@
                                 }
                             }
                         ],
-                        "lines": []
+                        "lines": [
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-2",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-1",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-4",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-2",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-6",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-4",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-11",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-7",
+                                        2
+                                    ]
+                                }
+                            }
+                        ]
                     },
                     "patching_rect": [
                         271.0,
@@ -414,21 +579,21 @@
         "dependency_cache": [
             {
                 "name": "fldocs.getparams.maxpat",
-                "bootpath": "~/FrameLib/Current Test Version/FrameLib/misc",
+                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
                 "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
                 "type": "JSON",
                 "implicit": 1
             },
             {
                 "name": "fl.getname.js",
-                "bootpath": "~/FrameLib/Current Test Version/FrameLib/misc",
+                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
                 "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
                 "type": "TEXT",
                 "implicit": 1
             },
             {
                 "name": "fl.helpdetails.js",
-                "bootpath": "~/FrameLib/Current Test Version/FrameLib/misc",
+                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
                 "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
                 "type": "TEXT",
                 "implicit": 1
