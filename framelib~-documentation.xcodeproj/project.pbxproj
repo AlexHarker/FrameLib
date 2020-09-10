@@ -17,6 +17,7 @@
 		1A25CE59250A746300FC9148 /* FrameLib_WindowGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A25CE4F250A746200FC9148 /* FrameLib_WindowGenerator.h */; };
 		1A25CE5A250A746300FC9148 /* FrameLib_NeumaierSum.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A25CE50250A746200FC9148 /* FrameLib_NeumaierSum.h */; };
 		1A25CE5B250A746300FC9148 /* FrameLib_VectorSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A25CE51250A746200FC9148 /* FrameLib_VectorSet.h */; };
+		1A25CE5D250A754E00FC9148 /* Max_Object_List.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A25CE5C250A754E00FC9148 /* Max_Object_List.h */; };
 		26107EEC2310610900BAC824 /* Build_Max_Docs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26107EEB2310610900BAC824 /* Build_Max_Docs.cpp */; };
 		B812606920D697A9000B81D9 /* FrameLib_Pack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B812606220D69573000B81D9 /* FrameLib_Pack.cpp */; };
 		B812606A20D697AD000B81D9 /* FrameLib_Unpack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B812606620D69661000B81D9 /* FrameLib_Unpack.cpp */; };
@@ -157,6 +158,7 @@
 		1A25CE4F250A746200FC9148 /* FrameLib_WindowGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_WindowGenerator.h; sourceTree = "<group>"; };
 		1A25CE50250A746200FC9148 /* FrameLib_NeumaierSum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_NeumaierSum.h; sourceTree = "<group>"; };
 		1A25CE51250A746200FC9148 /* FrameLib_VectorSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_VectorSet.h; sourceTree = "<group>"; };
+		1A25CE5C250A754E00FC9148 /* Max_Object_List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Max_Object_List.h; path = "Documentation/Max Documentation/Max_Object_List.h"; sourceTree = "<group>"; };
 		26107EEB2310610900BAC824 /* Build_Max_Docs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Build_Max_Docs.cpp; path = "Documentation/Max Documentation/Build_Max_Docs.cpp"; sourceTree = SOURCE_ROOT; };
 		262AEAD423101CE10016ECF3 /* Documentation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Documentation; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A3CAB132052E67E001082E3 /* FrameLib_Ternary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Objects.h; sourceTree = "<group>"; };
@@ -460,6 +462,7 @@
 		2606E3CA23106020001957E3 /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
+				1A25CE5C250A754E00FC9148 /* Max_Object_List.h */,
 				26107EEB2310610900BAC824 /* Build_Max_Docs.cpp */,
 			);
 			name = Documentation;
@@ -964,6 +967,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A25CE5B250A746300FC9148 /* FrameLib_VectorSet.h in Headers */,
+				1A25CE5D250A754E00FC9148 /* Max_Object_List.h in Headers */,
 				1A25CE59250A746300FC9148 /* FrameLib_WindowGenerator.h in Headers */,
 				1A25CE5A250A746300FC9148 /* FrameLib_NeumaierSum.h in Headers */,
 				1A25CE55250A746300FC9148 /* FrameLib_Scaling_Functions.h in Headers */,
