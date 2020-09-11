@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 0,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,7 +50,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -99,12 +99,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-60",
-									"linecount" : 6,
+									"linecount" : 8,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 225.0, 390.0, 150.0, 87.0 ],
-									"text" : "Observe how outputs 1 and 4 move at the same rate, because the stream has been processed by the first stream of the multi-stream scheduler."
+									"patching_rect" : [ 240.0, 373.0, 150.0, 114.0 ],
+									"text" : "Observe how outputs 1 and 4 (representing rand~ 1 and rand~ 5) move at the same rate, because the stream has been processed by the scheduler of the multi-stream scheduler."
 								}
 
 							}
@@ -251,6 +251,7 @@
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.756862745098039, 0.517647058823529, 0.517647058823529, 1.0 ],
 									"id" : "obj-27",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -301,6 +302,7 @@
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.756862745098039, 0.517647058823529, 0.517647058823529, 1.0 ],
 									"id" : "obj-8",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -313,6 +315,7 @@
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.705882352941177, 0.486274509803922, 0.901960784313726, 1.0 ],
 									"id" : "obj-6",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -325,6 +328,7 @@
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.431372549019608, 0.643137254901961, 0.450980392156863, 1.0 ],
 									"id" : "obj-5",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -530,8 +534,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -550,7 +554,6 @@
 					}
 ,
 					"patching_rect" : [ 390.0, 225.0, 65.0, 21.0 ],
-					"presentation_linecount" : 2,
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -573,7 +576,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -617,8 +620,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 480.0, 240.0, 225.0, 131.0 ],
-									"presentation_linecount" : 3,
+									"patching_rect" : [ 480.0, 240.0, 228.0, 131.0 ],
 									"text" : "On the left is the most basic example of multi-streaming where two independent frames are combined with fl.pack~. In this scenario we are taking already generated frames and combining these streams, but it is also possible to generate multiple streams from an object itself."
 								}
 
@@ -735,7 +737,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 660.0, 645.0, 45.0, 45.0 ]
+									"patching_rect" : [ 23.0, 615.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -1066,8 +1068,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1126,13 +1128,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 826.0, 708.0 ],
+						"rect" : [ 34.0, 105.0, 826.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1244,7 +1246,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1529,8 +1531,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -1621,13 +1623,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-26",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "signal" ],
-									"patching_rect" : [ 15.0, 564.875, 90.0, 23.0 ],
+									"patching_rect" : [ 15.0, 555.0, 90.0, 22.0 ],
 									"text" : "fl.sink~ =2"
 								}
 
@@ -1664,7 +1666,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 236.0, 645.0, 48.0, 22.0 ],
+									"patching_rect" : [ 216.5, 645.0, 48.0, 22.0 ],
 									"text" : "replace"
 								}
 
@@ -1775,8 +1777,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 126.0, 155.5, 105.0, 23.0 ],
-									"text" : "fl.info~ tut8buffer"
+									"patching_rect" : [ 126.0, 155.5, 117.0, 23.0 ],
+									"text" : "fl.info~ fl.tut8.mvgs"
 								}
 
 							}
@@ -1788,8 +1790,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 442.0, 166.0, 23.0 ],
-									"text" : "fl.read~ tut8buffer /units ms"
+									"patching_rect" : [ 15.0, 442.0, 178.0, 23.0 ],
+									"text" : "fl.read~ fl.tut8.mvgs /units ms"
 								}
 
 							}
@@ -1800,8 +1802,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 236.0, 675.0, 165.0, 22.0 ],
-									"text" : "buffer~ tut8buffer sho0630.aif"
+									"patching_rect" : [ 216.5, 675.0, 176.0, 22.0 ],
+									"text" : "buffer~ fl.tut8.mvgs sho0630.aif"
 								}
 
 							}
@@ -2078,7 +2080,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-22", 1 ],
-									"midpoints" : [ 95.5, 660.0, 50.5, 660.0 ],
+									"midpoints" : [ 95.5, 648.0, 60.0, 648.0, 60.0, 645.0, 50.5, 645.0 ],
 									"source" : [ "obj-3", 1 ]
 								}
 
@@ -2225,8 +2227,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2285,7 +2287,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2329,7 +2331,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 600.0, 379.0, 138.75, 35.0 ],
+									"patching_rect" : [ 600.0, 379.0, 139.0, 35.0 ],
 									"text" : "Visual representation of the wrapping process"
 								}
 
@@ -2424,11 +2426,11 @@
 								"box" : 								{
 									"fontface" : 0,
 									"id" : "obj-42",
-									"linecount" : 6,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 664.749999105930328, 484.25, 146.0, 87.0 ],
+									"patching_rect" : [ 664.749999105930328, 484.25, 149.0, 74.0 ],
 									"text" : "Streams 1 and 2 are repeated here as they are 'wrapped' around to match the number of streams in the greater input."
 								}
 
@@ -3027,8 +3029,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3087,7 +3089,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -3754,8 +3756,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3814,7 +3816,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -4403,8 +4405,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4445,13 +4447,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 826.0, 708.0 ],
+						"rect" : [ 0.0, 26.0, 826.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4610,8 +4612,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",

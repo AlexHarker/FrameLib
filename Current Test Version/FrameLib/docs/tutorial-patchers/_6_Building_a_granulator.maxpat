@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 0,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -100,13 +100,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 1029.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1029.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -148,7 +148,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -295,7 +295,7 @@
 									}
 ,
 									"text" : "autopattr",
-									"varname" : "u994010333"
+									"varname" : "u954003398"
 								}
 
 							}
@@ -329,11 +329,11 @@
 									"patching_rect" : [ 285.0, 271.0, 120.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_longname" : "live.dial[1]",
 											"parameter_mmax" : 4.0,
 											"parameter_shortname" : "LFO Interval | Rate",
 											"parameter_type" : 0,
-											"parameter_unitstyle" : 3,
-											"parameter_longname" : "live.dial[1]"
+											"parameter_unitstyle" : 3
 										}
 
 									}
@@ -364,7 +364,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -450,7 +450,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 0,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -834,7 +834,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 0,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -1254,7 +1254,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1318,7 +1318,7 @@
 													"fontsize" : 13.0,
 													"id" : "obj-4",
 													"maxclass" : "newobj",
-													"numinlets" : 1,
+													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 15.0, 240.0, 175.0, 23.0 ],
@@ -1340,7 +1340,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 0,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -1863,7 +1863,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1936,7 +1936,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 0,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -2336,7 +2336,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 0,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -3074,12 +3074,12 @@
 									"id" : "obj-15",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "fl_monoVolume-h.maxpat",
+									"name" : "fl-mono-h.maxpat",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 336.5, 85.0, 45.0 ],
+									"patching_rect" : [ 30.0, 348.0, 85.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -3432,11 +3432,11 @@
 									"patching_rect" : [ 585.0, 420.5, 120.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_longname" : "live.dial[4]",
 											"parameter_mmax" : 4.0,
 											"parameter_shortname" : "LFO Offset | Rate",
 											"parameter_type" : 0,
-											"parameter_unitstyle" : 3,
-											"parameter_longname" : "live.dial[4]"
+											"parameter_unitstyle" : 3
 										}
 
 									}
@@ -3510,11 +3510,11 @@
 									"patching_rect" : [ 585.0, 271.0, 120.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_longname" : "live.dial[3]",
 											"parameter_mmax" : 4.0,
 											"parameter_shortname" : "LFO Reverse | Rate",
 											"parameter_type" : 0,
-											"parameter_unitstyle" : 3,
-											"parameter_longname" : "live.dial[3]"
+											"parameter_unitstyle" : 3
 										}
 
 									}
@@ -3571,11 +3571,11 @@
 									"patching_rect" : [ 285.0, 420.15476190476187, 120.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_longname" : "live.dial[2]",
 											"parameter_mmax" : 4.0,
 											"parameter_shortname" : "LFO Length | Rate",
 											"parameter_type" : 0,
-											"parameter_unitstyle" : 3,
-											"parameter_longname" : "live.dial[2]"
+											"parameter_unitstyle" : 3
 										}
 
 									}
@@ -3968,7 +3968,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -4037,12 +4037,12 @@
 									"id" : "obj-15",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "fl_monoVolume-h.maxpat",
+									"name" : "fl-mono-h.maxpat",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 585.0, 85.0, 45.0 ],
+									"patching_rect" : [ 15.0, 600.0, 85.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -4059,11 +4059,11 @@
 									"patching_rect" : [ 112.0, 345.0, 50.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_longname" : "live.dial",
 											"parameter_mmax" : 100.0,
 											"parameter_shortname" : "Reverse Chance",
 											"parameter_type" : 0,
-											"parameter_unitstyle" : 1,
-											"parameter_longname" : "live.dial"
+											"parameter_unitstyle" : 1
 										}
 
 									}
@@ -4225,7 +4225,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -4570,7 +4570,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -4608,7 +4608,7 @@
 													"fontsize" : 13.0,
 													"id" : "obj-17",
 													"maxclass" : "newobj",
-													"numinlets" : 1,
+													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 69.0, 246.0, 175.0, 23.0 ],
@@ -4681,7 +4681,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 0,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -4727,7 +4727,7 @@
 																		"appversion" : 																		{
 																			"major" : 8,
 																			"minor" : 1,
-																			"revision" : 0,
+																			"revision" : 3,
 																			"architecture" : "x64",
 																			"modernui" : 1
 																		}
@@ -5266,7 +5266,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -5429,7 +5429,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 645.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 675.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -5732,7 +5732,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -5804,7 +5804,7 @@
 									"id" : "obj-15",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "fl_monoVolume-h.maxpat",
+									"name" : "fl-mono-h.maxpat",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
@@ -5992,7 +5992,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -6030,7 +6030,7 @@
 													"fontsize" : 13.0,
 													"id" : "obj-17",
 													"maxclass" : "newobj",
-													"numinlets" : 1,
+													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 69.0, 246.0, 175.0, 23.0 ],
@@ -6104,7 +6104,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 0,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -6150,7 +6150,7 @@
 																		"appversion" : 																		{
 																			"major" : 8,
 																			"minor" : 1,
-																			"revision" : 0,
+																			"revision" : 3,
 																			"architecture" : "x64",
 																			"modernui" : 1
 																		}
@@ -6689,7 +6689,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -6852,7 +6852,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 645.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 630.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -6980,7 +6980,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 1 ],
-									"midpoints" : [ 24.5, 630.0, 50.5, 630.0 ],
 									"order" : 0,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -6989,7 +6988,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 0 ],
-									"midpoints" : [ 24.5, 603.0, 24.5, 603.0 ],
 									"order" : 1,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -7168,7 +7166,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -7287,7 +7285,7 @@
 									"id" : "obj-15",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "fl_monoVolume-h.maxpat",
+									"name" : "fl-mono-h.maxpat",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
@@ -7311,7 +7309,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -7477,7 +7475,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -7523,7 +7521,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 0,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -7892,7 +7890,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -8184,7 +8182,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 1 ],
-									"midpoints" : [ 24.5, 525.0, 50.5, 525.0 ],
 									"order" : 0,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -8193,7 +8190,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 0 ],
-									"midpoints" : [ 24.5, 513.0, 24.5, 513.0 ],
 									"order" : 1,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -8324,7 +8320,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -8396,7 +8392,7 @@
 									"id" : "obj-15",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "fl_monoVolume-h.maxpat",
+									"name" : "fl-mono-h.maxpat",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
@@ -8446,7 +8442,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -9113,7 +9109,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 1 ],
-									"midpoints" : [ 24.5, 630.0, 50.5, 630.0 ],
 									"order" : 0,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -9122,7 +9117,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 0 ],
-									"midpoints" : [ 24.5, 618.0, 24.5, 618.0 ],
 									"order" : 1,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -9335,7 +9329,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -9392,7 +9386,7 @@
 									"id" : "obj-5",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "fl_monoVolume-h.maxpat",
+									"name" : "fl-mono-h.maxpat",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
@@ -9692,7 +9686,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 1 ],
-									"midpoints" : [ 24.5, 630.0, 50.5, 630.0 ],
 									"order" : 0,
 									"source" : [ "obj-5", 0 ]
 								}
@@ -9701,7 +9694,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 0 ],
-									"midpoints" : [ 24.5, 618.0, 24.5, 618.0 ],
 									"order" : 1,
 									"source" : [ "obj-5", 0 ]
 								}
@@ -9783,7 +9775,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -9828,12 +9820,12 @@
 									"id" : "obj-9",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "fl_monoVolume-h.maxpat",
+									"name" : "fl-mono-h.maxpat",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 570.0, 90.0, 44.0 ],
+									"patching_rect" : [ 30.0, 570.0, 85.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -10164,7 +10156,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 1 ],
-									"midpoints" : [ 39.5, 621.0, 65.5, 621.0 ],
 									"order" : 0,
 									"source" : [ "obj-9", 0 ]
 								}
@@ -10233,13 +10224,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1029.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 1029.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -10758,7 +10749,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -10999,49 +10990,49 @@
  ],
 		"parameters" : 		{
 			"obj-10::obj-6::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-7::obj-38" : [ "live.dial", "Reverse Chance", 0 ],
-			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
-			"obj-8::obj-14" : [ "live.dial[1]", "LFO Interval | Rate", 0 ],
-			"obj-8::obj-70" : [ "live.dial[3]", "LFO Reverse | Rate", 0 ],
-			"obj-8::obj-77" : [ "live.dial[4]", "LFO Offset | Rate", 0 ],
-			"obj-7::obj-15::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
-			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
-			"obj-3::obj-5::obj-50" : [ "live.gain~[10]", "Volume", 0 ],
-			"obj-8::obj-15::obj-50" : [ "live.gain~[8]", "Volume", 0 ],
 			"obj-1::obj-9::obj-50" : [ "live.gain~[9]", "Volume", 0 ],
+			"obj-8::obj-14" : [ "live.dial[1]", "LFO Interval | Rate", 0 ],
+			"obj-7::obj-15::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
+			"obj-8::obj-77" : [ "live.dial[4]", "LFO Offset | Rate", 0 ],
+			"obj-7::obj-38" : [ "live.dial", "Reverse Chance", 0 ],
 			"obj-6::obj-15::obj-50" : [ "live.gain~[11]", "Volume", 0 ],
+			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
+			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
 			"obj-8::obj-67" : [ "live.dial[2]", "LFO Length | Rate", 0 ],
+			"obj-8::obj-15::obj-50" : [ "live.gain~[8]", "Volume", 0 ],
+			"obj-3::obj-5::obj-50" : [ "live.gain~[10]", "Volume", 0 ],
+			"obj-8::obj-70" : [ "live.dial[3]", "LFO Reverse | Rate", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-4::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[4]"
+				"obj-1::obj-9::obj-50" : 				{
+					"parameter_longname" : "live.gain~[9]"
 				}
 ,
 				"obj-7::obj-15::obj-50" : 				{
 					"parameter_longname" : "live.gain~[7]"
 				}
 ,
+				"obj-6::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[11]"
+				}
+,
 				"obj-5::obj-15::obj-50" : 				{
 					"parameter_longname" : "live.gain~[5]"
 				}
 ,
-				"obj-3::obj-5::obj-50" : 				{
-					"parameter_longname" : "live.gain~[10]"
+				"obj-4::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[4]"
 				}
 ,
 				"obj-8::obj-15::obj-50" : 				{
 					"parameter_longname" : "live.gain~[8]"
 				}
 ,
-				"obj-1::obj-9::obj-50" : 				{
-					"parameter_longname" : "live.gain~[9]"
-				}
-,
-				"obj-6::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[11]"
+				"obj-3::obj-5::obj-50" : 				{
+					"parameter_longname" : "live.gain~[10]"
 				}
 
 			}
@@ -11070,7 +11061,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl_monoVolume-h.maxpat",
+				"name" : "fl-mono-h.maxpat",
 				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",

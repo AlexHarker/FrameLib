@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 0,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -51,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -513,7 +513,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1009,7 +1009,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1053,7 +1053,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 83.5, 420.0, 44.0, 14.0 ]
+									"patching_rect" : [ 87.5, 439.5, 44.0, 14.0 ]
 								}
 
 							}
@@ -1065,8 +1065,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 129.5, 415.500000000000057, 304.0, 21.0 ],
-									"presentation_linecount" : 2,
+									"patching_rect" : [ 133.5, 435.000000000000057, 304.0, 21.0 ],
 									"text" : "Tagged frames go to the 'Parameter Update' inlet",
 									"textcolor" : [ 0.784313976764679, 0.145098000764847, 0.023529000580311, 1.0 ]
 								}
@@ -1600,7 +1599,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1677,7 +1676,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 385.0, 370.5, 217.0, 50.0 ],
+									"patching_rect" : [ 367.0, 376.5, 217.0, 50.0 ],
 									"text" : "Two values are tagged separataely with fl.tag~ and combined with fl.combinetags~."
 								}
 
@@ -1689,7 +1688,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 261.0, 310.0, 334.0, 21.0 ],
+									"patching_rect" : [ 243.0, 316.0, 334.0, 21.0 ],
 									"text" : "Generate some random values to be set as parameters"
 								}
 
@@ -1719,7 +1718,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1872,7 +1871,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 123.0, 308.0, 136.0, 23.0 ],
+									"patching_rect" : [ 105.0, 314.0, 136.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1905,7 +1904,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 368.0, 80.0, 23.0 ],
+									"patching_rect" : [ 222.0, 374.0, 80.0, 23.0 ],
 									"text" : "fl.tag~ reson"
 								}
 
@@ -1918,7 +1917,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 123.0, 399.0, 136.0, 23.0 ],
+									"patching_rect" : [ 105.0, 405.0, 136.0, 23.0 ],
 									"text" : "fl.combinetags~ 2"
 								}
 
@@ -1931,7 +1930,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 123.0, 368.0, 70.0, 23.0 ],
+									"patching_rect" : [ 105.0, 374.0, 70.0, 23.0 ],
 									"text" : "fl.tag~ freq"
 								}
 
@@ -1944,8 +1943,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 20.0, 458.0, 122.0, 23.0 ],
-									"text" : "fl.0dfsvf~ /mode bpf"
+									"patching_rect" : [ 20.0, 458.0, 104.0, 23.0 ],
+									"text" : "fl.svf~ /mode bpf"
 								}
 
 							}
@@ -2003,7 +2002,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 597.0, 310.0, 20.0, 20.0 ],
+									"patching_rect" : [ 579.0, 316.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -2024,7 +2023,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 604.0, 385.5, 20.0, 20.0 ],
+									"patching_rect" : [ 586.0, 391.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -2064,7 +2063,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 115.0, 361.5, 268.0, 68.0 ],
+									"patching_rect" : [ 97.0, 367.5, 268.0, 68.0 ],
 									"proportion" : 0.5
 								}
 
@@ -2155,6 +2154,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 1 ],
+									"midpoints" : [ 114.5, 439.5, 114.5, 439.5 ],
 									"source" : [ "obj-10", 0 ]
 								}
 
@@ -2428,7 +2428,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2571,7 +2571,8 @@
 									"outlettype" : [ "", "", "", "" ],
 									"patching_rect" : [ 180.0, 165.0, 167.0, 22.0 ],
 									"saved_object_attributes" : 									{
-										"embed" : 1
+										"embed" : 1,
+										"precision" : 6
 									}
 ,
 									"text" : "coll 3_help_digest @embed 1"
@@ -2618,7 +2619,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2968,7 +2969,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -3307,7 +3308,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -4252,7 +4253,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -4618,7 +4619,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.0dfsvf~.mxo",
+				"name" : "fl.svf~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 0,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -51,13 +51,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 719.0, 708.0 ],
+						"rect" : [ 34.0, 105.0, 719.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -93,7 +93,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 506.0, 324.0, 125.0, 65.0 ],
-									"presentation_linecount" : 3,
 									"text" : "Format a message to export the network with the symbol 'granulator'"
 								}
 
@@ -129,7 +128,7 @@
 									"id" : "obj-3",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "FL_monoVolume-h.maxpat",
+									"name" : "fl-mono-h.maxpat",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
@@ -266,7 +265,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -517,8 +516,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 315.0, 178.0, 23.0 ],
-									"text" : "fl.read~ 13.contexts /units ms"
+									"patching_rect" : [ 15.0, 315.0, 203.0, 23.0 ],
+									"text" : "fl.read~ fl.tut13.contexts /units ms"
 								}
 
 							}
@@ -541,8 +540,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 15.0, 615.0, 173.0, 23.0 ],
-									"text" : "buffer~ 13.contexts jongly.aif"
+									"patching_rect" : [ 15.0, 615.0, 198.0, 23.0 ],
+									"text" : "buffer~ fl.tut13.contexts jongly.aif"
 								}
 
 							}
@@ -664,7 +663,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-75", 1 ],
-									"midpoints" : [ 24.5, 549.0, 50.5, 549.0 ],
 									"order" : 0,
 									"source" : [ "obj-3", 0 ]
 								}
@@ -673,7 +671,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-75", 0 ],
-									"midpoints" : [ 24.5, 543.0, 24.5, 543.0 ],
 									"order" : 1,
 									"source" : [ "obj-3", 0 ]
 								}
@@ -862,13 +859,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 719.0, 708.0 ],
+						"rect" : [ 0.0, 26.0, 719.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1101,7 +1098,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "FL_monoVolume-h.maxpat",
+				"name" : "fl-mono-h.maxpat",
 				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
