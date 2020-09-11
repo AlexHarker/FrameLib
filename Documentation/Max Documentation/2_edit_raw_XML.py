@@ -93,15 +93,17 @@ def main():
                         i.text = i.text.replace("!@#@#$", category)
                     except AttributeError:
                         pass
-
             # Create seealso and keywords
             details = object_info[obj_name]
             for elem in root:
                 if elem.tag == "seealsolist":
-                    for seealso in details["seealso"]:
-                        new_element = et.Element("seealso")
-                        new_element.set("name", seealso)
-                        elem.append(new_element)
+                    try:
+                        for seealso in details["seealso"]:
+                            new_element = et.Element("seealso")
+                            new_element.set("name", seealso)
+                            elem.append(new_element)
+                    except KeyError:
+                        print(f"No seealso for {obj_name}")
                 if elem.tag == "misc" and elem.attrib["name"] == "Discussion":
                     for sub_elem in elem:
                         if (
