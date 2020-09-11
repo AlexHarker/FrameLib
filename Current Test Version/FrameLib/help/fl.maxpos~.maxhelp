@@ -429,10 +429,10 @@
                                     "patching_rect": [
                                         15.0,
                                         195.0,
-                                        70.0,
+                                        72.0,
                                         23.0
                                     ],
-                                    "text": "fl.argmax~"
+                                    "text": "fl.maxpos~"
                                 }
                             },
                             {
@@ -508,7 +508,7 @@
                                     "id": "obj-3",
                                     "ignoreclick": 1,
                                     "jsarguments": [
-                                        "fl.argmax~"
+                                        "fl.maxpos~"
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -599,14 +599,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
+                                    "fontsize": [
+                                        12.059008
+                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
-                                    ],
-                                    "fontsize": [
-                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

@@ -1,54 +1,24 @@
-import os, sys
+from FrameLibDocs.help import edit_help
+from FrameLibDocs.variables import help_dir, current_version
 from shutil import copyfile
-from FrameLibDocs.utils import remove_ds, cd_up, check_make, read_json, write_json, strip_extension
 
-
-this_script = os.path.dirname(os.path.realpath(__file__))
-help_file_folder = os.path.join(this_script, "help_files", "templates")
-
-check_make(help_file_folder)
-
-root = cd_up(this_script, 2)
-externals = os.path.join(root, "Current Test Version", "FrameLib", "externals")
-
-master_template = os.path.join(this_script, "help_files", "help_template.maxhelp")
-
-def make_help_file(template: str, output_name: str):
-    """Takes a path to a template Max patch and creates a copy of that template somewhere else"""
-    copyfile(
-        template,
-        os.path.join(help_file_folder, f'{output_name}.maxhelp')
-    )
-
-def edit_help_file(file_edit: str, obj_name: str):
-    """Takes a path to a Max patch and does a find and replace on object names"""
-    t_json = read_json(file_edit)
-    outer_boxes = t_json['patcher']['boxes'][0]
-    internal_boxes = outer_boxes['box']['patcher']['boxes']
-     
-    for key in internal_boxes:
-        if 'jsarguments' in key['box']:
-            key['box']['jsarguments'] = obj_name
-
-    write_json(file_edit, t_json)
-    
 
 def main():
-    # First lets get rid of any existing template
-    for template in os.listdir(help_file_folder):
-        try:
-            os.remove(template)
-        except FileNotFoundError:
-            pass
+    template_dir = help_dir / "templates"
+    external_dir = current_version / "FrameLib" / "externals"
+    master_template = help_dir / "help_template.maxhelp"
 
-    # Now lets make a template for each internal tab that we have
-    for framelib_obj in remove_ds(os.listdir(externals)):
-        name = os.path.splitext(framelib_obj)[0]
-        ext = os.path.splitext(framelib_obj)[1]
-        if  ext == '.mxe64' or ext == '.mxo':
-            framelib_obj = strip_extension(framelib_obj, 1)
-            make_help_file(master_template, framelib_obj)
-            edit_help_file(
-                file_edit = os.path.join(help_file_folder, f'{name}.maxhelp'),
-                obj_name  = name
-            )
+    # clean out templates folder
+    for x in template_dir.rglob("fl.*.maxhelp"):
+        x.unlink()
+
+    externals = [x for g in ["*.mxo", "*.mxe64"] for x in external_dir.rglob(g)]
+    for obj in externals:
+        name = obj.stem
+        help_path = template_dir / f"{name}.maxhelp"
+        copyfile(master_template, help_path)
+        edit_help(file_edit=help_path, obj_name=name)
+
+
+if __name__ == "__main__":
+    main()

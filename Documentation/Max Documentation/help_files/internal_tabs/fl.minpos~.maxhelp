@@ -245,8 +245,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 240.0, 66.0, 23.0 ],
-									"text" : "fl.argmin~"
+									"patching_rect" : [ 15.0, 240.0, 68.0, 23.0 ],
+									"text" : "fl.minpos~"
 								}
 
 							}
@@ -304,7 +304,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.argmin~" ],
+									"jsarguments" : [ "fl.minpos~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -364,8 +364,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -414,7 +414,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.argmin~.mxo",
+				"name" : "fl.minpos~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

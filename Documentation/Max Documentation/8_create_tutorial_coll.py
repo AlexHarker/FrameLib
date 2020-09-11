@@ -1,7 +1,5 @@
-import os
 import re
-from FrameLibDocs.utils import cd_up
-from FrameLibDocs.variables import package_root
+from FrameLibDocs.variables import current_version
 
 
 # TODO cleanup this function and alphanum_key too
@@ -12,39 +10,27 @@ def try_integer(s) -> int:
     except ValueError:
         return s
 
+
 def alphanum_key(s: int):
     """ Turn a string into a list of string and number chunks."""
     return [try_integer(c) for c in re.split("([0-9]+)", s)]
 
 
 def main():
-    # Directory stuff
-    tutorial_path = os.path.join(
-        package_root, "Current Test Version", "FrameLib", "docs", "tutorial-patchers"
-    )
-    coll_output_path = os.path.join(tutorial_path, "FL_tutorial_names.txt")
+    tutorial_path = current_version / "FrameLib" / "docs" / "tutorial-patchers"
+    coll_output_path = tutorial_path / "FL_tutorial_names.txt"
 
     # If dir doesnt exist make, otherwise edit existing
     coll = open(coll_output_path, "w+")
     coll.truncate(0)
 
     # Find File Names
-    all_files = os.listdir(
-        tutorial_path
-    )  # store all the file names of the tutorial path in an array
-
-    # Only get the tutorial names
-    tutorial_names = []
-
-    # Have to do an additional loop here to sort all the tutorials alpha-numerically
-    for item in all_files:
-        if item.startswith("_"):
-            tutorial_names.append(item)
-    tutorial_names.sort(key=alphanum_key)
+    all_files = [x for x in tutorial_path.iterdir() if str(x).startswith("_")]
+    all_files.sort(key=alphanum_key)
 
     # Write the contents of tutorial_names to the coll with some f strings
     idx = 0
-    for item in tutorial_names:  # each item loop over all tutorial names list
+    for item in all_files:  # each item loop over all tutorial names list
         coll.write(f"{idx}, {item};\n")  # write that item into the buffer
         idx += 1
 

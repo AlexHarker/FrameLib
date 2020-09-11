@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as et
-from FrameLibDocs.utils import cd_up, write_json, thin_list, check_make, strip_space, strip_extension
+from FrameLibDocs.utils import write_json, strip_space, strip_extension
 
 
 # A class to parse the XML files and build a JSON file from it #
@@ -26,7 +26,7 @@ class dParseAndBuild:
         self.root = self.tree.getroot()  # c74object
 
         # Find Information #
-        self.object_name = self.root.get("name")  #finds the name so you don't have to do regex
+        self.object_name = self.root.get("name")  # finds the name so you don't have to do regex
 
         for child in self.root:
             if child.tag == "digest":
@@ -94,14 +94,16 @@ class qParseAndBuild:
         try:
             self.seealso = yaml[self.object_name]["seealso"]
         except KeyError:
-            print(f'No seealso for {self.object_name}')
-
+            print(f"No seealso for {self.object_name}")
 
     def extract_keywords(self, yaml):
         """
         Extracts the keywords contents from the master yaml file
         """
-        self.keywords = yaml[self.object_name]["keywords"]
+        try:
+            self.keywords = yaml[self.object_name]["keywords"]
+        except KeyError:
+            print(f"No keywords for {self.object_name}")
 
 
 # A class to parse the XML files and build a JSON file from it #
@@ -161,7 +163,7 @@ class jParseAndBuild:
         self.tree = 0
         self.root = 0
         self.j_master_dict = {}
-    
+
     def param_newlines(self, f):
         f = f.replace(". ", f".\n")
         f = f.replace(": ", f":\n\n")
@@ -183,18 +185,18 @@ class jParseAndBuild:
                         blank_internal = {"name": elem.get("name")}  # store the name with the key/pair 'name'
 
                         for description in elem:  # get the description out
-                            
+
                             blank_desc = strip_space(description.text)
 
                             for bullet in description:  # if there are any bullet points
                                 if bullet.text != None:  # and its not none
                                     # if it is the first line it will be the title 'Parameter Options'
-                                    if bullet.text[1] == "0":  
+                                    if bullet.text[1] == "0":
                                         blank_desc += f"\n\nParameter Options:"
 
                                     blank_desc += f"\n{bullet.text}"
                         blank_desc = self.param_newlines(blank_desc)
-                        blank_internal["description"] = blank_desc  #set the description
+                        blank_internal["description"] = blank_desc  # set the description
 
                         # assign the blank_internal dict to a parameter number
                         blank_param_dict[param_idx] = blank_internal

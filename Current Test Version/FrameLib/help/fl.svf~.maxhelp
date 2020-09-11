@@ -344,14 +344,11 @@
                                     "lockeddragscroll": 0,
                                     "maxclass": "bpatcher",
                                     "name": "FL_monoVolume-h.maxpat",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
+                                    "numinlets": 0,
+                                    "numoutlets": 0,
                                     "offset": [
                                         0.0,
                                         0.0
-                                    ],
-                                    "outlettype": [
-                                        "signal"
                                     ],
                                     "patching_rect": [
                                         15.0,
@@ -966,10 +963,10 @@
                                     "patching_rect": [
                                         15.0,
                                         390.0,
-                                        197.0,
+                                        151.0,
                                         23.0
                                     ],
-                                    "text": "fl.0dfsvf~ 500 0.5 /mode bpf"
+                                    "text": "fl.svf~ 500 0.5 /mode bpf"
                                 }
                             },
                             {
@@ -1017,7 +1014,7 @@
                                     "id": "obj-3",
                                     "ignoreclick": 1,
                                     "jsarguments": [
-                                        "fl.0dfsvf~"
+                                        "fl.svf~"
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -1119,61 +1116,11 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-1",
-                                        1
-                                    ],
-                                    "midpoints": [
-                                        24.5,
-                                        570.0,
-                                        50.5,
-                                        570.0
-                                    ],
-                                    "order": 0,
-                                    "source": [
-                                        "obj-2",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-1",
-                                        0
-                                    ],
-                                    "midpoints": [
-                                        24.5,
-                                        558.0,
-                                        24.5,
-                                        558.0
-                                    ],
-                                    "order": 1,
-                                    "source": [
-                                        "obj-2",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
                                         "obj-10",
                                         0
                                     ],
                                     "source": [
                                         "obj-39",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-2",
-                                        0
-                                    ],
-                                    "source": [
-                                        "obj-43",
                                         0
                                     ]
                                 }
@@ -1217,7 +1164,7 @@
                                     "midpoints": [
                                         202.5,
                                         354.0,
-                                        202.5,
+                                        156.5,
                                         354.0
                                     ],
                                     "source": [
