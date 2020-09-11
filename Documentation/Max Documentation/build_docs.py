@@ -11,8 +11,15 @@ merge = __import__("11_merge_help")
 mt = __import__("12_mt")
 
 from FrameLibDocs.utils import sign_off, space, hyp
+import argparse
 
 def main():
+    parser = argparse.ArgumentParser(description="Build Documentation for FrameLib")
+    parser.add_argument("-hf", "--helpfiles", default=1, type=int, help="Toggle to build help files")
+    parser.add_argument("-c", "--clean", default=1, type=int, help="Toggle for post-cleanup")
+    args = parser.parse_args()
+
+    print(args.clean)
     sign_off()
     space()
 
@@ -62,26 +69,26 @@ def main():
     create_tutorial_coll.main()
     hyp()
 
-    # # Deletes all temporay files and cleans up process
-    print("9. Cleaning up")
-    cleanup.main()
-    hyp()
+    if args.helpfiles:
+        # Creates the templates for each help file.
+        # This is an outer shell containing generic information and framework to be filled in
+        print("10. Creating help file templates")
+        template_help.main()
+        hyp()
 
-    # Creates the templates for each help file.
-    # This is an outer shell containing generic information and framework to be filled in
-    print("10. Creating help file templates")
-    template_help.main()
-    hyp()
+        print("11. Merging master templates with internal patchers")
+        merge.main()
+        hyp()
 
-    print("11. Merging master templates with internal patchers")
-    merge.main()
-    hyp()
+        # Merges the hard coded tabs with the templates
+        # This creates the finished help file
+        print("12. Adding mismatch and trigger_ins tabs")
+        mt.main()
+        hyp()
 
-    # Merges the hard coded tabs with the templates
-    # This creates the finished help file
-    print("12. Adding mismatch and trigger_ins tabs")
-    mt.main()
-    hyp()
+    if args.clean:
+        cleanup.main()
+        print("Performing cleanup")
 
     print("Completed all python scripts.")
 
