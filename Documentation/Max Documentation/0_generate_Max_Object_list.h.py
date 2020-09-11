@@ -2,6 +2,9 @@ import os
 import re
 import sys
 from FrameLibDocs.utils import get_path, cd_up
+from FrameLibDocs.variables import package_root
+from pathlib import Path
+
 
 def write_comma(counter: int, ceiling: int):
     if counter < ceiling - 1:
@@ -10,79 +13,36 @@ def write_comma(counter: int, ceiling: int):
     else:
         op.write("\n")
 
-ignored_objects = []
-for arg in sys.argv:
-    ignored_objects.append(arg)
-ignored_objects = ignored_objects[1:]
 
-root = cd_up(get_path(), 2)
+
+ignored_objects = [x for x in sys.argv[1:]]
+ignored_objects.append("ibuffer_access") # also ignore the ibuffer_access file
+ignored_objects.append("framelib_max")
+
+maxdocs = package_root / "Documentation" / "Max Documentation"
 
 # Create the Max_Object_list.h and add skeleton
-op = open(os.path.join(root, "Max_Object_List.h"), "w+")
-op.write('#include "FrameLib_TypeList.h"')
-op.write("\n \n")
-op.write("using FrameLib_DSPList = detail::FrameLib_Typelist<")
-op.write("\n \n")
+op = open(maxdocs / "Max_Object_List.h", "w+")
+op.write('#include "FrameLib_TypeList.h"\n\n')
+op.write("using FrameLib_DSPList = detail::FrameLib_Typelist<\n\n")
 
 # Directory formation
-max_source_folder = os.path.join(cd_up(root, 2), "FrameLib_Max_Objects")
-# A list of the categories. Is used to find all the source files.
-max_source_categories = os.listdir(max_source_folder)
+max_objects = package_root / "FrameLib_Max_Objects"
+max_objects_categories = [x for x in max_objects.iterdir() if x.is_dir()]
 
-# Try removing unnecessary stuff, otherwise throw some info that it was not there
-try:
-    max_source_categories.remove("_MaxSDK_")
-except ValueError:
-    print("No _MaxSDK_ to delete")
-    pass
-
-try:
-    max_source_categories.remove(".DS_Store")
-except ValueError:
-    print("No .DS_Store")
-    pass
-
-try:
-    max_source_categories.remove("Common")
-except ValueError:
-    print("No common folder")
-    pass
-
-## Get folders in the parent Max Objects Folder
-## get total amount of files
 source_file_list = []
-for folder in max_source_categories:
-    ## Make var containing the name of the folder for a given category
-    category_folder = os.path.join(max_source_folder, folder)
-    ## Make a list containing all of the source files in a single category
-    file_list = os.listdir(category_folder)
-    ## Get rid of ibuffer file when traversing to buffer ateogry
-    if "ibuffer" in file_list:
-        file_list.remove("ibuffer")
-
-    if ".DS_Store" in file_list:
-        file_list.remove(".DS_Store")
-
-    for ignore in ignored_objects:
-        try:
-            file_list.remove(f"{ignore}.cpp")
-        except:
-            pass
-    for file_name in file_list:
-        extension = os.path.splitext(file_name)[1]
-        if extension != '.cpp': file_list.remove(file_name)
-
-    for file_name in file_list:
-        extension = os.path.splitext(file_name)[1]
-        if extension != '.cpp': file_list.remove(file_name)
-
-    for j in file_list:
-        source_file_list.append([os.path.join(category_folder), j])
+## Get folders in the parent Max Objects Folder
+for category in max_objects_categories:
+    files = Path(category).rglob("*.cpp")
+    for f in files:
+        if f.stem not in ignored_objects:
+            source_file_list.append([
+                category, f.name
+            ])
 
 # TODO - lookwithin and reaise this is not okay
 # Recreate full paths to open and parse for type cases
 for counter, (category_folder, name) in enumerate(source_file_list):
-    print(name)
     with open(os.path.join(category_folder, name), "r") as cpp:
         # flatten it with no spaces whatsoever
         source_file = cpp.read().replace("\n", "").replace(" ", "")
@@ -106,6 +66,8 @@ for counter, (category_folder, name) in enumerate(source_file_list):
             fl_object_name = "FrameLib_ComplexExpression"
         elif fl_object_name == "FrameLib_MaxClass_Expression":
             fl_object_name = "FrameLib_Expression"
+        elif fl_object_name == "FrameLib_MaxClass_ContextControl":
+            fl_object_name = "FrameLib_ContextControl"
         ## Now limit search area
         search_area = search_area.split("<")[0]
 
@@ -121,16 +83,12 @@ for counter, (category_folder, name) in enumerate(source_file_list):
         elif "_Expand" not in search_area and "makeClass" not in search_area:
             op.write(fl_object_name)
             write_comma(counter, len(source_file_list))
-        counter += 1
 
 ## Demarcate end of this section
-op.write("\n \n")
-op.write(">;")
-op.write("\n \n")
+op.write('\n\n>;\n\n')
 
 ## Start const bit
 for category_folder, name in source_file_list:
-
     with open(os.path.join(category_folder, name), "r") as cpp:
         source_file = (
             cpp.read().replace("\n", "").replace(" ", "")
@@ -156,6 +114,9 @@ for category_folder, name in source_file_list:
             fl_object_name = "FrameLib_ComplexExpression"
         elif fl_object_name == "FrameLib_MaxClass_Expression":
             fl_object_name = "FrameLib_Expression"
+        elif fl_object_name == "FrameLib_MaxClass_ContextControl":
+            fl_object_name = "FrameLib_ContextControl"
+
         ## Now limit search area
         search_area = search_area.split("<")[0]
         no_ext = os.path.splitext(name)[0]
@@ -170,7 +131,6 @@ for category_folder, name in source_file_list:
                 + no_ext
                 + '"; }\n'
             )
-            op.write("\n")
 
         elif "_Expand" not in search_area and "makeClass" in search_area:
             op.write(
@@ -180,7 +140,6 @@ for category_folder, name in source_file_list:
                 + no_ext
                 + '"; }\n'
             )
-            op.write("\n")
 
         elif "_Expand" not in search_area and "makeClass" not in search_area:
             op.write(
@@ -190,5 +149,5 @@ for category_folder, name in source_file_list:
                 + no_ext
                 + '"; }\n'
             )
-            op.write("\n")
+        op.write("\n")
 op.close()
