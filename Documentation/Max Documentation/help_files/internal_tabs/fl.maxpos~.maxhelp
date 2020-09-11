@@ -210,8 +210,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 70.0, 23.0 ],
-									"text" : "fl.argmax~"
+									"patching_rect" : [ 15.0, 195.0, 72.0, 23.0 ],
+									"text" : "fl.maxpos~"
 								}
 
 							}
@@ -269,7 +269,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.argmax~" ],
+									"jsarguments" : [ "fl.maxpos~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -322,8 +322,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -372,7 +372,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.argmax~.mxo",
+				"name" : "fl.maxpos~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

@@ -156,10 +156,9 @@
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
 									"name" : "FL_monoVolume-h.maxpat",
-									"numinlets" : 1,
-									"numoutlets" : 1,
+									"numinlets" : 0,
+									"numoutlets" : 0,
 									"offset" : [ 0.0, 0.0 ],
-									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 15.0, 510.0, 90.0, 45.0 ],
 									"viewvisibility" : 1
 								}
@@ -566,8 +565,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 390.0, 197.0, 23.0 ],
-									"text" : "fl.0dfsvf~ 500 0.5 /mode bpf"
+									"patching_rect" : [ 15.0, 390.0, 151.0, 23.0 ],
+									"text" : "fl.svf~ 500 0.5 /mode bpf"
 								}
 
 							}
@@ -603,7 +602,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.0dfsvf~" ],
+									"jsarguments" : [ "fl.svf~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -656,33 +655,8 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-1", 1 ],
-									"midpoints" : [ 24.5, 570.0, 50.5, 570.0 ],
-									"order" : 0,
-									"source" : [ "obj-2", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-1", 0 ],
-									"midpoints" : [ 24.5, 558.0, 24.5, 558.0 ],
-									"order" : 1,
-									"source" : [ "obj-2", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-10", 0 ],
 									"source" : [ "obj-39", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-2", 0 ],
-									"source" : [ "obj-43", 0 ]
 								}
 
 							}
@@ -704,7 +678,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 1 ],
-									"midpoints" : [ 202.5, 354.0, 202.5, 354.0 ],
+									"midpoints" : [ 202.5, 354.0, 156.5, 354.0 ],
 									"source" : [ "obj-62", 0 ]
 								}
 
@@ -758,9 +732,8 @@
 		"lines" : [  ],
 		"parameters" : 		{
 			"obj-1::obj-18::obj-5" : [ "live.slider", "Freq", 0 ],
-			"obj-1::obj-2::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-1::obj-18::obj-9" : [ "live.slider[1]", "Reson", 0 ],
 			"obj-1::obj-18::obj-1" : [ "live.tab", "live.tab", 0 ],
+			"obj-1::obj-18::obj-9" : [ "live.slider[1]", "Reson", 0 ],
 			"parameterbanks" : 			{
 
 			}
@@ -775,13 +748,6 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "FL_monoVolume-h.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/docs/tutorial-patchers",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "fl.source~.mxo",
 				"type" : "iLaX"
 			}
@@ -798,7 +764,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.0dfsvf~.mxo",
+				"name" : "fl.svf~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

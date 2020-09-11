@@ -754,7 +754,7 @@
                                     "id": "obj-3",
                                     "ignoreclick": 1,
                                     "jsarguments": [
-                                        "fl.geometricmean~"
+                                        "fl.geomean~"
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
