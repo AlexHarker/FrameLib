@@ -191,3 +191,4 @@ for category_folder, name in source_file_list:
                 + '"; }\n'
             )
             op.write("\n")
+op.close()
