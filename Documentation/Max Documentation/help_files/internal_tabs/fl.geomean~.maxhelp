@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -49,8 +49,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -110,8 +110,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -210,7 +210,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 118.0, 344.0, 298.0, 21.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Convert our input frame to the frequency domain"
 								}
 
@@ -234,7 +233,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 272.0, 297.0, 276.0, 21.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Window the input frame using a hann function"
 								}
 
@@ -422,8 +420,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 447.0, 116.0, 23.0 ],
-									"text" : "fl.geometricmean~"
+									"patching_rect" : [ 15.0, 447.0, 80.0, 23.0 ],
+									"text" : "fl.geomean~"
 								}
 
 							}
@@ -434,7 +432,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 105.0, 435.0, 79.0 ],
+									"patching_rect" : [ 15.0, 105.0, 437.0, 79.0 ],
 									"text" : "In this example we can use the geometric mean to calcualte spectral flatness of a noisy input. A flatter spectrum often correlates to perceptually noise or pitchless sound - you might expect the flatness measure to be close to 1 when computing this value on frame containing randomly distributed numbers (white noise)."
 								}
 
@@ -566,8 +564,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -601,7 +599,14 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.geometricmean~.mxo",
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "fl.geomean~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
