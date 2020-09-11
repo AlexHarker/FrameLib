@@ -1,6 +1,4 @@
-import os
 from pathlib import Path
-from FrameLibDocs.utils import cd_up
 
 this_script = Path(__file__)
 max_docs_dir = this_script.parents[2]
@@ -21,6 +19,3 @@ object_relationships_path = max_docs_dir / "object_relationships.yaml"
 # Max specific paths
 refpages_dir = current_version / "FrameLib" / "docs" / "refpages"
 interfaces_dir =  current_version / "FrameLib" / "interfaces"
-
-# Common objectives/variables
-bad_entries = [".DS_Store", "_c74_ref_modules.xml"]
