@@ -1,10 +1,6 @@
-import os
-import re
-import sys
-from FrameLibDocs.utils import get_path, cd_up
 from FrameLibDocs.variables import package_root
 from pathlib import Path
-
+import sys
 
 def write_comma(counter: int, ceiling: int) -> None:
     if counter < ceiling - 1:
@@ -35,7 +31,6 @@ def name_sanitisation(name: str) -> str:
 
 
 ignored_objects = [x for x in sys.argv[1:]]
-
 maxdocs = package_root / "Documentation" / "Max Documentation"
 
 # Create the Max_Object_list.h and add skeleton
@@ -50,14 +45,15 @@ max_objects_categories = [x for x in max_objects.iterdir() if x.is_dir()]
 source_file_list = []
 ## Get folders in the parent Max Objects Folder
 for category in max_objects_categories:
-    for f in Path(category).rglob("fl.*.cpp"):
-        if f.stem not in ignored_objects:
-            source_file_list.append([category, f.name])
+    for name in Path(category).rglob("fl.*.cpp"):
+        if name.stem not in ignored_objects:
+            source_file_list.append([category, name])
 
 # TODO - lookwithin and reaise this is not okay
 # Recreate full paths to open and parse for type cases
 for counter, (category_folder, name) in enumerate(source_file_list):
-    with open(os.path.join(category_folder, name), "r") as cpp:
+    with open((Path(category_folder) / name), "r") as cpp:
+        
         # flatten it with no spaces whatsoever
         source_file = cpp.read().replace("\n", "").replace(" ", "")
         search_area = source_file.split('extern"C"intC74_EXPORTmain(void){')[1]
@@ -80,7 +76,8 @@ op.write("\n\n>;\n\n")
 
 ## Start const bit
 for category_folder, name in source_file_list:
-    with open(os.path.join(category_folder, name), "r") as cpp:
+    with open(Path(category_folder) / name, "r") as cpp:
+        
         source_file = (
             cpp.read().replace("\n", "").replace(" ", "")
         )  # flatten it with no spaces whatsoever
@@ -89,8 +86,6 @@ for category_folder, name in source_file_list:
         fl_object_name = name_sanitisation(search_area.split("<")[1])
 
         search_area = search_area.split("<")[0]
-        no_ext = os.path.splitext(name)[0]
-        no_ext = no_ext.split("~")[0]
         # infer type with brutal checking by looking at text in the extern bit (search area)
         op.write("template<>\n")
         if "_Expand" in search_area:
@@ -98,7 +93,7 @@ for category_folder, name in source_file_list:
                 "const char* FrameLib_ObjectName<FrameLib_Expand<"
                 + fl_object_name
                 + '>>::name()\n{ return "'
-                + no_ext
+                + name.stem
                 + '"; }\n'
             )
 
@@ -107,7 +102,7 @@ for category_folder, name in source_file_list:
                 "const char* FrameLib_ObjectName<FrameLib_Expand<"
                 + fl_object_name
                 + '>>::name()\n{ return "'
-                + no_ext
+                + name.stem
                 + '"; }\n'
             )
 
@@ -116,7 +111,7 @@ for category_folder, name in source_file_list:
                 "const char* FrameLib_ObjectName<"
                 + fl_object_name
                 + '>::name()\n{ return "'
-                + no_ext
+                + name.stem
                 + '"; }\n'
             )
         op.write("\n")
