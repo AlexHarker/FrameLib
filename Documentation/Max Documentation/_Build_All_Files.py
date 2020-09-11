@@ -8,7 +8,7 @@ create_tutorial_coll = __import__("8_create_tutorial_coll")
 cleanup = __import__("9_cleanup")
 template_help = __import__("10_template_help")
 merge = __import__("11_merge_help")
-mmti = __import__("12_mmti")
+mt = __import__("12_mt")
 
 from FrameLibDocs.utils import sign_off, space, hyp
 
@@ -80,7 +80,7 @@ def main():
     # Merges the hard coded tabs with the templates
     # This creates the finished help file
     print("12. Adding mismatch and trigger_ins tabs")
-    mmti.main()
+    mt.main()
     hyp()
 
     print("Completed all python scripts.")
