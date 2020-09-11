@@ -50,7 +50,7 @@ max_objects_categories = [x for x in max_objects.iterdir() if x.is_dir()]
 source_file_list = []
 ## Get folders in the parent Max Objects Folder
 for category in max_objects_categories:
-    for f in Path(category).rglob("fl.*.cpp")
+    for f in Path(category).rglob("fl.*.cpp"):
         if f.stem not in ignored_objects:
             source_file_list.append([category, f.name])
 
