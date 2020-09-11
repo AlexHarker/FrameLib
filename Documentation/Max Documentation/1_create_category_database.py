@@ -1,5 +1,4 @@
 import os
-import json
 from FrameLibDocs.utils import write_json, cd_up, strip_extension
 from FrameLibDocs.variables import package_root, category_database_path
 
@@ -41,8 +40,7 @@ def main():
             files.remove("ibuffer")
         # some max categories already overlap with framelib categories (timing for example). This just maps Timing -> fl_timing to avoid any duplication issues
         item = f"FrameLib {item}"
-        for i in range(len(files)):
-            files[i] = strip_extension(files[i], 1)
+        files = [strip_extension(x, 1) for x in files]
         category_dict[item] = files
 
     ## Write dict into JSON file
