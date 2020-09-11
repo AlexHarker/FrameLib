@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as et
-from FrameLibDocs.utils import cd_up, write_json, thin_list, check_make, strip_space, strip_extension
+from FrameLibDocs.utils import write_json, strip_space, strip_extension
 
 
 # A class to parse the XML files and build a JSON file from it #
