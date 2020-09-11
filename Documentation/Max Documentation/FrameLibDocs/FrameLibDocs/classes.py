@@ -91,7 +91,11 @@ class qParseAndBuild:
         """
         Extracts the see also contents from the master yaml file
         """
-        self.seealso = yaml[self.object_name]["seealso"]
+        try:
+            self.seealso = yaml[self.object_name]["seealso"]
+        except KeyError:
+            print(f'No seealso for {self.object_name}')
+
 
     def extract_keywords(self, yaml):
         """
