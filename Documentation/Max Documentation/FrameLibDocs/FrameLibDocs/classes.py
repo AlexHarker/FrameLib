@@ -79,7 +79,7 @@ class qParseAndBuild:
         # Find Information
         self.category = self.root.get("category")
         self.object_name = self.root.get("name")
-
+        
         for child in self.root:
             if child.tag == "digest":
                 self.digest = child.text
@@ -101,7 +101,10 @@ class qParseAndBuild:
         """
         Extracts the keywords contents from the master yaml file
         """
-        self.keywords = yaml[self.object_name]["keywords"]
+        try:
+            self.keywords = yaml[self.object_name]["keywords"]
+        except KeyError:
+            print(f'No keywords for {self.object_name}')
 
 
 # A class to parse the XML files and build a JSON file from it #
