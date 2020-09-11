@@ -25,7 +25,7 @@ def main():
     coll.truncate(0)
 
     # Find File Names
-    all_files = [x for x in tutorial_path.iterdir() if str(x).startswith("_")]
+    all_files = [x.stem for x in tutorial_path.iterdir() if str(x.name).startswith("_")]
     all_files.sort(key=alphanum_key)
 
     # Write the contents of tutorial_names to the coll with some f strings
@@ -35,3 +35,6 @@ def main():
         idx += 1
 
     coll.close()
+
+if __name__ == "__main__":
+    main()
