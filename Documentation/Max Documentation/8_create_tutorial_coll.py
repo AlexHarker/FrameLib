@@ -15,10 +15,6 @@ def alphanum_key(s: int):
     return [try_integer(c) for c in re.split("([0-9]+)", s)]
 
 def main():
-    # Directory stuff
-    tutorial_path = os.path.join(
-        package_root, "Current Test Version", "FrameLib", "docs", "tutorial-patchers"
-    )
     tutorial_path = current_version / "FrameLib" / "docs" / "tutorial-patchers"
     coll_output_path = tutorial_path / "FL_tutorial_names.txt"
 
@@ -27,15 +23,12 @@ def main():
     coll.truncate(0)
 
     # Find File Names
-    all_files = os.listdir(
-        tutorial_path
-    )  # store all the file names of the tutorial path in an array
     all_files = [x for x in tutorial_path.iterdir() if str(x).startswith("_")]
     all_files.sort(key=alphanum_key)
 
     # Write the contents of tutorial_names to the coll with some f strings
     idx = 0
-    for item in tutorial_names:  # each item loop over all tutorial names list
+    for item in all_files:  # each item loop over all tutorial names list
         coll.write(f"{idx}, {item};\n")  # write that item into the buffer
         idx += 1
 
