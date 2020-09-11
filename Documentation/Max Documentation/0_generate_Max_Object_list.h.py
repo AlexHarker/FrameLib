@@ -35,8 +35,6 @@ def name_sanitisation(name: str) -> str:
 
 
 ignored_objects = [x for x in sys.argv[1:]]
-ignored_objects.append("ibuffer_access")  # also ignore the ibuffer_access file
-ignored_objects.append("framelib_max")
 
 maxdocs = package_root / "Documentation" / "Max Documentation"
 
@@ -52,8 +50,7 @@ max_objects_categories = [x for x in max_objects.iterdir() if x.is_dir()]
 source_file_list = []
 ## Get folders in the parent Max Objects Folder
 for category in max_objects_categories:
-    files = Path(category).rglob("*.cpp")
-    for f in files:
+    for f in Path(category).rglob("fl.*.cpp")
         if f.stem not in ignored_objects:
             source_file_list.append([category, f.name])
 
