@@ -11,7 +11,7 @@ from FrameLibDocs.variables import (
     category_database_path,
     max_docs_dir,
     object_relationships_path,
-    temporary_dir
+    temporary_dir,
 )
 
 
@@ -66,14 +66,14 @@ def main():
         tree = et.parse(raw_xml)  # parse the xml file
 
         root = tree.getroot()  # get root and assign to root var
-        root.set("category", category) # set category attribute of root to the category found in json
+        root.set("category", category)  # set category attribute of root to the category found in json
 
         for i in root.getiterator():
-            #Replace line breaks
-            if 'name' in i.attrib.keys():
-                if i.attrib['name'] == 'Parameters':
+            # Replace line breaks
+            if "name" in i.attrib.keys():
+                if i.attrib["name"] == "Parameters":
                     for j in i.getiterator():
-                        if j.tag == 'description':
+                        if j.tag == "description":
                             j.text = j.text.replace(". ", ".<br>")
                             j.text = j.text.replace(": ", ":<br><br>")
             # Dirty pass
@@ -95,10 +95,7 @@ def main():
                     print(f"No seealso for {obj_name}")
             if elem.tag == "misc" and elem.attrib["name"] == "Discussion":
                 for sub_elem in elem:
-                    if (
-                        sub_elem.tag == "entry"
-                        and sub_elem.attrib["name"] == "Keywords"
-                    ):
+                    if sub_elem.tag == "entry" and sub_elem.attrib["name"] == "Keywords":
                         for desc in sub_elem:
                             temp_string = ",".join(details["keywords"])
                             desc.text = temp_string
@@ -111,7 +108,7 @@ def main():
 
         unescaped_file = xml_second_pass / raw_xml.name
         tree.write(unescaped_file)
-        
+
         refpages_dir.mkdir(exist_ok=True)
         refpages_parent = refpages_dir / category
         refpages_parent.mkdir(exist_ok=True)
@@ -124,6 +121,7 @@ def main():
             for line in xml:
                 final_file.write(line)
             final_file.close()
+
 
 if __name__ == "__main__":
     main()

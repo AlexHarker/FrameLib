@@ -13,6 +13,7 @@ mt = __import__("12_mt")
 from FrameLibDocs.utils import sign_off, space, hyp
 import argparse
 
+
 def main():
     parser = argparse.ArgumentParser(description="Build Documentation for FrameLib")
     parser.add_argument("-hf", "--helpfiles", default=1, type=int, help="Toggle to build help files")
@@ -91,6 +92,7 @@ def main():
         print("Performing cleanup")
 
     print("Completed all python scripts.")
+
 
 if __name__ == "__main__":
     main()

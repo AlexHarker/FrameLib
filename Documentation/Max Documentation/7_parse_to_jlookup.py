@@ -14,7 +14,7 @@ def main():
     This dict contains more detailed information displayed in real-time when hovering over a certain tutorial in the umenu.
     """
 
-    obj_lookup = interfaces_dir /  "FrameLib-obj-jlookup.json"
+    obj_lookup = interfaces_dir / "FrameLib-obj-jlookup.json"
 
     worker = jParseAndBuild()
 
@@ -24,6 +24,7 @@ def main():
         worker.extract_from_refpage(ref)
 
     write_json(obj_lookup, worker.j_master_dict)
+
 
 if __name__ == "__main__":
     main()

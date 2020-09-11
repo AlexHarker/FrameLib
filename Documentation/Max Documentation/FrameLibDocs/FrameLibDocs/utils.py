@@ -40,7 +40,9 @@ def read_yaml(yaml_file_path: str) -> dict:
         except yaml.YAMLError as exc:
             print(exc)
 
-#-- Functions to make the console prints much more pleasant --#
+
+# -- Functions to make the console prints much more pleasant --#
+
 
 def ast():
     """Print some asterisks"""
@@ -72,13 +74,9 @@ def sign_off():
     """Sign off the docs ;)"""
     print(rn.choice(printouts))
     print(" ")
-    print(
-        "A DSP framework for arbitrary size frame processing with arbitrary sub-sample accurate timing."
-    )
+    print("A DSP framework for arbitrary size frame processing with arbitrary sub-sample accurate timing.")
     print("Alex Harker, ajharker@gmail.com")
-    print(
-        "Max Documentation and Tutorials by James Bradbury, jamesbradbury93@gmail.com"
-    )
+    print("Max Documentation and Tutorials by James Bradbury, jamesbradbury93@gmail.com")
 
 
 printouts = [

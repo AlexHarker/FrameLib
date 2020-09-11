@@ -29,5 +29,6 @@ def main():
 
     write_json(obj_lookup, worker.d_master_dict)
 
+
 if __name__ == "__main__":
     main()

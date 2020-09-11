@@ -18,7 +18,7 @@ object_relationships_path = max_docs_dir / "object_relationships.yaml"
 
 # Max specific paths
 refpages_dir = current_version / "FrameLib" / "docs" / "refpages"
-interfaces_dir =  current_version / "FrameLib" / "interfaces"
+interfaces_dir = current_version / "FrameLib" / "interfaces"
 
 # Help Files
 help_dir = max_docs_dir / "help_files"

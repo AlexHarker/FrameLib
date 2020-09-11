@@ -6,7 +6,7 @@ from FrameLibDocs.variables import (
     databases_dir,
     raw_xml_dir,
     interfaces_dir,
-    refpages_dir
+    refpages_dir,
 )
 
 # Check and make
@@ -24,4 +24,4 @@ for files in refpages_dir.iterdir():
         try:
             rmtree(files.resolve())
         except OSError:
-            print('Error cleaning out existing docs directories')
+            print("Error cleaning out existing docs directories")

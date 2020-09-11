@@ -2,6 +2,7 @@ from FrameLibDocs.variables import package_root
 from pathlib import Path
 import sys
 
+
 def write_comma(counter: int, ceiling: int) -> None:
     if counter < ceiling - 1:
         op.write(",")
@@ -53,7 +54,7 @@ for category in max_objects_categories:
 # Recreate full paths to open and parse for type cases
 for counter, (category_folder, name) in enumerate(source_file_list):
     with open((Path(category_folder) / name), "r") as cpp:
-        
+
         # flatten it with no spaces whatsoever
         source_file = cpp.read().replace("\n", "").replace(" ", "")
         search_area = source_file.split('extern"C"intC74_EXPORTmain(void){')[1]
@@ -77,10 +78,8 @@ op.write("\n\n>;\n\n")
 ## Start const bit
 for category_folder, name in source_file_list:
     with open(Path(category_folder) / name, "r") as cpp:
-        
-        source_file = (
-            cpp.read().replace("\n", "").replace(" ", "")
-        )  # flatten it with no spaces whatsoever
+
+        source_file = cpp.read().replace("\n", "").replace(" ", "")  # flatten it with no spaces whatsoever
         search_area = source_file.split('extern"C"intC74_EXPORTmain(void){')[1]
 
         fl_object_name = name_sanitisation(search_area.split("<")[1])

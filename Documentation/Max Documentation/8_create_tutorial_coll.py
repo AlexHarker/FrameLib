@@ -10,9 +10,11 @@ def try_integer(s) -> int:
     except ValueError:
         return s
 
+
 def alphanum_key(s: int):
     """ Turn a string into a list of string and number chunks."""
     return [try_integer(c) for c in re.split("([0-9]+)", s)]
+
 
 def main():
     tutorial_path = current_version / "FrameLib" / "docs" / "tutorial-patchers"

@@ -12,12 +12,13 @@ def main():
     d = {}
 
     for f in max_objects.rglob("fl.*.cpp"):
-        category = f'FrameLib {str(f.parent.parts[-1])}'
+        category = f"FrameLib {str(f.parent.parts[-1])}"
         if category in d:
             d[category].append(f.stem)
         else:
             d[category] = [f.stem]
     write_json(category_database_path, d)
+
 
 if __name__ == "__main__":
     main()
