@@ -13,6 +13,7 @@ def write_comma(counter: int, ceiling: int) -> None:
     else:
         op.write("\n")
 
+
 def name_sanitisation(name: str) -> str:
     name = name.split(">")[0]
     name = name.split(",")[0]
@@ -32,8 +33,9 @@ def name_sanitisation(name: str) -> str:
         name = "FrameLib_ContextControl"
     return name
 
+
 ignored_objects = [x for x in sys.argv[1:]]
-ignored_objects.append("ibuffer_access") # also ignore the ibuffer_access file
+ignored_objects.append("ibuffer_access")  # also ignore the ibuffer_access file
 ignored_objects.append("framelib_max")
 
 maxdocs = package_root / "Documentation" / "Max Documentation"
@@ -53,9 +55,7 @@ for category in max_objects_categories:
     files = Path(category).rglob("*.cpp")
     for f in files:
         if f.stem not in ignored_objects:
-            source_file_list.append([
-                category, f.name
-            ])
+            source_file_list.append([category, f.name])
 
 # TODO - lookwithin and reaise this is not okay
 # Recreate full paths to open and parse for type cases
@@ -79,12 +79,14 @@ for counter, (category_folder, name) in enumerate(source_file_list):
         write_comma(counter, len(source_file_list))
 
 ## Demarcate end of this section
-op.write('\n\n>;\n\n')
+op.write("\n\n>;\n\n")
 
 ## Start const bit
 for category_folder, name in source_file_list:
     with open(os.path.join(category_folder, name), "r") as cpp:
-        source_file = (cpp.read().replace("\n", "").replace(" ", ""))  # flatten it with no spaces whatsoever
+        source_file = (
+            cpp.read().replace("\n", "").replace(" ", "")
+        )  # flatten it with no spaces whatsoever
         search_area = source_file.split('extern"C"intC74_EXPORTmain(void){')[1]
 
         fl_object_name = name_sanitisation(search_area.split("<")[1])
