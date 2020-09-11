@@ -1,13 +1,9 @@
 import os, json, errno, yaml, re
 import xml.etree.ElementTree as et
 from FrameLibDocs.utils import (
-    cd_up,
     read_json,
-    remove_ds,
-    get_path,
     read_yaml,
     strip_extension,
-    check_make
 )
 from FrameLibDocs.variables import (
     raw_xml_dir,
@@ -64,7 +60,6 @@ def main():
     raw_xml_list = [x for x in raw_xml_dir.rglob("fl.*.xml")]
     refpages_dir.mkdir(exist_ok=True)
 
-
     for raw_xml in raw_xml_list:
         obj_name = strip_extension(raw_xml.name, 2)  # just get the file name
         category = find_object_category(obj_name)  # get the category of the object name
@@ -116,11 +111,12 @@ def main():
 
         unescaped_file = xml_second_pass / raw_xml.name
         tree.write(unescaped_file)
-
-        check_make(os.path.join(refpages_dir, category))
+        
         refpages_dir.mkdir(exist_ok=True)
+        refpages_parent = refpages_dir / category
+        refpages_parent.mkdir(exist_ok=True)
         final_path = refpages_dir / category / raw_xml.name
-        final_file = open(final_path, "w")
+        final_file = open(final_path, "w+")
         with open(unescaped_file, "r") as f:
             xml = f.read()
             xml = xml.replace("&lt;", "<")
