@@ -181,17 +181,17 @@ unsigned long FrameLib_Parameters::Serial::calcSize(const FrameLib_Parameters *p
         switch(type)
         {
             case kString:
-                size += calcSize(params->getName(i).c_str(), params->getString(i));
+                size += calcSize(params->getName(i), params->getString(i));
                 break;
                 
             case kValue:
             case kEnum:
-                size += calcSize(params->getName(i).c_str(), 1);
+                size += calcSize(params->getName(i), 1);
                 break;
                 
             case kArray:
             case kVariableArray:
-                size += calcSize(params->getName(i).c_str(), params->getArraySize(i));
+                size += calcSize(params->getName(i), params->getArraySize(i));
 
         }
     }
@@ -238,18 +238,18 @@ void FrameLib_Parameters::Serial::write(const FrameLib_Parameters *params)
         switch(type)
         {
             case kString:
-                write(params->getName(i).c_str(), params->getString(i));
+                write(params->getName(i), params->getString(i));
                 break;
                 
             case kValue:
             case kEnum:
                 value = params->getValue(i);
-                write(params->getName(i).c_str(), &value, 1);
+                write(params->getName(i), &value, 1);
                 break;
                 
             case kArray:
             case kVariableArray:
-                write(params->getName(i).c_str(), params->getArray(i), params->getArraySize(i));
+                write(params->getName(i), params->getArray(i), params->getArraySize(i));
         }
     }
 }
@@ -451,9 +451,13 @@ bool checkRange(double min, double max)
 // Parameter Abstract Class
 
 FrameLib_Parameters::Parameter::Parameter(const char *name, long argumentIdx)
-: mChanged(false), mFlags(0), mDefault(0.0), mMin(-std::numeric_limits<double>::infinity()), mMax(std::numeric_limits<double>::infinity())
+: mChanged(false)
+, mFlags(0)
+, mDefault(0.0)
+, mMin(-std::numeric_limits<double>::infinity())
+, mMax(std::numeric_limits<double>::infinity())
+, mName(name)
 {
-    mName = name;
     mArgumentIdx = argumentIdx;
 }
 
