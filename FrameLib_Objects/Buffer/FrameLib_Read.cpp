@@ -71,8 +71,8 @@ FrameLib_Read::ParameterInfo FrameLib_Read::sParamInfo;
 
 FrameLib_Read::ParameterInfo::ParameterInfo()
 {
-    add("Sets the buffer~ name to use.");
-    add("Sets the buffer~ channel to use.");
+    add("Sets the buffer to use.");
+    add("Sets the buffer channel to use.");
     add("Sets the interpolation mode: "
         "hermite - cubic hermite interpolation. "
         "bspline - cubic bspline interpolation. "
