@@ -33,10 +33,9 @@ public:
     
     void resize(unsigned long numFrames, unsigned long frameLength)
     {
-        unsigned long oldSize = mFrameLength * mNumFrames;
         unsigned long totalSize = frameLength * numFrames;
         
-        if (oldSize != totalSize)
+        if (mFrames.size() != totalSize)
             mFrames = mAllocator.allocAutoArray<double>(totalSize);
         
         mNumFrames = mFrames ? numFrames : 0;
