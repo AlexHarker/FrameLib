@@ -133,8 +133,6 @@ public:
         const double *parameters = mParameters.getArray(ParamsIdx, &arraySize);
         
         using namespace window_functions;
-
-        // FIX - complete validation and type selection!
         
         if (!mGenerator || mParameters.changed(TypeIdx) || mParameters.changed(ParamsIdx))
         {
