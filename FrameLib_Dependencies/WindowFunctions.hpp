@@ -139,10 +139,10 @@ namespace window_functions
             
             const double x = normalise(i, N);
             
-            if (x <= a)
+            if (x < a)
                 return x / a;
             
-            if (x >= b)
+            if (x > b)
                 return 1.0 - ((x - b) / (1.0 - b));
             
             return 1.0;
@@ -161,7 +161,6 @@ namespace window_functions
         
         inline double parzen(uint32_t i, uint32_t N, const params& p)
         {
-            // FIX - check scaling
             const double N2 = static_cast<double>(N) * 0.5;
             
             auto w0 = [&](double x)
@@ -201,7 +200,7 @@ namespace window_functions
                        cosx(-p.a1, pi2()),
                        cosx(p.a2, pi4()),
                        cosx(-p.a3, pi6()),
-                       cosx(-p.a4, pi8()));
+                       cosx(p.a4, pi8()));
         }
         
         inline double hann(uint32_t i, uint32_t N, const params& p)
@@ -211,10 +210,9 @@ namespace window_functions
         
         inline double hamming(uint32_t i, uint32_t N, const params& p)
         {
-            // FIX - review
-            //alpha is 0.54 or 25/46 or 0.543478260869565
+            // N.B. here we use approx alpha of 0.54 (not 25/46 or 0.543478260869565)
             // see equiripple notes on wikipedia
-            //return sum(i, N, constant(0.54), cosx(-0.46, pi2()));
+            
             return cosine_2_term(i, N, params(0.54));
         }
         
@@ -294,7 +292,7 @@ namespace window_functions
             double term = 1.0;
             double bessel = 1.0;
             
-            // N.B. - loop until term is zero for maximum accuracy
+            // N.B. - loop based on epsilon for maximum accuracy
             
             for (unsigned long i = 1; term > std::numeric_limits<double>::epsilon(); i++)
             {
@@ -314,7 +312,6 @@ namespace window_functions
         
         inline double tukey(uint32_t i, uint32_t N, const params& p)
         {
-            // FIX - look at normalisation here...
             return 0.5 - 0.5 * cos(trapezoid(i, N, p) * pi());
         }
         
@@ -417,10 +414,8 @@ namespace window_functions
                 for (uint32_t i = begin; i < end; i++)
                     *window++ = toType(qb(Func(i, N, p)));
             }
-            else if (p.exponent > 0 && p.exponent == std::floor(p.exponent))
+            else if (p.exponent > 0 && p.exponent <= std::numeric_limits<int>().max() && p.exponent == std::floor(p.exponent))
             {
-                // FIX range
-                
                 int exponent = static_cast<int>(p.exponent);
                 
                 for (uint32_t i = begin; i < end; i++)
