@@ -9,7 +9,8 @@ class FrameLib_KernelSmooth final : public FrameLib_Processor
 {
     using Smoother = kernel_smoother<double, FrameLib_DSP::Allocator>;
     
-    enum ParameterList { kSmooth };
+    enum ParameterList { kSmooth, kScale, kEdges };
+    enum Scales { kSamples, kNormalised };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     
