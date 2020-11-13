@@ -13,11 +13,11 @@ enum EdgeType { kZeroPad, kExtend, kWrap, kFold, kMirror, kExtrapolate };
 // Base class for table fetchers
 
 // Implementations
-// - must provide - T operator()(intptr_t idx) - which does the fetching of values
-// - may also provide - template <class U, V> void split(U position, intptr_t& idx, V& fract, int N)
-// - split() generates the idx and fractional interpolation values and may additionally constrain them
-// - may also provide intptr_t limit() which should return the highest valid position for bounds etc.
-// - may also provide void extrapolate(bool cubic) which should prepare the table for extrapolation if necessary
+// - Must provide: T operator()(intptr_t idx) - which does the fetching of values
+// - Adaptors may also provide: template <class U, V> void split(U position, intptr_t& idx, V& fract, int N)
+// - which generates the idx and fractional interpolation values and may additionally constrain them
+// - intptr_t limit() - which should return the highest valid position for bounds etc.
+// - void prepare(InterpType interpolation)  - which prepares the table (e.g. for extrapolation) if necessary
 
 template <class T>
 struct table_fetcher
@@ -34,7 +34,8 @@ struct table_fetcher
     }
     
     intptr_t limit() { return size - 1; }
-    void extrapolate(bool cubic) {}
+    
+    void prepare(InterpType interpolation) {}
     
     const intptr_t size;
     const double scale;
@@ -126,14 +127,14 @@ struct table_fetcher_extrapolate : T
         fract = static_cast<V>(position - static_cast<V>(idx));
     }
     
-    void extrapolate(bool cubic)
+    void prepare(InterpType interpolation)
     {
         using fetch_type = typename T::fetch_type;
         
         auto beg = [&](intptr_t idx) { return T::operator()(idx); };
         auto end = [&](intptr_t idx) { return T::operator()(T::size - (idx + 1)); };
         
-        if (T::size >= 4 && cubic)
+        if (T::size >= 4 && (interpolation != kInterpNone) && (interpolation != kInterpLinear))
         {
             ends[0] = cubic_lagrange_interp<fetch_type>()(fetch_type(-2), beg(0), beg(1), beg(2), beg(3));
             ends[1] = cubic_lagrange_interp<fetch_type>()(fetch_type(-2), end(0), end(1), end(2), end(3));
@@ -313,7 +314,7 @@ void table_read(Table fetcher, W *out, const X *positions, intptr_t n_samps, dou
 template <class T, class U, class Table>
 void table_read(Table fetcher, T *out, const U *positions, intptr_t n_samps, T mul, InterpType interp)
 {
-    fetcher.extrapolate(interp != kInterpLinear);
+    fetcher.prepare(interp);
     
     switch(interp)
     {
