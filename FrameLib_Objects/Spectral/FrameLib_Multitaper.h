@@ -9,7 +9,9 @@ class FrameLib_Multitaper final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kMaxLength, kNumTapers };
+    enum ParameterList { kMaxLength, kNumTapers, kNormalise, kOutput, kWeighting };
+    enum Outputs { kPower, kAmplitude };
+    enum Weightings { kUniform, kLinear, kParabolic };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -30,6 +32,7 @@ private:
     // Helpers
     
     void getWrapped(double &rOut, double&iOut, double *real, double *imag, long size, long pos);
+    double getWeight(unsigned long k, unsigned long nTapers);
     
     // Process
     
