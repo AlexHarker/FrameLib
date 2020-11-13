@@ -29,7 +29,7 @@ class kernel_smoother : private spectral_processor<T, Allocator>
     
 public:
     
-    enum SmoothMode { kSmoothZeroPad, kSmoothWrap, kSmoothFold };
+    enum EdgeType { kZeroPad, kExtend, kWrap, kFold, kMirror };
     
     template <typename U = Allocator, enable_if_t<std::is_default_constructible<U>::value> = 0>
     kernel_smoother()
@@ -51,8 +51,11 @@ public:
 
     void set_max_fft_size(uintptr_t size) { processor::set_max_fft_size(size); }
     
-    void smooth(T *out, const T *in, const T *kernel, uintptr_t length, uintptr_t kernel_length, double width_lo, double width_hi, SmoothMode mode)
+    void smooth(T *out, const T *in, const T *kernel, uintptr_t length, uintptr_t kernel_length, double width_lo, double width_hi, EdgeType edges)
     {
+        if (!length)
+            return;
+        
         Allocator& allocator = processor::m_allocator;
         
         const int N = SIMDLimits<T>::max_size;
@@ -99,24 +102,39 @@ public:
         
         // Copy data
         
-        switch (mode)
+        switch (edges)
         {
-            case kSmoothZeroPad:
+            case kZeroPad:
                 std::fill_n(temp, filter_size, 0.0);
                 std::copy_n(in, length, temp + filter_size);
                 std::fill_n(temp + filter_size + length, filter_size, 0.0);
                 break;
                 
-            case kSmoothWrap:
+            case kExtend:
+                std::fill_n(temp, filter_size, in[0]);
+                std::copy_n(in, length, temp + filter_size);
+                std::fill_n(temp + filter_size + length, filter_size, in[length - 1]);
+                break;
+                
+            case kWrap:
+                // FIX - cases where the input wraps more than once
                 std::copy_n(in + length - filter_size, filter_size, temp);
                 std::copy_n(in, length, temp + filter_size);
                 std::copy_n(in, filter_size, temp + filter_size + length);
                 break;
                 
-            case kSmoothFold:
+            case kFold:
+                // FIX - cases where the input folds more than once
                 std::reverse_copy(in + 1, in + 1 + filter_size, temp);
                 std::copy(in, in + length, temp + filter_size);
-                std::reverse_copy(in + length - (filter_size + 1), in + length - 1, temp + filter_size + length);
+                std::reverse_copy(in + length - (filter_size + 1), in + length - 1, temp + length + filter_size);
+                break;
+                
+            case kMirror:
+                // FIX - cases where the input mirros more than once
+                std::reverse_copy(in, in + filter_size, temp);
+                std::copy(in, in + length, temp + filter_size);
+                std::reverse_copy(in + length - filter_size, in + length, temp + length + filter_size);
                 break;
         }
         
