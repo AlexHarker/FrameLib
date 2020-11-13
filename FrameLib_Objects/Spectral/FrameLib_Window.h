@@ -6,14 +6,11 @@
 #include "FrameLib_WindowGenerator.h"
 #include "../../FrameLib_Dependencies/TableReader.hpp"
 
-// FIX - review gain calculation
-
 class FrameLib_Window final : public FrameLib_Processor
 {
     // Parameter Enums and Info
     
     enum ParameterList { kWindowType, kSize, kExponent, kCompensation, kParameters, kEndpoints };
-    //enum ParameterList { kWindowType, kSize, kSqrt, kCompensation, kEndpoints };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     

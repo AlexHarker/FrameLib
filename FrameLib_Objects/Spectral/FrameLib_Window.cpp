@@ -22,22 +22,15 @@ FrameLib_Window::CompareWindowParams::CompareWindowParams(Generator& generator, 
 
 bool FrameLib_Window::CompareWindowParams::operator == (const CompareWindowParams& a)
 {
-    bool equal = true;
+    if (mParamSize != a.mParamSize)
+        return false;
     
-    equal &= mWindowType == a.mWindowType;
-    equal &= mExponent == a.mExponent;
-    equal &= mEndpoints == a.mEndpoints;
-    equal &= mSize == a.mSize;
+    bool equal = (mWindowType == a.mWindowType) && (mExponent == a.mExponent) && (mEndpoints == a.mEndpoints) && (mSize == a.mSize);
     
-    if (mParamSize == a.mParamSize)
-    {
-        for (unsigned long i = 0; i < mParamSize; i++)
-            equal &= mParams[i] == a.mParams[i];
-        
-        return equal;
-    }
+    for (unsigned long i = 0; i < mParamSize; i++)
+        equal &= mParams[i] == a.mParams[i];
     
-    return false;
+    return equal;
 }
 
 // Constructor
@@ -107,7 +100,7 @@ void FrameLib_Window::updateWindow(unsigned long sizeIn)
     unsigned long size = mParameters.getInt(kSize);
     size = mGenerator.sizeAdjustForEndpoints(!size ? sizeIn : size);
     
-    // Check for changes and exit if none, else ersize and stoe new parameters
+    // Check for changes and exit if none, else resize and store new parameters
     
     CompareWindowParams compare(mGenerator, size);
     
