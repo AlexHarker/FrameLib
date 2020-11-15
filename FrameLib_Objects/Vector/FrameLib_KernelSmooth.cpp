@@ -13,14 +13,21 @@ FrameLib_KernelSmooth::FrameLib_KernelSmooth(FrameLib_Context context, const Fra
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kNormalised, "normalised");
     
-    mParameters.addEnum(kEdges, "edges", 2);
+    mParameters.addBool(kSymmetric, "symmetric", true, 2);
+
+    mParameters.addEnum(kEdges, "edges", 3);
     mParameters.addEnumItem(Smoother::kZeroPad, "zero");
     mParameters.addEnumItem(Smoother::kExtend, "extend");
     mParameters.addEnumItem(Smoother::kWrap, "wrap");
     mParameters.addEnumItem(Smoother::kFold, "fold");
     mParameters.addEnumItem(Smoother::kMirror, "mirror");
     
+    mParameters.addInt(kMaxFFTSize, "maxfft", mSmoother.max_fft_size());
+    mParameters.setInstantiation();
+    
     mParameters.set(serialisedParameters);
+    
+    mSmoother.set_max_fft_size(mParameters.getInt(kMaxFFTSize));
 }
 
 // Info
@@ -80,6 +87,8 @@ void FrameLib_KernelSmooth::process()
         Allocator allocator(*this);
         
         unsigned long widthSize;
+        bool symmetric = mParameters.getBool(kSymmetric);
+        
         double width_lo = 0.0;
         double width_hi = 0.0;
         
@@ -101,6 +110,6 @@ void FrameLib_KernelSmooth::process()
             width_hi /= static_cast<double>(sizeIn2);
         }
         
-        mSmoother.smooth(output, input, kernel, sizeIn1, sizeIn2, width_lo, width_hi, edges);
+        mSmoother.smooth(output, input, kernel, sizeIn1, sizeIn2, width_lo, width_hi, symmetric, edges);
     }
 }
