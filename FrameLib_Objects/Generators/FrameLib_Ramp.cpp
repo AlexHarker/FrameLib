@@ -140,7 +140,7 @@ void FrameLib_Ramp::process()
                     break;
             }
             
-            multiplier = 1.0 / normalisedScale;
+            multiplier = normalisedScale ? 1.0 / normalisedScale : 1.0;
             
             if (ends == kNone || ends == kLast)
                 offset = 1.0 / normalisedScale;
