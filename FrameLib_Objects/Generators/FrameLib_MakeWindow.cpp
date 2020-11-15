@@ -23,7 +23,7 @@ FrameLib_MakeWindow::FrameLib_MakeWindow(FrameLib_Context context, const FrameLi
     mGenerator.addExponent(4);
     mGenerator.addCompensation();
     mGenerator.addWindowParameters();
-    mGenerator.addEndpoints(); // see ramp
+    mGenerator.addEndpoints();
     
     mParameters.set(serialisedParameters);
     
