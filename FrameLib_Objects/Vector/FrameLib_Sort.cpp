@@ -4,7 +4,8 @@
 
 // Constructor
 
-FrameLib_Sort::FrameLib_Sort(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_Sort::FrameLib_Sort(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kOrder, "order", 0);
     mParameters.addEnumItem(kUp, "up");
@@ -63,7 +64,7 @@ void FrameLib_Sort::process()
     
     if (!mParameters.getBool(kOutputIndices))
     {
-        switch (static_cast<Orders>(mParameters.getInt(kOrder)))
+        switch (mParameters.getEnum<Orders>(kOrder))
         {
             case kUp:       sortAscending(output, input, size);     break;
             case kDown:     sortDescending(output, input, size);    break;
@@ -71,11 +72,11 @@ void FrameLib_Sort::process()
     }
     else
     {
-        unsigned long *indices = alloc<unsigned long>(size);
+        auto indices = allocAutoArray<unsigned long>(size);
         
         if (indices)
         {
-            switch (static_cast<Orders>(mParameters.getInt(kOrder)))
+            switch (mParameters.getEnum<Orders>(kOrder))
             {
                 case kUp:       sortIndicesAscending(indices, input, size);     break;
                 case kDown:     sortIndicesDescending(indices, input, size);    break;
@@ -89,7 +90,5 @@ void FrameLib_Sort::process()
             zeroVector(output, size);
             getReporter()(kErrorObject, getProxy(), "couldn't allocate temporary memory");
         }
-        
-        dealloc(indices);
     }
 }

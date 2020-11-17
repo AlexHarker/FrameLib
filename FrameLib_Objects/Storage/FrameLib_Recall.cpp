@@ -1,9 +1,10 @@
 
 #include "FrameLib_Recall.h"
 
-// Constructor / Destructor
+// Constructor
 
-FrameLib_Recall::FrameLib_Recall(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+FrameLib_Recall::FrameLib_Recall(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.addString(kName, "name", 0);
     mParameters.setInstantiation();
@@ -16,11 +17,6 @@ FrameLib_Recall::FrameLib_Recall(FrameLib_Context context, const FrameLib_Parame
     mStorage = registerStorage(mName.c_str());
     
     setOutputType(0, kFrameAny);
-}
-
-FrameLib_Recall::~FrameLib_Recall()
-{
-    releaseStorage(mStorage);
 }
 
 // Info
@@ -47,7 +43,6 @@ std::string FrameLib_Recall::outputInfo(unsigned long idx, bool verbose)
 
 void FrameLib_Recall::setStream(void *streamOwner, unsigned long stream)
 {
-    releaseStorage(mStorage);
     mStorage = registerStorage(numberedString(mName.c_str(), stream).c_str());
 }
 

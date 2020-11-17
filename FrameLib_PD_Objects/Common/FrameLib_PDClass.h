@@ -25,14 +25,12 @@ extern "C"
 
 class FrameLib_PDGlobals : public PDClass_Base
 {
-    
 public:
     
     // Sync Check Class
     
     class SyncCheck
     {
-        
     public:
         
         enum Mode { kDownOnly, kDown, kAcross };
@@ -137,7 +135,7 @@ public:
     
 private:
     
-    void retain()                                               { FrameLib_Global::get(&mGlobal); }
+    void retain()                                               { FrameLib_Global::get(&mGlobal, FrameLib_Thread::defaultPriorities()); }
     void release()                                              { FrameLib_Global::release(&mGlobal); }
 
     static FrameLib_PDGlobals **getPDGlobalsPtr()
@@ -179,7 +177,6 @@ private:
 /*
 class Mutator : public PDClass_Base
 {
-    
 public:
     
     Mutator(t_symbol *sym, long ac, t_atom *av)
@@ -215,7 +212,6 @@ private:
 template <class T>
  class Wrapper : public PDClass_Base
 {
- 
 public:
     
     // Initialise Class
@@ -513,7 +509,7 @@ public:
         std::string internalClassName = className;
         std::string proxyClassName;
 
-        if (T::handlesAudio())
+        if (T::sHandlesAudio)
         {
             //Wrapper<U>:: template makeClass<Wrapper<U>>(CLASS_BOX, className);
             internalClassName.insert(0, "unsynced.");
@@ -546,7 +542,16 @@ public:
 
     // Constructor and Destructor
 
-    FrameLib_PDClass(t_symbol *s, long argc, t_atom *argv, FrameLib_PDProxy *proxy = new FrameLib_PDProxy()) : mFrameLibProxy(proxy), mConfirmObject(nullptr), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mCanvas(canvas_getcurrent()), mSyncIn(nullptr), mNeedsResolve(true), mUserObject(*this)
+    FrameLib_PDClass(t_symbol *s, long argc, t_atom *argv, FrameLib_PDProxy *proxy = new FrameLib_PDProxy())
+    : mFrameLibProxy(proxy)
+    , mConfirmObject(nullptr)
+    , mConfirmInIndex(-1)
+    , mConfirmOutIndex(-1)
+    , mConfirm(false)
+    , mCanvas(canvas_getcurrent())
+    , mSyncIn(nullptr)
+    , mNeedsResolve(true)
+    , mUserObject(*this)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -707,9 +712,9 @@ public:
                 // Name, type and default value
                 
                 if (defaultStr.size())
-                    post("Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str(), defaultStr.c_str());
+                    post("Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i), defaultStr.c_str());
                 else
-                    post("Parameter %ld: %s [%s]", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str());
+                    post("Parameter %ld: %s [%s]", i + 1, params->getName(i), params->getTypeString(i));
 
                 // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
                 
@@ -729,7 +734,7 @@ public:
                     }
                     if (type == FrameLib_Parameters::kEnum)
                         for (long j = 0; j <= params->getMax(i); j++)
-                            post("   [%ld] - %s", j, params->getItemString(i, j).c_str());
+                            post("   [%ld] - %s", j, params->getItemString(i, j));
                     else if (type == FrameLib_Parameters::kArray)
                         post("- Array Size: %ld", params->getArraySize(i));
                     else if (type == FrameLib_Parameters::kVariableArray)
@@ -744,7 +749,7 @@ public:
     
     bool supportsOrderingConnections()    { return mObject->supportsOrderingConnections(); }
     
-    bool handlesAudio()     { return T::handlesAudio(); }
+    bool handlesAudio()     { return T::sHandlesAudio; }
 
     long getNumAudioIns()   { return (long) mObject->getNumAudioIns() + (handlesAudio() ? 1 : 0); }
     long getNumAudioOuts()  { return (long) mObject->getNumAudioOuts() + (handlesAudio() ? 1 : 0); }

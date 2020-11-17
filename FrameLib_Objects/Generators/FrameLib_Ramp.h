@@ -8,10 +8,11 @@ class FrameLib_Ramp final : public FrameLib_Processor
 {
     // Parameter Enums and Info
     
-    enum ParameterList { kMode, kLength, kUnits, kScale };
+    enum ParameterList { kMode, kLength, kUnits, kScale, kEndpoints };
     enum Modes { kRequestedLength, kInLength };
     enum Units { kSamples, kMS, kSeconds };
     enum Scales { kScaleSamples, kScaleMS, kScaleSeconds, kScaleNormalised };
+    enum Endpoints { kBoth, kFirst, kLast, kNone };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 

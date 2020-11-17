@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_NanFilter::FrameLib_NanFilter(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_NanFilter::FrameLib_NanFilter(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kReplace, "replace");
@@ -56,7 +57,7 @@ void FrameLib_NanFilter::process()
     unsigned long sizeIn;
     unsigned long sizeOut = 0;
     
-    Modes mode = (Modes) mParameters.getInt(kMode);
+    Modes mode = mParameters.getEnum<Modes>(kMode);
     double value = mParameters.getValue(kValue);
     
     const double *input = getInput(0, &sizeIn);
@@ -78,7 +79,7 @@ void FrameLib_NanFilter::process()
         
         case kRemove:
         {
-            double* temp = alloc<double>(sizeIn);
+            auto temp = allocAutoArray<double>(sizeIn);
             sizeIn = temp ? sizeIn : 0;
             
             for (unsigned long i = 0; i < sizeIn; i++)
@@ -91,9 +92,7 @@ void FrameLib_NanFilter::process()
             allocateOutputs();
             
             double *output = getOutput(0, &sizeOut);
-            copyVector(output, temp, sizeOut);
-            dealloc(temp);
-            
+            copyVector(output, temp, sizeOut);            
             break;
         }
     }

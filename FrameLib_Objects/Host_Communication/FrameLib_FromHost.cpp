@@ -119,7 +119,11 @@ void FrameLib_FromHost::Proxy::copyData(void *streamOwner, unsigned long stream)
 
 // Constructor
 
-FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), mProxy(castProxy<Proxy>(proxy)), mStreamOwner(this), mStream(0)
+FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+, mProxy(castProxy<Proxy>(proxy))
+, mStreamOwner(this)
+, mStream(0)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kValues, "values");
@@ -128,7 +132,7 @@ FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, const FrameLib_Pa
     
     mParameters.set(serialisedParameters);
     
-    mMode = static_cast<Modes>(mParameters.getInt(kMode));
+    mMode = mParameters.getEnum<Modes>(kMode);
     
     setOutputType(0, mMode == kValues ? kFrameNormal : kFrameTagged);
     

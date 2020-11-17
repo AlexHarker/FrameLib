@@ -5,13 +5,17 @@
 
 // Constructor
 
-FrameLib_Dispatch::Select::Select(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long numIns, long num) : FrameLib_Processor(context, proxy, nullptr, numIns, 1), mNumIns(numIns)
+FrameLib_Dispatch::Select::Select(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long numIns, long num)
+: FrameLib_Processor(context, proxy, nullptr, numIns, 1)
+, mNumIns(numIns)
 {
     const int strBufSize = 32;
     char name[strBufSize];
-    snprintf(name, strBufSize, "input_%2ld", num + 1);
+    snprintf(name, strBufSize, "input_%02ld", num + 1);
     mParameters.addInt(kActiveIn, name, 0);
     
+    // FIX - this means that we don't get errors at all... this needs review
+
     mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
     
@@ -44,7 +48,6 @@ void FrameLib_Dispatch::Select::process()
     prepareCopyInputToOutput(mActiveIn, 0);
     allocateOutputs();
     copyInputToOutput(mActiveIn, 0);
-
 }
 
 // Main Class
@@ -52,7 +55,8 @@ void FrameLib_Dispatch::Select::process()
 // Constructor
 
 FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Block(kProcessor, context, proxy), mParameters(context, proxy, &sParamInfo)
+: FrameLib_Block(kProcessor, context, proxy)
+, mParameters(context, proxy, &sParamInfo)
 {
     mParameters.addDouble(kNumIns, "num_ins", 2, 0);
     mParameters.setClip(2, 32);
@@ -72,7 +76,7 @@ FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, const FrameLib_Pa
     {
         const int strBufSize = 32;
         char name[strBufSize];
-        snprintf(name, strBufSize, "input_%2ld", i + 1);
+        snprintf(name, strBufSize, "input_%02ld", i + 1);
         mParameters.addInt(kActiveIn1 + i, name, 0);
     }
               

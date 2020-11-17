@@ -2,8 +2,9 @@
 #ifndef FRAMELIB_COMPLEX_BINARY_TEMPLATE_H
 #define FRAMELIB_COMPLEX_BINARY_TEMPLATE_H
 
-#include <complex>
 #include "FrameLib_DSP.h"
+
+#include <complex>
 
 // Complex Binary Operator
 
@@ -16,25 +17,19 @@ class FrameLib_Complex_BinaryOp final : public FrameLib_Processor
     public:
         
         PaddedInput(FrameLib_Complex_BinaryOp *owner, const double *input, unsigned long size, unsigned long paddedSize)
-        : mOwner(owner), mAllocated(nullptr)
+        : mOwner(owner)
         {
             if (paddedSize > size)
             {
-                mAllocated = owner->alloc<double>(paddedSize);
-                if (mAllocated)
+                mAllocated = owner->allocAutoArray<double>(paddedSize);
+                if ((mPtr = mAllocated))
                 {
                     copyVector(mAllocated, input, size);
                     zeroVector(mAllocated + size, paddedSize - size);
                 }
-                mPtr = mAllocated;
             }
             else
                 mPtr = input;
-        }
-        
-        ~PaddedInput()
-        {
-            mOwner->dealloc(mAllocated);
         }
         
         const double &operator [](size_t idx) { return mPtr[idx]; }
@@ -49,7 +44,7 @@ class FrameLib_Complex_BinaryOp final : public FrameLib_Processor
         // Data
         
         FrameLib_Complex_BinaryOp *mOwner;
-        double *mAllocated;
+        FrameLib_Complex_BinaryOp::AutoArray<double> mAllocated;
         const double *mPtr;
     };
     
@@ -61,9 +56,9 @@ class FrameLib_Complex_BinaryOp final : public FrameLib_Processor
         {
             add("Sets the mode used when dealing with mismatched input lengths: "
                 "wrap - the smaller input is read modulo against the larger input. "
-                "shrink - the output length is set to the size of the smaller input. "
+                "shrink - the output length is set to that of the smaller input. "
                 "pad_in - the smaller input is padded prior to calculation to match the larger input. "
-                "pad_out - the output is padded to match the size of the larger input.");
+                "pad_out - the output is padded to match the length of the larger input.");
             add("Sets which pairs of inputs trigger output.");
             add("Sets the complex value used for padding (for either pad_in or pad_out modes).");
         }
@@ -77,7 +72,8 @@ public:
     
     // Constructor
     
-    FrameLib_Complex_BinaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, getParameterInfo(), 4, 2)
+    FrameLib_Complex_BinaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+    : FrameLib_Processor(context, proxy, getParameterInfo(), 4, 2)
     {
         mParameters.addEnum(kMismatchMode, "mismatch");
         mParameters.addEnumItem(kWrap, "wrap");
@@ -94,11 +90,11 @@ public:
         
         mParameters.set(serialisedParameters);
                                     
-        mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
+        mMismatchMode = mParameters.getEnum<MismatchModes>(kMismatchMode);
         mRealPad = mParameters.getArray(kPadding)[0];
         mImagPad = mParameters.getArray(kPadding)[1];
         
-        TriggerModes triggers = (TriggerModes) mParameters.getInt(kTriggers);
+        TriggerModes triggers = mParameters.getEnum<TriggerModes>(kTriggers);
         
         if (triggers == kLeft)
         {
@@ -120,7 +116,7 @@ public:
                           "Both inputs and output are split into real and imaginary parts . "
                           "The outputs are frames at least as long as the shorter of the two operands. "
                           "If input pairs are mismatched then the shorter input is padded with zeros. "
-                          "When operands mismatch in size the result depends on the mismatch parameter. "
+                          "When operands mismatch in length the result depends on the mismatch parameter. "
                           "Either or both pairs of inputs may be set to trigger output.",
                           "#.", getDescriptionString(), verbose);
     }
@@ -178,7 +174,7 @@ private:
         
         // Get common size
         
-        unsigned long sizeCommon = sizeIn1 < sizeIn2 ? sizeIn1 : sizeIn2;
+        unsigned long sizeCommon = std::min(sizeIn1, sizeIn2);
         
         // Calculate output size by mode
         
@@ -188,7 +184,7 @@ private:
                 sizeOut = sizeCommon;
                 break;
             default:
-                sizeOut = sizeIn1 > sizeIn2 ? sizeIn1 : sizeIn2;
+                sizeOut = std::max(sizeIn1, sizeIn2);
                 if (mode == kWrap)
                     sizeOut = sizeIn1 && sizeIn2 ? sizeOut : 0;
                 break;
@@ -201,7 +197,7 @@ private:
         allocateOutputs();
         double *outputR = getOutput(0, &sizeOut);
         double *outputI = getOutput(1, &sizeOut);
-        sizeCommon = sizeCommon > sizeOut ? sizeOut : sizeCommon;
+        sizeCommon = std::min(sizeCommon, sizeOut);
         
         PaddedInput in1R(this, input1R, sizeIn1R, sizeIn1);
         PaddedInput in1I(this, input1I, sizeIn1I, sizeIn1);

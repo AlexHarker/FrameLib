@@ -9,12 +9,12 @@
 template <typename Op>
 class FrameLib_UnaryOp final : public FrameLib_Processor
 {
-    
 public:
     
     // Constructor
     
-    FrameLib_UnaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 1)
+    FrameLib_UnaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+    : FrameLib_Processor(context, proxy, nullptr, 1, 1)
     {
         mParameters.set(serialisedParameters);
     }
@@ -24,7 +24,7 @@ public:
     std::string objectInfo(bool verbose) override
     {
         return formatInfo("Calculates the # of each value in the input frame: "
-                          "The output is a frame of the same size as the input.",
+                          "The output is a frame of the same length as the input.",
                           "Calculates the # of each value in the input frame.", getOpString(), verbose);
     }
 

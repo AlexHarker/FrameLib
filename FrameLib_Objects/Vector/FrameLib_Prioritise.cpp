@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_Prioritise::FrameLib_Prioritise(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo)
+FrameLib_Prioritise::FrameLib_Prioritise(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo)
 {
     mParameters.addInt(kNumIns, "num_ins", 2, 0);
     mParameters.setClip(2, 32);
@@ -23,11 +24,12 @@ FrameLib_Prioritise::FrameLib_Prioritise(FrameLib_Context context, const FrameLi
 
 std::string FrameLib_Prioritise::objectInfo(bool verbose)
 {
-    return formatInfo("Prioritises between incoming inputs: "
-                      "When inputs are non-synchronous all inputs are output. "
-                      "When two or more inputs arrive simultaneously, the input number is used to proritise which is chosen. "
-                      "The mode parameter is used to set how inputs are prioritised.",
-                      "Prioritises between incoming inputs.", verbose);
+    return formatInfo("Apply a fixed priority ranking to synchronous input frames: "
+                      "Frames arriving asynchronously are sent to the output. "
+                      "When frames arrive synchronously only one is sent to the ouput."
+                      "The input number is used to proritise synchonous inputs. "
+                      "Either higher or lower numbered inputs can be prioritised.",
+                      "Apply a fixed priority ranking to synchronous input frames.", verbose);
 }
 
 std::string FrameLib_Prioritise::inputInfo(unsigned long idx, bool verbose)
@@ -59,7 +61,7 @@ void FrameLib_Prioritise::process()
         
     // Find the prioritised input
     
-    Modes mode = (Modes) mParameters.getInt(kMode);
+    Modes mode = mParameters.getEnum<Modes>(kMode);
     
     switch (mode)
     {

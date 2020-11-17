@@ -15,6 +15,7 @@
 #include <algorithm>
 #include <cctype>
 #include <deque>
+#include <queue>
 #include <string>
 #include <tuple>
 #include <vector>
@@ -23,6 +24,10 @@
 struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
 {
     t_object *mMaxObject;
+    
+    // Override for objects that require max messages to be sent from framelib
+    
+    virtual void sendMessage(unsigned long stream, t_symbol *s, short ac, t_atom *av) {}
 };
 
 struct FrameLib_MaxNRTAudio
@@ -36,6 +41,224 @@ struct FrameLib_MaxContext
     long mRealtime;
     t_object *mPatch;
     t_symbol *mName;
+    
+    bool operator == (const FrameLib_MaxContext& b) const
+    {
+        return mRealtime == b.mRealtime && mPatch == b.mPatch && mName == b.mName;
+    }
+};
+
+//////////////////////////////////////////////////////////////////////////
+/////////////////////////// Messaging Classes ////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+struct MessageInfo
+{
+    MessageInfo(FrameLib_MaxProxy* proxy, FrameLib_TimeFormat time, t_ptr_uint order, unsigned long stream)
+    : mProxy(proxy), mTime(time), mOrder(order), mStream(stream) {}
+    
+    FrameLib_MaxProxy* mProxy;
+    FrameLib_TimeFormat mTime;
+    t_ptr_uint mOrder;
+    unsigned long mStream;
+};
+
+struct Message
+{
+    Message(const MessageInfo& info, const double *values, unsigned long N)
+    : mInfo(info), mType(kFrameNormal), mVector(values, values + N) {}
+    
+    Message(const MessageInfo& info, const FrameLib_Parameters::Serial *serial)
+    : mInfo(info), mType(kFrameTagged), mSerial(*serial) {}
+    
+    Message(const Message&) = delete;
+    Message& operator=(const Message&) = delete;
+    Message(Message&&) = default;
+    Message& operator=(Message&&) = default;
+    
+    MessageInfo mInfo;
+    FrameType mType;
+    std::vector<double> mVector;
+    FrameLib_Parameters::AutoSerial mSerial;
+};
+
+class MessageHandler : public MaxClass_Base
+{
+    struct MessageCompare
+    {
+        bool operator()(const Message& a, const Message& b) const
+        {
+            bool time = a.mInfo.mTime > b.mInfo.mTime;
+    
+            if (a.mInfo.mTime != b.mInfo.mTime)
+                return time;
+    
+            bool order = a.mInfo.mOrder > b.mInfo.mOrder;
+            
+            if (a.mInfo.mOrder != b.mInfo.mOrder)
+                return order;
+            
+            // N.B. Streams run in reverse order
+            
+            return a.mInfo.mStream < b.mInfo.mStream;
+        }
+    };
+    
+    struct MessageBlock
+    {
+        class Queue : public std::priority_queue<Message, std::vector<Message>, MessageCompare>
+        {
+            friend MessageBlock;
+            std::vector<Message>& container() { return c; }
+        };
+
+        Queue mQueue;
+        unsigned long mMaxSize = 1;
+        
+        void flush(FrameLib_MaxProxy *proxy)
+        {
+            for (auto it = mQueue.container().begin(); it != mQueue.container().end(); it++)
+                it->mInfo.mProxy = it->mInfo.mProxy == proxy ? nullptr : it->mInfo.mProxy;
+        }
+    };
+    
+public:
+    
+    MessageHandler(t_object *x, t_symbol *sym, long ac, t_atom *av) {}
+    
+    void add(const MessageInfo& info, const double *values, unsigned long N)
+    {
+        // Lock, get vector size and copy
+        
+        FrameLib_SpinLockHolder lock(&mLock);
+        mData.mMaxSize = std::max(limit(N), mData.mMaxSize);
+        mData.mQueue.emplace(info, values, N);
+    }
+    
+    void add(const MessageInfo& info, const FrameLib_Parameters::Serial *serial)
+    {
+        // Lock, determine maximum vector size and copy
+
+        FrameLib_SpinLockHolder lock(&mLock);
+        
+        for (auto it = serial->begin(); it != serial->end(); it++)
+        {
+            if (it.getType() == kVector)
+            {
+                unsigned long size = it.getVectorSize();
+                mData.mMaxSize = std::max(limit(size), mData.mMaxSize);
+            }
+        }
+        
+        mData.mQueue.emplace(info, serial);
+    }
+    
+    void schedule()
+    {
+        // Lock, copy onto the output queue and schedule
+        
+        FrameLib_SpinLockHolder lock(&mLock);
+        
+        if (!mData.mQueue.size())
+            return;
+        
+        mOutput.emplace_back();
+        std::swap(mData, mOutput.back());
+        lock.destroy();
+        
+        schedule_delay(*this, (method)&service, 0, nullptr, 0, nullptr);
+    }
+    
+    void flush(FrameLib_MaxProxy *proxy)
+    {
+        FrameLib_SpinLockHolder flushLock(&mFlushLock);
+        FrameLib_SpinLockHolder lock(&mLock);
+        
+        mData.flush(proxy);
+        
+        for (auto it = mOutput.begin(); it != mOutput.end(); it++)
+            it->flush(proxy);
+    }
+    
+    static void service(MessageHandler* handler, t_symbol *s, short ac, t_atom *av)
+    {
+        FrameLib_SpinLockHolder flushLock(&handler->mFlushLock);
+        MessageBlock data;
+        
+        // Swap data
+        
+        FrameLib_SpinLockHolder lock(&handler->mLock);
+        if (!handler->mOutput.empty())
+        {
+            std::swap(handler->mOutput.front(), data);
+            handler->mOutput.pop_front();
+        }
+        lock.destroy();
+        
+        // Allocate temporary t_atoms and output
+        
+        std::vector<t_atom> out(data.mMaxSize);
+        
+        while (!data.mQueue.empty())
+        {
+            output(data.mQueue.top(), out.data());
+            data.mQueue.pop();
+        }
+    }
+    
+private:
+    
+    static void output(const Message& message, t_atom *output)
+    {
+        FrameLib_MaxProxy *proxy = message.mInfo.mProxy;
+        
+        if (!proxy)
+            return;
+        
+        if (message.mType == kFrameNormal)
+        {
+            unsigned long N = limit(static_cast<unsigned long>(message.mVector.size()));
+            
+            for (unsigned long i = 0; i < N; i++)
+                atom_setfloat(output + i, message.mVector[i]);
+            
+            proxy->sendMessage(message.mInfo.mStream, nullptr, static_cast<short>(N), output);
+        }
+        else
+        {
+            // Iterate over tags
+            
+            for (auto it = message.mSerial.begin(); it != message.mSerial.end(); it++)
+            {
+                t_symbol *tag = gensym(it.getTag());
+                unsigned long size = 0;
+                
+                if (it.getType() == kVector)
+                {
+                    const double *vector = it.getVector(&size);
+                    size = limit(size);
+                    
+                    for (unsigned long i = 0; i < size; i++)
+                        atom_setfloat(output + i, vector[i]);
+                }
+                else
+                {
+                    size = 1;
+                    atom_setsym(output, gensym(it.getString()));
+                }
+                
+                proxy->sendMessage(message.mInfo.mStream, tag, static_cast<short>(size), output);
+            }
+        }
+    }
+    
+    static unsigned long limit(unsigned long N) { return std::min(N, 32767UL); }
+    
+    mutable FrameLib_SpinLock mLock;
+    mutable FrameLib_SpinLock mFlushLock;
+
+    MessageBlock mData;
+    std::deque<MessageBlock> mOutput;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -44,17 +267,18 @@ struct FrameLib_MaxContext
 
 class FrameLib_MaxGlobals : public MaxClass_Base
 {
-    
 public:
     
+    enum ConnectionMode : t_ptr_int { kConnect, kConfirm, kDoubleCheck };
+
+    using MaxConnection = FrameLib_Connection<t_object, long>;
     using Lock = FrameLib_SpinLock;
-    using LockHold = FrameLib_SpinLockHolder;
-    
+
 private:
     
     struct Hash
     {
-        size_t operator()(void *a, void*b) const
+        size_t operator()(void *a, void *b) const
         {
             size_t hash = 0;
             hash ^= std::hash<void *>()(a) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
@@ -63,49 +287,42 @@ private:
             return hash;
         }
         
-        size_t operator()(FrameLib_Context context) const
+        size_t operator()(const FrameLib_Context& context) const
         {
             return operator()(context.getGlobal(), context.getReference());
         }
         
-        size_t operator()(std::pair<t_object *, t_symbol*> key) const
+        size_t operator()(const FrameLib_MaxContext& key) const
         {
-            return operator()(key.first, key.second);
+            // N.B. Realtime state isn't used in the hash, but used during full lookup
+            
+            return operator()(key.mPatch, key.mName);
         }
     };
     
-    using RefKey = std::pair<t_object *, t_symbol *>;
-    using RefData = std::tuple<RefKey, int, Lock>;
-    using RefMap = std::unordered_map<RefKey, std::unique_ptr<RefData>, Hash>;
+    enum RefDataItem { kKey, kCount, kLock, kFinal, kHandler, kQueuePtr };
+
+    using QueuePtr = std::unique_ptr<FrameLib_Context::ProcessingQueue>;
+    using RefData = std::tuple<FrameLib_MaxContext, int, Lock, t_object *, unique_object_ptr, QueuePtr>;
+    using RefMap = std::unordered_map<FrameLib_MaxContext, std::unique_ptr<RefData>, Hash>;
     using ResolveMap = std::unordered_map<FrameLib_Context, t_object *, Hash>;
     
 public:
-    
-    enum ConnectionMode : t_ptr_int { kConnect, kConfirm, kDoubleCheck };
-
-    using MaxConnection = FrameLib_Connection<t_object, long>;
     
     // Error Notification Class
     
     struct ErrorNotifier : public FrameLib_ErrorReporter::HostNotifier
     {
         ErrorNotifier(FrameLib_Global **globalHandle)
-        {
-            mQelem = qelem_new(globalHandle, (method) &errorReport);
-        }
-        
-        ~ErrorNotifier()
-        {
-            qelem_free(mQelem);
-        }
+        : mQelem(globalHandle, (method) &flush) {}
         
         bool notify(const FrameLib_ErrorReporter::ErrorReport& report) override
         {
-            qelem_set(mQelem);
+            mQelem.set();
             return false;
         }
         
-        static void errorReport(FrameLib_Global **globalHandle)
+        static void flushIgnore(FrameLib_Global **globalHandle, t_object *ignore = nullptr)
         {
             auto reports = (*globalHandle)->getErrors();
 
@@ -119,6 +336,8 @@ public:
                 
                 if (userObject)
                 {
+                    if (object == ignore)
+                        continue;
                     if (it->getSource() == kErrorDSP)
                         object_error_obtrusive(userObject, errorText.c_str());
                     else
@@ -132,14 +351,18 @@ public:
                 error("*** FrameLib - too many errors - reporting only some ***");
         }
         
-        t_qelem mQelem;
+        static void flush(FrameLib_Global **globalHandle)
+        {
+            flushIgnore(globalHandle);
+        }
+
+        Qelem mQelem;
     };
     
     // Sync Check Class
     
     class SyncCheck
     {
-        
     public:
         
         enum Mode { kDownOnly, kDown, kAcross };
@@ -214,7 +437,7 @@ public:
     // Constructor and Destructor (public for max API, but use ManagedPointer from outside this class)
     
     FrameLib_MaxGlobals(t_object *x, t_symbol *sym, long ac, t_atom *av)
-    : mReportContextErrors(false), mRTNotifier(&mRTGlobal), mNRTNotifier(&mNRTGlobal), mRTGlobal(nullptr), mNRTGlobal(nullptr), mSyncCheck(nullptr)
+    : mReportContextErrors(false), mRTNotifier(&mRTGlobal), mNRTNotifier(&mNRTGlobal), mRTGlobal(nullptr), mNRTGlobal(nullptr), mQelem(*this, (method) &serviceContexts), mSyncCheck(nullptr)
     {}
 
     // Max global item methods
@@ -224,50 +447,96 @@ public:
     
     t_object *popFromQueue()
     {
-        if (mQueue.empty())
-            return nullptr;
+        t_object *object = mQueue.empty() ? nullptr : mQueue.front();
         
-        t_object *object = mQueue.front();
-        mQueue.pop_front();
+        if (object)
+            mQueue.pop_front();
         
         return object;
     }
 
     void addContextToResolve(FrameLib_Context context, t_object *object)
     {
-        bool requiresService = mUnresolvedContexts.size() == 0;
         mUnresolvedContexts[context] = object;
-        
-        if (requiresService)
-            defer_low(*this, (method) serviceContexts, nullptr, 0, nullptr);
+        mQelem.set();
     }
     
-    FrameLib_Context makeContext(const FrameLib_MaxContext& specifier)
+    void contextMessages(FrameLib_Context c)
     {
-        std::unique_ptr<RefData>& item = mContextRefs[RefKey(specifier.mPatch, specifier.mName)];
+        MessageHandler::service(getHandler(c), nullptr, 0, nullptr);
+    }
+    
+    void contextMessages(FrameLib_Context c, t_object *object)
+    {
+        if (data<kFinal>(c) == object)
+            getHandler(c)->schedule();
+    }
+    
+    MessageHandler *getHandler(FrameLib_Context c)
+    {
+        return reinterpret_cast<MessageHandler *>(data<kHandler>(c).get());
+    }
+    
+    FrameLib_Context makeContext(const FrameLib_MaxContext& key)
+    {
+        std::unique_ptr<RefData>& item = mContextRefs[key];
         
 		if (!item)
 		{
-			item.reset(new RefData());
-			std::get<0>(*item) = RefKey(specifier.mPatch, specifier.mName);
-			std::get<1>(*item) = 1;
+            item.reset(new RefData());
+            FrameLib_Context context(key.mRealtime ? mRTGlobal : mNRTGlobal, item.get());
+            
+			std::get<kKey>(*item) = key;
+            std::get<kCount>(*item) = 1;
+			std::get<kFinal>(*item) = nullptr;
+            std::get<kHandler>(*item) = unique_object_ptr((t_object *)object_new_typed(CLASS_NOBOX, gensym("__fl.message.handler"), 0, nullptr));
+            std::get<kQueuePtr>(*item) = QueuePtr(new FrameLib_Context::ProcessingQueue(context));
+            
+            // Set timeouts
+
+            if (key.mRealtime)
+                (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(16.0, 1.0);
+            else
+                (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(100.0, 30.0);
 		}
         else
-            std::get<1>(*item)++;
+            std::get<kCount>(*item)++;
         
-        return FrameLib_Context(specifier.mRealtime ? mRTGlobal : mNRTGlobal, item.get());
+        return FrameLib_Context(key.mRealtime ? mRTGlobal : mNRTGlobal, item.get());
     }
     
-    bool isRealtimeContext(FrameLib_Context c) const { return c.getGlobal() == mRTGlobal; }
+    void retainContext(FrameLib_Context c)      { data<kCount>(c)++; }
+    void releaseContext(FrameLib_Context c)     { if (--data<kCount>(c) == 0) mContextRefs.erase(data<kKey>(c)); }
 
-    t_object *getContextPatch(FrameLib_Context c) { return data<0>(c).first; }
-    t_symbol *getContextName(FrameLib_Context c) { return data<0>(c).second; }
+    void flushContext(FrameLib_Context c, FrameLib_MaxProxy *proxy)
+    {
+        ErrorNotifier::flush(data<kKey>(c).mRealtime ? &mRTGlobal : &mNRTGlobal);
+        
+        getHandler(c)->flush(proxy);
+     
+        auto it = mUnresolvedContexts.find(c);
 
-    void retainContext(FrameLib_Context c)      { data<1>(c)++; }
-    void releaseContext(FrameLib_Context c)     { if (--data<1>(c) == 0) mContextRefs.erase(data<0>(c)); }
+        if (it != mUnresolvedContexts.end())
+        {
+            objectMethod(it->second, gensym("__fl.resolve_context"));
+            mUnresolvedContexts.erase(it);
+        }
+    }
     
-    Lock *contextLock(FrameLib_Context c)       { return &data<2>(c); }
-    
+    void flushErrors(FrameLib_Context c, FrameLib_MaxProxy *proxy)
+    {
+        ErrorNotifier::flushIgnore(data<kKey>(c).mRealtime ? &mRTGlobal : &mNRTGlobal, proxy->mMaxObject);
+    }
+
+    FrameLib_MaxContext getMaxContext(FrameLib_Context c)
+    {
+        return data<kKey>(c);
+    }
+
+    bool isRealtime(FrameLib_Context c) const   { return c.getGlobal() == mRTGlobal; }
+    Lock *getLock(FrameLib_Context c)           { return &data<kLock>(c); }
+    t_object *&finalObject(FrameLib_Context c)  { return data<kFinal>(c); }
+
     void setReportContextErrors(bool report)    { mReportContextErrors = report; }
     bool getReportContextErrors() const         { return mReportContextErrors; }
 
@@ -319,13 +588,17 @@ private:
     static FrameLib_MaxGlobals *get()
     {
         const char maxGlobalClass[] = "__fl.max_global_items";
+        const char messageClassName[] = "__fl.message.handler";
         t_symbol *nameSpace = gensym("__fl.framelib_private");
         t_symbol *globalTag = gensym("__fl.max_global_tag");
      
-        // Make sure the max globals class exists
+        // Make sure the max globals and message handler classes exist
 
         if (!class_findbyname(CLASS_NOBOX, gensym(maxGlobalClass)))
             makeClass<FrameLib_MaxGlobals>(CLASS_NOBOX, maxGlobalClass);
+        
+        if (!class_findbyname(CLASS_NOBOX, gensym(messageClassName)))
+            MessageHandler::makeClass<MessageHandler>(CLASS_NOBOX, messageClassName);
         
         // See if an object is registered (otherwise make object and register it...)
         
@@ -372,6 +645,7 @@ private:
     FrameLib_Global *mRTGlobal;
     FrameLib_Global *mNRTGlobal;
     
+    Qelem mQelem;
     SyncCheck *mSyncCheck;
 };
 
@@ -419,7 +693,6 @@ private:
 template <class T>
 class Wrapper : public MaxClass_Base
 {
-    
 public:
     
     // Initialise Class
@@ -758,7 +1031,7 @@ class FrameLib_MaxClass : public MaxClass_Base
     using FLObject = FrameLib_Multistream;
     using FLConnection = FrameLib_Object<FLObject>::Connection;
     using MaxConnection = FrameLib_MaxGlobals::MaxConnection;
-    using LockHold = FrameLib_MaxGlobals::LockHold;
+    using LockHold = FrameLib_SpinLockHolder;
     
     struct ConnectionConfirmation
     {
@@ -816,8 +1089,6 @@ public:
             addMethod(c, (method) &dblclick, "dblclick");
             addMethod(c, (method) &extFindAudio, "__fl.find_audio_objects");
 
-            class_addmethod(c, (method) &codeExport, "export", A_SYM, A_SYM, 0);
-
             dspInit(c);
             
             CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mBuffer);
@@ -850,6 +1121,7 @@ public:
     
     static bool comparePatchWithName(t_object *patch, t_symbol *name)
     {
+        const char *patchName = jpatcher_get_filename(patch)->s_name;
         char fileName[MAX_FILENAME_CHARS];
         t_fourcc validTypes[TYPELIST_SIZE];
         short outvol = 0, numTypes = 0;
@@ -859,12 +1131,14 @@ public:
         strncpy_zero(fileName, name->s_name, MAX_FILENAME_CHARS);
         locatefile_extended(fileName, &outvol, &outtype, validTypes, numTypes);
         
-        const char *name1 = fileName;
-        const char *name2 = jpatcher_get_filename(patch)->s_name;
-        auto endString = [](const char *str) { return str + strlen(str); };
-        auto ciComp = [](char c1, char c2) { return std::tolower(c1) < std::tolower(c2); };
+        if (strlen(patchName) != strlen(fileName))
+            return false;
         
-        return !std::lexicographical_compare(name2, endString(name2), name1, endString(name1), ciComp);
+        for (size_t i = 0; fileName[i]; i++)
+            if (std::tolower(fileName[i]) != std::tolower(patchName[i]))
+                return false;
+        
+        return true;
     }
     
     // Find the patcher for the context
@@ -1037,7 +1311,8 @@ public:
                 dspSetBroken();
         }
         
-        mGlobal->releaseContext(mObject->getContext());
+        mGlobal->flushContext(getContext(), mFrameLibProxy.get());
+        mGlobal->releaseContext(getContext());
     }
     
     void assist(void *b, long m, long a, char *s)
@@ -1065,21 +1340,6 @@ public:
                     sprintf(s,"(frame) %s", mObject->inputInfo(a - getNumAudioIns()).c_str());
             }
         }
-    }
-    
-    static void codeExport(FrameLib_MaxClass *x, t_symbol *className, t_symbol *path)
-    {
-        char conformedPath[MAX_PATH_CHARS];
-                
-        x->resolveContext();
-        
-        path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
-        ExportError error = exportGraph(x->mObject.get(), conformedPath, className->s_name);
-        
-        if (error == kExportPathError)
-            object_error(x->mUserObject, "couldn't write to or find specified path");
-        else if (error == kExportWriteError)
-            object_error(x->mUserObject, "couldn't write file");
     }
     
     void info(t_symbol *sym, long ac, t_atom *av)
@@ -1162,9 +1422,9 @@ public:
                 // Name, type and default value
                 
                 if (defaultStr.size())
-                    object_post(mUserObject, "Parameter %lu: %s [%s] (default: %s)", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str(), defaultStr.c_str());
+                    object_post(mUserObject, "Parameter %lu: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i).c_str(), defaultStr.c_str());
                 else
-                    object_post(mUserObject, "Parameter %lu: %s [%s]", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str());
+                    object_post(mUserObject, "Parameter %lu: %s [%s]", i + 1, params->getName(i), params->getTypeString(i).c_str());
 
                 // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
                 
@@ -1184,7 +1444,7 @@ public:
                     }
                     if (type == FrameLib_Parameters::kEnum)
                         for (unsigned long j = 0; j <= static_cast<unsigned long>(params->getMax(i)); j++)
-                            object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j).c_str());
+                            object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j));
                     else if (type == FrameLib_Parameters::kArray)
                         object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
                     else if (type == FrameLib_Parameters::kVariableArray)
@@ -1195,11 +1455,13 @@ public:
         }
     }
 
-    // IO and Mode Helpers
+    // Helpers (IO / context / mode / streams)
     
     ObjectType getType() const                  { return mObject->getType(); }
     
-    bool isRealtime() const                     { return mContext.mRealtime; }
+    FrameLib_Context getContext() const         { return mObject->getContext(); }
+
+    bool isRealtime() const                     { return mGlobal->isRealtime(getContext()); }
     bool handlesAudio() const                   { return T::sHandlesAudio; }
     bool supportsOrderingConnections() const    { return mObject->supportsOrderingConnections(); }
 
@@ -1225,6 +1487,8 @@ public:
         // N.B. Plus one due to sync inputs
         
         mObject->blockUpdate(ins + 1, outs + 1, vec_size);
+        
+        mGlobal->contextMessages(getContext(), *this);
     }
 
     void dsp(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
@@ -1246,7 +1510,10 @@ public:
         // Add a perform routine to the chain if the object handles audio
         
         if (handlesAudio())
+        {
             addPerform<FrameLib_MaxClass, &FrameLib_MaxClass<T>::perform>(dsp64);
+            mGlobal->finalObject(getContext()) = *this;
+        }
     }
 
     // Non-realtime processing
@@ -1257,7 +1524,7 @@ public:
     {
         if (!isRealtime())
         {
-            LockHold lock(mGlobal->contextLock(mObject->getContext()));
+            LockHold lock(mGlobal->getLock(getContext()));
             resolveNRTGraph(sampleRate > 0.0 ? sampleRate.mValue : sys_getsr(), true);
         }
     }
@@ -1270,7 +1537,7 @@ public:
         if (!updateLength || isRealtime())
             return;
         
-        LockHold lock(mGlobal->contextLock(mObject->getContext()));
+        LockHold lock(mGlobal->getLock(getContext()));
 
         resolveNRTGraph(0.0, false);
         
@@ -1325,6 +1592,10 @@ public:
                 write(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioOuts(), blockSize, time + i);
             }
         }
+        
+        // Process Messages
+        
+        mGlobal->contextMessages(getContext());
     }
     
     // Audio Synchronisation
@@ -1528,13 +1799,9 @@ private:
     
     void matchContext(FrameLib_Context context)
     {
-        FrameLib_Context current = mObject->getContext();
-        
-        bool realtime = mGlobal->isRealtimeContext(context);
-        t_object *contextPatch = mGlobal->getContextPatch(context);
-        t_symbol *name = mGlobal->getContextName(context);
-        
-        bool mismatchedPatch = contextPatch != mGlobal->getContextPatch(current);
+        FrameLib_MaxContext maxContext = mGlobal->getMaxContext(context);
+        FrameLib_Context current = getContext();
+        bool mismatchedPatch = mGlobal->getMaxContext(current).mPatch != maxContext.mPatch;
 
         unsigned long size = 0;
 
@@ -1550,13 +1817,14 @@ private:
         for (unsigned long i = 0; i < mObject->getNumIns(); i++)
             if (const double *values = mObject->getFixedInput(i, &size))
                 newObject->setFixedInput(i, values, size);
-        
-        if (realtime || mGlobal->isRealtimeContext(current))
+                
+        if (mGlobal->isRealtime(context) || mGlobal->isRealtime(current))
             dspSetBroken();
         
-        mContext = FrameLib_MaxContext{ realtime, contextPatch, name };
+        mContext = maxContext;
         mGlobal->retainContext(context);
         mGlobal->releaseContext(current);
+        mGlobal->flushErrors(context, mFrameLibProxy.get());
         
         mObject.reset(newObject);
     }
@@ -1593,7 +1861,7 @@ private:
             
             FLObject *object = toFLObject(jbox_get_object(b));
             
-            if (object && object->getContext() == mObject->getContext())
+            if (object && object->getContext() == getContext())
                 objectMethod(jbox_get_object(b), theMethod, args...);
         }
     }
@@ -1652,7 +1920,7 @@ private:
             resolveGraph(true);
         else
         {
-            LockHold lock(mGlobal->contextLock(mObject->getContext()));
+            LockHold lock(mGlobal->getLock(getContext()));
             resolveNRTGraph(0.0, false);
         }
     }
@@ -1849,7 +2117,7 @@ private:
             FLObject *object = toFLObject(src);
             bool objectHandlesAudio = object && (object->getType() == kScheduler || object->getNumAudioChans());
             
-            if (!objectHandlesAudio || object->getContext() == mObject->getContext())
+            if (!objectHandlesAudio || object->getContext() == getContext())
             {
                 if (type == JPATCHLINE_CONNECT)
                     connect(MaxConnection(src, srcout), dstin);
@@ -2075,6 +2343,8 @@ private:
 
 protected:
     
+    MessageHandler *getHandler() { return mGlobal->getHandler(getContext()); }
+
     // Proxy
     
     std::unique_ptr<FrameLib_MaxProxy> mFrameLibProxy;

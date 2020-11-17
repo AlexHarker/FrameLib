@@ -8,7 +8,6 @@
 
 class FrameLib_AudioTrigger final : public FrameLib_Scheduler
 {
-
 public:
     
     // Constructor

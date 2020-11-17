@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 7,
 			"minor" : 3,
-			"revision" : 4,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -342,7 +342,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 265.0, 369.0, 149.0, 20.0 ],
+					"patching_rect" : [ 247.0, 370.0, 149.0, 20.0 ],
 					"style" : "",
 					"text" : "A good filter (for extra fun)",
 					"textcolor" : [ 0.466667, 0.254902, 0.607843, 1.0 ]
@@ -383,9 +383,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 101.0, 369.0, 126.0, 22.0 ],
+					"patching_rect" : [ 101.0, 369.0, 109.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.0dfsvf~ 500. 0.7 bpf"
+					"text" : "fl.svf~ 500. 0.7 bpf"
 				}
 
 			}
@@ -584,7 +584,7 @@
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 87.0, 359.0, 151.0, 45.0 ],
+					"patching_rect" : [ 87.0, 357.5, 142.0, 45.0 ],
 					"proportion" : 0.39,
 					"rounded" : 20,
 					"style" : ""
@@ -886,7 +886,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-23", 1 ],
-					"midpoints" : [ 672.5, 350.5, 217.5, 350.5 ],
+					"midpoints" : [ 672.5, 350.5, 200.5, 350.5 ],
 					"source" : [ "obj-41", 0 ]
 				}
 
@@ -951,7 +951,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.0dfsvf~.mxo",
+				"name" : "fl.svf~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

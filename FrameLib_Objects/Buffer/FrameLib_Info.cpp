@@ -3,18 +3,18 @@
 
 // Constructor
 
-FrameLib_Info::FrameLib_Info(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 3), mProxy(cloneProxy<Proxy>(proxy))
+FrameLib_Info::FrameLib_Info(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 3)
+, mProxy(cloneProxy<Proxy>(proxy))
 {
     mParameters.addString(kBuffer, "buffer", 0);
     
     mParameters.addEnum(kUnits, "units", 1);
-    mParameters.addEnumItem(kMS, "ms");
-    mParameters.addEnumItem(kSeconds, "seconds");
     mParameters.addEnumItem(kSamples, "samples");
+    mParameters.addEnumItem(kMS, "ms", true);
+    mParameters.addEnumItem(kSeconds, "seconds");
     
     mParameters.set(serialisedParameters);
-    
-    mUnits = (Units) mParameters.getInt(kUnits);
     
     setParameterInput(1);
         
@@ -28,7 +28,7 @@ std::string FrameLib_Info::objectInfo(bool verbose)
 {
     return formatInfo("Outputs the sample rate, number of channels and length of a buffer. "
                       "The units for reporting length can be set with the units parameter.",
-                      "Outputs the sample rate, channels and size of a buffer.", verbose);
+                      "Outputs the length, sample rate, and number of channels of a buffer.", verbose);
 }
 
 std::string FrameLib_Info::inputInfo(unsigned long idx, bool verbose)
@@ -36,7 +36,7 @@ std::string FrameLib_Info::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Trigger Input", "Trigger Input", verbose);
+        return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
 }
 
 std::string FrameLib_Info::outputInfo(unsigned long idx, bool verbose)
@@ -66,9 +66,7 @@ FrameLib_Info::ParameterInfo::ParameterInfo()
 void FrameLib_Info::update()
 {
     if (mProxy)
-        mProxy->update(mParameters.getString(kBuffer));
-    
-    mUnits = (Units) mParameters.getInt(kUnits);
+        mProxy->update(mParameters.getString(kBuffer));    
 }
 
 // Process
@@ -97,11 +95,11 @@ void FrameLib_Info::process()
     if (mProxy)
         mProxy->acquire(length, samplingRate, chans);
     
-    switch (mUnits)
+    switch (mParameters.getEnum<Units>(kUnits))
     {
+        case kSamples:      conversionFactor = 1.0;                         break;
         case kMS:           conversionFactor = samplingRate / 1000;         break;
         case kSeconds:      conversionFactor = samplingRate;                break;
-        case kSamples:      conversionFactor = 1.0;                         break;
     }
     
     if (length != 0 && size != 0)

@@ -4,13 +4,13 @@
 
 #include "FrameLib_Vector_Template.h"
 
-class FrameLib_Percentile final : public FrameLib_VectorBase<1>
+class FrameLib_Percentile final : public FrameLib_VectorBase<2>
 {
-    using Base = FrameLib_VectorBase<1>;
+    using Base = FrameLib_VectorBase<2>;
     
     // Parameter Enums and Info
 
-    enum ParameterList { kPercentile };
+    enum ParameterList { kPercentile, kInterpolate };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 

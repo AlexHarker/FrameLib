@@ -17,9 +17,9 @@ class FrameLib_BinaryOp final : public FrameLib_Processor
         {
             add("Sets the mode used when dealing with mismatched input lengths: "
                 "wrap - the smaller input is read modulo against the larger input. "
-                "shrink - the output length is set to the size of the smaller input. "
+                "shrink - the output length is set to that of the smaller input. "
                 "pad_in - the smaller input is padded prior to calculation to match the larger input. "
-                "pad_out - the output is padded to match the size of the larger input.");
+                "pad_out - the output is padded to match the length of the larger input.");
             add("Sets which inputs trigger output.");
             add("Sets the value used for padding (for either pad_in or pad_out modes).");
         }
@@ -33,7 +33,8 @@ public:
     
     // Constructor
     
-    FrameLib_BinaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, getParameterInfo(), 2, 1)
+    FrameLib_BinaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+    : FrameLib_Processor(context, proxy, getParameterInfo(), 2, 1)
     {
         mParameters.addEnum(kMismatchMode, "mismatch");
         mParameters.addEnumItem(kWrap, "wrap");
@@ -53,10 +54,10 @@ public:
 
         mParameters.set(serialisedParameters);
                                     
-        mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
+        mMismatchMode = mParameters.getEnum<MismatchModes>(kMismatchMode);
         mPadValue = mParameters.getValue(kPadding);
         
-        TriggerModes triggers = (TriggerModes) mParameters.getInt(kTriggers);
+        TriggerModes triggers = mParameters.getEnum<TriggerModes>(kTriggers);
         
         if (triggers == kLeft)
             setInputMode(1, false, false, false);
@@ -70,7 +71,7 @@ public:
     {
         return formatInfo("#: Calculation is performed on pairs of values in turn. "
                           "The output is a frame at least as long as the smaller of the two inputs. "
-                          "When inputs mismatch in size the result depends on the mismatch parameter. "
+                          "When inputs mismatch in length the result depends on the mismatch parameter. "
                           "Either or both inputs may be set to trigger output.",
                           "#.", getDescriptionString(), verbose);
     }
@@ -95,7 +96,7 @@ private:
         
         // Get common size
         
-        sizeCommon = sizeIn1 < sizeIn2 ? sizeIn1 : sizeIn2;
+        sizeCommon = std::min(sizeIn1, sizeIn2);
         
         // Calculate output size by mode
         
@@ -105,7 +106,7 @@ private:
                 sizeOut = sizeCommon;
                 break;
             default:
-                sizeOut = sizeIn1 > sizeIn2 ? sizeIn1 : sizeIn2;
+                sizeOut = std::max(sizeIn1, sizeIn2);
                 if (mode == kWrap)
                     sizeOut = sizeIn1 && sizeIn2 ? sizeOut : 0;
                 break;
@@ -116,7 +117,7 @@ private:
         requestOutputSize(0, sizeOut);
         allocateOutputs();
         double *output = getOutput(0, &sizeOut);
-        sizeCommon = sizeCommon > sizeOut ? sizeOut : sizeCommon;
+        sizeCommon = std::min(sizeCommon, sizeOut);
         
         if (!sizeOut)
             return;

@@ -27,8 +27,8 @@ class FrameLib_Spatial final : public FrameLib_Processor
     
     // Parameter Enums and Info
 
-    enum ParameterList {kInputMode, kSpeakers, kWeights, kRolloff, kBlur, kMaxSpeakers, kPoints};
-    enum InputModes {kPolar, kCartesian};
+    enum ParameterList { kInputMode, kSpeakers, kWeights, kRolloff, kBlur, kMaxSpeakers, kPoints };
+    enum InputModes { kPolar, kCartesian };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 

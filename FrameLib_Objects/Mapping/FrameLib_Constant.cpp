@@ -2,7 +2,8 @@
 #include "FrameLib_Constant.h"
 #include <cmath>
 
-FrameLib_Constant::FrameLib_Constant(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_Constant::FrameLib_Constant(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kConstant, "constant", 0);
     mParameters.addEnumItem(kPI, "pi");
@@ -33,12 +34,12 @@ std::string FrameLib_Constant::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Trigger Input - input frames generate output", "Trigger Input", verbose);
+        return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
 }
 
 std::string FrameLib_Constant::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Values";
+    return "Output";
 }
 
 // Parameter Info
@@ -64,7 +65,7 @@ void FrameLib_Constant::process()
         
         double value = 1.0;
         
-        switch (static_cast<Constants>(mParameters.getInt(kConstant)))
+        switch (mParameters.getEnum<Constants>(kConstant))
         {
             case kPI:           value = M_PI;           break;
             case kInvPI:        value = M_1_PI;         break;

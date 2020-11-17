@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_Map::FrameLib_Map(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_Map::FrameLib_Map(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kLinear, "linear");
@@ -19,10 +20,10 @@ FrameLib_Map::FrameLib_Map(FrameLib_Context context, const FrameLib_Parameters::
     mParameters.addDouble(kInHi, "inhi", 1., 2);
     mParameters.addDouble(kOutLo, "outlo", 0., 3);
     mParameters.addDouble(kOutHi, "outhi", 1., 4);
-    mParameters.addDouble(kExponent, "exponent", 1.);
-    
     mParameters.addBool(kClip, "clip", true, 5);
-    
+
+    mParameters.addDouble(kExponent, "exponent", 1.);
+
     mParameters.set(serialisedParameters);
         
     setParameterInput(1);
@@ -81,16 +82,16 @@ void FrameLib_Map::setScaling()
     double outHi = mParameters.getValue(kOutHi);
     double exponent = mParameters.getValue(kExponent);
     
-    switch (static_cast<Modes>(mParameters.getInt(kMode)))
+    switch (mParameters.getEnum<Modes>(kMode))
     {
-        case kLinear:           setLin(inLo, inHi, outLo, outHi);                                           break;
-        case kLog:              setLog(inLo, inHi, outLo, outHi);                                           break;
-        case kExp:              setExp(inLo, inHi, outLo, outHi);                                           break;
-        case kPow:              setPow(inLo, inHi, outLo, outHi, exponent);                                 break;
-        case kDB:               setExp(inLo, inHi, dbtoa(outLo), dbtoa(outHi));                             break;
-        case kInvDB:            setLog(dbtoa(inLo), dbtoa(inHi), outLo, outHi);                             break;
-        case kTranspose:        setExp(inLo, inHi, semitonesToRatio(outLo), semitonesToRatio(outHi));       break;
-        case kInvTranspose:     setLog(semitonesToRatio(inLo), semitonesToRatio(inHi), outLo, outHi);       break;
+        case kLinear:           mScaler.setLin(inLo, inHi, outLo, outHi);                                       break;
+        case kLog:              mScaler.setLog(inLo, inHi, outLo, outHi);                                       break;
+        case kExp:              mScaler.setExp(inLo, inHi, outLo, outHi);                                       break;
+        case kPow:              mScaler.setPow(inLo, inHi, outLo, outHi, exponent);                             break;
+        case kDB:               mScaler.setExp(inLo, inHi, dbtoa(outLo), dbtoa(outHi));                         break;
+        case kInvDB:            mScaler.setLog(dbtoa(inLo), dbtoa(inHi), outLo, outHi);                         break;
+        case kTranspose:        mScaler.setExp(inLo, inHi, semitonesToRatio(outLo), semitonesToRatio(outHi));   break;
+        case kInvTranspose:     mScaler.setLog(semitonesToRatio(inLo), semitonesToRatio(inHi), outLo, outHi);   break;
     }
 }
 
@@ -112,7 +113,7 @@ void FrameLib_Map::process()
     double *output = getOutput(0, &size);
         
     if (mParameters.getBool(kClip))
-        scaleClip(output, input, size);
+        mScaler.scaleClip(output, input, size);
     else
-        scale(output, input, size);
+        mScaler.scale(output, input, size);
 }

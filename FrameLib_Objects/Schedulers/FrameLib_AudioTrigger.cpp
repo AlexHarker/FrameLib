@@ -4,7 +4,8 @@
 
 // Constructor
 
-FrameLib_AudioTrigger::FrameLib_AudioTrigger(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Scheduler(context, proxy, nullptr, 0, 1, 1)
+FrameLib_AudioTrigger::FrameLib_AudioTrigger(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Scheduler(context, proxy, nullptr, 0, 1, 1)
 {
     objectReset();
     mParameters.set(serialisedParameters);

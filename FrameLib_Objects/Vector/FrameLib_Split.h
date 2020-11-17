@@ -4,8 +4,6 @@
 
 #include "FrameLib_DSP.h"
 
-// FIX - consider multi-output version later
-
 class FrameLib_Split final : public FrameLib_Processor
 {
     // Parameter Enums and Info

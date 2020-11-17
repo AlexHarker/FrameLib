@@ -284,9 +284,8 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 31.0, 460.0, 132.0, 22.0 ],
-					"presentation_rect" : [ 31.0, 460.0, 132.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.0dfsvf~ 500. 0.75 bpf"
+					"text" : "fl.svf~ 500. 0.75 bpf"
 				}
 
 			}
@@ -1026,7 +1025,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.0dfsvf~.mxo",
+				"name" : "fl.svf~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

@@ -68,12 +68,74 @@ struct FrameLib_Connection
 template <class T>
 class FrameLib_Object : public FrameLib_MethodQueue<T>::Node
 {
-    
 public:
     
     using Queue = FrameLib_MethodQueue<T>;
     using Connection = FrameLib_Connection<T, unsigned long>;
 
+    // A managed dynamic array
+    
+    template <typename U>
+    class AutoArray
+    {
+        friend class FrameLib_Object;
+        
+        AutoArray(FrameLib_Object *object, unsigned long size = 0)
+        : mObject(object), mMemory(size ? mObject->alloc<U>(size) : nullptr), mSize(mMemory ? size : 0) {}
+        
+    public:
+        
+        AutoArray() : mObject(nullptr), mMemory(nullptr) {}
+        ~AutoArray() { release(); }
+        
+        AutoArray(const AutoArray&) = delete;
+        AutoArray& operator=(const AutoArray&) = delete;
+        
+        AutoArray(AutoArray&& b) : mObject(b.mObject), mMemory(b.mMemory), mSize(b.mSize)
+        {
+            b.mObject = nullptr;
+            b.mMemory = nullptr;
+            b.mSize = 0;
+        }
+        
+        AutoArray& operator=(AutoArray&& b)
+        {
+            release();
+            
+            mObject = b.mObject;
+            mMemory = b.mMemory;
+            mSize = b.mSize;
+            b.mObject = nullptr;
+            b.mMemory = nullptr;
+            b.mSize = 0;
+
+            return *this;
+        }
+        
+        operator U*()                       { return mMemory; }
+        const operator U*() const           { return mMemory; }
+        
+        U* get()                            { return mMemory; }
+        const U* get() const                { return mMemory; }
+        
+        unsigned long size() const          { return mSize; }
+        
+    private:
+        
+        void release()
+        {
+            if (mObject && mMemory)
+            {
+                mObject->dealloc(mMemory);
+                mMemory = nullptr;
+            }
+        }
+        
+        FrameLib_Object *mObject;
+        U *mMemory;
+        unsigned long mSize;
+    };
+    
     // An allocator that you can pass to other objects/code whilst this object exists
     
     class Allocator
@@ -83,10 +145,13 @@ public:
         Allocator(FrameLib_Object& object) : mObject(object) {}
         
         template <class U>
-        U *allocate(size_t N)       { return mObject.alloc<U>(N); }
+        U *allocate(size_t N)               { return mObject.alloc<U>(N); }
         
         template <class U>
-        void deallocate(U *& ptr)   { mObject.dealloc(ptr); }
+        void deallocate(U *& ptr)           { mObject.dealloc(ptr); }
+        
+        template <class U>
+        AutoArray<U> allocAutoArray(size_t N)  { return mObject.allocAutoArray<U>(N); }
         
     private:
         
@@ -135,7 +200,15 @@ public:
     // Constructor / Destructor
     
     FrameLib_Object(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy)
-    : mType(type), mContext(context), mAllocator(context), mLocalAllocator(nullptr), mProxy(proxy), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
+    : mType(type)
+    , mContext(context)
+    , mAllocator(context)
+    , mLocalAllocator(nullptr)
+    , mProxy(proxy)
+    , mNumAudioChans(0)
+    , mSupportsOrderingConnections(false)
+    , mFeedback(false)
+    {}
     
     virtual ~FrameLib_Object()                  { clearConnections(false); }
    
@@ -358,6 +431,12 @@ protected:
     // Memory Allocation
     
     template <class U>
+    AutoArray<U> allocAutoArray(size_t N)
+    {
+        return AutoArray<U>(this, N);
+    }
+    
+    template <class U>
     U *alloc(size_t N)
     {
         FrameLib_LocalAllocator *allocator = mLocalAllocator;
@@ -385,15 +464,9 @@ protected:
     void removeLocalAllocator()                                     { mLocalAllocator = nullptr; }
     void pruneAllocator()                                           { mAllocator->prune(); }
     
-    FrameLib_ContextAllocator::Storage *registerStorage(const char *name)
+    FrameLib_ContextAllocator::StoragePtr registerStorage(const char *name)
     {
         return mAllocator->registerStorage(name);
-    }
-    
-    void releaseStorage(FrameLib_ContextAllocator::Storage *&storage)
-    {
-        mAllocator->releaseStorage(storage->getName());
-        storage = nullptr;
     }
     
     // Info Helpers
@@ -919,12 +992,13 @@ private:
 
 class FrameLib_Block : public FrameLib_Object<FrameLib_Block>
 {
-    
 public:
     
     // Constructor / Destructor
     
-    FrameLib_Block(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy) : FrameLib_Object<FrameLib_Block>(type, context, proxy) {}
+    FrameLib_Block(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy)
+    : FrameLib_Object<FrameLib_Block>(type, context, proxy) {}
+    
     virtual ~FrameLib_Block() {}
 
     // Stream Awareness

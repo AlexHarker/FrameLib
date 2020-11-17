@@ -57,7 +57,7 @@ namespace OS_Specific
 namespace OS_Specific
 {
     using OSThreadType = HANDLE;
-    using OSSemaphoreType = HANDLE;
+	using OSSemaphoreType = struct WinSemaphore { HANDLE mHandle; long mMaxCount; };
     typedef DWORD WINAPI OSThreadFunctionType(LPVOID arg);
 }
 
@@ -96,7 +96,7 @@ struct FrameLib_CountedPointer
     FrameLib_CountedPointer() : mPointer(nullptr), mCount(0) {}
     FrameLib_CountedPointer(T *item, uintptr_t count) : mPointer(item), mCount(count) {}
     
-    bool operator==(const FrameLib_CountedPointer& a) const
+    bool operator == (const FrameLib_CountedPointer& a) const
     {
         return a.mPointer == mPointer && a.mCount == mCount;
     }
@@ -197,7 +197,6 @@ private:
 
 class FrameLib_SpinLockHolder
 {
-    
 public:
     
     FrameLib_SpinLockHolder(FrameLib_SpinLock *lock) : mLock(lock) { if (mLock) mLock->acquire(); }
@@ -239,7 +238,7 @@ class FrameLib_Thread
     
 public:
     
-    enum PriorityLevel {kLowPriority, kHighPriority, kAudioPriority};
+    enum PriorityLevel { kLowPriority, kHighPriority, kAudioPriority };
 
     // Structure for passing in priority settings from a host
     
@@ -311,7 +310,6 @@ private:
 
 class FrameLib_Semaphore
 {
-
 public:
     
     FrameLib_Semaphore(long maxCount);

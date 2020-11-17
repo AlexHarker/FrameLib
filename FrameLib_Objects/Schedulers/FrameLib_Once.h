@@ -6,7 +6,6 @@
 
 class FrameLib_Once final : public FrameLib_Scheduler
 {
-
 public:
     
     // Constructor

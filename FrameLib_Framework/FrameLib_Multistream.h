@@ -22,7 +22,7 @@
  
  @ingroup Multistream
  
- @brief a abstract class proving multi-stream connnections and the means to the number of streams in a network.
+ @brief a abstract class proving multistream connnections and the means to the number of streams in a network.
  
  */
 
@@ -44,11 +44,22 @@ public:
     // Constructors
 
     FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, bool ownsStreams, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
-    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams), mInCount(0), mOwnsStreams(ownsStreams), mOutputChange(false)
-    { setIO(nIns, nOuts); }
+    : FrameLib_Object(type, context, proxy)
+    , mNumStreams(nStreams)
+    , mInCount(0)
+    , mOwnsStreams(ownsStreams)
+    , mOutputChange(false)
+    {
+        setIO(nIns, nOuts);
+    }
     
     FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, bool ownsStreams, unsigned long nStreams)
-    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams), mInCount(0), mOwnsStreams(ownsStreams), mOutputChange(false) {}
+    : FrameLib_Object(type, context, proxy)
+    , mNumStreams(nStreams)
+    , mInCount(0)
+    , mOwnsStreams(ownsStreams)
+    , mOutputChange(false)
+    {}
     
     // Destructor
     
@@ -83,6 +94,8 @@ protected:
     unsigned long getOrderingConnectionNumStreams(unsigned long idx);
     BlockConnection getOrderingConnectionChan(unsigned long idx, unsigned long chan);
 
+    MultistreamOutput& getMultistreamOutput(unsigned long i) { return mOutputs[i]; }
+    
 private:
 
     // Connection Methods (private)
@@ -94,13 +107,9 @@ private:
 
     void inputCheck(InputStack& stack);
 
-protected:
-
     // Outputs
     
     std::vector<MultistreamOutput> mOutputs;
-    
-private:
     
     unsigned long mNumStreams;
     unsigned long mInCount;
@@ -115,14 +124,13 @@ private:
  
  @ingroup Multistream
 
- @brief a template class for providing multi-stream support to any FrameLib_Block class.
+ @brief a template class for providing multistream support to any FrameLib_Block class.
  
  */
 
 template <class T>
 class FrameLib_Expand final : public FrameLib_Multistream
 {
-
 public:
     
     static constexpr ObjectType sType = T::sType;
@@ -131,7 +139,8 @@ public:
     const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
 
     FrameLib_Expand(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
-    : FrameLib_Multistream(T::sType, context, proxy, true, nStreams), mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
+    : FrameLib_Multistream(T::sType, context, proxy, true, nStreams)
+    , mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
     {
         // Make first block
         
@@ -151,7 +160,7 @@ public:
         // Make initial output connections
         
         for (unsigned long i = 0; i < getNumOuts(); i++)
-            mOutputs[i].push_back(BlockConnection(mBlocks[0].get(), i));
+            getMultistreamOutput(i).push_back(BlockConnection(mBlocks[0].get(), i));
         
         // Check for ordering support
         
@@ -316,11 +325,11 @@ private:
             // Redo output connection lists
             
             for (unsigned long i = 0; i < getNumOuts(); i++)
-                mOutputs[i].clear();
+                getMultistreamOutput(i).clear();
             
             for (unsigned long i = 0; i < getNumOuts(); i++)
                 for (unsigned long j = 0; j < nChannels; j++)
-                    mOutputs[i].push_back(BlockConnection(mBlocks[j].get(), i));
+                    getMultistreamOutput(i).push_back(BlockConnection(mBlocks[j].get(), i));
             
             // Update Fixed Inputs
             

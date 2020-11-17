@@ -8,17 +8,18 @@ class FrameLib_Chain final : public FrameLib_Scheduler
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kUnits, kMode };
+    enum ParameterList { kUnits, kTimeMode, kMode };
     enum Units { kSamples, kMS, kSeconds };
+    enum TimeModes { kAbsolute, kRelative, kInterval };
+    enum Modes { kReplace, kAdd, kAppend };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
     
-    // Constructor / Destructor
+    // Constructor
     
     FrameLib_Chain(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-    ~FrameLib_Chain();
     
     // Info
     
@@ -44,7 +45,7 @@ private:
     
     static ParameterInfo sParamInfo;
     
-    FrameLib_TimeFormat* mTimes;
+    AutoArray<FrameLib_TimeFormat> mTimes;
     unsigned long mSize;
     unsigned long mPosition;
 };

@@ -1,9 +1,11 @@
 
 #include "FrameLib_iFFT.h"
 
-// Constructor / Destructor
+// Constructor
 
-FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mProcessor(*this)
+FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+, mProcessor(*this)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -24,7 +26,7 @@ FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, const FrameLib_Parameters
 
     // Store parameters
     
-    mMode = static_cast<Mode>(mParameters.getInt(kMode));
+    mMode = mParameters.getEnum<Modes>(kMode);
     mNormalise = mParameters.getBool(kNormalise);
     
     // If in complex mode create 2 inlets/outlets
@@ -73,7 +75,7 @@ FrameLib_iFFT::ParameterInfo FrameLib_iFFT::sParamInfo;
 FrameLib_iFFT::ParameterInfo::ParameterInfo()
 {
     add("Sets the maximum output length and FFT size.");
-    add("Sets normalisation on such that a full-scale sine wave at the input should have an amplitude of 1.");
+    add("Sets normalisation on such that a full-scale real sine wave at the input should have an amplitude of 1.");
     add("Sets the type of output produced and the input expected. "
         "real - real output (power of two length) for input without reflection (length is N / 2 + 1). "
         "complex - complex output (two frames) with the same (power of two) input and output lengths. "
@@ -118,14 +120,17 @@ void FrameLib_iFFT::process()
     requestOutputSize(0, sizeOut);
     if (mMode == kComplex)
         requestOutputSize(1, sizeOut);
-    allocateOutputs();
+    if (!allocateOutputs())
+        return;
     
     // Setup output and temporary memory
     
     double *outputR = getOutput(0, &sizeOut);
     double *outputI = nullptr;
     
-    if (mMode == kComplex && sizeOut)
+    auto temp = allocAutoArray<double>(mMode == kReal ? sizeOut : 0);
+    
+    if (mMode == kComplex)
     {
         outputI = getOutput(1, &sizeOut);
         
@@ -136,15 +141,15 @@ void FrameLib_iFFT::process()
     }
     else
     {
-        spectrum.realp = alloc<double>(sizeOut ? sizeOut * sizeof(double) : 0);
+        spectrum.realp = temp;
         spectrum.imagp = spectrum.realp + (sizeOut >> 1);
         
         spectrumSize = sizeOut >> 1;
     }
     
-    if (sizeOut && spectrum.realp)
+    if (spectrum.realp)
     {
-        double scale = mNormalise ? 1.0 : 1.0 / static_cast<double>(1 << FFTSizeLog2);
+        double scale = mNormalise ? 0.5 : 1.0 / static_cast<double>(1 << FFTSizeLog2);
         
         // Copy Spectrum
         
@@ -174,8 +179,6 @@ void FrameLib_iFFT::process()
         
             mProcessor.rifft(outputR, spectrum, FFTSizeLog2);
             mProcessor.scale_vector(outputR, sizeOut, scale);
-        
-            dealloc(spectrum.realp);
         }
     }
 }

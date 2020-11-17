@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_Split::FrameLib_Split(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 2)
+FrameLib_Split::FrameLib_Split(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 2)
 {
     mParameters.addDouble(kSplit, "split", 0.0, 0);
     mParameters.setMin(0.0);
@@ -57,7 +58,7 @@ void FrameLib_Split::process()
     
     unsigned long sizeIn, sizeOut1, sizeOut2, split;
     const double *input = getInput(0, &sizeIn);
-    Units units = (Units) mParameters.getInt(kUnits);
+    Units units = mParameters.getEnum<Units>(kUnits);
     
     // Calculate split point
     
@@ -66,7 +67,7 @@ void FrameLib_Split::process()
     else
         split = roundToUInt(mParameters.getValue(kSplit) * sizeIn);
     
-    split = split > sizeIn ? sizeIn : split;
+    split = std::min(split, sizeIn);
     
     requestOutputSize(0, split);
     requestOutputSize(1, sizeIn - split);

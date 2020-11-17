@@ -1,7 +1,8 @@
 
 #include "FrameLib_TimeDelta.h"
 
-FrameLib_TimeDelta::FrameLib_TimeDelta(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+FrameLib_TimeDelta::FrameLib_TimeDelta(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.addEnum(kUnits, "units", 0);
     mParameters.addEnumItem(kSamples, "samples");
@@ -19,18 +20,19 @@ FrameLib_TimeDelta::FrameLib_TimeDelta(FrameLib_Context context, const FrameLib_
 std::string FrameLib_TimeDelta::objectInfo(bool verbose)
 {
     return formatInfo("Calculates the time interval between consecutive incoming frames: "
-                      "Time is reported in the specified units. Output is a single value.",
+                      "Time is reported in the specified units. "
+                      "Output is a single value.",
                       "Outputs the time interval between consecutive incoming frames.", verbose);
 }
 
 std::string FrameLib_TimeDelta::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Trigger Input - input frames generate output", "Trigger Input", verbose);
+    return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
 }
 
 std::string FrameLib_TimeDelta::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Values";
+    return "Output";
 }
 
 // Parameter Info
@@ -46,11 +48,11 @@ FrameLib_TimeDelta::ParameterInfo::ParameterInfo()
 
 void FrameLib_TimeDelta::calculateMultiplier()
 {
-    switch (static_cast<Units>(mParameters.getInt(kUnits)))
+    switch (mParameters.getEnum<Units>(kUnits))
     {
-        case kMS:       mMultiplier = 1000.0 / FrameLib_TimeFormat(mSamplingRate);   break;
-        case kSeconds:  mMultiplier = 1.0 / FrameLib_TimeFormat(mSamplingRate);      break;
         case kSamples:  mMultiplier = FrameLib_TimeFormat(1);                       break;
+        case kMS:       mMultiplier = 1000.0 / FrameLib_TimeFormat(mSamplingRate);  break;
+        case kSeconds:  mMultiplier = 1.0 / FrameLib_TimeFormat(mSamplingRate);     break;
     }
 }
 

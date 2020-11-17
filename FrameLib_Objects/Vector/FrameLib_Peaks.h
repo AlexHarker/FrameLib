@@ -6,6 +6,10 @@
 
 class FrameLib_Peaks final : public FrameLib_Processor
 {
+    enum Parameters { kCriteria, kThreshold, kPadding, kEdges, kRefinement, kBoundary, kAlwaysDetect };
+    enum Criteria { kOneNeighbour, kTwoNeighbours, kThreeNeighbours, kFourNeighbours };
+    enum Refinements { kNone, kParabolic, kParabolicLog };
+    enum Boundaries { kMinimum, kMidpoint };
 
 public:
     
@@ -20,11 +24,6 @@ public:
     std::string outputInfo(unsigned long idx, bool verbose) override;
 
 private:
-    
-    // Helpers
-    
-    double logValue(double val);
-    void refinePeak(double& pos, double& amp, double posUncorrected, double vm1, double v0, double vp1);
     
     // Process
     

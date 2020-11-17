@@ -1,9 +1,11 @@
 
 #include "FrameLib_FFT.h"
 
-// Constructor / Destructor
+// Constructor
 
-FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 2), mProcessor(*this)
+FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 1, 2)
+, mProcessor(*this)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -24,7 +26,7 @@ FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, const FrameLib_Parameters::
     
     // Store parameters
 
-    mMode = static_cast<Mode>(mParameters.getInt(kMode));
+    mMode = mParameters.getEnum<Modes>(kMode);
     mNormalise = mParameters.getBool(kNormalise);
     
     // If in complex mode create 2 inlets/outlets
@@ -73,7 +75,7 @@ FrameLib_FFT::ParameterInfo FrameLib_FFT::sParamInfo;
 FrameLib_FFT::ParameterInfo::ParameterInfo()
 {
     add("Sets the maximum input length and FFT size.");
-    add("Sets normalisation on such that a full-scale sine wave produces an output amplitude of 1.");
+    add("Sets normalisation on such that a full-scale real sine wave produces an output amplitude of 1.");
     add("Sets the type of input expected and the output produced. "
         "real - real input (power of two length) and output without reflection (length is N / 2 + 1). "
         "complex - complex input (two frames) with the same (power of two) input and output lengths. "
@@ -159,7 +161,7 @@ void FrameLib_FFT::process()
         
         // Scale
         
-        double scale = ((mMode == kComplex) ? 1.0 : 0.5) / (mNormalise ? (double) FFTSize : 1.0);
+        double scale = ((mMode == kComplex) ? 1.0 : 0.5) / (mNormalise ? (double) (FFTSize >> 1) : 1.0);
         
         mProcessor.scale_spectrum(spectrum, sizeOut, scale);
     }

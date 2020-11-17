@@ -2,74 +2,54 @@
 #ifndef FRAMELIB_ONEPOLEZERO_H
 #define FRAMELIB_ONEPOLEZERO_H
 
-#include "FrameLib_DSP.h"
-#include "FrameLib_Filter_Constants.h"
+#include "FrameLib_Filter_Template.h"
 
-// FIX - All filters to templates / time varying params
-
-class FrameLib_OnePoleZero final : public FrameLib_Processor
+namespace FrameLib_Filters
 {
-    // Filter Class
-
-    class OnePoleZero
+    class OnePoleZero : public Filter<OnePoleZero, 1, 2, true>
     {
-        
     public:
         
-        OnePoleZero() : a0(0.0), a1(0.0), r1(0.0) {}
+        OnePoleZero() : a0(0.0), a1(0.0), r1(0.0), y1(0.0) {}
         
-        // Reset
-
-        void reset()                { r1 = 0.0; }
+        // Filter Implementation
         
-        // Filter Types
-
-        double HPF(double x)        { return x - calculateFilter(x); }
-        double LPF(double x)        { return calculateFilter(x); }
-
-        // Set Parameters
+        void operator()(double x);
         
-        void setParams(double freq, double samplingRate);
+        double hpf(double x);
+        double lpf(double x);
+        
+        void reset();
+        
+        void updateCoefficients(double freq, double samplingRate);
+        
+        // Description / Parameters / Modes
+        
+        constexpr static Description sDescription
+        {
+            "One-pole and one-zero filter"
+        };
+        
+        constexpr static ParamType sParameters
+        {
+            Param("freq", "Frequency", "Sets the filter cutoff frequency.", 500.0, Min(0.0))
+        };
+        
+        constexpr static ModeType sModes
+        {
+            Mode("lpf", "Low Pass Output", "low pass", &OnePoleZero::lpf),
+            Mode("hpf", "High Pass Output", "high pass", &OnePoleZero::hpf)
+        };
         
     private:
         
-        // Filter Calculation
-
-        double calculateFilter(double x);
+        // Coefficients / Memories
         
-        // Coefficients and Memories
-
-        double a0, a1, r1;
+        double a0, a1;
+        double r1, y1;
     };
-    
-    // Parameter Enums and Info
+}
 
-    enum ParameterList { kFreq, kMode };
-    enum Modes { kLPF, kHPF };
-
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-
-public:
-
-    // Constructor
-    
-    FrameLib_OnePoleZero(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-    
-    // Info
-    
-    std::string objectInfo(bool verbose) override;
-    std::string inputInfo(unsigned long idx, bool verbose) override;
-    std::string outputInfo(unsigned long idx, bool verbose) override;
-    
-private:
-    
-    // Process
-
-    void process() override;
-    
-    // Data
-    
-    static ParameterInfo sParamInfo;
-};
+using FrameLib_OnePoleZero = FrameLib_Filter<FrameLib_Filters::OnePoleZero>;
 
 #endif

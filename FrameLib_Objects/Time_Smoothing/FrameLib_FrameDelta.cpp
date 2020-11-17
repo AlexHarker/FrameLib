@@ -1,7 +1,11 @@
 
 #include "FrameLib_FrameDelta.h"
 
-FrameLib_FrameDelta::FrameLib_FrameDelta(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 1), mLastFrame(nullptr), mFrameSize(0)
+// Constructor
+
+FrameLib_FrameDelta::FrameLib_FrameDelta(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, nullptr, 1, 1)
+, mFrameSize(0)
 {}
 
 // Info
@@ -35,8 +39,7 @@ void FrameLib_FrameDelta::process()
     
     if (mFrameSize != sizeIn)
     {
-        dealloc(mLastFrame);
-        mLastFrame = alloc<double>(sizeIn);
+        mLastFrame = allocAutoArray<double>(sizeIn);
         mFrameSize = mLastFrame ? sizeIn : 0;
         reset = true;
     }

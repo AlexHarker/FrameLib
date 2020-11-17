@@ -5,7 +5,8 @@
 
 // Constructor
 
-FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.addEnum(kInputMode, "inputmode");
     mParameters.addEnumItem(kPolar, "polar");
@@ -117,7 +118,7 @@ void FrameLib_Spatial::process()
     
     Cartesian panPosition;
     
-    if ((static_cast<InputModes>(mParameters.getInt(kInputMode))) == kPolar)
+    if (mParameters.getEnum<InputModes>(kInputMode) == kPolar)
     {
         double azimuth = sizeIn > 0 ? input[0] : 0.0;
         double elevation = sizeIn > 1 ? input[1] : 0.0;
@@ -155,13 +156,11 @@ void FrameLib_Spatial::process()
     
     if (maxSpeakers < numSpeakers)
     {
-        unsigned long *indices = alloc<unsigned long>(numSpeakers);
+        auto indices = allocAutoArray<unsigned long>(numSpeakers);
         sortIndicesDescending(indices, output, numSpeakers);
         
         for (unsigned long i = maxSpeakers; i < numSpeakers; i++)
             output[indices[i]] = 0.0;
-        
-        dealloc(indices);
     }
     
     // Interpolate to points

@@ -27,11 +27,11 @@ using FrameLib_ObjectList = detail::FrameLib_Typelist<
 
 // Filters
 
-FrameLib_0dfSVF,
+FrameLib_Biquad,
+FrameLib_BiquadCoeff,
 FrameLib_OnePole,
 FrameLib_OnePoleZero,
-FrameLib_Resonant,
-FrameLib_SallenAndKey,
+FrameLib_SVF,
 
 // Generators
 
@@ -58,7 +58,6 @@ FrameLib_SampleRate,
 
 FrameLib_CombineTags,
 FrameLib_FilterTags,
-FrameLib_GetParam,
 FrameLib_Tag,
 FrameLib_Untag,
 
@@ -78,7 +77,8 @@ FrameLib_PerBlock,
 
 // Spatial
 
-FrameLib_CoordinateSystem,
+FrameLib_Cartopol,
+FrameLib_Poltocar,
 FrameLib_Spatial,
 
 // Spectral
@@ -102,10 +102,9 @@ FrameLib_StreamID,
 
 // Time Smoothing
 
-FrameLib_EWMA,
-FrameLib_EWMSD,
 FrameLib_FrameDelta,
 FrameLib_Lag,
+FrameLib_MovingAverage,
 FrameLib_TimeMean,
 FrameLib_TimeMedian,
 FrameLib_TimeStdDev,
@@ -238,9 +237,6 @@ FrameLib_Complex_Exp,
 
 FrameLib_Complex_Sqrt,
 FrameLib_Complex_Conj,
-
-FrameLib_Cartopol,
-FrameLib_Poltocar,
 
 // Complex Binary Operators
 

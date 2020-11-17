@@ -144,7 +144,9 @@ FrameLib_Expression::Parser::Parser() : FrameLib_ExprParser::Parser<double>(7)
 
 // Constructor
 
-FrameLib_Expression::InputProcessor::InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns) : FrameLib_Processor(context, nullptr, nullptr, numIns, numIns), mMode(mode)
+FrameLib_Expression::InputProcessor::InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns)
+: FrameLib_Processor(context, nullptr, nullptr, numIns, numIns)
+, mMode(mode)
 {
     for (unsigned long i = 0; i < numIns; i++)
         setInputMode(i, false, (i < triggersSize) && triggers[i], false);
@@ -203,7 +205,9 @@ void FrameLib_Expression::InputProcessor::process()
 
 // Constructor
 
-FrameLib_Expression::ConstantOut::ConstantOut(FrameLib_Context context, const double *triggers, unsigned long triggersSize, unsigned long numIns, double value) : FrameLib_Processor(context, nullptr, nullptr, numIns, 1), mValue(value)
+FrameLib_Expression::ConstantOut::ConstantOut(FrameLib_Context context, const double *triggers, unsigned long triggersSize, unsigned long numIns, double value)
+: FrameLib_Processor(context, nullptr, nullptr, numIns, 1)
+, mValue(value)
 {
     for (unsigned long i = 0; i < numIns; i++)
         setInputMode(i, false, (i < triggersSize) && triggers[i], false);
@@ -225,7 +229,9 @@ void FrameLib_Expression::ConstantOut::process()
 
 // Constructor
 
-FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mParameters(context, proxy, &sParamInfo)
+FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Block(kProcessor, context, proxy)
+, mParameters(context, proxy, &sParamInfo)
 {
     typedef FrameLib_ExprParser::Graph<double> Graph;
     typedef FrameLib_Block::Connection Connection;
@@ -245,7 +251,7 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, const FrameLi
 
     mParameters.set(serialisedParameters);
     
-    MismatchModes mode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
+    MismatchModes mode = mParameters.getEnum<MismatchModes>(kMismatchMode);
     
     const double *triggers = mParameters.getArray(kTriggers);
     unsigned long triggersSize = mParameters.getArraySize(kTriggers);

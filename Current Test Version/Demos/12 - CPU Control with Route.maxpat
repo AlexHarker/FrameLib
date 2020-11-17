@@ -2,13 +2,14 @@
 	"patcher" : 	{
 		"fileversion" : 1,
 		"appversion" : 		{
-			"major" : 7,
-			"minor" : 3,
-			"revision" : 5,
-			"architecture" : "x86",
+			"major" : 8,
+			"minor" : 1,
+			"revision" : 3,
+			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
+		"classnamespace" : "box",
 		"rect" : [ 59.0, 104.0, 685.0, 604.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
@@ -44,7 +45,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 422.0, 142.0, 44.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.+~ 1"
 				}
 
@@ -56,7 +56,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 238.0, 440.0, 133.0, 20.0 ],
-					"style" : "",
 					"text" : "Look at the CPU Meter"
 				}
 
@@ -68,7 +67,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 28.0, 96.0, 135.0, 20.0 ],
-					"style" : "",
 					"text" : "Much overlapped noise"
 				}
 
@@ -81,7 +79,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 171.0, 118.0, 58.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.*~ 0.06"
 				}
 
@@ -94,7 +91,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 282.0, 45.0, 96.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.interval~ 1000"
 				}
 
@@ -107,7 +103,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 340.5, 491.0, 42.0, 22.0 ],
-					"style" : "",
 					"text" : "*~ 0.2"
 				}
 
@@ -118,8 +113,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 369.0, 247.531372, 104.0, 20.0 ],
-					"style" : "",
+					"patching_rect" : [ 369.0, 247.531372000000005, 104.0, 20.0 ],
 					"text" : "Do not much stuff"
 				}
 
@@ -131,7 +125,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 58.0, 252.0, 87.0, 20.0 ],
-					"style" : "",
 					"text" : "Do lots of stuff"
 				}
 
@@ -144,7 +137,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 533.0, 180.0, 73.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.tag~ input"
 				}
 
@@ -157,7 +149,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 171.0, 407.0, 381.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.select~"
 				}
 
@@ -170,7 +161,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 171.0, 440.0, 48.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.sink~"
 				}
 
@@ -181,8 +171,7 @@
 					"maxclass" : "ezdac~",
 					"numinlets" : 2,
 					"numoutlets" : 0,
-					"patching_rect" : [ 340.5, 534.5, 45.0, 45.0 ],
-					"style" : ""
+					"patching_rect" : [ 340.5, 534.5, 45.0, 45.0 ]
 				}
 
 			}
@@ -194,7 +183,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 422.0, 109.0, 42.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.*~ 2"
 				}
 
@@ -207,7 +195,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 422.0, 78.0, 161.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.random~ /mode requested"
 				}
 
@@ -220,7 +207,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 381.0, 180.0, 80.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.tag~ output"
 				}
 
@@ -233,7 +219,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 171.0, 83.0, 241.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.source~ /buffer_size 44100 /length 44100"
 				}
 
@@ -246,7 +231,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 422.0, 41.0, 102.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.interval~ 44100"
 				}
 
@@ -259,7 +243,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 171.0, 45.0, 40.0, 22.0 ],
-					"style" : "",
 					"text" : "pink~"
 				}
 
@@ -273,8 +256,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 0,
 					"patching_rect" : [ 171.0, 491.0, 127.0, 80.0 ],
-					"range" : [ -3.0, 3.0 ],
-					"style" : ""
+					"range" : [ -3.0, 3.0 ]
 				}
 
 			}
@@ -286,7 +268,6 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 171.0, 215.0, 200.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.route~ 2"
 				}
 
@@ -298,9 +279,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 171.0, 363.531372, 126.0, 22.0 ],
-					"style" : "",
-					"text" : "fl.0dfsvf~ 500. 0.6 bpf"
+					"patching_rect" : [ 171.0, 363.531371999999976, 107.0, 22.0 ],
+					"text" : "fl.svf~ 500. 0.6 bpf"
 				}
 
 			}
@@ -311,9 +291,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 171.0, 334.531372, 126.0, 22.0 ],
-					"style" : "",
-					"text" : "fl.0dfsvf~ 500. 0.6 bpf"
+					"patching_rect" : [ 171.0, 334.531371999999976, 107.0, 22.0 ],
+					"text" : "fl.svf~ 500. 0.6 bpf"
 				}
 
 			}
@@ -324,9 +303,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 171.0, 305.531372, 126.0, 22.0 ],
-					"style" : "",
-					"text" : "fl.0dfsvf~ 500. 0.6 bpf"
+					"patching_rect" : [ 171.0, 305.531371999999976, 107.0, 22.0 ],
+					"text" : "fl.svf~ 500. 0.6 bpf"
 				}
 
 			}
@@ -337,9 +315,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 171.0, 276.531372, 126.0, 22.0 ],
-					"style" : "",
-					"text" : "fl.0dfsvf~ 500. 0.6 bpf"
+					"patching_rect" : [ 171.0, 276.531371999999976, 107.0, 22.0 ],
+					"text" : "fl.svf~ 500. 0.6 bpf"
 				}
 
 			}
@@ -350,9 +327,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 171.0, 246.531372, 126.0, 22.0 ],
-					"style" : "",
-					"text" : "fl.0dfsvf~ 500. 0.6 bpf"
+					"patching_rect" : [ 171.0, 246.531372000000005, 107.0, 22.0 ],
+					"text" : "fl.svf~ 500. 0.6 bpf"
 				}
 
 			}
@@ -529,7 +505,7 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.0dfsvf~.mxo",
+				"name" : "fl.svf~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -538,6 +514,14 @@
 			}
 , 			{
 				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.source~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -554,6 +538,10 @@
 			}
 , 			{
 				"name" : "fl.times~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.sink~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

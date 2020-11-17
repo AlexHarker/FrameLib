@@ -5,8 +5,11 @@
 
 // Constructor
 
-FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_AudioOutput(context, proxy, &sParamInfo, 2, 0, 1)
+FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_AudioOutput(context, proxy, &sParamInfo, 2, 0, 1)
 {
+    // FIX - defaults for when the units are not in samples!
+
     mParameters.addDouble(kBufferSize, "buffer_size", 250000, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
@@ -65,7 +68,7 @@ FrameLib_Sink::ParameterInfo::ParameterInfo()
 
 unsigned long FrameLib_Sink::convertTimeToSamples(double time)
 {
-    switch (static_cast<Units>(mParameters.getInt(kUnits)))
+    switch (mParameters.getEnum<Units>(kUnits))
     {
         case kSamples:  break;
         case kMS:       time = msToSamples(time);       break;

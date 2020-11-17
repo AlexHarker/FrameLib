@@ -12,15 +12,16 @@ class FrameLib_TernaryOp final : public FrameLib_Processor
     
     class EnlargedInput
     {
-        
     public:
         
         EnlargedInput(FrameLib_TernaryOp *owner, const double *input, unsigned long size, unsigned long extendedSize, MismatchModes mode)
-            : mOwner(owner), mAllocated(nullptr)
+            : mOwner(owner)
         {
             if (extendedSize > size)
             {
-                if ((mPtr = mAllocated = owner->alloc<double>(extendedSize)))
+                mAllocated = owner->allocAutoArray<double>(extendedSize);
+                
+                if ((mPtr = mAllocated))
                 {
                     switch (mode)
                     {
@@ -32,11 +33,6 @@ class FrameLib_TernaryOp final : public FrameLib_Processor
             }
             else
                 mPtr = input;
-        }
-        
-        ~EnlargedInput()
-        {
-            mOwner->dealloc(mAllocated);
         }
         
         bool isValid() const { return mPtr; }
@@ -53,7 +49,7 @@ class FrameLib_TernaryOp final : public FrameLib_Processor
         // Data
         
         FrameLib_TernaryOp *mOwner;
-        double *mAllocated;
+        FrameLib_TernaryOp::AutoArray<double> mAllocated;
         const double *mPtr;
     };
     
@@ -63,14 +59,15 @@ class FrameLib_TernaryOp final : public FrameLib_Processor
         {
             add("Sets the mode used when dealing with mismatched input lengths: "
                 "wrap - smaller right inputs are read modulo against larger left input. "
-                "shrink - the output length is set to the size of the smaller input. "
-                "extend - smaller right inputs are extended by repeating their final value");
+                "shrink - the output length is set to the length of the smaller input. "
+                "extend - smaller right inputs are extended by repeating their final value.");
         }
     };
     
 
 public:
-    FrameLib_TernaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, getParameterInfo(), 3, 1)
+    FrameLib_TernaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+    : FrameLib_Processor(context, proxy, getParameterInfo(), 3, 1)
     {
         mParameters.addEnum(kMismatchMode, "mismatch");
         mParameters.addEnumItem(kWrap, "wrap");
@@ -83,14 +80,14 @@ public:
         
         mParameters.set(serialisedParameters);
         
-        mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
+        mMismatchMode = mParameters.getEnum<MismatchModes>(kMismatchMode);
     }
     
     std::string objectInfo(bool verbose) override
     {
         return formatInfo("#: Calculation is performed on triplets of values in turn. "
                           "The output is a frame at least as long as the leftmost frame. "
-                          "When frames mismatch in size the result depends on the mismatch parameter.",
+                          "When frames mismatch in length the result depends on the mismatch parameter.",
                           "#.", getDescriptionString(), verbose);
     }
 

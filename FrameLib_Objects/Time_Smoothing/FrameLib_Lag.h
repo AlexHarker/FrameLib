@@ -9,7 +9,8 @@ class FrameLib_Lag final : public FrameLib_Processor, private FrameLib_RingBuffe
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kMaxFrames, kNumFrames };
+    enum ParameterList { kMaxFrames, kNumFrames, kDefault, kMode };
+    enum Modes { kUseDefault, kValid };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -29,7 +30,7 @@ private:
 
     // Object Reset
     
-    void objectReset() override { FrameLib_RingBuffer::reset(); }
+    void objectReset() override;
     
     // Process
     
@@ -38,6 +39,8 @@ private:
     // Data
     
     static ParameterInfo sParamInfo;
+    
+    FrameLib_TimeFormat mLastResetTime;
 };
 
 #endif

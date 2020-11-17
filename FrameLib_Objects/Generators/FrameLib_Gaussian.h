@@ -9,8 +9,9 @@ class FrameLib_Gaussian final : public FrameLib_Processor
 {
     // Parameter Enums and Info
     
-    enum ParameterList { kMode, kLength, kUnits };
+    enum ParameterList { kMode, kLength, kUnits, kMean, kDeviation, kMismatchMode };
     enum Modes { kRequestedLength, kInLength };
+    enum MismatchModes { kDefault, kExtend };
     enum Units { kSamples, kMS, kSeconds };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };

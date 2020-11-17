@@ -1,21 +1,28 @@
 
 #include "FrameLib_MedianFilter.h"
 #include "FrameLib_Sort_Functions.h"
+#include "FrameLib_Edges.h"
 #include <algorithm>
 
 // Constructor
 
-FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addInt(kWidth, "width", 1, 0);
     mParameters.setMin(1);
     
     mParameters.addDouble(kPadding, "pad", 0.0, 1);
     
-    mParameters.addEnum(kMode, "mode", 2);
-    mParameters.addEnumItem(kPad, "pad");
-    mParameters.addEnumItem(kWrap, "wrap");
-    mParameters.addEnumItem(kFold, "fold");
+    mParameters.addEnum(kEdges, "edges", 2);
+    mParameters.addEnumItem(kEdgePad, "pad");
+    mParameters.addEnumItem(kEdgeExtend, "extend");
+    mParameters.addEnumItem(kEdgeWrap, "wrap");
+    mParameters.addEnumItem(kEdgeFold, "fold");
+    mParameters.addEnumItem(kEdgeMirror, "mirror");
+
+    mParameters.addDouble(kPercentile, "percentile", 50.0, 3);
+    mParameters.setClip(0.0, 100.0);
     
     mParameters.set(serialisedParameters);
     
@@ -62,7 +69,7 @@ FrameLib_MedianFilter::ParameterInfo::ParameterInfo()
 
 // Helpers
 
-double insertMedian(double *data, unsigned long *indices, double value, long index, long width)
+double insertMedian(double *data, unsigned long *indices, double value, long index, long width, unsigned long pos)
 {
     long current = -1, insert = 0, gap = 0;
     
@@ -96,32 +103,11 @@ double insertMedian(double *data, unsigned long *indices, double value, long ind
     std::copy_backward(indices + insert, indices + current, indices + current + 1);
     indices[insert] = index;
     
-    return data[indices[width >> 1]];
+    return data[indices[pos]];
 }
 
-double getPad(const double *input, long index, long size, double padValue)
-{
-    return (index >= 0 && index < size) ? input[index] : padValue;
-}
-
-double getWrap(const  double *input, long index, long size, double padValue)
-{
-    index %= size;
-    index = index < 0 ? index + size : index;
-    
-    return input[index];
-}
-
-double getFold(const double *input, long index, long size, double padValue)
-{
-    index = std::abs(index) % ((size - 1) * 2);
-    index = index > (size - 1) ? ((size - 1) * 2) - index : index;
-    
-    return input[index];
-}
-
-template <double Get(const double*, long, long, double)>
-void filter(const double *in, double *out, double *data, unsigned long* indices, long width, long size, double pad)
+template <class T>
+void filter(T in, double *out, double *data, unsigned long* indices, long width, long size, unsigned long pos)
 {
     long o1 = width >> 1;
     long o2 = width - o1;
@@ -129,15 +115,15 @@ void filter(const double *in, double *out, double *data, unsigned long* indices,
     // Calculate the first median
     
     for (long i = 0; i < width; i++)
-        data[i] = Get(in, i - o1, size, pad);
+        data[i] = in(i - o1);
     
     sortIndicesAscending(indices, data, width);
-    out[0] = data[indices[width >> 1]];
+    out[0] = data[indices[pos]];
     
     // Do other values using insertion
 
     for (long i = 1; i < size; i++)
-        out[i] = insertMedian(data, indices, Get(in, i + o2, size, pad), (i - 1) % width, width);
+        out[i] = insertMedian(data, indices, in(i + o2), (i - 1) % width, width, pos);
 }
 
 // Process
@@ -150,7 +136,10 @@ void FrameLib_MedianFilter::process()
     
     long width = mParameters.getInt(kWidth);
     double pad = mParameters.getValue(kPadding);
-    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
+    Edges edges = mParameters.getEnum<Edges>(kEdges);
+    unsigned long pos = roundToUInt(mParameters.getValue(kPercentile) * (width - 1) / 100.0);
+    
+    pos = std::min(pos, static_cast<unsigned long>(width - 1));
     
     // Get Input
 
@@ -161,18 +150,20 @@ void FrameLib_MedianFilter::process()
     allocateOutputs();
     
     double *output = getOutput(0, &sizeOut);    
-    double *data = alloc<double>(width);
-    unsigned long *indices = alloc<unsigned long>(width);
+    auto data = allocAutoArray<double>(width);
+    auto indices = allocAutoArray<unsigned long>(width);
     
     // Do filtering
     
     if (sizeOut && data && indices)
     {
-        switch (mode)
+        switch (edges)
         {
-            case kWrap: filter<getWrap>(input, output, data, indices, width, size, pad);    break;
-            case kPad:  filter<getPad> (input, output, data, indices, width, size, pad);    break;
-            case kFold: filter<getFold>(input, output, data, indices, width, size, pad);    break;
+            case kEdgePad:      filter(EdgesPad(input, size, pad), output, data, indices, width, size, pos);    break;
+            case kEdgeExtend:   filter(EdgesExtend(input, size), output, data, indices, width, size, pos);      break;
+            case kEdgeWrap:     filter(EdgesWrap(input, size), output, data, indices, width, size, pos);        break;
+            case kEdgeFold:     filter(EdgesFold(input, size), output, data, indices, width, size, pos);        break;
+            case kEdgeMirror:   filter(EdgesMirror(input, size), output, data, indices, width, size, pos);      break;
         }
     }
     else
@@ -183,7 +174,4 @@ void FrameLib_MedianFilter::process()
             getReporter()(kErrorObject, getProxy(), "couldn't allocate temporary memory");
         }
     }
-    
-    dealloc(data);
-    dealloc(indices);
 }

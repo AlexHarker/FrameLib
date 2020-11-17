@@ -2,20 +2,21 @@
 #ifndef FRAMELIB_COMPLEX_UNARY_TEMPLATE_H
 #define FRAMELIB_COMPLEX_UNARY_TEMPLATE_H
 
-#include <complex>
 #include "FrameLib_DSP.h"
+
+#include <complex>
 
 // Complex Unary (Operator Version)
 
 template <typename Op>
 class FrameLib_Complex_UnaryOp final : public FrameLib_Processor
 {
-    
 public:
     
     // Constructor
     
-    FrameLib_Complex_UnaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 2, 2)
+    FrameLib_Complex_UnaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+    : FrameLib_Processor(context, proxy, nullptr, 2, 2)
     {
         mParameters.set(serialisedParameters);
     }
@@ -26,7 +27,7 @@ public:
     {
         return formatInfo("Calculates the # of each complex value at the inputs: "
                           "Both input and output are split into real and imaginary parts. "
-                          "The outputs are frames of the same size as the longer of the two inputs. "
+                          "The outputs are frames of the same length as the longer of the two inputs. "
                           "If inputs are mismatched then the shorter input is padded with zeros.",
                           "Calculates the # of each complex value at the inputs.", getOpString(), verbose);
     }
@@ -110,6 +111,6 @@ struct Complex_Unary_Functor
 // Complex Unary (Function Version)
 
 template <std::complex<double> func(const std::complex<double> &)>
-using  FrameLib_Complex_Unary = FrameLib_Complex_UnaryOp<Complex_Unary_Functor<func>>;
+using FrameLib_Complex_Unary = FrameLib_Complex_UnaryOp<Complex_Unary_Functor<func>>;
 
 #endif

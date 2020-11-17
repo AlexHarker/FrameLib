@@ -40,12 +40,13 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Expressions\FrameLib_ComplexExpression.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Expressions\FrameLib_Expression.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Expressions\FrameLib_ExprParser.h" />
-    <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_0dfSVF.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_Biquad.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_BiquadCoeff.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_Filter_Constants.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_Filter_Template.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_OnePole.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_OnePoleZero.h" />
-    <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_Resonant.h" />
-    <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_SallenAndKey.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_SVF.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Gaussian.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Ramp.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Random.h" />
@@ -63,7 +64,6 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Mapping\FrameLib_SampleRate.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_CombineTags.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_FilterTags.h" />
-    <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_GetParam.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_ParamAlias.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_Tag.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_Untag.h" />
@@ -93,10 +93,9 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Streaming\FrameLib_Unpack.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Ternary\FrameLib_Ternary_Objects.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Ternary\FrameLib_Ternary_Template.h" />
-    <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_EWMA.h" />
-    <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_EWMSD.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_FrameDelta.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_Lag.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_MovingAverage.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeBuffer_Template.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeMean.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeMedian.h" />
@@ -118,6 +117,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Pattern.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Peaks.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Percentile.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Prioritise.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Reverse.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Shift.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Sort.h" />
@@ -133,11 +133,11 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Common_Utilities\FrameLib_RandGen.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Expressions\FrameLib_ComplexExpression.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Expressions\FrameLib_Expression.cpp" />
-    <ClCompile Include="..\..\..\FrameLib_Objects\Filters\FrameLib_0dfSVF.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Filters\FrameLib_Biquad.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Filters\FrameLib_BiquadCoeff.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Filters\FrameLib_OnePole.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Filters\FrameLib_OnePoleZero.cpp" />
-    <ClCompile Include="..\..\..\FrameLib_Objects\Filters\FrameLib_Resonant.cpp" />
-    <ClCompile Include="..\..\..\FrameLib_Objects\Filters\FrameLib_SallenAndKey.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Filters\FrameLib_SVF.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Gaussian.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Ramp.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Random.cpp" />
@@ -154,7 +154,6 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Mapping\FrameLib_SampleRate.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_CombineTags.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_FilterTags.cpp" />
-    <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_GetParam.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_ParamAlias.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_Tag.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_Untag.cpp" />
@@ -181,10 +180,9 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Streaming\FrameLib_Pack.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Streaming\FrameLib_StreamID.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Streaming\FrameLib_Unpack.cpp" />
-    <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_EWMA.cpp" />
-    <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_EWMSD.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_FrameDelta.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_Lag.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_MovingAverage.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeMean.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeMedian.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeStdDev.cpp" />
@@ -203,6 +201,7 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Pattern.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Peaks.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Percentile.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Prioritise.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Reverse.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Shift.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Sort.cpp" />

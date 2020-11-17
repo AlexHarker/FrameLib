@@ -3,12 +3,16 @@
 
 // Constructor
 
-FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams): FrameLib_Multistream(kProcessor, context, proxy, false, 1), mParameters(context, proxy, &sParamInfo)
+FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
+: FrameLib_Multistream(kProcessor, context, proxy, false, 1)
+, mParameters(context, proxy, &sParamInfo)
 {    
-    mParameters.addInt(0, "inputs", 2, 0 );
+    mParameters.addInt(kNumIns, "num_ins", 2, 0 );
     mParameters.setInstantiation();
+    
     mParameters.set(serialisedParameters);
-    setIO(mParameters.getInt(kInputs), 1);
+    
+    setIO(mParameters.getInt(kNumIns), 1);
     
     mSerialisedParameters.write(serialisedParameters);
 }
@@ -17,20 +21,20 @@ FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, const FrameLib_Parameters
 
 std::string FrameLib_Pack::objectInfo(bool verbose)
 {
-    return formatInfo("Packs multiple frame streams into a multi-stream output: "
-                      "Inputs may be single-stream or multi-stream. "
+    return formatInfo("Packs multiple frame streams into a multistream output: "
+                      "Inputs may be single stream or multistream. "
                       "All inputs are concatenated in order, with blank inputs ignored.",
-                      "Packs multiple frame streams into a multi-stream output.", verbose);
+                      "Packs multiple frame streams into a multistream output.", verbose);
 }
 
 std::string FrameLib_Pack::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Input # - may be single-stream or multi-stream", "Input #", idx, verbose);
+    return formatInfo("Input # - may be single stream or multistream", "Input #", idx, verbose);
 }
 
 std::string FrameLib_Pack::outputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Output - packed multi-stream connection consisting of all input streams", "Multi-stream Output", idx, verbose);
+    return formatInfo("Output - packed multistream connection consisting of all input streams", "Multistream Output", idx, verbose);
 }
 
 bool FrameLib_Pack::inputUpdate()
@@ -43,9 +47,9 @@ bool FrameLib_Pack::inputUpdate()
     for (unsigned long i = 0; i < getNumIns(); i++)
         size += getInputNumStreams(i);
     
-    if (size != mOutputs[0].size())
+    if (size != getMultistreamOutput(0).size())
     {
-        mOutputs[0].resize(size);
+        getMultistreamOutput(0).resize(size);
         change = true;
     }
     
@@ -55,8 +59,8 @@ bool FrameLib_Pack::inputUpdate()
     {
         for (unsigned long j = 0; j < getInputNumStreams(i); j++, k++)
         {
-            change |= getInputChan(i, j) != mOutputs[0][k];
-            mOutputs[0][k] = getInputChan(i, j);
+            change |= getInputChan(i, j) != getMultistreamOutput(0)[k];
+            getMultistreamOutput(0)[k] = getInputChan(i, j);
         }
     }
     
@@ -67,3 +71,7 @@ bool FrameLib_Pack::inputUpdate()
 
 FrameLib_Pack::ParameterInfo FrameLib_Pack::sParamInfo;
 
+FrameLib_Pack::ParameterInfo::ParameterInfo()
+{
+    add("Sets the number of inputs."); 
+}

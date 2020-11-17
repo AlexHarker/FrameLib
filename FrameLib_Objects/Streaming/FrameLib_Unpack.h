@@ -8,9 +8,9 @@
 
 class FrameLib_Unpack final : public FrameLib_Multistream
 {
-    enum AtrributeList { kOutputs };
+    enum ParameterList { kNumOuts };
     
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo() { add("Sets the number of outputs."); } };
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     
 public:
     
@@ -57,7 +57,7 @@ private:
     
     // Input Update
     
-    virtual bool inputUpdate() override;
+    bool inputUpdate() override;
     
     // Data
 

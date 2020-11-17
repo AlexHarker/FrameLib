@@ -4,7 +4,8 @@
 
 // Constructor
 
-FrameLib_Reverse::FrameLib_Reverse(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 1)
+FrameLib_Reverse::FrameLib_Reverse(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, nullptr, 1, 1)
 {
     mParameters.set(serialisedParameters);
 }

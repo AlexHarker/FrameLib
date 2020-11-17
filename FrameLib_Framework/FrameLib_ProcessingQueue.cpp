@@ -18,7 +18,7 @@ void FrameLib_ProcessingQueue::WorkerThreads::doTask(unsigned int index)
 // Constructor / Destructor
 
 FrameLib_ProcessingQueue::FrameLib_ProcessingQueue(FrameLib_Global& global)
-: mWorkers(this), mAllocators(global, FrameLib_Thread::maxThreads()), mNumItems(0), mNumWorkersActive(0), mMultithread(false), mTimedOut(false), mEntryObject(nullptr), mErrorReporter(global)
+: mWorkers(this), mAllocators(global, FrameLib_Thread::maxThreads()), mNumItems(0), mNumWorkersActive(0), mMultithread(false), mMaxTime(0), mRelativeTimeOut(4.0), mAbsoluteTimeOut(10.0), mTimedOut(false), mEntryObject(nullptr), mErrorReporter(global)
 {
    mMultithread = global.getPriorities().mMultithread;
    mWorkers.start(global.getPriorities());
@@ -43,6 +43,7 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
     // Set the entry object and start the clock
     
     mEntryObject = queue.peek();
+    calculateTimeOutMax();
     mClock.start();
     
     // Enqueue items
@@ -169,12 +170,43 @@ void FrameLib_ProcessingQueue::serviceQueue(FrameLib_LocalAllocator *allocator)
     checkForTimeOut();
 }
 
+void FrameLib_ProcessingQueue::setTimeOuts(double relative, double absolute)
+{
+    // N.B. Relative time as a ratio, absolute time in seconds
+    
+    mRelativeTimeOut = std::max(relative, 0.0);
+    mAbsoluteTimeOut = std::max(absolute, 0.0);
+}
+
 bool FrameLib_ProcessingQueue::checkForTimeOut()
 {
-    if (!mTimedOut && mClock.elapsed() > sMaxTime)
+    if (mMaxTime && !mTimedOut && mClock.elapsed() > mMaxTime)
         mTimedOut = true;
     
     return isTimedOut();
+}
+
+void FrameLib_ProcessingQueue::calculateTimeOutMax()
+{
+    auto timeConvert = [](double x) { return x ? std::max(x * 1000000.0, 1.0) : 0.0; };
+    
+    const double samplingRate = mEntryObject->mSamplingRate;
+    double vectorTime = (getBlockEndTime() - getBlockStartTime()) / samplingRate;
+    
+    const double maxRelativeTime = timeConvert(vectorTime * mRelativeTimeOut);
+    const double maxAbsoluteTime = timeConvert(mAbsoluteTimeOut);
+
+    mMaxTime = static_cast<long long>(round(std::max(maxRelativeTime, maxAbsoluteTime)));
+}
+
+FrameLib_TimeFormat FrameLib_ProcessingQueue::getBlockStartTime() const
+{
+    return mEntryObject ? mEntryObject->getBlockStartTime() : FrameLib_TimeFormat();
+}
+
+FrameLib_TimeFormat FrameLib_ProcessingQueue::getBlockEndTime() const
+{
+    return mEntryObject ? mEntryObject->getBlockEndTime() : FrameLib_TimeFormat();
 }
 
 // Audio Queue

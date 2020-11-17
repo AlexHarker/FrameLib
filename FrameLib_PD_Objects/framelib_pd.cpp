@@ -1,137 +1,10 @@
 
 #include "FrameLib_PDClass.h"
-
-// Filters
-
-#include "FrameLib_0dfSVF.h"
-#include "FrameLib_OnePole.h"
-#include "FrameLib_OnePoleZero.h"
-#include "FrameLib_Resonant.h"
-#include "FrameLib_SallenAndKey.h"
-
-// Generators
-
-#include "FrameLib_Gaussian.h"
-#include "FrameLib_Ramp.h"
-#include "FrameLib_Random.h"
-#include "FrameLib_Uniform.h"
-
-// IO
-
-#include "FrameLib_Source.h"
-#include "FrameLib_Sink.h"
-#include "FrameLib_Trace.h"
-
-// Mapping
-
-#include "FrameLib_Constant.h"
-#include "FrameLib_Convert.h"
-#include "FrameLib_Lookup.h"
-#include "FrameLib_Map.h"
-#include "FrameLib_SampleRate.h"
-
-// Parameters
-
-#include "FrameLib_CombineTags.h"
-#include "FrameLib_FilterTags.h"
-#include "FrameLib_GetParam.h"
-#include "FrameLib_Tag.h"
-#include "FrameLib_Untag.h"
-
-// Routing
-
-#include "FrameLib_Dispatch.h"
-#include "FrameLib_Route.h"
-#include "FrameLib_Select.h"
-
-// Schedulers
-
-#include "FrameLib_AudioTrigger.h"
-#include "FrameLib_Future.h"
-#include "FrameLib_Interval.h"
-#include "FrameLib_Once.h"
-#include "FrameLib_PerBlock.h"
-
-// Spatial
-
-#include "FrameLib_CoordinateSystem.h"
-#include "FrameLib_Spatial.h"
-
-// Spectral
-
-#include "FrameLib_FFT.h"
-#include "FrameLib_iFFT.h"
-#include "FrameLib_Correlate.h"
-#include "FrameLib_Convolve.h"
-#include "FrameLib_Multitaper.h"
-#include "FrameLib_Window.h"
-
-// Storage
-
-#include "FrameLib_Recall.h"
-#include "FrameLib_Register.h"
-#include "FrameLib_Store.h"
-
-// Streaming
-
-#include "FrameLib_Pack.h"
-#include "FrameLib_Unpack.h"
-#include "FrameLib_StreamID.h"
-
-// Time Smoothing
-
-#include "FrameLib_EWMA.h"
-#include "FrameLib_EWMSD.h"
-#include "FrameLib_FrameDelta.h"
-#include "FrameLib_Lag.h"
-#include "FrameLib_TimeMean.h"
-#include "FrameLib_TimeMedian.h"
-#include "FrameLib_TimeStdDev.h"
-
-// Timing
-
-#include "FrameLib_Now.h"
-#include "FrameLib_Ticks.h"
-#include "FrameLib_TimeDelta.h"
-#include "FrameLib_Timer.h"
-
-// Vector
-
-#include "FrameLib_AccumPos.h"
-#include "FrameLib_Chop.h"
-#include "FrameLib_Join.h"
-#include "FrameLib_MedianFilter.h"
-#include "FrameLib_NanFilter.h"
-#include "FrameLib_NonZero.h"
-#include "FrameLib_Pad.h"
-#include "FrameLib_Peaks.h"
-#include "FrameLib_Percentile.h"
-#include "FrameLib_Reverse.h"
-#include "FrameLib_Shift.h"
-#include "FrameLib_Sort.h"
-#include "FrameLib_Split.h"
-#include "FrameLib_Subframe.h"
-#include "FrameLib_Vector_Objects.h"
-
-// Operators
-
-#include "FrameLib_Unary_Objects.h"
-#include "FrameLib_Binary_Objects.h"
-#include "FrameLib_Ternary_Objects.h"
-#include "FrameLib_Expression.h"
-#include "FrameLib_ComplexExpression.h"
-
-// Complex Operators
-
-#include "FrameLib_Complex_Unary_Objects.h"
-#include "FrameLib_Cartopol.h"
-#include "FrameLib_Poltocar.h"
-#include "FrameLib_Complex_Binary_Objects.h"
+#include "../FrameLib_Exports/FrameLib_Objects.h"
 
 // Buffer
 
-#include "FrameLib_Read.h"
-#include "PD_Specific/pd_buffer.h"
+#include "pd_buffer.h"
 
 // PD Read Class
 
@@ -156,9 +29,14 @@ class FrameLib_PDClass_Read : public FrameLib_PDClass_Expand<FrameLib_Read>
             mBuffer = pd_buffer();
         };
         
-        void read(double *output, const double *positions, unsigned long size, long chan, InterpType interpType) override
+        void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeType edges, bool bound) override
         {
-            mBuffer.read(output, positions, size, 1.0, interpType);
+            mBuffer.read(output, positions, size, 1.0, interp, edges, bound);
+        }
+        
+        FrameLib_Read::Proxy *clone() const override
+        {
+            return new ReadProxy(*this);
         }
         
     private:
@@ -171,7 +49,8 @@ public:
     
     // Constructor
     
-    FrameLib_PDClass_Read(t_symbol *s, long argc, t_atom *argv) : FrameLib_PDClass(s, argc, argv, new ReadProxy()) {}
+    FrameLib_PDClass_Read(t_symbol *s, long argc, t_atom *argv)
+    : FrameLib_PDClass(s, argc, argv, new ReadProxy()) {}
 };
 
 // PD Expression Classes
@@ -180,7 +59,6 @@ public:
 
 class ArgumentParser
 {
-    
 public:
     
     ArgumentParser(t_symbol *s, long argc, t_atom *argv, bool complex) : mSymbol(s), mComplex(complex)
@@ -309,15 +187,16 @@ extern "C" void framelib_pd_setup(void)
 {
     // Filters
     
-    FrameLib_PDClass_Expand<FrameLib_0dfSVF>::makeClass("fl.0dfsvf~");
+    FrameLib_PDClass_Expand<FrameLib_Biquad>::makeClass("fl.biquad~");
+    FrameLib_PDClass_Expand<FrameLib_BiquadCoeff>::makeClass("fl.biquadcoeff~");
     FrameLib_PDClass_Expand<FrameLib_OnePole>::makeClass("fl.onepole~");
     FrameLib_PDClass_Expand<FrameLib_OnePoleZero>::makeClass("fl.onepolezero~");
-    FrameLib_PDClass_Expand<FrameLib_Resonant>::makeClass("fl.resonant~");
-    FrameLib_PDClass_Expand<FrameLib_SallenAndKey>::makeClass("fl.sallenkey~");
-  
+    FrameLib_PDClass_Expand<FrameLib_SVF>::makeClass("fl.svf~");
+
     // Generators
     
     FrameLib_PDClass_Expand<FrameLib_Gaussian>::makeClass("fl.gaussian~");
+    FrameLib_PDClass_Expand<FrameLib_MakeWindow>::makeClass("fl.makewindow~");
     FrameLib_PDClass_Expand<FrameLib_Ramp>::makeClass("fl.ramp~");
     FrameLib_PDClass_Expand<FrameLib_Random>::makeClass("fl.random~");
     FrameLib_PDClass_Expand<FrameLib_Uniform>::makeClass("fl.uniform~");
@@ -340,7 +219,6 @@ extern "C" void framelib_pd_setup(void)
     
     FrameLib_PDClass_Expand<FrameLib_CombineTags>::makeClass("fl.combinetags~");
     FrameLib_PDClass_Expand<FrameLib_FilterTags>::makeClass("fl.filtertags~");
-    FrameLib_PDClass_Expand<FrameLib_GetParam>::makeClass("fl.getparam~");
     FrameLib_PDClass_Expand<FrameLib_Tag>::makeClass("fl.tag~");
     FrameLib_PDClass_Expand<FrameLib_Untag>::makeClass("fl.untag~");
     
@@ -353,14 +231,15 @@ extern "C" void framelib_pd_setup(void)
     // Schedulers
     
     FrameLib_PDClass_Expand<FrameLib_AudioTrigger>::makeClass("fl.audiotrigger~");
-    FrameLib_PDClass_Expand<FrameLib_Future>::makeClass("fl.future~");
+    FrameLib_PDClass_Expand<FrameLib_Chain>::makeClass("fl.chain~");
     FrameLib_PDClass_Expand<FrameLib_Interval>::makeClass("fl.interval~");
     FrameLib_PDClass_Expand<FrameLib_Once>::makeClass("fl.once~");
     FrameLib_PDClass_Expand<FrameLib_PerBlock>::makeClass("fl.perblock~");
     
     // Spatial
     
-    FrameLib_PDClass_Expand<FrameLib_CoordinateSystem>::makeClass("fl.coordinatesystem~");
+    FrameLib_PDClass_Expand<FrameLib_Cartopol>::makeClass("fl.cartopol~");
+    FrameLib_PDClass_Expand<FrameLib_Poltocar>::makeClass("fl.poltocar~");
     FrameLib_PDClass_Expand<FrameLib_Spatial>::makeClass("fl.spatial~");
     
     // Spectral
@@ -384,10 +263,9 @@ extern "C" void framelib_pd_setup(void)
     
     // Time Smoothing
     
-    FrameLib_PDClass_Expand<FrameLib_EWMA>::makeClass("fl.ewma~");
-    FrameLib_PDClass_Expand<FrameLib_EWMSD>::makeClass("fl.ewmsd~");
     FrameLib_PDClass_Expand<FrameLib_FrameDelta>::makeClass("fl.framedelta~");
     FrameLib_PDClass_Expand<FrameLib_Lag>::makeClass("fl.lag~");
+    FrameLib_PDClass_Expand<FrameLib_MovingAverage>::makeClass("fl.movingaverage~");
     FrameLib_PDClass_Expand<FrameLib_TimeMean>::makeClass("fl.timemean~");
     FrameLib_PDClass_Expand<FrameLib_TimeMedian>::makeClass("fl.timemedian~");
     FrameLib_PDClass_Expand<FrameLib_TimeStdDev>::makeClass("fl.timestddev~");
@@ -521,9 +399,6 @@ extern "C" void framelib_pd_setup(void)
 
     FrameLib_PDClass_Expand<FrameLib_Complex_Sqrt>::makeClass("fl.complex.sqrt~");
     FrameLib_PDClass_Expand<FrameLib_Complex_Conj>::makeClass("fl.complex.conj~");
-    
-    FrameLib_PDClass_Expand<FrameLib_Cartopol>::makeClass("fl.cartopol~");
-    FrameLib_PDClass_Expand<FrameLib_Poltocar>::makeClass("fl.poltocar~");
     
     // Complex Binary Operators
     

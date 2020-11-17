@@ -1,37 +1,53 @@
 
 #include "FrameLib_TimeMedian.h"
 
-FrameLib_TimeMedian::FrameLib_TimeMedian(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_TimeBuffer<FrameLib_TimeMedian, true>(context, serialisedParameters, proxy), mOrdered(nullptr), mNumFrames(0)
-{}
+// Constructor
+
+FrameLib_TimeMedian::FrameLib_TimeMedian(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_TimeBuffer<FrameLib_TimeMedian, 1>(context, serialisedParameters, proxy)
+, mNumFrames(0)
+{
+    mParameters.addDouble(kPercentile, "percentile", 50.0, kPercentile);
+    mParameters.setClip(0.0, 100.0);
+
+    completeDefaultParameters(serialisedParameters);
+}
 
 // Info
 
+const char *FrameLib_TimeMedian::paramInfo(unsigned long idx)
+{
+    return "Sets the percentile to retrieve";
+}
+
 std::string FrameLib_TimeMedian::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs the median per sample over a given number of frames: Frames are expected to be of uniform size, otherwise the buffer is reset. The number of frames (as well as the maximum number of frames) can be set as parameters. The output is the same size as the input.",
-                      "Outputs the median per sample over a given number of frames.", verbose);
+    return formatInfo("Outputs the median per sample over a given number of frames: Frames are expected to be of uniform size, otherwise the buffer is reset. The number of frames (as well as the maximum number of frames) can be set as parameters. The output is the same size as the input.", "Outputs the median per sample over a given number of frames.", verbose);
 }
 
 std::string FrameLib_TimeMedian::inputInfo(unsigned long idx, bool verbose)
 {
-    if (idx)
-        return parameterInputInfo(verbose);
-    else
-        return formatInfo("Input Values", "Input Values", verbose);
+    switch (idx)
+    {
+        case 0:     return "Input";
+        case 1:     return "Reset Input";
+        default:    return parameterInputInfo(verbose);
+    }
 }
 
 std::string FrameLib_TimeMedian::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Medians Over Time";
+    if (idx)
+        return "Buffer Full";
+    else
+        return "Output";
 }
 
 // Update size
 
 void FrameLib_TimeMedian::resetSize(unsigned long maxFrames, unsigned long size)
 {
-    dealloc(mOrdered);
-    mOrdered = alloc<double>(size * maxFrames);
-    zeroVector(mOrdered, size * maxFrames);
+    mOrdered = allocAutoArray<double>(size * maxFrames);
     mNumFrames = 0;
 }
 
@@ -53,12 +69,12 @@ unsigned long find(double input, double *channel, unsigned long numFrames)
     if (!numFrames)
         return 0;
     
-    gap = gap < 1 ? 1 : gap;
+    gap = !gap ? 1 : gap;
     
     while (gap && i < numFrames)
     {
         gap >>= 1;
-        gap = gap < 1 ? 1 : gap;
+        gap = !gap ? 1 : gap;
 
         if (compareLess(input, channel[i]))
         {
@@ -76,32 +92,12 @@ unsigned long find(double input, double *channel, unsigned long numFrames)
     return i;
 }
 
-/*
-bool checkArray(const double *array, unsigned long size)
-{
-    for (unsigned long i = 1; i < size; i++)
-    {
-        double hi = array[i];
-        double lo = array[i - 1];
-        if (hi < lo)
-        {
-            for (unsigned long j = 0; j < size; j++)
-            {
-                if (isnan(array[j]))
-                    std::cout << "NaN\n";
-                else
-                    std::cout << array[j] << "\n";
-            }
-            
-            return false;
-        }
-    }
-    
-    return true;
-}
-*/
-
 // Process
+
+double *FrameLib_TimeMedian::getChannel(unsigned long idx)
+{
+    return mOrdered.get() + (idx * getMaxFrames());
+}
 
 void FrameLib_TimeMedian::exchange(const double *newFrame, const double *oldFrame, unsigned long size)
 {
@@ -127,7 +123,6 @@ void FrameLib_TimeMedian::exchange(const double *newFrame, const double *oldFram
         
         assert(j < mNumFrames && "Value out of place");
         assert(k < mNumFrames && "Value out of place");
-        //assert(checkArray(channel, mNumFrames) && "Array out of order");
     }
 }
 
@@ -148,7 +143,6 @@ void FrameLib_TimeMedian::add(const double *newFrame, unsigned long size)
         channel[j] = newFrame[i];
         
         assert((!mNumFrames && j == 0) || (j < mNumFrames + 1) && "Value out of place");
-        //assert(checkArray(channel, mNumFrames + 1) && "Array out of order");
     }
     
     mNumFrames++;
@@ -170,14 +164,37 @@ void FrameLib_TimeMedian::remove(const double *oldFrame, unsigned long size)
         std::copy(channel + j + 1, channel + mNumFrames, channel + j);
         
         assert(j < mNumFrames && "Value out of place");
-        //assert(checkArray(channel, mNumFrames - 1) && "Array out of order");
     }
     
     mNumFrames--;
 }
 
-void FrameLib_TimeMedian::result(double *output, unsigned long size)
+void FrameLib_TimeMedian::result(double *output, unsigned long size, Padded pad, unsigned long padSize)
 {
-    for (unsigned long i = 0; i < size; i++)
-        output[i] = getChannel(i)[mNumFrames >> 1];
+    unsigned long numFrames = padSize ? getNumFrames() : mNumFrames;
+    
+    double percentile = mParameters.getValue(kPercentile);
+    double position = (percentile * (numFrames - 1) / 100.0);
+    unsigned long percentilePos = std::min(roundToUInt(position), numFrames - 1);
+    
+    if (padSize)
+    {
+        for (unsigned long i = 0; i < size; i++)
+        {
+            const double padValue = pad[i];
+            unsigned long pos = find(padValue, getChannel(i), mNumFrames);
+            
+            if (percentilePos < pos)
+                output[i] = getChannel(i)[percentilePos];
+            else if (percentilePos >= pos + padSize)
+                output[i] = getChannel(i)[percentilePos - padSize];
+            else
+                output[i] = padValue;
+        }
+    }
+    else
+    {
+        for (unsigned long i = 0; i < size; i++)
+            output[i] = getChannel(i)[percentilePos];
+    }
 }

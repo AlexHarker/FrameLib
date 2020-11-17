@@ -272,13 +272,14 @@ DWORD WINAPI FrameLib_Thread::threadStart(LPVOID arg)
 
 FrameLib_Semaphore::FrameLib_Semaphore(long maxCount) : mValid(true)
 {
-    mInternal = CreateSemaphore(nullptr, 0, maxCount, nullptr);
+    mInternal.mHandle = CreateSemaphore(nullptr, 0, maxCount, nullptr);
+    mInternal.mMaxCount = maxCount;
 }
 
 FrameLib_Semaphore::~FrameLib_Semaphore()
 {
     assert(!mValid && "Semaphore not closed before deletion");
-    CloseHandle(mInternal);
+    CloseHandle(mInternal.mHandle);
 }
 
 void FrameLib_Semaphore::close()
@@ -288,10 +289,13 @@ void FrameLib_Semaphore::close()
         mValid = false;
         std::atomic_thread_fence(std::memory_order_seq_cst);
 
-        // Signal until the count is zero (only reliable way to signal all waiting threads
+        // Signal maximum count to ensure all threads are released, and check for completion
         
-        for (long releaseCount = 2; releaseCount > 1; )
-            ReleaseSemaphore(mInternal, 1, &releaseCount);
+		for (long n = mInternal.mMaxCount; n > 0; n--)
+		{
+			if (ReleaseSemaphore(mInternal.mHandle, n, nullptr))
+				break;
+		}
     }
 }
 
@@ -299,14 +303,14 @@ void FrameLib_Semaphore::signal(long n)
 {
     // N.B. - signalling is unsafe after the semaphore has been closed
     
-    MemoryBarrier();
-    ReleaseSemaphore(mInternal, n, nullptr);
+	std::atomic_thread_fence(std::memory_order_seq_cst);
+    ReleaseSemaphore(mInternal.mHandle, n, nullptr);
 }
 
 bool FrameLib_Semaphore::wait()
 {
     if (mValid)
-        WaitForSingleObject(mInternal, INFINITE);
+        WaitForSingleObject(mInternal.mHandle, INFINITE);
 
     return mValid;
 }

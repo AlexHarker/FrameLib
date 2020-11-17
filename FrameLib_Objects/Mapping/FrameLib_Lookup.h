@@ -4,72 +4,22 @@
 
 #include "FrameLib_DSP.h"
 #include "../../FrameLib_Dependencies/TableReader.hpp"
-#include <algorithm>
 
 class FrameLib_Lookup final : public FrameLib_Processor
 {
-    enum ParameterList { kMode, kInterpolation, kScaling, kPadding };
-    enum Mode { kZero, kClip, kWrap, kPad };
-    enum Interpolation { kHermite, kBSpline, kLagrange, kLinear, kNone };
-    enum Scaling { kSamples, kNormalised, kBipolar };
+    enum ParameterList { kScale, kEdges, kBound, kInterpolation };
+    enum Scales { kSamples, kNormalised, kBipolar };
+    enum Interpolation { kNone, kLinear, kHermite, kBSpline, kLagrange };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
-    struct FetchBase : table_fetcher<double>
+    struct Fetcher : table_fetcher<double>
     {
-        FetchBase(const double *data, intptr_t size) : table_fetcher(1.0), mData(data), mSize(size) {}
+        Fetcher(const double *data, intptr_t size) : table_fetcher(size, 1.0), mData(data) {}
+        
+        double operator()(intptr_t offset) { return mData[offset]; }
         
         const double *mData;
-        const intptr_t mSize;
-    };
-    
-    struct FetchZero : public FetchBase
-    {
-        FetchZero(const double *data, intptr_t size) : FetchBase(data, size) {}
-        
-        double operator()(intptr_t offset)
-        {
-            if (offset < 0 || offset >= mSize)
-                return 0.0;
-        
-            return mData[offset];
-        }
-    };
-    
-    struct FetchPad : public FetchBase
-    {
-        FetchPad(const double *data, intptr_t size, double padValue) : FetchBase(data, size), mPadValue(padValue) {}
-        
-        double operator()(intptr_t offset)
-        {
-            if (offset < 0 || offset >= mSize)
-                return mPadValue;
-            
-            return mData[offset];
-        }
-        
-        const double mPadValue;
-    };
-    
-    struct FetchWrap : public FetchBase
-    {
-        FetchWrap(const double *data, intptr_t size) : FetchBase(data, size) {}
-        
-        double operator()(intptr_t offset)
-        {
-            offset %= mSize;
-            return mData[offset < 0 ? mSize + offset : offset];
-        }
-    };
-    
-    struct FetchClip : public FetchBase
-    {
-        FetchClip(const double *data, intptr_t size) : FetchBase(data, size) {}
-        
-        double operator()(intptr_t offset)
-        {
-            return mData[std::min(std::max(offset, static_cast<intptr_t>(0)), mSize - 1)];
-        }
     };
     
 public:

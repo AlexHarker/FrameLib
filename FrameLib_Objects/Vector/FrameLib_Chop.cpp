@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_Chop::FrameLib_Chop(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy): FrameLib_Processor(context, proxy, &sParamInfo)
+FrameLib_Chop::FrameLib_Chop(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo)
 {
     mParameters.addInt(kNumOuts, "num_outs", 1, 0);
     mParameters.setClip(2, 32);
@@ -66,7 +67,7 @@ void FrameLib_Chop::process()
     
     unsigned long sizeIn, sizeOut, sizeCalc, chop, i;
     const double *input = getInput(0, &sizeIn);
-    Units units = (Units) mParameters.getInt(kUnits);
+    Units units = mParameters.getEnum<Units>(kUnits);
     
     // Calculate chop sizes
     
@@ -77,7 +78,7 @@ void FrameLib_Chop::process()
     
     for (i = 0, sizeCalc = sizeIn; i < mNumOuts; i++)
     {
-        sizeOut = (chop <= sizeCalc) ? chop : sizeCalc;
+        sizeOut = std::min(chop, sizeCalc);
         sizeCalc -= sizeOut;
         requestOutputSize(i, sizeOut);
     }

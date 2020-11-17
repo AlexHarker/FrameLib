@@ -128,7 +128,8 @@ FrameLib_ComplexExpression::Parser::Parser() : FrameLib_ExprParser::Parser<std::
 // Constructor
 
 FrameLib_ComplexExpression::InputProcessor::InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns)
-: FrameLib_Processor(context, nullptr, nullptr, numIns * 2, numIns * 2), mMode(mode)
+: FrameLib_Processor(context, nullptr, nullptr, numIns * 2, numIns * 2)
+, mMode(mode)
 {
     for (unsigned long i = 0; i < numIns; i++)
     {
@@ -239,7 +240,9 @@ void FrameLib_ComplexExpression::InputProcessor::process()
 
 // Constructor
 
-FrameLib_ComplexExpression::ConstantOut::ConstantOut(FrameLib_Context context, const double *triggers, unsigned long triggersSize, unsigned long numIns, std::complex<double> value) : FrameLib_Processor(context, nullptr, nullptr, numIns * 2, 2), mValue(value)
+FrameLib_ComplexExpression::ConstantOut::ConstantOut(FrameLib_Context context, const double *triggers, unsigned long triggersSize, unsigned long numIns, std::complex<double> value)
+: FrameLib_Processor(context, nullptr, nullptr, numIns * 2, 2)
+, mValue(value)
 {
     for (unsigned long i = 0; i < numIns; i++)
     {
@@ -268,7 +271,9 @@ void FrameLib_ComplexExpression::ConstantOut::process()
 
 // Constructor
 
-FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mParameters(context, proxy, &sParamInfo)
+FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Block(kProcessor, context, proxy)
+, mParameters(context, proxy, &sParamInfo)
 {
     typedef FrameLib_ExprParser::Graph<std::complex<double>> Graph;
     typedef FrameLib_Block::Connection Connection;
@@ -293,7 +298,7 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
     const double *triggers = mParameters.getArray(kTriggers);
     unsigned long triggersSize = mParameters.getArraySize(kTriggers);
     
-    MismatchModes mode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
+    MismatchModes mode = mParameters.getEnum<MismatchModes>(kMismatchMode);
 
     Graph graph;
     Parser parser;

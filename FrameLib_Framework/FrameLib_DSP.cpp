@@ -4,7 +4,13 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
-: FrameLib_Block(type, context, proxy), mSamplingRate(44100.0), mMaxBlockSize(4096), mParameters(context, proxy, info), mProcessingQueue(context), mNoLiveInputs(true), mInUpdate(false)
+: FrameLib_Block(type, context, proxy)
+, mSamplingRate(44100.0)
+, mMaxBlockSize(4096)
+, mParameters(context, proxy, info)
+, mProcessingQueue(context)
+, mNoLiveInputs(true)
+, mInUpdate(false)
 {    
     // Set IO
     
@@ -361,8 +367,6 @@ bool FrameLib_DSP::dependencyNotify(NotificationType type, bool releaseMemory, L
     if (releaseMemory)
         releaseOutputMemory(allocator);
     
-    // If ready then this item should be added to the processing queue
-    
     bool useInputCount = mUpdatingInputs && (type == kInputConnection || type == kAudioBlock);
     
     if ((useInputCount && --mInputCount == 0) || (!useInputCount && --mDependencyCount == 0))
@@ -379,6 +383,8 @@ bool FrameLib_DSP::dependencyNotify(NotificationType type, bool releaseMemory, L
 
 void FrameLib_DSP::dependencyNotify(NotificationType type, bool releaseMemory, LocalAllocator *allocator, NotificationQueue &queue)
 {
+    // If ready then this item should be added to the processing queue
+
     if (dependencyNotify(type, releaseMemory, allocator))
         queue.push(this);
 }

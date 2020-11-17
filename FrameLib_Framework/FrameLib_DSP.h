@@ -18,7 +18,7 @@
  
  @ingroup DSP
 
- @brief an abstract class containing the core of the DSP processing system, which handles single-stream scheduling.
+ @brief an abstract class containing the core of the DSP processing system, which handles single stream scheduling.
  
  */
 
@@ -203,6 +203,9 @@ protected:
     FrameLib_TimeFormat getBlockStartTime() const   { return getType() == kOutput ? mBlockEndTime : mBlockStartTime; }
     FrameLib_TimeFormat getBlockEndTime() const     { return mBlockEndTime; }
     
+    FrameLib_TimeFormat getQueueBlockStartTime() const  { return mProcessingQueue->getBlockStartTime(); }
+    FrameLib_TimeFormat getQueueBlockEndTime() const    { return mProcessingQueue->getBlockEndTime(); }
+    
     FrameLib_TimeFormat getInputFrameTime(unsigned long idx) const  { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : FrameLib_TimeFormat(0); }
     FrameLib_TimeFormat getInputValidTime(unsigned long idx) const  { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : FrameLib_TimeFormat(0); }
     
@@ -385,7 +388,6 @@ private:
 
 class FrameLib_Processor : public FrameLib_DSP
 {
-    
 public:
     
     static constexpr ObjectType sType = kProcessor;
@@ -418,7 +420,6 @@ protected:
 
 class FrameLib_AudioInput : public FrameLib_DSP
 {
-    
 public:
     
     static constexpr ObjectType sType = kProcessor;
@@ -449,7 +450,6 @@ protected:
 
 class FrameLib_AudioOutput : public FrameLib_DSP
 {
-    
 public:
     
     static constexpr ObjectType sType = kOutput;
@@ -480,7 +480,6 @@ protected:
 
 class FrameLib_Scheduler : public FrameLib_DSP
 {
-
 public:
     
     static constexpr ObjectType sType = kScheduler;

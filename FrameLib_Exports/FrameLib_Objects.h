@@ -14,15 +14,16 @@
 
 // Filters
 
-#include "../FrameLib_Objects/Filters/FrameLib_0dfSVF.h"
+#include "../FrameLib_Objects/Filters/FrameLib_Biquad.h"
+#include "../FrameLib_Objects/Filters/FrameLib_BiquadCoeff.h"
 #include "../FrameLib_Objects/Filters/FrameLib_OnePole.h"
 #include "../FrameLib_Objects/Filters/FrameLib_OnePoleZero.h"
-#include "../FrameLib_Objects/Filters/FrameLib_Resonant.h"
-#include "../FrameLib_Objects/Filters/FrameLib_SallenAndKey.h"
+#include "../FrameLib_Objects/Filters/FrameLib_SVF.h"
 
 // Generators
 
 #include "../FrameLib_Objects/Generators/FrameLib_Gaussian.h"
+#include "../FrameLib_Objects/Generators/FrameLib_MakeWindow.h"
 #include "../FrameLib_Objects/Generators/FrameLib_Ramp.h"
 #include "../FrameLib_Objects/Generators/FrameLib_Random.h"
 #include "../FrameLib_Objects/Generators/FrameLib_Uniform.h"
@@ -45,7 +46,6 @@
 
 #include "../FrameLib_Objects/Parameters/FrameLib_CombineTags.h"
 #include "../FrameLib_Objects/Parameters/FrameLib_FilterTags.h"
-#include "../FrameLib_Objects/Parameters/FrameLib_GetParam.h"
 #include "../FrameLib_Objects/Parameters/FrameLib_Tag.h"
 #include "../FrameLib_Objects/Parameters/FrameLib_Untag.h"
 
@@ -65,7 +65,8 @@
 
 // Spatial
 
-#include "../FrameLib_Objects/Spatial/FrameLib_CoordinateSystem.h"
+#include "../FrameLib_Objects/Spatial/FrameLib_Cartopol.h"
+#include "../FrameLib_Objects/Spatial/FrameLib_Poltocar.h"
 #include "../FrameLib_Objects/Spatial/FrameLib_Spatial.h"
 
 // Spectral
@@ -92,10 +93,9 @@
 
 // Time Smoothing
 
-#include "../FrameLib_Objects/Time_Smoothing/FrameLib_EWMA.h"
-#include "../FrameLib_Objects/Time_Smoothing/FrameLib_EWMSD.h"
 #include "../FrameLib_Objects/Time_Smoothing/FrameLib_FrameDelta.h"
 #include "../FrameLib_Objects/Time_Smoothing/FrameLib_Lag.h"
+#include "../FrameLib_Objects/Time_Smoothing/FrameLib_MovingAverage.h"
 #include "../FrameLib_Objects/Time_Smoothing/FrameLib_TimeMean.h"
 #include "../FrameLib_Objects/Time_Smoothing/FrameLib_TimeMedian.h"
 #include "../FrameLib_Objects/Time_Smoothing/FrameLib_TimeStdDev.h"
@@ -141,8 +141,6 @@
 // Complex Operators
 
 #include "../FrameLib_Objects/Complex_Unary/FrameLib_Complex_Unary_Objects.h"
-#include "../FrameLib_Objects/Complex_Unary/FrameLib_Cartopol.h"
-#include "../FrameLib_Objects/Complex_Unary/FrameLib_Poltocar.h"
 #include "../FrameLib_Objects/Complex_Binary/FrameLib_Complex_Binary_Objects.h"
 
 #endif /* FRAMELIB_OBJECTS_H */

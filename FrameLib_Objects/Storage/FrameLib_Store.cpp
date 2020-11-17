@@ -1,9 +1,10 @@
 
 #include "FrameLib_Store.h"
 
-// Constructor / Destructor
+// Constructor
 
-FrameLib_Store::FrameLib_Store(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+FrameLib_Store::FrameLib_Store(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.addString(kName, "name", 0);
     mParameters.setInstantiation();
@@ -17,11 +18,6 @@ FrameLib_Store::FrameLib_Store(FrameLib_Context context, const FrameLib_Paramete
     
     setInputMode(0, false, true, false, kFrameAny);
     setOutputType(0, kFrameAny);
-}
-
-FrameLib_Store::~FrameLib_Store()
-{
-    releaseStorage(mStorage);
 }
 
 // Info
@@ -48,7 +44,6 @@ std::string FrameLib_Store::outputInfo(unsigned long idx, bool verbose)
 
 void FrameLib_Store::setStream(void *streamOwner, unsigned long stream)
 {
-    releaseStorage(mStorage);
     mStorage = registerStorage(numberedString(mName.c_str(), stream).c_str());
 }
 

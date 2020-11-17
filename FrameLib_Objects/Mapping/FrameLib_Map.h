@@ -5,11 +5,11 @@
 #include "FrameLib_DSP.h"
 #include "FrameLib_Scaling_Functions.h"
 
-class FrameLib_Map final : public FrameLib_Processor, private FrameLib_VariClipScaler
+class FrameLib_Map final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kMode, kInLo, kInHi, kOutLo, kOutHi, kExponent, kClip };
+    enum ParameterList { kMode, kInLo, kInHi, kOutLo, kOutHi, kClip, kExponent };
     enum Modes { kLinear, kLog, kExp, kPow, kDB, kInvDB, kTranspose, kInvTranspose };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
@@ -40,6 +40,8 @@ private:
     // Data
         
     static ParameterInfo sParamInfo;
+    
+    FrameLib_VariClipScaler mScaler;
 };
 
 #endif

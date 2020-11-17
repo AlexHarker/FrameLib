@@ -3,14 +3,13 @@
 #define FRAMELIB_INFO_H
 
 #include "FrameLib_DSP.h"
-#include "../../FrameLib_Dependencies/TableReader.hpp"
 
 class FrameLib_Info final : public FrameLib_Processor
 {
     // Parameter Info and Enums
     
     enum ParameterList { kBuffer, kUnits };
-    enum Units { kMS, kSeconds, kSamples };
+    enum Units { kSamples, kMS, kSeconds };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     
@@ -52,7 +51,6 @@ private:
     // Data
     
     std::unique_ptr<Proxy> mProxy;
-    Units mUnits;
     
     static ParameterInfo sParamInfo;
 };

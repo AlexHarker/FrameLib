@@ -40,6 +40,22 @@ public:
     using unique_object_ptr = std::unique_ptr<t_object, ObjectFree>;
     unique_object_ptr toUnique(void *ptr) { return unique_object_ptr(reinterpret_cast<t_object *>(ptr)); }
     
+    // Qelem struct for C++-style usage
+    
+    struct Qelem
+    {
+        Qelem(void *x, method fn) : mQelem(qelem_new(x, fn)) {}
+        ~Qelem() { qelem_free(mQelem); }
+        
+        void set()      { qelem_set(mQelem); }
+        void unset()    { qelem_unset(mQelem); }
+        void front()    { qelem_front(mQelem); }
+
+    private:
+        
+        t_qelem mQelem;
+    };
+    
     // Default Constructor
     
     MaxClass_Base() {}

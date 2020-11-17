@@ -39,7 +39,7 @@ class FrameLib_ProcessingQueue
 {
     class DenormalHandling
     {
-#if defined(__i386__) || defined(__x86_64__)
+#if defined(__i386__) || defined(__x86_64__) || defined(_M_IX86) || defined(_M_X64)
     public:
 
         DenormalHandling() : mMXCSR(_mm_getcsr())
@@ -69,19 +69,18 @@ public:
 
     /**
      
-     @class IntervalSecondsClock
+     @class IntervalMicosecondsClock
      
      @brief a clock for measuring time intervals in seconds.
      
      */
 
-    class IntervalSecondsClock
+    class IntervalMicrosecondsClock
     {
-        
     public:
         
         void start() { mStartTime = getTime(); }
-        long long elapsed() { return std::chrono::duration_cast<std::chrono::seconds>(getTime() - mStartTime).count(); }
+        long long elapsed() { return std::chrono::duration_cast<std::chrono::microseconds>(getTime() - mStartTime).count(); }
         
     private:
         
@@ -92,7 +91,6 @@ public:
     };
     
     static const int sProcessPerTimeCheck = 200;
-    static const int sMaxTime = 5;
     
     /**
      
@@ -104,11 +102,13 @@ public:
     
     class WorkerThreads final : public FrameLib_TriggerableThreadSet
     {
+        static unsigned int numThreads() { return FrameLib_Thread::maxThreads() - 1; }
         
     public:
         
         WorkerThreads(FrameLib_ProcessingQueue *queue)
-        : FrameLib_TriggerableThreadSet(FrameLib_Thread::kAudioPriority, FrameLib_Thread::maxThreads() - 1), mQueue(queue)
+        : FrameLib_TriggerableThreadSet(FrameLib_Thread::kAudioPriority, numThreads())
+        , mQueue(queue)
         {}
         
     private:
@@ -139,13 +139,20 @@ public:
     
     void reset() { mTimedOut = false; }
     bool isTimedOut() { return mTimedOut; }
+    void setTimeOuts(double relative = 0.0, double absolute = 0.0);
     void setMultithreading(bool multihread) { mMultithread = multihread; }
+    
+    // Timing info
+    
+    FrameLib_TimeFormat getBlockStartTime() const;
+    FrameLib_TimeFormat getBlockEndTime() const;
     
 private:
     
     void enqueue(PrepQueue &queue);
     void wakeWorkers();
     void serviceQueue(FrameLib_LocalAllocator *allocator);
+    void calculateTimeOutMax();
     bool checkForTimeOut();
     
     WorkerThreads mWorkers;
@@ -157,8 +164,11 @@ private:
     std::atomic<int32_t> mNumWorkersActive;
     
     bool mMultithread;
+    long long mMaxTime;
+    double mRelativeTimeOut;
+    double mAbsoluteTimeOut;
     std::atomic<bool> mTimedOut;
-    IntervalSecondsClock mClock;
+    IntervalMicrosecondsClock mClock;
     
     FrameLib_DSP *mEntryObject;
     FrameLib_ErrorReporter& mErrorReporter;

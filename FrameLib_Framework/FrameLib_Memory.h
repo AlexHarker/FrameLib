@@ -30,9 +30,6 @@
 
 class FrameLib_GlobalAllocator
 {
-
-private:
-    
     /**
      
      @class CoreAllocator
@@ -75,10 +72,12 @@ private:
         
         class NewThread final : public FrameLib_DelegateThread
         {
-            
         public:
             
-            NewThread(CoreAllocator& allocator) : FrameLib_DelegateThread(FrameLib_Thread::kHighPriority), mAllocator(allocator) {}
+            NewThread(CoreAllocator& allocator)
+            : FrameLib_DelegateThread(FrameLib_Thread::kHighPriority)
+            , mAllocator(allocator)
+            {}
             
         private:
             
@@ -97,10 +96,12 @@ private:
 
         class FreeThread final : public FrameLib_TriggerableThread
         {
-            
         public:
             
-            FreeThread(CoreAllocator& allocator) : FrameLib_TriggerableThread(FrameLib_Thread::kLowPriority), mAllocator(allocator) {}
+            FreeThread(CoreAllocator& allocator)
+            : FrameLib_TriggerableThread(FrameLib_Thread::kLowPriority)
+            , mAllocator(allocator)
+            {}
             
         private:
             
@@ -171,7 +172,6 @@ public:
         
     class Pruner
     {
-        
     public:
         
         Pruner(FrameLib_GlobalAllocator& allocator) : mAllocator(allocator)
@@ -310,7 +310,6 @@ private:
 
 class FrameLib_LocalAllocatorSet
 {
-    
 public:
     
     // Constructor
@@ -345,7 +344,6 @@ private:
 
 class FrameLib_ContextAllocator
 {
-    
 public:
 
     /**
@@ -374,7 +372,6 @@ public:
         
         class Access
         {
-            
         public:
             
             // Constructor and Destructor
@@ -452,6 +449,58 @@ public:
         FrameLib_ContextAllocator& mAllocator;
     };
     
+    /**
+     
+     @class StoragePtr
+     
+     @brief a managed pointer to a storage.
+     
+     */
+    
+    class StoragePtr
+    {
+        friend class FrameLib_ContextAllocator;
+        
+    public:
+        
+        StoragePtr() : mAllocator(nullptr), mStorage(nullptr) {}
+        ~StoragePtr() { release(); }
+        
+        StoragePtr(const StoragePtr&) = delete;
+        StoragePtr& operator=(const StoragePtr&) = delete;
+        
+        StoragePtr(StoragePtr&& b) : mAllocator(b.mAllocator), mStorage(b.mStorage)
+        {
+            b.mAllocator = nullptr;
+            b.mStorage = nullptr;
+        }
+        
+        StoragePtr& operator=(StoragePtr&& b)
+        {
+            release();
+            
+            mAllocator = b.mAllocator;
+            mStorage = b.mStorage;
+            b.mAllocator = nullptr;
+            b.mStorage = nullptr;
+            
+            return *this;
+        }
+        
+        operator Storage*()                 { return mStorage; }
+        const operator Storage*() const     { return mStorage; }
+        
+    private:
+        
+        StoragePtr(FrameLib_ContextAllocator *allocator, Storage *storage)
+        : mAllocator(allocator), mStorage(storage) {}
+        
+        void release();
+        
+        FrameLib_ContextAllocator *mAllocator;
+        Storage *mStorage;
+    };
+    
     // Constructor
     
     FrameLib_ContextAllocator(FrameLib_GlobalAllocator& allocator)
@@ -479,8 +528,7 @@ public:
 
     // Register and Release Storage
     
-    Storage *registerStorage(const char *name);
-    void releaseStorage(const char *name);
+    StoragePtr registerStorage(const char *name);
     
 private:
     

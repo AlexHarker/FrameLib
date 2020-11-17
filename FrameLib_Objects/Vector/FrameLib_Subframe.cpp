@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_Subframe::FrameLib_Subframe(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_Subframe::FrameLib_Subframe(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addDouble(kStart, "start", 0.0, 0);
     mParameters.setMin(0.0);
@@ -63,7 +64,7 @@ void FrameLib_Subframe::process()
     
     unsigned long start, end;
     
-    Units units = (Units) mParameters.getInt(kUnits);
+    Units units = mParameters.getEnum<Units>(kUnits);
     
     if (units == kSamples)
     {
@@ -76,9 +77,8 @@ void FrameLib_Subframe::process()
         end = roundToUInt(mParameters.getValue(kEnd) * sizeIn);
     }
     
-    start = start > sizeIn ? sizeIn : start;
-    end = end > sizeIn ? sizeIn : end;
-    end = end < start ? start : end;
+    start = std::min(start, sizeIn);
+    end = std::max(start, std::min(end, sizeIn));
     
     requestOutputSize(0, end - start);
     allocateOutputs();

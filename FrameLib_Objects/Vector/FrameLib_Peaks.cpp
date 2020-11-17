@@ -1,9 +1,42 @@
 
 #include "FrameLib_Peaks.h"
+#include "FrameLib_Edges.h"
+#include <algorithm>
 
-FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 3)
+FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, nullptr, 1, 3)
 {
+    mParameters.addEnum(kCriteria, "criteria", 0);
+    mParameters.addEnumItem(kOneNeighbour, "one");
+    mParameters.addEnumItem(kTwoNeighbours, "two", true);
+    mParameters.addEnumItem(kThreeNeighbours, "three");
+    mParameters.addEnumItem(kFourNeighbours, "four");
+
+    mParameters.addDouble(kThreshold, "threshold", 0.0, 1);
+    
+    mParameters.addDouble(kPadding, "padding", 0.0, 2);
+
+    mParameters.addEnum(kEdges, "edges", 3);
+    mParameters.addEnumItem(kEdgePad, "pad");
+    mParameters.addEnumItem(kEdgeExtend, "extend");
+    mParameters.addEnumItem(kEdgeWrap, "wrap");
+    mParameters.addEnumItem(kEdgeFold, "fold");
+    mParameters.addEnumItem(kEdgeMirror, "mirror");
+    
+    mParameters.addEnum(kRefinement, "refine", 4);
+    mParameters.addEnumItem(kNone, "none");
+    mParameters.addEnumItem(kParabolic, "parabolic", true);
+    mParameters.addEnumItem(kParabolicLog, "parabolic_log");
+    
+    mParameters.addEnum(kBoundary, "boundary", 4);
+    mParameters.addEnumItem(kMinimum, "minimum");
+    mParameters.addEnumItem(kMidpoint, "midpoint");
+    
+    mParameters.addBool(kAlwaysDetect, "always_detect", true, 5);
+    
     mParameters.set(serialisedParameters);
+    
+    addParameterInput();
 }
 
 // Info
@@ -28,40 +61,105 @@ std::string FrameLib_Peaks::outputInfo(unsigned long idx, bool verbose)
     else return formatInfo("Peak Amplitude - an interpolated amplitude for each peak", "Peak Amplitude", verbose);
 }
 
-// Helpers
+// Edges
 
-double FrameLib_Peaks::logValue(double val)
+template <class T>
+void createEdges(double *output, T data, unsigned long size, int edgeSize)
 {
-    val = log(val);
-    
-    return val < -500.0 ? -500.0 : val;
+    for (int i = 0; i < edgeSize; i++)
+    {
+        output[-(i + 1)] = data(-(i + 1));
+        output[size + i] = data(size + i);
+    }
 }
 
-void FrameLib_Peaks::refinePeak(double& pos, double& amp, double posUncorrected, double vm1, double v0, double vp1)
+// Peak Finding
+
+template <bool Func(const double *, double, unsigned long)>
+unsigned long findPeaks(unsigned long *peaks, const double *data, unsigned long size, double threshold)
 {
-    // FIX - neg values won't work with this interpolation - problem??
+    unsigned long nPeaks = 0;
     
-    // Take log values (avoiding values that are too low)
+    for (unsigned long i = 0; i < size; i++)
+        if (Func(data, threshold, i))
+            peaks[nPeaks++] = i;
     
-    vm1 = logValue(std::max(vm1, 0.0));
-    v0 = logValue(std::max(v0, 0.0));
-    vp1 = logValue(std::max(vp1, 0.0));
+    return nPeaks;
+}
+
+template <int N>
+bool checkPeak(const double *data, double threshold, unsigned long i)
+{
+    return checkPeak<N-1>(data, threshold, i) && data[i] > data[i-N] && data[i] > data[i+N];
+}
+
+template <>
+bool checkPeak<1>(const double *data, double threshold, unsigned long i)
+{
+    return data[i] > threshold && data[i] > data[i-1] && data[i] > data[i+1];
+}
+
+// Refinement
+
+template <void Func(double *, double *, const double *, unsigned long, unsigned long)>
+void refinePeaks(double *positions, double *values, const double *data, unsigned long *peaks, unsigned long nPeaks)
+{
+    for (unsigned long i = 0; i < nPeaks; i++)
+        Func(positions, values, data, i, peaks[i]);
+}
+
+void parabolicInterp(double& position, double& value, double idx, double vm1, double v_0, double vp1)
+{
+    const double divisor = vm1 + vp1 - (2.0 * v_0);
+    const double correction = divisor ? (0.5 * (vm1 - vp1)) / divisor : 0.0;
     
-    // Parabolic interpolation
+    position = idx + correction;
+    value = v_0 - (0.25 * (vm1 - vp1) * correction);
+}
+
+void refineNone(double *positions, double *values, const double *data, unsigned long peak, unsigned long idx)
+{
+    positions[peak] = idx;
+    values[peak] = data[idx];
+}
+
+void refineParabolic(double *positions, double *values, const double *data, unsigned long peak, unsigned long idx)
+{
+    parabolicInterp(positions[peak], values[peak], idx, data[idx-1], data[idx], data[idx+1]);
+}
+
+void refineParabolicLog(double *positions, double *values, const double *data, unsigned long peak, unsigned long idx)
+{
+    // Take log values (avoiding values that are too low) - doesn't work for negative values
+    // N.B. we assume a max of -80dB difference between samples to prevent extreme overshoot
+
+    double limit = std::max(std::max(data[idx-1], data[idx+1]) * 0.0001, std::numeric_limits<double>::min());
+    auto logLim = [&](double x) { return log(std::max(x, limit)); };
     
-    double divisor = vm1 + vp1 - (2.0 * v0);
-    double correction = divisor ? (0.5 * (vm1 - vp1)) / divisor : 0.0;
+    double position, value;
     
-    // N.B - Leave amplitude in a log format
+    parabolicInterp(position, value, idx, logLim(data[idx-1]), logLim(data[idx]), logLim(data[idx+1]));
     
-    pos = posUncorrected + correction;
-    amp = exp(v0 - (0.25 * (vm1 - vp1) * correction));
+    positions[peak] = position;
+    values[peak] = exp(value);
 }
 
 // Process
 
 void FrameLib_Peaks::process()
 {
+    Criteria criterion = mParameters.getEnum<Criteria>(kCriteria);
+    Refinements refine = mParameters.getEnum<Refinements>(kRefinement);
+    Boundaries boundary = mParameters.getEnum<Boundaries>(kBoundary);
+    Edges edges = mParameters.getEnum<Edges>(kEdges);
+    
+    double padValue = mParameters.getValue(kPadding);
+    double threshold = mParameters.getValue(kThreshold);
+    
+    bool alwaysDetect = mParameters.getBool(kAlwaysDetect);
+    
+    const static int padding = 4;
+    
     // Get Input
     
     unsigned long sizeIn, sizeOut1, sizeOut2, sizeOut3;
@@ -72,93 +170,106 @@ void FrameLib_Peaks::process()
     if (!sizeIn)
         return;
     
-    // Calculate number of peaks (for now ignore peaks in the top 2 positions)
+    auto edgeFilled = allocAutoArray<double>(sizeIn + padding * 2);
+    auto indices = allocAutoArray<unsigned long>(sizeIn);
+    double *data = edgeFilled + padding;
+
+    // N.B. parabolic log interpolation can only work on +ve values
     
-    if (sizeIn > 2 && (input[0] > input[1]) && (input[0] > input[2]))
-        nPeaks++;
-    else
+    if (refine == kParabolicLog)
+        threshold = std::max(0.0, threshold);
+    
+    if (!edgeFilled || !indices)
+        return;
+    
+    // Copy input and prepare edges
+    
+    copyVector(data, input, sizeIn);
+    
+    switch (edges)
     {
-        if (sizeIn > 3 && (input[1] > input[2]) && (input[1] > input[3]) && (input[1] > input[0]))
-            nPeaks++;
+        case kEdgePad:      createEdges(data, EdgesPad(data, sizeIn, padValue), sizeIn, padding);   break;
+        case kEdgeExtend:   createEdges(data, EdgesExtend(data, sizeIn), sizeIn, padding);          break;
+        case kEdgeWrap:     createEdges(data, EdgesWrap(data, sizeIn), sizeIn, padding);            break;
+        case kEdgeFold:     createEdges(data, EdgesFold(data, sizeIn), sizeIn, padding);            break;
+        case kEdgeMirror:   createEdges(data, EdgesMirror(data, sizeIn), sizeIn, padding);          break;
     }
     
-    for (unsigned long i = 2; i < (std::max(sizeIn, 2UL) - 2); i++)
-        if ((input[i] > input[i - 2]) && (input[i] > input[i - 1]) && (input[i] > input[i + 1]) && (input[i] > input[i + 2]))
-            nPeaks++;
+    // Find and store peaks
     
+    switch (criterion)
+    {
+        case kOneNeighbour:     nPeaks = findPeaks<checkPeak<1>>(indices, data, sizeIn, threshold);     break;
+        case kTwoNeighbours:    nPeaks = findPeaks<checkPeak<2>>(indices, data, sizeIn, threshold);     break;
+        case kThreeNeighbours:  nPeaks = findPeaks<checkPeak<3>>(indices, data, sizeIn, threshold);     break;
+        case kFourNeighbours:   nPeaks = findPeaks<checkPeak<4>>(indices, data, sizeIn, threshold);     break;
+    }
+    
+    // If needed reate a single peak at the maximum, (place central to multiple consecutive maxima)
+    
+    if (!nPeaks && alwaysDetect)
+    {
+        double *fwd1 = data;
+        double *fwd2 = data + sizeIn;
+        std::reverse_iterator<double *> rev1(data + sizeIn);
+        std::reverse_iterator<double *> rev2(data);
+        
+        unsigned long max = std::distance(data, std::max_element(fwd1, fwd2));
+        unsigned long beg = std::distance(fwd1, std::find(fwd1, fwd2, data[max]));
+        unsigned long end = sizeIn  - (std::distance(rev1, std::find(rev1, rev2, data[max])) + 1);
+        unsigned long centre = (beg + end) >> 1;
+        
+        indices[nPeaks++] = data[centre] == data[max] ? centre : max;
+    }
+        
     // Allocate outputs
     
-    requestOutputSize(0, sizeIn);
+    requestOutputSize(0, nPeaks ? sizeIn : 0);
     requestOutputSize(1, nPeaks);
     requestOutputSize(2, nPeaks);
-    allocateOutputs();
+    
+    if (!allocateOutputs())
+        return;
     
     double *output1 = getOutput(0, &sizeOut1);
     double *output2 = getOutput(1, &sizeOut2);
     double *output3 = getOutput(2, &sizeOut3);
     
-    // Find and Refine Peaks (for now ignore peaks in the top 2 positions)
-    
-    nPeaks = 0;
-    
-    if (sizeOut1 && sizeOut2 && sizeOut3)
+    // Refine peaks
+
+    switch (refine)
     {
-        if (sizeIn > 2 && (input[0] > input[1]) && (input[0] > input[2]))
+        case kNone:             refinePeaks<refineNone>(output2, output3, data, indices, nPeaks);           break;
+        case kParabolic:        refinePeaks<refineParabolic>(output2, output3, data, indices, nPeaks);      break;
+        case kParabolicLog:     refinePeaks<refineParabolicLog>(output2, output3, data, indices, nPeaks);   break;
+    }
+    
+    // Determine which samples belong to which peak
+    
+    for (unsigned long peak = 0, samples = 0; peak < nPeaks; peak++)
+    {
+        unsigned long peakEnd = sizeIn;
+        
+        if (peak != nPeaks - 1)
         {
-            refinePeak(output2[0], output3[0], 0, input[1], input[0], input[1]);
-            nPeaks++;
-        }
-        else
-        {
-            if (sizeIn > 3 && (input[1] > input[2]) && (input[1] > input[3]) && (input[1] > input[0]))
+            switch (boundary)
             {
-                refinePeak(output2[0], output3[0], 1, input[0], input[1], input[2]);
-                nPeaks++;
+                case kMinimum:
+                {
+                    auto it = std::min_element(data + indices[peak] + 1, data + indices[peak + 1]);
+                    peakEnd = std::distance(data, it);
+                    break;
+                }
+                
+                case kMidpoint:
+                {
+                    peakEnd = static_cast<unsigned long>(ceil((output2[peak] + output2[peak + 1]) / 2.0));
+                    break;
+                }
             }
         }
         
-        for (unsigned long i = 2; i < (std::max(sizeIn, 2UL) - 2); i++)
-        {
-            if ((input[i] > input[i - 2]) && (input[i] > input[i - 1]) && (input[i] > input[i + 1]) && (input[i] > input[i + 2]))
-            {
-                refinePeak(output2[nPeaks], output3[nPeaks], i, input[i - 1], input[i], input[i + 1]);
-                nPeaks++;
-            }
-        }
+        for (; samples < peakEnd; samples++)
+            output1[samples] = peak;
     }
-    
-    // Set indices
-    
-    unsigned long binsFilled = 0;
-    unsigned long peak = 0;
-    unsigned long minPoint = 0;
-    
-    if (nPeaks)
-    {
-        for (; peak < (nPeaks - 1); peak++)
-        {
-            unsigned long beg = truncToUInt(output2[peak]);
-            unsigned long end = roundToUInt(output2[peak + 1]);
-            
-            double minValue = input[beg];
-            minPoint = beg;
-            
-            for (unsigned long i = beg; i < end; i++)
-            {
-                if (input[i] < minValue)
-                {
-                    minValue = input[i];
-                    minPoint = i;
-                }
-            }
-            
-            for (; binsFilled < minPoint; binsFilled++)
-                output1[binsFilled] = peak;
-        }
-    }
-    
-    // Fill to the end
-    
-    for (; binsFilled < sizeOut1; binsFilled++)
-        output1[binsFilled] = peak;
 }
