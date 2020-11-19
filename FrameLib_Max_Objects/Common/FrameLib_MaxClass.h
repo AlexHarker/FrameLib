@@ -928,7 +928,7 @@ public:
     {
         char alloc;
         atom_alloc(argc, argv, &alloc);
-        atom_setsym(*argv, x->object()->mContext.mName);
+        atom_setsym(*argv, x->object()->mMaxContext.mName);
         
         return MAX_ERR_NONE;
     }
@@ -944,7 +944,7 @@ public:
     {
         char alloc;
         atom_alloc(argc, argv, &alloc);
-        atom_setlong(*argv, x->object()->mContext.mRealtime);
+        atom_setlong(*argv, x->object()->mMaxContext.mRealtime);
         
         return MAX_ERR_NONE;
     }
@@ -1094,10 +1094,10 @@ public:
             CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mBuffer);
         }
         
-        CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mContext.mName);
+        CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mMaxContext.mName);
         CLASS_ATTR_ACCESSORS(c, "id", 0, &FrameLib_MaxClass<T>::idSet);
 
-        CLASS_ATTR_LONG(c, "rt", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mContext.mRealtime);
+        CLASS_ATTR_LONG(c, "rt", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mMaxContext.mRealtime);
         CLASS_ATTR_ACCESSORS(c, "rt", 0, &FrameLib_MaxClass<T>::rtSet);
 
         addMethod(c, (method) &extPatchLineUpdate, "patchlineupdate");
@@ -1245,7 +1245,7 @@ public:
     , mConnectionsUpdated(false)
     , mResolved(false)
     , mBuffer(gensym(""))
-    , mContext{ T::sType == kScheduler, contextPatcher(gensym("#P")->s_thing), gensym("") }
+    , mMaxContext{ T::sType == kScheduler, contextPatcher(gensym("#P")->s_thing), gensym("") }
     {
         // Deal with attributes
         
@@ -1265,7 +1265,7 @@ public:
         
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        FrameLib_Context context = mGlobal->makeContext(mContext);
+        FrameLib_Context context = mGlobal->makeContext(mMaxContext);
         mFrameLibProxy->mMaxObject = *this;
         mObject.reset(new T(context, &serialisedParameters, mFrameLibProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
@@ -1759,7 +1759,7 @@ public:
     
     static t_max_err idSet(FrameLib_MaxClass *x, t_object *attr, long argc, t_atom *argv)
     {
-        x->mContext.mName = argv ? atom_getsym(argv) : gensym("");
+        x->mMaxContext.mName = argv ? atom_getsym(argv) : gensym("");
         x->updateContext();
         
         return MAX_ERR_NONE;
@@ -1769,7 +1769,7 @@ public:
     
     static t_max_err rtSet(FrameLib_MaxClass *x, t_object *attr, long argc, t_atom *argv)
     {
-        x->mContext.mRealtime = argv ? (atom_getlong(argv) ? 1 : 0) : 0;
+        x->mMaxContext.mRealtime = argv ? (atom_getlong(argv) ? 1 : 0) : 0;
         x->updateContext();
         
         return MAX_ERR_NONE;
@@ -1781,7 +1781,7 @@ private:
     {
         if (mObject)
         {
-            FrameLib_Context context = mGlobal->makeContext(mContext);
+            FrameLib_Context context = mGlobal->makeContext(mMaxContext);
          
             if (context != mObject->getContext())
             {
@@ -1821,7 +1821,7 @@ private:
         if (mGlobal->isRealtime(context) || mGlobal->isRealtime(current))
             dspSetBroken();
         
-        mContext = maxContext;
+        mMaxContext = maxContext;
         mGlobal->retainContext(context);
         mGlobal->releaseContext(current);
         mGlobal->flushErrors(context, mFrameLibProxy.get());
@@ -1873,7 +1873,7 @@ private:
         
         mGlobal->clearQueue();
         
-        traversePatch(mContext.mPatch, getAssociation(mContext.mPatch), theMethod, args...);
+        traversePatch(mMaxContext.mPatch, getAssociation(mMaxContext.mPatch), theMethod, args...);
         
         while (t_object *object = mGlobal->popFromQueue())
             objectMethod(object, theMethod, args...);
@@ -2379,7 +2379,7 @@ public:
     // Attributes
     
     t_symbol *mBuffer;
-    FrameLib_MaxContext mContext;
+    FrameLib_MaxContext mMaxContext;
 };
 
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_MaxClass_Expand<T>::makeClass() to create)
