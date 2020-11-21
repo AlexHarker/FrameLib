@@ -155,7 +155,7 @@ public:
                 for (j = i; (j < length) && half_width == half_width_calc(j); j++);
                 
                 uintptr_t n = j - i;
-                uintptr_t m = use_fft_n(n, width, fft_size);
+                uintptr_t m = use_fft_n(n, half_width, fft_size);
                 uintptr_t k = 0;
                 
                 const double *data_fft = data - (half_width - 1);
@@ -241,12 +241,9 @@ private:
             out[i + in_size + edge_size] = fetch(i + in_size);
     }
     
-    uintptr_t use_fft_n(uintptr_t n, uintptr_t width, uintptr_t fft_size)
+    uintptr_t use_fft_n(uintptr_t n, uintptr_t half_width, uintptr_t fft_size)
     {
-        bool use_fft = fft_size && n > 2 && width > 2 && (64 * n > width);
-        
-        //uintptr_t optimal_fft = 1 << processor::calc_fft_size_log2(half_width * 4);
-        //std::min(optimal_fft / 2, n);
+        bool use_fft = fft_size && n > 64 && half_width > 16 && (half_width * 64 > n);
         
         return use_fft ? n : 0;
     }
