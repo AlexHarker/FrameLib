@@ -226,7 +226,7 @@ public:
                     break;
                     
                 case kSineTaper:
-                    mValidParams[0] = arraySize ? round(parameters[0]) : 1;
+                    mValidParams[0] = arraySize ? std::max(round(parameters[0]), 1.0) : 1;
                     mParamSize = 1;
                     break;
                     
@@ -237,7 +237,6 @@ public:
             if (mParamSize && arraySize > mParamSize)
             {
                 mOwner.getReporter()(kErrorObject, mOwner.getProxy(), "too many parameters given for window type #", mParameters.getItemString(TypeIdx, getType()));
-                mParamSize = 0;
             }
         }
     }
