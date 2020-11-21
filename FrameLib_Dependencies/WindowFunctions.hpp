@@ -154,11 +154,6 @@ namespace window_functions
             return 1.0 - x * x;
         }
         
-        inline double sine(uint32_t i, uint32_t N, const params& p)
-        {
-            return sin(pi() * normalise(i, N));
-        }
-        
         inline double parzen(uint32_t i, uint32_t N, const params& p)
         {
             const double N2 = static_cast<double>(N) * 0.5;
@@ -177,6 +172,44 @@ namespace window_functions
             };
             
             return w0(static_cast<double>(i) - N2);
+        }
+        
+        inline double sine(uint32_t i, uint32_t N, const params& p)
+        {
+            return sin(pi() * normalise(i, N));
+        }
+        
+        inline double sine_taper(uint32_t i, uint32_t N, const params& p)
+        {
+            return sin(p.a0 * pi() * normalise(i, N));
+        }
+        
+        inline double tukey(uint32_t i, uint32_t N, const params& p)
+        {
+            return 0.5 - 0.5 * cos(trapezoid(i, N, p) * pi());
+        }
+        
+        inline double izero(double x2)
+        {
+            double term = 1.0;
+            double bessel = 1.0;
+            
+            // N.B. - loop based on epsilon for maximum accuracy
+            
+            for (unsigned long i = 1; term > std::numeric_limits<double>::epsilon(); i++)
+            {
+                const double i2 = static_cast<double>(i * i);
+                term = term * x2 * (1.0 / (4.0 * i2));
+                bessel += term;
+            }
+            
+            return bessel;
+        }
+        
+        inline double kaiser(uint32_t i, uint32_t N,  const params& p)
+        {
+            double x = 2.0 * normalise(i, N) - 1.0;
+            return izero((1.0 - x * x) * p.a0 * p.a0) * p.a1;
         }
         
         inline double cosine_2_term(uint32_t i, uint32_t N, const params& p)
@@ -280,39 +313,6 @@ namespace window_functions
         inline double nuttall_minimal_98dB(uint32_t i, uint32_t N, const params& p)
         {
             return cosine_4_term(i, N, params(0.3635819, 0.4891775, 0.1365995, 0.0106411));
-        }
-        
-        inline double sine_taper(uint32_t i, uint32_t N, const params& p)
-        {
-            return sin(p.a0 * pi() * normalise(i, N));
-        }
-        
-        inline double izero(double x2)
-        {
-            double term = 1.0;
-            double bessel = 1.0;
-            
-            // N.B. - loop based on epsilon for maximum accuracy
-            
-            for (unsigned long i = 1; term > std::numeric_limits<double>::epsilon(); i++)
-            {
-                const double i2 = static_cast<double>(i * i);
-                term = term * x2 * (1.0 / (4.0 * i2));
-                bessel += term;
-            }
-            
-            return bessel;
-        }
-        
-        inline double kaiser(uint32_t i, uint32_t N,  const params& p)
-        {
-            double x = 2.0 * normalise(i, N) - 1.0;
-            return izero((1.0 - x * x) * p.a0 * p.a0) * p.a1;
-        }
-        
-        inline double tukey(uint32_t i, uint32_t N, const params& p)
-        {
-            return 0.5 - 0.5 * cos(trapezoid(i, N, p) * pi());
         }
         
         inline double ni_flat_top(uint32_t i, uint32_t N, const params& p)
@@ -471,6 +471,33 @@ namespace window_functions
     }
     
     template <class T>
+    void sine_taper(T *window, uint32_t N, uint32_t begin, uint32_t end, const params& p)
+    {
+        params p1(std::round(p.a0));
+        p1.exponent = p.exponent;
+        
+        impl::generate<impl::sine_taper, false>(window, N, begin, end, p1);
+    }
+    
+    template <class T>
+    void tukey(T *window, uint32_t N, uint32_t begin, uint32_t end, const params& p)
+    {
+        params p1(p.a0 * 0.5, 1.0 - (p.a0 * 0.5));
+        p1.exponent = p.exponent;
+        
+        impl::generate<impl::tukey, true>(window, N, begin, end, p1);
+    }
+    
+    template <class T>
+    void kaiser(T *window, uint32_t N, uint32_t begin, uint32_t end, const params& p)
+    {
+        params p1(p.a0, 1.0 / impl::izero(p.a0 * p.a0));
+        p1.exponent = p.exponent;
+        
+        impl::generate<impl::kaiser, true>(window, N, begin, end, p1);
+    }
+    
+    template <class T>
     void cosine_2_term(T *window, uint32_t N, uint32_t begin, uint32_t end, const params& p)
     {
         impl::generate<impl::cosine_2_term, true>(window, N, begin, end, p);
@@ -582,33 +609,6 @@ namespace window_functions
     void nuttall_minimal_98dB(T *window, uint32_t N, uint32_t begin, uint32_t end, const params& p)
     {
         impl::generate<impl::nuttall_minimal_98dB, true>(window, N, begin, end, p);
-    }
-    
-    template <class T>
-    void sine_taper(T *window, uint32_t N, uint32_t begin, uint32_t end, const params& p)
-    {
-        params p1(std::round(p.a0));
-        p1.exponent = p.exponent;
-        
-        impl::generate<impl::sine_taper, false>(window, N, begin, end, p1);
-    }
-    
-    template <class T>
-    void kaiser(T *window, uint32_t N, uint32_t begin, uint32_t end, const params& p)
-    {
-        params p1(p.a0, 1.0 / impl::izero(p.a0 * p.a0));
-        p1.exponent = p.exponent;
-        
-        impl::generate<impl::kaiser, true>(window, N, begin, end, p1);
-    }
-    
-    template <class T>
-    void tukey(T *window, uint32_t N, uint32_t begin, uint32_t end, const params& p)
-    {
-        params p1(p.a0 * 0.5, 1.0 - (p.a0 * 0.5));
-        p1.exponent = p.exponent;
-
-        impl::generate<impl::tukey, true>(window, N, begin, end, p1);
     }
     
     template <class T>
