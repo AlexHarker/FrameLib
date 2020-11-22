@@ -10,7 +10,7 @@ class FrameLib_Untag final : public FrameLib_Processor
     
     // Parameter Enums and Info
 
-    enum ParameterList { kNumOuts, kNames };
+    enum ParameterList { kNumOuts, kTags };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
