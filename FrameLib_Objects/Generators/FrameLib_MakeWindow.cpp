@@ -67,16 +67,11 @@ FrameLib_MakeWindow::ParameterInfo::ParameterInfo()
         "input - the output length follows the length of the trigger input.");
     add("Sets the requested output length in the units specified by the units parameter.");
     add("Sets the units for specified output lengths.");
-    add("Sets the scaling of the output ramp. "
-        "count - scaled in samples (an interger count from zero). "
-        "ms - scaled in milliseconds starting at zero. "
-        "seconds - scaled in seconds starting at zero. "
-        "normalised - output is normalised according to the edges parameter.");
-    add("Sets the included edges when the scaling is set to normalised: "
-        "both - the ramp is scaled [0-1]. "
-        "first - the ramp is scaled [0-1). "
-        "last - the ramp is scaled (0-1]. "
-        "none - the ramp is scaled (0-1).");
+    add(Generator::getWindowTypeInfo());
+    add(Generator::getExponentInfo());
+    add(Generator::getCompensationInfo());
+    add(Generator::getWindowParametersInfo());
+    add(Generator::getEndpointsInfo());
 }
 
 // Helpers

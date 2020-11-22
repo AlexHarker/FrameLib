@@ -2,6 +2,8 @@
 #ifndef FRAMELIB_WINDOWFUNCTIONS_H
 #define FRAMELIB_WINDOWFUNCTIONS_H
 
+#include <cmath>
+
 #include "FrameLib_Object.h"
 
 #include "../../FrameLib_Dependencies/WindowFunctions.hpp"
@@ -14,7 +16,9 @@ class FrameLib_WindowGenerator
     
 public:
     
-    enum WindowTypes { kHann, kHamming, kTriangle, kTrapezoid, kTukey, kSine, kKaiser, kBlackman, kBlackmanHarris, kNuttallContinuous, kNuttallMinimal, kFlatTop, kRectangle };
+    // Parameter enums
+    
+    enum WindowTypes { kRectangle, kTriangle, kTrapezoid, kWelch, kParzen, kTukey, kSine, kHann, kHamming, kBlackman, kExactBlackman, kBlackmanHarris, kNuttallContinuous, kNuttallMinimal, kFlatTop, kCosineSum, kKaiser, kSineTaper  };
     
     enum Compensation { kOff, kLinear, kPower, kReconstruct };
     
@@ -23,22 +27,30 @@ public:
     FrameLib_WindowGenerator(FrameLib_Block& owner, FrameLib_Parameters& parameters)
     : mOwner(owner), mParameters(parameters), mParamSize(0) , mGenerator(nullptr) {}
     
+    // Add parameters
+    
     void addWindowType(long argIdx = -1)
     {
         mParameters.addEnum(TypeIdx, "window", argIdx);
-        mParameters.addEnumItem(kHann, "hann");
-        mParameters.addEnumItem(kHamming, "hamming");
+       
+        mParameters.addEnumItem(kRectangle, "rectangle");
         mParameters.addEnumItem(kTriangle, "triangle");
         mParameters.addEnumItem(kTrapezoid, "trapezoid");
+        mParameters.addEnumItem(kWelch, "welch");
+        mParameters.addEnumItem(kParzen, "parzen");
         mParameters.addEnumItem(kTukey, "tukey");
         mParameters.addEnumItem(kSine, "sine");
-        mParameters.addEnumItem(kKaiser, "kaiser");
+        mParameters.addEnumItem(kHann, "hann", true);
+        mParameters.addEnumItem(kHamming, "hamming");
         mParameters.addEnumItem(kBlackman, "blackman");
-        mParameters.addEnumItem(kBlackmanHarris, "blackman-harris");
+        mParameters.addEnumItem(kExactBlackman, "exact_blackman");
+        mParameters.addEnumItem(kBlackmanHarris, "blackman_harris");
         mParameters.addEnumItem(kNuttallContinuous, "nuttall_continuous");
-        mParameters.addEnumItem(kNuttallMinimal, "nuttall_min");
-        mParameters.addEnumItem(kFlatTop, "flat-top");
-        mParameters.addEnumItem(kRectangle, "rectangle");
+        mParameters.addEnumItem(kNuttallMinimal, "nuttall_minimal");
+        mParameters.addEnumItem(kFlatTop, "flat_top");
+        mParameters.addEnumItem(kCosineSum, "cosine_sum");
+        mParameters.addEnumItem(kKaiser, "kaiser");
+        mParameters.addEnumItem(kSineTaper, "sine_taper");
     }
     
     void addWindowParameters()
@@ -68,6 +80,8 @@ public:
         mParameters.addEnumItem(kLast, "last");
         mParameters.addEnumItem(kNone, "none");
     }
+    
+    // Generation and calculations
     
     void generate(double *window, unsigned long N, unsigned long begin, unsigned long end, bool calcGains)
     {
@@ -127,6 +141,8 @@ public:
         }
     }
     
+    // Parameter updates and retrieval
+    
     void updateParameters()
     {
         unsigned long arraySize;
@@ -138,40 +154,89 @@ public:
         {
             switch (getType())
             {
-                case kHann:                 mGenerator = hann<double>;                      break;
-                case kHamming:              mGenerator = hamming<double>;                   break;
+                case kRectangle:            mGenerator = rect<double>;                      break;
                 case kTriangle:             mGenerator = triangle<double>;                  break;
                 case kTrapezoid:            mGenerator = trapezoid<double>;                 break;
+                case kWelch:                mGenerator = welch<double>;                    break;
+                case kParzen:               mGenerator = parzen<double>;                    break;
                 case kTukey:                mGenerator = tukey<double>;                     break;
                 case kSine:                 mGenerator = sine<double>;                      break;
-                case kKaiser:               mGenerator = kaiser<double>;                    break;
+                case kHann:                 mGenerator = hann<double>;                      break;
+                case kHamming:              mGenerator = hamming<double>;                   break;
                 case kBlackman:             mGenerator = blackman<double>;                  break;
+                case kExactBlackman:        mGenerator = exact_blackman<double>;            break;
                 case kBlackmanHarris:       mGenerator = blackman_harris_92dB<double>;      break;
                 case kNuttallContinuous:    mGenerator = nuttall_1st_93dB<double>;          break;
                 case kNuttallMinimal:       mGenerator = nuttall_minimal_98dB<double>;      break;
                 case kFlatTop:              mGenerator = heinzel_flat_top_95dB<double>;     break;
-                case kRectangle:            mGenerator = rect<double>;                      break;
+                case kCosineSum:
+                {
+                    if (arraySize <= 2)
+                        mGenerator = cosine_2_term<double>;
+                    else if (arraySize == 3)
+                        mGenerator = cosine_3_term<double>;
+                    else if (arraySize == 4)
+                        mGenerator = cosine_4_term<double>;
+                    else
+                        mGenerator = cosine_5_term<double>;
                     break;
+                }
+                case kKaiser:               mGenerator = kaiser<double>;                    break;
+                case kSineTaper:            mGenerator = sine_taper<double>;                break;
             }
             
             switch (getType())
             {
-                case kTrapezoid:        // SPECIAL CASE
-                case kTukey:            // SPECIAL CASE
-                case kKaiser:           // SPECIAL CASE
-                    for (unsigned long i = 0; i < arraySize; i++)
-                        mValidParams[i] = parameters[i];
+                case kTrapezoid:
+                    mValidParams[0] = arraySize ? parameters[0] : 0.25;
+                    mValidParams[1] = arraySize > 1 ? parameters[1] : 1.0 - mValidParams[0];
+                    mParamSize = 2;
+                    break;
                     
-                    mParamSize = arraySize;
+                case kTukey:
+                    mValidParams[0] = arraySize ? parameters[0] : 0.5;
+                    mParamSize = 1;
+                    break;
+                    
+                case kCosineSum:
+                {
+                    if (arraySize == 0)
+                    {
+                        mValidParams[0] = 0.5;
+                        mValidParams[1] = 0.5;
+                    }
+                    else if (arraySize == 1)
+                    {
+                        mValidParams[0] = parameters[0];
+                        mValidParams[1] = 1.0 - parameters[0];
+                    }
+                    else
+                    {
+                        for (unsigned long i = 0; i < arraySize; i++)
+                            mValidParams[i] = parameters[i];
+                    }
+                    
+                    mParamSize = arraySize > 1 ? arraySize : 2;
+                    break;
+                }
+                    
+                case kKaiser:
+                    mValidParams[0] = arraySize ? parameters[0] : 6.24;
+                    mParamSize = 1;
+                    break;
+                    
+                case kSineTaper:
+                    mValidParams[0] = arraySize ? std::max(round(parameters[0]), 1.0) : 1;
+                    mParamSize = 1;
                     break;
                     
                 default:
-                    if (arraySize)
-                    {
-                        mOwner.getReporter()(kErrorObject, mOwner.getProxy(), "window takes no parameters");
-                        mParamSize = 0;
-                    }
                     break;
+            }
+            
+            if (mParamSize && arraySize > mParamSize)
+            {
+                mOwner.getReporter()(kErrorObject, mOwner.getProxy(), "too many parameters given for window type #", mParameters.getItemString(TypeIdx, getType()));
             }
         }
     }
@@ -186,6 +251,35 @@ public:
             params[i] = mValidParams[i];
 
         *size = mParamSize;
+    }
+    
+    // Parameter info
+    
+    static const char *getWindowTypeInfo()
+    {
+        return "Sets the window type.";
+    }
+    
+    static const char *getWindowParametersInfo()
+    {
+        return "An array that sets parameters specific to each window type.";
+    }
+    
+    static const char *getExponentInfo()
+    {
+        return "Sets the exponent that the window should be raised to.";
+    }
+    
+    static const char *getCompensationInfo()
+    {
+        return "Sets the gain compensation used. "
+        "off - no compensation is used. linear - compensate the linear gain of the window. "
+        "power - compensate the power gain of the window. reconstruct - compensate by the power gain divided by the linear gain";
+    }
+    
+    static const char *getEndpointsInfo()
+    {
+        return "Sets which endpoints of the window used will be non-zero for windows that start and end at zero.";
     }
     
 private:
