@@ -9,11 +9,11 @@ FrameLib_Multitaper::FrameLib_Multitaper(FrameLib_Context context, const FrameLi
 : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 , mProcessor(*this)
 {
-    mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
+    mParameters.addInt(kMaxLength, "max_length", 16384, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
     
-    mParameters.addInt(kNumTapers, "numtapers", 3, 1);
+    mParameters.addInt(kNumTapers, "num_tapers", 3, 1);
     mParameters.setMin(1);
     
     mParameters.addBool(kNormalise, "normalise", true, 2);

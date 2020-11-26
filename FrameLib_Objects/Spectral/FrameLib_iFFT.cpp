@@ -7,7 +7,7 @@ FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, const FrameLib_Parameters
 : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 , mProcessor(*this)
 {
-    mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
+    mParameters.addInt(kMaxLength, "max_length", 16384, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
     
@@ -17,7 +17,7 @@ FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, const FrameLib_Parameters
     mParameters.addEnum(kMode, "mode", 2);
     mParameters.addEnumItem(kReal, "real");
     mParameters.addEnumItem(kComplex, "complex");
-    mParameters.addEnumItem(kFullSpectrum, "fullspectrum");
+    mParameters.addEnumItem(kFullSpectrum, "full_spectrum");
     mParameters.setInstantiation();
 
     mParameters.set(serialisedParameters);

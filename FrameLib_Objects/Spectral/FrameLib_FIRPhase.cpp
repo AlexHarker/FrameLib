@@ -7,14 +7,14 @@ FrameLib_FIRPhase::FrameLib_FIRPhase(FrameLib_Context context, const FrameLib_Pa
 : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 , mProcessor(*this)
 {
-    mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
+    mParameters.addInt(kMaxLength, "max_length", 16384, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
     
     mParameters.addDouble(kPhase, "phase", 0.0, 1);
     mParameters.setClip(0.0, 1.0);
     
-    mParameters.addDouble(kTimeFactor, "timefactor", 1.0, 2);
+    mParameters.addDouble(kTimeFactor, "time_factor", 1.0, 2);
     mParameters.setMin(1.0);
     
     mParameters.set(serialisedParameters);
