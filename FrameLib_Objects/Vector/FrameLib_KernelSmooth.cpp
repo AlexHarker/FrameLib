@@ -22,7 +22,7 @@ FrameLib_KernelSmooth::FrameLib_KernelSmooth(FrameLib_Context context, const Fra
     mParameters.addEnumItem(Smoother::kFold, "fold");
     mParameters.addEnumItem(Smoother::kMirror, "mirror");
     
-    mParameters.addInt(kMaxFFTSize, "maxfft", mSmoother.max_fft_size());
+    mParameters.addInt(kMaxFFTSize, "max_fft", mSmoother.max_fft_size());
     mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
