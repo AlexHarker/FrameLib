@@ -10,7 +10,7 @@ FrameLib_Prioritise::FrameLib_Prioritise(FrameLib_Context context, const FrameLi
     mParameters.setClip(2, 32);
     mParameters.setInstantiation();
     
-    mParameters.addEnum(kMode, "mode", 1);
+    mParameters.addEnum(kMode, "order", 1);
     mParameters.addEnumItem(kLow, "low");
     mParameters.addEnumItem(kHigh, "high");
     mParameters.setInstantiation();
