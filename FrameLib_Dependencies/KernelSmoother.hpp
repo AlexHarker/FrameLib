@@ -35,22 +35,19 @@ public:
     enum EdgeType { kZeroPad, kExtend, kWrap, kFold, kMirror };
     
     template <typename U = Allocator, enable_if_t<std::is_default_constructible<U>::value> = 0>
-    kernel_smoother()
-    {
-        set_max_fft_size(1 << 18);
-    }
+    kernel_smoother(uintptr_t max_fft_size = 1 << 18)
+    : spectral_processor<T, Allocator>(max_fft_size)
+    {}
     
     template <typename U = Allocator, enable_if_t<std::is_copy_constructible<U>::value> = 0>
-    kernel_smoother(const Allocator& allocator) : spectral_processor<T, Allocator>(allocator)
-    {
-        set_max_fft_size(1 << 18);
-    }
+    kernel_smoother(const Allocator& allocator, uintptr_t max_fft_size = 1 << 18)
+    : spectral_processor<T, Allocator>(allocator, max_fft_size)
+    {}
     
     template <typename U = Allocator, enable_if_t<std::is_move_constructible<U>::value> = 0>
-    kernel_smoother(Allocator&& allocator) : spectral_processor<T, Allocator>(allocator)
-    {
-        set_max_fft_size(1 << 18);
-    }
+    kernel_smoother(const Allocator&& allocator, uintptr_t max_fft_size = 1 << 18)
+    : spectral_processor<T, Allocator>(allocator, max_fft_size)
+    {}
 
     void set_max_fft_size(uintptr_t size) { processor::set_max_fft_size(size); }
     

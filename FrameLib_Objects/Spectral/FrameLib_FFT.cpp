@@ -5,7 +5,7 @@
 
 FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 1, 2)
-, mProcessor(*this)
+, mProcessor(*this, 0)
 {
     mParameters.addInt(kMaxLength, "max_length", 16384, 0);
     mParameters.setMin(0);

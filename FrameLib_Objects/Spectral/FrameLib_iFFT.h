@@ -5,8 +5,6 @@
 #include "FrameLib_DSP.h"
 #include "../../FrameLib_Dependencies/SpectralProcessor.hpp"
 
-// FIX - review FFTSetup
-
 class FrameLib_iFFT final : public FrameLib_Processor
 {
     // Parameter Enums and Info

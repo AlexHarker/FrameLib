@@ -4,7 +4,8 @@
 // Constructor
 
 FrameLib_KernelSmooth::FrameLib_KernelSmooth(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mSmoother(*this)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+, mSmoother(*this, 0)
 {
     mParameters.addVariableDoubleArray(kSmooth, "smooth", 0.0, 2, 0, 0);
     mParameters.setMin(0.0);
@@ -22,7 +23,7 @@ FrameLib_KernelSmooth::FrameLib_KernelSmooth(FrameLib_Context context, const Fra
     mParameters.addEnumItem(Smoother::kFold, "fold");
     mParameters.addEnumItem(Smoother::kMirror, "mirror");
     
-    mParameters.addInt(kMaxFFTSize, "max_fft", mSmoother.max_fft_size());
+    mParameters.addInt(kMaxFFTSize, "max_fft", 32768);
     mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
