@@ -90,8 +90,8 @@ void FrameLib_Map::setScaling()
         case kPow:              mScaler.setPow(inLo, inHi, outLo, outHi, exponent);                             break;
         case kDB:               mScaler.setExp(inLo, inHi, dbtoa(outLo), dbtoa(outHi));                         break;
         case kInvDB:            mScaler.setLog(dbtoa(inLo), dbtoa(inHi), outLo, outHi);                         break;
-        case kTranspose:        mScaler.setExp(inLo, inHi, semitonesToRatio(outLo), semitonesToRatio(outHi));   break;
-        case kInvTranspose:     mScaler.setLog(semitonesToRatio(inLo), semitonesToRatio(inHi), outLo, outHi);   break;
+        case kTranspose:        mScaler.setExp(inLo, inHi, semitonesToRatios(outLo), semitonesToRatios(outHi));   break;
+        case kInvTranspose:     mScaler.setLog(semitonesToRatios(inLo), semitonesToRatios(inHi), outLo, outHi);   break;
     }
 }
 

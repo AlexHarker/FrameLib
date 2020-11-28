@@ -20,10 +20,10 @@ template <class T>
 T ftom(T x) { return log2(x / 440.0) + 69.0; }
 
 template <class T>
-T semitonesToRatio(T x) { return exp2(x / 12.0); }
+T semitonesToRatios(T x) { return exp2(x / 12.0); }
 
 template <class T>
-T ratioToSemitones(T x) { return log2(x) * 12.0; }
+T ratiosToSemitones(T x) { return log2(x) * 12.0; }
 
 // Scaling of Vectors
 
@@ -301,8 +301,8 @@ struct ScaleConverter : public VariableScaler<T>
     void setAmplitudeToDB()     { Base::setLog(1, 10, 0, 20); }
     void setMIDIToFreq()        { Base::setExp(57, 69, 220, 440); }
     void setFreqToMIDI()        { Base::setLog(220, 440, 57, 69); }
-    void setSemitonesToRatio()  { Base::setExp(0, 12, 1, 2); }
-    void setRatioToSemitones()  { Base::setLog(1, 2, 0, 12); }
+    void setSemitonesToRatios() { Base::setExp(0, 12, 1, 2); }
+    void setRatiosToSemitones() { Base::setLog(1, 2, 0, 12); }
     void setDegreesToRadians()  { Base::setLin(0, 360, 0, M_PI * 2.0); }
     void setRadiansToDegrees()  { Base::setLin(0, M_PI * 2.0, 0, 360); }
     

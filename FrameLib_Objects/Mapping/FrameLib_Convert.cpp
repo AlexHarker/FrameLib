@@ -11,10 +11,10 @@ FrameLib_Convert::FrameLib_Convert(FrameLib_Context context, const FrameLib_Para
     mParameters.addEnumItem(kAtoDB, "amp->db");
     mParameters.addEnumItem(kMtoF, "midi->freq");
     mParameters.addEnumItem(kFtoM, "freq->midi");
-    mParameters.addEnumItem(kSemiToRatio, "semitone->ratio");
-    mParameters.addEnumItem(kRatioToSemi, "ratio->semitone");
-    mParameters.addEnumItem(kDegToRad, "deg->rad");
-    mParameters.addEnumItem(kRadToDeg, "rad->deg");
+    mParameters.addEnumItem(kSemiToRatio, "semitones->ratios");
+    mParameters.addEnumItem(kRatioToSemi, "ratios->semitones");
+    mParameters.addEnumItem(kDegToRad, "degrees->radians");
+    mParameters.addEnumItem(kRadToDeg, "radians->degrees");
     
     mParameters.set(serialisedParameters);
         
@@ -55,10 +55,10 @@ FrameLib_Convert::ParameterInfo::ParameterInfo()
         "amp->db - converts from linear amplitudes int decibels. "
         "midi->freq - converts from midi notes into frequencies. "
         "freq->mid - converts from frequencies into midi notes. "
-        "semitone->ratio - converts semitone transpositons into ratios. "
-        "ratio->semitone - converts from transpositon ratios in semitones. "
-        "deg->rad - converts from degress to radians. "
-        "rad->deg - converts from radians to degrees. ");
+        "semitones->ratios - converts semitone transpositons into ratios. "
+        "ratios->semitones - converts from transpositon ratios in semitones. "
+        "degrees->radians - converts from degress to radians. "
+        "radians->degrees - converts from radians to degrees. ");
 }
 
 // Helpers
@@ -71,8 +71,8 @@ void FrameLib_Convert::setScaling()
         case kAtoDB:            mConvertor.setAmplitudeToDB();         break;
         case kMtoF:             mConvertor.setMIDIToFreq();            break;
         case kFtoM:             mConvertor.setFreqToMIDI();            break;
-        case kSemiToRatio:      mConvertor.setSemitonesToRatio();      break;
-        case kRatioToSemi:      mConvertor.setRatioToSemitones();      break;
+        case kSemiToRatio:      mConvertor.setSemitonesToRatios();     break;
+        case kRatioToSemi:      mConvertor.setRatiosToSemitones();     break;
         case kDegToRad:         mConvertor.setDegreesToRadians();      break;
         case kRadToDeg:         mConvertor.setRadiansToDegrees();      break;
     }
