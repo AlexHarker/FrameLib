@@ -58,7 +58,7 @@ FrameLib_Convert::ParameterInfo::ParameterInfo()
         "semitones->ratios - converts semitone transpositons into ratios. "
         "ratios->semitones - converts from transpositon ratios in semitones. "
         "degrees->radians - converts from degress to radians. "
-        "radians->degrees - converts from radians to degrees. ");
+        "radians->degrees - converts from radians to degrees.");
 }
 
 // Helpers
