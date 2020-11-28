@@ -237,7 +237,7 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, const FrameLi
     typedef FrameLib_Block::Connection Connection;
     using namespace FrameLib_ExprParser;
 
-    mParameters.addString(kExpression, "expr", 0);
+    mParameters.addString(kExpression, "expression", 0);
     mParameters.setInstantiation();
     
     mParameters.addEnum(kMismatchMode, "mismatch");
