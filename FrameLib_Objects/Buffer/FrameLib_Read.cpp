@@ -9,7 +9,7 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters
 {
     mParameters.addString(kBuffer, "buffer", 0);
     
-    mParameters.addInt(kChannel, "chan", 1, 1);
+    mParameters.addInt(kChannel, "channel", 1, 1);
     mParameters.setMin(1);
     
     mParameters.addEnum(kUnits, "units", 2);
