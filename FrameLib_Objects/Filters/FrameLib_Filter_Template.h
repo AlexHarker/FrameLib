@@ -485,7 +485,7 @@ class FrameLib_Filter final : public FrameLib_Processor
                     add("Sets multi-output mode (in which all filter modes are output separately).");
             }
             
-            if (!DoesCoefficients)
+            if (DoesCoefficients)
             {
                 add("Sets the coefficients input/output mode. "
                     "static - inputs are parameters and outputs are separate coefficient values. "
@@ -494,7 +494,7 @@ class FrameLib_Filter final : public FrameLib_Processor
             }
             else
             {
-                add("Sets dynamic mode (which creates inputs for each settings of the filter).");
+                add("Sets dynamic mode (which creates inputs for each parameter of the filter).");
                 add("Sets whether filter memories are reset before processing a new frame.");
             }
         }
