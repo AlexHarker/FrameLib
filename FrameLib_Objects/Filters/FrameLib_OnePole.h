@@ -37,8 +37,8 @@ namespace FrameLib_Filters
         
         constexpr static ModeType sModes
         {
-            Mode("lpf", "Low Pass Output", "low pass", &OnePole::lpf),
-            Mode("hpf", "High Pass Output", "high pass", &OnePole::hpf)
+            Mode("lowpass", "Low Pass Output", "low pass", &OnePole::lpf),
+            Mode("highpass", "High Pass Output", "high pass", &OnePole::hpf)
         };
         
     private:
