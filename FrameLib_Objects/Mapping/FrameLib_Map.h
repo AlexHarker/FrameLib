@@ -9,8 +9,8 @@ class FrameLib_Map final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kMode, kInLo, kInHi, kOutLo, kOutHi, kClip, kExponent };
-    enum Modes { kLinear, kLog, kExp, kPow, kDB, kInvDB, kTranspose, kInvTranspose };
+    enum ParameterList { kMode, kIn1, kIn2, kOut1, kOut2, kClip, kExponent };
+    enum Modes { kLinear, kLog, kExp, kPow, kDB, kTranspose, kInvPow, kInvDB, kInvTranspose };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     
