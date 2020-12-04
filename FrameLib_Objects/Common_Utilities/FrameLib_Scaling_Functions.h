@@ -8,22 +8,22 @@
 // Common Conversions
 
 template <class T>
-T dbtoa(T x) { return pow(10.0, x / 20.0); }
+T dbToAmp(T x) { return pow(10.0, x / 20.0); }
 
 template <class T>
-T atodb(T x) { return log10(x) * 20.0; }
+T ampToDb(T x) { return log10(x) * 20.0; }
 
 template <class T>
-T mtof(T x) { return exp2(x - 69.0) * 440.0; }
+T midiToFreq(T x) { return exp2(x - 69.0) * 440.0; }
 
 template <class T>
-T ftom(T x) { return log2(x / 440.0) + 69.0; }
+T freqToMidi(T x) { return log2(x / 440.0) + 69.0; }
 
 template <class T>
-T semitonesToRatios(T x) { return exp2(x / 12.0); }
+T semitonesToRatio(T x) { return exp2(x / 12.0); }
 
 template <class T>
-T ratiosToSemitones(T x) { return log2(x) * 12.0; }
+T ratioToSemitones(T x) { return log2(x) * 12.0; }
 
 // Scaling of Vectors
 
