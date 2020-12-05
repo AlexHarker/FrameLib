@@ -96,7 +96,7 @@ void FrameLib_iFFT::process()
     const double *inputR = getInput(0, &sizeInR);
     const double *inputI = getInput(1, &sizeInI);
     
-    sizeIn = std::max(sizeInR, sizeInI);;
+    sizeIn = std::max(sizeInR, sizeInI);
     
     if (sizeIn)
     {
