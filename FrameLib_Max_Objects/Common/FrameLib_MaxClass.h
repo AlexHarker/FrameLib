@@ -1109,7 +1109,7 @@ public:
         {
             t_object *assoc = getAssociation(patch);
             
-            // Traverse if the patch is in a box (subpatcher or abstraction) it belongs to a wrapper
+            // Traverse if the patch is in a box (subpatcher or abstraction) or it belongs to a wrapper
             
             traverse = jpatcher_get_box(patch) || (assoc && objectMethod(assoc, gensym("__fl.wrapper_is_wrapper")));
             
@@ -1137,12 +1137,16 @@ public:
                     traverse = objectName == gensym("p") || objectName == gensym("patcher") || comparePatchWithName(patch, objectName);
                 }
                 else
-                {
-                    // FIX - this is not perfect for bpatchers, but it is relatively safe for now
-                    
+                {                    
                     for (t_object *b = jpatcher_get_firstobject(parent); b && !traverse; b = jbox_get_nextobject(b))
-                        if (jbox_get_maxclass(b) == gensym("bpatcher"))
+                    {
+                        // The first test is for an embedded bpatcher - the second for non-embedded
+                        
+                        if (jbox_get_maxclass(b) == gensym("jpatcher"))
+                            traverse = jpatcher_get_name(jbox_get_object(b)) == gensym("bpatcher");
+                        else if (jbox_get_maxclass(b) == gensym("bpatcher"))
                             traverse = comparePatchWithName(patch, object_attr_getsym(b, gensym("name")));
+                    }
                 }
             }
         }
