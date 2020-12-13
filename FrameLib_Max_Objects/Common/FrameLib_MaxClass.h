@@ -38,7 +38,7 @@ struct FrameLib_MaxNRTAudio
 
 struct FrameLib_MaxContext
 {
-    bool mRealtime;
+    long mRealtime;
     t_object *mPatch;
     t_symbol *mName;
     
@@ -528,8 +528,12 @@ public:
         ErrorNotifier::flushIgnore(data<kKey>(c).mRealtime ? &mRTGlobal : &mNRTGlobal, proxy->mMaxObject);
     }
 
+    FrameLib_MaxContext getMaxContext(FrameLib_Context c)
+    {
+        return data<kKey>(c);
+    }
+
     bool isRealtime(FrameLib_Context c) const   { return c.getGlobal() == mRTGlobal; }
-    t_object *getPatch(FrameLib_Context c)      { return data<kKey>(c).mPatch; }
     Lock *getLock(FrameLib_Context c)           { return &data<kLock>(c); }
     t_object *&finalObject(FrameLib_Context c)  { return data<kFinal>(c); }
 
@@ -735,6 +739,12 @@ public:
         
         CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
         CLASS_ATTR_ACCESSORS(c, "buffer", &Wrapper<T>::bufferGet, &Wrapper<T>::bufferSet);
+
+        CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
+        CLASS_ATTR_ACCESSORS(c, "id", &Wrapper<T>::idGet, &Wrapper<T>::idSet);
+
+        CLASS_ATTR_LONG(c, "rt", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
+        CLASS_ATTR_ACCESSORS(c, "rt", &Wrapper<T>::rtGet, &Wrapper<T>::rtSet);
     }
 
     // Constructor and Destructor
@@ -785,18 +795,12 @@ public:
         
         // For realtime versions setup DSP and make/connect mutator
         
-        if (isRealtime())
-        {
-            dspSetup(1);
+        dspSetup(1);
             
-            atom_setobj(&a, mObject);
-            mMutator = toUnique(object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 1, &a));
-            
-            outlet_add(outlet_nth(mObject, 0), inlet_nth(mMutator.get(), 0));
-        }
-        else
-            mMutator = nullptr;
-        
+        atom_setobj(&a, mObject);
+        mMutator = toUnique(object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 1, &a));
+        outlet_add(outlet_nth(mObject, 0), inlet_nth(mMutator.get(), 0));
+     
         // Get the object itself (typed)
         
         T *internal = object();
@@ -918,6 +922,38 @@ public:
         return MAX_ERR_NONE;
     }
     
+    // ID attribute
+    
+    static t_max_err idGet(Wrapper *x, t_object *attr, long *argc, t_atom **argv)
+    {
+        char alloc;
+        atom_alloc(argc, argv, &alloc);
+        atom_setsym(*argv, x->object()->mMaxContext.mName);
+        
+        return MAX_ERR_NONE;
+    }
+    
+    static t_max_err idSet(Wrapper *x, t_object *attr, long argc, t_atom *argv)
+    {
+        return x->object()->idSet(x->object(), attr, argc, argv);
+    }
+    
+    // RT attribute
+    
+    static t_max_err rtGet(Wrapper *x, t_object *attr, long *argc, t_atom **argv)
+    {
+        char alloc;
+        atom_alloc(argc, argv, &alloc);
+        atom_setlong(*argv, x->object()->mMaxContext.mRealtime);
+        
+        return MAX_ERR_NONE;
+    }
+    
+    static t_max_err rtSet(Wrapper *x, t_object *attr, long argc, t_atom *argv)
+    {
+        return x->object()->rtSet(x->object(), attr, argc, argv);
+    }
+    
     // External methods (A_CANT)
     
     static t_max_err patchLineUpdate(Wrapper *x, t_object *line, long type, t_object *src, long srcout, t_object *dst, long dstin)
@@ -956,7 +992,7 @@ private:
 
     bool isRealtime() { return object()->isRealtime(); }
     
-    long offset(long connectionIdx) { return isRealtime() ? connectionIdx + 1 : connectionIdx; }
+    long offset(long connectionIdx) { return connectionIdx + 1; }
 
     // Owned Objects (need freeing)
     
@@ -1058,6 +1094,12 @@ public:
             CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mBuffer);
         }
         
+        CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mMaxContext.mName);
+        CLASS_ATTR_ACCESSORS(c, "id", 0, &FrameLib_MaxClass<T>::idSet);
+
+        CLASS_ATTR_LONG(c, "rt", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mMaxContext.mRealtime);
+        CLASS_ATTR_ACCESSORS(c, "rt", 0, &FrameLib_MaxClass<T>::rtSet);
+
         addMethod(c, (method) &extPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &extConnectionAccept, "connectionaccept");
         addMethod(c, (method) &extResolveContext, "__fl.resolve_context");
@@ -1161,26 +1203,6 @@ public:
         return patch;
     }
     
-    // Context Parsing
-    
-    static FrameLib_MaxContext parseContext(bool realtime, t_object *patch, long argc, t_atom *argv)
-    {
-        FrameLib_MaxContext context{realtime, patch, gensym("")};
-        
-        for (long i = 0; i < argc; i++)
-        {
-            if ((i + 1) < argc && isContextTag(atom_getsym(argv + i)) && !isTag(argv + i + 1))
-            {
-                if (isContextNameTag(atom_getsym(argv + i++)))
-                    context.mName = atom_getsym(argv + i);
-                else
-                    context.mRealtime = atom_getlong(argv + i);
-            }
-        }
-        
-        return context;
-    }
-    
     // Detect the user object at load time
     
     t_object *detectUserObjectAtLoad()
@@ -1229,14 +1251,14 @@ public:
     FrameLib_MaxClass(t_object *x, t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy())
     : mFrameLibProxy(proxy)
     , mConfirmation(nullptr)
-    , mContextPatch(contextPatcher(gensym("#P")->s_thing))
     , mUserObject(detectUserObjectAtLoad())
     , mSpecifiedStreams(1)
     , mConnectionsUpdated(false)
     , mResolved(false)
     , mBuffer(gensym(""))
+    , mMaxContext{ T::sType == kScheduler, contextPatcher(gensym("#P")->s_thing), gensym("") }
     {
-        // Deal with attributes for non-realtime objects (and to correctly report issues otherwise)
+        // Deal with attributes
         
         attr_args_process(this, static_cast<short>(argc), argv);
         argc = attr_args_offset(static_cast<short>(argc), argv);
@@ -1251,10 +1273,10 @@ public:
         }
         
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
-
+        
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        FrameLib_Context context = mGlobal->makeContext(parseContext(T::sHandlesAudio, mContextPatch, argc, argv));
+        FrameLib_Context context = mGlobal->makeContext(mMaxContext);
         mFrameLibProxy->mMaxObject = *this;
         mObject.reset(new T(context, &serialisedParameters, mFrameLibProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
@@ -1269,14 +1291,14 @@ public:
         // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles realtime audio)
         
         for (long i = numIns - 1; i >= 0; i--)
-            mInputs[i] = toUnique((i || handlesRealtimeAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : nullptr);
+            mInputs[i] = toUnique((i || handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : nullptr);
         
         for (long i = getNumOuts(); i > 0; i--)
             mOutputs[i - 1] = outlet_new(this, nullptr);
         
         // Setup for audio, even if the object doesn't handle it, so that dsp recompile works correctly
         
-        if (handlesRealtimeAudio())
+        if (handlesAudio())
         {
             dspSetup(getNumAudioIns());
             
@@ -1308,7 +1330,7 @@ public:
     {
         if (m == ASSIST_OUTLET)
         {
-            if (a == 0 && handlesRealtimeAudio())
+            if (a == 0 && handlesAudio())
                 sprintf(s,"(signal) Audio Synchronisation Output" );
             else if (a < getNumAudioOuts())
                 sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
@@ -1317,7 +1339,7 @@ public:
         }
         else
         {
-            if (a == 0 && handlesRealtimeAudio())
+            if (a == 0 && handlesAudio())
                 sprintf(s,"(signal) Audio Synchronisation Input");
             else if (a < getNumAudioIns())
                 sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
@@ -1452,10 +1474,9 @@ public:
 
     bool isRealtime() const                     { return mGlobal->isRealtime(getContext()); }
     bool handlesAudio() const                   { return T::sHandlesAudio; }
-    bool handlesRealtimeAudio() const           { return handlesAudio() && isRealtime(); }
     bool supportsOrderingConnections() const    { return mObject->supportsOrderingConnections(); }
 
-    long audioIOSize(long chans) const          { return isRealtime() ? (chans + (handlesAudio() ? 1 : 0)) : 0; }
+    long audioIOSize(long chans) const          { return chans + (handlesAudio() ? 1 : 0); }
 
     long getNumIns() const                      { return static_cast<long>(mObject->getNumIns()); }
     long getNumOuts() const                     { return static_cast<long>(mObject->getNumOuts()); }
@@ -1592,6 +1613,9 @@ public:
     
     void sync()
     {
+        if (!isRealtime())
+            return;
+        
         FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), getType() == kOutput);
        
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && !mResolved)
@@ -1742,21 +1766,57 @@ public:
         return x->getNumAudioOuts();
     }
 
+    // id attribute
+    
+    static t_max_err idSet(FrameLib_MaxClass *x, t_object *attr, long argc, t_atom *argv)
+    {
+        x->mMaxContext.mName = argv ? atom_getsym(argv) : gensym("");
+        x->updateContext();
+        
+        return MAX_ERR_NONE;
+    }
+    
+    // rt attribute
+    
+    static t_max_err rtSet(FrameLib_MaxClass *x, t_object *attr, long argc, t_atom *argv)
+    {
+        x->mMaxContext.mRealtime = argv ? (atom_getlong(argv) ? 1 : 0) : 0;
+        x->updateContext();
+        
+        return MAX_ERR_NONE;
+    }
+    
 private:
+    
+    void updateContext()
+    {
+        if (mObject)
+        {
+            FrameLib_Context context = mGlobal->makeContext(mMaxContext);
+         
+            if (context != mObject->getContext())
+            {
+                mGlobal->addContextToResolve(context, *this);
+                matchContext(context);
+            }
+            
+            // N.B. release because otherwise it is retained twice
+
+            mGlobal->releaseContext(context);
+        }
+    }
     
     // Attempt to match the context to that of a given framelib object
     
-    void matchContext(t_object *object)
+    void matchContext(FrameLib_Context context)
     {
+        FrameLib_MaxContext maxContext = mGlobal->getMaxContext(context);
         FrameLib_Context current = getContext();
-        FrameLib_Context context = toFLObject(object)->getContext();
-        
-        bool mismatchedNRT = mGlobal->isRealtime(context) != mGlobal->isRealtime(current);
-        bool mismatchedPatch = mGlobal->getPatch(current) != mGlobal->getPatch(context);
+        bool mismatchedPatch = mGlobal->getMaxContext(current).mPatch != maxContext.mPatch;
 
         unsigned long size = 0;
 
-        if (getType() == kScheduler || (handlesAudio() && mismatchedNRT) || mismatchedPatch || current == context)
+        if (mismatchedPatch || current == context)
             return;
         
         mResolved = false;
@@ -1772,6 +1832,7 @@ private:
         if (mGlobal->isRealtime(context) || mGlobal->isRealtime(current))
             dspSetBroken();
         
+        mMaxContext = maxContext;
         mGlobal->retainContext(context);
         mGlobal->releaseContext(current);
         mGlobal->flushErrors(context, mFrameLibProxy.get());
@@ -1823,7 +1884,7 @@ private:
         
         mGlobal->clearQueue();
         
-        traversePatch(mContextPatch, getAssociation(mContextPatch), theMethod, args...);
+        traversePatch(mMaxContext.mPatch, getAssociation(mMaxContext.mPatch), theMethod, args...);
         
         while (t_object *object = mGlobal->popFromQueue())
             objectMethod(object, theMethod, args...);
@@ -1994,7 +2055,7 @@ private:
         if (!(validOutput(connection.mIndex, internalConnection.mObject) && (isOrderingInput(inIdx) || (validInput(inIdx) && getConnection(inIdx) != connection && !confirmConnection(inIdx, ConnectionMode::kDoubleCheck)))))
             return;
         
-        matchContext(connection.mObject);
+        matchContext(internalConnection.mObject->getContext());
 
         if (isOrderingInput(inIdx))
             result = mObject->addOrderingConnection(internalConnection);
@@ -2317,7 +2378,6 @@ private:
 
     unique_object_ptr mSyncIn;
     
-    t_object *mContextPatch;
     t_object *mUserObject;
     
     unsigned long mSpecifiedStreams;
@@ -2327,9 +2387,10 @@ private:
     
 public:
     
-    // Attribute
+    // Attributes
     
     t_symbol *mBuffer;
+    FrameLib_MaxContext mMaxContext;
 };
 
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_MaxClass_Expand<T>::makeClass() to create)
