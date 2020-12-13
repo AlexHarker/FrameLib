@@ -140,6 +140,7 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_Peaks>::makeClass("fl.pattern~");
     FrameLib_MaxClass_Expand<FrameLib_Peaks>::makeClass("fl.peaks~");
     FrameLib_MaxClass_Expand<FrameLib_Percentile>::makeClass("fl.percentile~");
+    FrameLib_MaxClass_Expand<FrameLib_Prioritise>::makeClass("fl.prioritise~");
     FrameLib_MaxClass_Expand<FrameLib_Reverse>::makeClass("fl.reverse~");
     FrameLib_MaxClass_Expand<FrameLib_Shift>::makeClass("fl.shift~");
     FrameLib_MaxClass_Expand<FrameLib_Sort>::makeClass("fl.sort~");
@@ -200,7 +201,7 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_Erf>::makeClass("fl.erf~");
     FrameLib_MaxClass_Expand<FrameLib_Erfc>::makeClass("fl.erfc~");
     
-    // Binary  Operators
+    // Binary Operators
     
     FrameLib_MaxClass_Expand<FrameLib_Add, kAllInputs>::makeClass("fl.plus~");
     FrameLib_MaxClass_Expand<FrameLib_Subtract, kAllInputs>::makeClass("fl.minus~");

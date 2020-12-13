@@ -55,11 +55,11 @@ public:
     : FrameLib_Processor(context, proxy, getParameterInfo())
     {
         mParameters.addEnum(kDimensions, "dimensions", 0);
-        mParameters.addEnumItem(k2D, "2d");
-        mParameters.addEnumItem(k3D, "3d");
+        mParameters.addEnumItem(k2D, "2D");
+        mParameters.addEnumItem(k3D, "3D");
         mParameters.setInstantiation();
         
-        mParameters.addEnum(kAngleUnits, "angle_units", 1);
+        mParameters.addEnum(kAngleUnits, "angles", 1);
         mParameters.addEnumItem(kRadians, "radians");
         mParameters.addEnumItem(kDegrees, "degrees");
         mParameters.setInstantiation();

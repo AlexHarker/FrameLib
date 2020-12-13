@@ -9,7 +9,7 @@ FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, const FrameLib_Paramete
     const int strBufSize = 10;
 
     char argStr[strBufSize];
-    char nameStr[strBufSize];
+    char tagStr[strBufSize];
     
     mParameters.addInt(kNumOuts, "num_outs", 1);
     mParameters.setClip(1, maxNumOuts);
@@ -28,8 +28,8 @@ FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, const FrameLib_Paramete
         for (int i = 0; i < maxNumOuts; i++)
         {
             snprintf(argStr, strBufSize, "%d", i);
-            snprintf(nameStr, strBufSize, "tag_%02d", i + 1);
-            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(nameStr) != serialisedParameters->end())
+            snprintf(tagStr, strBufSize, "tag_%02d", i + 1);
+            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(tagStr) != serialisedParameters->end())
                 mParameters.set(kNumOuts, (long) (i + 1));
         }
     }
@@ -40,12 +40,12 @@ FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, const FrameLib_Paramete
     
     for (unsigned long i = 0; i < mNumOuts; i++)
     {
-        snprintf(nameStr, strBufSize, "tag_%02lu", i + 1);
-        mParameters.addString(kNames + i, nameStr, i);
+        snprintf(tagStr, strBufSize, "tag_%02lu", i + 1);
+        mParameters.addString(kTags + i, tagStr, i);
         mParameters.setInstantiation();
     }
     
-    // Read in again to get parameter names
+    // Read in again to get parameter tags
     
     mParameters.set(serialisedParameters);
     
@@ -105,7 +105,7 @@ void FrameLib_Untag::process()
     if (input)
     {
         for (unsigned long i = 0; i < mNumOuts; i++)
-            requestOutputSize(i, input->getVectorSize(mParameters.getString(kNames + i)));
+            requestOutputSize(i, input->getVectorSize(mParameters.getString(kTags + i)));
     }
     else
     {
@@ -119,6 +119,6 @@ void FrameLib_Untag::process()
     {
         double *output = getOutput(i, &sizeOut);
         if (output)
-            input->read(mParameters.getString(kNames + i), output, sizeOut);
+            input->read(mParameters.getString(kTags + i), output, sizeOut);
     }
 }

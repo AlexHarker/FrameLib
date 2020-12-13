@@ -70,12 +70,12 @@ namespace FrameLib_Filters
         
         constexpr static ModeType sModes
         {
-            Mode("lpf", "low pass", &BiquadCoeff::lpf),
-            Mode("bpf", "band pass", &BiquadCoeff::bpf),
-            Mode("hpf", "high pass", &BiquadCoeff::hpf),
-            Mode("bell", "bell", &BiquadCoeff::bell),
+            Mode("lowpass", "low pass", &BiquadCoeff::lpf),
+            Mode("bandpass", "band pass", &BiquadCoeff::bpf),
+            Mode("highpass", "high pass", &BiquadCoeff::hpf),
+            Mode("peaknotch", "peak notch", &BiquadCoeff::bell),
             Mode("resonant", "resonant", &BiquadCoeff::resonant),
-            Mode("notch", "bandreject", &BiquadCoeff::notch),
+            Mode("notch", "band reject", &BiquadCoeff::notch),
             Mode("lowshelf", "low shelf", &BiquadCoeff::lowshelf),
             Mode("highshelf", "high shelf", &BiquadCoeff::highshelf)
         };

@@ -19,11 +19,11 @@ protected:
     {
         kMaxFrames = 0,
         kNumFrames = 1,
-        kDefault = 2 + nParams,
-        kMode = 3 + nParams
+        kPadding = 2 + nParams,
+        kStartMode = 3 + nParams
     };
     
-    enum Modes { kPadIn, kValid };
+    enum StartModes { kPad, kShorten };
     
     // Parameter Info
 
@@ -53,11 +53,11 @@ protected:
     
     void completeDefaultParameters(const FrameLib_Parameters::Serial *serialisedParameters)
     {
-        mParameters.addDouble(kDefault, "default", 0.0, kDefault);
+        mParameters.addDouble(kPadding, "pad", 0.0, kPadding);
         
-        mParameters.addEnum(kMode, "mode");
-        mParameters.addEnumItem(kPadIn, "pad_in");
-        mParameters.addEnumItem(kValid, "valid");
+        mParameters.addEnum(kStartMode, "start");
+        mParameters.addEnumItem(kPad, "pad");
+        mParameters.addEnumItem(kShorten, "shorten");
         
         mParameters.set(serialisedParameters);
     }
@@ -89,7 +89,7 @@ protected:
 
     unsigned long getNumFrames(bool forceValid = false) const
     {
-        bool valid = forceValid || mParameters.getEnum<Modes>(kMode) == kValid;
+        bool valid = forceValid || mParameters.getEnum<StartModes>(kStartMode) == kShorten;
         
         if (valid)
             return std::min(getRequestedNumFrames(), getValidFrames() + 1);
@@ -138,8 +138,8 @@ private:
     {
         unsigned long sizeIn, sizeReset, sizeOut, sizeEdge;
 
-        Modes mode = mParameters.getEnum<Modes>(kMode);
-        double pad = mParameters.getValue(kDefault);
+        StartModes startMode = mParameters.getEnum<StartModes>(kStartMode);
+        double pad = mParameters.getValue(kPadding);
         
         unsigned long numFrames;
         unsigned long maxFrames = getMaxFrames();
@@ -176,7 +176,7 @@ private:
         
         if (sizeIn)
         {
-            unsigned long padSize = mode == kPadIn ? requestedFrames - numFrames : 0;
+            unsigned long padSize = startMode == kPad ? requestedFrames - numFrames : 0;
 
             if (numFrames > mLastNumFrames)
             {

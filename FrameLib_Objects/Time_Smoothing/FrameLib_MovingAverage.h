@@ -10,7 +10,6 @@ class FrameLib_MovingAverage final : public FrameLib_Processor
     // Parameter Enums and Info
     
     enum ParameterList { kAlphaUp, kAlphaDown, kAverage, kDeviation };
-    enum Modes { kUseDefault, kInputOnly };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 

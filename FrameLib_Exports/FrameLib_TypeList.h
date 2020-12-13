@@ -126,6 +126,7 @@ FrameLib_NonZero,
 FrameLib_Pad,
 FrameLib_Peaks,
 FrameLib_Percentile,
+FrameLib_Prioritise,
 FrameLib_Reverse,
 FrameLib_Shift,
 FrameLib_Sort,
@@ -186,7 +187,7 @@ FrameLib_Cbrt,
 FrameLib_Erf,
 FrameLib_Erfc,
 
-// Binary  Operators
+// Binary Operators
 
 FrameLib_Add,
 FrameLib_Subtract,

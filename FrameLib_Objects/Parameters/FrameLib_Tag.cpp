@@ -9,7 +9,7 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
     const int strBufSize = 10;
     
     char argStr[strBufSize];
-    char nameStr[strBufSize];
+    char tagStr[strBufSize];
     
     mParameters.addInt(kNumIns, "num_ins", 1);
     mParameters.setClip(1, maxNumIns);
@@ -32,8 +32,8 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
         for (int i = 0; i < maxNumIns; i++)
         {
             snprintf(argStr, strBufSize, "%d", i);
-            snprintf(nameStr, strBufSize, "tag_%02d", i + 1);
-            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(nameStr) != serialisedParameters->end())
+            snprintf(tagStr, strBufSize, "tag_%02d", i + 1);
+            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(tagStr) != serialisedParameters->end())
                 mParameters.set(kNumIns, (long) (i + 1));
         }
     }
@@ -44,12 +44,12 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
     
     for (unsigned long i = 0; i < mNumIns; i++)
     {
-        snprintf(nameStr, strBufSize, "tag_%02lu", i + 1);
-        mParameters.addString(kNames + i, nameStr, i);
+        snprintf(tagStr, strBufSize, "tag_%02lu", i + 1);
+        mParameters.addString(kTags + i, tagStr, i);
         mParameters.setInstantiation();
     }
     
-    // Read in again to get parameter names
+    // Read in again to get parameter tags
     
     mParameters.set(serialisedParameters);
     
@@ -121,7 +121,7 @@ void FrameLib_Tag::process()
     {
         getInput(i, &sizeIn);
         if (sizeIn || mode == kReset)
-            requestAddedOutputSize(0, Serial::calcSize(mParameters.getString(kNames + i), sizeIn));
+            requestAddedOutputSize(0, Serial::calcSize(mParameters.getString(kTags + i), sizeIn));
     }
     
     requestAddedOutputSize(0, Serial::calcSize(preTagged));
@@ -134,7 +134,7 @@ void FrameLib_Tag::process()
         {
             const double *input = getInput(i, &sizeIn);
             if (sizeIn || mode == kReset)
-                output->write(mParameters.getString(kNames + i), input, sizeIn);
+                output->write(mParameters.getString(kTags + i), input, sizeIn);
         }
         
         output->write(preTagged);

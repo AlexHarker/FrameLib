@@ -15,5 +15,5 @@ OUTSTANDING
 
 8 - how do I pass fixed inputs with more than one value?      
 9 - how can I deal with variable numbers of outputs/inputs?
-10 - memory management
+10 - memory management (including FFT allocations)
 

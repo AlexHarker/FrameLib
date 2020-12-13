@@ -6,15 +6,12 @@
 FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, nullptr, 1, 3)
 {
-    mParameters.addEnum(kCriteria, "criteria", 0);
-    mParameters.addEnumItem(kOneNeighbour, "one");
-    mParameters.addEnumItem(kTwoNeighbours, "two", true);
-    mParameters.addEnumItem(kThreeNeighbours, "three");
-    mParameters.addEnumItem(kFourNeighbours, "four");
+    mParameters.addInt(kNeighbours, "neighbours", 1, 0);
+    mParameters.setClip(1, 4);
 
     mParameters.addDouble(kThreshold, "threshold", 0.0, 1);
     
-    mParameters.addDouble(kPadding, "padding", 0.0, 2);
+    mParameters.addDouble(kPadding, "pad", 0.0, 2);
 
     mParameters.addEnum(kEdges, "edges", 3);
     mParameters.addEnumItem(kEdgePad, "pad");
@@ -24,11 +21,11 @@ FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Paramete
     mParameters.addEnumItem(kEdgeMirror, "mirror");
     
     mParameters.addEnum(kRefinement, "refine", 4);
-    mParameters.addEnumItem(kNone, "none");
+    mParameters.addEnumItem(kOff, "off");
     mParameters.addEnumItem(kParabolic, "parabolic", true);
     mParameters.addEnumItem(kParabolicLog, "parabolic_log");
     
-    mParameters.addEnum(kBoundary, "boundary", 4);
+    mParameters.addEnum(kBoundaries, "boundaries", 4);
     mParameters.addEnumItem(kMinimum, "minimum");
     mParameters.addEnumItem(kMidpoint, "midpoint");
     
@@ -148,11 +145,11 @@ void refineParabolicLog(double *positions, double *values, const double *data, u
 
 void FrameLib_Peaks::process()
 {
-    Criteria criterion = mParameters.getEnum<Criteria>(kCriteria);
     Refinements refine = mParameters.getEnum<Refinements>(kRefinement);
-    Boundaries boundary = mParameters.getEnum<Boundaries>(kBoundary);
+    Boundaries boundaries = mParameters.getEnum<Boundaries>(kBoundaries);
     Edges edges = mParameters.getEnum<Edges>(kEdges);
     
+    long neighbours = mParameters.getInt(kNeighbours);
     double padValue = mParameters.getValue(kPadding);
     double threshold = mParameters.getValue(kThreshold);
     
@@ -197,12 +194,12 @@ void FrameLib_Peaks::process()
     
     // Find and store peaks
     
-    switch (criterion)
+    switch (neighbours)
     {
-        case kOneNeighbour:     nPeaks = findPeaks<checkPeak<1>>(indices, data, sizeIn, threshold);     break;
-        case kTwoNeighbours:    nPeaks = findPeaks<checkPeak<2>>(indices, data, sizeIn, threshold);     break;
-        case kThreeNeighbours:  nPeaks = findPeaks<checkPeak<3>>(indices, data, sizeIn, threshold);     break;
-        case kFourNeighbours:   nPeaks = findPeaks<checkPeak<4>>(indices, data, sizeIn, threshold);     break;
+        case 1:    nPeaks = findPeaks<checkPeak<1>>(indices, data, sizeIn, threshold);     break;
+        case 2:    nPeaks = findPeaks<checkPeak<2>>(indices, data, sizeIn, threshold);     break;
+        case 3:    nPeaks = findPeaks<checkPeak<3>>(indices, data, sizeIn, threshold);     break;
+        case 4:    nPeaks = findPeaks<checkPeak<4>>(indices, data, sizeIn, threshold);     break;
     }
     
     // If needed reate a single peak at the maximum, (place central to multiple consecutive maxima)
@@ -239,7 +236,7 @@ void FrameLib_Peaks::process()
 
     switch (refine)
     {
-        case kNone:             refinePeaks<refineNone>(output2, output3, data, indices, nPeaks);           break;
+        case kOff:             refinePeaks<refineNone>(output2, output3, data, indices, nPeaks);           break;
         case kParabolic:        refinePeaks<refineParabolic>(output2, output3, data, indices, nPeaks);      break;
         case kParabolicLog:     refinePeaks<refineParabolicLog>(output2, output3, data, indices, nPeaks);   break;
     }
@@ -252,7 +249,7 @@ void FrameLib_Peaks::process()
         
         if (peak != nPeaks - 1)
         {
-            switch (boundary)
+            switch (boundaries)
             {
                 case kMinimum:
                 {

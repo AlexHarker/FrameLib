@@ -9,8 +9,8 @@ class FrameLib_Lag final : public FrameLib_Processor, private FrameLib_RingBuffe
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kMaxFrames, kNumFrames, kDefault, kMode };
-    enum Modes { kUseDefault, kValid };
+    enum ParameterList { kMaxFrames, kNumFrames, kPadding, kStartMode };
+    enum StartModes { kPad, kShorten };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 

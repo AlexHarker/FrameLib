@@ -9,7 +9,7 @@ FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, const FrameLi
     const int strBufSize = 10;
     
     char argStr[strBufSize];
-    char nameStr[strBufSize];
+    char tagStr[strBufSize];
     
     mParameters.addInt(kNumFilters, "num_filters", 1);
     mParameters.setClip(1, maxNumFilters);
@@ -28,8 +28,8 @@ FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, const FrameLi
         for (int i = 0; i < maxNumFilters; i++)
         {
             snprintf(argStr, strBufSize, "%d", i);
-            snprintf(nameStr, strBufSize, "tag_%02d", i + 1);
-            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(nameStr) != serialisedParameters->end())
+            snprintf(tagStr, strBufSize, "tag_%02d", i + 1);
+            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(tagStr) != serialisedParameters->end())
                 mParameters.set(kNumFilters, (long) (i + 1));
         }
     }
@@ -40,8 +40,8 @@ FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, const FrameLi
     
     for (unsigned long i = 0; i < mNumFilters; i++)
     {
-        snprintf(nameStr, strBufSize, "tag_%02lu", i + 1);
-        mParameters.addString(kFilters + i, nameStr, i);
+        snprintf(tagStr, strBufSize, "tag_%02lu", i + 1);
+        mParameters.addString(kFilters + i, tagStr, i);
         mParameters.setInstantiation();
     }
     
