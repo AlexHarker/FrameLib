@@ -1,8 +1,6 @@
 
 #include "FrameLib_Source.h"
 
-// FIX - source is only sample accurate (not subsample) - add a function to interpolate if necessary
-
 // Constructor
 
 FrameLib_Source::FrameLib_Source(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
@@ -25,9 +23,16 @@ FrameLib_Source::FrameLib_Source(FrameLib_Context context, const FrameLib_Parame
     mParameters.addDouble(kDelay, "delay", 0);
     mParameters.setMin(0);
     
+    mParameters.addEnum(kInterpolation, "interp");
+    mParameters.addEnumItem(kNone, "none");
+    mParameters.addEnumItem(kLinear, "linear");
+    mParameters.addEnumItem(kHermite, "hermite");
+    mParameters.addEnumItem(kBSpline, "bspline");
+    mParameters.addEnumItem(kLagrange, "lagrange");
+    
     mParameters.set(serialisedParameters);
         
-    mLength = convertTimeToSamples(mParameters.getValue(kLength));
+    mLength = convertTimeToIntSamples(mParameters.getValue(kLength));
     
     setParameterInput(1);
     
@@ -74,20 +79,29 @@ FrameLib_Source::ParameterInfo::ParameterInfo()
     add("Sets the time units used to determine the buffer size and output length.");
     add("Sets the input delay in the units specified by the units parameter: "
         "N.B. - there is a minimum delay or latency of the output length.");
+    add("Sets the interpolation mode: "
+        "none - no interpolation"
+        "linear - linear interpolation. "
+        "hermite - cubic hermite interpolation. "
+        "bspline - cubic bspline interpolation. "
+        "lagrange - cubic lagrange interpolation.");
 }
 
 // Helpers
 
-unsigned long FrameLib_Source::convertTimeToSamples(double time)
-{    
+double FrameLib_Source::convertTimeToSamples(double time)
+{
     switch (mParameters.getEnum<Units>(kUnits))
     {
-        case kSamples:  break;
-        case kMS:       time = msToSamples(time);       break;
-        case kSeconds:  time = secondsToSamples(time);  break;
+        case kSamples:  return time;
+        case kMS:       return msToSamples(time);
+        case kSeconds:  return secondsToSamples(time);
     }
-    
-    return roundToUInt(time);
+}
+
+unsigned long FrameLib_Source::convertTimeToIntSamples(double time)
+{
+    return roundToUInt(convertTimeToSamples(time));
 }
 
 void FrameLib_Source::copy(const double *input, unsigned long offset, unsigned long size)
@@ -96,6 +110,7 @@ void FrameLib_Source::copy(const double *input, unsigned long offset, unsigned l
     {
         copyVector(&mBuffer[offset], input, size);
         mCounter = offset + size;
+        mCounter = mCounter == bufferSize() ? 0 : mCounter;
     }
 }
 
@@ -103,7 +118,10 @@ void FrameLib_Source::copy(const double *input, unsigned long offset, unsigned l
 
 void FrameLib_Source::objectReset()
 {
-    unsigned long size = convertTimeToSamples(mParameters.getValue(kBufferSize)) + mMaxBlockSize;
+    // Ensure there are enough additional samples for interpolation and the max block size
+    
+    unsigned long extra = 2UL + mMaxBlockSize;
+    unsigned long size = convertTimeToIntSamples(mParameters.getValue(kBufferSize)) + extra;
     
     if (size != bufferSize())
         mBuffer.resize(size);
@@ -130,16 +148,18 @@ void FrameLib_Source::blockProcess(const double * const *ins, double **outs, uns
 
 void FrameLib_Source::update()
 {
-    mLength = convertTimeToSamples(mParameters.getValue(kLength));
+    mLength = convertTimeToIntSamples(mParameters.getValue(kLength));
 }
 
 void FrameLib_Source::process()
 {
+    InterpType interpType = kInterpNone;
+
     unsigned long sizeOut = mLength;
     
     FrameLib_TimeFormat frameTime = getFrameTime();
-    unsigned long delayTime = convertTimeToSamples(mParameters.getValue(kDelay));
-    delayTime = std::max(sizeOut, delayTime);
+    FrameLib_TimeFormat delayTime(convertTimeToSamples(mParameters.getValue(kDelay)));
+    delayTime = std::max(FrameLib_TimeFormat(sizeOut), delayTime);
     
     // Calculate output size
     
@@ -147,26 +167,53 @@ void FrameLib_Source::process()
     allocateOutputs();
     double *output = getOutput(0, &sizeOut);
     
-    // Calculate time offset
+    // Calculate time offset and determine required interpolation
     
-    unsigned long offset = roundToUInt(getBlockEndTime() - frameTime) + delayTime;
+    FrameLib_TimeFormat timeOffset = FrameLib_TimeFormat(getBlockEndTime() - frameTime) + delayTime;
+    
+    if (timeOffset.fracVal())
+    {
+        switch (mParameters.getEnum<Interpolation>(kInterpolation))
+        {
+            case kNone:         break;
+            case kLinear:       interpType = kInterpLinear;             break;
+            case kHermite:      interpType = kInterpCubicHermite;       break;
+            case kBSpline:      interpType = kInterpCubicBSpline;       break;
+            case kLagrange:     interpType = kInterpCubicLagrange;      break;
+        }
+    }
     
     // Safety
     
-    if (!sizeOut || offset > bufferSize())
+    if (!sizeOut || roundToUInt(timeOffset) > (bufferSize() - 2UL))
     {
         zeroVector(output, sizeOut);
         return;
     }
     
-    // Calculate actual offset into buffer
+    // Choose sample or sub-sample accuracy
     
-    offset = (offset <= mCounter) ? mCounter - offset : mCounter + bufferSize() - offset;
+    if (interpType == kInterpNone)
+    {
+        // Calculate actual offset into buffer
     
-    // Calculate first segment size and copy segments
+        unsigned long offset = roundToUInt(timeOffset);
+        offset = (offset <= mCounter) ? mCounter - offset : mCounter + bufferSize() - offset;
     
-    unsigned long size = ((offset + sizeOut) > bufferSize()) ? bufferSize() - offset : sizeOut;
+        // Calculate first segment size and copy segments
     
-    copyVector(output, &mBuffer[offset], size);
-    copyVector(output + size, mBuffer.data(), (sizeOut - size));
+        unsigned long size = ((offset + sizeOut) > bufferSize()) ? bufferSize() - offset : sizeOut;
+    
+        copyVector(output, &mBuffer[offset], size);
+        copyVector(output + size, mBuffer.data(), (sizeOut - size));
+    }
+    else
+    {
+        double position = static_cast<double>(mCounter) - static_cast<double>(timeOffset);
+    
+        for (unsigned long i = 0; i < sizeOut; i++, position += 1.0)
+            output[i] = position;
+
+        table_read(Fetcher(mBuffer.data(), bufferSize()), output, output, sizeOut, 1.0, interpType);
+    }
 }
