@@ -1137,15 +1137,22 @@ public:
                     traverse = objectName == gensym("p") || objectName == gensym("patcher") || comparePatchWithName(patch, objectName);
                 }
                 else
-                {                    
+                {
                     for (t_object *b = jpatcher_get_firstobject(parent); b && !traverse; b = jbox_get_nextobject(b))
                     {
-                        // The first test is for an embedded bpatcher - the second for non-embedded
+                        // The first test is for non-embedded bpatchers - the second for embedded ones
                         
-                        if (jbox_get_maxclass(b) == gensym("jpatcher"))
-                            traverse = jpatcher_get_name(jbox_get_object(b)) == gensym("bpatcher");
-                        else if (jbox_get_maxclass(b) == gensym("bpatcher"))
-                            traverse = comparePatchWithName(patch, object_attr_getsym(b, gensym("name")));
+                        t_symbol *className = jbox_get_maxclass(b);
+                        t_object *object = jbox_get_object(b);
+
+                        if (className == gensym("bpatcher"))
+                        {
+                            long idx = 0;
+                            void *subpatch = object_subpatcher(object, &idx, nullptr);
+                            traverse = !subpatch && comparePatchWithName(patch, object_attr_getsym(b, gensym("name")));
+                        }
+                        else if (!strlen(jpatcher_get_name(patch)->s_name) && className == gensym("jpatcher"))
+                            traverse = !jpatcher_get_count(object) && jpatcher_get_name(object) == gensym("bpatcher");
                     }
                 }
             }
