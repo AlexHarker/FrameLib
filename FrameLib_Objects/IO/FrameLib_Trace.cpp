@@ -160,7 +160,7 @@ void FrameLib_Trace::blockProcess(const double * const *ins, double **outs, unsi
 void FrameLib_Trace::process()
 {
     unsigned long sizeIn;
-    double inputOffset = mParameters.getValue(kPosition);
+    double inputOffset = 0.0;
     
     FrameLib_TimeFormat frameTime = getFrameTime();
     FrameLib_TimeFormat delayTime = convertTimeToSamples(mParameters.getValue(kDelay));
@@ -181,11 +181,11 @@ void FrameLib_Trace::process()
     
     switch (mode)
     {
-        case kFull:         inputOffset = 0.0;                  break;
-        case kFirst:        inputOffset = 0.0;                  break;
-        case kLast:         inputOffset = sizeIn - 1;           break;
-        case kSpecified:                                        break;
-        case kRatio:        inputOffset *= (sizeIn - 1);        break;
+        case kFull:         inputOffset = 0.0;                                  break;
+        case kFirst:        inputOffset = 0.0;                                  break;
+        case kLast:         inputOffset = sizeIn - 1;                           break;
+        case kSpecified:    inputOffset = mParameters.getValue(kPosition);      break;
+        case kRatio:        inputOffset *= (sizeIn - 1);                        break;
     }
 
     // Clip to a sensible range
