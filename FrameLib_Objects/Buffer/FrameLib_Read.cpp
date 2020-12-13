@@ -74,10 +74,11 @@ FrameLib_Read::ParameterInfo::ParameterInfo()
     add("Sets the buffer to use.");
     add("Sets the buffer channel to use.");
     add("Sets the interpolation mode: "
+        "none - no interpolation"
+        "linear - linear interpolation. "
         "hermite - cubic hermite interpolation. "
         "bspline - cubic bspline interpolation. "
-        "lagrange - cubic lagrange interpolation. "
-        "linear - linear interpolation.");
+        "lagrange - cubic lagrange interpolation.");
     add("Sets the units for the position input.");
 }
 
