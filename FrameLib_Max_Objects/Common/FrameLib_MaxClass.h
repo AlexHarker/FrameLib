@@ -697,8 +697,7 @@ public:
     
     // Initialise Class
     
-    template <int>
-    static method *methodCache()
+    static method *signalMethodCache()
     {
         static method theMethod;
         
@@ -717,8 +716,7 @@ public:
         // N.B. MUST add signal handling after dspInit to override the builtin responses
         
         dspInit(c);
-        *methodCache<0>() = class_method(c, gensym("signal"));
-        *methodCache<1>() = class_method(c, gensym("userconnect"));
+        *signalMethodCache() = class_method(c, gensym("signal"));
         addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "signal");
         
         addMethod(c, (method) &dblclick, "dblclick");
@@ -871,7 +869,7 @@ public:
         // Set the order of the wrapper after the owned object by doing this before calling internal sync
         
         if (isRealtime())
-            (*methodCache<0>())(this);
+            (*signalMethodCache())(this);
         
         object()->sync();
     }
@@ -983,7 +981,7 @@ public:
     static void userConnect(Wrapper *x)
     {
         if (x->isRealtime())
-            (*methodCache<1>())(x);
+            x->dspSetBroken();
     }
     
 private:
