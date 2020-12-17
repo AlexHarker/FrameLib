@@ -250,18 +250,13 @@ void serialiseVector(std::stringstream& output, size_t index, const char *type, 
     
     for (auto it = vector.begin(); it != vector.end(); it++)
     {
-        const int strBufSize = 1024;
+        const int strBufSize = 32;
         char formatted[strBufSize];
 
         if (it != vector.begin())
             output << ", ";
         
-        // FIX - need 100% accuracy but human readable
-        
-        if (round(*it) == *it)
-            snprintf(formatted, strBufSize, "%lld", (long long) *it);
-        else
-            snprintf(formatted, strBufSize, "%lf", *it);
+        snprintf(formatted, strBufSize, "%.17g", *it);
         output << formatted;
     }
     
