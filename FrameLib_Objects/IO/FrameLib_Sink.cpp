@@ -162,7 +162,7 @@ void FrameLib_Sink::process()
 
     // Determine necessary interpolation
     
-    if (timeOffset.fracVal())
+    if (sizeIn && timeOffset.fracVal())
     {
         switch (mParameters.getEnum<Interpolation>(kInterpolation))
         {
