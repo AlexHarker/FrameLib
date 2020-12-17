@@ -13,7 +13,6 @@ class FrameLib_Source final : public FrameLib_AudioInput, private FrameLib_IO_He
 
     enum ParameterList { kBufferSize, kLength, kUnits, kDelay, kInterpolation };
     enum Interpolation { kNone, kLinear, kHermite, kBSpline, kLagrange };
-    enum Units { kSamples, kMS, kSeconds };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     

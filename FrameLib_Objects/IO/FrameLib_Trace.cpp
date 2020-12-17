@@ -6,7 +6,10 @@
 
 FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_AudioOutput(context, proxy, &sParamInfo, 2, 0, 1)
+, FrameLib_IO_Helper(static_cast<FrameLib_DSP&>(*this))
 {
+    double bufferSizeDefault = getBufferSizeDefault(serialisedParameters, 250000, 5);
+
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kFull, "full");
     mParameters.addEnumItem(kFirst, "first");
@@ -14,9 +17,7 @@ FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, const FrameLib_Paramete
     mParameters.addEnumItem(kSpecified, "specified");
     mParameters.addEnumItem(kRatio, "ratio");
     
-    // FIX - defaults for when the units are not in samples!
-
-    mParameters.addDouble(kBufferSize, "buffer_size", 250000, 1);
+    mParameters.addDouble(kBufferSize, "buffer_size", bufferSizeDefault, 1);
     mParameters.setMin(0.0);
     mParameters.setInstantiation();
     
@@ -122,7 +123,11 @@ void FrameLib_Trace::writeToBuffer(const double *input, unsigned long offset, un
 
 void FrameLib_Trace::objectReset()
 {
-    size_t size = convertTimeToSamples(mParameters.getValue(kBufferSize)) + mMaxBlockSize;
+    size_t size = convertTimeToSamples(mParameters.getValue(kBufferSize));
+    
+    // Limit the buffer size ensuring there are enough additional samples for the max block size
+    
+    size = limitBufferSize(size, mSamplingRate) + mMaxBlockSize;
     
     if (size != bufferSize())
     {

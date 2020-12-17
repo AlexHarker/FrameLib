@@ -5,10 +5,11 @@
 
 FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_AudioOutput(context, proxy, &sParamInfo, 2, 0, 1)
+, FrameLib_IO_Helper(static_cast<FrameLib_DSP&>(*this))
 {
-    // FIX - defaults for when the units are not in samples!
+    double bufferSizeDefault = getBufferSizeDefault(serialisedParameters, 250000, 5);
 
-    mParameters.addDouble(kBufferSize, "buffer_size", 250000, 0);
+    mParameters.addDouble(kBufferSize, "buffer_size", bufferSizeDefault, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
     
@@ -113,11 +114,12 @@ void FrameLib_Sink::addToBuffer(const double *input, unsigned long offset, unsig
 
 void FrameLib_Sink::objectReset()
 {
-    // Ensure there are enough additional samples for interpolation and the max block size
+    size_t size = convertTimeToIntSamples(mParameters.getValue(kBufferSize));
     
-    unsigned long extra = 1UL + mMaxBlockSize;
-    size_t size = convertTimeToIntSamples(mParameters.getValue(kBufferSize)) + extra;
-    
+    // Limit the buffer size ensuring there are enough additional samples for interpolation and the max block size
+
+    size = limitBufferSize(size, mSamplingRate) + mMaxBlockSize + 3UL;
+
     if (size != bufferSize())
         mBuffer.resize(size);
     

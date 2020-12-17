@@ -2,10 +2,17 @@
 #ifndef FRAMELIB_IO_HELPERS_H
 #define FRAMELIB_IO_HELPERS_H
 
+#include "FrameLib_DSP.h"
 #include "../../FrameLib_Dependencies/TableReader.hpp"
 
-struct FrameLib_IO_Helper
+class FrameLib_IO_Helper
 {
+public:
+    
+    enum Units { kSamples, kMS, kSeconds };
+
+    FrameLib_IO_Helper(FrameLib_DSP& owner) : mOwner(owner) {}
+
     template <class T>
     static void interpolate(T fetch, double *output, unsigned long size, double offset, InterpType interpType)
     {
@@ -20,6 +27,46 @@ struct FrameLib_IO_Helper
     {
         interpolate(table_fetcher_zeropad<T>(fetch), output, size, offset, interpType);
     }
+    
+    size_t limitBufferSize(size_t size, double samplingRate)
+    {
+        if ((size / samplingRate) > 1000.0)
+        {
+            mOwner.getReporter()(kErrorObject, mOwner.getProxy(), "buffer size is limited to 10,000 seconds");
+            return static_cast<size_t>(round(10000 * samplingRate));
+        }
+        
+        return size;
+    }
+    
+    double getBufferSizeDefault(const FrameLib_Parameters::Serial *serialisedParameters, long samples, long seconds)
+    {
+        FrameLib_Parameters parameters(mOwner.getReporter(), nullptr, nullptr);
+        
+        parameters.setErrorReportingEnabled(false);
+        
+        unsigned long unitsIdx = 0;
+        
+        parameters.addEnum(unitsIdx, "units");
+        parameters.addEnumItem(kSamples, "samples");
+        parameters.addEnumItem(kMS, "ms");
+        parameters.addEnumItem(kSeconds, "seconds");
+        
+        parameters.set(serialisedParameters);
+        
+        Units units = parameters.getEnum<Units>(unitsIdx);
+
+        switch (units)
+        {
+            case kSamples:      return samples;
+            case kMS:           return static_cast<double>(seconds) / 1000.0;
+            case kSeconds:      return seconds;
+        }
+    }
+    
+private:
+    
+    FrameLib_DSP& mOwner;
 };
 
 #endif 

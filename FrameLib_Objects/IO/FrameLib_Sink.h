@@ -11,7 +11,6 @@ class FrameLib_Sink final : public FrameLib_AudioOutput, private FrameLib_IO_Hel
 {
     enum ParameterList { kBufferSize, kUnits, kDelay, kInterpolation };
     enum Interpolation { kNone, kLinear, kHermite, kBSpline, kLagrange };
-    enum Units { kSamples, kMS, kSeconds };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     

@@ -5,10 +5,11 @@
 
 FrameLib_Source::FrameLib_Source(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_AudioInput(context, proxy, &sParamInfo, 2, 1, 1)
+, FrameLib_IO_Helper(static_cast<FrameLib_DSP&>(*this))
 {
-    // FIX - defaults for when the units are not in samples!
+    double bufferSizeDefault = getBufferSizeDefault(serialisedParameters, 16384, 1);
     
-    mParameters.addDouble(kBufferSize, "buffer_size", 16384, 0);
+    mParameters.addDouble(kBufferSize, "buffer_size", bufferSizeDefault, 0);
     mParameters.setMin(0.0);
     mParameters.setInstantiation();
     
@@ -118,10 +119,11 @@ void FrameLib_Source::copy(const double *input, unsigned long offset, unsigned l
 
 void FrameLib_Source::objectReset()
 {
-    // Ensure there are enough additional samples for interpolation and the max block size
+    unsigned long size = convertTimeToIntSamples(mParameters.getValue(kBufferSize));
     
-    unsigned long extra = 2UL + mMaxBlockSize;
-    unsigned long size = convertTimeToIntSamples(mParameters.getValue(kBufferSize)) + extra;
+    // Limit the buffer size ensuring there are enough additional samples for interpolation and the max block size
+    
+    size = limitBufferSize(size, mSamplingRate) + mMaxBlockSize + 2UL;
     
     if (size != bufferSize())
         mBuffer.resize(size);
