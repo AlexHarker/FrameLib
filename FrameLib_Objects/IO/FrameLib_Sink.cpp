@@ -1,8 +1,6 @@
 
 #include "FrameLib_Sink.h"
 
-// FIX - sink is only sample accurate (not subsample) - double the buffer and add a function to interpolate if necessary
-
 // Constructor
 
 FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
@@ -22,6 +20,13 @@ FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, const FrameLib_Parameters
     
     mParameters.addDouble(kDelay, "delay", 0);
     mParameters.setMin(0);
+    
+    mParameters.addEnum(kInterpolation, "interp");
+    mParameters.addEnumItem(kNone, "none");
+    mParameters.addEnumItem(kLinear, "linear");
+    mParameters.addEnumItem(kHermite, "hermite");
+    mParameters.addEnumItem(kBSpline, "bspline");
+    mParameters.addEnumItem(kLagrange, "lagrange");
     
     mParameters.set(serialisedParameters);
     
@@ -62,20 +67,29 @@ FrameLib_Sink::ParameterInfo::ParameterInfo()
     add("Sets the internal buffer size in the units specified by the units parameter.");
     add("Sets the time units used to determine the buffer size and delay.");
     add("Sets the delay before output in the units specified by the units parameter.");
+    add("Sets the interpolation mode: "
+        "none - no interpolation"
+        "linear - linear interpolation. "
+        "hermite - cubic hermite interpolation. "
+        "bspline - cubic bspline interpolation. "
+        "lagrange - cubic lagrange interpolation.");
 }
 
 // Helpers
 
-unsigned long FrameLib_Sink::convertTimeToSamples(double time)
+double FrameLib_Sink::convertTimeToSamples(double time)
 {
     switch (mParameters.getEnum<Units>(kUnits))
     {
-        case kSamples:  break;
-        case kMS:       time = msToSamples(time);       break;
-        case kSeconds:  time = secondsToSamples(time);  break;
+        case kSamples:  return time;
+        case kMS:       return msToSamples(time);
+        case kSeconds:  return secondsToSamples(time);
     }
-    
-    return roundToUInt(time);
+}
+
+unsigned long FrameLib_Sink::convertTimeToIntSamples(double time)
+{
+    return roundToUInt(convertTimeToSamples(time));
 }
 
 void FrameLib_Sink::copyAndZero(double *output, unsigned long offset, unsigned long size)
@@ -98,8 +112,11 @@ void FrameLib_Sink::addToBuffer(const double *input, unsigned long offset, unsig
 // Object Reset, Block Process and Process
 
 void FrameLib_Sink::objectReset()
-{    
-    size_t size = convertTimeToSamples(mParameters.getValue(kBufferSize)) + mMaxBlockSize;
+{
+    // Ensure there are enough additional samples for interpolation and the max block size
+    
+    unsigned long extra = 1UL + mMaxBlockSize;
+    size_t size = convertTimeToIntSamples(mParameters.getValue(kBufferSize)) + extra;
     
     if (size != bufferSize())
         mBuffer.resize(size);
@@ -129,20 +146,58 @@ void FrameLib_Sink::blockProcess(const double * const *ins, double **outs, unsig
 
 void FrameLib_Sink::process()
 {
-    unsigned long sizeIn;
+    InterpType interpType = kInterpNone;
+    
+    unsigned long sizeIn, sizeFrame, offset;
     
     FrameLib_TimeFormat frameTime = getFrameTime();
-    FrameLib_TimeFormat delayTime = convertTimeToSamples(mParameters.getValue(kDelay));
+    FrameLib_TimeFormat delayTime(convertTimeToSamples(mParameters.getValue(kDelay)));
     FrameLib_TimeFormat blockStartTime = getBlockStartTime();
+    FrameLib_TimeFormat timeOffset = delayTime + frameTime - blockStartTime;
+    
     const double *input = getInput(0, &sizeIn);
+    const double *frame = input;
+
+    // Determine necessary interpolation
     
-    // Calculate time offset
+    if (timeOffset.fracVal())
+    {
+        switch (mParameters.getEnum<Interpolation>(kInterpolation))
+        {
+            case kNone:         break;
+            case kLinear:       interpType = kInterpLinear;             break;
+            case kHermite:      interpType = kInterpCubicHermite;       break;
+            case kBSpline:      interpType = kInterpCubicBSpline;       break;
+            case kLagrange:     interpType = kInterpCubicLagrange;      break;
+        }
+    }
     
-    unsigned long offset = roundToUInt(delayTime + frameTime - blockStartTime);
-    
+    bool cubic = interpType != kInterpNone && interpType != kInterpLinear;
+    unsigned long interpSize = interpType != kInterpNone ? (cubic ? 3 : 1) : 0;
+    auto interpolated = allocAutoArray<double>(sizeIn + interpSize);
+
+    // Calculate time offset and interpolate if needed
+
+    if (interpType == kInterpNone)
+    {
+        offset = roundToUInt(timeOffset);
+        sizeFrame = sizeIn;
+    }
+    else
+    {
+        offset = static_cast<unsigned long>(timeOffset.intVal());
+        sizeFrame = sizeIn + interpSize;
+        frame = interpolated.get();
+
+        uint64_t interpOffset = cubic ? 1 : 0;
+        double position = -static_cast<double>(FrameLib_TimeFormat(interpOffset, timeOffset.fracVal()));
+        
+        interpolate_zeropad(Fetcher(input, sizeIn), interpolated.get(), sizeFrame, position, interpType);
+    }
+
     // Safety
     
-    if (!sizeIn || frameTime < blockStartTime || (offset + sizeIn) > bufferSize())
+    if (!sizeFrame || frameTime < blockStartTime || (offset + sizeFrame) > bufferSize())
         return;
     
     // Calculate actual offset into buffer
@@ -152,8 +207,8 @@ void FrameLib_Sink::process()
     
     // Calculate first segment size and copy segments
     
-    unsigned long size = ((offset + sizeIn) > bufferSize()) ? bufferSize() - offset : sizeIn;
+    unsigned long size = ((offset + sizeFrame) > bufferSize()) ? bufferSize() - offset : sizeFrame;
     
-    addToBuffer(input, offset, size);
-    addToBuffer(input + size, 0, sizeIn - size);
+    addToBuffer(frame, offset, size);
+    addToBuffer(frame + size, 0, sizeFrame - size);
 }

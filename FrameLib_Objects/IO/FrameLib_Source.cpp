@@ -211,9 +211,6 @@ void FrameLib_Source::process()
     {
         double position = static_cast<double>(mCounter) - static_cast<double>(timeOffset);
     
-        for (unsigned long i = 0; i < sizeOut; i++, position += 1.0)
-            output[i] = position;
-
-        table_read(Fetcher(mBuffer.data(), bufferSize()), output, output, sizeOut, 1.0, interpType);
+        interpolate(Fetcher(mBuffer.data(), bufferSize()), output, sizeOut, position, interpType);
     }
 }

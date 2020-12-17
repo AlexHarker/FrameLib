@@ -4,10 +4,10 @@
 #define FRAMELIB_SOURCE_H
 
 #include "FrameLib_DSP.h"
-#include "../../FrameLib_Dependencies/TableReader.hpp"
+#include "Framelib_IO_Helper.h"
 #include <vector>
 
-class FrameLib_Source final : public FrameLib_AudioInput
+class FrameLib_Source final : public FrameLib_AudioInput, private FrameLib_IO_Helper
 {
     // Parameter Enums and Info
 
