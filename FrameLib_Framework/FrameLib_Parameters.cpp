@@ -51,7 +51,7 @@ unsigned long FrameLib_Parameters::Serial::Iterator::getVectorSize() const
     return size;
 }
 
-char *FrameLib_Parameters::Serial::Iterator::getString() const
+const char *FrameLib_Parameters::Serial::Iterator::getString() const
 {
     Entry entry = getEntry();
     

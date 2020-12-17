@@ -101,10 +101,10 @@ public:
             // Getters
             
             DataType getType() const    { return *(reinterpret_cast<DataType *>(mPtr)); }
-            char *getTag() const        { return reinterpret_cast<char *>(mPtr + sizeType() + sizeSize()); }
+            const char *getTag() const  { return reinterpret_cast<char *>(mPtr + sizeType() + sizeSize()); }
             const double *getVector(unsigned long *size) const;
             unsigned long getVectorSize() const;
-            char *getString() const;
+            const char *getString() const;
             unsigned long getSize() const;
             unsigned long getIndex() const { return mIndex; }
             
