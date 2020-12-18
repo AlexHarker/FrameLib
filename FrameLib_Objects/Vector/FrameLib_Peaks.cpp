@@ -3,6 +3,16 @@
 #include "FrameLib_Edges.h"
 #include <algorithm>
 
+// Distance Helper
+
+template <typename T, typename U>
+unsigned long distance(T a, U b)
+{ 
+	return static_cast<unsigned long>(std::distance(a, b)); 
+}
+
+// Constructor
+
 FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, nullptr, 1, 3)
 {
@@ -202,7 +212,7 @@ void FrameLib_Peaks::process()
         case 4:    nPeaks = findPeaks<checkPeak<4>>(indices, data, sizeIn, threshold);     break;
     }
     
-    // If needed reate a single peak at the maximum, (place central to multiple consecutive maxima)
+    // If needed create a single peak at the maximum, (place central to multiple consecutive maxima)
     
     if (!nPeaks && alwaysDetect)
     {
@@ -211,9 +221,9 @@ void FrameLib_Peaks::process()
         std::reverse_iterator<double *> rev1(data + sizeIn);
         std::reverse_iterator<double *> rev2(data);
         
-        unsigned long max = std::distance(data, std::max_element(fwd1, fwd2));
-        unsigned long beg = std::distance(fwd1, std::find(fwd1, fwd2, data[max]));
-        unsigned long end = sizeIn  - (std::distance(rev1, std::find(rev1, rev2, data[max])) + 1);
+        unsigned long max = distance(data, std::max_element(fwd1, fwd2));
+        unsigned long beg = distance(fwd1, std::find(fwd1, fwd2, data[max]));
+        unsigned long end = sizeIn - (distance(rev1, std::find(rev1, rev2, data[max])) + 1);
         unsigned long centre = (beg + end) >> 1;
         
         indices[nPeaks++] = data[centre] == data[max] ? centre : max;
@@ -254,7 +264,7 @@ void FrameLib_Peaks::process()
                 case kMinimum:
                 {
                     auto it = std::min_element(data + indices[peak] + 1, data + indices[peak + 1]);
-                    peakEnd = std::distance(data, it);
+                    peakEnd = distance(data, it);
                     break;
                 }
                 

@@ -151,7 +151,10 @@ public:
         void deallocate(U *& ptr)           { mObject.dealloc(ptr); }
         
         template <class U>
-        AutoArray<U> allocAutoArray(size_t N)  { return mObject.allocAutoArray<U>(N); }
+        AutoArray<U> allocAutoArray(unsigned long N)  
+		{ 
+			return mObject.allocAutoArray<U>(N); 
+		}
         
     private:
         
@@ -431,7 +434,7 @@ protected:
     // Memory Allocation
     
     template <class U>
-    AutoArray<U> allocAutoArray(size_t N)
+    AutoArray<U> allocAutoArray(unsigned long N)
     {
         return AutoArray<U>(this, N);
     }

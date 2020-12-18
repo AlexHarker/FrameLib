@@ -58,7 +58,7 @@ public:
     
     static t_max_err rtSet(FrameLib_MaxClass_ContextControl *x, t_object *attr, long argc, t_atom *argv)
     {
-        x->mMaxContext.mRealtime = argv ? atom_getlong(argv) : 0;
+        x->mMaxContext.mRealtime = argv ? static_cast<long>(atom_getlong(argv)) : 0;
         x->updateContext();
         
         return MAX_ERR_NONE;

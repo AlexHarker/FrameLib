@@ -119,7 +119,7 @@ void FrameLib_Source::copy(const double *input, unsigned long offset, unsigned l
 
 void FrameLib_Source::objectReset()
 {
-    unsigned long size = convertTimeToIntSamples(mParameters.getValue(kBufferSize));
+	size_t size = convertTimeToIntSamples(mParameters.getValue(kBufferSize));
     
     // Limit the buffer size ensuring there are enough additional samples for interpolation and the max block size
     
