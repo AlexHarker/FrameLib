@@ -767,7 +767,7 @@ public:
     bool getBool(const char *name) const                                    { return getBool(getIdx(name)); }
     
     template <typename T>
-    T getEnum(unsigned long idx) const                                      { return static_cast<T>(getValue(idx)); }
+    T getEnum(unsigned long idx) const                                      { return static_cast<T>(getInt(idx)); }
     template <typename T>
     T getEnum(const char *name) const                                       { return getEnum<T>(getIdx(name)); }
     
