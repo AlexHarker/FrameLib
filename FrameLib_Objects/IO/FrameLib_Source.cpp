@@ -161,7 +161,7 @@ void FrameLib_Source::process()
     
     FrameLib_TimeFormat frameTime = getFrameTime();
     FrameLib_TimeFormat delayTime(convertTimeToSamples(mParameters.getValue(kDelay)));
-    delayTime = std::max(FrameLib_TimeFormat(sizeOut), delayTime);
+    delayTime = std::max(FrameLib_TimeFormat(sizeOut, 0), delayTime);
     
     // Calculate output size
     
@@ -171,7 +171,7 @@ void FrameLib_Source::process()
     
     // Calculate time offset and determine required interpolation
     
-    FrameLib_TimeFormat timeOffset = FrameLib_TimeFormat(getBlockEndTime() - frameTime) + delayTime;
+    FrameLib_TimeFormat timeOffset = (getBlockEndTime() - frameTime) + delayTime;
     
     if (timeOffset.fracVal())
     {
@@ -188,8 +188,9 @@ void FrameLib_Source::process()
     // Safety
     
     bool timeCheck = frameTime >= getBlockStartTime() && frameTime < getBlockEndTime();
+    FrameLib_TimeFormat delayCheck = delayTime - FrameLib_TimeFormat(sizeOut, 0);
     
-    if (!timeCheck || !checkOutput(sizeOut, delayTime, bufferSize(), mMaxBlockSize + 2UL))
+    if (!timeCheck || !checkOutput(sizeOut, delayCheck, bufferSize(), mMaxBlockSize + 2UL))
     {
         zeroVector(output, sizeOut);
         return;
