@@ -139,6 +139,10 @@ public:
             case kPower:        return 1.0 / mPowGain;
             case kReconstruct:  return mLinGain / mPowGain;
         }
+
+		assert("This code should never run");
+
+		return 1.0;
     }
     
     // Parameter updates and retrieval

@@ -69,6 +69,10 @@ public:
             case kMS:           return static_cast<double>(seconds) / 1000.0;
             case kSeconds:      return seconds;
         }
+
+		assert("this code should never run");
+
+		return samples;
     }
     
 private:
