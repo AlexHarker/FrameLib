@@ -125,9 +125,9 @@ void FrameLib_Trace::objectReset()
 {
     size_t size = convertTimeToSamples(mParameters.getValue(kBufferSize));
     
-    // Limit the buffer size ensuring there are enough additional samples for the max block size
+    // Limit the buffer size ensuring there are enough additional samples for rounding and the max block size
     
-    size = limitBufferSize(size, mSamplingRate) + mMaxBlockSize;
+    size = limitBufferSize(size, mSamplingRate) + mMaxBlockSize + 1UL;
     
     if (size != bufferSize())
     {
@@ -179,7 +179,10 @@ void FrameLib_Trace::process()
     
     // Safety
     
-    if (!sizeIn || frameTime < getBlockStartTime() || (offset + sizeToWrite) > bufferSize())
+    if (!checkFrameTime(frameTime, getBlockStartTime(), getBlockEndTime()))
+        return;
+    
+    if (!checkOutput(sizeToWrite, delayTime, bufferSize(), mMaxBlockSize + 1UL))
         return;
     
     switch (mode)

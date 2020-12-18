@@ -39,6 +39,18 @@ public:
         return size;
     }
     
+    bool checkFrameTime(FrameLib_TimeFormat frameTime, FrameLib_TimeFormat blockStartTime, FrameLib_TimeFormat blockEndTime)
+    {
+        return frameTime >= blockStartTime && frameTime < blockEndTime;
+    }
+    
+    bool checkOutput(unsigned long size, FrameLib_TimeFormat delay, unsigned long bufferSize, unsigned long extra)
+    {
+        extra += static_cast<unsigned long>(delay.intVal()) + (delay.fracVal() ? 1UL : 0UL);
+        
+        return (size && size <= (bufferSize - extra));
+    }
+    
     double getBufferSizeDefault(const FrameLib_Parameters::Serial *serialisedParameters, long samples, long seconds)
     {
         FrameLib_Parameters parameters(mOwner.getReporter(), nullptr, nullptr);

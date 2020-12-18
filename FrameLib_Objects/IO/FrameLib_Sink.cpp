@@ -199,7 +199,10 @@ void FrameLib_Sink::process()
 
     // Safety
     
-    if (!sizeFrame || frameTime < blockStartTime || (offset + sizeFrame) > bufferSize())
+    if (!checkFrameTime(frameTime, blockStartTime, getBlockEndTime()))
+        return;
+    
+    if (!checkOutput(sizeIn, delayTime, bufferSize(), mMaxBlockSize + 3UL))
         return;
     
     // Calculate actual offset into buffer

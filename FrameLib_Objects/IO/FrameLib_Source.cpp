@@ -187,7 +187,9 @@ void FrameLib_Source::process()
     
     // Safety
     
-    if (!sizeOut || roundToUInt(timeOffset) > (bufferSize() - 2UL))
+    bool timeCheck = checkFrameTime(frameTime, getBlockStartTime(), getBlockEndTime());
+    
+    if (!timeCheck || !checkOutput(sizeOut, delayTime, bufferSize(), mMaxBlockSize + 2UL))
     {
         zeroVector(output, sizeOut);
         return;
