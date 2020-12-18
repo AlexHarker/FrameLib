@@ -113,7 +113,7 @@ public:
         }
         
         operator U*()                       { return mMemory; }
-        const operator U*() const           { return mMemory; }
+        operator const U*() const           { return mMemory; }
         
         U* get()                            { return mMemory; }
         const U* get() const                { return mMemory; }
