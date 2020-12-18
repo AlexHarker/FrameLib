@@ -199,7 +199,7 @@ void FrameLib_Sink::process()
 
     // Safety
     
-    if (!checkFrameTime(frameTime, blockStartTime, getBlockEndTime()))
+    if (frameTime < getBlockEndTime())
         return;
     
     if (!checkOutput(sizeIn, delayTime, bufferSize(), mMaxBlockSize + 3UL))

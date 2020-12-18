@@ -179,7 +179,7 @@ void FrameLib_Trace::process()
     
     // Safety
     
-    if (!checkFrameTime(frameTime, getBlockStartTime(), getBlockEndTime()))
+    if (frameTime < getBlockEndTime())
         return;
     
     if (!checkOutput(sizeToWrite, delayTime, bufferSize(), mMaxBlockSize + 1UL))

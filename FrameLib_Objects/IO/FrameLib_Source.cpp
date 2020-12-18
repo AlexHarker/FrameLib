@@ -187,7 +187,7 @@ void FrameLib_Source::process()
     
     // Safety
     
-    bool timeCheck = checkFrameTime(frameTime, getBlockStartTime(), getBlockEndTime());
+    bool timeCheck = frameTime >= getBlockStartTime() && frameTime < getBlockEndTime();
     
     if (!timeCheck || !checkOutput(sizeOut, delayTime, bufferSize(), mMaxBlockSize + 2UL))
     {
