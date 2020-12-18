@@ -33,10 +33,8 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Common_Utilities\FrameLib_VectorSet.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Complex_Binary\FrameLib_Complex_Binary_Objects.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Complex_Binary\FrameLib_Complex_Binary_Template.h" />
-    <ClInclude Include="..\..\..\FrameLib_Objects\Complex_Unary\FrameLib_Cartopol.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Complex_Unary\FrameLib_Complex_Unary_Objects.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Complex_Unary\FrameLib_Complex_Unary_Template.h" />
-    <ClInclude Include="..\..\..\FrameLib_Objects\Complex_Unary\FrameLib_Poltocar.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Expressions\FrameLib_ComplexExpression.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Expressions\FrameLib_Expression.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Expressions\FrameLib_ExprParser.h" />
@@ -75,8 +73,10 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Interval.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Once.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_PerBlock.h" />
-    <ClInclude Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_CoordinateSystem.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_Cartopol.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_Poltocar.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_Spatial.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_Spatial_Convertor_Template.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Convolution_Tools.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Convolve.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Correlate.h" />
@@ -165,7 +165,6 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Interval.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Once.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_PerBlock.cpp" />
-    <ClCompile Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_CoordinateSystem.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_Spatial.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Convolve.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Correlate.cpp" />
