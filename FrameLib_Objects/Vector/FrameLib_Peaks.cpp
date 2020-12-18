@@ -6,7 +6,7 @@
 // Distance Helper
 
 template <typename T, typename U>
-unsigned long distance(T a, U b)
+unsigned long delta(T a, U b)
 { 
 	return static_cast<unsigned long>(std::distance(a, b)); 
 }
@@ -221,9 +221,9 @@ void FrameLib_Peaks::process()
         std::reverse_iterator<double *> rev1(data + sizeIn);
         std::reverse_iterator<double *> rev2(data);
         
-        unsigned long max = distance(data, std::max_element(fwd1, fwd2));
-        unsigned long beg = distance(fwd1, std::find(fwd1, fwd2, data[max]));
-        unsigned long end = sizeIn - (distance(rev1, std::find(rev1, rev2, data[max])) + 1);
+        unsigned long max = delta(data, std::max_element(fwd1, fwd2));
+        unsigned long beg = delta(fwd1, std::find(fwd1, fwd2, data[max]));
+        unsigned long end = sizeIn - (delta(rev1, std::find(rev1, rev2, data[max])) + 1UL);
         unsigned long centre = (beg + end) >> 1;
         
         indices[nPeaks++] = data[centre] == data[max] ? centre : max;
@@ -264,7 +264,7 @@ void FrameLib_Peaks::process()
                 case kMinimum:
                 {
                     auto it = std::min_element(data + indices[peak] + 1, data + indices[peak + 1]);
-                    peakEnd = distance(data, it);
+                    peakEnd = delta(data, it);
                     break;
                 }
                 
