@@ -90,7 +90,7 @@ size_t FLParam_String(FrameLib_Param_UGen* unit, char*& str, size_t i)
     
     for (size_t j = 0; it != end && j < length; it++, j++)
     {
-        int32 chars = (int32) (*it)->mScalarValue;;
+        int32 chars = (int32) (*it)->mScalarValue;
         char c;
         str[j * 3 + 0] = c = (char) (chars & 0xFF);
         str[j * 3 + 1] = c = (char) ((chars >> 0x08) & 0xFF);
