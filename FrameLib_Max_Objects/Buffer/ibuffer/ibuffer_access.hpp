@@ -33,7 +33,7 @@ enum BufferType { kBufferNone, kBufferIBuffer, kBufferMaxBuffer };
 
 class ibuffer_data
 {
-    static t_symbol * ps_buffer;
+    static t_symbol *ps_buffer;
     static t_symbol *ps_ibuffer;
     
 public:
