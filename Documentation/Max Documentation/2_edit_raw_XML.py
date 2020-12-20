@@ -1,13 +1,7 @@
-import os
-import json
+import os, json, errno, yaml, re
 import xml.etree.ElementTree as et
-import errno
-import yaml
 from FrameLibDocs.utils import (
-    cd_up,
     read_json,
-    remove_ds,
-    get_path,
     read_yaml,
     strip_extension,
 )
@@ -17,10 +11,15 @@ from FrameLibDocs.variables import (
     category_database_path,
     max_docs_dir,
     object_relationships_path,
+    temporary_dir,
 )
 
 
 def indent(elem, level=0):
+    """
+    Although the XML will still be valid after processing it won't have ANY indentation.
+    This function adds indentation to make it more humanly readable.
+    """
     i = "\n" + level * "  "
     if len(elem):
         if not elem.text or not elem.text.strip():
@@ -32,7 +31,7 @@ def indent(elem, level=0):
         if not elem.tail or not elem.tail.strip():
             elem.tail = i
     else:
-        if level and (not elem.tail or not elem.tail.strip()):
+        if level and not elem.tail or not elem.tail.strip():
             elem.tail = i
 
 
@@ -43,17 +42,14 @@ def main():
     It also copies the xml files to the refpages directory after they're processed.
     """
 
-    # directories
     object_info = read_yaml(object_relationships_path)
-
-    # Load the category_database.json
     category_database = read_json(category_database_path)
 
     # Get category of file
-    def find_object_category(obj_string):
+    def find_object_category(obj_string: str) -> str:
         """
         Finds the dictionary name for an object inside of that dictionary.
-        Is used to work backwards and find which category each object belongs to.
+        Works backwards and find which category each object belongs to.
         """
         for key in category_database:
             category_object_list = category_database[key]
@@ -61,72 +57,71 @@ def main():
                 if obj == obj_string:
                     return key
 
-    try:
-        raw_xml_list = remove_ds(
-            os.listdir(raw_xml_dir)
-        )  # make a list with all the raw xml files in them
-    except FileNotFoundError:
-        print(
-            "Unable to find any xml files to parse. Moving on without parsing object references."
-        )
-    else:
-        for raw_xml in raw_xml_list:
-            obj_name = strip_extension(raw_xml, 2)  # just get the file name
-            category = find_object_category(
-                obj_name
-            )  # get the category of the object name
-            tree = et.parse(os.path.join(raw_xml_dir, raw_xml))  # parse the xml file
-            root = tree.getroot()  # get root and assign to root var
-            root.set(
-                "category", category
-            )  # set category attribute of root to the category found in json
+    raw_xml_list = [x for x in raw_xml_dir.rglob("fl.*.xml")]
+    refpages_dir.mkdir(exist_ok=True)
 
-            # This replaces the meta data tag. It produces a lot of errors which are filtered by the try/except structure but it should be changed to something else #
-            if category != None:
-                for (
-                    elem
-                ) in (
-                    root.getiterator()
-                ):  # for all the elements in the root of the xml tree
-                    try:
-                        elem.text = elem.text.replace(
-                            "!@#@#$", category
-                        )  # try to replace specific text with category found in json
-                    except AttributeError:
-                        pass  # else pass because it will throw some errors
-                        # print('Error trying to replace category string.')
+    for raw_xml in raw_xml_list:
+        obj_name = strip_extension(raw_xml.name, 2)  # just get the file name
+        category = find_object_category(obj_name)  # get the category of the object name
+        tree = et.parse(raw_xml)  # parse the xml file
 
-            if not os.path.exists(os.path.join(refpages_dir, category)):
+        root = tree.getroot()  # get root and assign to root var
+        root.set("category", category)  # set category attribute of root to the category found in json
+
+        for i in root.getiterator():
+            # Replace line breaks
+            if "name" in i.attrib.keys():
+                if i.attrib["name"] == "Parameters":
+                    for j in i.getiterator():
+                        if j.tag == "description":
+                            j.text = j.text.replace(". ", ".<br>")
+                            j.text = j.text.replace(": ", ":<br><br>")
+            # Dirty pass
+            try:
+                i.text = i.text.replace("!@#@#$", category)
+            except AttributeError:
+                pass
+
+        # Create seealso and keywords
+        details = object_info[obj_name]
+        for elem in root:
+            if elem.tag == "seealsolist":
                 try:
-                    os.makedirs(os.path.join(refpages_dir))
-                except OSError as e:
-                    if e.errno != errno.EEXIST:
-                        raise  # if directory is made between os.path.exists and os.makedirs calls this will fail with an OSError. This raises an error to warn the user rather than pushing on
-
-            # Create seealso and keywords
-            details = object_info[obj_name]
-            for elem in root:
-                if elem.tag == "seealsolist":
                     for seealso in details["seealso"]:
                         new_element = et.Element("seealso")
-                        new_element.set("Name", seealso)
+                        new_element.set("name", seealso)
                         elem.append(new_element)
-                if elem.tag == "misc" and elem.attrib["name"] == "Discussion":
-                    for sub_elem in elem:
-                        if (
-                            sub_elem.tag == "entry"
-                            and sub_elem.attrib["name"] == "Keywords"
-                        ):
-                            for desc in sub_elem:
-                                temp_string = ",".join(details["keywords"])
-                                desc.text = temp_string
-            # Pretty Print
-            indent(root)
-            out_path = os.path.join(refpages_dir, category, raw_xml)
-            # TODO Review how os.makedirs is working here - it might be better to use FrameLibDocs.utils checkmake()
-            try:
-                os.makedirs(os.path.join(refpages_dir, category))
-            except OSError as e:
-                if e.errno != errno.EEXIST:
-                    raise
-            tree.write(out_path)  # write out to new XML
+                except KeyError:
+                    print(f"No seealso for {obj_name}")
+            if elem.tag == "misc" and elem.attrib["name"] == "Discussion":
+                for sub_elem in elem:
+                    if sub_elem.tag == "entry" and sub_elem.attrib["name"] == "Keywords":
+                        for desc in sub_elem:
+                            temp_string = ",".join(details["keywords"])
+                            desc.text = temp_string
+        # Pretty Print
+        indent(root)
+
+        # # Write out
+        xml_second_pass = temporary_dir / "raw_xml_2"
+        xml_second_pass.mkdir(exist_ok=True)
+
+        unescaped_file = xml_second_pass / raw_xml.name
+        tree.write(unescaped_file)
+
+        refpages_dir.mkdir(exist_ok=True)
+        refpages_parent = refpages_dir / category
+        refpages_parent.mkdir(exist_ok=True)
+        final_path = refpages_dir / category / raw_xml.name
+        final_file = open(final_path, "w+")
+        with open(unescaped_file, "r") as f:
+            xml = f.read()
+            xml = xml.replace("&lt;", "<")
+            xml = xml.replace("&gt;", "/>")
+            for line in xml:
+                final_file.write(line)
+            final_file.close()
+
+
+if __name__ == "__main__":
+    main()

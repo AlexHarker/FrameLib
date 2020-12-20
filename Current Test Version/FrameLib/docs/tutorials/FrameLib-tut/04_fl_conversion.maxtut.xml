@@ -2,7 +2,7 @@
 
 <?xml-stylesheet href="./_c74_tut.xsl" type="text/xsl"?>
 
-<chapter name="FrameLib Tutorial 4: Data Conversion">
+<chapter name="FrameLib Tutorial 4: Conversion">
 	<next name="05_fl_generators">Generators</next>
 	<parent name="00_fl_index">FrameLib tutorials</parent>
 

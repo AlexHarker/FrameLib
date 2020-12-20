@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 984.0, 787.0 ],
+		"rect" : [ 34.0, 79.0, 1095.0, 829.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -45,7 +45,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 27.0, 471.333331644535065, 465.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 12.0, 473.333331644535065, 465.0, 20.0 ],
+					"presentation_rect" : [ 15.583333343267441, 608.333331644535065, 465.0, 20.0 ],
 					"text" : "All time with frames overlapped and added (compensated by multipling frames by 0.5)",
 					"textcolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
 				}
@@ -62,7 +62,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 27.0, 403.0, 519.0, 88.333331644535065 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 12.0, 405.0, 519.0, 88.333331644535065 ],
+					"presentation_rect" : [ 15.583333343267441, 497.0, 509.416666477918625, 131.333331644535065 ],
 					"size" : 6144,
 					"slidercolor" : [ 0.772549019607843, 0.305882352941176, 0.772549019607843, 1.0 ]
 				}
@@ -1094,14 +1094,15 @@
 , 			{
 				"box" : 				{
 					"fontface" : 1,
+					"fontname" : "Lato Regular",
 					"fontsize" : 12.0,
 					"id" : "obj-141",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 144.375, 14.0, 266.0, 20.0 ],
+					"patching_rect" : [ 144.375, 14.0, 252.0, 21.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 129.375, 6.666668355464935, 266.0, 20.0 ],
+					"presentation_rect" : [ 129.375, 6.666668355464935, 252.0, 21.0 ],
 					"text" : "Overlapp-add frames demonstration",
 					"textjustification" : 1
 				}
@@ -1124,28 +1125,26 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-109",
-					"justification" : 1,
 					"linecolor" : [ 0.137254901960784, 0.137254901960784, 0.137254901960784, 0.49 ],
 					"maxclass" : "live.line",
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 457.75, 82.0, 7.833333373069763, 115.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 442.75, 74.666668355464935, 7.833333373069763, 115.0 ]
+					"presentation_rect" : [ 438.388888855775235, 74.666668355464935, 11.611111144224765, 146.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"id" : "obj-108",
-					"justification" : 1,
 					"linecolor" : [ 0.137254901960784, 0.137254901960784, 0.137254901960784, 0.49 ],
 					"maxclass" : "live.line",
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 542.416666656732559, 82.0, 7.166666686534882, 115.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 527.416666656732559, 74.666668355464935, 7.166666686534882, 115.0 ]
+					"presentation_rect" : [ 525.0, 74.666668355464935, 7.166666686534882, 146.0 ]
 				}
 
 			}
@@ -1166,84 +1165,80 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-106",
-					"justification" : 1,
 					"linecolor" : [ 0.137254901960784, 0.137254901960784, 0.137254901960784, 0.49 ],
 					"maxclass" : "live.line",
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 283.25, 82.0, 6.5, 13.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 268.25, 74.666668355464935, 6.5, 13.0 ]
+					"presentation_rect" : [ 267.833333313465118, 74.666668355464935, 6.5, 13.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"id" : "obj-105",
-					"justification" : 1,
 					"linecolor" : [ 0.137254901960784, 0.137254901960784, 0.137254901960784, 0.49 ],
 					"maxclass" : "live.line",
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 369.75, 82.0, 6.5, 13.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 354.75, 74.666668355464935, 6.5, 13.0 ]
+					"presentation_rect" : [ 353.111111084620177, 74.666668355464935, 6.5, 13.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"id" : "obj-104",
-					"justification" : 1,
 					"linecolor" : [ 0.137254901960784, 0.137254901960784, 0.137254901960784, 0.49 ],
 					"maxclass" : "live.line",
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 196.75, 82.0, 6.5, 13.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 181.75, 74.666668355464935, 6.5, 13.0 ]
+					"presentation_rect" : [ 182.555555542310088, 74.666668355464935, 6.5, 13.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"id" : "obj-103",
-					"justification" : 1,
 					"linecolor" : [ 0.137254901960784, 0.137254901960784, 0.137254901960784, 0.49 ],
 					"maxclass" : "live.line",
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 110.375, 82.0, 6.5, 13.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 95.375, 74.666668355464935, 6.5, 13.0 ]
+					"presentation_rect" : [ 97.277777771155044, 74.666668355464935, 6.5, 13.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"id" : "obj-102",
-					"justification" : 1,
 					"linecolor" : [ 0.137254901960784, 0.137254901960784, 0.137254901960784, 0.49 ],
 					"maxclass" : "live.line",
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 24.0, 82.0, 6.5, 13.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 9.0, 74.666668355464935, 6.5, 13.0 ]
+					"presentation_rect" : [ 12.0, 74.666668355464935, 6.5, 13.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"fontface" : 2,
+					"fontname" : "Lato Regular",
 					"fontsize" : 12.0,
 					"id" : "obj-100",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 144.375, 36.0, 266.0, 20.0 ],
+					"patching_rect" : [ 144.375, 36.0, 245.0, 21.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 129.375, 28.666668355464935, 266.0, 20.0 ],
+					"presentation_rect" : [ 129.375, 28.666668355464935, 245.0, 21.0 ],
 					"text" : "Time specified in samples",
 					"textjustification" : 1
 				}
@@ -1585,7 +1580,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 27.0, 378.333331644535065, 386.666669607162476, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 12.0, 368.333331644535065, 386.666669607162476, 20.0 ],
+					"presentation_rect" : [ 15.583333343267441, 473.333331644535008, 386.666669607162476, 20.0 ],
 					"text" : "All time with frames overlapped and added (no compensation)",
 					"textcolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
 				}
@@ -1599,7 +1594,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 200.0, 278.0, 92.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 185.0, 270.666668355464935, 92.0, 20.0 ],
+					"presentation_rect" : [ 182.555555542310088, 338.999998688697815, 92.0, 20.0 ],
 					"text" : "Second Frame",
 					"textcolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
 				}
@@ -1613,7 +1608,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 27.0, 177.0, 76.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 12.0, 169.666668355464935, 76.0, 20.0 ],
+					"presentation_rect" : [ 12.0, 205.00000274181366, 76.0, 20.0 ],
 					"text" : "First Frame",
 					"textcolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
 				}
@@ -1669,7 +1664,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 18.25, 61.0, 18.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 3.25, 53.666668355464935, 18.0, 20.0 ],
+					"presentation_rect" : [ 6.25, 53.666668355464935, 18.0, 20.0 ],
 					"text" : "0",
 					"textjustification" : 1
 				}
@@ -1686,7 +1681,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 27.0, 310.0, 519.0, 88.333331644535065 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 12.0, 307.333335022131621, 519.0, 88.333331644535065 ],
+					"presentation_rect" : [ 15.583333343267441, 360.999998688697815, 509.666667997837067, 132.33333295583725 ],
 					"size" : 6144,
 					"slidercolor" : [ 0.772549019607843, 0.305882352941176, 0.772549019607843, 1.0 ]
 				}
@@ -1703,7 +1698,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 200.0, 199.0, 346.0, 99.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 185.0, 199.000001688798278, 346.0, 99.0 ],
+					"presentation_rect" : [ 182.555555542310088, 225.999997675418854, 343.111111144224765, 133.000001013278961 ],
 					"size" : 4096,
 					"slidercolor" : [ 0.827450980392157, 0.203921568627451, 0.270588235294118, 1.0 ]
 				}
@@ -1720,7 +1715,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 27.0, 98.0, 346.0, 99.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 12.0, 90.666668355464935, 346.0, 99.0 ],
+					"presentation_rect" : [ 12.0, 90.666668355464935, 339.111111084620177, 134.333334386348724 ],
 					"size" : 4096,
 					"slidercolor" : [ 0.376470588235294, 0.925490196078431, 0.996078431372549, 1.0 ]
 				}
@@ -1728,16 +1723,17 @@
 			}
 , 			{
 				"box" : 				{
+					"fontname" : "Lato Regular",
 					"fontsize" : 13.0,
 					"id" : "obj-4",
 					"linecount" : 29,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 572.399989000000005, 61.0, 408.0, 428.0 ],
+					"patching_rect" : [ 572.399989000000005, 61.0, 413.0, 459.0 ],
 					"presentation" : 1,
-					"presentation_linecount" : 30,
-					"presentation_rect" : [ 553.0, 53.666668355464935, 381.0, 442.0 ],
+					"presentation_linecount" : 37,
+					"presentation_rect" : [ 553.0, 53.666668355464935, 300.800000131130219, 584.0 ],
 					"text" : "We can think of time in the audio domain as something that passes in numbers of samples. If our sampling rate is 44.1khz then 44100 samples pass each second. Here we have two imaginary frames both 4096 samples long. Lets imagine that the frame on the left was created first, at a time called '0 samples'. This frame is 4096 samples long and will last for this amount of time once it reaches the fl.sink~ overlap add buffer.\n\nLets imagine the object on the right is the same length, 4096 samples, but is created after 2048 samples of time have passed. This would happen exactly halfway through the duration of the first frame, and so the last 2048 samples of frame 1, would be added to the first 2048 samples of frame 2. We can describe what is happening here as the 'overlap', or more specifically a '2 times overlap'. We can mathematically calculate the overlap by dividing our frame size by the rate at which frames are being created. In this case: \n\n4096 (length) / 2048 (rate) = 2 (overlap)\n\n\nAs you can see in the output with no compensation, adding these frames results in clipping and the top of the sine wave component is squared off. When we properly compensate for the 2 times overlap by multiplying the inputs by 0.5 (half) the result is kept within a range which doesn't clip.\n\nIf this isn't making complete sense yet, revisit some of the initial examples, especially tutorial 2, and observe how overlaps are created and compensated for inside the sub patchers."
 				}
 

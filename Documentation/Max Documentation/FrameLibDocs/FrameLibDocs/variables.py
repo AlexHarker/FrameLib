@@ -1,26 +1,24 @@
-import os
-from FrameLibDocs.utils import cd_up
+from pathlib import Path
 
-this_script = os.path.dirname(os.path.realpath(__file__))
-max_docs_dir = cd_up(this_script, 2)
-package_root = cd_up(this_script, 4)
+this_script = Path(__file__)
+max_docs_dir = this_script.parents[2]
+package_root = this_script.parents[4]
+
+# Import Max Paths
+current_version = package_root / "Current Test Version"
 
 # Temporary Directories
-temporary_dir = os.path.join(max_docs_dir, "__tmp__")
-databases_dir = os.path.join(temporary_dir, "db")
-raw_xml_dir = os.path.join(temporary_dir, "raw_xml")
+temporary_dir = max_docs_dir / "__tmp__"
+databases_dir = temporary_dir / "db"
+raw_xml_dir = temporary_dir / "raw_xml"
 
 # Key Files
-category_database_path = os.path.join(databases_dir, "category_database.json")
-object_relationships_path = os.path.join(max_docs_dir, "object_relationships.yaml")
+category_database_path = databases_dir / "category_databases.json"
+object_relationships_path = max_docs_dir / "object_relationships.yaml"
 
 # Max specific paths
-refpages_dir = os.path.join(
-    package_root, "Current Test Version", "FrameLib", "docs", "refpages"
-)
-interfaces_dir = os.path.join(
-    package_root, "Current Test version", "FrameLib", "interfaces"
-)
+refpages_dir = current_version / "FrameLib" / "docs" / "refpages"
+interfaces_dir = current_version / "FrameLib" / "interfaces"
 
-# Common objectives/variables
-bad_entries = [".DS_Store", "_c74_ref_modules.xml"]
+# Help Files
+help_dir = max_docs_dir / "help_files"

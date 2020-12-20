@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as et
-from FrameLibDocs.utils import cd_up, write_json, thin_list, check_make, strip_space, strip_extension
+from FrameLibDocs.utils import write_json, strip_space, strip_extension
 
 
 # A class to parse the XML files and build a JSON file from it #
@@ -12,12 +12,12 @@ class dParseAndBuild:
         self.tree = 0
         self.root = 0
         self.digest = ""
-        self.d_master_dict = dict({})
+        self.d_master_dict = {}
 
     # Assign values to construct the json #
     def build_json_file(self):
-        self.d_inner_data = dict({"digest": self.digest})
-        self.d_outer_data = dict({self.object_name: self.d_inner_data})
+        self.d_inner_data = {"digest": self.digest}
+        self.d_outer_data = {self.object_name: self.d_inner_data}
         self.d_master_dict.update(self.d_outer_data)
 
     # Extract the info from the refpages #
@@ -26,9 +26,7 @@ class dParseAndBuild:
         self.root = self.tree.getroot()  # c74object
 
         # Find Information #
-        self.object_name = self.root.get(
-            "name"
-        )  # finds the name so you don't have to do regex
+        self.object_name = self.root.get("name")  # finds the name so you don't have to do regex
 
         for child in self.root:
             if child.tag == "digest":
@@ -93,13 +91,19 @@ class qParseAndBuild:
         """
         Extracts the see also contents from the master yaml file
         """
-        self.seealso = yaml[self.object_name]["seealso"]
+        try:
+            self.seealso = yaml[self.object_name]["seealso"]
+        except KeyError:
+            print(f"No seealso for {self.object_name}")
 
     def extract_keywords(self, yaml):
         """
         Extracts the keywords contents from the master yaml file
         """
-        self.keywords = yaml[self.object_name]["keywords"]
+        try:
+            self.keywords = yaml[self.object_name]["keywords"]
+        except KeyError:
+            print(f"No keywords for {self.object_name}")
 
 
 # A class to parse the XML files and build a JSON file from it #
@@ -126,13 +130,13 @@ class tParseAndBuild:
         self.root = self.tree.getroot()
 
         # create empty master dict and three dicts for different levels of difficulty
-        self.d_skeleton = dict({})
-        self.d_skeleton["Beginner"] = dict({})
-        self.d_skeleton["Intermediate"] = dict({})
-        self.d_skeleton["Advanced"] = dict({})
+        self.d_skeleton = {}
+        self.d_skeleton["Beginner"] = {}
+        self.d_skeleton["Intermediate"] = {}
+        self.d_skeleton["Advanced"] = {}
 
         # create empty inner dict #
-        self.inner_dict = dict({})
+        self.inner_dict = {}
 
         # Tags are the attributes stored inline, the text is the white #
         for child in self.root:
@@ -158,55 +162,46 @@ class jParseAndBuild:
     def __init__(self):
         self.tree = 0
         self.root = 0
-        self.j_master_dict = dict({})
+        self.j_master_dict = {}
+
+    def param_newlines(self, f):
+        f = f.replace(". ", f".\n")
+        f = f.replace(": ", f":\n\n")
+        return f
 
     def extract_from_refpage(self, x):
         self.tree = et.parse(x)
         self.root = self.tree.getroot()
         blank_param_dict = {}
         blank_internal = {}
-        blank_descr = ""
-        enums = ""
 
         # Find Information
         self.object_name = self.root.get("name")  # get the object name
         param_idx = 1  # reset a variable to track the parameter number
         for child in self.root:  # iterate over the sections
             if child.tag == "misc":  # if the section is misc
-                if (
-                    child.get("name") == "Parameters"
-                ):  # if the section is misc and has name='Parameters'
+                if child.get("name") == "Parameters":  # if the section is misc and has name='Parameters'
                     for elem in child:  # for sub-sections
-                        blank_internal = {
-                            "name": elem.get("name")
-                        }  # store the name with the key/pair 'name'
+                        blank_internal = {"name": elem.get("name")}  # store the name with the key/pair 'name'
 
                         for description in elem:  # get the description out
-                            blank_desc = strip_space(description.text)
 
-                            #### TODO ####
-                            # Edit the description if its multiline as is the case with fl.map~ #
-                            ##############
+                            blank_desc = strip_space(description.text)
 
                             for bullet in description:  # if there are any bullet points
                                 if bullet.text != None:  # and its not none
-                                    if (
-                                        bullet.text[1] == "0"
-                                    ):  # if it is the first line it will be the title 'Parameter Options'
+                                    # if it is the first line it will be the title 'Parameter Options'
+                                    if bullet.text[1] == "0":
                                         blank_desc += f"\n\nParameter Options:"
 
                                     blank_desc += f"\n{bullet.text}"
-                        blank_internal[
-                            "description"
-                        ] = blank_desc  # set the description
+                        blank_desc = self.param_newlines(blank_desc)
+                        blank_internal["description"] = blank_desc  # set the description
 
-                        blank_param_dict[
-                            param_idx
-                        ] = (
-                            blank_internal
-                        )  # assign the blank_internal dict to a parameter number
+                        # assign the blank_internal dict to a parameter number
+                        blank_param_dict[param_idx] = blank_internal
                         param_idx += 1
 
-        param_dict = dict({self.object_name: blank_param_dict})
+        param_dict = {self.object_name: blank_param_dict}
 
         self.j_master_dict.update(param_dict)

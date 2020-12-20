@@ -16,22 +16,22 @@ FrameLib Tutorials - Table of Contents
 
             <ul>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="01_fl_introduction" diff="Beginner" digest="A general introduction to FrameLib and some foundation DSP concepts.">Tutorial 1: An introduction to FrameLib and frame based processing.</link>
+                    <link type="tutorial" module="FrameLib" name="01_fl_introduction" diff="Beginner" digest="A general introduction to FrameLib.">Tutorial 1: An introduction to FrameLib and frame based processing.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="02_fl_whatis" diff="Beginner" digest="Getting familiar with the FrameLib library.">Tutorial 2: Getting to grips with frame based processing.</link>
+                    <link type="tutorial" module="FrameLib" name="02_fl_examples" diff="Beginner" digest="Familiarising yourself with the FrameLib library.">Tutorial 2: Getting to grips with frame based processing.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="03_fl_concepts" diff="Beginner" digest="The key concepts of FrameLib, such as its timing and patching architecture.">Tutorial 3: Key Concepts.</link>
+                    <link type="tutorial" module="FrameLib" name="03_fl_basics" diff="Beginner" digest="The basics of FrameLib, such as its timing and patching architecture.">Tutorial 3: FrameLib basics.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="04_fl_conversion" diff="Beginner" digest="Methods for converting data between the Max and FrameLib domains.">Tutorial 4: Converting data between FrameLib and Max.</link>
+                    <link type="tutorial" module="FrameLib" name="04_fl_conversion" diff="Beginner" digest="Methods for converting data between the Max and FrameLib domains.">Tutorial 4: Getting in and out of FrameLib and Max.</link>
                 </li>
                 <li>
                     <link type="tutorial" module="FrameLib" name="05_fl_generators" diff="Beginner" digest="An overview of 'generator' objects belonging to the FrameLib eco-system.">Tutorial 5: Generator objects.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="06_fl_firstproject" diff="Beginner" digest="A step-by-step guide on building a granular synth from scratch.">Tutorial 6: Your first FrameLib project - Building a granulator from scratch.</link>
+                    <link type="tutorial" module="FrameLib" name="06_fl_granulator" diff="Beginner" digest="A step-by-step guide to building a granular synthesiser in Framelib from scratch.">Tutorial 6: Building a granular synthesiser in Framelib from scratch.</link>
                 </li>
             </ul>
         <!-- Intermediate Tutorials-->
@@ -57,40 +57,18 @@ FrameLib Tutorials - Table of Contents
                     <link type="tutorial" module="FrameLib" name="09_fl_multiresfft" diff="Advanced" digest="Constructing multi-resolution FFT processes in FrameLib.">Tutorial 9: Multi-resolution FFT.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="10_fl_ir" diff="Advanced" digest="A small overview of working with impulse responses and convolution.">Tutorial 10: Working with impulse responses (IR) in FrameLib.</link>
+                    <link type="tutorial" module="FrameLib" name="10_fl_contexts" diff="Advanced" digest="Managing FrameLib 'contexts', a concept that is crucical to multithreading and non-realtime processing.">Tutorial 10: Contexts.</link>
                 </li>
                 <li>    
                     <link type="tutorial" module="FrameLib" name="11_fl_nrt" diff="Advanced" digest="Designing, converting and understanding FrameLib networks in the non-realtime mode.">Tutorial 11: Non-realtime networks in FrameLib.</link>
                 </li>
                 <li>    
-                    <link type="tutorial" module="FrameLib" name="12_fl_threading" diff="Advanced" digest="How to manage threads, multi-threading and the concept of a 'context'.">Tutorial 12: Threading and 'contexts'.</link>
+                    <link type="tutorial" module="FrameLib" name="12_fl_threading" diff="Advanced" digest="Managing threads and multithreading.">Tutorial 12: Multithreading.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="13_fl_export" diff="Advanced" digest="Exporting your FrameLib networks from Max to C++ to be used in other environments and applications.">Tutorial 13: Exporting FrameLib in Max to C++.</link>
+                    <link type="tutorial" module="FrameLib" name="13_fl_export" diff="Advanced" digest="Exporting your FrameLib networks from Max to C++ to be used in other environments and applications.">Tutorial 13: Exporting FrameLib from Max to C++.</link>
                 </li>
             </ul>
 	</p>
 
 </chapter>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

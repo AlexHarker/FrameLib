@@ -1,9 +1,7 @@
-fl.0dfsvf~:
+fl.svf~:
   keywords:
   - filters
   seealso:
-  - fl.resonant~
-  - fl.sallenkey~
   - fl.onepolezero~
   - fl.onepole~
 fl.abs~:
@@ -37,25 +35,25 @@ fl.abs~:
   - fl.round~
   - fl.tan~
   - fl.sin~
-fl.accumpoint~:
+fl.accumpos~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -157,25 +155,25 @@ fl.and~:
   - fl.copysign~
   - fl.greaterthaneq~
   - fl.modulo~
-fl.argmax~:
+fl.maxpos~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.geometricmean~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -192,25 +190,25 @@ fl.argmax~:
   - fl.rms~
   - fl.split~
   - fl.medianfilter~
-fl.argmin~:
+fl.minpos~:
   keywords:
   - vector
   seealso:
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -389,17 +387,17 @@ fl.cartopol~:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexcos~
-  - fl.complexlog10~
-  - fl.complexsinh~
-  - fl.complexconj~
-  - fl.complexexp~
-  - fl.complexlog~
-  - fl.complexcosh~
-  - fl.complextan~
-  - fl.complexsin~
-  - fl.complextanh~
-  - fl.complexsqrt~
+  - fl.complex.cos~
+  - fl.complex.log10~
+  - fl.complex.sinh~
+  - fl.complex.conj~
+  - fl.complex.exp~
+  - fl.complex.log~
+  - fl.complex.cosh~
+  - fl.complex.tan~
+  - fl.complex.sin~
+  - fl.complex.tanh~
+  - fl.complex.sqrt~
   - fl.poltocar~
 fl.cbrt~:
   keywords:
@@ -467,21 +465,21 @@ fl.centroid~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
-  - fl.accumpoint~
+  - fl.stddev~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -512,22 +510,22 @@ fl.chop~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -558,242 +556,242 @@ fl.combinetags~:
   - fl.untag~
   - fl.getparam~
   - fl.filtertags~
-fl.complexconj~:
+fl.complex.conj~:
   keywords:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexcos~
-  - fl.complexlog10~
-  - fl.complexsinh~
+  - fl.complex.cos~
+  - fl.complex.log10~
+  - fl.complex.sinh~
   - fl.cartopol~
-  - fl.complexexp~
-  - fl.complexlog~
-  - fl.complexcosh~
-  - fl.complextan~
-  - fl.complexsin~
-  - fl.complextanh~
-  - fl.complexsqrt~
+  - fl.complex.exp~
+  - fl.complex.log~
+  - fl.complex.cosh~
+  - fl.complex.tan~
+  - fl.complex.sin~
+  - fl.complex.tanh~
+  - fl.complex.sqrt~
   - fl.poltocar~
-fl.complexcosh~:
+fl.complex.cosh~:
   keywords:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexcos~
-  - fl.complexlog10~
-  - fl.complexsinh~
+  - fl.complex.cos~
+  - fl.complex.log10~
+  - fl.complex.sinh~
   - fl.cartopol~
-  - fl.complexconj~
-  - fl.complexexp~
-  - fl.complexlog~
-  - fl.complextan~
-  - fl.complexsin~
-  - fl.complextanh~
-  - fl.complexsqrt~
+  - fl.complex.conj~
+  - fl.complex.exp~
+  - fl.complex.log~
+  - fl.complex.tan~
+  - fl.complex.sin~
+  - fl.complex.tanh~
+  - fl.complex.sqrt~
   - fl.poltocar~
-fl.complexcos~:
+fl.complex.cos~:
   keywords:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexlog10~
-  - fl.complexsinh~
+  - fl.complex.log10~
+  - fl.complex.sinh~
   - fl.cartopol~
-  - fl.complexconj~
-  - fl.complexexp~
-  - fl.complexlog~
-  - fl.complexcosh~
-  - fl.complextan~
-  - fl.complexsin~
-  - fl.complextanh~
-  - fl.complexsqrt~
+  - fl.complex.conj~
+  - fl.complex.exp~
+  - fl.complex.log~
+  - fl.complex.cosh~
+  - fl.complex.tan~
+  - fl.complex.sin~
+  - fl.complex.tanh~
+  - fl.complex.sqrt~
   - fl.poltocar~
-fl.complexdivide~:
+fl.complex.divide~:
   keywords:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexpow~
-  - fl.complexminus~
-  - fl.complexplus~
-  - fl.complexmultiply~
-fl.complexexpr~:
+  - fl.complex.pow~
+  - fl.complex.minus~
+  - fl.complex.plus~
+  - fl.complex.times~
+fl.complex.expr~:
   keywords:
   - expression
   seealso:
   - fl.expr~
-fl.complexexp~:
+fl.complex.exp~:
   keywords:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexcos~
-  - fl.complexlog10~
-  - fl.complexsinh~
+  - fl.complex.cos~
+  - fl.complex.log10~
+  - fl.complex.sinh~
   - fl.cartopol~
-  - fl.complexconj~
-  - fl.complexlog~
-  - fl.complexcosh~
-  - fl.complextan~
-  - fl.complexsin~
-  - fl.complextanh~
-  - fl.complexsqrt~
+  - fl.complex.conj~
+  - fl.complex.log~
+  - fl.complex.cosh~
+  - fl.complex.tan~
+  - fl.complex.sin~
+  - fl.complex.tanh~
+  - fl.complex.sqrt~
   - fl.poltocar~
-fl.complexlog10~:
+fl.complex.log10~:
   keywords:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexcos~
-  - fl.complexsinh~
+  - fl.complex.cos~
+  - fl.complex.sinh~
   - fl.cartopol~
-  - fl.complexconj~
-  - fl.complexexp~
-  - fl.complexlog~
-  - fl.complexcosh~
-  - fl.complextan~
-  - fl.complexsin~
-  - fl.complextanh~
-  - fl.complexsqrt~
+  - fl.complex.conj~
+  - fl.complex.exp~
+  - fl.complex.log~
+  - fl.complex.cosh~
+  - fl.complex.tan~
+  - fl.complex.sin~
+  - fl.complex.tanh~
+  - fl.complex.sqrt~
   - fl.poltocar~
-fl.complexlog~:
+fl.complex.log~:
   keywords:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexcos~
-  - fl.complexlog10~
-  - fl.complexsinh~
+  - fl.complex.cos~
+  - fl.complex.log10~
+  - fl.complex.sinh~
   - fl.cartopol~
-  - fl.complexconj~
-  - fl.complexexp~
-  - fl.complexcosh~
-  - fl.complextan~
-  - fl.complexsin~
-  - fl.complextanh~
-  - fl.complexsqrt~
+  - fl.complex.conj~
+  - fl.complex.exp~
+  - fl.complex.cosh~
+  - fl.complex.tan~
+  - fl.complex.sin~
+  - fl.complex.tanh~
+  - fl.complex.sqrt~
   - fl.poltocar~
-fl.complexminus~:
+fl.complex.minus~:
   keywords:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexpow~
-  - fl.complexplus~
-  - fl.complexdivide~
-  - fl.complexmultiply~
-fl.complexmultiply~:
+  - fl.complex.pow~
+  - fl.complex.plus~
+  - fl.complex.divide~
+  - fl.complex.times~
+fl.complex.times~:
   keywords:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexpow~
-  - fl.complexminus~
-  - fl.complexplus~
-  - fl.complexdivide~
-fl.complexplus~:
+  - fl.complex.pow~
+  - fl.complex.minus~
+  - fl.complex.plus~
+  - fl.complex.divide~
+fl.complex.plus~:
   keywords:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexpow~
-  - fl.complexminus~
-  - fl.complexdivide~
-  - fl.complexmultiply~
-fl.complexpow~:
+  - fl.complex.pow~
+  - fl.complex.minus~
+  - fl.complex.divide~
+  - fl.complex.times~
+fl.complex.pow~:
   keywords:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexminus~
-  - fl.complexplus~
-  - fl.complexdivide~
-  - fl.complexmultiply~
-fl.complexsinh~:
+  - fl.complex.minus~
+  - fl.complex.plus~
+  - fl.complex.divide~
+  - fl.complex.times~
+fl.complex.sinh~:
   keywords:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexcos~
-  - fl.complexlog10~
+  - fl.complex.cos~
+  - fl.complex.log10~
   - fl.cartopol~
-  - fl.complexconj~
-  - fl.complexexp~
-  - fl.complexlog~
-  - fl.complexcosh~
-  - fl.complextan~
-  - fl.complexsin~
-  - fl.complextanh~
-  - fl.complexsqrt~
+  - fl.complex.conj~
+  - fl.complex.exp~
+  - fl.complex.log~
+  - fl.complex.cosh~
+  - fl.complex.tan~
+  - fl.complex.sin~
+  - fl.complex.tanh~
+  - fl.complex.sqrt~
   - fl.poltocar~
-fl.complexsin~:
+fl.complex.sin~:
   keywords:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexcos~
-  - fl.complexlog10~
-  - fl.complexsinh~
+  - fl.complex.cos~
+  - fl.complex.log10~
+  - fl.complex.sinh~
   - fl.cartopol~
-  - fl.complexconj~
-  - fl.complexexp~
-  - fl.complexlog~
-  - fl.complexcosh~
-  - fl.complextan~
-  - fl.complextanh~
-  - fl.complexsqrt~
+  - fl.complex.conj~
+  - fl.complex.exp~
+  - fl.complex.log~
+  - fl.complex.cosh~
+  - fl.complex.tan~
+  - fl.complex.tanh~
+  - fl.complex.sqrt~
   - fl.poltocar~
-fl.complexsqrt~:
+fl.complex.sqrt~:
   keywords:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexcos~
-  - fl.complexlog10~
-  - fl.complexsinh~
+  - fl.complex.cos~
+  - fl.complex.log10~
+  - fl.complex.sinh~
   - fl.cartopol~
-  - fl.complexconj~
-  - fl.complexexp~
-  - fl.complexlog~
-  - fl.complexcosh~
-  - fl.complextan~
-  - fl.complexsin~
-  - fl.complextanh~
+  - fl.complex.conj~
+  - fl.complex.exp~
+  - fl.complex.log~
+  - fl.complex.cosh~
+  - fl.complex.tan~
+  - fl.complex.sin~
+  - fl.complex.tanh~
   - fl.poltocar~
-fl.complextanh~:
+fl.complex.tanh~:
   keywords:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexcos~
-  - fl.complexlog10~
-  - fl.complexsinh~
+  - fl.complex.cos~
+  - fl.complex.log10~
+  - fl.complex.sinh~
   - fl.cartopol~
-  - fl.complexconj~
-  - fl.complexexp~
-  - fl.complexlog~
-  - fl.complexcosh~
-  - fl.complextan~
-  - fl.complexsin~
-  - fl.complexsqrt~
+  - fl.complex.conj~
+  - fl.complex.exp~
+  - fl.complex.log~
+  - fl.complex.cosh~
+  - fl.complex.tan~
+  - fl.complex.sin~
+  - fl.complex.sqrt~
   - fl.poltocar~
-fl.complextan~:
+fl.complex.tan~:
   keywords:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexcos~
-  - fl.complexlog10~
-  - fl.complexsinh~
+  - fl.complex.cos~
+  - fl.complex.log10~
+  - fl.complex.sinh~
   - fl.cartopol~
-  - fl.complexconj~
-  - fl.complexexp~
-  - fl.complexlog~
-  - fl.complexcosh~
-  - fl.complexsin~
-  - fl.complextanh~
-  - fl.complexsqrt~
+  - fl.complex.conj~
+  - fl.complex.exp~
+  - fl.complex.log~
+  - fl.complex.cosh~
+  - fl.complex.sin~
+  - fl.complex.tanh~
+  - fl.complex.sqrt~
   - fl.poltocar~
 fl.constant~:
   keywords:
@@ -822,11 +820,6 @@ fl.convolve~:
   - fl.ifft~
   - fl.correlate~
   - fl.window~
-fl.coordinatesystem~:
-  keywords:
-  - spatialiastion
-  seealso:
-  - fl.spatial~
 fl.copysign~:
   keywords:
   - binary ops, operators
@@ -925,22 +918,22 @@ fl.crest~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -1093,28 +1086,6 @@ fl.erf~:
   - fl.round~
   - fl.tan~
   - fl.sin~
-fl.ewma~:
-  keywords:
-  - time smoothing
-  - statistics
-  seealso:
-  - fl.timestddev~
-  - fl.timemedian~
-  - fl.lag~
-  - fl.ewmsd~
-  - fl.framedelta~
-  - fl.timemean~
-fl.ewmsd~:
-  keywords:
-  - time smoothing
-  - statistics
-  seealso:
-  - fl.timestddev~
-  - fl.ewma~
-  - fl.timemedian~
-  - fl.lag~
-  - fl.framedelta~
-  - fl.timemean~
 fl.exp2~:
   keywords:
   - unary ops
@@ -1150,7 +1121,7 @@ fl.expr~:
   keywords:
   - expression
   seealso:
-  - fl.complexexpr~
+  - fl.complex.expr~
 fl.exp~:
   keywords:
   - unary ops
@@ -1203,22 +1174,22 @@ fl.flatness~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -1278,10 +1249,9 @@ fl.framedelta~:
   - statistics
   seealso:
   - fl.timestddev~
-  - fl.ewma~
   - fl.timemedian~
   - fl.lag~
-  - fl.ewmsd~
+  
   - fl.timemean~
 fl.frommax~:
   keywords:
@@ -1305,25 +1275,25 @@ fl.gaussian~:
   - fl.random~
   - fl.uniform~
   - fl.ramp~
-fl.geometricmean~:
+fl.geomean~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
+  - fl.maxpos~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -1446,21 +1416,21 @@ fl.join~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -1481,21 +1451,21 @@ fl.kurtosis~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -1518,31 +1488,31 @@ fl.lag~:
   - statistics
   seealso:
   - fl.timestddev~
-  - fl.ewma~
+  
   - fl.timemedian~
-  - fl.ewmsd~
+  
   - fl.framedelta~
   - fl.timemean~
 fl.length~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -1742,21 +1712,21 @@ fl.mean~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -1777,22 +1747,22 @@ fl.medianfilter~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -1890,22 +1860,22 @@ fl.nanfilter~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.reverse~
@@ -1925,21 +1895,21 @@ fl.nonzero~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.accumpos~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -2031,16 +2001,16 @@ fl.onepolezero~:
   keywords:
   - filters
   seealso:
-  - fl.resonant~
-  - fl.0dfsvf~
+  
+  - fl.svf~
   - fl.sallenkey~
   - fl.onepole~
 fl.onepole~:
   keywords:
   - filters
   seealso:
-  - fl.resonant~
-  - fl.0dfsvf~
+  
+  - fl.svf~
   - fl.sallenkey~
   - fl.onepolezero~
 fl.or~:
@@ -2077,22 +2047,22 @@ fl.pad~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -2112,22 +2082,22 @@ fl.pattern~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -2147,22 +2117,22 @@ fl.peaks~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -2192,21 +2162,21 @@ fl.percentile~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
-  - fl.standarddeviation~
+  - fl.minpos~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -2251,18 +2221,18 @@ fl.poltocar~:
   - complex numbers
   - complex operators
   seealso:
-  - fl.complexcos~
-  - fl.complexlog10~
-  - fl.complexsinh~
+  - fl.complex.cos~
+  - fl.complex.log10~
+  - fl.complex.sinh~
   - fl.cartopol~
-  - fl.complexconj~
-  - fl.complexexp~
-  - fl.complexlog~
-  - fl.complexcosh~
-  - fl.complextan~
-  - fl.complexsin~
-  - fl.complextanh~
-  - fl.complexsqrt~
+  - fl.complex.conj~
+  - fl.complex.exp~
+  - fl.complex.log~
+  - fl.complex.cosh~
+  - fl.complex.tan~
+  - fl.complex.sin~
+  - fl.complex.tanh~
+  - fl.complex.sqrt~
 fl.pow~:
   keywords:
   - binary ops, operators
@@ -2290,22 +2260,22 @@ fl.product~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -2353,34 +2323,26 @@ fl.register~:
   seealso:
   - fl.store~
   - fl.recall~
-fl.resonant~:
-  keywords:
-  - filters
-  seealso:
-  - fl.0dfsvf~
-  - fl.sallenkey~
-  - fl.onepolezero~
-  - fl.onepole~
 fl.reverse~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -2400,22 +2362,22 @@ fl.rms~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -2468,14 +2430,6 @@ fl.route~:
   seealso:
   - fl.dispatch~
   - fl.select~
-fl.sallenkey~:
-  keywords:
-  - filters
-  seealso:
-  - fl.resonant~
-  - fl.0dfsvf~
-  - fl.onepolezero~
-  - fl.onepole~
 fl.samplerate~:
   keywords:
   - scaling
@@ -2495,21 +2449,21 @@ fl.shift~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -2598,22 +2552,22 @@ fl.skewness~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -2633,21 +2587,21 @@ fl.sort~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -2673,28 +2627,26 @@ fl.source~:
 fl.spatial~:
   keywords:
   - spatialiastion
-  seealso:
-  - fl.coordinatesystem~
 fl.split~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -2714,21 +2666,21 @@ fl.spread~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
-  - fl.vmax~
+  - fl.maxpos~
+  - fl.geomean~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -2776,25 +2728,25 @@ fl.sqrt~:
   - fl.round~
   - fl.tan~
   - fl.sin~
-fl.standarddeviation~:
+fl.stddev~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -2828,22 +2780,22 @@ fl.subframe~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.nanfilter~
   - fl.reverse~
@@ -2863,22 +2815,22 @@ fl.sum~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.subframe~
   - fl.nanfilter~
   - fl.reverse~
@@ -2984,10 +2936,10 @@ fl.timemean~:
   - statistics
   seealso:
   - fl.timestddev~
-  - fl.ewma~
+  
   - fl.timemedian~
   - fl.lag~
-  - fl.ewmsd~
+  
   - fl.framedelta~
 fl.timemedian~:
   keywords:
@@ -2995,9 +2947,9 @@ fl.timemedian~:
   - statistics
   seealso:
   - fl.timestddev~
-  - fl.ewma~
+  
   - fl.lag~
-  - fl.ewmsd~
+  
   - fl.framedelta~
   - fl.timemean~
 fl.timer~:
@@ -3012,10 +2964,10 @@ fl.timestddev~:
   - time smoothing
   - statistics
   seealso:
-  - fl.ewma~
+  
   - fl.timemedian~
   - fl.lag~
-  - fl.ewmsd~
+  
   - fl.framedelta~
   - fl.timemean~
 fl.times~:
@@ -3105,25 +3057,25 @@ fl.untag~:
   - fl.combinetags~
   - fl.getparam~
   - fl.filtertags~
-fl.vmax~:
+fl.framemax~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
   - fl.join~
   - fl.shift~
-  - fl.vmin~
+  - fl.framemin~
   - fl.sum~
   - fl.subframe~
   - fl.nanfilter~
@@ -3140,20 +3092,20 @@ fl.vmax~:
   - fl.rms~
   - fl.split~
   - fl.medianfilter~
-fl.vmin~:
+fl.framemin~:
   keywords:
   - vector
   seealso:
-  - fl.argmin~
+  - fl.minpos~
   - fl.percentile~
-  - fl.standarddeviation~
+  - fl.stddev~
   - fl.centroid~
-  - fl.accumpoint~
+  - fl.accumpos~
   - fl.nonzero~
-  - fl.argmax~
-  - fl.geometricmean~
+  - fl.maxpos~
+  - fl.geomean~
   - fl.spread~
-  - fl.vmax~
+  - fl.framemax~
   - fl.kurtosis~
   - fl.sort~
   - fl.mean~
@@ -3191,3 +3143,37 @@ fl.wrap~:
   seealso:
   - fl.clip~
   - fl.fold~
+fl.firphase~:
+  keywords:
+  - filters
+  seealso:
+  - fl.biquad~
+fl.biquad~:
+  keywords:
+  - filters
+  seealso:
+  - fl.biquadcoeff~
+fl.biquadcoeff~:
+  keywords:
+  - filters
+  seealso:
+  - fl.biquad~
+fl.makewindow~:
+  keywords:
+  - FFT, windowing
+  seealso:
+  - fl.window~
+fl.movingaverage~:
+  keywords:
+  - time smoothing
+  - statistics
+  seealso:
+  - fl.timestddev~
+  - fl.timemedian~
+  - fl.framedelta~
+  - fl.timemean~
+fl.prioritise~:
+  keywords:
+  - vector
+  seealso:
+  - fl.chain~

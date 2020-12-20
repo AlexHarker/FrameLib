@@ -3,8 +3,8 @@
         "fileversion": 1,
         "appversion": {
             "major": 8,
-            "minor": 0,
-            "revision": 6,
+            "minor": 1,
+            "revision": 0,
             "architecture": "x64",
             "modernui": 1
         },
@@ -13,7 +13,7 @@
             34.0,
             79.0,
             662.0,
-            793.0
+            787.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -57,8 +57,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -67,7 +67,7 @@
                             34.0,
                             105.0,
                             662.0,
-                            767.0
+                            761.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -140,23 +140,6 @@
                                         630.0,
                                         150.0
                                     ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "fontsize": 13.0,
-                                    "id": "obj-3",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        400.0,
-                                        735.0,
-                                        245.0,
-                                        21.0
-                                    ],
-                                    "text": "Traverse the tabs for more information!",
-                                    "textjustification": 2
                                 }
                             },
                             {
@@ -237,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -307,8 +290,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -358,7 +341,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         120.0,
-                                        603.875,
+                                        588.875,
                                         207.0,
                                         21.0
                                     ],
@@ -375,7 +358,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         83.5,
-                                        603.875,
+                                        588.875,
                                         37.0,
                                         15.25
                                     ]
@@ -390,11 +373,10 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         253.0,
-                                        533.5,
+                                        518.5,
                                         207.0,
                                         36.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "Now take the inverse fourier transform and..."
                                 }
                             },
@@ -408,7 +390,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         214.0,
-                                        543.875,
+                                        528.875,
                                         37.0,
                                         15.25
                                     ]
@@ -423,11 +405,10 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         159.0,
-                                        473.5,
-                                        206.0,
+                                        458.5,
+                                        207.0,
                                         36.0
                                     ],
-                                    "presentation_linecount": 4,
                                     "text": "And convert the polar coordinates back to cartesian coordinates."
                                 }
                             },
@@ -441,7 +422,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         120.0,
-                                        483.875,
+                                        468.875,
                                         37.0,
                                         15.25
                                     ]
@@ -456,11 +437,10 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         159.0,
-                                        398.5,
+                                        383.5,
                                         206.0,
                                         36.0
                                     ],
-                                    "presentation_linecount": 4,
                                     "text": "Convert the real and imaginary components to polar coordinates."
                                 }
                             },
@@ -474,7 +454,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         120.0,
-                                        408.875,
+                                        393.875,
                                         37.0,
                                         15.25
                                     ]
@@ -489,7 +469,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         281.0,
-                                        244.625,
+                                        229.625,
                                         127.0,
                                         36.0
                                     ],
@@ -506,7 +486,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         242.0,
-                                        255.0,
+                                        240.0,
                                         37.0,
                                         15.25
                                     ]
@@ -520,7 +500,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         30.0,
-                                        675.0,
+                                        660.0,
                                         59.0,
                                         23.0
                                     ],
@@ -538,7 +518,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        600.0,
+                                        585.0,
                                         49.0,
                                         23.0
                                     ],
@@ -556,7 +536,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        540.0,
+                                        525.0,
                                         183.0,
                                         23.0
                                     ],
@@ -575,7 +555,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        480.0,
+                                        465.0,
                                         90.5,
                                         23.0
                                     ],
@@ -593,7 +573,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        270.0,
+                                        255.0,
                                         86.0,
                                         23.0
                                     ],
@@ -611,7 +591,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        135.0,
+                                        120.0,
                                         71.0,
                                         23.0
                                     ],
@@ -629,7 +609,7 @@
                                     ],
                                     "patching_rect": [
                                         116.5,
-                                        135.0,
+                                        120.0,
                                         101.0,
                                         23.0
                                     ],
@@ -647,7 +627,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        210.0,
+                                        195.0,
                                         192.0,
                                         23.0
                                     ],
@@ -666,7 +646,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        330.0,
+                                        315.0,
                                         150.0,
                                         23.0
                                     ],
@@ -685,7 +665,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        405.0,
+                                        390.0,
                                         90.5,
                                         23.0
                                     ],
@@ -740,7 +720,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        120.0,
+                                        105.0,
                                         225.0,
                                         255.0
                                     ],
@@ -778,6 +758,12 @@
                                     "destination": [
                                         "obj-18",
                                         1
+                                    ],
+                                    "midpoints": [
+                                        111.0,
+                                        506.0,
+                                        203.5,
+                                        506.0
                                     ],
                                     "source": [
                                         "obj-17",
@@ -843,9 +829,9 @@
                                     ],
                                     "midpoints": [
                                         170.5,
-                                        384.0,
+                                        369.0,
                                         111.0,
-                                        384.0
+                                        369.0
                                     ],
                                     "source": [
                                         "obj-5",
@@ -980,21 +966,21 @@
         "dependency_cache": [
             {
                 "name": "fldocs.getparams.maxpat",
-                "bootpath": "~/FrameLib/Current Test Version/FrameLib/misc",
+                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
                 "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
                 "type": "JSON",
                 "implicit": 1
             },
             {
                 "name": "fl.getname.js",
-                "bootpath": "~/FrameLib/Current Test Version/FrameLib/misc",
+                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
                 "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
                 "type": "TEXT",
                 "implicit": 1
             },
             {
                 "name": "fl.helpdetails.js",
-                "bootpath": "~/FrameLib/Current Test Version/FrameLib/misc",
+                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
                 "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
                 "type": "TEXT",
                 "implicit": 1
