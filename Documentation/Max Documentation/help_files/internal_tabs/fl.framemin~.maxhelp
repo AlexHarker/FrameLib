@@ -189,8 +189,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 330.0, 54.0, 23.0 ],
-									"text" : "fl.vmin~"
+									"patching_rect" : [ 15.0, 330.0, 80.0, 23.0 ],
+									"text" : "fl.framemin~"
 								}
 
 							}
@@ -376,7 +376,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.vmin~.mxo",
+				"name" : "fl.framemin~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

@@ -151,7 +151,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 588.875, 207.0, 21.0 ],
+									"patching_rect" : [ 120.0, 603.875, 207.0, 21.0 ],
 									"text" : "We will hear the input unoutched!"
 								}
 
@@ -164,7 +164,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 83.5, 588.875, 37.0, 15.25 ]
+									"patching_rect" : [ 83.5, 603.875, 37.0, 15.25 ]
 								}
 
 							}
@@ -175,7 +175,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 253.0, 518.5, 207.0, 36.0 ],
+									"patching_rect" : [ 174.0, 518.5, 207.0, 36.0 ],
 									"text" : "Now take the inverse fourier transform and..."
 								}
 
@@ -188,7 +188,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 214.0, 528.875, 37.0, 15.25 ]
+									"patching_rect" : [ 135.0, 528.875, 37.0, 15.25 ]
 								}
 
 							}
@@ -199,7 +199,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 159.0, 458.5, 207.0, 36.0 ],
+									"patching_rect" : [ 172.0, 458.5, 207.0, 36.0 ],
 									"text" : "And convert the polar coordinates back to cartesian coordinates."
 								}
 
@@ -212,7 +212,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 468.875, 37.0, 15.25 ]
+									"patching_rect" : [ 133.0, 468.875, 37.0, 15.25 ]
 								}
 
 							}
@@ -223,7 +223,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 159.0, 383.5, 206.0, 36.0 ],
+									"patching_rect" : [ 172.0, 383.5, 206.0, 36.0 ],
 									"text" : "Convert the real and imaginary components to polar coordinates."
 								}
 
@@ -236,7 +236,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 393.875, 37.0, 15.25 ]
+									"patching_rect" : [ 133.0, 393.875, 37.0, 15.25 ]
 								}
 
 							}
@@ -270,7 +270,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 660.0, 59.0, 23.0 ],
+									"patching_rect" : [ 30.0, 675.0, 59.0, 23.0 ],
 									"text" : "dac~ 1 2"
 								}
 
@@ -282,7 +282,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 585.0, 49.0, 23.0 ],
+									"patching_rect" : [ 30.0, 600.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -294,8 +294,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 525.0, 183.0, 23.0 ],
-									"text" : "fl.ifft~ /compensate powoverlin"
+									"patching_rect" : [ 30.0, 525.0, 90.5, 23.0 ],
+									"text" : "fl.ifft~"
 								}
 
 							}
@@ -318,8 +318,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 255.0, 86.0, 23.0 ],
-									"text" : "fl.times~ 0.25"
+									"patching_rect" : [ 30.0, 255.0, 79.0, 23.0 ],
+									"text" : "fl.times~ 0.5"
 								}
 
 							}
@@ -342,8 +342,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 116.5, 120.0, 101.0, 23.0 ],
-									"text" : "fl.interval~ 1024"
+									"patching_rect" : [ 116.5, 120.0, 93.0, 23.0 ],
+									"text" : "fl.interval~ 512"
 								}
 
 							}
@@ -354,8 +354,8 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 195.0, 192.0, 23.0 ],
-									"text" : "fl.source~ /length 4096"
+									"patching_rect" : [ 30.0, 195.0, 140.0, 23.0 ],
+									"text" : "fl.source~ /length 1024"
 								}
 
 							}
@@ -366,8 +366,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 30.0, 315.0, 150.0, 23.0 ],
-									"text" : "fl.fft~ /compensate linear"
+									"patching_rect" : [ 30.0, 315.0, 37.0, 23.0 ],
+									"text" : "fl.fft~"
 								}
 
 							}
@@ -434,7 +434,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-18", 1 ],
-									"midpoints" : [ 111.0, 506.0, 203.5, 506.0 ],
+									"midpoints" : [ 111.0, 506.0, 111.0, 506.0 ],
 									"source" : [ "obj-17", 1 ]
 								}
 
@@ -472,7 +472,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 1 ],
-									"midpoints" : [ 170.5, 369.0, 111.0, 369.0 ],
+									"midpoints" : [ 57.5, 369.0, 111.0, 369.0 ],
 									"source" : [ "obj-5", 1 ]
 								}
 
@@ -494,6 +494,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 1 ],
+									"midpoints" : [ 126.0, 180.0, 100.0, 180.0 ],
 									"source" : [ "obj-7", 0 ]
 								}
 

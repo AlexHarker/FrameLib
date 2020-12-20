@@ -202,7 +202,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 90.0, 384.0, 255.0, 65.0 ],
-									"presentation_linecount" : 4,
 									"text" : "At which index does the sum of the fl.ramp~ frame reach 10 percent of the total. The sum of the fl.ramp~ frame is shown to the right."
 								}
 
@@ -250,8 +249,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 300.0, 111.0, 23.0 ],
-									"text" : "fl.accumpoint~ 10"
+									"patching_rect" : [ 15.0, 300.0, 104.0, 23.0 ],
+									"text" : "fl.accumpos~ 10"
 								}
 
 							}
@@ -285,7 +284,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.accumpoint~" ],
+									"jsarguments" : [ "fl.accumpos~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -393,7 +392,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.accumpoint~.mxo",
+				"name" : "fl.accumpos~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

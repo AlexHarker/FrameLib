@@ -427,13 +427,14 @@
 							}
 , 							{
 								"box" : 								{
+									"fontname" : "Lato",
 									"id" : "obj-52",
 									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 105.0, 437.0, 79.0 ],
-									"text" : "In this example we can use the geometric mean to calcualte spectral flatness of a noisy input. A flatter spectrum often correlates to perceptually noise or pitchless sound - you might expect the flatness measure to be close to 1 when computing this value on frame containing randomly distributed numbers (white noise)."
+									"patching_rect" : [ 15.0, 105.0, 439.0, 84.0 ],
+									"text" : "We can use the geometric mean to calcualte spectral flatness of a noisy input. A flatter spectrum often correlates to perceptually noise or pitchless sound - you might expect the flatness measure to be close to 1 when computing this value on frame containing randomly distributed numbers (white noise)."
 								}
 
 							}
@@ -564,8 +565,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
