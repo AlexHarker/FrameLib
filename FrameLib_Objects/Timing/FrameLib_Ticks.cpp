@@ -37,8 +37,8 @@ std::string FrameLib_Ticks::objectInfo(bool verbose)
     return formatInfo("Counts incoming frames: "
                       "Counting is between zero and one less than the limit parameter. "
                       "Counting can be either up or down. "
-                      "Couting can be run (once), looped, pauseed or stopped. "
-                      "Triggers at the reset input set the count to the value of the reset parameter. "
+                      "Couting can be run (once), looped, paused or stopped. "
+                      "Triggers at the reset input set the count to the value of the reset parameter.",
                       "Counts incoming frames.", verbose);
 }
 
@@ -57,7 +57,7 @@ std::string FrameLib_Ticks::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Ticks::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Count";
+    return "Output";
 }
 
 // Parameter Info
@@ -67,21 +67,18 @@ FrameLib_Ticks::ParameterInfo FrameLib_Ticks::sParamInfo;
 FrameLib_Ticks::ParameterInfo::ParameterInfo()
 {
     add("Sets the count limit.");
-    add("Sets the direction of the counting.");
+    add("Sets the direction of counting.");
     add("Sets the reset value. "
         "A value of -1 can be used for direction independent reset. "
-        "This results in reset to 0 when counting up and (limit - 1) when counting down."
-        );
+        "This results in reset to 0 when counting up and (limit - 1) when counting down.");
     add("Sets the mode. "
          "run - the count continues until it hits the limit or zero. "
          "loop - the count loops between zeor and the limit minus one. "
          "pause - the count is paused until the mode is changed. "
-         "stop - the count returns to the reset value until the mode is changed."
-        );
-    add("Sets the idle mode (the output when stopped, paused or out of bounds). "
+         "stop - the count returns to the reset value until the mode is changed.");
+    add("Sets the idle output (the output when stopped, paused or out of bounds). "
         "repeat - repeat the current count. "
-        "empty - output an empty frame."
-        );
+        "empty - output an empty frame.");
 }
 
 // Object Reset
