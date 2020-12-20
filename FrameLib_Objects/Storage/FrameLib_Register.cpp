@@ -27,16 +27,16 @@ std::string FrameLib_Register::objectInfo(bool verbose)
 {
     return formatInfo("Store and recall frames locally: "
                       "The left input triggers recall, whilst the right input stores a frame. "
-                      "The mode paramter is used to set whether the right input causes output.",
+                      "The mode parameter is used to set whether the right input causes output.",
                       "Store and recall frames locally.", verbose);
 }
 
 std::string FrameLib_Register::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return "Frame to Store";
+        return formatInfo("Frame to Store - frame is stored and optionally output", "Frame to Store", verbose);
     else
-        return "Trigger Input";
+        return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
 }
 
 std::string FrameLib_Register::outputInfo(unsigned long idx, bool verbose)
