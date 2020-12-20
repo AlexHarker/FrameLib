@@ -36,11 +36,13 @@ FrameLib_MakeWindow::FrameLib_MakeWindow(FrameLib_Context context, const FrameLi
 
 std::string FrameLib_MakeWindow::objectInfo(bool verbose)
 {
-    return formatInfo("Generates a linear ramp across each output frame: "
+    return formatInfo("Generates a specified window function across each output frame: "
                       "The scaling parameter is used to set the range of the ramp. "
-                      "The length of the output is dependent on the mode. "
-                      "Output length may be set by parameter or based on that of the trigger input.",
-                      "Generates a linear ramp across each output frame.", verbose);
+                      "The length of the output is dependent on the mode parameter. "
+                      "Output length may be set by parameter or based on that of the trigger input. "
+                      "Gain compensation may be applied to the window according to the compensate parameter. "
+                      "The included endpoints are controllable so as to fit different applications.",
+                      "Generates a specified window function across each output frame.", verbose);
 }
 
 std::string FrameLib_MakeWindow::inputInfo(unsigned long idx, bool verbose)
@@ -66,7 +68,7 @@ FrameLib_MakeWindow::ParameterInfo::ParameterInfo()
         "requested - the output length is set by the length parameter. "
         "input - the output length follows the length of the trigger input.");
     add("Sets the requested output length in the units specified by the units parameter.");
-    add("Sets the units for specified output lengths.");
+    add("Sets the units used for the length parameter.");
     add(Generator::getWindowTypeInfo());
     add(Generator::getExponentInfo());
     add(Generator::getCompensationInfo());

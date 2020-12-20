@@ -40,9 +40,10 @@ FrameLib_Ramp::FrameLib_Ramp(FrameLib_Context context, const FrameLib_Parameters
 std::string FrameLib_Ramp::objectInfo(bool verbose)
 {
     return formatInfo("Generates a linear ramp across each output frame: "
-                      "The scaling parameter is used to set the range of the ramp. "
-                      "The length of the output is dependent on the mode. "
-                      "Output length may be set by parameter or based on that of the trigger input.",
+                      "The scale parameter is used to set the range of the ramp. "
+                      "The length of the output is dependent on the mode parameter. "
+                      "Output length may be set by parameter or based on that of the trigger input. "
+                      "The range of the output ramp is determined by the scale and edges parameters.",
                       "Generates a linear ramp across each output frame.", verbose);
 }
 
@@ -69,13 +70,13 @@ FrameLib_Ramp::ParameterInfo::ParameterInfo()
         "requested - the output length is set by the length parameter. "
         "input - the output length follows the length of the trigger input.");
     add("Sets the requested output length in the units specified by the units parameter.");
-    add("Sets the units for specified output lengths.");
+    add("Sets the units used for the length parameter.");
     add("Sets the scaling of the output ramp. "
         "count - scaled in samples (an interger count from zero). "
         "ms - scaled in milliseconds starting at zero. "
         "seconds - scaled in seconds starting at zero. "
         "normalised - output is normalised according to the edges parameter.");
-    add("Sets the included edges when the scaling is set to normalised: "
+    add("Sets the included edges when the scale parameter is set to normalised: "
         "both - the ramp is scaled [0-1]. "
         "first - the ramp is scaled [0-1). "
         "last - the ramp is scaled (0-1]. "
