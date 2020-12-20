@@ -17,7 +17,7 @@
                      BlueprintIdentifier = "262AEAD323101CE10016ECF3"
                      BuildableName = "Documentation"
                      BlueprintName = "Documentation"
-                     ReferencedContainer = "container:framelib~-documentation.xcodeproj">
+                     ReferencedContainer = "container:framelib-documentation.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -35,7 +35,7 @@
                      BlueprintIdentifier = "262AEAD323101CE10016ECF3"
                      BuildableName = "Documentation"
                      BlueprintName = "Documentation"
-                     ReferencedContainer = "container:framelib~-documentation.xcodeproj">
+                     ReferencedContainer = "container:framelib-documentation.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -53,7 +53,7 @@
                BlueprintIdentifier = "262AEAD323101CE10016ECF3"
                BuildableName = "Documentation"
                BlueprintName = "Documentation"
-               ReferencedContainer = "container:framelib~-documentation.xcodeproj">
+               ReferencedContainer = "container:framelib-documentation.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -71,7 +71,7 @@
             BlueprintIdentifier = "262AEAD323101CE10016ECF3"
             BuildableName = "Documentation"
             BlueprintName = "Documentation"
-            ReferencedContainer = "container:framelib~-documentation.xcodeproj">
+            ReferencedContainer = "container:framelib-documentation.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -99,7 +99,7 @@
                      BlueprintIdentifier = "262AEAD323101CE10016ECF3"
                      BuildableName = "Documentation"
                      BlueprintName = "Documentation"
-                     ReferencedContainer = "container:framelib~-documentation.xcodeproj">
+                     ReferencedContainer = "container:framelib-documentation.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -117,7 +117,7 @@
                      BlueprintIdentifier = "262AEAD323101CE10016ECF3"
                      BuildableName = "Documentation"
                      BlueprintName = "Documentation"
-                     ReferencedContainer = "container:framelib~-documentation.xcodeproj">
+                     ReferencedContainer = "container:framelib-documentation.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -130,7 +130,7 @@
             BlueprintIdentifier = "262AEAD323101CE10016ECF3"
             BuildableName = "Documentation"
             BlueprintName = "Documentation"
-            ReferencedContainer = "container:framelib~-documentation.xcodeproj">
+            ReferencedContainer = "container:framelib-documentation.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -148,7 +148,7 @@
             BlueprintIdentifier = "262AEAD323101CE10016ECF3"
             BuildableName = "Documentation"
             BlueprintName = "Documentation"
-            ReferencedContainer = "container:framelib~-documentation.xcodeproj">
+            ReferencedContainer = "container:framelib-documentation.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
