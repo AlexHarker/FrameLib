@@ -2,13 +2,14 @@
 #include "FrameLib_Trace.h"
 #include <algorithm>
 
-// FIX - trace is only sample accurate (not subsample) - double the buffer and add a function to interpolate if necessary
-
 // Constructor
 
 FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_AudioOutput(context, proxy, &sParamInfo, 2, 0, 1)
+, FrameLib_IO_Helper(static_cast<FrameLib_DSP&>(*this))
 {
+    double bufferSizeDefault = getBufferSizeDefault(serialisedParameters, 250000, 5);
+
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kFull, "full");
     mParameters.addEnumItem(kFirst, "first");
@@ -16,9 +17,7 @@ FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, const FrameLib_Paramete
     mParameters.addEnumItem(kSpecified, "specified");
     mParameters.addEnumItem(kRatio, "ratio");
     
-    // FIX - defaults for when the units are not in samples!
-
-    mParameters.addDouble(kBufferSize, "buffer_size", 250000, 1);
+    mParameters.addDouble(kBufferSize, "buffer_size", bufferSizeDefault, 1);
     mParameters.setMin(0.0);
     mParameters.setInstantiation();
     
@@ -124,7 +123,11 @@ void FrameLib_Trace::writeToBuffer(const double *input, unsigned long offset, un
 
 void FrameLib_Trace::objectReset()
 {
-    size_t size = convertTimeToSamples(mParameters.getValue(kBufferSize)) + mMaxBlockSize;
+    size_t size = convertTimeToSamples(mParameters.getValue(kBufferSize));
+    
+    // Limit the buffer size ensuring there are enough additional samples for rounding and the max block size
+    
+    size = limitBufferSize(size, mSamplingRate) + mMaxBlockSize + 1UL;
     
     if (size != bufferSize())
     {
@@ -160,7 +163,7 @@ void FrameLib_Trace::blockProcess(const double * const *ins, double **outs, unsi
 void FrameLib_Trace::process()
 {
     unsigned long sizeIn;
-    double inputOffset = mParameters.getValue(kPosition);
+    double inputOffset = 0.0;
     
     FrameLib_TimeFormat frameTime = getFrameTime();
     FrameLib_TimeFormat delayTime = convertTimeToSamples(mParameters.getValue(kDelay));
@@ -176,16 +179,19 @@ void FrameLib_Trace::process()
     
     // Safety
     
-    if (!sizeIn || frameTime < getBlockStartTime() || (offset + sizeToWrite) > bufferSize())
+    if (frameTime < getBlockEndTime())
+        return;
+    
+    if (!checkOutput(sizeToWrite, delayTime, bufferSize(), mMaxBlockSize + 1UL))
         return;
     
     switch (mode)
     {
-        case kFull:         inputOffset = 0.0;                  break;
-        case kFirst:        inputOffset = 0.0;                  break;
-        case kLast:         inputOffset = sizeIn - 1;           break;
-        case kSpecified:                                        break;
-        case kRatio:        inputOffset *= (sizeIn - 1);        break;
+        case kFull:         inputOffset = 0.0;                                  break;
+        case kFirst:        inputOffset = 0.0;                                  break;
+        case kLast:         inputOffset = sizeIn - 1;                           break;
+        case kSpecified:    inputOffset = mParameters.getValue(kPosition);      break;
+        case kRatio:        inputOffset *= (sizeIn - 1);                        break;
     }
 
     // Clip to a sensible range

@@ -8,16 +8,16 @@
 // Common Conversions
 
 template <class T>
-T dbtoa(T x) { return pow(10.0, x / 20.0); }
+T dbToAmp(T x) { return pow(10.0, x / 20.0); }
 
 template <class T>
-T atodb(T x) { return log10(x) * 20.0; }
+T ampToDb(T x) { return log10(x) * 20.0; }
 
 template <class T>
-T mtof(T x) { return exp2(x - 69.0) * 440.0; }
+T midiToFreq(T x) { return exp2(x - 69.0) * 440.0; }
 
 template <class T>
-T ftom(T x) { return log2(x / 440.0) + 69.0; }
+T freqToMidi(T x) { return log2(x / 440.0) + 69.0; }
 
 template <class T>
 T semitonesToRatio(T x) { return exp2(x / 12.0); }
@@ -301,8 +301,8 @@ struct ScaleConverter : public VariableScaler<T>
     void setAmplitudeToDB()     { Base::setLog(1, 10, 0, 20); }
     void setMIDIToFreq()        { Base::setExp(57, 69, 220, 440); }
     void setFreqToMIDI()        { Base::setLog(220, 440, 57, 69); }
-    void setSemitonesToRatio()  { Base::setExp(0, 12, 1, 2); }
-    void setRatioToSemitones()  { Base::setLog(1, 2, 0, 12); }
+    void setSemitonesToRatios() { Base::setExp(0, 12, 1, 2); }
+    void setRatiosToSemitones() { Base::setLog(1, 2, 0, 12); }
     void setDegreesToRadians()  { Base::setLin(0, 360, 0, M_PI * 2.0); }
     void setRadiansToDegrees()  { Base::setLin(0, M_PI * 2.0, 0, 360); }
     

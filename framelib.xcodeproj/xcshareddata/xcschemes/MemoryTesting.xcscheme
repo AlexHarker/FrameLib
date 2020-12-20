@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B88C0A3021733BF9007A65C0"
-               BuildableName = "FrameLib.scx"
-               BlueprintName = "FrameLib"
-               ReferencedContainer = "container:framelib~.xcodeproj">
+               BlueprintIdentifier = "B8A46DF51F6EB3060032F831"
+               BuildableName = "MemoryTesting"
+               BlueprintName = "MemoryTesting"
+               ReferencedContainer = "container:framelib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,27 +26,25 @@
       buildConfiguration = "Development"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B88C0A3021733BF9007A65C0"
-            BuildableName = "FrameLib.scx"
-            BlueprintName = "FrameLib"
-            ReferencedContainer = "container:framelib~.xcodeproj">
+            BlueprintIdentifier = "B8A46DF51F6EB3060032F831"
+            BuildableName = "MemoryTesting"
+            BlueprintName = "MemoryTesting"
+            ReferencedContainer = "container:framelib.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Development"
+      buildConfiguration = "Deployment"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -57,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B88C0A3021733BF9007A65C0"
-            BuildableName = "FrameLib.scx"
-            BlueprintName = "FrameLib"
-            ReferencedContainer = "container:framelib~.xcodeproj">
+            BlueprintIdentifier = "B8A46DF51F6EB3060032F831"
+            BuildableName = "MemoryTesting"
+            BlueprintName = "MemoryTesting"
+            ReferencedContainer = "container:framelib.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -76,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B88C0A3021733BF9007A65C0"
-            BuildableName = "FrameLib.scx"
-            BlueprintName = "FrameLib"
-            ReferencedContainer = "container:framelib~.xcodeproj">
+            BlueprintIdentifier = "B8A46DF51F6EB3060032F831"
+            BuildableName = "MemoryTesting"
+            BlueprintName = "MemoryTesting"
+            ReferencedContainer = "container:framelib.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

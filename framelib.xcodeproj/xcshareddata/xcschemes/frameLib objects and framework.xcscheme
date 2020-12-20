@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8020472231BDCB80062447A"
-               BuildableName = "framelib_max.mxo"
-               BlueprintName = "framelib_max"
-               ReferencedContainer = "container:framelib~.xcodeproj">
+               BlueprintIdentifier = "B8BA6FD12078D49200D3DB3D"
+               BuildableName = "libframelib_objects.a"
+               BlueprintName = "framelib_objects"
+               ReferencedContainer = "container:framelib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,18 +42,13 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <PathRunnable
-         runnableDebuggingMode = "0"
-         BundleIdentifier = "com.cycling74.Max"
-         FilePath = "/Applications/Max.app">
-      </PathRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8020472231BDCB80062447A"
-            BuildableName = "framelib_max.mxo"
-            BlueprintName = "framelib_max"
-            ReferencedContainer = "container:framelib~.xcodeproj">
+            BlueprintIdentifier = "B8BA6FD12078D49200D3DB3D"
+            BuildableName = "libframelib_objects.a"
+            BlueprintName = "framelib_objects"
+            ReferencedContainer = "container:framelib.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -68,10 +63,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8020472231BDCB80062447A"
-            BuildableName = "framelib_max.mxo"
-            BlueprintName = "framelib_max"
-            ReferencedContainer = "container:framelib~.xcodeproj">
+            BlueprintIdentifier = "B8BA6FD12078D49200D3DB3D"
+            BuildableName = "libframelib_objects.a"
+            BlueprintName = "framelib_objects"
+            ReferencedContainer = "container:framelib.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

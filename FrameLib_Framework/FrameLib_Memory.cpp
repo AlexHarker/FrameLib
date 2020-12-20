@@ -401,7 +401,7 @@ void *FrameLib_LocalAllocator::alloc(size_t size)
      
     // If this fails call the global allocator
 
-    return mAllocator.alloc(size);;
+    return mAllocator.alloc(size);
 }
 
 void FrameLib_LocalAllocator::dealloc(void *ptr)

@@ -28,7 +28,7 @@ FrameLib_Random::FrameLib_Random(FrameLib_Context context, const FrameLib_Parame
 std::string FrameLib_Random::objectInfo(bool verbose)
 {
     return formatInfo("Generates linearly distributed random values in the range [0-1]: "
-                      "The length of the output is dependent on the mode. "
+                      "The length of the output is dependent on the mode parameter. "
                       "Output length may be set by parameter or based on that of the trigger input.",
                       "Generates linearly distributed random values in the range [0-1].", verbose);
 }
@@ -56,7 +56,7 @@ FrameLib_Random::ParameterInfo::ParameterInfo()
         "requested - the output length is set by the length parameter. "
         "input - the output length follows the length of the trigger input.");
     add("Sets the requested output length in the units specified by the units parameter.");
-    add("Sets the units for specified output lengths.");
+    add("Sets the units used for the length parameter.");
 }
 
 // Helpers

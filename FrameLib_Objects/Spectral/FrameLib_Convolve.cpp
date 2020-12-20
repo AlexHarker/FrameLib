@@ -3,9 +3,9 @@
 
 FrameLib_Convolve::FrameLib_Convolve(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
-, mProcessor(*this)
+, mProcessor(*this, 0)
 {
-    mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
+    mParameters.addInt(kMaxLength, "max_length", 16384, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
     mParameters.addEnum(kMode, "mode", 1);

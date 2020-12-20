@@ -101,10 +101,10 @@ public:
             // Getters
             
             DataType getType() const    { return *(reinterpret_cast<DataType *>(mPtr)); }
-            char *getTag() const        { return reinterpret_cast<char *>(mPtr + sizeType() + sizeSize()); }
+            const char *getTag() const  { return reinterpret_cast<char *>(mPtr + sizeType() + sizeSize()); }
             const double *getVector(unsigned long *size) const;
             unsigned long getVectorSize() const;
-            char *getString() const;
+            const char *getString() const;
             unsigned long getSize() const;
             unsigned long getIndex() const { return mIndex; }
             
@@ -392,7 +392,7 @@ private:
         
     private:
         
-        std::string mName;
+        const std::string mName;
         long mArgumentIdx;
     };
     
@@ -705,7 +705,7 @@ public:
     
     // Get Name
     
-    std::string getName(unsigned long idx) const                            { return mParameters[idx]->name(); }
+    const char *getName(unsigned long idx) const                            { return mParameters[idx]->name(); }
     
     long getArgumentIdx(unsigned long idx) const                            { return mParameters[idx]->argumentIdx(); }
     long getArgumentIdx(const char *name) const                             { return mParameters[getIdx(name)]->argumentIdx(); }
@@ -739,8 +739,8 @@ public:
     
     // Get Item Strings
     
-    std::string getItemString(unsigned long idx, unsigned long item) const  { return mParameters[idx]->getItemString(item); }
-    std::string getItemString(const char *name, unsigned long item) const   { return getItemString(getIdx(name), item); }
+    const char *getItemString(unsigned long idx, unsigned long item) const  { return mParameters[idx]->getItemString(item); }
+    const char *getItemString(const char *name, unsigned long item) const   { return getItemString(getIdx(name), item); }
     
     // Get Info
     
@@ -767,7 +767,7 @@ public:
     bool getBool(const char *name) const                                    { return getBool(getIdx(name)); }
     
     template <typename T>
-    T getEnum(unsigned long idx) const                                      { return static_cast<T>(getValue(idx)); }
+    T getEnum(unsigned long idx) const                                      { return static_cast<T>(getInt(idx)); }
     template <typename T>
     T getEnum(const char *name) const                                       { return getEnum<T>(getIdx(name)); }
     

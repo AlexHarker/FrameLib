@@ -712,9 +712,9 @@ public:
                 // Name, type and default value
                 
                 if (defaultStr.size())
-                    post("Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str(), defaultStr.c_str());
+                    post("Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i), defaultStr.c_str());
                 else
-                    post("Parameter %ld: %s [%s]", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str());
+                    post("Parameter %ld: %s [%s]", i + 1, params->getName(i), params->getTypeString(i));
 
                 // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
                 
@@ -734,7 +734,7 @@ public:
                     }
                     if (type == FrameLib_Parameters::kEnum)
                         for (long j = 0; j <= params->getMax(i); j++)
-                            post("   [%ld] - %s", j, params->getItemString(i, j).c_str());
+                            post("   [%ld] - %s", j, params->getItemString(i, j));
                     else if (type == FrameLib_Parameters::kArray)
                         post("- Array Size: %ld", params->getArraySize(i));
                     else if (type == FrameLib_Parameters::kVariableArray)

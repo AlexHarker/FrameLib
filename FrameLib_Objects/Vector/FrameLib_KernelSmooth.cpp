@@ -4,12 +4,31 @@
 // Constructor
 
 FrameLib_KernelSmooth::FrameLib_KernelSmooth(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mSmoother(*this)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+, mSmoother(*this, 0)
 {
-    mParameters.addVariableDoubleArray(kSmooth, "smooth", 0.0, 2, 0);
+    mParameters.addVariableDoubleArray(kSmooth, "smooth", 0.0, 2, 0, 0);
     mParameters.setMin(0.0);
     
+    mParameters.addEnum(kScale, "scale", 1);
+    mParameters.addEnumItem(kSamples, "samples");
+    mParameters.addEnumItem(kNormalised, "normalised");
+    
+    mParameters.addBool(kSymmetric, "symmetric", true, 2);
+
+    mParameters.addEnum(kEdges, "edges", 3);
+    mParameters.addEnumItem(Smoother::kZeroPad, "zero");
+    mParameters.addEnumItem(Smoother::kExtend, "extend");
+    mParameters.addEnumItem(Smoother::kWrap, "wrap");
+    mParameters.addEnumItem(Smoother::kFold, "fold");
+    mParameters.addEnumItem(Smoother::kMirror, "mirror");
+    
+    mParameters.addInt(kMaxFFTSize, "max_fft", 32768);
+    mParameters.setInstantiation();
+    
     mParameters.set(serialisedParameters);
+    
+    mSmoother.set_max_fft_size(mParameters.getInt(kMaxFFTSize));
 }
 
 // Info
@@ -64,9 +83,13 @@ void FrameLib_KernelSmooth::process()
             return;
         }
         
+        Smoother::EdgeType edges = mParameters.getEnum<Smoother::EdgeType>(kEdges);
+        
         Allocator allocator(*this);
         
         unsigned long widthSize;
+        bool symmetric = mParameters.getBool(kSymmetric);
+        
         double width_lo = 0.0;
         double width_hi = 0.0;
         
@@ -80,9 +103,14 @@ void FrameLib_KernelSmooth::process()
         else if (widthSize == 1)
         {
             width_lo = width_hi = widths[0];
-            
         }
         
-        mSmoother.smooth(output, input, kernel, sizeIn1, sizeIn2, width_lo, width_hi, Smoother::kSmoothFold);
+        if (mParameters.getEnum<Scales>(kScale) == kNormalised)
+        {
+            width_lo /= static_cast<double>(sizeIn2);
+            width_hi /= static_cast<double>(sizeIn2);
+        }
+        
+        mSmoother.smooth(output, input, kernel, sizeIn1, sizeIn2, width_lo, width_hi, symmetric, edges);
     }
 }

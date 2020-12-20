@@ -22,22 +22,15 @@ FrameLib_Window::CompareWindowParams::CompareWindowParams(Generator& generator, 
 
 bool FrameLib_Window::CompareWindowParams::operator == (const CompareWindowParams& a)
 {
-    bool equal = true;
+    if (mParamSize != a.mParamSize)
+        return false;
     
-    equal &= mWindowType == a.mWindowType;
-    equal &= mExponent == a.mExponent;
-    equal &= mEndpoints == a.mEndpoints;
-    equal &= mSize == a.mSize;
+    bool equal = (mWindowType == a.mWindowType) && (mExponent == a.mExponent) && (mEndpoints == a.mEndpoints) && (mSize == a.mSize);
     
-    if (mParamSize == a.mParamSize)
-    {
-        for (unsigned long i = 0; i < mParamSize; i++)
-            equal &= mParams[i] == a.mParams[i];
-        
-        return equal;
-    }
+    for (unsigned long i = 0; i < mParamSize; i++)
+        equal &= mParams[i] == a.mParams[i];
     
-    return false;
+    return equal;
 }
 
 // Constructor
@@ -90,14 +83,15 @@ FrameLib_Window::ParameterInfo FrameLib_Window::sParamInfo;
 
 FrameLib_Window::ParameterInfo::ParameterInfo()
 {
-    add("Sets the window type.");
+    add(Generator::getWindowTypeInfo());
     add("Sets the size of the internal window. If set to 0 the window will be recalculated to match the input size (good for frequency domain applications. "
         "Otherwise an internally stored window is linearly interpolated to fit the input size (good for granular applications.");
+    add(Generator::getExponentInfo());
+    add(Generator::getCompensationInfo());
+    add(Generator::getWindowParametersInfo());
+    add(Generator::getEndpointsInfo());
+        
     add("Sets whether the window should be used directly, or the square root of the window.");
-    add("Sets the gain compensation used. "
-        "off - no compensation is used. linear - compensate the linear gain of the window. "
-        "power - compensate the power gain of the window. powoverlin - compensate by the power gain divided by the linear gain");
-    add("Sets which endpoints of the window used will be non-zero for windows that start and end at zero.");
 }
 
 // Helpers
@@ -107,7 +101,7 @@ void FrameLib_Window::updateWindow(unsigned long sizeIn)
     unsigned long size = mParameters.getInt(kSize);
     size = mGenerator.sizeAdjustForEndpoints(!size ? sizeIn : size);
     
-    // Check for changes and exit if none, else ersize and stoe new parameters
+    // Check for changes and exit if none, else resize and store new parameters
     
     CompareWindowParams compare(mGenerator, size);
     

@@ -44,7 +44,7 @@ FrameLib_Percentile::ParameterInfo::ParameterInfo()
 double FrameLib_Percentile::compute(const double *input, size_t size)
 {
     double result = 0.0;
-    auto temp = allocAutoArray<double>(size + 1);
+    auto temp = allocAutoArray<double>(static_cast<unsigned long>(size) + 1);
     
     if (temp)
     {

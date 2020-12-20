@@ -1,6 +1,14 @@
 
 #include "FrameLib_Route.h"
 
+// Parameter Object Class (used for error reporting
+
+FrameLib_Route::Parameters::Parameters(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 1)
+{
+    addParameterInput();
+}
+
 // Internal Valve Class
 
 // Constructor
@@ -10,8 +18,6 @@ FrameLib_Route::Valve::Valve(FrameLib_Context context, const FrameLib_Parameters
 , mValveNumber(num)
 {
     mParameters.addInt(kActiveValve, "output", 0);
-
-    // FIX - this means that we don't get errors at all... this needs review
     
     mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
@@ -45,20 +51,28 @@ void FrameLib_Route::Valve::process()
 
 FrameLib_Route::FrameLib_Route(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Block(kProcessor, context, proxy)
-, mParameters(context, proxy, &sParamInfo)
+, mParameterObject(context, nullptr, proxy)
 {
-    mParameters.addDouble(kNumOuts, "num_outs", 2, 0);
-    mParameters.setClip(2, 32);
-    mParameters.setInstantiation();
+    FrameLib_Parameters& parameters = mParameterObject.parameters();
+
+    parameters.addDouble(kNumOuts, "num_outs", 2, 0);
+    parameters.setClip(2, 32);
+    parameters.setInstantiation();
     
-    mParameters.addInt(kActiveOut, "output", 0, 1);
+    parameters.addInt(kActiveOut, "output", 0, 1);
     
-    mParameters.set(serialisedParameters);
+    parameters.set(serialisedParameters);
     
-    mNumOuts = mParameters.getInt(kNumOuts);
+    mNumOuts = parameters.getInt(kNumOuts);
     
     setIO(2, mNumOuts);
 
+    // Alias to the parameter object for error reporting
+    
+    mParameterObject.setInputAlias(Connection(this, 1), 1);
+    
+    // Construct the internal valve objects
+    
     for (long i = 0; i < mNumOuts; i++)
     {
         mValves.add(new Valve(context, serialisedParameters, proxy, i));
@@ -105,6 +119,8 @@ FrameLib_Route::ParameterInfo::ParameterInfo()
 
 void FrameLib_Route::reset(double samplingRate, unsigned long maxBlockSize)
 {
+    mParameterObject.reset(samplingRate, maxBlockSize);
+
     for (auto it = mValves.begin(); it != mValves.end(); it++)
         (*it)->reset(samplingRate, maxBlockSize);
 }

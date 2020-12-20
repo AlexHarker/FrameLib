@@ -488,7 +488,7 @@ public:
         }
         
         operator Storage*()                 { return mStorage; }
-        const operator Storage*() const     { return mStorage; }
+        operator const Storage*() const     { return mStorage; }
         
     private:
         

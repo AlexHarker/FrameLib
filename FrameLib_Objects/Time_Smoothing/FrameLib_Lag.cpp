@@ -14,11 +14,11 @@ FrameLib_Lag::FrameLib_Lag(FrameLib_Context context, const FrameLib_Parameters::
     mParameters.addInt(kNumFrames, "num_frames", 1, 1);
     mParameters.setMin(0);
     
-    mParameters.addDouble(kDefault, "default", 0.0, 2);
+    mParameters.addDouble(kPadding, "pad", 0.0, 2);
     
-    mParameters.addEnum(kMode, "mode");
-    mParameters.addEnumItem(kUseDefault, "default");
-    mParameters.addEnumItem(kValid, "valid");
+    mParameters.addEnum(kStartMode, "start");
+    mParameters.addEnumItem(kPad, "pad");
+    mParameters.addEnumItem(kShorten, "shorten");
     
     mParameters.set(serialisedParameters);
 
@@ -80,7 +80,7 @@ void FrameLib_Lag::process()
 {
     unsigned long sizeIn, sizeReset, sizeOut, sizeEdge;
 
-    Modes mode = mParameters.getEnum<Modes>(kMode);
+    StartModes startMode = mParameters.getEnum<StartModes>(kStartMode);
     unsigned long maxFrames = mParameters.getInt(kMaxFrames);
     unsigned long requestedFrames = mParameters.getInt(kNumFrames);
     
@@ -103,7 +103,7 @@ void FrameLib_Lag::process()
     unsigned long numFrames = requestedFrames;
     unsigned long validFrames = getValidFrames();
     
-    if (mode == kValid)
+    if (startMode == kShorten)
         numFrames = std::min(numFrames, validFrames);
 
     // Allocate outputs
@@ -123,7 +123,7 @@ void FrameLib_Lag::process()
     }
     else
     {
-        PaddedVector pad(resetInput, sizeReset, mParameters.getValue(kDefault));
+        PaddedVector pad(resetInput, sizeReset, mParameters.getValue(kPadding));
         
         for (unsigned long i = 0; i < sizeOut; i++)
             outputMain[i] = pad[i];

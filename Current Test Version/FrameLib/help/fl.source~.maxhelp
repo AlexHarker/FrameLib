@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -375,6 +375,7 @@
                             },
                             {
                                 "box": {
+                                    "fontname": "Arial",
                                     "id": "obj-20",
                                     "linecount": 10,
                                     "maxclass": "comment",
@@ -386,7 +387,6 @@
                                         282.0,
                                         152.0
                                     ],
-                                    "presentation_linecount": 9,
                                     "text": "You can also manually set the delay of the fl.source~ object in order to compensate for other delays that might be incurred elsewhere in a FrameLib network or otherwise. Note, this cannot magically warp your fl.source~ object through time, and this value only works when it is greater than the /length parameter. Experiment by changing the delay amount above and observing how well the signals null sum."
                                 }
                             },
@@ -598,16 +598,17 @@
                             },
                             {
                                 "box": {
+                                    "fontname": "Arial",
                                     "id": "obj-21",
-                                    "linecount": 18,
+                                    "linecount": 17,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         330.0,
                                         147.0,
-                                        300.0,
-                                        268.0
+                                        304.0,
+                                        253.0
                                     ],
                                     "text": "Because fl.source~ is 'collecting' the last n samples it has to wait for at least the number of samples specified by the /length parameter to have passed in time from the very beginning of when audio is started. This means it is always going to be delayed from its input and you may have to deal with this delay if you need tight synchronisation between FrameLib and other audio streams.\n\nIn the example to the left, a pink noise generator entering fl.source~ is converted to frames 1024 samples long every 1024 samples of time. The original source is delayed by 1024 samples and then subtracted from the output of fl.sink~. Because we have accounted for the delay in converting to frames with fl.source~ subtracting the two audio streams results in null summing."
                                 }
@@ -894,14 +895,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
+                                    "fontsize": [
+                                        12.059008
+                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
-                                    ],
-                                    "fontsize": [
-                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
@@ -949,7 +950,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -1019,7 +1020,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -1134,7 +1135,6 @@
                                         165.0,
                                         166.0
                                     ],
-                                    "presentation_linecount": 13,
                                     "text": "Here, fl.interval~ replaces fl.audiotrigger~ and sends a trigger frame every 1024 frames rather than everytime we send a click. In effect, fl.source~ is outputting the last 1024 samples from the audio stream every 1024 samples in time, resulting in an interrupted stream"
                                 }
                             },
@@ -1246,7 +1246,7 @@
                                     "patching_rect": [
                                         210.0,
                                         210.0,
-                                        119.0,
+                                        121.0,
                                         65.0
                                     ],
                                     "text": "Hit the bang object to output the last 1024 frames from fl.source."
@@ -1370,6 +1370,7 @@
                             },
                             {
                                 "box": {
+                                    "fontname": "Lato",
                                     "id": "obj-21",
                                     "linecount": 5,
                                     "maxclass": "comment",
@@ -1378,8 +1379,8 @@
                                     "patching_rect": [
                                         15.0,
                                         105.0,
-                                        628.0,
-                                        79.0
+                                        646.0,
+                                        84.0
                                     ],
                                     "text": "The fl.source~ object is a fundamental member of the FrameLib library as it converts audio from Max into frames to be processed by other FrameLib objects. You might find it easier to conceive of the FrameLib object as a kind of small temporary buffer that retains a number of samples that it has most recently received, specified by the /length parameter. Whenever it receives a trigger frame in its second inlet it outputs the values it has stored and passes that frame along to wherever it goes next."
                                 }
@@ -1566,14 +1567,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
+                                    "fontsize": [
+                                        12.059008
+                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
-                                    ],
-                                    "fontsize": [
-                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

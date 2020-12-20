@@ -67,7 +67,7 @@ FrameLib_Shift::ParameterInfo::ParameterInfo()
 long limit(long x, long a, long b) { return std::max(std::min(x, b), a); }
 
 template <class T>
-void doShift(T edgeReader, double *out, const double *in, unsigned long size, long shift)
+void doShift(T edgeReader, double *out, const double *in, long size, long shift)
 {
     const long loop1 = limit(shift, 0, size);
     const long loop2 = size - limit(-shift, 0, size);

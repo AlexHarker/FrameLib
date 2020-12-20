@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8BA6FD12078D49200D3DB3D"
-               BuildableName = "libframelib_objects.a"
-               BlueprintName = "framelib_objects"
-               ReferencedContainer = "container:framelib~-documentation.xcodeproj">
+               BlueprintIdentifier = "B88C0A3021733BF9007A65C0"
+               BuildableName = "FrameLib.scx"
+               BlueprintName = "FrameLib"
+               ReferencedContainer = "container:framelib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8BA6FD12078D49200D3DB3D"
-            BuildableName = "libframelib_objects.a"
-            BlueprintName = "framelib_objects"
-            ReferencedContainer = "container:framelib~.xcodeproj">
+            BlueprintIdentifier = "B88C0A3021733BF9007A65C0"
+            BuildableName = "FrameLib.scx"
+            BlueprintName = "FrameLib"
+            ReferencedContainer = "container:framelib.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -51,6 +51,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B88C0A3021733BF9007A65C0"
+            BuildableName = "FrameLib.scx"
+            BlueprintName = "FrameLib"
+            ReferencedContainer = "container:framelib.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -60,6 +70,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B88C0A3021733BF9007A65C0"
+            BuildableName = "FrameLib.scx"
+            BlueprintName = "FrameLib"
+            ReferencedContainer = "container:framelib.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Development">

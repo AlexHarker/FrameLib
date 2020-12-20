@@ -22,13 +22,13 @@ FrameLib_Unpack::FrameLib_Unpack(FrameLib_Context context, const FrameLib_Parame
 std::string FrameLib_Unpack::objectInfo(bool verbose)
 {
     return formatInfo("Unpacks multistream input into individual streams: "
-                      "Multistream inputs are unpacked in order across the outputs.",
+                      "Multistream inputs are unpacked in order across the outputs. ",
                       "Unpacks multistream input into individual streams.", verbose);
 }
 
 std::string FrameLib_Unpack::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Multi-stream Input - to be unpacked into individual streams", "Multi-stream Input", idx, verbose);
+    return formatInfo("Multistream Input - to be unpacked into individual streams", "Multistream Input", idx, verbose);
 }
 
 std::string FrameLib_Unpack::outputInfo(unsigned long idx, bool verbose)
@@ -67,5 +67,5 @@ FrameLib_Unpack::ParameterInfo FrameLib_Unpack::sParamInfo;
 
 FrameLib_Unpack::ParameterInfo::ParameterInfo()
 {
-    add("Sets the number of outputs.");
+    add("Sets the number of single stream outputs.");
 }

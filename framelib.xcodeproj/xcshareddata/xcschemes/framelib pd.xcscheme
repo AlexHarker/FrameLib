@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8A1F5BA1D5370DE00FA5FFC"
-               BuildableName = "NumericTesting"
-               BlueprintName = "NumericTesting"
-               ReferencedContainer = "container:framelib~.xcodeproj">
+               BlueprintIdentifier = "B83E029B206674D4005925DD"
+               BuildableName = "framelib_pd.d_fat"
+               BlueprintName = "framelib_pd"
+               ReferencedContainer = "container:framelib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,35 +32,39 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8A1F5BA1D5370DE00FA5FFC"
-            BuildableName = "NumericTesting"
-            BlueprintName = "NumericTesting"
-            ReferencedContainer = "container:framelib~.xcodeproj">
+            BlueprintIdentifier = "5AB54BD32052EAE900325C14"
+            BuildableName = "fl.fold~.mxo"
+            BlueprintName = "fl.fold~"
+            ReferencedContainer = "container:framelib.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Deployment"
+      buildConfiguration = "Development"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      launchStyle = "0"
+      launchStyle = "1"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <PathRunnable
+         runnableDebuggingMode = "0"
+         BundleIdentifier = "org.puredata.pd.pd-gui"
+         FilePath = "/Applications/Pd-0.48-1.app">
+      </PathRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8A1F5BA1D5370DE00FA5FFC"
-            BuildableName = "NumericTesting"
-            BlueprintName = "NumericTesting"
-            ReferencedContainer = "container:framelib~.xcodeproj">
+            BlueprintIdentifier = "B83E029B206674D4005925DD"
+            BuildableName = "framelib_pd.d_fat"
+            BlueprintName = "framelib_pd"
+            ReferencedContainer = "container:framelib.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,16 +74,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8A1F5BA1D5370DE00FA5FFC"
-            BuildableName = "NumericTesting"
-            BlueprintName = "NumericTesting"
-            ReferencedContainer = "container:framelib~.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Development">

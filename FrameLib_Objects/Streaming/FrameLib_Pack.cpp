@@ -73,5 +73,5 @@ FrameLib_Pack::ParameterInfo FrameLib_Pack::sParamInfo;
 
 FrameLib_Pack::ParameterInfo::ParameterInfo()
 {
-    add("Sets the number of inputs."); 
+    add("Sets the number of inputs.");
 }

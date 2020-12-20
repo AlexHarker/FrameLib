@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B89ABA8F1FA73483006DAD53"
-               BuildableName = "libframelib.a"
-               BlueprintName = "framelib"
-               ReferencedContainer = "container:framelib~-documentation.xcodeproj">
+               BlueprintIdentifier = "B8020472231BDCB80062447A"
+               BuildableName = "framelib_max.mxo"
+               BlueprintName = "framelib_max"
+               ReferencedContainer = "container:framelib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B89ABA8F1FA73483006DAD53"
-            BuildableName = "libframelib.a"
-            BlueprintName = "framelib"
-            ReferencedContainer = "container:framelib~.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -51,6 +42,20 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <PathRunnable
+         runnableDebuggingMode = "0"
+         BundleIdentifier = "com.cycling74.Max"
+         FilePath = "/Applications/Max.app">
+      </PathRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B8020472231BDCB80062447A"
+            BuildableName = "framelib_max.mxo"
+            BlueprintName = "framelib_max"
+            ReferencedContainer = "container:framelib.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -60,6 +65,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B8020472231BDCB80062447A"
+            BuildableName = "framelib_max.mxo"
+            BlueprintName = "framelib_max"
+            ReferencedContainer = "container:framelib.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Development">

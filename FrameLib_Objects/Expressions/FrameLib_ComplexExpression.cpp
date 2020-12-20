@@ -279,7 +279,7 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
     typedef FrameLib_Block::Connection Connection;
     using namespace FrameLib_ExprParser;
     
-    mParameters.addString(kExpression, "expr", 0);
+    mParameters.addString(kExpression, "expression", 0);
     mParameters.setInstantiation();
     
     mParameters.setInstantiation();

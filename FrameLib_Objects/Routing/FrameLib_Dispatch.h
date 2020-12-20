@@ -39,6 +39,18 @@ class FrameLib_Dispatch : public FrameLib_Block
         long mActiveIn;
     };
     
+    // Internal parameter class
+    
+    struct Parameters final : public FrameLib_Processor
+    {
+        Parameters(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+        
+        FrameLib_Parameters& parameters()               { return mParameters; }
+        const FrameLib_Parameters& parameters() const   { return mParameters; }
+
+        void process() override {}
+    };
+    
 public:
     
     static constexpr ObjectType sType = kProcessor;
@@ -56,7 +68,7 @@ public:
     
     // Connection Types
     
-    FrameType inputType(unsigned long idx) const override       { return kFrameAny; }
+    FrameType inputType(unsigned long idx) const override       { return idx == getNumIns() - 1 ? kFrameTagged : kFrameAny; }
     FrameType outputType(unsigned long idx) const override      { return kFrameAny; }
     
     // N.B. - Nothing can be acheived by setting a fixed input, so ignore this
@@ -71,7 +83,7 @@ public:
     void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override {}
     void reset(double samplingRate, unsigned long maxBlockSize) override;
     
-    const FrameLib_Parameters *getParameters() const override                                { return &mParameters; }
+    const FrameLib_Parameters *getParameters() const override { return &mParameterObject.parameters(); }
 
     // Ordering Connections
     
@@ -85,8 +97,8 @@ private:
     long mNumIns;
     long mNumOuts;
     
+    Parameters mParameterObject;
     FrameLib_OwnedList<FrameLib_DSP> mSelects;
-    FrameLib_Parameters mParameters;
     static ParameterInfo sParamInfo;
 };
 

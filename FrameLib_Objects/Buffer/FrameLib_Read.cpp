@@ -9,7 +9,7 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters
 {
     mParameters.addString(kBuffer, "buffer", 0);
     
-    mParameters.addInt(kChannel, "chan", 1, 1);
+    mParameters.addInt(kChannel, "channel", 1, 1);
     mParameters.setMin(1);
     
     mParameters.addEnum(kUnits, "units", 2);
@@ -47,9 +47,9 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters
 
 std::string FrameLib_Read::objectInfo(bool verbose)
 {
-    return formatInfo("Reads from a buffer~ given an input frame of sample positions: "
+    return formatInfo("Reads from a buffer given an input frame of sample positions: "
                       "There are different available interpolation types.",
-                      "Reads from a buffer~ given an input frame of sample positions.", verbose);
+                      "Reads from a buffer given an input frame of sample positions.", verbose);
 }
 
 std::string FrameLib_Read::inputInfo(unsigned long idx, bool verbose)
@@ -71,13 +71,14 @@ FrameLib_Read::ParameterInfo FrameLib_Read::sParamInfo;
 
 FrameLib_Read::ParameterInfo::ParameterInfo()
 {
-    add("Sets the buffer~ name to use.");
-    add("Sets the buffer~ channel to use.");
+    add("Sets the buffer to use.");
+    add("Sets the buffer channel to use.");
     add("Sets the interpolation mode: "
+        "none - no interpolation"
+        "linear - linear interpolation. "
         "hermite - cubic hermite interpolation. "
         "bspline - cubic bspline interpolation. "
-        "lagrange - cubic lagrange interpolation. "
-        "linear - linear interpolation.");
+        "lagrange - cubic lagrange interpolation.");
     add("Sets the units for the position input.");
 }
 

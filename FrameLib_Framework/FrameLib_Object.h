@@ -113,7 +113,7 @@ public:
         }
         
         operator U*()                       { return mMemory; }
-        const operator U*() const           { return mMemory; }
+        operator const U*() const           { return mMemory; }
         
         U* get()                            { return mMemory; }
         const U* get() const                { return mMemory; }
@@ -151,7 +151,10 @@ public:
         void deallocate(U *& ptr)           { mObject.dealloc(ptr); }
         
         template <class U>
-        AutoArray<U> allocAutoArray(size_t N)  { return mObject.allocAutoArray<U>(N); }
+        AutoArray<U> allocAutoArray(unsigned long N)  
+		{ 
+			return mObject.allocAutoArray<U>(N); 
+		}
         
     private:
         
@@ -431,7 +434,7 @@ protected:
     // Memory Allocation
     
     template <class U>
-    AutoArray<U> allocAutoArray(size_t N)
+    AutoArray<U> allocAutoArray(unsigned long N)
     {
         return AutoArray<U>(this, N);
     }
