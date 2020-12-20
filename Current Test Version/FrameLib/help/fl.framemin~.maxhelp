@@ -399,10 +399,10 @@
                                     "patching_rect": [
                                         15.0,
                                         330.0,
-                                        54.0,
+                                        80.0,
                                         23.0
                                     ],
-                                    "text": "fl.vmin~"
+                                    "text": "fl.framemin~"
                                 }
                             },
                             {

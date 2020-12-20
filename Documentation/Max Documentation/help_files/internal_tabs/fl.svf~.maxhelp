@@ -155,10 +155,11 @@
 									"id" : "obj-2",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "FL_monoVolume-h.maxpat",
-									"numinlets" : 0,
-									"numoutlets" : 0,
+									"name" : "fl-mono-h.maxpat",
+									"numinlets" : 1,
+									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 15.0, 510.0, 90.0, 45.0 ],
 									"viewvisibility" : 1
 								}
@@ -269,11 +270,11 @@
 													"presentation_rect" : [ 175.0, 19.0, 48.0, 166.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
+															"parameter_longname" : "live.slider[1]",
+															"parameter_mmax" : 1.0,
 															"parameter_shortname" : "Reson",
 															"parameter_type" : 0,
-															"parameter_unitstyle" : 1,
-															"parameter_longname" : "live.slider[1]",
-															"parameter_mmax" : 1.0
+															"parameter_unitstyle" : 1
 														}
 
 													}
@@ -308,12 +309,12 @@
 													"presentation_rect" : [ 125.0, 19.0, 48.0, 166.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_shortname" : "Freq",
-															"parameter_type" : 0,
-															"parameter_unitstyle" : 1,
 															"parameter_mmin" : 50.0,
 															"parameter_longname" : "live.slider",
-															"parameter_mmax" : 10000.0
+															"parameter_mmax" : 10000.0,
+															"parameter_shortname" : "Freq",
+															"parameter_type" : 0,
+															"parameter_unitstyle" : 1
 														}
 
 													}
@@ -361,12 +362,12 @@
 													"presentation_rect" : [ 14.0, 14.0, 102.0, 171.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
+															"parameter_longname" : "live.tab",
+															"parameter_mmax" : 2,
 															"parameter_shortname" : "live.tab",
 															"parameter_enum" : [ "lpf", "bpf", "hpf" ],
 															"parameter_type" : 2,
-															"parameter_unitstyle" : 0,
-															"parameter_longname" : "live.tab",
-															"parameter_mmax" : 2
+															"parameter_unitstyle" : 0
 														}
 
 													}
@@ -512,7 +513,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
 									"patching_rect" : [ 75.5, 596.0, 162.0, 23.0 ],
-									"text" : "buffer~ bufJongly jongly.aif"
+									"text" : "buffer~ fl.svf.help jongly.aif"
 								}
 
 							}
@@ -532,7 +533,7 @@
 										"loopend" : [ 0.0, "ms" ],
 										"loopstart" : [ 0.0, "ms" ],
 										"mode" : "basic",
-										"originallength" : [ 2708.876140768406913, "ticks" ],
+										"originallength" : [ 0.0, "ticks" ],
 										"originaltempo" : 120.0,
 										"phase" : [ 0.0, "ticks" ],
 										"pitchcorrection" : 0,
@@ -540,7 +541,7 @@
 										"timestretch" : [ 0 ]
 									}
 ,
-									"text" : "groove~ bufJongly @loop 1"
+									"text" : "groove~ fl.svf.help @loop 1"
 								}
 
 							}
@@ -655,8 +656,31 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-1", 1 ],
+									"order" : 0,
+									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"order" : 1,
+									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-10", 0 ],
 									"source" : [ "obj-39", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-2", 0 ],
+									"source" : [ "obj-43", 0 ]
 								}
 
 							}
@@ -678,7 +702,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 1 ],
-									"midpoints" : [ 202.5, 354.0, 156.5, 354.0 ],
+									"midpoints" : [ 202.5, 375.0, 156.5, 375.0 ],
 									"source" : [ "obj-62", 0 ]
 								}
 
@@ -731,9 +755,10 @@
  ],
 		"lines" : [  ],
 		"parameters" : 		{
+			"obj-1::obj-18::obj-9" : [ "live.slider[1]", "Reson", 0 ],
 			"obj-1::obj-18::obj-5" : [ "live.slider", "Freq", 0 ],
 			"obj-1::obj-18::obj-1" : [ "live.tab", "live.tab", 0 ],
-			"obj-1::obj-18::obj-9" : [ "live.slider[1]", "Reson", 0 ],
+			"obj-1::obj-2::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
 			"parameterbanks" : 			{
 
 			}
@@ -745,6 +770,13 @@
 				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "fl-mono-h.maxpat",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/docs/tutorial-patchers",
+				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{

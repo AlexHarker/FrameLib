@@ -248,7 +248,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 195.0, 342.0, 175.0, 36.0 ],
-									"text" : "Every 1024 samples sample the multislider's output"
+									"text" : "Every 2048 samples sample the multislider's output"
 								}
 
 							}
@@ -277,7 +277,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 60.0, 330.0, 101.0, 23.0 ],
-									"text" : "fl.interval~ 1024"
+									"text" : "fl.interval~ 2048"
 								}
 
 							}
@@ -325,9 +325,9 @@
 								"box" : 								{
 									"id" : "obj-13",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
+									"numinlets" : 3,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
 									"patching_rect" : [ 15.0, 580.0, 132.0, 23.0 ],
 									"text" : "fl.timestddev~ 100 50"
 								}
@@ -369,7 +369,7 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
-									"destination" : [ "obj-13", 1 ],
+									"destination" : [ "obj-13", 2 ],
 									"source" : [ "obj-1", 0 ]
 								}
 
