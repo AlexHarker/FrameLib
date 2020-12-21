@@ -26,9 +26,10 @@ FrameLib_Info::FrameLib_Info(FrameLib_Context context, const FrameLib_Parameters
 
 std::string FrameLib_Info::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs the sample rate, number of channels and length of a buffer. "
-                      "The units for reporting length can be set with the units parameter.",
-                      "Outputs the length, sample rate, and number of channels of a buffer.", verbose);
+    return formatInfo("Outputs the sample rate, number of channels and length of a specified buffer. "
+                      "The units for reporting length can be set with the units parameter. "
+                      "If the named buffer is not found all outputs are given as zero.",
+                      "Outputs the length, sample rate, and number of channels of a specified buffer.", verbose);
 }
 
 std::string FrameLib_Info::inputInfo(unsigned long idx, bool verbose)
@@ -45,10 +46,8 @@ std::string FrameLib_Info::outputInfo(unsigned long idx, bool verbose)
     {
         case 0: return "Buffer Length";
         case 1: return "Sample Rate";
-        case 2: return "Number of Channels";
+        default: return "Number of Channels";
     }
-    
-    return "";
 } 
 
 // Parameter Info
