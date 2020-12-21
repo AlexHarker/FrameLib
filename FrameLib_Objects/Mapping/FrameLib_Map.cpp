@@ -37,10 +37,13 @@ FrameLib_Map::FrameLib_Map(FrameLib_Context context, const FrameLib_Parameters::
 
 std::string FrameLib_Map::objectInfo(bool verbose)
 {
-    return formatInfo("Maps values in the input via a given scaling to corresponding output values: The output size matches the input size. "
-                   "Scaling maps a specified range of values in the input to a specified range of output values. Different modes of scaling are offered. "
-                   "Values may be optionally constrained within the specified ranges.",
-                   "Maps values in the input via a given scaling to corresponding output values.", verbose);
+    return formatInfo("Maps values from input to output via a specified scaling: "
+                      "The output length matches the input length. "
+                      "Scaling maps the specified range of input values to a corresponding specified output range. "
+                      "Different shapes and types of scaling are available. "
+                      "Values may be optionally constrained within the specified output range. "
+                      "The values specfying the ranges may be in either order for both input and output.",
+                      "Maps values from input to output via a specified scaling.", verbose);
 }
 
 std::string FrameLib_Map::inputInfo(unsigned long idx, bool verbose)
@@ -48,12 +51,12 @@ std::string FrameLib_Map::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return "Input Frame";
+        return "Input";
 }
 
 std::string FrameLib_Map::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Mapped Output";
+    return "Output";
 }
 
 // Parameter Info
@@ -62,16 +65,23 @@ FrameLib_Map::ParameterInfo FrameLib_Map::sParamInfo;
 
 FrameLib_Map::ParameterInfo::ParameterInfo()
 {
-    add("Sets the type of output scaling: linear / log / exp - scaling as specified. "
-        "pow - scale the input range to [0-1], apply the specified exponent and then scale to the output range. "
-        "db / invdb - output / input respectively are set in dB but scaled as gain values. "
-        "transpose / invtranspose - output / input respectively are set in semitones but scaled as ratios for transposition.");
-    add("Sets the first) (low) input value.");
-    add("Sets the second (high) input value.");
-    add("Sets the first (low) output value.");
-    add("Sets the second (high) output value.");
-    add("If true then the output is clipped to the range between the two output values.");
-    add("Sets the exponent for the pow mode.");
+    add("Sets the type of output scaling: "
+        "linear - linear scaling. "
+        "log - logarithmic scaling. "
+        "exp - exponential scaling. "
+        "pow - input range scaled [0-1], raised to an exponent and then scaled to the output range. "
+        "db - output range set in dB with mapping to corresponding linear gain values. "
+        "transpose - output range set in semitones with mapping to corresponding ratios. "
+        "inverse_pow - the inverse mapping of the pow mode. "
+        "inverse_db - the inverse mapping of the db mode. "
+        "inverse_transpose - the inverse mapping of the inverse_transpose mode.");
+    add("Sets the first bound of the input range.");
+    add("Sets the second bound of the input range.");
+    add("Sets the first bound of the output range.");
+    add("Sets the second bound of the output range.");
+    add("If set on then the output is constrained between the two output values. "
+        "Note that scaling will otherwise continue outside of the specified ranges.");
+    add("Sets the exponent for the pow and inverse_pow modes.");
 }
 
 // Helpers
