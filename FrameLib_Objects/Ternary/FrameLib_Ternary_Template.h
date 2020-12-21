@@ -97,8 +97,7 @@ public:
         {
             case 0: return "Input";
             case 1: return "Parameter 1";
-            case 2: return "Parameter 2";
-            default: return "Unknown Input";
+            default: return "Parameter 2";
         }
     }
 
