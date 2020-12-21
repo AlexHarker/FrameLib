@@ -87,14 +87,12 @@
 						"title" : "Contexts",
 						"boxes" : [ 							{
 								"box" : 								{
-									"fontsize" : 48.897355238475079,
-									"id" : "obj-3",
-									"linecount" : 2,
-									"maxclass" : "comment",
+									"id" : "obj-1",
+									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.5, 195.0, 525.0, 116.0 ],
-									"text" : "name, realtime-ness, patcher thats it in"
+									"patching_rect" : [ 15.0, 600.0, 164.0, 22.0 ],
+									"text" : "fl.contextcontrol~ @id cycling"
 								}
 
 							}
@@ -117,12 +115,12 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 13.0,
 									"id" : "obj-78",
-									"linecount" : 7,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 495.0, 690.0, 116.0 ],
-									"text" : "Here, the left most network belongs to the default context whereas the right most network belongs to its own context with the @id \"cycling\". Notice how the @id attribute is only defined in one place rather than for object you want to belong to a specific context. Context's aren't defined at the object level, but at the top-most scheduler of a network. This means that you only have to define a unique context at one place in a network, rather than for every connected object.\n\nAs context's are attributes and not FrameLib parameters, they can be set with messages or with attrui and in real-time!"
+									"patching_rect" : [ 15.0, 495.0, 690.0, 84.0 ],
+									"text" : "Here, the left most network belongs to the default context whereas the right most network belongs to its own context with the @id \"cycling\". Notice how the @id attribute is only defined in one place rather than for object you want to belong to a specific context. Context's are defined with the top level scheduler of a network and that context is propogated throughout the connected objects in a network. There are some special behaviours that can be controlled with fl.contextcontrol~ once an @id has been given to a network. These will be looked at in tutorial 11 and 12."
 								}
 
 							}
@@ -718,6 +716,10 @@
 			}
 , 			{
 				"name" : "fl.tomax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.contextcontrol~.mxo",
 				"type" : "iLaX"
 			}
  ],
