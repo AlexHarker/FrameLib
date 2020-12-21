@@ -94,7 +94,7 @@ template<>
 void FrameLib_MaxClass_Expand<FrameLib_ToHost>::assist(void *b, long m, long a, char *s)
 {
     if (m == ASSIST_OUTLET)
-        sprintf(s,"(message) Message Outlet %ld", a + 1);
+        sprintf(s,"(message) Message Outlet [%ld]", a + 1);
     else
         sprintf(s,"(frame) %s", mObject->inputInfo(a).c_str());
 }
