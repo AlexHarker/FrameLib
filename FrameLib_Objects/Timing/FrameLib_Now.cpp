@@ -21,7 +21,7 @@ std::string FrameLib_Now::objectInfo(bool verbose)
 {
     return formatInfo("Outputs the current time: "
                       "Time is reported in the specified units. "
-                      "Output is a single value. "
+                      "Output is a single value.",
                       "Outputs the current time.", verbose);
 }
 

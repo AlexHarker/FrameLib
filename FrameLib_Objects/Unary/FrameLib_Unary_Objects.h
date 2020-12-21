@@ -40,8 +40,8 @@ template<> inline const char *FrameLib_Unary<exp>::getOpString()   { return "exp
 template<> inline const char *FrameLib_Unary<exp2>::getOpString()  { return "exponent base 2 (2^x)"; }
 
 template<> inline const char *FrameLib_Unary<fabs>::getOpString()  { return "absolute value"; }
-template<> inline const char *FrameLib_Unary<ceil>::getOpString()  { return "ceiling value"; }
-template<> inline const char *FrameLib_Unary<floor>::getOpString() { return "floor value"; }
+template<> inline const char *FrameLib_Unary<ceil>::getOpString()  { return "ceiling function"; }
+template<> inline const char *FrameLib_Unary<floor>::getOpString() { return "floor function"; }
 template<> inline const char *FrameLib_Unary<round>::getOpString() { return "rounded value"; }
 template<> inline const char *FrameLib_Unary<trunc>::getOpString() { return "truncated value"; }
 

@@ -41,7 +41,7 @@ FrameLib_TimeDelta::ParameterInfo FrameLib_TimeDelta::sParamInfo;
 
 FrameLib_TimeDelta::ParameterInfo::ParameterInfo()
 {
-    add("Sets the time units used to for output.");
+    add("Sets the time units used for output.");
 }
 
 // Calculate Multiplier

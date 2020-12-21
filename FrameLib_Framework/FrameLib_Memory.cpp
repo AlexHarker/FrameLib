@@ -538,7 +538,7 @@ void FrameLib_ContextAllocator::prune()
     FrameLib_GlobalAllocator::Pruner pruner(mAllocator);
 }
 
-// Register and Release Storage
+// Register Storage
 
 FrameLib_ContextAllocator::StoragePtr FrameLib_ContextAllocator::registerStorage(const char *name)
 {

@@ -43,9 +43,9 @@ public:
     std::string outputInfo(unsigned long idx, bool verbose) override
     {
         if (idx == 0)
-            return formatInfo("Real Result", "Real Result", verbose);
+            return formatInfo("Real Output", "Real Output", verbose);
         else
-            return formatInfo("Imaginary Result", "Imag Result", verbose);
+            return formatInfo("Imaginary Output", "Imag Output", verbose);
     }
 
 private:

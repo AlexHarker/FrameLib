@@ -26,7 +26,8 @@ std::string FrameLib_Store::objectInfo(bool verbose)
 {
     return formatInfo("Stores frames remotely for later recall: "
                       "The storage location is determined by the name parameter. "
-                      "The output / ordering input can be used to explicitly control ordering between related objects.",
+                      "The output / ordering input can be used to explicitly control ordering between related objects. "
+                      "In a multistream scenario each stream has separate storage for a given name.",
                       "Stores frames remotely for later recall.", verbose);
 }
 
@@ -53,7 +54,8 @@ FrameLib_Store::ParameterInfo FrameLib_Store::sParamInfo;
 
 FrameLib_Store::ParameterInfo::ParameterInfo()
 {
-    add("Sets the name of the storage to use.");
+    add("Sets the name of the storage to use."
+        "Note that names are local to the current context.");
 }
 
 // Object Rest
