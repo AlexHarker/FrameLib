@@ -42,26 +42,33 @@ namespace FrameLib_Spatial_Ops
 template<>
 inline std::string FrameLib_Spatial_Convertor<FrameLib_Spatial_Ops::PolToCar>::objectInfo(bool verbose)
 {
-    return formatInfo("Converts from polar values at the input to cartesian values at output: The outputs are frames of the same length as the longer of the two inputs. If one input is shorter than the other then it is padded with zeros to the length of the other before conversion.",
-                      "Converts from polar values at the input to cartesian values at output.", verbose);
+    return formatInfo("Converts from polar values at the inputs to cartesian values at the outputs: "
+                      "Conversion may be in 2D or 3D (using spherical coordinates). "
+                      "The outputs are frames of the same length as the longest input. "
+                      "Shorter inputs are padded with zeros prior to conversion.",
+                      "Converts from polar values at the inputs to cartesian values at the outputs.", verbose);
 }
 
 template<>
 inline std::string FrameLib_Spatial_Convertor<FrameLib_Spatial_Ops::PolToCar>::inputInfo(unsigned long idx, bool verbose)
 {
-    if (idx == 0)
-        return formatInfo("Amplitudes (or abs values)", "Amplitudes", verbose);
-    else
-        return formatInfo("Phases (or arg values)", "Phases", verbose);
+    switch (idx)
+    {
+        case 0:     return "Magnitudes (r)";
+        case 1:     return m2D ? "Phase Angles (theta)" : "Azimuth Angles (theta)";
+        default:    return "Elevation Angles (phi)";
+    }
 }
 
 template<>
 inline std::string FrameLib_Spatial_Convertor<FrameLib_Spatial_Ops::PolToCar>::outputInfo(unsigned long idx, bool verbose)
 {
-    if (idx == 0)
-        return formatInfo("Real or X Output", "Real or X Output", verbose);
-    else
-        return formatInfo("Imaginary or Y Output", "Imag or Y Output", verbose);
+    switch (idx)
+    {
+        case 0:     return m2D ? "X (Real) Values" : "X Values";
+        case 1:     return m2D ? formatInfo("Y (Imaginary) Values", "Y (Imag) Values", verbose) : "Y Values";
+        default:    return "Z Values";
+    }
 }
 
 using FrameLib_Poltocar = FrameLib_Spatial_Convertor<FrameLib_Spatial_Ops::PolToCar>;

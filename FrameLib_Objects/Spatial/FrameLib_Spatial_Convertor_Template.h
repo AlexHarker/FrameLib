@@ -24,7 +24,7 @@ class FrameLib_Spatial_Convertor final : public FrameLib_Processor
     {
         ParameterInfo()
         {
-            add("Sets the number of dimensions");
+            add("Sets the number of dimensions (and hence inputs and outputs).");
             add("Sets the units used for angles.");
         }
     };
