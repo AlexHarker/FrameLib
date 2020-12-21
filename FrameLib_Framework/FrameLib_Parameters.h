@@ -723,6 +723,11 @@ public:
     std::string getTypeString(unsigned long idx) const;
     std::string getTypeString(const char *name) const                       { return getTypeString(getIdx(name)); }
     
+    // Get Instantiation
+    
+    bool getInstantiation(unsigned long idx) const                          { return mParameters[idx]->flags() & Parameter::kFlagInstantiation;  }
+    bool getInstantiation(const char *name) const                           { return getInstantiation(getIdx(name)); }
+    
     // Get Range
     
     ClipMode getClipMode(unsigned long idx) const                           { return mParameters[idx]->getClipMode(); }

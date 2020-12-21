@@ -30,8 +30,11 @@ FrameLib_Chain::FrameLib_Chain(FrameLib_Context context, const FrameLib_Paramete
 
 std::string FrameLib_Chain::objectInfo(bool verbose)
 {
-    return formatInfo("Schedules frames in specified times according to the input frame: The output is an empty frame.",
-                   "Schedules frames in specified times according to the input frame.", verbose);
+    return formatInfo("Schedules frames in the future at times specified times in the input frame: "
+                      "The output is an empty trigger frame. "
+                      "Inputs interact with previously scheduled frames according to time and mode parameters."
+                      "The remaining count output can be used to track the number of currently scheduled frames.",
+                      "Schedules frames in the future at times specified times in the input frame.", verbose);
 }
 
 std::string FrameLib_Chain::inputInfo(unsigned long idx, bool verbose)
@@ -39,12 +42,15 @@ std::string FrameLib_Chain::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return "Values in the input are interpreted as absolute or relative timings for future frames";
+        return formatInfo("Input - values are interpreted as timings for future frames", "Input", verbose);
 }
 
 std::string FrameLib_Chain::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Empty Trigger Frames";
+    if (idx)
+        return formatInfo("Remaining Count - the number of scheduled frames remaining", "Remaining Count", verbose);
+    else
+        return formatInfo("Trigger Output - outputs empty frames", "Trigger Output", verbose);
 }
 
 // Parameter Info
@@ -53,8 +59,19 @@ FrameLib_Chain::ParameterInfo FrameLib_Chain::sParamInfo;
 
 FrameLib_Chain::ParameterInfo::ParameterInfo()
 {
-    add("Sets the time units used.");
-    add("Sets the mode for timings (absolute or relative)");
+    add("Sets the time units used at the input.");
+    add("Sets the way in which input values are interpreted. "
+        "absolute - times are interpreted as absolute values since the start of time. "
+        "relative - times are interpreted as relative to the current reference time. "
+        "interval - times are interpreted as intervals (deltas) relative to the current reference time. "
+        "Note that the reference time depends on the mode parameter.");
+    add("Sets the mode of operation. "
+        "replace - cancel previously scheduled frames before scheduling those in the input frame. "
+        "add - add new frames to those already scheduled (even if before those already scheduled). "
+        "append - schedule new frames only after those currently scheduled have completed. "
+        "Note that in replace and add modes the reference time is the time of the incoming frame. "
+        "In append mode the reference time is that of the last currently scheduled frame. "
+        "In append mode absolute times prior to the end of those already scheduled are ignored.");
 }
 
 // Object Reset

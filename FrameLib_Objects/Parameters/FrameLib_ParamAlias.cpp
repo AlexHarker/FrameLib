@@ -133,9 +133,9 @@ void FrameLib_ParamAlias::initialise()
                     }
                 }
                 
-                // FIX!!
+                if (params->getInstantiation(paramIdx))
+                    mParameters.setInstantiation();
                 
-                //mParameters.setInstantiation(params->instantionOnly)
                 continue;
             }
             

@@ -27,8 +27,9 @@ FrameLib_Convert::FrameLib_Convert(FrameLib_Context context, const FrameLib_Para
 
 std::string FrameLib_Convert::objectInfo(bool verbose)
 {
-    return formatInfo("Converts the input vector with the specified conversion: The output size matches the input size.",
-                   "Converts the input vector with the specified conversion.", verbose);
+    return formatInfo("Converts the input vector according to a specified conversion: "
+                      "The output length matches the input length.",
+                      "Converts the input vector with the specified conversion.", verbose);
 }
 
 std::string FrameLib_Convert::inputInfo(unsigned long idx, bool verbose)
@@ -36,12 +37,12 @@ std::string FrameLib_Convert::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return "Input Frame";
+        return "Input";
 }
 
 std::string FrameLib_Convert::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Converted Output";
+    return "Output";
 }
 
 // Parameter Info
@@ -51,12 +52,12 @@ FrameLib_Convert::ParameterInfo FrameLib_Convert::sParamInfo;
 FrameLib_Convert::ParameterInfo::ParameterInfo()
 {
     add("Sets the mode of conversion: "
-        "db->amp - converts from decibels into linear amplitudes. "
-        "amp->db - converts from linear amplitudes int decibels. "
-        "midi->freq - converts from midi notes into frequencies. "
-        "freq->mid - converts from frequencies into midi notes. "
-        "semitones->ratios - converts semitone transpositons into ratios. "
-        "ratios->semitones - converts from transpositon ratios in semitones. "
+        "db->amp - converts from decibels to linear amplitudes. "
+        "amp->db - converts from linear amplitudes to decibels. "
+        "midi->freq - converts from midi notes to frequencies. "
+        "freq->mid - converts from frequencies to midi notes. "
+        "semitones->ratios - converts semitone transpositions to ratios. "
+        "ratios->semitones - converts from ratios to semitone transpositions. "
         "degrees->radians - converts from degress to radians. "
         "radians->degrees - converts from radians to degrees.");
 }

@@ -167,10 +167,12 @@ void FrameLib_FromHost::setStream(void *streamOwner, unsigned long stream)
 
 std::string FrameLib_FromHost::objectInfo(bool verbose)
 {
-    return formatInfo("Turn messages from the host into frames: "
+    return formatInfo("Turn messages or control signals from the host into frames: "
                       "In values mode the output is the last received value(s) as a vector. "
-                      "In params mode messages are collected and output as a single tagged frame for setting parameters.",
-                      "Turn messages from the host into frames.", verbose);
+                      "In params mode messages are collected and output as a single tagged frame. "
+                      "Typically params mode is used to help set object parameters. "
+                      "Output is triggered by frames arriving at the trigger input.",
+                      "Turn messages or control signals from the host into frames.", verbose);
 }
 
 std::string FrameLib_FromHost::inputInfo(unsigned long idx, bool verbose)
@@ -189,9 +191,9 @@ FrameLib_FromHost::ParameterInfo FrameLib_FromHost::sParamInfo;
 
 FrameLib_FromHost::ParameterInfo::ParameterInfo()
 {
-    add("Sets the object mode. "
+    add("Sets the mode: "
         "values - translate values from the host into vectors. "
-        "params - translate host messages into concatenated tagged frames for setting parameters.");
+        "params - translate host messages into concatenated tagged frames.");
 }
 
 // Process

@@ -54,7 +54,7 @@ FrameLib_Store::ParameterInfo FrameLib_Store::sParamInfo;
 
 FrameLib_Store::ParameterInfo::ParameterInfo()
 {
-    add("Sets the name of the storage to use."
+    add("Sets the name of the storage to use. "
         "Note that names are local to the current context.");
 }
 
