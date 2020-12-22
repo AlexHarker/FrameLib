@@ -69,8 +69,8 @@ FrameLib_Lookup::ParameterInfo::ParameterInfo()
 {
     add("Sets the scaling of the input for lookup: "
         "samples - the input is read as sample indices for reading from the table. "
-        "normalised - the input range 0 to 1 is mapped across the table. "
-        "bipolar - the input range -1 to 1 is mapped across the table. "
+        "normalised - the input range [0 to 1] is mapped across the table. "
+        "bipolar - the input range [-1 to 1] is mapped across the table. "
         "Note that the edge parameter is also accounted for normalised and bipolar modes. "
         "This adjusts the scaling to work sensibly with cyclical modes.");
     add("Sets the edge behaviour for both interpolation and lookup: "
