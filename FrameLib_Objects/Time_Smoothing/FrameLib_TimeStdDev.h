@@ -15,10 +15,8 @@ public:
 
     // Info
     
-    std::string objectInfo(bool verbose) override;
-    std::string inputInfo(unsigned long idx, bool verbose) override;
-    std::string outputInfo(unsigned long idx, bool verbose) override;
-    
+    const char *getOpString() override { return "standard deviation"; }
+
     // Smooth
 
     void resetSize(unsigned long maxFrames, unsigned long size) override;

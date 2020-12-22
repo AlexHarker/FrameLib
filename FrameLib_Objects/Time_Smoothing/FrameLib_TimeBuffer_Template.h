@@ -31,13 +31,18 @@ protected:
     {
         ParameterInfo()
         {
-            add("Sets the maximum number of frames that can be set as a time period - changing resets the buffer.");
-            add("Sets the current integer number of frames for calculation.");
+            add("Sets the maximum number of frames for calculation. "
+                "Note that the internal buffer is reset when this changes.");
+            add("Sets the current number of frames for calculation as an integer.");
             
             addCustomInfo<nParams != 0>();
             
-            add("Sets the default value.");
-            add("Sets the mode.");
+            add("Sets the padding value.");
+            add("Sets the behaviour when there are insufficient frames stored (as after a reset): "
+                "pad - pad the calculation with default values to account for the missing frames. "
+                "shorten - calculate on all frames received since the reset. "
+                "Note that frames at the reset input set the frame use for padding. "
+                "If the frame is too short or empty it is padded with the pad parameter.");
         }
         
         template <bool B, typename std::enable_if<B, int>::type = 0>
@@ -81,6 +86,52 @@ public:
             completeDefaultParameters(serialisedParameters);
         
         setParameterInput(2);
+    }
+    
+    // Info
+    
+    virtual const char *getOpString() { return ""; }
+    virtual const char *getExtraString() { return ""; }
+
+    std::string objectInfo(bool verbose) override
+    {
+        if (verbose)
+        {
+            std::string str = formatInfo("Calculates the # per sample over the most recent frames: ", getOpString());
+            
+            str += getExtraString();
+            
+            str += "Frames are expected to be of a uniform length. "
+                   "The output is the same length as the input. "
+                   "If the input length changes then the internal storage is reset. "
+                   "The object can also be reset by sending a frame to the reset input. "
+                   "The start parameter controls behaviour when insufficient frames are stored. "
+                   "The buffer full output indicates whether the internal buffer is full.";
+            
+            return str;
+        }
+        else
+        {
+            return formatInfo("Calculates the # per sample over the most recent frames.", getOpString());
+        }
+    }
+    
+    std::string inputInfo(unsigned long idx, bool verbose) override
+    {
+        switch (idx)
+        {
+            case 0:     return "Input";
+            case 1:     return formatInfo("Reset Input - resets and sets padding frame without output", "Reset Input", verbose);
+            default:    return parameterInputInfo(verbose);
+        }
+    }
+    
+    std::string outputInfo(unsigned long idx, bool verbose) override
+    {
+        if (idx)
+            return formatInfo("Buffer Full - indicates when the internal buffer is full", "Buffer Full", verbose);
+        else
+            return "Output";
     }
     
 protected:
