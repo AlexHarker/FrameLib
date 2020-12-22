@@ -14,10 +14,10 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
     mParameters.addInt(kNumIns, "num_ins", 1);
     mParameters.setClip(1, maxNumIns);
     mParameters.setInstantiation();
+    
     mParameters.addEnum(kEmptyMode, "empty");
     mParameters.addEnumItem(kIgnore, "ignore");
     mParameters.addEnumItem(kReset, "reset");
-    mParameters.setInstantiation();
 
     // Read in once to get number of strings needed
     
@@ -46,7 +46,6 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
     {
         snprintf(tagStr, strBufSize, "tag_%02lu", i + 1);
         mParameters.addString(kTags + i, tagStr, i);
-        mParameters.setInstantiation();
     }
     
     // Read in again to get parameter tags
@@ -59,6 +58,8 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
     
     setInputMode(mNumIns, false, true, false, kFrameTagged);
     setOutputType(0, kFrameTagged);
+    
+    addParameterInput();
 }
 
 // Info

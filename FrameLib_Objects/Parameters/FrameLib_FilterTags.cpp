@@ -42,7 +42,6 @@ FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, const FrameLi
     {
         snprintf(tagStr, strBufSize, "tag_%02lu", i + 1);
         mParameters.addString(kFilters + i, tagStr, i);
-        mParameters.setInstantiation();
     }
     
     // Read in again to get parameter names
