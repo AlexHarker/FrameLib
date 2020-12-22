@@ -49,7 +49,7 @@ std::string FrameLib_Ticks::inputInfo(unsigned long idx, bool verbose)
         case 0:
             return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
         case 1:
-            return formatInfo("Reset Input - resets count without triggering output", "Reset Input", verbose);
+            return formatInfo("Reset Input - resets count without output", "Reset Input", verbose);
         default:
             return parameterInputInfo(verbose);
     }
