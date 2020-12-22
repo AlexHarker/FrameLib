@@ -31,12 +31,11 @@ FrameLib_Shift::FrameLib_Shift(FrameLib_Context context, const FrameLib_Paramete
 
 std::string FrameLib_Shift::objectInfo(bool verbose)
 {
-    return formatInfo("Shifts samples within a frame either with padding, or with wrapping: "
-                      "The output is the same length as the input. Output can be shifted left or right in comparison to the input. "
-                      "The mode parameter is used to set either padding or wrapping behaviour. "
-                      "When in pad mode, values are moved out on one side and padded on the other. "
-                      "When in wrap mode the shift is cyclical.",
-                      "Shifts samples within a frame either with padding, or or with wrapping.", verbose);
+    return formatInfo("Shifts samples within a frame: "
+                      "The output is the same length as the input. "
+                      "Output can be shifted left or right in comparison to the input. "
+                      "The edge behaviour can be set as appropriate for the application."
+                      "Shifts samples within a frame.", verbose);
 }
 
 std::string FrameLib_Shift::inputInfo(unsigned long idx, bool verbose)
@@ -60,8 +59,13 @@ FrameLib_Shift::ParameterInfo::ParameterInfo()
 {
     add("Sets the shift amount (-ve for left shift / +ve for right shift).");
     add("Sets the padding value.");
-    add("Sets the shift mode. pad - values are replaced with the padding value. wrap - values are wrapped cyclically.");
-    add("Sets units for the shift (samples or ratio of the input length [-1 to 1]).");
+    add("Sets the edge behaviour: "
+        "pad - values beyond the edges of the input are read as the padding value. "
+        "extend - the edge values are extended infinitely in either direction. "
+        "wrap - values are read as wrapped or cyclical. "
+        "fold - values are folded at edges without repetition of the edge values. "
+        "mirror - values are mirrored at edges with the edge values repeated.");
+    add("Sets the units for the shift (samples or ratio of the input length [-1 to 1]).");
 }
 
 long limit(long x, long a, long b) { return std::max(std::min(x, b), a); }

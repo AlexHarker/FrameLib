@@ -26,7 +26,7 @@ std::string FrameLib_Prioritise::objectInfo(bool verbose)
 {
     return formatInfo("Apply a fixed priority ranking to synchronous input frames: "
                       "Frames arriving asynchronously are sent to the output. "
-                      "When frames arrive synchronously only one is sent to the ouput."
+                      "When frames arrive synchronously only one is sent to the output. "
                       "The input number is used to proritise synchonous inputs. "
                       "Either higher or lower numbered inputs can be prioritised.",
                       "Apply a fixed priority ranking to synchronous input frames.", verbose);

@@ -11,7 +11,8 @@ FrameLib_NonZero::FrameLib_NonZero(FrameLib_Context context, const FrameLib_Para
 std::string FrameLib_NonZero::objectInfo(bool verbose)
 {
     return formatInfo("Outputs the indices of input samples that are non-zero. "
-                      "The length of the output frame depends on the number of non-zero items in the input.",
+                      "The length of the output frame depends on the number of non-zero items in the input. "
+                      "The output is an ordered list of indices for all non-zero input values (counting from zero)",
                       "Outputs the indices of input samples that are non-zero.", verbose);
 }
 
@@ -22,7 +23,7 @@ std::string FrameLib_NonZero::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_NonZero::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Indices";
+    return "Output";
 }
 
 // Process

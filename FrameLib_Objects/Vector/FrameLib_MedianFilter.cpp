@@ -33,11 +33,12 @@ FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, const Fra
 
 std::string FrameLib_MedianFilter::objectInfo(bool verbose)
 {
-    return formatInfo("Apply a median filter to the input: "
-                      "The output is the same size as the input. "
-                      "Each output value is the median of the area surrounding the input value. "
-                      "The width of the area, and the edge behaviours are controllable.",
-                      "Apply a median filter to the input.", verbose);
+    return formatInfo("Applies a median or other specified percentiled filter to the input: "
+                      "The default percentile is 50% which returns the median. "
+                      "The output is the same length as the input. "
+                      "Each output value is the specified percentile of the surrouding area in the input. "
+                      "The width of the filtering and the edge behaviour are both controllable.",
+                      "Applies a median or other specified percentiled filter to the input.", verbose);
 }
 
 std::string FrameLib_MedianFilter::inputInfo(unsigned long idx, bool verbose)
@@ -59,17 +60,20 @@ FrameLib_MedianFilter::ParameterInfo FrameLib_MedianFilter::sParamInfo;
 
 FrameLib_MedianFilter::ParameterInfo::ParameterInfo()
 {
-    add("Sets the width of the median filtering in samples.");
+    add("Sets the width of the filtering in samples.");
     add("Sets the padding value.");
-    add("Sets the mode that controls the edge behaviour: "
-        "pad - edges are treated as though infinitely padded with the padding value. "
-        "wrap - edges are treated as though the frame is wrapped cyclically. "
-        "fold - edges are treated as though they fold over (suitable for spectral purposes).");
+    add("Sets the edge behaviour for filtering: "
+        "pad - values beyond the edges of the input are read as the padding value. "
+        "extend - the edge values are extended infinitely in either direction. "
+        "wrap - values are read as wrapped or cyclical. "
+        "fold - values are folded at edges without repetition of the edge values. "
+        "mirror - values are mirrored at edges with the edge values repeated.");
+    add("Sets the percentile to return.");
 }
 
 // Helpers
 
-double insertMedian(double *data, unsigned long *indices, double value, long index, long width, unsigned long pos)
+double insert(double *data, unsigned long *indices, double value, long index, long width, unsigned long pos)
 {
     long current = -1, insert = 0, gap = 0;
     
@@ -112,7 +116,7 @@ void filter(T in, double *out, double *data, unsigned long* indices, long width,
     long o1 = width >> 1;
     long o2 = width - o1;
     
-    // Calculate the first median
+    // Calculate the first percentile
     
     for (long i = 0; i < width; i++)
         data[i] = in(i - o1);
@@ -123,7 +127,7 @@ void filter(T in, double *out, double *data, unsigned long* indices, long width,
     // Do other values using insertion
 
     for (long i = 1; i < size; i++)
-        out[i] = insertMedian(data, indices, in(i + o2), (i - 1) % width, width, pos);
+        out[i] = insert(data, indices, in(i + o2), (i - 1) % width, width, pos);
 }
 
 // Process
