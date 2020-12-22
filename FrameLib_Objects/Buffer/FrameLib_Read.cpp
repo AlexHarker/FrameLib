@@ -86,7 +86,7 @@ FrameLib_Read::ParameterInfo::ParameterInfo()
         "bspline - cubic bspline interpolation. "
         "lagrange - cubic lagrange interpolation.");
     add("Sets the edge behaviour for both interpolation and reading: "
-        "zero - values beyond the edges of the buffer are treated as zeros. "
+        "zero - values beyond the edges of the buffer are read as zeros. "
         "extend - the edge values are extended infinitely in either direction. "
         "wrap - values are read as wrapped or cyclical. "
         "fold - values are folded at edges without repetition of the edge values. "
