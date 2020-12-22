@@ -54,6 +54,8 @@ FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, const FrameLi
     setInputMode(0, false, true, false, kFrameTagged);
     setOutputType(0, kFrameTagged);
     setOutputType(1, kFrameTagged);
+    
+    addParameterInput();
 }
 
 // Info
