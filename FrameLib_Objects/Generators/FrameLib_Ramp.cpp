@@ -71,7 +71,7 @@ FrameLib_Ramp::ParameterInfo::ParameterInfo()
         "input - the output length follows the length of the trigger input.");
     add("Sets the requested output length in the units specified by the units parameter.");
     add("Sets the units used for the length parameter.");
-    add("Sets the scaling of the output ramp. "
+    add("Sets the scaling of the output ramp: "
         "count - scaled in samples (an interger count from zero). "
         "ms - scaled in milliseconds starting at zero. "
         "seconds - scaled in seconds starting at zero. "

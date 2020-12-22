@@ -60,12 +60,12 @@ FrameLib_Chain::ParameterInfo FrameLib_Chain::sParamInfo;
 FrameLib_Chain::ParameterInfo::ParameterInfo()
 {
     add("Sets the time units used at the input.");
-    add("Sets the way in which input values are interpreted. "
+    add("Sets the way in which input values are interpreted: "
         "absolute - times are interpreted as absolute values since the start of time. "
         "relative - times are interpreted as relative to the current reference time. "
         "interval - times are interpreted as intervals (deltas) relative to the current reference time. "
         "Note that the reference time depends on the mode parameter.");
-    add("Sets the mode of operation. "
+    add("Sets the mode of operation: "
         "replace - cancel previously scheduled frames before scheduling those in the input frame. "
         "add - add new frames to those already scheduled (even if before those already scheduled). "
         "append - schedule new frames only after those currently scheduled have completed. "
