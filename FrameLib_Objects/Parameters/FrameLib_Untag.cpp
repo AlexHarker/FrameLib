@@ -54,6 +54,8 @@ FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, const FrameLib_Paramete
     setIO(1, mNumOuts);
     
     setInputMode(0, false, true, false, kFrameTagged);
+    
+    addParameterInput();
 }
 
 // Info
