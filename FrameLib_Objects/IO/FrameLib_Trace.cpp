@@ -44,11 +44,13 @@ FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, const FrameLib_Paramete
 
 std::string FrameLib_Trace::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs audio frames (or values from the frame) to the host environment without overlapping, continuing the last value till a new frame arrives: "
-                      "The mode parameter determines the value(s) that are output. "
-                      "This is intended for tracking control type values. The length of the internal buffer determines the maximum frame length. "
-                      "Output suffers no latency.",
-                      "Outputs audio frames  (or values from the frame) to the host environment without overlapping, continuing the final value till a new frame arrives.", verbose);
+    return formatInfo("Outputs values from the input as audio, continuing the last value till a new frame arrives: "
+                      "The mode parameter determines which value or values from the frame are output. "
+                      "This object is intended for passing control signals to the host environment at audio rate. "
+                      "The length of the internal buffer determines the maximum frame length for full output. "
+                      "Output suffers no latency but an optional delay may be added if desired. "
+                      "If a delay is applied then the maximum frame length will be reduced by the delay time.",
+                      "Outputs values from the input as audio, continuing the last value till a new frame arrives.", verbose);
 }
 
 std::string FrameLib_Trace::inputInfo(unsigned long idx, bool verbose)
@@ -56,7 +58,7 @@ std::string FrameLib_Trace::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Frames to Output - overlapped to the output", "Frames to Output", verbose);
+        return formatInfo("Input - 'traced' at the audio output", "Input", verbose);
 }
 
 std::string FrameLib_Trace::audioInfo(unsigned long idx, bool verbose)
@@ -74,12 +76,13 @@ FrameLib_Trace::ParameterInfo::ParameterInfo()
         "full - outputs the entire frame in full. "
         "first - output the first sample of the frame only. "
         "last - output the last sample of the frame only. "
-        "specified - output the sample specified directly by the position parameter (clipped into the frame size). "
-        "ratio - output the sample specified by the position parameter as a ratio to the frame length (clipped into the frame size).");
+        "specified - output the sample specified by index using the position parameter. "
+        "ratio - output the sample specified by the position parameter as a ratio pf the frame length.");
     add("Sets the internal buffer size in the units specified by the units parameter.");
     add("Sets the time units used to determine the buffer size and delay.");
-    add("Sets the position of the output sample in specified mode (in samples) or ratio mode (as a ratio of the position in the frame).");
-    add("Sets the delay before output in the units specified by the units parameter.");
+    add("Sets the position of the output sample in specified or ratio mode. "
+        "Note that positions out of range will be clipped tp the input frame (to the first or last position).");
+    add("Sets the output delay in the units specified by the units parameter.");
 }
 
 // Helpers

@@ -45,9 +45,11 @@ FrameLib_Source::FrameLib_Source(FrameLib_Context context, const FrameLib_Parame
 std::string FrameLib_Source::objectInfo(bool verbose)
 {
     return formatInfo("Captures audio from the host environment and outputs the most recent values as frames: "
-                      "The size of captured frames is variable. "
-                      "Latency is equivalent to the length of the captured frame. "
-                      "The length of the internal buffer determines the maximum frame length.",
+                      "The size of captured frames is settable with the length parameter. "
+                      "The length of the internal buffer determines the maximum frame length."
+                      "There is a minimum latency equivalent to the length of the captured frame. "
+                      "A longer delay can be optionally selected (subject to the frame and buffer length). "
+                      "Capture can optionally be interpolated (at greater CPU usage) for sub-sample accuracy.",
                       "Captures audio from the host environment and outputs the most recent values as frames.", verbose);
 }
 
@@ -61,7 +63,7 @@ std::string FrameLib_Source::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Source::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Captured Output";
+    return "Output";
 }
 
 std::string FrameLib_Source::audioInfo(unsigned long idx, bool verbose)
@@ -79,9 +81,9 @@ FrameLib_Source::ParameterInfo::ParameterInfo()
     add("Sets the length of output frames in the units specified by the units parameter.");
     add("Sets the time units used to determine the buffer size and output length.");
     add("Sets the input delay in the units specified by the units parameter: "
-        "N.B. - there is a minimum delay or latency of the output length.");
+        "Note that a minimum delay (or latency) is applied of the output length.");
     add("Sets the interpolation mode: "
-        "none - no interpolation"
+        "none - no interpolation. "
         "linear - linear interpolation. "
         "hermite - cubic hermite interpolation. "
         "bspline - cubic bspline interpolation. "

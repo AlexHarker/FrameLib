@@ -40,10 +40,11 @@ FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, const FrameLib_Parameters
 
 std::string FrameLib_Sink::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs audio frames to the host environment by pasting them into an overlap-add buffer: "
+    return formatInfo("Outputs frames to the host environment as audio by overlap-adding into an output buffer: "
                       "The length of the internal buffer determines the maximum frame length. "
-                      "Output suffers no latency.",
-                      "Outputs audio frames to the host environment by pasting them into an overlap add buffer.", verbose);
+                      "Output suffers no latency but an optional delay may be added if desired. "
+                      "If a delay is applied then the maximum frame length will be reduced by the delay time.",
+                      "Outputs frames to the host environment as audio by overlap-adding into an output buffer.", verbose);
 }
 
 std::string FrameLib_Sink::inputInfo(unsigned long idx, bool verbose)
@@ -51,7 +52,7 @@ std::string FrameLib_Sink::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Frames to Output - overlapped to the output", "Frames to Output", verbose);
+        return formatInfo("Input - overlapped to the output", "Input", verbose);
 }
 
 std::string FrameLib_Sink::FrameLib_Sink::audioInfo(unsigned long idx, bool verbose)
@@ -67,13 +68,13 @@ FrameLib_Sink::ParameterInfo::ParameterInfo()
 {
     add("Sets the internal buffer size in the units specified by the units parameter.");
     add("Sets the time units used to determine the buffer size and delay.");
-    add("Sets the delay before output in the units specified by the units parameter.");
+    add("Sets the outpu delay in the units specified by the units parameter.");
     add("Sets the interpolation mode: "
-        "none - no interpolation"
+        "none - no interpolation. "
         "linear - linear interpolation. "
-        "hermite - cubic hermite interpolation. "
-        "bspline - cubic bspline interpolation. "
-        "lagrange - cubic lagrange interpolation.");
+        "hermite - cubic hermite interpolation (incurs a minimum delay or latency of one sample). "
+        "bspline - cubic bspline interpolation (incurs a minimum delay or latency of one sample). "
+        "lagrange - cubic lagrange interpolation (incurs a minimum delay or latency of one sample).");
 }
 
 // Helpers
