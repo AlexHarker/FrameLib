@@ -21,7 +21,7 @@ FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, const FrameLib_Paramete
     mParameters.set(serialisedParameters);
     mParameters.setErrorReportingEnabled(true);
 
-    // If no number of inputs is specified explicityly then examine the serialised parameters to determine the number needed
+    // If no number of outputs is specified explicity then examine the serialised parameters to determine the number needed
     
     if (!mParameters.changed(kNumOuts))
     {
@@ -61,15 +61,20 @@ FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, const FrameLib_Paramete
 
 std::string FrameLib_Untag::objectInfo(bool verbose)
 {
-    return formatInfo("Separates vectors from a tagged frame according to a given set of tags: "
-                      "A variable number of outputs is available, each of which deal will a specific tag. "
-                      "The number of outputs is specified either explicitly with a parameter or implicitly by which arguments or tag parameters are present.",
-                      "Separates vectors from a tagged frame according to a given set of names.", verbose);
+    return formatInfo("Retrieves vectors from a tagged frame according to a specified set of tags: "
+                      "Each output deals with one tag and outputs vectors at the input with that tag. "
+                      "Outputs will be empty if the tag is not present at the input with a vector value. "
+                      "The number of outputs can be set explicitly by parameter. "
+                      "Alternatively, it can be set implicitly by the tag parameters present at instantiation.",
+                      "Retrieves vectors from a tagged frame according to a specified set of tags.", verbose);
 }
 
 std::string FrameLib_Untag::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Parameter Input - takes tagged input", "Parameter Input", verbose);
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Tagged Input";
 }
 
 std::string FrameLib_Untag::outputInfo(unsigned long idx, bool verbose)
@@ -86,7 +91,7 @@ FrameLib_Untag::ParameterInfo::ParameterInfo()
     const int strBufSize = 256;
     char str[strBufSize];
     
-    add("Sets the number of outputs (and hence the number of tags.");
+    add("Sets the number of outputs (and hence the number of tags).");
     
     for (int i = 0; i < maxNumOuts; i++)
     {

@@ -21,7 +21,7 @@ FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, const FrameLi
     mParameters.set(serialisedParameters);
     mParameters.setErrorReportingEnabled(true);
     
-    // If no number of inputs is specified explicityly then examine the serialised parameters to determine the number needed
+    // If no number of inputs is specified explicity then examine the serialised parameters to determine the number needed
     
     if (!mParameters.changed(kNumFilters))
     {
@@ -61,16 +61,20 @@ FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, const FrameLi
 
 std::string FrameLib_FilterTags::objectInfo(bool verbose)
 {
-    return formatInfo("Filters tagged frames into two parts given a number of tags: "
-                      "The number of tags is specified either explicitly with a parameter or implicitly by which arguments or tag parameters are present. "
+    return formatInfo("Filters tagged frames using a set of specified tags: "
                       "The filtered output contains any items from the input that match the given tags. "
-                      "The residual output contains any items from the input that do not match the given tags",
-                      "Filters tagged frames into two parts given a number of tags.", verbose);
+                      "The residual output contains any items from the input that do not match the given tags. "
+                      "The number of tags can be set explicitly by parameter. "
+                      "Alternatively, it can be set implicitly by the tag parameters present at instantiation.",
+                      "Filters tagged frames using a set of specified tags.", verbose);
 }
 
 std::string FrameLib_FilterTags::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Parameter Input # - takes tagged input", "Parameter Input #", idx, verbose);
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Tagged Input";
 }
 
 std::string FrameLib_FilterTags::outputInfo(unsigned long idx, bool verbose)
@@ -87,7 +91,16 @@ FrameLib_FilterTags::ParameterInfo FrameLib_FilterTags::sParamInfo;
 
 FrameLib_FilterTags::ParameterInfo::ParameterInfo()
 {
-    add("Sets the number of parameter names.");
+    const int strBufSize = 64;
+    char str[strBufSize];
+    
+    add("Sets the number of tags.");
+    
+    for (int i = 0; i < maxNumFilters; i++)
+    {
+        snprintf(str, strBufSize, "Sets tag number %d.", i + 1);
+        add(str);
+    }
 }
 
 // Filter

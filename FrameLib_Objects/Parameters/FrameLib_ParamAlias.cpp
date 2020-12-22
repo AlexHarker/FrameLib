@@ -158,7 +158,7 @@ std::string FrameLib_ParamAlias::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_ParamAlias::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Tagged Output Frames";
+    return "Output";
 }
 
 // Process
