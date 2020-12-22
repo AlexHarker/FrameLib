@@ -1710,7 +1710,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1246.0, 709.0 ],
+						"rect" : [ 34.0, 105.0, 1246.0, 709.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1885,10 +1885,9 @@
 									"id" : "obj-5",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 141.25, 386.0, 185.0, 22.0 ],
-									"text" : "pfft~ FL_basicFreeze_pfft 4096 4"
+									"numoutlets" : 0,
+									"patching_rect" : [ 141.25, 386.0, 171.0, 22.0 ],
+									"text" : "pfft~ fl-basic-freeze-pfft 4096 4"
 								}
 
 							}
@@ -1899,8 +1898,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 39.5, 386.0, 95.0, 22.0 ],
-									"text" : "FL_basicFreeze"
+									"patching_rect" : [ 39.5, 386.0, 84.0, 22.0 ],
+									"text" : "fl-basic-freeze"
 								}
 
 							}
@@ -2106,13 +2105,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-4", 2 ],
-									"source" : [ "obj-5", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-7", 0 ],
 									"source" : [ "obj-6", 0 ]
 								}
@@ -2135,7 +2127,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-27", 1 ],
-									"midpoints" : [ 171.5, 260.5, 125.0, 260.5 ],
+									"midpoints" : [ 171.5, 260.5, 114.0, 260.5 ],
 									"order" : 1,
 									"source" : [ "obj-86", 0 ]
 								}
@@ -4500,7 +4492,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 1246.0, 709.0 ],
+						"rect" : [ 0.0, 26.0, 1246.0, 709.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -5057,14 +5049,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "FL_basicFreeze.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "FL_basicFreeze_pfft.maxpat",
+				"name" : "fl-basic-freeze.maxpat",
 				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
