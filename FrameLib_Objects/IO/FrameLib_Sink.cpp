@@ -152,21 +152,18 @@ void FrameLib_Sink::blockProcess(const double * const *ins, double **outs, unsig
 
 void FrameLib_Sink::process()
 {
+    auto interpIsCubic = [](InterpType type) { return type != kInterpNone && type != kInterpLinear; };
+    
     InterpType interpType = kInterpNone;
     
     unsigned long sizeIn, sizeFrame, offset;
-    
-    FrameLib_TimeFormat frameTime = getFrameTime();
-    FrameLib_TimeFormat delayTime(convertTimeToSamples(mParameters.getValue(kDelay)));
-    FrameLib_TimeFormat blockStartTime = getBlockStartTime();
-    FrameLib_TimeFormat timeOffset = delayTime + frameTime - blockStartTime;
     
     const double *input = getInput(0, &sizeIn);
     const double *frame = input;
 
     // Determine necessary interpolation
     
-    if (sizeIn && timeOffset.fracVal())
+    if (sizeIn)
     {
         switch (mParameters.getEnum<Interpolation>(kInterpolation))
         {
@@ -178,7 +175,36 @@ void FrameLib_Sink::process()
         }
     }
     
-    bool cubic = interpType != kInterpNone && interpType != kInterpLinear;
+    FrameLib_TimeFormat frameTime = getFrameTime();
+    FrameLib_TimeFormat delayTime(convertTimeToSamples(mParameters.getValue(kDelay)));
+    FrameLib_TimeFormat blockStartTime = getBlockStartTime();
+    FrameLib_TimeFormat timeOffset = delayTime + frameTime - blockStartTime;
+    
+    // Safety
+    
+    if (frameTime < getBlockEndTime())
+        return;
+    
+    if (!checkOutput(sizeIn, delayTime, bufferSize(), mMaxBlockSize + 3UL))
+        return;
+    
+    // Change interpolation to none if not needed and adjust offset for latency if cubic requested
+    
+    if (!timeOffset.fracVal())
+    {
+        if (interpIsCubic(interpType) && !delayTime.intVal())
+            timeOffset += FrameLib_TimeFormat(1, 0);
+        
+        interpType = kInterpNone;
+    }
+    
+    // If interpolation is cubic reduce latency if not required (delay is 1 or greater)
+    
+    bool cubic = interpIsCubic(interpType);
+    
+    if (cubic && delayTime.intVal())
+        timeOffset -= FrameLib_TimeFormat(1, 0);
+        
     unsigned long interpSize = interpType != kInterpNone ? (cubic ? 3 : 1) : 0;
     auto interpolated = allocAutoArray<double>(sizeIn + interpSize);
 
@@ -200,14 +226,6 @@ void FrameLib_Sink::process()
         
         interpolate_zeropad(Fetcher(input, sizeIn), interpolated.get(), sizeFrame, position, interpType);
     }
-
-    // Safety
-    
-    if (frameTime < getBlockEndTime())
-        return;
-    
-    if (!checkOutput(sizeIn, delayTime, bufferSize(), mMaxBlockSize + 3UL))
-        return;
     
     // Calculate actual offset into buffer
     
