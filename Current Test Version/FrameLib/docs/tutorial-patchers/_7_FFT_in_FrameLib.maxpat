@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 1246.0, 735.0 ],
+		"rect" : [ 34.0, 79.0, 717.0, 735.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -56,7 +56,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1246.0, 709.0 ],
+						"rect" : [ 0.0, 26.0, 717.0, 709.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -461,7 +461,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1246.0, 709.0 ],
+						"rect" : [ 0.0, 26.0, 717.0, 709.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -723,7 +723,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1246.0, 709.0 ],
+						"rect" : [ 0.0, 26.0, 717.0, 709.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1710,7 +1710,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 1246.0, 709.0 ],
+						"rect" : [ 0.0, 26.0, 717.0, 709.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1817,7 +1817,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 306.25, 303.0, 149.0, 20.0 ],
+									"patching_rect" : [ 287.0, 495.5, 149.0, 20.0 ],
 									"text" : "Compare the two systems"
 								}
 
@@ -2026,7 +2026,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 513.0, 292.0, 20.0, 20.0 ],
+									"patching_rect" : [ 450.0, 495.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -2266,7 +2266,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1246.0, 709.0 ],
+						"rect" : [ 0.0, 26.0, 717.0, 709.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3697,7 +3697,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1246.0, 709.0 ],
+						"rect" : [ 34.0, 105.0, 717.0, 709.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3736,10 +3736,11 @@
 									"id" : "obj-2",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "fl_monoVolume-h.maxpat",
-									"numinlets" : 0,
-									"numoutlets" : 0,
+									"name" : "fl-mono-h.maxpat",
+									"numinlets" : 1,
+									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 15.0, 585.0, 81.25, 45.0 ],
 									"viewvisibility" : 1
 								}
@@ -4309,6 +4310,29 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-2", 0 ],
+									"source" : [ "obj-18", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-19", 1 ],
+									"order" : 0,
+									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-19", 0 ],
+									"order" : 1,
+									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
 									"source" : [ "obj-23", 0 ]
 								}
@@ -4492,7 +4516,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1246.0, 709.0 ],
+						"rect" : [ 0.0, 26.0, 717.0, 709.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4937,6 +4961,7 @@
 			"obj-5::obj-23::obj-35" : [ "[9]", "Level", 0 ],
 			"obj-7::obj-8::obj-21::obj-6" : [ "live.tab[11]", "live.tab[1]", 0 ],
 			"obj-5::obj-4" : [ "live.dial", "Width", 0 ],
+			"obj-10::obj-2::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
 			"obj-7::obj-3::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
 			"obj-3::obj-7" : [ "live.tab[12]", "live.tab[12]", 0 ],
 			"obj-3::obj-23::obj-35" : [ "[8]", "Level", 0 ],
@@ -4964,6 +4989,10 @@
 ,
 				"obj-7::obj-8::obj-21::obj-6" : 				{
 					"parameter_longname" : "live.tab[11]"
+				}
+,
+				"obj-10::obj-2::obj-50" : 				{
+					"parameter_longname" : "live.gain~[3]"
 				}
 ,
 				"obj-3::obj-23::obj-35" : 				{
