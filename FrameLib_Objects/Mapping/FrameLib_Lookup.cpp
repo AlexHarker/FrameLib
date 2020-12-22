@@ -77,8 +77,8 @@ FrameLib_Lookup::ParameterInfo::ParameterInfo()
         "zero - values beyond the edges of the table are treated as zeros. "
         "extend - the edge values are extended infinitely in either direction. "
         "wrap - values are treated as wrapped or cyclical. "
-        "fold - values are folded (as spectral folding) with no repetition of the edge values. "
-        "mirror - values are mirrored with the edge values repeated. "
+        "fold - values are folded at edges without repetition of the edge values. "
+        "mirror - values are mirrored at edges with the edge values repeated. "
         "extrapolate - values out of range are extrapolated via interpolation.");
     add("Sets whether lookup is bounded to the edges of the table, or can extend beyond it.");
     add("Sets the interpolation mode: "
