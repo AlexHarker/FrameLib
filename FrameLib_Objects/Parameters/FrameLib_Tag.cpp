@@ -82,7 +82,7 @@ std::string FrameLib_Tag::inputInfo(unsigned long idx, bool verbose)
     if (idx == mNumIns)
         return formatInfo("Pre-Tagged Input - for concatenation with other inputs", "Tagged Input", verbose);
     else
-        return formatInfo("Input for Tag #", "Input for Tag #", idx, verbose);
+        return formatInfo("Input For Tag #", idx);
 
 }
 

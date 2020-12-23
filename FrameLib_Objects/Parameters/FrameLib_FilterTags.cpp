@@ -80,9 +80,9 @@ std::string FrameLib_FilterTags::inputInfo(unsigned long idx, bool verbose)
 std::string FrameLib_FilterTags::outputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return formatInfo("Residual Output", "Residual Output", verbose);
+        return "Residual Output";
     else
-        return formatInfo("Filtered Output", "Filtered Output", verbose);
+        return "Filtered Output";
 }
 
 // Parameter Info

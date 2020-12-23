@@ -41,7 +41,7 @@ std::string FrameLib_Select::inputInfo(unsigned long idx, bool verbose)
     if (idx == mNumIns)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Input #", "Input #", idx, verbose);
+        return formatInfo("Input #", idx);
 }
 
 std::string FrameLib_Select::outputInfo(unsigned long idx, bool verbose)

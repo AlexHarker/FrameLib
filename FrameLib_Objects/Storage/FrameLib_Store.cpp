@@ -33,7 +33,7 @@ std::string FrameLib_Store::objectInfo(bool verbose)
 
 std::string FrameLib_Store::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Input to Store";
+    return "Input";
 }
 
 std::string FrameLib_Store::outputInfo(unsigned long idx, bool verbose)

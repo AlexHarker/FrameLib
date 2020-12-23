@@ -40,7 +40,7 @@ std::string FrameLib_Join::objectInfo(bool verbose)
 
 std::string FrameLib_Join::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Input #", "Input #", idx, verbose);
+    return formatInfo("Input #", idx);
 }
 
 std::string FrameLib_Join::outputInfo(unsigned long idx, bool verbose)

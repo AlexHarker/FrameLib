@@ -34,7 +34,7 @@ std::string FrameLib_Prioritise::objectInfo(bool verbose)
 
 std::string FrameLib_Prioritise::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Input #", "Input #", idx, verbose);
+    return formatInfo("Input #", idx);
 }
 
 std::string FrameLib_Prioritise::outputInfo(unsigned long idx, bool verbose)

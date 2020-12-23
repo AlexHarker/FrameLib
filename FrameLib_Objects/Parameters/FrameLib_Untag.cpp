@@ -79,7 +79,7 @@ std::string FrameLib_Untag::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Untag::outputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Vector Output #", "Vector Output #", idx, verbose);
+    return formatInfo("Vector Output #", idx);
 }
 
 // Parameter Info
