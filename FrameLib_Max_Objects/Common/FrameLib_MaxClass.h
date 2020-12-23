@@ -2172,6 +2172,9 @@ private:
         
         for (size_t pos = str.find_first_of(":."); prev < str.size(); pos = str.find_first_of(":.", pos + 1))
         {
+            if ((pos != std::string::npos) && (str[pos + 1] != ' '))
+                continue;
+            
             pos = pos == std::string::npos ? str.size() : pos;
             object_post(mUserObject, "%s%s", prev ? lineTag : firstLineTag, str.substr(prev, (pos - prev) + 1).c_str());
             prev = pos + 1;
