@@ -30,22 +30,22 @@ template<> inline const char *FrameLib_BinaryOp<std::divides<double>>::getDescri
 { return "Divides the left input frame values by the right input frame values"; }
 
 template<> inline const char *FrameLib_BinaryOp<std::equal_to<double>>::getDescriptionString()
-{ return "Compares frame values for equality (output is 1 for true and 0 for false)"; }
+{ return "Compares frame values for equality (returns 1 or 0)"; }
 
 template<> inline const char *FrameLib_BinaryOp<std::not_equal_to<double>>::getDescriptionString()
-{ return "Compares frame values for inequality (output is 1 for true and 0 for false)"; }
+{ return "Compares frame values for inequality (returns 1 or 0)"; }
 
 template<> inline const char *FrameLib_BinaryOp<std::greater<double>>::getDescriptionString()
-{ return "Calculates if left input frame values are greater than right input frame values (output is 1 for true and 0 for false)"; }
+{ return "Compares input frames using a greater than operation (returns 1 or 0)"; }
 
 template<> inline const char *FrameLib_BinaryOp<std::less<double>>::getDescriptionString()
-{ return "Calculates if left input frame values are less than right input frame values (output is 1 for true and 0 for false)"; }
+{ return "Compares input frames using a less than operation (returns 1 or 0)"; }
 
 template<> inline const char *FrameLib_BinaryOp<std::greater_equal<double>>::getDescriptionString()
-{ return "Calculates if left input frame values are greater than or equal to right input frame values (output is 1 for true and 0 for false)"; }
+{ return "Compares input frames using a greater than or equal to operation (returns 1 or 0)"; }
 
 template<> inline const char *FrameLib_BinaryOp<std::less_equal<double>>::getDescriptionString()
-{ return "Calculates if left input frame values are greater than or equal to right input frame values (output is 1 for true and 0 for false)"; }
+{ return "Compares input frames using a less than or equal to operation (returns 1 or 0)"; }
 
 template<> inline const char *FrameLib_BinaryOp<std::logical_and<double>>::getDescriptionString()
 { return "Calculates the logical and of the left and right input frame values"; }
@@ -81,16 +81,16 @@ typedef FrameLib_BinaryOp<FrameLib_Binary_Ops::absDiff> FrameLib_Diff;
 // Info specialisations
 
 template<> inline const char *FrameLib_Binary<pow>::getDescriptionString()
-{ return "Calculates left input frame values to the power of right input frame values"; }
+{ return "Raises left input frame values to the power of right input frame values"; }
 
 template<> inline const char *FrameLib_Binary<atan2>::getDescriptionString()
-{ return "For each pair of input values calculates the arctangent using two arguments (left operand is y, right operand is x)"; }
+{ return "Calculates the arctangent using two arguments (left operand is y, right operand is x)"; }
 
 template<> inline const char *FrameLib_Binary<hypot>::getDescriptionString()
-{ return "For each pair of input values calculates the hypotenuse of a right-angled triangle with sides of the given lengths"; }
+{ return "Calculates the length of a hypotenuse given the two operands as the other lengths"; }
 
 template<> inline const char *FrameLib_Binary<copysign>::getDescriptionString()
-{ return "Outputs a frame with the magnitude values of the left input frame and the sign values of right input frame"; }
+{ return "Copys the signs of the right input frame onto the magnitudes of the left input frame"; }
 
 template<> inline const char *FrameLib_Binary<fmin>::getDescriptionString()
 { return "Calculates the minimums of pairs of values in the two input frames"; }

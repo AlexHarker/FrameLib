@@ -71,7 +71,7 @@ public:
     {
         return formatInfo("#: Calculation is performed on pairs of values in turn. "
                           "The output is a frame at least as long as the smaller of the two inputs. "
-                          "When inputs mismatch in length the result depends on the mismatch parameter. "
+                          "If inputs mismatch in length the result depends on the mismatch parameter. "
                           "Either or both inputs may be set to trigger output.",
                           "#.", getDescriptionString(), verbose);
     }
