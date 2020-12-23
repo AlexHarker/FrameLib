@@ -14,7 +14,7 @@ unsigned long distance(T a, U b)
 // Constructor
 
 FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Processor(context, proxy, nullptr, 1, 3)
+: FrameLib_Processor(context, proxy, &sParamInfo, 1, 3)
 {
     mParameters.addInt(kNeighbours, "neighbours", 1, 0);
     mParameters.setClip(1, 4);
@@ -50,22 +50,54 @@ FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Paramete
 
 std::string FrameLib_Peaks::objectInfo(bool verbose)
 {
-    return formatInfo("Finds peaks in an input frame (spectrum): "
-                   "Peaks are output in terms of interpolated sample position, interpolated amplitude and peak index. "
-                   "The first output is the same size as the input, other outputs are as long as the number of detected peaks.",
-                   "Finds peaks in an input frame (spectrum).", verbose);
+    return formatInfo("Finds peaks in the input frame: "
+                      "The input frame is searched for peaks (values greater than the surrounding values). "
+                      "Each input sample is assigned to a peak. "
+                      "Peaks positions and values are also interpolated and output. "
+                      "The first output is the same length as the input. "
+                      "Other outputs are as long as the number of detected peaks. "
+                      "A Peak are detected if a value exceeds its neighbours and a fixed threshold. "
+                      "The parameters control the details of the way in which peaks are defined and detected.",
+                      "Finds peaks in the input frame.", verbose);
 }
 
 std::string FrameLib_Peaks::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Input Frame / Spectrum";
+    return "Input";
 }
 
 std::string FrameLib_Peaks::outputInfo(unsigned long idx, bool verbose)
 {
-    if (idx == 0) return formatInfo("Peak Index - for each input sample / bin the output lists the peak it belongs to", "Peak Index", verbose);
-    else if (idx == 1) return formatInfo("Peak Position - an interpolated position in samples / bins for each peak", "Peak Position", verbose);
-    else return formatInfo("Peak Amplitude - an interpolated amplitude for each peak", "Peak Amplitude", verbose);
+    if (idx == 0) return formatInfo("Assigned Peaks - the peak each input sample belongs to", "Assigned Peaks", verbose);
+    else if (idx == 1) return formatInfo("Peak Positions - interpolated positions per peak", "Peak Positions", verbose);
+    else return formatInfo("Peak Values - interpolated values per peak", "Peak Values", verbose);
+}
+
+// Parameter Info
+
+FrameLib_Peaks::ParameterInfo FrameLib_Peaks::sParamInfo;
+
+FrameLib_Peaks::ParameterInfo::ParameterInfo()
+{
+    add("Sets the number of neighbours each side that must be exceeded in order to detect a peak.");
+    add("Sets the threshold value for detecting a peak.");
+    add("Sets the padding value.");
+    add("Sets the edge behaviour for peak detection: "
+        "pad - values beyond the edges of the input are read as the padding value. "
+        "extend - the edge values are extended infinitely in either direction. "
+        "wrap - values are read as wrapped or cyclical. "
+        "fold - values are folded at edges without repetition of the edge values. "
+        "mirror - values are mirrored at edges with the edge values repeated.");
+    add("Sets the method for refining peak values: "
+        "off - return the peak value without refinement. "
+        "parabolic - apply parabolic interpolation to the three values around the peak. "
+        "parabolic_log - apply parabolic interpolation to the log of the three values around the peak. "
+        "Note that parabolic_log is suitable for interpolating linear amplitudes.");
+    add("Sets the method for selecting the boundaries between peaks: "
+        "minimum - boundaries are set at the minimum value between consecutive peaks. "
+        "midpoint - boundaries are set to the indices halfway between consecutive peaks.");
+    add("If set on at least one peak will be detected even if no values match the peak criteria. "
+        "Note that when set off the outputs will be empty if no peak is detected.");
 }
 
 // Edges

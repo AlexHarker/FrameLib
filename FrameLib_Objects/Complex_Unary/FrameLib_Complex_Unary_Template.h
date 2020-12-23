@@ -35,17 +35,17 @@ public:
     std::string inputInfo(unsigned long idx, bool verbose) override
     {
         if (idx == 0)
-            return formatInfo("Real Input", "Real Input", verbose);
+            return "Real Input";
         else
-            return formatInfo("Imaginary Input", "Imag Input", verbose);
+            return "Imaginary Input";
     }
     
     std::string outputInfo(unsigned long idx, bool verbose) override
     {
         if (idx == 0)
-            return formatInfo("Real Output", "Real Output", verbose);
+            return "Real Output";
         else
-            return formatInfo("Imaginary Output", "Imag Output", verbose);
+            return "Imaginary Output";
     }
 
 private:

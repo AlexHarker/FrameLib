@@ -482,20 +482,21 @@ class FrameLib_Filter final : public FrameLib_Processor
                 add(mode);
                 
                 if (DoesMultiOutput)
-                    add("Sets multi-output mode (in which all filter modes are output separately).");
+                    add("Creates an output per filter mode with all modes output simultaneously.");
             }
             
             if (DoesCoefficients)
             {
-                add("Sets the coefficients input/output mode. "
-                    "static - inputs are parameters and outputs are separate coefficient values. "
-                    "dynamic - inputs can be a mix of parameters and input frames and outputs are separate frames of coefficient values. "
-                    "tagged - inputs are parameters and the output is a single tagged frame.");
+                add("Sets the coefficients input and output modes. "
+                    "static - settings are made via parameters with single value outputs. "
+                    "dynamic - settings are made via inputs or parameters with output as vectors. "
+                    "tagged - settings are made via parameters with output as a tagged frame.");
             }
             else
             {
-                add("Sets dynamic mode (which creates inputs for each parameter of the filter).");
-                add("Sets whether filter memories are reset before processing a new frame.");
+                add("Creates inputs for per sample values for each of the filter parameters. "
+                    "If an input is not provided the corresponding parameter value is used.");
+                add("Determines whether filter memories are reset before processing a new frame.");
             }
         }
     };
@@ -581,32 +582,63 @@ public:
         {
             std::string info(description);
             
-            info.append(": The size of the output is equal to the input. ");
-            
-            if (DoesModes)
+            if (DoesCoefficients)
             {
-                if (DoesMultiOutput)
-                    info.append("The filter can be set to output a single mode at a time (set with the mode parameter) or all modes simulatanously (set with the multi_output parameter). ");
-                else
+                info.append(": ");
+                
+                if (DoesModes)
                     info.append("The filter mode is set by the mode parameter. ");
+                
+                info.append("Filter settings may be made either via parameters or per sample via inputs. "
+                            "The type of input and output is determined by the coefficients parameter. "
+                            "If set to dynamic then inputs are created for per sample values. "
+                            "Output will be at least one sample or as long as the longest input frame. "
+                            "Frames of per sample values are padded to length with their final value if required. "
+                            "Additional values are ignored. "
+                            "In this mode the parameter value is used if no corresponding input is provided. "
+                            "Thus, per sample values and parameters can be mixed. "
+                            "If coefficients is set to tagged then a single frame of tagged output is output. "
+                            "In tagged mode and static mode filter settings are made via parameters only. "
+                            "In static mode each output is a single value.");
             }
+            else
+            {
+                info.append(": Output is the same length as the input. ");
             
-            info.append("Filter settings may be updated either as parameters, or, when the dynamic parameter is set on, on a per sample basis via dedicated inputs. "
-                        "When in dynamic mode the parameter values are used if an input is disconnected, or empty. "
-                        "Thus you can mix dynamic and static settings.");
+                if (DoesModes)
+                {
+                    if (DoesMultiOutput)
+                        info.append("The filter can output a single specifed mode at a time. "
+                                "Alternatively, in multi-output mode all modes are output simultaneously. ");
+                    else
+                        info.append("The filter mode is set by the mode parameter. ");
+                }
             
-            if (!DoesCoefficients)
-                info.append(" If you wish to process streams (rather than individual frames) then you can set the reset parameter off (which will not clear the filter memories between frames.");
+                info.append("Filter settings may be made either via parameters or per sample via inputs. "
+                            "The dynamic parameter is set to create the inputs for per sample values. "
+                            "Frames of per sample values are padded to length with their final value if required. "
+                            "Additional values are ignored. "
+                            "In this mode the parameter value is used if no corresponding input is provided. "
+                            "Thus, per sample values and parameters can be mixed. "
+                            "To process streams (not discrete frames) the reset parameter can be set off. "
+                            "This prevents the filter memories being cleared between frames.");
+            }
             
             return info;
         }
+        
         return formatInfo("#.", description);
     }
     
     std::string inputInfo(unsigned long idx, bool verbose) override
     {
         if (!idx)
-            return DoesCoefficients ? "Trigger Input" : "Input";
+        {
+            if (DoesCoefficients)
+                return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
+            else
+                return "Input";
+        }
         
         if (idx >= getNumIns() - 1)
             return parameterInputInfo(verbose);

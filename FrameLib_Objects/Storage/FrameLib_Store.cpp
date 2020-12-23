@@ -33,12 +33,12 @@ std::string FrameLib_Store::objectInfo(bool verbose)
 
 std::string FrameLib_Store::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Input to Store";
+    return "Input";
 }
 
 std::string FrameLib_Store::outputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Ordering Output - used to control ordering", "Ordering Output", verbose);
+    return formatInfo("Ordering Output - connect to control ordering", "Ordering Output", verbose);
 }
 
 // Stream Awareness

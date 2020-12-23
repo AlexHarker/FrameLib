@@ -102,7 +102,7 @@ std::string FrameLib_Route::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Route::outputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Output #", "Output #", idx, verbose);
+    return formatInfo("Output #", idx);
 }
 
 // Parameter Info

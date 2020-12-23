@@ -26,6 +26,8 @@ FrameLib_KernelSmooth::FrameLib_KernelSmooth(FrameLib_Context context, const Fra
     mParameters.addInt(kMaxFFTSize, "max_fft", 32768);
     mParameters.setInstantiation();
     
+    setInputMode(1, false, false, false);
+
     mParameters.set(serialisedParameters);
     
     mSmoother.set_max_fft_size(mParameters.getInt(kMaxFFTSize));
@@ -35,20 +37,31 @@ FrameLib_KernelSmooth::FrameLib_KernelSmooth(FrameLib_Context context, const Fra
 
 std::string FrameLib_KernelSmooth::objectInfo(bool verbose)
 {
-    return formatInfo("Splits a frame sequentially into smaller frames based on the trigger input.", verbose);
+    return formatInfo("Smooth an input based on a provided smoothing kernel: "
+                      "The kernel is interpolated to the specified width(s) to perform smoothing. "
+                      "If the kernel is symmetric only the right-hand side should be provided."
+                      "The edge behaviour can be set as appropriate for the application. "
+                      "The output is the same length as the frame at the first input. "
+                      "Internally kernels are always stretched across a whole number of samples. "
+                      "Kernels with zeroes at the ends are auto detected and stretched appropriately. "
+                      "The smoother may use FFT processing for efficiency but it is not required. "
+                      "Only the first input triggers output.",
+                      "Smooth an input based on a provided smoothing kernel.", verbose);
 }
 
 std::string FrameLib_KernelSmooth::inputInfo(unsigned long idx, bool verbose)
 {
-    if (idx)
-        return "Kernel Input";
-    else
-        return "Input Frame";
+    switch (idx)
+    {
+        case 0: return formatInfo("Input - values to be smoother", "Input", verbose);
+        case 1: return formatInfo("Kernel Input - does not trigger output", "Kernel Input", verbose);
+        default: return parameterInputInfo(verbose);
+    }
 }
 
 std::string FrameLib_KernelSmooth::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Smoothed Frame";
+    return "Output";
 }
 
 // Parameter Info
@@ -57,7 +70,20 @@ FrameLib_KernelSmooth::ParameterInfo FrameLib_KernelSmooth::sParamInfo;
 
 FrameLib_KernelSmooth::ParameterInfo::ParameterInfo()
 {
-    add("Set the amount of smoothing." );
+    add("Sets the width of smoothing as interpreted by the scale parameter. "
+        "If two values are provided they set the interpolated amounts at either edge.");
+    add("Sets the scaling for the smoothing parameter: "
+        "samples - smoothing is specified in samples. "
+        "normalised - smoothing is specified in relation to the width of the input [0-1].");
+    add("Indicates that the kernel is symmetric with only the right-hand side provided." );
+    add("Sets the edge behaviour for smoothing: "
+        "zero - values beyond the edges of the input are read as zeros. "
+        "extend - the edge values are extended infinitely in either direction. "
+        "wrap - values are read as wrapped or cyclical. "
+        "fold - values are folded at edges without repetition of the edge values. "
+        "mirror - values are mirrored at edges with the edge values repeated.");
+    add("Sets the maximum FFT size available for internal processing. "
+        "Note that this needs to be large enough to contain the input, kernel and edges.");
 }
 
 // Process

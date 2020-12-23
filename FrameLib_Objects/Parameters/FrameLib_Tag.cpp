@@ -14,10 +14,10 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
     mParameters.addInt(kNumIns, "num_ins", 1);
     mParameters.setClip(1, maxNumIns);
     mParameters.setInstantiation();
+    
     mParameters.addEnum(kEmptyMode, "empty");
     mParameters.addEnumItem(kIgnore, "ignore");
     mParameters.addEnumItem(kReset, "reset");
-    mParameters.setInstantiation();
 
     // Read in once to get number of strings needed
     
@@ -46,7 +46,6 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
     {
         snprintf(tagStr, strBufSize, "tag_%02lu", i + 1);
         mParameters.addString(kTags + i, tagStr, i);
-        mParameters.setInstantiation();
     }
     
     // Read in again to get parameter tags
@@ -59,31 +58,37 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
     
     setInputMode(mNumIns, false, true, false, kFrameTagged);
     setOutputType(0, kFrameTagged);
+    
+    addParameterInput();
 }
 
 // Info
 
 std::string FrameLib_Tag::objectInfo(bool verbose)
 {
-    return formatInfo("Tags vectors with names ready to send to the parameter input of an object, or for routing purposes: "
-                      "A variable number of inputs is available, each of which deal will a specific tag. "
-                      "The number of inputs is specified either explicitly with a parameter or implicitly by which arguments or tag parameters are present."
-                      "The final input takes tagged input which is concatanated with other inputs after tagging. All inputs trigger output.",
-                      "Tags vectors with names ready to send to the parameter input of an object or for routing purposes.", verbose);
+    return formatInfo("Tags vectors with tags either in order to set parameters or for routing purposes: "
+                      "Tag inputs each deal with one tag and take input vectors. "
+                      "The number of tag inputs can be set explicitly by parameter. "
+                      "Alternatively, it can be set implicitly by the tag parameters present at instantiation. "
+                      "A further input takes pre-tagged input to concatanated with other inputs after tagging. "
+                      "All inputs except the parameter input trigger output.",
+                      "Tags vectors with tags either in order to set parameters or for routing purposes.", verbose);
 }
 
 std::string FrameLib_Tag::inputInfo(unsigned long idx, bool verbose)
 {
+    if (idx == mNumIns + 1)
+        return parameterInputInfo(verbose);
     if (idx == mNumIns)
-        return formatInfo("Parameter Input - takes tagged input for concatenation with other inputs", "Parameter Input", verbose);
+        return formatInfo("Pre-Tagged Input - for concatenation with other inputs", "Tagged Input", verbose);
     else
-        return formatInfo("Input for Tag #", "Input  for Tag #", idx, verbose);
+        return formatInfo("Input For Tag #", idx);
 
 }
 
 std::string FrameLib_Tag::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Tagged Output Frames";
+    return "Output";
 }
 
 // Parameter Info
@@ -92,12 +97,14 @@ FrameLib_Tag::ParameterInfo FrameLib_Tag::sParamInfo;
 
 FrameLib_Tag::ParameterInfo::ParameterInfo()
 {
-    const int strBufSize = 256;
+    const int strBufSize = 64;
     char str[strBufSize];
     
     add("Sets the number of inputs (and hence the number of tags).");
 
-    add("Sets the behaviour when empty frames are received: ignore - empty frames are ignored. reset - empty frames create empty tags to reset parameters.");
+    add("Sets the behaviour when empty frames are received: "
+        "ignore - empty frames are ignored. "
+        "reset - empty frames create empty tags to reset parameters to defaults.");
 
     for (int i = 0; i < maxNumIns; i++)
     {

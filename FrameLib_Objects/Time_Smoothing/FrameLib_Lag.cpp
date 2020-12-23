@@ -31,7 +31,14 @@ FrameLib_Lag::FrameLib_Lag(FrameLib_Context context, const FrameLib_Parameters::
 
 std::string FrameLib_Lag::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs vector-type frames with a lag set as an integer number of frames: Frames are expected to be of a uniform size, else the buffer is reset. The output is the same size as the input.", "Outputs vector-type frames with a lag set as an integer number of frames.", verbose);
+    return formatInfo("Delay vector type input by a whole number of frames: "
+                      "Frames are expected to be of a uniform length. "
+                      "The output is the same length as the input. "
+                      "If the input length changes then the internal storage is reset. "
+                      "The object can also be reset by sending a frame to the reset input. "
+                      "The start parameter controls behaviour when insufficient frames are stored. "
+                      "The buffer full output indicates whether the internal buffer is full.",
+                      "Delay vector type input by a whole number of frames.", verbose);
 }
 
 std::string FrameLib_Lag::inputInfo(unsigned long idx, bool verbose)
@@ -39,7 +46,7 @@ std::string FrameLib_Lag::inputInfo(unsigned long idx, bool verbose)
     switch (idx)
     {
         case 0:     return "Input";
-        case 1:     return "Reset Input";
+        case 1:     return formatInfo("Reset Input - resets and sets padding frame without output", "Reset Input", verbose);
         default:    return parameterInputInfo(verbose);
     }
 }
@@ -47,7 +54,7 @@ std::string FrameLib_Lag::inputInfo(unsigned long idx, bool verbose)
 std::string FrameLib_Lag::outputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return "Buffer Full";
+        return formatInfo("Buffer Full - indicates when the internal buffer is full", "Buffer Full", verbose);
     else
         return "Output";
 }
@@ -58,12 +65,15 @@ FrameLib_Lag::ParameterInfo FrameLib_Lag::sParamInfo;
 
 FrameLib_Lag::ParameterInfo::ParameterInfo()
 {
-    add("Sets the maximum number of frames that can be set as a lag time.");
-    add("Sets the current lag as an integer number of frames.");
-    add("Sets the default output value.");
-    add("Sets the mode used when there are insufficient frames stored: "
-        "default - output a frame of default values. "
-        "valid - output the oldest valid frame.");
+    add("Sets the maximum lag value in frames. "
+        "Note that the internal buffer is reset when this changes.");
+    add("Sets the current lag as an integer.");
+    add("Sets the padding value.");
+    add("Sets the behaviour when there are insufficient frames stored (as after a reset): "
+        "pad - output a frame of default values. "
+        "shorten - output the oldest input frame since the reset. "
+        "Note that frames at the reset input set the frame use for padding. "
+        "If the frame is too short or empty it is padded with the pad parameter.");
 }
 
 // Object Reset

@@ -123,12 +123,12 @@ std::string FrameLib_Dispatch::inputInfo(unsigned long idx, bool verbose)
     if (idx == mNumIns)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Input #", "Input #", idx, verbose);
+        return formatInfo("Input #", idx);
 }
 
 std::string FrameLib_Dispatch::outputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Output #", "Output #", idx, verbose);
+    return formatInfo("Output #", idx);
 }
 
 // Parameter Info

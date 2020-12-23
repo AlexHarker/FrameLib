@@ -27,20 +27,28 @@ FrameLib_MovingAverage::FrameLib_MovingAverage(FrameLib_Context context, const F
 
 std::string FrameLib_MovingAverage::objectInfo(bool verbose)
 {
-    //return formatInfo("Calculates a per sample exponentially weighted moving average: Averaging takes a parameter alpha to determine the rate of change. This parameter can be set differently for increasing and decreasing values. Frames are expected to be of uniform size, otherwise the object will reset. The output is the same size as the input.",
-    //"Calculates an exponentially weighted moving average.", verbose);
-    return formatInfo("Calculates a per sample exponentially weighted moving standard deviation: Averaging takes a parameter alpha to determine the rate of change. This parameter can be set differently for increasing and decreasing values. Frames are expected to be of uniform size, otherwise the object will reset. The output is the same size as the input.",
-                   "Calculates an exponentially weighted moving standard deviation.", verbose);
+    return formatInfo("Calculates per sample moving averages and standard deviations: "
+                      "The moving average and standard deviations are exponentially weighted. "
+                      "An alpha value [0-1] controls the rate of update from static to immediate. "
+                      "Alphas may be set per sample using the corresponding input or by parameters. "
+                      "Parameters allow different alphas when the average increases or decreases. "
+                      "Frames are expected to be of a uniform length. "
+                      "The output is the same length as the input. "
+                      "If the input length changes then the average and standard deviations are reset. "
+                      "These can also be individually reset using the corresponding reset inputs. "
+                      "Frames at the reset inputs set the starting values for calculation."
+                      "When these are too short they are padded with values provided by parameter.",
+                      "Calculates per sample moving averages and standard deviations.", verbose);
 }
 
 std::string FrameLib_MovingAverage::inputInfo(unsigned long idx, bool verbose)
 {
-    switch (idx)
+   switch (idx)
     {
         case 0:     return "Input";
         case 1:     return "Alphas";
-        case 2:     return "Average Reset Input";
-        case 3:     return "Deviation Reset Input";
+        case 2:     return formatInfo("Average Reset - resets and sets values", "Average Reset", verbose);
+        case 3:     return formatInfo("Deviation Reset - resets and sets values", "Deviation Reset", verbose);
         default:    return parameterInputInfo(verbose);
     }
 }
@@ -59,8 +67,14 @@ FrameLib_MovingAverage::ParameterInfo FrameLib_MovingAverage::sParamInfo;
 
 FrameLib_MovingAverage::ParameterInfo::ParameterInfo()
 {
-    add("Sets the alpha value for weighting when the input is increasing.");
-    add("Sets the alpha value for weighting when the input is decreasing.");
+    add("Sets the alpha value when the average is increasing. "
+        "Note this is only used if a sufficiently long alpha frame is not present.");
+    add("Sets the alpha value when the average is increasing. "
+        "Note this is only used if a sufficiently long alpha frame is not present.");
+    add("Sets the padding value for averages. "
+        "Note this is only used if a sufficiently long average reset frame is not present.");
+    add("Sets the padding value for deviations. "
+        "Note this is only used if a sufficiently long deviation reset frame is not present.");
 }
 
 // Object Reset

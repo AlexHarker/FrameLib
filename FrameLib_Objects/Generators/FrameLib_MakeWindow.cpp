@@ -37,7 +37,6 @@ FrameLib_MakeWindow::FrameLib_MakeWindow(FrameLib_Context context, const FrameLi
 std::string FrameLib_MakeWindow::objectInfo(bool verbose)
 {
     return formatInfo("Generates a specified window function across each output frame: "
-                      "The scaling parameter is used to set the range of the ramp. "
                       "The length of the output is dependent on the mode parameter. "
                       "Output length may be set by parameter or based on that of the trigger input. "
                       "Gain compensation may be applied to the window according to the compensate parameter. "
