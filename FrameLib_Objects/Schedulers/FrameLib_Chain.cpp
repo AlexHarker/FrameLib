@@ -123,6 +123,11 @@ FrameLib_Chain::SchedulerInfo FrameLib_Chain::schedule(bool newFrame, bool noAdv
 {
     FrameLib_TimeFormat now = getCurrentTime();
     
+    // Check for an object that has no connections (which will not schedule)
+    
+    if (!isConnected(0))
+        return SchedulerInfo(FrameLib_TimeFormat::largest() - getValidTime(), false, true);
+    
     // Deal with a new input frame
     
     if (getInputFrameTime(0) == now)
