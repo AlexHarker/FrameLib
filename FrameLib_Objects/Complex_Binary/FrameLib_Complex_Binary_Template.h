@@ -126,11 +126,11 @@ public:
         if (idx == 0)
             return "Left Real Input";
         else if (idx == 1)
-            return formatInfo("Left Imaginary Input", "Left Imag Input", verbose);
+            return "Left Imaginary Input";
         else if (idx == 2)
             return "Right Real Input";
         else
-            return formatInfo("Right Imaginary Input", "Right Imag Input", verbose);
+            return "Right Imaginary Input";
     }
     
     std::string outputInfo(unsigned long idx, bool verbose) override
@@ -138,7 +138,7 @@ public:
         if (idx == 0)
             return "Real Output";
         else
-            return formatInfo("Imaginary Output", "Imag Output", verbose);
+            return "Imaginary Output";
     }
 
 private:

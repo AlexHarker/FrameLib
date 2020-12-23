@@ -37,7 +37,7 @@ public:
         if (idx == 0)
             return "Real Input";
         else
-            return formatInfo("Imaginary Input", "Imag Input", verbose);
+            return "Imaginary Input";
     }
     
     std::string outputInfo(unsigned long idx, bool verbose) override
@@ -45,7 +45,7 @@ public:
         if (idx == 0)
             return "Real Output";
         else
-            return formatInfo("Imaginary Output", "Imag Output", verbose);
+            return "Imaginary Output";
     }
 
 private:
