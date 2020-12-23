@@ -32,7 +32,7 @@ std::string FrameLib_Chain::objectInfo(bool verbose)
 {
     return formatInfo("Schedules frames in the future at times specified times in the input frame: "
                       "The output is an empty trigger frame. "
-                      "Inputs interact with previously scheduled frames according to time and mode parameters."
+                      "Inputs interact with previously scheduled frames according to time and mode parameters. "
                       "The remaining count output can be used to track the number of currently scheduled frames.",
                       "Schedules frames in the future at times specified times in the input frame.", verbose);
 }

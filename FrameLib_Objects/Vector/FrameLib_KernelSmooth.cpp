@@ -39,7 +39,7 @@ std::string FrameLib_KernelSmooth::objectInfo(bool verbose)
 {
     return formatInfo("Smooth an input based on a provided smoothing kernel: "
                       "The kernel is interpolated to the specified width(s) to perform smoothing. "
-                      "If the kernel is symmetric only the right-hand side should be provided."
+                      "If the kernel is symmetric only the right-hand side should be provided. "
                       "The edge behaviour can be set as appropriate for the application. "
                       "The output is the same length as the frame at the first input. "
                       "Internally kernels are always stretched across a whole number of samples. "

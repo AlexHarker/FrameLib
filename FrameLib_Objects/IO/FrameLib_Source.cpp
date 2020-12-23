@@ -46,7 +46,7 @@ std::string FrameLib_Source::objectInfo(bool verbose)
 {
     return formatInfo("Captures audio from the host environment and outputs the most recent values as frames: "
                       "The size of captured frames is settable with the length parameter. "
-                      "The length of the internal buffer determines the maximum frame length."
+                      "The length of the internal buffer determines the maximum frame length. "
                       "There is a minimum latency equivalent to the length of the captured frame. "
                       "A longer delay can be optionally selected (subject to the frame and buffer length). "
                       "Capture can optionally be interpolated (at greater CPU usage) for sub-sample accuracy.",
