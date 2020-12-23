@@ -11,16 +11,16 @@
 // Info specialisations
 
 template<> inline const char *FrameLib_Complex_BinaryOp<std::plus<std::complex<double>>>::getDescriptionString()
-{ return "Adds complex values in the two sets of input frames"; }
+{ return "Adds complex values in the two pairs of input frames"; }
 
 template<> inline const char *FrameLib_Complex_BinaryOp<std::minus<std::complex<double>>>::getDescriptionString()
-{ return "Subtracts the right complex pair of input frame values from the left complex pair of input frame values"; }
+{ return "Subtracts complex values in the right input frame pair from those in the left pair"; }
 
 template<> inline const char *FrameLib_Complex_BinaryOp<std::multiplies<std::complex<double>>>::getDescriptionString()
-{ return "Multiplies complexvalues in the two sets of input frames"; }
+{ return "Multiplies complex values in the two pairs of input frames"; }
 
 template<> inline const char *FrameLib_Complex_BinaryOp<std::divides<std::complex<double>>>::getDescriptionString()
-{ return "Divides the left complex pair of input frame values by the right complex pair of input frame values"; }
+{ return "Divides complex values in the left pair of input frames by those in the right pair"; }
 
 // Type definitions
 
@@ -34,8 +34,8 @@ typedef FrameLib_Complex_BinaryOp<std::divides<std::complex<double>>>           
 // Info specialisations
 
 template<> inline const char *FrameLib_Complex_Binary<std::pow<double>>::getDescriptionString()
-{ return "Calculates left complex pair of input frame values to the power of right complex pair of input frame values"; }
-
+{ return "Raises left operand values to the power of right operand values (both complex)"; }
+                                                                           
 typedef FrameLib_Complex_Binary<std::pow<double>>       FrameLib_Complex_Pow;
 
 #endif

@@ -116,7 +116,7 @@ public:
                           "Both inputs and output are split into real and imaginary parts . "
                           "The outputs are frames at least as long as the shorter of the two operands. "
                           "If input pairs are mismatched then the shorter input is padded with zeros. "
-                          "When operands mismatch in length the result depends on the mismatch parameter. "
+                          "If operands mismatch in length the result depends on the mismatch parameter. "
                           "Either or both pairs of inputs may be set to trigger output.",
                           "#.", getDescriptionString(), verbose);
     }
