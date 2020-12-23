@@ -101,8 +101,8 @@ public:
             
             str += getExtraString();
             
-            str += "Frames are expected to be of a uniform length. "
-                   "The output is the same length as the input. "
+            str += "The output is the same length as the input. "
+                    "Input frames are expected to be of a uniform length. "
                    "If the input length changes then the internal storage is reset. "
                    "The object can also be reset by sending a frame to the reset input. "
                    "The start parameter controls behaviour when insufficient frames are stored. "

@@ -48,7 +48,7 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters
 std::string FrameLib_Read::objectInfo(bool verbose)
 {
     return formatInfo("Reads from a specified host buffer given an input frame of positions: "
-                      "The output is the same length as the input frame. "
+                      "The output is the same length as the input. "
                       "The scale, edges and bound parameters control the mapping of the input to the buffer. "
                       "For hosts supporting multichannel buffers the channel read can also be selected. "
                       "The reading can be performed with different types of interpolation (or none).",
