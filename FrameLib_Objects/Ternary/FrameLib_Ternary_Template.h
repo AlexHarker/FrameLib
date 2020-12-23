@@ -87,7 +87,7 @@ public:
     {
         return formatInfo("#: Calculation is performed on triplets of values in turn. "
                           "The output is a frame at least as long as the leftmost frame. "
-                          "When frames mismatch in length the result depends on the mismatch parameter.",
+                          "If inputs mismatch in length the result depends on the mismatch parameter.",
                           "#.", getDescriptionString(), verbose);
     }
 
