@@ -22,7 +22,7 @@ FrameLib_Unpack::FrameLib_Unpack(FrameLib_Context context, const FrameLib_Parame
 std::string FrameLib_Unpack::objectInfo(bool verbose)
 {
     return formatInfo("Unpacks multistream input into individual streams: "
-                      "Multistream inputs are unpacked in order across the outputs. ",
+                      "Multistream inputs are unpacked in order across the outputs.",
                       "Unpacks multistream input into individual streams.", verbose);
 }
 

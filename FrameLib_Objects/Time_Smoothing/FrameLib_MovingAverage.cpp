@@ -36,7 +36,7 @@ std::string FrameLib_MovingAverage::objectInfo(bool verbose)
                       "The output is the same length as the input. "
                       "If the input length changes then the average and standard deviations are reset. "
                       "These can also be individually reset using the corresponding reset inputs. "
-                      "Frames at the reset inputs set the starting values for calculation."
+                      "Frames at the reset inputs set the starting values for calculation. "
                       "When these are too short they are padded with values provided by parameter.",
                       "Calculates per sample moving averages and standard deviations.", verbose);
 }

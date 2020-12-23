@@ -34,7 +34,7 @@ std::string FrameLib_Shift::objectInfo(bool verbose)
     return formatInfo("Shifts samples within a frame: "
                       "The output is the same length as the input. "
                       "Output can be shifted left or right in comparison to the input. "
-                      "The edge behaviour can be set as appropriate for the application."
+                      "The edge behaviour can be set as appropriate for the application.",
                       "Shifts samples within a frame.", verbose);
 }
 
