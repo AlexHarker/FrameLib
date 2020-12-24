@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 0,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -225,8 +225,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "signal", "signal", "signal" ],
-					"patching_rect" : [ 235.0, 90.0, 99.0, 22.0 ],
-					"text" : "fftin~ 1 blackman"
+					"patching_rect" : [ 235.0, 90.0, 95.0, 22.0 ],
+					"text" : "fftin~ 1"
 				}
 
 			}
@@ -240,6 +240,10 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 195.0, 176.0, 30.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"attr_comment" : ""
+					}
+,
 					"text" : "in 1"
 				}
 
@@ -334,7 +338,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-14", 0 ],
-					"midpoints" : [ 324.5, 161.0, 572.5, 161.0 ],
+					"midpoints" : [ 320.5, 161.0, 572.5, 161.0 ],
 					"order" : 1,
 					"source" : [ "obj-24", 2 ]
 				}
@@ -343,7 +347,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-35", 1 ],
-					"midpoints" : [ 284.5, 272.0, 349.5, 272.0 ],
+					"midpoints" : [ 282.5, 272.0, 349.5, 272.0 ],
 					"source" : [ "obj-24", 1 ]
 				}
 
@@ -359,7 +363,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-39", 0 ],
-					"midpoints" : [ 324.5, 161.0, 704.5, 161.0 ],
+					"midpoints" : [ 320.5, 161.0, 704.5, 161.0 ],
 					"order" : 0,
 					"source" : [ "obj-24", 2 ]
 				}
