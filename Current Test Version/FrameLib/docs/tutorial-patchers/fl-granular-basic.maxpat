@@ -39,18 +39,6 @@
 		"subpatcher_template" : "default",
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-6",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 254.0, 271.0, 29.5, 22.0 ],
-					"text" : "info"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-2",
 					"maxclass" : "comment",
 					"numinlets" : 1,
@@ -89,7 +77,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 135.0, 151.199996999999996, 144.0, 20.0 ],
+					"patching_rect" : [ 169.0, 151.199996999999996, 144.0, 20.0 ],
 					"text" : "Read from the rain buffer"
 				}
 
@@ -161,8 +149,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 7.0, 150.199996999999996, 126.0, 22.0 ],
-					"text" : "fl.read~ rain /units ms"
+					"patching_rect" : [ 7.0, 150.199996999999996, 160.0, 22.0 ],
+					"text" : "fl.read~ fl.tut.2.rain /units ms"
 				}
 
 			}
@@ -190,13 +178,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-4", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
-					"source" : [ "obj-6", 0 ]
 				}
 
 			}
