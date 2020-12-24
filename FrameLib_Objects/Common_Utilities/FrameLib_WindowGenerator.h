@@ -192,13 +192,13 @@ public:
             switch (getType())
             {
                 case kTrapezoid:
-                    mValidParams[0] = arraySize ? parameters[0] : 0.25;
-                    mValidParams[1] = arraySize > 1 ? parameters[1] : 1.0 - mValidParams[0];
+                    mValidParams[0] = arraySize ? parameters[0] / 100.0 : 0.25;
+                    mValidParams[1] = arraySize > 1 ? parameters[1] / 100.0 : 1.0 - mValidParams[0];
                     mParamSize = 2;
                     break;
                     
                 case kTukey:
-                    mValidParams[0] = arraySize ? parameters[0] : 0.5;
+                    mValidParams[0] = arraySize ? parameters[0] / 100.0 : 0.5;
                     mParamSize = 1;
                     break;
                     
