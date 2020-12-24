@@ -37,7 +37,8 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "default",
-		"showontab" : 1,
+		"showrootpatcherontab" : 0,
+		"showontab" : 0,
 		"title" : "Tutorial 10: Contexts",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -87,14 +88,12 @@
 						"title" : "Contexts",
 						"boxes" : [ 							{
 								"box" : 								{
-									"fontsize" : 48.897355238475079,
-									"id" : "obj-3",
-									"linecount" : 2,
-									"maxclass" : "comment",
+									"id" : "obj-1",
+									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.5, 195.0, 525.0, 116.0 ],
-									"text" : "name, realtime-ness, patcher thats it in"
+									"patching_rect" : [ 15.0, 510.0, 164.0, 22.0 ],
+									"text" : "fl.contextcontrol~ @id cycling"
 								}
 
 							}
@@ -103,12 +102,12 @@
 									"fontname" : "Arial",
 									"fontsize" : 13.0,
 									"id" : "obj-4",
-									"linecount" : 7,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 508.0, 315.0, 180.0, 108.0 ],
-									"text" : "This network runs inside of the context named 'cycling' as it is defined with the @id attribute in the top-level scheduler. This will be explained in more detail briefly."
+									"patching_rect" : [ 508.0, 225.0, 180.0, 79.0 ],
+									"text" : "This network runs inside of the context named 'cycling' as it is defined with the @id attribute in the top-level scheduler."
 								}
 
 							}
@@ -117,12 +116,12 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 13.0,
 									"id" : "obj-78",
-									"linecount" : 7,
+									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 495.0, 690.0, 116.0 ],
-									"text" : "Here, the left most network belongs to the default context whereas the right most network belongs to its own context with the @id \"cycling\". Notice how the @id attribute is only defined in one place rather than for object you want to belong to a specific context. Context's aren't defined at the object level, but at the top-most scheduler of a network. This means that you only have to define a unique context at one place in a network, rather than for every connected object.\n\nAs context's are attributes and not FrameLib parameters, they can be set with messages or with attrui and in real-time!"
+									"patching_rect" : [ 15.0, 405.0, 690.0, 100.0 ],
+									"text" : "Here, the left most network belongs to the default context whereas the right most network belongs to its own context with the @id \"cycling\". Notice how the @id attribute is only defined in one place rather than for object you want to belong to a specific context.\n\nKeep an eye out for this object in the further tutorials. The fl.contextcontrol~ object lets us configure contexts through a single shared interface and has some useful functionality for advanced users."
 								}
 
 							}
@@ -135,7 +134,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 450.0, 50.0, 22.0 ]
+									"patching_rect" : [ 30.0, 360.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -148,7 +147,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 328.0, 450.0, 50.0, 22.0 ]
+									"patching_rect" : [ 328.0, 360.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -159,7 +158,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 328.0, 405.0, 58.0, 22.0 ],
+									"patching_rect" : [ 328.0, 315.0, 58.0, 22.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -173,7 +172,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 161.0, 315.0, 124.0, 79.0 ],
+									"patching_rect" : [ 161.0, 225.0, 124.0, 79.0 ],
 									"text" : "This small network runs inside the default context as we don't specify a new context."
 								}
 
@@ -185,7 +184,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 328.0, 360.0, 142.0, 22.0 ],
+									"patching_rect" : [ 328.0, 270.0, 142.0, 22.0 ],
 									"text" : "fl.random~ /length 44100"
 								}
 
@@ -197,7 +196,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 328.0, 315.0, 165.0, 22.0 ],
+									"patching_rect" : [ 328.0, 225.0, 165.0, 22.0 ],
 									"text" : "fl.interval~ 44100 @id cycling"
 								}
 
@@ -209,7 +208,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 405.0, 58.0, 22.0 ],
+									"patching_rect" : [ 30.0, 315.0, 58.0, 22.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -221,7 +220,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 360.0, 115.0, 22.0 ],
+									"patching_rect" : [ 30.0, 270.0, 115.0, 22.0 ],
 									"text" : "fl.random~ /length 1"
 								}
 
@@ -233,7 +232,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 315.0, 94.0, 22.0 ],
+									"patching_rect" : [ 30.0, 225.0, 94.0, 22.0 ],
 									"text" : "fl.interval~ 1024"
 								}
 
@@ -243,12 +242,12 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 13.0,
 									"id" : "obj-2",
-									"linecount" : 14,
+									"linecount" : 8,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 60.0, 690.0, 225.0 ],
-									"text" : "Up and till now the concept of a FrameLib context hasn't been explained or even made explicit to you but they are fundamental to know in order to access more advanced capabilities that you're about to learn.\n\nEvery FrameLib object, or set of objects that are connected belong to a 'context'.  A context is simply a name, symbol or string that defines what context that network belongs to. You can make as many contexts as you like, or just use the default context - it's entirely up to you and dependent on what kind of functionality you need, some of which we will see later. When a FrameLib object is instantiated, it belongs to the default context. Till now, every example or demonstration used the default context and this aspect hasn't been changed or managed. Below we're going to see some examples of how to configure contexts.\n\nBy default, there is only one context per top-level patcher (the default one) which extends downards into all sub-patchers. The only exception to this is if there is a poly~ which can be thought of as an independent top-level patcher and thus a 'unique' default context. Objects don't have to belong to the default context though, and new contexts can be created and then managed through some attributes (yes attributes!) and the fl.context~ object."
+									"patching_rect" : [ 15.0, 60.0, 692.0, 131.0 ],
+									"text" : "Up and till now the concept of a FrameLib context hasn't been explained or even made explicit to you but they are fundamental to know in order to access more advanced capabilities that you're about to learn. Every FrameLib object, or set of objects that are connected belong to a 'context'. The simplest way to create a new context is to give a new, unique string as the @id of the top-most scheduler. This @id propogates through the network so there is no benefit to setting it for every object. By default, there is only one context per top-level patcher. The only exception to this is if there is a poly~ which can be thought of as an independent top-level patcher and thus a 'unique' default context. The other exception to this rule is that a realtime and non-realtime network with the same @id are actually two different contexts. This is covered in detail in tutorial 11."
 								}
 
 							}
@@ -290,7 +289,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 313.0, 300.0, 392.0, 180.0 ],
+									"patching_rect" : [ 313.0, 210.0, 392.0, 180.0 ],
 									"proportion" : 0.5
 								}
 
@@ -307,7 +306,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 300.0, 283.0, 180.0 ],
+									"patching_rect" : [ 15.0, 210.0, 283.0, 180.0 ],
 									"proportion" : 0.5
 								}
 
@@ -718,6 +717,10 @@
 			}
 , 			{
 				"name" : "fl.tomax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.contextcontrol~.mxo",
 				"type" : "iLaX"
 			}
  ],
