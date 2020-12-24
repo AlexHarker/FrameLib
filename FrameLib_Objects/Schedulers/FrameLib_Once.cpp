@@ -16,7 +16,7 @@ std::string FrameLib_Once::objectInfo(bool verbose)
 {
     return formatInfo("Schedules a single frame at the begining of time that lasts forever: "
                       "The output is an empty frame.",
-                      "Schedules a single  frame at the begining of time that lastsforever.", verbose);
+                      "Schedules a single  frame at the begining of time that lasts forever.", verbose);
 }
 
 std::string FrameLib_Once::inputInfo(unsigned long idx, bool verbose)

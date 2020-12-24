@@ -28,7 +28,7 @@ FrameLib_FIRPhase::FrameLib_FIRPhase(FrameLib_Context context, const FrameLib_Pa
 
 std::string FrameLib_FIRPhase::objectInfo(bool verbose)
 {
-    return formatInfo("Transform FIR coefficients to preserve the amplitude spectrum but alter the phase. "
+    return formatInfo("Transform FIR coefficients to preserve the amplitude spectrum but alter the phase: "
                       "The phase can be directly specified using the phase parameter. "
                       "Output frames will be the length of the FFT size used internally for processing. "
                       "Inputs which are not a power of two are zero-padded before processing. "

@@ -21,7 +21,7 @@ FrameLib_NanFilter::FrameLib_NanFilter(FrameLib_Context context, const FrameLib_
 
 std::string FrameLib_NanFilter::objectInfo(bool verbose)
 {
-    return formatInfo("Filter NaNs from the input either by replacing or by removing them. "
+    return formatInfo("Filter NaNs from the input either by replacing or by removing them: "
                       "The length of the output depends on the mode parameter. "
                       "The length of the output will be no longer than the input. "
                       "The value for replacement can be specified using the value parameter.",
