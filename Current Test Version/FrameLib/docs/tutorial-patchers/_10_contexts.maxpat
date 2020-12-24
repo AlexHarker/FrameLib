@@ -246,7 +246,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 60.0, 692.0, 131.0 ],
+									"patching_rect" : [ 15.0, 60.0, 694.0, 131.0 ],
 									"text" : "Up and till now the concept of a FrameLib context hasn't been explained or even made explicit to you but they are fundamental to know in order to access more advanced capabilities that you're about to learn. Every FrameLib object, or set of objects that are connected belong to a 'context'. The simplest way to create a new context is to give a new, unique string as the @id of the top-most scheduler. This @id propogates through the network so there is no benefit to setting it for every object. By default, there is only one context per top-level patcher. The only exception to this is if there is a poly~ which can be thought of as an independent top-level patcher and thus a 'unique' default context. The other exception to this rule is that a realtime and non-realtime network with the same @id are actually two different contexts. This is covered in detail in tutorial 11."
 								}
 
