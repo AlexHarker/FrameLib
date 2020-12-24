@@ -1,0 +1,70 @@
+<c74object category="FrameLib Mapping" module="FrameLib" name="fl.map~">
+  <digest> 
+        Maps values from input to output via a specified scaling.
+    </digest>
+  <description> 
+         The output length matches the input length. Scaling maps the specified range of input values to a corresponding specified output range. Different shapes and types of scaling are available. Values may be optionally constrained within the specified output range. The values specfying the ranges may be in either order for both input and output.
+    </description>
+  <misc name="Parameters">
+    <entry name="1. /mode [enum]">
+      <description> 
+                Sets the type of output scaling:<br/><br/>linear - linear scaling.<br/>log - logarithmic scaling.<br/>exp - exponential scaling.<br/>pow - input range scaled [0-1], raised to an exponent and then scaled to the output range.<br/>db - output range set in dB with mapping to corresponding linear gain values.<br/>transpose - output range set in semitones with mapping to corresponding ratios.<br/>inverse_pow - the inverse mapping of the pow mode.<br/>inverse_db - the inverse mapping of the db mode.<br/>inverse_transpose - the inverse mapping of the inverse_transpose mode.<br />
+        <bullet>[0] - linear</bullet>
+        <bullet>[1] - log</bullet>
+        <bullet>[2] - exp</bullet>
+        <bullet>[3] - pow</bullet>
+        <bullet>[4] - db</bullet>
+        <bullet>[5] - transpose</bullet>
+        <bullet>[6] - inverse_pow</bullet>
+        <bullet>[7] - inverse_db</bullet>
+        <bullet>[8] - inverse_transpose</bullet>
+      </description>
+    </entry>
+    <entry name="2. /in_1 [double]">
+      <description> 
+                Sets the first bound of the input range.
+            </description>
+    </entry>
+    <entry name="3. /in_2 [double]">
+      <description> 
+                Sets the second bound of the input range.
+            </description>
+    </entry>
+    <entry name="4. /out_1 [double]">
+      <description> 
+                Sets the first bound of the output range.
+            </description>
+    </entry>
+    <entry name="5. /out_2 [double]">
+      <description> 
+                Sets the second bound of the output range.
+            </description>
+    </entry>
+    <entry name="6. /clip [bool]">
+      <description> 
+                If set on then the output is constrained between the two output values.<br/>Note that scaling will otherwise continue outside of the specified ranges.
+            </description>
+    </entry>
+    <entry name="7. /exponent [double]">
+      <description> 
+                Sets the exponent for the pow and inverse_pow modes.
+            </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Mapping</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.convert~" />
+    <seealso name="fl.constant~" />
+    <seealso name="fl.samplerate~" />
+    <seealso name="fl.lookup~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>scaling,mapping</description>
+    </entry>
+  </misc>
+</c74object>

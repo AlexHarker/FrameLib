@@ -1,0 +1,48 @@
+<c74object category="FrameLib Time_Smoothing" module="FrameLib" name="fl.timemean~">
+  <digest> 
+        Calculates the mean per sample over the most recent frames.
+    </digest>
+  <description> 
+         The output is the same length as the input. Input frames are expected to be of a uniform length. If the input length changes then the internal storage is reset. The object can also be reset by sending a frame to the reset input. The start parameter controls behaviour when insufficient frames are stored. The buffer full output indicates whether the internal buffer is full.
+    </description>
+  <misc name="Parameters">
+    <entry name="1. /max_frames [int]">
+      <description> 
+                Sets the maximum number of frames for calculation.<br/>Note that the internal buffer is reset when this changes.
+            </description>
+    </entry>
+    <entry name="2. /num_frames [int]">
+      <description> 
+                Sets the current number of frames for calculation as an integer.
+            </description>
+    </entry>
+    <entry name="3. /pad [double]">
+      <description> 
+                Sets the padding value.
+            </description>
+    </entry>
+    <entry name="4. /start [enum]">
+      <description> 
+                Sets the behaviour when there are insufficient frames stored (as after a reset):<br/><br/>pad - pad the calculation with default values to account for the missing frames.<br/>shorten - calculate on all frames received since the reset.<br/>Note that frames at the reset input set the frame use for padding.<br/>If the frame is too short or empty it is padded with the pad parameter.<br />
+        <bullet>[0] - pad</bullet>
+        <bullet>[1] - shorten</bullet>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Time_Smoothing</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.timestddev~" />
+    <seealso name="fl.timemedian~" />
+    <seealso name="fl.lag~" />
+    <seealso name="fl.framedelta~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>time smoothing,statistics</description>
+    </entry>
+  </misc>
+</c74object>

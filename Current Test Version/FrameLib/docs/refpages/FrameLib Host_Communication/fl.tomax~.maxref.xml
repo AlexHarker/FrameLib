@@ -1,0 +1,28 @@
+<c74object category="FrameLib Host_Communication" module="FrameLib" name="fl.tomax~">
+  <digest> 
+        Turn frames into host messages or control signals.
+    </digest>
+  <description> 
+         The maximum length of the output message may be limited by the host environment. Vector and tagged frame types are both supported if supported by the host.
+    </description>
+  <misc name="Parameters">
+    <entry>
+      <description> 
+                This object has no parameters.<br/>
+            </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Host_Communication</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.frommax~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>conversion</description>
+    </entry>
+  </misc>
+</c74object>

@@ -1,0 +1,29 @@
+<c74object category="FrameLib Streaming" module="FrameLib" name="fl.streamid~">
+  <digest> 
+        Outputs the stream id for each stream in a multistream connection.
+    </digest>
+  <description> 
+         Any input triggers a single value output - the stream id (counting from one).
+    </description>
+  <misc name="Parameters">
+    <entry>
+      <description> 
+                This object has no parameters.<br/>
+            </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Streaming</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.pack~" />
+    <seealso name="fl.unpack~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>multistreaming,streams</description>
+    </entry>
+  </misc>
+</c74object>

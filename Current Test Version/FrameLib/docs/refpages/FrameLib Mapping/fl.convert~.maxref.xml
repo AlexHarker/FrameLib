@@ -1,0 +1,39 @@
+<c74object category="FrameLib Mapping" module="FrameLib" name="fl.convert~">
+  <digest> 
+        Converts the input vector according to a specified conversion.
+    </digest>
+  <description> 
+         The output length matches the input length.
+    </description>
+  <misc name="Parameters">
+    <entry name="1. /mode [enum]">
+      <description> 
+                Sets the mode of conversion:<br/><br/>db-/>amp - converts from decibels to linear amplitudes.<br/>amp-/>db - converts from linear amplitudes to decibels.<br/>midi-/>freq - converts from midi notes to frequencies.<br/>freq-/>mid - converts from frequencies to midi notes.<br/>semitones-/>ratios - converts semitone transpositions to ratios.<br/>ratios-/>semitones - converts from ratios to semitone transpositions.<br/>degrees-/>radians - converts from degress to radians.<br/>radians-/>degrees - converts from radians to degrees.<br />
+        <bullet>[0] - db-/>amp</bullet>
+        <bullet>[1] - amp-/>db</bullet>
+        <bullet>[2] - midi-/>freq</bullet>
+        <bullet>[3] - freq-/>midi</bullet>
+        <bullet>[4] - semitones-/>ratios</bullet>
+        <bullet>[5] - ratios-/>semitones</bullet>
+        <bullet>[6] - degrees-/>radians</bullet>
+        <bullet>[7] - radians-/>degrees</bullet>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Mapping</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.map~" />
+    <seealso name="fl.constant~" />
+    <seealso name="fl.samplerate~" />
+    <seealso name="fl.lookup~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>scaling,mapping</description>
+    </entry>
+  </misc>
+</c74object>

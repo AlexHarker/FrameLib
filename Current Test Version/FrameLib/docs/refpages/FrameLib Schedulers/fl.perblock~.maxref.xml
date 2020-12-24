@@ -1,0 +1,32 @@
+<c74object category="FrameLib Schedulers" module="FrameLib" name="fl.perblock~">
+  <digest> 
+        Schedules one frame at the start of each host audio block.
+    </digest>
+  <description> 
+         The output is an empty trigger frame.
+    </description>
+  <misc name="Parameters">
+    <entry>
+      <description> 
+                This object has no parameters.<br/>
+            </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Schedulers</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.interval~" />
+    <seealso name="fl.audiotrigger~" />
+    <seealso name="fl.once~" />
+    <seealso name="fl.chain~" />
+    <seealso name="fl.future~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>timing, schedulers,triggers</description>
+    </entry>
+  </misc>
+</c74object>
