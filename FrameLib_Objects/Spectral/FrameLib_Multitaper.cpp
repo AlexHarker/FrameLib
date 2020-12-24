@@ -86,7 +86,7 @@ FrameLib_Multitaper::ParameterInfo::ParameterInfo()
 {
     add("Sets the maximum input length (and associated internal FFT size).");
     add("Sets the number of tapers to use.");
-    add("Sets normalisation on or off (such that the spectral energy of a full-scale sine wave is 1).");
+    add("Sets normalisation on or off (such that the energy of a full-scale sine wave is 1).");
     add("Sets whether to output values in terms of power or amplitude.");
     add("Sets the weighting of the tapers: "
         "uniform - all tapers are weighted equally. "

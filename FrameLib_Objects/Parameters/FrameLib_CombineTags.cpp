@@ -31,8 +31,8 @@ std::string FrameLib_CombineTags::objectInfo(bool verbose)
     return formatInfo("Combines a number of tagged input frames into a single tagged output frame: "
                       "The number of inputs is set using a parameter. "
                       "All inputs trigger output. "
-                      "Tagged Franes arriving asynchronously are sent to the output. "
-                      "Tagged frames arriving synchronously are combined into a signel tagged output frame.",
+                      "Tagged frames arriving asynchronously are sent to the output. "
+                      "Tagged frames arriving synchronously are combined at the output.",
                       "Combines a number of tagged input frames into a single tagged output frame.", verbose);
 }
 

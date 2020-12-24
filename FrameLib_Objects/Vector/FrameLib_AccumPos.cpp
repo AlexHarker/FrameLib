@@ -21,7 +21,7 @@ FrameLib_AccumPos::FrameLib_AccumPos(FrameLib_Context context, const FrameLib_Pa
 
 std::string FrameLib_AccumPos::objectInfo(bool verbose)
 {
-    const char *basic = "Finds the index where the cumulative sum reaches a specified percentage of the total sum";
+    const char *basic = "Finds the index where the cumulative sum reaches a specified percentage of its total";
     
     return formatObjectInfo(basic, verbose);
 }
