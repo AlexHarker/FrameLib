@@ -90,7 +90,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 124.0, 332.0, 90.0, 19.0 ],
+					"patching_rect" : [ 137.0, 332.0, 90.0, 19.0 ],
 					"text" : "Filter each grain"
 				}
 
@@ -1295,8 +1295,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 8.0, 331.0, 96.0, 21.0 ],
-					"text" : "fl.svf~ 500 0.5 bpf"
+					"patching_rect" : [ 8.0, 331.0, 128.0, 21.0 ],
+					"text" : "fl.svf~ 500 0.5 bandpass"
 				}
 
 			}
@@ -1502,7 +1502,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-109", 1 ],
-					"midpoints" : [ 425.5, 327.0, 94.5, 327.0 ],
+					"midpoints" : [ 425.5, 327.0, 126.5, 327.0 ],
 					"order" : 0,
 					"source" : [ "obj-6", 0 ]
 				}
