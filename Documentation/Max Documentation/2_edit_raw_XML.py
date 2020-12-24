@@ -37,7 +37,7 @@ def indent(elem, level=0):
 
 def main():
     """
-    The purpose of this script is to set the categories for the Raw_XML files. 
+    The purpose of this script is to set the categories for the Raw_XML files.
     C++ doesnt know about the categories and its easier for me to iterate file structures in Python.
     It also copies the xml files to the refpages directory after they're processed.
     """
@@ -116,8 +116,7 @@ def main():
         final_file = open(final_path, "w+")
         with open(unescaped_file, "r") as f:
             xml = f.read()
-            xml = xml.replace("&lt;", "<")
-            xml = xml.replace("&gt;", "/>")
+            xml = xml.replace("&lt;br&gt;", "<br/>")
             for line in xml:
                 final_file.write(line)
             final_file.close()

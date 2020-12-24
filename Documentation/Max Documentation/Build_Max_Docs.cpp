@@ -28,14 +28,11 @@ std::string escape_xml(std::string str)
         
         switch (str[pos])
         {
-            case '\"': replacement = "&quot;"; break;
-            case '\'': replacement = "&apos;"; break;
             case '&':  replacement = "&amp;";  break;
             case '<':  replacement = "&lt;";   break;
-            case '>':  replacement = "&gt;";   break;
             default: ;
         }
-        
+
         str.replace(pos, 1, replacement);
         pos += replacement.size();
     }
