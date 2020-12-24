@@ -99,11 +99,11 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-60",
-									"linecount" : 8,
+									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 240.0, 373.0, 150.0, 114.0 ],
+									"patching_rect" : [ 240.0, 373.0, 210.0, 87.0 ],
 									"text" : "Observe how outputs 1 and 4 (representing rand~ 1 and rand~ 5) move at the same rate, because the stream has been processed by the scheduler of the multi-stream scheduler."
 								}
 
@@ -1134,7 +1134,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 826.0, 708.0 ],
+						"rect" : [ 0.0, 26.0, 826.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1170,15 +1170,15 @@
 									"clickthrough" : 0,
 									"enablehscroll" : 0,
 									"enablevscroll" : 0,
-									"id" : "obj-3",
+									"id" : "obj-2",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "fl_stereoVolume-h.maxpat",
+									"name" : "fl-stereo-h.maxpat",
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal", "signal" ],
-									"patching_rect" : [ 15.0, 588.0, 90.0, 49.0 ],
+									"patching_rect" : [ 15.0, 585.0, 85.5, 52.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -1721,8 +1721,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 126.0, 231.5, 76.0, 23.0 ],
-									"text" : "fl.tag~ outhi"
+									"patching_rect" : [ 126.0, 231.5, 80.0, 23.0 ],
+									"text" : "fl.tag~ out_2"
 								}
 
 							}
@@ -2044,6 +2044,20 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-22", 1 ],
+									"source" : [ "obj-2", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-22", 0 ],
+									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-12", 1 ],
 									"source" : [ "obj-23", 0 ]
 								}
@@ -2065,31 +2079,15 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-3", 1 ],
+									"destination" : [ "obj-2", 1 ],
 									"source" : [ "obj-26", 1 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-3", 0 ],
+									"destination" : [ "obj-2", 0 ],
 									"source" : [ "obj-26", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-22", 1 ],
-									"midpoints" : [ 95.5, 648.0, 60.0, 648.0, 60.0, 645.0, 50.5, 645.0 ],
-									"source" : [ "obj-3", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-22", 0 ],
-									"midpoints" : [ 24.5, 651.0, 24.5, 651.0 ],
-									"source" : [ "obj-3", 0 ]
 								}
 
 							}
@@ -2430,7 +2428,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 664.749999105930328, 484.25, 149.0, 74.0 ],
+									"patching_rect" : [ 664.749999105930328, 484.25, 152.0, 74.0 ],
 									"text" : "Streams 1 and 2 are repeated here as they are 'wrapped' around to match the number of streams in the greater input."
 								}
 
@@ -3865,11 +3863,10 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-28",
-									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 614.0, 422.0, 97.0, 47.0 ],
+									"patching_rect" : [ 615.0, 423.0, 193.0, 20.0 ],
 									"text" : "No = notation sums the streams"
 								}
 
@@ -4155,7 +4152,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 529.0, 422.0, 33.0, 33.0 ],
+									"patching_rect" : [ 528.25, 416.5, 33.0, 33.0 ],
 									"rounded" : 60.0,
 									"text" : "6.2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -4453,7 +4450,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 826.0, 708.0 ],
+						"rect" : [ 34.0, 105.0, 826.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4664,7 +4661,7 @@
  ],
 		"lines" : [  ],
 		"parameters" : 		{
-			"obj-5::obj-3::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-5::obj-2::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
 			"parameterbanks" : 			{
 
 			}
@@ -4686,7 +4683,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl_stereoVolume-h.maxpat",
+				"name" : "fl-stereo-h.maxpat",
 				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
