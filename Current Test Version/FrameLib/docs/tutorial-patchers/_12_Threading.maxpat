@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 719.0, 692.0 ],
+						"rect" : [ 34.0, 105.0, 719.0, 692.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -87,6 +87,26 @@
 						"showontab" : 1,
 						"title" : "Configuration",
 						"boxes" : [ 							{
+								"box" : 								{
+									"bgmode" : 0,
+									"border" : 0,
+									"clickthrough" : 0,
+									"enablehscroll" : 0,
+									"enablevscroll" : 0,
+									"id" : "obj-1",
+									"lockeddragscroll" : 0,
+									"maxclass" : "bpatcher",
+									"name" : "fl-mono-h.maxpat",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "signal" ],
+									"patching_rect" : [ 15.0, 483.5, 90.0, 45.0 ],
+									"viewvisibility" : 1
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-30",
 									"maxclass" : "newobj",
@@ -739,11 +759,11 @@
 									"presentation_rect" : [ 220.630142000000006, 27.0, 18.0, 18.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_longname" : "live.text[7]",
+											"parameter_mmax" : 1,
 											"parameter_shortname" : "live.text[2]",
 											"parameter_enum" : [ "Multithreading Off", "val2" ],
-											"parameter_type" : 2,
-											"parameter_longname" : "live.text[7]",
-											"parameter_mmax" : 1
+											"parameter_type" : 2
 										}
 
 									}
@@ -786,26 +806,6 @@
 									"numinlets" : 2,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 570.0, 45.0, 45.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bgmode" : 0,
-									"border" : 0,
-									"clickthrough" : 0,
-									"enablehscroll" : 0,
-									"enablevscroll" : 0,
-									"id" : "obj-23",
-									"lockeddragscroll" : 0,
-									"maxclass" : "bpatcher",
-									"name" : "FL_monoVolume.maxpat",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"offset" : [ 0.0, 0.0 ],
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 465.0, 45.0, 90.0 ],
-									"viewvisibility" : 1
 								}
 
 							}
@@ -923,6 +923,22 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
+									"destination" : [ "obj-24", 1 ],
+									"order" : 0,
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-24", 0 ],
+									"order" : 1,
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-33", 1 ],
 									"source" : [ "obj-19", 0 ]
 								}
@@ -946,22 +962,6 @@
 								"patchline" : 								{
 									"destination" : [ "obj-65", 0 ],
 									"source" : [ "obj-22", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-24", 1 ],
-									"order" : 0,
-									"source" : [ "obj-23", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-24", 0 ],
-									"order" : 1,
-									"source" : [ "obj-23", 0 ]
 								}
 
 							}
@@ -1025,7 +1025,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-23", 0 ],
+									"destination" : [ "obj-1", 0 ],
 									"source" : [ "obj-65", 0 ]
 								}
 
@@ -1163,7 +1163,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 719.0, 692.0 ],
+						"rect" : [ 0.0, 26.0, 719.0, 692.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1376,7 +1376,7 @@
 		"lines" : [  ],
 		"parameters" : 		{
 			"obj-1::obj-4" : [ "live.text[7]", "live.text[2]", 0 ],
-			"obj-1::obj-23::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-1::obj-1::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
 			"parameterbanks" : 			{
 
 			}
@@ -1398,7 +1398,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "FL_monoVolume.maxpat",
+				"name" : "fl-mono-h.maxpat",
 				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
