@@ -35,7 +35,7 @@ std::string FrameLib_Chop::objectInfo(bool verbose)
                       "Outputs are formed by chopping the input into consecutive slices of the same length. "
                       "Any additional input values once all outputs are formed are ignored. "
                       "If there are insufficient input values to complete all outputs later outputs will be shortened. "
-                      "It is possible for the final output(s) to be empty in this case. ",
+                      "It is possible for the final output(s) to be empty in this case.",
                       "Chops input frames into equally sized output frames of a specified size.", verbose);
 }
 
