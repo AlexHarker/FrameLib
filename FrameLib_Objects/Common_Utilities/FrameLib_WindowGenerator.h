@@ -280,7 +280,7 @@ public:
                "flat_top - Heinzel's flat-top window with 95dB rejection. "
                "cosine_sum - a sum of cosines as set by the parameters. "
                "kaiser - an kaiser window adjustable via the beta parameter. "
-               "sine_taper - one of the sine tapers slectable by parameter.";
+               "sine_taper - one of the sine tapers selectable by parameter.";
     }
     
     static const char *getWindowParametersInfo()
