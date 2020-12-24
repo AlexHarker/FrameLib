@@ -75,7 +75,7 @@ void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
     
     // split the object info into a description and a digest
     object_info = escape_xml(frameLibObject->objectInfo(verbose));
-    std::size_t pos = object_info.find(":");
+    std::size_t pos = object_info.find_first_of(":.");
     object_digest = object_info.substr(0, pos);
     object_description = object_info.substr(pos + 1);
     

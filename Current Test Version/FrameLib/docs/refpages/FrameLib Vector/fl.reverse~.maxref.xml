@@ -1,9 +1,9 @@
 <c74object category="FrameLib Vector" module="FrameLib" name="fl.reverse~">
   <digest> 
-        Computes the reverse of the input frame..
+        Computes the reverse of the input frame.
     </digest>
   <description> 
-        Computes the reverse of the input frame.
+        
     </description>
   <misc name="Parameters">
     <entry>
