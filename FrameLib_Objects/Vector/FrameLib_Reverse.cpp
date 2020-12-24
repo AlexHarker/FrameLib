@@ -14,7 +14,7 @@ FrameLib_Reverse::FrameLib_Reverse(FrameLib_Context context, const FrameLib_Para
 
 std::string FrameLib_Reverse::objectInfo(bool verbose)
 {
-    return "Computes the reverse of the input frame";
+    return "Computes the reverse of the input frame.";
 }
 
 std::string FrameLib_Reverse::inputInfo(unsigned long idx, bool verbose)
