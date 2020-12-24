@@ -8,10 +8,12 @@ FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, const FrameLib_
     mParameters.addInt(kMaxLength, "max_length", 16384, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
+    
     mParameters.addEnum(kMode, "mode", 1);
     mParameters.addEnumItem(kReal, "real");
     mParameters.addEnumItem(kComplex, "complex");
     mParameters.setInstantiation();
+    
     mParameters.addEnum(kEdges, "edges", 2);
     mParameters.addEnumItem(Edges::kEdgeLinear, "linear");
     mParameters.addEnumItem(Edges::kEdgeWrap, "circular");
@@ -34,24 +36,28 @@ FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, const FrameLib_
 
 std::string FrameLib_Correlate::objectInfo(bool verbose)
 {
-    return formatInfo("Correlate two inputs (either real or complex): "
+    return formatInfo("Correlates two inputs (either real or complex): "
                       "The output length depends on the edges parameter, which sets the edge behaviour. "
-                      "It will be no longer than M + N - 1 where M and N are the lengths of the two inputs respectively.",
-                      "Correlate two inputs (either real or complex).", verbose);
+                      "Output length is M + N - 1 for linear correlation (M and N are the input lengths). "
+                      "For other edge behaviours the output length is the maximum of M and N. "
+                      "In complex mode pairs of inputs and outputs are used to represent complex values. "
+                      "If one of a pair of inputs is shorter than the other it is zero padded to match. "
+                      "Internal processing is FFT-based.",
+                      "Correlates two inputs (either real or complex).", verbose);
 }
 
 std::string FrameLib_Correlate::inputInfo(unsigned long idx, bool verbose)
 {
     if (mMode == kReal)
-        return formatInfo("Input #", "Input #", idx, verbose);
+        return formatInfo("Input #", idx);
     else
     {
         unsigned long inIdx = idx / 2;
         
         if (idx % 2)
-            return formatInfo("Imaginary Input #", "Imag Input #", inIdx, verbose);
+            return formatInfo("Imaginary Input #", inIdx);
         else
-            return formatInfo("Real Input #", "Real Input #", inIdx, verbose);
+            return formatInfo("Real Input #", inIdx);
     }
 }
 
@@ -61,10 +67,10 @@ std::string FrameLib_Correlate::outputInfo(unsigned long idx, bool verbose)
         return "Output";
     
     if (idx)
-        return formatInfo("Imaginary Output", "Imag Output", idx, verbose);
+        return "Imaginary Output";
     else
         
-        return formatInfo("Real Output", "Real Output", idx, verbose);
+        return "Real Output";
 }
 
 // Parameter Info
@@ -74,13 +80,16 @@ FrameLib_Correlate::ParameterInfo FrameLib_Correlate::sParamInfo;
 FrameLib_Correlate::ParameterInfo::ParameterInfo()
 {
     add("Sets the maximum processing length. "
-        "The processing length is M + N - 1 where M and N are the sizes of the two inputs respectively.");
-    add("Sets the input and output mode.");
-    add("Sets the edge behaviour of the correlation process. "
-        "linear - the output is the full processing length without wrapping or folding. "
-        "circular - output length is the maximum of the input lengths with excess wrapped/added to the beginning. "
-        "wrap - similar to circular mode, but rotated such that wrapping occurs equally at both ends. "
-        "fold - as wrap but folding at the edges. "
+        "The processing length is M + N - 1 where M and N are the lengths of the two inputs.");
+    add("Sets the type of input and output.");
+    add("Sets the edge behaviour of the correlation process: "
+        "The basic operation is a linear one with output of the processing length. "
+        "For modes other than linear the output length is reduced to the maximum of M and N. "
+        "Excess from the linear operation is added back into the available length as specified. "
+        "linear - the output is the full processing length with no further processing. "
+        "circular - excess at the end is added back to the beginning of the output. "
+        "wrap - as circular mode but rotated such that wrapping occurs equally at both ends. "
+        "fold - as wrap but folding not wrapping at the edges (edge values are not repeated). "
         "mirror - as fold but with repeated edge values.");
 }
 

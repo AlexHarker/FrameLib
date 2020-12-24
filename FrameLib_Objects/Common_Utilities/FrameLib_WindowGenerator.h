@@ -192,13 +192,13 @@ public:
             switch (getType())
             {
                 case kTrapezoid:
-                    mValidParams[0] = arraySize ? parameters[0] : 0.25;
-                    mValidParams[1] = arraySize > 1 ? parameters[1] : 1.0 - mValidParams[0];
+                    mValidParams[0] = arraySize ? parameters[0] / 100.0 : 0.25;
+                    mValidParams[1] = arraySize > 1 ? parameters[1] / 100.0 : 1.0 - mValidParams[0];
                     mParamSize = 2;
                     break;
                     
                 case kTukey:
-                    mValidParams[0] = arraySize ? parameters[0] : 0.5;
+                    mValidParams[0] = arraySize ? parameters[0] / 100.0 : 0.5;
                     mParamSize = 1;
                     break;
                     
@@ -223,7 +223,7 @@ public:
                     mParamSize = arraySize > 1 ? arraySize : 2;
                     break;
                 }
-                    
+                
                 case kKaiser:
                     mValidParams[0] = arraySize ? parameters[0] : 6.24;
                     mParamSize = 1;
@@ -261,29 +261,67 @@ public:
     
     static const char *getWindowTypeInfo()
     {
-        return "Sets the window type.";
+        return "Sets the window type: "
+               "rectangle - a window of equal values. "
+               "triangle - a triangular window. "
+               "trapezoid - an adjustable trapezoid window. "
+               "welch - the Welch polynomial window. "
+               "parzen - the Parzen polynomial window. "
+               "tukey - the adjustable Tukey (or cosine-tapered) window. "
+               "sine - the sine (or cosine) window. "
+               "hann - the Hann window. "
+               "hamming - the Hamming window with a0 = 0.54 and a1 = 0.46. "
+               "blackman - the Blackman window with a0 = 0.42, a1 = 0.50, and a2 = 0.08. "
+               "exact_blackman - the exact Blackman window as outlined in the literature. "
+               "The coefficients are a0 = 7938/18608, a1 = 9240/18608 and a2 = 1430/18608. "
+               "blackman_harris - the Blackman-Harris window with 92dB rejection. "
+               "nuttall_continuous - Nuttall's continuous 1st derivative window with 93dB rejection. "
+               "nuttall_minimal - Nuttall's minimal sidelobe window with 98dB rejection. "
+               "flat_top - Heinzel's flat-top window with 95dB rejection. "
+               "cosine_sum - a sum of cosines as set by the parameters. "
+               "kaiser - an kaiser window adjustable via the beta parameter. "
+               "sine_taper - one of the sine tapers slectable by parameter.";
     }
     
     static const char *getWindowParametersInfo()
     {
-        return "An array that sets parameters specific to each window type.";
+        return "An array that sets parameters specific to the window type: "
+               "trapezoid - takes either one or two parameter as percentages. "
+               "If one parameter is provided it sets the first high point which is then mirrored. "
+               "If two parameters are provided they set the two points of the trapezoid. "
+               "The defaults are 25% and 75%. "
+               "tukey - takes a single parameter to set the cosine percentage (defaults to 50%). "
+               "When set to 100% the window is the same as the Hann window. "
+               "Reducing the percentage increases the central plateau. "
+               "cosine_sum - takes up to 5 parameters (a0-a4) as in the following formula. "
+               "w(x) = a0 - a1 * cos(2πx) + a2 * cos(4πx) - a3 * cos(6πx) + a4 * cos(8πx). "
+               "The defaults are set to the values for a Hann window. "
+               "kaiser - takes a single parameter to set beta (defaults to 6.24). "
+               "sine_taper - takes a single integer parameter to select the taper (defaults to 1). "
+               "Other window types do not taken any parameters.";
     }
     
     static const char *getExponentInfo()
     {
-        return "Sets the exponent that the window should be raised to.";
+        return "Sets an exponent that each value in the window should be raised to.";
     }
     
     static const char *getCompensationInfo()
     {
-        return "Sets the gain compensation used. "
-        "off - no compensation is used. linear - compensate the linear gain of the window. "
-        "power - compensate the power gain of the window. reconstruct - compensate by the power gain divided by the linear gain";
+        return "Sets the gain compensation (the window is divided by the compensated gain). "
+        "off - no compensation is used. "
+        "linear - compensate the linear gain of the window. "
+        "power - compensate the power gain of the window. "
+        "reconstruct - compensate the power gain divided by the linear gain. "
+        "This last mode is suited to FFT output windows used with the same input window. "
+        "Note that the gain of the window is calculated after applying any exponent.";
     }
     
     static const char *getEndpointsInfo()
     {
-        return "Sets which endpoints of the window used will be non-zero for windows that start and end at zero.";
+        return "Sets which endpoints of the window will be generated. "
+               "For spectral applications a periodic window (first or last) is preferable. "
+               "For granular or filter usage a symmetric window (both or none) is preferable.";
     }
     
 private:

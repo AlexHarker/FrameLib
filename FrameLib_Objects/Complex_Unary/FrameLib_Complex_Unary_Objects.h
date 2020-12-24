@@ -10,9 +10,9 @@
 
 // Info specialisations
 
-template<> inline const char *FrameLib_Complex_Unary<std::cos<double>>::getOpString()      { return "cosine (for arguments in radians)"; }
-template<> inline const char *FrameLib_Complex_Unary<std::sin<double>>::getOpString()      { return "sine (for arguments in radians)"; }
-template<> inline const char *FrameLib_Complex_Unary<std::tan<double>>::getOpString()      { return "tangent (for arguments in radians)"; }
+template<> inline const char *FrameLib_Complex_Unary<std::cos<double>>::getOpString()      { return "cosine"; }
+template<> inline const char *FrameLib_Complex_Unary<std::sin<double>>::getOpString()      { return "sine"; }
+template<> inline const char *FrameLib_Complex_Unary<std::tan<double>>::getOpString()      { return "tangent"; }
 template<> inline const char *FrameLib_Complex_Unary<std::cosh<double>>::getOpString()     { return "hyperbolic cosine"; }
 template<> inline const char *FrameLib_Complex_Unary<std::sinh<double>>::getOpString()     { return "hyperbolic sine"; }
 template<> inline const char *FrameLib_Complex_Unary<std::tanh<double>>::getOpString()     { return "hyperbolic tangent"; }

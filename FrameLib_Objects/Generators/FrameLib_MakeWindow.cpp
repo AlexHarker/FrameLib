@@ -39,7 +39,7 @@ std::string FrameLib_MakeWindow::objectInfo(bool verbose)
     return formatInfo("Generates a specified window function across each output frame: "
                       "The length of the output is dependent on the mode parameter. "
                       "Output length may be set by parameter or based on that of the trigger input. "
-                      "Gain compensation may be applied to the window according to the compensate parameter. "
+                      "Gain compensation can be applied using the compensate parameter. "
                       "The included endpoints are controllable so as to fit different applications.",
                       "Generates a specified window function across each output frame.", verbose);
 }

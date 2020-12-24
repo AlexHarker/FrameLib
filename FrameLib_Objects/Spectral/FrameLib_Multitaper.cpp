@@ -57,22 +57,25 @@ void FrameLib_Multitaper::getWrapped(double &rOut, double&iOut, double *real, do
 
 std::string FrameLib_Multitaper::objectInfo(bool verbose)
 {
-    return formatInfo("Calculates the multitaper power spectrum of a real input using the cosine tapers: All FFTs performed will use a power of two size. "
-                   "Output frames will be (N / 2) + 1 in length where N is the FFT size. Inputs which are not a power of two are zero-padded to the next power of two.",
-                   "Calculates the multitaper power spectrum of a real input using the cosinre tapers.", verbose);
+    return formatInfo("Calculates a multitaper power (or amplitude) spectrum from a real input: "
+                      "The spectrum is calculated using the sine tapers. "
+                      "All FFTs use a power of two size, with zero-padding applied at the input if necessary. "
+                      "Output frames will be (N / 2) + 1 in length where N is the FFT size used. "
+                      "The number of tapers and their weighting are both controllable.",
+                      "Calculates a multitaper power (or amplitude) spectrum.", verbose);
 }
 
 std::string FrameLib_Multitaper::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return formatInfo("Frequency Domain Real Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Real Values", verbose);
+        return parameterInputInfo(verbose);
     else
-        return formatInfo("Frequency Domain Imaginary Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Imag Values", verbose);
+        return formatInfo("Input - zero-padded if the length is not a power of two.", "Input", verbose);
 }
 
 std::string FrameLib_Multitaper::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Time Domain Output";
+    return "Output";
 }
 
 // Parameter Info
@@ -81,8 +84,14 @@ FrameLib_Multitaper::ParameterInfo FrameLib_Multitaper::sParamInfo;
 
 FrameLib_Multitaper::ParameterInfo::ParameterInfo()
 {
-    add("Sets the maximum input length / FFT size.");
+    add("Sets the maximum input length (and associated internal FFT size).");
     add("Sets the number of tapers to use.");
+    add("Sets normalisation on or off (such that the energy of a full-scale sine wave is 1).");
+    add("Sets whether to output values in terms of power or amplitude.");
+    add("Sets the weighting of the tapers: "
+        "uniform - all tapers are weighted equally. "
+        "linear - tapers are weighted linearly in a decreasing manner. "
+        "parabolic - tapers are weighted with a parabola in a decreasing manner.");
 }
 
 double FrameLib_Multitaper::getWeight(unsigned long k, unsigned long nTapers)

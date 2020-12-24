@@ -23,7 +23,7 @@ FrameLib_Sort::FrameLib_Sort(FrameLib_Context context, const FrameLib_Parameters
 std::string FrameLib_Sort::objectInfo(bool verbose)
 {
     return formatInfo("Sorts an input frame into ascending or descending order. "
-                      "The output can either be the sorted values or the sorted indices, as set by the indices parameter.",
+                      "The sort can either be on values or indices as set by the indices parameter.",
                       "Sorts an input frame into ascending or descending order.", verbose);
 }
 
@@ -47,7 +47,7 @@ FrameLib_Sort::ParameterInfo FrameLib_Sort::sParamInfo;
 FrameLib_Sort::ParameterInfo::ParameterInfo()
 {
     add("Sets the ordering of the sorted output.");
-    add("Performs the sort on the indices of the original frame, rather than the values.");
+    add("Performs the sort on the indices of the input rather than the values.");
 }
 
 // Process
