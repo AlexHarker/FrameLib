@@ -60,8 +60,12 @@ FrameLib_Window::FrameLib_Window(FrameLib_Context context, const FrameLib_Parame
 
 std::string FrameLib_Window::objectInfo(bool verbose)
 {
-    return formatInfo("Multiplies the incoming frame against a specified window: The output length will match the input length.",
-                   "Multiplies the incoming frame against a specified window.", verbose);
+    return formatInfo("Multiplies the input frame by a specified window: "
+                      "The output length will match the input length. "
+                      "The window can either be recalculated to match the incoming length or interpolated. "
+                      "Gain compensation can be applied using the compensate parameter. "
+                      "The included endpoints are controllable so as to fit different applications.",
+                      "Multiplies the input frame by a specified window.", verbose);
 }
 
 std::string FrameLib_Window::inputInfo(unsigned long idx, bool verbose)
@@ -69,12 +73,12 @@ std::string FrameLib_Window::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Input Frame", "Input Frame", idx, verbose);
+        return "Input";
 }
 
 std::string FrameLib_Window::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Windowed Output";
+    return "Output";
 }
 
 // Parameter Info
@@ -84,14 +88,13 @@ FrameLib_Window::ParameterInfo FrameLib_Window::sParamInfo;
 FrameLib_Window::ParameterInfo::ParameterInfo()
 {
     add(Generator::getWindowTypeInfo());
-    add("Sets the size of the internal window. If set to 0 the window will be recalculated to match the input size (good for frequency domain applications. "
-        "Otherwise an internally stored window is linearly interpolated to fit the input size (good for granular applications.");
+    add("Sets the size of the internal window. "
+        "If zero the window is matched to input length (best for frequency domain applications). "
+        "Else the window is resampled by linear interpolation (best for granular applications).");
     add(Generator::getExponentInfo());
     add(Generator::getCompensationInfo());
     add(Generator::getWindowParametersInfo());
     add(Generator::getEndpointsInfo());
-        
-    add("Sets whether the window should be used directly, or the square root of the window.");
 }
 
 // Helpers
