@@ -13,6 +13,35 @@
 #include <fstream>
 #include <libgen.h>
 
+std::string escape_xml(std::string str)
+{
+    std::string::size_type pos = 0;
+    
+    while (pos != std::string::npos)
+    {
+        pos = str.find_first_of("\"&<>'", pos);
+        
+        if (pos == std::string::npos)
+            break;
+        
+        std::string replacement;
+        
+        switch (str[pos])
+        {
+            case '\"': replacement = "&quot;"; break;
+            case '\'': replacement = "&apos;"; break;
+            case '&':  replacement = "&amp;";  break;
+            case '<':  replacement = "&lt;";   break;
+            case '>':  replacement = "&gt;";   break;
+            default: ;
+        }
+        
+        str.replace(pos, 1, replacement);
+        pos += replacement.size();
+    }
+    
+    return str;
+}
 
 void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
 {
@@ -45,7 +74,7 @@ void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
     // Description
     
     // split the object info into a description and a digest
-    object_info = frameLibObject->objectInfo(verbose);
+    object_info = escape_xml(frameLibObject->objectInfo(verbose));
     std::size_t pos = object_info.find(":");
     object_digest = object_info.substr(0, pos);
     object_description = object_info.substr(pos + 1);
@@ -96,7 +125,7 @@ void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
             }
             // Construct the description
             myfile << tab_3 + "<description> \n";
-            myfile << tab_4 + params->getInfo(i); // The description
+            myfile << tab_4 + escape_xml(params->getInfo(i)); // The description
             
             // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
             if (verbose)
