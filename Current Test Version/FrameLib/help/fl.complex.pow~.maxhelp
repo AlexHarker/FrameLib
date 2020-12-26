@@ -655,7 +655,7 @@
                                         256.0,
                                         23.0
                                     ],
-                                    "text": "fl.complexpow~"
+                                    "text": "fl.complex.pow~"
                                 }
                             },
                             {
@@ -665,7 +665,7 @@
                                     "id": "obj-3",
                                     "ignoreclick": 1,
                                     "jsarguments": [
-                                        "fl.complexpow~"
+                                        "fl.complex.pow~"
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,

@@ -655,7 +655,7 @@
                                         256.0,
                                         23.0
                                     ],
-                                    "text": "fl.complexplus~"
+                                    "text": "fl.complex.plus~"
                                 }
                             },
                             {
@@ -679,7 +679,7 @@
                                     "id": "obj-3",
                                     "ignoreclick": 1,
                                     "jsarguments": [
-                                        "fl.complexplus~"
+                                        "fl.complex.plus~"
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,

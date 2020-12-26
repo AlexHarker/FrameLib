@@ -655,7 +655,7 @@
                                         256.0,
                                         23.0
                                     ],
-                                    "text": "fl.complexdivide~"
+                                    "text": "fl.complex.divide~"
                                 }
                             },
                             {
@@ -665,7 +665,7 @@
                                     "id": "obj-3",
                                     "ignoreclick": 1,
                                     "jsarguments": [
-                                        "fl.complexdivide~"
+                                        "fl.complex.divide~"
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
