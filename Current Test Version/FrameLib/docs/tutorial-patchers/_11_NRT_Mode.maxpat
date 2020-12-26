@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"title" : "Tutorial 11: Non-realtime FrameLib",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -51,13 +52,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 716.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 716.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -85,6 +86,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"color" : [ 0.705882352941177, 0.486274509803922, 0.901960784313726, 1.0 ],
@@ -857,7 +859,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -891,7 +893,19 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-3",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 482.0, 284.0, 93.0, 20.0 ],
+									"text" : "Click to process"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-25",
 									"maxclass" : "newobj",
@@ -1014,6 +1028,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-9",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
@@ -1071,7 +1086,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 60.0, 690.0, 147.0 ],
-									"text" : "Working with non-realtime and realtime networks brings us back to the way that contexts work in FrameLib. We looked initially at defining a context within a set of connected objects with the @id attribute. If this attribute isn't provided, the context is simply the default context governed by the hierarchy of the patcher itself. In addition to creating named contets, you can also determine whether or not a group of connected objects within a network are realtime or non-realtime with the @rt attribute. When we do this though, it is essential to remember that we create a new context, even if the name is the same.\n\nIn the example below, two different networks are assigned an @id \"random\" but they are NOT part of the same context because one network is in realtime mode and the other is not"
+									"text" : "Working with non-realtime and realtime networks brings us back to the way that contexts work in FrameLib. We looked initially at defining a context within a set of connected objects with the @id attribute. If this attribute isn't provided, the context is simply the default context governed by the hierarchy of the patcher itself. In addition to creating named contets, you can also determine whether or not a group of connected objects within a network are realtime or non-realtime with the @rt attribute. When we do this though, it is essential to remember that a NRT context is distinct from a real-time one, even if the name is the same.\n\nIn the example below, two different networks are assigned an @id \"random\" but they are NOT part of the same context because one network is in realtime mode and the other is not"
 								}
 
 							}
@@ -1310,7 +1325,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1344,6 +1359,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-35",
@@ -1391,7 +1407,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1424,6 +1440,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-6",
@@ -1680,12 +1697,12 @@
 									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-83",
-									"linecount" : 30,
+									"linecount" : 29,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 456.0, 120.0, 252.0, 490.0 ],
-									"text" : "The first thing to notice is that the @rt attribute is set to 0 or non-realtime at the top most scheduler of each network.\n\nIn non-realtime mode the 'reset' and 'process' messages have a role in either resetting time back to 0 or progressing it forward by some amount of time in samples.\n\nIn the left network the composite message \"reset, process 88200\" resets time and immediately asks for FrameLib to process 88200 samples of time (2 seconds at 44.1khz).\n\nIf you push the left \"reset, process 88200\" message button both networks process audio and push it to their respective output buffers. Why? Because both these networks belong to the same context! In non-realtime mode, context becomes important to how FrameLib networks run and triggering any scheduler belonging to the same context will make every network run.\n\nMove on to the next tab to see the solution to this problem.\n\n"
+									"patching_rect" : [ 456.0, 120.0, 255.0, 474.0 ],
+									"text" : "The first thing to notice is that the @rt attribute is set to 0 or non-realtime at the top most scheduler of each network.\n\nIn non-realtime mode the 'reset' message resets time back to 0 and the 'process' message progresses time forward by the amount of time given in samples.\n\nIn the left network the composite message \"reset, process 88200\" resets time and immediately asks for FrameLib to process 88200 samples of time (2 seconds at 44.1khz).\n\nIf you push the left \"reset, process 88200\" message button both networks process audio and push it to their respective output buffers. Why? Because both these networks belong to the same context! In non-realtime mode, context becomes important to how FrameLib networks run and triggering any scheduler belonging to the same context will make every network run.\n\nMove on to the next tab to see the solution to this problem.\n\n"
 								}
 
 							}
@@ -1761,7 +1778,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 60.0, 690.0, 38.0 ],
-									"text" : "This patch demonstrates the two different methods for generating audio in a non-realtime context. The basic structure of a network which you would create for realtime purposes is easily switched into a non-realtime configuration."
+									"text" : "This patch demonstrates two different methods for generating audio in a non-realtime context. The basic structure of a network which you would create for realtime purposes is easily switched into a non-realtime configuration."
 								}
 
 							}
@@ -2150,13 +2167,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 716.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 716.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2184,6 +2201,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Non-realtime basics",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -2227,7 +2245,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 120.0, 525.0, 84.0 ],
-									"text" : "FrameLib networks can work in the default real-time mode, as well as a non real-time mode (NRT). In the NRT mode FrameLib operates on input and output buffers instead of fl.source~ and fl.sink~.  With a FrameLib context set to NRT mode you are required to manually move time forward with messages which gives you the ability to progress time forward instantly and as fast as possible."
+									"text" : "FrameLib networks can work in the default real-time mode, as well as a non real-time (NRT) mode. In NRT mode FrameLib operates on input and output buffers instead of using audio input and output streams.  With a FrameLib context set to NRT mode you are required to manually move time forward using messages which gives you the ability to progress time for offline processing which completes as fast as possible."
 								}
 
 							}
@@ -2369,14 +2387,14 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
