@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"title" : "Tutorial 5: Generator Objects",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -100,7 +101,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -134,6 +135,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "fl.uniform~",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -237,7 +239,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 177.0, 499.0, 161.0, 50.0 ],
-									"text" : "0.50 0.50 0.50 0.50 0.50 0.50 0.50 0.50 0.50 0.50 0.50 0.50 0.50 0.50"
+									"text" : "0.62 0.62 0.62 0.62 0.62 0.62 0.62 0.62 0.62 0.62 0.62 0.62 0.62 0.62"
 								}
 
 							}
@@ -631,8 +633,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -691,7 +693,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -725,18 +727,19 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "fl.ramp~",
 						"boxes" : [ 							{
 								"box" : 								{
 									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-8",
-									"linecount" : 6,
+									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 530.25, 100.0 ],
-									"text" : "The fl.ramp~ object generates lists of numbers that increment in some fashion. This is useful for producing frames that could later be applied as lookup frames for buffers, or for creating a list of ordered numbers to create patterns. For fl.ramp~ there is the /scale parameter which helps you to convert the output frame of incremental counting numbers into other units. This can be useful for when reading back positions in a buffer or another frame in units which are more musically meaningful such as milliseconds or seconds."
+									"patching_rect" : [ 15.0, 53.0, 530.25, 116.0 ],
+									"text" : "The fl.ramp~ object generates lists of numbers that increment in some fashion. This is useful for producing frames that could later be applied as lookup frames for buffers, or for creating a list of ordered numbers to create patterns. In fl.ramp~ there is the /scale parameter which helps you to convert the output frame of incremental counting numbers into other ranges or units. This can be useful for when reading back positions in a buffer or another frame in units which are more musically meaningful such as milliseconds or seconds."
 								}
 
 							}
@@ -813,7 +816,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 596.5, 236.0, 230.0, 123.0 ],
+									"patching_rect" : [ 596.5, 236.0, 233.0, 123.0 ],
 									"text" : "fl.ramp~ has a scale parameter. By default it outputs samples counting up to the length parameter minus one. In this example, \"/scale normalised\" causes fl.ramp~ to normalise its output between 0 and 1. Change between the modes to get a feeling for what's going on here."
 								}
 
@@ -1136,8 +1139,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1178,7 +1181,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1212,6 +1215,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "fl.random~",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -1595,8 +1599,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1637,7 +1641,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1671,6 +1675,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Generators",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -1693,8 +1698,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 295.0, 646.0, 225.0 ],
-									"text" : "All generator objects share three parameters that are responsible for their general operation. We've already seen the /length and /mode parameters in previous tutorials, that control how incoming frames might modify the output length of the frame, or how we might directly set the frame output length. The last shared parameter is \"units\". Frames by nature contain samples and any values in the frame are interpreted as sample values. If, for example you wanted to generate a frame in terms of milliseconds, the units parameter can internally convert these values into samples rather than you having to include an mstosamps~ type object somewhere in your network. A typical implementation of this is in granular synthesis, where you might generate a grain in terms of milliseconds but convert these values and read from the buffer in sample positions.\n\nOverall, learning the generators will allow you to integrate the other key concepts of FrameLib that we have covered previously and to start building networks that can create and process sound.\n\nIn the next tutorial we are going to start building our first FrameLib project - a granular synthesiser! First, have a look through the tabs of this tutorial to get a feeling for how generators work."
+									"patching_rect" : [ 180.0, 295.0, 649.0, 225.0 ],
+									"text" : "All generator objects share three parameters that are responsible for their general operation. We've already seen the /length and /mode parameters in previous tutorials, that control how incoming frames might modify the output length of the frame, or how we might directly set the frame output length. The last shared parameter is \"units\". Frames by their nature contain a exact number of samples, which by default is what you specify with the /length parameter. If, however, you want to generate a frame in terms of a length in milliseconds, the units parameter is used internally convert this values into samples rather than you having to do the conversion manually. A typical implementation of this is in granular synthesis, where you might generate a grain in terms of milliseconds but convert these values and read from the buffer in sample positions.\n\nOverall, learning the generators will allow you to integrate the other key concepts of FrameLib that we have covered previously and to start building networks that can create and process sound.\n\nIn the next tutorial we are going to start building our first FrameLib project - a granular synthesiser! First, have a look through the tabs of this tutorial to get a feeling for how generators work."
 								}
 
 							}
@@ -1753,7 +1758,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 116.0, 645.0, 131.0 ],
-									"text" : "Generators are a fundamental part of FrameLib as they facilitate the generation of new frames according to some key algorithms (linear ramps, uniform/gaussian distributed random numbers, uniform frames).\n\nTo start, lets understand three primary generators in FrameLib:\n\n1. fl.random~ - generates uniformly distributed random numbers between 0. and 1.\n2. fl.ramp~ - generates frames of linear counting values (e.g 0, 1, 2, 3, 4, 5, 6)\n3. fl.uniform~ - generates frames of a single uniform value (e.g 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)"
+									"text" : "Generators are a fundamental part of FrameLib as they facilitate the generation of new frames according to some key types of frames (linear ramps, uniform/gaussian distributed random numbers, uniform frames).\n\nTo start, lets understand three primary generators in FrameLib:\n\n1. fl.random~ - generates uniformly distributed random numbers between 0. and 1.\n2. fl.ramp~ - generates frames of linear counting values (e.g 0, 1, 2, 3, 4, 5, 6)\n3. fl.uniform~ - generates frames of a single uniform value (e.g 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)"
 								}
 
 							}
@@ -1844,8 +1849,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1918,14 +1923,14 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
