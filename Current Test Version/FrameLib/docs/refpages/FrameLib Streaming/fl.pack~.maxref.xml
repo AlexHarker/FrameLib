@@ -1,0 +1,29 @@
+<c74object category="FrameLib Streaming" module="FrameLib" name="fl.pack~">
+  <digest> 
+        Packs multiple frame streams into a multistream output.
+    </digest>
+  <description> 
+         Inputs may be single stream or multistream. All inputs are concatenated in order, with blank inputs ignored.
+    </description>
+  <misc name="Parameters">
+    <entry name="1. /num_ins [instantiation int]">
+      <description> 
+                Sets the number of inputs.
+            </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Streaming</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.unpack~" />
+    <seealso name="fl.streamid~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>multistreaming,streams</description>
+    </entry>
+  </misc>
+</c74object>

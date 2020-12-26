@@ -1,0 +1,32 @@
+<c74object category="FrameLib Ternary" module="FrameLib" name="fl.fold~">
+  <digest> 
+        Folds the incoming frame into the range delimited by the two parameters.
+    </digest>
+  <description> 
+         Calculation is performed on triplets of values in turn. The output is a frame at least as long as the leftmost frame. If inputs mismatch in length the result depends on the mismatch parameter.
+    </description>
+  <misc name="Parameters">
+    <entry name="1. /mismatch [instantiation enum]">
+      <description> 
+                Sets the mode used when dealing with mismatched input lengths:<br/><br/>wrap - smaller right inputs are read modulo against larger left input.<br/>shrink - the output length is set to the length of the smaller input.<br/>extend - smaller right inputs are extended by repeating their final value.<br />
+        <bullet>[0] - wrap</bullet>
+        <bullet>[1] - shrink</bullet>
+        <bullet>[2] - extend</bullet>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Ternary</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.wrap~" />
+    <seealso name="fl.clip~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>ternary ops,operators</description>
+    </entry>
+  </misc>
+</c74object>

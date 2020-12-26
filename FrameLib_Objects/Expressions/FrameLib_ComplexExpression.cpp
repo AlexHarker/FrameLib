@@ -377,27 +377,32 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
 
 std::string FrameLib_ComplexExpression::objectInfo(bool verbose)
 {
-    return formatInfo("Applies a mathematical expression to complex pairs of inputs: ",
-                      "Applies a mathematical expression to complex pairs of inputs", verbose);
+    return formatInfo("Calculates the result of a mathematical expression involving complex numbers: "
+                      "Inputs and output are split into pairs of real and imaginary values. "
+                      "If input pairs are mismatched then the shorter input is padded with zeros. "
+                      "The expression can use input values, operators, functions and constants. "
+                      "The output is a frame at least as long as the shortest input pair. "
+                      "If input pairs mismatch in length the result depends on the mismatch parameter. "
+                      "Pre-computable elements are detected and reduced to constants. "
+                      "Thus it is efficient to synthesize constants or represent values precisely.",
+                      "Calculates the result of a mathematical expression involving complex numbers", verbose);
 }
 
 std::string FrameLib_ComplexExpression::inputInfo(unsigned long idx, bool verbose)
 {
     if ((idx % 2) == 0)
-        return formatInfo("Real Input Frame #", "Real Input Frame #", idx / 2, verbose);
+        return formatInfo("Real Input #", idx / 2);
     else
-        return formatInfo("Imag Input Frame #", "Imag Input Frame #", idx / 2, verbose);
+        return formatInfo("Imaginary Input #", idx / 2);
 }
 
 std::string FrameLib_ComplexExpression::outputInfo(unsigned long idx, bool verbose)
 {
-    switch (idx)
-    {
-        case 0: return "Real Output Frame";
-        case 1: return "Imag Output Frame";
-    }
-    
-    return "Unknown Output";
+    if (idx)
+        return "Imaginary Output";
+    else
+        
+        return "Real Output";
 }
 
 // Parameter Info
@@ -406,8 +411,23 @@ FrameLib_ComplexExpression::ParameterInfo FrameLib_ComplexExpression::sParamInfo
 
 FrameLib_ComplexExpression::ParameterInfo::ParameterInfo()
 {
-    add("Sets the mathematical expression.");
-    add("Sets the number of inputs.");
+    add("Sets the mathematical expression. "
+        "Input pairs are indicated in1 to inx (where x is the number of input pairs created). "
+        "Complex numbers can be expressed directly in the form (a + bi). "
+        "A range of other constants, operators and functions are available. "
+        "Constants { i e pi epsilon inf }. "
+        "Unary Operators { - }. "
+        "Binary Operators { / * % + }. "
+        "Trigonometric Functions { sin cos tan asin acos atan }. "
+        "Hyperbolic Functions { sinh cosh tanh asinh acosh atanh }. "
+        "Unary Functions { log log10 exp conj sqrt }. "
+        "Binary Functions { pow }.");
+    add("Sets the mode used when dealing with mismatched input lengths: "
+        "wrap - smaller input pairs are read modulo against the longest input pair. "
+        "shrink - the output length is set to that of the shortest input pair. "
+        "extend - if required input pairs are extended by repeating their final value.");
+    add("Sets which input pairs trigger output using an array of bools. "
+        "By default all inputs trigger output.");
 }
 
 // Reset

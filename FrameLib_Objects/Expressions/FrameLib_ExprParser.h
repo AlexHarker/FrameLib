@@ -660,7 +660,7 @@ namespace FrameLib_ExprParser
             
             if (nodes.empty())
             {
-                reportError("parsing failed - empty sub expression", CharSpan(pos));
+                reportError("parsing failed - empty subexpression", CharSpan(pos));
                 return kParseError_EmptySubExpr;
             }
             
@@ -754,7 +754,7 @@ namespace FrameLib_ExprParser
                 if (n2 == nodes.begin() || n2 == std::prev(nodes.end()))
                 {
                     CharSpan span(n2 == nodes.begin() ? n1->getCharPos() : n2->getCharEnd());
-                    reportError("parsing failed - empty sub expression", span);
+                    reportError("parsing failed - empty subexpression", span);
                     return kParseError_EmptySubExpr;
                 }
        

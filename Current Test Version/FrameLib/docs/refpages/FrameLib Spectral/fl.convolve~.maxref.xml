@@ -1,0 +1,49 @@
+<c74object category="FrameLib Spectral" module="FrameLib" name="fl.convolve~">
+  <digest> 
+        Convolves two inputs (either real or complex).
+    </digest>
+  <description> 
+         The output length depends on the edges parameter, which sets the edge behaviour. Output length is M + N - 1 for linear convolution (M and N are the input lengths). For other edge behaviours the output length is the maximum of M and N. In complex mode pairs of inputs and outputs are used to represent complex values. If one of a pair of inputs is shorter than the other it is zero padded to match. Internal processing is FFT-based.
+    </description>
+  <misc name="Parameters">
+    <entry name="1. /max_length [instantiation int]">
+      <description> 
+                Sets the maximum processing length.<br/>The processing length is M + N - 1 where M and N are the lengths of the two inputs.
+            </description>
+    </entry>
+    <entry name="2. /mode [instantiation enum]">
+      <description> 
+                Sets the type of input and output.<br />
+        <bullet>[0] - real</bullet>
+        <bullet>[1] - complex</bullet>
+      </description>
+    </entry>
+    <entry name="3. /edges [instantiation enum]">
+      <description> 
+                Sets the edge behaviour of the convolution process:<br/><br/>The basic operation is a linear one with output of the processing length.<br/>For modes other than linear the output length is reduced to the maximum of M and N.<br/>Excess from the linear operation is added back into the available length as specified.<br/>linear - the output is the full processing length with no further processing.<br/>circular - excess at the end is added back to the beginning of the output.<br/>wrap - as circular mode but rotated such that wrapping occurs equally at both ends.<br/>fold - as wrap but folding not wrapping at the edges (edge values are not repeated).<br/>mirror - as fold but with repeated edge values.<br />
+        <bullet>[0] - linear</bullet>
+        <bullet>[1] - circular</bullet>
+        <bullet>[2] - wrap</bullet>
+        <bullet>[3] - fold</bullet>
+        <bullet>[4] - mirror</bullet>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Spectral</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.fft~" />
+    <seealso name="fl.multitaper~" />
+    <seealso name="fl.ifft~" />
+    <seealso name="fl.correlate~" />
+    <seealso name="fl.window~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>FFT, windowing, frequency domain</description>
+    </entry>
+  </misc>
+</c74object>

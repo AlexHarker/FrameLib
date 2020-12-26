@@ -1,0 +1,46 @@
+<c74object category="FrameLib Mapping" module="FrameLib" name="fl.samplerate~">
+  <digest> 
+        Convert or output values based on the sample rate.
+    </digest>
+  <description> 
+         For output modes the output is a single value. For conversion modes the size matches the input size. The sample rate or the nyquist frequency can be requested. Alternatively, a number of sample rate related conversions are offered.
+    </description>
+  <misc name="Parameters">
+    <entry name="1. /mode [enum]">
+      <description> 
+                Sets the type of conversion or value to output:<br/><br/>rate - output the sample rate in Hz.<br/>nyquist - output the nyquist frequency in Hz.<br/>samples-ms - convert from samples to milliseconds.<br/>samples-seconds - convert from samples to seconds.<br/>ms-samples - convert from milliseconds to samples.<br/>seconds-samples - convert from seconds to samples.<br/>normalised-freq - convert from normalised frequency to frequency in Hz.<br/>freq-normalised  - convert from frequency in Hz to normalised frequency.<br />
+        <bullet>[0] - rate</bullet>
+        <bullet>[1] - nyquist</bullet>
+        <bullet>[2] - samples-&gt;ms</bullet>
+        <bullet>[3] - samples-&gt;seconds</bullet>
+        <bullet>[4] - ms-&gt;samples</bullet>
+        <bullet>[5] - seconds-&gt;samples</bullet>
+        <bullet>[6] - normalised-&gt;hz</bullet>
+        <bullet>[7] - hz-&gt;normalised</bullet>
+      </description>
+    </entry>
+    <entry name="2. /normalisation [enum]">
+      <description> 
+                Sets the reference point for normalised frequency:<br/><br/>rate - [0 - 1] is equivalent to [0 - sample rate].<br/>nyquist - [0 - 1] is equivalent to [0 - nyquist].<br />
+        <bullet>[0] - full</bullet>
+        <bullet>[1] - nyquist</bullet>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Mapping</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.convert~" />
+    <seealso name="fl.map~" />
+    <seealso name="fl.constant~" />
+    <seealso name="fl.lookup~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>scaling,mapping</description>
+    </entry>
+  </misc>
+</c74object>
