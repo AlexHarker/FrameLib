@@ -462,7 +462,7 @@
                                 "box": {
                                     "id": "obj-4",
                                     "maxclass": "newobj",
-                                    "numinlets": 3,
+                                    "numinlets": 4,
                                     "numoutlets": 1,
                                     "outlettype": [
                                         ""

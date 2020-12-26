@@ -364,7 +364,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        102.0,
+                                        106.0,
                                         390.0,
                                         75.0,
                                         23.0
@@ -381,7 +381,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        102.0,
+                                        106.0,
                                         330.0,
                                         62.0,
                                         23.0
@@ -422,7 +422,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        102.0,
+                                        106.0,
                                         150.0,
                                         50.0,
                                         23.0
@@ -459,7 +459,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        180.0,
+                                        184.0,
                                         150.0,
                                         75.0,
                                         23.0
@@ -477,7 +477,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        102.0,
+                                        106.0,
                                         225.0,
                                         77.0,
                                         23.0
@@ -534,10 +534,10 @@
                                     "patching_rect": [
                                         15.0,
                                         277.0,
-                                        106.0,
+                                        110.0,
                                         23.0
                                     ],
-                                    "text": "fl.complexlog10~"
+                                    "text": "fl.complex.log10~"
                                 }
                             },
                             {
@@ -547,7 +547,7 @@
                                     "id": "obj-3",
                                     "ignoreclick": 1,
                                     "jsarguments": [
-                                        "fl.complexlog10~"
+                                        "fl.complex.log10~"
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -609,7 +609,7 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        189.5,
+                                        193.5,
                                         210.0,
                                         24.5,
                                         210.0
@@ -628,9 +628,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        189.5,
+                                        193.5,
                                         210.0,
-                                        111.5,
+                                        115.5,
                                         210.0
                                     ],
                                     "order": 0,
@@ -744,14 +744,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

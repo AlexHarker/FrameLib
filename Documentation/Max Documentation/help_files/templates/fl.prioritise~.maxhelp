@@ -227,8 +227,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            105.0,
                             652.0,
                             761.0
                         ],
@@ -646,7 +646,7 @@
                                         154.0,
                                         23.0
                                     ],
-                                    "text": "fl.prioritise~ /mode low"
+                                    "text": "fl.prioritise~ /order low"
                                 }
                             },
                             {
@@ -958,8 +958,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            105.0,
+                            0.0,
+                            26.0,
                             652.0,
                             761.0
                         ],

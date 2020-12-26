@@ -598,9 +598,10 @@
                                 "box": {
                                     "id": "obj-13",
                                     "maxclass": "newobj",
-                                    "numinlets": 2,
-                                    "numoutlets": 1,
+                                    "numinlets": 3,
+                                    "numoutlets": 2,
                                     "outlettype": [
+                                        "",
                                         ""
                                     ],
                                     "patching_rect": [
@@ -674,6 +675,12 @@
                                     "destination": [
                                         "obj-13",
                                         1
+                                    ],
+                                    "midpoints": [
+                                        142.5,
+                                        571.0,
+                                        83.5,
+                                        571.0
                                     ],
                                     "source": [
                                         "obj-1",

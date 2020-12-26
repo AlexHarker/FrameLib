@@ -367,15 +367,14 @@
                             {
                                 "box": {
                                     "id": "obj-26",
-                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        253.0,
-                                        518.5,
-                                        207.0,
-                                        36.0
+                                        111.0,
+                                        525.0,
+                                        269.0,
+                                        21.0
                                     ],
                                     "text": "Now take the inverse fourier transform and..."
                                 }
@@ -389,7 +388,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        214.0,
+                                        72.0,
                                         528.875,
                                         37.0,
                                         15.25
@@ -537,10 +536,10 @@
                                     "patching_rect": [
                                         30.0,
                                         525.0,
-                                        183.0,
+                                        40.0,
                                         23.0
                                     ],
-                                    "text": "fl.ifft~ /compensate powoverlin"
+                                    "text": "fl.ifft~"
                                 }
                             },
                             {
@@ -647,10 +646,10 @@
                                     "patching_rect": [
                                         30.0,
                                         315.0,
-                                        150.0,
+                                        37.0,
                                         23.0
                                     ],
-                                    "text": "fl.fft~ /compensate linear"
+                                    "text": "fl.fft~"
                                 }
                             },
                             {
@@ -762,7 +761,7 @@
                                     "midpoints": [
                                         111.0,
                                         506.0,
-                                        203.5,
+                                        60.5,
                                         506.0
                                     ],
                                     "source": [
@@ -828,7 +827,7 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        170.5,
+                                        57.5,
                                         369.0,
                                         111.0,
                                         369.0
@@ -917,14 +916,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
+                                    "fontsize": [
+                                        12.059008
+                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
-                                    ],
-                                    "fontsize": [
-                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

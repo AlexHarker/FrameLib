@@ -1454,12 +1454,12 @@
                                                     ],
                                                     "saved_attribute_attributes": {
                                                         "valueof": {
-                                                            "parameter_mmin": 0.0001,
-                                                            "parameter_longname": "live.dial[2]",
                                                             "parameter_mmax": 5.0,
                                                             "parameter_shortname": "Q",
                                                             "parameter_type": 0,
-                                                            "parameter_unitstyle": 1
+                                                            "parameter_unitstyle": 1,
+                                                            "parameter_mmin": 0.0001,
+                                                            "parameter_longname": "live.dial[2]"
                                                         }
                                                     },
                                                     "varname": "live.dial[2]"
@@ -1491,11 +1491,11 @@
                                                     ],
                                                     "saved_attribute_attributes": {
                                                         "valueof": {
-                                                            "parameter_longname": "live.dial[1]",
                                                             "parameter_mmax": 1.0,
                                                             "parameter_shortname": "Gain",
                                                             "parameter_type": 0,
-                                                            "parameter_unitstyle": 1
+                                                            "parameter_unitstyle": 1,
+                                                            "parameter_longname": "live.dial[1]"
                                                         }
                                                     },
                                                     "varname": "live.dial[1]"
@@ -1527,12 +1527,12 @@
                                                     ],
                                                     "saved_attribute_attributes": {
                                                         "valueof": {
-                                                            "parameter_mmin": 20.0,
-                                                            "parameter_longname": "live.dial",
                                                             "parameter_mmax": 20000.0,
                                                             "parameter_shortname": "Freq",
                                                             "parameter_type": 0,
-                                                            "parameter_unitstyle": 1
+                                                            "parameter_unitstyle": 1,
+                                                            "parameter_mmin": 20.0,
+                                                            "parameter_longname": "live.dial"
                                                         }
                                                     },
                                                     "varname": "live.dial"
@@ -1567,7 +1567,6 @@
                                                     ],
                                                     "saved_attribute_attributes": {
                                                         "valueof": {
-                                                            "parameter_longname": "live.tab",
                                                             "parameter_mmax": 7,
                                                             "parameter_shortname": "live.tab",
                                                             "parameter_enum": [
@@ -1581,7 +1580,8 @@
                                                                 "highshelf"
                                                             ],
                                                             "parameter_type": 2,
-                                                            "parameter_unitstyle": 0
+                                                            "parameter_unitstyle": 0,
+                                                            "parameter_longname": "live.tab"
                                                         }
                                                     },
                                                     "varname": "live.tab"
@@ -2291,14 +2291,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
+                                    "fontsize": [
+                                        12.059008
+                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
-                                    ],
-                                    "fontsize": [
-                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

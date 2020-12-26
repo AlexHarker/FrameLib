@@ -227,8 +227,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            105.0,
                             652.0,
                             761.0
                         ],
@@ -462,17 +462,18 @@
                                     "id": "obj-1",
                                     "maxclass": "newobj",
                                     "numinlets": 2,
-                                    "numoutlets": 1,
+                                    "numoutlets": 2,
                                     "outlettype": [
+                                        "",
                                         ""
                                     ],
                                     "patching_rect": [
                                         57.0,
                                         330.0,
-                                        205.0,
+                                        197.0,
                                         23.0
                                     ],
-                                    "text": "fl.chain~ /units ms /mode absolute"
+                                    "text": "fl.chain~ /units ms /time absolute"
                                 }
                             },
                             {
@@ -702,7 +703,6 @@
                         74.0,
                         22.0
                     ],
-                    "presentation_linecount": 3,
                     "saved_object_attributes": {
                         "description": "",
                         "digest": "",
@@ -800,8 +800,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            105.0,
+                            0.0,
+                            26.0,
                             652.0,
                             761.0
                         ],
@@ -849,7 +849,6 @@
                                         284.0,
                                         36.0
                                     ],
-                                    "presentation_linecount": 4,
                                     "text": "timing between the first trigger frame (made by you) and successive fl.chain~ frames"
                                 }
                             },
@@ -863,7 +862,7 @@
                                     "patching_rect": [
                                         142.0,
                                         600.5,
-                                        96.0,
+                                        100.0,
                                         36.0
                                     ],
                                     "text": "timing between frames"
@@ -937,7 +936,6 @@
                                         180.0,
                                         36.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "Change between the absolute and relative moods"
                                 }
                             },
@@ -1072,6 +1070,7 @@
                                     ],
                                     "saved_attribute_attributes": {
                                         "valueof": {
+                                            "parameter_mmax": 1,
                                             "parameter_shortname": "live.tab",
                                             "parameter_enum": [
                                                 "absolute",
@@ -1079,8 +1078,7 @@
                                             ],
                                             "parameter_type": 2,
                                             "parameter_unitstyle": 0,
-                                            "parameter_longname": "live.tab",
-                                            "parameter_mmax": 1
+                                            "parameter_longname": "live.tab"
                                         }
                                     },
                                     "varname": "live.tab"
@@ -1127,8 +1125,9 @@
                                     "id": "obj-47",
                                     "maxclass": "newobj",
                                     "numinlets": 2,
-                                    "numoutlets": 1,
+                                    "numoutlets": 2,
                                     "outlettype": [
+                                        "",
                                         ""
                                     ],
                                     "patching_rect": [

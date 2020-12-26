@@ -537,7 +537,7 @@
                                         98.0,
                                         23.0
                                     ],
-                                    "text": "fl.complexcos~"
+                                    "text": "fl.complex.cos~"
                                 }
                             },
                             {
@@ -561,7 +561,7 @@
                                     "id": "obj-3",
                                     "ignoreclick": 1,
                                     "jsarguments": [
-                                        "fl.complexcos~"
+                                        "fl.complex.cos~"
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,

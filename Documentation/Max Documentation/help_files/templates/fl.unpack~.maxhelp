@@ -346,7 +346,6 @@
                                         255.5,
                                         36.0
                                     ],
-                                    "presentation_linecount": 3,
                                     "text": "Pack 3 different length frames at different intervals into a multistream frame"
                                 }
                             },

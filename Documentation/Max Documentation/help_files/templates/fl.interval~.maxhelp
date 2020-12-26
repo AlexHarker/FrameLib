@@ -538,12 +538,12 @@
                                                     ],
                                                     "saved_attribute_attributes": {
                                                         "valueof": {
-                                                            "parameter_mmin": 1.0,
-                                                            "parameter_longname": "live.numbox",
                                                             "parameter_mmax": 99999.0,
                                                             "parameter_shortname": "live.numbox",
                                                             "parameter_type": 0,
-                                                            "parameter_unitstyle": 0
+                                                            "parameter_unitstyle": 0,
+                                                            "parameter_mmin": 1.0,
+                                                            "parameter_longname": "live.numbox"
                                                         }
                                                     },
                                                     "varname": "live.numbox"
@@ -654,14 +654,14 @@
                                                     ],
                                                     "saved_attribute_attributes": {
                                                         "valueof": {
-                                                            "parameter_longname": "live.text[1]",
                                                             "parameter_mmax": 1,
                                                             "parameter_shortname": "live.text",
                                                             "parameter_enum": [
                                                                 "val1",
                                                                 "val2"
                                                             ],
-                                                            "parameter_type": 2
+                                                            "parameter_type": 2,
+                                                            "parameter_longname": "live.text[1]"
                                                         }
                                                     },
                                                     "text": "scheduler (off)",
@@ -735,7 +735,6 @@
                                                     ],
                                                     "saved_attribute_attributes": {
                                                         "valueof": {
-                                                            "parameter_longname": "live.tab",
                                                             "parameter_mmax": 3,
                                                             "parameter_shortname": "live.tab",
                                                             "parameter_enum": [
@@ -745,7 +744,8 @@
                                                                 "hertz"
                                                             ],
                                                             "parameter_type": 2,
-                                                            "parameter_unitstyle": 0
+                                                            "parameter_unitstyle": 0,
+                                                            "parameter_longname": "live.tab"
                                                         }
                                                     },
                                                     "varname": "live.tab"

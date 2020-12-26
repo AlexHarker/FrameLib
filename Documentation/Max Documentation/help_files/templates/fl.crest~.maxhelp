@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -290,8 +290,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -411,7 +411,7 @@
                                 "box": {
                                     "id": "obj-56",
                                     "maxclass": "newobj",
-                                    "numinlets": 1,
+                                    "numinlets": 2,
                                     "numoutlets": 3,
                                     "outlettype": [
                                         "",
@@ -493,7 +493,7 @@
                                     "patching_rect": [
                                         15.0,
                                         105.0,
-                                        435.0,
+                                        438.0,
                                         123.0
                                     ],
                                     "text": "Crest factor is defined as the ratio of the peak value to the RMS value of a frame, or more simply, the peak value divided by the RMS.\n\nIn this example, we generate a frame containing a single cycle of sinusoidal waveform. This frame should have an RMS value of 0.707 and its peak should always be 1.0 as it is sinusoidal. Therefore, we can show how crest works by calculating RMS (fl.rms~) and finding the peak value of the frame (fl.peaks~) and verifying with the proper math."

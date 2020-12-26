@@ -655,7 +655,7 @@
                                         256.0,
                                         23.0
                                     ],
-                                    "text": "fl.complexminus~"
+                                    "text": "fl.complex.minus~"
                                 }
                             },
                             {
@@ -679,7 +679,7 @@
                                     "id": "obj-3",
                                     "ignoreclick": 1,
                                     "jsarguments": [
-                                        "fl.complexminus~"
+                                        "fl.complex.minus~"
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,

@@ -343,7 +343,7 @@
                                     "id": "obj-4",
                                     "lockeddragscroll": 0,
                                     "maxclass": "bpatcher",
-                                    "name": "FL_monoVolume.maxpat",
+                                    "name": "fl-mono-h.maxpat",
                                     "numinlets": 1,
                                     "numoutlets": 1,
                                     "offset": [

@@ -227,8 +227,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            109.0,
+                            0.0,
+                            26.0,
                             653.0,
                             757.0
                         ],
@@ -348,10 +348,10 @@
                                     "patching_rect": [
                                         15.0,
                                         225.0,
-                                        219.0,
+                                        223.0,
                                         23.0
                                     ],
-                                    "text": "fl.complexexpr~ sinh(in1) * cosh(in1)"
+                                    "text": "fl.complex.expr~ sinh(in1) * cosh(in1)"
                                 }
                             },
                             {
@@ -376,7 +376,7 @@
                                     "id": "obj-3",
                                     "ignoreclick": 1,
                                     "jsarguments": [
-                                        "fl.expr~"
+                                        "fl.complex.expr~"
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -637,8 +637,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            109.0,
                             653.0,
                             757.0
                         ],
@@ -760,10 +760,10 @@
                                     "patching_rect": [
                                         15.0,
                                         225.0,
-                                        143.0,
+                                        147.0,
                                         23.0
                                     ],
-                                    "text": "fl.complexexpr~ in1 * pi"
+                                    "text": "fl.complex.expr~ in1 * pi"
                                 }
                             },
                             {
@@ -788,7 +788,7 @@
                                     "id": "obj-3",
                                     "ignoreclick": 1,
                                     "jsarguments": [
-                                        "fl.expr~"
+                                        "fl.complex.expr~"
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -848,6 +848,12 @@
                                     "destination": [
                                         "obj-35",
                                         1
+                                    ],
+                                    "midpoints": [
+                                        24.5,
+                                        213.5,
+                                        152.5,
+                                        213.5
                                     ],
                                     "order": 0,
                                     "source": [
@@ -1452,7 +1458,7 @@
                                         169.0,
                                         23.0
                                     ],
-                                    "text": "fl.complexexpr~ in1 * - 1"
+                                    "text": "fl.complex.expr~ in1 * - 1"
                                 }
                             },
                             {
@@ -1462,7 +1468,7 @@
                                     "id": "obj-3",
                                     "ignoreclick": 1,
                                     "jsarguments": [
-                                        "fl.expr~"
+                                        "fl.complex.expr~"
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
