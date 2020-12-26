@@ -152,7 +152,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 405.0, 458.5, 162.0, 36.0 ],
+									"patching_rect" : [ 298.0, 458.5, 162.0, 36.0 ],
 									"text" : "combine the frequency and reson tagged frames"
 								}
 
@@ -164,7 +164,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 375.0, 330.0, 70.0, 23.0 ],
+									"patching_rect" : [ 268.0, 330.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -176,7 +176,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 193.0, 375.0, 166.0, 23.0 ],
+									"patching_rect" : [ 86.0, 375.0, 166.0, 23.0 ],
 									"text" : "fl.map~ linear 0 1 150 3500"
 								}
 
@@ -199,8 +199,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 375.0, 420.0, 80.0, 23.0 ],
-									"text" : "fl.tag~ reson"
+									"patching_rect" : [ 268.0, 420.0, 66.0, 23.0 ],
+									"text" : "fl.tag~ res"
 								}
 
 							}
@@ -211,7 +211,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 193.0, 420.0, 70.0, 23.0 ],
+									"patching_rect" : [ 86.0, 420.0, 70.0, 23.0 ],
 									"text" : "fl.tag~ freq"
 								}
 
@@ -224,7 +224,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 193.0, 465.0, 201.0, 23.0 ],
+									"patching_rect" : [ 86.0, 465.0, 201.0, 23.0 ],
 									"text" : "fl.combinetags~ 2"
 								}
 
@@ -236,7 +236,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 193.0, 330.0, 70.0, 23.0 ],
+									"patching_rect" : [ 86.0, 330.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -327,8 +327,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 510.0, 197.0, 23.0 ],
-									"text" : "fl.0dfsvf~ 500 0.5 /mode bpf"
+									"patching_rect" : [ 15.0, 510.0, 90.0, 23.0 ],
+									"text" : "fl.svf~ 500 0.5"
 								}
 
 							}
@@ -457,7 +457,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-21", 0 ],
-									"midpoints" : [ 24.5, 324.0, 384.5, 324.0 ],
+									"midpoints" : [ 24.5, 324.0, 277.5, 324.0 ],
 									"order" : 0,
 									"source" : [ "obj-50", 0 ]
 								}
@@ -466,7 +466,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-9", 0 ],
-									"midpoints" : [ 24.5, 324.0, 202.5, 324.0 ],
+									"midpoints" : [ 24.5, 324.0, 95.5, 324.0 ],
 									"order" : 1,
 									"source" : [ "obj-50", 0 ]
 								}
@@ -566,7 +566,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.0dfsvf~.mxo",
+				"name" : "fl.svf~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

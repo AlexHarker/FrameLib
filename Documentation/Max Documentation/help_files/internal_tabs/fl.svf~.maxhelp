@@ -246,13 +246,12 @@
 , 											{
 												"box" : 												{
 													"id" : "obj-8",
-													"linecount" : 2,
 													"maxclass" : "message",
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 175.0, 326.0, 42.0, 35.0 ],
-													"text" : "reson $1"
+													"patching_rect" : [ 175.0, 326.0, 42.0, 22.0 ],
+													"text" : "res $1"
 												}
 
 											}
@@ -270,11 +269,11 @@
 													"presentation_rect" : [ 175.0, 19.0, 48.0, 166.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_longname" : "live.slider[1]",
 															"parameter_mmax" : 1.0,
 															"parameter_shortname" : "Reson",
 															"parameter_type" : 0,
-															"parameter_unitstyle" : 1
+															"parameter_unitstyle" : 1,
+															"parameter_longname" : "live.slider[1]"
 														}
 
 													}
@@ -309,12 +308,12 @@
 													"presentation_rect" : [ 125.0, 19.0, 48.0, 166.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_mmin" : 50.0,
-															"parameter_longname" : "live.slider",
 															"parameter_mmax" : 10000.0,
 															"parameter_shortname" : "Freq",
 															"parameter_type" : 0,
-															"parameter_unitstyle" : 1
+															"parameter_unitstyle" : 1,
+															"parameter_mmin" : 50.0,
+															"parameter_longname" : "live.slider"
 														}
 
 													}
@@ -362,12 +361,12 @@
 													"presentation_rect" : [ 14.0, 14.0, 102.0, 171.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_longname" : "live.tab",
 															"parameter_mmax" : 2,
 															"parameter_shortname" : "live.tab",
-															"parameter_enum" : [ "lpf", "bpf", "hpf" ],
+															"parameter_enum" : [ "lowpass", "bandpass", "highpass" ],
 															"parameter_type" : 2,
-															"parameter_unitstyle" : 0
+															"parameter_unitstyle" : 0,
+															"parameter_longname" : "live.tab"
 														}
 
 													}
@@ -533,7 +532,7 @@
 										"loopend" : [ 0.0, "ms" ],
 										"loopstart" : [ 0.0, "ms" ],
 										"mode" : "basic",
-										"originallength" : [ 0.0, "ticks" ],
+										"originallength" : [ 2708.876140768406913, "ticks" ],
 										"originaltempo" : 120.0,
 										"phase" : [ 0.0, "ticks" ],
 										"pitchcorrection" : 0,
@@ -566,8 +565,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 390.0, 151.0, 23.0 ],
-									"text" : "fl.svf~ 500 0.5 /mode bpf"
+									"patching_rect" : [ 15.0, 390.0, 197.0, 23.0 ],
+									"text" : "fl.svf~ 500 0.5 /mode bandpass"
 								}
 
 							}
@@ -702,7 +701,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 1 ],
-									"midpoints" : [ 202.5, 375.0, 156.5, 375.0 ],
 									"source" : [ "obj-62", 0 ]
 								}
 

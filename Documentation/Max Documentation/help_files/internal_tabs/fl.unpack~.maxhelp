@@ -153,7 +153,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 396.0, 218.5, 255.5, 36.0 ],
-									"presentation_linecount" : 3,
 									"text" : "Pack 3 different length frames at different intervals into a multistream frame"
 								}
 

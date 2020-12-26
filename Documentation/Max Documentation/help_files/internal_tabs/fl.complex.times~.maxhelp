@@ -343,7 +343,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"patching_rect" : [ 15.0, 277.0, 256.0, 23.0 ],
-									"text" : "fl.complexmultiply~"
+									"text" : "fl.complex.times~"
 								}
 
 							}
@@ -353,7 +353,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.complexmultiply~" ],
+									"jsarguments" : [ "fl.complex.times~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -511,8 +511,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -553,7 +553,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.complexmultiply~.mxo",
+				"name" : "fl.complex.times~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

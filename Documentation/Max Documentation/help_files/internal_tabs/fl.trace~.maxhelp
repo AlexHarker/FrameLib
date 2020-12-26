@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 0,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,7 +50,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -111,7 +111,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -153,7 +153,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 26.5, 632.0, 149.0, 65.0 ],
-									"presentation_linecount" : 3,
 									"text" : "You can specify a position by its absolute position in the whole frame"
 								}
 
@@ -166,7 +165,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 30.0, 458.5, 210.0, 36.0 ],
-									"presentation_linecount" : 4,
 									"text" : "You can specify a position by its relative position in the whole frame"
 								}
 
@@ -179,7 +177,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 30.0, 285.0, 135.0, 65.0 ],
-									"presentation_linecount" : 4,
 									"text" : "fl.trace~ with default parameters outputs the first value in the frame it receives"
 								}
 
@@ -204,7 +201,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 203.25, 136.5, 136.0, 50.0 ],
-									"presentation_linecount" : 3,
 									"text" : "Generate a frame contaning the numbers 0, 1, 2, 3"
 								}
 
@@ -261,7 +257,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 26.5, 557.0, 149.5, 38.0 ],
+									"patching_rect" : [ 26.5, 557.0, 153.0, 38.0 ],
 									"text" : "fl.trace~ /mode specified /position 3"
 								}
 

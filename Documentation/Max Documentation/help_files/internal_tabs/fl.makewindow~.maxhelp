@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 100.0, 79.0, 812.0, 734.0 ],
+		"rect" : [ 34.0, 79.0, 812.0, 734.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -117,7 +117,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 100.0, 105.0, 812.0, 708.0 ],
+						"rect" : [ 34.0, 105.0, 812.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1346,13 +1346,13 @@
  ],
 		"lines" : [  ],
 		"parameters" : 		{
-			"obj-1::obj-23::obj-3" : [ "live.slider[1]", "Start", 0 ],
-			"obj-1::obj-23::obj-7" : [ "live.slider[2]", "End", 0 ],
-			"obj-1::obj-24::obj-3" : [ "live.slider[4]", "Parameter", 0 ],
-			"obj-1::obj-11::obj-2" : [ "live.slider", "Exponent", 0 ],
-			"obj-1::obj-11::obj-13" : [ "live.tab[3]", "live.tab[1]", 0 ],
-			"obj-1::obj-11::obj-6" : [ "live.tab[2]", "live.tab[1]", 0 ],
 			"obj-1::obj-27::obj-3" : [ "live.slider[3]", "Parameter", 0 ],
+			"obj-1::obj-11::obj-13" : [ "live.tab[3]", "live.tab[1]", 0 ],
+			"obj-1::obj-24::obj-3" : [ "live.slider[4]", "Parameter", 0 ],
+			"obj-1::obj-23::obj-7" : [ "live.slider[2]", "End", 0 ],
+			"obj-1::obj-11::obj-2" : [ "live.slider", "Exponent", 0 ],
+			"obj-1::obj-11::obj-6" : [ "live.tab[2]", "live.tab[1]", 0 ],
+			"obj-1::obj-23::obj-3" : [ "live.slider[1]", "Start", 0 ],
 			"obj-1::obj-11::obj-1" : [ "live.tab", "live.tab", 0 ],
 			"parameterbanks" : 			{
 

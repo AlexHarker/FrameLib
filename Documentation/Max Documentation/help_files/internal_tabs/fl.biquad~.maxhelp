@@ -879,12 +879,12 @@
 													"presentation_rect" : [ 105.0, 117.0, 41.0, 48.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_mmin" : 0.0001,
-															"parameter_longname" : "live.dial[2]",
 															"parameter_mmax" : 5.0,
 															"parameter_shortname" : "Q",
 															"parameter_type" : 0,
-															"parameter_unitstyle" : 1
+															"parameter_unitstyle" : 1,
+															"parameter_mmin" : 0.0001,
+															"parameter_longname" : "live.dial[2]"
 														}
 
 													}
@@ -906,11 +906,11 @@
 													"presentation_rect" : [ 105.0, 66.0, 41.0, 48.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_longname" : "live.dial[1]",
 															"parameter_mmax" : 1.0,
 															"parameter_shortname" : "Gain",
 															"parameter_type" : 0,
-															"parameter_unitstyle" : 1
+															"parameter_unitstyle" : 1,
+															"parameter_longname" : "live.dial[1]"
 														}
 
 													}
@@ -932,12 +932,12 @@
 													"presentation_rect" : [ 105.0, 15.0, 41.0, 48.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_mmin" : 20.0,
-															"parameter_longname" : "live.dial",
 															"parameter_mmax" : 20000.0,
 															"parameter_shortname" : "Freq",
 															"parameter_type" : 0,
-															"parameter_unitstyle" : 1
+															"parameter_unitstyle" : 1,
+															"parameter_mmin" : 20.0,
+															"parameter_longname" : "live.dial"
 														}
 
 													}
@@ -961,12 +961,12 @@
 													"presentation_rect" : [ 15.0, 15.0, 90.0, 150.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_longname" : "live.tab",
 															"parameter_mmax" : 7,
 															"parameter_shortname" : "live.tab",
 															"parameter_enum" : [ "lpf", "bpf", "hpf", "bell", "resonant", "notch", "lowshelf", "highshelf" ],
 															"parameter_type" : 2,
-															"parameter_unitstyle" : 0
+															"parameter_unitstyle" : 0,
+															"parameter_longname" : "live.tab"
 														}
 
 													}
@@ -1390,8 +1390,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1426,9 +1426,9 @@
 		"lines" : [  ],
 		"parameters" : 		{
 			"obj-1::obj-7::obj-6" : [ "live.dial[2]", "Q", 0 ],
+			"obj-1::obj-7::obj-5" : [ "live.dial[1]", "Gain", 0 ],
 			"obj-1::obj-7::obj-2" : [ "live.tab", "live.tab", 0 ],
 			"obj-1::obj-7::obj-4" : [ "live.dial", "Freq", 0 ],
-			"obj-1::obj-7::obj-5" : [ "live.dial[1]", "Gain", 0 ],
 			"parameterbanks" : 			{
 
 			}

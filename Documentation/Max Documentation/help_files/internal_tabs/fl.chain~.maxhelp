@@ -56,7 +56,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -213,10 +213,10 @@
 									"id" : "obj-1",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 57.0, 330.0, 205.0, 23.0 ],
-									"text" : "fl.chain~ /units ms /mode absolute"
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"patching_rect" : [ 57.0, 330.0, 197.0, 23.0 ],
+									"text" : "fl.chain~ /units ms /time absolute"
 								}
 
 							}
@@ -339,7 +339,6 @@
 					}
 ,
 					"patching_rect" : [ 330.0, 230.0, 74.0, 22.0 ],
-					"presentation_linecount" : 3,
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -430,7 +429,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -466,7 +465,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 337.0, 600.5, 284.0, 36.0 ],
-									"presentation_linecount" : 4,
 									"text" : "timing between the first trigger frame (made by you) and successive fl.chain~ frames"
 								}
 
@@ -478,7 +476,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 142.0, 600.5, 96.0, 36.0 ],
+									"patching_rect" : [ 142.0, 600.5, 100.0, 36.0 ],
 									"text" : "timing between frames"
 								}
 
@@ -527,7 +525,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 285.0, 226.0, 180.0, 36.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Change between the absolute and relative moods"
 								}
 
@@ -617,12 +614,12 @@
 									"patching_rect" : [ 195.0, 195.0, 75.0, 98.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_mmax" : 1,
 											"parameter_shortname" : "live.tab",
 											"parameter_enum" : [ "absolute", "relative" ],
 											"parameter_type" : 2,
 											"parameter_unitstyle" : 0,
-											"parameter_longname" : "live.tab",
-											"parameter_mmax" : 1
+											"parameter_longname" : "live.tab"
 										}
 
 									}
@@ -660,8 +657,8 @@
 									"id" : "obj-47",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
 									"patching_rect" : [ 15.0, 465.0, 113.0, 23.0 ],
 									"text" : "fl.chain~ /units ms"
 								}

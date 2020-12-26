@@ -275,11 +275,11 @@
 													"presentation_rect" : [ 175.0, 19.0, 48.0, 166.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
+															"parameter_mmax" : 1.0,
 															"parameter_shortname" : "Reson",
 															"parameter_type" : 0,
 															"parameter_unitstyle" : 1,
-															"parameter_longname" : "live.slider[1]",
-															"parameter_mmax" : 1.0
+															"parameter_longname" : "live.slider[1]"
 														}
 
 													}
@@ -314,12 +314,12 @@
 													"presentation_rect" : [ 125.0, 19.0, 48.0, 166.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
+															"parameter_mmax" : 10000.0,
 															"parameter_shortname" : "Freq",
 															"parameter_type" : 0,
 															"parameter_unitstyle" : 1,
 															"parameter_mmin" : 50.0,
-															"parameter_longname" : "live.slider",
-															"parameter_mmax" : 10000.0
+															"parameter_longname" : "live.slider"
 														}
 
 													}
@@ -367,12 +367,12 @@
 													"presentation_rect" : [ 14.0, 14.0, 102.0, 171.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
+															"parameter_mmax" : 2,
 															"parameter_shortname" : "live.tab",
 															"parameter_enum" : [ "lpf", "bpf", "hpf" ],
 															"parameter_type" : 2,
 															"parameter_unitstyle" : 0,
-															"parameter_longname" : "live.tab",
-															"parameter_mmax" : 2
+															"parameter_longname" : "live.tab"
 														}
 
 													}
@@ -472,11 +472,11 @@
 								"box" : 								{
 									"id" : "obj-10",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 387.0, 77.0, 23.0 ],
-									"text" : "fl.resonant~"
+									"patching_rect" : [ 15.0, 387.0, 66.0, 23.0 ],
+									"text" : "fl.spread~"
 								}
 
 							}
@@ -582,13 +582,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-10", 1 ],
-									"source" : [ "obj-15", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
 									"source" : [ "obj-18", 0 ]
 								}
@@ -634,8 +627,8 @@
  ],
 		"lines" : [  ],
 		"parameters" : 		{
-			"obj-1::obj-18::obj-5" : [ "live.slider", "Freq", 0 ],
 			"obj-1::obj-18::obj-9" : [ "live.slider[1]", "Reson", 0 ],
+			"obj-1::obj-18::obj-5" : [ "live.slider", "Freq", 0 ],
 			"obj-1::obj-18::obj-1" : [ "live.tab", "live.tab", 0 ],
 			"parameterbanks" : 			{
 
@@ -656,10 +649,6 @@
 			}
 , 			{
 				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.resonant~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
