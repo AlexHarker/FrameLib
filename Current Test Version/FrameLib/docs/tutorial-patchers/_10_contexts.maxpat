@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"title" : "Tutorial 10: Contexts",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -51,7 +52,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -85,6 +86,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Contexts",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -246,8 +248,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 60.0, 692.0, 131.0 ],
-									"text" : "Up and till now the concept of a FrameLib context hasn't been explained or even made explicit to you but they are fundamental to know in order to access more advanced capabilities that you're about to learn. Every FrameLib object, or set of objects that are connected belong to a 'context'. The simplest way to create a new context is to give a new, unique string as the @id of the top-most scheduler. This @id propogates through the network so there is no benefit to setting it for every object. By default, there is only one context per top-level patcher. The only exception to this is if there is a poly~ which can be thought of as an independent top-level patcher and thus a 'unique' default context. The other exception to this rule is that a realtime and non-realtime network with the same @id are actually two different contexts. This is covered in detail in tutorial 11."
+									"patching_rect" : [ 15.0, 60.0, 694.0, 131.0 ],
+									"text" : "Up until now the concept of a FrameLib context hasn't been explained or even made explicit to you but they are fundamental to know in order to access more advanced capabilities that you're about to learn. Every FrameLib object, or set of objects that are connected, belongs to a 'context'. The simplest way to create a new context is to give a new, unique string as the @id of the top-most scheduler. This @id propogates through the network so there is no benefit to setting it for every object. By default, there is only one context per top-level patcher. The only exception to this is if object are within a poly~ which can be thought of as an independent highest-level patcher for Framelib objects and thus a 'unique' default context. The other thing to note is that the realtime and non-realtime network with the same @id are actually two different contexts. This is covered in detail in tutorial 11."
 								}
 
 							}
@@ -472,7 +474,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -506,6 +508,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Non-realtime basics",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -544,12 +547,12 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 13.0,
 									"id" : "obj-2",
-									"linecount" : 4,
+									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 120.0, 527.0, 69.0 ],
-									"text" : "The FrameLib context until now hasn't been touched but has been operating stealthily under the hood. Contexts are the way that FrameLib differentiates between networks both connected and unconnected. Understanding contexts is essential for controlling advanced features of FrameLib such as non-realtime processing and multithreading."
+									"patching_rect" : [ 180.0, 120.0, 527.0, 100.0 ],
+									"text" : "The FrameLib context hasn't until now been discussed but has been operating stealthily under the hood. Contexts are the way that FrameLib differentiates between networks (both connected and unconnected). They are self-contained FrameLib 'worlds' that can be set to operate in certain ways, and which are independent of one another.  Understanding contexts is essential for controlling advanced features of FrameLib such as non-realtime processing and multithreading."
 								}
 
 							}
@@ -691,14 +694,14 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
