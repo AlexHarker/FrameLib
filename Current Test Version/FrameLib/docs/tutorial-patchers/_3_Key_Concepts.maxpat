@@ -679,7 +679,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 305.5, 420.0, 88.5, 22.0 ],
-									"text" : "103. 104. 105."
+									"text" : "0"
 								}
 
 							}
@@ -3353,6 +3353,19 @@
 						"title" : "Schedulers and Timing",
 						"boxes" : [ 							{
 								"box" : 								{
+									"hidden" : 1,
+									"id" : "obj-3",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 510.0, 70.0, 22.0 ],
+									"text" : "loadmess 0"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-18",
 									"maxclass" : "tab",
 									"numinlets" : 1,
@@ -3377,7 +3390,7 @@
 									"maxclass" : "bpatcher",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"offset" : [ 0.0, 0.0 ],
+									"offset" : [ -539.0, 0.0 ],
 									"patcher" : 									{
 										"fileversion" : 1,
 										"appversion" : 										{
@@ -3389,7 +3402,7 @@
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 754.0, 79.0, 652.0, 787.0 ],
+										"rect" : [ 34.0, 79.0, 1372.0, 787.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -3511,7 +3524,6 @@
 													"numinlets" : 1,
 													"numoutlets" : 0,
 													"patching_rect" : [ 810.0, 45.0, 225.0, 108.0 ],
-													"presentation_linecount" : 7,
 													"text" : "fl.chain~ creates new trigger frames according to a series of times given as an input. By clicking the bang at the top, fl.audiotrigger~ creates a trigger frame which provides a series of timings as another vector to fl.chain~."
 												}
 
@@ -3563,7 +3575,6 @@
 													"numinlets" : 1,
 													"numoutlets" : 0,
 													"patching_rect" : [ 660.0, 465.0, 120.0, 26.0 ],
-													"presentation_linecount" : 2,
 													"text" : "fl.audiotrigger~"
 												}
 
@@ -3666,7 +3677,6 @@
 													"numinlets" : 1,
 													"numoutlets" : 0,
 													"patching_rect" : [ 120.0, 315.0, 108.0, 26.0 ],
-													"presentation_linecount" : 2,
 													"text" : "fl.perblock~"
 												}
 
@@ -3719,7 +3729,6 @@
 													"numinlets" : 1,
 													"numoutlets" : 0,
 													"patching_rect" : [ 120.0, 345.0, 225.0, 33.0 ],
-													"presentation_linecount" : 2,
 													"text" : "fl.perblock~ outputs a trigger frame at each audio vector."
 												}
 
@@ -4580,6 +4589,15 @@
 									"hidden" : 1,
 									"midpoints" : [ 24.5, 513.0, 0.0, 513.0, 0.0, 324.0, 174.5, 324.0 ],
 									"source" : [ "obj-18", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-18", 0 ],
+									"hidden" : 1,
+									"midpoints" : [ 24.5, 534.0, 0.0, 534.0, 0.0, 324.0, 24.5, 324.0 ],
+									"source" : [ "obj-3", 0 ]
 								}
 
 							}
