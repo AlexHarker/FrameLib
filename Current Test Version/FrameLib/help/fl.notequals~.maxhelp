@@ -360,7 +360,7 @@
                                     "patching_rect": [
                                         243.5,
                                         462.5,
-                                        179.0,
+                                        183.0,
                                         50.0
                                     ],
                                     "text": "When the sliders don't match, the toggle will light up with the corresponding colour"

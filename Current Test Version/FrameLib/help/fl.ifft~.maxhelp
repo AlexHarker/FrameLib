@@ -428,10 +428,10 @@
                                     "patching_rect": [
                                         15.0,
                                         345.0,
-                                        246.0,
+                                        70.0,
                                         23.0
                                     ],
-                                    "text": "fl.window~ hann /compensate powoverlin"
+                                    "text": "fl.window~"
                                 }
                             },
                             {
@@ -447,10 +447,10 @@
                                     "patching_rect": [
                                         15.0,
                                         210.0,
-                                        216.0,
+                                        70.0,
                                         23.0
                                     ],
-                                    "text": "fl.window~ hann /compensate linear"
+                                    "text": "fl.window~"
                                 }
                             },
                             {

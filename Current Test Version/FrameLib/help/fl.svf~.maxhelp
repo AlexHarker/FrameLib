@@ -475,7 +475,6 @@
                                             {
                                                 "box": {
                                                     "id": "obj-8",
-                                                    "linecount": 2,
                                                     "maxclass": "message",
                                                     "numinlets": 2,
                                                     "numoutlets": 1,
@@ -486,9 +485,9 @@
                                                         175.0,
                                                         326.0,
                                                         42.0,
-                                                        35.0
+                                                        22.0
                                                     ],
-                                                    "text": "reson $1"
+                                                    "text": "res $1"
                                                 }
                                             },
                                             {
@@ -518,11 +517,11 @@
                                                     ],
                                                     "saved_attribute_attributes": {
                                                         "valueof": {
-                                                            "parameter_longname": "live.slider[1]",
                                                             "parameter_mmax": 1.0,
                                                             "parameter_shortname": "Reson",
                                                             "parameter_type": 0,
-                                                            "parameter_unitstyle": 1
+                                                            "parameter_unitstyle": 1,
+                                                            "parameter_longname": "live.slider[1]"
                                                         }
                                                     },
                                                     "varname": "live.slider[1]"
@@ -573,12 +572,12 @@
                                                     ],
                                                     "saved_attribute_attributes": {
                                                         "valueof": {
-                                                            "parameter_mmin": 50.0,
-                                                            "parameter_longname": "live.slider",
                                                             "parameter_mmax": 10000.0,
                                                             "parameter_shortname": "Freq",
                                                             "parameter_type": 0,
-                                                            "parameter_unitstyle": 1
+                                                            "parameter_unitstyle": 1,
+                                                            "parameter_mmin": 50.0,
+                                                            "parameter_longname": "live.slider"
                                                         }
                                                     },
                                                     "varname": "live.slider"
@@ -647,16 +646,16 @@
                                                     ],
                                                     "saved_attribute_attributes": {
                                                         "valueof": {
-                                                            "parameter_longname": "live.tab",
                                                             "parameter_mmax": 2,
                                                             "parameter_shortname": "live.tab",
                                                             "parameter_enum": [
-                                                                "lpf",
-                                                                "bpf",
-                                                                "hpf"
+                                                                "lowpass",
+                                                                "bandpass",
+                                                                "highpass"
                                                             ],
                                                             "parameter_type": 2,
-                                                            "parameter_unitstyle": 0
+                                                            "parameter_unitstyle": 0,
+                                                            "parameter_longname": "live.tab"
                                                         }
                                                     },
                                                     "varname": "live.tab"
@@ -917,7 +916,7 @@
                                         ],
                                         "mode": "basic",
                                         "originallength": [
-                                            0.0,
+                                            2708.876140768407,
                                             "ticks"
                                         ],
                                         "originaltempo": 120.0,
@@ -966,10 +965,10 @@
                                     "patching_rect": [
                                         15.0,
                                         390.0,
-                                        151.0,
+                                        197.0,
                                         23.0
                                     ],
-                                    "text": "fl.svf~ 500 0.5 /mode bpf"
+                                    "text": "fl.svf~ 500 0.5 /mode bandpass"
                                 }
                             },
                             {
@@ -1201,12 +1200,6 @@
                                     "destination": [
                                         "obj-14",
                                         1
-                                    ],
-                                    "midpoints": [
-                                        202.5,
-                                        375.0,
-                                        156.5,
-                                        375.0
                                     ],
                                     "source": [
                                         "obj-62",

@@ -399,10 +399,10 @@
                                     "patching_rect": [
                                         15.0,
                                         330.0,
-                                        57.0,
+                                        84.0,
                                         23.0
                                     ],
-                                    "text": "fl.vmax~"
+                                    "text": "fl.framemax~"
                                 }
                             },
                             {
@@ -620,14 +620,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
+                                    "fontsize": [
+                                        12.059008
+                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
-                                    ],
-                                    "fontsize": [
-                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

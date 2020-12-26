@@ -343,7 +343,7 @@
                                     "id": "obj-4",
                                     "lockeddragscroll": 0,
                                     "maxclass": "bpatcher",
-                                    "name": "FL_monoVolume-h.maxpat",
+                                    "name": "fl-mono-h.maxpat",
                                     "numinlets": 1,
                                     "numoutlets": 1,
                                     "offset": [
@@ -515,12 +515,12 @@
                                                     ],
                                                     "saved_attribute_attributes": {
                                                         "valueof": {
+                                                            "parameter_mmax": 10000.0,
                                                             "parameter_shortname": "Freq",
                                                             "parameter_type": 0,
                                                             "parameter_unitstyle": 1,
                                                             "parameter_mmin": 50.0,
-                                                            "parameter_longname": "live.slider",
-                                                            "parameter_mmax": 10000.0
+                                                            "parameter_longname": "live.slider"
                                                         }
                                                     },
                                                     "varname": "live.slider"
@@ -589,15 +589,15 @@
                                                     ],
                                                     "saved_attribute_attributes": {
                                                         "valueof": {
+                                                            "parameter_mmax": 1,
                                                             "parameter_shortname": "live.tab",
                                                             "parameter_enum": [
-                                                                "lpf",
-                                                                "hpf"
+                                                                "lowpass",
+                                                                "highpass"
                                                             ],
                                                             "parameter_type": 2,
                                                             "parameter_unitstyle": 0,
-                                                            "parameter_longname": "live.tab",
-                                                            "parameter_mmax": 1
+                                                            "parameter_longname": "live.tab"
                                                         }
                                                     },
                                                     "varname": "live.tab"

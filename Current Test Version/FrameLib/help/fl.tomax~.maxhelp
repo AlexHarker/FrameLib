@@ -830,7 +830,7 @@
                                         148.0,
                                         23.0
                                     ],
-                                    "text": "fl.map~ /outlo -1 /outhi 1"
+                                    "text": "fl.map~ /out_1 -1 /out_2 1"
                                 }
                             },
                             {

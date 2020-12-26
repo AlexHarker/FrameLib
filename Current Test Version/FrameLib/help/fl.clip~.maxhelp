@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -290,8 +290,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -333,35 +333,6 @@
                         "subpatcher_template": "",
                         "showontab": 1,
                         "boxes": [
-                            {
-                                "box": {
-                                    "bgmode": 0,
-                                    "border": 0,
-                                    "clickthrough": 0,
-                                    "enablehscroll": 0,
-                                    "enablevscroll": 0,
-                                    "id": "obj-34",
-                                    "lockeddragscroll": 0,
-                                    "maxclass": "bpatcher",
-                                    "name": "FL_monoVolume.maxpat",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "offset": [
-                                        0.0,
-                                        0.0
-                                    ],
-                                    "outlettype": [
-                                        "signal"
-                                    ],
-                                    "patching_rect": [
-                                        30.0,
-                                        495.0,
-                                        40.875,
-                                        93.0
-                                    ],
-                                    "viewvisibility": 1
-                                }
-                            },
                             {
                                 "box": {
                                     "id": "obj-29",
@@ -785,32 +756,6 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-10",
-                                        1
-                                    ],
-                                    "order": 0,
-                                    "source": [
-                                        "obj-34",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-10",
-                                        0
-                                    ],
-                                    "order": 1,
-                                    "source": [
-                                        "obj-34",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
                                         "obj-17",
                                         0
                                     ],
@@ -835,10 +780,16 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-13",
-                                        0
+                                        "obj-10",
+                                        1
                                     ],
-                                    "order": 0,
+                                    "midpoints": [
+                                        39.5,
+                                        600.0,
+                                        79.5,
+                                        600.0
+                                    ],
+                                    "order": 1,
                                     "source": [
                                         "obj-9",
                                         0
@@ -848,10 +799,35 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-34",
+                                        "obj-10",
                                         0
                                     ],
-                                    "order": 1,
+                                    "midpoints": [
+                                        39.5,
+                                        459.0,
+                                        39.5,
+                                        459.0
+                                    ],
+                                    "order": 2,
+                                    "source": [
+                                        "obj-9",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-13",
+                                        0
+                                    ],
+                                    "midpoints": [
+                                        39.5,
+                                        480.0,
+                                        159.5,
+                                        480.0
+                                    ],
+                                    "order": 0,
                                     "source": [
                                         "obj-9",
                                         0
