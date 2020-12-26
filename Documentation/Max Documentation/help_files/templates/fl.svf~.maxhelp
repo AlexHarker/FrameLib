@@ -343,12 +343,15 @@
                                     "id": "obj-2",
                                     "lockeddragscroll": 0,
                                     "maxclass": "bpatcher",
-                                    "name": "FL_monoVolume-h.maxpat",
-                                    "numinlets": 0,
-                                    "numoutlets": 0,
+                                    "name": "fl-mono-h.maxpat",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
                                     "offset": [
                                         0.0,
                                         0.0
+                                    ],
+                                    "outlettype": [
+                                        "signal"
                                     ],
                                     "patching_rect": [
                                         15.0,
@@ -515,11 +518,11 @@
                                                     ],
                                                     "saved_attribute_attributes": {
                                                         "valueof": {
+                                                            "parameter_longname": "live.slider[1]",
+                                                            "parameter_mmax": 1.0,
                                                             "parameter_shortname": "Reson",
                                                             "parameter_type": 0,
-                                                            "parameter_unitstyle": 1,
-                                                            "parameter_longname": "live.slider[1]",
-                                                            "parameter_mmax": 1.0
+                                                            "parameter_unitstyle": 1
                                                         }
                                                     },
                                                     "varname": "live.slider[1]"
@@ -570,12 +573,12 @@
                                                     ],
                                                     "saved_attribute_attributes": {
                                                         "valueof": {
-                                                            "parameter_shortname": "Freq",
-                                                            "parameter_type": 0,
-                                                            "parameter_unitstyle": 1,
                                                             "parameter_mmin": 50.0,
                                                             "parameter_longname": "live.slider",
-                                                            "parameter_mmax": 10000.0
+                                                            "parameter_mmax": 10000.0,
+                                                            "parameter_shortname": "Freq",
+                                                            "parameter_type": 0,
+                                                            "parameter_unitstyle": 1
                                                         }
                                                     },
                                                     "varname": "live.slider"
@@ -644,6 +647,8 @@
                                                     ],
                                                     "saved_attribute_attributes": {
                                                         "valueof": {
+                                                            "parameter_longname": "live.tab",
+                                                            "parameter_mmax": 2,
                                                             "parameter_shortname": "live.tab",
                                                             "parameter_enum": [
                                                                 "lpf",
@@ -651,9 +656,7 @@
                                                                 "hpf"
                                                             ],
                                                             "parameter_type": 2,
-                                                            "parameter_unitstyle": 0,
-                                                            "parameter_longname": "live.tab",
-                                                            "parameter_mmax": 2
+                                                            "parameter_unitstyle": 0
                                                         }
                                                     },
                                                     "varname": "live.tab"
@@ -880,7 +883,7 @@
                                         162.0,
                                         23.0
                                     ],
-                                    "text": "buffer~ bufJongly jongly.aif"
+                                    "text": "buffer~ fl.svf.help jongly.aif"
                                 }
                             },
                             {
@@ -914,7 +917,7 @@
                                         ],
                                         "mode": "basic",
                                         "originallength": [
-                                            2708.876140768407,
+                                            0.0,
                                             "ticks"
                                         ],
                                         "originaltempo": 120.0,
@@ -928,7 +931,7 @@
                                             0
                                         ]
                                     },
-                                    "text": "groove~ bufJongly @loop 1"
+                                    "text": "groove~ fl.svf.help @loop 1"
                                 }
                             },
                             {
@@ -1116,11 +1119,49 @@
                             {
                                 "patchline": {
                                     "destination": [
+                                        "obj-1",
+                                        1
+                                    ],
+                                    "order": 0,
+                                    "source": [
+                                        "obj-2",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-1",
+                                        0
+                                    ],
+                                    "order": 1,
+                                    "source": [
+                                        "obj-2",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
                                         "obj-10",
                                         0
                                     ],
                                     "source": [
                                         "obj-39",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-2",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-43",
                                         0
                                     ]
                                 }
@@ -1163,9 +1204,9 @@
                                     ],
                                     "midpoints": [
                                         202.5,
-                                        354.0,
+                                        375.0,
                                         156.5,
-                                        354.0
+                                        375.0
                                     ],
                                     "source": [
                                         "obj-62",

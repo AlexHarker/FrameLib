@@ -420,7 +420,6 @@
                                         255.0,
                                         65.0
                                     ],
-                                    "presentation_linecount": 4,
                                     "text": "At which index does the sum of the fl.ramp~ frame reach 10 percent of the total. The sum of the fl.ramp~ frame is shown to the right."
                                 }
                             },
@@ -489,10 +488,10 @@
                                     "patching_rect": [
                                         15.0,
                                         300.0,
-                                        111.0,
+                                        104.0,
                                         23.0
                                     ],
-                                    "text": "fl.accumpoint~ 10"
+                                    "text": "fl.accumpos~ 10"
                                 }
                             },
                             {
@@ -538,7 +537,7 @@
                                     "id": "obj-3",
                                     "ignoreclick": 1,
                                     "jsarguments": [
-                                        "fl.accumpoint~"
+                                        "fl.accumpos~"
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
