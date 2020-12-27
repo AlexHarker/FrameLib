@@ -14,19 +14,19 @@ FrameLib_Once::FrameLib_Once(FrameLib_Context context, const FrameLib_Parameters
 
 std::string FrameLib_Once::objectInfo(bool verbose)
 {
-    return formatInfo("Schedules one frame at the begining of time, lasting forever: "
+    return formatInfo("Schedules a single frame at the begining of time that lasts forever: "
                       "The output is an empty frame.",
-                      "Schedules one frame at the begining of time, lasting forever.", verbose);
+                      "Schedules a single  frame at the begining of time that lasts forever.", verbose);
 }
 
 std::string FrameLib_Once::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Synchronisation Input - input ignored but provided to aid synchronisation", "Sync Input", verbose);
+    return formatInfo("Synchronisation Input - provided only to aid synchronisation", "Sync Input", verbose);
 }
 
 std::string FrameLib_Once::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Empty Trigger Frames";
+    return formatInfo("Trigger Output - outputs empty frames", "Trigger Output", verbose);
 }
 
 // Schedule

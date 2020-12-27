@@ -4,15 +4,15 @@
 #define FRAMELIB_TRACE_H
 
 #include "FrameLib_DSP.h"
+#include "Framelib_IO_Helper.h"
 #include <vector>
 
-class FrameLib_Trace final : public FrameLib_AudioOutput
+class FrameLib_Trace final : public FrameLib_AudioOutput, private FrameLib_IO_Helper
 {
     // Paramter Enums and Info
 
     enum ParameterList { kMode, kBufferSize, kUnits, kPosition, kDelay };
     enum Modes { kFull, kFirst, kLast, kSpecified, kRatio };
-    enum Units { kSamples, kMS, kSeconds };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     

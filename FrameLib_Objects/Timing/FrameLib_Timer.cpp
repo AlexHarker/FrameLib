@@ -20,10 +20,12 @@ FrameLib_Timer::FrameLib_Timer(FrameLib_Context context, const FrameLib_Paramete
 
 std::string FrameLib_Timer::objectInfo(bool verbose)
 {
-    return formatInfo("Calculates the time elapsed between trigger frame inputs and the subsequent reset frame: "
+    return formatInfo("Calculates the time elapsed between the each trigger input and the previous reset: "
+                      "A frame in the reset input starts the timer. "
+                      "Frames in the trigger input cause the elapsed time to be reported. "
                       "Time is reported in the specified units. "
-                      "Output is a single value.",
-                      "Calculates the time elapsed between the last reset and each trigger.", verbose);
+                      "Output is a single value (output is empty if no reset frame has yet been received).",
+                      "Calculates the time elapsed between the each trigger input and the previous reset.", verbose);
 }
 
 std::string FrameLib_Timer::inputInfo(unsigned long idx, bool verbose)
@@ -45,7 +47,7 @@ FrameLib_Timer::ParameterInfo FrameLib_Timer::sParamInfo;
 
 FrameLib_Timer::ParameterInfo::ParameterInfo()
 {
-    add("Sets the time units used to for output.");
+    add("Sets the time units used for output.");
 }
 
 // Calculate Multiplier

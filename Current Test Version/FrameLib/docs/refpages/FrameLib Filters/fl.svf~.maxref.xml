@@ -1,0 +1,57 @@
+<c74object category="FrameLib Filters" module="FrameLib" name="fl.svf~">
+  <digest> 
+        Applies a state variable filter to the input.
+    </digest>
+  <description> 
+         Output is the same length as the input. The filter can output a single specifed mode at a time. Alternatively, in multi-output mode all modes are output simultaneously. Filter settings may be made either via parameters or per sample via inputs. The dynamic parameter is set to create the inputs for per sample values. Frames of per sample values are padded to length with their final value if required. Additional values are ignored. In this mode the parameter value is used if no corresponding input is provided. Thus, per sample values and parameters can be mixed. To process streams (not discrete frames) the reset parameter can be set off. This prevents the filter memories being cleared between frames.
+    </description>
+  <misc name="Parameters">
+    <entry name="1. /freq [double]">
+      <description> 
+                Sets the filter cutoff frequency.
+            </description>
+    </entry>
+    <entry name="2. /res [double]">
+      <description> 
+                Sets the filter resonance.
+            </description>
+    </entry>
+    <entry name="3. /mode [enum]">
+      <description> 
+                Sets the filter mode when multi-output mode is off:<br/><br/>lowpass - low pass.<br/>bandpass - band pass.<br/>highpass - high pass.<br />
+        <bullet>[0] - lowpass</bullet>
+        <bullet>[1] - bandpass</bullet>
+        <bullet>[2] - highpass</bullet>
+      </description>
+    </entry>
+    <entry name="4. /multi_output [instantiation bool]">
+      <description> 
+                Creates an output per filter mode with all modes output simultaneously.
+            </description>
+    </entry>
+    <entry name="5. /dynamic [instantiation bool]">
+      <description> 
+                Creates inputs for per sample values for each of the filter parameters.<br/>If an input is not provided the corresponding parameter value is used.
+            </description>
+    </entry>
+    <entry name="6. /reset [bool]">
+      <description> 
+                Determines whether filter memories are reset before processing a new frame.
+            </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Filters</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.onepolezero~" />
+    <seealso name="fl.onepole~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>filters</description>
+    </entry>
+  </misc>
+</c74object>

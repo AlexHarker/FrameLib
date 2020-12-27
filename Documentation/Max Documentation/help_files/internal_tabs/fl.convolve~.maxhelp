@@ -332,7 +332,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 675.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 645.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -420,12 +420,12 @@
 									"id" : "obj-26",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "FL_monoVolume.maxpat",
+									"name" : "fl-mono-h.maxpat",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 570.0, 43.0, 92.0 ],
+									"patching_rect" : [ 15.0, 570.0, 88.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -739,7 +739,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "FL_monoVolume.maxpat",
+				"name" : "fl-mono-h.maxpat",
 				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/docs/tutorial-patchers",
 				"type" : "JSON",

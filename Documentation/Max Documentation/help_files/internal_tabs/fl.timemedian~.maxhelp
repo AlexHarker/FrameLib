@@ -323,9 +323,9 @@
 								"box" : 								{
 									"id" : "obj-13",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
+									"numinlets" : 3,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
 									"patching_rect" : [ 15.0, 580.0, 137.0, 23.0 ],
 									"text" : "fl.timemedian~ 100 50"
 								}
@@ -368,6 +368,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 1 ],
+									"midpoints" : [ 142.5, 571.0, 83.5, 571.0 ],
 									"source" : [ "obj-1", 0 ]
 								}
 

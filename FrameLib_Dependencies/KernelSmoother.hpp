@@ -12,6 +12,7 @@
 #include "Allocator.hpp"
 #include "SIMDSupport.hpp"
 #include "SpectralProcessor.hpp"
+#include "TableReader.hpp"
 
 template <typename T, typename Allocator = aligned_allocator, bool auto_resize_fft = false>
 class kernel_smoother : private spectral_processor<T, Allocator>
@@ -27,32 +28,36 @@ class kernel_smoother : private spectral_processor<T, Allocator>
     template <bool B>
     using enable_if_t = typename std::enable_if<B, int>::type;
     
+    enum Ends { kEndsZero, kEndsNonZero, kEndsSymZero, kEndsSymNonZero };
+    
 public:
     
-    enum SmoothMode { kSmoothZeroPad, kSmoothWrap, kSmoothFold };
+    enum EdgeType { kZeroPad, kExtend, kWrap, kFold, kMirror };
     
     template <typename U = Allocator, enable_if_t<std::is_default_constructible<U>::value> = 0>
-    kernel_smoother()
-    {
-        set_max_fft_size(1 << 18);
-    }
+    kernel_smoother(uintptr_t max_fft_size = 1 << 18)
+    : spectral_processor<T, Allocator>(max_fft_size)
+    {}
     
     template <typename U = Allocator, enable_if_t<std::is_copy_constructible<U>::value> = 0>
-    kernel_smoother(const Allocator& allocator) : spectral_processor<T, Allocator>(allocator)
-    {
-        set_max_fft_size(1 << 18);
-    }
+    kernel_smoother(const Allocator& allocator, uintptr_t max_fft_size = 1 << 18)
+    : spectral_processor<T, Allocator>(allocator, max_fft_size)
+    {}
     
     template <typename U = Allocator, enable_if_t<std::is_move_constructible<U>::value> = 0>
-    kernel_smoother(Allocator&& allocator) : spectral_processor<T, Allocator>(allocator)
-    {
-        set_max_fft_size(1 << 18);
-    }
+    kernel_smoother(const Allocator&& allocator, uintptr_t max_fft_size = 1 << 18)
+    : spectral_processor<T, Allocator>(allocator, max_fft_size)
+    {}
 
     void set_max_fft_size(uintptr_t size) { processor::set_max_fft_size(size); }
     
-    void smooth(T *out, const T *in, const T *kernel, uintptr_t length, uintptr_t kernel_length, double width_lo, double width_hi, SmoothMode mode)
+    uintptr_t max_fft_size() { return processor::max_fft_size(); }
+
+    void smooth(T *out, const T *in, const T *kernel, uintptr_t length, uintptr_t kernel_length, double width_lo, double width_hi, bool symmetric, EdgeType edges)
     {
+        if (!length || !kernel_length)
+            return;
+        
         Allocator& allocator = processor::m_allocator;
         
         const int N = SIMDLimits<T>::max_size;
@@ -70,9 +75,9 @@ public:
         uintptr_t filter_size = static_cast<uintptr_t>(std::ceil(std::max(width_lo, width_hi) * 0.5));
         uintptr_t filter_full = filter_size * 2 - 1;
         uintptr_t max_per_filter = static_cast<uintptr_t>(width_mul ? (2.0 / width_mul) + 1.0 : length);
-        uintptr_t data_width = max_per_filter + (filter_size - 1) * 2;
+        uintptr_t data_width = max_per_filter + (filter_full - 1);
         
-        op_sizes sizes(filter_full, data_width, EdgeMode::kEdgeLinear);
+        op_sizes sizes(data_width, filter_full, EdgeMode::kEdgeLinear);
         
         if (auto_resize_fft && processor::max_fft_size() < sizes.fft())
             set_max_fft_size(sizes.fft());
@@ -82,100 +87,164 @@ public:
         T *ptr = allocator.template allocate<T>(fft_size * 2 + filter_full + length + filter_size * 2);
         Split io { ptr, ptr + (fft_size >> 1) };
         Split st { io.realp + fft_size, io.imagp + fft_size };
-        T *filter = ptr + (fft_size << 1) + filter_size - 1;
-        T *temp = filter + filter_size;
+        T *filter = ptr + (fft_size << 1);
+        T *padded = filter + filter_full;
         
-        bool non_zero_end = true;
+        Ends ends = kEndsNonZero;
         
         if (kernel_length)
         {
             const T max_value = *std::max_element(kernel, kernel + kernel_length);
-            const T test_value = kernel[kernel_length - 1] / max_value;
+            const T test_value_1 = kernel[0] / max_value;
+            const T test_value_2 = kernel[kernel_length - 1] / max_value;
             const T epsilon = std::numeric_limits<T>::epsilon();
             
-            if (test_value < epsilon)
-                non_zero_end = false;
+            if ((symmetric || test_value_1 < epsilon) && test_value_2 < epsilon)
+                ends = symmetric ? kEndsSymZero : kEndsZero;
         }
         
         // Copy data
         
-        switch (mode)
+        switch (edges)
         {
-            case kSmoothZeroPad:
-                std::fill_n(temp, filter_size, 0.0);
-                std::copy_n(in, length, temp + filter_size);
-                std::fill_n(temp + filter_size + length, filter_size, 0.0);
+            case kZeroPad:
+                std::fill_n(padded, filter_size, 0.0);
+                std::copy_n(in, length, padded + filter_size);
+                std::fill_n(padded + filter_size + length, filter_size, 0.0);
                 break;
                 
-            case kSmoothWrap:
-                std::copy_n(in + length - filter_size, filter_size, temp);
-                std::copy_n(in, length, temp + filter_size);
-                std::copy_n(in, filter_size, temp + filter_size + length);
+            case kExtend:
+                std::fill_n(padded, filter_size, in[0]);
+                std::copy_n(in, length, padded + filter_size);
+                std::fill_n(padded + filter_size + length, filter_size, in[length - 1]);
                 break;
                 
-            case kSmoothFold:
-                std::reverse_copy(in + 1, in + 1 + filter_size, temp);
-                std::copy(in, in + length, temp + filter_size);
-                std::reverse_copy(in + length - (filter_size + 1), in + length - 1, temp + filter_size + length);
+            case kWrap:
+                copy_edges<table_fetcher_wrap>(in, padded, length, filter_size);
+            break;
+                
+            case kFold:
+                copy_edges<table_fetcher_fold>(in, padded, length, filter_size);
+                break;
+                
+            case kMirror:
+                copy_edges<table_fetcher_mirror>(in, padded, length, filter_size);
                 break;
         }
         
-        const double *data = temp + filter_size;
-        
-        for (uintptr_t i = 0, j = 0; i < length; i = j)
+        if (symmetric)
         {
-            uintptr_t half_width = static_cast<uintptr_t>(half_width_calc(i));
-            const T filter_normalise = make_filter(filter, kernel, kernel_length, half_width, non_zero_end);
+            // Offsets into the data and the filter
+        
+            const T *data = padded + filter_size;
+            filter += filter_size - 1;
+        
+            // Symmetric filtering
             
-            for (j = i; (j < length) && half_width == half_width_calc(j); j++);
-            
-            //uintptr_t optimal_fft = 1 << processor::calc_fft_size_log2(half_width * 4);
-            uintptr_t n = j - i;
-            uintptr_t k = 0;
-            uintptr_t m = n;//std::min(optimal_fft / 2, n);
-                
-            m = use_fft(n, half_width, fft_size) ? m : 0;
+            for (uintptr_t i = 0, j = 0; i < length; i = j)
+            {
+                const uintptr_t half_width = static_cast<uintptr_t>(half_width_calc(i));
+                const uintptr_t width = half_width * 2 - 1;
+                const T filter_half_sum = make_filter(filter, kernel, kernel_length, half_width, ends);
+                const T filter_sum = (filter_half_sum * T(2) - filter[0]);
+                const T gain = filter_sum ? T(1) / filter_sum : 1.0;
 
-            for (; k + (m - 1) < n; k += m)
-                apply_filter_fft(out + i + k, data + i + k, filter, io, st, half_width, m, filter_normalise);
+                for (j = i; (j < length) && half_width == half_width_calc(j); j++);
                 
-            for (; k + (N - 1) < n; k += N)
-                apply_filter<N>(out + i + k, data + i + k, filter, half_width, filter_normalise);
-            
-            for (; k < n; k++)
-                apply_filter<1>(out + i + k, data + i + k, filter, half_width, filter_normalise);
+                uintptr_t n = j - i;
+                uintptr_t m = use_fft_n(n, half_width, fft_size);
+                uintptr_t k = 0;
+                
+                const double *data_fft = data - (half_width - 1);
+                const double *filter_fft = filter - (half_width - 1);
+
+                // Mirror the filter if required for the FFT processing
+
+                if (m)
+                {
+                    for (intptr_t i = 1; i < static_cast<intptr_t>(half_width); i++)
+                        filter[-i] = filter[i];
+                }
+                
+                for (; k + (m - 1) < n; k += m)
+                    apply_filter_fft(out + i + k, data_fft + i + k, filter_fft, io, st, width, m, gain);
+                
+                for (; k + (N - 1) < n; k += N)
+                    apply_filter_symmetric<N>(out + i + k, data + i + k, filter, half_width, gain);
+                
+                for (; k < n; k++)
+                    apply_filter_symmetric<1>(out + i + k, data + i + k, filter, half_width, gain);
+            }
         }
-        /*
-         for (uintptr_t i = 0; i < length; i++)
-         {
-         // FIX - not safe
-         double width = width_lo + i * width_mul;
-         double width_normalise = 2.0 / width;
-         uintptr_t half_width = width * 0.5;
-         
-         T filter_sum = kernel[0];
-         T filter_val = data[i] * filter_sum;
-         
-         for (uintptr_t j = 1; j < half_width; j++)
-         {
-         T filter = filter_kernel(kernel, j * (kernel_length - 1) * width_normalise);
-         filter_val += filter * (data[i - j] + data[i + j]);
-         filter_sum += filter + filter;
-         }
-         
-         out[i] = filter_val / filter_sum;
-         }*/
+        else
+        {
+            // Non-symmetric filtering
+
+            for (uintptr_t i = 0, j = 0; i < length; i = j)
+            {
+                const uintptr_t half_width = static_cast<uintptr_t>(half_width_calc(i));
+                const uintptr_t width = half_width * 2 - 1;
+                const T filter_sum = make_filter(filter, kernel, kernel_length, width, ends);
+                const T gain = filter_sum ? T(1) / filter_sum : 1.0;
+                
+                const T *data = padded + filter_size - (half_width - 1);
+
+                for (j = i; (j < length) && half_width == half_width_calc(j); j++);
+                
+                uintptr_t n = j - i;
+                uintptr_t m = use_fft_n(n, half_width, fft_size);
+                uintptr_t k = 0;
+                
+                for (; k + (m - 1) < n; k += m)
+                    apply_filter_fft(out + i + k, data + i + k, filter, io, st, width, m, gain);
+                
+                for (; k + (N - 1) < n; k += N)
+                    apply_filter<N>(out + i + k, data + i + k, filter, width, gain);
+                
+                for (; k < n; k++)
+                    apply_filter<1>(out + i + k, data + i + k, filter, width, gain);
+            }
+        }
         
         allocator.deallocate(ptr);
     }
     
 private:
     
-    bool use_fft(uintptr_t n, uintptr_t half_width, uintptr_t fft_size)
+    struct fetcher : table_fetcher<double>
     {
-        return fft_size && n > 2 && half_width > 2 && (32 * n > half_width);
+        fetcher(const T *in, intptr_t size)
+        : table_fetcher<T>(size, 1.0), data(in) {}
+        
+        T operator()(intptr_t idx) { return data[idx]; }
+        
+        const T *data;
+    };
+
+    template <template <class V> class U>
+    void copy_edges(const T *in, T *out, intptr_t length, intptr_t filter_size)
+    {
+        intptr_t in_size = static_cast<intptr_t>(length);
+        intptr_t edge_size = static_cast<intptr_t>(filter_size);
+        
+        U<fetcher> fetch(fetcher(in, in_size));
+            
+        for (intptr_t i = 0; i < edge_size; i++)
+            out[i] = fetch(i - edge_size);
+        
+        std::copy_n(in, in_size, out + edge_size);
+        
+        for (intptr_t i = 0; i < edge_size; i++)
+            out[i + in_size + edge_size] = fetch(i + in_size);
     }
     
+    uintptr_t use_fft_n(uintptr_t n, uintptr_t half_width, uintptr_t fft_size)
+    {
+        bool use_fft = fft_size && n > 64 && half_width > 16 && (half_width * 64 > n);
+        
+        return use_fft ? n : 0;
+    }
+
     T filter_kernel(const T *kernel, double position)
     {
         uintptr_t index = static_cast<uintptr_t>(position);
@@ -186,34 +255,58 @@ private:
         return static_cast<T>(lo + (position - index) * (hi - lo));
     }
     
-    T make_filter(T *filter, const T *kernel, uintptr_t kernel_length, uintptr_t half_width, bool non_zero_end)
+    T make_filter(T *filter, const T *kernel, uintptr_t kernel_length, uintptr_t width, Ends ends)
     {
-        const double width_normalise = 1.0 / std::max(uintptr_t(1), half_width - (non_zero_end ? 1 : 0));
-        T filter_sum = 0.0;
+        if (kernel_length == 1)
+        {
+            std::fill_n(filter, width, kernel[0]);
+            return filter[0] * width;
+        }
         
-        uintptr_t loop_size = non_zero_end ? half_width - 1 : half_width;
+        const double width_adjust = (ends == kEndsNonZero) ? -1.0 : (ends == kEndsSymZero ? 0.0 : 1.0);
+        const double scale_width = std::max(1.0, width + width_adjust);
+        const double width_normalise = static_cast<double>(kernel_length - 1) / scale_width;
+        
+        uintptr_t offset = ends == kEndsZero ? 1 : 0;
+        uintptr_t loop_size = ends == kEndsNonZero ? width - 1 : width;
+        
+        T filter_sum(0);
         
         for (uintptr_t j = 0; j < loop_size; j++)
         {
-            filter[j] = filter_kernel(kernel, j * (kernel_length - 1) * width_normalise);
+            filter[j] = filter_kernel(kernel, (j + offset) * width_normalise);
             filter_sum += filter[j];
         }
         
-        if (non_zero_end)
+        if (ends == kEndsNonZero)
         {
-            filter[half_width - 1] = kernel[kernel_length - 1];
-            filter_sum += filter[half_width - 1];
+            filter[width - 1] = kernel[kernel_length - 1];
+            filter_sum += filter[width - 1];
         }
         
-        return T(1) / (filter_sum * T(2) - filter[0]);
+        return filter_sum;
     }
     
     template <int N>
-    void apply_filter(T *out, const T *data, const T *filter, uintptr_t half_width, T gain)
+    void apply_filter(T *out, const T *data, const T *filter, uintptr_t width, T gain)
     {
         using VecType = SIMDType<double, N>;
         
-        VecType filter_val = SIMDType<double, N>(data) * filter[0];
+        VecType filter_val = filter[width - 1] * VecType(data);
+        
+        for (uintptr_t j = 1; j < width; j++)
+            filter_val += filter[width - (j + 1)] * VecType(data + j);
+        
+        filter_val *= gain;
+        filter_val.store(out);
+    }
+    
+    template <int N>
+    void apply_filter_symmetric(T *out, const T *data, const T *filter, uintptr_t half_width, T gain)
+    {
+        using VecType = SIMDType<double, N>;
+        
+        VecType filter_val = filter[0] * VecType(data);
         
         for (uintptr_t j = 1; j < half_width; j++)
             filter_val += filter[j] * (VecType(data - j) + VecType(data + j));
@@ -222,18 +315,12 @@ private:
         filter_val.store(out);
     }
     
-    void apply_filter_fft(T *out, const T *data, T *filter, Split& io, Split& temp, uintptr_t half_width, uintptr_t n, T gain)
+    void apply_filter_fft(T *out, const T *data, const T *filter, Split& io, Split& temp, uintptr_t width, uintptr_t n, T gain)
     {
-        uintptr_t filter_width = half_width * 2 - 1;
-        uintptr_t data_width = n + (half_width - 1) * 2;
-        op_sizes sizes(data_width, filter_width, EdgeMode::kEdgeLinear);
-        in_ptr data_in(data - (half_width - 1), data_width);
-        in_ptr filter_in(filter - (half_width - 1), filter_width);
-        
-        // Mirror the filter
-        
-        for (intptr_t i = 1; i < (intptr_t) half_width; i++)
-            filter[-i] = filter[i];
+        uintptr_t data_width = n + width - 1;
+        op_sizes sizes(data_width, width, EdgeMode::kEdgeLinear);
+        in_ptr data_in(data, data_width);
+        in_ptr filter_in(filter, width);
         
         // Process
         
@@ -241,12 +328,11 @@ private:
         
         // Copy output with scaling
         
-        zipped_pointer p(io, half_width - 1);
+        zipped_pointer p(io, width - 1);
         
         for (uintptr_t i = 0; i < n; i++)
             out[i] = *p++ * gain;
     }
 };
-    
-    
+
 #endif

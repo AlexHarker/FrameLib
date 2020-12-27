@@ -40,26 +40,33 @@ namespace FrameLib_Spatial_Ops
 template<>
 inline std::string FrameLib_Spatial_Convertor<FrameLib_Spatial_Ops::CarToPol>::objectInfo(bool verbose)
 {
-    return formatInfo("Converts from cartesian values at the input to polar values at output: The outputs are frames of the same length as the longer of the two inputs. If one input is shorter than the other then it is padded with zeros to the length of the other before conversion.",
-                      "Converts from cartesian values at the input to polar values at output.", verbose);
+    return formatInfo("Converts from cartesian values at the inputs to polar values at the outputs: "
+                      "Conversion may be in 2D or 3D (using spherical coordinates). "
+                      "The outputs are frames of the same length as the longest input. "
+                      "Shorter inputs are padded with zeros prior to conversion.",
+                      "Converts from cartesian values at the inputs to polar values at the outputs.", verbose);
 }
 
 template<>
 inline std::string FrameLib_Spatial_Convertor<FrameLib_Spatial_Ops::CarToPol>::inputInfo(unsigned long idx, bool verbose)
 {
-    if (idx == 0)
-        return formatInfo("Real or X Input", "Real or X Input", verbose);
-    else
-        return formatInfo("Imaginary or Y Input", "Imag or Y Input", verbose);
+    switch (idx)
+    {
+        case 0:     return m2D ? "X (Real) Values" : "X Values";
+        case 1:     return m2D ? formatInfo("Y (Imaginary) Values", "Y (Imag) Values", verbose) : "Y Values";
+        default:    return "Z Values";
+    }
 }
 
 template<>
 inline std::string FrameLib_Spatial_Convertor<FrameLib_Spatial_Ops::CarToPol>::outputInfo(unsigned long idx, bool verbose)
 {
-    if (idx == 0)
-        return formatInfo("Amplitudes (or abs values)", "Amplitudes", verbose);
-    else
-        return formatInfo("Phases (or arg values)", "Phases", verbose);
+    switch (idx)
+    {
+        case 0:     return "Magnitudes (r)";
+        case 1:     return m2D ? "Phase Angles (theta)" : "Azimuth Angles (theta)";
+        default:    return "Elevation Angles (phi)";
+    }
 }
 
 using FrameLib_Cartopol = FrameLib_Spatial_Convertor<FrameLib_Spatial_Ops::CarToPol>;

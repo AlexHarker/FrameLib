@@ -20,10 +20,9 @@ public:
 
     // Info
     
-    std::string objectInfo(bool verbose) override;
-    std::string inputInfo(unsigned long idx, bool verbose) override;
-    std::string outputInfo(unsigned long idx, bool verbose) override;
-    
+    const char *getOpString() override { return "specified percentile"; }
+    const char *getExtraString() override { return "The default percentile is 50% which returns the median. "; }
+
     // Smooth
 
     void resetSize(unsigned long maxFrames, unsigned long size) override;

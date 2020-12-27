@@ -189,8 +189,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 330.0, 57.0, 23.0 ],
-									"text" : "fl.vmax~"
+									"patching_rect" : [ 15.0, 330.0, 84.0, 23.0 ],
+									"text" : "fl.framemax~"
 								}
 
 							}
@@ -322,8 +322,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -376,7 +376,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.vmax~.mxo",
+				"name" : "fl.framemax~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

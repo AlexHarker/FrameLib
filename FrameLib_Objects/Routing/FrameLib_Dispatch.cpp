@@ -1,6 +1,14 @@
 
 #include "FrameLib_Dispatch.h"
 
+// Parameter Object Class (used for error reporting
+
+FrameLib_Dispatch::Parameters::Parameters(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 1)
+{
+    addParameterInput();
+}
+
 // Internal Valve Class
 
 // Constructor
@@ -14,8 +22,6 @@ FrameLib_Dispatch::Select::Select(FrameLib_Context context, const FrameLib_Param
     snprintf(name, strBufSize, "input_%02ld", num + 1);
     mParameters.addInt(kActiveIn, name, 0);
     
-    // FIX - this means that we don't get errors at all... this needs review
-
     mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
     
@@ -56,34 +62,42 @@ void FrameLib_Dispatch::Select::process()
 
 FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Block(kProcessor, context, proxy)
-, mParameters(context, proxy, &sParamInfo)
+, mParameterObject(context, nullptr, proxy)
 {
-    mParameters.addDouble(kNumIns, "num_ins", 2, 0);
-    mParameters.setClip(2, 32);
-    mParameters.setInstantiation();
-    mParameters.addDouble(kNumOuts, "num_outs", 2, 1);
-    mParameters.setClip(2, 32);
-    mParameters.setInstantiation();
+    FrameLib_Parameters& parameters = mParameterObject.parameters();
     
-    mParameters.setErrorReportingEnabled(false);
-    mParameters.set(serialisedParameters);
-    mParameters.setErrorReportingEnabled(true);
+    parameters.addDouble(kNumIns, "num_ins", 2, 0);
+    parameters.setClip(2, 32);
+    parameters.setInstantiation();
+    parameters.addDouble(kNumOuts, "num_outs", 2, 1);
+    parameters.setClip(2, 32);
+    parameters.setInstantiation();
     
-    mNumIns = mParameters.getInt(kNumIns);
-    mNumOuts = mParameters.getInt(kNumOuts);
+    parameters.setErrorReportingEnabled(false);
+    parameters.set(serialisedParameters);
+    parameters.setErrorReportingEnabled(true);
+    
+    mNumIns = parameters.getInt(kNumIns);
+    mNumOuts = parameters.getInt(kNumOuts);
     
     for (long i = 0; i < mNumOuts; i++)
     {
         const int strBufSize = 32;
         char name[strBufSize];
         snprintf(name, strBufSize, "input_%02ld", i + 1);
-        mParameters.addInt(kActiveIn1 + i, name, 0);
+        parameters.addInt(kActiveIn1 + i, name, 0);
     }
               
-    mParameters.set(serialisedParameters);
+    parameters.set(serialisedParameters);
               
     setIO(mNumIns + 1, mNumOuts);
 
+    // Alias to the parameter object for error reporting
+    
+    mParameterObject.setInputAlias(Connection(this, mNumIns), 1);
+    
+    // Construct the internal select objects
+    
     for (int i = 0; i < mNumOuts; i++)
     {
         mSelects.add(new Select(context, serialisedParameters, proxy, mNumIns, i));
@@ -109,12 +123,12 @@ std::string FrameLib_Dispatch::inputInfo(unsigned long idx, bool verbose)
     if (idx == mNumIns)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Input #", "Input #", idx, verbose);
+        return formatInfo("Input #", idx);
 }
 
 std::string FrameLib_Dispatch::outputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Output #", "Output #", idx, verbose);
+    return formatInfo("Output #", idx);
 }
 
 // Parameter Info
@@ -133,6 +147,8 @@ FrameLib_Dispatch::ParameterInfo::ParameterInfo()
 
 void FrameLib_Dispatch::reset(double samplingRate, unsigned long maxBlockSize)
 {
+    mParameterObject.reset(samplingRate, maxBlockSize);
+    
     for (auto it = mSelects.begin(); it != mSelects.end(); it++)
         (*it)->reset(samplingRate, maxBlockSize);
 }

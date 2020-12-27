@@ -1,0 +1,30 @@
+<c74object category="FrameLib Host_Communication" module="FrameLib" name="fl.frommax~">
+  <digest> 
+        Turn messages or control signals from the host into frames.
+    </digest>
+  <description> 
+         In values mode the output is the last received value(s) as a vector. In params mode messages are collected and output as a single tagged frame. Typically params mode is used to help set object parameters. Output is triggered by frames arriving at the trigger input.
+    </description>
+  <misc name="Parameters">
+    <entry name="1. /mode [instantiation enum]">
+      <description> 
+                Sets the mode:<br/><br/>values - translate values from the host into vectors.<br/>params - translate host messages into concatenated tagged frames.<br />
+        <bullet>[0] - values</bullet>
+        <bullet>[1] - params</bullet>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Host_Communication</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.tomax~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>conversion</description>
+    </entry>
+  </misc>
+</c74object>

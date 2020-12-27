@@ -1,0 +1,70 @@
+<c74object category="FrameLib Vector" module="FrameLib" name="fl.chop~">
+  <digest> 
+        Chops input frames into equally sized output frames of a specified size.
+    </digest>
+  <description> 
+         The size can be set in samples or as a ratio of the length of the input frame. Outputs are formed by chopping the input into consecutive slices of the same length. Any additional input values once all outputs are formed are ignored. If there are insufficient input values to complete all outputs later outputs will be shortened. It is possible for the final output(s) to be empty in this case.
+    </description>
+  <misc name="Parameters">
+    <entry name="1. /num_outs [instantiation int]">
+      <description> 
+                Sets the number of outputs.
+            </description>
+    </entry>
+    <entry name="2. /size [double]">
+      <description> 
+                Sets the size of the output frames.
+            </description>
+    </entry>
+    <entry name="3. /units [enum]">
+      <description> 
+                Sets the units for the size (samples or ratio of the input length [0-1]).<br />
+        <bullet>[0] - samples</bullet>
+        <bullet>[1] - ratios</bullet>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Vector</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.minpos~" />
+    <seealso name="fl.percentile~" />
+    <seealso name="fl.stddev~" />
+    <seealso name="fl.centroid~" />
+    <seealso name="fl.accumpos~" />
+    <seealso name="fl.nonzero~" />
+    <seealso name="fl.maxpos~" />
+    <seealso name="fl.geomean~" />
+    <seealso name="fl.spread~" />
+    <seealso name="fl.framemax~" />
+    <seealso name="fl.kurtosis~" />
+    <seealso name="fl.sort~" />
+    <seealso name="fl.mean~" />
+    <seealso name="fl.join~" />
+    <seealso name="fl.shift~" />
+    <seealso name="fl.framemin~" />
+    <seealso name="fl.sum~" />
+    <seealso name="fl.subframe~" />
+    <seealso name="fl.nanfilter~" />
+    <seealso name="fl.reverse~" />
+    <seealso name="fl.length~" />
+    <seealso name="fl.peaks~" />
+    <seealso name="fl.pattern~" />
+    <seealso name="fl.product~" />
+    <seealso name="fl.skewness~" />
+    <seealso name="fl.crest~" />
+    <seealso name="fl.pad~" />
+    <seealso name="fl.flatness~" />
+    <seealso name="fl.rms~" />
+    <seealso name="fl.split~" />
+    <seealso name="fl.medianfilter~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>vector</description>
+    </entry>
+  </misc>
+</c74object>

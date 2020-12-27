@@ -1,16 +1,15 @@
 
 #include "FrameLib_Source.h"
 
-// FIX - source is only sample accurate (not subsample) - add a function to interpolate if necessary
-
 // Constructor
 
 FrameLib_Source::FrameLib_Source(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_AudioInput(context, proxy, &sParamInfo, 2, 1, 1)
+, FrameLib_IO_Helper(static_cast<FrameLib_DSP&>(*this))
 {
-    // FIX - defaults for when the units are not in samples!
+    double bufferSizeDefault = getBufferSizeDefault(serialisedParameters, 16384, 1);
     
-    mParameters.addDouble(kBufferSize, "buffer_size", 16384, 0);
+    mParameters.addDouble(kBufferSize, "buffer_size", bufferSizeDefault, 0);
     mParameters.setMin(0.0);
     mParameters.setInstantiation();
     
@@ -25,9 +24,16 @@ FrameLib_Source::FrameLib_Source(FrameLib_Context context, const FrameLib_Parame
     mParameters.addDouble(kDelay, "delay", 0);
     mParameters.setMin(0);
     
+    mParameters.addEnum(kInterpolation, "interp");
+    mParameters.addEnumItem(kNone, "none");
+    mParameters.addEnumItem(kLinear, "linear");
+    mParameters.addEnumItem(kHermite, "hermite");
+    mParameters.addEnumItem(kBSpline, "bspline");
+    mParameters.addEnumItem(kLagrange, "lagrange");
+    
     mParameters.set(serialisedParameters);
         
-    mLength = convertTimeToSamples(mParameters.getValue(kLength));
+    mLength = convertTimeToIntSamples(mParameters.getValue(kLength));
     
     setParameterInput(1);
     
@@ -39,9 +45,11 @@ FrameLib_Source::FrameLib_Source(FrameLib_Context context, const FrameLib_Parame
 std::string FrameLib_Source::objectInfo(bool verbose)
 {
     return formatInfo("Captures audio from the host environment and outputs the most recent values as frames: "
-                      "The size of captured frames is variable. "
-                      "Latency is equivalent to the length of the captured frame. "
-                      "The length of the internal buffer determines the maximum frame length.",
+                      "The size of captured frames is settable with the length parameter. "
+                      "The length of the internal buffer determines the maximum frame length. "
+                      "There is a minimum latency equivalent to the length of the captured frame. "
+                      "A longer delay can be optionally selected (subject to the frame and buffer length). "
+                      "Capture can optionally be interpolated (at greater CPU usage) for sub-sample accuracy.",
                       "Captures audio from the host environment and outputs the most recent values as frames.", verbose);
 }
 
@@ -55,7 +63,7 @@ std::string FrameLib_Source::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Source::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Captured Output";
+    return "Output";
 }
 
 std::string FrameLib_Source::audioInfo(unsigned long idx, bool verbose)
@@ -73,21 +81,34 @@ FrameLib_Source::ParameterInfo::ParameterInfo()
     add("Sets the length of output frames in the units specified by the units parameter.");
     add("Sets the time units used to determine the buffer size and output length.");
     add("Sets the input delay in the units specified by the units parameter: "
-        "N.B. - there is a minimum delay or latency of the output length.");
+        "Note that a minimum delay (or latency) is applied of the output length.");
+    add("Sets the interpolation mode: "
+        "none - no interpolation. "
+        "linear - linear interpolation. "
+        "hermite - cubic hermite interpolation. "
+        "bspline - cubic bspline interpolation. "
+        "lagrange - cubic lagrange interpolation.");
 }
 
 // Helpers
 
-unsigned long FrameLib_Source::convertTimeToSamples(double time)
-{    
+double FrameLib_Source::convertTimeToSamples(double time)
+{
     switch (mParameters.getEnum<Units>(kUnits))
     {
-        case kSamples:  break;
-        case kMS:       time = msToSamples(time);       break;
-        case kSeconds:  time = secondsToSamples(time);  break;
+        case kSamples:  return time;
+        case kMS:       return msToSamples(time);
+        case kSeconds:  return secondsToSamples(time);
     }
-    
-    return roundToUInt(time);
+
+	assert("This code should never run");
+
+	return time;
+}
+
+unsigned long FrameLib_Source::convertTimeToIntSamples(double time)
+{
+    return roundToUInt(convertTimeToSamples(time));
 }
 
 void FrameLib_Source::copy(const double *input, unsigned long offset, unsigned long size)
@@ -96,6 +117,7 @@ void FrameLib_Source::copy(const double *input, unsigned long offset, unsigned l
     {
         copyVector(&mBuffer[offset], input, size);
         mCounter = offset + size;
+        mCounter = mCounter == bufferSize() ? 0 : mCounter;
     }
 }
 
@@ -103,7 +125,11 @@ void FrameLib_Source::copy(const double *input, unsigned long offset, unsigned l
 
 void FrameLib_Source::objectReset()
 {
-    unsigned long size = convertTimeToSamples(mParameters.getValue(kBufferSize)) + mMaxBlockSize;
+	size_t size = convertTimeToIntSamples(mParameters.getValue(kBufferSize));
+    
+    // Limit the buffer size ensuring there are enough additional samples for interpolation and the max block size
+    
+    size = limitBufferSize(size, mSamplingRate) + mMaxBlockSize + 2UL;
     
     if (size != bufferSize())
         mBuffer.resize(size);
@@ -130,16 +156,18 @@ void FrameLib_Source::blockProcess(const double * const *ins, double **outs, uns
 
 void FrameLib_Source::update()
 {
-    mLength = convertTimeToSamples(mParameters.getValue(kLength));
+    mLength = convertTimeToIntSamples(mParameters.getValue(kLength));
 }
 
 void FrameLib_Source::process()
 {
+    InterpType interpType = kInterpNone;
+
     unsigned long sizeOut = mLength;
     
     FrameLib_TimeFormat frameTime = getFrameTime();
-    unsigned long delayTime = convertTimeToSamples(mParameters.getValue(kDelay));
-    delayTime = std::max(sizeOut, delayTime);
+    FrameLib_TimeFormat delayTime(convertTimeToSamples(mParameters.getValue(kDelay)));
+    delayTime = std::max(FrameLib_TimeFormat(sizeOut, 0), delayTime);
     
     // Calculate output size
     
@@ -147,26 +175,53 @@ void FrameLib_Source::process()
     allocateOutputs();
     double *output = getOutput(0, &sizeOut);
     
-    // Calculate time offset
+    // Calculate time offset and determine required interpolation
     
-    unsigned long offset = roundToUInt(getBlockEndTime() - frameTime) + delayTime;
+    FrameLib_TimeFormat timeOffset = (getBlockEndTime() - frameTime) + delayTime;
+    
+    if (timeOffset.fracVal())
+    {
+        switch (mParameters.getEnum<Interpolation>(kInterpolation))
+        {
+            case kNone:         break;
+            case kLinear:       interpType = kInterpLinear;             break;
+            case kHermite:      interpType = kInterpCubicHermite;       break;
+            case kBSpline:      interpType = kInterpCubicBSpline;       break;
+            case kLagrange:     interpType = kInterpCubicLagrange;      break;
+        }
+    }
     
     // Safety
     
-    if (!sizeOut || offset > bufferSize())
+    bool timeCheck = frameTime >= getBlockStartTime() && frameTime < getBlockEndTime();
+    FrameLib_TimeFormat delayCheck = delayTime - FrameLib_TimeFormat(sizeOut, 0);
+    
+    if (!timeCheck || !checkOutput(sizeOut, delayCheck, bufferSize(), mMaxBlockSize + 2UL))
     {
         zeroVector(output, sizeOut);
         return;
     }
     
-    // Calculate actual offset into buffer
+    // Choose sample or sub-sample accuracy
     
-    offset = (offset <= mCounter) ? mCounter - offset : mCounter + bufferSize() - offset;
+    if (interpType == kInterpNone)
+    {
+        // Calculate actual offset into buffer
     
-    // Calculate first segment size and copy segments
+        unsigned long offset = roundToUInt(timeOffset);
+        offset = (offset <= mCounter) ? mCounter - offset : mCounter + bufferSize() - offset;
     
-    unsigned long size = ((offset + sizeOut) > bufferSize()) ? bufferSize() - offset : sizeOut;
+        // Calculate first segment size and copy segments
     
-    copyVector(output, &mBuffer[offset], size);
-    copyVector(output + size, mBuffer.data(), (sizeOut - size));
+        unsigned long size = ((offset + sizeOut) > bufferSize()) ? bufferSize() - offset : sizeOut;
+    
+        copyVector(output, &mBuffer[offset], size);
+        copyVector(output + size, mBuffer.data(), (sizeOut - size));
+    }
+    else
+    {
+        double position = static_cast<double>(mCounter) - static_cast<double>(timeOffset);
+    
+        interpolate(Fetcher(mBuffer.data(), bufferSize()), output, sizeOut, position, interpType);
+    }
 }

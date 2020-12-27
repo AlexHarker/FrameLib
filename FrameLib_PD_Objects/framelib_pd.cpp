@@ -288,6 +288,7 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_Peaks>::makeClass("fl.pattern~");
     FrameLib_PDClass_Expand<FrameLib_Peaks>::makeClass("fl.peaks~");
     FrameLib_PDClass_Expand<FrameLib_Percentile>::makeClass("fl.percentile~");
+    FrameLib_PDClass_Expand<FrameLib_Prioritise>::makeClass("fl.prioritise~");
     FrameLib_PDClass_Expand<FrameLib_Reverse>::makeClass("fl.reverse~");
     FrameLib_PDClass_Expand<FrameLib_Shift>::makeClass("fl.shift~");
     FrameLib_PDClass_Expand<FrameLib_Sort>::makeClass("fl.sort~");
@@ -348,7 +349,7 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_Erf>::makeClass("fl.erf~");
     FrameLib_PDClass_Expand<FrameLib_Erfc>::makeClass("fl.erfc~");
     
-    // Binary  Operators
+    // Binary Operators
     
     FrameLib_PDClass_Expand<FrameLib_Add, kAllInputs>::makeClass("fl.+~");
     FrameLib_PDClass_Expand<FrameLib_Subtract, kAllInputs>::makeClass("fl.-~");

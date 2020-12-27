@@ -10,7 +10,7 @@ FrameLib_Prioritise::FrameLib_Prioritise(FrameLib_Context context, const FrameLi
     mParameters.setClip(2, 32);
     mParameters.setInstantiation();
     
-    mParameters.addEnum(kMode, "mode", 1);
+    mParameters.addEnum(kMode, "order", 1);
     mParameters.addEnumItem(kLow, "low");
     mParameters.addEnumItem(kHigh, "high");
     mParameters.setInstantiation();
@@ -26,7 +26,7 @@ std::string FrameLib_Prioritise::objectInfo(bool verbose)
 {
     return formatInfo("Apply a fixed priority ranking to synchronous input frames: "
                       "Frames arriving asynchronously are sent to the output. "
-                      "When frames arrive synchronously only one is sent to the ouput."
+                      "When frames arrive synchronously only one is sent to the output. "
                       "The input number is used to proritise synchonous inputs. "
                       "Either higher or lower numbered inputs can be prioritised.",
                       "Apply a fixed priority ranking to synchronous input frames.", verbose);
@@ -34,7 +34,7 @@ std::string FrameLib_Prioritise::objectInfo(bool verbose)
 
 std::string FrameLib_Prioritise::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Input #", "Input #", idx, verbose);
+    return formatInfo("Input #", idx);
 }
 
 std::string FrameLib_Prioritise::outputInfo(unsigned long idx, bool verbose)

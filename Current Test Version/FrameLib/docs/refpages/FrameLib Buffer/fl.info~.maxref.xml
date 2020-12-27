@@ -1,0 +1,37 @@
+<c74object category="FrameLib Buffer" module="FrameLib" name="fl.info~">
+  <digest> 
+        Outputs the sample rate, number of channels and length of a specified buffer.
+    </digest>
+  <description> 
+         The units for reporting length can be set with the units parameter. If the named buffer is not found all outputs are given as zero.
+    </description>
+  <misc name="Parameters">
+    <entry name="1. /buffer [string]">
+      <description> 
+                Sets the buffer to use.
+            </description>
+    </entry>
+    <entry name="2. /units [enum]">
+      <description> 
+                Sets the units for reporting the length of the buffer.<br />
+        <bullet>[0] - samples</bullet>
+        <bullet>[1] - ms</bullet>
+        <bullet>[2] - seconds</bullet>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Buffer</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.read~" />
+    <seealso name="ibuffer" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>buffer</description>
+    </entry>
+  </misc>
+</c74object>

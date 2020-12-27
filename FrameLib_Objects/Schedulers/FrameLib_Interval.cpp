@@ -31,8 +31,11 @@ FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, const FrameLib_Pa
 
 std::string FrameLib_Interval::objectInfo(bool verbose)
 {
-    return formatInfo("Schedules frames at regular intervals, which can be adjusted using the interval parameter: The output is an empty frame.",
-                   "Schedules frames at regular intervals, which can be adjusted using the interval parameter.", verbose);
+    return formatInfo("Schedules frames at regular intervals set by the interval parameter: "
+                      "The output is an empty trigger frame. "
+                      "Scheduling is optionally switchable if the switchable parameter is set at instantiation. "
+                      "The on parameter can be used to start and stop scheduling when this is the case.",
+                      "Schedules frames at regular intervals set by the interval parameter.", verbose);
 }
 
 std::string FrameLib_Interval::inputInfo(unsigned long idx, bool verbose)
@@ -42,7 +45,7 @@ std::string FrameLib_Interval::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Interval::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Empty Trigger Frames";
+    return formatInfo("Trigger Output - outputs empty frames", "Trigger Output", verbose);
 }
 
 // Parameter Info
@@ -51,8 +54,10 @@ FrameLib_Interval::ParameterInfo FrameLib_Interval::sParamInfo;
 
 FrameLib_Interval::ParameterInfo::ParameterInfo()
 {
-    add("Sets the interval between frames in the units of the units parameter.");
-    add("Sets the time units used to set the interval between frames.");
+    add("Sets the interval between frames in the units specified by the units parameter.");
+    add("Sets the time units used for setting the interval.");
+    add("Sets whether the object is switchable or not (setting this on can reduce CPU efficiency).");
+    add("Sets the state when in switchable mode in order to start and stop the timing of intervals.");
 }
 
 // Calculate Interval

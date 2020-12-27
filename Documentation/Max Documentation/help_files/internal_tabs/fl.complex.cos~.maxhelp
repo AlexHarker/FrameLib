@@ -277,7 +277,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"patching_rect" : [ 15.0, 277.0, 98.0, 23.0 ],
-									"text" : "fl.complexcos~"
+									"text" : "fl.complex.cos~"
 								}
 
 							}
@@ -297,7 +297,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.complexcos~" ],
+									"jsarguments" : [ "fl.complex.cos~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -453,7 +453,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.complexcos~.mxo",
+				"name" : "fl.complex.cos~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

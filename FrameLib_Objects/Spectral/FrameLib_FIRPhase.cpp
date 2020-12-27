@@ -5,16 +5,16 @@
 
 FrameLib_FIRPhase::FrameLib_FIRPhase(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
-, mProcessor(*this)
+, mProcessor(*this, 0)
 {
-    mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
+    mParameters.addInt(kMaxLength, "max_length", 16384, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
     
     mParameters.addDouble(kPhase, "phase", 0.0, 1);
     mParameters.setClip(0.0, 1.0);
     
-    mParameters.addDouble(kTimeFactor, "timefactor", 1.0, 2);
+    mParameters.addDouble(kTimeFactor, "time_factor", 1.0, 2);
     mParameters.setMin(1.0);
     
     mParameters.set(serialisedParameters);
@@ -28,12 +28,12 @@ FrameLib_FIRPhase::FrameLib_FIRPhase(FrameLib_Context context, const FrameLib_Pa
 
 std::string FrameLib_FIRPhase::objectInfo(bool verbose)
 {
-    return formatInfo("Transform FIR coefficients to preserve the amplitude spectrum, but alter the phase. "
-                      "The required phase is set using the phase parameter. "
-                      "Output frames will be the length of the FFT size used for processing. "
-                      "The output length can be increased to avoid time aliasing using the timefactor parameter."
-                      "Inputs which are not a power of two are zero-padded before processing.",
-                      "Transform FIR coefficients to preserve the amplitude spectrum, but alter the phase.",
+    return formatInfo("Transform FIR coefficients to preserve the amplitude spectrum but alter the phase: "
+                      "The phase can be directly specified using the phase parameter. "
+                      "Output frames will be the length of the FFT size used internally for processing. "
+                      "Inputs which are not a power of two are zero-padded before processing. "
+                      "Additionally the input can be further zero-padded to avoid time aliasing.",
+                      "Transform FIR coefficients to preserve the amplitude spectrum but alter the phase.",
                       verbose);
 }
 
@@ -56,12 +56,14 @@ FrameLib_FIRPhase::ParameterInfo FrameLib_FIRPhase::sParamInfo;
 
 FrameLib_FIRPhase::ParameterInfo::ParameterInfo()
 {
-    add("Sets the maximum input length / FFT size.");
-    add("Sets the phase for the transformed FIR. "
+    add("Sets the input length and maximum FFT size.");
+    add("Sets the phase for the transformed FIR [0 to 1]. "
         "minimum phase can be requested with a value of zero. "
         "linear phase can be requested with value of a half. "
         "maximum phase can be requested with a value of one.");
-    add("Sets the time factor used to multiply the length of the FIR before processing.");
+    add("Sets the factor used to determine the length for zero padding the FIR before processing. "
+        "The FIR is padded to at least its original length multiplied by this factor. "
+        "Note that this needs to be accounted for when setting the max_length parameter.");
 }
 
 // Process

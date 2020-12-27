@@ -9,15 +9,15 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
     const int strBufSize = 10;
     
     char argStr[strBufSize];
-    char nameStr[strBufSize];
+    char tagStr[strBufSize];
     
     mParameters.addInt(kNumIns, "num_ins", 1);
     mParameters.setClip(1, maxNumIns);
     mParameters.setInstantiation();
+    
     mParameters.addEnum(kEmptyMode, "empty");
     mParameters.addEnumItem(kIgnore, "ignore");
     mParameters.addEnumItem(kReset, "reset");
-    mParameters.setInstantiation();
 
     // Read in once to get number of strings needed
     
@@ -32,8 +32,8 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
         for (int i = 0; i < maxNumIns; i++)
         {
             snprintf(argStr, strBufSize, "%d", i);
-            snprintf(nameStr, strBufSize, "tag_%02d", i + 1);
-            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(nameStr) != serialisedParameters->end())
+            snprintf(tagStr, strBufSize, "tag_%02d", i + 1);
+            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(tagStr) != serialisedParameters->end())
                 mParameters.set(kNumIns, (long) (i + 1));
         }
     }
@@ -44,12 +44,11 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
     
     for (unsigned long i = 0; i < mNumIns; i++)
     {
-        snprintf(nameStr, strBufSize, "tag_%02lu", i + 1);
-        mParameters.addString(kNames + i, nameStr, i);
-        mParameters.setInstantiation();
+        snprintf(tagStr, strBufSize, "tag_%02lu", i + 1);
+        mParameters.addString(kTags + i, tagStr, i);
     }
     
-    // Read in again to get parameter names
+    // Read in again to get parameter tags
     
     mParameters.set(serialisedParameters);
     
@@ -59,31 +58,37 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
     
     setInputMode(mNumIns, false, true, false, kFrameTagged);
     setOutputType(0, kFrameTagged);
+    
+    addParameterInput();
 }
 
 // Info
 
 std::string FrameLib_Tag::objectInfo(bool verbose)
 {
-    return formatInfo("Tags vectors with names ready to send to the parameter input of an object, or for routing purposes: "
-                      "A variable number of inputs is available, each of which deal will a specific tag. "
-                      "The number of inputs is specified either explicitly with a parameter or implicitly by which arguments or tag parameters are present."
-                      "The final input takes tagged input which is concatanated with other inputs after tagging. All inputs trigger output.",
-                      "Tags vectors with names ready to send to the parameter input of an object or for routing purposes.", verbose);
+    return formatInfo("Tags vectors with tags either in order to set parameters or for routing purposes: "
+                      "Tag inputs each deal with one tag and take input vectors. "
+                      "The number of tag inputs can be set explicitly by parameter. "
+                      "Alternatively, it can be set implicitly by the tag parameters present at instantiation. "
+                      "A further input takes pre-tagged input to concatanated with other inputs after tagging. "
+                      "All inputs except the parameter input trigger output.",
+                      "Tags vectors with tags either in order to set parameters or for routing purposes.", verbose);
 }
 
 std::string FrameLib_Tag::inputInfo(unsigned long idx, bool verbose)
 {
+    if (idx == mNumIns + 1)
+        return parameterInputInfo(verbose);
     if (idx == mNumIns)
-        return formatInfo("Parameter Input - takes tagged input for concatenation with other inputs", "Parameter Input", verbose);
+        return formatInfo("Pre-Tagged Input - for concatenation with other inputs", "Tagged Input", verbose);
     else
-        return formatInfo("Input for Tag #", "Input  for Tag #", idx, verbose);
+        return formatInfo("Input For Tag #", idx);
 
 }
 
 std::string FrameLib_Tag::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Tagged Output Frames";
+    return "Output";
 }
 
 // Parameter Info
@@ -92,12 +97,14 @@ FrameLib_Tag::ParameterInfo FrameLib_Tag::sParamInfo;
 
 FrameLib_Tag::ParameterInfo::ParameterInfo()
 {
-    const int strBufSize = 256;
+    const int strBufSize = 64;
     char str[strBufSize];
     
     add("Sets the number of inputs (and hence the number of tags).");
 
-    add("Sets the behaviour when empty frames are received: ignore - empty frames are ignored. reset - empty frames create empty tags to reset parameters.");
+    add("Sets the behaviour when empty frames are received: "
+        "ignore - empty frames are ignored. "
+        "reset - empty frames create empty tags to reset parameters to defaults.");
 
     for (int i = 0; i < maxNumIns; i++)
     {
@@ -121,7 +128,7 @@ void FrameLib_Tag::process()
     {
         getInput(i, &sizeIn);
         if (sizeIn || mode == kReset)
-            requestAddedOutputSize(0, Serial::calcSize(mParameters.getString(kNames + i), sizeIn));
+            requestAddedOutputSize(0, Serial::calcSize(mParameters.getString(kTags + i), sizeIn));
     }
     
     requestAddedOutputSize(0, Serial::calcSize(preTagged));
@@ -134,7 +141,7 @@ void FrameLib_Tag::process()
         {
             const double *input = getInput(i, &sizeIn);
             if (sizeIn || mode == kReset)
-                output->write(mParameters.getString(kNames + i), input, sizeIn);
+                output->write(mParameters.getString(kTags + i), input, sizeIn);
         }
         
         output->write(preTagged);

@@ -25,8 +25,10 @@ FrameLib_Constant::FrameLib_Constant(FrameLib_Context context, const FrameLib_Pa
 
 std::string FrameLib_Constant::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs the specified constant: Output is a single value. The constant can be multiplied before output",
-                   "Outputs the specified constant.", verbose);
+    return formatInfo("Outputs a specified constant: "
+                      "Output is a single value. "
+                      "The constant can be multiplied before output as set by the multiplier parameter.",
+                      "Outputs a specified constant.", verbose);
 }
 
 std::string FrameLib_Constant::inputInfo(unsigned long idx, bool verbose)

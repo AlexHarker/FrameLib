@@ -203,7 +203,7 @@ template <int final_size, class T> struct SizedVector
     
     friend SV operator == (const SV& a, const SV& b) { return op(a, b, std::equal_to<T>()); }
     friend SV operator != (const SV& a, const SV& b) { return op(a, b, std::not_equal_to<T>()); }
-    friend SV operator > (const SV& a, const SV& b) { return op(a, b, std::greater<T>());; }
+    friend SV operator > (const SV& a, const SV& b) { return op(a, b, std::greater<T>()); }
     friend SV operator < (const SV& a, const SV& b) { return op(a, b, std::less<T>()); }
     friend SV operator >= (const SV& a, const SV& b) { return op(a, b, std::greater_equal<T>()); }
     friend SV operator <= (const SV& a, const SV& b) { return op(a, b, std::less_equal<T>()); }

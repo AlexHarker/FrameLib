@@ -25,8 +25,11 @@ FrameLib_Subframe::FrameLib_Subframe(FrameLib_Context context, const FrameLib_Pa
 
 std::string FrameLib_Subframe::objectInfo(bool verbose)
 {
-    return formatInfo("Output part of an input frame: The subframe is specified by a start and end point in the input frame. The start point is included in the output frame, but the end point is not. Points may be specified in samples or as a ratio of the length of the input frame.",
-                   "Output part of an input frame.", verbose);
+    return formatInfo("Output a specified segment of an input frame: "
+                      "The subframe is specified by a start and end point in the input frame. "
+                      "The start point is included in the output frame but the end point is not. "
+                      "Points may be specified in samples or as a ratio of the length of the input frame.",
+                      "Output part of an input frame.", verbose);
 }
 
 std::string FrameLib_Subframe::inputInfo(unsigned long idx, bool verbose)
@@ -50,7 +53,7 @@ FrameLib_Subframe::ParameterInfo::ParameterInfo()
 {
     add("Sets the start point of the subframe.");
     add("Sets the end point of the subframe.");
-    add("Sets units for the start and end points (samples or ratios [0-1]).");
+    add("Sets the units for the start and end points (samples or ratios [0-1]).");
 }
 
 // Process

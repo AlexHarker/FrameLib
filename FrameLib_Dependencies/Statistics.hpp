@@ -70,7 +70,7 @@ template <class T> double statMin(const T input, size_t size)
 
 template <class T> double statMax(const T input, size_t size)
 {
-    return size ? *(std::max_element(input, input + size)) : -std::numeric_limits<double>::infinity();;
+    return size ? *(std::max_element(input, input + size)) : -std::numeric_limits<double>::infinity();
 }
 
 // Counts

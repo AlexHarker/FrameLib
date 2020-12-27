@@ -1,0 +1,53 @@
+<c74object category="FrameLib Unary" module="FrameLib" name="fl.trunc~">
+  <digest> 
+        Calculates the truncated value of each value in the input frame.
+    </digest>
+  <description> 
+         The output is a frame of the same length as the input.
+    </description>
+  <misc name="Parameters">
+    <entry>
+      <description> 
+                This object has no parameters.<br/>
+            </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Unary</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.sqrt~" />
+    <seealso name="fl.floor~" />
+    <seealso name="fl.exp2~" />
+    <seealso name="fl.tanh~" />
+    <seealso name="fl.cbrt~" />
+    <seealso name="fl.cos~" />
+    <seealso name="fl.atanh~" />
+    <seealso name="fl.acosh~" />
+    <seealso name="fl.atan~" />
+    <seealso name="fl.erf~" />
+    <seealso name="fl.cosh~" />
+    <seealso name="fl.asin~" />
+    <seealso name="fl.exp~" />
+    <seealso name="fl.log10~" />
+    <seealso name="fl.log2~" />
+    <seealso name="fl.erfc~" />
+    <seealso name="fl.acos~" />
+    <seealso name="fl.abs~" />
+    <seealso name="fl.log~" />
+    <seealso name="fl.asinh~" />
+    <seealso name="fl.not~" />
+    <seealso name="fl.sinh~" />
+    <seealso name="fl.ceil~" />
+    <seealso name="fl.round~" />
+    <seealso name="fl.tan~" />
+    <seealso name="fl.sin~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>unary ops,operators</description>
+    </entry>
+  </misc>
+</c74object>

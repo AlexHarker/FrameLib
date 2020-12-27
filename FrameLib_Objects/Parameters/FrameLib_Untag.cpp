@@ -9,7 +9,7 @@ FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, const FrameLib_Paramete
     const int strBufSize = 10;
 
     char argStr[strBufSize];
-    char nameStr[strBufSize];
+    char tagStr[strBufSize];
     
     mParameters.addInt(kNumOuts, "num_outs", 1);
     mParameters.setClip(1, maxNumOuts);
@@ -21,15 +21,15 @@ FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, const FrameLib_Paramete
     mParameters.set(serialisedParameters);
     mParameters.setErrorReportingEnabled(true);
 
-    // If no number of inputs is specified explicityly then examine the serialised parameters to determine the number needed
+    // If no number of outputs is specified explicity then examine the serialised parameters to determine the number needed
     
     if (!mParameters.changed(kNumOuts))
     {
         for (int i = 0; i < maxNumOuts; i++)
         {
             snprintf(argStr, strBufSize, "%d", i);
-            snprintf(nameStr, strBufSize, "tag_%02d", i + 1);
-            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(nameStr) != serialisedParameters->end())
+            snprintf(tagStr, strBufSize, "tag_%02d", i + 1);
+            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(tagStr) != serialisedParameters->end())
                 mParameters.set(kNumOuts, (long) (i + 1));
         }
     }
@@ -40,12 +40,11 @@ FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, const FrameLib_Paramete
     
     for (unsigned long i = 0; i < mNumOuts; i++)
     {
-        snprintf(nameStr, strBufSize, "tag_%02lu", i + 1);
-        mParameters.addString(kNames + i, nameStr, i);
-        mParameters.setInstantiation();
+        snprintf(tagStr, strBufSize, "tag_%02lu", i + 1);
+        mParameters.addString(kTags + i, tagStr, i);
     }
     
-    // Read in again to get parameter names
+    // Read in again to get parameter tags
     
     mParameters.set(serialisedParameters);
     
@@ -54,26 +53,33 @@ FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, const FrameLib_Paramete
     setIO(1, mNumOuts);
     
     setInputMode(0, false, true, false, kFrameTagged);
+    
+    addParameterInput();
 }
 
 // Info
 
 std::string FrameLib_Untag::objectInfo(bool verbose)
 {
-    return formatInfo("Separates vectors from a tagged frame according to a given set of tags: "
-                      "A variable number of outputs is available, each of which deal will a specific tag. "
-                      "The number of outputs is specified either explicitly with a parameter or implicitly by which arguments or tag parameters are present.",
-                      "Separates vectors from a tagged frame according to a given set of names.", verbose);
+    return formatInfo("Retrieves vectors from a tagged frame according to a specified set of tags: "
+                      "Each output deals with one tag and outputs vectors at the input with that tag. "
+                      "Outputs will be empty if the tag is not present at the input with a vector value. "
+                      "The number of outputs can be set explicitly by parameter. "
+                      "Alternatively, it can be set implicitly by the tag parameters present at instantiation.",
+                      "Retrieves vectors from a tagged frame according to a specified set of tags.", verbose);
 }
 
 std::string FrameLib_Untag::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Parameter Input - takes tagged input", "Parameter Input", verbose);
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Tagged Input";
 }
 
 std::string FrameLib_Untag::outputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Vector Output #", "Vector Output #", idx, verbose);
+    return formatInfo("Vector Output #", idx);
 }
 
 // Parameter Info
@@ -85,7 +91,7 @@ FrameLib_Untag::ParameterInfo::ParameterInfo()
     const int strBufSize = 256;
     char str[strBufSize];
     
-    add("Sets the number of outputs (and hence the number of tags.");
+    add("Sets the number of outputs (and hence the number of tags).");
     
     for (int i = 0; i < maxNumOuts; i++)
     {
@@ -105,7 +111,7 @@ void FrameLib_Untag::process()
     if (input)
     {
         for (unsigned long i = 0; i < mNumOuts; i++)
-            requestOutputSize(i, input->getVectorSize(mParameters.getString(kNames + i)));
+            requestOutputSize(i, input->getVectorSize(mParameters.getString(kTags + i)));
     }
     else
     {
@@ -119,6 +125,6 @@ void FrameLib_Untag::process()
     {
         double *output = getOutput(i, &sizeOut);
         if (output)
-            input->read(mParameters.getString(kNames + i), output, sizeOut);
+            input->read(mParameters.getString(kTags + i), output, sizeOut);
     }
 }

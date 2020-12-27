@@ -1,0 +1,63 @@
+<c74object category="FrameLib Generators" module="FrameLib" name="fl.ramp~">
+  <digest> 
+        Generates a linear ramp across each output frame.
+    </digest>
+  <description> 
+         The scale parameter is used to set the range of the ramp. The length of the output is dependent on the mode parameter. Output length may be set by parameter or based on that of the trigger input. The range of the output ramp is determined by the scale and edges parameters.
+    </description>
+  <misc name="Parameters">
+    <entry name="1. /mode [enum]">
+      <description> 
+                Controls how the output length is determined:<br/><br/>requested - the output length is set by the length parameter.<br/>input - the output length follows the length of the trigger input.<br />
+        <bullet>[0] - requested</bullet>
+        <bullet>[1] - input</bullet>
+      </description>
+    </entry>
+    <entry name="2. /length [int]">
+      <description> 
+                Sets the requested output length in the units specified by the units parameter.
+            </description>
+    </entry>
+    <entry name="3. /units [enum]">
+      <description> 
+                Sets the units used for the length parameter.<br />
+        <bullet>[0] - samples</bullet>
+        <bullet>[1] - ms</bullet>
+        <bullet>[2] - seconds</bullet>
+      </description>
+    </entry>
+    <entry name="4. /scale [enum]">
+      <description> 
+                Sets the scaling of the output ramp:<br/><br/>count - scaled in samples (an interger count from zero).<br/>ms - scaled in milliseconds starting at zero.<br/>seconds - scaled in seconds starting at zero.<br/>normalised - output is normalised according to the edges parameter.<br />
+        <bullet>[0] - count</bullet>
+        <bullet>[1] - ms</bullet>
+        <bullet>[2] - seconds</bullet>
+        <bullet>[3] - normalised</bullet>
+      </description>
+    </entry>
+    <entry name="5. /endpoints [enum]">
+      <description> 
+                Sets the included edges when the scale parameter is set to normalised:<br/><br/>both - the ramp is scaled [0-1].<br/>first - the ramp is scaled [0-1).<br/>last - the ramp is scaled (0-1].<br/>none - the ramp is scaled (0-1).<br />
+        <bullet>[0] - both</bullet>
+        <bullet>[1] - first</bullet>
+        <bullet>[2] - last</bullet>
+        <bullet>[3] - none</bullet>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Generators</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.random~" />
+    <seealso name="fl.gaussian~" />
+    <seealso name="fl.uniform~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>generators</description>
+    </entry>
+  </misc>
+</c74object>

@@ -87,7 +87,7 @@ public:
     {
         return formatInfo("#: Calculation is performed on triplets of values in turn. "
                           "The output is a frame at least as long as the leftmost frame. "
-                          "When frames mismatch in length the result depends on the mismatch parameter.",
+                          "If inputs mismatch in length the result depends on the mismatch parameter.",
                           "#.", getDescriptionString(), verbose);
     }
 
@@ -97,8 +97,7 @@ public:
         {
             case 0: return "Input";
             case 1: return "Parameter 1";
-            case 2: return "Parameter 2";
-            default: return "Unknown Input";
+            default: return "Parameter 2";
         }
     }
 

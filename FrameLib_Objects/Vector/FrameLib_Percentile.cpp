@@ -23,7 +23,7 @@ FrameLib_Percentile::FrameLib_Percentile(FrameLib_Context context, const FrameLi
 
 std::string FrameLib_Percentile::objectInfo(bool verbose)
 {
-    const char *basic = "Calculates any percentile (for example the median at 50%) of the input frame";
+    const char *basic = "Calculates a specified percentile of the input frame (by default the 50th or median)";
     
     return formatObjectInfo(basic, verbose);
 }
@@ -44,7 +44,7 @@ FrameLib_Percentile::ParameterInfo::ParameterInfo()
 double FrameLib_Percentile::compute(const double *input, size_t size)
 {
     double result = 0.0;
-    auto temp = allocAutoArray<double>(size + 1);
+    auto temp = allocAutoArray<double>(static_cast<unsigned long>(size) + 1);
     
     if (temp)
     {

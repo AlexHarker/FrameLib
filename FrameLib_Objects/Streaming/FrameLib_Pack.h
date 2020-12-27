@@ -4,7 +4,7 @@
 
 #include "FrameLib_Multistream.h"
 
-// FrameLib_Pack - Pack Multi-stream Signals
+// FrameLib_Pack - Pack Multistream Signals
 
 class FrameLib_Pack final : public FrameLib_Multistream
 {

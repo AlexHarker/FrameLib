@@ -2,13 +2,14 @@
 	"patcher" : 	{
 		"fileversion" : 1,
 		"appversion" : 		{
-			"major" : 7,
-			"minor" : 3,
-			"revision" : 4,
+			"major" : 8,
+			"minor" : 1,
+			"revision" : 7,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
+		"classnamespace" : "box",
 		"rect" : [ 172.0, 191.0, 912.0, 644.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
@@ -36,6 +37,7 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-8",
@@ -44,7 +46,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 371.0, 254.0, 67.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.window~"
 				}
 
@@ -57,7 +58,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 90.0, 259.0, 67.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.window~"
 				}
 
@@ -69,7 +69,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 244.0, 335.0, 145.0, 20.0 ],
-					"style" : "",
 					"text" : "Scale to reasonable level"
 				}
 
@@ -81,7 +80,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 420.0, 296.0, 99.0, 20.0 ],
-					"style" : "",
 					"text" : "Convolve results"
 				}
 
@@ -93,7 +91,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 567.0, 224.0, 269.0, 20.0 ],
-					"style" : "",
 					"text" : "Read from two buffers (sample postions for now)"
 				}
 
@@ -108,8 +105,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 90.0, 296.0, 300.0, 22.0 ],
-					"style" : "",
-					"text" : "fl.convolve~ /maxlength 32768"
+					"text" : "fl.convolve~ /max_length 32768"
 				}
 
 			}
@@ -124,7 +120,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 371.0, 222.0, 179.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.read~ jongles2 /units samples"
 				}
 
@@ -139,7 +134,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 685.0, 496.0, 50.0, 22.0 ],
-					"style" : "",
 					"text" : "replace"
 				}
 
@@ -154,7 +148,6 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
 					"patching_rect" : [ 685.0, 535.0, 154.0, 22.0 ],
-					"style" : "",
 					"text" : "buffer~ jongles2 cello-f2.aif"
 				}
 
@@ -169,7 +162,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 528.0, 496.0, 50.0, 22.0 ],
-					"style" : "",
 					"text" : "replace"
 				}
 
@@ -184,7 +176,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 90.0, 335.0, 89.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.times~ 0.005"
 				}
 
@@ -199,7 +190,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 351.0, 89.0, 62.0, 22.0 ],
-					"style" : "",
 					"text" : "*~ 30000."
 				}
 
@@ -214,7 +204,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 351.0, 58.0, 35.0, 22.0 ],
-					"style" : "",
 					"text" : "+~ 1"
 				}
 
@@ -229,7 +218,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 351.0, 27.0, 46.0, 22.0 ],
-					"style" : "",
 					"text" : "noise~"
 				}
 
@@ -245,7 +233,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 351.0, 124.0, 112.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.source~ /length 1"
 				}
 
@@ -260,7 +247,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 90.0, 182.0, 49.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.plus~"
 				}
 
@@ -275,7 +261,6 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
 					"patching_rect" : [ 528.0, 535.0, 139.0, 22.0 ],
-					"style" : "",
 					"text" : "buffer~ jongles jongly.aif"
 				}
 
@@ -291,7 +276,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 90.0, 222.0, 252.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.read~ jongles /interp hermite /units samples"
 				}
 
@@ -306,7 +290,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 90.0, 129.0, 224.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.ramp~ /mode requested /length 10000"
 				}
 
@@ -317,8 +300,7 @@
 					"maxclass" : "scope~",
 					"numinlets" : 2,
 					"numoutlets" : 0,
-					"patching_rect" : [ 177.0, 414.0, 279.0, 204.0 ],
-					"style" : ""
+					"patching_rect" : [ 177.0, 414.0, 279.0, 204.0 ]
 				}
 
 			}
@@ -328,8 +310,7 @@
 					"maxclass" : "ezdac~",
 					"numinlets" : 2,
 					"numoutlets" : 0,
-					"patching_rect" : [ 90.0, 471.5, 45.0, 45.0 ],
-					"style" : ""
+					"patching_rect" : [ 90.0, 471.5, 45.0, 45.0 ]
 				}
 
 			}
@@ -343,7 +324,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 90.0, 374.0, 48.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.sink~"
 				}
 
@@ -358,7 +338,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 90.0, 85.0, 98.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.interval~ 1000"
 				}
 
@@ -517,51 +496,51 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.interval~.mxo",
+				"name" : "framelib_max.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
+				"name" : "framelib_max.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.sink~.mxo",
+				"name" : "framelib_max.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.sink~.mxo",
+				"name" : "framelib_max.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.ramp~.mxo",
+				"name" : "framelib_max.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.read~.mxo",
+				"name" : "framelib_max.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.plus~.mxo",
+				"name" : "framelib_max.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.source~.mxo",
+				"name" : "framelib_max.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.source~.mxo",
+				"name" : "framelib_max.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.times~.mxo",
+				"name" : "framelib_max.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.convolve~.mxo",
+				"name" : "framelib_max.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.window~.mxo",
+				"name" : "framelib_max.mxo",
 				"type" : "iLaX"
 			}
  ],

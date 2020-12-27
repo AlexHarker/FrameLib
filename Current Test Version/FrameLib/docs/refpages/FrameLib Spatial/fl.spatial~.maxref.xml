@@ -1,0 +1,59 @@
+<c74object category="FrameLib Spatial" module="FrameLib" name="fl.spatial~">
+  <digest> 
+        Generates multiplication factors for a number of speakers from an input coordinate triple.
+    </digest>
+  <description> 
+         The algorithm used is a modified version of DBAP, with extra features. Input may be in cartesian coordinates (x, y, z) or polar ones (azimuth, elevation, radius. Missing values at the input are assumed zero. Extra values are ignored. The output size is equal to the number of loudspeakers.
+    </description>
+  <misc name="Parameters">
+    <entry name="1. /inputmode [enum]">
+      <description> 
+                Sets the input coordinate mode.<br />
+        <bullet>[0] - polar</bullet>
+        <bullet>[1] - cartesian</bullet>
+      </description>
+    </entry>
+    <entry name="2. /speakers [variable length double array]">
+      <description> 
+                Sets the speaker positions in polar triples (one triple per speaker).
+            </description>
+    </entry>
+    <entry name="3. /weights [variable length double array]">
+      <description> 
+                Sets the speaker weightings (one value per speaker).
+            </description>
+    </entry>
+    <entry name="4. /rolloff [double]">
+      <description> 
+                Sets the rolloff in dB.
+            </description>
+    </entry>
+    <entry name="5. /blur [double]">
+      <description> 
+                Sets the blur factor.
+            </description>
+    </entry>
+    <entry name="6. /maxspeakers [int]">
+      <description> 
+                Sets the maximum number of speakers to be used (the neaarest N speakers will be used only).<br/>If zero all speakers are used.
+            </description>
+    </entry>
+    <entry name="7. /points [double]">
+      <description> 
+                Interpolate to point source panning (0 is modified DBAP - 1 is point source).
+            </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Spatial</metadata>
+  </metadatalist>
+  <seealsolist> 
+    </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>spatialiastion</description>
+    </entry>
+  </misc>
+</c74object>

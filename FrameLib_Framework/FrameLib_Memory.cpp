@@ -401,7 +401,7 @@ void *FrameLib_LocalAllocator::alloc(size_t size)
      
     // If this fails call the global allocator
 
-    return mAllocator.alloc(size);;
+    return mAllocator.alloc(size);
 }
 
 void FrameLib_LocalAllocator::dealloc(void *ptr)
@@ -538,7 +538,7 @@ void FrameLib_ContextAllocator::prune()
     FrameLib_GlobalAllocator::Pruner pruner(mAllocator);
 }
 
-// Register and Release Storage
+// Register Storage
 
 FrameLib_ContextAllocator::StoragePtr FrameLib_ContextAllocator::registerStorage(const char *name)
 {

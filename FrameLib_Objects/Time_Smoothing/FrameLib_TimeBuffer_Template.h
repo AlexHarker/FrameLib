@@ -19,11 +19,11 @@ protected:
     {
         kMaxFrames = 0,
         kNumFrames = 1,
-        kDefault = 2 + nParams,
-        kMode = 3 + nParams
+        kPadding = 2 + nParams,
+        kStartMode = 3 + nParams
     };
     
-    enum Modes { kPadIn, kValid };
+    enum StartModes { kPad, kShorten };
     
     // Parameter Info
 
@@ -31,13 +31,18 @@ protected:
     {
         ParameterInfo()
         {
-            add("Sets the maximum number of frames that can be set as a time period - changing resets the buffer.");
-            add("Sets the current integer number of frames for calculation.");
+            add("Sets the maximum number of frames for calculation. "
+                "Note that the internal buffer is reset when this changes.");
+            add("Sets the current number of frames for calculation as an integer.");
             
             addCustomInfo<nParams != 0>();
             
-            add("Sets the default value.");
-            add("Sets the mode.");
+            add("Sets the padding value.");
+            add("Sets the behaviour when there are insufficient frames stored (as after a reset): "
+                "pad - pad the calculation with default values to account for the missing frames. "
+                "shorten - calculate on all frames received since the reset. "
+                "Note that frames at the reset input set the frame use for padding. "
+                "If the frame is too short or empty it is padded with the pad parameter.");
         }
         
         template <bool B, typename std::enable_if<B, int>::type = 0>
@@ -53,11 +58,11 @@ protected:
     
     void completeDefaultParameters(const FrameLib_Parameters::Serial *serialisedParameters)
     {
-        mParameters.addDouble(kDefault, "default", 0.0, kDefault);
+        mParameters.addDouble(kPadding, "pad", 0.0, kPadding);
         
-        mParameters.addEnum(kMode, "mode");
-        mParameters.addEnumItem(kPadIn, "pad_in");
-        mParameters.addEnumItem(kValid, "valid");
+        mParameters.addEnum(kStartMode, "start");
+        mParameters.addEnumItem(kPad, "pad");
+        mParameters.addEnumItem(kShorten, "shorten");
         
         mParameters.set(serialisedParameters);
     }
@@ -83,13 +88,59 @@ public:
         setParameterInput(2);
     }
     
+    // Info
+    
+    virtual const char *getOpString() { return ""; }
+    virtual const char *getExtraString() { return ""; }
+
+    std::string objectInfo(bool verbose) override
+    {
+        if (verbose)
+        {
+            std::string str = formatInfo("Calculates the # per sample over the most recent frames: ", getOpString());
+            
+            str += getExtraString();
+            
+            str += "The output is the same length as the input. "
+                    "Input frames are expected to be of a uniform length. "
+                   "If the input length changes then the internal storage is reset. "
+                   "The object can also be reset by sending a frame to the reset input. "
+                   "The start parameter controls behaviour when insufficient frames are stored. "
+                   "The buffer full output indicates whether the internal buffer is full.";
+            
+            return str;
+        }
+        else
+        {
+            return formatInfo("Calculates the # per sample over the most recent frames.", getOpString());
+        }
+    }
+    
+    std::string inputInfo(unsigned long idx, bool verbose) override
+    {
+        switch (idx)
+        {
+            case 0:     return "Input";
+            case 1:     return formatInfo("Reset Input - resets and sets padding frame without output", "Reset Input", verbose);
+            default:    return parameterInputInfo(verbose);
+        }
+    }
+    
+    std::string outputInfo(unsigned long idx, bool verbose) override
+    {
+        if (idx)
+            return formatInfo("Buffer Full - indicates when the internal buffer is full", "Buffer Full", verbose);
+        else
+            return "Output";
+    }
+    
 protected:
     
     unsigned long getMaxFrames() const  { return mParameters.getInt(kMaxFrames); }
 
     unsigned long getNumFrames(bool forceValid = false) const
     {
-        bool valid = forceValid || mParameters.getEnum<Modes>(kMode) == kValid;
+        bool valid = forceValid || mParameters.getEnum<StartModes>(kStartMode) == kShorten;
         
         if (valid)
             return std::min(getRequestedNumFrames(), getValidFrames() + 1);
@@ -138,8 +189,8 @@ private:
     {
         unsigned long sizeIn, sizeReset, sizeOut, sizeEdge;
 
-        Modes mode = mParameters.getEnum<Modes>(kMode);
-        double pad = mParameters.getValue(kDefault);
+        StartModes startMode = mParameters.getEnum<StartModes>(kStartMode);
+        double pad = mParameters.getValue(kPadding);
         
         unsigned long numFrames;
         unsigned long maxFrames = getMaxFrames();
@@ -176,7 +227,7 @@ private:
         
         if (sizeIn)
         {
-            unsigned long padSize = mode == kPadIn ? requestedFrames - numFrames : 0;
+            unsigned long padSize = startMode == kPad ? requestedFrames - numFrames : 0;
 
             if (numFrames > mLastNumFrames)
             {

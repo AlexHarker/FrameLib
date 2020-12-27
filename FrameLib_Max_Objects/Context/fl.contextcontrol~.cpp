@@ -16,18 +16,55 @@ public:
         
         class_addmethod(c, (method) &timeOut, "timeout", A_DEFFLOAT, A_DEFFLOAT, 0);
         class_addmethod(c, (method) &extCodeExport, "export", A_SYM, A_SYM, 0);
+        
+        CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, FrameLib_MaxClass_ContextControl, mMaxContext.mName);
+        CLASS_ATTR_ACCESSORS(c, "id", 0, &FrameLib_MaxClass_ContextControl::idSet);
+        
+        CLASS_ATTR_ATOM_LONG(c, "rt", ATTR_FLAGS_NONE, FrameLib_MaxClass_ContextControl, mMaxContext.mRealtime);
+        CLASS_ATTR_ACCESSORS(c, "rt", 0, &FrameLib_MaxClass_ContextControl::rtSet);
     }
     
-    FrameLib_MaxClass_ContextControl(t_object *x, t_symbol *sym, long ac, t_atom *av)
-    : mContextPatch(MaxClass::contextPatcher(gensym("#P")->s_thing))
-    , mContext(mGlobal->makeContext(MaxClass::parseContext(true, mContextPatch, ac, av)))
-    , mProcessingQueue(mContext)
-    {}
+    FrameLib_MaxClass_ContextControl(t_object *x, t_symbol *sym, long argc, t_atom *argv)
+    : mMaxContext{ true, FrameLib_MaxClass<void>::contextPatcher(gensym("#P")->s_thing), gensym("") }
+    , mContext(mGlobal->makeContext(mMaxContext))
+    {
+        attr_args_process(this, static_cast<short>(argc), argv);
+    }
     
     ~FrameLib_MaxClass_ContextControl()
     {
         mGlobal->releaseContext(mContext);
     }
+    
+    // Attributes
+    
+    void updateContext()
+    {
+        mGlobal->releaseContext(mContext);
+        mContext = mGlobal->makeContext(mMaxContext);
+    }
+    
+    // id attribute
+    
+    static t_max_err idSet(FrameLib_MaxClass_ContextControl *x, t_object *attr, long argc, t_atom *argv)
+    {
+        x->mMaxContext.mName = argv ? atom_getsym(argv) : gensym("");
+        x->updateContext();
+        
+        return MAX_ERR_NONE;
+    }
+    
+    // rt attribute
+    
+    static t_max_err rtSet(FrameLib_MaxClass_ContextControl *x, t_object *attr, long argc, t_atom *argv)
+    {
+        x->mMaxContext.mRealtime = argv ? static_cast<long>(atom_getlong(argv)) : 0;
+        x->updateContext();
+        
+        return MAX_ERR_NONE;
+    }
+    
+    // Convert an object to an FLObject
     
     FrameLib_Multistream *toFLObject(t_object *object)
     {
@@ -77,7 +114,9 @@ public:
     
     static void timeOut(FrameLib_MaxClass_ContextControl *x, double relative, double absolute)
     {
-        x->mProcessingQueue->setTimeOuts(relative / 100.0, absolute / 1000.0);
+        FrameLib_Context::ProcessingQueue processingQueue(x->mContext);
+
+        processingQueue->setTimeOuts(relative / 100.0, absolute / 1000.0);
     }
     
     // Export
@@ -93,7 +132,7 @@ public:
         
         // Get the first object and it's underlying framelib object
         
-        t_object *object = searchPatch(mContextPatch, getAssociation(mContextPatch));
+        t_object *object = searchPatch(mMaxContext.mPatch, getAssociation(mMaxContext.mPatch));
         FrameLib_Multistream *flObject = toFLObject(object);
         
         if (!object || !flObject)
@@ -118,7 +157,8 @@ public:
     
     void multithread(t_atom_long on)
     {
-        mProcessingQueue->setMultithreading(on);
+        FrameLib_Context::ProcessingQueue processingQueue(mContext);
+        processingQueue->setMultithreading(on);
     }
     
     // Assist
@@ -132,10 +172,9 @@ private:
     
     // Members
         
-    t_object *mContextPatch;
     FrameLib_MaxGlobals::ManagedPointer mGlobal;
+    FrameLib_MaxContext mMaxContext;
     FrameLib_Context mContext;
-    FrameLib_Context::ProcessingQueue mProcessingQueue;
 };
 
 // Main

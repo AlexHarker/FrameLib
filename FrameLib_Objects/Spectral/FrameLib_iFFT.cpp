@@ -5,9 +5,9 @@
 
 FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
-, mProcessor(*this)
+, mProcessor(*this, 0)
 {
-    mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
+    mParameters.addInt(kMaxLength, "max_length", 16384, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
     
@@ -17,7 +17,7 @@ FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, const FrameLib_Parameters
     mParameters.addEnum(kMode, "mode", 2);
     mParameters.addEnumItem(kReal, "real");
     mParameters.addEnumItem(kComplex, "complex");
-    mParameters.addEnumItem(kFullSpectrum, "fullspectrum");
+    mParameters.addEnumItem(kFullSpectrum, "full_spectrum");
     mParameters.setInstantiation();
 
     mParameters.set(serialisedParameters);
@@ -39,20 +39,20 @@ FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, const FrameLib_Parameters
 
 std::string FrameLib_iFFT::objectInfo(bool verbose)
 {
-    return formatInfo("Calculate the real or complex inverse Fast Fourier Transform of the two inputs (real and imaginary): "
-                      "All FFTs use a power of two size, with zero-padding applied at the input(s) if necessary. "
+    return formatInfo("Calculate the real or complex inverse Fast Fourier Transform of the inputs (real and imaginary): "
+                      "All FFTs use a power of two size, with zero-padding applied at the inputs if necessary. "
                       "The expected input lengths depend on the mode parameter. "
-                      "The mode parameter is used to select either real or complex iFFTs and also the input and output types. "
-                      "For complex mode, real and imaginary values are output as separate frames.",
+                      "The mode selects either real or complex iFFTs and also the input and the output type. "
+                      "In complex mode, real and imaginary values are output as separate frames.",
                       "Calculate the real or complex inverse Fast Fourier Transform of the inputs.", verbose);
 }
 
 std::string FrameLib_iFFT::inputInfo(unsigned long idx, bool verbose)
 {
     if (!idx)
-        return formatInfo("Real Input - zero-padded if length doesn't match a power of two FFT size.", "Real Input", verbose);
+        return formatInfo("Real Input - zero-padded if to match a power of two FFT size.", "Real Input", verbose);
     else
-        return formatInfo("Imaginary Input - zero-padded if length doesn't match a power of two FFT size.", "Imag Input", verbose);
+        return formatInfo("Imaginary Input - zero-padded to match a power of two FFT size.", "Imaginary Input", verbose);
 }
 
 std::string FrameLib_iFFT::outputInfo(unsigned long idx, bool verbose)
@@ -62,7 +62,7 @@ std::string FrameLib_iFFT::outputInfo(unsigned long idx, bool verbose)
         if (idx == 0)
             return "Real Output";
         else
-            return verbose ? "Imaginary Output" : "Imag Output";
+            return "Imaginary Output";
     }
     else
         return "Output";
@@ -75,11 +75,12 @@ FrameLib_iFFT::ParameterInfo FrameLib_iFFT::sParamInfo;
 FrameLib_iFFT::ParameterInfo::ParameterInfo()
 {
     add("Sets the maximum output length and FFT size.");
-    add("Sets normalisation on such that a full-scale real sine wave at the input should have an amplitude of 1.");
-    add("Sets the type of output produced and the input expected. "
+    add("Sets normalisation on or off (such that a full-scale real sine wave has an amplitude of 1).");
+    add("Sets the type of output produced and the input expected: "
         "real - real output (power of two length) for input without reflection (length is N / 2 + 1). "
         "complex - complex output (two frames) with the same (power of two) input and output lengths. "
-        "fullspectrum - real output for input of the same (power of two) length with ignored redundant reflection.");
+        "full_spectrum - real output for input of the same (power of two) length input. "
+        "Note that in full_spectrum mode correct spectral reflection is expected and thus ignored.");
 }
 
 // Process
@@ -96,7 +97,7 @@ void FrameLib_iFFT::process()
     const double *inputR = getInput(0, &sizeInR);
     const double *inputI = getInput(1, &sizeInI);
     
-    sizeIn = std::max(sizeInR, sizeInI);;
+    sizeIn = std::max(sizeInR, sizeInI);
     
     if (sizeIn)
     {

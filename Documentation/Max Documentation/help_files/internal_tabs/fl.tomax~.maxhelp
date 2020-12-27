@@ -459,7 +459,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 15.0, 195.0, 148.0, 23.0 ],
-									"text" : "fl.map~ /outlo -1 /outhi 1"
+									"text" : "fl.map~ /out_1 -1 /out_2 1"
 								}
 
 							}

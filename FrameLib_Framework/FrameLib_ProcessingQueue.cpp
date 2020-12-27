@@ -58,9 +58,7 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
         
         if (mNumItems.load() == 0 || mTimedOut)
             break;
-        
-        // FIX - how long is a good time to yield for in a high performance thread?
-        
+                
         FrameLib_Thread::sleepCurrentThread(100);
     }
     

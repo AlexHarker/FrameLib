@@ -33,21 +33,32 @@ public:
     // Constructor
     
     template <typename U = Allocator, enable_if_t<std::is_default_constructible<U>::value> = 0>
-    spectral_processor() :  m_max_fft_size_log2(0)
+    spectral_processor(uintptr_t max_fft_size = 32768)
+    :  m_max_fft_size_log2(0)
+    , m_fft_setup(nullptr)
     {
-        set_max_fft_size(32768);
+        if (max_fft_size)
+            set_max_fft_size(max_fft_size);
     }
     
     template <typename U = Allocator, enable_if_t<std::is_copy_constructible<U>::value> = 0>
-    spectral_processor(const Allocator& allocator) : m_allocator(allocator), m_max_fft_size_log2(0)
+    spectral_processor(const Allocator& allocator, uintptr_t max_fft_size = 32768)
+    : m_allocator(allocator)
+    , m_fft_setup(nullptr)
+    , m_max_fft_size_log2(0)
     {
-        set_max_fft_size(32768);
+        if (max_fft_size)
+            set_max_fft_size(max_fft_size);
     }
     
     template <typename U = Allocator, enable_if_t<std::is_move_constructible<U>::value> = 0>
-    spectral_processor(Allocator&& allocator) : m_allocator(allocator), m_max_fft_size_log2(0)
+    spectral_processor(Allocator&& allocator, uintptr_t max_fft_size = 32768)
+    : m_allocator(allocator)
+    , m_fft_setup(nullptr)
+    , m_max_fft_size_log2(0)
     {
-        set_max_fft_size(32768);
+        if (max_fft_size)
+            set_max_fft_size(0);
     }
     
     ~spectral_processor()

@@ -9,7 +9,7 @@ FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, const FrameLi
     const int strBufSize = 10;
     
     char argStr[strBufSize];
-    char nameStr[strBufSize];
+    char tagStr[strBufSize];
     
     mParameters.addInt(kNumFilters, "num_filters", 1);
     mParameters.setClip(1, maxNumFilters);
@@ -21,15 +21,15 @@ FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, const FrameLi
     mParameters.set(serialisedParameters);
     mParameters.setErrorReportingEnabled(true);
     
-    // If no number of inputs is specified explicityly then examine the serialised parameters to determine the number needed
+    // If no number of inputs is specified explicity then examine the serialised parameters to determine the number needed
     
     if (!mParameters.changed(kNumFilters))
     {
         for (int i = 0; i < maxNumFilters; i++)
         {
             snprintf(argStr, strBufSize, "%d", i);
-            snprintf(nameStr, strBufSize, "tag_%02d", i + 1);
-            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(nameStr) != serialisedParameters->end())
+            snprintf(tagStr, strBufSize, "tag_%02d", i + 1);
+            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(tagStr) != serialisedParameters->end())
                 mParameters.set(kNumFilters, (long) (i + 1));
         }
     }
@@ -40,9 +40,8 @@ FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, const FrameLi
     
     for (unsigned long i = 0; i < mNumFilters; i++)
     {
-        snprintf(nameStr, strBufSize, "tag_%02lu", i + 1);
-        mParameters.addString(kFilters + i, nameStr, i);
-        mParameters.setInstantiation();
+        snprintf(tagStr, strBufSize, "tag_%02lu", i + 1);
+        mParameters.addString(kFilters + i, tagStr, i);
     }
     
     // Read in again to get parameter names
@@ -54,30 +53,36 @@ FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, const FrameLi
     setInputMode(0, false, true, false, kFrameTagged);
     setOutputType(0, kFrameTagged);
     setOutputType(1, kFrameTagged);
+    
+    addParameterInput();
 }
 
 // Info
 
 std::string FrameLib_FilterTags::objectInfo(bool verbose)
 {
-    return formatInfo("Filters tagged frames into two parts given a number of tags: "
-                      "The number of tags is specified either explicitly with a parameter or implicitly by which arguments or tag parameters are present. "
+    return formatInfo("Filters tagged frames using a set of specified tags: "
                       "The filtered output contains any items from the input that match the given tags. "
-                      "The residual output contains any items from the input that do not match the given tags",
-                      "Filters tagged frames into two parts given a number of tags.", verbose);
+                      "The residual output contains any items from the input that do not match the given tags. "
+                      "The number of tags can be set explicitly by parameter. "
+                      "Alternatively, it can be set implicitly by the tag parameters present at instantiation.",
+                      "Filters tagged frames using a set of specified tags.", verbose);
 }
 
 std::string FrameLib_FilterTags::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Parameter Input # - takes tagged input", "Parameter Input #", idx, verbose);
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Tagged Input";
 }
 
 std::string FrameLib_FilterTags::outputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return formatInfo("Residual Output", "Residual Output", verbose);
+        return "Residual Output";
     else
-        return formatInfo("Filtered Output", "Filtered Output", verbose);
+        return "Filtered Output";
 }
 
 // Parameter Info
@@ -86,7 +91,16 @@ FrameLib_FilterTags::ParameterInfo FrameLib_FilterTags::sParamInfo;
 
 FrameLib_FilterTags::ParameterInfo::ParameterInfo()
 {
-    add("Sets the number of parameter names.");
+    const int strBufSize = 64;
+    char str[strBufSize];
+    
+    add("Sets the number of tags.");
+    
+    for (int i = 0; i < maxNumFilters; i++)
+    {
+        snprintf(str, strBufSize, "Sets tag number %d.", i + 1);
+        add(str);
+    }
 }
 
 // Filter

@@ -12,11 +12,11 @@ FrameLib_FrameDelta::FrameLib_FrameDelta(FrameLib_Context context, const FrameLi
 
 std::string FrameLib_FrameDelta::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs the deltas between two consecutive frames: "
-                      "Frames are expected to be of uniform size, otherwise the object will reset. "
-                      "The first frame (after a reset) will consist of all zero values. "
+    return formatInfo("Outputs the deltas between consecutive frames: "
+                      "Frames are expected to be of uniform size otherwise the object will reset. "
+                      "The first output frame (and those after a reset) will consist entirely of zero values. "
                       "The output is the same size as the input.",
-                      "Outputs the deltas between two consecutive frames.", verbose);
+                      "Outputs the deltas between consecutive frames.", verbose);
 }
 
 std::string FrameLib_FrameDelta::inputInfo(unsigned long idx, bool verbose)

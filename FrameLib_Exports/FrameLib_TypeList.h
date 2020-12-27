@@ -36,7 +36,6 @@ FrameLib_SVF,
 // Generators
 
 FrameLib_Gaussian,
-FrameLib_MakeWindow,
 FrameLib_Ramp,
 FrameLib_Random,
 FrameLib_Uniform,
@@ -188,7 +187,7 @@ FrameLib_Cbrt,
 FrameLib_Erf,
 FrameLib_Erfc,
 
-// Binary  Operators
+// Binary Operators
 
 FrameLib_Add,
 FrameLib_Subtract,

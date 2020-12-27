@@ -23,7 +23,7 @@ public:
     {}
     
     std::string inputInfo(unsigned long idx, bool verbose) override     { return "Input"; }
-    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Result"; }
+    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Output"; }
 
 protected:
     
@@ -42,7 +42,7 @@ protected:
     
     static void addDefaultParameterInfo(FrameLib_Parameters::Info& info)
     {
-        info.add("Sets the mode used when dealing with empty frames: "
+        info.add("Sets the output to use when an empty input frame is received: "
                  "empty - output an empty frame. "
                  "default - output the default value (see the default parameter).");
         info.add("Sets the default output value.");

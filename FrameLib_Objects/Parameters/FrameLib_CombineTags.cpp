@@ -29,18 +29,21 @@ FrameLib_CombineTags::FrameLib_CombineTags(FrameLib_Context context, const Frame
 std::string FrameLib_CombineTags::objectInfo(bool verbose)
 {
     return formatInfo("Combines a number of tagged input frames into a single tagged output frame: "
-                   "The number of inputs is set using a parameter.",
-                   "Combines a number of tagged input frames into a single tagged output frame.", verbose);
+                      "The number of inputs is set using a parameter. "
+                      "All inputs trigger output. "
+                      "Tagged frames arriving asynchronously are sent to the output. "
+                      "Tagged frames arriving synchronously are combined at the output.",
+                      "Combines a number of tagged input frames into a single tagged output frame.", verbose);
 }
 
 std::string FrameLib_CombineTags::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Parameter Input # - takes tagged input", "Parameter Input #", idx, verbose);
+    return formatInfo("Tagged Input # - to be combined with the other inputs", "Tagged Input #", idx, verbose);
 }
 
 std::string FrameLib_CombineTags::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Tagged Output Frames";
+    return "Output";
 }
 
 // Parameter Info

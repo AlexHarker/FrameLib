@@ -3,18 +3,25 @@
 #include "FrameLib_Edges.h"
 #include <algorithm>
 
+// Distance Helper
+
+template <typename T, typename U>
+unsigned long distance(T a, U b)
+{ 
+	return static_cast<unsigned long>(std::distance(a, b)); 
+}
+
+// Constructor
+
 FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Processor(context, proxy, nullptr, 1, 3)
+: FrameLib_Processor(context, proxy, &sParamInfo, 1, 3)
 {
-    mParameters.addEnum(kCriteria, "criteria", 0);
-    mParameters.addEnumItem(kOneNeighbour, "one");
-    mParameters.addEnumItem(kTwoNeighbours, "two", true);
-    mParameters.addEnumItem(kThreeNeighbours, "three");
-    mParameters.addEnumItem(kFourNeighbours, "four");
+    mParameters.addInt(kNeighbours, "neighbours", 1, 0);
+    mParameters.setClip(1, 4);
 
     mParameters.addDouble(kThreshold, "threshold", 0.0, 1);
     
-    mParameters.addDouble(kPadding, "padding", 0.0, 2);
+    mParameters.addDouble(kPadding, "pad", 0.0, 2);
 
     mParameters.addEnum(kEdges, "edges", 3);
     mParameters.addEnumItem(kEdgePad, "pad");
@@ -24,11 +31,11 @@ FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Paramete
     mParameters.addEnumItem(kEdgeMirror, "mirror");
     
     mParameters.addEnum(kRefinement, "refine", 4);
-    mParameters.addEnumItem(kNone, "none");
+    mParameters.addEnumItem(kOff, "off");
     mParameters.addEnumItem(kParabolic, "parabolic", true);
     mParameters.addEnumItem(kParabolicLog, "parabolic_log");
     
-    mParameters.addEnum(kBoundary, "boundary", 4);
+    mParameters.addEnum(kBoundaries, "boundaries", 4);
     mParameters.addEnumItem(kMinimum, "minimum");
     mParameters.addEnumItem(kMidpoint, "midpoint");
     
@@ -43,22 +50,54 @@ FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Paramete
 
 std::string FrameLib_Peaks::objectInfo(bool verbose)
 {
-    return formatInfo("Finds peaks in an input frame (spectrum): "
-                   "Peaks are output in terms of interpolated sample position, interpolated amplitude and peak index. "
-                   "The first output is the same size as the input, other outputs are as long as the number of detected peaks.",
-                   "Finds peaks in an input frame (spectrum).", verbose);
+    return formatInfo("Finds peaks in the input frame: "
+                      "The input frame is searched for peaks (values greater than the surrounding values). "
+                      "Each input sample is assigned to a peak. "
+                      "Peaks positions and values are also interpolated and output. "
+                      "The first output is the same length as the input. "
+                      "Other outputs are as long as the number of detected peaks. "
+                      "A Peak are detected if a value exceeds its neighbours and a fixed threshold. "
+                      "The parameters control the details of the way in which peaks are defined and detected.",
+                      "Finds peaks in the input frame.", verbose);
 }
 
 std::string FrameLib_Peaks::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Input Frame / Spectrum";
+    return "Input";
 }
 
 std::string FrameLib_Peaks::outputInfo(unsigned long idx, bool verbose)
 {
-    if (idx == 0) return formatInfo("Peak Index - for each input sample / bin the output lists the peak it belongs to", "Peak Index", verbose);
-    else if (idx == 1) return formatInfo("Peak Position - an interpolated position in samples / bins for each peak", "Peak Position", verbose);
-    else return formatInfo("Peak Amplitude - an interpolated amplitude for each peak", "Peak Amplitude", verbose);
+    if (idx == 0) return formatInfo("Assigned Peaks - the peak each input sample belongs to", "Assigned Peaks", verbose);
+    else if (idx == 1) return formatInfo("Peak Positions - interpolated positions per peak", "Peak Positions", verbose);
+    else return formatInfo("Peak Values - interpolated values per peak", "Peak Values", verbose);
+}
+
+// Parameter Info
+
+FrameLib_Peaks::ParameterInfo FrameLib_Peaks::sParamInfo;
+
+FrameLib_Peaks::ParameterInfo::ParameterInfo()
+{
+    add("Sets the number of neighbours each side that must be exceeded in order to detect a peak.");
+    add("Sets the threshold value for detecting a peak.");
+    add("Sets the padding value.");
+    add("Sets the edge behaviour for peak detection: "
+        "pad - values beyond the edges of the input are read as the padding value. "
+        "extend - the edge values are extended infinitely in either direction. "
+        "wrap - values are read as wrapped or cyclical. "
+        "fold - values are folded at edges without repetition of the edge values. "
+        "mirror - values are mirrored at edges with the edge values repeated.");
+    add("Sets the method for refining peak values: "
+        "off - return the peak value without refinement. "
+        "parabolic - apply parabolic interpolation to the three values around the peak. "
+        "parabolic_log - apply parabolic interpolation to the log of the three values around the peak. "
+        "Note that parabolic_log is suitable for interpolating linear amplitudes.");
+    add("Sets the method for selecting the boundaries between peaks: "
+        "minimum - boundaries are set at the minimum value between consecutive peaks. "
+        "midpoint - boundaries are set to the indices halfway between consecutive peaks.");
+    add("If set on at least one peak will be detected even if no values match the peak criteria. "
+        "Note that when set off the outputs will be empty if no peak is detected.");
 }
 
 // Edges
@@ -148,11 +187,11 @@ void refineParabolicLog(double *positions, double *values, const double *data, u
 
 void FrameLib_Peaks::process()
 {
-    Criteria criterion = mParameters.getEnum<Criteria>(kCriteria);
     Refinements refine = mParameters.getEnum<Refinements>(kRefinement);
-    Boundaries boundary = mParameters.getEnum<Boundaries>(kBoundary);
+    Boundaries boundaries = mParameters.getEnum<Boundaries>(kBoundaries);
     Edges edges = mParameters.getEnum<Edges>(kEdges);
     
+    long neighbours = mParameters.getInt(kNeighbours);
     double padValue = mParameters.getValue(kPadding);
     double threshold = mParameters.getValue(kThreshold);
     
@@ -197,15 +236,15 @@ void FrameLib_Peaks::process()
     
     // Find and store peaks
     
-    switch (criterion)
+    switch (neighbours)
     {
-        case kOneNeighbour:     nPeaks = findPeaks<checkPeak<1>>(indices, data, sizeIn, threshold);     break;
-        case kTwoNeighbours:    nPeaks = findPeaks<checkPeak<2>>(indices, data, sizeIn, threshold);     break;
-        case kThreeNeighbours:  nPeaks = findPeaks<checkPeak<3>>(indices, data, sizeIn, threshold);     break;
-        case kFourNeighbours:   nPeaks = findPeaks<checkPeak<4>>(indices, data, sizeIn, threshold);     break;
+        case 1:    nPeaks = findPeaks<checkPeak<1>>(indices, data, sizeIn, threshold);     break;
+        case 2:    nPeaks = findPeaks<checkPeak<2>>(indices, data, sizeIn, threshold);     break;
+        case 3:    nPeaks = findPeaks<checkPeak<3>>(indices, data, sizeIn, threshold);     break;
+        case 4:    nPeaks = findPeaks<checkPeak<4>>(indices, data, sizeIn, threshold);     break;
     }
     
-    // If needed reate a single peak at the maximum, (place central to multiple consecutive maxima)
+    // If needed create a single peak at the maximum, (place central to multiple consecutive maxima)
     
     if (!nPeaks && alwaysDetect)
     {
@@ -214,9 +253,9 @@ void FrameLib_Peaks::process()
         std::reverse_iterator<double *> rev1(data + sizeIn);
         std::reverse_iterator<double *> rev2(data);
         
-        unsigned long max = std::distance(data, std::max_element(fwd1, fwd2));
-        unsigned long beg = std::distance(fwd1, std::find(fwd1, fwd2, data[max]));
-        unsigned long end = sizeIn  - (std::distance(rev1, std::find(rev1, rev2, data[max])) + 1);
+        unsigned long max = distance(data, std::max_element(fwd1, fwd2));
+        unsigned long beg = distance(fwd1, std::find(fwd1, fwd2, data[max]));
+        unsigned long end = sizeIn - (distance(rev1, std::find(rev1, rev2, data[max])) + 1);
         unsigned long centre = (beg + end) >> 1;
         
         indices[nPeaks++] = data[centre] == data[max] ? centre : max;
@@ -239,7 +278,7 @@ void FrameLib_Peaks::process()
 
     switch (refine)
     {
-        case kNone:             refinePeaks<refineNone>(output2, output3, data, indices, nPeaks);           break;
+        case kOff:             refinePeaks<refineNone>(output2, output3, data, indices, nPeaks);           break;
         case kParabolic:        refinePeaks<refineParabolic>(output2, output3, data, indices, nPeaks);      break;
         case kParabolicLog:     refinePeaks<refineParabolicLog>(output2, output3, data, indices, nPeaks);   break;
     }
@@ -252,12 +291,12 @@ void FrameLib_Peaks::process()
         
         if (peak != nPeaks - 1)
         {
-            switch (boundary)
+            switch (boundaries)
             {
                 case kMinimum:
                 {
                     auto it = std::min_element(data + indices[peak] + 1, data + indices[peak + 1]);
-                    peakEnd = std::distance(data, it);
+                    peakEnd = distance(data, it);
                     break;
                 }
                 

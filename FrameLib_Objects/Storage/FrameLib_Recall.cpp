@@ -24,8 +24,9 @@ FrameLib_Recall::FrameLib_Recall(FrameLib_Context context, const FrameLib_Parame
 std::string FrameLib_Recall::objectInfo(bool verbose)
 {
     return formatInfo("Recall a remotely stored frame for use: "
-                      "The frame to be recalled is determined by the name parameter. "
-                      "The ordering input can be used to explicitly control ordering between related objects.",
+                      "The frame to be recalled is determined by the storage specifed by the name parameter. "
+                      "The ordering input can be used to explicitly control ordering between related objects. "
+                      "In a multistream scenario each stream has separate storage for a given name.",
                       "Recall a remotely stored frame for use.", verbose);
 }
 
@@ -52,7 +53,8 @@ FrameLib_Recall::ParameterInfo FrameLib_Recall::sParamInfo;
 
 FrameLib_Recall::ParameterInfo::ParameterInfo()
 {
-    add("Sets the name of the storage to use.");
+    add("Sets the name of the storage to use. "
+        "Note that names are local to the current context.");
 }
 
 // Process

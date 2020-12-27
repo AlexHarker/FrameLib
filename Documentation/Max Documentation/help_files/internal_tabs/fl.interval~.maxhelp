@@ -287,12 +287,12 @@
 													"presentation_rect" : [ 109.0, 29.0, 53.0, 19.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_mmin" : 1.0,
-															"parameter_longname" : "live.numbox",
 															"parameter_mmax" : 99999.0,
 															"parameter_shortname" : "live.numbox",
 															"parameter_type" : 0,
-															"parameter_unitstyle" : 0
+															"parameter_unitstyle" : 0,
+															"parameter_mmin" : 1.0,
+															"parameter_longname" : "live.numbox"
 														}
 
 													}
@@ -364,11 +364,11 @@
 													"presentation_rect" : [ 109.0, 61.5, 103.0, 45.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_longname" : "live.text[1]",
 															"parameter_mmax" : 1,
 															"parameter_shortname" : "live.text",
 															"parameter_enum" : [ "val1", "val2" ],
-															"parameter_type" : 2
+															"parameter_type" : 2,
+															"parameter_longname" : "live.text[1]"
 														}
 
 													}
@@ -419,12 +419,12 @@
 													"presentation_rect" : [ 13.0, 13.0, 94.0, 93.5 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_longname" : "live.tab",
 															"parameter_mmax" : 3,
 															"parameter_shortname" : "live.tab",
 															"parameter_enum" : [ "samples", "ms", "seconds", "hertz" ],
 															"parameter_type" : 2,
-															"parameter_unitstyle" : 0
+															"parameter_unitstyle" : 0,
+															"parameter_longname" : "live.tab"
 														}
 
 													}
@@ -711,8 +711,8 @@
  ],
 		"lines" : [  ],
 		"parameters" : 		{
-			"obj-1::obj-2::obj-2" : [ "live.tab", "live.tab", 0 ],
 			"obj-1::obj-2::obj-10" : [ "live.text[1]", "live.text", 0 ],
+			"obj-1::obj-2::obj-2" : [ "live.tab", "live.tab", 0 ],
 			"obj-1::obj-2::obj-15" : [ "live.numbox", "live.numbox", 0 ],
 			"parameterbanks" : 			{
 

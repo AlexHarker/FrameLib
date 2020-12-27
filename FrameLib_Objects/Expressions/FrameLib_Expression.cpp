@@ -237,7 +237,7 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, const FrameLi
     typedef FrameLib_Block::Connection Connection;
     using namespace FrameLib_ExprParser;
 
-    mParameters.addString(kExpression, "expr", 0);
+    mParameters.addString(kExpression, "expression", 0);
     mParameters.setInstantiation();
     
     mParameters.addEnum(kMismatchMode, "mismatch");
@@ -319,18 +319,23 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, const FrameLi
 
 std::string FrameLib_Expression::objectInfo(bool verbose)
 {
-    return formatInfo("Applies a mathematical expression to the inputs: ",
-                      "Applies a mathematical expression to the inputs", verbose);
+    return formatInfo("Calculates the result of a mathematical expression: "
+                      "The expression can use input values, operators, functions and constants. "
+                      "The output is a frame at least as long as the shortest input. "
+                      "If inputs mismatch in length the result depends on the mismatch parameter. "
+                      "Pre-computable elements are detected and reduced to constants. "
+                      "Thus it is efficient to synthesize constants or represent values precisely.",
+                      "Calculates the result of a mathematical expression.", verbose);
 }
 
 std::string FrameLib_Expression::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Input Frame #", "Input Frame #", idx, verbose);
+    return formatInfo("Input #", idx);
 }
 
 std::string FrameLib_Expression::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Frame";
+    return "Output";
 }
 
 // Parameter Info
@@ -339,8 +344,23 @@ FrameLib_Expression::ParameterInfo FrameLib_Expression::sParamInfo;
 
 FrameLib_Expression::ParameterInfo::ParameterInfo()
 {
-    add("Sets the mathematical expression.");
-    add("Sets the number of inputs.");
+    add("Sets the mathematical expression. "
+        "Inputs are indicated in1 to inx (where x is the number of input pairs created). "
+        "A range of other constants, operators and functions are available. "
+        "Constants { e pi epsilon inf }. "
+        "Unary Operators { ! - }. "
+        "Binary Operators { / * % + - > < >= <= == != && || }. "
+        "Trigonometric Functions { sin cos tan asin acos atan }. "
+        "Hyperbolic Functions { sinh cosh tanh asinh acosh atanh }. "
+        "Unary Functions { log log2 log10 exp exp2 abs ceil floor round trunc sqrt cbrt erf erfc }. "
+        "Binary Functions { diff hypot max min pow }. "
+        "Ternary Functions { clip, wrap, fold }.");
+    add("Sets the mode used when dealing with mismatched input lengths: "
+        "wrap - smaller inputs are read modulo against the longest input. "
+        "shrink - the output length is set to that of the shortest input. "
+        "extend - if required inputs are extended by repeating their final value.");
+    add("Sets which inputs trigger output using an array of bools. "
+        "By default all inputs trigger output.");
 }
 
 // Reset

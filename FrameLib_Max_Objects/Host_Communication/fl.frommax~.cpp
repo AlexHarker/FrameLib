@@ -95,6 +95,18 @@ void FrameLib_MaxClass_FromMax::anything(t_symbol *s, long argc, t_atom *argv)
     }
 }
 
+// Assist
+
+template<>
+void FrameLib_MaxClass_Expand<FrameLib_FromHost>::assist(void *b, long m, long a, char *s)
+{
+    if (m == ASSIST_OUTLET)
+        sprintf(s,"(frame) %s", mObject->inputInfo(a).c_str());
+
+    else
+        sprintf(s,"(message/frame) (Trigger) Input");
+}
+
 // Main
 
 #ifndef FRAMELIB_MAX_SINGLE_OBJECT

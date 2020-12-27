@@ -30,9 +30,13 @@ FrameLib_Chop::FrameLib_Chop(FrameLib_Context context, const FrameLib_Parameters
 
 std::string FrameLib_Chop::objectInfo(bool verbose)
 {
-    return formatInfo("Chops input frames into equally sized output frames: "
-                   "The size can be set in samples, or as a ratio of the length of the input frame.",
-                   "Chops input frames into equally sized output frames.", verbose);
+    return formatInfo("Chops input frames into equally sized output frames of a specified size: "
+                      "The size can be set in samples or as a ratio of the length of the input frame. "
+                      "Outputs are formed by chopping the input into consecutive slices of the same length. "
+                      "Any additional input values once all outputs are formed are ignored. "
+                      "If there are insufficient input values to complete all outputs later outputs will be shortened. "
+                      "It is possible for the final output(s) to be empty in this case.",
+                      "Chops input frames into equally sized output frames of a specified size.", verbose);
 }
 
 std::string FrameLib_Chop::inputInfo(unsigned long idx, bool verbose)
@@ -45,7 +49,7 @@ std::string FrameLib_Chop::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Chop::outputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Output #", "Output #", idx, verbose);
+    return formatInfo("Output #", idx);
 }
 
 // Parameter Info
@@ -56,7 +60,7 @@ FrameLib_Chop::ParameterInfo::ParameterInfo()
 {
     add("Sets the number of outputs.");
     add("Sets the size of the output frames.");
-    add("Sets units for the chop size (samples or ratio of the input length [0-1]).");
+    add("Sets the units for the size (samples or ratio of the input length [0-1]).");
 }
 
 // Process

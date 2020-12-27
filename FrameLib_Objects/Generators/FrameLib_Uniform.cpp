@@ -32,7 +32,7 @@ std::string FrameLib_Uniform::objectInfo(bool verbose)
 {
     return formatInfo("Generates frames in which all values are identical: "
                       "The output value is set with a parameter. "
-                      "The length of the output is dependent on the mode. "
+                      "The length of the output is dependent on the mode parameter. "
                       "Output length may be set by parameter or based on that of the trigger input.",
                       "Generates frames in which all values are identical.", verbose);
 }
@@ -61,7 +61,7 @@ FrameLib_Uniform::ParameterInfo::ParameterInfo()
         "requested - the output length is set by the length parameter. "
         "input - the output length follows the length of the trigger input.");
     add("Sets the requested output length in the units specified by the units parameter.");
-    add("Sets the units for specified output lengths.");
+    add("Sets the units used for the length parameter.");
 }
 
 // Helpers

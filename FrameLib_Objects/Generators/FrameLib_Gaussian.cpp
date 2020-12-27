@@ -37,8 +37,8 @@ std::string FrameLib_Gaussian::objectInfo(bool verbose)
 {
     return formatInfo("Generates frames of normally distributed random values: "
                       "Mean and standard deviation can be set per sample or by parameter. "
-                      "Per sample mean and standard deviations are passed in by input. "
-                      "The length of the output is dependent on the mode. "
+                      "Per-sample mean and standard deviations are passed in by input. "
+                      "The length of the output is dependent on the mode parameter. "
                       "Output length may be set by parameter or based on that of the trigger input.",
                       "When input and output lengths are mismatched the result depends on the mismatch parameter. ",
                       "Generates frames of gaussian distributed random values.", verbose);
@@ -47,16 +47,16 @@ std::string FrameLib_Gaussian::objectInfo(bool verbose)
 std::string FrameLib_Gaussian::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx == 0)
-            return formatInfo("Means - the values used to generate the output", "Means", verbose);
+            return formatInfo("Means - values used to generate the output", "Means", verbose);
     else if (idx == 1)
-            return formatInfo("Standard Deviations - the values used to generate the output", "Standard Deviations", verbose);
+            return formatInfo("Standard Deviations - values used to generate the output", "Standard Deviations", verbose);
     else
             return parameterInputInfo(verbose);
 }
 
 std::string FrameLib_Gaussian::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Frame of Gaussian Random Values";
+    return "Output";
 }
 
 // Parameter Info
@@ -69,13 +69,13 @@ FrameLib_Gaussian::ParameterInfo::ParameterInfo()
         "requested - the output length is set by the length parameter. "
         "input - the output length follows the length of the trigger input.");
     add("Sets the requested output length in the units specified by the units parameter.");
-    add("Sets the units for specified output lengths.");
+    add("Sets the units used for the length parameter.");
     add("Sets the default mean.");
     add("Sets the default standard deviation.");
     add("Sets the mode used when dealing with mismatches between input and output lengths: "
         "default - missing input values are substitued using the default values. "
         "extend - inputs are extended by repeating their final value. "
-        "default values are always used if an input is empty.");
+        "Note that default values are always used when an input is empty.");
 }
 
 // Helpers

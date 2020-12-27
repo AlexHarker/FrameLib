@@ -87,7 +87,7 @@ void FrameLib_ParamAlias::initialise()
                     case kEnum:
                         mParameters.addEnum(idx, tag);
                         for (long i = 0; i <= params->getMax(paramIdx); i++)
-                            mParameters.addEnumItem(idx, params->getItemString(paramIdx, i).c_str());
+                            mParameters.addEnumItem(idx, params->getItemString(paramIdx, i));
                         break;
                         
                     case kString:
@@ -133,9 +133,9 @@ void FrameLib_ParamAlias::initialise()
                     }
                 }
                 
-                // FIX!!
+                if (params->getInstantiation(paramIdx))
+                    mParameters.setInstantiation();
                 
-                //mParameters.setInstantiation(params->instantionOnly)
                 continue;
             }
             
@@ -158,7 +158,7 @@ std::string FrameLib_ParamAlias::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_ParamAlias::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Tagged Output Frames";
+    return "Output";
 }
 
 // Process

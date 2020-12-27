@@ -9,7 +9,7 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters
 {
     mParameters.addString(kBuffer, "buffer", 0);
     
-    mParameters.addInt(kChannel, "chan", 1, 1);
+    mParameters.addInt(kChannel, "channel", 1, 1);
     mParameters.setMin(1);
     
     mParameters.addEnum(kUnits, "units", 2);
@@ -47,9 +47,12 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters
 
 std::string FrameLib_Read::objectInfo(bool verbose)
 {
-    return formatInfo("Reads from a buffer~ given an input frame of sample positions: "
-                      "There are different available interpolation types.",
-                      "Reads from a buffer~ given an input frame of sample positions.", verbose);
+    return formatInfo("Reads from a specified host buffer given an input frame of positions: "
+                      "The output is the same length as the input. "
+                      "The scale, edges and bound parameters control the mapping of the input to the buffer. "
+                      "For hosts supporting multichannel buffers the channel read can also be selected. "
+                      "The reading can be performed with different types of interpolation (or none).",
+                      "Reads from a specified host buffer given an input frame of positions.", verbose);
 }
 
 std::string FrameLib_Read::inputInfo(unsigned long idx, bool verbose)
@@ -57,7 +60,7 @@ std::string FrameLib_Read::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Frame of Positions - triggers generation of output", "Frame of Positions", verbose);
+        return formatInfo("Input - positions to read from the buffer", "Input", verbose);
 }
 
 std::string FrameLib_Read::outputInfo(unsigned long idx, bool verbose)
@@ -71,14 +74,25 @@ FrameLib_Read::ParameterInfo FrameLib_Read::sParamInfo;
 
 FrameLib_Read::ParameterInfo::ParameterInfo()
 {
-    add("Sets the buffer~ name to use.");
-    add("Sets the buffer~ channel to use.");
+    add("Sets the buffer to use.");
+    add("Sets the buffer channel to use.");
+    add("Sets the units used for interpreting the input. "
+        "Note that the edge parameter is also accounted for normalised mode. "
+        "This adjusts the scaling to work sensibly with cyclical modes.");
     add("Sets the interpolation mode: "
+        "none - no interpolation. "
+        "linear - linear interpolation. "
         "hermite - cubic hermite interpolation. "
         "bspline - cubic bspline interpolation. "
-        "lagrange - cubic lagrange interpolation. "
-        "linear - linear interpolation.");
-    add("Sets the units for the position input.");
+        "lagrange - cubic lagrange interpolation.");
+    add("Sets the edge behaviour for both interpolation and reading: "
+        "zero - values beyond the edges of the buffer are read as zeros. "
+        "extend - the edge values are extended infinitely in either direction. "
+        "wrap - values are read as wrapped or cyclical. "
+        "fold - values are folded at edges without repetition of the edge values. "
+        "mirror - values are mirrored at edges with the edge values repeated. "
+        "extrapolate - values out of range are extrapolated via interpolation.");
+    add("Sets whether reading is bounded to the edges of the buffer, or can extend beyond it.");
 }
 
 // Update

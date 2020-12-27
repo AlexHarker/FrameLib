@@ -27,18 +27,18 @@ namespace FrameLib_Filters
         
         constexpr static Description sDescription
         {
-            "One-pole and one-zero filter"
+            "Applies a one-pole with one-zero filter to the input"
         };
         
         constexpr static ParamType sParameters
         {
-            Param("freq", "Frequency", "Sets the filter cutoff frequency.", 500.0, Min(0.0))
+            Param("freq", "Frequency Values", "Sets the filter cutoff frequency.", 500.0, Min(0.0))
         };
         
         constexpr static ModeType sModes
         {
-            Mode("lpf", "Low Pass Output", "low pass", &OnePoleZero::lpf),
-            Mode("hpf", "High Pass Output", "high pass", &OnePoleZero::hpf)
+            Mode("lowpass", "Low Pass Output", "low pass", &OnePoleZero::lpf),
+            Mode("highpass", "High Pass Output", "high pass", &OnePoleZero::hpf)
         };
         
     private:

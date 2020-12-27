@@ -288,7 +288,7 @@ namespace impl
         T *r_out = out->realp;
         T *i_out = out->imagp;
         
-        // FIX - what is this value?
+        // From the full FFT size calculate the size log2
         
         uintptr_t fft_size_log2 = 0;
         
@@ -330,7 +330,7 @@ namespace impl
             i_out[i] = 0.0;
         }
         
-        // Forward Real FFT (here there is a scaling issue to consider)
+        // Forward Real FFT (here there is a scaling issue to consider that is compensated above)
         
         hisstools_rfft(setup, out, fft_size_log2);
     }

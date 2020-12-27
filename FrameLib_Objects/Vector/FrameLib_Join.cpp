@@ -33,18 +33,19 @@ FrameLib_Join::FrameLib_Join(FrameLib_Context context, const FrameLib_Parameters
 
 std::string FrameLib_Join::objectInfo(bool verbose)
 {
-    return formatInfo("Concatenates all input frames into a single output frame: Each input may trigger output (or not) as set by the triggers_in parameter.",
-                   "Concatenates all input frames into a single output frame.", verbose);
+    return formatInfo("Concatenates all input frames into a single output frame: "
+                      "Each input may trigger output (or not), as set by the triggers_in parameter.",
+                      "Concatenates all input frames into a single output frame.", verbose);
 }
 
 std::string FrameLib_Join::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Input #", "Input #", idx, verbose);
+    return formatInfo("Input #", idx);
 }
 
 std::string FrameLib_Join::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Combined Result";
+    return "Output";
 }
 
 // Parameter Info
@@ -54,7 +55,8 @@ FrameLib_Join::ParameterInfo FrameLib_Join::sParamInfo;
 FrameLib_Join::ParameterInfo::ParameterInfo()
 {
     add("Sets the number of inputs.");
-    add("Set which inputs trigger output (by default all inputs trigger output).");
+    add("Sets which inputs trigger output using an array of bools. "
+        "By default all inputs trigger output.");
 }
 
 // Process

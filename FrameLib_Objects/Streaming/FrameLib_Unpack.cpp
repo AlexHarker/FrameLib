@@ -28,7 +28,7 @@ std::string FrameLib_Unpack::objectInfo(bool verbose)
 
 std::string FrameLib_Unpack::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Multi-stream Input - to be unpacked into individual streams", "Multi-stream Input", idx, verbose);
+    return formatInfo("Multistream Input - to be unpacked into individual streams", "Multistream Input", idx, verbose);
 }
 
 std::string FrameLib_Unpack::outputInfo(unsigned long idx, bool verbose)
@@ -67,5 +67,5 @@ FrameLib_Unpack::ParameterInfo FrameLib_Unpack::sParamInfo;
 
 FrameLib_Unpack::ParameterInfo::ParameterInfo()
 {
-    add("Sets the number of outputs.");
+    add("Sets the number of single stream outputs.");
 }

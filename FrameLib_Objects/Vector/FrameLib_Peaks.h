@@ -6,10 +6,11 @@
 
 class FrameLib_Peaks final : public FrameLib_Processor
 {
-    enum Parameters { kCriteria, kThreshold, kPadding, kEdges, kRefinement, kBoundary, kAlwaysDetect };
-    enum Criteria { kOneNeighbour, kTwoNeighbours, kThreeNeighbours, kFourNeighbours };
-    enum Refinements { kNone, kParabolic, kParabolicLog };
+    enum Parameters { kNeighbours, kThreshold, kPadding, kEdges, kRefinement, kBoundaries, kAlwaysDetect };
+    enum Refinements { kOff, kParabolic, kParabolicLog };
     enum Boundaries { kMinimum, kMidpoint };
+
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
     
@@ -28,6 +29,10 @@ private:
     // Process
     
     void process() override;
+    
+    // Data
+    
+    static ParameterInfo sParamInfo;
 };
 
 #endif

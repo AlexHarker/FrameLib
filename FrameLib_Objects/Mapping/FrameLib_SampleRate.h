@@ -8,9 +8,10 @@ class FrameLib_SampleRate final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kMode };
-    enum Modes { kValue, kNyquist, kSampsToMS, kSampsToSecs, kMSToSamps, kSecsToSamps, kNormToFreq, kHalfNormToFreq, kFreqToNorm, kFreqToHalfNorm };
-
+    enum ParameterList { kMode,  kNormalisation };
+    enum Modes { kRate, kNyquist, kSampsToMS, kSampsToSecs, kMSToSamps, kSecsToSamps, kNormToFreq, kFreqToNorm };
+    enum Normalisations { kNormFull, kNormNyquist };
+    
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:

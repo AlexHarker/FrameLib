@@ -19,7 +19,7 @@ template<> inline const char *FrameLib_Vector<statCentroid>::getOpString()      
 template<> inline const char *FrameLib_Vector<statSpread>::getOpString()                        { return "spread"; }
 template<> inline const char *FrameLib_Vector<statSkewness>::getOpString()                      { return "skewness"; }
 template<> inline const char *FrameLib_Vector<statKurtosis, kDefaultOne>::getOpString()         { return "kurtosis"; }
-template<> inline const char *FrameLib_Vector<statFlatness, kDefaultOne>::getOpString()         { return "flatness"; }
+template<> inline const char *FrameLib_Vector<statFlatness, kDefaultOne>::getOpString()         { return "flatness (as a ratio)"; }
 template<> inline const char *FrameLib_Vector<statRMS>::getOpString()                           { return "rms"; }
 template<> inline const char *FrameLib_Vector<statCrest, kDefaultOne>::getOpString()            { return "crest factor"; }
 template<> inline const char *FrameLib_Vector<statMinPosition>::getOpString()                   { return "index of the minimum value"; }

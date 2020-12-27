@@ -343,7 +343,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"patching_rect" : [ 15.0, 277.0, 256.0, 23.0 ],
-									"text" : "fl.complexdivide~"
+									"text" : "fl.complex.divide~"
 								}
 
 							}
@@ -353,7 +353,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.complexdivide~" ],
+									"jsarguments" : [ "fl.complex.divide~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -553,7 +553,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.complexdivide~.mxo",
+				"name" : "fl.complex.divide~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

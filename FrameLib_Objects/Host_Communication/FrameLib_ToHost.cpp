@@ -44,18 +44,20 @@ void FrameLib_ToHost::setStream(void *streamOwner, unsigned long stream)
 
 std::string FrameLib_ToHost::objectInfo(bool verbose)
 {
-    return formatInfo("Turn frames into host messages. The maximum length of the output message may be limited by the host environment",
-                      "Turn frames into host messages.", verbose);
+    return formatInfo("Turn frames into host messages or control signals: "
+                      "The maximum length of the output message may be limited by the host environment. "
+                      "Vector and tagged frame types are both supported if supported by the host.",
+                      "Turn frames into host messages or control signals.", verbose);
 }
 
 std::string FrameLib_ToHost::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Input Frames - converted to host message", "Input Frames", verbose);
+    return formatInfo("Input - converted to host message", "Input", verbose);
 }
 
 std::string FrameLib_ToHost::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Host Output Messages";
+    return "";
 }
 
 // Process

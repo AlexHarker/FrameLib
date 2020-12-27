@@ -1,0 +1,51 @@
+<c74object category="FrameLib Schedulers" module="FrameLib" name="fl.interval~">
+  <digest> 
+        Schedules frames at regular intervals set by the interval parameter.
+    </digest>
+  <description> 
+         The output is an empty trigger frame. Scheduling is optionally switchable if the switchable parameter is set at instantiation. The on parameter can be used to start and stop scheduling when this is the case.
+    </description>
+  <misc name="Parameters">
+    <entry name="1. /interval [double]">
+      <description> 
+                Sets the interval between frames in the units specified by the units parameter.
+            </description>
+    </entry>
+    <entry name="2. /units [enum]">
+      <description> 
+                Sets the time units used for setting the interval.<br />
+        <bullet>[0] - samples</bullet>
+        <bullet>[1] - ms</bullet>
+        <bullet>[2] - seconds</bullet>
+        <bullet>[3] - hz</bullet>
+      </description>
+    </entry>
+    <entry name="3. /switchable [instantiation bool]">
+      <description> 
+                Sets whether the object is switchable or not (setting this on can reduce CPU efficiency).
+            </description>
+    </entry>
+    <entry name="4. /on [bool]">
+      <description> 
+                Sets the state when in switchable mode in order to start and stop the timing of intervals.
+            </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Schedulers</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.perblock~" />
+    <seealso name="fl.audiotrigger~" />
+    <seealso name="fl.once~" />
+    <seealso name="fl.chain~" />
+    <seealso name="fl.future~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>timing, schedulers,triggers</description>
+    </entry>
+  </misc>
+</c74object>

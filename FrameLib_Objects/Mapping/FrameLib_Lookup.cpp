@@ -2,7 +2,7 @@
 #include "FrameLib_Lookup.h"
 
 FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Processor(context, proxy, nullptr, 2, 1)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {    
     mParameters.addEnum(kScale, "scale", 0);
     mParameters.addEnumItem(kSamples, "samples");
@@ -37,26 +37,28 @@ FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, const FrameLib_Parame
 
 std::string FrameLib_Lookup::objectInfo(bool verbose)
 {
-    return formatInfo("Use one frame as a lookup table for another: The left input frame is used to lookup values from the last values received as the right input frame. "
-                   "The output is the same size as the left input, which is interpreted as a set of sample positions used to read the right input. "
-                   "Only the left input triggers output.",
-                   "Use one frame as a lookup table for another.", verbose);
+    return formatInfo("Lookup values from one input using a table provided at another: "
+                      "The first input is interpreted as the positions to read from the table at the second. "
+                      "The output is the same length as the frame at the first input. "
+                      "The scale, edges and bound parameters control the mapping of the input to the table. "
+                      "The lookup can be performed with different types of interpolation (or none). "
+                      "Only the first input triggers output.",
+                      "Lookup values from one input using a table provided at another.", verbose);
 }
 
 std::string FrameLib_Lookup::inputInfo(unsigned long idx, bool verbose)
 {
     switch (idx)
     {
-        case 0: return formatInfo("Values to Lookup - interpreted as sample positions into the table / right input", "Values to Lookup", verbose);
-        case 1: return formatInfo("Frame for Table - values are retrieved from this frame / does not trigger output", "Frame for Table", verbose);
-        case 2: return parameterInputInfo(verbose);
-        default: return "Unknown input";
+        case 0: return formatInfo("Input - values to be looked up", "Input", verbose);
+        case 1: return formatInfo("Table Input - does not trigger output", "Table Input", verbose);
+        default: return parameterInputInfo(verbose);
     }
 }
 
 std::string FrameLib_Lookup::outputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Output Frame - values after look up", "Output Frame", verbose);
+    return "Output";
 }
 
 // Parameter Info
@@ -65,14 +67,26 @@ FrameLib_Lookup::ParameterInfo FrameLib_Lookup::sParamInfo;
 
 FrameLib_Lookup::ParameterInfo::ParameterInfo()
 {
-    add("Sets the mode for values requested out of range:"
-        "zero - values out of range are treated as zeroes."
-        "clip - values out of range are clipped to the end points of the frame used for lookup");
+    add("Sets the scaling of the input for lookup: "
+        "samples - the input is read as sample indices for reading from the table. "
+        "normalised - the input range [0 to 1] is mapped across the table. "
+        "bipolar - the input range [-1 to 1] is mapped across the table. "
+        "Note that the edge parameter is also accounted for normalised and bipolar modes. "
+        "This adjusts the scaling to work sensibly with cyclical modes.");
+    add("Sets the edge behaviour for both interpolation and lookup: "
+        "zero - values beyond the edges of the table are treated as zeros. "
+        "extend - the edge values are extended infinitely in either direction. "
+        "wrap - values are treated as wrapped or cyclical. "
+        "fold - values are folded at edges without repetition of the edge values. "
+        "mirror - values are mirrored at edges with the edge values repeated. "
+        "extrapolate - values out of range are extrapolated via interpolation.");
+    add("Sets whether lookup is bounded to the edges of the table, or can extend beyond it.");
     add("Sets the interpolation mode: "
+        "none - no interpolation. "
+        "linear - linear interpolation. "
         "hermite - cubic hermite interpolation. "
         "bspline - cubic bspline interpolation. "
-        "lagrange - cubic lagrange interpolation. "
-        "linear - linear interpolation.");
+        "lagrange - cubic lagrange interpolation.");
 }
 
 // Process

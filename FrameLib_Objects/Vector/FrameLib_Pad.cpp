@@ -27,10 +27,11 @@ FrameLib_Pad::FrameLib_Pad(FrameLib_Context context, const FrameLib_Parameters::
 
 std::string FrameLib_Pad::objectInfo(bool verbose)
 {
-    return formatInfo("Pads an input frame with a fixed value at either the start the end, or both: "
-                   "The output frame size is at least the same length as the input, plus the number of padding values. "
-                   "Padding amounts may be set in samples, or as a ratio of the input length.",
-                   "Pads an input frame with a fixed value at either the start the end, or both.", verbose);
+    return formatInfo("Pads the input frame with a repeated specified value: "
+                      "Padding may be applied to either the start or the end of the frame or both. "
+                      "Padding amounts may be set in samples, or as a ratio of the input length. "
+                      "The output length is at least the size of the input.",
+                      "Pads the input frame with a repeated specified value.", verbose);
 }
 
 std::string FrameLib_Pad::inputInfo(unsigned long idx, bool verbose)
@@ -38,12 +39,12 @@ std::string FrameLib_Pad::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return "Frames to Pad";
+        return "Input";
 }
 
 std::string FrameLib_Pad::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Padded Frames";
+    return "Output";
 }
 
 // Parameter Info
@@ -53,9 +54,9 @@ FrameLib_Pad::ParameterInfo FrameLib_Pad::sParamInfo;
 FrameLib_Pad::ParameterInfo::ParameterInfo()
 {
     add("Sets the padding value.");
-    add("Sets the amount of padding to apply at the start of the frame.");
-    add("Sets the amount of padding to apply at the end of the frame.");
-    add("Sets units for padding amounts (samples or ratios [0-1]).");
+    add("Sets the amount of padding to apply to the start of the frame.");
+    add("Sets the amount of padding to apply to the end of the frame.");
+    add("Sets the units for padding amounts (samples or ratios [0-1]).");
 }
 
 // Process

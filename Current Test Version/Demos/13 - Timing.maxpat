@@ -2,13 +2,14 @@
 	"patcher" : 	{
 		"fileversion" : 1,
 		"appversion" : 		{
-			"major" : 7,
-			"minor" : 3,
+			"major" : 8,
+			"minor" : 1,
 			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
+		"classnamespace" : "box",
 		"rect" : [ 59.0, 104.0, 726.0, 316.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
@@ -36,6 +37,7 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-18",
@@ -43,23 +45,21 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 524.0, 95.0, 81.0, 22.0 ],
-					"style" : "",
-					"text" : "run_mode $1"
+					"patching_rect" : [ 524.0, 95.0, 55.0, 22.0 ],
+					"text" : "mode $1"
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"id" : "obj-16",
-					"items" : [ "run", ",", "pause", ",", "stop" ],
+					"items" : [ "run", ",", "pause", ",", "loop", ",", "stop" ],
 					"maxclass" : "umenu",
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "", "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 524.0, 35.0, 100.0, 22.0 ],
-					"style" : ""
+					"patching_rect" : [ 524.0, 35.0, 100.0, 22.0 ]
 				}
 
 			}
@@ -71,7 +71,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 524.0, 137.0, 154.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.frommax~ /mode params"
 				}
 
@@ -88,8 +87,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "float" ],
 					"patching_rect" : [ 445.0, 252.0, 101.0, 22.0 ],
-					"sig" : 0.0,
-					"style" : ""
+					"sig" : 0.0
 				}
 
 			}
@@ -101,7 +99,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 445.0, 209.0, 54.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.trace~"
 				}
 
@@ -110,11 +107,10 @@
 				"box" : 				{
 					"id" : "obj-10",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
+					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 445.0, 170.0, 98.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.ticks~ 5"
 				}
 
@@ -127,7 +123,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 388.0, 35.0, 124.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.interval~ 1 seconds"
 				}
 
@@ -144,8 +139,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "float" ],
 					"patching_rect" : [ 256.0, 252.0, 101.0, 22.0 ],
-					"sig" : 0.0,
-					"style" : ""
+					"sig" : 0.0
 				}
 
 			}
@@ -157,7 +151,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 256.0, 209.0, 54.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.trace~"
 				}
 
@@ -170,7 +163,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 256.0, 35.0, 124.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.interval~ 4 seconds"
 				}
 
@@ -183,7 +175,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 256.0, 170.0, 105.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.timer~ /units ms"
 				}
 
@@ -200,8 +191,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "float" ],
 					"patching_rect" : [ 71.0, 252.0, 101.0, 22.0 ],
-					"sig" : 0.0,
-					"style" : ""
+					"sig" : 0.0
 				}
 
 			}
@@ -213,7 +203,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 71.0, 209.0, 54.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.trace~"
 				}
 
@@ -226,7 +215,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 71.0, 35.0, 124.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.interval~ 1 seconds"
 				}
 
@@ -239,7 +227,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 71.0, 170.0, 127.0, 22.0 ],
-					"style" : "",
 					"text" : "fl.timedelta~ /units ms"
 				}
 
@@ -268,7 +255,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-10", 1 ],
+					"destination" : [ "obj-10", 2 ],
 					"source" : [ "obj-15", 0 ]
 				}
 
@@ -276,7 +263,8 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-18", 0 ],
-					"source" : [ "obj-16", 0 ]
+					"midpoints" : [ 574.0, 75.5, 533.5, 75.5 ],
+					"source" : [ "obj-16", 1 ]
 				}
 
 			}
@@ -356,6 +344,14 @@
 			}
 , 			{
 				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.trace~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

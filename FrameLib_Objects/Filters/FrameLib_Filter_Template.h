@@ -14,7 +14,7 @@ namespace FrameLib_Filters
 {
     // Base class template for filter implementations  (N.B. - set NumCoeffs for coefficient calculators)
     
-    template <class T, size_t NumParams, size_t NumModes, size_t NumCoeffs, bool DoesMulti>
+    template <class T, size_t NumParams, size_t NumModes, size_t NumCoeffs, bool DoesMultiOutput>
     struct Base
     {
         // Construct a method suitable for the coefficient mode / number of coefficients
@@ -133,11 +133,11 @@ namespace FrameLib_Filters
         using ModeType = std::array<Mode, NumModes>;
         using ParamType = std::array<Param, NumParams>;
         using CoeffType = std::array<Coeff, NumCoeffs>;
-        using MultiType = std::integral_constant<bool, DoesMulti>;
+        using MultiType = std::integral_constant<bool, DoesMultiOutput>;
     };
     
-    template <class T, size_t NumParams, size_t NumModes, bool DoesMulti>
-    using Filter = Base<T, NumParams, NumModes, 0, DoesMulti>;
+    template <class T, size_t NumParams, size_t NumModes, bool DoesMultiOutput>
+    using Filter = Base<T, NumParams, NumModes, 0, DoesMultiOutput>;
     
     template <class T, size_t NumParams, size_t NumModes, size_t NumCoeff>
     using Coefficients = Base<T, NumParams, NumModes, NumCoeff, false>;
@@ -198,11 +198,11 @@ class FrameLib_Filter final : public FrameLib_Processor
     
     static constexpr bool DoesModes = NumModes > 1;
     static constexpr bool DoesCoefficients = NumCoeffs != 0;
-    static constexpr bool DoesMulti = T::MultiType::value && DoesModes && !DoesCoefficients;
+    static constexpr bool DoesMultiOutput = T::MultiType::value && DoesModes && !DoesCoefficients;
     
     static constexpr unsigned long ModeIndex = NumParams;
-    static constexpr unsigned long MultiIndex = NumParams + 1;
-    static constexpr unsigned long ParamModeIndex = NumParams + (DoesModes ? DoesMulti ? 2 : 1 : 0);
+    static constexpr unsigned long MultiOutputIndex = NumParams + 1;
+    static constexpr unsigned long ParamModeIndex = NumParams + (DoesModes ? DoesMultiOutput ? 2 : 1 : 0);
     static constexpr unsigned long ResetIndex = ParamModeIndex + 1;
     
     static constexpr const typename T::ParamType& ParamList = T::sParameters;
@@ -227,7 +227,7 @@ class FrameLib_Filter final : public FrameLib_Processor
         
         std::string outputInfo(FrameLib_Filter& obj, unsigned long idx, bool verbose)
         {
-            if (!obj.isMulti())
+            if (!obj.isMultiOutput())
                 return "Output";
             
             return ModeList[idx].mOutputName;
@@ -337,7 +337,7 @@ class FrameLib_Filter final : public FrameLib_Processor
             if (obj.getReset())
                 mFilter.reset();
             
-            if (obj.isMulti())
+            if (obj.isMultiOutput())
                 process(obj, outputs, input, sizeOut, ModeIndices());
             else
                 modeSelect<NumModes-1>(obj, obj.getMode(), outputs[0], input, sizeOut);
@@ -468,7 +468,7 @@ class FrameLib_Filter final : public FrameLib_Processor
             
             if (DoesModes)
             {
-                std::string mode(DoesMulti ? "Sets the filter mode when multi mode is off:" : "Sets the filter mode:");
+                std::string mode(DoesMultiOutput ? "Sets the filter mode when multi-output mode is off:" : "Sets the filter mode:");
                 
                 for (unsigned long i = 0; i < NumModes; i++)
                 {
@@ -481,21 +481,22 @@ class FrameLib_Filter final : public FrameLib_Processor
                 
                 add(mode);
                 
-                if (DoesMulti)
-                    add("Sets multi mode (in which all filter modes are output separately).");
+                if (DoesMultiOutput)
+                    add("Creates an output per filter mode with all modes output simultaneously.");
             }
             
-            if (!DoesCoefficients)
+            if (DoesCoefficients)
             {
-                add("Sets the coefficients input/output mode. "
-                    "static - inputs are parameters and outputs are separate coefficient values. "
-                    "dynamic - inputs can be a mix of parameters and input frames and outputs are separate frames of coefficient values. "
-                    "tagged - inputs are parameters and the output is a single tagged frame.");
+                add("Sets the coefficients input and output modes. "
+                    "static - settings are made via parameters with single value outputs. "
+                    "dynamic - settings are made via inputs or parameters with output as vectors. "
+                    "tagged - settings are made via parameters with output as a tagged frame.");
             }
             else
             {
-                add("Sets dynamic mode (which creates inputs for each settings of the filter).");
-                add("Sets whether filter memories are reset before processing a new frame.");
+                add("Creates inputs for per sample values for each of the filter parameters. "
+                    "If an input is not provided the corresponding parameter value is used.");
+                add("Determines whether filter memories are reset before processing a new frame.");
             }
         }
     };
@@ -528,9 +529,9 @@ public:
                 mParameters.addEnumItem(i, ModeList[i].mName);
         }
         
-        if (DoesMulti)
+        if (DoesMultiOutput)
         {
-            mParameters.addBool(MultiIndex, "multi", false);
+            mParameters.addBool(MultiOutputIndex, "multi_output", false);
             mParameters.setInstantiation();
         }
         
@@ -553,7 +554,7 @@ public:
         mParameters.set(serialisedParameters);
         
         unsigned long numIns = isDynamic() ? NumParams + 1 : 1;
-        unsigned long numOuts = DoesCoefficients ? (isTagged() ? 1 : NumCoeffs) : isMulti() ? NumModes : 1;
+        unsigned long numOuts = DoesCoefficients ? (isTagged() ? 1 : NumCoeffs) : isMultiOutput() ? NumModes : 1;
         
         setIO(numIns, numOuts);
         
@@ -581,32 +582,63 @@ public:
         {
             std::string info(description);
             
-            info.append(": The size of the output is equal to the input. ");
-            
-            if (DoesModes)
+            if (DoesCoefficients)
             {
-                if (DoesMulti)
-                    info.append("The filter can be set to output a single mode at a time (set with the mode parameter) or all modes simulatanously (set with the multi parameter). ");
-                else
+                info.append(": ");
+                
+                if (DoesModes)
                     info.append("The filter mode is set by the mode parameter. ");
+                
+                info.append("Filter settings may be made either via parameters or per sample via inputs. "
+                            "The type of input and output is determined by the coefficients parameter. "
+                            "If set to dynamic then inputs are created for per sample values. "
+                            "Output will be at least one sample or as long as the longest input frame. "
+                            "Frames of per sample values are padded to length with their final value if required. "
+                            "Additional values are ignored. "
+                            "In this mode the parameter value is used if no corresponding input is provided. "
+                            "Thus, per sample values and parameters can be mixed. "
+                            "If coefficients is set to tagged then a single frame of tagged output is output. "
+                            "In tagged mode and static mode filter settings are made via parameters only. "
+                            "In static mode each output is a single value.");
             }
+            else
+            {
+                info.append(": Output is the same length as the input. ");
             
-            info.append("Filter settings may be updated either as parameters, or, when the dynamic parameter is set on, on a per sample basis via dedicated inputs. "
-                        "When in dynamic mode the parameter values are used if an input is disconnected, or empty. "
-                        "Thus you can mix dynamic and static settings.");
+                if (DoesModes)
+                {
+                    if (DoesMultiOutput)
+                        info.append("The filter can output a single specifed mode at a time. "
+                                "Alternatively, in multi-output mode all modes are output simultaneously. ");
+                    else
+                        info.append("The filter mode is set by the mode parameter. ");
+                }
             
-            if (!DoesCoefficients)
-                info.append(" If you wish to process streams (rather than individual frames) then you can set the reset parameter off (which will not clear the filter memories between frames.");
+                info.append("Filter settings may be made either via parameters or per sample via inputs. "
+                            "The dynamic parameter is set to create the inputs for per sample values. "
+                            "Frames of per sample values are padded to length with their final value if required. "
+                            "Additional values are ignored. "
+                            "In this mode the parameter value is used if no corresponding input is provided. "
+                            "Thus, per sample values and parameters can be mixed. "
+                            "To process streams (not discrete frames) the reset parameter can be set off. "
+                            "This prevents the filter memories being cleared between frames.");
+            }
             
             return info;
         }
+        
         return formatInfo("#.", description);
     }
     
     std::string inputInfo(unsigned long idx, bool verbose) override
     {
         if (!idx)
-            return DoesCoefficients ? "Trigger Input" : "Input";
+        {
+            if (DoesCoefficients)
+                return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
+            else
+                return "Input";
+        }
         
         if (idx >= getNumIns() - 1)
             return parameterInputInfo(verbose);
@@ -626,10 +658,10 @@ private:
     ParamMode paramMode() const { return mParameters.getEnum<ParamMode>(ParamModeIndex); }
     size_t getMode() const { return DoesModes ? mParameters.getEnum<size_t>(ModeIndex) : 0; }
 
-    bool isMulti() const    { return DoesMulti && mParameters.getBool(MultiIndex); }
-    bool isDynamic() const  { return paramMode() == kDynamic; }
-    bool isTagged() const   { return paramMode() == kTagged; }
-    bool getReset() const   { return !DoesCoefficients && mParameters.getBool(ResetIndex); }
+    bool isMultiOutput() const  { return DoesMultiOutput && mParameters.getBool(MultiOutputIndex); }
+    bool isDynamic() const      { return paramMode() == kDynamic; }
+    bool isTagged() const       { return paramMode() == kTagged; }
+    bool getReset() const       { return !DoesCoefficients && mParameters.getBool(ResetIndex); }
     
     // Info
     
