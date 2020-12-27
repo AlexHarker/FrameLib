@@ -166,7 +166,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 96.0, 390.0, 75.0, 23.0 ]
+									"patching_rect" : [ 100.0, 390.0, 75.0, 23.0 ]
 								}
 
 							}
@@ -177,7 +177,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 96.0, 330.0, 62.0, 23.0 ],
+									"patching_rect" : [ 100.0, 330.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -204,7 +204,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 96.0, 150.0, 50.0, 23.0 ]
+									"patching_rect" : [ 100.0, 150.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -228,7 +228,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 180.0, 150.0, 75.0, 23.0 ],
+									"patching_rect" : [ 184.0, 150.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -240,7 +240,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 96.0, 225.0, 77.0, 23.0 ],
+									"patching_rect" : [ 100.0, 225.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -276,8 +276,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 15.0, 277.0, 100.0, 23.0 ],
-									"text" : "fl.complextanh~"
+									"patching_rect" : [ 15.0, 277.0, 104.0, 23.0 ],
+									"text" : "fl.complex.tanh~"
 								}
 
 							}
@@ -287,7 +287,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.complextanh~" ],
+									"jsarguments" : [ "fl.complex.tanh~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -322,7 +322,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
-									"midpoints" : [ 189.5, 210.0, 24.5, 210.0 ],
+									"midpoints" : [ 193.5, 210.0, 24.5, 210.0 ],
 									"order" : 1,
 									"source" : [ "obj-16", 0 ]
 								}
@@ -331,7 +331,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
-									"midpoints" : [ 189.5, 210.0, 105.5, 210.0 ],
+									"midpoints" : [ 193.5, 210.0, 109.5, 210.0 ],
 									"order" : 0,
 									"source" : [ "obj-16", 0 ]
 								}
@@ -348,6 +348,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-27", 0 ],
+									"midpoints" : [ 24.5, 138.5, 109.5, 138.5 ],
 									"order" : 0,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -443,7 +444,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.complextanh~.mxo",
+				"name" : "fl.complex.tanh~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

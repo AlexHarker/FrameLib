@@ -56,7 +56,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 109.0, 653.0, 757.0 ],
+						"rect" : [ 0.0, 26.0, 653.0, 757.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -139,8 +139,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 15.0, 225.0, 219.0, 23.0 ],
-									"text" : "fl.complexexpr~ sinh(in1) * cosh(in1)"
+									"patching_rect" : [ 15.0, 225.0, 223.0, 23.0 ],
+									"text" : "fl.complex.expr~ sinh(in1) * cosh(in1)"
 								}
 
 							}
@@ -161,7 +161,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.expr~" ],
+									"jsarguments" : [ "fl.complex.expr~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -334,7 +334,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 653.0, 757.0 ],
+						"rect" : [ 34.0, 109.0, 653.0, 757.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -418,8 +418,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 15.0, 225.0, 143.0, 23.0 ],
-									"text" : "fl.complexexpr~ in1 * pi"
+									"patching_rect" : [ 15.0, 225.0, 147.0, 23.0 ],
+									"text" : "fl.complex.expr~ in1 * pi"
 								}
 
 							}
@@ -440,7 +440,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.expr~" ],
+									"jsarguments" : [ "fl.complex.expr~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -475,6 +475,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-35", 1 ],
+									"midpoints" : [ 24.5, 213.5, 152.5, 213.5 ],
 									"order" : 0,
 									"source" : [ "obj-40", 0 ]
 								}
@@ -908,7 +909,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"patching_rect" : [ 15.0, 195.0, 169.0, 23.0 ],
-									"text" : "fl.complexexpr~ in1 * - 1"
+									"text" : "fl.complex.expr~ in1 * - 1"
 								}
 
 							}
@@ -918,7 +919,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.expr~" ],
+									"jsarguments" : [ "fl.complex.expr~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -1089,7 +1090,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.complexexpr~.mxo",
+				"name" : "fl.complex.expr~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

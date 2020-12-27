@@ -1,3 +1,4 @@
+tmp = __import__("_create_tmp")
 create_category_database = __import__("1_create_category_database")
 edit_raw_XML = __import__("2_edit_raw_XML")
 parse_to_dlookup = __import__("4_parse_to_dlookup")
@@ -16,9 +17,11 @@ import argparse
 
 def main():
     parser = argparse.ArgumentParser(description="Build Documentation for FrameLib")
-    parser.add_argument("-hf", "--helpfiles", default=1, type=int, help="Toggle to build help files")
-    parser.add_argument("-c", "--clean", default=1, type=int, help="Toggle for post-cleanup")
+    parser.add_argument("-hf", "--helpfiles", default=True, action='store_false', help="Toggle to build help files")
+    parser.add_argument("-c", "--clean", default=True, action='store_false', help="Toggle for post-cleanup")
     args = parser.parse_args()
+
+    tmp.main()
 
     print(args.clean)
     sign_off()

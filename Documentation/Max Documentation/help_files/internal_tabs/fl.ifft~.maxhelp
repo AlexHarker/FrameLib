@@ -211,8 +211,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 345.0, 246.0, 23.0 ],
-									"text" : "fl.window~ hann /compensate powoverlin"
+									"patching_rect" : [ 15.0, 345.0, 70.0, 23.0 ],
+									"text" : "fl.window~"
 								}
 
 							}
@@ -224,8 +224,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 210.0, 216.0, 23.0 ],
-									"text" : "fl.window~ hann /compensate linear"
+									"patching_rect" : [ 15.0, 210.0, 70.0, 23.0 ],
+									"text" : "fl.window~"
 								}
 
 							}

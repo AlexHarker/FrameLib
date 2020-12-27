@@ -277,7 +277,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"patching_rect" : [ 15.0, 277.0, 98.0, 23.0 ],
-									"text" : "fl.complexlog~"
+									"text" : "fl.complex.log~"
 								}
 
 							}
@@ -287,7 +287,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.complexlog~" ],
+									"jsarguments" : [ "fl.complex.log~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -401,8 +401,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -443,7 +443,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.complexlog~.mxo",
+				"name" : "fl.complex.log~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

@@ -343,7 +343,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"patching_rect" : [ 15.0, 277.0, 256.0, 23.0 ],
-									"text" : "fl.complexminus~"
+									"text" : "fl.complex.minus~"
 								}
 
 							}
@@ -363,7 +363,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.complexminus~" ],
+									"jsarguments" : [ "fl.complex.minus~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -563,7 +563,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.complexminus~.mxo",
+				"name" : "fl.complex.minus~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

@@ -712,8 +712,8 @@
  ],
 		"lines" : [  ],
 		"parameters" : 		{
-			"obj-1::obj-11::obj-2" : [ "live.slider", "Exponent", 0 ],
 			"obj-1::obj-11::obj-13" : [ "live.tab[3]", "live.tab[1]", 0 ],
+			"obj-1::obj-11::obj-2" : [ "live.slider", "Exponent", 0 ],
 			"obj-1::obj-11::obj-6" : [ "live.tab[2]", "live.tab[1]", 0 ],
 			"obj-1::obj-11::obj-1" : [ "live.tab", "live.tab", 0 ],
 			"parameterbanks" : 			{

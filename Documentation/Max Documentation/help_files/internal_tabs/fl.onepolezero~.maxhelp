@@ -155,7 +155,7 @@
 									"id" : "obj-4",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "FL_monoVolume-h.maxpat",
+									"name" : "fl-mono-h.maxpat",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
@@ -269,12 +269,12 @@
 													"presentation_rect" : [ 125.0, 19.0, 48.0, 166.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
+															"parameter_mmax" : 10000.0,
 															"parameter_shortname" : "Freq",
 															"parameter_type" : 0,
 															"parameter_unitstyle" : 1,
 															"parameter_mmin" : 50.0,
-															"parameter_longname" : "live.slider",
-															"parameter_mmax" : 10000.0
+															"parameter_longname" : "live.slider"
 														}
 
 													}
@@ -322,12 +322,12 @@
 													"presentation_rect" : [ 14.0, 14.0, 102.0, 171.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
+															"parameter_mmax" : 1,
 															"parameter_shortname" : "live.tab",
-															"parameter_enum" : [ "lpf", "hpf" ],
+															"parameter_enum" : [ "lowpass", "highpass" ],
 															"parameter_type" : 2,
 															"parameter_unitstyle" : 0,
-															"parameter_longname" : "live.tab",
-															"parameter_mmax" : 1
+															"parameter_longname" : "live.tab"
 														}
 
 													}
@@ -649,8 +649,8 @@
 		"lines" : [  ],
 		"parameters" : 		{
 			"obj-1::obj-18::obj-5" : [ "live.slider", "Freq", 0 ],
-			"obj-1::obj-4::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
 			"obj-1::obj-18::obj-1" : [ "live.tab", "live.tab", 0 ],
+			"obj-1::obj-4::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
 			"parameterbanks" : 			{
 
 			}
@@ -665,7 +665,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "FL_monoVolume-h.maxpat",
+				"name" : "fl-mono-h.maxpat",
 				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/docs/tutorial-patchers",
 				"type" : "JSON",
