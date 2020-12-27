@@ -268,16 +268,16 @@ public:
     public:
         
         AutoSerial() {};
-        AutoSerial(unsigned long size) : Serial(new Byte[size], size) {}
-        AutoSerial(const Serial& serial) : Serial(new Byte[serial.size()], serial.size()) { write(&serial); }
+        AutoSerial(unsigned long size) : Serial(size ? new Byte[size] : nullptr, size) {}
+        AutoSerial(const Serial& serial) : AutoSerial(serial.size()) { write(&serial); }
         AutoSerial(const char *tag, const char *string) { write(tag, string); }
         AutoSerial(const char *tag, const double *values, unsigned long N)  { write(tag, values, N); }
         ~AutoSerial() { if (mPtr) delete[] mPtr; }
         
         // Make movable
         
-        AutoSerial(AutoSerial&&) = default;
-        AutoSerial& operator=(AutoSerial&&) = default;
+        AutoSerial(AutoSerial&& other);
+        AutoSerial& operator=(AutoSerial&& other);
         
         // Write Items
         

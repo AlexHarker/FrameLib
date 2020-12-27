@@ -405,6 +405,24 @@ bool FrameLib_Parameters::Serial::checkSize(unsigned long writeSize)
 
 // AutoSerial Class (owning/resizing/allocating it's own memory using system routines - not suitable for audio thread use)
 
+FrameLib_Parameters::AutoSerial::AutoSerial(AutoSerial&& other) : Serial(other.mPtr, other.mMaxSize)
+{
+    mSize = other.mSize;
+    mNumTags = other.mNumTags;
+    other.mPtr = nullptr;
+}
+
+FrameLib_Parameters::AutoSerial& FrameLib_Parameters::AutoSerial::operator=(AutoSerial&& other)
+{
+    mPtr = other.mPtr;
+    mSize = other.mSize;
+    mMaxSize = other.mMaxSize;
+    mNumTags = other.mNumTags;
+    other.mPtr = nullptr;
+    
+    return *this;
+}
+
 bool FrameLib_Parameters::AutoSerial::checkSize(unsigned long writeSize)
 {
     unsigned long growSize;
@@ -420,8 +438,11 @@ bool FrameLib_Parameters::AutoSerial::checkSize(unsigned long writeSize)
     // Allocate required memory and copy old data before deleting the old pointer
     
     BytePointer newPtr = new Byte[mMaxSize + growSize];
-    memcpy(newPtr, mPtr, mSize);
-    if (mPtr) delete[] mPtr;
+    if (mPtr)
+    {
+        memcpy(newPtr, mPtr, mSize);
+        delete[] mPtr;
+    }
     
     // Update
     
