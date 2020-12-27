@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 5,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,7 +39,6 @@
 		"subpatcher_template" : "nobars",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
-		"assistshowspatchername" : 0,
 		"title" : "Tutorial 1: Introduction",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -112,13 +111,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 797.0, 696.0 ],
+						"rect" : [ 34.0, 105.0, 797.0, 696.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -146,7 +145,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgmode" : 0,
@@ -166,7 +164,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -199,7 +197,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"arrows" : 2,
@@ -311,12 +308,12 @@
 													"presentation_rect" : [ 15.0, 199.5, 136.0, 47.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_longname" : "live.gain~[1]",
 															"parameter_mmax" : 6.0,
-															"parameter_mmin" : -70.0,
 															"parameter_shortname" : "live.gain~[1]",
 															"parameter_type" : 0,
-															"parameter_unitstyle" : 4
+															"parameter_unitstyle" : 4,
+															"parameter_mmin" : -70.0,
+															"parameter_longname" : "live.gain~[1]"
 														}
 
 													}
@@ -619,12 +616,12 @@
 									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-8",
-									"linecount" : 35,
+									"linecount" : 33,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 135.0, 441.0, 552.0 ],
-									"text" : "In the previous tab \"What is a frame?\" a bpatcher example demonstrates the concept of scheduling short fragments of audio to be played back in time. That bpatcher is composed of Max objects that play samples from a buffer~ object using play~. I encourage you to go and open that bpatcher up and see how it is put together.\n\nIn that bpatcher, Max uses a declarative 'play from this position in time to that position over this amount of time' way of programming a simple playback routine. This single statement tells the play object to play a certain segment of a buffer over a duration of time which is all triggered when play~ receives that message. FrameLib is a more 'imperative' style and we construct algorithms in steps that control the flow of frames between FrameLib objects. This flow of frames occurs at audio rate, and the passing of frames is confined to flow between FrameLib objects. With few exceptions this flow is initiated with a 'scheduler' with the most common one being fl.interval~.\n\nThe fl.read~ object's (in blue) primary function is to extract samples from a buffer like play~, peek~ or index~. Instead of describing the playback routine with a message (\"start 0 1000 1000\") we use a frame of values that dictate which positions from the buffer we want. Whenever fl.read~ receives that frame it will output a new frame of sample values corresponding to those positions in the buffer. So to get the first second of audio (0 1000) we pass a frame containing 44100 values that count from 0 to 44100. You can see that output frame in the multislider and it looks a lot like a waveform! This frame is converted into audio is through the fl.sink~ object which receives a frame of values and converts it into a normal msp signal. As fl.sink~ here receives a frame of 44100 values, it will stream these out over 1 second (assuming your sample rate is set to 44100 samples). The fl.interval~ at the top of the FrameLib chain is dictating how often this whole series of events is occurring much like a metro could trigger a message like \"start 0 1000 1000\" which would make play~ output audio. This means that we get the first 44100 samples from fl.read~ every 44100 samples of time. fl.sink~ converts this to audio for us taking care of the conversion between a frame and a signal."
+									"patching_rect" : [ 15.0, 135.0, 445.0, 521.0 ],
+									"text" : "In the previous tab \"What is a frame?\" a bpatcher example demonstrates the concept of scheduling short fragments of audio to be played back in time. That bpatcher is composed of Max objects that play samples from a buffer~ object using play~. I encourage you to go and open that bpatcher up and see how it is put together.\n\nIn that bpatcher, Max uses a 'play from this position in time to that position over this amount of time' way of programming a simple playback routine. This single statement tells the play object to play a certain segment of a buffer over a duration of time which is all triggered when play~ receives that message. In FrameLib we construct algorithms in steps that control the flow of frames between FrameLib objects. This flow of frames occurs at audio rate, and the passing of frames is confined to flow between FrameLib objects. With few exceptions this flow is initiated with a 'scheduler' with the most common one being fl.interval~.\n\nThe fl.read~ object's (in blue) primary function is to extract samples from a buffer like play~, peek~ or index~. Instead of describing the playback routine with a message (\"start 0 1000 1000\") we use a frame of values that dictate which positions from the buffer we want. Whenever fl.read~ receives that frame it will output a new frame of sample values corresponding to those positions in the buffer. So to get the first second of audio (0 1000) we pass a frame containing 44100 values that count from 0 to 44100. You can see that output frame in the multislider and it looks a lot like a waveform! This frame is converted into audio is through the fl.sink~ object which receives a frame of values and converts it into a normal msp signal. As fl.sink~ here receives a frame of 44100 values, it will stream these out over 1 second (assuming your sample rate is set to 44100 samples). The fl.interval~ at the top of the FrameLib chain is dictating how often this whole series of events is occurring much like a metro could trigger a message like \"start 0 1000 1000\" which would make play~ output audio. This means that we get the first 44100 samples from fl.read~ every 44100 samples of time. fl.sink~ converts this to audio for us taking care of the conversion between a frame and a signal."
 								}
 
 							}
@@ -786,7 +783,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -820,7 +817,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"fontname" : "Lato",
@@ -830,7 +826,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 525.0, 768.0, 162.0 ],
+									"patching_rect" : [ 15.0, 480.0, 768.0, 162.0 ],
 									"text" : "Frame-based processing offers a different method for dealing with both the timing and control of audio samples. It's a way of thinking about these two essential aspects and constructing programs where we can manage both precisely, as well as concisely in terms of patching  Frames are just groups of samples that are arbitrarily collected together. Instead of thinking about the timing and values of individual samples we group up them up into batches and process them together. There is one missing piece of the puzzle though, and I promise it's all about to click! Why work in frames? First, it can be more efficient to work things in this way and in a scenario where timing is important it helps to guarantee that a process will start and finish in a correctly-timed manner. Second, some processes and synthesis techniques need to work with groups of samples. A well known example is the fast-fourier transform. \n\nGoing into the next few tutorials you should remember two things. FrameLib helps us to to coordinate the WHAT (sample values) at the right time (the WHEN)."
 								}
 
@@ -854,7 +850,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -887,7 +883,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontname" : "Lato",
@@ -943,11 +938,11 @@
 													"presentation_rect" : [ 15.0, 15.0, 90.0, 45.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_enum" : [ "val1", "val2" ],
-															"parameter_longname" : "live.text",
 															"parameter_mmax" : 1,
 															"parameter_shortname" : "live.text",
-															"parameter_type" : 2
+															"parameter_enum" : [ "val1", "val2" ],
+															"parameter_type" : 2,
+															"parameter_longname" : "live.text"
 														}
 
 													}
@@ -1095,12 +1090,12 @@
 													"presentation_rect" : [ 120.0, 15.0, 136.0, 47.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_longname" : "live.gain~",
 															"parameter_mmax" : 6.0,
-															"parameter_mmin" : -70.0,
 															"parameter_shortname" : "live.gain~",
 															"parameter_type" : 0,
-															"parameter_unitstyle" : 4
+															"parameter_unitstyle" : 4,
+															"parameter_mmin" : -70.0,
+															"parameter_longname" : "live.gain~"
 														}
 
 													}
@@ -1374,7 +1369,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 97.5, 300.0, 600.0, 180.0 ],
+									"patching_rect" : [ 97.5, 285.0, 600.0, 180.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -1551,7 +1546,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1585,7 +1580,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgmode" : 0,
@@ -1605,7 +1599,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1638,7 +1632,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontname" : "Lato",
@@ -1978,7 +1971,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 15.0, 405.0, 765.0, 277.0 ],
+									"patching_rect" : [ 15.0, 360.0, 765.0, 277.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -1988,12 +1981,12 @@
 									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-8",
-									"linecount" : 16,
+									"linecount" : 12,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 135.0, 765.0, 256.0 ],
-									"text" : "In the real world, sound is produced when air compresses and expands. These variations in pressure are interpreted by your ear drum and converted into electrochemical signals. To represent these smooth and continuous changes in your computer, waveforms undergo a process called sampling.\n\nSampling allows us to look at continuous waveforms, capture them and store them as a collection of discrete samples. Sampling is used in many places outside of the audio world. Imagine you want to test the quality of the water at your kitchen tap. To do this you would take a sample at regular intervals and then put all of those numbers together, perhaps in a graph. When we sample audio the process is quite similar. We take a continuous stream of changes from the waveform and snapshot at regular intervals.\n\nThe waveform depicted below is a single second of a 1 hertz sine wave that has been sampled at 512 regularly spaced intervals. See how there are no observable gaps in the waveform? Try lowering the sampling resoution, or sampling rate with the slider to a much lower value and see how the gaps between samples becomes much greater.\n\nWhen we sample regularly enough we are able to approximate the original signal to a high enough accuracy. For most audio, you would want to sample at least 44100 times a second and so we should point out that this example in which the waveform is sampled 512 times in a second is purely demonstrative."
+									"patching_rect" : [ 15.0, 135.0, 765.0, 194.0 ],
+									"text" : "In the real world, sound is produced when air compresses and expands. These variations in pressure are interpreted by your ear drum and converted into electrochemical signals. To represent these smooth and continuous changes in your computer, waveforms undergo a process called sampling. Sampling allows us to convert continuous waveforms by 'snapshotting' an incoming data stream at regular intervals and storing those values as a collection of discrete samples.\n\nThe waveform depicted below is a single second of a 1 hertz sine wave that has been sampled at 512 regularly spaced intervals. See how there are no observable gaps in the waveform? Try lowering the sampling resoution, or sampling rate with the slider to a much lower value and see how the gaps between samples becomes much greater.\n\nWhen we sample regularly enough we are able to approximate the original signal to a high enough accuracy. For most audio, you would want to sample at least 44100 times a second and so we should point out that this example in which the waveform is sampled 512 times in a second is purely demonstrative."
 								}
 
 							}
@@ -2155,13 +2148,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 797.0, 696.0 ],
+						"rect" : [ 0.0, 26.0, 797.0, 696.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2189,7 +2182,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"title" : "Introduction",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -2396,33 +2388,32 @@
 			}
  ],
 		"parameters" : 		{
+			"obj-1::obj-3::obj-19" : [ "live.gain~[1]", "live.gain~[1]", 0 ],
 			"obj-18::obj-3::obj-38" : [ "live.text", "live.text", 0 ],
 			"obj-18::obj-3::obj-4" : [ "live.gain~", "live.gain~", 0 ],
-			"obj-1::obj-3::obj-19" : [ "live.gain~[1]", "live.gain~[1]", 0 ],
 			"parameterbanks" : 			{
 
 			}
-,
-			"inherited_shortname" : 1
+
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.dspvis.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "TEXT",
 				"implicit" : 1
