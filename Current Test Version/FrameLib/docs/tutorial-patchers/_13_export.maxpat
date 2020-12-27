@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 5,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 109.0, 102.0, 719.0, 734.0 ],
+		"rect" : [ 35.0, 79.0, 719.0, 734.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -39,7 +39,6 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
-		"assistshowspatchername" : 0,
 		"title" : "Tutorial 13: Code Export",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -52,13 +51,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 719.0, 708.0 ],
+						"rect" : [ 35.0, 105.0, 719.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -86,7 +85,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-3",
@@ -94,7 +92,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 375.0, 255.0, 324.0, 21.0 ],
-									"presentation_linecount" : 2,
 									"text" : "The path is a path to a folder in which to save the code"
 								}
 
@@ -325,7 +322,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -358,7 +355,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-1",
@@ -474,7 +470,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 105.0, 190.0, 102.0, 23.0 ],
+									"patching_rect" : [ 105.0, 225.0, 102.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -553,7 +549,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 225.0, 190.0, 70.0, 23.0 ],
+									"patching_rect" : [ 225.0, 225.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -573,12 +569,11 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-17",
-									"linecount" : 4,
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 190.0, 76.0, 67.0 ],
+									"patching_rect" : [ 15.0, 180.0, 241.0, 23.0 ],
 									"text" : "fl.ramp~ /length 100 /units ms /scale ms"
 								}
 
@@ -605,8 +600,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 60.0, 688.0, 53.0 ],
-									"presentation_linecount" : 3,
-									"text" : "We're going to steal the granulator network from the previous tutorial and use it here for simplicity. Exporting code is extremely simple: all it requires is that you send the export message to a network of connected FrameLib objects. Let's see it in practice."
+									"text" : "Exporting code is extremely simple: all it requires is that you send the export message to a network of connected FrameLib objects. The network below and to the left will be exported by addressing its context through fl.contextcontrol~ on the right."
 								}
 
 							}
@@ -646,7 +640,26 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-19", 0 ],
+									"midpoints" : [ 24.5, 213.5, 234.5, 213.5 ],
+									"order" : 0,
+									"source" : [ "obj-17", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-25", 0 ],
+									"order" : 2,
+									"source" : [ "obj-17", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-60", 0 ],
+									"midpoints" : [ 24.5, 213.5, 114.5, 213.5 ],
+									"order" : 1,
 									"source" : [ "obj-17", 0 ]
 								}
 
@@ -734,25 +747,6 @@
 								"patchline" : 								{
 									"destination" : [ "obj-17", 0 ],
 									"midpoints" : [ 24.5, 159.0, 24.5, 159.0 ],
-									"order" : 2,
-									"source" : [ "obj-6", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-19", 0 ],
-									"midpoints" : [ 24.5, 177.0, 234.5, 177.0 ],
-									"order" : 0,
-									"source" : [ "obj-6", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-60", 0 ],
-									"midpoints" : [ 24.5, 177.0, 114.5, 177.0 ],
-									"order" : 1,
 									"source" : [ "obj-6", 0 ]
 								}
 
@@ -904,13 +898,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 109.0, 128.0, 719.0, 708.0 ],
+						"rect" : [ 0.0, 26.0, 719.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -938,7 +932,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgmode" : 0,
@@ -980,7 +973,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 120.0, 525.0, 131.0 ],
+									"patching_rect" : [ 180.0, 120.0, 526.0, 131.0 ],
 									"text" : "FrameLib at its core is a C++ Library that can be compiled and bound to any block-based audio environment. Max may be the environment you plan to complete your project in, or just a starting point -  a place to experiment with creating FrameLib networks that you may want to take into another environment. To assist in this process, any FrameLib network in Max can be exported as C++ code directly, providing you with a header file and C++ file which can be integrated elsewhere by complining it against the FrameLib source code.\n\nTo do this is relatively simple. Let's try it out!"
 								}
 
@@ -1126,27 +1119,26 @@
 			"parameterbanks" : 			{
 
 			}
-,
-			"inherited_shortname" : 1
+
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-stereo-h.maxpat",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
