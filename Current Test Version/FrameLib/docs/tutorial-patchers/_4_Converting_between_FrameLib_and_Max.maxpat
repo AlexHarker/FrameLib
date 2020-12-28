@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 871.0, 694.0 ],
+						"rect" : [ 34.0, 105.0, 871.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -132,7 +132,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 418.0, 230.0, 83.0, 22.0 ],
-									"text" : "loadmess 512"
+									"text" : "loadmess 256"
 								}
 
 							}
@@ -153,12 +153,12 @@
 								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-11",
-									"linecount" : 12,
+									"linecount" : 10,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 450.0, 330.0, 375.0, 181.0 ],
-									"text" : "The fl.source~ object above is always 256 samples 'behind' the original audio stream because it has to collect the amount of samples specified by the /length parameter. This takes time! The delay parameter of fl.sink~ is also set to 256 samples so the total delay of the FrameLib network is 512 samples.\n\nBy delaying the original signal by this amount the FrameLib process and the original signal are aligned in a sample accurate manner.\n\nWe can verify this by subtracting the two audio streams from each other which should sum to zero."
+									"patching_rect" : [ 450.0, 330.0, 375.0, 152.0 ],
+									"text" : "The fl.source~ object above is always 256 samples 'behind' the original audio stream as it is waiting to collect 256 samples, every 256 samples of time.\n\nBy delaying the original signal by this amount the FrameLib process and the original signal are aligned in a sample accurate manner.\n\nWe can verify this by subtracting the two audio streams from each other which should sum to zero."
 								}
 
 							}
@@ -220,18 +220,21 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 357.5, 200.0, 23.0 ],
-									"text" : "fl.sink~ /delay 256 /units samples"
+									"patching_rect" : [ 15.0, 357.5, 49.0, 23.0 ],
+									"text" : "fl.sink~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"automatic" : 1,
+									"bufsize" : 8,
+									"calccount" : 8,
 									"id" : "obj-20",
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 450.5, 130.0, 130.0 ]
+									"patching_rect" : [ 15.0, 465.0, 255.0, 89.5 ]
 								}
 
 							}
@@ -257,7 +260,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 339.0, 357.5, 98.0, 23.0 ],
-									"text" : "delay~ 512 512"
+									"text" : "delay~ 256 256"
 								}
 
 							}
@@ -2452,7 +2455,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 871.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 871.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
