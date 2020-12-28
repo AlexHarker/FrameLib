@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 1077.0, 732.0 ],
+		"rect" : [ 34.0, 79.0, 723.0, 732.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -37,7 +37,8 @@
 		"tags" : "Tutorial, FrameLib",
 		"style" : "",
 		"subpatcher_template" : "default",
-		"showontab" : 1,
+		"showrootpatcherontab" : 0,
+		"showontab" : 0,
 		"globalpatchername" : "Tutorial_1[1][1]",
 		"title" : "Tutorial 2: Learn by example",
 		"boxes" : [ 			{
@@ -130,7 +131,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1077.0, 706.0 ],
+						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -908,7 +909,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1077.0, 706.0 ],
+						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1445,7 +1446,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1077.0, 706.0 ],
+						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1710,7 +1711,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1077.0, 706.0 ],
+						"rect" : [ 34.0, 105.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2127,7 +2128,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1077.0, 706.0 ],
+						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2839,7 +2840,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 690.0, 256.0, 20.0, 20.0 ],
+									"patching_rect" : [ 690.25, 256.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -3110,7 +3111,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1077.0, 706.0 ],
+						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3140,6 +3141,26 @@
 						"showontab" : 1,
 						"isolateaudio" : 1,
 						"boxes" : [ 							{
+								"box" : 								{
+									"bgmode" : 0,
+									"border" : 0,
+									"clickthrough" : 0,
+									"enablehscroll" : 0,
+									"enablevscroll" : 0,
+									"id" : "obj-13",
+									"lockeddragscroll" : 0,
+									"maxclass" : "bpatcher",
+									"name" : "fl-stereo-h.maxpat",
+									"numinlets" : 2,
+									"numoutlets" : 2,
+									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "signal", "signal" ],
+									"patching_rect" : [ 180.999995814697286, 510.0, 75.0, 52.0 ],
+									"viewvisibility" : 1
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"bgmode" : 0,
 									"border" : 0,
@@ -3205,7 +3226,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 280.999995814697286, 554.0, 298.0, 121.0 ],
-									"size" : 7224
+									"size" : 9296
 								}
 
 							}
@@ -3512,6 +3533,22 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-19", 1 ],
+									"midpoints" : [ 246.499995814697286, 615.0, 216.499995814697286, 615.0 ],
+									"source" : [ "obj-13", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-19", 0 ],
+									"midpoints" : [ 190.499995814697286, 564.0, 190.499995814697286, 564.0 ],
+									"source" : [ "obj-13", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-84", 3 ],
 									"source" : [ "obj-33", 0 ]
 								}
@@ -3533,15 +3570,15 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-19", 1 ],
-									"midpoints" : [ 240.499995814697286, 558.0, 216.499995814697286, 558.0 ],
+									"destination" : [ "obj-13", 1 ],
+									"midpoints" : [ 240.499995814697286, 501.0, 246.499995814697286, 501.0 ],
 									"source" : [ "obj-67", 1 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-19", 0 ],
+									"destination" : [ "obj-13", 0 ],
 									"midpoints" : [ 190.499995814697286, 489.0, 190.499995814697286, 489.0 ],
 									"source" : [ "obj-67", 0 ]
 								}
@@ -3706,7 +3743,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 1077.0, 706.0 ],
+						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4516,6 +4553,7 @@
 		"parameters" : 		{
 			"obj-9::obj-7" : [ "live.dial[5]", "Frame 2 Interval (Samples)", 0 ],
 			"obj-9::obj-10" : [ "live.dial[7]", "Frame 2 Length (Samples)", 0 ],
+			"obj-1::obj-13::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
 			"obj-2::obj-29::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
 			"obj-9::obj-69" : [ "live.tab", "live.tab", 0 ],
 			"obj-4::obj-2::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
@@ -4524,14 +4562,18 @@
 			"obj-9::obj-15::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
 			"obj-9::obj-9" : [ "live.dial[6]", "Frame 1 Length (Samples)", 0 ],
 			"obj-116::obj-5::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
-			"obj-9::obj-12" : [ "live.dial[8]", "mod", 0 ],
 			"obj-9::obj-38" : [ "live.dial", "Frame 1 Interval (Samples)", 0 ],
+			"obj-9::obj-12" : [ "live.dial[8]", "mod", 0 ],
 			"obj-116::obj-2::obj-4" : [ "live.tab[3]", "live.tab[1]", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
+				"obj-1::obj-13::obj-50" : 				{
+					"parameter_longname" : "live.gain~[6]"
+				}
+,
 				"obj-2::obj-29::obj-50" : 				{
 					"parameter_longname" : "live.gain~[4]"
 				}
@@ -4589,6 +4631,13 @@
 			}
 , 			{
 				"name" : "fl-granular-advanced.maxpat",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "fl-stereo-h.maxpat",
 				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
