@@ -416,7 +416,7 @@
 									"fontsize" : 11.0,
 									"id" : "obj-146",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 169.0, 570.5, 74.0, 21.0 ],
@@ -740,7 +740,7 @@
 									"fontsize" : 11.0,
 									"id" : "obj-27",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 9.0, 206.75, 67.0, 21.0 ],
@@ -940,7 +940,7 @@
 								"box" : 								{
 									"id" : "obj-12",
 									"maxclass" : "newobj",
-									"numinlets" : 1,
+									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 9.0, 61.0, 81.0, 22.0 ],
@@ -1011,7 +1011,7 @@
 									"fontsize" : 11.0,
 									"id" : "obj-2",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 75.0, 166.0, 93.0, 21.0 ],
@@ -1324,8 +1324,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 8.0, 271.0, 149.0, 21.0 ],
-					"text" : "fl.read~ fl.tut1.jongl /units ms"
+					"patching_rect" : [ 8.0, 271.0, 152.0, 21.0 ],
+					"text" : "fl.read~ fl.tut.1.jongl /units ms"
 				}
 
 			}
