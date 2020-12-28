@@ -11,7 +11,7 @@ FrameLib_MakeWindow::FrameLib_MakeWindow(FrameLib_Context context, const FrameLi
     mParameters.addEnumItem(kRequestedLength, "requested");
     mParameters.addEnumItem(kInLength, "input");
     
-    mParameters.addInt(kLength, "length", 1, 1);
+    mParameters.addInt(kLength, "length", 512, 1);
     mParameters.setMin(0);
 
     mParameters.addEnum(kUnits, "units", 2);

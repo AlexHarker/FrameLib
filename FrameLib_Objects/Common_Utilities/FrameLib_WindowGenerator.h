@@ -94,7 +94,7 @@ public:
         mGenerator(window, typedN, typedBegin, typedEnd, p);
         
         if (calcGains)
-            calculateGains(window, begin, end);
+            calculateGains(window, 0, end - begin);
     }
     
     void calculateGains(double *window, unsigned long begin, unsigned long end)
