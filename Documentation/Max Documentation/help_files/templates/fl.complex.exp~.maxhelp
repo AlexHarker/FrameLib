@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 5,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 5,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,6 +333,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
                             {
                                 "box": {
@@ -364,7 +366,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        94.0,
+                                        101.0,
                                         390.0,
                                         75.0,
                                         23.0
@@ -381,7 +383,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        94.0,
+                                        101.0,
                                         330.0,
                                         62.0,
                                         23.0
@@ -422,7 +424,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        94.0,
+                                        100.0,
                                         150.0,
                                         50.0,
                                         23.0
@@ -459,7 +461,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        180.0,
+                                        186.0,
                                         150.0,
                                         75.0,
                                         23.0
@@ -477,7 +479,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        94.0,
+                                        100.0,
                                         225.0,
                                         77.0,
                                         23.0
@@ -534,10 +536,10 @@
                                     "patching_rect": [
                                         15.0,
                                         277.0,
-                                        98.0,
+                                        105.0,
                                         23.0
                                     ],
-                                    "text": "fl.complexexp~"
+                                    "text": "fl.complex.exp~"
                                 }
                             },
                             {
@@ -547,7 +549,7 @@
                                     "id": "obj-3",
                                     "ignoreclick": 1,
                                     "jsarguments": [
-                                        "fl.complexexp~"
+                                        "fl.complex.exp~"
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -609,7 +611,7 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        189.5,
+                                        195.5,
                                         210.0,
                                         24.5,
                                         210.0
@@ -628,9 +630,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        189.5,
+                                        195.5,
                                         210.0,
-                                        103.5,
+                                        109.5,
                                         210.0
                                     ],
                                     "order": 0,
@@ -744,14 +746,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

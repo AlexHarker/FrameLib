@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 5,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 5,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,6 +333,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
                             {
                                 "box": {
@@ -537,7 +539,7 @@
                                         98.0,
                                         23.0
                                     ],
-                                    "text": "fl.complexsin~"
+                                    "text": "fl.complex.sin~"
                                 }
                             },
                             {
@@ -547,7 +549,7 @@
                                     "id": "obj-3",
                                     "ignoreclick": 1,
                                     "jsarguments": [
-                                        "fl.complexsin~"
+                                        "fl.complex.sin~"
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -744,14 +746,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
