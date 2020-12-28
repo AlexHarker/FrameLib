@@ -1654,7 +1654,7 @@
 								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-39",
-									"items" : [ "hann", ",", "hamming", ",", "triangle", ",", "cosine", ",", "blackman", ",", "blackman62", ",", "blackman70", ",", "blackman74", ",", "blackman92", ",", "blackmanharris", ",", "flattop", ",", "rectangle" ],
+									"items" : [ "rectangle", ",", "triangle", ",", "trapezoid", ",", "hann", ",", "sine" ],
 									"maxclass" : "umenu",
 									"numinlets" : 1,
 									"numoutlets" : 3,
@@ -1807,8 +1807,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 651.5, 400.0, 166.0, 23.0 ],
-									"text" : "fl.frommax~ /mode params"
+									"patching_rect" : [ 651.5, 400.0, 124.0, 23.0 ],
+									"text" : "fl.frommax~ params"
 								}
 
 							}
@@ -3037,7 +3037,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 435.0, 371.75, 120.0, 22.0 ],
-									"text" : "freq 0.151681"
+									"text" : "freq 0.709182"
 								}
 
 							}
