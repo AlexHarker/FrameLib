@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 5,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 556.0, 578.0 ],
+		"rect" : [ 34.0, 79.0, 612.0, 578.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,7 +37,6 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "default",
-		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-16",
@@ -67,7 +66,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 282.0, 332.0, 115.0, 20.0 ],
+					"patching_rect" : [ 296.0, 332.0, 115.0, 20.0 ],
 					"text" : "Window the frames."
 				}
 
@@ -79,7 +78,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 378.0, 295.0, 161.0, 33.0 ],
+					"patching_rect" : [ 434.0, 289.5, 161.0, 33.0 ],
 					"text" : "Read sample positions from the jongles and cello buffer."
 				}
 
@@ -100,7 +99,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-14",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -139,7 +138,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 215.0, 332.0, 67.0, 22.0 ],
+					"patching_rect" : [ 229.0, 332.0, 67.0, 22.0 ],
 					"text" : "fl.window~"
 				}
 
@@ -166,8 +165,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 215.0, 295.0, 159.0, 22.0 ],
-					"text" : "fl.read~ cello /units samples"
+					"patching_rect" : [ 229.0, 295.0, 203.0, 22.0 ],
+					"text" : "fl.read~ fl.tut.2.conv.2 /units samples"
 				}
 
 			}
@@ -252,8 +251,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 19.0, 295.0, 172.0, 22.0 ],
-					"text" : "fl.read~ jongles /units samples"
+					"patching_rect" : [ 19.0, 295.0, 203.0, 22.0 ],
+					"text" : "fl.read~ fl.tut.2.conv.1 /units samples"
 				}
 
 			}
@@ -317,7 +316,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-32",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -383,7 +382,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-30", 0 ],
-					"midpoints" : [ 28.5, 281.0, 224.5, 281.0 ],
+					"midpoints" : [ 28.5, 281.0, 238.5, 281.0 ],
 					"order" : 0,
 					"source" : [ "obj-15", 0 ]
 				}
@@ -478,7 +477,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-31", 1 ],
-					"midpoints" : [ 224.5, 370.800018500000022, 81.5, 370.800018500000022 ],
+					"midpoints" : [ 238.5, 370.800018500000022, 81.5, 370.800018500000022 ],
 					"source" : [ "obj-8", 0 ]
 				}
 
@@ -490,65 +489,7 @@
 				}
 
 			}
- ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.convolve~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.read~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.plus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.window~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.timemean~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
- ],
-		"autosave" : 0
+ ]
 	}
 
 }

@@ -1765,7 +1765,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
+						"rect" : [ 34.0, 105.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1852,7 +1852,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 501.0, 301.399963000000014, 40.25, 13.0 ]
+									"patching_rect" : [ 517.0, 301.399963000000014, 40.25, 13.0 ]
 								}
 
 							}
@@ -1863,7 +1863,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 543.25, 297.399963000000014, 61.0, 33.0 ],
+									"patching_rect" : [ 559.25, 297.399963000000014, 61.0, 33.0 ],
 									"text" : "Replace source 2"
 								}
 
@@ -1900,7 +1900,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 449.0, 297.399963000000014, 50.0, 22.0 ],
+									"patching_rect" : [ 465.0, 297.399963000000014, 50.0, 22.0 ],
 									"text" : "replace"
 								}
 
@@ -1951,8 +1951,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 449.0, 336.399963000000014, 134.0, 22.0 ],
-									"text" : "buffer~ cello cello-f2.aif"
+									"patching_rect" : [ 465.0, 336.399963000000014, 178.0, 22.0 ],
+									"text" : "buffer~ fl.tut.2.conv.2 cello-f2.aif"
 								}
 
 							}
@@ -1965,8 +1965,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 289.0, 335.899963000000014, 139.0, 22.0 ],
-									"text" : "buffer~ jongles jongly.aif"
+									"patching_rect" : [ 289.0, 335.899963000000014, 170.0, 22.0 ],
+									"text" : "buffer~ fl.tut.2.conv.1 jongly.aif"
 								}
 
 							}
@@ -2182,7 +2182,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 723.0, 706.0 ],
+						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
