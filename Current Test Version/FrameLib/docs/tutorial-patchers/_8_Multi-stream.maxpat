@@ -555,7 +555,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 390.0, 225.0, 65.0, 21.0 ],
+					"patching_rect" : [ 467.972972972972968, 225.0, 65.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1110,7 +1110,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 135.0, 225.0, 66.0, 21.0 ],
+					"patching_rect" : [ 148.758445945945937, 225.0, 121.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1118,7 +1118,7 @@
 						"tags" : ""
 					}
 ,
-					"text" : "p Overview"
+					"text" : "p \"Multi-stream Basics\""
 				}
 
 			}
@@ -1969,6 +1969,7 @@
 							}
 , 							{
 								"patchline" : 								{
+									"color" : [ 0.0, 0.742007493972778, 0.0, 1.0 ],
 									"destination" : [ "obj-12", 0 ],
 									"order" : 1,
 									"source" : [ "obj-13", 0 ]
@@ -1977,8 +1978,9 @@
 							}
 , 							{
 								"patchline" : 								{
+									"color" : [ 0.0, 0.742007493972778, 0.0, 1.0 ],
 									"destination" : [ "obj-35", 1 ],
-									"midpoints" : [ 29.5, 276.0, 284.0, 276.0, 284.0, 319.0, 149.5, 319.0 ],
+									"midpoints" : [ 29.5, 274.0, 284.0, 274.0, 284.0, 319.0, 149.5, 319.0 ],
 									"order" : 0,
 									"source" : [ "obj-13", 0 ]
 								}
@@ -2198,7 +2200,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 603.0, 225.0, 49.0, 21.0 ],
+					"patching_rect" : [ 640.717905405405418, 225.0, 49.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -3001,7 +3003,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 319.0, 225.0, 61.0, 21.0 ],
+					"patching_rect" : [ 383.986486486486513, 225.0, 61.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -3349,7 +3351,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 56.0, 780.0, 53.0 ],
+									"patching_rect" : [ 15.0, 56.0, 783.0, 53.0 ],
 									"text" : "In this example fl.streamid~ assists in creating four streams of conversion from MSP to frames with different rates and sizes. The various rates and sizes are related by a power of two, demonstrating how you might use fl.streamid~ to programatically create streams that have different parameters. "
 								}
 
@@ -3729,7 +3731,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 510.0, 225.0, 62.0, 21.0 ],
+					"patching_rect" : [ 555.777027027027088, 225.0, 62.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -3788,6 +3790,7 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"title" : "Using = notation (1)",
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-29",
@@ -4360,7 +4363,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 240.0, 225.0, 61.0, 21.0 ],
+					"patching_rect" : [ 300.0, 225.0, 61.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
