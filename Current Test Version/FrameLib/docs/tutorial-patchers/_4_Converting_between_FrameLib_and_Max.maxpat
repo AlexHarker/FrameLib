@@ -1937,7 +1937,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 12.0, 421.0, 30.0 ],
-									"text" : "Passing Control Data to FrameLib"
+									"text" : "Converting Control Data to Frames"
 								}
 
 							}
@@ -2454,7 +2454,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 872.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 872.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2922,7 +2922,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 872.0, 694.0 ],
+						"rect" : [ 34.0, 105.0, 872.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2953,6 +2953,18 @@
 						"title" : "Frames To Control Data",
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-14",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 495.0, 258.25, 58.0, 22.0 ],
+									"text" : "fl.tomax~"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"fontface" : 0,
 									"fontsize" : 13.0,
 									"id" : "obj-10",
@@ -2982,10 +2994,11 @@
 									"fontface" : 0,
 									"fontsize" : 13.0,
 									"id" : "obj-4",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 185.0, 196.249999999999972, 298.0, 21.0 ],
+									"patching_rect" : [ 185.375, 188.499999999999972, 177.0, 36.0 ],
 									"text" : "Generate five random numbers between 0. and 1."
 								}
 
@@ -3008,10 +3021,11 @@
 									"fontface" : 0,
 									"fontsize" : 13.0,
 									"id" : "obj-109",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 175.0, 139.25, 286.0, 21.0 ],
+									"patching_rect" : [ 175.0, 131.5, 157.0, 36.0 ],
 									"text" : "Schedule a trigger frame every 500 milliseconds"
 								}
 
@@ -3120,7 +3134,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 12.0, 421.0, 30.0 ],
-									"text" : "Converting Frames to Max messages"
+									"text" : "Converting Frames to Max Control Data"
 								}
 
 							}
@@ -3150,7 +3164,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 463.0, 139.25, 20.0, 20.0 ],
+									"patching_rect" : [ 334.0, 139.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -3171,7 +3185,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 478.0, 196.249999999999972, 20.0, 20.0 ],
+									"patching_rect" : [ 360.0, 198.249999999999972, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
