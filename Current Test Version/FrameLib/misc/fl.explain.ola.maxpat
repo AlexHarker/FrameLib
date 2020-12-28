@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 5,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -37,7 +37,6 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
-		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-151",
@@ -46,7 +45,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 27.0, 471.333331644535065, 465.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 15.583333343267441, 608.333331644535065, 465.0, 20.0 ],
+					"presentation_rect" : [ 15.583333343267441, 600.333333969116211, 464.416666656732559, 20.0 ],
 					"text" : "All time with frames overlapped and added (compensated by multipling frames by 0.5)",
 					"textcolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
 				}
@@ -63,7 +62,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 27.0, 403.0, 519.0, 88.333331644535065 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 15.583333343267441, 497.0, 509.416666477918625, 131.333331644535065 ],
+					"presentation_rect" : [ 15.583333343267441, 489.000002324581203, 459.583333343267441, 131.333331644535065 ],
 					"size" : 6144,
 					"slidercolor" : [ 0.772549019607843, 0.305882352941176, 0.772549019607843, 1.0 ]
 				}
@@ -81,7 +80,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -114,7 +113,6 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"comment" : "",
@@ -139,7 +137,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -172,7 +170,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-1",
@@ -567,7 +564,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -600,7 +597,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-140",
@@ -1120,7 +1116,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 441.0, 61.0, 40.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 426.0, 53.666668355464935, 40.0, 20.0 ],
+					"presentation_rect" : [ 373.54629628525845, 53.666668355464935, 40.0, 20.0 ],
 					"text" : "5120",
 					"textjustification" : 1
 				}
@@ -1135,7 +1131,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 457.75, 82.0, 7.833333373069763, 115.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 438.388888855775235, 74.666668355464935, 11.611111144224765, 146.0 ]
+					"presentation_rect" : [ 387.740740713146067, 74.666668355464935, 11.611111144224765, 146.0 ]
 				}
 
 			}
@@ -1148,7 +1144,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 542.416666656732559, 82.0, 7.166666686534882, 115.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 525.0, 74.666668355464935, 7.166666686534882, 146.0 ]
+					"presentation_rect" : [ 468.000000000000057, 74.666668355464935, 7.166666686534882, 146.0 ]
 				}
 
 			}
@@ -1160,7 +1156,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 259.5, 61.0, 54.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 244.5, 53.666668355464935, 54.0, 20.0 ],
+					"presentation_rect" : [ 213.694444427887618, 53.666668355464935, 54.0, 20.0 ],
 					"text" : "3072",
 					"textjustification" : 1
 				}
@@ -1175,7 +1171,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 283.25, 82.0, 6.5, 13.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 267.833333313465118, 74.666668355464935, 6.5, 13.0 ]
+					"presentation_rect" : [ 237.444444427887618, 74.666668355464935, 6.5, 13.0 ]
 				}
 
 			}
@@ -1188,7 +1184,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 369.75, 82.0, 6.5, 13.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 353.111111084620177, 74.666668355464935, 6.5, 13.0 ]
+					"presentation_rect" : [ 312.592592570516842, 74.666668355464935, 6.5, 13.0 ]
 				}
 
 			}
@@ -1201,7 +1197,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 196.75, 82.0, 6.5, 13.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 182.555555542310088, 74.666668355464935, 6.5, 13.0 ]
+					"presentation_rect" : [ 162.296296285258421, 74.666668355464935, 6.5, 13.0 ]
 				}
 
 			}
@@ -1214,7 +1210,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 110.375, 82.0, 6.5, 13.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 97.277777771155044, 74.666668355464935, 6.5, 13.0 ]
+					"presentation_rect" : [ 87.148148142629211, 74.666668355464935, 6.5, 13.0 ]
 				}
 
 			}
@@ -1256,7 +1252,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 86.625, 61.0, 54.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 71.625, 53.666668355464935, 54.0, 20.0 ],
+					"presentation_rect" : [ 63.625, 53.666668355464935, 54.0, 20.0 ],
 					"text" : "1024",
 					"textjustification" : 1
 				}
@@ -1274,7 +1270,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1307,7 +1303,6 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"comment" : "",
@@ -1432,7 +1427,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1465,7 +1460,6 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"comment" : "",
@@ -1586,7 +1580,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 27.0, 378.333331644535065, 386.666669607162476, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 15.583333343267441, 473.333331644535008, 386.666669607162476, 20.0 ],
+					"presentation_rect" : [ 15.583333343267441, 462.000002324581203, 386.666669607162476, 20.0 ],
 					"text" : "All time with frames overlapped and added (no compensation)",
 					"textcolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
 				}
@@ -1600,7 +1594,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 200.0, 278.0, 92.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 182.555555542310088, 338.999998688697815, 92.0, 20.0 ],
+					"presentation_rect" : [ 162.916668146848707, 329.666669368743896, 92.0, 20.0 ],
 					"text" : "Second Frame",
 					"textcolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
 				}
@@ -1614,7 +1608,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 27.0, 177.0, 76.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 12.0, 205.00000274181366, 76.0, 20.0 ],
+					"presentation_rect" : [ 12.0, 193.00000274181366, 76.0, 20.0 ],
 					"text" : "First Frame",
 					"textcolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
 				}
@@ -1628,7 +1622,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 526.0, 61.0, 40.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 511.0, 53.666668355464935, 40.0, 20.0 ],
+					"presentation_rect" : [ 451.583333343267441, 53.666668355464935, 40.0, 20.0 ],
 					"text" : "6144",
 					"textjustification" : 1
 				}
@@ -1642,7 +1636,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 349.0, 61.0, 48.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 334.0, 53.666668355464935, 48.0, 20.0 ],
+					"presentation_rect" : [ 291.842592570516899, 53.666668355464935, 48.0, 20.0 ],
 					"text" : "4096",
 					"textjustification" : 1
 				}
@@ -1656,7 +1650,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 173.0, 61.0, 54.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 158.0, 53.666668355464935, 54.0, 20.0 ],
+					"presentation_rect" : [ 138.54629628525845, 53.666668355464935, 54.0, 20.0 ],
 					"text" : "2048",
 					"textjustification" : 1
 				}
@@ -1687,7 +1681,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 27.0, 310.0, 519.0, 88.333331644535065 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 15.583333343267441, 360.999998688697815, 509.666667997837067, 132.33333295583725 ],
+					"presentation_rect" : [ 15.583333343267441, 353.666669368743896, 459.583333343267441, 132.33333295583725 ],
 					"size" : 6144,
 					"slidercolor" : [ 0.772549019607843, 0.305882352941176, 0.772549019607843, 1.0 ]
 				}
@@ -1704,7 +1698,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 200.0, 199.0, 346.0, 99.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 182.555555542310088, 225.999997675418854, 343.111111144224765, 133.000001013278961 ],
+					"presentation_rect" : [ 162.296296285258421, 214.695997608815418, 312.70370371474155, 136.941342506577968 ],
 					"size" : 4096,
 					"slidercolor" : [ 0.827450980392157, 0.203921568627451, 0.270588235294118, 1.0 ]
 				}
@@ -1721,7 +1715,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 27.0, 98.0, 346.0, 99.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 12.0, 90.666668355464935, 339.111111084620177, 134.333334386348724 ],
+					"presentation_rect" : [ 12.0, 90.666668355464935, 307.092592570516842, 122.333334386348724 ],
 					"size" : 4096,
 					"slidercolor" : [ 0.376470588235294, 0.925490196078431, 0.996078431372549, 1.0 ]
 				}
@@ -1732,15 +1726,15 @@
 					"fontname" : "Lato Regular",
 					"fontsize" : 13.0,
 					"id" : "obj-4",
-					"linecount" : 29,
+					"linecount" : 30,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 572.399989000000005, 61.0, 416.0, 459.0 ],
+					"patching_rect" : [ 572.399989000000005, 61.0, 416.0, 474.0 ],
 					"presentation" : 1,
-					"presentation_linecount" : 36,
-					"presentation_rect" : [ 553.0, 53.666668355464935, 304.0, 568.0 ],
-					"text" : "We can think of time in the audio domain as something that passes in numbers of samples. If our sampling rate is 44.1khz then 44100 samples pass each second. Here we have two imaginary frames both 4096 samples long. Lets imagine that the frame on the left was created first, at a time called '0 samples'. This frame is 4096 samples long and will last for this amount of time once it reaches the fl.sink~ overlap add buffer.\n\nLets imagine the object on the right is the same length, 4096 samples, but is created after 2048 samples of time have passed. This would happen exactly halfway through the duration of the first frame, and so the last 2048 samples of frame 1, would be added to the first 2048 samples of frame 2. We can describe what is happening here as the 'overlap', or more specifically a '2 times overlap'. We can mathematically calculate the overlap by dividing our frame size by the rate at which frames are being created. In this case: \n\n4096 (length) / 2048 (rate) = 2 (overlap)\n\n\nAs you can see in the output with no compensation, adding these frames results in clipping and the top of the sine wave component is squared off. When we properly compensate for the 2 times overlap by multiplying the inputs by 0.5 (half) the result is kept within a range which doesn't clip.\n\nIf this isn't making complete sense yet, revisit some of the initial examples, especially tutorial 2, and observe how overlaps are created and compensated for inside the sub patchers."
+					"presentation_linecount" : 35,
+					"presentation_rect" : [ 495.0, 74.666668355464935, 345.0, 552.0 ],
+					"text" : "We can think of time in the audio domain as something that passes in numbers of samples. If our sampling rate is 44.1khz then 44100 samples pass each second. Here we have two imaginary frames both 4096 samples long. Lets imagine that the frame on the left was created first, at a time called '0 samples'. This frame is 4096 samples long and will last for this amount of time once it reaches the fl.sink~ overlap add buffer.\n\nLets imagine the object on the right is the same length, 4096 samples, but is created after 2048 samples of time have passed. This would happen exactly halfway through the duration of the first frame, and so the last 2048 samples of frame 1, would be added to the first 2048 samples of frame 2. We can describe what is happening here as the 'overlap', or more specifically a '2 times overlap'. We can mathematically calculate the overlap by dividing our frame size by the rate at which frames are being created. In this case: \n\n4096 (length) / 2048 (rate) = 2 (overlap)\n\n\nAs you can see in the output with no compensation, adding these frames results in clipping and the top of the sine wave component is squared off. When we properly compensate for the 2 times overlap by multiplying the inputs by 0.5 (half) the result is kept within a range which doesn't clip.\n\nThis is how frames arriving at fl.sink~ are processed simultaneously. If this isn't making complete sense yet, revisit some of the initial examples, especially tutorial 2, and observe how overlaps are created and compensated for inside the sub patchers."
 				}
 
 			}
@@ -1791,9 +1785,7 @@
 				}
 
 			}
- ],
-		"dependency_cache" : [  ],
-		"autosave" : 0
+ ]
 	}
 
 }

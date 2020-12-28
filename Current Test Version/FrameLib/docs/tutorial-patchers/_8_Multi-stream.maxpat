@@ -56,7 +56,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 826.0, 708.0 ],
+						"rect" : [ 0.0, 26.0, 826.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1134,7 +1134,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 826.0, 708.0 ],
+						"rect" : [ 34.0, 105.0, 826.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1191,7 +1191,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 457.0, 405.0, 311.0, 210.0 ],
+									"patching_rect" : [ 457.0, 405.0, 315.0, 210.0 ],
 									"text" : "fl.read~ takes the fl.ramp and interprets these values as millisecond positions (due to /units ms). To reiterate, fl.read~ is now outputting four streams of frames containing what will eventually be translated into MSP audio.\n\nEach stream is windowed and scaled to compensate by the increase in gain by having four overlapping streams of audio.\n\nWith fl.sink~ =2 the object will wrap the outputs of our granulator so that streams 1 and 3 go to outlet 1 and streams 2 and 4 go to outlet 2. This provides a quick and dirty stereo routing."
 								}
 
@@ -1971,6 +1971,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-35", 1 ],
+									"midpoints" : [ 29.5, 264.0, 13.0, 264.0, 13.0, 324.0, 149.5, 324.0 ],
 									"order" : 0,
 									"source" : [ "obj-13", 0 ]
 								}
