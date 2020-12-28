@@ -1605,7 +1605,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
+						"rect" : [ 34.0, 105.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2054,8 +2054,8 @@
 									"angle" : 270.0,
 									"background" : 1,
 									"bgcolor" : [ 0.2, 0.2, 0.2, 0.0 ],
-									"border" : 3,
-									"bordercolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"border" : 2,
+									"bordercolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ],
 									"id" : "obj-13",
 									"maxclass" : "panel",
 									"mode" : 0,
@@ -2084,8 +2084,8 @@
 									"angle" : 270.0,
 									"background" : 1,
 									"bgcolor" : [ 0.2, 0.2, 0.2, 0.0 ],
-									"border" : 3,
-									"bordercolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"border" : 2,
+									"bordercolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ],
 									"id" : "obj-15",
 									"maxclass" : "panel",
 									"mode" : 0,
@@ -2174,6 +2174,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-32", 0 ],
+									"midpoints" : [ 29.5, 300.0, 153.5, 300.0 ],
 									"order" : 0,
 									"source" : [ "obj-12", 0 ]
 								}
@@ -2972,7 +2973,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 768.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
