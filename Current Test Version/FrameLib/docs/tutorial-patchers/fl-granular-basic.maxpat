@@ -55,8 +55,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 7.0, 217.199996999999996, 90.0, 22.0 ],
-					"text" : "fl.window~ sine"
+					"patching_rect" : [ 7.0, 217.199996999999996, 65.0, 22.0 ],
+					"text" : "fl.window~"
 				}
 
 			}
