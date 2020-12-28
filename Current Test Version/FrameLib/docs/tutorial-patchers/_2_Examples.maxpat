@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"globalpatchername" : "Tutorial_1[1][1]",
 		"title" : "Tutorial 2: Learn by example",
 		"boxes" : [ 			{
@@ -125,7 +126,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -159,6 +160,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Simple Freeze",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -225,7 +227,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -258,6 +260,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-1",
@@ -362,10 +365,10 @@
 													"presentation_rect" : [ 15.0, 15.0, 165.0, 45.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
+															"parameter_enum" : [ "Freeze", "Play" ],
 															"parameter_longname" : "live.tab[2]",
 															"parameter_mmax" : 1,
 															"parameter_shortname" : "live.tab[1]",
-															"parameter_enum" : [ "Freeze", "Play" ],
 															"parameter_type" : 2,
 															"parameter_unitstyle" : 0
 														}
@@ -502,8 +505,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -552,7 +555,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 330.0, 285.0, 104.0, 22.0 ],
-									"text" : "delay~ 1024 1024"
+									"text" : "delay~ 4096 4096"
 								}
 
 							}
@@ -896,8 +899,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -956,7 +959,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -991,6 +994,7 @@
 						"subpatcher_template" : "default",
 						"showontab" : 1,
 						"isolateaudio" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Basic Granular Synthesis",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -1080,7 +1084,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1113,6 +1117,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-18",
@@ -1434,8 +1439,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1494,7 +1499,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1528,6 +1533,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgmode" : 0,
@@ -1699,8 +1705,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1759,7 +1765,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1793,6 +1799,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgmode" : 0,
@@ -2115,8 +2122,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2176,7 +2183,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2210,6 +2217,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Stochastic Synth",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -2282,9 +2290,9 @@
 									"patching_rect" : [ 480.75, 300.0, 90.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmin" : 4.0,
 											"parameter_longname" : "live.dial[7]",
 											"parameter_mmax" : 2500.0,
+											"parameter_mmin" : 4.0,
 											"parameter_shortname" : "Frame 2 Length (Samples)",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 0
@@ -2309,9 +2317,9 @@
 									"patching_rect" : [ 280.25, 300.0, 90.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmin" : 4.0,
 											"parameter_longname" : "live.dial[6]",
 											"parameter_mmax" : 2500.0,
+											"parameter_mmin" : 4.0,
 											"parameter_shortname" : "Frame 1 Length (Samples)",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 0
@@ -2336,9 +2344,9 @@
 									"patching_rect" : [ 380.5, 300.0, 90.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmin" : 1.0,
 											"parameter_longname" : "live.dial[5]",
 											"parameter_mmax" : 250.0,
+											"parameter_mmin" : 1.0,
 											"parameter_shortname" : "Frame 2 Interval (Samples)",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 0
@@ -2395,10 +2403,10 @@
 									"patching_rect" : [ 180.0, 180.0, 179.0, 61.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_enum" : [ "1", "2", "3", "4", "5", "6" ],
 											"parameter_longname" : "live.tab",
 											"parameter_mmax" : 5,
 											"parameter_shortname" : "live.tab",
-											"parameter_enum" : [ "1", "2", "3", "4", "5", "6" ],
 											"parameter_type" : 2,
 											"parameter_unitstyle" : 0
 										}
@@ -2476,7 +2484,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2509,6 +2517,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-2",
@@ -2766,9 +2775,9 @@
 									"patching_rect" : [ 180.0, 300.0, 90.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmin" : 1.0,
 											"parameter_longname" : "live.dial",
 											"parameter_mmax" : 250.0,
+											"parameter_mmin" : 1.0,
 											"parameter_shortname" : "Frame 1 Interval (Samples)",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 0
@@ -3098,8 +3107,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3159,7 +3168,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -3194,6 +3203,7 @@
 						"subpatcher_template" : "default",
 						"showontab" : 1,
 						"isolateaudio" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgmode" : 0,
@@ -3732,8 +3742,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3792,7 +3802,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -3826,6 +3836,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Stochastic Freeze",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -3846,8 +3857,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 291.0, 645.0, 204.0, 22.0 ],
-									"text" : "buffer~ fl.tut.2.stochastic sho0630.aif"
+									"patching_rect" : [ 291.0, 645.0, 191.0, 22.0 ],
+									"text" : "buffer~ fl.tut.2.stochastic duduk.aif"
 								}
 
 							}
@@ -3879,7 +3890,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 315.0, 345.0, 104.0, 22.0 ],
-									"text" : "delay~ 1024 1024"
+									"text" : "delay~ 4096 4096"
 								}
 
 							}
@@ -3903,7 +3914,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -3936,6 +3947,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-1",
@@ -4040,10 +4052,10 @@
 													"presentation_rect" : [ 15.0, 15.0, 165.0, 45.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
+															"parameter_enum" : [ "Freeze", "Play" ],
 															"parameter_longname" : "live.tab[3]",
 															"parameter_mmax" : 1,
 															"parameter_shortname" : "live.tab[1]",
-															"parameter_enum" : [ "Freeze", "Play" ],
 															"parameter_type" : 2,
 															"parameter_unitstyle" : 0
 														}
@@ -4181,8 +4193,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -4255,7 +4267,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 532.0, 637.0, 146.0, 36.0 ],
+									"patching_rect" : [ 517.0, 637.0, 146.0, 36.0 ],
 									"text" : "(optional) choose your own sound source "
 								}
 
@@ -4382,7 +4394,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 510.0, 645.0, 20.0, 20.0 ],
+									"patching_rect" : [ 495.0, 645.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -4552,8 +4564,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4625,31 +4637,35 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-1::obj-13::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
-			"obj-9::obj-12" : [ "live.dial[8]", "Modulation", 0 ],
-			"obj-9::obj-38" : [ "live.dial", "Frame 1 Interval (Samples)", 0 ],
-			"obj-9::obj-10" : [ "live.dial[7]", "Frame 2 Length (Samples)", 0 ],
 			"obj-116::obj-2::obj-4" : [ "live.tab[3]", "live.tab[1]", 0 ],
-			"obj-2::obj-28::obj-4" : [ "live.tab[2]", "live.tab[1]", 0 ],
 			"obj-116::obj-5::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
+			"obj-1::obj-13::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
+			"obj-2::obj-28::obj-4" : [ "live.tab[2]", "live.tab[1]", 0 ],
+			"obj-2::obj-29::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
 			"obj-3::obj-3::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
 			"obj-4::obj-2::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
-			"obj-9::obj-9" : [ "live.dial[6]", "Frame 1 Length (Samples)", 0 ],
-			"obj-9::obj-69" : [ "live.tab", "live.tab", 0 ],
-			"obj-2::obj-29::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-9::obj-10" : [ "live.dial[7]", "Frame 2 Length (Samples)", 0 ],
+			"obj-9::obj-12" : [ "live.dial[8]", "Modulation", 0 ],
 			"obj-9::obj-15::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-9::obj-38" : [ "live.dial", "Frame 1 Interval (Samples)", 0 ],
+			"obj-9::obj-69" : [ "live.tab", "live.tab", 0 ],
 			"obj-9::obj-7" : [ "live.dial[5]", "Frame 2 Interval (Samples)", 0 ],
+			"obj-9::obj-9" : [ "live.dial[6]", "Frame 1 Length (Samples)", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
+				"obj-116::obj-5::obj-50" : 				{
+					"parameter_longname" : "live.gain~[5]"
+				}
+,
 				"obj-1::obj-13::obj-50" : 				{
 					"parameter_longname" : "live.gain~[6]"
 				}
 ,
-				"obj-116::obj-5::obj-50" : 				{
-					"parameter_longname" : "live.gain~[5]"
+				"obj-2::obj-29::obj-50" : 				{
+					"parameter_longname" : "live.gain~[4]"
 				}
 ,
 				"obj-3::obj-3::obj-50" : 				{
@@ -4659,95 +4675,92 @@
 				"obj-4::obj-2::obj-50" : 				{
 					"parameter_longname" : "live.gain~[3]"
 				}
-,
-				"obj-2::obj-29::obj-50" : 				{
-					"parameter_longname" : "live.gain~[4]"
-				}
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-freeze-stoch.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.audioplayer~.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-granular-advanced.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-stereo-h.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-stoch-synth.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-granular-convolution.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-granular-basic-poly.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-granular-basic.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-freeze-simple.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -5031,8 +5044,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",
