@@ -33,13 +33,13 @@ def main():
     # Also, this where a number of temporary directories are created
 
     # Creates a category database in .json format.
-    # The JSON file is used by edit_raw_XML.py to assign object categories to the xml files.
+    # The JSON file is used by 2_edit_raw_XML.py to assign object categories to the xml files.
     print("1. Building Category Database")
     create_category_database.main()
     hyp()
 
-    # The purpose of this script is to set the categories for the Raw_XML files.
-    # C++ doesnt know about the categories at XML creation and its easier to iterate file structures in python.
+    # The purpose of this script is to set the categories for the Raw XML files.
+    # C++ doesnt know about the categories at XML creation.
     # Edited XML files are copied from /tmp/ to the refpages directory
     print("2. Editing XML Files")
     edit_raw_XML.main()
