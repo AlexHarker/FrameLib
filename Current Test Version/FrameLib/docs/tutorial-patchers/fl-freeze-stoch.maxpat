@@ -326,17 +326,6 @@
 						"subpatcher_template" : "default",
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-8",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 33.0, 73.75, 222.0, 20.0 ],
-									"text" : "always make a bang no matter the input"
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-5",
 									"maxclass" : "comment",
 									"numinlets" : 1,
@@ -361,11 +350,11 @@
 								"box" : 								{
 									"id" : "obj-2",
 									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "bang" ],
-									"patching_rect" : [ 7.0, 73.75, 24.0, 22.0 ],
-									"text" : "t b"
+									"numinlets" : 2,
+									"numoutlets" : 2,
+									"outlettype" : [ "bang", "" ],
+									"patching_rect" : [ 7.0, 73.75, 34.0, 22.0 ],
+									"text" : "sel 0"
 								}
 
 							}
@@ -401,7 +390,7 @@
 									"maxclass" : "inlet",
 									"numinlets" : 0,
 									"numoutlets" : 1,
-									"outlettype" : [ "bang" ],
+									"outlettype" : [ "" ],
 									"patching_rect" : [ 7.0, 7.0, 30.0, 30.0 ]
 								}
 
@@ -507,7 +496,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 791.666625999999951, 245.999983999999984, 30.0, 30.0 ]
 				}
 

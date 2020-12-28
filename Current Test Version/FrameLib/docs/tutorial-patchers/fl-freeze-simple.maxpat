@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 594.0, 788.0 ],
+		"rect" : [ 34.0, 79.0, 594.0, 787.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -38,18 +38,6 @@
 		"style" : "",
 		"subpatcher_template" : "default",
 		"boxes" : [ 			{
-				"box" : 				{
-					"id" : "obj-7",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 274.0, 555.0, 29.5, 22.0 ],
-					"text" : "info"
-				}
-
-			}
-, 			{
 				"box" : 				{
 					"id" : "obj-2",
 					"maxclass" : "newobj",
@@ -252,7 +240,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 59.0, 103.0, 640.0, 480.0 ],
+						"rect" : [ 59.0, 103.0, 358.0, 328.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -281,12 +269,13 @@
 						"subpatcher_template" : "default",
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-8",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 76.0, 106.75, 222.0, 20.0 ],
-									"text" : "always make a bang no matter the input"
+									"id" : "obj-1",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 2,
+									"outlettype" : [ "bang", "" ],
+									"patching_rect" : [ 16.0, 86.0, 34.0, 22.0 ],
+									"text" : "sel 0"
 								}
 
 							}
@@ -296,7 +285,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 140.0, 239.75, 235.0, 20.0 ],
+									"patching_rect" : [ 106.0, 214.75, 235.0, 20.0 ],
 									"text" : "impulse transition creates a trigger frame."
 								}
 
@@ -307,20 +296,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 92.0, 172.75, 150.0, 20.0 ],
+									"patching_rect" : [ 58.0, 147.75, 150.0, 20.0 ],
 									"text" : "generate an impulse"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-2",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "bang" ],
-									"patching_rect" : [ 50.0, 106.75, 24.0, 22.0 ],
-									"text" : "t b"
 								}
 
 							}
@@ -331,7 +308,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 50.0, 172.75, 40.0, 22.0 ],
+									"patching_rect" : [ 16.0, 147.75, 40.0, 22.0 ],
 									"text" : "click~"
 								}
 
@@ -343,7 +320,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 239.75, 88.0, 22.0 ],
+									"patching_rect" : [ 16.0, 214.75, 88.0, 22.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -356,8 +333,8 @@
 									"maxclass" : "inlet",
 									"numinlets" : 0,
 									"numoutlets" : 1,
-									"outlettype" : [ "int" ],
-									"patching_rect" : [ 50.0, 40.0, 30.0, 30.0 ]
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 16.0, 15.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -369,22 +346,22 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 50.0, 304.75, 30.0, 30.0 ]
+									"patching_rect" : [ 16.0, 279.75, 30.0, 30.0 ]
 								}
 
 							}
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
-									"destination" : [ "obj-2", 0 ],
-									"source" : [ "obj-16", 0 ]
+									"destination" : [ "obj-4", 0 ],
+									"source" : [ "obj-1", 0 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-4", 0 ],
-									"source" : [ "obj-2", 0 ]
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-16", 0 ]
 								}
 
 							}
@@ -485,8 +462,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 8.0, 605.466675000000009, 203.0, 22.0 ],
-					"text" : "fl.window~ hann /compensate power"
+					"patching_rect" : [ 8.0, 605.466675000000009, 230.0, 22.0 ],
+					"text" : "fl.window~ hann /compensate reconstruct"
 				}
 
 			}
@@ -972,7 +949,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 476.333312999999976, 45.666668000000001, 30.0, 30.0 ]
 				}
 
@@ -1200,13 +1177,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-5", 1 ],
 					"source" : [ "obj-60", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-20", 0 ],
-					"source" : [ "obj-7", 0 ]
 				}
 
 			}
