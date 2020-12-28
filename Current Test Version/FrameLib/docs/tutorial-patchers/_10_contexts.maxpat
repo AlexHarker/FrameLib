@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 723.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 723.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -623,7 +623,6 @@
 					}
 ,
 					"patching_rect" : [ 210.0, 30.0, 78.0, 21.0 ],
-					"presentation_linecount" : 3,
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -652,7 +651,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 723.0, 694.0 ],
+						"rect" : [ 34.0, 105.0, 723.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -687,7 +686,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 510.0, 164.0, 22.0 ],
+									"patching_rect" : [ 15.0, 585.0, 164.0, 22.0 ],
 									"text" : "fl.contextcontrol~ @id cycling"
 								}
 
@@ -701,7 +700,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 508.0, 225.0, 180.0, 79.0 ],
+									"patching_rect" : [ 508.0, 300.0, 180.0, 79.0 ],
 									"text" : "This network runs inside of the context named 'cycling' as it is defined with the @id attribute in the top-level scheduler."
 								}
 
@@ -715,7 +714,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 405.0, 690.0, 100.0 ],
+									"patching_rect" : [ 15.0, 480.0, 690.0, 100.0 ],
 									"text" : "Here, the left most network belongs to the default context whereas the right most network belongs to its own context with the @id \"cycling\". Notice how the @id attribute is only defined in one place rather than for object you want to belong to a specific context.\n\nKeep an eye out for this object in the further tutorials. The fl.contextcontrol~ object lets us configure contexts through a single shared interface and has some useful functionality for advanced users."
 								}
 
@@ -729,7 +728,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 360.0, 50.0, 22.0 ]
+									"patching_rect" : [ 30.0, 435.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -742,7 +741,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 328.0, 360.0, 50.0, 22.0 ]
+									"patching_rect" : [ 328.0, 435.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -753,7 +752,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 328.0, 315.0, 58.0, 22.0 ],
+									"patching_rect" : [ 328.0, 390.0, 58.0, 22.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -767,7 +766,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 161.0, 225.0, 124.0, 79.0 ],
+									"patching_rect" : [ 161.0, 300.0, 124.0, 79.0 ],
 									"text" : "This small network runs inside the default context as we don't specify a new context."
 								}
 
@@ -779,7 +778,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 328.0, 270.0, 142.0, 22.0 ],
+									"patching_rect" : [ 328.0, 345.0, 142.0, 22.0 ],
 									"text" : "fl.random~ /length 44100"
 								}
 
@@ -791,7 +790,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 328.0, 225.0, 165.0, 22.0 ],
+									"patching_rect" : [ 328.0, 300.0, 165.0, 22.0 ],
 									"text" : "fl.interval~ 44100 @id cycling"
 								}
 
@@ -803,7 +802,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 315.0, 58.0, 22.0 ],
+									"patching_rect" : [ 30.0, 390.0, 58.0, 22.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -815,7 +814,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 270.0, 115.0, 22.0 ],
+									"patching_rect" : [ 30.0, 345.0, 115.0, 22.0 ],
 									"text" : "fl.random~ /length 1"
 								}
 
@@ -827,7 +826,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 225.0, 94.0, 22.0 ],
+									"patching_rect" : [ 30.0, 300.0, 94.0, 22.0 ],
 									"text" : "fl.interval~ 1024"
 								}
 
@@ -837,12 +836,12 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 13.0,
 									"id" : "obj-2",
-									"linecount" : 8,
+									"linecount" : 13,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 60.0, 694.0, 131.0 ],
-									"text" : "Up until now the concept of a FrameLib context hasn't been explained or even made explicit to you but they are fundamental to know in order to access more advanced capabilities that you're about to learn. Every FrameLib object, or set of objects that are connected, belongs to a 'context'. The simplest way to create a new context is to give a new, unique string as the @id of the top-most scheduler. This @id propogates through the network so there is no benefit to setting it for every object. By default, there is only one context per top-level patcher. The only exception to this is if object are within a poly~ which can be thought of as an independent highest-level patcher for Framelib objects and thus a 'unique' default context. The other thing to note is that the realtime and non-realtime network with the same @id are actually two different contexts. This is covered in detail in tutorial 11."
+									"patching_rect" : [ 15.0, 60.0, 694.0, 209.0 ],
+									"text" : "Up until now the concept of a FrameLib context hasn't been explained or even made explicit to you but they are fundamental to know in order to access more advanced capabilities that you're about to learn. Every FrameLib object, or set of objects that are connected, belongs to a 'context'.\n\n The simplest way to create a new context is to give a new, unique string as the @id of the top-most scheduler. This @id propogates through the network so there is no benefit to setting it for every object. It is worth re-iterating here again that the TOP-MOST scheduler has the context set with @id, and this propogates downwards to all connected FrameLib objects. \n\nBy default, there is only one context per top-level patcher. The only exception to this is if object are within a poly~ which can be thought of as an independent highest-level patcher for Framelib objects and thus a 'unique' default context. The other thing to note is that the realtime and non-realtime network with the same @id are actually two different contexts. This is covered in detail in tutorial 11."
 								}
 
 							}
@@ -884,7 +883,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 313.0, 210.0, 392.0, 180.0 ],
+									"patching_rect" : [ 313.0, 285.0, 392.0, 180.0 ],
 									"proportion" : 0.5
 								}
 
@@ -901,7 +900,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 210.0, 283.0, 180.0 ],
+									"patching_rect" : [ 15.0, 285.0, 283.0, 180.0 ],
 									"proportion" : 0.5
 								}
 
