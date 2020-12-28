@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"title" : "Tutorial 3: Key Concepts",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -51,7 +52,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -85,6 +86,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Types of Frames",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -205,7 +207,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 15.0, 540.0, 165.0, 90.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 3,
+									"size" : 9,
 									"slidercolor" : [ 0.996078431372549, 0.313725490196078, 0.313725490196078, 1.0 ]
 								}
 
@@ -238,7 +240,7 @@
 								"box" : 								{
 									"id" : "obj-9",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 145.0, 375.0, 78.0, 22.0 ],
@@ -313,7 +315,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 60.0, 735.0, 150.0 ],
-									"text" : "The inputs and ouputs to FrameLib objects are 'frames'. There are two basic types of frames in FrameLib. \n\nThe first is the most common and consists of a vector of numeric values. The length of this vector can andy length from zero upwards, so a scalar is simply a single valued frame of length 1. A frame with no values (zero length) is used as a trigger message, and is analogous to the bang message in Max.\n\nThe second type of frame is a 'tagged' frame. This is used primarily to transfer or set parameter values in FrameLib. A single frame can contain any number of tags (or parameter names) followed by their values. This allows you set multiple parameters with a single frame. There are methods for concatenating multiple tagged frames into a single frame containing many parameters and assocated values so it is never necessary for an object to have more than one parameter update input."
+									"text" : "The inputs and ouputs to FrameLib objects are 'frames'. There are two basic types of frames in FrameLib. \n\nThe first is the most common and consists of a vector of numeric values. The length of this vector can be any length from zero upwards, so a scalar is simply a single valued frame of length 1. A frame with no values (zero length) is used as a trigger message, and is analogous to the bang message in Max.\n\nThe second type of frame is a 'tagged' frame. This is used primarily to transfer or set parameter values in FrameLib. A single frame can contain any number of tags (or parameter names) followed by their values. This allows you set multiple parameters with a single frame. There are methods for concatenating multiple tagged frames into a single frame containing many parameters and assocated values so it is never necessary for an object to have more than one parameter update input."
 								}
 
 							}
@@ -453,8 +455,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -513,7 +515,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -547,6 +549,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Fixed Inputs",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -679,7 +682,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 305.5, 420.0, 88.5, 22.0 ],
-									"text" : "0"
+									"text" : "103. 104. 105."
 								}
 
 							}
@@ -949,8 +952,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1009,7 +1012,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1043,6 +1046,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Parameters and Tagging",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -1144,7 +1148,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 15.0, 525.0, 157.75, 51.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 13
+									"size" : 11
 								}
 
 							}
@@ -1167,12 +1171,12 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 13.0,
 									"id" : "obj-18",
-									"linecount" : 4,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 54.0, 738.0, 69.0 ],
-									"text" : "Modifiying parameters for a FrameLib object after instantiation is made possible via the 'parameter update' inlet. This inlet receives 'tagged frames' at frame rate to modify the configuration of an object on a per frame basis. Some parameters cannot be changed via the parameter update inlet and these are made more explicit in the help files and through familiarisation. Often, these parameters allocate memory or deal with the creation of inlets for objects where this feature is variable."
+									"patching_rect" : [ 15.0, 54.0, 738.0, 84.0 ],
+									"text" : "Modifiying parameters for a FrameLib object after instantiation is made possible via the 'parameter update' inlet. This inlet receives tagged frames at frame rate to modify the configuration of an object on a per frame basis. Some parameters cannot be changed via the parameter update inlet but only at instantiation and these are made explicit in the help files and through familiarisation. Often, these parameters allocate memory or deal with the creation of inlets for objects where this feature is variable."
 								}
 
 							}
@@ -1407,7 +1411,7 @@
 									"fontsize" : 13.0,
 									"id" : "obj-40",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 68.0, 385.5, 83.0, 23.0 ],
@@ -1539,8 +1543,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1599,7 +1603,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1633,6 +1637,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Multiple Tags",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -1715,7 +1720,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1748,6 +1753,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -1899,7 +1905,7 @@
 									"fontsize" : 13.0,
 									"id" : "obj-11",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 261.0, 374.0, 66.0, 23.0 ],
@@ -1925,7 +1931,7 @@
 									"fontsize" : 13.0,
 									"id" : "obj-9",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 144.0, 374.0, 70.0, 23.0 ],
@@ -1955,8 +1961,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 597.0, 53.0 ],
-									"text" : "FrameLib objects only accept one connection to every inlet (with the exception of fl.frommax~). There is a maximum of one 'paramaeter update' inlet per FrameLib object, and so tagged frames must be concatenated prior to updating the object's configuration."
+									"patching_rect" : [ 15.0, 53.0, 690.0, 53.0 ],
+									"text" : "FrameLib objects only accept one connection to between frame inlets and outlets (this limitation doesn't apply to audio inlets or outlets, or inlets taking messages, such as that on fl.frommax~). There is only one 'parameter update' inlet per FrameLib object, and so tagged frames must be concatenated prior to updating the object's configuration."
 								}
 
 							}
@@ -2316,8 +2322,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2425,7 +2431,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2459,6 +2465,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "How to Get Help",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -2467,7 +2474,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 95.5, 165.0, 71.0, 22.0 ],
+									"patching_rect" : [ 110.5, 165.0, 71.0, 22.0 ],
 									"text" : "fromsymbol"
 								}
 
@@ -2507,7 +2514,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 120.0, 309.0, 23.0 ],
+									"patching_rect" : [ 225.0, 124.0, 132.0, 23.0 ],
 									"text" : "Prints the description"
 								}
 
@@ -2520,7 +2527,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 180.0, 195.0, 72.0, 22.0 ],
+									"patching_rect" : [ 195.0, 195.0, 72.0, 22.0 ],
 									"text" : "prepend set"
 								}
 
@@ -2566,7 +2573,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 4,
 									"outlettype" : [ "", "", "", "" ],
-									"patching_rect" : [ 180.0, 165.0, 167.0, 22.0 ],
+									"patching_rect" : [ 195.0, 165.0, 167.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"embed" : 1,
 										"precision" : 6
@@ -2586,7 +2593,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 120.0, 180.0, 31.0 ]
+									"patching_rect" : [ 30.0, 120.0, 180.0, 31.0 ]
 								}
 
 							}
@@ -2616,7 +2623,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2649,6 +2656,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-13",
@@ -2776,7 +2784,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 210.0, 81.0, 25.0 ],
+									"patching_rect" : [ 30.0, 210.0, 81.0, 25.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -2786,12 +2794,12 @@
 									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-6",
-									"linecount" : 3,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 515.0, 53.0 ],
-									"text" : "Like all Max objects there are help files that can be accessed for reference. You can also send FrameLib objects some reserved messages which post extra information to the max console. "
+									"patching_rect" : [ 15.0, 53.0, 630.0, 38.0 ],
+									"text" : "Like all Max objects there are help files that can be accessed for reference. You can also send FrameLib objects the info message which post requested information about the object to the max console. "
 								}
 
 							}
@@ -2812,7 +2820,7 @@
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
 									"hidden" : 1,
-									"midpoints" : [ 189.5, 249.0, 0.0, 249.0, 0.0, 117.0, 204.5, 117.0 ],
+									"midpoints" : [ 204.5, 249.0, 15.0, 249.0, 15.0, 113.0, 234.5, 113.0 ],
 									"source" : [ "obj-10", 0 ]
 								}
 
@@ -2835,7 +2843,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
-									"midpoints" : [ 105.0, 201.0, 24.5, 201.0 ],
+									"midpoints" : [ 120.0, 201.0, 39.5, 201.0 ],
 									"source" : [ "obj-24", 0 ]
 								}
 
@@ -2906,8 +2914,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2966,7 +2974,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -3000,6 +3008,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Setting Parameters",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -3204,8 +3213,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3264,7 +3273,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -3298,6 +3307,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Schedulers and Timing",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -3357,7 +3367,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -3390,6 +3400,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-1",
@@ -4310,8 +4321,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-													"fontsize" : [ 12.059008 ]
+													"fontsize" : [ 12.059008 ],
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 												}
 ,
 												"parentstyle" : "",
@@ -4354,12 +4365,12 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato Regular",
+									"fontname" : "Arial",
 									"id" : "obj-63",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 300.0, 511.0, 21.0 ],
+									"patching_rect" : [ 15.0, 300.0, 301.0, 20.0 ],
 									"text" : "Here are some examples of these schedulers in action!"
 								}
 
@@ -4389,14 +4400,14 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato Regular",
+									"fontname" : "Arial",
 									"id" : "obj-26",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 60.0, 563.0, 35.0 ],
-									"text" : "There are several schedulers in FrameLib that are available to you. Each scheduler works different, but always deals with creating trigger frames at a particular point in time."
+									"patching_rect" : [ 15.0, 60.0, 576.0, 33.0 ],
+									"text" : "There are several schedulers in FrameLib that are available to you. Each scheduler works differently, but always deals with creating trigger frames at a particular point in time."
 								}
 
 							}
@@ -4407,7 +4418,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 95.0, 142.5, 358.0, 21.0 ],
+									"patching_rect" : [ 95.0, 142.5, 348.0, 21.0 ],
 									"text" : "Schedules one frame at the start of each Max audio vector."
 								}
 
@@ -4433,7 +4444,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 73.75, 255.0, 318.0, 21.0 ],
+									"patching_rect" : [ 73.75, 255.0, 317.0, 21.0 ],
 									"text" : "Schedules trigger frames in the future at a given time."
 								}
 
@@ -4445,7 +4456,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 115.0, 217.5, 298.0, 21.0 ],
+									"patching_rect" : [ 115.0, 217.5, 292.0, 21.0 ],
 									"text" : "Turns non-zero MSP samples into trigger frames."
 								}
 
@@ -4457,7 +4468,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 73.75, 180.0, 465.950012000000015, 21.0 ],
+									"patching_rect" : [ 73.75, 180.0, 272.0, 21.0 ],
 									"text" : "Outputs a trigger frame when audio is started."
 								}
 
@@ -4469,7 +4480,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 86.625, 105.0, 262.0, 21.0 ],
+									"patching_rect" : [ 86.625, 105.0, 249.0, 21.0 ],
 									"text" : "Outputs trigger frames at a repetitive rate."
 								}
 
@@ -4619,8 +4630,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4679,13 +4690,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
+						"rect" : [ 34.0, 105.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4713,22 +4724,9 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Key Concepts",
 						"boxes" : [ 							{
-								"box" : 								{
-									"fontname" : "Lato Regular",
-									"fontsize" : 13.0,
-									"id" : "obj-10",
-									"linecount" : 9,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 134.0, 570.0, 147.0 ],
-									"text" : "The most important concepts to understand in FrameLib:\n\n1. EVERYTHING is strongly timed.\n2. NOTHING happens without a FrameLib timing source otherwise known as a 'scheduler'.\n\nSchedulers create trigger frames - think of them like the bang of FrameLib. Under the hood, a trigger frame is just an empty or zero length frame that contains no samples. Frames containing samples can also act as trigger frames, but these won't have been produced without another scheduler triggering some sort of generator."
-								}
-
-							}
-, 							{
 								"box" : 								{
 									"fontface" : 1,
 									"fontname" : "Lato Regular",
@@ -4737,7 +4735,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 90.0, 416.0, 30.0 ],
+									"patching_rect" : [ 180.0, 90.0, 208.0, 30.0 ],
 									"text" : "Schedulers and Timing"
 								}
 
@@ -4782,8 +4780,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 330.0, 577.0, 131.0 ],
-									"text" : "FrameLib objects have variables with state known as parameters. Parameters are referred to by name and are used for values that may not vary over a single frame. However, they make take more than one value, or non-numeric values such as a string referring to a buffer name. The parameter system is used to change object behaviour without requiring an unmanageable number of inlets and to separate configuration of 'mode' type control from normal inputs. The parameter system is a lot like the attribute system, but it operates in the strongly-timed way that FrameLib frames do. As parameters are unique to FrameLib, there is a specialised mechanism for dealing with them - primarily through the object fl.tag~."
+									"patching_rect" : [ 180.0, 405.0, 577.0, 131.0 ],
+									"text" : "FrameLib objects have variables with state known as parameters. Parameters are referred to by name and are used for values that may not vary over a single frame. However, they make take more than one value, or non-numeric values such as a string referring to a buffer name. The parameter system is used to change object behaviour without requiring an unmanageable number of inlets and to separate configuration of 'mode' type control from normal inputs. The parameter system is a lot like the attribute system in Max, but it operates in the strongly-timed way that FrameLib frames do. As parameters are unique to FrameLib, there is a specialised mechanism for dealing with them - primarily through the object fl.tag~."
 								}
 
 							}
@@ -4796,7 +4794,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 285.0, 418.0, 30.0 ],
+									"patching_rect" : [ 180.0, 360.0, 110.0, 30.0 ],
 									"text" : "Parameters"
 								}
 
@@ -4824,6 +4822,20 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 15.0, 570.0, 59.0 ],
 									"text" : "The basics"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "Lato Regular",
+									"fontsize" : 13.0,
+									"id" : "obj-10",
+									"linecount" : 13,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 180.0, 134.0, 570.0, 209.0 ],
+									"text" : "The most important concepts to understand in FrameLib:\n\n1. EVERYTHING is strongly timed.\n\nTiming in FrameLib is sub-sample accurate. Frames are timed to a minute fraction of a sample, allowing very precise control over processes and their timing\n\n2. NOTHING happens without a FrameLib timing source otherwise known as a 'scheduler'.\n\nSchedulers create trigger frames - think of them like the bang of FrameLib. Under the hood, a trigger frame is just an empty or zero length frame that contains no samples. Frames containing samples can also act as trigger frames, but these won't have been produced without another scheduler triggering some sort of generator."
 								}
 
 							}
@@ -4886,8 +4898,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4968,14 +4980,14 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
@@ -5154,8 +5166,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",
