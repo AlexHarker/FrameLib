@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -37,6 +37,7 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-151",
@@ -45,7 +46,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 27.0, 471.333331644535065, 465.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 15.583333343267441, 600.333333969116211, 464.416666656732559, 20.0 ],
+					"presentation_rect" : [ 13.583333343267441, 600.333333969116211, 465.0, 20.0 ],
 					"text" : "All time with frames overlapped and added (compensated by multipling frames by 0.5)",
 					"textcolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
 				}
@@ -80,7 +81,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -113,6 +114,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"comment" : "",
@@ -137,7 +139,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -170,6 +172,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-1",
@@ -564,7 +567,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -597,6 +600,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-140",
@@ -1270,7 +1274,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1303,6 +1307,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"comment" : "",
@@ -1427,7 +1432,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1460,6 +1465,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"comment" : "",
@@ -1580,7 +1586,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 27.0, 378.333331644535065, 386.666669607162476, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 15.583333343267441, 462.000002324581203, 386.666669607162476, 20.0 ],
+					"presentation_rect" : [ 13.583333343267441, 465.0, 386.666669607162476, 20.0 ],
 					"text" : "All time with frames overlapped and added (no compensation)",
 					"textcolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
 				}
@@ -1733,8 +1739,8 @@
 					"patching_rect" : [ 572.399989000000005, 61.0, 416.0, 474.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 35,
-					"presentation_rect" : [ 495.0, 74.666668355464935, 345.0, 552.0 ],
-					"text" : "We can think of time in the audio domain as something that passes in numbers of samples. If our sampling rate is 44.1khz then 44100 samples pass each second. Here we have two imaginary frames both 4096 samples long. Lets imagine that the frame on the left was created first, at a time called '0 samples'. This frame is 4096 samples long and will last for this amount of time once it reaches the fl.sink~ overlap add buffer.\n\nLets imagine the object on the right is the same length, 4096 samples, but is created after 2048 samples of time have passed. This would happen exactly halfway through the duration of the first frame, and so the last 2048 samples of frame 1, would be added to the first 2048 samples of frame 2. We can describe what is happening here as the 'overlap', or more specifically a '2 times overlap'. We can mathematically calculate the overlap by dividing our frame size by the rate at which frames are being created. In this case: \n\n4096 (length) / 2048 (rate) = 2 (overlap)\n\n\nAs you can see in the output with no compensation, adding these frames results in clipping and the top of the sine wave component is squared off. When we properly compensate for the 2 times overlap by multiplying the inputs by 0.5 (half) the result is kept within a range which doesn't clip.\n\nThis is how frames arriving at fl.sink~ are processed simultaneously. If this isn't making complete sense yet, revisit some of the initial examples, especially tutorial 2, and observe how overlaps are created and compensated for inside the sub patchers."
+					"presentation_rect" : [ 495.0, 74.666668355464935, 348.0, 552.0 ],
+					"text" : "We can think of time in the audio domain as something that passes in numbers of samples. If our sampling rate is 44.1khz then 44100 samples pass each second. Here we have two imaginary frames both 4096 samples long. Lets imagine that the frame on the left was created first, at a time called '0 samples'. This frame is 4096 samples long and will last for this amount of time once it reaches the fl.sink~ overlap add buffer.\n\nLets imagine the object on the right is the same length, 4096 samples, but is created after 2048 samples of time have passed. This would happen exactly halfway through the duration of the first frame, and so the last 2048 samples of frame 1, would be added to the first 2048 samples of frame 2. We can describe what is happening here as the 'overlap', or more specifically a '2 times overlap'. We can mathematically calculate the overlap by dividing our frame size by the rate at which frames are being created. In this case: \n\n4096 (length) / 2048 (rate) = 2 (overlap)\n\nAs you can see in the output with no compensation, adding these frames results in clipping and the top of the sine wave component is squared off. When we properly compensate for the 2 times overlap by multiplying the inputs by 0.5 (half) the result is kept within a range which doesn't clip.\n\nOverlap-add is how how frames arriving at fl.sink~ are processed. Any gain compensation needs to be applied manually. If this isn't making complete sense yet, revisit some of the initial examples, especially tutorial 2, and observe how overlaps are created and compensated for inside the sub patchers."
 				}
 
 			}
@@ -1785,7 +1791,9 @@
 				}
 
 			}
- ]
+ ],
+		"dependency_cache" : [  ],
+		"autosave" : 0
 	}
 
 }
