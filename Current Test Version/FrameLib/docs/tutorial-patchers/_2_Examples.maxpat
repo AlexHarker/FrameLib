@@ -131,7 +131,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
+						"rect" : [ 34.0, 105.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -202,8 +202,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 325.0, 256.0, 162.0, 22.0 ],
-									"text" : "fl.audioplayer~ fltut_2_duduk"
+									"patching_rect" : [ 325.0, 256.0, 159.0, 22.0 ],
+									"text" : "fl.audioplayer~ fl.tut.2.duduk"
 								}
 
 							}
@@ -243,8 +243,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 420.0, 345.0, 173.0, 22.0 ],
-									"text" : "buffer~ fltut_2_duduk duduk.aif"
+									"patching_rect" : [ 420.0, 345.0, 170.0, 22.0 ],
+									"text" : "buffer~ fl.tut.2.duduk duduk.aif"
 								}
 
 							}
@@ -458,7 +458,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 568.0, 200.0, 20.0, 20.0 ],
+									"patching_rect" : [ 563.0, 212.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -2979,13 +2979,14 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 60.0, 525.0, 100.0 ],
-									"text" : "This network adds some extra features to the Basic Granulator and demonstrates how scalable FrameLib can be. In addition to generating random frame positions, the length of the frame is dynamically changed. Each frame (or grain) is being band pass filtered and spatialised across the stereo field according to its filter frequency. An interface is added allowing you to constrain the area of the buffer from which the FrameLib network extracts grains."
+									"text" : "This network adds some extra features to the Basic Granulator and demonstrates how flexible FrameLib can be. In addition to generating random frame positions, the length of the frame is dynamically changed. Each frame (or grain) is being band pass filtered and spatialised across the stereo field according to its filter frequency. An interface is added allowing you to constrain the area of the buffer from which the FrameLib network extracts grains."
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-8",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
@@ -3055,7 +3056,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 484.625, 210.5, 162.5, 50.0 ],
+									"patching_rect" : [ 484.5, 202.0, 162.5, 50.0 ],
 									"text" : "Click and drag to change what portion of the buffer can be granulated."
 								}
 
@@ -3069,7 +3070,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 438.375, 205.75, 44.25, 42.5 ]
+									"patching_rect" : [ 438.25, 205.75, 44.25, 42.5 ]
 								}
 
 							}
@@ -3282,7 +3283,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 649.125, 225.5, 20.0, 20.0 ],
+									"patching_rect" : [ 650.125, 217.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -3493,7 +3494,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 723.0, 706.0 ],
+						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4090,18 +4091,18 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-2::obj-47" : [ "live.text[1]", "live.text[1]", 0 ],
-			"obj-9::obj-9" : [ "live.dial[6]", "Frame 1 Length (Samples)", 0 ],
-			"obj-3::obj-3::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
-			"obj-9::obj-38" : [ "live.dial", "Frame 1 Interval (Samples)", 0 ],
 			"obj-9::obj-69" : [ "live.tab", "live.tab", 0 ],
+			"obj-116::obj-4" : [ "live.text[3]", "live.text", 0 ],
+			"obj-9::obj-9" : [ "live.dial[6]", "Frame 1 Length (Samples)", 0 ],
+			"obj-2::obj-47" : [ "live.text[1]", "live.text[1]", 0 ],
+			"obj-9::obj-15::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-3::obj-3::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
 			"obj-9::obj-7" : [ "live.dial[5]", "Frame 2 Interval (Samples)", 0 ],
 			"obj-9::obj-12" : [ "live.dial[8]", "mod", 0 ],
-			"obj-116::obj-4" : [ "live.text[3]", "live.text", 0 ],
 			"obj-9::obj-10" : [ "live.dial[7]", "Frame 2 Length (Samples)", 0 ],
-			"obj-4::obj-2::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
 			"obj-2::obj-6" : [ "live.text", "live.text", 0 ],
-			"obj-9::obj-15::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-9::obj-38" : [ "live.dial", "Frame 1 Interval (Samples)", 0 ],
+			"obj-4::obj-2::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
 			"parameterbanks" : 			{
 
 			}
