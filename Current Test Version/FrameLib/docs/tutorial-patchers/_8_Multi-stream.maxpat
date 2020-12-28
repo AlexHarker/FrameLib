@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-3",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Mismatch",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -104,7 +106,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 240.0, 373.0, 210.0, 87.0 ],
-									"text" : "Observe how outputs 1 and 4 (representing rand~ 1 and rand~ 5) move at the same rate, because the stream has been processed by the scheduler of the multi-stream scheduler."
+									"text" : "Observe how outputs 1 and 4 (representing rand~ 1 and rand~ 5) move at the same rate, because the stream has been processed by the same stream of the multi-stream input, and hence the same scheduler."
 								}
 
 							}
@@ -361,7 +363,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 56.0, 780.0, 38.0 ],
-									"text" : "Here is another example of how the wrapping behaviour works. Below, four audio inputs are triggered by a multi-stream scheduler with three streams. This means that the wrap around doesn't provide a symmetrical match."
+									"text" : "Here is another example of how the wrapping behaviour works. Below, four audio inputs are triggered by a multi-stream scheduler with three streams. This means that the wrap around doesn't provide a full repeat of the shorter number of streams."
 								}
 
 							}
@@ -534,8 +536,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -576,7 +578,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -610,6 +612,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Multi-stream Basics",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -621,7 +624,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 480.0, 240.0, 228.0, 131.0 ],
-									"text" : "On the left is the most basic example of multi-streaming where two independent frames are combined with fl.pack~. In this scenario we are taking already generated frames and combining these streams, but it is also possible to generate multiple streams from an object itself."
+									"text" : "On the left is the most basic example of a multi-stream network where two independent frames are combined with fl.pack~. In this scenario we are taking already generated frames and combining these two streams, but it is also possible to generate multiple streams from a signle object."
 								}
 
 							}
@@ -661,12 +664,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-19",
-									"linecount" : 2,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 312.0, 275.0, 159.0, 33.0 ],
-									"text" : "Two different frames created with unique timings"
+									"patching_rect" : [ 312.0, 275.0, 159.0, 47.0 ],
+									"text" : "Two different frames created with different timings"
 								}
 
 							}
@@ -744,6 +747,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-17",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
@@ -770,6 +774,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-8",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
@@ -827,7 +832,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 53.0, 690.0, 178.0 ],
-									"text" : "In so far, we have actually been operating on single streams of frames. FrameLib allows you to perform multi-stream processing, where any number of streams can be processed by one object simultaneously. Streams can be seperated, or combined at any point in a FrameLib network so they are completely flexible depending on your needs. There are a number of benefits to working in this way as it can reduce the amount of patching you need to do for processes that require the same type of processing across several similar streams of frames. Also, it makes it feasible to program more complicated processes like multi-rate FFT's (we will see some of this later).\n\nUsing the fl.pack~ object, two frames are combined into a single multi-stream frame. The example below demonstrates how these two different streams of random numbers can be independent of each other in timing and frame size. The two timing sources do not interfere with each other and can be thought of as entirely isolated processes that are programatically piped through a single fl.pow~ 5 object."
+									"text" : "So far, we have actually always been operating on single stream connections. However, FrameLib also allows you to perform multi-stream processing, where any number of streams can be processed by one object simultaneously. Streams can be seperated, or combined at any point in a FrameLib network so they are completely flexible according to your your needs. There are a number of benefits to working in this way as it can reduce the amount of patching you need to do for processes that require the same processing across several streams of frames. Also, it makes it feasible to program more complicated processes like multi-rate FFT's (we will see some of this later).\n\nUsing the fl.pack~ object, two or more frames cabe ve combined into a single multi-stream frame. The example below demonstrates how these two different streams of random numbers can be independent of each other in timing and frame size. The two timing sources do not interfere with each other and can be thought of as entirely isolated processes that are programatically piped through a single fl.pow~ 5 object."
 								}
 
 							}
@@ -926,7 +931,7 @@
 									"background" : 1,
 									"bgcolor" : [ 0.290196, 0.309804, 0.301961, 0.0 ],
 									"border" : 2,
-									"bordercolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"bordercolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ],
 									"id" : "obj-16",
 									"maxclass" : "panel",
 									"mode" : 0,
@@ -1068,8 +1073,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1128,7 +1133,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1162,6 +1167,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Multiple voices",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -1192,7 +1198,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 457.0, 405.0, 315.0, 210.0 ],
-									"text" : "fl.read~ takes the fl.ramp and interprets these values as millisecond positions (due to /units ms). To reiterate, fl.read~ is now outputting four streams of frames containing what will eventually be translated into MSP audio.\n\nEach stream is windowed and scaled to compensate by the increase in gain by having four overlapping streams of audio.\n\nWith fl.sink~ =2 the object will wrap the outputs of our granulator so that streams 1 and 3 go to outlet 1 and streams 2 and 4 go to outlet 2. This provides a quick and dirty stereo routing."
+									"text" : "fl.read~ takes the fl.ramp and interprets these values as millisecond positions (due to /units ms). To reiterate once more, fl.read~ is now outputting four streams of frames containing what will eventually be translated into MSP audio.\n\nEach stream is windowed and scaled to compensate by the increase in gain by having four overlapping streams of audio.\n\nWith fl.sink~ =2 the object will wrap the outputs of our granulator so that streams 1 and 3 go to outlet 1 and streams 2 and 4 go to outlet 2. This provides a quick and dirty stereo routing with hard panning!"
 								}
 
 							}
@@ -1200,12 +1206,12 @@
 								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-51",
-									"linecount" : 15,
+									"linecount" : 14,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 457.0, 123.0, 319.0, 224.0 ],
-									"text" : "This kind of network should start to become familiar now. There are really two simple components at play here. The blue objects are dealing with an offset value for each grain while the red modify the size of the grain. Some extra work is done to ensure that given the length of the grain and the offset do not try to request samples outside the boundaries of the source buffer. \n\nAs there are four streams generated at the very start of our network, the down stream objects will also generate four streams of individual values. This allows for each grain to be individually shaped and parameterised within the randomness produced by fl.random~."
+									"patching_rect" : [ 457.0, 123.0, 319.0, 210.0 ],
+									"text" : "This kind of network should be familiar by now. There are really two simple components at play here. The blue objects are dealing with an offset value for each grain while the red modify the size of the grain. Some extra work is done to ensure that given the length of the grain and the offset do not try to request samples outside the boundaries of the source buffer. \n\nAs there are four streams generated at the very start of our network, the down stream objects will also be 'expanded' to generate four streams of individual values. This allows for each grain to be individually shaped and parameterised within the random numbers produced by fl.random~."
 								}
 
 							}
@@ -1246,7 +1252,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1279,6 +1285,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-3",
@@ -1300,7 +1307,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 0,
 													"patching_rect" : [ 141.0, 240.0, 295.0, 65.0 ],
-													"text" : "The result is four schedulers working within a single multi-stream output. The interval parameters are slightly de-correlated from each other to create a less robotic timing mechanism"
+													"text" : "The result is four schedulers working within a single multi-stream network. The interval parameters are de-correlated from each other to create a less robotic timing mechanism"
 												}
 
 											}
@@ -1348,8 +1355,8 @@
 													"maxclass" : "comment",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 111.0, 60.0, 176.0, 21.0 ],
-													"text" : "Generate four blank streams"
+													"patching_rect" : [ 120.0, 60.0, 372.0, 21.0 ],
+													"text" : "Generate four stream (forces expansion in subsequent objects)"
 												}
 
 											}
@@ -1531,8 +1538,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -1775,7 +1782,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 15.0, 421.0, 30.0 ],
-									"text" : "Multi voice granular synthesis"
+									"text" : "Multi-stream granular synthesis"
 								}
 
 							}
@@ -1971,7 +1978,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-35", 1 ],
-									"midpoints" : [ 29.5, 264.0, 13.0, 264.0, 13.0, 324.0, 149.5, 324.0 ],
+									"midpoints" : [ 29.5, 276.0, 284.0, 276.0, 284.0, 319.0, 149.5, 319.0 ],
 									"order" : 0,
 									"source" : [ "obj-13", 0 ]
 								}
@@ -2154,8 +2161,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2214,7 +2221,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2248,6 +2255,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Using = notation (2)",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -2353,11 +2361,11 @@
 								"box" : 								{
 									"fontface" : 0,
 									"id" : "obj-42",
-									"linecount" : 5,
+									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 664.749999105930328, 484.25, 152.0, 74.0 ],
+									"patching_rect" : [ 664.749999105930328, 484.25, 145.250000894069672, 87.0 ],
 									"text" : "Streams 1 and 2 are repeated here as they are 'wrapped' around to match the number of streams in the greater input."
 								}
 
@@ -2465,7 +2473,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 104.625, 379.0, 375.0, 123.0 ],
-									"text" : "In the left inlet there are 4 streams and in the right there is 2 streams. This means that there will be a mismatch between the streams coming into fl.times~. When there is a mismatch in the number of streams between inputs the smallest number of streams is wrapped around the larger multi-streamed input. In this situation then, streams 1 and 3 in the left input are processed with the first stream of the right input and streams 2 4 in the left are processed by the second stream of the right."
+									"text" : "In the left inlet there are 4 streams and in the right there are 2 streams. This means that there will be a mismatch between the streams coming into fl.times~. When there is a mismatch in the number of streams between inputs the smallest number of streams is wrapped around the larger multi-streamed input. In this situation then, streams 1 and 3 in the left input are processed with the first stream of the right input and streams 2 4 in the left are processed by the second stream of the right."
 								}
 
 							}
@@ -2864,7 +2872,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-23", 0 ],
-									"midpoints" : [ 24.5, 189.0, 12.25, 189.0, 12.25, 258.0, 86.75, 258.0 ],
+									"midpoints" : [ 24.5, 189.0, 486.25, 189.0, 486.25, 258.0, 86.75, 258.0 ],
 									"order" : 0,
 									"source" : [ "obj-4", 0 ]
 								}
@@ -2956,8 +2964,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3016,7 +3024,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -3050,6 +3058,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Using fl.streamid~",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -3060,7 +3069,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 315.0, 344.0, 394.0, 137.0 ],
-									"text" : "Using the four input streams, create four 'interval' streams at 512, 1024, 2048 and 4096 samples in time.\n\nDivide those values by 2 and use these values to set the length for each stream. \n\nAs a result, each stream has a length half the rate and each stream is configured to have increasingly larger intervals and lengths"
+									"text" : "Using the four input streams, create four 'interval' streams every 512, 1024, 2048 and 4096 samples.\n\nDivide those values by 2 and use these values to set the length for each stream. \n\nAs a result, each stream has a length of half the rate and each stream is configured to have increasingly larger intervals and lengths"
 								}
 
 							}
@@ -3092,12 +3101,12 @@
 								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-72",
-									"linecount" : 4,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 159.0, 159.0, 528.0, 65.0 ],
-									"text" : "Output four stream id's at when audio is started. The output of streamid is intended to be used as trigger frames operating across the number of designated streams. Although they are 'trigger frames' conceptually they contain a number which can be used to identify the stream number or to progrmatically calculate consecutive values (as is the case below)."
+									"patching_rect" : [ 159.0, 159.0, 528.0, 50.0 ],
+									"text" : "Output four stream ids when audio is started. The output of streamid is a number which can be used to identify the stream or to progrmatically calculate consecutive values  based on each stream (as is the case below)."
 								}
 
 							}
@@ -3341,7 +3350,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 56.0, 780.0, 53.0 ],
-									"text" : "In this example fl.streamid~ assist in creating four streams of conversion from MSP to frames with different rates and sizes. The various rates and sizes are related by a power of two, demonstrating how you might use fl.streamid~ to programatically create streams that have different parameters. "
+									"text" : "In this example fl.streamid~ assists in creating four streams of conversion from MSP to frames with different rates and sizes. The various rates and sizes are related by a power of two, demonstrating how you might use fl.streamid~ to programatically create streams that have different parameters. "
 								}
 
 							}
@@ -3503,7 +3512,7 @@
 									"background" : 1,
 									"bgcolor" : [ 0.32549, 0.345098, 0.372549, 0.0 ],
 									"border" : 2,
-									"bordercolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"bordercolor" : [ 0.701961, 0.415686, 0.886275, 1.0 ],
 									"id" : "obj-76",
 									"maxclass" : "panel",
 									"mode" : 0,
@@ -3683,8 +3692,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3743,7 +3752,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -3777,6 +3786,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Using = notation (1)",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -4037,7 +4047,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 56.0, 696.25, 100.0 ],
-									"text" : "In FrameLib, the \"=\" symbol can be used to initialise objects in multi-stream configurations. The resulting behaviour is dependent on the specific object but the is generally predictable according to what the object does. In the example below, fl.source~ is configured to accept 4 audio inputs instead of the default 1 and each one of these Max audio inputs form a stream once it is converted into frames. Notice how we don't need to use multiple schedulers and each stream is being triggered by a single fl.interval~. At the output fl.sink~ the \"=\" notation can be used again to split the streams directly into audio outputs."
+									"text" : "In FrameLib, the \"=\" symbol can be used to initialise objects in a multi-stream configuration. The resulting behaviour is dependent on the specific object but this is generally predictable according to what the object does. In the example below, fl.source~ is configured to accept 4 audio inputs instead of the default 1 and each one of these Max audio inputs forms a stream once it is converted into frames. Notice how we don't need to use multiple schedulers and each stream is here being triggered by a single fl.interval~. At the output fl.sink~ the \"=\" notation can be used again to split the streams directly into audio outputs."
 								}
 
 							}
@@ -4251,7 +4261,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
-									"midpoints" : [ 55.166666666666671, 543.0, 291.5, 543.0 ],
+									"midpoints" : [ 55.166666666666671, 534.0, 291.5, 534.0 ],
 									"source" : [ "obj-11", 2 ]
 								}
 
@@ -4259,7 +4269,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
-									"midpoints" : [ 70.5, 543.0, 429.5, 543.0 ],
+									"midpoints" : [ 70.5, 526.0, 429.5, 526.0 ],
 									"source" : [ "obj-11", 3 ]
 								}
 
@@ -4331,8 +4341,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4373,7 +4383,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -4407,6 +4417,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgmode" : 0,
@@ -4449,7 +4460,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 120.0, 525.0, 131.0 ],
-									"text" : "Multi-streaming is a powerful feature of FrameLib that allows you to generate and process multiple streams of frame-based inputs. Given the heavily timed nature of FrameLib, you can expect that multi-stream processing also allows you to process each stream with its own scheduler opening up the possibility of incredibly detailed granular synthesis or multi-rate FFT processing. It can also help to simplify patches that would otherwise be complex without this capability.\n\nLet's look at how this works."
+									"text" : "Multi-stream networks are a powerful feature of FrameLib that allows you to generate and process multiple streams of frame-based inputs within a single set of objects. Given the strongly timed nature of FrameLib, you can of course process each stream with its own scheduler opening up the possibility of incredibly detailed granular synthesis or multi-rate FFT processing. It can also help to simplify patches that would otherwise be complex without this capability, such as in multichannel scenarios.\n\nLet's look at how this works."
 								}
 
 							}
@@ -4475,7 +4486,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 75.0, 399.0, 30.0 ],
-									"text" : "Multi-streaming"
+									"text" : "Multi-stream Networks"
 								}
 
 							}
@@ -4538,8 +4549,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4594,26 +4605,27 @@
 			"parameterbanks" : 			{
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-stereo-h.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
