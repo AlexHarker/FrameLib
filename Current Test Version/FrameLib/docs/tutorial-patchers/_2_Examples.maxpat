@@ -39,7 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
-		"globalpatchername" : "Tutorial_1[1][1]",
+		"globalpatchername" : "Tutorial_1[1][1][1]",
 		"title" : "Tutorial 2: Learn by example",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -362,12 +362,12 @@
 													"presentation_rect" : [ 15.0, 15.0, 165.0, 45.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_enum" : [ "Freeze", "Play" ],
-															"parameter_type" : 2,
-															"parameter_unitstyle" : 0,
 															"parameter_longname" : "live.tab[2]",
 															"parameter_mmax" : 1,
-															"parameter_shortname" : "live.tab[1]"
+															"parameter_shortname" : "live.tab[1]",
+															"parameter_enum" : [ "Freeze", "Play" ],
+															"parameter_type" : 2,
+															"parameter_unitstyle" : 0
 														}
 
 													}
@@ -2256,11 +2256,11 @@
 									"patching_rect" : [ 581.0, 300.0, 79.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_type" : 0,
-											"parameter_unitstyle" : 1,
 											"parameter_longname" : "live.dial[8]",
 											"parameter_mmax" : 1.0,
-											"parameter_shortname" : "Modulation"
+											"parameter_shortname" : "Modulation",
+											"parameter_type" : 0,
+											"parameter_unitstyle" : 1
 										}
 
 									}
@@ -2282,12 +2282,12 @@
 									"patching_rect" : [ 480.75, 300.0, 90.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_type" : 0,
-											"parameter_unitstyle" : 0,
 											"parameter_mmin" : 4.0,
 											"parameter_longname" : "live.dial[7]",
 											"parameter_mmax" : 2500.0,
-											"parameter_shortname" : "Frame 2 Length (Samples)"
+											"parameter_shortname" : "Frame 2 Length (Samples)",
+											"parameter_type" : 0,
+											"parameter_unitstyle" : 0
 										}
 
 									}
@@ -2309,12 +2309,12 @@
 									"patching_rect" : [ 280.25, 300.0, 90.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_type" : 0,
-											"parameter_unitstyle" : 0,
 											"parameter_mmin" : 4.0,
 											"parameter_longname" : "live.dial[6]",
 											"parameter_mmax" : 2500.0,
-											"parameter_shortname" : "Frame 1 Length (Samples)"
+											"parameter_shortname" : "Frame 1 Length (Samples)",
+											"parameter_type" : 0,
+											"parameter_unitstyle" : 0
 										}
 
 									}
@@ -2336,12 +2336,12 @@
 									"patching_rect" : [ 380.5, 300.0, 90.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_type" : 0,
-											"parameter_unitstyle" : 0,
 											"parameter_mmin" : 1.0,
 											"parameter_longname" : "live.dial[5]",
 											"parameter_mmax" : 250.0,
-											"parameter_shortname" : "Frame 2 Interval (Samples)"
+											"parameter_shortname" : "Frame 2 Interval (Samples)",
+											"parameter_type" : 0,
+											"parameter_unitstyle" : 0
 										}
 
 									}
@@ -2395,12 +2395,12 @@
 									"patching_rect" : [ 180.0, 180.0, 179.0, 61.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_enum" : [ "1", "2", "3", "4", "5", "6" ],
-											"parameter_type" : 2,
-											"parameter_unitstyle" : 0,
 											"parameter_longname" : "live.tab",
 											"parameter_mmax" : 5,
-											"parameter_shortname" : "live.tab"
+											"parameter_shortname" : "live.tab",
+											"parameter_enum" : [ "1", "2", "3", "4", "5", "6" ],
+											"parameter_type" : 2,
+											"parameter_unitstyle" : 0
 										}
 
 									}
@@ -2766,12 +2766,12 @@
 									"patching_rect" : [ 180.0, 300.0, 90.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_type" : 0,
-											"parameter_unitstyle" : 0,
 											"parameter_mmin" : 1.0,
 											"parameter_longname" : "live.dial",
 											"parameter_mmax" : 250.0,
-											"parameter_shortname" : "Frame 1 Interval (Samples)"
+											"parameter_shortname" : "Frame 1 Interval (Samples)",
+											"parameter_type" : 0,
+											"parameter_unitstyle" : 0
 										}
 
 									}
@@ -2862,7 +2862,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 311.0, 569.0, 298.0, 121.0 ],
-									"size" : 2708
+									"size" : 35
 								}
 
 							}
@@ -4040,12 +4040,12 @@
 													"presentation_rect" : [ 15.0, 15.0, 165.0, 45.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_enum" : [ "Freeze", "Play" ],
-															"parameter_type" : 2,
-															"parameter_unitstyle" : 0,
 															"parameter_longname" : "live.tab[3]",
 															"parameter_mmax" : 1,
-															"parameter_shortname" : "live.tab[1]"
+															"parameter_shortname" : "live.tab[1]",
+															"parameter_enum" : [ "Freeze", "Play" ],
+															"parameter_type" : 2,
+															"parameter_unitstyle" : 0
 														}
 
 													}
@@ -4255,7 +4255,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 532.0, 637.0, 146.0, 36.0 ],
+									"patching_rect" : [ 506.0, 637.0, 146.0, 36.0 ],
 									"text" : "(optional) choose your own sound source "
 								}
 
@@ -4382,7 +4382,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 510.0, 645.0, 20.0, 20.0 ],
+									"patching_rect" : [ 484.0, 645.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -4625,31 +4625,27 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-9::obj-7" : [ "live.dial[5]", "Frame 2 Interval (Samples)", 0 ],
-			"obj-9::obj-15::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-9::obj-9" : [ "live.dial[6]", "Frame 1 Length (Samples)", 0 ],
-			"obj-2::obj-29::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
-			"obj-9::obj-69" : [ "live.tab", "live.tab", 0 ],
-			"obj-4::obj-2::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
-			"obj-2::obj-28::obj-4" : [ "live.tab[2]", "live.tab[1]", 0 ],
+			"obj-1::obj-13::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
+			"obj-9::obj-12" : [ "live.dial[8]", "Modulation", 0 ],
 			"obj-9::obj-38" : [ "live.dial", "Frame 1 Interval (Samples)", 0 ],
 			"obj-9::obj-10" : [ "live.dial[7]", "Frame 2 Length (Samples)", 0 ],
 			"obj-116::obj-2::obj-4" : [ "live.tab[3]", "live.tab[1]", 0 ],
-			"obj-9::obj-12" : [ "live.dial[8]", "Modulation", 0 ],
+			"obj-2::obj-28::obj-4" : [ "live.tab[2]", "live.tab[1]", 0 ],
 			"obj-116::obj-5::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
 			"obj-3::obj-3::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
-			"obj-1::obj-13::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
+			"obj-4::obj-2::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
+			"obj-9::obj-9" : [ "live.dial[6]", "Frame 1 Length (Samples)", 0 ],
+			"obj-9::obj-69" : [ "live.tab", "live.tab", 0 ],
+			"obj-2::obj-29::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-9::obj-15::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-9::obj-7" : [ "live.dial[5]", "Frame 2 Interval (Samples)", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-2::obj-29::obj-50" : 				{
-					"parameter_longname" : "live.gain~[4]"
-				}
-,
-				"obj-4::obj-2::obj-50" : 				{
-					"parameter_longname" : "live.gain~[3]"
+				"obj-1::obj-13::obj-50" : 				{
+					"parameter_longname" : "live.gain~[6]"
 				}
 ,
 				"obj-116::obj-5::obj-50" : 				{
@@ -4660,8 +4656,12 @@
 					"parameter_longname" : "live.gain~[2]"
 				}
 ,
-				"obj-1::obj-13::obj-50" : 				{
-					"parameter_longname" : "live.gain~[6]"
+				"obj-4::obj-2::obj-50" : 				{
+					"parameter_longname" : "live.gain~[3]"
+				}
+,
+				"obj-2::obj-29::obj-50" : 				{
+					"parameter_longname" : "live.gain~[4]"
 				}
 
 			}
