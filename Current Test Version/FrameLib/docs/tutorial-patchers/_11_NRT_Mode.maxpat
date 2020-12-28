@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -37,7 +37,9 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "default",
-		"showontab" : 1,
+		"showrootpatcherontab" : 0,
+		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"title" : "Tutorial 11: Non-realtime FrameLib",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -50,7 +52,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,13 +86,14 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-51",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 363.0, 452.0, 195.0, 20.0 ],
+									"patching_rect" : [ 363.0, 437.0, 195.0, 20.0 ],
 									"text" : "audition the contents of the buffer"
 								}
 
@@ -110,7 +113,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 337.0, 540.0, 90.0, 45.0 ],
+									"patching_rect" : [ 337.0, 525.0, 90.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -123,7 +126,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 337.0, 450.0, 24.0, 24.0 ]
+									"patching_rect" : [ 337.0, 435.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -134,7 +137,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "bang" ],
-									"patching_rect" : [ 337.0, 495.0, 149.0, 22.0 ],
+									"patching_rect" : [ 337.0, 480.0, 149.0, 22.0 ],
 									"text" : "play~ fl.tut.nrt.3.1 @loop 1"
 								}
 
@@ -145,8 +148,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 311.0, 265.0, 195.0, 20.0 ],
-									"presentation_linecount" : 2,
+									"patching_rect" : [ 311.0, 250.0, 195.0, 20.0 ],
 									"text" : "reset time to 0 and clear the buffer"
 								}
 
@@ -159,7 +161,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 285.0, 263.0, 24.0, 24.0 ]
+									"patching_rect" : [ 285.0, 248.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -170,7 +172,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 337.0, 360.0, 146.0, 22.0 ],
+									"patching_rect" : [ 337.0, 345.0, 146.0, 22.0 ],
 									"text" : "buffer~ fl.tut.nrt.3.1 10000"
 								}
 
@@ -182,7 +184,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "reset", "clear" ],
-									"patching_rect" : [ 285.0, 315.0, 71.0, 22.0 ],
+									"patching_rect" : [ 285.0, 300.0, 71.0, 22.0 ],
 									"text" : "t reset clear"
 								}
 
@@ -193,7 +195,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 263.0, 150.0, 20.0 ],
+									"patching_rect" : [ 120.0, 255.0, 150.0, 20.0 ],
 									"text" : "0.2 seconds @ 44.1khz"
 								}
 
@@ -215,7 +217,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 150.0, 150.0, 20.0 ],
+									"patching_rect" : [ 120.0, 165.0, 150.0, 20.0 ],
 									"text" : "1 second @ 44.1khz"
 								}
 
@@ -227,7 +229,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 337.0, 600.0, 45.0, 45.0 ]
+									"patching_rect" : [ 337.0, 585.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -243,7 +245,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -276,6 +278,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-6",
@@ -406,7 +409,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 15.0, 450.0, 95.0, 22.0 ],
+									"patching_rect" : [ 15.0, 435.0, 95.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -425,7 +428,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 405.0, 220.0, 22.0 ],
+									"patching_rect" : [ 15.0, 390.0, 220.0, 22.0 ],
 									"text" : "fl.ramp~ /length 100 /units ms /scale ms"
 								}
 
@@ -437,7 +440,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 495.0, 188.0, 22.0 ],
+									"patching_rect" : [ 15.0, 480.0, 188.0, 22.0 ],
 									"text" : "fl.read~ src /units ms /edges wrap"
 								}
 
@@ -449,7 +452,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 58.0, 315.0, 67.0, 22.0 ],
+									"patching_rect" : [ 58.0, 300.0, 67.0, 22.0 ],
 									"text" : "process $1"
 								}
 
@@ -465,13 +468,13 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 15.0, 135.0, 105.0, 165.0 ],
+									"patching_rect" : [ 15.0, 150.0, 105.0, 135.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_enum" : [ "44100", "1024", "8820" ],
 											"parameter_longname" : "live.tab",
 											"parameter_mmax" : 2,
 											"parameter_shortname" : "live.tab",
-											"parameter_enum" : [ "44100", "1024", "8820" ],
 											"parameter_type" : 2,
 											"parameter_unitstyle" : 0
 										}
@@ -490,7 +493,7 @@
 									"numinlets" : 5,
 									"numoutlets" : 6,
 									"outlettype" : [ "float", "float", "float", "float", "list", "" ],
-									"patching_rect" : [ 15.0, 660.0, 692.0, 90.0 ],
+									"patching_rect" : [ 15.0, 645.0, 692.0, 90.0 ],
 									"waveformcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ]
 								}
 
@@ -503,7 +506,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 630.0, 156.0, 22.0 ],
+									"patching_rect" : [ 15.0, 615.0, 156.0, 22.0 ],
 									"text" : "fl.sink~ @buffer fl.tut.nrt.3.1"
 								}
 
@@ -515,7 +518,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 540.0, 80.0, 22.0 ],
+									"patching_rect" : [ 15.0, 525.0, 80.0, 22.0 ],
 									"text" : "fl.times~ 0.25"
 								}
 
@@ -527,7 +530,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 585.0, 65.0, 22.0 ],
+									"patching_rect" : [ 15.0, 570.0, 65.0, 22.0 ],
 									"text" : "fl.window~"
 								}
 
@@ -539,7 +542,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 360.0, 201.0, 22.0 ],
+									"patching_rect" : [ 15.0, 345.0, 201.0, 22.0 ],
 									"text" : "fl.interval~ 1024 @rt 0 @id progress"
 								}
 
@@ -549,12 +552,12 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 13.0,
 									"id" : "obj-1",
-									"linecount" : 4,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 60.0, 692.0, 69.0 ],
-									"text" : "Time doesn't have to be progressed through a single \"process\" message. Time can be progressed by passing repeated process messages with whatever amount of time in samples you desire. In the example below, experiment by processing different time amounts and observing how the 5 second buffer fills up. When more time is processed in a single block the buffer will fill up faster."
+									"patching_rect" : [ 15.0, 60.0, 700.0, 84.0 ],
+									"text" : "Time doesn't have to be progressed through a single \"process\" message. Time can be progressed by passing repeated process messages with whatever amount of time in samples you desire. In the example below, experiment by processing different time amounts and observing how the 5 second buffer fills up. When more time is processed in a single block the buffer will fill up faster. You should note that if the network contains any fl.tomax~ objects they will only send messages after the buffer processing is complete following each call to 'process'."
 								}
 
 							}
@@ -602,7 +605,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-7", 0 ],
-									"midpoints" : [ 67.5, 348.0, 24.5, 348.0 ],
+									"midpoints" : [ 67.5, 333.0, 24.5, 333.0 ],
 									"source" : [ "obj-14", 0 ]
 								}
 
@@ -631,7 +634,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-7", 0 ],
-									"midpoints" : [ 294.5, 348.0, 24.5, 348.0 ],
+									"midpoints" : [ 294.5, 333.0, 24.5, 333.0 ],
 									"source" : [ "obj-39", 0 ]
 								}
 
@@ -752,8 +755,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -812,7 +815,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -846,6 +849,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"color" : [ 0.705882352941177, 0.486274509803922, 0.901960784313726, 1.0 ],
@@ -1558,8 +1562,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1618,7 +1622,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1652,6 +1656,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-3",
@@ -2023,8 +2028,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2083,7 +2088,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2117,6 +2122,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-35",
@@ -2164,7 +2170,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2197,6 +2203,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-6",
@@ -2457,7 +2464,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 456.0, 120.0, 258.0, 443.0 ],
+									"patching_rect" : [ 456.0, 120.0, 259.0, 443.0 ],
 									"text" : "The first thing to notice is that the @rt attribute is set to 0 or non-realtime at the top most scheduler of each network.\n\nIn non-realtime mode the 'reset' message resets time back to 0 and the 'process' message progresses time forward by the amount of time given in samples.\n\nIn the left network the composite message \"reset, process 88200\" resets time and immediately asks for FrameLib to process 88200 samples of time (2 seconds at 44.1khz).\n\nIf you push the left \"reset, process 88200\" message button both networks process audio and push it to their respective output buffers. Why? Because both these networks belong to the same context! In non-realtime mode, context becomes important to how FrameLib networks run and triggering any scheduler belonging to the same context will make every network run.\n\nMove on to the next tab to see the solution to this problem."
 								}
 
@@ -2863,8 +2870,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2923,7 +2930,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2957,6 +2964,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Non-realtime basics",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -3089,8 +3097,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3141,31 +3149,32 @@
  ],
 		"lines" : [  ],
 		"parameters" : 		{
-			"obj-1::obj-6" : [ "live.tab", "live.tab", 0 ],
 			"obj-1::obj-50::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-1::obj-6" : [ "live.tab", "live.tab", 0 ],
 			"parameterbanks" : 			{
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
