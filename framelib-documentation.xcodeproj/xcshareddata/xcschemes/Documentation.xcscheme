@@ -28,7 +28,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "#!/bin/sh&#10;python3 ${SRCROOT}/Documentation/Max\ Documentation/build_docs -c 0&#10;">
+               scriptText = "">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -110,7 +110,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "python3 &quot;${SRCROOT}/Documentation/Max Documentation/build_docs.py&quot; -c 0">
+               scriptText = "python3 &quot;${SRCROOT}/Documentation/Max Documentation/build_docs.py&quot; -c">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
