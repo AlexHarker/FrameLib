@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"globalpatchername" : "Tutorial_1[1][1]",
 		"title" : "Tutorial 2: Learn by example",
 		"boxes" : [ 			{
@@ -125,13 +126,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
+						"rect" : [ 34.0, 105.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -159,8 +160,34 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Simple Freeze",
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-7",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 296.0, 548.0, 48.0, 22.0 ],
+									"text" : "replace"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 13.0,
+									"id" : "obj-100",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 510.0, 571.0, 146.0, 36.0 ],
+									"text" : "(optional) choose your own sound source "
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"bgmode" : 0,
 									"border" : 0,
@@ -200,7 +227,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -233,6 +260,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-1",
@@ -337,10 +365,10 @@
 													"presentation_rect" : [ 15.0, 15.0, 165.0, 45.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
+															"parameter_enum" : [ "Freeze", "Play" ],
 															"parameter_longname" : "live.tab[2]",
 															"parameter_mmax" : 1,
 															"parameter_shortname" : "live.tab[1]",
-															"parameter_enum" : [ "Freeze", "Play" ],
 															"parameter_type" : 2,
 															"parameter_unitstyle" : 0
 														}
@@ -477,8 +505,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -562,7 +590,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 296.0, 578.0, 172.0, 22.0 ],
+									"patching_rect" : [ 296.0, 579.0, 172.0, 22.0 ],
 									"text" : "buffer~ fl.tut.2.simple duduk.aif"
 								}
 
@@ -688,6 +716,27 @@
 								}
 
 							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-30",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 488.0, 579.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "2",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
@@ -729,7 +778,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-27", 1 ],
-									"midpoints" : [ 204.5, 195.0, 180.0, 195.0, 180.0, 270.0, 305.5, 270.0 ],
+									"midpoints" : [ 204.5, 195.0, 383.0, 195.0, 383.0, 247.0, 305.5, 247.0 ],
 									"order" : 0,
 									"source" : [ "obj-28", 0 ]
 								}
@@ -764,6 +813,13 @@
 								"patchline" : 								{
 									"destination" : [ "obj-29", 0 ],
 									"source" : [ "obj-38", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-33", 0 ],
+									"source" : [ "obj-7", 0 ]
 								}
 
 							}
@@ -843,8 +899,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -903,7 +959,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -938,6 +994,7 @@
 						"subpatcher_template" : "default",
 						"showontab" : 1,
 						"isolateaudio" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Basic Granular Synthesis",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -1027,13 +1084,13 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 84.0, 128.0, 640.0, 480.0 ],
+										"rect" : [ 84.0, 128.0, 323.0, 150.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -1060,6 +1117,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-18",
@@ -1067,8 +1125,8 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 50.0, 130.0, 60.0, 22.0 ],
-													"text" : "fill sin 1 2"
+													"patching_rect" : [ 30.0, 63.0, 111.0, 22.0 ],
+													"text" : "fill 1, apply hanning"
 												}
 
 											}
@@ -1079,7 +1137,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 1,
 													"outlettype" : [ "bang" ],
-													"patching_rect" : [ 50.0, 100.0, 58.0, 22.0 ],
+													"patching_rect" : [ 30.0, 33.0, 58.0, 22.0 ],
 													"text" : "loadbang"
 												}
 
@@ -1091,7 +1149,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 2,
 													"outlettype" : [ "float", "bang" ],
-													"patching_rect" : [ 50.0, 157.0, 206.0, 22.0 ],
+													"patching_rect" : [ 30.0, 90.0, 206.0, 22.0 ],
 													"text" : "buffer~ fl.tut.2.window @samps 1024"
 												}
 
@@ -1231,7 +1289,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 60.0, 530.25, 131.0 ],
-									"text" : "Below is an example of granulation in FrameLib.\n\nEvery 75 milliseconds the first 150 milliseconds of a buffer are played back creating a stutter/repeat effect. Look inside the \"fl-granular-basic\" patch to see how this works in detail.\n\nA side-by-side comparison is implemented in a poly~ allowing you to compare the sound result, and see the simplicity of FrameLib compared to traditional Max objects."
+									"text" : "Below is an example of granular synthesis in FrameLib.\n\nEvery 75 milliseconds the first 150 milliseconds of a buffer are played back creating a stutter/repeat effect. Look inside the \"fl-granular-basic\" patch to see how this works in detail.\n\nA side-by-side comparison is implemented in a poly~ allowing you to compare the sound result, and see the simplicity of FrameLib compared to traditional Max objects."
 								}
 
 							}
@@ -1276,6 +1334,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 2 ],
+									"midpoints" : [ 382.5, 379.499984499999982, 335.5, 379.499984499999982 ],
 									"source" : [ "obj-20", 0 ]
 								}
 
@@ -1380,8 +1439,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1440,7 +1499,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1474,6 +1533,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgmode" : 0,
@@ -1515,8 +1575,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 375.0, 530.0, 240.0 ],
-									"text" : "In most realtime audio environments, audio processing is built on the model of grouping continuous streams of samples into small consecutive blocks of equal size for the purpose of calculation. Whilst this offers an appropriate model to represent continuous analog signals, it is less suited to processing that functions on chunks, or frames, of audio in which the position of a sample in the frame is meaningful (e.g spectral representations), or in which the frame might be considered as a whole (e.g granular synthesis). \n\nFrameLib brings a wealth of processing techniques into the Max environment where rapid prototyping and experimentation is readily available to the user. Advanced multi-rate processing, based on DSP graphs that operate on frames of different sizes is not currently supported natively within Max which is where a frame based tool kit like FrameLib excels. If this doesn't make sense to you now, these tutorials will introduce you to these concepts.\n\nIf you don't know where to start, navigating through the tabs above demonstrate what you might want to do with FrameLib."
+									"patching_rect" : [ 180.0, 390.0, 530.0, 240.0 ],
+									"text" : "In most realtime audio environments, audio processing is built on the model of grouping continuous streams of samples into small consecutive blocks of equal size for the purpose of calculation. Whilst this offers an appropriate model to represent continuous analog signals, it is less suited to processing that functions on chunks, or frames, of audio in which the position of a sample in the frame is meaningful (e.g spectral representations), or in which the frame might be considered as a whole (e.g granular synthesis). \n\nFrameLib brings a wealth of processing techniques into the Max environment where rapid prototyping and experimentation is readily available to the user. Advanced multi-rate processing based on DSP graphs that operate on frames of different sizes is not currently supported natively within Max which is where a frame based tool kit like FrameLib excels. If this doesn't make sense to you now, these tutorials will introduce you to these concepts.\n\nIf you don't know where to start, navigating through the tabs above demonstrate what you might want to do with FrameLib."
 								}
 
 							}
@@ -1528,7 +1588,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 360.0, 525.25, 5.0 ]
+									"patching_rect" : [ 180.0, 375.0, 525.25, 5.0 ]
 								}
 
 							}
@@ -1541,7 +1601,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 330.0, 171.0, 30.0 ],
+									"patching_rect" : [ 180.0, 345.0, 171.0, 30.0 ],
 									"text" : "What is possible?"
 								}
 
@@ -1551,12 +1611,12 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 13.0,
 									"id" : "obj-2",
-									"linecount" : 12,
+									"linecount" : 13,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 120.0, 525.0, 194.0 ],
-									"text" : "FrameLib is a DSP system designed to allow quick modular constructions of frame-based networks. A frame is a self contained group of samples similar to a grain in granulation or an FFT frame. These networks can resolve time at a highly accurate subsample level and can run at different rates and with different frame sizes.\n\nWithin a single FrameLib network you are able to mix different representations (such as time and frequency-based), efficiently process them and maintaining tightly-timed DSP constructs. A group of FrameLib objects resulting in a processing chain can be referred to as a 'network'.\n\nIf you don't know what these terms mean or are not sure if FrameLib could be useful for you rest assured it will make sense as the tutorials progress."
+									"patching_rect" : [ 180.0, 120.0, 526.0, 209.0 ],
+									"text" : "FrameLib is a DSP system designed to allow quick modular constructions of frame-based networks. A frame is a self contained group of samples such as a grain in granular synthesis or an FFT frame. These networks can resolve time at a highly accurate subsample level and can run at multiple rates and with multiple mixed frame sizes. Both rate and frame length can also be freely varied over time\n\nWithin a single FrameLib network you are able to mix different representations (such as time and frequency-based), efficiently process them and maintain tightly-timed DSP constructs. A group of FrameLib objects resulting in a processing chain can be referred to as a 'network'.\n\nIf you don't know what these terms mean or are not sure if FrameLib could be useful for you rest assured it will make sense as the tutorials progress."
 								}
 
 							}
@@ -1645,8 +1705,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1705,13 +1765,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 723.0, 706.0 ],
+						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1739,6 +1799,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgmode" : 0,
@@ -2061,8 +2122,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2122,7 +2183,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2156,6 +2217,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Stochastic Synth",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -2228,9 +2290,9 @@
 									"patching_rect" : [ 480.75, 300.0, 90.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmin" : 4.0,
 											"parameter_longname" : "live.dial[7]",
 											"parameter_mmax" : 2500.0,
+											"parameter_mmin" : 4.0,
 											"parameter_shortname" : "Frame 2 Length (Samples)",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 0
@@ -2255,9 +2317,9 @@
 									"patching_rect" : [ 280.25, 300.0, 90.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmin" : 4.0,
 											"parameter_longname" : "live.dial[6]",
 											"parameter_mmax" : 2500.0,
+											"parameter_mmin" : 4.0,
 											"parameter_shortname" : "Frame 1 Length (Samples)",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 0
@@ -2282,9 +2344,9 @@
 									"patching_rect" : [ 380.5, 300.0, 90.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmin" : 1.0,
 											"parameter_longname" : "live.dial[5]",
 											"parameter_mmax" : 250.0,
+											"parameter_mmin" : 1.0,
 											"parameter_shortname" : "Frame 2 Interval (Samples)",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 0
@@ -2341,10 +2403,10 @@
 									"patching_rect" : [ 180.0, 180.0, 179.0, 61.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_enum" : [ "1", "2", "3", "4", "5", "6" ],
 											"parameter_longname" : "live.tab",
 											"parameter_mmax" : 5,
 											"parameter_shortname" : "live.tab",
-											"parameter_enum" : [ "1", "2", "3", "4", "5", "6" ],
 											"parameter_type" : 2,
 											"parameter_unitstyle" : 0
 										}
@@ -2422,7 +2484,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2455,6 +2517,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-2",
@@ -2475,7 +2538,7 @@
 													"maxclass" : "outlet",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 324.200010666666628, 223.0, 30.0, 30.0 ]
+													"patching_rect" : [ 313.200010666666628, 223.0, 30.0, 30.0 ]
 												}
 
 											}
@@ -2486,7 +2549,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 121.0, 157.0, 47.0, 22.0 ],
+													"patching_rect" : [ 110.0, 157.0, 47.0, 22.0 ],
 													"text" : "dict.iter"
 												}
 
@@ -2510,7 +2573,7 @@
 													"numinlets" : 6,
 													"numoutlets" : 6,
 													"outlettype" : [ "", "", "", "", "", "" ],
-													"patching_rect" : [ 121.0, 190.0, 273.0, 22.0 ],
+													"patching_rect" : [ 110.0, 190.0, 273.0, 22.0 ],
 													"text" : "route interval_1 length_1 interval_2 length_2 rand"
 												}
 
@@ -2522,7 +2585,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 2,
 													"outlettype" : [ "", "" ],
-													"patching_rect" : [ 85.0, 124.0, 55.0, 22.0 ],
+													"patching_rect" : [ 74.0, 124.0, 55.0, 22.0 ],
 													"text" : "zl slice 1"
 												}
 
@@ -2566,7 +2629,7 @@
 													"maxclass" : "outlet",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 121.0, 223.0, 30.0, 30.0 ]
+													"patching_rect" : [ 110.0, 223.0, 30.0, 30.0 ]
 												}
 
 											}
@@ -2578,7 +2641,7 @@
 													"maxclass" : "outlet",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 172.000031000000035, 223.0, 30.0, 30.0 ]
+													"patching_rect" : [ 161.000031000000035, 223.0, 30.0, 30.0 ]
 												}
 
 											}
@@ -2590,7 +2653,7 @@
 													"maxclass" : "outlet",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 222.599999999999994, 223.0, 30.0, 30.0 ]
+													"patching_rect" : [ 211.599999999999994, 223.0, 30.0, 30.0 ]
 												}
 
 											}
@@ -2602,7 +2665,7 @@
 													"maxclass" : "outlet",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 273.000031000000035, 223.0, 30.0, 30.0 ]
+													"patching_rect" : [ 262.000031000000035, 223.0, 30.0, 30.0 ]
 												}
 
 											}
@@ -2712,9 +2775,9 @@
 									"patching_rect" : [ 180.0, 300.0, 90.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmin" : 1.0,
 											"parameter_longname" : "live.dial",
 											"parameter_mmax" : 250.0,
+											"parameter_mmin" : 1.0,
 											"parameter_shortname" : "Frame 1 Interval (Samples)",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 0
@@ -2782,7 +2845,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 60.0, 525.0, 84.0 ],
-									"text" : "This stochastic synth works by generating two spline like frames of varying lengths and convolving them. Every interval, the content the two frames to be convolved are morphed slightly by adding a small amount of randomness. The interaction between the convolution of the two frames and their gradual morphing over time creates an ever-changing texture that can be unpredictable and rich."
+									"text" : "This stochastic synth works by generating two noisy frames with spline-like interpolation of varying lengths and convolving them. Every interval, the content the two frames to be convolved are morphed slightly by adding a small amount of randomness. The interaction between the convolution of the two frames and their gradual morphing over time creates an ever-changing texture that can be unpredictable and rich."
 								}
 
 							}
@@ -2808,7 +2871,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 311.0, 569.0, 298.0, 121.0 ],
-									"size" : 35
+									"size" : 2708
 								}
 
 							}
@@ -3044,8 +3107,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3105,7 +3168,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -3140,6 +3203,7 @@
 						"subpatcher_template" : "default",
 						"showontab" : 1,
 						"isolateaudio" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgmode" : 0,
@@ -3212,7 +3276,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 60.0, 525.0, 100.0 ],
-									"text" : "This network adds some extra features to the Basic Granulator and demonstrates how flexible FrameLib can be. In addition to generating random frame positions, the length of the frame is dynamically changed. Each frame (or grain) is being band pass filtered and spatialised across the stereo field according to its filter frequency. An interface is added allowing you to constrain the area of the buffer from which the FrameLib network extracts grains."
+									"text" : "This network adds some extra features to the basic granular synthesis patch and demonstrates how flexible FrameLib can be. In addition to generating random frame positions, the length of the frame is dynamically changed. Each frame (or grain) is being band pass filtered and spatialised across the stereo field according to its filter frequency. An interface is added allowing you to constrain the area of the buffer from which the FrameLib network extracts grains."
 								}
 
 							}
@@ -3225,8 +3289,8 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 280.999995814697286, 554.0, 298.0, 121.0 ],
-									"size" : 9296
+									"patching_rect" : [ 295.999995814697286, 554.0, 298.0, 121.0 ],
+									"size" : 5594
 								}
 
 							}
@@ -3290,7 +3354,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 484.5, 202.0, 162.5, 50.0 ],
-									"text" : "Click and drag to change what portion of the buffer can be granulated."
+									"text" : "Click and drag to change what portion of the buffer is used."
 								}
 
 							}
@@ -3366,7 +3430,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "signal", "signal", "" ],
-									"patching_rect" : [ 180.999995814697286, 465.0, 119.0, 22.0 ],
+									"patching_rect" : [ 180.999995814697286, 465.0, 134.000004185302714, 22.0 ],
 									"text" : "fl-granular-advanced"
 								}
 
@@ -3550,6 +3614,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-84", 3 ],
+									"midpoints" : [ 405.0, 190.400001525878906, 367.25, 190.400001525878906 ],
 									"source" : [ "obj-33", 0 ]
 								}
 
@@ -3571,7 +3636,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 1 ],
-									"midpoints" : [ 240.499995814697286, 501.0, 246.499995814697286, 501.0 ],
 									"source" : [ "obj-67", 1 ]
 								}
 
@@ -3608,6 +3672,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-95", 0 ],
+									"midpoints" : [ 331.699999999999989, 265.9000244140625, 354.499951171875011, 265.9000244140625 ],
 									"source" : [ "obj-84", 3 ]
 								}
 
@@ -3677,8 +3742,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3737,7 +3802,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -3771,16 +3836,29 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Stochastic Freeze",
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-7",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 291.0, 615.0, 48.0, 22.0 ],
+									"text" : "replace"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-33",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 385.0, 540.0, 204.0, 22.0 ],
-									"text" : "buffer~ fl.tut.2.stochastic sho0630.aif"
+									"patching_rect" : [ 291.0, 645.0, 191.0, 22.0 ],
+									"text" : "buffer~ fl.tut.2.stochastic duduk.aif"
 								}
 
 							}
@@ -3799,7 +3877,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 195.0, 570.0, 90.0, 45.0 ],
+									"patching_rect" : [ 195.0, 540.0, 90.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -3811,7 +3889,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 315.0, 375.0, 104.0, 22.0 ],
+									"patching_rect" : [ 315.0, 345.0, 104.0, 22.0 ],
 									"text" : "delay~ 1024 1024"
 								}
 
@@ -3836,7 +3914,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -3869,6 +3947,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-1",
@@ -3901,7 +3980,7 @@
 													"maxclass" : "outlet",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 195.0, 225.0, 30.0, 30.0 ]
+													"patching_rect" : [ 195.0, 210.0, 30.0, 30.0 ]
 												}
 
 											}
@@ -3973,10 +4052,10 @@
 													"presentation_rect" : [ 15.0, 15.0, 165.0, 45.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
+															"parameter_enum" : [ "Freeze", "Play" ],
 															"parameter_longname" : "live.tab[3]",
 															"parameter_mmax" : 1,
 															"parameter_shortname" : "live.tab[1]",
-															"parameter_enum" : [ "Freeze", "Play" ],
 															"parameter_type" : 2,
 															"parameter_unitstyle" : 0
 														}
@@ -4042,6 +4121,7 @@
 , 											{
 												"patchline" : 												{
 													"destination" : [ "obj-14", 0 ],
+													"midpoints" : [ 24.5, 104.5, 204.5, 104.5 ],
 													"order" : 0,
 													"source" : [ "obj-4", 0 ]
 												}
@@ -4113,8 +4193,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -4162,7 +4242,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 195.0, 510.0, 29.5, 22.0 ],
+									"patching_rect" : [ 195.0, 480.0, 29.5, 22.0 ],
 									"text" : "+~"
 								}
 
@@ -4174,7 +4254,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 195.0, 450.0, 29.5, 22.0 ],
+									"patching_rect" : [ 195.0, 420.0, 29.5, 22.0 ],
 									"text" : "*~"
 								}
 
@@ -4187,7 +4267,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 570.0, 714.0, 146.0, 36.0 ],
+									"patching_rect" : [ 532.0, 637.0, 146.0, 36.0 ],
 									"text" : "(optional) choose your own sound source "
 								}
 
@@ -4199,7 +4279,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 195.0, 285.0, 180.0, 22.0 ],
+									"patching_rect" : [ 195.0, 255.0, 180.0, 22.0 ],
 									"text" : "fl.audioplayer~ fl.tut.2.stochastic"
 								}
 
@@ -4211,7 +4291,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "" ],
-									"patching_rect" : [ 195.0, 375.0, 115.0, 22.0 ],
+									"patching_rect" : [ 195.0, 345.0, 115.0, 22.0 ],
 									"text" : "fl-freeze-stoch"
 								}
 
@@ -4242,7 +4322,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 645.0, 45.0, 45.0 ]
+									"patching_rect" : [ 195.0, 615.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -4281,7 +4361,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 291.0, 570.0, 298.0, 121.0 ],
+									"patching_rect" : [ 291.0, 480.0, 298.0, 121.0 ],
 									"size" : 4096
 								}
 
@@ -4314,9 +4394,9 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 706.0, 722.0, 20.0, 20.0 ],
+									"patching_rect" : [ 510.0, 645.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
-									"text" : "1",
+									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
 
@@ -4325,7 +4405,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-25", 1 ],
-									"midpoints" : [ 590.5, 435.0, 215.0, 435.0 ],
+									"midpoints" : [ 590.5, 401.0, 215.0, 401.0 ],
 									"source" : [ "obj-2", 1 ]
 								}
 
@@ -4333,7 +4413,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-27", 1 ],
-									"midpoints" : [ 204.5, 270.0, 180.0, 270.0, 180.0, 360.0, 300.5, 360.0 ],
+									"midpoints" : [ 204.5, 233.0, 391.0, 233.0, 391.0, 292.0, 300.5, 292.0 ],
 									"order" : 0,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -4351,7 +4431,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-42", 0 ],
-									"midpoints" : [ 204.5, 474.0, 204.5, 474.0 ],
+									"midpoints" : [ 204.5, 444.0, 204.5, 444.0 ],
 									"source" : [ "obj-25", 0 ]
 								}
 
@@ -4366,7 +4446,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 0 ],
-									"midpoints" : [ 300.5, 399.0, 300.5, 399.0 ],
 									"source" : [ "obj-27", 1 ]
 								}
 
@@ -4374,7 +4453,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-42", 1 ],
-									"midpoints" : [ 324.5, 495.0, 215.0, 495.0 ],
+									"midpoints" : [ 324.5, 465.0, 215.0, 465.0 ],
 									"source" : [ "obj-4", 0 ]
 								}
 
@@ -4404,8 +4483,15 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-33", 0 ],
+									"source" : [ "obj-7", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-27", 0 ],
-									"midpoints" : [ 204.5, 309.0, 204.5, 309.0 ],
+									"midpoints" : [ 204.5, 279.0, 204.5, 279.0 ],
 									"order" : 1,
 									"source" : [ "obj-84", 0 ]
 								}
@@ -4414,7 +4500,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
-									"midpoints" : [ 204.5, 360.0, 324.5, 360.0 ],
+									"midpoints" : [ 204.5, 330.0, 324.5, 330.0 ],
 									"order" : 0,
 									"source" : [ "obj-84", 0 ]
 								}
@@ -4478,8 +4564,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4551,25 +4637,29 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-9::obj-7" : [ "live.dial[5]", "Frame 2 Interval (Samples)", 0 ],
-			"obj-9::obj-10" : [ "live.dial[7]", "Frame 2 Length (Samples)", 0 ],
-			"obj-1::obj-13::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
-			"obj-2::obj-29::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
-			"obj-9::obj-69" : [ "live.tab", "live.tab", 0 ],
-			"obj-4::obj-2::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
-			"obj-2::obj-28::obj-4" : [ "live.tab[2]", "live.tab[1]", 0 ],
-			"obj-3::obj-3::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
-			"obj-9::obj-15::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-9::obj-9" : [ "live.dial[6]", "Frame 1 Length (Samples)", 0 ],
-			"obj-116::obj-5::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
-			"obj-9::obj-38" : [ "live.dial", "Frame 1 Interval (Samples)", 0 ],
-			"obj-9::obj-12" : [ "live.dial[8]", "mod", 0 ],
 			"obj-116::obj-2::obj-4" : [ "live.tab[3]", "live.tab[1]", 0 ],
+			"obj-116::obj-5::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
+			"obj-1::obj-13::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
+			"obj-2::obj-28::obj-4" : [ "live.tab[2]", "live.tab[1]", 0 ],
+			"obj-2::obj-29::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-3::obj-3::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
+			"obj-4::obj-2::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
+			"obj-9::obj-10" : [ "live.dial[7]", "Frame 2 Length (Samples)", 0 ],
+			"obj-9::obj-12" : [ "live.dial[8]", "mod", 0 ],
+			"obj-9::obj-15::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-9::obj-38" : [ "live.dial", "Frame 1 Interval (Samples)", 0 ],
+			"obj-9::obj-69" : [ "live.tab", "live.tab", 0 ],
+			"obj-9::obj-7" : [ "live.dial[5]", "Frame 2 Interval (Samples)", 0 ],
+			"obj-9::obj-9" : [ "live.dial[6]", "Frame 1 Length (Samples)", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
+				"obj-116::obj-5::obj-50" : 				{
+					"parameter_longname" : "live.gain~[5]"
+				}
+,
 				"obj-1::obj-13::obj-50" : 				{
 					"parameter_longname" : "live.gain~[6]"
 				}
@@ -4578,102 +4668,99 @@
 					"parameter_longname" : "live.gain~[4]"
 				}
 ,
-				"obj-4::obj-2::obj-50" : 				{
-					"parameter_longname" : "live.gain~[3]"
-				}
-,
 				"obj-3::obj-3::obj-50" : 				{
 					"parameter_longname" : "live.gain~[2]"
 				}
 ,
-				"obj-116::obj-5::obj-50" : 				{
-					"parameter_longname" : "live.gain~[5]"
+				"obj-4::obj-2::obj-50" : 				{
+					"parameter_longname" : "live.gain~[3]"
 				}
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-freeze-stoch.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.audioplayer~.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-granular-advanced.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-stereo-h.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-stoch-synth.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-granular-convolution.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-granular-basic-poly.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-granular-basic.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-freeze-simple.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -4957,8 +5044,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",
