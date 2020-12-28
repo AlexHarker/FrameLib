@@ -39,7 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
-		"globalpatchername" : "Tutorial_1[1][1][1]",
+		"globalpatchername" : "Tutorial_1[1][1]",
 		"title" : "Tutorial 2: Learn by example",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -1765,7 +1765,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 723.0, 706.0 ],
+						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2862,7 +2862,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 311.0, 569.0, 298.0, 121.0 ],
-									"size" : 35
+									"size" : 2708
 								}
 
 							}
@@ -3798,7 +3798,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
+						"rect" : [ 34.0, 105.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3846,8 +3846,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 291.0, 645.0, 191.0, 22.0 ],
-									"text" : "buffer~ fl.tut.2.stochastic duduk.aif"
+									"patching_rect" : [ 291.0, 645.0, 204.0, 22.0 ],
+									"text" : "buffer~ fl.tut.2.stochastic sho0630.aif"
 								}
 
 							}
@@ -4255,7 +4255,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 506.0, 637.0, 146.0, 36.0 ],
+									"patching_rect" : [ 532.0, 637.0, 146.0, 36.0 ],
 									"text" : "(optional) choose your own sound source "
 								}
 
@@ -4382,7 +4382,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 484.0, 645.0, 20.0, 20.0 ],
+									"patching_rect" : [ 510.0, 645.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -4393,7 +4393,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-25", 1 ],
-									"midpoints" : [ 590.5, 401.0, 215.0, 401.0 ],
+									"midpoints" : [ 590.5, 397.5, 215.0, 397.5 ],
 									"source" : [ "obj-2", 1 ]
 								}
 
