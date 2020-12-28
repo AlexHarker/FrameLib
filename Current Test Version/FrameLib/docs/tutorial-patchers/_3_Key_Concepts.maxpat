@@ -1605,7 +1605,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 768.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2432,7 +2432,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
+						"rect" : [ 34.0, 105.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2463,12 +2463,13 @@
 						"title" : "How to Get Help",
 						"boxes" : [ 							{
 								"box" : 								{
+									"fontsize" : 13.0,
 									"id" : "obj-24",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 110.5, 165.0, 71.0, 22.0 ],
+									"patching_rect" : [ 80.5, 165.0, 76.0, 23.0 ],
 									"text" : "fromsymbol"
 								}
 
@@ -2515,13 +2516,14 @@
 							}
 , 							{
 								"box" : 								{
+									"fontsize" : 13.0,
 									"hidden" : 1,
 									"id" : "obj-10",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 195.0, 195.0, 72.0, 22.0 ],
+									"patching_rect" : [ 195.0, 195.0, 77.0, 23.0 ],
 									"text" : "prepend set"
 								}
 
@@ -2561,13 +2563,14 @@
  ]
 									}
 ,
+									"fontsize" : 13.0,
 									"hidden" : 1,
 									"id" : "obj-3",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 4,
 									"outlettype" : [ "", "", "", "" ],
-									"patching_rect" : [ 195.0, 165.0, 167.0, 22.0 ],
+									"patching_rect" : [ 195.0, 165.0, 180.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"embed" : 1,
 										"precision" : 6
@@ -2579,7 +2582,7 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 20.0,
+									"fontsize" : 13.0,
 									"id" : "obj-2",
 									"items" : [ "info", ",", "info description", ",", "info inputs", ",", "info outputs", ",", "info io", ",", "info parameters", ",", "info quick" ],
 									"maxclass" : "umenu",
@@ -2587,7 +2590,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 120.0, 180.0, 31.0 ]
+									"patching_rect" : [ 30.0, 120.0, 120.0, 23.0 ]
 								}
 
 							}
@@ -2771,13 +2774,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 15.0,
+									"fontsize" : 13.0,
 									"id" : "obj-15",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 210.0, 81.0, 25.0 ],
+									"patching_rect" : [ 80.5, 210.0, 72.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -2836,7 +2839,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
-									"midpoints" : [ 120.0, 201.0, 39.5, 201.0 ],
+									"midpoints" : [ 90.0, 201.0, 90.0, 201.0 ],
 									"source" : [ "obj-24", 0 ]
 								}
 
