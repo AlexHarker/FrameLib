@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 871.0, 720.0 ],
+		"rect" : [ 34.0, 79.0, 872.0, 720.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 871.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 872.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -678,7 +678,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 871.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 872.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -729,7 +729,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 405.0, 308.0, 284.0, 94.0 ],
-									"presentation_linecount" : 8,
 									"text" : "fl.sink~ is an overlap-add buffer. Every time fl.source~ outputs a frame, they are essentially pasted into this object. If a new frame arrives before the old one has finished happening in time it is simply added to the buffer creating an OVERLAP by ADDING the two frames together."
 								}
 
@@ -1382,7 +1381,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 871.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 872.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1410,7 +1409,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"title" : "Control Data From Max",
+						"title" : "Control Data to Frames",
 						"boxes" : [ 							{
 								"box" : 								{
 									"fontsize" : 13.0,
@@ -2455,7 +2454,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 871.0, 694.0 ],
+						"rect" : [ 34.0, 105.0, 872.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2923,7 +2922,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 871.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 872.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2951,7 +2950,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"title" : "Control Data To Max",
+						"title" : "Frames To Control Data",
 						"boxes" : [ 							{
 								"box" : 								{
 									"fontface" : 0,
@@ -3317,7 +3316,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 504.0, 161.0, 72.0, 21.0 ],
+					"patching_rect" : [ 480.0, 160.0, 72.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -3346,7 +3345,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 871.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 872.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3580,10 +3579,10 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-1::obj-12::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
 			"obj-4::obj-12::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-1::obj-5::obj-35" : [ "[5]", "Level", 0 ],
 			"obj-1::obj-5::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
+			"obj-1::obj-5::obj-35" : [ "[5]", "Level", 0 ],
+			"obj-1::obj-12::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
 			"parameterbanks" : 			{
 
 			}
