@@ -124,7 +124,7 @@ void FrameLib_Window::updateWindow(unsigned long sizeIn)
     // Calculate the gain of the window
     
     unsigned long begin = mGenerator.doFirst() ? 0 : 1;
-    unsigned long end = size - (mGenerator.doLast() ? 1 : 2);
+    unsigned long end = size + (mGenerator.doLast() ? 1 : 0);
     
     mGenerator.calculateGains(mWindow, begin, end);
 }
