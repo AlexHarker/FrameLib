@@ -1817,7 +1817,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 380.0, 454.5, 149.0, 20.0 ],
+									"patching_rect" : [ 315.0, 390.0, 149.0, 20.0 ],
 									"text" : "Compare the two systems"
 								}
 
@@ -2026,7 +2026,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 543.0, 454.5, 20.0, 20.0 ],
+									"patching_rect" : [ 466.0, 390.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
