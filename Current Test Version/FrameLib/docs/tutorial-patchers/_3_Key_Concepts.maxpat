@@ -519,7 +519,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 768.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2972,7 +2972,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
+						"rect" : [ 34.0, 105.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3003,24 +3003,12 @@
 						"title" : "Setting Parameters",
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-5",
-									"linecount" : 4,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 465.0, 150.0, 60.0 ],
-									"text" : "enums are counted from 0\n\nthe first input on a max object is 1"
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-7",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 338.0, 331.0, 30.0, 21.0 ],
+									"patching_rect" : [ 338.0, 361.0, 30.0, 21.0 ],
 									"text" : "==",
 									"textjustification" : 1
 								}
@@ -3034,8 +3022,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 369.0, 330.0, 322.0, 23.0 ],
-									"text" : "fl.random~ /units samples /mode requested /length 10"
+									"patching_rect" : [ 369.0, 360.0, 268.0, 23.0 ],
+									"text" : "fl.random~ /units samples /mode 0 /length 10"
 								}
 
 							}
@@ -3047,7 +3035,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 330.0, 322.0, 23.0 ],
+									"patching_rect" : [ 15.0, 360.0, 322.0, 23.0 ],
 									"text" : "fl.random~ /mode requested /length 10 /units samples"
 								}
 
@@ -3057,12 +3045,12 @@
 									"fontname" : "Arial",
 									"fontsize" : 13.0,
 									"id" : "obj-12",
-									"linecount" : 4,
+									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 240.0, 735.0, 65.0 ],
-									"text" : "2. /parameter <value>\n\nParameters can also be addressed by prefixing a forward slash (/) to the name. Again, let's configure the same example from above in this style. Note, the /parameter syntax can be in any order."
+									"patching_rect" : [ 15.0, 240.0, 735.0, 108.0 ],
+									"text" : "2. /parameter <value>\n\nParameters can also be addressed by prefixing a forward slash (/) to the name. Again, let's configure the same example from above in this style. Note, the /parameter syntax can be in any order.\n\nIf the parameter you are addressing is an enumerated parameter, such as the fl.random~ /mode, this can be set with the numerical value of the selection counting from 0."
 								}
 
 							}
