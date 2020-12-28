@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"title" : "Tutorial 12: Multithreading in FrameLib",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -51,7 +52,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -85,6 +86,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Configuration",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -118,7 +120,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -151,6 +153,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-45",
@@ -316,7 +319,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -349,6 +352,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-34",
@@ -476,7 +480,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 330.0, 524.0, 377.0, 123.0 ],
-									"text" : "Multithreading in this scenario is extremely effective at reducing the overall CPU load of this network. Because this network is comprised of 100 streams, with multithreading enabled this workload is more easily parallelised across multiple threads. This is one use case in which enabling multithreading may be significantly beneficial. Other use cases may not be beneficial though, or you may see no gains. As such multithreading is disabled by default."
+									"text" : "Multithreading in this scenario is extremely effective at reducing the overall CPU load of this network. Because this network is comprised of 100 parallel streams, with multithreading enabled this workload is easily parallelised across multiple threads. This is one kind of use case in which enabling multithreading may be significantly beneficial. Other use cases may not be beneficial though, or you may see no gains. This is the reason that multithreading is disabled by default."
 								}
 
 							}
@@ -485,12 +489,12 @@
 									"fontname" : "Arial",
 									"fontsize" : 13.0,
 									"id" : "obj-76",
-									"linecount" : 7,
+									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 328.5, 270.0, 377.0, 108.0 ],
-									"text" : "This granulator belongs to the context named 'workhorse', which is specified at the top-most fl.interval~ scheduler. We can manage the multithreading properties of this context with the fl.context~ object, by pointing it to the same context name. Experiment by switching multithreading on and off with the toggle box and observing the amount of CPU usage consumed by this granulator."
+									"patching_rect" : [ 328.5, 270.0, 377.0, 94.0 ],
+									"text" : "This network belongs to the context named 'workhorse', which is specified at the top-most fl.interval~ scheduler. We can manage the multithreading properties of this context with the fl.context~ object, by pointing it to the same context name. Experiment by switching multithreading on and off with the toggle box and observing the amount of CPU usage consumed."
 								}
 
 							}
@@ -529,7 +533,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 330.0, 135.0, 374.5, 65.0 ],
-									"text" : "To the left is a fairly hefty granulator that is generating 100, 1024 sample grains every 512 samples. Depending on the processing power of the computer you are using, the CPU usage below should report something relatively significant."
+									"text" : "To the left is a fairly hefty granular network that is generate 100, 1024 sample grains every 512 samples. Depending on the processing power of the computer you are using, the CPU usage below should report something relatively significant."
 								}
 
 							}
@@ -545,7 +549,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -578,6 +582,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-1",
@@ -739,7 +744,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 445.75, 390.0, 70.0, 22.0 ],
+									"patching_rect" : [ 445.75, 375.0, 70.0, 22.0 ],
 									"text" : "loadmess 0"
 								}
 
@@ -754,15 +759,15 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 445.75, 420.0, 150.0, 30.0 ],
+									"patching_rect" : [ 445.75, 405.0, 150.0, 30.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 220.630142000000006, 27.0, 18.0, 18.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_enum" : [ "Multithreading Off", "val2" ],
 											"parameter_longname" : "live.text[7]",
 											"parameter_mmax" : 1,
 											"parameter_shortname" : "live.text[2]",
-											"parameter_enum" : [ "Multithreading Off", "val2" ],
 											"parameter_type" : 2
 										}
 
@@ -781,7 +786,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 445.75, 465.0, 85.0, 22.0 ],
+									"patching_rect" : [ 445.75, 450.0, 85.0, 22.0 ],
 									"text" : "multithread $1"
 								}
 
@@ -875,7 +880,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 445.75, 495.0, 183.0, 22.0 ],
+									"patching_rect" : [ 445.75, 480.0, 183.0, 22.0 ],
 									"text" : "fl.contextcontrol~ @id workhorse"
 								}
 
@@ -890,7 +895,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 60.0, 688.0, 53.0 ],
-									"text" : "Multithreading is configured via the fl.contextcontrol~ object by passing the message \"multithread 1/0\". This makes it simple to alter the state in realtime and programatically. It is noted here again for clarity that multithreading is switched OFF by default for all FrameLib contexts."
+									"text" : "Multithreading is configured via the fl.contextcontrol~ object by passing the message \"multithread 1/0\". This makes it simple to alter the state in real-time and programatically. It is noted here again for clarity that multithreading is switched OFF by default for all FrameLib contexts."
 								}
 
 							}
@@ -1010,6 +1015,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-19", 0 ],
+									"midpoints" : [ 24.5, 173.0, 222.5, 173.0 ],
 									"order" : 0,
 									"source" : [ "obj-6", 0 ]
 								}
@@ -1097,8 +1103,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1157,7 +1163,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1191,6 +1197,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Multithreading",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -1229,12 +1236,12 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 13.0,
 									"id" : "obj-2",
-									"linecount" : 7,
+									"linecount" : 14,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 120.0, 525.0, 116.0 ],
-									"text" : "FrameLib has the ability to toggle between running in a single thread or across multiple threads. In a perfect world, multithreading would always give us some kind of performance gain over running inside of a single thread although this is not the case. Nonetheless the functionality is available to you as a simple on/off switch but understanding the implications is crucial. By default, multithreading is switched off for all FrameLib contexts. It is trivial to enable it though and worth testing if you need to squeeze out maximum performance from FrameLib in a large or complex network."
+									"patching_rect" : [ 180.0, 120.0, 525.0, 225.0 ],
+									"text" : "FrameLib has the ability to switch between running each context in a single thread or across multiple threads. In a perfect world, multithreading would always give us some kind of performance gain over running inside of a single thread, but sadly this is not the case in the real world due to the overheads of thread synchronisation and need to have work that can be done simultaneously. FrameLib is able to exploit parallel aspects of a network in terms of the way objects are connected or where there are multiple streams to acheive performance gains, but multithreading is likely to be less effective when the network is mostly serial in layout. Nonetheless, the functionality is available to you as a simple on/off switch but understanding the implications ofturning it on is crucial. By default, multithreading is switched off for all FrameLib contexts but it is trivial to test and implement if you need to squeeze out maximum performance from FrameLib in a large or complex network.\n\nNote that multithreading can be used for both real-time and non real-time contexts."
 								}
 
 							}
@@ -1323,8 +1330,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1375,31 +1382,32 @@
  ],
 		"lines" : [  ],
 		"parameters" : 		{
-			"obj-1::obj-4" : [ "live.text[7]", "live.text[2]", 0 ],
 			"obj-1::obj-1::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-1::obj-4" : [ "live.text[7]", "live.text[2]", 0 ],
 			"parameterbanks" : 			{
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
