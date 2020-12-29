@@ -20,7 +20,7 @@ public:
     
     enum WindowTypes { kRectangle, kTriangle, kTrapezoid, kWelch, kParzen, kTukey, kSine, kHann, kHamming, kBlackman, kExactBlackman, kBlackmanHarris, kNuttallContinuous, kNuttallMinimal, kFlatTop, kCosineSum, kKaiser, kSineTaper  };
     
-    enum Compensation { kOff, kLinear, kPower, kReconstruct };
+    enum Compensation { kOff, kLinear, kSquare, kReconstruct };
     
     enum Endpoints { kBoth, kFirst, kLast, kNone };
     
@@ -68,7 +68,7 @@ public:
         mParameters.addEnum(CompensateIdx, "compensate", argIdx);
         mParameters.addEnumItem(kOff, "off");
         mParameters.addEnumItem(kLinear, "linear");
-        mParameters.addEnumItem(kPower, "power");
+        mParameters.addEnumItem(kSquare, "square");
         mParameters.addEnumItem(kReconstruct, "reconstruct");
     }
     
@@ -100,16 +100,16 @@ public:
     void calculateGains(double *window, unsigned long begin, unsigned long end)
     {
         double linSum = 0.0;
-        double powSum = 0.0;
+        double sqrSum = 0.0;
         
         for (unsigned long i = begin; i < end; i++)
         {
             linSum += window[i];
-            powSum += window[i] * window[i];
+            sqrSum += window[i] * window[i];
         }
         
         mLinGain = linSum / static_cast<double>(end - begin);
-        mPowGain = powSum / static_cast<double>(end - begin);
+        mSqrGain = sqrSum / static_cast<double>(end - begin);
     }
     
     unsigned long sizeAdjustForEndpoints(unsigned long size) const
@@ -136,8 +136,8 @@ public:
         {
             case kOff:          return 1.0;
             case kLinear:       return 1.0 / mLinGain;
-            case kPower:        return 1.0 / mPowGain;
-            case kReconstruct:  return mLinGain / mPowGain;
+            case kSquare:       return 1.0 / mSqrGain;
+            case kReconstruct:  return mLinGain / mSqrGain;
         }
 
 		assert("This code should never run");
@@ -311,8 +311,8 @@ public:
         return "Sets the gain compensation (the window is divided by the compensated gain). "
         "off - no compensation is used. "
         "linear - compensate the linear gain of the window. "
-        "power - compensate the power gain of the window. "
-        "reconstruct - compensate the power gain divided by the linear gain. "
+        "square - compensate the gain of the window when applied twice (squared). "
+        "reconstruct - compensate the gain of the squared window divided by the linear gain. "
         "This last mode is suited to FFT output windows used with the same input window. "
         "Note that the gain of the window is calculated after applying any exponent.";
     }
@@ -333,7 +333,7 @@ private:
     double mValidParams[5];
     
     double mLinGain;
-    double mPowGain;
+    double mSqrGain;
     
     Generator *mGenerator;
 };
