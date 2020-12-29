@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -49,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -110,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,7 +147,31 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 525.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-2",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 465.0, 315.0, 36.0 ],
+									"text" : "Note that there aren't enough values to fill the last output frame (and any extra values will be ignored)."
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"arrows" : 2,
 									"border" : 4.0,
@@ -154,7 +180,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 137.75, 254.833328247070312, 19.25, 28.166671752929688 ]
+									"patching_rect" : [ 134.875, 243.0, 19.25, 28.166671752929688 ]
 								}
 
 							}
@@ -167,7 +193,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 435.0, 255.0, 19.25, 28.166671752929688 ]
+									"patching_rect" : [ 443.875, 243.0, 19.25, 28.166671752929688 ]
 								}
 
 							}
@@ -178,7 +204,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 377.0, 210.0, 158.0, 50.0 ],
+									"patching_rect" : [ 374.5, 187.0, 158.0, 50.0 ],
 									"text" : "Chopping the input frame into 2 equal parts of half the input frame each.",
 									"textjustification" : 1
 								}
@@ -191,7 +217,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 72.375, 209.833328247070312, 150.0, 50.0 ],
+									"patching_rect" : [ 69.5, 187.0, 150.0, 50.0 ],
 									"text" : "Chopping the input frame into 4 parts, 256 samples long",
 									"textjustification" : 1
 								}
@@ -457,7 +483,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 15.0, 140.0, 145.0, 23.0 ],
-									"text" : "fl.random~ /length 1024"
+									"text" : "fl.random~ /length 1000"
 								}
 
 							}
@@ -586,7 +612,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-51", 0 ],
-									"midpoints" : [ 24.5, 195.0, 363.0, 195.0, 363.0, 270.0, 384.5, 270.0 ],
+									"midpoints" : [ 24.5, 276.5, 384.5, 276.5 ],
 									"order" : 0,
 									"source" : [ "obj-7", 0 ]
 								}
@@ -676,6 +702,13 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
+				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "fl.random~.mxo",
 				"type" : "iLaX"
 			}

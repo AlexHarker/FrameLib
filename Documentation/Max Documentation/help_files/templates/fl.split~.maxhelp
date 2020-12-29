@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,7 +333,23 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "id": "obj-1",
+                                    "local": 1,
+                                    "maxclass": "ezdac~",
+                                    "numinlets": 2,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        435.0,
+                                        255.0,
+                                        45.0,
+                                        45.0
+                                    ]
+                                }
+                            },
                             {
                                 "box": {
                                     "ghostbar": 10,
@@ -392,10 +409,10 @@
                                     "patching_rect": [
                                         15.0,
                                         630.0,
-                                        585.0,
+                                        586.0,
                                         94.0
                                     ],
-                                    "text": "The example on the left 'fl.split~ 0.2 /units ratios' is seperating the frame into two parts. The first part output by the left most outlet is the length of the frame multipled by 0.2, so it results in the first 64 values of the frame. The rest of the frame is output from the right outlet and is 192 samples long.\n\nThe example of the right 'fl.split~ 150' is outputting the first 150 samples from the left outlet and the rest from the right outlet which should be the rest, which is 106 samples. "
+                                    "text": "The example on the left [fl.split~ 0.2 /units ratios] seperates the frame into two parts. The first part output by the left most outlet is the length of the frame multipled by 0.2, so it results in the first 64 values of the frame. The rest of the frame is output from the right outlet and is 192 samples long.\n\nThe example of the right [fl.split~ 150] outputs the first 150 samples from the left outlet and the rest from the right outlet which should be the rest, which is 106 samples. "
                                 }
                             },
                             {
@@ -485,8 +502,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        67.95001220703125,
-                                        108.89999389648438,
+                                        72.95001220703125,
+                                        109.89999389648438,
                                         53.04998779296875,
                                         13.20001220703125
                                     ]
@@ -790,7 +807,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        300.0,
+                                        302.0,
                                         142.5,
                                         276.95001220703125,
                                         50.0
@@ -805,8 +822,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        123.0,
-                                        105.0,
+                                        134.0,
+                                        106.0,
                                         278.0,
                                         21.0
                                     ],

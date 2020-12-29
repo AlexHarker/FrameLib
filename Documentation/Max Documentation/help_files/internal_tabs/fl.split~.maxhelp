@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 0,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,7 +147,19 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 435.0, 255.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"ghostbar" : 10,
 									"id" : "obj-46",
@@ -180,8 +194,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 630.0, 585.0, 94.0 ],
-									"text" : "The example on the left 'fl.split~ 0.2 /units ratios' is seperating the frame into two parts. The first part output by the left most outlet is the length of the frame multipled by 0.2, so it results in the first 64 values of the frame. The rest of the frame is output from the right outlet and is 192 samples long.\n\nThe example of the right 'fl.split~ 150' is outputting the first 150 samples from the left outlet and the rest from the right outlet which should be the rest, which is 106 samples. "
+									"patching_rect" : [ 15.0, 630.0, 586.0, 94.0 ],
+									"text" : "The example on the left [fl.split~ 0.2 /units ratios] seperates the frame into two parts. The first part output by the left most outlet is the length of the frame multipled by 0.2, so it results in the first 64 values of the frame. The rest of the frame is output from the right outlet and is 192 samples long.\n\nThe example of the right [fl.split~ 150] outputs the first 150 samples from the left outlet and the rest from the right outlet which should be the rest, which is 106 samples. "
 								}
 
 							}
@@ -243,7 +257,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 67.95001220703125, 108.899993896484375, 53.04998779296875, 13.20001220703125 ]
+									"patching_rect" : [ 72.95001220703125, 109.899993896484375, 53.04998779296875, 13.20001220703125 ]
 								}
 
 							}
@@ -428,7 +442,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 300.0, 142.5, 276.95001220703125, 50.0 ],
+									"patching_rect" : [ 302.0, 142.5, 276.95001220703125, 50.0 ],
 									"text" : "Generate a ramp from 0-1, 256 samples long. This is achieved with the /scale normalised parameter."
 								}
 
@@ -439,7 +453,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 123.0, 105.0, 278.0, 21.0 ],
+									"patching_rect" : [ 134.0, 106.0, 278.0, 21.0 ],
 									"text" : "Schedule a trigger frame at the start of time."
 								}
 
@@ -710,7 +724,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
