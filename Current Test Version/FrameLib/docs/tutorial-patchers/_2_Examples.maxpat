@@ -132,7 +132,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
+						"rect" : [ 34.0, 79.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -162,6 +162,7 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"title" : "Simple Freeze",
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-7",
@@ -769,6 +770,7 @@
 							}
 , 							{
 								"patchline" : 								{
+									"color" : [ 1.0, 0.0, 0.0, 1.0 ],
 									"destination" : [ "obj-15", 1 ],
 									"midpoints" : [ 590.5, 324.0, 214.0, 324.0 ],
 									"source" : [ "obj-28", 1 ]
@@ -1505,7 +1507,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
+						"rect" : [ 34.0, 105.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1939,6 +1941,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-20",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
@@ -2865,13 +2868,14 @@
 								"box" : 								{
 									"ghostbar" : 10,
 									"id" : "obj-8",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 311.0, 569.0, 298.0, 121.0 ],
-									"size" : 2708
+									"size" : 35
 								}
 
 							}
@@ -3289,8 +3293,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 295.999995814697286, 554.0, 298.0, 121.0 ],
-									"size" : 5594
+									"patching_rect" : [ 295.999995814697286, 554.0, 298.0, 121.0 ]
 								}
 
 							}
@@ -3838,6 +3841,7 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"title" : "Stochastic Freeze",
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-7",
@@ -4404,6 +4408,7 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
+									"color" : [ 1.0, 0.0, 0.0, 1.0 ],
 									"destination" : [ "obj-25", 1 ],
 									"midpoints" : [ 590.5, 397.5, 215.0, 397.5 ],
 									"source" : [ "obj-2", 1 ]

@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"title" : "Tutorial 10: Contexts",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -51,13 +52,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 723.0, 694.0 ],
+						"rect" : [ 34.0, 105.0, 723.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -85,6 +86,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"ghostbar" : 100,
@@ -129,11 +131,10 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-33",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 62.0, 510.0, 600.0, 33.0 ],
+									"patching_rect" : [ 62.0, 510.0, 613.0, 20.0 ],
 									"text" : "The two contexts foo and bar, with the same named fl.store~ and fl.recall~ 'storage' don't interfere with each other."
 								}
 
@@ -353,8 +354,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 60.0, 694.0, 53.0 ],
-									"text" : "The fl.store~ and fl.recall~ objects are two objects that are linked by their names. They are also bounded to the context they belong to. This means that an fl.recall~ and fl.store~ object pair with the same name can be unique if they exist in different contexts."
+									"patching_rect" : [ 15.0, 60.0, 700.0, 53.0 ],
+									"text" : "The fl.store~ and fl.recall~ objects are two objects that are linked by their names. They are also bound to the context they belong to (in which resources are alloacted). This means that an fl.recall~ and fl.store~ object pair (or group) with the same name use unique storage if they exist in different contexts."
 								}
 
 							}
@@ -585,8 +586,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -622,7 +623,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 210.0, 30.0, 78.0, 21.0 ],
+					"patching_rect" : [ 186.0, 30.0, 78.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -645,13 +646,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 723.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 723.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -679,6 +680,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Contexts",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -840,8 +842,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 60.0, 694.0, 209.0 ],
-									"text" : "Up until now the concept of a FrameLib context hasn't been explained or even made explicit to you but they are fundamental to know in order to access more advanced capabilities that you're about to learn. Every FrameLib object, or set of objects that are connected, belongs to a 'context'.\n\n The simplest way to create a new context is to give a new, unique string as the @id of the top-most scheduler. This @id propogates through the network so there is no benefit to setting it for every object. It is worth re-iterating here again that the TOP-MOST scheduler has the context set with @id, and this propogates downwards to all connected FrameLib objects. \n\nBy default, there is only one context per top-level patcher. The only exception to this is if object are within a poly~ which can be thought of as an independent highest-level patcher for Framelib objects and thus a 'unique' default context. The other thing to note is that the realtime and non-realtime network with the same @id are actually two different contexts. This is covered in detail in tutorial 11."
+									"patching_rect" : [ 15.0, 60.0, 696.0, 209.0 ],
+									"text" : "Up until now the concept of a FrameLib context hasn't been explained or even made explicit to you but they are fundamental to know in order to access more advanced capabilities that you're about to learn. Every FrameLib object, or set of objects that are connected, belongs to a 'context'.\n\n The simplest way to create a new context is to give a new, unique string as the @id of a top-most scheduler. This @id propogates through the network so there is no benefit to setting it for every object. However, it is worth making clear here that ALL top-most schedulers should have the context set with @id, and this propogates downwards to all connected FrameLib objects. If not all @ids are set the network will not connect correctly.\n\nBy default, there is only one context per top-level patcher. The only exception to this is if object are within a poly~ which can be thought of as an independent highest-level patcher for Framelib objects and thus a 'unique' default context. The other thing to note is that the realtime and non-realtime network with the same @id are actually two different contexts. This is covered in detail in tutorial 11."
 								}
 
 							}
@@ -1006,8 +1008,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1043,7 +1045,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 144.0, 30.0, 61.0, 21.0 ],
+					"patching_rect" : [ 120.0, 30.0, 61.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1066,7 +1068,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1100,7 +1102,8 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"title" : "Non-realtime basics",
+						"assistshowspatchername" : 0,
+						"title" : "Context Basics",
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgmode" : 0,
@@ -1232,8 +1235,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1269,7 +1272,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 15.0, 30.0, 115.0, 21.0 ],
+					"patching_rect" : [ 15.0, 30.0, 91.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1277,7 +1280,7 @@
 						"tags" : ""
 					}
 ,
-					"text" : "p Non-realtime basics"
+					"text" : "p Context Basics"
 				}
 
 			}
@@ -1285,14 +1288,14 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1

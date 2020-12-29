@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"title" : "Tutorial 6: Building a granular synthesiser from scratch",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -100,13 +101,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 1029.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1029.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -134,7 +135,8 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"globalpatchername" : "u876003977",
+						"assistshowspatchername" : 0,
+						"globalpatchername" : "u876003977[1]",
 						"title" : "Changing Properties (6)",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -148,7 +150,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -181,6 +183,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"comment" : "",
@@ -284,18 +287,18 @@
 									"outlettype" : [ "", "", "", "" ],
 									"patching_rect" : [ 30.0, 690.0, 56.0, 22.0 ],
 									"restore" : 									{
-										"f_interval_lfo" : [ 3.086614173228347 ],
-										"f_interval_range" : [ 48, 272 ],
-										"f_length_lfo" : [ 2.645669291338581 ],
-										"f_length_range" : [ 0.853448275862069, 2.405172413793104 ],
-										"f_offset_lfo" : [ 0.188976377952756 ],
-										"f_offset_range" : [ 924.120689655172441, 1872.560344827586277 ],
-										"f_reverse_lfo" : [ 0.724409448818897 ],
-										"f_reverse_range" : [ 0.206896551724138, 0.801724137931034 ]
+										"f_interval_lfo" : [ 1.354330708661416 ],
+										"f_interval_range" : [ 241, 303 ],
+										"f_length_lfo" : [ 2.58267716535433 ],
+										"f_length_range" : [ 0.28448275862069, 2.327586206896552 ],
+										"f_offset_lfo" : [ 0.377952755905512 ],
+										"f_offset_range" : [ 0.0, 2821.0 ],
+										"f_reverse_lfo" : [ 0.818897637795275 ],
+										"f_reverse_range" : [ 0.96551724137931, 1.0 ]
 									}
 ,
 									"text" : "autopattr",
-									"varname" : "u596006482"
+									"varname" : "u260012167"
 								}
 
 							}
@@ -329,26 +332,16 @@
 									"patching_rect" : [ 300.0, 271.0, 120.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_type" : 0,
-											"parameter_unitstyle" : 3,
 											"parameter_longname" : "live.dial[1]",
 											"parameter_mmax" : 4.0,
-											"parameter_shortname" : "LFO Interval | Rate"
+											"parameter_shortname" : "LFO Interval | Rate",
+											"parameter_type" : 0,
+											"parameter_unitstyle" : 3
 										}
 
 									}
 ,
 									"varname" : "f_interval_lfo"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-7",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 240.0, 165.0, 5.0, 420.0 ]
 								}
 
 							}
@@ -364,7 +357,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -397,6 +390,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"comment" : "Parameters",
@@ -450,7 +444,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 3,
+															"revision" : 5,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -483,6 +477,7 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
+														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"color" : [ 0.96078431372549, 0.827450980392157, 0.156862745098039, 1.0 ],
@@ -835,7 +830,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 3,
+															"revision" : 5,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -868,6 +863,7 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
+														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"id" : "obj-12",
@@ -1255,13 +1251,13 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 34.0, 80.0, 542.0, 331.0 ],
+										"rect" : [ 69.0, 112.0, 538.0, 334.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -1288,6 +1284,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"comment" : "Parameters",
@@ -1310,7 +1307,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 0,
 													"patching_rect" : [ 285.0, 45.0, 234.0, 268.0 ],
-													"text" : "This part of the network adds an offset to our frames generated by fl.ramp~ (just above) to look at different parts of our buffer.\n\nIf the offset exceeds the boundaries of the buffer it wraps around to the opposite end. This might cause some frames to contain disjointed audio, but it prevents the situation that the read frame refers to parts of a buffer that might not exist. There are other solutions to this problem, such as never generating a frame that would be outside the boundaries of the buffer in the first place, but this creates more patching that could potential confuse this example."
+													"text" : "This part of the network adds an offset to the frames generated by fl.ramp~ (in the subpatcher just above) to read from different parts of our buffer.\n\nIf the offset exceeds the boundaries of the buffer it wraps around to the opposite end. This might cause some frames to contain disjointed audio, but it prevents the situation that the read frame refers to parts of a buffer that might not exist. There are other solutions to this problem, such as never generating a frame that would be outside the boundaries of the buffer in the first place, but this creates more patching that could potential confuse this example."
 												}
 
 											}
@@ -1341,13 +1338,13 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 3,
+															"revision" : 5,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
 ,
 														"classnamespace" : "box",
-														"rect" : [ 545.0, 205.0, 602.0, 592.0 ],
+														"rect" : [ 315.0, 156.0, 602.0, 592.0 ],
 														"bglocked" : 0,
 														"openinpresentation" : 0,
 														"default_fontsize" : 12.0,
@@ -1374,6 +1371,7 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
+														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"color" : [ 0.952941176470588, 0.564705882352941, 0.098039215686275, 1.0 ],
@@ -1421,7 +1419,7 @@
 																	"maxclass" : "comment",
 																	"numinlets" : 1,
 																	"numoutlets" : 0,
-																	"patching_rect" : [ 278.0, 377.0, 256.0, 36.0 ],
+																	"patching_rect" : [ 284.0, 377.0, 256.0, 36.0 ],
 																	"text" : "Tag the first value as the out_1 parameter and the second as the out_2 parameter"
 																}
 
@@ -1620,6 +1618,7 @@
 , 															{
 																"patchline" : 																{
 																	"destination" : [ "obj-12", 1 ],
+																	"midpoints" : [ 299.5, 362.0, 207.166666666666657, 362.0 ],
 																	"source" : [ "obj-11", 1 ]
 																}
 
@@ -1648,6 +1647,7 @@
 , 															{
 																"patchline" : 																{
 																	"destination" : [ "obj-10", 0 ],
+																	"midpoints" : [ 76.0, 256.0, 174.5, 256.0 ],
 																	"order" : 0,
 																	"source" : [ "obj-18", 0 ]
 																}
@@ -1864,7 +1864,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1897,6 +1897,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"comment" : "",
@@ -1918,7 +1919,7 @@
 													"maxclass" : "comment",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 270.0, 225.0, 173.0, 65.0 ],
+													"patching_rect" : [ 254.0, 225.0, 173.0, 65.0 ],
 													"text" : "This part of the network dictates how often a new frame is generated and how long that frame should be."
 												}
 
@@ -1937,7 +1938,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 3,
+															"revision" : 5,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -1970,7 +1971,7 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
-														"visible" : 1,
+														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"color" : [ 0.925490196078431, 0.364705882352941, 0.341176470588235, 1.0 ],
@@ -2018,7 +2019,7 @@
 																	"maxclass" : "comment",
 																	"numinlets" : 1,
 																	"numoutlets" : 0,
-																	"patching_rect" : [ 179.75, 430.0, 362.0, 65.0 ],
+																	"patching_rect" : [ 180.0, 430.0, 362.0, 65.0 ],
 																	"text" : "fl.map~ is the FrameLib equivalent of the Max scale object.\n\nWith these parameters we are linearly scaling input values of -1 1 to the values of our out_1 and out_2 parameter."
 																}
 
@@ -2055,7 +2056,7 @@
 																	"maxclass" : "comment",
 																	"numinlets" : 1,
 																	"numoutlets" : 0,
-																	"patching_rect" : [ 236.75, 276.0, 190.0, 21.0 ],
+																	"patching_rect" : [ 253.25, 276.0, 190.0, 21.0 ],
 																	"text" : "Convert list to a frame of size 2"
 																}
 
@@ -2338,13 +2339,13 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 3,
+															"revision" : 5,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
 ,
 														"classnamespace" : "box",
-														"rect" : [ 59.0, 103.0, 631.0, 687.0 ],
+														"rect" : [ 59.0, 103.0, 656.0, 686.0 ],
 														"bglocked" : 0,
 														"openinpresentation" : 0,
 														"default_fontsize" : 12.0,
@@ -2371,6 +2372,7 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
+														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"color" : [ 0.701960784313725, 0.415686274509804, 0.886274509803922, 1.0 ],
@@ -2467,7 +2469,7 @@
 																	"maxclass" : "comment",
 																	"numinlets" : 1,
 																	"numoutlets" : 0,
-																	"patching_rect" : [ 273.75, 355.0, 256.0, 36.0 ],
+																	"patching_rect" : [ 277.75, 355.0, 256.0, 36.0 ],
 																	"text" : "Tag the first value as the out_1 parameter and the second as the out_2 parameter"
 																}
 
@@ -2479,7 +2481,7 @@
 																	"maxclass" : "comment",
 																	"numinlets" : 1,
 																	"numoutlets" : 0,
-																	"patching_rect" : [ 304.75, 303.0, 330.0, 21.0 ],
+																	"patching_rect" : [ 314.75, 303.0, 330.0, 21.0 ],
 																	"text" : "Split the frame at the halfway point (basically unpack f f)"
 																}
 
@@ -2693,6 +2695,7 @@
 , 															{
 																"patchline" : 																{
 																	"destination" : [ "obj-12", 1 ],
+																	"midpoints" : [ 293.25, 340.0, 200.916666666666657, 340.0 ],
 																	"source" : [ "obj-11", 1 ]
 																}
 
@@ -2737,6 +2740,7 @@
 , 															{
 																"patchline" : 																{
 																	"destination" : [ "obj-3", 0 ],
+																	"midpoints" : [ 24.5, 461.75, 58.5, 461.75 ],
 																	"order" : 0,
 																	"source" : [ "obj-2", 0 ]
 																}
@@ -2858,8 +2862,8 @@
 , 															{
 																"name" : "newobjYellow-1",
 																"default" : 																{
-																	"fontsize" : [ 12.059008 ],
-																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+																	"fontsize" : [ 12.059008 ]
 																}
 ,
 																"parentstyle" : "",
@@ -3148,7 +3152,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 172.75, 195.0, 23.0 ],
+									"patching_rect" : [ 30.0, 172.75, 183.0, 23.0 ],
 									"text" : "Granular Synthesis Network"
 								}
 
@@ -3203,8 +3207,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 681.0, 100.0 ],
-									"text" : "More variation! The interval, length, chance to reverse and offset are all modulated by some low-frequency oscillators. LFO sub patchers have been highlighted in various colours to make it more easy to track where the controls go.\n\nTo understand what is happening here, first look at the 3 numbered sub-patchers on the left hand side. This will give you an idea for the basic structure of the network which is producing granular synthesis. Then, start modifying the parameters on the right to see how these controls affect the sound output."
+									"patching_rect" : [ 15.0, 53.0, 705.0, 100.0 ],
+									"text" : "More variation! The interval, length, probability of reversal and offset are all modulated by some low-frequency oscillators. LFO sub patchers have been highlighted in various colours to make it more easy to track where the controls go.\n\nTo understand what is happening here, first look at the 3 numbered sub-patchers on the left hand side. This will give you an idea for the basic structure of the network which is producing granular synthesis. Then, start modifying the parameters on the right to see how these controls affect the sound output."
 								}
 
 							}
@@ -3321,7 +3325,7 @@
 									"background" : 1,
 									"bgcolor" : [ 0.2, 0.2, 0.2, 0.0 ],
 									"border" : 2,
-									"bordercolor" : [ 0.2, 0.2, 0.2, 1.0 ],
+									"bordercolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ],
 									"id" : "obj-6",
 									"maxclass" : "panel",
 									"mode" : 0,
@@ -3434,11 +3438,11 @@
 									"patching_rect" : [ 600.0, 420.5, 120.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_type" : 0,
-											"parameter_unitstyle" : 3,
 											"parameter_longname" : "live.dial[4]",
 											"parameter_mmax" : 4.0,
-											"parameter_shortname" : "LFO Offset | Rate"
+											"parameter_shortname" : "LFO Offset | Rate",
+											"parameter_type" : 0,
+											"parameter_unitstyle" : 3
 										}
 
 									}
@@ -3474,7 +3478,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 727.5, 271.0, 127.5, 21.0 ],
-									"text" : "LFO Reverse | Chance",
+									"text" : "LFO Reverse | Prob",
 									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 									"textjustification" : 1
 								}
@@ -3495,11 +3499,11 @@
 									"patching_rect" : [ 600.0, 271.0, 120.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_type" : 0,
-											"parameter_unitstyle" : 3,
 											"parameter_longname" : "live.dial[3]",
 											"parameter_mmax" : 4.0,
-											"parameter_shortname" : "LFO Reverse | Rate"
+											"parameter_shortname" : "LFO Reverse | Rate",
+											"parameter_type" : 0,
+											"parameter_unitstyle" : 3
 										}
 
 									}
@@ -3556,11 +3560,11 @@
 									"patching_rect" : [ 300.0, 420.15476190476187, 120.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_type" : 0,
-											"parameter_unitstyle" : 3,
 											"parameter_longname" : "live.dial[2]",
 											"parameter_mmax" : 4.0,
-											"parameter_shortname" : "LFO Length | Rate"
+											"parameter_shortname" : "LFO Length | Rate",
+											"parameter_type" : 0,
+											"parameter_unitstyle" : 3
 										}
 
 									}
@@ -3778,7 +3782,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-16", 0 ],
-									"midpoints" : [ 279.5, 599.25, 232.0, 599.25, 232.0, 199.0, 39.5, 199.0 ],
+									"midpoints" : [ 279.5, 599.25, 247.0, 599.25, 247.0, 199.0, 39.5, 199.0 ],
 									"order" : 2,
 									"source" : [ "obj-42", 0 ]
 								}
@@ -3787,7 +3791,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-23", 1 ],
-									"midpoints" : [ 279.5, 599.75, 232.0, 599.75, 232.0, 249.0, 101.5, 249.0 ],
+									"midpoints" : [ 279.5, 599.75, 247.0, 599.75, 247.0, 249.0, 101.5, 249.0 ],
 									"order" : 1,
 									"source" : [ "obj-42", 0 ]
 								}
@@ -3796,7 +3800,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-31", 1 ],
-									"midpoints" : [ 279.5, 599.75, 232.75, 599.75, 232.75, 288.0, 112.5, 288.0 ],
+									"midpoints" : [ 279.5, 599.75, 247.75, 599.75, 247.75, 288.0, 112.5, 288.0 ],
 									"order" : 0,
 									"source" : [ "obj-42", 0 ]
 								}
@@ -3909,8 +3913,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3950,7 +3954,7 @@
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
-						"globalpatchername" : "u876003977",
+						"globalpatchername" : "u876003977[1]",
 						"tags" : ""
 					}
 ,
@@ -3970,7 +3974,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -4004,6 +4008,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Changing Properties (5)",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -4061,11 +4066,11 @@
 									"patching_rect" : [ 112.0, 345.0, 50.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_type" : 0,
-											"parameter_unitstyle" : 1,
 											"parameter_longname" : "live.dial",
 											"parameter_mmax" : 100.0,
-											"parameter_shortname" : "Reverse Chance"
+											"parameter_shortname" : "Reverse Chance",
+											"parameter_type" : 0,
+											"parameter_unitstyle" : 1
 										}
 
 									}
@@ -4227,7 +4232,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -4260,6 +4265,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -4572,7 +4578,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -4605,6 +4611,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -4683,7 +4690,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 3,
+															"revision" : 5,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -4716,6 +4723,7 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
+														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"fontsize" : 13.0,
@@ -4729,7 +4737,7 @@
 																		"appversion" : 																		{
 																			"major" : 8,
 																			"minor" : 1,
-																			"revision" : 3,
+																			"revision" : 5,
 																			"architecture" : "x64",
 																			"modernui" : 1
 																		}
@@ -4762,6 +4770,7 @@
 																		"tags" : "",
 																		"style" : "",
 																		"subpatcher_template" : "default",
+																		"assistshowspatchername" : 0,
 																		"boxes" : [ 																			{
 																				"box" : 																				{
 																					"fontsize" : 13.0,
@@ -5033,8 +5042,8 @@
 , 															{
 																"name" : "newobjYellow-1",
 																"default" : 																{
-																	"fontsize" : [ 12.059008 ],
-																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+																	"fontsize" : [ 12.059008 ]
 																}
 ,
 																"parentstyle" : "",
@@ -5052,7 +5061,7 @@
  ]
 													}
 ,
-													"patching_rect" : [ 162.800003000000004, 76.0, 87.0, 22.0 ],
+													"patching_rect" : [ 162.800003000000004, 76.0, 85.0, 22.0 ],
 													"saved_object_attributes" : 													{
 														"description" : "",
 														"digest" : "",
@@ -5060,7 +5069,7 @@
 														"tags" : ""
 													}
 ,
-													"text" : "p GrainLength"
+													"text" : "p grain_length"
 												}
 
 											}
@@ -5223,8 +5232,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -5268,7 +5277,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -5301,6 +5310,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -5470,8 +5480,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 600.0, 53.0 ],
-									"text" : "More variation! Each time a grain is generated there is a chance for the lookup frame for fl.read~ to be reversed, resulting in backwards playback. This demonstrates how the input frame of fl.read~ affects how audio is generated and a manipulation you might apply in order to create something more bespoke."
+									"patching_rect" : [ 15.0, 53.0, 675.0, 53.0 ],
+									"text" : "More variation! Each time a grain is generated there is a probability that the lookup frame for fl.read~ will be reversed, resulting in backwards playback. This demonstrates how the input frame of fl.read~ affects how audio is generated and you can imagine other manipulations you might apply in order to create something more bespoke."
 								}
 
 							}
@@ -5522,6 +5532,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-19", 0 ],
+									"midpoints" : [ 24.5, 185.9375, 147.5, 185.9375 ],
 									"order" : 0,
 									"source" : [ "obj-10", 0 ]
 								}
@@ -5690,8 +5701,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -5732,7 +5743,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -5766,6 +5777,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Changing Properties (4)",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -5992,7 +6004,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -6025,6 +6037,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -6104,7 +6117,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 3,
+															"revision" : 5,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -6137,6 +6150,7 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
+														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"fontsize" : 13.0,
@@ -6150,7 +6164,7 @@
 																		"appversion" : 																		{
 																			"major" : 8,
 																			"minor" : 1,
-																			"revision" : 3,
+																			"revision" : 5,
 																			"architecture" : "x64",
 																			"modernui" : 1
 																		}
@@ -6183,6 +6197,7 @@
 																		"tags" : "",
 																		"style" : "",
 																		"subpatcher_template" : "default",
+																		"assistshowspatchername" : 0,
 																		"boxes" : [ 																			{
 																				"box" : 																				{
 																					"fontsize" : 13.0,
@@ -6454,8 +6469,8 @@
 , 															{
 																"name" : "newobjYellow-1",
 																"default" : 																{
-																	"fontsize" : [ 12.059008 ],
-																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+																	"fontsize" : [ 12.059008 ]
 																}
 ,
 																"parentstyle" : "",
@@ -6473,7 +6488,7 @@
  ]
 													}
 ,
-													"patching_rect" : [ 144.800003000000004, 76.0, 94.0, 23.0 ],
+													"patching_rect" : [ 144.800003000000004, 76.0, 91.0, 23.0 ],
 													"saved_object_attributes" : 													{
 														"description" : "",
 														"digest" : "",
@@ -6481,7 +6496,7 @@
 														"tags" : ""
 													}
 ,
-													"text" : "p GrainLength"
+													"text" : "p grain_length"
 												}
 
 											}
@@ -6644,8 +6659,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -6689,7 +6704,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -6722,6 +6737,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -6904,8 +6920,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 533.0, 84.0 ],
-									"text" : "Let's create some variation to the grain creation process using randomness. Instead of just playing back the entire selection we've drawn on the waveform~ object, let's make it so that a random position is selected within this area and played back from. \n\nGo through the GrainLength and GrainOffset sub patchers to see what has changed."
+									"patching_rect" : [ 15.0, 53.0, 645.0, 84.0 ],
+									"text" : "Let's create some variation to the grain creation process using randomness. Instead of just playing back the entire selection we've drawn on the waveform~ object, let's make it so that a random position is selected within this area and played back from. \n\nGo through the grain_offset and internal grain_length  sub patchers to see what has changed."
 								}
 
 							}
@@ -7120,8 +7136,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -7162,7 +7178,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -7196,6 +7212,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Changing Properties (3)",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -7217,7 +7234,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -7250,6 +7267,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"comment" : "",
@@ -7342,7 +7360,6 @@
 , 											{
 												"box" : 												{
 													"buffername" : "fl.tut.6.gran",
-													"chanoffset" : 0,
 													"id" : "obj-25",
 													"labels" : 0,
 													"maxclass" : "waveform~",
@@ -7449,8 +7466,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -7561,7 +7578,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -7594,6 +7611,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -7727,7 +7745,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -7760,6 +7778,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -7773,7 +7792,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 3,
+															"revision" : 5,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -7806,6 +7825,7 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
+														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"fontsize" : 13.0,
@@ -8097,8 +8117,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -8142,7 +8162,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -8175,6 +8195,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-24",
@@ -8367,7 +8388,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 53.0, 520.0, 38.0 ],
-									"text" : "Let's tidy up the patch a bit and maybe encapsulate some things to make it more space friendly. Let's also add a neat GUI to select portions of our 'jongles' buffer a bit easier."
+									"text" : "Let's tidy up the patch a bit and maybe encapsulate some things to make it more space friendly. Let's also add a neat GUI to select portions of our buffer a bit easier to do."
 								}
 
 							}
@@ -8531,8 +8552,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -8573,7 +8594,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -8607,6 +8628,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Changing Properties (2)",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -8695,7 +8717,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -8728,6 +8750,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-37",
@@ -9540,8 +9563,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -9582,7 +9605,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -9616,8 +9639,36 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Changing Properties (1)",
 						"boxes" : [ 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-12",
+									"justification" : 1,
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 90.0, 483.0, 37.25, 15.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 2,
+									"fontsize" : 13.0,
+									"id" : "obj-15",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 135.0, 480.0, 464.0, 21.0 ],
+									"text" : "In the last tab we didn't use a window on our grain. Now we've added one here.",
+									"textcolor" : [ 0.82745099067688, 0.031372550874949, 0.031372550874949, 1.0 ]
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-4",
 									"maxclass" : "newobj",
@@ -9667,12 +9718,12 @@
 									"fontface" : 2,
 									"fontsize" : 13.0,
 									"id" : "obj-13",
-									"linecount" : 6,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 225.0, 144.5, 328.0, 94.0 ],
-									"text" : "Look out! This fl.perblock~ tells fl.frommax~ to sample the input from the Max domain. Without it we would not be able to change the interval of the downstream scheduler. Always remember to use a scheduler on all fl.frommax~ objects or your parameter control won't work!",
+									"patching_rect" : [ 225.0, 144.5, 347.0, 79.0 ],
+									"text" : "Take note! This fl.perblock~ tells fl.frommax~ to sample the input from the Max domain. Without it we would not be able to change the interval of the downstream scheduler. Always remember to use a scheduler on all fl.frommax~ objects or your parameter control won't work!",
 									"textcolor" : [ 0.82745099067688, 0.031372550874949, 0.031372550874949, 1.0 ]
 								}
 
@@ -9854,7 +9905,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 53.0, 614.0, 69.0 ],
-									"text" : "Now we have successfully created a grain let's add functionality so that we can change how often a new grain is generated and how long the grain will be.\n\nFirst let's make some controllers in native Max to adjust these parameters."
+									"text" : "Now we have successfully created a grain let's add functionality so that we can change how often a new grain is generated and how long the grain will be.\n\nFirst let's make some controls in native Max to adjust these parameters."
 								}
 
 							}
@@ -9986,8 +10037,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -10028,7 +10079,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -10062,6 +10113,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Creating a Grain",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -10093,7 +10145,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 547.25, 375.0, 440.0, 334.0 ],
-									"text" : "1. Our scheduler is set to output a trigger frame every 500 milliseconds. That one is easy to understand.\n\n2. fl.ramp~ is going to create a frame which has a length of 200 set by the /length parameter. The /units parameter tells fl.ramp~ how to interpret the length parameter, in this case the object will know we are specifiying 200 milliseconds and not samples. Finally, the /scale parameter dictates how fl.ramp~ should scale its output. The /scale function will remap the output to whatever units of time you would like. The combination of these parameters is effectively asking these three commands: I would like a frame of numbers that relate to samples (/scale), that directly reflect 200 (/length) milliseconds (units) of time. The final result is actually a list which is 8820 samples long at 44.1khz.\n\n3. In this case, fl.ramp~ is providing us with a frame containing sample positions so we tell fl.read~ to interpret the incoming frame as /units samples. In the small snippet to the right, the /scale is set to milliseconds and the /units for fl.read~ are set to milliseconds. This is an equivalent method of patching the fl.ramp~ / fl.read~ combination for creating grains where everything would be specified in millisecond values, rather than samples."
+									"text" : "1. Our scheduler is set to output a trigger frame every 500 milliseconds. That one is easy to understand.\n\n2. fl.ramp~ is going to create a frame which has a length of 200 set by the /length parameter. The /units parameter tells fl.ramp~ how to interpret the length parameter, in this case the object will know we are specifiying 200 milliseconds and not samples. Finally, the /scale parameter dictates how fl.ramp~ should scale its output. The /scale function will remap the output to whatever units of time you would like. The combination of these parameters is effectively asking these three commands: I would like a frame of numbers that relate to samples (/scale), that directly reflect 200 (/length) milliseconds (units) of time. The final result is actually a list which is 8820 samples long at 44.1khz.\n\n3. In this case, fl.ramp~ is providing us with a frame containing sample positions so we tell fl.read~ to interpret the incoming frame as /units samples. In the small snippet to the right, the /scale is set to milliseconds and the /units for fl.read~ are set to milliseconds. There is an equivalent method of patching the fl.ramp~ / fl.read~ combination for creating grains where everything would be specified in millisecond values, rather than samples (it's simply a matter of changing some parameters)."
 								}
 
 							}
@@ -10134,7 +10186,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 180.0, 551.0, 58.0, 22.0 ],
+									"patching_rect" : [ 235.0, 551.0, 58.0, 22.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -10147,7 +10199,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 240.0, 495.5, 161.75, 36.0 ],
+									"patching_rect" : [ 251.25, 495.5, 161.75, 36.0 ],
 									"text" : "Extract the samples from a buffer with fl.read~"
 								}
 
@@ -10250,8 +10302,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 54.0, 960.0, 303.0 ],
-									"text" : "Granular synthesis operates on the concept of a grain. Grains are often short and derived from source material such as a buffer or sometimes a real-time input. \n\nWe have two primary concerns when generating grains:\n\n1. How often a grain be generated\n2. How long a grain can be, at any given time.\n\nRemember, nothing in FrameLib happens without a scheduler. This component of a network dictates how often 'something' will happen, and so rate of the scheduler will determine how often a grain is generated.\n\nNext, we need to we need to ask fl.read~ for some samples at specific positions. We will use fl.ramp~ for this purpose, an object which generates frames containing consecutive incremental values (0, 1, 2, 3, 4). The frame created by fl.ramp~ is going to be sent to the to the fl.read~ object which interprets these numbers as specific audio samples to retrieve from the buffer it is pointed to. You can think of the relationship between fl.ramp~ and fl.read~ as something very similar to the one bewteen uzi and peek~ for extracting buffer values. \n\nThe confusing aspect of this is that although FrameLib would like you to specify everything in samples, it is musically difficult to conceive of time in terms of how many samples will pass. In response to this, we are going to specify everything in milliseconds and let FrameLib convert these values to samples where it makes sense to forget about the meaning of the numbers. This lets us think about everything in durations that make intuitive sense, however, a caveat of working in this way is that we have to tell all of the corresponding objects what kind of units they should expect. Let's break down the example on the right to explain this further."
+									"patching_rect" : [ 15.0, 54.0, 965.0, 303.0 ],
+									"text" : "Granular synthesis operates using the concept of a grain. Grains are often short and derived from source material such as a buffer or sometimes a real-time input. \n\nWe have two primary concerns when generating grains:\n\n1. How often a grain will be generated\n2. How long each grain will b.\n\nRemember, nothing in FrameLib happens without a scheduler. This component of a network dictates how often 'something' will happen, and so rate of the scheduler will determine how often a grain is generated.\n\nNext, we need to we need to ask fl.read~ for some samples at specific positions. We will use fl.ramp~ for this purpose - an object which generates frames containing consecutive incremental values (e.g. 0, 1, 2, 3, 4). The frame created by fl.ramp~ is going to be sent to the to the fl.read~ object which interprets these numbers as specific audio samples to retrieve from the buffer it is pointed to. You can think of the relationship between fl.ramp~ and fl.read~ as something very similar to the one bewteen line~ and play~ for playing back audio, or uzi and peek~ for writing/extracting buffer values. \n\nThe confusing aspect of this is that although fl.read~ defaults to  to specifing positions in samples, it is often musically difficult to conceive of time in terms of how many samples will pass. Because of this, we are going to specify everything in milliseconds and let FrameLib convert these values to samples internally. This lets us think about everything in durations that make intuitive sense. However, a caveat of working in this way is that we have to tell all of the corresponding objects what kind of units they should expect. Let's break down the example on the right to explain this further."
 								}
 
 							}
@@ -10295,7 +10347,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 403.75, 502.0, 20.0, 20.0 ],
+									"patching_rect" : [ 415.0, 502.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -10372,7 +10424,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-42", 0 ],
-									"midpoints" : [ 39.5, 475.0, 21.0, 475.0, 21.0, 538.0, 189.5, 538.0 ],
+									"midpoints" : [ 39.5, 485.5, 244.5, 485.5 ],
 									"order" : 0,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -10389,6 +10441,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-43", 0 ],
+									"midpoints" : [ 244.5, 585.5, 189.5, 585.5 ],
 									"source" : [ "obj-42", 0 ]
 								}
 
@@ -10436,8 +10489,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -10478,7 +10531,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -10512,6 +10565,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "fl.read~",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -10646,8 +10700,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 665.0, 53.0 ],
-									"text" : "The fl.read~ object reads data from a normal Max buffer. Like the play~, groove~, index~ or poke~ objects fl.read~ must be pointed to a named buffer~ object. By default it reads from buffers sample by sample, but it can also function in milliseconds as a format, set by the \"units\" parameter."
+									"patching_rect" : [ 15.0, 53.0, 669.0, 53.0 ],
+									"text" : "The fl.read~ object reads data from a normal Max buffer. Like the play~, groove~, index~ or poke~ objects fl.read~ must be pointed to a named buffer~ object. By default it reads from buffers using a sample position input, but it can also function in milliseconds as a format, set by the \"units\" parameter."
 								}
 
 							}
@@ -10773,7 +10827,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 15.0, 440.0, 30.0 ],
-									"text" : "fl.read~ - how to"
+									"text" : "fl.read~: An Introduction"
 								}
 
 							}
@@ -10959,8 +11013,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -11001,13 +11055,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1029.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 1029.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -11035,6 +11089,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Tutorial 6",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -11072,12 +11127,13 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 13.0,
 									"id" : "obj-5",
-									"linecount" : 19,
+									"linecount" : 20,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 116.0, 645.0, 303.0 ],
-									"text" : "So far we've covered the key principles of FrameLib including:\n\n1. Scheduling (fl.interval~ mainly)\n\n2. Parameters and tagging (fl.tag~, fl.frommax~ /mode params)\n\n3. Converting data to and from frames (fl.tomax~, fl.frommax~, fl.source~, fl.sink~)\n\n4. Several generator objects (fl.random~, fl.uniform~, fl.ramp~)\n\nIf you need a refresher on how any of those work revisit the tutorials and additionally look at the help files for each object.\n\nNow that we've become familiar with these four areas it's time to make something where they work together. In the very first tutorial there is a granulator example which we're going to build step-by-step. One tool that we're missing currently is something to read audio from buffers and output it as frames. We will use fl.read~ for this purpose.\n\nStart with the next tab and move along through the stages while you build your own granulator in FrameLib."
+									"patching_rect" : [ 180.0, 116.0, 645.0, 318.0 ],
+									"presentation_linecount" : 20,
+									"text" : "So far we've covered the key principles of FrameLib including:\n\n1. Scheduling (fl.interval~ mainly)\n\n2. Parameters and tagging (fl.tag~, fl.frommax~ /mode params)\n\n3. Converting data to and from frames (fl.frommax~, fl.tomax~, fl.source~, fl.sink~)\n\n4. Several generator objects (fl.random~, fl.uniform~, fl.ramp~)\n\nIf you need a refresher on how any of those work revisit the tutorials and additionally look at the help files for each object.\n\nNow that we've become familiar with these four areas it's time to make something where they work together. In the very first tutorial there is a granular synthesis example which we're going to build and then modify step-by-step. One tool that we're missing currently is something to read audio from buffers and output it as frames. We will use fl.read~ for this purpose.\n\nStart with the next tab and move along through the stages one-by-one while you build your own granular synthesis patch in FrameLib."
 								}
 
 							}
@@ -11168,8 +11224,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -11241,46 +11297,46 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-6::obj-15::obj-50" : [ "live.gain~[11]", "Volume", 0 ],
 			"obj-10::obj-2::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
-			"obj-7::obj-38" : [ "live.dial", "Reverse Chance", 0 ],
 			"obj-1::obj-9::obj-50" : [ "live.gain~[9]", "Volume", 0 ],
-			"obj-7::obj-15::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
-			"obj-8::obj-67" : [ "live.dial[2]", "LFO Length | Rate", 0 ],
-			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
-			"obj-8::obj-70" : [ "live.dial[3]", "LFO Reverse | Rate", 0 ],
-			"obj-8::obj-14" : [ "live.dial[1]", "LFO Interval | Rate", 0 ],
 			"obj-3::obj-5::obj-50" : [ "live.gain~[10]", "Volume", 0 ],
-			"obj-8::obj-77" : [ "live.dial[4]", "LFO Offset | Rate", 0 ],
+			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
+			"obj-6::obj-15::obj-50" : [ "live.gain~[11]", "Volume", 0 ],
+			"obj-7::obj-15::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
+			"obj-7::obj-38" : [ "live.dial", "Reverse Chance", 0 ],
+			"obj-8::obj-14" : [ "live.dial[1]", "LFO Interval | Rate", 0 ],
 			"obj-8::obj-15::obj-50" : [ "live.gain~[8]", "Volume", 0 ],
+			"obj-8::obj-67" : [ "live.dial[2]", "LFO Length | Rate", 0 ],
+			"obj-8::obj-70" : [ "live.dial[3]", "LFO Reverse | Rate", 0 ],
+			"obj-8::obj-77" : [ "live.dial[4]", "LFO Offset | Rate", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-6::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[11]"
+				"obj-1::obj-9::obj-50" : 				{
+					"parameter_longname" : "live.gain~[9]"
+				}
+,
+				"obj-3::obj-5::obj-50" : 				{
+					"parameter_longname" : "live.gain~[10]"
 				}
 ,
 				"obj-4::obj-15::obj-50" : 				{
 					"parameter_longname" : "live.gain~[4]"
 				}
 ,
-				"obj-1::obj-9::obj-50" : 				{
-					"parameter_longname" : "live.gain~[9]"
-				}
-,
-				"obj-7::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[7]"
-				}
-,
 				"obj-5::obj-15::obj-50" : 				{
 					"parameter_longname" : "live.gain~[5]"
 				}
 ,
-				"obj-3::obj-5::obj-50" : 				{
-					"parameter_longname" : "live.gain~[10]"
+				"obj-6::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[11]"
+				}
+,
+				"obj-7::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[7]"
 				}
 ,
 				"obj-8::obj-15::obj-50" : 				{
@@ -11288,33 +11344,34 @@
 				}
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-graincontrol.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -11478,8 +11535,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",
