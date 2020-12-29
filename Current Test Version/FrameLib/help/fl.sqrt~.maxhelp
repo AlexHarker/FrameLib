@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,6 +333,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
                             {
                                 "box": {
@@ -363,10 +365,10 @@
                                     "patching_rect": [
                                         15.0,
                                         150.0,
-                                        182.0,
+                                        192.0,
                                         23.0
                                     ],
-                                    "text": "fl.register~ 4 9 16 25 36 49 64"
+                                    "text": "fl.register~ 4 9 16 25 36 49 64 2"
                                 }
                             },
                             {
@@ -381,10 +383,10 @@
                                     "patching_rect": [
                                         15.0,
                                         300.0,
-                                        106.0,
+                                        164.0,
                                         23.0
                                     ],
-                                    "text": "2. 3. 4. 5. 6. 7. 8."
+                                    "text": "2. 3. 4. 5. 6. 7. 8. 1.414214"
                                 }
                             },
                             {
@@ -396,7 +398,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        199.0,
+                                        217.0,
                                         154.0,
                                         60.25,
                                         15.0
@@ -448,7 +450,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        135.0,
+                                        188.0,
                                         304.0,
                                         60.25,
                                         15.0
@@ -462,8 +464,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        197.0,
-                                        302.0,
+                                        255.0,
+                                        300.0,
                                         240.0,
                                         21.0
                                     ],
@@ -477,8 +479,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        258.75,
-                                        157.0,
+                                        279.0,
+                                        150.0,
                                         218.0,
                                         21.0
                                     ],
@@ -544,7 +546,7 @@
                                     "midpoints": [
                                         24.5,
                                         285.0,
-                                        111.5,
+                                        169.5,
                                         285.0
                                     ],
                                     "source": [
@@ -583,14 +585,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
+                                    "fontsize": [
+                                        12.059008
+                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
-                                    ],
-                                    "fontsize": [
-                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

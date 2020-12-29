@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,6 +333,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
                             {
                                 "box": {
@@ -343,10 +345,10 @@
                                     "patching_rect": [
                                         300.0,
                                         482.0,
-                                        255.0,
+                                        259.0,
                                         36.0
                                     ],
-                                    "text": "Numbers are truncated to 0, 1, 2, 3 with no decimal places."
+                                    "text": "Numbers are truncated to 0, 1, 2, 3 with no fractional part."
                                 }
                             },
                             {
@@ -389,7 +391,7 @@
                                     "patching_rect": [
                                         251.49993515014648,
                                         142.0,
-                                        133.0,
+                                        136.0,
                                         36.0
                                     ],
                                     "text": "100 random numbers between 0. and 3."
@@ -402,9 +404,9 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        361.0,
+                                        360.0,
                                         307.0,
-                                        133.0,
+                                        103.0,
                                         21.0
                                     ],
                                     "text": "Truncated frame",
@@ -418,9 +420,9 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        75.0,
+                                        112.5,
                                         307.0,
-                                        133.0,
+                                        90.0,
                                         21.0
                                     ],
                                     "text": "Original frame",
@@ -560,7 +562,7 @@
                                     ],
                                     "patching_rect": [
                                         300.0,
-                                        243.25,
+                                        240.0,
                                         55.0,
                                         23.0
                                     ],
@@ -794,14 +796,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
+                                    "fontsize": [
+                                        12.059008
+                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
-                                    ],
-                                    "fontsize": [
-                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

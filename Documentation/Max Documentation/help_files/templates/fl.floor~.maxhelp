@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -290,8 +291,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,6 +333,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
                             {
                                 "box": {
@@ -341,7 +343,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        375.0,
+                                        390.0,
                                         45.0,
                                         45.0
                                     ]
@@ -414,8 +416,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        94.0,
-                                        198.0,
+                                        99.0,
+                                        199.0,
                                         60.25,
                                         15.0
                                     ]
@@ -502,7 +504,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        67.0,
+                                        75.0,
                                         334.0,
                                         60.25,
                                         15.0
@@ -516,12 +518,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        135.0,
+                                        143.0,
                                         330.0,
-                                        128.0,
+                                        84.0,
                                         21.0
                                     ],
-                                    "text": "Floor Value"
+                                    "text": "Floor of input"
                                 }
                             },
                             {
@@ -531,12 +533,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        156.25,
-                                        195.0,
-                                        211.0,
+                                        167.25,
+                                        196.0,
+                                        227.0,
                                         21.0
                                     ],
-                                    "text": "Frame containing value to test"
+                                    "text": "Frame containing value for calculation"
                                 }
                             },
                             {
@@ -661,14 +663,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
+                                    "fontsize": [
+                                        12.059008
+                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
-                                    ],
-                                    "fontsize": [
-                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

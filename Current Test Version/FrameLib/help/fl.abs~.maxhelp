@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -290,8 +291,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,6 +333,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
                             {
                                 "box": {
@@ -341,7 +343,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        344.0,
+                                        329.0,
                                         45.0,
                                         45.0
                                     ]
@@ -356,8 +358,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        140.25,
-                                        247.5,
+                                        148.0,
+                                        203.0,
                                         60.25,
                                         15.0
                                     ]
@@ -370,8 +372,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        202.5,
-                                        244.0,
+                                        212.25,
+                                        199.5,
                                         183.0,
                                         21.0
                                     ],
@@ -387,8 +389,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        96.0,
-                                        190.5,
+                                        105.0,
+                                        146.0,
                                         60.25,
                                         15.0
                                     ]
@@ -401,12 +403,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        158.25,
-                                        187.0,
-                                        207.0,
+                                        167.25,
+                                        142.5,
+                                        245.0,
                                         21.0
                                     ],
-                                    "text": "Frame containing a single -1 value"
+                                    "text": "Frame containing a single negative value"
                                 }
                             },
                             {
@@ -423,7 +425,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         91.0,
-                                        315.0,
+                                        270.0,
                                         50.0,
                                         23.0
                                     ]
@@ -443,7 +445,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         15.0,
-                                        315.0,
+                                        270.0,
                                         50.0,
                                         23.0
                                     ]
@@ -460,7 +462,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        150.0,
+                                        105.0,
                                         54.0,
                                         23.0
                                     ],
@@ -478,7 +480,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        282.0,
+                                        237.0,
                                         62.0,
                                         23.0
                                     ],
@@ -496,7 +498,7 @@
                                     ],
                                     "patching_rect": [
                                         91.0,
-                                        282.0,
+                                        237.0,
                                         62.0,
                                         23.0
                                     ],
@@ -514,7 +516,7 @@
                                     ],
                                     "patching_rect": [
                                         91.0,
-                                        244.0,
+                                        199.0,
                                         47.0,
                                         23.0
                                     ],
@@ -532,29 +534,11 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        187.0,
+                                        142.0,
                                         85.0,
                                         23.0
                                     ],
                                     "text": "fl.uniform~ -1"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-4",
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        ""
-                                    ],
-                                    "patching_rect": [
-                                        15.0,
-                                        105.0,
-                                        108.0,
-                                        23.0
-                                    ],
-                                    "text": "fl.interval~ 44100"
                                 }
                             },
                             {
