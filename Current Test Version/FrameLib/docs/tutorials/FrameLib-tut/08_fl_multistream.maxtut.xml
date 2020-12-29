@@ -5,28 +5,5 @@
 <chapter name="FrameLib Tutorial 8: Multi-stream processing">
 	<next name="09_fl_multiresfft">Multi-resolution FFT</next>
 	<parent name="00_fl_index">FrameLib tutorials</parent>
-
-<h1>
-	FrameLib: Multi-stream processing
-</h1>
-	<h2>
-		Basics of Conversion
-	</h2>
-		<p>
-			Para 1
-		</p>
-
-	<h2>
-		Heading 2
-	</h2>
-		<p>
-			Para 2
-		</p>
-	<h2>
-		Heading 3
-	</h2>
-		<p>
-			Para 3
-		</p>
 </chapter>
 
