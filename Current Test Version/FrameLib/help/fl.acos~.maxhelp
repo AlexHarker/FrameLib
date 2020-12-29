@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,6 +333,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
                             {
                                 "box": {
@@ -347,7 +349,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         15.0,
-                                        277.0,
+                                        330.0,
                                         50.0,
                                         23.0
                                     ]
@@ -367,7 +369,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         15.0,
-                                        135.0,
+                                        150.0,
                                         50.0,
                                         23.0
                                     ]
@@ -400,8 +402,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        94.0,
-                                        179.0,
+                                        97.5,
+                                        199.0,
                                         60.25,
                                         15.0
                                     ]
@@ -418,7 +420,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        211.25,
+                                        240.0,
                                         54.0,
                                         23.0
                                     ],
@@ -436,7 +438,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        243.0,
+                                        285.0,
                                         62.0,
                                         23.0
                                     ],
@@ -472,7 +474,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        175.0,
+                                        195.0,
                                         77.0,
                                         23.0
                                     ],
@@ -488,8 +490,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        75.0,
-                                        277.0,
+                                        68.5,
+                                        334.0,
                                         60.25,
                                         15.0
                                     ]
@@ -502,12 +504,13 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        135.0,
-                                        274.0,
-                                        199.0,
+                                        130.75,
+                                        331.0,
+                                        275.0,
                                         21.0
                                     ],
-                                    "text": "Arccosine of input frame's values"
+                                    "presentation_linecount": 2,
+                                    "text": "Arccosine (in radians) of input frame's values"
                                 }
                             },
                             {
@@ -517,12 +520,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        156.25,
-                                        175.0,
-                                        211.0,
+                                        167.75,
+                                        196.0,
+                                        234.0,
                                         21.0
                                     ],
-                                    "text": "Frame containing values to test"
+                                    "text": "Frame containing values for calculation"
                                 }
                             },
                             {
@@ -533,7 +536,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        318.75,
+                                        390.0,
                                         50.0,
                                         50.0
                                     ]
@@ -585,9 +588,9 @@
                                     ],
                                     "midpoints": [
                                         116.0,
-                                        162.0,
+                                        184.0,
                                         24.5,
-                                        162.0
+                                        184.0
                                     ],
                                     "source": [
                                         "obj-13",
@@ -661,14 +664,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

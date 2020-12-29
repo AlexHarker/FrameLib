@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,7 +333,22 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "id": "obj-1",
+                                    "maxclass": "ezdac~",
+                                    "numinlets": 2,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        390.0,
+                                        45.0,
+                                        45.0
+                                    ]
+                                }
+                            },
                             {
                                 "box": {
                                     "format": 6,
@@ -400,7 +416,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        94.0,
+                                        98.75,
                                         198.0,
                                         60.25,
                                         15.0
@@ -488,7 +504,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        67.0,
+                                        72.0,
                                         333.0,
                                         60.25,
                                         15.0
@@ -502,7 +518,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        129.25,
+                                        137.25,
                                         330.0,
                                         369.0,
                                         21.0
@@ -517,12 +533,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        156.25,
+                                        165.0,
                                         195.0,
-                                        211.0,
+                                        234.0,
                                         21.0
                                     ],
-                                    "text": "Frame containing values to test"
+                                    "text": "Frame containing values for calculation"
                                 }
                             },
                             {

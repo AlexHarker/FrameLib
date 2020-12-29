@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,6 +333,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
                             {
                                 "box": {
@@ -341,7 +343,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        390.0,
+                                        375.0,
                                         45.0,
                                         45.0
                                     ]
@@ -361,7 +363,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         15.0,
-                                        345.0,
+                                        326.0,
                                         50.0,
                                         23.0
                                     ]
@@ -399,10 +401,10 @@
                                     "patching_rect": [
                                         15.0,
                                         105.0,
-                                        86.0,
+                                        82.0,
                                         23.0
                                     ],
-                                    "text": "loadmess 10."
+                                    "text": "loadmess 10"
                                 }
                             },
                             {
@@ -414,8 +416,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        88.5,
-                                        213.0,
+                                        99.0,
+                                        199.0,
                                         60.25,
                                         15.0
                                     ]
@@ -432,7 +434,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        255.0,
+                                        236.0,
                                         58.0,
                                         23.0
                                     ],
@@ -450,7 +452,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        300.0,
+                                        281.0,
                                         62.0,
                                         23.0
                                     ],
@@ -486,7 +488,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        210.0,
+                                        195.0,
                                         77.0,
                                         23.0
                                     ],
@@ -502,8 +504,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        67.0,
-                                        348.0,
+                                        75.0,
+                                        330.0,
                                         60.25,
                                         15.0
                                     ]
@@ -516,12 +518,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        129.25,
-                                        345.0,
-                                        131.0,
+                                        140.25,
+                                        327.0,
+                                        125.0,
                                         21.0
                                     ],
-                                    "text": "Logarthim calculation"
+                                    "text": "Logarthim (base 10)"
                                 }
                             },
                             {
@@ -531,12 +533,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        150.75,
-                                        213.0,
-                                        211.0,
+                                        162.5,
+                                        196.0,
+                                        277.0,
                                         21.0
                                     ],
-                                    "text": "Frame containing value to test"
+                                    "text": "Frame containing a scalar value for calculation"
                                 }
                             },
                             {
@@ -585,9 +587,9 @@
                                     ],
                                     "midpoints": [
                                         114.5,
-                                        195.0,
+                                        180.0,
                                         24.5,
-                                        195.0
+                                        180.0
                                     ],
                                     "source": [
                                         "obj-13",

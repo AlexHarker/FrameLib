@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -290,8 +291,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,7 +333,70 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "arrows": 1,
+                                    "border": 4.0,
+                                    "id": "obj-38",
+                                    "maxclass": "live.line",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        99.0,
+                                        199.0,
+                                        60.25,
+                                        15.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "arrows": 1,
+                                    "border": 4.0,
+                                    "id": "obj-24",
+                                    "maxclass": "live.line",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        75.0,
+                                        334.0,
+                                        60.25,
+                                        15.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-25",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        143.0,
+                                        330.0,
+                                        94.0,
+                                        21.0
+                                    ],
+                                    "text": "Ceiling of input"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-23",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        167.25,
+                                        196.0,
+                                        227.0,
+                                        21.0
+                                    ],
+                                    "text": "Frame containing value for calculation"
+                                }
+                            },
                             {
                                 "box": {
                                     "id": "obj-1",
@@ -341,7 +405,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        356.0,
+                                        390.0,
                                         45.0,
                                         45.0
                                     ]
@@ -407,22 +471,6 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-38",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        94.0,
-                                        199.0,
-                                        60.25,
-                                        15.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
                                     "id": "obj-31",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -467,7 +515,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        120.0,
+                                        105.0,
                                         105.0,
                                         75.0,
                                         23.0
@@ -491,52 +539,6 @@
                                         23.0
                                     ],
                                     "text": "fl.frommax~"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-24",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        68.5,
-                                        333.0,
-                                        60.25,
-                                        15.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-25",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        130.75,
-                                        330.0,
-                                        128.0,
-                                        21.0
-                                    ],
-                                    "text": "Ceiling value"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-23",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        159.0,
-                                        199.0,
-                                        211.0,
-                                        21.0
-                                    ],
-                                    "text": "Frame containing value to test"
                                 }
                             },
                             {
@@ -584,7 +586,7 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        129.5,
+                                        114.5,
                                         180.0,
                                         24.5,
                                         180.0
@@ -661,14 +663,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
+                                    "fontsize": [
+                                        12.059008
+                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
-                                    ],
-                                    "fontsize": [
-                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
