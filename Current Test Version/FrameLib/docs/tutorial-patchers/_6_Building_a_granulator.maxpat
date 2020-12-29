@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"title" : "Tutorial 6: Building a granular synthesiser from scratch",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -100,13 +101,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 1029.0, 745.0 ],
+						"rect" : [ 0.0, 26.0, 1029.0, 745.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -134,6 +135,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"globalpatchername" : "u876003977[1]",
 						"title" : "Changing Properties (6)",
 						"boxes" : [ 							{
@@ -156,7 +158,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -189,6 +191,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontname" : "Ableton Sans Medium",
@@ -200,7 +203,7 @@
 													"patching_rect" : [ 285.0, 315.0, 91.0, 35.0 ],
 													"presentation" : 1,
 													"presentation_rect" : [ 272.0, 69.0, 101.0, 21.0 ],
-													"text" : "Max: 2529.17 ms"
+													"text" : "Max: 559.34 ms"
 												}
 
 											}
@@ -390,7 +393,7 @@
 													"patching_rect" : [ 285.0, 270.0, 75.0, 35.0 ],
 													"presentation" : 1,
 													"presentation_rect" : [ 272.0, 50.0, 101.0, 21.0 ],
-													"text" : "Min: 0.00 ms"
+													"text" : "Min: 413.42 ms"
 												}
 
 											}
@@ -622,7 +625,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -655,6 +658,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontname" : "Ableton Sans Medium",
@@ -665,7 +669,7 @@
 													"patching_rect" : [ 405.0, 270.0, 91.0, 21.0 ],
 													"presentation" : 1,
 													"presentation_rect" : [ 272.0, 69.0, 66.0, 21.0 ],
-													"text" : "Max: 0.99"
+													"text" : "Max: 1.00"
 												}
 
 											}
@@ -854,7 +858,7 @@
 													"patching_rect" : [ 285.0, 270.0, 91.0, 21.0 ],
 													"presentation" : 1,
 													"presentation_rect" : [ 272.0, 50.0, 66.0, 21.0 ],
-													"text" : "Min: 0.07"
+													"text" : "Min: 0.94"
 												}
 
 											}
@@ -1086,7 +1090,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1119,6 +1123,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontname" : "Ableton Sans Medium",
@@ -1129,7 +1134,7 @@
 													"patching_rect" : [ 405.0, 330.0, 116.0, 21.0 ],
 													"presentation" : 1,
 													"presentation_rect" : [ 272.0, 69.0, 114.0, 21.0 ],
-													"text" : "Max: 749.14 ms"
+													"text" : "Max: 958.19 ms"
 												}
 
 											}
@@ -1235,8 +1240,8 @@
 													"numinlets" : 1,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 150.0, 225.0, 116.0, 22.0 ],
-													"text" : "prepend length_rate"
+													"patching_rect" : [ 150.0, 225.0, 126.0, 22.0 ],
+													"text" : "prepend length_range"
 												}
 
 											}
@@ -1262,7 +1267,7 @@
 													"patching_rect" : [ 285.0, 330.0, 116.0, 21.0 ],
 													"presentation" : 1,
 													"presentation_rect" : [ 272.0, 50.0, 114.0, 21.0 ],
-													"text" : "Min: 213.97 ms"
+													"text" : "Min: 924.74 ms"
 												}
 
 											}
@@ -1550,7 +1555,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1583,6 +1588,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-17",
@@ -1617,7 +1623,7 @@
 													"patching_rect" : [ 285.0, 300.0, 94.0, 21.0 ],
 													"presentation" : 1,
 													"presentation_rect" : [ 272.0, 69.0, 83.0, 21.0 ],
-													"text" : "Max: 163 ms"
+													"text" : "Max: 264 ms"
 												}
 
 											}
@@ -1702,7 +1708,7 @@
 													"patching_rect" : [ 285.0, 270.0, 92.0, 21.0 ],
 													"presentation" : 1,
 													"presentation_rect" : [ 272.0, 50.0, 83.0, 21.0 ],
-													"text" : "Min: 98 ms"
+													"text" : "Min: 216 ms"
 												}
 
 											}
@@ -2009,7 +2015,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2042,6 +2048,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-1",
@@ -2094,7 +2101,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 3,
+															"revision" : 8,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -2127,6 +2134,7 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
+														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"color" : [ 0.96078431372549, 0.827450980392157, 0.156862745098039, 1.0 ],
@@ -2480,7 +2488,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 3,
+															"revision" : 8,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -2513,6 +2521,7 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
+														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"id" : "obj-12",
@@ -2993,7 +3002,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -3026,6 +3035,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-1",
@@ -3078,7 +3088,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 3,
+															"revision" : 8,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -3111,6 +3121,7 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
+														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"color" : [ 0.952941176470588, 0.564705882352941, 0.098039215686275, 1.0 ],
@@ -3645,7 +3656,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -3678,32 +3689,9 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
+										"visible" : 1,
 										"boxes" : [ 											{
-												"box" : 												{
-													"id" : "obj-38",
-													"linecount" : 3,
-													"maxclass" : "message",
-													"numinlets" : 2,
-													"numoutlets" : 1,
-													"outlettype" : [ "" ],
-													"patching_rect" : [ 330.0, 225.0, 50.0, 49.0 ],
-													"text" : "length 69.163394"
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"id" : "obj-36",
-													"maxclass" : "newobj",
-													"numinlets" : 1,
-													"numoutlets" : 1,
-													"outlettype" : [ "" ],
-													"patching_rect" : [ 345.0, 180.0, 58.0, 22.0 ],
-													"text" : "fl.tomax~"
-												}
-
-											}
-, 											{
 												"box" : 												{
 													"id" : "obj-1",
 													"maxclass" : "newobj",
@@ -3742,7 +3730,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 3,
+															"revision" : 8,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -3775,6 +3763,7 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
+														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"color" : [ 0.925490196078431, 0.364705882352941, 0.341176470588235, 1.0 ],
@@ -3895,7 +3884,7 @@
 																	"maxclass" : "comment",
 																	"numinlets" : 1,
 																	"numoutlets" : 0,
-																	"patching_rect" : [ 116.0, 60.0, 219.0, 21.0 ],
+																	"patching_rect" : [ 116.0, 60.0, 209.0, 21.0 ],
 																	"text" : "Change the rate of the cycle below"
 																}
 
@@ -4015,7 +4004,7 @@
 , 															{
 																"patchline" : 																{
 																	"destination" : [ "obj-6", 0 ],
-																	"midpoints" : [ 24.5, 48.0, 8.0, 48.0, 8.0, 201.0, 169.5, 201.0 ],
+																	"midpoints" : [ 24.5, 53.0, 346.0, 53.0, 346.0, 205.0, 169.5, 205.0 ],
 																	"order" : 0,
 																	"source" : [ "obj-1", 0 ]
 																}
@@ -4131,7 +4120,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 3,
+															"revision" : 8,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -4164,6 +4153,7 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
+														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"color" : [ 0.701960784313725, 0.415686274509804, 0.886274509803922, 1.0 ],
@@ -4712,15 +4702,6 @@
 , 											{
 												"patchline" : 												{
 													"destination" : [ "obj-2", 1 ],
-													"order" : 1,
-													"source" : [ "obj-23", 0 ]
-												}
-
-											}
-, 											{
-												"patchline" : 												{
-													"destination" : [ "obj-36", 0 ],
-													"order" : 0,
 													"source" : [ "obj-23", 0 ]
 												}
 
@@ -4729,13 +4710,6 @@
 												"patchline" : 												{
 													"destination" : [ "obj-10", 0 ],
 													"source" : [ "obj-26", 0 ]
-												}
-
-											}
-, 											{
-												"patchline" : 												{
-													"destination" : [ "obj-38", 1 ],
-													"source" : [ "obj-36", 0 ]
 												}
 
 											}
@@ -5242,7 +5216,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -5276,6 +5250,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Changing Properties (5)",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -5501,7 +5476,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -5534,6 +5509,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -5846,7 +5822,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -5879,6 +5855,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -5957,7 +5934,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 3,
+															"revision" : 8,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -5990,6 +5967,7 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
+														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"fontsize" : 13.0,
@@ -6374,7 +6352,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -6407,6 +6385,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -6839,7 +6818,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -6873,6 +6852,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Changing Properties (4)",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -7100,7 +7080,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -7133,6 +7113,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -7212,7 +7193,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 3,
+															"revision" : 8,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -7245,6 +7226,7 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
+														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"fontsize" : 13.0,
@@ -7629,7 +7611,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -7662,6 +7644,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -8102,7 +8085,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -8136,6 +8119,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Changing Properties (3)",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -8157,7 +8141,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -8190,6 +8174,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"comment" : "",
@@ -8501,7 +8486,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -8534,6 +8519,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -8667,7 +8653,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -8700,6 +8686,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -8913,7 +8900,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -8946,6 +8933,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-24",
@@ -9344,7 +9332,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -9378,6 +9366,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Changing Properties (2)",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -9416,7 +9405,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -9449,6 +9438,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -10289,13 +10279,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1029.0, 745.0 ],
+						"rect" : [ 34.0, 105.0, 1029.0, 745.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -10323,6 +10313,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Changing Properties (1)",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -10346,8 +10337,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 466.5, 480.0, 65.0 ],
-									"text" : "In the last tab we didn't use a window on our grain. Now we've added one here.\nProviding a fixed size is more efficient in circumstances where the size of the frame will change a lot, as the window is applied using a fixed length internal representation, which is set to give a good resolution and is calculated once only.",
+									"patching_rect" : [ 195.0, 465.0, 510.0, 65.0 ],
+									"text" : "In the last tab we didn't use a window on our grain. Now we've added one here.\nProviding a fixed size is more efficient in circumstances where the size of the frame will change a lot, as the window is applied using a fixed length internal version, which is set to give good resolution and is calculated once only, rather than for each frame.",
 									"textcolor" : [ 0.82745099067688, 0.031372550874949, 0.031372550874949, 1.0 ]
 								}
 
@@ -10764,7 +10755,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -10798,6 +10789,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Creating a Grain",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -11215,7 +11207,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -11249,6 +11241,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "fl.read~",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -11738,7 +11731,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -11772,6 +11765,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Tutorial 6",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -11978,73 +11972,74 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-7::obj-38" : [ "live.dial", "Reverse Chance", 0 ],
-			"obj-3::obj-5::obj-50" : [ "live.gain~[10]", "Volume", 0 ],
-			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
-			"obj-8::obj-15::obj-50" : [ "live.gain~[8]", "Volume", 0 ],
-			"obj-8::obj-9::obj-67" : [ "live.dial[6]", "LFO Length | Rate", 0 ],
-			"obj-6::obj-15::obj-50" : [ "live.gain~[11]", "Volume", 0 ],
-			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
-			"obj-1::obj-9::obj-50" : [ "live.gain~[9]", "Volume", 0 ],
 			"obj-10::obj-2::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-8::obj-11::obj-77" : [ "live.dial[4]", "LFO Offset | Rate", 0 ],
-			"obj-8::obj-10::obj-70" : [ "live.dial[3]", "LFO Reverse | Rate", 0 ],
+			"obj-1::obj-9::obj-50" : [ "live.gain~[9]", "Volume", 0 ],
+			"obj-3::obj-5::obj-50" : [ "live.gain~[10]", "Volume", 0 ],
+			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
+			"obj-6::obj-15::obj-50" : [ "live.gain~[11]", "Volume", 0 ],
 			"obj-7::obj-15::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
+			"obj-7::obj-38" : [ "live.dial", "Reverse Chance", 0 ],
+			"obj-8::obj-10::obj-70" : [ "live.dial[3]", "LFO Reverse | Rate", 0 ],
+			"obj-8::obj-11::obj-77" : [ "live.dial[4]", "LFO Offset | Rate", 0 ],
+			"obj-8::obj-15::obj-50" : [ "live.gain~[8]", "Volume", 0 ],
 			"obj-8::obj-7::obj-14" : [ "live.dial[5]", "LFO Interval | Rate", 0 ],
+			"obj-8::obj-9::obj-67" : [ "live.dial[6]", "LFO Length | Rate", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
+				"obj-1::obj-9::obj-50" : 				{
+					"parameter_longname" : "live.gain~[9]"
+				}
+,
 				"obj-3::obj-5::obj-50" : 				{
 					"parameter_longname" : "live.gain~[10]"
-				}
-,
-				"obj-5::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[5]"
-				}
-,
-				"obj-8::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[8]"
-				}
-,
-				"obj-6::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[11]"
 				}
 ,
 				"obj-4::obj-15::obj-50" : 				{
 					"parameter_longname" : "live.gain~[4]"
 				}
 ,
-				"obj-1::obj-9::obj-50" : 				{
-					"parameter_longname" : "live.gain~[9]"
+				"obj-5::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[5]"
+				}
+,
+				"obj-6::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[11]"
 				}
 ,
 				"obj-7::obj-15::obj-50" : 				{
 					"parameter_longname" : "live.gain~[7]"
 				}
+,
+				"obj-8::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[8]"
+				}
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-graincontrol.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
