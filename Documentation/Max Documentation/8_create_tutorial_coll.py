@@ -18,7 +18,7 @@ def alphanum_key(s: int):
 
 def main():
     tutorial_path = current_version / "FrameLib" / "docs" / "tutorial-patchers"
-    coll_output_path = tutorial_path / "FL_tutorial_names.txt"
+    coll_output_path = tutorial_path / "fl-tutorial-names.txt"
 
     # If dir doesnt exist make, otherwise edit existing
     coll = open(coll_output_path, "w+")

@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 5,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,7 +39,6 @@
 		"subpatcher_template" : "Grid_Toolbar",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
-		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-5",
@@ -51,13 +50,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 661.0, 735.0 ],
+						"rect" : [ 0.0, 26.0, 661.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -85,7 +84,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-1",
@@ -166,7 +164,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -199,7 +197,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-27",
@@ -372,7 +369,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -405,7 +402,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "<none>",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-42",
@@ -1329,7 +1325,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1362,7 +1358,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "<none>",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-4",
@@ -1821,7 +1816,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1854,7 +1849,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "<none>",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-7",
@@ -2326,11 +2320,11 @@
 									"presentation_rect" : [ 15.0, 90.0, 209.0, 25.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_initial" : [ 0 ],
+											"parameter_longname" : "umenu",
 											"parameter_initial_enable" : 1,
 											"parameter_invisible" : 1,
-											"parameter_longname" : "umenu",
 											"parameter_mmax" : 22.0,
+											"parameter_initial" : [ 0 ],
 											"parameter_shortname" : "umenu",
 											"parameter_type" : 3
 										}
@@ -2646,13 +2640,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 661.0, 735.0 ],
+						"rect" : [ 34.0, 105.0, 661.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -2680,7 +2674,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-1",
@@ -2727,15 +2720,14 @@
 									"fontname" : "Lato",
 									"fontsize" : 14.0,
 									"id" : "obj-17",
-									"linecount" : 5,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 217.0, 162.0, 90.0 ],
+									"patching_rect" : [ 30.0, 217.0, 162.0, 57.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 2,
-									"presentation_rect" : [ 240.0, 180.0, 405.0, 40.0 ],
-									"text" : "Exporting your FrameLib networks from Max to C++ to be used in other environments and applications.",
+									"presentation_rect" : [ 240.0, 180.0, 405.0, 23.0 ],
+									"text" : "Constructing multi-resolution FFT processes in FrameLib.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -2751,7 +2743,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2784,7 +2776,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-27",
@@ -2885,7 +2876,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2918,7 +2909,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"comment" : "",
@@ -3250,7 +3240,7 @@
 									"patching_rect" : [ 30.0, 138.0, 230.0, 50.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 240.0, 120.0, 408.0, 28.0 ],
-									"text" : "Tutorial 13: Exporting FrameLib from Max to C++.",
+									"text" : "Tutorial 9: Multi-resolution FFT",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -3267,7 +3257,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -3300,7 +3290,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "<none>",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-29",
@@ -3423,7 +3412,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 5,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -3456,7 +3445,6 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
-														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"id" : "obj-57",
@@ -3573,13 +3561,13 @@
 																	"numinlets" : 1,
 																	"numoutlets" : 4,
 																	"outlettype" : [ "", "", "", "" ],
-																	"patching_rect" : [ 89.0, 215.0, 145.0, 22.0 ],
+																	"patching_rect" : [ 89.0, 215.0, 132.0, 22.0 ],
 																	"saved_object_attributes" : 																	{
 																		"embed" : 0,
 																		"precision" : 6
 																	}
 ,
-																	"text" : "coll FL_tutorial_names.txt"
+																	"text" : "coll fl-tutorial-names.txt"
 																}
 
 															}
@@ -4211,7 +4199,7 @@
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
-									"tabs" : [ "Tutorial 1: An introduction to FrameLib and frame based processing.", "Tutorial 2: Getting to grips with frame based processing.", "Tutorial 3: FrameLib basics.", "Tutorial 4: Getting in and out of FrameLib and Max.", "Tutorial 5: Generator objects.", "Tutorial 6: Building a granular synthesiser in Framelib from scratch." ],
+									"tabs" : [ "Tutorial 9: Multi-resolution FFT", "Tutorial 10: Contexts", "Tutorial 11: Non-realtime networks in FrameLib", "Tutorial 12: Multithreading", "Tutorial 13: Exporting FrameLib from Max to C++" ],
 									"truncate" : 0
 								}
 
@@ -4503,13 +4491,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 131.0, 661.0, 735.0 ],
+						"rect" : [ 0.0, 26.0, 661.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -4537,7 +4525,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-1",
@@ -4662,7 +4649,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -4695,7 +4682,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-27",
@@ -4989,18 +4975,10 @@
 			"parameterbanks" : 			{
 
 			}
-,
-			"inherited_shortname" : 1
+
 		}
 ,
 		"dependency_cache" : [ 			{
-				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../docs/tutorial-patchers",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "ObjectHelpLauncher.js",
 				"bootpath" : "C74:/extras",
 				"type" : "TEXT",
