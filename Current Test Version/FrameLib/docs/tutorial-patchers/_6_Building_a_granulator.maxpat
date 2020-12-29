@@ -8573,7 +8573,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 1029.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1029.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -8620,7 +8620,7 @@
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 0.0, 0.0, 640.0, 480.0 ],
+										"rect" : [ 59.0, 104.0, 160.0, 261.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -8655,7 +8655,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 55.0, 190.0, 53.0, 23.0 ],
+													"patching_rect" : [ 15.0, 166.0, 53.0, 23.0 ],
 													"text" : "fl.plus~"
 												}
 
@@ -8669,7 +8669,7 @@
 													"numinlets" : 0,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 89.0, 115.0, 56.0, 23.0 ],
+													"patching_rect" : [ 49.0, 91.0, 56.0, 23.0 ],
 													"text" : "r b_start"
 												}
 
@@ -8682,7 +8682,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 89.0, 151.875, 80.0, 23.0 ],
+													"patching_rect" : [ 49.0, 127.875, 80.0, 23.0 ],
 													"text" : "fl.frommax~"
 												}
 
@@ -8699,7 +8699,7 @@
 													"mode" : 0,
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 50.0, 100.0, 125.0, 120.0 ],
+													"patching_rect" : [ 10.0, 76.0, 125.0, 120.0 ],
 													"proportion" : 0.39
 												}
 
@@ -8713,7 +8713,7 @@
 													"numinlets" : 0,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 66.0, 40.0, 30.0, 30.0 ]
+													"patching_rect" : [ 15.0, 17.0, 30.0, 30.0 ]
 												}
 
 											}
@@ -8725,7 +8725,7 @@
 													"maxclass" : "outlet",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 55.0, 280.0, 30.0, 30.0 ]
+													"patching_rect" : [ 15.0, 220.0, 30.0, 30.0 ]
 												}
 
 											}
@@ -8733,6 +8733,7 @@
 										"lines" : [ 											{
 												"patchline" : 												{
 													"destination" : [ "obj-40", 0 ],
+													"midpoints" : [ 24.5, 123.0, 58.5, 123.0 ],
 													"order" : 0,
 													"source" : [ "obj-31", 0 ]
 												}
@@ -8789,8 +8790,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 555.0, 65.0, 22.0 ],
-									"text" : "fl.window~"
+									"patching_rect" : [ 15.0, 555.0, 123.0, 22.0 ],
+									"text" : "fl.window~ /size 4096"
 								}
 
 							}
@@ -9680,7 +9681,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1029.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 1029.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -9718,7 +9719,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 483.0, 37.25, 15.0 ]
+									"patching_rect" : [ 143.75, 483.5, 37.25, 15.0 ]
 								}
 
 							}
@@ -9727,11 +9728,12 @@
 									"fontface" : 2,
 									"fontsize" : 13.0,
 									"id" : "obj-15",
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 135.0, 480.0, 464.0, 21.0 ],
-									"text" : "In the last tab we didn't use a window on our grain. Now we've added one here.",
+									"patching_rect" : [ 180.0, 466.0, 464.0, 50.0 ],
+									"text" : "In the last tab we didn't use a window on our grain. Now we've added one here.\nProviding a fixed size is more efficient in circumstances where the size of the window can be sufficiently large and not have to change for each frame.",
 									"textcolor" : [ 0.82745099067688, 0.031372550874949, 0.031372550874949, 1.0 ]
 								}
 
@@ -9743,8 +9745,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 480.0, 65.0, 22.0 ],
-									"text" : "fl.window~"
+									"patching_rect" : [ 15.0, 480.0, 123.0, 22.0 ],
+									"text" : "fl.window~ /size 4096"
 								}
 
 							}
