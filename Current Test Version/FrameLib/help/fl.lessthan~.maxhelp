@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,6 +333,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
                             {
                                 "box": {
@@ -372,12 +374,13 @@
                             {
                                 "box": {
                                     "id": "obj-1",
+                                    "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        344.0,
+                                        390.0,
                                         45.0,
                                         45.0
                                     ]
@@ -390,8 +393,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        131.25,
-                                        316.0,
+                                        142.0,
+                                        347.0,
                                         206.0,
                                         21.0
                                     ],
@@ -407,8 +410,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        72.0,
-                                        318.0,
+                                        78.75,
+                                        349.0,
                                         60.25,
                                         15.0
                                     ]
@@ -425,7 +428,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        315.0,
+                                        345.0,
                                         55.0,
                                         23.0
                                     ],
@@ -461,7 +464,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        263.0,
+                                        285.0,
                                         62.0,
                                         23.0
                                     ],
@@ -479,7 +482,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        219.0,
+                                        225.0,
                                         124.0,
                                         23.0
                                     ],
@@ -520,9 +523,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        300.0,
+                                        326.0,
                                         60.5,
-                                        300.0
+                                        326.0
                                     ],
                                     "source": [
                                         "obj-10",
@@ -622,14 +625,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

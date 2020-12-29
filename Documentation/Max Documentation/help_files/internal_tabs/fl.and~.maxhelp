@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -49,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -110,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,6 +147,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-45",
@@ -172,12 +175,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-27",
-									"linecount" : 5,
+									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 193.0, 154.75, 161.0, 79.0 ],
-									"text" : "Values are tested to be non-zero. Therefore, the object tests whether either of the pair-wise inputs satisfy these conditions."
+									"patching_rect" : [ 195.0, 154.75, 164.0, 94.0 ],
+									"text" : "Values are tested using a logical and operation - if both inputs are non-zero the output will be a one. If one or more input is zero then output will be zero."
 								}
 
 							}
@@ -224,7 +227,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 210.16668701171875, 105.0, 54.0, 23.0 ],
+									"patching_rect" : [ 225.0, 105.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -256,10 +259,11 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-11",
+									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 316.25, 50.0, 50.0 ]
+									"patching_rect" : [ 15.0, 330.0, 50.0, 50.0 ]
 								}
 
 							}
@@ -283,14 +287,16 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-22", 1 ],
+									"midpoints" : [ 24.5, 277.75, 60.5, 277.75 ],
 									"source" : [ "obj-10", 0 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
+									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-14", 0 ],
-									"midpoints" : [ 219.66668701171875, 140.75, 123.5, 140.75 ],
+									"midpoints" : [ 234.5, 140.75, 123.5, 140.75 ],
 									"order" : 0,
 									"source" : [ "obj-12", 0 ]
 								}
@@ -298,8 +304,9 @@
 							}
 , 							{
 								"patchline" : 								{
+									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-40", 0 ],
-									"midpoints" : [ 219.66668701171875, 140.75, 24.5, 140.75 ],
+									"midpoints" : [ 234.5, 140.75, 24.5, 140.75 ],
 									"order" : 1,
 									"source" : [ "obj-12", 0 ]
 								}
@@ -389,7 +396,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1

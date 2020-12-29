@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,7 +333,40 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "id": "obj-6",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        126.0,
+                                        331.0,
+                                        325.0,
+                                        21.0
+                                    ],
+                                    "text": "Values are the smallest of each pair in the input frames"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "arrows": 1,
+                                    "border": 4.0,
+                                    "id": "obj-110",
+                                    "justification": 1,
+                                    "maxclass": "live.line",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        75.0,
+                                        329.125,
+                                        48.0,
+                                        24.75
+                                    ]
+                                }
+                            },
                             {
                                 "box": {
                                     "id": "obj-4",
@@ -377,7 +411,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        361.0,
+                                        390.0,
                                         45.0,
                                         45.0
                                     ]
@@ -489,9 +523,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        321.0,
+                                        318.9375,
                                         60.5,
-                                        321.0
+                                        318.9375
                                     ],
                                     "source": [
                                         "obj-10",
@@ -520,9 +554,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        150.0,
+                                        146.0,
                                         129.5,
-                                        150.0
+                                        146.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -570,12 +604,82 @@
                         ],
                         "styles": [
                             {
+                                "name": "AudioStatus_Menu",
+                                "default": {
+                                    "bgfillcolor": {
+                                        "type": "color",
+                                        "color": [
+                                            0.294118,
+                                            0.313726,
+                                            0.337255,
+                                            1
+                                        ],
+                                        "color1": [
+                                            0.454902,
+                                            0.462745,
+                                            0.482353,
+                                            0.0
+                                        ],
+                                        "color2": [
+                                            0.290196,
+                                            0.309804,
+                                            0.301961,
+                                            1.0
+                                        ],
+                                        "angle": 270.0,
+                                        "proportion": 0.39,
+                                        "autogradient": 0
+                                    }
+                                },
+                                "parentstyle": "",
+                                "multi": 0
+                            },
+                            {
                                 "name": "newobjBlue-1",
                                 "default": {
                                     "accentcolor": [
                                         0.317647,
                                         0.654902,
                                         0.976471,
+                                        1.0
+                                    ]
+                                },
+                                "parentstyle": "",
+                                "multi": 0
+                            },
+                            {
+                                "name": "newobjBrown-1",
+                                "default": {
+                                    "accentcolor": [
+                                        0.654902,
+                                        0.572549,
+                                        0.376471,
+                                        1.0
+                                    ]
+                                },
+                                "parentstyle": "",
+                                "multi": 0
+                            },
+                            {
+                                "name": "newobjGreen-1",
+                                "default": {
+                                    "accentcolor": [
+                                        0.0,
+                                        0.533333,
+                                        0.168627,
+                                        1.0
+                                    ]
+                                },
+                                "parentstyle": "",
+                                "multi": 0
+                            },
+                            {
+                                "name": "newobjRed-1",
+                                "default": {
+                                    "accentcolor": [
+                                        0.784314,
+                                        0.145098,
+                                        0.023529,
                                         1.0
                                     ]
                                 },
@@ -607,6 +711,37 @@
                                         0.101961,
                                         1.0
                                     ]
+                                },
+                                "parentstyle": "",
+                                "multi": 0
+                            },
+                            {
+                                "name": "panelViolet",
+                                "default": {
+                                    "bgfillcolor": {
+                                        "type": "color",
+                                        "color": [
+                                            0.372549,
+                                            0.196078,
+                                            0.486275,
+                                            0.2
+                                        ],
+                                        "color1": [
+                                            0.454902,
+                                            0.462745,
+                                            0.482353,
+                                            1.0
+                                        ],
+                                        "color2": [
+                                            0.290196,
+                                            0.309804,
+                                            0.301961,
+                                            1.0
+                                        ],
+                                        "angle": 270.0,
+                                        "proportion": 0.39,
+                                        "autogradient": 0
+                                    }
                                 },
                                 "parentstyle": "",
                                 "multi": 0
