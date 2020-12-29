@@ -283,6 +283,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-11",
+									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
