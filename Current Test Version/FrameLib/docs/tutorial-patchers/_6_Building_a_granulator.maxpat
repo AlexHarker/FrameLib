@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 5,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,7 +39,6 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
-		"assistshowspatchername" : 0,
 		"title" : "Tutorial 6: Building a granular synthesiser from scratch",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -101,7 +100,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -135,7 +134,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"globalpatchername" : "u876003977[1]",
 						"title" : "Changing Properties (6)",
 						"boxes" : [ 							{
@@ -150,7 +148,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -183,7 +181,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"comment" : "",
@@ -298,7 +295,7 @@
 									}
 ,
 									"text" : "autopattr",
-									"varname" : "u260012167"
+									"varname" : "u910006764"
 								}
 
 							}
@@ -357,7 +354,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -390,7 +387,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"comment" : "Parameters",
@@ -444,7 +440,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 5,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -477,7 +473,6 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
-														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"color" : [ 0.96078431372549, 0.827450980392157, 0.156862745098039, 1.0 ],
@@ -830,7 +825,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 5,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -863,7 +858,6 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
-														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"id" : "obj-12",
@@ -1251,7 +1245,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1284,7 +1278,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"comment" : "Parameters",
@@ -1338,7 +1331,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 5,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -1371,7 +1364,6 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
-														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"color" : [ 0.952941176470588, 0.564705882352941, 0.098039215686275, 1.0 ],
@@ -1864,7 +1856,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1897,7 +1889,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"comment" : "",
@@ -1938,7 +1929,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 5,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -1971,7 +1962,6 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
-														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"color" : [ 0.925490196078431, 0.364705882352941, 0.341176470588235, 1.0 ],
@@ -2339,7 +2329,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 5,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -2372,7 +2362,6 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
-														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"color" : [ 0.701960784313725, 0.415686274509804, 0.886274509803922, 1.0 ],
@@ -2862,8 +2851,8 @@
 , 															{
 																"name" : "newobjYellow-1",
 																"default" : 																{
-																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-																	"fontsize" : [ 12.059008 ]
+																	"fontsize" : [ 12.059008 ],
+																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 																}
 ,
 																"parentstyle" : "",
@@ -3913,8 +3902,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3974,7 +3963,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -4008,7 +3997,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"title" : "Changing Properties (5)",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -4232,7 +4220,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -4265,7 +4253,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -4578,7 +4565,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -4611,7 +4598,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -4690,7 +4676,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 5,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -4723,7 +4709,6 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
-														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"fontsize" : 13.0,
@@ -4737,7 +4722,7 @@
 																		"appversion" : 																		{
 																			"major" : 8,
 																			"minor" : 1,
-																			"revision" : 5,
+																			"revision" : 3,
 																			"architecture" : "x64",
 																			"modernui" : 1
 																		}
@@ -4770,7 +4755,6 @@
 																		"tags" : "",
 																		"style" : "",
 																		"subpatcher_template" : "default",
-																		"assistshowspatchername" : 0,
 																		"boxes" : [ 																			{
 																				"box" : 																				{
 																					"fontsize" : 13.0,
@@ -5042,8 +5026,8 @@
 , 															{
 																"name" : "newobjYellow-1",
 																"default" : 																{
-																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-																	"fontsize" : [ 12.059008 ]
+																	"fontsize" : [ 12.059008 ],
+																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 																}
 ,
 																"parentstyle" : "",
@@ -5232,8 +5216,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-													"fontsize" : [ 12.059008 ]
+													"fontsize" : [ 12.059008 ],
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 												}
 ,
 												"parentstyle" : "",
@@ -5277,7 +5261,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -5310,7 +5294,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -5701,8 +5684,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -5743,7 +5726,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -5777,7 +5760,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"title" : "Changing Properties (4)",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -6004,7 +5986,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -6037,7 +6019,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -6117,7 +6098,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 5,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -6150,7 +6131,6 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
-														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"fontsize" : 13.0,
@@ -6164,7 +6144,7 @@
 																		"appversion" : 																		{
 																			"major" : 8,
 																			"minor" : 1,
-																			"revision" : 5,
+																			"revision" : 3,
 																			"architecture" : "x64",
 																			"modernui" : 1
 																		}
@@ -6197,7 +6177,6 @@
 																		"tags" : "",
 																		"style" : "",
 																		"subpatcher_template" : "default",
-																		"assistshowspatchername" : 0,
 																		"boxes" : [ 																			{
 																				"box" : 																				{
 																					"fontsize" : 13.0,
@@ -6469,8 +6448,8 @@
 , 															{
 																"name" : "newobjYellow-1",
 																"default" : 																{
-																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-																	"fontsize" : [ 12.059008 ]
+																	"fontsize" : [ 12.059008 ],
+																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 																}
 ,
 																"parentstyle" : "",
@@ -6659,8 +6638,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-													"fontsize" : [ 12.059008 ]
+													"fontsize" : [ 12.059008 ],
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 												}
 ,
 												"parentstyle" : "",
@@ -6704,7 +6683,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -6737,7 +6716,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -7136,8 +7114,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -7178,7 +7156,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -7212,7 +7190,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"title" : "Changing Properties (3)",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -7234,7 +7211,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -7267,7 +7244,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"comment" : "",
@@ -7360,6 +7336,7 @@
 , 											{
 												"box" : 												{
 													"buffername" : "fl.tut.6.gran",
+													"chanoffset" : 0,
 													"id" : "obj-25",
 													"labels" : 0,
 													"maxclass" : "waveform~",
@@ -7466,8 +7443,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-													"fontsize" : [ 12.059008 ]
+													"fontsize" : [ 12.059008 ],
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 												}
 ,
 												"parentstyle" : "",
@@ -7578,7 +7555,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -7611,7 +7588,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -7745,7 +7721,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -7778,7 +7754,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -7792,7 +7767,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 1,
-															"revision" : 5,
+															"revision" : 3,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -7825,7 +7800,6 @@
 														"tags" : "",
 														"style" : "",
 														"subpatcher_template" : "default",
-														"assistshowspatchername" : 0,
 														"boxes" : [ 															{
 																"box" : 																{
 																	"fontsize" : 13.0,
@@ -8117,8 +8091,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-													"fontsize" : [ 12.059008 ]
+													"fontsize" : [ 12.059008 ],
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 												}
 ,
 												"parentstyle" : "",
@@ -8162,7 +8136,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -8195,7 +8169,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-24",
@@ -8552,8 +8525,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -8594,13 +8567,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1029.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 1029.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -8628,16 +8601,195 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"title" : "Changing Properties (2)",
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-34",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patcher" : 									{
+										"fileversion" : 1,
+										"appversion" : 										{
+											"major" : 8,
+											"minor" : 1,
+											"revision" : 3,
+											"architecture" : "x64",
+											"modernui" : 1
+										}
+,
+										"classnamespace" : "box",
+										"rect" : [ 0.0, 0.0, 640.0, 480.0 ],
+										"bglocked" : 0,
+										"openinpresentation" : 0,
+										"default_fontsize" : 12.0,
+										"default_fontface" : 0,
+										"default_fontname" : "Arial",
+										"gridonopen" : 1,
+										"gridsize" : [ 15.0, 15.0 ],
+										"gridsnaponopen" : 1,
+										"objectsnaponopen" : 1,
+										"statusbarvisible" : 2,
+										"toolbarvisible" : 1,
+										"lefttoolbarpinned" : 0,
+										"toptoolbarpinned" : 0,
+										"righttoolbarpinned" : 0,
+										"bottomtoolbarpinned" : 0,
+										"toolbars_unpinned_last_save" : 0,
+										"tallnewobj" : 0,
+										"boxanimatetime" : 200,
+										"enablehscroll" : 1,
+										"enablevscroll" : 1,
+										"devicewidth" : 0.0,
+										"description" : "",
+										"digest" : "",
+										"tags" : "",
+										"style" : "",
+										"subpatcher_template" : "default",
+										"boxes" : [ 											{
+												"box" : 												{
+													"fontsize" : 13.0,
+													"id" : "obj-44",
+													"maxclass" : "newobj",
+													"numinlets" : 2,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 55.0, 190.0, 53.0, 23.0 ],
+													"text" : "fl.plus~"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"color" : [ 0.113725, 0.580392, 0.737255, 1.0 ],
+													"fontsize" : 13.0,
+													"id" : "obj-43",
+													"maxclass" : "newobj",
+													"numinlets" : 0,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 89.0, 115.0, 56.0, 23.0 ],
+													"text" : "r b_start"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"fontsize" : 13.0,
+													"id" : "obj-40",
+													"maxclass" : "newobj",
+													"numinlets" : 1,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 89.0, 151.875, 80.0, 23.0 ],
+													"text" : "fl.frommax~"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"angle" : 270.0,
+													"background" : 1,
+													"bgcolor" : [ 0.290196, 0.309804, 0.301961, 0.0 ],
+													"border" : 2,
+													"bordercolor" : [ 0.701961, 0.415686, 0.886275, 1.0 ],
+													"id" : "obj-47",
+													"maxclass" : "panel",
+													"mode" : 0,
+													"numinlets" : 1,
+													"numoutlets" : 0,
+													"patching_rect" : [ 50.0, 100.0, 125.0, 120.0 ],
+													"proportion" : 0.39
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"comment" : "",
+													"id" : "obj-31",
+													"index" : 1,
+													"maxclass" : "inlet",
+													"numinlets" : 0,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 66.0, 40.0, 30.0, 30.0 ]
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"comment" : "",
+													"id" : "obj-32",
+													"index" : 1,
+													"maxclass" : "outlet",
+													"numinlets" : 1,
+													"numoutlets" : 0,
+													"patching_rect" : [ 55.0, 280.0, 30.0, 30.0 ]
+												}
+
+											}
+ ],
+										"lines" : [ 											{
+												"patchline" : 												{
+													"destination" : [ "obj-40", 0 ],
+													"order" : 0,
+													"source" : [ "obj-31", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-44", 0 ],
+													"order" : 1,
+													"source" : [ "obj-31", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-44", 1 ],
+													"source" : [ "obj-40", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-40", 0 ],
+													"source" : [ "obj-43", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-32", 0 ],
+													"source" : [ "obj-44", 0 ]
+												}
+
+											}
+ ]
+									}
+,
+									"patching_rect" : [ 15.0, 465.0, 81.0, 22.0 ],
+									"saved_object_attributes" : 									{
+										"description" : "",
+										"digest" : "",
+										"globalpatchername" : "",
+										"tags" : ""
+									}
+,
+									"text" : "p grain_offset"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-33",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 540.0, 65.0, 22.0 ],
+									"patching_rect" : [ 15.0, 555.0, 65.0, 22.0 ],
 									"text" : "fl.window~"
 								}
 
@@ -8651,7 +8803,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 667.5, 90.0, 60.0, 23.0 ],
+									"patching_rect" : [ 652.5, 248.5, 60.0, 23.0 ],
 									"text" : "Controls",
 									"textjustification" : 1
 								}
@@ -8672,7 +8824,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 630.0, 85.0, 45.0 ],
+									"patching_rect" : [ 15.0, 645.0, 85.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -8686,7 +8838,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 75.0, 76.0, 23.0 ],
+									"patching_rect" : [ 15.0, 174.0, 76.0, 23.0 ],
 									"text" : "r b_interval"
 								}
 
@@ -8699,7 +8851,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 555.0, 180.0, 78.0, 23.0 ],
+									"patching_rect" : [ 540.0, 338.5, 78.0, 23.0 ],
 									"text" : "s b_interval"
 								}
 
@@ -8717,7 +8869,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 3,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -8750,7 +8902,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-37",
@@ -8890,7 +9041,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 200.0, 191.0, 86.0, 23.0 ],
+									"patching_rect" : [ 200.0, 287.75, 86.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -8909,7 +9060,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 751.0, 120.0, 85.0, 22.0 ],
+									"patching_rect" : [ 736.0, 278.5, 85.0, 22.0 ],
 									"text" : "loadmess 300"
 								}
 
@@ -8921,7 +9072,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 660.0, 120.0, 85.0, 22.0 ],
+									"patching_rect" : [ 645.0, 278.5, 85.0, 22.0 ],
 									"text" : "loadmess 183"
 								}
 
@@ -8935,7 +9086,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 139.0, 415.875, 42.0, 15.0 ]
+									"patching_rect" : [ 105.0, 468.5, 42.0, 15.0 ]
 								}
 
 							}
@@ -8947,48 +9098,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 184.0, 398.375, 272.0, 50.0 ],
+									"patching_rect" : [ 150.0, 451.0, 272.0, 50.0 ],
 									"text" : "Add an offset to the output of fl.ramp~ so that the frame reads from the minimum position rather than the first sample in the buffer."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 13.0,
-									"id" : "obj-44",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 450.0, 53.0, 23.0 ],
-									"text" : "fl.plus~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"color" : [ 0.113725, 0.580392, 0.737255, 1.0 ],
-									"fontsize" : 13.0,
-									"id" : "obj-43",
-									"maxclass" : "newobj",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 49.0, 375.0, 56.0, 23.0 ],
-									"text" : "r b_start"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 13.0,
-									"id" : "obj-40",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 49.0, 411.875, 80.0, 23.0 ],
-									"text" : "fl.frommax~"
 								}
 
 							}
@@ -9001,7 +9112,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 329.125, 208.75, 37.25, 15.0 ]
+									"patching_rect" : [ 329.125, 305.5, 37.25, 15.0 ]
 								}
 
 							}
@@ -9013,7 +9124,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 368.375, 166.25, 139.0, 94.0 ],
+									"patching_rect" : [ 368.375, 263.0, 139.0, 94.0 ],
 									"text" : "Subtract the minimum from the maximum to find the length we want. Tag it with fl.tag~ and send it to the fl.ramp~ object."
 								}
 
@@ -9026,7 +9137,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 200.0, 230.0, 80.0, 23.0 ],
+									"patching_rect" : [ 200.0, 326.75, 80.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -9040,7 +9151,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 267.0, 150.0, 56.0, 23.0 ],
+									"patching_rect" : [ 267.0, 246.75, 56.0, 23.0 ],
 									"text" : "r b_end"
 								}
 
@@ -9054,7 +9165,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 200.0, 150.0, 59.0, 23.0 ],
+									"patching_rect" : [ 200.0, 246.75, 59.0, 23.0 ],
 									"text" : "r b_start"
 								}
 
@@ -9067,7 +9178,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 200.0, 263.25, 86.0, 23.0 ],
+									"patching_rect" : [ 200.0, 360.0, 86.0, 23.0 ],
 									"text" : "fl.tag~ length"
 								}
 
@@ -9079,7 +9190,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 555.0, 120.0, 84.0, 22.0 ],
+									"patching_rect" : [ 540.0, 278.5, 84.0, 22.0 ],
 									"text" : "loadmess 110"
 								}
 
@@ -9095,7 +9206,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 751.0, 150.0, 52.0, 23.0 ]
+									"patching_rect" : [ 736.0, 308.5, 52.0, 23.0 ]
 								}
 
 							}
@@ -9110,7 +9221,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 660.0, 150.0, 52.0, 23.0 ]
+									"patching_rect" : [ 645.0, 308.5, 52.0, 23.0 ]
 								}
 
 							}
@@ -9122,7 +9233,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 751.0, 180.0, 58.0, 23.0 ],
+									"patching_rect" : [ 736.0, 338.5, 58.0, 23.0 ],
 									"text" : "s b_end"
 								}
 
@@ -9135,7 +9246,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 660.0, 180.0, 61.0, 23.0 ],
+									"patching_rect" : [ 645.0, 338.5, 61.0, 23.0 ],
 									"text" : "s b_start"
 								}
 
@@ -9148,7 +9259,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 95.0, 75.0, 75.0, 23.0 ],
+									"patching_rect" : [ 95.0, 174.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -9161,7 +9272,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 111.0, 71.0, 23.0 ],
+									"patching_rect" : [ 15.0, 210.0, 71.0, 23.0 ],
 									"text" : "interval $1"
 								}
 
@@ -9174,8 +9285,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 166.0, 23.0 ],
-									"text" : "fl.frommax~ /mode params"
+									"patching_rect" : [ 15.0, 247.0, 124.0, 23.0 ],
+									"text" : "fl.frommax~ params"
 								}
 
 							}
@@ -9190,7 +9301,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 555.0, 150.0, 52.0, 23.0 ]
+									"patching_rect" : [ 540.0, 308.5, 52.0, 23.0 ]
 								}
 
 							}
@@ -9202,7 +9313,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 191.0, 116.0, 23.0 ],
+									"patching_rect" : [ 15.0, 287.75, 116.0, 23.0 ],
 									"text" : "fl.interval~ 110 ms"
 								}
 
@@ -9226,7 +9337,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 585.0, 52.0, 23.0 ],
+									"patching_rect" : [ 15.0, 600.0, 52.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -9239,7 +9350,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 495.0, 208.0, 23.0 ],
+									"patching_rect" : [ 15.0, 510.0, 208.0, 23.0 ],
 									"text" : "fl.read~ fl.tut.6.gran /units samples"
 								}
 
@@ -9252,7 +9363,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 308.875, 204.0, 23.0 ],
+									"patching_rect" : [ 15.0, 405.0, 204.0, 23.0 ],
 									"text" : "fl.ramp~ /units ms"
 								}
 
@@ -9262,11 +9373,11 @@
 									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-3",
-									"linecount" : 13,
+									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 540.0, 215.875, 319.0, 209.0 ],
+									"patching_rect" : [ 15.0, 57.0, 660.0, 100.0 ],
 									"text" : "It is now possible to adjust how often a new grain is generated. What if we want to change the length and which part of the buffer we're reading from? Remember, we're reading a group of samples from a buffer with fl.read~ and The fl.read~ object accepts a frame as input, denoting which part of the buffer we want to read from. When it receives this lookup frame it retrieves those samples for us as a new frame. To change the number of samples that are read the input frame has to change length. The minimum position we want to read from is added as an offset to this frame to map the values correctly to the right part of the buffer."
 								}
 
@@ -9309,7 +9420,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 540.0, 75.0, 315.0, 139.0 ],
+									"patching_rect" : [ 525.0, 233.5, 315.0, 139.0 ],
 									"proportion" : 0.5
 								}
 
@@ -9326,24 +9437,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 193.125, 136.75, 134.0, 163.25 ],
-									"proportion" : 0.39
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"angle" : 270.0,
-									"background" : 1,
-									"bgcolor" : [ 0.290196, 0.309804, 0.301961, 0.0 ],
-									"border" : 2,
-									"bordercolor" : [ 0.701961, 0.415686, 0.886275, 1.0 ],
-									"id" : "obj-47",
-									"maxclass" : "panel",
-									"mode" : 0,
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 10.0, 360.0, 125.0, 120.0 ],
+									"patching_rect" : [ 193.125, 233.5, 134.0, 163.25 ],
 									"proportion" : 0.39
 								}
 
@@ -9352,7 +9446,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 0 ],
-									"midpoints" : [ 24.5, 264.0, 24.5, 264.0 ],
+									"midpoints" : [ 24.5, 312.0, 24.5, 312.0 ],
 									"order" : 1,
 									"source" : [ "obj-10", 0 ]
 								}
@@ -9361,7 +9455,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-39", 0 ],
-									"midpoints" : [ 24.5, 225.0, 209.5, 225.0 ],
+									"midpoints" : [ 24.5, 321.0, 209.5, 321.0 ],
 									"order" : 0,
 									"source" : [ "obj-10", 0 ]
 								}
@@ -9377,7 +9471,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 1 ],
-									"midpoints" : [ 209.5, 300.125, 209.5, 300.125 ],
 									"source" : [ "obj-12", 0 ]
 								}
 
@@ -9428,18 +9521,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-40", 0 ],
-									"midpoints" : [ 24.5, 405.0, 58.5, 405.0 ],
-									"order" : 0,
-									"source" : [ "obj-2", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-44", 0 ],
-									"midpoints" : [ 24.5, 333.0, 24.5, 333.0 ],
-									"order" : 1,
+									"destination" : [ "obj-34", 0 ],
 									"source" : [ "obj-2", 0 ]
 								}
 
@@ -9447,6 +9529,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-10", 0 ],
+									"midpoints" : [ 24.5, 273.0, 24.5, 273.0 ],
 									"source" : [ "obj-21", 0 ]
 								}
 
@@ -9468,7 +9551,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-21", 0 ],
-									"midpoints" : [ 104.5, 140.0, 24.5, 140.0 ],
+									"midpoints" : [ 104.5, 241.5, 24.5, 241.5 ],
 									"source" : [ "obj-24", 0 ]
 								}
 
@@ -9496,29 +9579,15 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-6", 0 ],
+									"source" : [ "obj-34", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-12", 0 ],
 									"source" : [ "obj-39", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-44", 1 ],
-									"source" : [ "obj-40", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-40", 0 ],
-									"source" : [ "obj-43", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-6", 0 ],
-									"source" : [ "obj-44", 0 ]
 								}
 
 							}
@@ -9563,8 +9632,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -9605,7 +9674,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -9639,7 +9708,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"title" : "Changing Properties (1)",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -10037,8 +10105,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -10079,7 +10147,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -10113,7 +10181,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"title" : "Creating a Grain",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -10302,7 +10369,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 54.0, 965.0, 303.0 ],
+									"patching_rect" : [ 15.0, 54.0, 967.0, 303.0 ],
 									"text" : "Granular synthesis operates using the concept of a grain. Grains are often short and derived from source material such as a buffer or sometimes a real-time input. \n\nWe have two primary concerns when generating grains:\n\n1. How often a grain will be generated\n2. How long each grain will b.\n\nRemember, nothing in FrameLib happens without a scheduler. This component of a network dictates how often 'something' will happen, and so rate of the scheduler will determine how often a grain is generated.\n\nNext, we need to we need to ask fl.read~ for some samples at specific positions. We will use fl.ramp~ for this purpose - an object which generates frames containing consecutive incremental values (e.g. 0, 1, 2, 3, 4). The frame created by fl.ramp~ is going to be sent to the to the fl.read~ object which interprets these numbers as specific audio samples to retrieve from the buffer it is pointed to. You can think of the relationship between fl.ramp~ and fl.read~ as something very similar to the one bewteen line~ and play~ for playing back audio, or uzi and peek~ for writing/extracting buffer values. \n\nThe confusing aspect of this is that although fl.read~ defaults to  to specifing positions in samples, it is often musically difficult to conceive of time in terms of how many samples will pass. Because of this, we are going to specify everything in milliseconds and let FrameLib convert these values to samples internally. This lets us think about everything in durations that make intuitive sense. However, a caveat of working in this way is that we have to tell all of the corresponding objects what kind of units they should expect. Let's break down the example on the right to explain this further."
 								}
 
@@ -10489,8 +10556,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -10531,7 +10598,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -10565,7 +10632,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"title" : "fl.read~",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -11013,8 +11079,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -11055,13 +11121,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 1029.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1029.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -11089,7 +11155,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"assistshowspatchername" : 0,
 						"title" : "Tutorial 6",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -11132,7 +11197,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 116.0, 645.0, 318.0 ],
-									"presentation_linecount" : 20,
 									"text" : "So far we've covered the key principles of FrameLib including:\n\n1. Scheduling (fl.interval~ mainly)\n\n2. Parameters and tagging (fl.tag~, fl.frommax~ /mode params)\n\n3. Converting data to and from frames (fl.frommax~, fl.tomax~, fl.source~, fl.sink~)\n\n4. Several generator objects (fl.random~, fl.uniform~, fl.ramp~)\n\nIf you need a refresher on how any of those work revisit the tutorials and additionally look at the help files for each object.\n\nNow that we've become familiar with these four areas it's time to make something where they work together. In the very first tutorial there is a granular synthesis example which we're going to build and then modify step-by-step. One tool that we're missing currently is something to read audio from buffers and output it as frames. We will use fl.read~ for this purpose.\n\nStart with the next tab and move along through the stages one-by-one while you build your own granular synthesis patch in FrameLib."
 								}
 
@@ -11224,8 +11288,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -11297,81 +11361,80 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-10::obj-2::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-1::obj-9::obj-50" : [ "live.gain~[9]", "Volume", 0 ],
-			"obj-3::obj-5::obj-50" : [ "live.gain~[10]", "Volume", 0 ],
-			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
-			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
-			"obj-6::obj-15::obj-50" : [ "live.gain~[11]", "Volume", 0 ],
-			"obj-7::obj-15::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
 			"obj-7::obj-38" : [ "live.dial", "Reverse Chance", 0 ],
+			"obj-3::obj-5::obj-50" : [ "live.gain~[10]", "Volume", 0 ],
+			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
 			"obj-8::obj-14" : [ "live.dial[1]", "LFO Interval | Rate", 0 ],
 			"obj-8::obj-15::obj-50" : [ "live.gain~[8]", "Volume", 0 ],
+			"obj-6::obj-15::obj-50" : [ "live.gain~[11]", "Volume", 0 ],
+			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-1::obj-9::obj-50" : [ "live.gain~[9]", "Volume", 0 ],
 			"obj-8::obj-67" : [ "live.dial[2]", "LFO Length | Rate", 0 ],
-			"obj-8::obj-70" : [ "live.dial[3]", "LFO Reverse | Rate", 0 ],
+			"obj-10::obj-2::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
 			"obj-8::obj-77" : [ "live.dial[4]", "LFO Offset | Rate", 0 ],
+			"obj-8::obj-70" : [ "live.dial[3]", "LFO Reverse | Rate", 0 ],
+			"obj-7::obj-15::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-1::obj-9::obj-50" : 				{
-					"parameter_longname" : "live.gain~[9]"
-				}
-,
 				"obj-3::obj-5::obj-50" : 				{
 					"parameter_longname" : "live.gain~[10]"
-				}
-,
-				"obj-4::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[4]"
 				}
 ,
 				"obj-5::obj-15::obj-50" : 				{
 					"parameter_longname" : "live.gain~[5]"
 				}
 ,
+				"obj-8::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[8]"
+				}
+,
 				"obj-6::obj-15::obj-50" : 				{
 					"parameter_longname" : "live.gain~[11]"
+				}
+,
+				"obj-4::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[4]"
+				}
+,
+				"obj-1::obj-9::obj-50" : 				{
+					"parameter_longname" : "live.gain~[9]"
 				}
 ,
 				"obj-7::obj-15::obj-50" : 				{
 					"parameter_longname" : "live.gain~[7]"
 				}
-,
-				"obj-8::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[8]"
-				}
 
 			}
-,
-			"inherited_shortname" : 1
+
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-graincontrol.maxpat",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -11535,8 +11598,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",
