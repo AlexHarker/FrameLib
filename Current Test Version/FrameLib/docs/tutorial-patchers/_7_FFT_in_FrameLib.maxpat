@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"title" : "Tutorial 7: FFT in FrameLib",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -51,7 +52,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -85,17 +86,18 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-22",
-									"linecount" : 8,
+									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 525.0, 131.0 ],
-									"text" : "This 'stochastic freeze' abstraction is a similar but improved approach to the 'simple freeze' implementation. The stochastic approach still features the accumulation of phase components, however, it doesn't base the accumulation process on a single frame of data. Instead, the stochastic approach analyses a set of contiguous frames and extracts the mean and standard deviation for the phase component values. New frames are generated using weighted noise calculated with that mean and standard deviation, which are then accumulated. This has the benefit of having a less metallic sound often found in FFT processes, particularly for harsh transient sounds captured in the freeze."
+									"patching_rect" : [ 15.0, 53.0, 735.0, 116.0 ],
+									"text" : "This 'stochastic freeze' abstraction is a similar but improved approach to the 'simple freeze' implementation. The stochastic approach still features the accumulation of phase components. However, it doesn't base the accumulation process on a single frame of data. Instead, the stochastic version analyses a set of contiguous frames and extracts the mean and standard deviation for the magnitudes and phase difference values. New frames are generated using weighted noise calculated with these means and standard deviations, which are then accumulated. This has the benefit of having a less metallic sound often found in FFT processes, particularly for harsh transient sounds or noise captured in the freeze, which is behaves more like we might expect in the real world."
 								}
 
 							}
@@ -106,7 +108,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "int", "int" ],
-									"patching_rect" : [ 162.0, 345.0, 32.0, 22.0 ],
+									"patching_rect" : [ 162.0, 330.0, 32.0, 22.0 ],
 									"text" : "t 0 1"
 								}
 
@@ -120,7 +122,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 162.0, 435.0, 132.0, 75.0 ],
+									"patching_rect" : [ 162.0, 420.0, 132.0, 75.0 ],
 									"size" : 4096
 								}
 
@@ -135,14 +137,14 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 162.0, 303.0, 60.0, 30.0 ],
+									"patching_rect" : [ 162.0, 288.0, 60.0, 30.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_enum" : [ "val1", "val2" ],
+											"parameter_longname" : "live.text[1]",
 											"parameter_mmax" : 1,
 											"parameter_shortname" : "live.text",
-											"parameter_enum" : [ "val1", "val2" ],
-											"parameter_type" : 2,
-											"parameter_longname" : "live.text[1]"
+											"parameter_type" : 2
 										}
 
 									}
@@ -162,15 +164,15 @@
 									"numoutlets" : 4,
 									"outlettype" : [ "signal", "", "float", "list" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 90.0, 435.0, 48.0, 136.0 ],
+									"patching_rect" : [ 90.0, 420.0, 48.0, 136.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_longname" : "live.gain~[8]",
 											"parameter_mmax" : 6.0,
+											"parameter_mmin" : -70.0,
 											"parameter_shortname" : "Freeze",
 											"parameter_type" : 0,
-											"parameter_unitstyle" : 4,
-											"parameter_mmin" : -70.0,
-											"parameter_longname" : "live.gain~[8]"
+											"parameter_unitstyle" : 4
 										}
 
 									}
@@ -189,15 +191,15 @@
 									"numoutlets" : 4,
 									"outlettype" : [ "signal", "", "float", "list" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 15.0, 435.0, 48.0, 136.0 ],
+									"patching_rect" : [ 15.0, 420.0, 48.0, 136.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_longname" : "live.gain~[9]",
 											"parameter_mmax" : 6.0,
+											"parameter_mmin" : -70.0,
 											"parameter_shortname" : "Source",
 											"parameter_type" : 0,
-											"parameter_unitstyle" : 4,
-											"parameter_mmin" : -70.0,
-											"parameter_longname" : "live.gain~[9]"
+											"parameter_unitstyle" : 4
 										}
 
 									}
@@ -221,7 +223,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 615.0, 90.0, 45.0 ],
+									"patching_rect" : [ 15.0, 600.0, 90.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -233,7 +235,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 705.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 690.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -252,7 +254,7 @@
 									"numoutlets" : 1,
 									"offset" : [ -4.0, -3.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 195.0, 219.0, 89.0 ],
+									"patching_rect" : [ 15.0, 180.0, 219.0, 89.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -265,7 +267,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "" ],
-									"patching_rect" : [ 90.0, 390.0, 91.0, 23.0 ],
+									"patching_rect" : [ 90.0, 375.0, 91.0, 23.0 ],
 									"text" : "fl-freeze-stoch"
 								}
 
@@ -316,7 +318,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
-									"midpoints" : [ 24.5, 285.0, 24.5, 285.0 ],
+									"midpoints" : [ 24.5, 270.0, 24.5, 270.0 ],
 									"order" : 1,
 									"source" : [ "obj-12", 0 ]
 								}
@@ -325,7 +327,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"midpoints" : [ 24.5, 375.0, 99.5, 375.0 ],
+									"midpoints" : [ 24.5, 360.0, 99.5, 360.0 ],
 									"order" : 0,
 									"source" : [ "obj-12", 0 ]
 								}
@@ -334,7 +336,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-11", 0 ],
-									"midpoints" : [ 24.5, 573.0, 24.5, 573.0 ],
+									"midpoints" : [ 24.5, 558.0, 24.5, 558.0 ],
 									"source" : [ "obj-14", 0 ]
 								}
 
@@ -342,7 +344,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-11", 0 ],
-									"midpoints" : [ 99.5, 600.0, 24.5, 600.0 ],
+									"midpoints" : [ 99.5, 585.0, 24.5, 585.0 ],
 									"source" : [ "obj-16", 0 ]
 								}
 
@@ -440,8 +442,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -500,7 +502,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -534,17 +536,18 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-22",
-									"linecount" : 4,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 525.0, 69.0 ],
-									"text" : "If you've been going through the tutorials from the start you will be able to spot this abstraction from Tutorial 2. This is a 'simple freeze' that uses the accumulation of phase components in the frequency domain. Take a look inside the abstraction to see how this process works."
+									"patching_rect" : [ 15.0, 53.0, 630.0, 53.0 ],
+									"text" : "If you've been going through the tutorials from the start you will be able to spot this abstraction from Tutorial 2. This is a 'simple freeze' that uses the accumulation of phase components in the frequency domain based on the values from a single FFT frame. Take a look inside the abstraction to see how this process works."
 								}
 
 							}
@@ -555,7 +558,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "int", "int" ],
-									"patching_rect" : [ 168.0, 297.0, 32.0, 22.0 ],
+									"patching_rect" : [ 168.0, 282.0, 32.0, 22.0 ],
 									"text" : "t 0 1"
 								}
 
@@ -569,7 +572,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 168.0, 375.0, 132.0, 75.0 ],
+									"patching_rect" : [ 168.0, 360.0, 132.0, 75.0 ],
 									"size" : 4096
 								}
 
@@ -584,14 +587,14 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 168.0, 255.0, 60.0, 30.0 ],
+									"patching_rect" : [ 168.0, 240.0, 60.0, 30.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_enum" : [ "val1", "val2" ],
+											"parameter_longname" : "live.text",
 											"parameter_mmax" : 1,
 											"parameter_shortname" : "live.text",
-											"parameter_enum" : [ "val1", "val2" ],
-											"parameter_type" : 2,
-											"parameter_longname" : "live.text"
+											"parameter_type" : 2
 										}
 
 									}
@@ -611,15 +614,15 @@
 									"numoutlets" : 4,
 									"outlettype" : [ "signal", "", "float", "list" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 90.0, 375.0, 48.0, 136.0 ],
+									"patching_rect" : [ 90.0, 360.0, 48.0, 136.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_longname" : "live.gain~[6]",
 											"parameter_mmax" : 6.0,
+											"parameter_mmin" : -70.0,
 											"parameter_shortname" : "Freeze",
 											"parameter_type" : 0,
-											"parameter_unitstyle" : 4,
-											"parameter_mmin" : -70.0,
-											"parameter_longname" : "live.gain~[6]"
+											"parameter_unitstyle" : 4
 										}
 
 									}
@@ -638,15 +641,15 @@
 									"numoutlets" : 4,
 									"outlettype" : [ "signal", "", "float", "list" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 15.0, 375.0, 48.0, 136.0 ],
+									"patching_rect" : [ 15.0, 360.0, 48.0, 136.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_longname" : "live.gain~",
 											"parameter_mmax" : 6.0,
+											"parameter_mmin" : -70.0,
 											"parameter_shortname" : "Source",
 											"parameter_type" : 0,
-											"parameter_unitstyle" : 4,
-											"parameter_mmin" : -70.0,
-											"parameter_longname" : "live.gain~"
+											"parameter_unitstyle" : 4
 										}
 
 									}
@@ -670,7 +673,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 555.0, 90.0, 45.0 ],
+									"patching_rect" : [ 15.0, 540.0, 90.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -682,7 +685,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 645.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 615.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -702,7 +705,7 @@
 									"numoutlets" : 1,
 									"offset" : [ -4.0, -3.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 135.0, 219.0, 89.0 ],
+									"patching_rect" : [ 15.0, 120.0, 219.0, 89.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -715,7 +718,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "" ],
-									"patching_rect" : [ 90.0, 330.0, 97.0, 23.0 ],
+									"patching_rect" : [ 90.0, 315.0, 97.0, 23.0 ],
 									"text" : "fl-freeze-simple"
 								}
 
@@ -766,7 +769,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
-									"midpoints" : [ 24.5, 225.0, 24.5, 225.0 ],
+									"midpoints" : [ 24.5, 210.0, 24.5, 210.0 ],
 									"order" : 1,
 									"source" : [ "obj-12", 0 ]
 								}
@@ -775,7 +778,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"midpoints" : [ 24.5, 315.0, 99.5, 315.0 ],
+									"midpoints" : [ 24.5, 300.0, 99.5, 300.0 ],
 									"order" : 0,
 									"source" : [ "obj-12", 0 ]
 								}
@@ -784,7 +787,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-11", 0 ],
-									"midpoints" : [ 24.5, 513.0, 24.5, 513.0 ],
+									"midpoints" : [ 24.5, 498.0, 24.5, 498.0 ],
 									"source" : [ "obj-14", 0 ]
 								}
 
@@ -792,7 +795,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-11", 0 ],
-									"midpoints" : [ 99.5, 540.0, 24.5, 540.0 ],
+									"midpoints" : [ 99.5, 525.0, 24.5, 525.0 ],
 									"source" : [ "obj-16", 0 ]
 								}
 
@@ -890,8 +893,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -950,7 +953,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -984,14 +987,31 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"fontface" : 2,
+									"fontname" : "Arial",
+									"fontsize" : 13.0,
+									"id" : "obj-3",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 90.0, 697.5, 660.0, 50.0 ],
+									"text" : "Note that the default scaling for FrameLib's FFT objects is also normalised (unlike pfft~) so that a full-scale sine wave on a bin frequency produces an ampltitude of 1. This makes it easier to interpret thresholds etc., but you can turn this off if you prefer.",
+									"textcolor" : [ 0.827450980392157, 0.031372549019608, 0.031372549019608, 1.0 ]
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-45",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 113.0, 546.0, 352.0, 20.0 ],
-									"text" : "The original overlap is compensated for at the end. "
+									"patching_rect" : [ 113.0, 546.0, 535.0, 20.0 ],
+									"text" : "The original overlap is compensated for at the end (because each frame has unity gain before this)."
 								}
 
 							}
@@ -1004,7 +1024,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 88.0, 411.0, 484.0, 20.0 ],
-									"text" : "Inbetween these two objects would likely be some analysis or processing",
+									"text" : "Inbetween these two objects you would place your processing (or analysis)",
 									"textjustification" : 1
 								}
 
@@ -1012,11 +1032,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-42",
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 260.0, 498.0, 385.0, 20.0 ],
-									"text" : "Windowing is applied at the output too. This compensates for the...."
+									"patching_rect" : [ 260.0, 484.5, 415.0, 47.0 ],
+									"text" : "Windowing is applied at the output too. The compensation here compensates for the gain from applying the same window twice, and also for the earlier linear compensation so that the gain for each frame is unity)"
 								}
 
 							}
@@ -1047,12 +1068,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-37",
-									"linecount" : 2,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 230.0, 310.0, 310.0, 33.0 ],
-									"text" : "Each frame is windowed using a hann function. Linear compensation is applied for... reasons..."
+									"patching_rect" : [ 230.0, 310.0, 310.0, 47.0 ],
+									"text" : "Each frame is windowed using a hann window. Linear compensation is applied in order to normalise the amplitude of a full-scale sine wave after the FFT."
 								}
 
 							}
@@ -1087,7 +1108,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 705.0, 45.0, 45.0 ]
+									"patching_rect" : [ 30.0, 700.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -1217,7 +1238,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 53.0, 720.0, 147.0 ],
-									"text" : "To begin programming an FFT-based process we start by taking frames of audio and passing it through an fl.fft~ object. Prior to this stage we setup the window and overlap by configuring the relationship between how often frames are created or converted (for example from an MSP signal) and how many samples will exist in a frame. This is our overlap and window size. \n\nIn spectral processes we also apply a window function to the frames before they are converted into the frequency domain. We often use a 'hann' window (the default for fl.window~) when doing this. It is important to note that this can result in the gain of that frame being modified and we have to compensate for these changes using the /compensate parameter of fl.window~. Below is a step-by-step explanation for each stage of the fft process explaining how each part works and why the configuration has been made like so."
+									"presentation_linecount" : 9,
+									"text" : "To begin programming an FFT-based process we take frames of audio and passing it through an fl.fft~ object. However, prior to this stage we setup the window and overlap by configuring the relationship between how often frames are created or converted (for example from an MSP signal) and how many samples will exist in a frame. This is our overlap and window size. \n\nIn spectral processing we commonly also apply a window function to the frames before they are converted into the frequency domain. We often use a 'hann' window (the default for fl.window~) when doing this. It is important to note that this can result in the gain of that frame being modified and we have to compensate for these changes using the /compensate parameter of fl.window~ if we want to normalise amplitude values for known inputs. Below is a step-by-step explanation for each stage of the fft process explaining how each part works and why the configuration has been made as it has."
 								}
 
 							}
@@ -1533,8 +1555,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1593,7 +1615,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1627,6 +1649,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"arrows" : 1,
@@ -1713,12 +1736,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-10",
-									"linecount" : 11,
+									"linecount" : 14,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 515.0, 449.0, 188.0, 167.0 ],
-									"text" : "The red squared off part of the patch is probably very familiar to you now. This is the basic mechanism for converting audio into frames. Actually, for pfft~ this process is happening at the fftin~ object in order to do the same conversion but it derives similar parameters from the ones you give to the pfft~ object.\n\n"
+									"patching_rect" : [ 515.0, 449.0, 188.0, 208.0 ],
+									"text" : "The red squared off part of the patch is hopefully very familiar to you now. This is the basic mechanism for converting audio into frames with windowing. \n\nActually, for pfft~ this process happens at the fftin~ object in order to do the same conversion but it internally derives similar parameters as those on the left  from the ones you give to the pfft~ object.\n\n"
 								}
 
 							}
@@ -1803,8 +1826,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 720.0, 350.0 ],
-									"text" : "A major point of difference with pfft~ that you have to overcome is how you think about time domain versus frequency domain processing. In Max, and using pfft~ you have to enter and leave a pfft~ wrapper which contains a processing patch. This is similar to how you might convert audio to frames in FrameLib using fl.source~ and then convert back to MSP using fl.sink~. pfft~ handles the blocking of audio into frames. Once audio is converted to frames in FrameLib, however, we are already working wtih frames - it's simply a matter of converting to and from the frequency domain (if and when we want to do that). This is one of the great aspects of FrameLib - that once we are working with frames there is no more blocking to do and we are simply processing groups of samples in some way, which might be spectral or a time domain process, or a mix of the two.\n\nAs a result of this paradigm shift, the mechanism for doing spectral processing in the frequency domain looks very different. There is no wrapper, so configuring fundamental aspects of the FFT process are no longer done by changing some patcher's arguments, rather, they are declared at the object level responsible for doing some part of the conversion. This means we have more responsiblity and more power over the process itself.\n\nAdditionaly, you might go looking to replace specific parts of the pfft~ world with FrameLib objects but struggle to find a suitable analog. For example, there is no 'bin index' information frame or outlet provided by fl.fft~ as you might find in fftin~. This kind of positional information is carried implicitly in the frame by each value's position. The first (or zeroth) bin of your FFT's real and imaginary values will be the first value in each frame and the window size is already known by the length of the input frame to fl.fft~, rather than using an object like fftinfo~. Overall, the differences might seem confusing abrasive at first if you are used to working with FFTs in Max, but it reduces or eliminates some of the tedious things required by working in pfft~. It also makes it easier (or possible) to synchronise an FFT-based process with something else because you have total control over the timing of each frame in a network."
+									"patching_rect" : [ 15.0, 53.0, 722.0, 350.0 ],
+									"text" : "A major point of difference with pfft~ that you have to overcome is how you might think about time domain versus frequency domain processing as very separate things. In Max, and using pfft~ you have to enter and leave a pfft~ wrapper which contains a processing patch. This is similar to how you might convert audio to frames in FrameLib using fl.source~ and then convert back to MSP using fl.sink~. pfft~ handles the blocking of audio into frames. Once audio is converted to frames in FrameLib, however, we are already working with conveninet blocks of audio - it's simply a matter of converting to and from the frequency domain (if and when we want to do that). This is one of the great aspects of FrameLib - that once we are working with frames  we are alwyas simply processing groups of samples in some way, which might be spectral or a time domain process, or a mix of the two.\n\nAs a result of this paradigm shift, the mechanism for doing spectral processing in the frequency domain looks quite different. There is no wrapper, so configuring fundamental aspects of the FFT process are no longer done by changing some patcher's arguments, rather, they are declared at the object level responsible for doing some part of the conversion. This means we have more responsiblity and more power over the process itself.\n\nAdditionaly, you might go looking to replace specific parts of the pfft~ world with FrameLib objects but struggle to find a suitable analog. For example, there is no 'bin index' information frame or outlet provided by fl.fft~ as you might find in fftin~. This kind of positional information is carried implicitly in the frame by each value's position. The first (or zeroth) bin of your FFT's real and imaginary values will be the first value in each frame and the window size is already known by the length of the input frame to fl.fft~, rather than using an object like fftinfo~. Overall, the differences might seem confusing at first if you are used to working with FFTs nateively in Max, but FrameLib reduces or eliminates some of the tedious things required by working in pfft~. It also makes it easier (or possible) to synchronise an FFT-based process with something else because you have total control over the timing of each frame in a network."
 								}
 
 							}
@@ -1938,8 +1961,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1998,7 +2021,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2032,6 +2055,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgmode" : 0,
@@ -2074,7 +2098,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 120.0, 525.0, 84.0 ],
-									"text" : "Having absolute control over each frame makes FrameLib a potent playground for FFT-based spectral processint. Now that we have extensively covered the basics of FrameLib and constructed our own granular synthesiser it's time to look at how we can implement FFT processes in FrameLib and to see the differences between working in FrameLib and examples constructed in pfft~."
+									"text" : "Having absolute control over each frame makes FrameLib a potent playground for FFT-based spectral processing. Now that we have extensively covered the basics of FrameLib and constructed our own granular synthesiser it's time to look at how we can implement FFT processes in FrameLib and to see the differences between working in FrameLib and examples constructed in pfft~."
 								}
 
 							}
@@ -2163,8 +2187,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2260,7 +2284,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2294,6 +2318,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Forbidden Planet",
 						"boxes" : [ 							{
 								"box" : 								{
@@ -2317,13 +2342,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 11.0,
+									"fontsize" : 12.0,
 									"id" : "obj-73",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 419.5, 427.5, 156.0, 43.0 ],
+									"patching_rect" : [ 419.5, 427.5, 166.0, 47.0 ],
 									"text" : "Frommax is triggered by the source frame, sampling the multislider list each time"
 								}
 
@@ -2375,7 +2400,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2408,6 +2433,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-9",
@@ -2679,13 +2705,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 11.0,
+									"fontsize" : 12.0,
 									"id" : "obj-61",
 									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 316.75, 128.0, 56.0 ],
+									"patching_rect" : [ 195.0, 316.75, 130.0, 60.0 ],
 									"text" : "Convert MSP to frames 4096 samples long every 2048 samples then window."
 								}
 
@@ -2702,7 +2728,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2735,6 +2761,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-1",
@@ -3226,8 +3253,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3286,7 +3313,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -3320,6 +3347,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-24",
@@ -3343,12 +3371,12 @@
 									"patching_rect" : [ 286.00000799999998, 205.700012000000015, 75.0, 90.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_enum" : [ "Percussive", "Harmonic", "Bypass" ],
+											"parameter_longname" : "live.tab",
 											"parameter_mmax" : 2,
 											"parameter_shortname" : "live.tab",
-											"parameter_enum" : [ "Percussive", "Harmonic", "Bypass" ],
 											"parameter_type" : 2,
-											"parameter_unitstyle" : 0,
-											"parameter_longname" : "live.tab"
+											"parameter_unitstyle" : 9
 										}
 
 									}
@@ -3423,7 +3451,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -3456,6 +3484,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-22",
@@ -3589,7 +3618,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -3622,6 +3651,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-1",
@@ -3773,7 +3803,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -3806,6 +3836,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-4",
@@ -4317,8 +4348,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 15.0, 434.0, 30.0 ],
-									"text" : "Narrowband/broadband Separator"
+									"patching_rect" : [ 15.0, 15.0, 318.0, 30.0 ],
+									"text" : "Narrowband/Broadband Separator"
 								}
 
 							}
@@ -4346,12 +4377,12 @@
 									"patching_rect" : [ 193.333341333333323, 205.700012000000015, 79.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_longname" : "live.dial",
 											"parameter_mmax" : 82.0,
+											"parameter_mmin" : 3.0,
 											"parameter_shortname" : "Width",
 											"parameter_type" : 0,
-											"parameter_unitstyle" : 0,
-											"parameter_mmin" : 3.0,
-											"parameter_longname" : "live.dial"
+											"parameter_unitstyle" : 0
 										}
 
 									}
@@ -4408,13 +4439,13 @@
 									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-3",
-									"linecount" : 36,
+									"linecount" : 37,
 									"maxclass" : "comment",
 									"numinlets" : 0,
 									"numoutlets" : 0,
-									"patching_rect" : [ 390.0, 60.0, 344.0, 568.0 ],
+									"patching_rect" : [ 390.0, 60.0, 344.0, 584.0 ],
 									"suppressinlet" : 1,
-									"text" : "The previous examples demonstrate basic FFT processes that you might have seen before. FrameLib excels at implementing spectral processes where each frame needs to be processed individually and sometimes in quite complex ways. Objects in FrameLib generaly don't care about whether something is in the time domain or frequency domain, FrameLib objects just process numbers in groups - so all of the useful 'batteries included' objects can be used in quite a versatile manner.\n\nIn this example, fl.medianfilter~ (a median filter) is used to separate narrow and broadband components from an incoming signal. This creates the effect of isolating the percussive components, which you can then subtract from the original signal to isolate the harmonic components. This is not the same as a full harmonic-percussive separation algorithm, which would also use a time-based median filter alongside the frame-based filter, but it gives sonically similar results.\n\nIt works on the principle that harmonic components will form narrow peaks that sit above the median for each area in the spectral frame.\n\nThe stages for realising this are as follows:\n\n1. Compute FFT\n\n2. Calculate the magnitude of each real/imaginary pair of values\n\n3. Pass the magnitude through a median filter\n\n4. If the pre-filtered magnitude is less than the filtered magnitude multiply the original real/imaginary pair by 0 to leave only the broadband part  (in effect, a gate)."
+									"text" : "The previous examples demonstrate basic FFT processes that you might have seen before. FrameLib excels at implementing spectral processes where each frame needs to be processed individually and sometimes in quite complex ways. Objects in FrameLib generaly don't care about whether something is in the time domain or frequency domain, FrameLib objects just process numbers in groups - so all of the useful 'batteries included' objects can be used in quite a versatile manner.\n\nIn this example, fl.medianfilter~ (a median filter) is used to separate narrow and broadband components from an incoming signal. This creates the effect of isolating the percussive components, which you can then subtract from the original signal to isolate the harmonic components. This is not the same as a full harmonic-percussive separation algorithm, which would also use a time-based median filter alongside the frame-based filter, but it gives sonically similar results.\n\nIt works on the principle that harmonic components will form narrow peaks that sit at or above the median for each area in the spectral frame, whereas percussive components will not (and will sit below the median).\n\nThe stages for realising this are as follows:\n\n1. Compute FFT\n\n2. Calculate the magnitude of each real/imaginary pair of values\n\n3. Pass the magnitude through a median filter\n\n4. If the pre-filtered magnitude is less than the filtered magnitude multiply the original real/imaginary pair by 0 to leave only the broadband part  (in effect, a gate)."
 								}
 
 							}
@@ -4621,8 +4652,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4681,7 +4712,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -4715,8 +4746,20 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"title" : "Cross Synthesis",
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-30",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 68.5, 501.0, 433.0, 20.0 ],
+									"text" : "(due to the normalised FFTs the result tends to be quiet, so boost it here)"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-29",
 									"maxclass" : "newobj",
@@ -5092,7 +5135,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 208.5, 541.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
-									"text" : "6",
+									"text" : "7",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
 
@@ -5465,8 +5508,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -5525,7 +5568,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -5559,6 +5602,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"fontface" : 1,
@@ -5618,7 +5662,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "signal" ],
-									"patching_rect" : [ 32.0, 330.0, 37.0, 22.0 ],
+									"patching_rect" : [ 32.0, 345.0, 37.0, 22.0 ],
 									"text" : "adc~"
 								}
 
@@ -5716,8 +5760,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 690.0, 225.0 ],
-									"text" : "The Fast Fourier Transform (FFT) in FrameLib might take some time to understand if you are used to working with pfft~ in Max. It might not be obvious, but pfft~ is in fact a frame-based environment that works on the patch is loaded within it. You might think of pfft~ in a similar fashion to an fl.source~/fl.sink~ pair, in that it takes an audio signal and allows it to be processed in a frame-by-frame manner translating to/from MSP at either end. The main difference in FrameLib is that there is no wrapper object which contains another patcher as you would find in pfft~. As we have seen in previous tutorials, the information carried by a frame can be processed to trigger the generation of new frames or to modify the existing frames. Audio frames in FrameLib can be sent to the fl.fft~ object which triggers a conversion in the frequency domain producing frames containing the real and imaginary components.\n\nAs the entire FFT process in FrameLib happens inside a network, all the parameters that dictate fundamental aspects such as window size and overlap can be changed in real-time without stopping audio or compiling the DSP chain.\n\nTo understand how some of these fundamental principles are defined and controlled within FrameLib let's examine some didactic comparisons."
+									"patching_rect" : [ 15.0, 53.0, 720.0, 225.0 ],
+									"text" : "The Fast Fourier Transform (FFT) in FrameLib might take some time to understand if you are already used to working with pfft~ in Max. It might not be obvious but pfft~ is in fact a frame-based environment that works on the patch is loaded within it. You might think of pfft~ in a similar fashion to an fl.source~/fl.sink~ pair, in that it takes an audio signal and allows it to be processed in a frame-by-frame manner translating to/from MSP at either end. The main difference in FrameLib is that there is no wrapper object which contains another patcher as you would find in pfft~. As we have seen in previous tutorials, the information carried by a frame can be processed to trigger the generation of new frames or to modify the existing frames. Audio frames in FrameLib can thus be sent to the fl.fft~ object which converts them into the frequency domain and produces frames containing the real and imaginary components for each FFT bin.\n\nAs the entire FFT process in FrameLib happens inside a dynamic network, the parameters that dictate fundamental aspects of an STFT (e.g. window size and overlap) can be changed in real-time without stopping audio or recompiling the DSP chain.\n\nTo understand how some of these fundamental principles are defined and controlled within FrameLib let's examine some didactic comparisons."
 								}
 
 							}
@@ -5768,12 +5812,12 @@
 								"box" : 								{
 									"fontsize" : 12.0,
 									"id" : "obj-7",
-									"linecount" : 6,
+									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 390.0, 391.5, 318.0, 87.0 ],
-									"text" : "The fl.fft~ takes in a frame as an analysis window and outputs two frames containg the FFT analysis. The left output of fl.fft~ contains the real components and the right frame contains the imaginary. This is similar to the structure of the native fft~ object although there is no third frame produced containing the bin index information. "
+									"patching_rect" : [ 390.0, 377.5, 318.0, 100.0 ],
+									"text" : "The fl.fft~ takes in a frame as an analysis window and outputs two frames containg the FFT analysis. The left output of fl.fft~ contains the real components and the right frame contains the imaginary. This is similar to the structure of the native fft~ or fftin~ objects although there is no third frame produced containing the bin index information. "
 								}
 
 							}
@@ -5906,8 +5950,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -5972,104 +6016,105 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-9::obj-12::obj-21::obj-6" : [ "live.tab[6]", "live.tab[1]", 0 ],
-			"obj-3::obj-18" : [ "live.text", "live.text", 0 ],
-			"obj-3::obj-16" : [ "live.gain~[6]", "Freeze", 0 ],
-			"obj-5::obj-23::obj-21::obj-6" : [ "live.tab[8]", "live.tab[1]", 0 ],
-			"obj-9::obj-16" : [ "live.gain~[8]", "Freeze", 0 ],
-			"obj-3::obj-12::obj-21::obj-6" : [ "live.tab[5]", "live.tab[1]", 0 ],
-			"obj-3::obj-14" : [ "live.gain~", "Source", 0 ],
-			"obj-10::obj-9::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
 			"obj-10::obj-23::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-10::obj-2::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
-			"obj-7::obj-8::obj-21::obj-6" : [ "live.tab[11]", "live.tab[1]", 0 ],
-			"obj-9::obj-12::obj-35" : [ "[2]", "Level", 0 ],
-			"obj-5::obj-20" : [ "live.tab", "live.tab", 0 ],
-			"obj-5::obj-4" : [ "live.dial", "Width", 0 ],
-			"obj-9::obj-18" : [ "live.text[1]", "live.text", 0 ],
-			"obj-5::obj-23::obj-35" : [ "[9]", "Level", 0 ],
-			"obj-3::obj-12::obj-35" : [ "[6]", "Level", 0 ],
-			"obj-3::obj-11::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
 			"obj-10::obj-23::obj-35" : [ "[1]", "Level", 0 ],
+			"obj-10::obj-2::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
+			"obj-10::obj-9::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
 			"obj-10::obj-9::obj-35" : [ "[5]", "Level", 0 ],
-			"obj-7::obj-8::obj-35" : [ "[11]", "Level", 0 ],
+			"obj-3::obj-11::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
+			"obj-3::obj-12::obj-21::obj-6" : [ "live.tab[5]", "live.tab[1]", 0 ],
+			"obj-3::obj-12::obj-35" : [ "[6]", "Level", 0 ],
+			"obj-3::obj-14" : [ "live.gain~", "Source", 0 ],
+			"obj-3::obj-16" : [ "live.gain~[6]", "Freeze", 0 ],
+			"obj-3::obj-18" : [ "live.text", "live.text", 0 ],
 			"obj-4::obj-24::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
-			"obj-9::obj-14" : [ "live.gain~[9]", "Source", 0 ],
-			"obj-9::obj-11::obj-50" : [ "live.gain~[10]", "Volume", 0 ],
-			"obj-7::obj-3::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
 			"obj-5::obj-11::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
+			"obj-5::obj-20" : [ "live.tab", "live.tab", 0 ],
+			"obj-5::obj-23::obj-21::obj-6" : [ "live.tab[8]", "live.tab[1]", 0 ],
+			"obj-5::obj-23::obj-35" : [ "[9]", "Level", 0 ],
+			"obj-5::obj-4" : [ "live.dial", "Width", 0 ],
+			"obj-7::obj-3::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-7::obj-8::obj-21::obj-6" : [ "live.tab[11]", "live.tab[1]", 0 ],
+			"obj-7::obj-8::obj-35" : [ "[11]", "Level", 0 ],
+			"obj-9::obj-11::obj-50" : [ "live.gain~[10]", "Volume", 0 ],
+			"obj-9::obj-12::obj-21::obj-6" : [ "live.tab[6]", "live.tab[1]", 0 ],
+			"obj-9::obj-12::obj-35" : [ "[2]", "Level", 0 ],
+			"obj-9::obj-14" : [ "live.gain~[9]", "Source", 0 ],
+			"obj-9::obj-16" : [ "live.gain~[8]", "Freeze", 0 ],
+			"obj-9::obj-18" : [ "live.text[1]", "live.text", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-9::obj-12::obj-21::obj-6" : 				{
-					"parameter_longname" : "live.tab[6]"
-				}
-,
-				"obj-5::obj-23::obj-21::obj-6" : 				{
-					"parameter_longname" : "live.tab[8]"
-				}
-,
-				"obj-3::obj-12::obj-21::obj-6" : 				{
-					"parameter_longname" : "live.tab[5]"
-				}
-,
 				"obj-10::obj-23::obj-21::obj-6" : 				{
 					"parameter_longname" : "live.tab[4]"
-				}
-,
-				"obj-10::obj-2::obj-50" : 				{
-					"parameter_longname" : "live.gain~[3]"
-				}
-,
-				"obj-7::obj-8::obj-21::obj-6" : 				{
-					"parameter_longname" : "live.tab[11]"
-				}
-,
-				"obj-9::obj-12::obj-35" : 				{
-					"parameter_longname" : "[2]"
-				}
-,
-				"obj-5::obj-23::obj-35" : 				{
-					"parameter_longname" : "[9]"
-				}
-,
-				"obj-3::obj-12::obj-35" : 				{
-					"parameter_longname" : "[6]"
-				}
-,
-				"obj-3::obj-11::obj-50" : 				{
-					"parameter_longname" : "live.gain~[5]"
 				}
 ,
 				"obj-10::obj-23::obj-35" : 				{
 					"parameter_longname" : "[1]"
 				}
 ,
-				"obj-7::obj-8::obj-35" : 				{
-					"parameter_longname" : "[11]"
+				"obj-10::obj-2::obj-50" : 				{
+					"parameter_longname" : "live.gain~[3]"
+				}
+,
+				"obj-3::obj-11::obj-50" : 				{
+					"parameter_longname" : "live.gain~[5]"
+				}
+,
+				"obj-3::obj-12::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[5]"
+				}
+,
+				"obj-3::obj-12::obj-35" : 				{
+					"parameter_longname" : "[6]"
 				}
 ,
 				"obj-4::obj-24::obj-50" : 				{
 					"parameter_longname" : "live.gain~[4]"
 				}
 ,
+				"obj-5::obj-11::obj-50" : 				{
+					"parameter_longname" : "live.gain~[7]"
+				}
+,
+				"obj-5::obj-23::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[8]"
+				}
+,
+				"obj-5::obj-23::obj-35" : 				{
+					"parameter_longname" : "[9]"
+				}
+,
+				"obj-7::obj-8::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[11]"
+				}
+,
+				"obj-7::obj-8::obj-35" : 				{
+					"parameter_longname" : "[11]"
+				}
+,
 				"obj-9::obj-11::obj-50" : 				{
 					"parameter_longname" : "live.gain~[10]"
 				}
 ,
-				"obj-5::obj-11::obj-50" : 				{
-					"parameter_longname" : "live.gain~[7]"
+				"obj-9::obj-12::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[6]"
+				}
+,
+				"obj-9::obj-12::obj-35" : 				{
+					"parameter_longname" : "[2]"
 				}
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl-maxfft.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -6112,35 +6157,35 @@
 			}
 , 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-tutorial-names.txt",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-freeze-simple.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-freeze-stoch.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
