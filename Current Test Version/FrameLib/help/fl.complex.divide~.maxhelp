@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,7 +333,74 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "arrows": 1,
+                                    "border": 4.0,
+                                    "id": "obj-1",
+                                    "maxclass": "live.line",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        340.875,
+                                        394.0,
+                                        60.25,
+                                        15.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-13",
+                                    "linecount": 2,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        406.875,
+                                        383.5,
+                                        180.0,
+                                        36.0
+                                    ],
+                                    "text": "Adjust the real and imaginary input values to see the result"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-17",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        435.0,
+                                        277.0,
+                                        153.0,
+                                        21.0
+                                    ],
+                                    "text": "Can also be abbreviated!"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-12",
+                                    "maxclass": "newobj",
+                                    "numinlets": 4,
+                                    "numoutlets": 2,
+                                    "outlettype": [
+                                        "",
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        330.0,
+                                        277.0,
+                                        82.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.complex./~"
+                                }
+                            },
                             {
                                 "box": {
                                     "id": "obj-11",
@@ -715,6 +783,12 @@
                                         "obj-5",
                                         0
                                     ],
+                                    "midpoints": [
+                                        103.5,
+                                        138.5,
+                                        261.5,
+                                        138.5
+                                    ],
                                     "order": 0,
                                     "source": [
                                         "obj-11",
@@ -727,6 +801,12 @@
                                     "destination": [
                                         "obj-6",
                                         0
+                                    ],
+                                    "midpoints": [
+                                        103.5,
+                                        138.5,
+                                        182.5,
+                                        138.5
                                     ],
                                     "order": 1,
                                     "source": [
@@ -761,6 +841,12 @@
                             },
                             {
                                 "patchline": {
+                                    "color": [
+                                        0.0,
+                                        0.871366560459137,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "destination": [
                                         "obj-14",
                                         0
@@ -780,6 +866,12 @@
                             },
                             {
                                 "patchline": {
+                                    "color": [
+                                        0.0,
+                                        0.871366560459137,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "destination": [
                                         "obj-15",
                                         0
@@ -799,6 +891,12 @@
                             },
                             {
                                 "patchline": {
+                                    "color": [
+                                        0.0,
+                                        0.871366560459137,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "destination": [
                                         "obj-8",
                                         0
@@ -818,6 +916,12 @@
                             },
                             {
                                 "patchline": {
+                                    "color": [
+                                        0.0,
+                                        0.871366560459137,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "destination": [
                                         "obj-9",
                                         0
