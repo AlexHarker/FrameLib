@@ -5,7 +5,7 @@
         "Tutorial 3: FrameLib basics": "The basics of FrameLib, such as its timing and patching architecture.",
         "Tutorial 4: Getting in and out of FrameLib and Max": "Methods for converting data between the Max and FrameLib domains.",
         "Tutorial 5: Generator objects": "An overview of 'generator' objects belonging to the FrameLib eco-system.",
-        "Tutorial 6: Building a granular synthesiser in Framelib from scratch": "A step-by-step guide to building a granular synthesiser in FrameLib from scratch."
+        "Tutorial 6: Building a granular synthesiser in FrameLib from scratch": "A step-by-step guide to building a granular synthesiser in FrameLib from scratch."
     },
     "Intermediate": {
         "Tutorial 7: FFT with FrameLib": "The Basics of FFT/STFT processing in FrameLib",
