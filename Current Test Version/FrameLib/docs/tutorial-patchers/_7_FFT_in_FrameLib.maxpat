@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 1290.0, 787.0 ],
+		"rect" : [ 34.0, 79.0, 751.0, 787.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -37,7 +37,8 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "default",
-		"showontab" : 1,
+		"showrootpatcherontab" : 0,
+		"showontab" : 0,
 		"title" : "Tutorial 7: FFT in FrameLib",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -56,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1290.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 751.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -699,7 +700,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1290.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 751.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1104,7 +1105,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1290.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 751.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3760,7 +3761,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 752.0, 15.0, 90.0, 21.0 ],
+					"patching_rect" : [ 626.0, 15.0, 90.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -4150,20 +4151,6 @@
 									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 15.0, 60.0, 225.0, 95.0 ],
 									"viewvisibility" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Lato",
-									"fontsize" : 13.0,
-									"id" : "obj-3",
-									"linecount" : 13,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 541.75, 480.0, 195.0, 209.0 ],
-									"text" : "Max comes with an example patch for performing cross-synthesis on two sounds in the frequency domain. The patch, 'cross-dog' can be found in help > examples > fft-fun.\n\nThe example to the left translates the FFT processing found in the Max examples to a FrameLib network. It might be useful for you to investigate the differences in patching here."
 								}
 
 							}
@@ -4619,7 +4606,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 660.0, 15.0, 74.0, 21.0 ],
+					"patching_rect" : [ 534.0, 15.0, 74.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -4648,7 +4635,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1290.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 751.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
