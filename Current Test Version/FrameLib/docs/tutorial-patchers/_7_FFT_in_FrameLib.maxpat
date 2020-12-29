@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 752.0, 787.0 ],
+		"rect" : [ 34.0, 79.0, 1290.0, 787.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -37,8 +37,7 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "default",
-		"showrootpatcherontab" : 0,
-		"showontab" : 0,
+		"showontab" : 1,
 		"title" : "Tutorial 7: FFT in FrameLib",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -57,7 +56,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 752.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1290.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -129,7 +128,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 105.0, 443.5, 375.0, 33.0 ],
-									"presentation_linecount" : 2,
 									"text" : "To convert back to the time domain the real and imaginary components are passed through an inverse fourier transform."
 								}
 
@@ -142,7 +140,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 105.0, 368.5, 450.0, 33.0 ],
-									"presentation_linecount" : 7,
 									"text" : "The windowed frames are converted to the time domain. This results in two new frames, per input frame. One is the real component, and the other is the imaginary."
 								}
 
@@ -155,7 +152,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 230.0, 310.0, 310.0, 33.0 ],
-									"presentation_linecount" : 4,
 									"text" : "Each frame is windowed using a hann function. Linear compensation is applied for... reasons..."
 								}
 
@@ -703,7 +699,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1290.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -907,7 +903,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 687.0, 350.0 ],
+									"patching_rect" : [ 15.0, 53.0, 689.0, 350.0 ],
 									"text" : "A major point of difference with pfft~ that you have to overcome is how you think about time domain versus frequency domain processing. In Max, and using pfft~ you have to enter and leave a pfft~ wrapper which contains a processing patch. This is similar to how you might convert audio to frames in FrameLib using fl.source~ and then convert back to MSP using fl.sink~. pfft~ handles the blocking of audio into frames. Once audio is converted to frames in FrameLib, however, we are already working wtih frames - it's simply a matter of converting to and from the frequency domain (if and when we want to do that). This is one of the great aspects of FrameLib - that once we are working with frames there is no more blocking to do and we are simply processing groups of samples in some way, which might be spectral or a time domain process, or a mix of the two.\n\nAs a result of this paradigm shift, the mechanism for doing spectral processing in the frequency domain looks very different. There is no wrapper, so configuring fundamental aspects of the FFT process are no longer done by changing some patcher's arguments, rather, they are declared at the object level responsible for doing some part of the conversion. This means we have more responsiblity and more power over the process itself.\n\nAdditionaly, you might go looking to replace specific parts of the pfft~ world with FrameLib objects but struggle to find a suitable analog. For example, there is no 'bin index' information frame or outlet provided by fl.fft~ as you might find in fftin~. This kind of positional information is carried implicitly in the frame by each value's position. The first (or zeroth) bin of your FFT's real and imaginary values will be the first value in each frame and the window size is already known by the length of the input frame to fl.fft~, rather than using an object like fftinfo~. Overall, the differences might seem confusing abrasive at first if you are used to working with FFTs in Max, but it reduces or eliminates some of the tedious things required by working in pfft~. It also makes it easier (or possible) to synchronise an FFT-based process with something else because you have total control over the timing of each frame in a network."
 								}
 
@@ -1108,7 +1104,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1290.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2377,571 +2373,6 @@
 					}
 ,
 					"text" : "p forbidden planet"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-3",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 0,
-					"patcher" : 					{
-						"fileversion" : 1,
-						"appversion" : 						{
-							"major" : 8,
-							"minor" : 1,
-							"revision" : 3,
-							"architecture" : "x64",
-							"modernui" : 1
-						}
-,
-						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 761.0 ],
-						"bglocked" : 0,
-						"openinpresentation" : 0,
-						"default_fontsize" : 12.0,
-						"default_fontface" : 0,
-						"default_fontname" : "Arial",
-						"gridonopen" : 2,
-						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 2,
-						"objectsnaponopen" : 1,
-						"statusbarvisible" : 2,
-						"toolbarvisible" : 1,
-						"lefttoolbarpinned" : 0,
-						"toptoolbarpinned" : 0,
-						"righttoolbarpinned" : 0,
-						"bottomtoolbarpinned" : 0,
-						"toolbars_unpinned_last_save" : 0,
-						"tallnewobj" : 0,
-						"boxanimatetime" : 200,
-						"enablehscroll" : 1,
-						"enablevscroll" : 1,
-						"devicewidth" : 0.0,
-						"description" : "",
-						"digest" : "",
-						"tags" : "",
-						"style" : "",
-						"subpatcher_template" : "default",
-						"showontab" : 1,
-						"title" : "Spectral Snapshot",
-						"boxes" : [ 							{
-								"box" : 								{
-									"id" : "obj-8",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "int" ],
-									"patching_rect" : [ 285.0, 412.0, 29.5, 22.0 ],
-									"text" : "+ 1"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 12.0,
-									"id" : "obj-7",
-									"maxclass" : "live.tab",
-									"num_lines_patching" : 1,
-									"num_lines_presentation" : 0,
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "float" ],
-									"parameter_enable" : 1,
-									"patching_rect" : [ 285.0, 369.5, 243.0, 28.0 ],
-									"saved_attribute_attributes" : 									{
-										"valueof" : 										{
-											"parameter_longname" : "live.tab[12]",
-											"parameter_mmax" : 1,
-											"parameter_shortname" : "live.tab[12]",
-											"parameter_enum" : [ "FrameLib", "pfft~" ],
-											"parameter_type" : 2,
-											"parameter_unitstyle" : 0
-										}
-
-									}
-,
-									"varname" : "live.tab"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-4",
-									"maxclass" : "newobj",
-									"numinlets" : 3,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 525.0, 68.0, 22.0 ],
-									"text" : "selector~ 2"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bgmode" : 0,
-									"border" : 0,
-									"clickthrough" : 0,
-									"enablehscroll" : 0,
-									"enablevscroll" : 0,
-									"id" : "obj-3",
-									"lockeddragscroll" : 0,
-									"maxclass" : "bpatcher",
-									"name" : "fl-mono-h.maxpat",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"offset" : [ 0.0, 0.0 ],
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 570.0, 85.0, 45.0 ],
-									"viewvisibility" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-17",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 347.5, 149.0, 20.0 ],
-									"text" : "Compare the two systems"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"args" : [ "@file", "rainstick.aif", "@loop", 1, "@vol", 0 ],
-									"bgmode" : 0,
-									"border" : 0,
-									"clickthrough" : 0,
-									"enablehscroll" : 0,
-									"enablevscroll" : 0,
-									"id" : "obj-23",
-									"lockeddragscroll" : 0,
-									"maxclass" : "bpatcher",
-									"name" : "demosound.maxpat",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"offset" : [ 0.0, 0.0 ],
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 39.5, 123.0, 225.0, 95.0 ],
-									"viewvisibility" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 13.0,
-									"id" : "obj-11",
-									"linecount" : 17,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 412.0, 390.0, 253.0 ],
-									"text" : "In the pfft~ native version, the named jitter matrix acts as a one frame buffer holding the real and imaginary components when a bang is received. The contents of these matrices are retrieved by the values of fftin~'s third outlet. The synchronicity of this process is handled by the bin index values.\n\nIn FrameLib, we can store the frames containing real and imaginary components in an fl.register~ object. Using the scheduler that initially causes the conversion of MSP audio to frames, the frame that is stored within these temporary buffers is recalled. The FrameLib realisation of this process is more linear and we don't need to be concerned with storing individual values of the frames at the correct location in a buffer (as is managed by the bin index outlet and the jitter matrices). Instead we can just be concerned with the frame as a unit of information itself. The usefulness of working in this way becomes apparent as the applications become increasingly complex."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-6",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 315.0, 72.0, 22.0 ],
-									"text" : "loadmess 0"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-2",
-									"local" : 1,
-									"maxclass" : "ezdac~",
-									"numinlets" : 2,
-									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 645.0, 45.0, 45.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-5",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 120.0, 412.0, 154.0, 22.0 ],
-									"text" : "pfft~ fl-snapshot-pfft 4096 4"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-27",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 39.5, 412.0, 67.0, 22.0 ],
-									"text" : "fl-snapshot"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-103",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 150.5, 243.0, 190.0, 20.0 ],
-									"text" : "Press when you want to snapshot"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-100",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 266.5, 160.5, 113.0, 20.0 ],
-									"text" : "Make some sounds"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-98",
-									"justification" : 1,
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 182.0, 40.25, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 13.0,
-									"id" : "obj-86",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 87.5, 240.0, 61.0, 23.0 ],
-									"text" : "snapshot"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Lato",
-									"fontsize" : 13.0,
-									"id" : "obj-13",
-									"linecount" : 3,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 498.0, 53.0 ],
-									"text" : "This basic spectral snapshot process is perhaps musically underwhelming but demonstrative of the differences in patching architecture for spectral processes in both FrameLib and the native pfft~ system."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontface" : 1,
-									"fontname" : "Lato",
-									"fontsize" : 20.0,
-									"id" : "obj-1",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 15.0, 421.0, 30.0 ],
-									"text" : "Spectral Snapshot"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"border" : 2.0,
-									"id" : "obj-49",
-									"linecolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 46.0, 530.25, 5.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"background" : 1,
-									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
-									"fontface" : 1,
-									"hint" : "",
-									"id" : "obj-9",
-									"ignoreclick" : 1,
-									"legacytextcolor" : 1,
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 340.5, 243.0, 20.0, 20.0 ],
-									"rounded" : 60.0,
-									"text" : "2",
-									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"background" : 1,
-									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
-									"fontface" : 1,
-									"hint" : "",
-									"id" : "obj-18",
-									"ignoreclick" : 1,
-									"legacytextcolor" : 1,
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 466.0, 347.5, 20.0, 20.0 ],
-									"rounded" : 60.0,
-									"text" : "3",
-									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"background" : 1,
-									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
-									"fontface" : 1,
-									"hint" : "",
-									"id" : "obj-30",
-									"ignoreclick" : 1,
-									"legacytextcolor" : 1,
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 381.5, 160.5, 20.0, 20.0 ],
-									"rounded" : 60.0,
-									"text" : "1",
-									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
-								}
-
-							}
- ],
-						"lines" : [ 							{
-								"patchline" : 								{
-									"destination" : [ "obj-27", 0 ],
-									"midpoints" : [ 49.0, 219.0, 49.0, 219.0 ],
-									"order" : 1,
-									"source" : [ "obj-23", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 49.0, 399.0, 129.5, 399.0 ],
-									"order" : 0,
-									"source" : [ "obj-23", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-4", 1 ],
-									"source" : [ "obj-27", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-2", 1 ],
-									"order" : 0,
-									"source" : [ "obj-3", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-2", 0 ],
-									"order" : 1,
-									"source" : [ "obj-3", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-3", 0 ],
-									"source" : [ "obj-4", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-4", 2 ],
-									"midpoints" : [ 129.5, 510.0, 73.5, 510.0 ],
-									"source" : [ "obj-5", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-7", 0 ],
-									"source" : [ "obj-6", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-8", 0 ],
-									"source" : [ "obj-7", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-4", 0 ],
-									"midpoints" : [ 294.5, 463.75, 24.5, 463.75 ],
-									"source" : [ "obj-8", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-27", 1 ],
-									"midpoints" : [ 97.0, 264.0, 97.0, 264.0 ],
-									"order" : 1,
-									"source" : [ "obj-86", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 97.0, 399.0, 129.5, 399.0 ],
-									"order" : 0,
-									"source" : [ "obj-86", 0 ]
-								}
-
-							}
- ],
-						"styles" : [ 							{
-								"name" : "AudioStatus_Menu",
-								"default" : 								{
-									"bgfillcolor" : 									{
-										"type" : "color",
-										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
-										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
-										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
-										"proportion" : 0.39,
-										"autogradient" : 0
-									}
-
-								}
-,
-								"parentstyle" : "",
-								"multi" : 0
-							}
-, 							{
-								"name" : "newobjBlue-1",
-								"default" : 								{
-									"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
-								}
-,
-								"parentstyle" : "",
-								"multi" : 0
-							}
-, 							{
-								"name" : "newobjBrown-1",
-								"default" : 								{
-									"accentcolor" : [ 0.654902, 0.572549, 0.376471, 1.0 ]
-								}
-,
-								"parentstyle" : "",
-								"multi" : 0
-							}
-, 							{
-								"name" : "newobjGreen-1",
-								"default" : 								{
-									"accentcolor" : [ 0.0, 0.533333, 0.168627, 1.0 ]
-								}
-,
-								"parentstyle" : "",
-								"multi" : 0
-							}
-, 							{
-								"name" : "newobjRed-1",
-								"default" : 								{
-									"accentcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ]
-								}
-,
-								"parentstyle" : "",
-								"multi" : 0
-							}
-, 							{
-								"name" : "newobjYellow-1",
-								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
-								}
-,
-								"parentstyle" : "",
-								"multi" : 0
-							}
-, 							{
-								"name" : "numberGold-1",
-								"default" : 								{
-									"accentcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ]
-								}
-,
-								"parentstyle" : "",
-								"multi" : 0
-							}
-, 							{
-								"name" : "panelViolet",
-								"default" : 								{
-									"bgfillcolor" : 									{
-										"type" : "color",
-										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
-										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
-										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
-										"proportion" : 0.39,
-										"autogradient" : 0
-									}
-
-								}
-,
-								"parentstyle" : "",
-								"multi" : 0
-							}
- ]
-					}
-,
-					"patching_rect" : [ 538.0, 15.0, 115.0, 21.0 ],
-					"saved_object_attributes" : 					{
-						"description" : "",
-						"digest" : "",
-						"globalpatchername" : "",
-						"tags" : ""
-					}
-,
-					"text" : "p \"Spectral Snapshot\""
 				}
 
 			}
@@ -5217,7 +4648,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 752.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1290.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -5662,10 +5093,7 @@
 			"obj-7::obj-8::obj-35" : [ "[11]", "Level", 0 ],
 			"obj-5::obj-4" : [ "live.dial", "Width", 0 ],
 			"obj-10::obj-9::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
-			"obj-3::obj-7" : [ "live.tab[12]", "live.tab[12]", 0 ],
-			"obj-3::obj-23::obj-35" : [ "[8]", "Level", 0 ],
 			"obj-10::obj-9::obj-35" : [ "[5]", "Level", 0 ],
-			"obj-3::obj-3::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
 			"obj-10::obj-2::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
 			"obj-5::obj-23::obj-35" : [ "[9]", "Level", 0 ],
 			"obj-10::obj-23::obj-35" : [ "[1]", "Level", 0 ],
@@ -5673,7 +5101,6 @@
 			"obj-5::obj-20" : [ "live.tab", "live.tab", 0 ],
 			"obj-4::obj-24::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
 			"obj-10::obj-23::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-3::obj-23::obj-21::obj-6" : [ "live.tab[9]", "live.tab[1]", 0 ],
 			"obj-7::obj-3::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
 			"obj-5::obj-11::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
 			"parameterbanks" : 			{
@@ -5687,14 +5114,6 @@
 ,
 				"obj-7::obj-8::obj-35" : 				{
 					"parameter_longname" : "[11]"
-				}
-,
-				"obj-3::obj-23::obj-35" : 				{
-					"parameter_longname" : "[8]"
-				}
-,
-				"obj-3::obj-3::obj-50" : 				{
-					"parameter_longname" : "live.gain~[2]"
 				}
 ,
 				"obj-10::obj-2::obj-50" : 				{
@@ -5719,10 +5138,6 @@
 ,
 				"obj-10::obj-23::obj-21::obj-6" : 				{
 					"parameter_longname" : "live.tab[4]"
-				}
-,
-				"obj-3::obj-23::obj-21::obj-6" : 				{
-					"parameter_longname" : "live.tab[9]"
 				}
 ,
 				"obj-5::obj-11::obj-50" : 				{
@@ -5778,20 +5193,6 @@
 			}
 , 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl-snapshot.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl-snapshot-pfft.maxpat",
 				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
@@ -5882,18 +5283,6 @@
 			}
 , 			{
 				"name" : "fl.uniform~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.register~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.audiotrigger~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.audiotrigger~.mxo",
 				"type" : "iLaX"
 			}
  ],
