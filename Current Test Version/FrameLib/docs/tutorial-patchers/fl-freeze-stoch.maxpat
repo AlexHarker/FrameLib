@@ -125,12 +125,11 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-33",
-					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 244.0, 720.166687000000024, 242.0, 33.0 ],
-					"text" : "Window frames from IFFT and compensate for summing either side of the frame"
+					"patching_rect" : [ 245.666687000000024, 725.666687000000024, 308.0, 20.0 ],
+					"text" : "Window frames from IFFT and compensate for summing"
 				}
 
 			}
@@ -2034,8 +2033,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 28.0, 725.666687000000024, 203.0, 22.0 ],
-					"text" : "fl.window~ hann /compensate power"
+					"patching_rect" : [ 28.0, 725.666687000000024, 207.0, 22.0 ],
+					"text" : "fl.window~ hann /compensate square"
 				}
 
 			}
@@ -2576,7 +2575,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.+~.mxo",
+				"name" : "fl.plus~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -2608,7 +2607,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.*~.mxo",
+				"name" : "fl.times~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -2706,8 +2705,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",
