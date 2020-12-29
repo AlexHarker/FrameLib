@@ -31,7 +31,7 @@ FrameLib Tutorials - Table of Contents
                     <link type="tutorial" module="FrameLib" name="05_fl_generators" diff="Beginner" digest="An overview of 'generator' objects belonging to the FrameLib eco-system.">Tutorial 5: Generator objects</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="06_fl_granulator" diff="Beginner" digest="A step-by-step guide to building a granular synthesiser in Framelib from scratch.">Tutorial 6: Building a granular synthesiser in Framelib from scratch</link>
+                    <link type="tutorial" module="FrameLib" name="06_fl_granulator" diff="Beginner" digest="A step-by-step guide to building a granular synthesiser in FrameLib from scratch.">Tutorial 6: Building a granular synthesiser in Framelib from scratch</link>
                 </li>
             </ul>
         <!-- Intermediate Tutorials-->

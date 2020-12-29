@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 790.0, 787.0 ],
+		"rect" : [ 34.0, 79.0, 796.0, 787.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 790.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 796.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -95,7 +95,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 53.0, 525.0, 131.0 ],
-									"presentation_linecount" : 8,
 									"text" : "This 'stochastic freeze' abstraction is a similar but improved approach to the 'simple freeze' implementation. The stochastic approach still features the accumulation of phase components, however, it doesn't base the accumulation process on a single frame of data. Instead, the stochastic approach analyses a set of contiguous frames and extracts the mean and standard deviation for the phase component values. New frames are generated using weighted noise calculated with that mean and standard deviation, which are then accumulated. This has the benefit of having a less metallic sound often found in FFT processes, particularly for harsh transient sounds captured in the freeze."
 								}
 
@@ -139,11 +138,11 @@
 									"patching_rect" : [ 162.0, 303.0, 60.0, 30.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_longname" : "live.text[1]",
 											"parameter_mmax" : 1,
 											"parameter_shortname" : "live.text",
 											"parameter_enum" : [ "val1", "val2" ],
-											"parameter_type" : 2
+											"parameter_type" : 2,
+											"parameter_longname" : "live.text[1]"
 										}
 
 									}
@@ -166,12 +165,12 @@
 									"patching_rect" : [ 90.0, 435.0, 48.0, 136.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmin" : -70.0,
-											"parameter_longname" : "live.gain~[8]",
 											"parameter_mmax" : 6.0,
 											"parameter_shortname" : "Freeze",
 											"parameter_type" : 0,
-											"parameter_unitstyle" : 4
+											"parameter_unitstyle" : 4,
+											"parameter_mmin" : -70.0,
+											"parameter_longname" : "live.gain~[8]"
 										}
 
 									}
@@ -193,12 +192,12 @@
 									"patching_rect" : [ 15.0, 435.0, 48.0, 136.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmin" : -70.0,
-											"parameter_longname" : "live.gain~[9]",
 											"parameter_mmax" : 6.0,
 											"parameter_shortname" : "Source",
 											"parameter_type" : 0,
-											"parameter_unitstyle" : 4
+											"parameter_unitstyle" : 4,
+											"parameter_mmin" : -70.0,
+											"parameter_longname" : "live.gain~[9]"
 										}
 
 									}
@@ -441,8 +440,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -478,8 +477,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 540.0, 15.0, 114.0, 21.0 ],
-					"presentation_linecount" : 2,
+					"patching_rect" : [ 645.0, 15.0, 114.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -508,7 +506,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 790.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 796.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -589,11 +587,11 @@
 									"patching_rect" : [ 168.0, 255.0, 60.0, 30.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_longname" : "live.text",
 											"parameter_mmax" : 1,
 											"parameter_shortname" : "live.text",
 											"parameter_enum" : [ "val1", "val2" ],
-											"parameter_type" : 2
+											"parameter_type" : 2,
+											"parameter_longname" : "live.text"
 										}
 
 									}
@@ -616,12 +614,12 @@
 									"patching_rect" : [ 90.0, 375.0, 48.0, 136.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmin" : -70.0,
-											"parameter_longname" : "live.gain~[6]",
 											"parameter_mmax" : 6.0,
 											"parameter_shortname" : "Freeze",
 											"parameter_type" : 0,
-											"parameter_unitstyle" : 4
+											"parameter_unitstyle" : 4,
+											"parameter_mmin" : -70.0,
+											"parameter_longname" : "live.gain~[6]"
 										}
 
 									}
@@ -643,12 +641,12 @@
 									"patching_rect" : [ 15.0, 375.0, 48.0, 136.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmin" : -70.0,
-											"parameter_longname" : "live.gain~",
 											"parameter_mmax" : 6.0,
 											"parameter_shortname" : "Source",
 											"parameter_type" : 0,
-											"parameter_unitstyle" : 4
+											"parameter_unitstyle" : 4,
+											"parameter_mmin" : -70.0,
+											"parameter_longname" : "live.gain~"
 										}
 
 									}
@@ -892,8 +890,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -929,7 +927,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 435.0, 15.0, 96.0, 21.0 ],
+					"patching_rect" : [ 540.0, 15.0, 96.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -958,7 +956,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 790.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 796.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1535,8 +1533,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1601,7 +1599,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 790.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 796.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1805,7 +1803,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 689.0, 350.0 ],
+									"patching_rect" : [ 15.0, 53.0, 720.0, 350.0 ],
 									"text" : "A major point of difference with pfft~ that you have to overcome is how you think about time domain versus frequency domain processing. In Max, and using pfft~ you have to enter and leave a pfft~ wrapper which contains a processing patch. This is similar to how you might convert audio to frames in FrameLib using fl.source~ and then convert back to MSP using fl.sink~. pfft~ handles the blocking of audio into frames. Once audio is converted to frames in FrameLib, however, we are already working wtih frames - it's simply a matter of converting to and from the frequency domain (if and when we want to do that). This is one of the great aspects of FrameLib - that once we are working with frames there is no more blocking to do and we are simply processing groups of samples in some way, which might be spectral or a time domain process, or a mix of the two.\n\nAs a result of this paradigm shift, the mechanism for doing spectral processing in the frequency domain looks very different. There is no wrapper, so configuring fundamental aspects of the FFT process are no longer done by changing some patcher's arguments, rather, they are declared at the object level responsible for doing some part of the conversion. This means we have more responsiblity and more power over the process itself.\n\nAdditionaly, you might go looking to replace specific parts of the pfft~ world with FrameLib objects but struggle to find a suitable analog. For example, there is no 'bin index' information frame or outlet provided by fl.fft~ as you might find in fftin~. This kind of positional information is carried implicitly in the frame by each value's position. The first (or zeroth) bin of your FFT's real and imaginary values will be the first value in each frame and the window size is already known by the length of the input frame to fl.fft~, rather than using an object like fftinfo~. Overall, the differences might seem confusing abrasive at first if you are used to working with FFTs in Max, but it reduces or eliminates some of the tedious things required by working in pfft~. It also makes it easier (or possible) to synchronise an FFT-based process with something else because you have total control over the timing of each frame in a network."
 								}
 
@@ -1940,8 +1938,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2006,7 +2004,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 790.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 796.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2165,8 +2163,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2268,7 +2266,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 790.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 796.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3228,8 +3226,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3265,7 +3263,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 675.0, 15.0, 97.0, 21.0 ],
+					"patching_rect" : [ 435.0, 16.0, 97.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -3294,7 +3292,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 790.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 796.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3345,12 +3343,12 @@
 									"patching_rect" : [ 286.00000799999998, 205.700012000000015, 75.0, 90.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_longname" : "live.tab",
 											"parameter_mmax" : 2,
 											"parameter_shortname" : "live.tab",
 											"parameter_enum" : [ "Percussive", "Harmonic", "Bypass" ],
 											"parameter_type" : 2,
-											"parameter_unitstyle" : 0
+											"parameter_unitstyle" : 0,
+											"parameter_longname" : "live.tab"
 										}
 
 									}
@@ -4348,12 +4346,12 @@
 									"patching_rect" : [ 193.333341333333323, 205.700012000000015, 79.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmin" : 3.0,
-											"parameter_longname" : "live.dial",
 											"parameter_mmax" : 82.0,
 											"parameter_shortname" : "Width",
 											"parameter_type" : 0,
-											"parameter_unitstyle" : 0
+											"parameter_unitstyle" : 0,
+											"parameter_mmin" : 3.0,
+											"parameter_longname" : "live.dial"
 										}
 
 									}
@@ -4623,8 +4621,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4689,7 +4687,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 790.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 796.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -5467,8 +5465,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -5533,7 +5531,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 790.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 796.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -5908,8 +5906,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -5974,30 +5972,30 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-5::obj-23::obj-21::obj-6" : [ "live.tab[8]", "live.tab[1]", 0 ],
-			"obj-9::obj-12::obj-35" : [ "[2]", "Level", 0 ],
-			"obj-7::obj-8::obj-35" : [ "[11]", "Level", 0 ],
-			"obj-3::obj-16" : [ "live.gain~[6]", "Freeze", 0 ],
-			"obj-5::obj-4" : [ "live.dial", "Width", 0 ],
-			"obj-10::obj-9::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
-			"obj-9::obj-11::obj-50" : [ "live.gain~[10]", "Volume", 0 ],
-			"obj-3::obj-12::obj-21::obj-6" : [ "live.tab[5]", "live.tab[1]", 0 ],
 			"obj-9::obj-12::obj-21::obj-6" : [ "live.tab[6]", "live.tab[1]", 0 ],
+			"obj-3::obj-18" : [ "live.text", "live.text", 0 ],
+			"obj-3::obj-16" : [ "live.gain~[6]", "Freeze", 0 ],
+			"obj-5::obj-23::obj-21::obj-6" : [ "live.tab[8]", "live.tab[1]", 0 ],
+			"obj-9::obj-16" : [ "live.gain~[8]", "Freeze", 0 ],
+			"obj-3::obj-12::obj-21::obj-6" : [ "live.tab[5]", "live.tab[1]", 0 ],
+			"obj-3::obj-14" : [ "live.gain~", "Source", 0 ],
+			"obj-10::obj-9::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
+			"obj-10::obj-23::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
+			"obj-10::obj-2::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
+			"obj-7::obj-8::obj-21::obj-6" : [ "live.tab[11]", "live.tab[1]", 0 ],
+			"obj-9::obj-12::obj-35" : [ "[2]", "Level", 0 ],
+			"obj-5::obj-20" : [ "live.tab", "live.tab", 0 ],
+			"obj-5::obj-4" : [ "live.dial", "Width", 0 ],
+			"obj-9::obj-18" : [ "live.text[1]", "live.text", 0 ],
+			"obj-5::obj-23::obj-35" : [ "[9]", "Level", 0 ],
 			"obj-3::obj-12::obj-35" : [ "[6]", "Level", 0 ],
 			"obj-3::obj-11::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
-			"obj-10::obj-9::obj-35" : [ "[5]", "Level", 0 ],
-			"obj-10::obj-2::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
-			"obj-3::obj-18" : [ "live.text", "live.text", 0 ],
-			"obj-9::obj-16" : [ "live.gain~[8]", "Freeze", 0 ],
-			"obj-5::obj-23::obj-35" : [ "[9]", "Level", 0 ],
-			"obj-3::obj-14" : [ "live.gain~", "Source", 0 ],
 			"obj-10::obj-23::obj-35" : [ "[1]", "Level", 0 ],
-			"obj-7::obj-8::obj-21::obj-6" : [ "live.tab[11]", "live.tab[1]", 0 ],
-			"obj-5::obj-20" : [ "live.tab", "live.tab", 0 ],
+			"obj-10::obj-9::obj-35" : [ "[5]", "Level", 0 ],
+			"obj-7::obj-8::obj-35" : [ "[11]", "Level", 0 ],
 			"obj-4::obj-24::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
-			"obj-9::obj-18" : [ "live.text[1]", "live.text", 0 ],
 			"obj-9::obj-14" : [ "live.gain~[9]", "Source", 0 ],
-			"obj-10::obj-23::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
+			"obj-9::obj-11::obj-50" : [ "live.gain~[10]", "Volume", 0 ],
 			"obj-7::obj-3::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
 			"obj-5::obj-11::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
 			"parameterbanks" : 			{
@@ -6005,28 +6003,36 @@
 			}
 ,
 			"parameter_overrides" : 			{
+				"obj-9::obj-12::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[6]"
+				}
+,
 				"obj-5::obj-23::obj-21::obj-6" : 				{
 					"parameter_longname" : "live.tab[8]"
-				}
-,
-				"obj-9::obj-12::obj-35" : 				{
-					"parameter_longname" : "[2]"
-				}
-,
-				"obj-7::obj-8::obj-35" : 				{
-					"parameter_longname" : "[11]"
-				}
-,
-				"obj-9::obj-11::obj-50" : 				{
-					"parameter_longname" : "live.gain~[10]"
 				}
 ,
 				"obj-3::obj-12::obj-21::obj-6" : 				{
 					"parameter_longname" : "live.tab[5]"
 				}
 ,
-				"obj-9::obj-12::obj-21::obj-6" : 				{
-					"parameter_longname" : "live.tab[6]"
+				"obj-10::obj-23::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[4]"
+				}
+,
+				"obj-10::obj-2::obj-50" : 				{
+					"parameter_longname" : "live.gain~[3]"
+				}
+,
+				"obj-7::obj-8::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[11]"
+				}
+,
+				"obj-9::obj-12::obj-35" : 				{
+					"parameter_longname" : "[2]"
+				}
+,
+				"obj-5::obj-23::obj-35" : 				{
+					"parameter_longname" : "[9]"
 				}
 ,
 				"obj-3::obj-12::obj-35" : 				{
@@ -6037,28 +6043,20 @@
 					"parameter_longname" : "live.gain~[5]"
 				}
 ,
-				"obj-10::obj-2::obj-50" : 				{
-					"parameter_longname" : "live.gain~[3]"
-				}
-,
-				"obj-5::obj-23::obj-35" : 				{
-					"parameter_longname" : "[9]"
-				}
-,
 				"obj-10::obj-23::obj-35" : 				{
 					"parameter_longname" : "[1]"
 				}
 ,
-				"obj-7::obj-8::obj-21::obj-6" : 				{
-					"parameter_longname" : "live.tab[11]"
+				"obj-7::obj-8::obj-35" : 				{
+					"parameter_longname" : "[11]"
 				}
 ,
 				"obj-4::obj-24::obj-50" : 				{
 					"parameter_longname" : "live.gain~[4]"
 				}
 ,
-				"obj-10::obj-23::obj-21::obj-6" : 				{
-					"parameter_longname" : "live.tab[4]"
+				"obj-9::obj-11::obj-50" : 				{
+					"parameter_longname" : "live.gain~[10]"
 				}
 ,
 				"obj-5::obj-11::obj-50" : 				{
@@ -6124,6 +6122,13 @@
 				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "fl-tutorial-names.txt",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : ".",
+				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
