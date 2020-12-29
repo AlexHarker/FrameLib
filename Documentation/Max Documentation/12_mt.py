@@ -1,3 +1,4 @@
+import json
 from distutils.dir_util import copy_tree
 from FrameLibDocs.utils import read_json, write_json
 from FrameLibDocs.variables import help_dir, package_root, current_version
@@ -20,17 +21,24 @@ def main():
     max_objects_dir = package_root / "FrameLib_Max_Objects"
     max_objects = [x for x in max_objects_dir.rglob("fl.*.cpp")]
 
-    binary = [x for x in max_objects if x.parent.stem == "Binary"]
-    ternary = [x for x in max_objects if x.parent.stem == "Ternary"]
+    binary = [x.stem for x in max_objects if x.parent.stem == "Binary"]
+    ternary = [x.stem for x in max_objects if x.parent.stem == "Ternary"]
+    complex_binary = [x.stem for x in max_objects if x.parent.stem == "Complex_Binary"]
 
     # Now insert the necessary tabs
     for path in templates:
+        print(path.stem)
         template = read_json(path)
         if path.stem in ternary:
             append_tabs(mismatch, path.stem, template)
 
         if path.stem in binary:
             append_tabs(trigger_ins, path.stem, template)
+            append_tabs(mismatch, path.stem, template)
+        
+        if path.stem in complex_binary:
+            append_tabs(trigger_ins, path.stem, template)
+            append_tabs(mismatch, path.stem, template)
 
         write_json(path, template)
 
@@ -38,3 +46,6 @@ def main():
     # We could do this in the previous loop, but I think is clearer
     dest = current_version / "FrameLib" / "help"
     copy_tree(str(templates_dir), str(dest), update=1)
+
+if __name__ == "__main__":
+    main()
