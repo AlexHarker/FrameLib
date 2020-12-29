@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -290,8 +291,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,21 +333,8 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
-                            {
-                                "box": {
-                                    "id": "obj-4",
-                                    "maxclass": "ezdac~",
-                                    "numinlets": 2,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        15.0,
-                                        375.0,
-                                        45.0,
-                                        45.0
-                                    ]
-                                }
-                            },
                             {
                                 "box": {
                                     "format": 6,
@@ -399,10 +387,10 @@
                                     "patching_rect": [
                                         15.0,
                                         105.0,
-                                        79.0,
+                                        75.0,
                                         23.0
                                     ],
-                                    "text": "loadmess 0."
+                                    "text": "loadmess 1"
                                 }
                             },
                             {
@@ -414,7 +402,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        94.0,
+                                        97.5,
                                         199.0,
                                         60.25,
                                         15.0
@@ -502,7 +490,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        67.0,
+                                        68.5,
                                         334.0,
                                         60.25,
                                         15.0
@@ -516,12 +504,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        129.25,
-                                        330.0,
-                                        202.0,
+                                        130.75,
+                                        331.0,
+                                        275.0,
                                         21.0
                                     ],
-                                    "text": "Hyperbolic cosine of input values."
+                                    "text": "Hyberbolic cosine of input frame's values"
                                 }
                             },
                             {
@@ -531,12 +519,26 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        156.25,
-                                        199.0,
-                                        211.0,
+                                        167.75,
+                                        196.0,
+                                        234.0,
                                         21.0
                                     ],
-                                    "text": "Frame containing values to test"
+                                    "text": "Frame containing values for calculation"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-11",
+                                    "maxclass": "ezdac~",
+                                    "numinlets": 2,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        390.0,
+                                        50.0,
+                                        50.0
+                                    ]
                                 }
                             },
                             {
@@ -585,9 +587,9 @@
                                     ],
                                     "midpoints": [
                                         116.0,
-                                        180.0,
+                                        184.0,
                                         24.5,
-                                        180.0
+                                        184.0
                                     ],
                                     "source": [
                                         "obj-13",

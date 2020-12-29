@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 0,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,6 +147,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"arrows" : 1,
@@ -161,12 +164,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-25",
-									"linecount" : 6,
+									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 335.0, 155.5, 170.0, 94.0 ],
-									"text" : "Modify the volume. The slider goes above values of 1.0 and demonstrates the 'soft clipping' that occurs when the scaled signal is passed through fl.tanh~"
+									"patching_rect" : [ 335.0, 155.5, 170.0, 108.0 ],
+									"text" : "Modify the volume. The slider can output values above 1 and the patch demonstrates the 'soft clipping' that occurs when the scaled signal is passed through fl.tanh~"
 								}
 
 							}
@@ -189,7 +192,8 @@
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 465.0, 450.0, 128.0 ]
+									"patching_rect" : [ 120.0, 450.0, 450.0, 128.0 ],
+									"range" : [ -2.0, 2.0 ]
 								}
 
 							}
@@ -199,12 +203,13 @@
 									"fontsize" : 16.0,
 									"format" : 6,
 									"id" : "obj-20",
+									"ignoreclick" : 1,
 									"maxclass" : "flonum",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 223.5, 270.0, 58.0, 26.0 ],
+									"patching_rect" : [ 225.0, 270.0, 45.0, 26.0 ],
 									"triangle" : 0
 								}
 
@@ -224,7 +229,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 461.5, 45.0, 90.0 ],
+									"patching_rect" : [ 15.0, 446.5, 90.0, 48.5 ],
 									"viewvisibility" : 1
 								}
 
@@ -232,11 +237,10 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-15",
-									"maxclass" : "newobj",
+									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 570.0, 59.0, 23.0 ],
-									"text" : "dac~ 1 2"
+									"patching_rect" : [ 15.0, 510.0, 50.0, 50.0 ]
 								}
 
 							}
@@ -247,7 +251,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 420.0, 49.0, 23.0 ],
+									"patching_rect" : [ 15.0, 405.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -259,7 +263,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 375.0, 52.0, 23.0 ],
+									"patching_rect" : [ 15.0, 360.0, 52.0, 23.0 ],
 									"text" : "fl.tanh~"
 								}
 
@@ -299,8 +303,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 330.0, 139.0, 23.0 ],
-									"text" : "fl.times~"
+									"patching_rect" : [ 15.0, 315.0, 139.0, 23.0 ],
+									"text" : "fl.*~"
 								}
 
 							}
@@ -395,6 +399,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-11", 0 ],
+									"midpoints" : [ 234.5, 262.0, 144.5, 262.0 ],
 									"order" : 1,
 									"source" : [ "obj-12", 0 ]
 								}
@@ -426,6 +431,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-23", 0 ],
+									"midpoints" : [ 24.5, 438.5, 129.5, 438.5 ],
 									"order" : 0,
 									"source" : [ "obj-14", 0 ]
 								}
@@ -434,6 +440,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 1 ],
+									"midpoints" : [ 24.5, 502.0, 55.5, 502.0 ],
 									"order" : 0,
 									"source" : [ "obj-17", 0 ]
 								}
@@ -472,6 +479,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-11", 0 ],
+									"midpoints" : [ 24.5, 221.0, 144.5, 221.0 ],
 									"order" : 0,
 									"source" : [ "obj-8", 0 ]
 								}
@@ -599,19 +607,20 @@
 			"parameterbanks" : 			{
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/docs/tutorial-patchers",
 				"type" : "JSON",
 				"implicit" : 1
