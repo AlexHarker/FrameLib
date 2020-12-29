@@ -4815,7 +4815,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.plus~.mxo",
+				"name" : "fl.+~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -4847,7 +4847,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.times~.mxo",
+				"name" : "fl.*~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -4927,7 +4927,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.minus~.mxo",
+				"name" : "fl.-~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -4971,7 +4971,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.modulo~.mxo",
+				"name" : "fl.%~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

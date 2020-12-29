@@ -119,7 +119,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 91.75, 674.5, 56.0, 22.0 ],
-									"text" : "fl.times~"
+									"text" : "fl.*~"
 								}
 
 							}
@@ -253,7 +253,7 @@
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 50.0, 139.0, 82.0, 22.0 ],
-													"text" : "fl.times~ 0.25"
+													"text" : "fl.*~ 0.25"
 												}
 
 											}
@@ -1070,7 +1070,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 128.5, 618.5, 103.0, 22.0 ],
-									"text" : "fl.greaterthan~ 0."
+									"text" : "fl.>~ 0."
 								}
 
 							}
@@ -1098,7 +1098,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 3.75, 674.5, 56.0, 22.0 ],
-									"text" : "fl.times~"
+									"text" : "fl.*~"
 								}
 
 							}
@@ -1669,7 +1669,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.times~.mxo",
+				"name" : "fl.*~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -1677,7 +1677,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.greaterthan~.mxo",
+				"name" : "fl.>~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

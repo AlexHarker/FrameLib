@@ -134,7 +134,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 18.75, 391.0, 137.0, 21.0 ],
 					"style" : "",
-					"text" : "fl.times~ /mismatch shrink"
+					"text" : "fl.*~ /mismatch shrink"
 				}
 
 			}
@@ -403,7 +403,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.times~.mxo",
+				"name" : "fl.*~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
