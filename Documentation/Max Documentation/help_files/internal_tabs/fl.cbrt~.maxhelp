@@ -150,6 +150,19 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"hidden" : 1,
+									"id" : "obj-5",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 58.625, 285.0, 85.0, 23.0 ],
+									"text" : "loadmess set"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-2",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
@@ -177,8 +190,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 34.0, 23.0 ],
-									"text" : "2. 3."
+									"patching_rect" : [ 15.0, 285.0, 34.0, 23.0 ]
 								}
 
 							}
@@ -307,6 +319,14 @@
 									"destination" : [ "obj-17", 1 ],
 									"midpoints" : [ 24.5, 273.5, 39.5, 273.5 ],
 									"source" : [ "obj-34", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-17", 0 ],
+									"hidden" : 1,
+									"source" : [ "obj-5", 0 ]
 								}
 
 							}

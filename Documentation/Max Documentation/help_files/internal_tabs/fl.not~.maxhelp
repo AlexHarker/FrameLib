@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -49,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -110,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,13 +147,27 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"hidden" : 1,
+									"id" : "obj-2",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 78.5, 330.0, 85.0, 23.0 ],
+									"text" : "loadmess set"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-1",
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 327.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 345.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -162,8 +178,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 296.0, 116.0, 23.0 ],
-									"text" : "1. 0. 0. 0."
+									"patching_rect" : [ 15.0, 296.0, 92.0, 23.0 ]
 								}
 
 							}
@@ -186,8 +201,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 109.0, 23.0 ],
-									"text" : "fl.ramp~ /length 4"
+									"patching_rect" : [ 15.0, 150.0, 212.0, 23.0 ],
+									"text" : "fl.register~ 0 -9.34 100 1.2 -1.234 0"
 								}
 
 							}
@@ -211,7 +226,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 135.0, 300.0, 60.25, 15.0 ]
+									"patching_rect" : [ 117.0, 300.0, 60.25, 15.0 ]
 								}
 
 							}
@@ -222,7 +237,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 194.25, 291.0, 183.0, 36.0 ],
+									"patching_rect" : [ 185.25, 291.0, 183.0, 36.0 ],
 									"text" : "Output is 0 for non-zero values and 1 for zero values"
 								}
 
@@ -245,8 +260,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 188.25, 150.0, 183.0, 21.0 ],
-									"text" : "Frame containing 0 1 2 3"
+									"patching_rect" : [ 232.0, 151.0, 308.0, 21.0 ],
+									"text" : "Frame containing a mix of zero and non-zero values"
 								}
 
 							}
@@ -296,6 +311,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-17", 1 ],
+									"midpoints" : [ 24.5, 279.0, 97.5, 279.0 ],
 									"source" : [ "obj-13", 0 ]
 								}
 
@@ -304,6 +320,14 @@
 								"patchline" : 								{
 									"destination" : [ "obj-12", 0 ],
 									"source" : [ "obj-16", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-17", 0 ],
+									"hidden" : 1,
+									"source" : [ "obj-2", 0 ]
 								}
 
 							}
@@ -355,6 +379,13 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
+				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "fl.once~.mxo",
 				"type" : "iLaX"
 			}
@@ -367,7 +398,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.ramp~.mxo",
+				"name" : "fl.register~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

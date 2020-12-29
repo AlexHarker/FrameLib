@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -290,8 +291,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,6 +333,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
                             {
                                 "box": {
@@ -341,7 +343,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        371.0,
+                                        375.0,
                                         45.0,
                                         45.0
                                     ]
@@ -414,7 +416,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        94.0,
+                                        99.0,
                                         199.0,
                                         60.25,
                                         15.0
@@ -502,8 +504,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        67.0,
-                                        329.0,
+                                        75.0,
+                                        330.0,
                                         60.25,
                                         15.0
                                     ]
@@ -516,12 +518,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        129.25,
-                                        326.0,
-                                        131.0,
+                                        140.25,
+                                        327.0,
+                                        118.0,
                                         21.0
                                     ],
-                                    "text": "Logarthim calculation"
+                                    "text": "Logarthim (base e)"
                                 }
                             },
                             {
@@ -531,12 +533,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        155.5,
+                                        162.5,
                                         196.0,
-                                        233.0,
+                                        277.0,
                                         21.0
                                     ],
-                                    "text": "Frame containing a scalar value to test"
+                                    "text": "Frame containing a scalar value for calculation"
                                 }
                             },
                             {

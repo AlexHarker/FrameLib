@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -49,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -110,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,13 +147,14 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-1",
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 371.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 375.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -201,7 +204,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 94.0, 199.0, 60.25, 15.0 ]
+									"patching_rect" : [ 99.0, 199.0, 60.25, 15.0 ]
 								}
 
 							}
@@ -261,7 +264,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 67.0, 329.0, 60.25, 15.0 ]
+									"patching_rect" : [ 75.0, 330.0, 60.25, 15.0 ]
 								}
 
 							}
@@ -271,8 +274,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 129.25, 326.0, 131.0, 21.0 ],
-									"text" : "Logarthim calculation"
+									"patching_rect" : [ 140.25, 327.0, 118.0, 21.0 ],
+									"text" : "Logarthim (base e)"
 								}
 
 							}
@@ -282,8 +285,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 155.5, 196.0, 233.0, 21.0 ],
-									"text" : "Frame containing a scalar value to test"
+									"patching_rect" : [ 162.5, 196.0, 277.0, 21.0 ],
+									"text" : "Frame containing a scalar value for calculation"
 								}
 
 							}
@@ -395,6 +398,13 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
+				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "fl.frommax~.mxo",
 				"type" : "iLaX"
 			}

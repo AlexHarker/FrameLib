@@ -433,7 +433,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 212.0, 458.0, 60.25, 15.0 ]
+									"patching_rect" : [ 219.0, 458.0, 60.25, 15.0 ]
 								}
 
 							}
@@ -443,7 +443,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 274.25, 455.5, 128.0, 21.0 ],
+									"patching_rect" : [ 285.0, 455.0, 128.0, 21.0 ],
 									"text" : "Rounded output"
 								}
 
