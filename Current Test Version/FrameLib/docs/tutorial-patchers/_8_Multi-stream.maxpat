@@ -1596,7 +1596,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 20.0, 330.0, 139.0, 23.0 ],
-									"text" : "fl.plus~ /trigger_ins left"
+									"text" : "fl.+~ /trigger_ins left"
 								}
 
 							}
@@ -1911,7 +1911,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 20.0, 495.0, 80.0, 22.0 ],
-									"text" : "fl.times~ 0.25"
+									"text" : "fl.*~ 0.25"
 								}
 
 							}
@@ -2342,7 +2342,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 538.25, 613.0, 103.0, 23.0 ],
-									"text" : "fl.times~"
+									"text" : "fl.*~"
 								}
 
 							}
@@ -2475,7 +2475,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 104.625, 379.0, 375.0, 123.0 ],
-									"text" : "In the left inlet there are 4 streams and in the right there are 2 streams. This means that there will be a mismatch between the streams coming into fl.times~. When there is a mismatch in the number of streams between inputs the smallest number of streams is wrapped around the larger multi-streamed input. In this situation then, streams 1 and 3 in the left input are processed with the first stream of the right input and streams 2 4 in the left are processed by the second stream of the right."
+									"text" : "In the left inlet there are 4 streams and in the right there are 2 streams. This means that there will be a mismatch between the streams coming into fl.*~. When there is a mismatch in the number of streams between inputs the smallest number of streams is wrapped around the larger multi-streamed input. In this situation then, streams 1 and 3 in the left input are processed with the first stream of the right input and streams 2 4 in the left are processed by the second stream of the right."
 								}
 
 							}
@@ -2566,7 +2566,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 15.25, 429.0, 80.0, 23.0 ],
-									"text" : "fl.times~"
+									"text" : "fl.*~"
 								}
 
 							}
@@ -3185,7 +3185,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 218.0, 383.0, 74.0, 23.0 ],
-									"text" : "fl.divide~ 2"
+									"text" : "fl./~ 2"
 								}
 
 							}
@@ -3290,7 +3290,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 15.0, 300.0, 86.0, 23.0 ],
-									"text" : "fl.times~ 512"
+									"text" : "fl.*~ 512"
 								}
 
 							}
@@ -4674,7 +4674,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.times~.mxo",
+				"name" : "fl.*~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -4686,7 +4686,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.divide~.mxo",
+				"name" : "fl./~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -4722,7 +4722,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.plus~.mxo",
+				"name" : "fl.+~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

@@ -47,7 +47,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 8.0, 520.0, 80.0, 22.0 ],
-					"text" : "fl.times~ 0.35"
+					"text" : "fl.*~ 0.35"
 				}
 
 			}
@@ -260,7 +260,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 36.75, 662.159534749946602, 84.0, 22.0 ],
-									"text" : "fl.plus~"
+									"text" : "fl.+~"
 								}
 
 							}
@@ -425,7 +425,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 36.0, 195.43730574994666, 62.0, 22.0 ],
-									"text" : "fl.minus~"
+									"text" : "fl.-~"
 								}
 
 							}
@@ -477,7 +477,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 36.0, 502.880410404421582, 141.0, 22.0 ],
-									"text" : "fl.minus~ /trigger_ins left"
+									"text" : "fl.-~ /trigger_ins left"
 								}
 
 							}
@@ -490,7 +490,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 36.0, 379.561340904528265, 57.0, 22.0 ],
-									"text" : "fl.times~"
+									"text" : "fl.*~"
 								}
 
 							}
@@ -1320,7 +1320,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 8.0, 413.0, 57.0, 22.0 ],
-					"text" : "fl.times~"
+					"text" : "fl.*~"
 				}
 
 			}
@@ -1584,7 +1584,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.times~.mxo",
+				"name" : "fl.*~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -1648,7 +1648,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.minus~.mxo",
+				"name" : "fl.-~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -1672,7 +1672,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.plus~.mxo",
+				"name" : "fl.+~.mxo",
 				"type" : "iLaX"
 			}
  ],
