@@ -375,12 +375,13 @@
                             {
                                 "box": {
                                     "id": "obj-1",
+                                    "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        330.0,
+                                        345.0,
                                         45.0,
                                         45.0
                                     ]
@@ -400,7 +401,8 @@
                                         285.0,
                                         34.0,
                                         23.0
-                                    ]
+                                    ],
+                                    "text": "2. 3."
                                 }
                             },
                             {

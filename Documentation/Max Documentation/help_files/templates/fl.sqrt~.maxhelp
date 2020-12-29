@@ -337,6 +337,21 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "id": "obj-4",
+                                    "local": 1,
+                                    "maxclass": "ezdac~",
+                                    "numinlets": 2,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        345.0,
+                                        45.0,
+                                        45.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
                                     "hidden": 1,
                                     "id": "obj-5",
                                     "maxclass": "newobj",
@@ -347,7 +362,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        330.0,
+                                        315.0,
                                         85.0,
                                         23.0
                                     ],
@@ -401,7 +416,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        300.0,
+                                        285.0,
                                         164.0,
                                         23.0
                                     ],
@@ -564,9 +579,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        285.0,
+                                        278.0,
                                         169.5,
-                                        285.0
+                                        278.0
                                     ],
                                     "source": [
                                         "obj-20",
@@ -602,12 +617,82 @@
                         ],
                         "styles": [
                             {
+                                "name": "AudioStatus_Menu",
+                                "default": {
+                                    "bgfillcolor": {
+                                        "type": "color",
+                                        "color": [
+                                            0.294118,
+                                            0.313726,
+                                            0.337255,
+                                            1
+                                        ],
+                                        "color1": [
+                                            0.454902,
+                                            0.462745,
+                                            0.482353,
+                                            0.0
+                                        ],
+                                        "color2": [
+                                            0.290196,
+                                            0.309804,
+                                            0.301961,
+                                            1.0
+                                        ],
+                                        "angle": 270.0,
+                                        "proportion": 0.39,
+                                        "autogradient": 0
+                                    }
+                                },
+                                "parentstyle": "",
+                                "multi": 0
+                            },
+                            {
                                 "name": "newobjBlue-1",
                                 "default": {
                                     "accentcolor": [
                                         0.317647,
                                         0.654902,
                                         0.976471,
+                                        1.0
+                                    ]
+                                },
+                                "parentstyle": "",
+                                "multi": 0
+                            },
+                            {
+                                "name": "newobjBrown-1",
+                                "default": {
+                                    "accentcolor": [
+                                        0.654902,
+                                        0.572549,
+                                        0.376471,
+                                        1.0
+                                    ]
+                                },
+                                "parentstyle": "",
+                                "multi": 0
+                            },
+                            {
+                                "name": "newobjGreen-1",
+                                "default": {
+                                    "accentcolor": [
+                                        0.0,
+                                        0.533333,
+                                        0.168627,
+                                        1.0
+                                    ]
+                                },
+                                "parentstyle": "",
+                                "multi": 0
+                            },
+                            {
+                                "name": "newobjRed-1",
+                                "default": {
+                                    "accentcolor": [
+                                        0.784314,
+                                        0.145098,
+                                        0.023529,
                                         1.0
                                     ]
                                 },
@@ -639,6 +724,37 @@
                                         0.101961,
                                         1.0
                                     ]
+                                },
+                                "parentstyle": "",
+                                "multi": 0
+                            },
+                            {
+                                "name": "panelViolet",
+                                "default": {
+                                    "bgfillcolor": {
+                                        "type": "color",
+                                        "color": [
+                                            0.372549,
+                                            0.196078,
+                                            0.486275,
+                                            0.2
+                                        ],
+                                        "color1": [
+                                            0.454902,
+                                            0.462745,
+                                            0.482353,
+                                            1.0
+                                        ],
+                                        "color2": [
+                                            0.290196,
+                                            0.309804,
+                                            0.301961,
+                                            1.0
+                                        ],
+                                        "angle": 270.0,
+                                        "proportion": 0.39,
+                                        "autogradient": 0
+                                    }
                                 },
                                 "parentstyle": "",
                                 "multi": 0

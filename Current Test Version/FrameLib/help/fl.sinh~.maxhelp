@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -290,8 +291,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,21 +333,8 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
-                            {
-                                "box": {
-                                    "id": "obj-1",
-                                    "maxclass": "ezdac~",
-                                    "numinlets": 2,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        15.0,
-                                        375.0,
-                                        45.0,
-                                        45.0
-                                    ]
-                                }
-                            },
                             {
                                 "box": {
                                     "format": 6,
@@ -399,10 +387,10 @@
                                     "patching_rect": [
                                         15.0,
                                         105.0,
-                                        79.0,
+                                        75.0,
                                         23.0
                                     ],
-                                    "text": "loadmess 1."
+                                    "text": "loadmess 1"
                                 }
                             },
                             {
@@ -414,8 +402,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        94.0,
-                                        198.0,
+                                        97.5,
+                                        199.0,
                                         60.25,
                                         15.0
                                     ]
@@ -467,7 +455,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        98.5,
+                                        106.5,
                                         105.0,
                                         75.0,
                                         23.0
@@ -503,7 +491,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         68.5,
-                                        333.0,
+                                        334.0,
                                         60.25,
                                         15.0
                                     ]
@@ -517,11 +505,11 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         130.75,
-                                        330.0,
-                                        128.0,
+                                        331.0,
+                                        275.0,
                                         21.0
                                     ],
-                                    "text": "Hyperbolic sine"
+                                    "text": "Hyberbolic sine of input frame's values"
                                 }
                             },
                             {
@@ -531,12 +519,27 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        156.25,
-                                        195.0,
-                                        211.0,
+                                        167.75,
+                                        196.0,
+                                        234.0,
                                         21.0
                                     ],
-                                    "text": "Frame containing value to test"
+                                    "text": "Frame containing values for calculation"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-11",
+                                    "local": 1,
+                                    "maxclass": "ezdac~",
+                                    "numinlets": 2,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        390.0,
+                                        50.0,
+                                        50.0
+                                    ]
                                 }
                             },
                             {
@@ -584,10 +587,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        108.0,
-                                        180.0,
+                                        116.0,
+                                        184.0,
                                         24.5,
-                                        180.0
+                                        184.0
                                     ],
                                     "source": [
                                         "obj-13",
@@ -661,14 +664,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
