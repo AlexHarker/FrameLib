@@ -156,7 +156,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 100.0, 540.0, 510.0, 65.0 ],
-									"text" : "fl.pettern~ is a way to step through sequences of numbers in FrameLib (with or without looping) to control other FrameLib objects.\n\nProgression can be forwards or backwards."
+									"text" : "fl.pattern~ is a way to step through sequences of numbers in FrameLib (with or without looping) to control other FrameLib objects.\n\nProgression can be forwards or backwards."
 								}
 
 							}
@@ -192,7 +192,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 545.5, 399.5, 76.0, 23.0 ],
-									"presentation_linecount" : 2,
 									"text" : "direction $1"
 								}
 
@@ -287,7 +286,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 137.0, 398.5, 198.0, 36.0 ],
-									"presentation_linecount" : 4,
 									"text" : "Filter a noise burst according to the frequency from the pattern"
 								}
 

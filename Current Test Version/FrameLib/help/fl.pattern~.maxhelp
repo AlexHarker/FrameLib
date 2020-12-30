@@ -348,7 +348,7 @@
                                         510.0,
                                         65.0
                                     ],
-                                    "text": "fl.pettern~ is a way to step through sequences of numbers in FrameLib (with or without looping) to control other FrameLib objects.\n\nProgression can be forwards or backwards."
+                                    "text": "fl.pattern~ is a way to step through sequences of numbers in FrameLib (with or without looping) to control other FrameLib objects.\n\nProgression can be forwards or backwards."
                                 }
                             },
                             {
@@ -410,7 +410,6 @@
                                         76.0,
                                         23.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "direction $1"
                                 }
                             },
@@ -551,7 +550,6 @@
                                         198.0,
                                         36.0
                                     ],
-                                    "presentation_linecount": 4,
                                     "text": "Filter a noise burst according to the frequency from the pattern"
                                 }
                             },
