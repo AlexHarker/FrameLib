@@ -378,7 +378,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 126.0, 650.5, 49.75, 12.0 ]
+									"patching_rect" : [ 126.0, 649.5, 49.75, 12.0 ]
 								}
 
 							}
@@ -388,7 +388,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 179.75, 646.0, 103.0, 21.0 ],
+									"patching_rect" : [ 179.75, 647.0, 103.0, 21.0 ],
 									"text" : "Converted value"
 								}
 
