@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -290,8 +290,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -352,6 +352,7 @@
                             {
                                 "box": {
                                     "id": "obj-1",
+                                    "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
@@ -645,6 +646,12 @@
                                         "obj-19",
                                         0
                                     ],
+                                    "midpoints": [
+                                        284.49993896484375,
+                                        280.0,
+                                        369.5,
+                                        280.0
+                                    ],
                                     "order": 0,
                                     "source": [
                                         "obj-10",
@@ -657,6 +664,12 @@
                                     "destination": [
                                         "obj-9",
                                         0
+                                    ],
+                                    "midpoints": [
+                                        284.49993896484375,
+                                        280.0,
+                                        284.49993896484375,
+                                        280.0
                                     ],
                                     "order": 1,
                                     "source": [
@@ -731,6 +744,12 @@
                                         "obj-10",
                                         0
                                     ],
+                                    "midpoints": [
+                                        24.5,
+                                        221.0,
+                                        284.49993896484375,
+                                        221.0
+                                    ],
                                     "order": 0,
                                     "source": [
                                         "obj-39",
@@ -743,6 +762,12 @@
                                     "destination": [
                                         "obj-43",
                                         0
+                                    ],
+                                    "midpoints": [
+                                        24.5,
+                                        221.0,
+                                        24.5,
+                                        221.0
                                     ],
                                     "order": 1,
                                     "source": [
@@ -757,6 +782,12 @@
                                         "obj-17",
                                         0
                                     ],
+                                    "midpoints": [
+                                        24.5,
+                                        280.0,
+                                        99.5,
+                                        280.0
+                                    ],
                                     "order": 0,
                                     "source": [
                                         "obj-43",
@@ -769,6 +800,12 @@
                                     "destination": [
                                         "obj-18",
                                         0
+                                    ],
+                                    "midpoints": [
+                                        24.5,
+                                        280.0,
+                                        24.5,
+                                        280.0
                                     ],
                                     "order": 1,
                                     "source": [
@@ -807,14 +844,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
+                                    "fontsize": [
+                                        12.059008
+                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
-                                    ],
-                                    "fontsize": [
-                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

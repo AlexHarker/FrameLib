@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,15 +147,27 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 510.0, 610.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-30",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 396.0, 218.5, 255.5, 36.0 ],
-									"text" : "Pack 3 different length frames at different intervals into a multistream frame"
+									"patching_rect" : [ 396.0, 218.5, 249.0, 36.0 ],
+									"text" : "Pack 3 different length frames at different intervals into a multi-stream frame"
 								}
 
 							}
@@ -163,7 +177,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 336.0, 406.0, 235.5, 21.0 ],
+									"patching_rect" : [ 336.0, 406.0, 232.0, 21.0 ],
 									"text" : "Unpack each stream into its own outlet"
 								}
 
@@ -204,7 +218,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 96.5, 285.0, 348.5, 21.0 ],
+									"patching_rect" : [ 75.0, 285.0, 320.0, 21.0 ],
 									"text" : "Make the range of the incoming frames outside -1 to 1"
 								}
 
@@ -216,8 +230,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 79.0, 23.0 ],
-									"text" : "fl.times~ 1.5"
+									"patching_rect" : [ 15.0, 285.0, 53.0, 23.0 ],
+									"text" : "fl.*~ 3.5"
 								}
 
 							}
@@ -276,8 +290,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 346.0, 348.5, 21.0 ],
-									"text" : "Apply a hard clip on all streams of the multistream frame"
+									"patching_rect" : [ 110.0, 345.0, 337.0, 21.0 ],
+									"text" : "Apply a hard clip on all streams of the multi-stream frame"
 								}
 
 							}
@@ -288,8 +302,8 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 345.0, 72.0, 23.0 ],
-									"text" : "fl.clip~ -1 1"
+									"patching_rect" : [ 15.0, 345.0, 93.0, 23.0 ],
+									"text" : "fl.clip~ -0.6 0.6"
 								}
 
 							}
@@ -578,7 +592,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1

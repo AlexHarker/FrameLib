@@ -346,7 +346,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        29.0,
+                                        15.0,
                                         330.0,
                                         85.0,
                                         23.0
@@ -632,14 +632,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

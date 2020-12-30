@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -290,8 +291,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,16 +333,33 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
                             {
                                 "box": {
+                                    "id": "obj-4",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        87.04166412353516,
+                                        330.0,
+                                        352.0,
+                                        21.0
+                                    ],
+                                    "text": "fl.product~ returns the product of all the values in the frame."
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-1",
+                                    "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        363.20001220703125,
+                                        375.0,
                                         45.0,
                                         45.0
                                     ]
@@ -356,7 +374,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        135.0,
+                                        128.0,
                                         154.5,
                                         32.958335876464844,
                                         14.0
@@ -370,9 +388,9 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        169.95833587646484,
-                                        151.0,
-                                        180.0,
+                                        164.95833587646484,
+                                        150.0,
+                                        165.0,
                                         21.0
                                     ],
                                     "text": "Count from 0 to (length - 1)"
@@ -441,7 +459,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        60.0,
+                                        64.0,
                                         199.0,
                                         32.958335876464844,
                                         14.0
@@ -475,7 +493,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        87.04166412353516,
+                                        90.04166412353516,
                                         244.0,
                                         32.958335876464844,
                                         14.0
@@ -489,9 +507,9 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        122.02083587646484,
+                                        132.02083587646484,
                                         241.5,
-                                        181.0,
+                                        74.0,
                                         21.0
                                     ],
                                     "text": "1 * 2 * 3 * 4"
@@ -504,9 +522,9 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        94.95833587646484,
+                                        101.95833587646484,
                                         195.0,
-                                        223.0,
+                                        207.0,
                                         21.0
                                     ],
                                     "text": "Adds 1 making the frame: [1 2 3 4]"
@@ -527,7 +545,7 @@
                                     "patching_rect": [
                                         15.0,
                                         330.0,
-                                        36.0,
+                                        62.0,
                                         23.0
                                     ]
                                 }
@@ -654,14 +672,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

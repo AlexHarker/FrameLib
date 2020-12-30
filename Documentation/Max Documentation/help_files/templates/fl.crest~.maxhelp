@@ -337,6 +337,80 @@
                                 "box": {
                                     "fontface": 1,
                                     "fontsize": 20.0,
+                                    "id": "obj-5",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        270.0,
+                                        557.0,
+                                        34.0,
+                                        29.0
+                                    ],
+                                    "text": "=",
+                                    "textjustification": 1
+                                }
+                            },
+                            {
+                                "box": {
+                                    "format": 6,
+                                    "id": "obj-2",
+                                    "maxclass": "flonum",
+                                    "numinlets": 1,
+                                    "numoutlets": 2,
+                                    "outlettype": [
+                                        "",
+                                        "bang"
+                                    ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [
+                                        315.0,
+                                        557.0,
+                                        50.0,
+                                        23.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-4",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        315.0,
+                                        514.0,
+                                        62.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.tomax~"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-1",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        315.0,
+                                        463.0,
+                                        93.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.expr~ sqrt(2)"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "fontface": 1,
+                                    "fontsize": 20.0,
                                     "id": "obj-63",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -459,7 +533,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         117.0,
-                                        561.0,
+                                        559.0,
                                         50.0,
                                         23.0
                                     ]
@@ -493,7 +567,7 @@
                                     "patching_rect": [
                                         15.0,
                                         105.0,
-                                        438.0,
+                                        442.0,
                                         123.0
                                     ],
                                     "text": "Crest factor is defined as the ratio of the peak value to the RMS value of a frame, or more simply, the peak value divided by the RMS.\n\nIn this example, we generate a frame containing a single cycle of sinusoidal waveform. This frame should have an RMS value of 0.707 and its peak should always be 1.0 as it is sinusoidal. Therefore, we can show how crest works by calculating RMS (fl.rms~) and finding the peak value of the frame (fl.peaks~) and verifying with the proper math."
@@ -513,7 +587,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         210.0,
-                                        561.0,
+                                        559.0,
                                         50.0,
                                         23.0
                                     ]
@@ -648,6 +722,7 @@
                             {
                                 "box": {
                                     "id": "obj-11",
+                                    "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
@@ -688,6 +763,18 @@
                             {
                                 "patchline": {
                                     "destination": [
+                                        "obj-4",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-1",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
                                         "obj-42",
                                         0
                                     ],
@@ -705,6 +792,18 @@
                                     ],
                                     "source": [
                                         "obj-33",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-2",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-4",
                                         0
                                     ]
                                 }
@@ -762,16 +861,35 @@
                             {
                                 "patchline": {
                                     "destination": [
+                                        "obj-1",
+                                        0
+                                    ],
+                                    "midpoints": [
+                                        24.5,
+                                        452.5,
+                                        324.5,
+                                        452.5
+                                    ],
+                                    "order": 0,
+                                    "source": [
+                                        "obj-47",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
                                         "obj-48",
                                         0
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        448.0,
+                                        452.5,
                                         219.5,
-                                        448.0
+                                        452.5
                                     ],
-                                    "order": 0,
+                                    "order": 1,
                                     "source": [
                                         "obj-47",
                                         0
@@ -786,11 +904,11 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        449.0,
+                                        452.5,
                                         126.5,
-                                        449.0
+                                        452.5
                                     ],
-                                    "order": 1,
+                                    "order": 2,
                                     "source": [
                                         "obj-47",
                                         0
@@ -805,11 +923,11 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        446.0,
+                                        452.5,
                                         24.5,
-                                        446.0
+                                        452.5
                                     ],
-                                    "order": 2,
+                                    "order": 3,
                                     "source": [
                                         "obj-47",
                                         0
@@ -858,6 +976,12 @@
                                         "obj-57",
                                         0
                                     ],
+                                    "midpoints": [
+                                        66.5,
+                                        499.5,
+                                        24.5,
+                                        499.5
+                                    ],
                                     "source": [
                                         "obj-56",
                                         2
@@ -894,14 +1018,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
+                                    "fontsize": [
+                                        12.059008
+                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
-                                    ],
-                                    "fontsize": [
-                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

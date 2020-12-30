@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,14 +147,26 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 87.041664123535156, 330.0, 352.0, 21.0 ],
+									"text" : "fl.product~ returns the product of all the values in the frame."
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-1",
 									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 363.20001220703125, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 375.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -164,7 +178,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 126.0, 154.5, 32.958335876464844, 14.0 ]
+									"patching_rect" : [ 128.0, 154.5, 32.958335876464844, 14.0 ]
 								}
 
 							}
@@ -174,7 +188,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 160.958335876464844, 150.0, 180.0, 21.0 ],
+									"patching_rect" : [ 164.958335876464844, 150.0, 165.0, 21.0 ],
 									"text" : "Count from 0 to (length - 1)"
 								}
 
@@ -223,7 +237,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 60.0, 199.0, 32.958335876464844, 14.0 ]
+									"patching_rect" : [ 64.0, 199.0, 32.958335876464844, 14.0 ]
 								}
 
 							}
@@ -247,7 +261,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 87.041664123535156, 244.0, 32.958335876464844, 14.0 ]
+									"patching_rect" : [ 90.041664123535156, 244.0, 32.958335876464844, 14.0 ]
 								}
 
 							}
@@ -257,7 +271,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 122.020835876464844, 241.5, 181.0, 21.0 ],
+									"patching_rect" : [ 132.020835876464844, 241.5, 74.0, 21.0 ],
 									"text" : "1 * 2 * 3 * 4"
 								}
 
@@ -268,7 +282,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 94.958335876464844, 195.0, 223.0, 21.0 ],
+									"patching_rect" : [ 101.958335876464844, 195.0, 207.0, 21.0 ],
 									"text" : "Adds 1 making the frame: [1 2 3 4]"
 								}
 
@@ -363,8 +377,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -399,7 +413,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1

@@ -336,6 +336,7 @@
                             {
                                 "box": {
                                     "id": "obj-1",
+                                    "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
@@ -356,7 +357,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        255.0,
+                                        257.0,
                                         167.5,
                                         32.958335876464844,
                                         14.0
@@ -699,14 +700,14 @@
                                             {
                                                 "name": "newobjYellow-1",
                                                 "default": {
+                                                    "fontsize": [
+                                                        12.059008
+                                                    ],
                                                     "accentcolor": [
                                                         0.82517,
                                                         0.78181,
                                                         0.059545,
                                                         1.0
-                                                    ],
-                                                    "fontsize": [
-                                                        12.059008
                                                     ]
                                                 },
                                                 "parentstyle": "",
@@ -798,8 +799,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        289.64581298828125,
-                                        165.5,
+                                        291.95833587646484,
+                                        164.0,
                                         190.0,
                                         21.0
                                     ],
@@ -936,14 +937,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
+                                    "fontsize": [
+                                        12.059008
+                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
-                                    ],
-                                    "fontsize": [
-                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

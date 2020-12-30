@@ -337,6 +337,95 @@
                                 "box": {
                                     "fontsize": 16.0,
                                     "format": 6,
+                                    "id": "obj-17",
+                                    "maxclass": "flonum",
+                                    "numinlets": 1,
+                                    "numoutlets": 2,
+                                    "outlettype": [
+                                        "",
+                                        "bang"
+                                    ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [
+                                        285.0,
+                                        450.0,
+                                        56.0,
+                                        26.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-18",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        285.0,
+                                        405.0,
+                                        62.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.tomax~"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-15",
+                                    "linecount": 3,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        360.0,
+                                        346.5,
+                                        165.0,
+                                        50.0
+                                    ],
+                                    "text": "We can use fl.minpos~ to also determine where this smallest value is."
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-14",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        285.0,
+                                        360.0,
+                                        68.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.minpos~"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-9",
+                                    "linecount": 4,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        105.0,
+                                        339.0,
+                                        165.0,
+                                        65.0
+                                    ],
+                                    "text": "fl.framemin~ returns the smallest value in the frame, regardless of its position."
+                                }
+                            },
+                            {
+                                "box": {
+                                    "fontsize": 16.0,
+                                    "format": 6,
                                     "id": "obj-16",
                                     "maxclass": "flonum",
                                     "numinlets": 1,
@@ -348,7 +437,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         15.0,
-                                        420.0,
+                                        450.0,
                                         56.0,
                                         26.0
                                     ]
@@ -363,7 +452,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        465.0,
+                                        495.0,
                                         45.0,
                                         45.0
                                     ]
@@ -380,7 +469,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        375.0,
+                                        405.0,
                                         62.0,
                                         23.0
                                     ],
@@ -398,7 +487,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        330.0,
+                                        360.0,
                                         80.0,
                                         23.0
                                     ],
@@ -539,9 +628,59 @@
                             {
                                 "patchline": {
                                     "destination": [
+                                        "obj-18",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-14",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-17",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-18",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-14",
+                                        0
+                                    ],
+                                    "midpoints": [
+                                        24.5,
+                                        333.5,
+                                        294.5,
+                                        333.5
+                                    ],
+                                    "order": 0,
+                                    "source": [
+                                        "obj-2",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
                                         "obj-6",
                                         0
                                     ],
+                                    "midpoints": [
+                                        24.5,
+                                        333.5,
+                                        24.5,
+                                        333.5
+                                    ],
+                                    "order": 1,
                                     "source": [
                                         "obj-2",
                                         0
@@ -620,14 +759,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
+                                    "fontsize": [
+                                        12.059008
+                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
-                                    ],
-                                    "fontsize": [
-                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

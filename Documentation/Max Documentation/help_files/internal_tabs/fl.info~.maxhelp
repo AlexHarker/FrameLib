@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,14 +147,71 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-15",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 312.0, 82.0, 138.0, 21.0 ],
+									"text" : "Select units and buffer"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-14",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 404.0, 435.0, 172.0, 21.0 ],
+									"presentation_linecount" : 3,
+									"text" : "Two buffers to get info about"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-12",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 239.0, 435.0, 86.0, 21.0 ],
+									"text" : "# Channels"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-10",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 127.0, 435.0, 86.0, 21.0 ],
+									"text" : "Sample Rate"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-7",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 435.0, 86.0, 21.0 ],
+									"text" : "Buffer Length"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-1",
 									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 450.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 480.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -177,7 +236,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 133.0, 405.0, 107.0, 23.0 ]
+									"patching_rect" : [ 133.0, 405.0, 80.0, 23.0 ]
 								}
 
 							}
@@ -237,7 +296,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 75.0, 23.0 ],
+									"patching_rect" : [ 15.0, 92.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -262,7 +321,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -295,6 +354,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"fontsize" : 13.0,
@@ -377,12 +437,12 @@
 													"presentation_rect" : [ 97.0, 36.0, 135.0, 115.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
+															"parameter_enum" : [ "info_example_1", "info_example_2" ],
 															"parameter_longname" : "live.tab[1]",
 															"parameter_mmax" : 1,
 															"parameter_shortname" : "live.tab",
-															"parameter_enum" : [ "info_example_1", "info_example_2" ],
 															"parameter_type" : 2,
-															"parameter_unitstyle" : 0
+															"parameter_unitstyle" : 9
 														}
 
 													}
@@ -407,12 +467,12 @@
 													"presentation_rect" : [ 11.0, 36.0, 84.0, 115.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
+															"parameter_enum" : [ "samples", "ms", "seconds" ],
 															"parameter_longname" : "live.tab",
 															"parameter_mmax" : 2,
 															"parameter_shortname" : "live.tab",
-															"parameter_enum" : [ "samples", "ms", "seconds" ],
 															"parameter_type" : 2,
-															"parameter_unitstyle" : 0
+															"parameter_unitstyle" : 9
 														}
 
 													}
@@ -477,7 +537,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 15.0, 555.0, 212.0, 23.0 ],
+									"patching_rect" : [ 390.0, 405.0, 212.0, 23.0 ],
 									"text" : "buffer~ info_example_2 brushes.aif"
 								}
 
@@ -501,7 +561,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 15.0, 510.0, 198.0, 23.0 ],
+									"patching_rect" : [ 404.0, 360.0, 198.0, 23.0 ],
 									"text" : "buffer~ info_example_1 jongly.aif"
 								}
 
@@ -518,7 +578,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 15.0, 435.0, 75.0 ]
+									"patching_rect" : [ 15.0, 15.0, 435.0, 60.0 ]
 								}
 
 							}
@@ -615,17 +675,18 @@
  ],
 		"lines" : [  ],
 		"parameters" : 		{
-			"obj-1::obj-13::obj-3" : [ "live.tab[1]", "live.tab", 0 ],
 			"obj-1::obj-13::obj-2" : [ "live.tab", "live.tab", 0 ],
+			"obj-1::obj-13::obj-3" : [ "live.tab[1]", "live.tab", 0 ],
 			"parameterbanks" : 			{
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
