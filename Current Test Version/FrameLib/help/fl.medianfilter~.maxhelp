@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -290,8 +291,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,16 +333,129 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
                             {
                                 "box": {
+                                    "id": "obj-14",
+                                    "maxclass": "message",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        495.0,
+                                        181.0,
+                                        83.0,
+                                        23.0
+                                    ],
+                                    "presentation_linecount": 2,
+                                    "text": "percentile $1"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-13",
+                                    "maxclass": "message",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        400.5000305175781,
+                                        181.0,
+                                        57.0,
+                                        23.0
+                                    ],
+                                    "text": "width $1"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-12",
+                                    "maxclass": "message",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        334.7499694824219,
+                                        181.0,
+                                        62.0,
+                                        23.0
+                                    ],
+                                    "text": "edges $1"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "format": 6,
+                                    "id": "obj-9",
+                                    "maxclass": "flonum",
+                                    "maximum": 100.0,
+                                    "minimum": 0.0,
+                                    "numinlets": 1,
+                                    "numoutlets": 2,
+                                    "outlettype": [
+                                        "",
+                                        "bang"
+                                    ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [
+                                        495.0,
+                                        141.0,
+                                        50.0,
+                                        23.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-7",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        495.0,
+                                        112.0,
+                                        82.0,
+                                        23.0
+                                    ],
+                                    "text": "loadmess 50"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-6",
+                                    "linecount": 6,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        435.0,
+                                        530.0,
+                                        108.0
+                                    ],
+                                    "text": "fl.medianfilter~ is useful for finding local medians (or other percentiles) within a frame.\n\nThis can be useful for spectral processing.\n\nThe /edges parameter sets the way that filtering happens at the edges of the frame. For spectral prcoessing applications, this should typically be set to fold.\n"
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-1",
+                                    "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        450.0,
+                                        555.0,
                                         45.0,
                                         45.0
                                     ]
@@ -357,7 +471,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        316.99993896484375,
+                                        307.74993896484375,
                                         112.0,
                                         75.0,
                                         23.0
@@ -380,7 +494,7 @@
                                         89.0,
                                         23.0
                                     ],
-                                    "text": "loadmess 400"
+                                    "text": "loadmess 200"
                                 }
                             },
                             {
@@ -404,24 +518,6 @@
                             },
                             {
                                 "box": {
-                                    "id": "obj-112",
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        ""
-                                    ],
-                                    "patching_rect": [
-                                        400.5000305175781,
-                                        188.0,
-                                        77.0,
-                                        23.0
-                                    ],
-                                    "text": "fl.frommax~"
-                                }
-                            },
-                            {
-                                "box": {
                                     "id": "obj-111",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -431,11 +527,11 @@
                                     ],
                                     "patching_rect": [
                                         316.99993896484375,
-                                        188.0,
-                                        77.0,
+                                        221.0,
+                                        124.0,
                                         23.0
                                     ],
-                                    "text": "fl.frommax~"
+                                    "text": "fl.frommax~ params"
                                 }
                             },
                             {
@@ -444,9 +540,13 @@
                                     "items": [
                                         "pad",
                                         ",",
+                                        "extend",
+                                        ",",
                                         "wrap",
                                         ",",
-                                        "fold"
+                                        "fold",
+                                        ",",
+                                        "mirror"
                                     ],
                                     "maxclass": "umenu",
                                     "numinlets": 1,
@@ -458,45 +558,26 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        316.99993896484375,
+                                        307.74993896484375,
                                         141.0,
-                                        54.50006103515625,
+                                        73.00006103515625,
                                         23.0
                                     ]
                                 }
                             },
                             {
                                 "box": {
-                                    "id": "obj-109",
-                                    "maxclass": "newobj",
-                                    "numinlets": 3,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        ""
-                                    ],
-                                    "patching_rect": [
-                                        316.99993896484375,
-                                        225.0,
-                                        186.00018310546875,
-                                        23.0
-                                    ],
-                                    "text": "fl.tag~ mode width"
-                                }
-                            },
-                            {
-                                "box": {
                                     "id": "obj-106",
-                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        373.4999694824219,
-                                        260.0,
-                                        116.00006103515625,
-                                        36.0
+                                        374.99993896484375,
+                                        267.0,
+                                        259.0,
+                                        21.0
                                     ],
-                                    "text": "Filters the noise with a width of 400"
+                                    "text": "Filtering according to the above parameters"
                                 }
                             },
                             {
@@ -506,12 +587,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        277.99993896484375,
-                                        309.0,
-                                        135.0,
+                                        280.99993896484375,
+                                        308.0,
+                                        252.0,
                                         21.0
                                     ],
-                                    "text": "Median Filtered Noise",
+                                    "text": "Median (or other percentile) Filtered Noise",
                                     "textjustification": 1
                                 }
                             },
@@ -541,7 +622,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         162.0,
-                                        186.0,
+                                        200.0,
                                         35.0,
                                         13.0
                                     ]
@@ -568,7 +649,7 @@
                                         0.0,
                                         1.0
                                     ],
-                                    "size": 4096
+                                    "size": 2048
                                 }
                             },
                             {
@@ -628,7 +709,7 @@
                                         0.0,
                                         1.0
                                     ],
-                                    "size": 4096
+                                    "size": 2048
                                 }
                             },
                             {
@@ -678,11 +759,11 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        181.0,
+                                        195.0,
                                         145.0,
                                         23.0
                                     ],
-                                    "text": "fl.random~ /length 4096"
+                                    "text": "fl.random~ /length 2048"
                                 }
                             },
                             {
@@ -710,11 +791,11 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         199.0,
-                                        169.0,
+                                        183.0,
                                         108.0,
                                         50.0
                                     ],
-                                    "text": "Generate a frame of 4096 random variables"
+                                    "text": "Generate a frame of 2048 random variables"
                                 }
                             },
                             {
@@ -758,40 +839,22 @@
                             {
                                 "patchline": {
                                     "destination": [
+                                        "obj-12",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-110",
+                                        1
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
                                         "obj-95",
                                         1
                                     ],
                                     "source": [
-                                        "obj-109",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-111",
-                                        0
-                                    ],
-                                    "midpoints": [
-                                        326.49993896484375,
-                                        165.0,
-                                        326.49993896484375,
-                                        165.0
-                                    ],
-                                    "source": [
-                                        "obj-110",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-109",
-                                        0
-                                    ],
-                                    "source": [
                                         "obj-111",
                                         0
                                     ]
@@ -800,26 +863,8 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-109",
-                                        1
-                                    ],
-                                    "source": [
-                                        "obj-112",
+                                        "obj-13",
                                         0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-112",
-                                        0
-                                    ],
-                                    "midpoints": [
-                                        410.0000305175781,
-                                        165.0,
-                                        410.0000305175781,
-                                        165.0
                                     ],
                                     "source": [
                                         "obj-116",
@@ -854,6 +899,84 @@
                             {
                                 "patchline": {
                                     "destination": [
+                                        "obj-111",
+                                        0
+                                    ],
+                                    "midpoints": [
+                                        344.2499694824219,
+                                        212.0,
+                                        326.49993896484375,
+                                        212.0
+                                    ],
+                                    "source": [
+                                        "obj-12",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-111",
+                                        0
+                                    ],
+                                    "midpoints": [
+                                        410.0000305175781,
+                                        212.0,
+                                        326.49993896484375,
+                                        212.0
+                                    ],
+                                    "source": [
+                                        "obj-13",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-111",
+                                        0
+                                    ],
+                                    "midpoints": [
+                                        504.5,
+                                        212.0,
+                                        326.49993896484375,
+                                        212.0
+                                    ],
+                                    "source": [
+                                        "obj-14",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-9",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-7",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-14",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-9",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
                                         "obj-100",
                                         0
                                     ],
@@ -869,6 +992,12 @@
                                     "destination": [
                                         "obj-95",
                                         0
+                                    ],
+                                    "midpoints": [
+                                        24.5,
+                                        255.0,
+                                        226.49993896484375,
+                                        255.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -909,35 +1038,8 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        156.0,
-                                        312.0,
-                                        156.0,
-                                        312.0,
                                         174.0,
                                         326.49993896484375,
-                                        174.0
-                                    ],
-                                    "order": 1,
-                                    "source": [
-                                        "obj-98",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-112",
-                                        0
-                                    ],
-                                    "midpoints": [
-                                        24.5,
-                                        156.0,
-                                        312.0,
-                                        156.0,
-                                        312.0,
-                                        174.0,
-                                        410.0000305175781,
                                         174.0
                                     ],
                                     "order": 0,
@@ -953,7 +1055,7 @@
                                         "obj-94",
                                         0
                                     ],
-                                    "order": 2,
+                                    "order": 1,
                                     "source": [
                                         "obj-98",
                                         0
