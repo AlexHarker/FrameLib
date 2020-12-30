@@ -10,15 +10,16 @@ def main():
 
     templates = [x for x in template_dir.rglob("fl.*.maxhelp")]
     for t in templates:
-        template = read_json(t)
-        tabs = read_json(internal_dir / t.name)
-        tabs_boxes = tabs["patcher"]["boxes"]
-        for box in tabs_boxes:
-            template["patcher"]["boxes"].append(box)
-
-            write_json(
-                template_dir / t.name, template,
-            )
+        try:
+            template = read_json(t)
+            tabs = read_json(internal_dir / t.name)
+        except FileNotFoundError:
+            print(f'Ignoring {t.stem} wthout internal tabs')
+        else:
+            tabs_boxes = tabs["patcher"]["boxes"]
+            for box in tabs_boxes:
+                template["patcher"]["boxes"].append(box)
+                write_json(template_dir / t.name, template)
 
 
 if __name__ == "__main__":
