@@ -88,13 +88,123 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-7",
-									"linecount" : 5,
+									"id" : "obj-21",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 270.0, 150.0, 79.0 ],
-									"text" : "Tagged frames are emitted as Max messages that could then for example be routed easily."
+									"patching_rect" : [ 330.0, 375.0, 255.0, 21.0 ],
+									"text" : "Each tag is output as a separate message."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"format" : 6,
+									"id" : "obj-20",
+									"maxclass" : "flonum",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "bang" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 420.0, 330.0, 50.0, 23.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"format" : 6,
+									"id" : "obj-16",
+									"maxclass" : "flonum",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "bang" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 348.0, 330.0, 50.0, 23.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-14",
+									"maxclass" : "newobj",
+									"numinlets" : 3,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "" ],
+									"patching_rect" : [ 348.0, 285.0, 163.0, 23.0 ],
+									"text" : "route foo bar"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-13",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 480.0, 150.0, 124.0, 23.0 ],
+									"text" : "fl.random~ /length 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-10",
+									"maxclass" : "newobj",
+									"numinlets" : 4,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 348.0, 195.0, 88.0, 23.0 ],
+									"text" : "fl.tag~ foo bar"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 348.0, 150.0, 124.0, 23.0 ],
+									"text" : "fl.random~ /length 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-12",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 348.0, 240.0, 62.0, 23.0 ],
+									"text" : "fl.tomax~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"hidden" : 1,
+									"id" : "obj-2",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 122.5, 285.0, 85.0, 23.0 ],
+									"text" : "loadmess set"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-7",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 330.0, 300.0, 36.0 ],
+									"text" : "Tagged frames are emitted as Max messages that might for example be routed somewhere else."
 								}
 
 							}
@@ -117,8 +227,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 300.0, 90.0, 23.0 ],
-									"text" : "freq 0.228238"
+									"patching_rect" : [ 15.0, 285.0, 90.0, 23.0 ],
+									"text" : "foo 0.638202"
 								}
 
 							}
@@ -129,7 +239,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 345.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 390.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -140,8 +250,8 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 70.0, 23.0 ],
-									"text" : "fl.tag~ freq"
+									"patching_rect" : [ 15.0, 195.0, 66.0, 23.0 ],
+									"text" : "fl.tag~ foo"
 								}
 
 							}
@@ -188,8 +298,51 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
+									"destination" : [ "obj-12", 0 ],
+									"source" : [ "obj-10", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-10", 0 ],
+									"source" : [ "obj-11", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-14", 0 ],
+									"source" : [ "obj-12", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-10", 1 ],
+									"midpoints" : [ 489.5, 183.5, 380.5, 183.5 ],
+									"source" : [ "obj-13", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-16", 0 ],
+									"source" : [ "obj-14", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-20", 0 ],
+									"source" : [ "obj-14", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-4", 1 ],
-									"midpoints" : [ 24.5, 285.0, 95.5, 285.0 ],
+									"midpoints" : [ 24.5, 273.5, 95.5, 273.5 ],
 									"source" : [ "obj-17", 0 ]
 								}
 
@@ -203,7 +356,34 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"hidden" : 1,
+									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-11", 0 ],
+									"midpoints" : [ 24.5, 138.5, 357.5, 138.5 ],
+									"order" : 1,
+									"source" : [ "obj-5", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-13", 0 ],
+									"midpoints" : [ 24.5, 138.5, 489.5, 138.5 ],
+									"order" : 0,
+									"source" : [ "obj-5", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-19", 0 ],
+									"order" : 2,
 									"source" : [ "obj-5", 0 ]
 								}
 
@@ -248,7 +428,6 @@
 					}
 ,
 					"patching_rect" : [ 330.0, 230.0, 104.0, 22.0 ],
-					"presentation_linecount" : 5,
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -278,7 +457,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -326,7 +505,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 181.0, 150.0, 446.0, 21.0 ],
-									"text" : "generate 3 streams in a multi-stream of frames containing random numbers"
+									"text" : "Generate 3 streams in a multi-stream of frames containing random numbers"
 								}
 
 							}
@@ -470,16 +649,18 @@
 							}
 , 							{
 								"patchline" : 								{
+									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-28", 0 ],
-									"midpoints" : [ 127.5, 330.0, 230.0, 330.0, 230.0, 414.0, 24.5, 414.0 ],
+									"midpoints" : [ 127.5, 330.0, 220.0, 330.0, 220.0, 414.0, 24.5, 414.0 ],
 									"source" : [ "obj-17", 1 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
+									"color" : [ 0.000954266637564, 0.0, 0.53044867515564, 1.0 ],
 									"destination" : [ "obj-29", 0 ],
-									"midpoints" : [ 230.5, 330.0, 230.0, 330.0, 230.0, 489.0, 24.5, 489.0 ],
+									"midpoints" : [ 230.5, 486.0, 24.5, 486.0 ],
 									"source" : [ "obj-17", 2 ]
 								}
 
@@ -636,7 +817,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -667,13 +848,13 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"fontname" : "Lato",
+									"fontname" : "Arial",
 									"id" : "obj-4",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 90.0, 615.0, 38.0 ],
+									"patching_rect" : [ 15.0, 90.0, 579.0, 36.0 ],
 									"text" : "The fl.tomax~ object converts FrameLib frames to Max control data. The output can change format slightly depending on the type of frame that is being converted."
 								}
 
@@ -685,7 +866,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 492.75, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 509.75, 45.0, 45.0 ]
 								}
 
 							}
@@ -708,8 +889,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 91.0, 23.0 ],
-									"text" : "fl.onepole~ 50"
+									"patching_rect" : [ 15.0, 285.0, 98.0, 23.0 ],
+									"text" : "fl.onepole~ 100"
 								}
 
 							}
@@ -864,7 +1045,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
