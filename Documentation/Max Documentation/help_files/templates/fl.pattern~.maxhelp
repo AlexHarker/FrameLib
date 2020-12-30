@@ -337,6 +337,25 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "hidden": 1,
+                                    "id": "obj-7",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        349.25,
+                                        346.0,
+                                        75.0,
+                                        23.0
+                                    ],
+                                    "text": "loadmess 1"
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-40",
                                     "linecount": 4,
                                     "maxclass": "comment",
@@ -1642,6 +1661,19 @@
                                     ],
                                     "source": [
                                         "obj-6",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-37",
+                                        0
+                                    ],
+                                    "hidden": 1,
+                                    "source": [
+                                        "obj-7",
                                         0
                                     ]
                                 }
