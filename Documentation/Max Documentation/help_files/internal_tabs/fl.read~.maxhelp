@@ -37,7 +37,8 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
-		"showontab" : 1,
+		"showrootpatcherontab" : 0,
+		"showontab" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-3",
@@ -90,7 +91,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 495.0, 195.0, 135.0, 108.0 ],
+									"patching_rect" : [ 495.0, 195.0, 138.0, 108.0 ],
 									"text" : "fl.read~ has various interpolation types as well as behaviours for handling input values that extend past the boundaries of the buffer"
 								}
 
@@ -939,7 +940,6 @@
 					}
 ,
 					"patching_rect" : [ 345.0, 230.0, 85.0, 22.0 ],
-					"presentation_linecount" : 3,
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1101,7 +1101,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 314.0, 166.5, 314.0, 50.0 ],
-									"presentation_linecount" : 3,
 									"text" : "Create a counting from of 2000 ms converted internally to sample values. At 44.1khz this would be a frame of 88200 values counting from 0 to 88200"
 								}
 
@@ -1168,7 +1167,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 309.0, 241.5, 308.0, 50.0 ],
+									"patching_rect" : [ 309.0, 241.5, 309.0, 50.0 ],
 									"text" : "fl.read~ is pointed to the buffer \"my-favourite-sound\". This will output a frame of the first two seconds from the buffer it is pointed to"
 								}
 
