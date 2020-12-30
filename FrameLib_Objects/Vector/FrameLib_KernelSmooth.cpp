@@ -31,6 +31,8 @@ FrameLib_KernelSmooth::FrameLib_KernelSmooth(FrameLib_Context context, const Fra
     mParameters.set(serialisedParameters);
     
     mSmoother.set_max_fft_size(mParameters.getInt(kMaxFFTSize));
+    
+    addParameterInput();
 }
 
 // Info
