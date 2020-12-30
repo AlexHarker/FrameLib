@@ -27,7 +27,6 @@ def main():
 
     # Now insert the necessary tabs
     for path in templates:
-        print(path.stem)
         template = read_json(path)
         if path.stem in ternary:
             append_tabs(mismatch, path.stem, template)
