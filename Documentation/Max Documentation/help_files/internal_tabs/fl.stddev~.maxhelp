@@ -163,7 +163,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 125.5, 105.0, 100.0, 23.0 ],
+									"patching_rect" : [ 135.0, 105.0, 100.0, 23.0 ],
 									"text" : "loadmess 0.167"
 								}
 
@@ -199,7 +199,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 240.0, 143.5, 216.0, 36.0 ],
+									"patching_rect" : [ 249.5, 143.5, 216.0, 36.0 ],
 									"text" : "Change the standard deviation of the gaussian distributed numbers"
 								}
 
@@ -213,7 +213,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 125.5, 150.0, 50.0, 23.0 ]
+									"patching_rect" : [ 135.0, 150.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -224,7 +224,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 125.5, 201.625, 77.0, 23.0 ],
+									"patching_rect" : [ 135.0, 201.625, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -248,8 +248,8 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 254.0, 240.0, 23.0 ],
-									"text" : "fl.gaussian~ /length 8192"
+									"patching_rect" : [ 15.0, 254.0, 259.0, 23.0 ],
+									"text" : "fl.gaussian~ /length 8192 /mismatch extend"
 								}
 
 							}
@@ -310,7 +310,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 177.5, 154.5, 60.0, 18.5 ]
+									"patching_rect" : [ 187.0, 154.5, 60.0, 18.5 ]
 								}
 
 							}
@@ -349,7 +349,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-38", 0 ],
-									"midpoints" : [ 24.5, 186.0, 135.0, 186.0 ],
+									"midpoints" : [ 24.5, 186.0, 144.5, 186.0 ],
 									"order" : 0,
 									"source" : [ "obj-23", 0 ]
 								}
