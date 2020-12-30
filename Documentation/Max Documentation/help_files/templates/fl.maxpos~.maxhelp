@@ -335,6 +335,21 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "id": "obj-11",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        90.0,
+                                        331.0,
+                                        388.0,
+                                        21.0
+                                    ],
+                                    "text": "fl.maxpos~ returns you the index of the greatest value in a frame"
+                                }
+                            },
+                            {
+                                "box": {
                                     "fontsize": 16.0,
                                     "format": 6,
                                     "id": "obj-16",

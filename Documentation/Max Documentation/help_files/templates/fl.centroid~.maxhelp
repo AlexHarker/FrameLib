@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -290,8 +290,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 0,
-                            "revision": 6,
+                            "minor": 1,
+                            "revision": 3,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -335,7 +335,24 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "id": "obj-6",
+                                    "linecount": 3,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        376.7167663574219,
+                                        495.0,
+                                        151.0,
+                                        50.0
+                                    ],
+                                    "text": "The centroid is the point at which the 'centre of mass' is accumulated."
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-4",
+                                    "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
@@ -390,7 +407,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         366.666748046875,
-                                        156.63333129882812,
+                                        153.63333129882812,
                                         106.0,
                                         21.0
                                     ],
@@ -486,7 +503,7 @@
                                 "box": {
                                     "id": "obj-43",
                                     "maxclass": "newobj",
-                                    "numinlets": 2,
+                                    "numinlets": 3,
                                     "numoutlets": 1,
                                     "outlettype": [
                                         ""
@@ -595,7 +612,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        376.7167663574219,
+                                        375.7167663574219,
                                         460.13336181640625,
                                         71.0,
                                         21.0
