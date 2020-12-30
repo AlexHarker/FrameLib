@@ -337,6 +337,39 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "id": "obj-4",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        360.0,
+                                        300.0,
+                                        153.0,
+                                        21.0
+                                    ],
+                                    "text": "Can also be abbreviated!"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-6",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        300.0,
+                                        300.0,
+                                        33.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.||~"
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-2",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -395,10 +428,10 @@
                                     "patching_rect": [
                                         140.0,
                                         394.875,
-                                        150.0,
+                                        155.0,
                                         50.0
                                     ],
-                                    "text": "When either of the first inputs is non-zero, the output of fl.or~ is 1."
+                                    "text": "When either of the inputs is non-zero, the output of fl.or~ is 1."
                                 }
                             },
                             {
@@ -665,7 +698,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        292.0,
+                                        297.0,
                                         409.875,
                                         20.0,
                                         20.0
@@ -708,6 +741,12 @@
                             },
                             {
                                 "patchline": {
+                                    "color": [
+                                        0.0,
+                                        0.871366560459137,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "destination": [
                                         "obj-20",
                                         0
@@ -727,6 +766,12 @@
                             },
                             {
                                 "patchline": {
+                                    "color": [
+                                        0.0,
+                                        0.871366560459137,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "destination": [
                                         "obj-21",
                                         0

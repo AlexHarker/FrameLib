@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,7 +333,41 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "id": "obj-17",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        333.5,
+                                        284.0,
+                                        153.0,
+                                        21.0
+                                    ],
+                                    "text": "Can also be abbreviated!"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-1",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        273.5,
+                                        284.0,
+                                        38.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.%~"
+                                }
+                            },
                             {
                                 "box": {
                                     "arrows": 1,
@@ -353,15 +388,15 @@
                             {
                                 "box": {
                                     "id": "obj-21",
-                                    "linecount": 4,
+                                    "linecount": 3,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         267.0,
-                                        129.0,
-                                        148.0,
-                                        65.0
+                                        136.5,
+                                        208.0,
+                                        50.0
                                     ],
                                     "text": "Wiggle this number box to modify the 'width' of the random numbers between 0.0 and 1.0."
                                 }
@@ -427,6 +462,7 @@
                             {
                                 "box": {
                                     "id": "obj-11",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -492,7 +528,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        225.0,
+                                        270.0,
                                         385.0,
                                         45.0,
                                         45.0
@@ -583,7 +619,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        414.0,
+                                        480.0,
                                         150.0,
                                         20.0,
                                         20.0
