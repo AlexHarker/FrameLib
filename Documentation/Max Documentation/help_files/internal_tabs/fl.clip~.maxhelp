@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,14 +147,65 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 152.5, 653.0, 373.0, 21.0 ],
+									"presentation_linecount" : 2,
+									"text" : "(Note that the waveform display automatically adjusts its range)",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-8",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 540.0, 555.0, 53.0, 21.0 ],
+									"text" : "Clipped",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-6",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 540.0, 477.0, 53.0, 21.0 ],
+									"text" : "Original",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"automatic" : 1,
+									"bufsize" : 64,
+									"calccount" : 64,
+									"id" : "obj-4",
+									"maxclass" : "scope~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 120.0, 450.0, 405.0, 75.0 ]
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-29",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 148.0, 572.0, 409.0, 21.0 ],
-									"text" : "Observe how squared off the wave is from fl.clip~",
+									"patching_rect" : [ 172.5, 630.0, 300.0, 21.0 ],
+									"text" : "Observe how square the waveform is after clipping",
 									"textjustification" : 1
 								}
 
@@ -200,7 +253,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 160.125, 301.5, 436.0, 50.0 ],
-									"text" : "Clip the audio at the values -0.2 and 0.2. This will quite harshly square off the audio if it raises above or below these values, resulting in a distorted sound effect."
+									"text" : "Clip the audio at the values -0.1 and 0.1. This will abruptly square off the audio if it raises above or below these values, resulting in a distorted sound effect."
 								}
 
 							}
@@ -222,7 +275,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 305.25, 214.0, 436.0, 21.0 ],
+									"patching_rect" : [ 305.25, 214.0, 291.0, 21.0 ],
 									"text" : "Convert some audio playback stream into frames"
 								}
 
@@ -265,12 +318,14 @@
 							}
 , 							{
 								"box" : 								{
+									"automatic" : 1,
 									"bufsize" : 64,
+									"calccount" : 64,
 									"id" : "obj-13",
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 495.0, 405.0, 75.0 ]
+									"patching_rect" : [ 120.0, 540.0, 405.0, 75.0 ]
 								}
 
 							}
@@ -289,11 +344,11 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-10",
-									"maxclass" : "newobj",
+									"local" : 1,
+									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 615.0, 59.0, 23.0 ],
-									"text" : "dac~ 1 2"
+									"patching_rect" : [ 30.0, 630.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -365,7 +420,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 30.0, 315.0, 93.0, 23.0 ],
-									"text" : "fl.clip~ -0.2 0.2"
+									"text" : "fl.clip~ -0.1 0.1"
 								}
 
 							}
@@ -391,7 +446,7 @@
 									"background" : 1,
 									"bgcolor" : [ 0.2, 0.2, 0.2, 0.0 ],
 									"border" : 2,
-									"bordercolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"bordercolor" : [ 0.92549, 0.364706, 0.341176, 1.0 ],
 									"id" : "obj-24",
 									"maxclass" : "panel",
 									"mode" : 0,
@@ -441,6 +496,16 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 0 ],
+									"order" : 1,
+									"source" : [ "obj-7", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"midpoints" : [ 39.5, 198.0, 603.0, 198.0, 603.0, 436.0, 129.5, 436.0 ],
+									"order" : 0,
 									"source" : [ "obj-7", 0 ]
 								}
 
@@ -448,7 +513,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-10", 1 ],
-									"midpoints" : [ 39.5, 600.0, 79.5, 600.0 ],
+									"midpoints" : [ 39.5, 583.5, 65.5, 583.5 ],
 									"order" : 1,
 									"source" : [ "obj-9", 0 ]
 								}
@@ -466,7 +531,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
-									"midpoints" : [ 39.5, 480.0, 159.5, 480.0 ],
+									"midpoints" : [ 39.5, 533.0, 129.5, 533.0 ],
 									"order" : 0,
 									"source" : [ "obj-9", 0 ]
 								}
@@ -584,7 +649,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
