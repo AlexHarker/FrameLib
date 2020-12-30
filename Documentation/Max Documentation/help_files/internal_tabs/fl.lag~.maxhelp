@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,28 +147,49 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-41",
-									"linecount" : 10,
+									"id" : "obj-16",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 585.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-12",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 315.0, 285.0, 152.0 ],
-									"presentation_linecount" : 10,
-									"text" : "fl.lag~ is set to be two frames behind fl.ticks~ by default in this patch. See how the multislider value is always trailing the one to the left? Increase the lag amount to increase how far behind it follows.\n\nBecause fl.ticks~ produces a looping ramp pattern, if the lag is higher than the length of the loop the two outputs appear to be much closer than they are actually are in terms of time."
+									"patching_rect" : [ 15.0, 540.0, 516.0, 21.0 ],
+									"text" : "fl.lag~ is a frame-based delay. It might be useful for sycnronising processes with latency."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-41",
+									"linecount" : 11,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 315.0, 360.0, 315.0, 166.0 ],
+									"text" : "fl.lag~ is set to be two frames behind fl.ticks~ by default in this patch. \n\nSee how the multislider here is always trailing the one to the left? Increase the lag amount to increase how far behind it follows.\n\nBecause fl.ticks~ produces a looping ramp pattern, if the lag is higher than the length of the loop the two outputs appear to be much closer than they are actually are in terms of time."
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-40",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 121.0, 143.5, 164.0, 36.0 ],
-									"text" : "fl.ticks~ is like a FrameLib counter object."
+									"patching_rect" : [ 157.5, 150.0, 210.0, 21.0 ],
+									"text" : "fl.ticks~ is like a FrameLib 'counter'"
 								}
 
 							}
@@ -179,7 +202,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 240.0, 420.0, 45.0, 140.0 ],
+									"patching_rect" : [ 240.0, 375.0, 45.0, 140.0 ],
 									"setminmax" : [ 0.0, 10.0 ],
 									"slidercolor" : [ 0.062745098039216, 0.643137254901961, 0.717647058823529, 1.0 ]
 								}
@@ -194,7 +217,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 420.0, 45.0, 140.0 ],
+									"patching_rect" : [ 15.0, 375.0, 45.0, 140.0 ],
 									"setminmax" : [ 0.0, 10.0 ],
 									"slidercolor" : [ 0.062745098039216, 0.643137254901961, 0.717647058823529, 1.0 ]
 								}
@@ -207,7 +230,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 301.0, 105.0, 75.0, 23.0 ],
+									"patching_rect" : [ 390.0, 105.0, 75.0, 23.0 ],
 									"text" : "loadmess 2"
 								}
 
@@ -216,11 +239,13 @@
 								"box" : 								{
 									"id" : "obj-31",
 									"maxclass" : "number",
+									"maximum" : 30,
+									"minimum" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 301.0, 150.0, 50.0, 23.0 ]
+									"patching_rect" : [ 390.0, 150.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -231,7 +256,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 301.0, 195.0, 99.0, 23.0 ],
+									"patching_rect" : [ 390.0, 195.0, 99.0, 23.0 ],
 									"text" : "num_frames $1"
 								}
 
@@ -243,8 +268,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 301.0, 240.0, 77.0, 23.0 ],
-									"text" : "fl.frommax~"
+									"patching_rect" : [ 390.0, 240.0, 124.0, 23.0 ],
+									"text" : "fl.frommax~ params"
 								}
 
 							}
@@ -255,7 +280,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 360.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 330.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -267,7 +292,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 360.0, 62.0, 23.0 ],
+									"patching_rect" : [ 240.0, 330.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -276,23 +301,24 @@
 								"box" : 								{
 									"id" : "obj-6",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 101.0, 23.0 ],
-									"text" : "fl.ticks~ /limit 10"
+									"patching_rect" : [ 15.0, 150.0, 138.0, 23.0 ],
+									"text" : "fl.ticks~ 10 /mode loop"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.701961, 0.415686, 0.886275, 1.0 ],
 									"id" : "obj-1",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 315.0, 80.0, 23.0 ],
-									"text" : "fl.lag~ 100 2"
+									"numinlets" : 3,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"patching_rect" : [ 240.0, 285.0, 169.0, 23.0 ],
+									"text" : "fl.lag~ 30 2"
 								}
 
 							}
@@ -341,7 +367,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-1", 1 ],
+									"destination" : [ "obj-1", 2 ],
 									"source" : [ "obj-27", 0 ]
 								}
 
@@ -377,7 +403,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
-									"midpoints" : [ 24.5, 270.0, 249.5, 270.0 ],
+									"midpoints" : [ 24.5, 234.0, 249.5, 234.0 ],
 									"order" : 1,
 									"source" : [ "obj-6", 0 ]
 								}
@@ -394,7 +420,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-27", 0 ],
-									"midpoints" : [ 24.5, 234.0, 310.5, 234.0 ],
+									"midpoints" : [ 24.5, 234.0, 399.5, 234.0 ],
 									"order" : 0,
 									"source" : [ "obj-6", 0 ]
 								}
@@ -406,6 +432,35 @@
 									"source" : [ "obj-8", 0 ]
 								}
 
+							}
+ ],
+						"styles" : [ 							{
+								"name" : "newobjBlue-1",
+								"default" : 								{
+									"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjYellow-1",
+								"default" : 								{
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "numberGold-1",
+								"default" : 								{
+									"accentcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
 							}
  ]
 					}
@@ -427,7 +482,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
