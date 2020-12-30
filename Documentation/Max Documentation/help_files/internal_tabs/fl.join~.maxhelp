@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -49,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -110,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,7 +147,44 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-5",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 90.0, 507.5, 481.0, 50.0 ],
+									"text" : "Note that all inputs trigger output, so although the inputs arrive at different times a new frame is created whenver any input is received. this can be changed with the /trigger_ins parameter."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-18",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 360.0, 415.5, 60.25, 15.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 426.0, 405.0, 180.0, 36.0 ],
+									"text" : "The three frames are joined into a single frame."
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-2",
 									"maxclass" : "newobj",
@@ -160,6 +199,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-22",
+									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
@@ -174,8 +214,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 307.0, 105.0, 93.0, 23.0 ],
-									"text" : "fl.interval~ 327"
+									"patching_rect" : [ 330.0, 105.0, 107.0, 23.0 ],
+									"text" : "fl.interval~ 87 ms"
 								}
 
 							}
@@ -183,10 +223,10 @@
 								"box" : 								{
 									"id" : "obj-19",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 307.0, 190.0, 79.0, 23.0 ],
+									"patching_rect" : [ 330.0, 190.0, 79.0, 23.0 ],
 									"text" : "fl.tag~ value"
 								}
 
@@ -198,7 +238,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 307.0, 143.0, 70.0, 23.0 ],
+									"patching_rect" : [ 330.0, 143.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -210,7 +250,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 307.0, 235.0, 137.0, 23.0 ],
+									"patching_rect" : [ 330.0, 235.0, 137.0, 23.0 ],
 									"text" : "fl.uniform~ /length 100"
 								}
 
@@ -222,8 +262,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 166.0, 105.0, 132.0, 23.0 ],
-									"text" : "fl.interval~ 37.323 ms"
+									"patching_rect" : [ 166.0, 105.0, 118.0, 23.0 ],
+									"text" : "fl.interval~ 32.5 ms"
 								}
 
 							}
@@ -259,8 +299,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 93.0, 23.0 ],
-									"text" : "fl.interval~ 100"
+									"patching_rect" : [ 15.0, 105.0, 114.0, 23.0 ],
+									"text" : "fl.interval~ 100 ms"
 								}
 
 							}
@@ -335,7 +375,7 @@
 								"patchline" : 								{
 									"color" : [ 0.127571523189545, 0.715717375278473, 0.495249778032303, 1.0 ],
 									"destination" : [ "obj-7", 2 ],
-									"midpoints" : [ 316.5, 270.0, 62.5, 270.0 ],
+									"midpoints" : [ 339.5, 270.0, 62.5, 270.0 ],
 									"source" : [ "obj-13", 0 ]
 								}
 
@@ -357,6 +397,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 1 ],
+									"midpoints" : [ 339.5, 223.5, 457.5, 223.5 ],
 									"order" : 0,
 									"source" : [ "obj-19", 0 ]
 								}
@@ -422,8 +463,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -457,6 +498,13 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
+				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "fl.join~.mxo",
 				"type" : "iLaX"
 			}
