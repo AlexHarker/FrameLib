@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,7 +333,39 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "id": "obj-6",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        345.0,
+                                        493.0,
+                                        21.0
+                                    ],
+                                    "presentation_linecount": 4,
+                                    "text": "fl.now~ returns the time since DSP was started, in samples milliseconds or seconds."
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-5",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        75.0,
+                                        150.0,
+                                        172.0,
+                                        21.0
+                                    ],
+                                    "text": "Return the time (in samples)"
+                                }
+                            },
                             {
                                 "box": {
                                     "id": "obj-2",
@@ -346,8 +379,8 @@
                                         "int"
                                     ],
                                     "patching_rect": [
-                                        377.0,
-                                        180.0,
+                                        405.0,
+                                        182.0,
                                         65.0,
                                         23.0
                                     ],
@@ -357,12 +390,13 @@
                             {
                                 "box": {
                                     "id": "obj-1",
+                                    "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        377.0,
-                                        262.0,
+                                        405.0,
+                                        264.0,
                                         45.0,
                                         45.0
                                     ]
@@ -377,10 +411,10 @@
                                     "patching_rect": [
                                         185.8000030517578,
                                         106.0,
-                                        178.0,
+                                        128.0,
                                         21.0
                                     ],
-                                    "text": "Output the time every second"
+                                    "text": "Output every second"
                                 }
                             },
                             {
@@ -595,8 +629,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        377.0,
-                                        219.0,
+                                        405.0,
+                                        221.0,
                                         81.0,
                                         31.0
                                     ],
@@ -625,8 +659,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        377.0,
-                                        137.0,
+                                        405.0,
+                                        139.0,
                                         154.0,
                                         36.0
                                     ],
@@ -653,6 +687,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.952941,
+                                        0.564706,
+                                        0.098039,
+                                        1.0
+                                    ],
                                     "id": "obj-14",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
