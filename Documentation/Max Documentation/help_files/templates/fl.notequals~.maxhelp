@@ -337,6 +337,39 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "id": "obj-17",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        423.5,
+                                        375.0,
+                                        153.0,
+                                        21.0
+                                    ],
+                                    "text": "Can also be abbreviated!"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-6",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        363.5,
+                                        375.0,
+                                        37.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.!=~"
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-5",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -344,10 +377,10 @@
                                     "patching_rect": [
                                         105.0,
                                         331.0,
-                                        225.0,
+                                        232.0,
                                         21.0
                                     ],
-                                    "text": "fl.notequals compares the two frames"
+                                    "text": "fl.notequals~ compares the two frames"
                                 }
                             },
                             {

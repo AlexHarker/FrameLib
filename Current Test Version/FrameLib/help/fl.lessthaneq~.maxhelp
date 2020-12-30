@@ -337,6 +337,39 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "id": "obj-17",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        315.0,
+                                        225.0,
+                                        153.0,
+                                        21.0
+                                    ],
+                                    "text": "Can also be abbreviated!"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-6",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        255.0,
+                                        225.0,
+                                        41.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.<=~"
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-4",
                                     "maxclass": "newobj",
                                     "numinlets": 2,
@@ -410,7 +443,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        143.25,
+                                        139.25,
                                         346.0,
                                         206.0,
                                         21.0
@@ -427,7 +460,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        77.0,
+                                        76.0,
                                         349.0,
                                         60.25,
                                         15.0
