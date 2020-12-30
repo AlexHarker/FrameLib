@@ -93,7 +93,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 285.0, 300.0, 50.0 ],
+									"patching_rect" : [ 30.0, 300.0, 300.0, 50.0 ],
 									"text" : "We are going to set fl.read~ to interpret the input as normalised (0 to 1 across the buffer~) so we are reading well beyond on both sides."
 								}
 
@@ -106,7 +106,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 585.0, 29.75, 14.5 ]
+									"patching_rect" : [ 180.0, 600.0, 29.75, 14.5 ]
 								}
 
 							}
@@ -116,7 +116,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 213.75, 581.75, 45.0, 21.0 ],
+									"patching_rect" : [ 213.75, 596.75, 45.0, 21.0 ],
 									"text" : "Result"
 								}
 
@@ -127,7 +127,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 435.0, 279.0, 21.0 ],
+									"patching_rect" : [ 330.0, 450.0, 279.0, 21.0 ],
 									"text" : "Note that bound is set off so we see the results"
 								}
 
@@ -138,7 +138,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 390.0, 510.0, 226.0, 21.0 ],
+									"patching_rect" : [ 390.0, 525.0, 226.0, 21.0 ],
 									"text" : "Make with a linear ramp in the buffer~"
 								}
 
@@ -150,7 +150,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 438.8125, 390.0, 124.0, 23.0 ],
+									"patching_rect" : [ 438.8125, 405.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -162,7 +162,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
-									"patching_rect" : [ 390.0, 540.0, 62.0, 23.0 ],
+									"patching_rect" : [ 390.0, 555.0, 62.0, 23.0 ],
 									"text" : "loadbang"
 								}
 
@@ -174,7 +174,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 390.0, 585.0, 141.0, 23.0 ],
+									"patching_rect" : [ 390.0, 600.0, 141.0, 23.0 ],
 									"text" : "fill 1, apply triangle half"
 								}
 
@@ -187,7 +187,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 525.0, 150.0, 135.0 ],
+									"patching_rect" : [ 15.0, 540.0, 150.0, 135.0 ],
 									"setminmax" : [ -2.0, 2.0 ],
 									"size" : 512
 								}
@@ -200,7 +200,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 480.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 495.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -212,7 +212,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 390.0, 630.0, 220.0, 23.0 ],
+									"patching_rect" : [ 390.0, 645.0, 220.0, 23.0 ],
 									"text" : "buffer~ fl-help-readtable @samps 32"
 								}
 
@@ -224,7 +224,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 435.0, 306.0, 23.0 ],
+									"patching_rect" : [ 15.0, 450.0, 306.0, 23.0 ],
 									"text" : "fl.read~ fl-help-readtable /units normalised /bound 0"
 								}
 
@@ -236,7 +236,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 238.5, 135.0, 23.0 ],
+									"patching_rect" : [ 15.0, 253.5, 135.0, 23.0 ],
 									"text" : "fl.map~ linear 0 1 -1 2"
 								}
 
@@ -248,7 +248,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 193.5, 229.0, 23.0 ],
+									"patching_rect" : [ 15.0, 208.5, 229.0, 23.0 ],
 									"text" : "fl.ramp~ /length 512 /scale normalised"
 								}
 
@@ -256,12 +256,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-30",
-									"linecount" : 2,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 92.0, 607.0, 36.0 ],
-									"text" : "fl.read~ has various behaviours for handling input values that extend past the boundaries of the buffer~. \nThese are most likely to be useful when using fl.read~ to use a buffer~ as a lookup table."
+									"patching_rect" : [ 15.0, 92.0, 607.0, 50.0 ],
+									"text" : "fl.read~ has various behaviours for handling input values that extend past the boundaries of the buffer~. \nThese are most likely to be useful when using fl.read~ to use a buffer~ as a lookup table.\nThis issue is examined in more detail in the fl.lookup~ helpfile."
 								}
 
 							}
@@ -272,7 +272,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 438.8125, 345.0, 62.0, 23.0 ],
+									"patching_rect" : [ 438.8125, 360.0, 62.0, 23.0 ],
 									"text" : "edges $1"
 								}
 
@@ -285,7 +285,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 425.8125, 150.0, 45.0, 21.0 ],
+									"patching_rect" : [ 425.8125, 165.0, 45.0, 21.0 ],
 									"text" : "Edges",
 									"textjustification" : 1
 								}
@@ -301,7 +301,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 375.0, 171.5, 146.625, 159.5 ],
+									"patching_rect" : [ 375.0, 186.5, 146.625, 159.5 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 135.0, 45.0, 120.0, 150.0 ],
 									"saved_attribute_attributes" : 									{
@@ -327,7 +327,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 615.0, 45.0, 45.0 ]
+									"patching_rect" : [ 270.0, 630.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -337,7 +337,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 165.0, 238.5, 162.0, 21.0 ],
+									"patching_rect" : [ 165.0, 253.5, 162.0, 21.0 ],
 									"text" : "Create a ramp from -1 to 2"
 								}
 
@@ -349,7 +349,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 114.0, 23.0 ],
+									"patching_rect" : [ 15.0, 165.0, 114.0, 23.0 ],
 									"text" : "fl.interval~ 100 ms"
 								}
 
@@ -395,7 +395,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-7", 1 ],
-									"midpoints" : [ 448.3125, 423.5, 311.5, 423.5 ],
+									"midpoints" : [ 448.3125, 438.5, 311.5, 438.5 ],
 									"source" : [ "obj-19", 0 ]
 								}
 
@@ -410,7 +410,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-19", 0 ],
-									"midpoints" : [ 24.5, 182.0, 355.0, 182.0, 355.0, 377.0, 448.3125, 377.0 ],
+									"midpoints" : [ 24.5, 197.0, 355.0, 197.0, 355.0, 392.0, 448.3125, 392.0 ],
 									"order" : 0,
 									"source" : [ "obj-33", 0 ]
 								}
