@@ -154,7 +154,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 75.0, 474.0, 282.0, 21.0 ],
+									"patching_rect" : [ 75.0, 462.0, 282.0, 21.0 ],
 									"text" : "Restart audio to generate a new random frame."
 								}
 
