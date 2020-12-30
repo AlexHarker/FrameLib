@@ -147,6 +147,17 @@
 						"showontab" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 85.0, 331.0, 310.0, 21.0 ],
+									"text" : "fl.minpos~ returns the index of the minimum value."
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"fontsize" : 16.0,
 									"format" : 6,
 									"id" : "obj-16",

@@ -147,6 +147,17 @@
 						"showontab" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-1",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 450.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-17",
 									"maxclass" : "number",
 									"numinlets" : 1,
@@ -366,12 +377,12 @@
 													"presentation_rect" : [ 97.0, 36.0, 135.0, 115.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_enum" : [ "info_example_1", "info_example_2" ],
-															"parameter_type" : 2,
-															"parameter_unitstyle" : 0,
 															"parameter_longname" : "live.tab[1]",
 															"parameter_mmax" : 1,
-															"parameter_shortname" : "live.tab"
+															"parameter_shortname" : "live.tab",
+															"parameter_enum" : [ "info_example_1", "info_example_2" ],
+															"parameter_type" : 2,
+															"parameter_unitstyle" : 0
 														}
 
 													}
@@ -396,12 +407,12 @@
 													"presentation_rect" : [ 11.0, 36.0, 84.0, 115.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
-															"parameter_enum" : [ "ms", "seconds", "samples" ],
-															"parameter_type" : 2,
-															"parameter_unitstyle" : 0,
 															"parameter_longname" : "live.tab",
 															"parameter_mmax" : 2,
-															"parameter_shortname" : "live.tab"
+															"parameter_shortname" : "live.tab",
+															"parameter_enum" : [ "samples", "ms", "seconds" ],
+															"parameter_type" : 2,
+															"parameter_unitstyle" : 0
 														}
 
 													}
@@ -466,8 +477,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 435.0, 720.0, 201.0, 23.0 ],
-									"text" : "buffer~ info_example_2 duduk.aif"
+									"patching_rect" : [ 15.0, 555.0, 212.0, 23.0 ],
+									"text" : "buffer~ info_example_2 brushes.aif"
 								}
 
 							}
@@ -490,7 +501,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 435.0, 675.0, 198.0, 23.0 ],
+									"patching_rect" : [ 15.0, 510.0, 198.0, 23.0 ],
 									"text" : "buffer~ info_example_1 jongly.aif"
 								}
 
