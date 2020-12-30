@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 0,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,30 +147,39 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-2",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 225.0, 263.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-35",
-									"linecount" : 3,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 407.0, 690.0, 208.0, 50.0 ],
-									"presentation_linecount" : 6,
-									"text" : "And finally, we ask for 5 samples of length, converted to millisecond values."
+									"patching_rect" : [ 392.0, 646.0, 238.0, 36.0 ],
+									"text" : "Finally, we ask for 4 samples in length, converted to millisecond values."
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-34",
-									"linecount" : 2,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 407.0, 645.0, 195.0, 38.0 ],
-									"presentation_linecount" : 2,
-									"text" : "0. 0.022676 0.045351 0.068027 0.090703"
+									"patching_rect" : [ 407.0, 615.0, 196.0, 23.0 ],
+									"text" : "0. 0.022676 0.045351 0.068027"
 								}
 
 							}
@@ -179,7 +190,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 407.0, 600.0, 62.0, 23.0 ],
+									"patching_rect" : [ 407.0, 570.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -191,7 +202,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 407.0, 510.0, 54.0, 23.0 ],
+									"patching_rect" : [ 407.0, 480.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -204,21 +215,20 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 407.0, 555.0, 208.0, 38.0 ],
-									"text" : "fl.ramp~ /length 5 /units samples /scale ms"
+									"patching_rect" : [ 407.0, 525.0, 196.0, 38.0 ],
+									"text" : "fl.ramp~ /length 4 /units samples /scale ms"
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-29",
-									"linecount" : 7,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 600.0, 111.5, 108.0 ],
-									"presentation_linecount" : 3,
-									"text" : "In this, example, we are asking for a ramp that is 1 millisecond long, and is converted to samples at the output. "
+									"patching_rect" : [ 97.5, 480.0, 270.0, 36.0 ],
+									"text" : "In this example we ask for a ramp that is 1 millisecond long, with the output as a count. "
 								}
 
 							}
@@ -230,8 +240,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 645.0, 238.0, 67.0 ],
-									"presentation_linecount" : 4,
+									"patching_rect" : [ 30.0, 615.0, 239.0, 67.0 ],
 									"text" : "0. 1. 2. 3. 4. 5. 6. 7. 8. 9. 10. 11. 12. 13. 14. 15. 16. 17. 18. 19. 20. 21. 22. 23. 24. 25. 26. 27. 28. 29. 30. 31. 32. 33. 34. 35. 36. 37. 38. 39. 40. 41. 42. 43."
 								}
 
@@ -243,7 +252,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 600.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 570.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -255,7 +264,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 510.0, 54.0, 23.0 ],
+									"patching_rect" : [ 30.0, 480.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -267,7 +276,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 555.0, 238.0, 23.0 ],
+									"patching_rect" : [ 30.0, 525.0, 238.0, 23.0 ],
 									"text" : "fl.ramp~ /length 1 /units ms /scale count"
 								}
 
@@ -279,9 +288,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 210.0, 345.0, 300.0, 123.0 ],
-									"presentation_linecount" : 17,
-									"text" : "By default, fl.ramp~ interprets the length you provide it as if this is a length in samples. This is set with /units. The /scale parameter acts as a conversion at the output so that you can control the input and output parameters independently from each other. For example, you might specify a ramp frame's length in milliseconds, but then converts at the output into samples."
+									"patching_rect" : [ 315.0, 315.0, 300.0, 123.0 ],
+									"text" : "By default, fl.ramp~ interprets the length you provide it as a length in samples. This is set with /units parameter. The /scale parameter acts as a conversion at the output so that you can control the input and output parameters independently from each other. For example, you might specify a ramp frame's length in samples, but then convert the output to normalised values (0 to 1)."
 								}
 
 							}
@@ -292,8 +300,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 212.0, 315.0, 238.0, 23.0 ],
-									"text" : "0. 1. 2. 3. 4. 5. 6. 7. 8. 9."
+									"patching_rect" : [ 317.0, 285.0, 268.0, 23.0 ],
+									"text" : "0. 0.125 0.25 0.375 0.5 0.625 0.75 0.875 1."
 								}
 
 							}
@@ -304,7 +312,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 212.0, 270.0, 62.0, 23.0 ],
+									"patching_rect" : [ 317.0, 240.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -316,7 +324,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 212.0, 180.0, 54.0, 23.0 ],
+									"patching_rect" : [ 317.0, 150.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -328,21 +336,20 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 212.0, 225.0, 276.0, 23.0 ],
-									"text" : "fl.ramp~ /length 10 /units samples /scale count"
+									"patching_rect" : [ 317.0, 195.0, 301.0, 23.0 ],
+									"text" : "fl.ramp~ /length 9 /units samples /scale normalised"
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-10",
-									"linecount" : 7,
+									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 345.0, 150.0, 108.0 ],
-									"presentation_linecount" : 2,
-									"text" : "By changing the /length parameter, it dictates what the length of the output frame is, and by extension the maximum value that is counted up to."
+									"patching_rect" : [ 30.0, 315.0, 150.0, 94.0 ],
+									"text" : "The /length parameter dictates what length the output frame will be, and by extension the maximum value that is counted up to."
 								}
 
 							}
@@ -353,7 +360,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 315.0, 150.0, 23.0 ],
+									"patching_rect" : [ 30.0, 285.0, 150.0, 23.0 ],
 									"text" : "0. 1. 2. 3. 4. 5. 6. 7. 8. 9."
 								}
 
@@ -365,7 +372,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 270.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 240.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -377,7 +384,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 180.0, 54.0, 23.0 ],
+									"patching_rect" : [ 30.0, 150.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -385,12 +392,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-4",
-									"linecount" : 3,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 105.0, 615.0, 50.0 ],
-									"text" : "The fl.ramp~ object is one of the more confusing objects to understand simply because it has a lot of parameters that interact with each other. Let's walk through the parameters and how they work together to be highly configurable."
+									"patching_rect" : [ 15.0, 90.0, 615.0, 36.0 ],
+									"text" : "The fl.ramp~ object has a serfal parameters that interact with each other. Let's walk through the parameters and how they work together."
 								}
 
 							}
@@ -401,7 +408,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 225.0, 117.0, 23.0 ],
+									"patching_rect" : [ 30.0, 195.0, 117.0, 23.0 ],
 									"text" : "fl.ramp~ /length 10"
 								}
 
@@ -434,7 +441,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 392.0, 495.0, 238.0, 255.0 ],
+									"patching_rect" : [ 382.5, 465.0, 247.5, 225.0 ],
 									"proportion" : 0.5
 								}
 
@@ -451,7 +458,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 165.0, 180.0, 315.0 ],
+									"patching_rect" : [ 15.0, 135.0, 180.0, 315.0 ],
 									"proportion" : 0.5
 								}
 
@@ -468,7 +475,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 197.0, 165.0, 317.0, 315.0 ],
+									"patching_rect" : [ 302.0, 135.0, 328.0, 315.0 ],
 									"proportion" : 0.5
 								}
 
@@ -485,7 +492,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 495.0, 375.0, 228.0 ],
+									"patching_rect" : [ 15.0, 465.0, 360.0, 225.0 ],
 									"proportion" : 0.5
 								}
 
@@ -501,6 +508,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-12", 1 ],
+									"midpoints" : [ 326.5, 273.5, 575.5, 273.5 ],
 									"source" : [ "obj-13", 0 ]
 								}
 
@@ -536,6 +544,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-27", 1 ],
+									"midpoints" : [ 39.5, 603.5, 259.5, 603.5 ],
 									"source" : [ "obj-28", 0 ]
 								}
 
@@ -543,6 +552,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-34", 1 ],
+									"midpoints" : [ 416.5, 603.5, 593.5, 603.5 ],
 									"source" : [ "obj-31", 0 ]
 								}
 
@@ -571,9 +581,39 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 1 ],
+									"midpoints" : [ 39.5, 273.5, 170.5, 273.5 ],
 									"source" : [ "obj-6", 0 ]
 								}
 
+							}
+ ],
+						"styles" : [ 							{
+								"name" : "newobjBlue-1",
+								"default" : 								{
+									"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjYellow-1",
+								"default" : 								{
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "numberGold-1",
+								"default" : 								{
+									"accentcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
 							}
  ]
 					}
@@ -595,7 +635,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
