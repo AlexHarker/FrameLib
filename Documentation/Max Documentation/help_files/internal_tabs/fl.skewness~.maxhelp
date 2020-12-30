@@ -147,11 +147,24 @@
 						"showontab" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-2",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 105.0, 86.0, 23.0 ],
+									"text" : "loadmess 0.5"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-1",
+									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 506.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 536.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -163,7 +176,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 78.0, 477.5, 31.25, 17.0 ]
+									"patching_rect" : [ 78.0, 507.5, 31.25, 17.0 ]
 								}
 
 							}
@@ -173,7 +186,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 111.25, 475.5, 71.0, 21.0 ],
+									"patching_rect" : [ 111.25, 505.5, 71.0, 21.0 ],
 									"text" : "Skewness"
 								}
 
@@ -186,7 +199,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 196.49993896484375, 114.5, 31.25, 17.0 ]
+									"patching_rect" : [ 196.49993896484375, 144.5, 31.25, 17.0 ]
 								}
 
 							}
@@ -197,7 +210,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 427.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 457.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -209,7 +222,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 390.0, 83.0, 23.0 ],
+									"patching_rect" : [ 15.0, 420.0, 83.0, 23.0 ],
 									"text" : "fl.skewness~"
 								}
 
@@ -221,7 +234,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 78.0, 303.0, 75.0, 23.0 ],
+									"patching_rect" : [ 78.0, 333.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -236,7 +249,7 @@
 									"orientation" : 0,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 105.0, 181.0, 34.0 ],
+									"patching_rect" : [ 15.0, 135.0, 181.0, 34.0 ],
 									"setminmax" : [ 0.0, 4.0 ],
 									"thickness" : 4
 								}
@@ -425,7 +438,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 15.0, 145.466796875, 84.0, 23.0 ],
+									"patching_rect" : [ 15.0, 175.466796875, 84.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -444,7 +457,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 345.0, 77.0, 23.0 ],
+									"patching_rect" : [ 15.0, 375.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -457,7 +470,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 78.0, 179.466796875, 267.0, 108.0 ],
+									"patching_rect" : [ 78.0, 209.466796875, 267.0, 108.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 256
 								}
@@ -469,7 +482,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 229.74993896484375, 114.5, 74.0, 21.0 ],
+									"patching_rect" : [ 229.74993896484375, 144.5, 74.0, 21.0 ],
 									"text" : "Wiggle me!"
 								}
 
@@ -484,7 +497,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 474.0, 61.0, 24.0 ]
+									"patching_rect" : [ 15.0, 504.0, 61.0, 24.0 ]
 								}
 
 							}
@@ -495,8 +508,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 360.0, 179.466796875, 234.0, 166.0 ],
-									"text" : "In this example some perlin noise types frames are generated and are passed to the fl.skewness~ object via fl.frommax~. \n\nPositive values indicate that the skewed in favour of lower indexes whereas negative values indicate that the higher indexes are more prominent. A value close to 0 indicates relative symmetry."
+									"patching_rect" : [ 360.0, 209.466796875, 234.0, 166.0 ],
+									"text" : "In this example some perlin noise types frames are generated and are passed to the fl.skewness~ object via fl.frommax~. \n\nPositive values indicate that the frame is skewed in favour of lower indexes whereas negative values indicate that the higher indexes are more prominent. A value close to 0 indicates relative symmetry."
 								}
 
 							}
@@ -518,6 +531,13 @@
 							}
  ],
 						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-27", 0 ],
+									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
 								"patchline" : 								{
 									"destination" : [ "obj-29", 0 ],
 									"source" : [ "obj-23", 0 ]
@@ -550,6 +570,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-23", 0 ],
+									"midpoints" : [ 87.5, 365.0, 24.5, 365.0 ],
 									"source" : [ "obj-28", 0 ]
 								}
 
@@ -581,8 +602,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
