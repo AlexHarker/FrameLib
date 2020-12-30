@@ -147,6 +147,17 @@
 						"showontab" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-1",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 435.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"arrows" : 1,
 									"border" : 4.0,
 									"id" : "obj-24",
@@ -176,8 +187,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 132.0, 215.0, 36.0 ],
-									"presentation_linecount" : 2,
+									"patching_rect" : [ 270.0, 132.0, 217.0, 36.0 ],
 									"text" : "Create your own frame. Experiment with different shapes!"
 								}
 

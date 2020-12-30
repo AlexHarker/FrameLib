@@ -457,7 +457,7 @@
 													"numoutlets" : 0,
 													"patching_rect" : [ 229.74993896484375, 54.5, 74.0, 20.0 ],
 													"presentation" : 1,
-													"presentation_rect" : [ 229.74993896484375, 24.5, 74.0, 20.0 ],
+													"presentation_rect" : [ 228.74993896484375, 22.5, 74.0, 20.0 ],
 													"text" : "Wiggle me!"
 												}
 
@@ -528,7 +528,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 536.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 540.0, 45.0, 45.0 ]
 								}
 
 							}

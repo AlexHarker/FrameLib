@@ -163,7 +163,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 240.0, 479.875, 298.0, 21.0 ],
+									"patching_rect" : [ 240.0, 477.0, 298.0, 21.0 ],
 									"text" : "Divide the geometric mean by the mean"
 								}
 
@@ -186,7 +186,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 118.0, 393.0, 298.0, 21.0 ],
+									"patching_rect" : [ 118.0, 393.875, 298.0, 21.0 ],
 									"text" : "Take the magnitude of the spectrum"
 								}
 
@@ -209,7 +209,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 118.0, 344.0, 298.0, 21.0 ],
+									"patching_rect" : [ 118.0, 344.875, 298.0, 21.0 ],
 									"text" : "Convert our input frame to the frequency domain"
 								}
 
@@ -232,7 +232,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 272.0, 297.0, 276.0, 21.0 ],
+									"patching_rect" : [ 272.0, 297.875, 276.0, 21.0 ],
 									"text" : "Window the input frame using a hann function"
 								}
 
@@ -255,7 +255,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 201.0, 252.0, 215.0, 21.0 ],
+									"patching_rect" : [ 200.0, 252.875, 215.0, 21.0 ],
 									"text" : "4096 randomly distributed samples"
 								}
 
@@ -278,7 +278,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 156.0, 210.0, 215.0, 21.0 ],
+									"patching_rect" : [ 153.0, 211.0, 215.0, 21.0 ],
 									"text" : "Trigger frame every 4096 samples"
 								}
 
@@ -286,6 +286,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-1",
+									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
@@ -460,7 +461,7 @@
 									"background" : 1,
 									"bgcolor" : [ 0.137254901960784, 0.137254901960784, 0.137254901960784, 0.0 ],
 									"border" : 2,
-									"bordercolor" : [ 0.16078431372549, 0.176470588235294, 0.180392156862745, 1.0 ],
+									"bordercolor" : [ 0.701961, 0.415686, 0.886275, 1.0 ],
 									"id" : "obj-19",
 									"maxclass" : "panel",
 									"mode" : 0,
@@ -503,7 +504,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-26", 0 ],
-									"midpoints" : [ 24.5, 432.0, 144.5, 432.0 ],
+									"midpoints" : [ 24.5, 426.0, 144.5, 426.0 ],
 									"order" : 0,
 									"source" : [ "obj-25", 0 ]
 								}
@@ -565,8 +566,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",

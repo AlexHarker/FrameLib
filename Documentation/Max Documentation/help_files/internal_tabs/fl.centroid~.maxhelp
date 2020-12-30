@@ -152,7 +152,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 376.716766357421875, 495.0, 150.0, 50.0 ],
+									"patching_rect" : [ 376.716766357421875, 495.0, 151.0, 50.0 ],
 									"text" : "The centroid is the point at which the 'centre of mass' is accumulated."
 								}
 
@@ -160,6 +160,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-4",
+									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
@@ -198,7 +199,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 366.666748046875, 156.633331298828125, 106.0, 21.0 ],
+									"patching_rect" : [ 366.666748046875, 153.633331298828125, 106.0, 21.0 ],
 									"text" : "Shift the centroid"
 								}
 
@@ -334,7 +335,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 376.716766357421875, 460.13336181640625, 71.0, 21.0 ],
+									"patching_rect" : [ 375.716766357421875, 460.13336181640625, 71.0, 21.0 ],
 									"text" : "Centroid"
 								}
 

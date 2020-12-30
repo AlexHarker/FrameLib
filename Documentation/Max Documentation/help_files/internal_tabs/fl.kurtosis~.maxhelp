@@ -147,6 +147,42 @@
 						"showontab" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-5",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 255.0, 160.5, 31.25, 17.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-8",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 287.25, 156.5, 193.0, 21.0 ],
+									"presentation_linecount" : 3,
+									"text" : "Draw your own frame of values"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-1",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 88.0, 350.0, 31.25, 17.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-7",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -179,7 +215,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 105.0, 295.0, 495.0, 123.0 ],
+									"patching_rect" : [ 125.0, 295.0, 497.0, 123.0 ],
 									"text" : "Kurtosis is a statistical measure used to describe the degree to which scores cluster in the tails or the peak of a frequency distribution. The peak is the tallest part of the distribution, and the tails are the ends of the distribution. When the kurtosis is close to a value of 0 it means the distribtion of the data is 'mesokurtic'. This is a way of saying that the data is the same as the normal distribution. Negative values indicate that the data has thin tails, and is perhaps bulbous in shape. Positive values indicate that more of the values are located in the tails of the distribution rather than around the mean."
 								}
 
@@ -215,7 +251,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 78.0, 530.0, 31.25, 17.0 ]
+									"patching_rect" : [ 78.0, 485.0, 31.25, 17.0 ]
 								}
 
 							}
@@ -225,7 +261,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 111.25, 527.0, 71.0, 21.0 ],
+									"patching_rect" : [ 111.25, 482.0, 71.0, 21.0 ],
 									"text" : "Kurtosis"
 								}
 
@@ -264,7 +300,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 525.0, 61.0, 24.0 ]
+									"patching_rect" : [ 15.0, 480.0, 61.0, 24.0 ]
 								}
 
 							}
