@@ -150,6 +150,19 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"hidden" : 1,
+									"id" : "obj-2",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 225.0, 330.0, 85.0, 23.0 ],
+									"text" : "loadmess set"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-25",
 									"local" : 1,
 									"maxclass" : "ezdac~",
@@ -191,7 +204,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 390.0, 248.0, 21.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Change the input values to see the result."
 								}
 
@@ -203,7 +215,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 390.0, 293.0, 36.0 ],
+									"patching_rect" : [ 315.0, 390.0, 295.0, 36.0 ],
 									"text" : "You can also add scalar values to vectors, or add two vectors together."
 								}
 
@@ -511,6 +523,24 @@
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
 									"source" : [ "obj-19", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"hidden" : 1,
+									"order" : 0,
+									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-22", 0 ],
+									"hidden" : 1,
+									"order" : 1,
+									"source" : [ "obj-2", 0 ]
 								}
 
 							}
