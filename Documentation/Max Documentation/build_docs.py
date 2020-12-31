@@ -1,3 +1,4 @@
+tmp = __import__("_create_tmp")
 create_category_database = __import__("1_create_category_database")
 edit_raw_XML = __import__("2_edit_raw_XML")
 parse_to_dlookup = __import__("4_parse_to_dlookup")
@@ -16,9 +17,11 @@ import argparse
 
 def main():
     parser = argparse.ArgumentParser(description="Build Documentation for FrameLib")
-    parser.add_argument("-hf", "--helpfiles", default=1, type=int, help="Toggle to build help files")
-    parser.add_argument("-c", "--clean", default=1, type=int, help="Toggle for post-cleanup")
+    parser.add_argument("-hf", "--helpfiles", default=True, action='store_false', help="Toggle to build help files")
+    parser.add_argument("-c", "--clean", default=True, action='store_false', help="Toggle for post-cleanup")
     args = parser.parse_args()
+
+    tmp.main()
 
     print(args.clean)
     sign_off()
@@ -30,13 +33,13 @@ def main():
     # Also, this where a number of temporary directories are created
 
     # Creates a category database in .json format.
-    # The JSON file is used by edit_raw_XML.py to assign object categories to the xml files.
+    # The JSON file is used by 2_edit_raw_XML.py to assign object categories to the xml files.
     print("1. Building Category Database")
     create_category_database.main()
     hyp()
 
-    # The purpose of this script is to set the categories for the Raw_XML files.
-    # C++ doesnt know about the categories at XML creation and its easier to iterate file structures in python.
+    # The purpose of this script is to set the categories for the Raw XML files.
+    # C++ doesnt know about the categories at XML creation.
     # Edited XML files are copied from /tmp/ to the refpages directory
     print("2. Editing XML Files")
     edit_raw_XML.main()

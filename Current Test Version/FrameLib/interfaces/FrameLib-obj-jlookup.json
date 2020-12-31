@@ -1164,7 +1164,7 @@
         },
         "6": {
             "name": "6. /compensate [enum]",
-            "description": "Sets the gain compensation (the window is divided by the compensated gain).\n\nParameter Options:\n[0] - off\n[1] - linear\n[2] - power\n[3] - reconstruct"
+            "description": "Sets the gain compensation (the window is divided by the compensated gain).\n\nParameter Options:\n[0] - off\n[1] - linear\n[2] - square\n[3] - reconstruct"
         },
         "7": {
             "name": "7. /parameters [variable length double array]",
@@ -1378,7 +1378,7 @@
         },
         "4": {
             "name": "4. /compensate [enum]",
-            "description": "Sets the gain compensation (the window is divided by the compensated gain).\n\nParameter Options:\n[0] - off\n[1] - linear\n[2] - power\n[3] - reconstruct"
+            "description": "Sets the gain compensation (the window is divided by the compensated gain).\n\nParameter Options:\n[0] - off\n[1] - linear\n[2] - square\n[3] - reconstruct"
         },
         "5": {
             "name": "5. /parameters [variable length double array]",

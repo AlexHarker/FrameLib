@@ -41,10 +41,10 @@
     </entry>
     <entry name="4. /compensate [enum]">
       <description> 
-                Sets the gain compensation (the window is divided by the compensated gain).<br/>off - no compensation is used.<br/>linear - compensate the linear gain of the window.<br/>power - compensate the power gain of the window.<br/>reconstruct - compensate the power gain divided by the linear gain.<br/>This last mode is suited to FFT output windows used with the same input window.<br/>Note that the gain of the window is calculated after applying any exponent.<br />
+                Sets the gain compensation (the window is divided by the compensated gain).<br/>off - no compensation is used.<br/>linear - compensate the linear gain of the window.<br/>square - compensate the gain of the window when applied twice (squared).<br/>reconstruct - compensate the gain of the squared window divided by the linear gain.<br/>This last mode is suited to FFT output windows used with the same input window.<br/>Note that the gain of the window is calculated after applying any exponent.<br />
         <bullet>[0] - off</bullet>
         <bullet>[1] - linear</bullet>
-        <bullet>[2] - power</bullet>
+        <bullet>[2] - square</bullet>
         <bullet>[3] - reconstruct</bullet>
       </description>
     </entry>

@@ -5,28 +5,5 @@
 <chapter name="FrameLib Tutorial 6: Building a granular synthesiser in Framelib from scratch.">
 	<next name="06_fl_fft">FFT in FrameLib</next>
 	<parent name="00_fl_index">FrameLib tutorials</parent>
-
-<h1>
-	FrameLib: Your first FrameLib project
-</h1>
-	<h2>
-		Heading 1
-	</h2>
-		<p>
-			Para 1
-		</p>
-
-	<h2>
-		Heading 2
-	</h2>
-		<p>
-			Para 2
-		</p>
-	<h2>
-		Heading 3
-	</h2>
-		<p>
-			Para 3
-		</p>
 </chapter>
 

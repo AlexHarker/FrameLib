@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,17 +147,51 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"fontsize" : 16.0,
-									"format" : 6,
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-12",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 75.0, 424.0, 60.25, 15.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-25",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 140.25, 422.0, 288.0, 21.0 ],
+									"text" : "The resulting index (indices are counted from 0)"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 90.0, 331.0, 388.0, 21.0 ],
+									"text" : "fl.minpos~ returns you the index of the minimum value in a frame"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 13.0,
 									"id" : "obj-16",
-									"maxclass" : "flonum",
+									"maxclass" : "number",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 420.0, 56.0, 26.0 ]
+									"patching_rect" : [ 15.0, 420.0, 51.0, 23.0 ]
 								}
 
 							}
@@ -201,8 +237,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 144.0, 23.0 ],
-									"text" : "loadmess 0.3 0.2 0.432"
+									"patching_rect" : [ 15.0, 105.0, 194.0, 23.0 ],
+									"text" : "loadmess 0.3 0.1 0.432 0.56 0.2"
 								}
 
 							}
@@ -213,7 +249,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 225.0, 232.0, 75.0, 23.0 ],
+									"patching_rect" : [ 285.0, 232.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -242,9 +278,9 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 135.0, 195.0, 120.0 ],
+									"patching_rect" : [ 15.0, 135.0, 255.0, 120.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 3,
+									"size" : 5,
 									"slidercolor" : [ 0.203921568627451, 0.752941176470588, 0.784313725490196, 1.0 ]
 								}
 
@@ -283,7 +319,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 0 ],
-									"midpoints" : [ 234.5, 270.0, 24.5, 270.0 ],
+									"midpoints" : [ 294.5, 270.0, 24.5, 270.0 ],
 									"source" : [ "obj-4", 0 ]
 								}
 
@@ -358,7 +394,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1

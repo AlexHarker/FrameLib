@@ -48,7 +48,6 @@ test-builds/
 ## Documentation
 __pycache__/
 __tmp__/
-Documentation/Max Documentation/help_files/templates/
 Documentation/Max Documentation/FrameLibDocs/FrameLibDocs.egg-info
 Max_Object_List.h
 

@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"title" : "Tutorial 13: Code Export",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -51,13 +52,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 719.0, 708.0 ],
+						"rect" : [ 0.0, 26.0, 719.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -85,7 +86,30 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-3",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 375.0, 255.0, 324.0, 21.0 ],
+									"text" : "The path is a path to a folder in which to save the code"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 375.0, 225.0, 286.0, 21.0 ],
+									"text" : "The name is used to name the C++ class"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-34",
 									"maxclass" : "newobj",
@@ -93,7 +117,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 15.0, 450.0, 86.0, 23.0 ],
-									"text" : "fl.times~ 0.25"
+									"text" : "fl.*~ 0.25"
 								}
 
 							}
@@ -124,7 +148,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 226.0, 315.0, 124.0, 23.0 ],
+									"patching_rect" : [ 225.0, 315.0, 124.0, 23.0 ],
 									"text" : "fl.convert~ db->amp"
 								}
 
@@ -135,7 +159,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 375.0, 405.0, 185.0, 23.0 ],
+									"patching_rect" : [ 375.0, 470.0, 185.0, 23.0 ],
 									"text" : "fl.contextcontrol~ @id exporter"
 								}
 
@@ -147,7 +171,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 506.0, 338.5, 214.0, 36.0 ],
+									"patching_rect" : [ 506.0, 403.5, 214.0, 36.0 ],
 									"text" : "Format a message to export the network with the name 'granulator'"
 								}
 
@@ -158,7 +182,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 482.0, 242.0, 200.0, 21.0 ],
+									"patching_rect" : [ 482.0, 307.0, 200.0, 21.0 ],
 									"text" : "Save the network to the left!"
 								}
 
@@ -182,7 +206,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 375.0, 235.0, 105.0, 35.0 ],
+									"patching_rect" : [ 375.0, 300.0, 105.0, 35.0 ],
 									"text" : "Save",
 									"textoncolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -195,7 +219,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "bang" ],
-									"patching_rect" : [ 375.0, 300.0, 95.0, 23.0 ],
+									"patching_rect" : [ 375.0, 365.0, 95.0, 23.0 ],
 									"text" : "savedialog fold"
 								}
 
@@ -260,7 +284,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 375.0, 345.0, 125.0, 23.0 ],
+									"patching_rect" : [ 375.0, 410.0, 125.0, 23.0 ],
 									"text" : "export granulator $1"
 								}
 
@@ -283,7 +307,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 226.0, 270.0, 124.0, 23.0 ],
+									"patching_rect" : [ 225.0, 270.0, 124.0, 23.0 ],
 									"text" : "fl.convert~ amp->db"
 								}
 
@@ -300,7 +324,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 3,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -333,6 +357,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-1",
@@ -341,7 +366,7 @@
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 12.0, 154.0, 54.0, 22.0 ],
-													"text" : "fl.times~"
+													"text" : "fl.*~"
 												}
 
 											}
@@ -389,7 +414,8 @@
 													"numinlets" : 0,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 12.0, 15.0, 30.0, 30.0 ]
+													"patching_rect" : [ 12.0, 15.0, 30.0, 30.0 ],
+													"varname" : "u612005127"
 												}
 
 											}
@@ -401,7 +427,8 @@
 													"maxclass" : "outlet",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 12.0, 192.0, 30.0, 30.0 ]
+													"patching_rect" : [ 12.0, 192.0, 30.0, 30.0 ],
+													"varname" : "u026005126"
 												}
 
 											}
@@ -446,7 +473,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 105.0, 190.0, 102.0, 23.0 ],
+									"patching_rect" : [ 105.0, 225.0, 102.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -466,7 +493,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 15.0, 405.0, 57.0, 23.0 ],
-									"text" : "fl.times~"
+									"text" : "fl.*~"
 								}
 
 							}
@@ -478,7 +505,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 15.0, 270.0, 109.0, 23.0 ],
-									"text" : "fl.plus~"
+									"text" : "fl.+~"
 								}
 
 							}
@@ -525,7 +552,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 225.0, 190.0, 70.0, 23.0 ],
+									"patching_rect" : [ 225.0, 225.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -545,12 +572,11 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-17",
-									"linecount" : 4,
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 190.0, 76.0, 67.0 ],
+									"patching_rect" : [ 15.0, 180.0, 241.0, 23.0 ],
 									"text" : "fl.ramp~ /length 100 /units ms /scale ms"
 								}
 
@@ -577,7 +603,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 60.0, 688.0, 53.0 ],
-									"text" : "I'm going to steal the previous tutorial's granulator network and use it here for simplicity. Exporting code is extremely simple all it requires is that you send a reserved message to a network of connected FrameLib objects. Let's see it in practice."
+									"text" : "Exporting code is extremely simple: all it requires is that you send the export message to the fl.contextcontrol~ that references a network of connected FrameLib objects. The network below and to the left will be exported by addressing its context through fl.contextcontrol~ on the right."
 								}
 
 							}
@@ -617,7 +643,26 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-19", 0 ],
+									"midpoints" : [ 24.5, 213.5, 234.5, 213.5 ],
+									"order" : 0,
+									"source" : [ "obj-17", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-25", 0 ],
+									"order" : 2,
+									"source" : [ "obj-17", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-60", 0 ],
+									"midpoints" : [ 24.5, 213.5, 114.5, 213.5 ],
+									"order" : 1,
 									"source" : [ "obj-17", 0 ]
 								}
 
@@ -660,7 +705,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-33", 1 ],
-									"midpoints" : [ 235.5, 399.0, 62.5, 399.0 ],
+									"midpoints" : [ 234.5, 399.0, 62.5, 399.0 ],
 									"source" : [ "obj-24", 0 ]
 								}
 
@@ -675,6 +720,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-75", 1 ],
+									"midpoints" : [ 95.5, 607.0, 65.5, 607.0 ],
 									"source" : [ "obj-32", 1 ]
 								}
 
@@ -704,25 +750,6 @@
 								"patchline" : 								{
 									"destination" : [ "obj-17", 0 ],
 									"midpoints" : [ 24.5, 159.0, 24.5, 159.0 ],
-									"order" : 2,
-									"source" : [ "obj-6", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-19", 0 ],
-									"midpoints" : [ 24.5, 177.0, 234.5, 177.0 ],
-									"order" : 0,
-									"source" : [ "obj-6", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-60", 0 ],
-									"midpoints" : [ 24.5, 177.0, 114.5, 177.0 ],
-									"order" : 1,
 									"source" : [ "obj-6", 0 ]
 								}
 
@@ -813,8 +840,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -874,13 +901,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 719.0, 708.0 ],
+						"rect" : [ 34.0, 105.0, 719.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -908,6 +935,7 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgmode" : 0,
@@ -945,12 +973,12 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 13.0,
 									"id" : "obj-2",
-									"linecount" : 7,
+									"linecount" : 8,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 120.0, 525.0, 116.0 ],
-									"text" : "FrameLib at its core is a C++ Library that can be compiled and bound to any block-based audio environment. Max may be a starting point for a project of yours, or a place to experiment with creating FrameLib networks that you may want to take into another environment. To assist in this, any FrameLib network can have its code exported to C++ directly providing you with a header file and C++ file which can be integrated elsewhere.\n\nTo do this its relatively simple. Let's try it out!"
+									"patching_rect" : [ 180.0, 120.0, 526.0, 131.0 ],
+									"text" : "FrameLib at its core is a C++ Library that can be compiled and bound to any block-based audio environment. Max may be the environment you plan to complete your project in, or just a starting point -  a place to experiment with creating FrameLib networks that you may want to take into another environment. To assist in this process, any FrameLib network in Max can be exported as C++ code directly, providing you with a header file and C++ file which can be integrated elsewhere by complining it against the FrameLib source code.\n\nTo do this is relatively simple. Let's try it out!"
 								}
 
 							}
@@ -1039,8 +1067,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1095,26 +1123,27 @@
 			"parameterbanks" : 			{
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-stereo-h.maxpat",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -1152,11 +1181,11 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.plus~.mxo",
+				"name" : "fl.+~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.times~.mxo",
+				"name" : "fl.*~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

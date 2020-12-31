@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -49,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -110,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,13 +147,27 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-4",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 75.0, 480.0, 466.0, 50.0 ],
+									"text" : "fl.audiotrigger~ turns non-zero samples into trigger frames.\n\nThe two examples above demonstrate different ways of controlling this process."
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-1",
+									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 450.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 480.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -174,7 +190,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 238.0, 105.0, 174.0, 36.0 ],
+									"patching_rect" : [ 285.0, 105.0, 174.0, 36.0 ],
 									"text" : "A simple way of translating max bang into trigger frames"
 								}
 
@@ -187,7 +203,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 238.0, 144.0, 24.0, 24.0 ]
+									"patching_rect" : [ 285.0, 150.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -198,7 +214,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 238.0, 185.0, 41.0, 23.0 ],
+									"patching_rect" : [ 285.0, 195.0, 41.0, 23.0 ],
 									"text" : "click~"
 								}
 
@@ -210,7 +226,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 238.0, 226.0, 95.0, 23.0 ],
+									"patching_rect" : [ 285.0, 240.0, 95.0, 23.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -220,12 +236,13 @@
 									"candycane" : 3,
 									"ghostbar" : 90,
 									"id" : "obj-31",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 238.0, 360.0, 215.0, 69.0 ],
+									"patching_rect" : [ 285.0, 375.0, 215.0, 69.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 512
 								}
@@ -238,7 +255,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 238.0, 315.0, 62.0, 23.0 ],
+									"patching_rect" : [ 285.0, 330.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -250,7 +267,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 238.0, 270.0, 138.0, 23.0 ],
+									"patching_rect" : [ 285.0, 285.0, 138.0, 23.0 ],
 									"text" : "fl.random~ /length 512"
 								}
 
@@ -262,7 +279,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 185.0, 45.0, 23.0 ],
+									"patching_rect" : [ 15.0, 195.0, 45.0, 23.0 ],
 									"text" : ">~ 0.5"
 								}
 
@@ -274,7 +291,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 144.0, 60.0, 23.0 ],
+									"patching_rect" : [ 15.0, 150.0, 60.0, 23.0 ],
 									"text" : "rand~ 10"
 								}
 
@@ -286,7 +303,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 226.0, 95.0, 23.0 ],
+									"patching_rect" : [ 15.0, 240.0, 95.0, 23.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -296,12 +313,13 @@
 									"candycane" : 3,
 									"ghostbar" : 90,
 									"id" : "obj-13",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 360.0, 215.0, 69.0 ],
+									"patching_rect" : [ 15.0, 375.0, 215.0, 69.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 512
 								}
@@ -314,7 +332,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 315.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 330.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -326,7 +344,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 270.0, 138.0, 23.0 ],
+									"patching_rect" : [ 15.0, 285.0, 138.0, 23.0 ],
 									"text" : "fl.random~ /length 512"
 								}
 
@@ -467,7 +485,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1

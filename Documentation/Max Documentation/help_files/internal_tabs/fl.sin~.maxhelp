@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -49,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -110,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,13 +147,15 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-1",
+									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 454.75, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 495.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -163,7 +167,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 274.285247802734375, 203.25, 60.25, 15.0 ]
+									"patching_rect" : [ 270.0, 232.5, 60.25, 15.0 ]
 								}
 
 							}
@@ -173,8 +177,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 336.535247802734375, 201.25, 38.0, 21.0 ],
-									"text" : "2 * pi"
+									"patching_rect" : [ 330.0, 229.5, 148.0, 21.0 ],
+									"text" : "Multiply the frame by 2π"
 								}
 
 							}
@@ -185,7 +189,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 53.285247802734375, 199.25, 219.0, 23.0 ],
+									"patching_rect" : [ 36.0, 209.0, 219.0, 23.0 ],
 									"text" : "fl.constant~ /constant pi /multiplier 2."
 								}
 
@@ -197,7 +201,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 351.5, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 360.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -210,7 +214,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 390.0, 168.0, 60.0 ],
+									"patching_rect" : [ 15.0, 405.0, 168.0, 60.0 ],
 									"size" : 4096
 								}
 
@@ -234,8 +238,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 255.0, 57.285247802734375, 23.0 ],
-									"text" : "fl.times~"
+									"patching_rect" : [ 15.0, 255.0, 40.0, 23.0 ],
+									"text" : "fl.*~"
 								}
 
 							}
@@ -258,7 +262,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 301.75, 43.0, 23.0 ],
+									"patching_rect" : [ 15.0, 315.0, 43.0, 23.0 ],
 									"text" : "fl.sin~"
 								}
 
@@ -271,7 +275,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 255.0, 154.0, 60.25, 15.0 ]
+									"patching_rect" : [ 265.0, 154.0, 60.25, 15.0 ]
 								}
 
 							}
@@ -283,7 +287,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 185.0, 412.5, 60.25, 15.0 ]
+									"patching_rect" : [ 192.0, 427.5, 60.25, 15.0 ]
 								}
 
 							}
@@ -293,7 +297,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 247.25, 410.5, 128.0, 21.0 ],
+									"patching_rect" : [ 262.25, 424.5, 93.0, 21.0 ],
 									"text" : "A sine function"
 								}
 
@@ -304,8 +308,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 317.25, 149.25, 328.0, 21.0 ],
-									"text" : "A frame counting from 0. to 1. with 4096 discrete points"
+									"patching_rect" : [ 330.0, 151.0, 269.0, 21.0 ],
+									"text" : "A ramp from 0. to 1. with 4096 discrete points"
 								}
 
 							}
@@ -325,6 +329,22 @@
 								}
 
 							}
+, 							{
+								"box" : 								{
+									"angle" : 270.0,
+									"bgcolor" : [ 0.0, 0.0, 0.0, 0.0 ],
+									"border" : 2,
+									"bordercolor" : [ 0.701961, 0.415686, 0.886275, 1.0 ],
+									"id" : "obj-5",
+									"maxclass" : "panel",
+									"mode" : 0,
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 7.0, 195.0, 256.0, 90.0 ],
+									"proportion" : 0.5
+								}
+
+							}
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
@@ -337,6 +357,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-7", 0 ],
+									"midpoints" : [ 24.5, 183.0, 45.5, 183.0 ],
 									"order" : 0,
 									"source" : [ "obj-19", 0 ]
 								}
@@ -425,6 +446,13 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
+				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "fl.sin~.mxo",
 				"type" : "iLaX"
 			}

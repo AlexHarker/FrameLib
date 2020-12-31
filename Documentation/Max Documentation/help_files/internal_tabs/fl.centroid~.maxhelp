@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -49,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -110,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,13 +147,27 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-6",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 71.541748046875, 520.0, 555.0, 50.0 ],
+									"text" : "The centroid is the point at which the 'centre of mass' in the frame is accumulated.\n\nThis could be applied to the magnitudes of an FFT to look at the spectral centroid of a sound."
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-4",
+									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 14.0, 495.0, 45.0, 45.0 ]
+									"patching_rect" : [ 14.0, 520.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -186,7 +202,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 366.666748046875, 156.633331298828125, 106.0, 21.0 ],
+									"patching_rect" : [ 366.666748046875, 153.633331298828125, 106.0, 21.0 ],
 									"text" : "Shift the centroid"
 								}
 
@@ -221,12 +237,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-63",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 14.0, 392.13336181640625, 260.0, 90.0 ],
+									"patching_rect" : [ 15.0, 392.13336181640625, 260.0, 90.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 1024
 								}
@@ -239,7 +256,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 14.0, 360.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 360.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -248,7 +265,7 @@
 								"box" : 								{
 									"id" : "obj-43",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 45.0, 281.5, 72.0, 23.0 ],
@@ -275,7 +292,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 14.0, 319.5, 50.0, 23.0 ],
+									"patching_rect" : [ 15.0, 319.5, 50.0, 23.0 ],
 									"text" : "fl.shift~"
 								}
 
@@ -322,8 +339,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 376.716766357421875, 460.13336181640625, 71.0, 21.0 ],
-									"text" : "Centroid"
+									"patching_rect" : [ 375.716766357421875, 460.13336181640625, 161.0, 21.0 ],
+									"text" : "Centroid (in frame indices)"
 								}
 
 							}
@@ -341,6 +358,7 @@
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.952941, 0.564706, 0.098039, 1.0 ],
 									"id" : "obj-29",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -429,7 +447,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-29", 0 ],
-									"midpoints" : [ 23.5, 352.0, 289.966766357421875, 352.0 ],
+									"midpoints" : [ 24.5, 352.0, 289.966766357421875, 352.0 ],
 									"order" : 0,
 									"source" : [ "obj-37", 0 ]
 								}
@@ -494,8 +512,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -529,6 +547,13 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
+				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "fl.centroid~.mxo",
 				"type" : "iLaX"
 			}

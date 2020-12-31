@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,14 +147,26 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 345.0, 352.0, 21.0 ],
+									"text" : "fl.once~ schedules a single frame whenever DSP is started."
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-1",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 4,
 									"outlettype" : [ "int", "float", "int", "int" ],
-									"patching_rect" : [ 243.0, 195.0, 65.0, 23.0 ],
+									"patching_rect" : [ 330.0, 195.0, 65.0, 23.0 ],
 									"text" : "dspstate~"
 								}
 
@@ -169,7 +183,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 243.0, 230.0, 81.0, 31.0 ],
+									"patching_rect" : [ 330.0, 230.0, 81.0, 31.0 ],
 									"text" : "Off",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
 									"texton" : "On",
@@ -181,11 +195,11 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-17",
-									"linecount" : 5,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 243.0, 105.0, 150.0, 79.0 ],
+									"patching_rect" : [ 330.0, 120.0, 240.0, 50.0 ],
 									"text" : "Restarting the audio engine also restarts time. In this example it triggers the generation of new random values."
 								}
 
@@ -193,10 +207,11 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-15",
+									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 243.0, 270.0, 45.0, 45.0 ]
+									"patching_rect" : [ 330.0, 270.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -216,6 +231,7 @@
 								"box" : 								{
 									"ghostbar" : 90,
 									"id" : "obj-13",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
@@ -352,7 +368,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1

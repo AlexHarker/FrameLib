@@ -77,7 +77,7 @@ FrameLib_Trace::ParameterInfo::ParameterInfo()
         "first - output the first sample of the frame only. "
         "last - output the last sample of the frame only. "
         "specified - output the sample specified by index using the position parameter. "
-        "ratio - output the sample specified by the position parameter as a ratio pf the frame length.");
+        "ratio - output the sample specified by the position parameter as a ratio of the frame length.");
     add("Sets the internal buffer size in the units specified by the units parameter.");
     add("Sets the time units used to determine the buffer size and delay.");
     add("Sets the position of the output sample in specified or ratio mode. "
@@ -194,7 +194,9 @@ void FrameLib_Trace::process()
         case kFirst:        inputOffset = 0.0;                                  break;
         case kLast:         inputOffset = sizeIn - 1;                           break;
         case kSpecified:    inputOffset = mParameters.getValue(kPosition);      break;
-        case kRatio:        inputOffset *= (sizeIn - 1);                        break;
+        case kRatio:
+            inputOffset = mParameters.getValue(kPosition) * (sizeIn - 1);
+            break;
     }
 
     // Clip to a sensible range

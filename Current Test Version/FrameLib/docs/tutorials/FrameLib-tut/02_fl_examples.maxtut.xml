@@ -3,24 +3,8 @@
 <?xml-stylesheet href="./_c74_tut.xsl" type="text/xsl"?>
 
 <chapter name="FrameLib Tutorial 2: Examples of how Framelib works and what it can be used for.">
-	<next name="03_fl_basics">FrameLib Basics</next>
-	<parent name="00_fl_index">FrameLib tutorials</parent>
+<next name="03_fl_basics">FrameLib Basics</next>
+<parent name="00_fl_index">FrameLib tutorials</parent>
 
-<h1>
-	Getting to grips with frame based processing
-</h1>
-	<h2>
-		What is FrameLib?
-	</h2>
-		<p>
-			PLACEHOLDER
-		</p>
-	<h2>
-		PLACEHOLDER
-	</h2>
-
-		<p>
-			MORE PLACEHOLDER	
-		</p>
 </chapter>
 

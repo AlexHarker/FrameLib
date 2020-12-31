@@ -106,7 +106,7 @@ public:
                    "If the input length changes then the internal storage is reset. "
                    "The object can also be reset by sending a frame to the reset input. "
                    "The start parameter controls behaviour when insufficient frames are stored. "
-                   "The buffer full output indicates whether the internal buffer is full.";
+                   "The underlength output indicates that insufficient frames are stored.";
             
             return str;
         }
@@ -129,7 +129,7 @@ public:
     std::string outputInfo(unsigned long idx, bool verbose) override
     {
         if (idx)
-            return formatInfo("Buffer Full - indicates when the internal buffer is full", "Buffer Full", verbose);
+            return formatInfo("Underlength - indicates insufficient frames are stored", "Underlength", verbose);
         else
             return "Output";
     }

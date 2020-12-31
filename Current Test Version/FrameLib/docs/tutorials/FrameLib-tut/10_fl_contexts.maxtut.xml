@@ -2,31 +2,8 @@
 
 <?xml-stylesheet href="./_c74_tut.xsl" type="text/xsl"?>
 
-<chapter name="FrameLib Tutorial 10: Working with impulse responses in FrameLib">
+<chapter name="FrameLib Tutorial 10: Contexts">
 	<next name="11_fl_nrt">Non-realtime FrameLib networks</next>
 	<parent name="00_fl_index">FrameLib tutorials</parent>
-
-<h1>
-	FrameLib: IR
-</h1>
-	<h2>
-		Basics of Conversion
-	</h2>
-		<p>
-			Para 1
-		</p>
-
-	<h2>
-		Heading 2
-	</h2>
-		<p>
-			Para 2
-		</p>
-	<h2>
-		Heading 3
-	</h2>
-		<p>
-			Para 3
-		</p>
 </chapter>
 

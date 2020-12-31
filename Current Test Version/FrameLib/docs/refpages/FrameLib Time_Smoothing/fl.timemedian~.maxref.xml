@@ -3,7 +3,7 @@
         Calculates the specified percentile per sample over the most recent frames.
     </digest>
   <description> 
-         The default percentile is 50% which returns the median. The output is the same length as the input. Input frames are expected to be of a uniform length. If the input length changes then the internal storage is reset. The object can also be reset by sending a frame to the reset input. The start parameter controls behaviour when insufficient frames are stored. The buffer full output indicates whether the internal buffer is full.
+         The default percentile is 50% which returns the median. The output is the same length as the input. Input frames are expected to be of a uniform length. If the input length changes then the internal storage is reset. The object can also be reset by sending a frame to the reset input. The start parameter controls behaviour when insufficient frames are stored. The underlength output indicates that insufficient frames are stored.
     </description>
   <misc name="Parameters">
     <entry name="1. /max_frames [int]">

@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,14 +147,50 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 360.0, 300.0, 153.0, 21.0 ],
+									"text" : "Can also be abbreviated!"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-6",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 300.0, 300.0, 33.0, 23.0 ],
+									"text" : "fl.||~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-2",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 105.0, 75.0, 23.0 ],
+									"text" : "loadmess 0"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-1",
 									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 465.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 480.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -176,8 +214,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 140.0, 394.875, 150.0, 50.0 ],
-									"text" : "When either of the first inputs is non-zero, the output of fl.or~ is 1."
+									"patching_rect" : [ 140.0, 394.875, 155.0, 50.0 ],
+									"text" : "When either of the inputs is non-zero, the output of fl.or~ is 1."
 								}
 
 							}
@@ -190,7 +228,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 165.0, 115.125, 48.0, 24.75 ]
+									"patching_rect" : [ 165.0, 160.125, 48.0, 24.75 ]
 								}
 
 							}
@@ -201,7 +239,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 215.0, 105.0, 150.0, 50.0 ],
+									"patching_rect" : [ 215.0, 150.0, 150.0, 50.0 ],
 									"text" : "Play with the toggle here to see how the output toggle is affected."
 								}
 
@@ -214,7 +252,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 105.0, 105.0, 45.0, 45.0 ]
+									"patching_rect" : [ 105.0, 150.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -226,7 +264,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 105.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 150.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -237,7 +275,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 105.0, 210.0, 77.0, 23.0 ],
+									"patching_rect" : [ 105.0, 255.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -249,7 +287,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 210.0, 77.0, 23.0 ],
+									"patching_rect" : [ 15.0, 255.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -273,7 +311,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 165.0, 165.0, 75.0, 23.0 ],
+									"patching_rect" : [ 165.0, 210.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -332,7 +370,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 367.0, 120.0, 20.0, 20.0 ],
+									"patching_rect" : [ 367.0, 165.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -353,7 +391,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 292.0, 409.875, 20.0, 20.0 ],
+									"patching_rect" : [ 297.0, 409.875, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -377,8 +415,9 @@
 							}
 , 							{
 								"patchline" : 								{
+									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-20", 0 ],
-									"midpoints" : [ 174.5, 203.0, 24.5, 203.0 ],
+									"midpoints" : [ 174.5, 248.0, 24.5, 248.0 ],
 									"order" : 1,
 									"source" : [ "obj-17", 0 ]
 								}
@@ -386,10 +425,29 @@
 							}
 , 							{
 								"patchline" : 								{
+									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-21", 0 ],
-									"midpoints" : [ 174.5, 202.0, 114.5, 202.0 ],
+									"midpoints" : [ 174.5, 247.0, 114.5, 247.0 ],
 									"order" : 0,
 									"source" : [ "obj-17", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-23", 0 ],
+									"midpoints" : [ 24.5, 138.5, 24.5, 138.5 ],
+									"order" : 1,
+									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-24", 0 ],
+									"midpoints" : [ 24.5, 138.5, 114.5, 138.5 ],
+									"order" : 0,
+									"source" : [ "obj-2", 0 ]
 								}
 
 							}
@@ -533,7 +591,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1

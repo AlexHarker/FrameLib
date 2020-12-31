@@ -58,6 +58,7 @@ def main():
                     return key
 
     raw_xml_list = [x for x in raw_xml_dir.rglob("fl.*.xml")]
+    print(f"Found {len(raw_xml_list)} .xml files to process.")
     refpages_dir.mkdir(exist_ok=True)
 
     for raw_xml in raw_xml_list:

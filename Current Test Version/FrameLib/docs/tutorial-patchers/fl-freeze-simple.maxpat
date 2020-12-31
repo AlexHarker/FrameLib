@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 594.0, 788.0 ],
+		"rect" : [ 34.0, 79.0, 594.0, 787.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,19 +37,8 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "default",
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
-				"box" : 				{
-					"id" : "obj-7",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 274.0, 555.0, 29.5, 22.0 ],
-					"text" : "info"
-				}
-
-			}
-, 			{
 				"box" : 				{
 					"id" : "obj-2",
 					"maxclass" : "newobj",
@@ -57,7 +46,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 8.0, 651.933288999999945, 80.0, 22.0 ],
-					"text" : "fl.times~ 0.25"
+					"text" : "fl.*~ 0.25"
 				}
 
 			}
@@ -136,7 +125,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 145.0, 527.133362000000034, 264.0, 20.0 ],
+					"patching_rect" : [ 145.0, 527.133362000000034, 170.0, 20.0 ],
 					"text" : "Polar to Cartesian coordinates"
 				}
 
@@ -182,7 +171,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 218.0, 492.633361999999977, 240.333327999999995, 20.0 ],
+					"patching_rect" : [ 218.0, 492.633361999999977, 235.0, 20.0 ],
 					"text" : "Running accumulation of the phase values"
 				}
 
@@ -217,7 +206,7 @@
 					"numinlets" : 3,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 182.0, 687.333312999999976, 113.0, 22.0 ],
+					"patching_rect" : [ 182.0, 684.433288999999945, 113.0, 22.0 ],
 					"text" : "fl.timemean~ 30 10"
 				}
 
@@ -230,7 +219,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 304.0, 307.233337000000006, 236.0, 33.0 ],
-					"text" : "Output the delta between two consecutive frames. Equivalent to framedelta~"
+					"text" : "Output the delta between two consecutive frames. Similar to framedelta~"
 				}
 
 			}
@@ -246,13 +235,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 59.0, 103.0, 640.0, 480.0 ],
+						"rect" : [ 59.0, 103.0, 305.0, 267.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -279,14 +268,28 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "default",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-8",
-									"maxclass" : "comment",
+									"id" : "obj-2",
+									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 76.0, 106.75, 222.0, 20.0 ],
-									"text" : "always make a bang no matter the input"
+									"numoutlets" : 3,
+									"outlettype" : [ "", "int", "int" ],
+									"patching_rect" : [ 16.0, 62.673155216284989, 48.0, 22.0 ],
+									"text" : "change"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 2,
+									"outlettype" : [ "bang", "" ],
+									"patching_rect" : [ 16.0, 102.346310432569979, 34.0, 22.0 ],
+									"text" : "sel 0"
 								}
 
 							}
@@ -296,8 +299,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 140.0, 239.75, 235.0, 20.0 ],
-									"text" : "impulse transition creates a trigger frame."
+									"patching_rect" : [ 108.0, 181.692620865139958, 177.0, 20.0 ],
+									"text" : "impulse creates a trigger frame."
 								}
 
 							}
@@ -307,20 +310,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 92.0, 172.75, 150.0, 20.0 ],
+									"patching_rect" : [ 61.0, 142.019465648854975, 117.0, 20.0 ],
 									"text" : "generate an impulse"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-2",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "bang" ],
-									"patching_rect" : [ 50.0, 106.75, 24.0, 22.0 ],
-									"text" : "t b"
 								}
 
 							}
@@ -331,7 +322,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 50.0, 172.75, 40.0, 22.0 ],
+									"patching_rect" : [ 16.0, 142.019465648854975, 40.0, 22.0 ],
 									"text" : "click~"
 								}
 
@@ -343,7 +334,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 239.75, 88.0, 22.0 ],
+									"patching_rect" : [ 16.0, 181.692620865139958, 88.0, 22.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -356,8 +347,8 @@
 									"maxclass" : "inlet",
 									"numinlets" : 0,
 									"numoutlets" : 1,
-									"outlettype" : [ "int" ],
-									"patching_rect" : [ 50.0, 40.0, 30.0, 30.0 ]
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 16.0, 15.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -369,12 +360,19 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 50.0, 304.75, 30.0, 30.0 ]
+									"patching_rect" : [ 16.0, 221.36577608142494, 30.0, 30.0 ]
 								}
 
 							}
  ],
 						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 0 ],
 									"source" : [ "obj-16", 0 ]
@@ -383,7 +381,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-4", 0 ],
+									"destination" : [ "obj-1", 0 ],
 									"source" : [ "obj-2", 0 ]
 								}
 
@@ -425,7 +423,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 182.0, 651.933288999999945, 72.0, 22.0 ],
-					"text" : "fl.times~ 10"
+					"text" : "fl.*~ 10"
 				}
 
 			}
@@ -445,7 +443,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-19",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -457,11 +455,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "signal" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 102.0, 77.666663999999997, 30.0, 30.0 ]
 				}
 
@@ -485,8 +483,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 8.0, 605.466675000000009, 203.0, 22.0 ],
-					"text" : "fl.window~ hann /compensate power"
+					"patching_rect" : [ 8.0, 605.466675000000009, 230.0, 22.0 ],
+					"text" : "fl.window~ hann /compensate reconstruct"
 				}
 
 			}
@@ -526,7 +524,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -559,6 +557,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "default",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-7",
@@ -591,7 +590,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 9.0, 106.0, 228.0, 22.0 ],
-									"text" : "fl.plus~ /trigger_ins left /mismatch pad_in"
+									"text" : "fl.+~ /trigger_ins left /mismatch pad_in"
 								}
 
 							}
@@ -771,7 +770,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -804,6 +803,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-1",
@@ -968,11 +968,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-25",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 476.333312999999976, 45.666668000000001, 30.0, 30.0 ]
 				}
 
@@ -981,7 +981,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-26",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -1108,6 +1108,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-8", 0 ],
+					"midpoints" : [ 17.5, 639.199981999999977, 191.5, 639.199981999999977 ],
 					"order" : 0,
 					"source" : [ "obj-20", 0 ]
 				}
@@ -1205,13 +1206,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-20", 0 ],
-					"source" : [ "obj-7", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-33", 0 ],
 					"source" : [ "obj-8", 0 ]
 				}
@@ -1224,7 +1218,101 @@
 				}
 
 			}
- ]
+ ],
+		"dependency_cache" : [ 			{
+				"name" : "fl.fft~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.cartopol~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.framedelta~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.constant~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.*~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.wrap~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.register~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.source~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.source~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.window~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.recall~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.+~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.store~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.poltocar~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.ifft~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.sink~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.sink~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.tomax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.audiotrigger~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.audiotrigger~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.timemean~.mxo",
+				"type" : "iLaX"
+			}
+ ],
+		"autosave" : 0
 	}
 
 }

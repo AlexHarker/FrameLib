@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,16 +147,26 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-1",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 450.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-9",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 495.0, 413.5, 107.0, 36.0 ],
-									"presentation_linecount" : 2,
-									"text" : "without using fl.nanfilter~"
+									"patching_rect" : [ 495.0, 390.0, 117.0, 21.0 ],
+									"text" : "without fl.nanfilter~"
 								}
 
 							}
@@ -164,7 +176,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 307.0, 420.0, 107.0, 21.0 ],
+									"patching_rect" : [ 307.0, 390.0, 107.0, 21.0 ],
 									"text" : "remove nan"
 								}
 
@@ -176,7 +188,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 75.0, 413.5, 105.0, 36.0 ],
+									"patching_rect" : [ 75.0, 383.5, 107.0, 36.0 ],
 									"text" : "replace nan with a fixed value"
 								}
 
@@ -188,7 +200,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 180.0, 80.0, 23.0 ],
+									"patching_rect" : [ 15.0, 165.0, 80.0, 23.0 ],
 									"text" : "fl.register~ 0"
 								}
 
@@ -200,7 +212,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 255.0, 420.0, 50.0, 23.0 ],
+									"patching_rect" : [ 255.0, 390.0, 50.0, 23.0 ],
 									"text" : "bang"
 								}
 
@@ -212,7 +224,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 420.0, 50.0, 23.0 ],
+									"patching_rect" : [ 15.0, 390.0, 50.0, 23.0 ],
 									"text" : "3.14"
 								}
 
@@ -224,7 +236,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 255.0, 360.0, 62.0, 23.0 ],
+									"patching_rect" : [ 255.0, 330.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -236,7 +248,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 360.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 330.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -248,7 +260,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 255.0, 315.0, 159.0, 23.0 ],
+									"patching_rect" : [ 255.0, 285.0, 159.0, 23.0 ],
 									"text" : "fl.nanfilter~ /mode remove"
 								}
 
@@ -256,12 +268,11 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-19",
-									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 242.0, 192.5, 150.0, 50.0 ],
-									"text" : "Let's divide by 0 on purpose to produce some nans!"
+									"patching_rect" : [ 120.0, 187.5, 353.0, 21.0 ],
+									"text" : "Let's divide zero by zero on purpose to produce some nans!"
 								}
 
 							}
@@ -272,7 +283,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 315.0, 226.0, 23.0 ],
+									"patching_rect" : [ 15.0, 285.0, 226.0, 23.0 ],
 									"text" : "fl.nanfilter~ /mode replace /value 3.14"
 								}
 
@@ -284,7 +295,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 435.0, 420.0, 50.0, 23.0 ],
+									"patching_rect" : [ 435.0, 390.0, 50.0, 23.0 ],
 									"text" : "nan"
 								}
 
@@ -296,7 +307,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 435.0, 315.0, 62.0, 23.0 ],
+									"patching_rect" : [ 435.0, 285.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -320,7 +331,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 255.0, 71.0, 23.0 ],
+									"patching_rect" : [ 15.0, 210.0, 71.0, 23.0 ],
 									"text" : "fl.divide~ 0"
 								}
 
@@ -347,13 +358,13 @@
 									"background" : 1,
 									"bgcolor" : [ 0.2, 0.2, 0.2, 0.0 ],
 									"border" : 2,
-									"bordercolor" : [ 0.0, 0.0, 0.0, 0.501960784313725 ],
+									"bordercolor" : [ 0.952941, 0.564706, 0.098039, 1.0 ],
 									"id" : "obj-20",
 									"maxclass" : "panel",
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 5.0, 150.0, 220.0, 135.0 ],
+									"patching_rect" : [ 5.0, 153.0, 100.0, 90.0 ],
 									"proportion" : 0.5
 								}
 
@@ -369,7 +380,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-16", 1 ],
-									"midpoints" : [ 444.5, 378.5, 475.5, 378.5 ],
+									"midpoints" : [ 444.5, 348.5, 475.5, 348.5 ],
 									"source" : [ "obj-14", 0 ]
 								}
 
@@ -384,7 +395,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
-									"midpoints" : [ 24.5, 300.0, 444.5, 300.0 ],
+									"midpoints" : [ 24.5, 258.5, 444.5, 258.5 ],
 									"order" : 0,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -393,7 +404,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-17", 0 ],
-									"midpoints" : [ 24.5, 279.0, 24.5, 279.0 ],
+									"midpoints" : [ 24.5, 258.5, 24.5, 258.5 ],
 									"order" : 2,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -402,7 +413,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-21", 0 ],
-									"midpoints" : [ 24.5, 300.0, 264.5, 300.0 ],
+									"midpoints" : [ 24.5, 258.5, 264.5, 258.5 ],
 									"order" : 1,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -418,7 +429,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-26", 1 ],
-									"midpoints" : [ 24.5, 401.0, 55.5, 401.0 ],
+									"midpoints" : [ 24.5, 371.0, 55.5, 371.0 ],
 									"source" : [ "obj-24", 0 ]
 								}
 
@@ -426,7 +437,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-27", 1 ],
-									"midpoints" : [ 264.5, 401.0, 295.5, 401.0 ],
+									"midpoints" : [ 264.5, 371.0, 295.5, 371.0 ],
 									"source" : [ "obj-25", 0 ]
 								}
 
@@ -437,6 +448,35 @@
 									"source" : [ "obj-5", 0 ]
 								}
 
+							}
+ ],
+						"styles" : [ 							{
+								"name" : "newobjBlue-1",
+								"default" : 								{
+									"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjYellow-1",
+								"default" : 								{
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "numberGold-1",
+								"default" : 								{
+									"accentcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
 							}
  ]
 					}
@@ -458,7 +498,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1

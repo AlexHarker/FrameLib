@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,6 +147,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-4",
@@ -152,7 +155,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 434.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 450.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -163,7 +166,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 125.5, 105.0, 100.0, 23.0 ],
+									"patching_rect" : [ 165.5, 113.375, 100.0, 23.0 ],
 									"text" : "loadmess 0.167"
 								}
 
@@ -176,7 +179,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 65.020828247070312, 392.5, 32.958335876464844, 14.0 ]
+									"patching_rect" : [ 69.020828247070312, 392.5, 32.958335876464844, 14.0 ]
 								}
 
 							}
@@ -199,7 +202,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 240.0, 143.5, 216.0, 36.0 ],
+									"patching_rect" : [ 298.5, 151.875, 216.0, 36.0 ],
 									"text" : "Change the standard deviation of the gaussian distributed numbers"
 								}
 
@@ -213,7 +216,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 125.5, 150.0, 50.0, 23.0 ]
+									"patching_rect" : [ 165.5, 158.375, 50.0, 23.0 ]
 								}
 
 							}
@@ -224,20 +227,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 125.5, 201.625, 77.0, 23.0 ],
+									"patching_rect" : [ 165.5, 210.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-36",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 201.625, 91.0, 23.0 ],
-									"text" : "fl.register~ 0.5"
 								}
 
 							}
@@ -248,8 +239,8 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 254.0, 240.0, 23.0 ],
-									"text" : "fl.gaussian~ /length 8192"
+									"patching_rect" : [ 15.0, 254.0, 320.0, 23.0 ],
+									"text" : "fl.gaussian~ /mean 0.5 /length 8192 /mismatch extend"
 								}
 
 							}
@@ -310,7 +301,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 177.5, 154.5, 60.0, 18.5 ]
+									"patching_rect" : [ 225.0, 162.875, 60.0, 18.5 ]
 								}
 
 							}
@@ -340,7 +331,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-36", 0 ],
+									"destination" : [ "obj-32", 0 ],
 									"order" : 1,
 									"source" : [ "obj-23", 0 ]
 								}
@@ -349,7 +340,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-38", 0 ],
-									"midpoints" : [ 24.5, 186.0, 135.0, 186.0 ],
+									"midpoints" : [ 24.5, 186.0, 175.0, 186.0 ],
 									"order" : 0,
 									"source" : [ "obj-23", 0 ]
 								}
@@ -359,13 +350,6 @@
 								"patchline" : 								{
 									"destination" : [ "obj-9", 0 ],
 									"source" : [ "obj-32", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-32", 0 ],
-									"source" : [ "obj-36", 0 ]
 								}
 
 							}
@@ -410,8 +394,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -446,7 +430,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
@@ -469,10 +453,6 @@
 			}
 , 			{
 				"name" : "fl.gaussian~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.register~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
