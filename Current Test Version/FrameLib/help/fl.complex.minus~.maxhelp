@@ -2509,8 +2509,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        600.0,
-                                        705.0,
+                                        15.0,
+                                        615.0,
                                         45.0,
                                         45.0
                                     ]
@@ -2849,14 +2849,14 @@
                                             {
                                                 "name": "newobjYellow-1",
                                                 "default": {
+                                                    "fontsize": [
+                                                        12.059008
+                                                    ],
                                                     "accentcolor": [
                                                         0.82517,
                                                         0.78181,
                                                         0.059545,
                                                         1.0
-                                                    ],
-                                                    "fontsize": [
-                                                        12.059008
                                                     ]
                                                 },
                                                 "parentstyle": "",
@@ -3664,14 +3664,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
+                                    "fontsize": [
+                                        12.059008
+                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
-                                    ],
-                                    "fontsize": [
-                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
