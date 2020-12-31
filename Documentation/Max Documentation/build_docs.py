@@ -97,7 +97,7 @@ def main():
         hyp()
 
     if args.clean:
-        cleanup.main()
+        cleanup.main(docs)
         print("Performing cleanup")
 
     print("Completed all python scripts.")
