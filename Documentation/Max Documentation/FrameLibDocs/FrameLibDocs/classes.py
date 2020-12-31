@@ -2,7 +2,7 @@ import xml.etree.ElementTree as et
 from pathlib import Path
 from FrameLibDocs.utils import write_json, strip_space, strip_extension
 from FrameLibDocs.variables import this_script
-
+from shutil import copytree
 class Documentation:
     """
     This class holds the relevant information about paths.
@@ -34,11 +34,19 @@ class Documentation:
     def set_current_location(self, location:str) -> None:
         """Sets the location of the folder holding that is the parent of the package"""
         self.current_version = Path(location)
+        # self.current_version.mkdir(exist_ok=True, parents=True)
+        # now copy the original file structure over
+        copytree(
+            self.package_root / "Current Test Version" / "FrameLib",
+            self.current_version / "FrameLib"
+        )
         self.set_max_paths()
 
     def set_max_paths(self) -> None:
         self.refpages_dir = self.current_version / "FrameLib" / "docs" / "refpages"
         self.interfaces_dir = self.current_version / "FrameLib" / "interfaces"
+        self.refpages_dir.mkdir(exist_ok=True, parents=True)
+        self.interfaces_dir.mkdir(exist_ok=True, parents=True)
 
 
 # A class to parse the XML files and build a JSON file from it #
