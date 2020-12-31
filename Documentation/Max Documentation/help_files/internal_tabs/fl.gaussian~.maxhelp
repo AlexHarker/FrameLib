@@ -37,8 +37,7 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
-		"showrootpatcherontab" : 0,
-		"showontab" : 0,
+		"showontab" : 1,
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
@@ -316,8 +315,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -335,8 +334,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 326.0, 230.0, 51.0, 22.0 ],
-					"presentation_linecount" : 2,
+					"patching_rect" : [ 160.0, 230.0, 51.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -428,7 +426,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -464,7 +462,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 90.0, 294.0, 21.0 ],
-									"presentation_linecount" : 2,
 									"text" : "fl.gaussian~ generates normally distributed noise."
 								}
 
@@ -523,7 +520,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 237.0, 225.0, 79.0, 23.0 ],
-									"presentation_linecount" : 2,
 									"text" : "deviation $1"
 								}
 
@@ -777,8 +773,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -796,7 +792,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 271.0, 230.0, 47.0, 22.0 ],
+					"patching_rect" : [ 105.0, 230.0, 47.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -811,14 +807,6 @@
 			}
  ],
 		"lines" : [  ],
-		"parameters" : 		{
-			"parameterbanks" : 			{
-
-			}
-,
-			"inherited_shortname" : 1
-		}
-,
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",

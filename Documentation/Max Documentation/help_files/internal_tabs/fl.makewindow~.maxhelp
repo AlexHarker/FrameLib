@@ -393,7 +393,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 435.0, 230.0, 71.0, 22.0 ],
+					"patching_rect" : [ 190.0, 230.0, 71.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1043,7 +1043,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 345.0, 230.0, 79.0, 22.0 ],
+					"patching_rect" : [ 100.0, 230.0, 79.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1435,7 +1435,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 285.0, 230.0, 47.0, 22.0 ],
+					"patching_rect" : [ 45.0, 230.0, 47.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",

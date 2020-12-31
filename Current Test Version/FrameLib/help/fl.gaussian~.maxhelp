@@ -611,14 +611,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
@@ -640,12 +640,11 @@
                         ]
                     },
                     "patching_rect": [
-                        326.0,
+                        160.0,
                         230.0,
                         51.0,
                         22.0
                     ],
-                    "presentation_linecount": 2,
                     "saved_object_attributes": {
                         "description": "",
                         "digest": "",
@@ -744,8 +743,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            105.0,
+                            0.0,
+                            26.0,
                             652.0,
                             761.0
                         ],
@@ -793,7 +792,6 @@
                                         294.0,
                                         21.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "fl.gaussian~ generates normally distributed noise."
                                 }
                             },
@@ -874,7 +872,6 @@
                                         79.0,
                                         23.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "deviation $1"
                                 }
                             },
@@ -1278,14 +1275,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
@@ -1307,7 +1304,7 @@
                         ]
                     },
                     "patching_rect": [
-                        271.0,
+                        105.0,
                         230.0,
                         47.0,
                         22.0

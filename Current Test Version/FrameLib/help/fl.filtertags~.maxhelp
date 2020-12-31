@@ -656,10 +656,10 @@
                                     "patching_rect": [
                                         262.0,
                                         225.0,
-                                        130.0,
+                                        80.0,
                                         23.0
                                     ],
-                                    "text": "fl.register~ bandpass"
+                                    "text": "fl.register~ 2"
                                 }
                             },
                             {

@@ -370,8 +370,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 262.0, 225.0, 130.0, 23.0 ],
-									"text" : "fl.register~ bandpass"
+									"patching_rect" : [ 262.0, 225.0, 80.0, 23.0 ],
+									"text" : "fl.register~ 2"
 								}
 
 							}
