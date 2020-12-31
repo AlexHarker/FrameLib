@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,7 +333,112 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "arrows": 1,
+                                    "border": 4.0,
+                                    "id": "obj-24",
+                                    "maxclass": "live.line",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        164.0,
+                                        153.5,
+                                        49.75,
+                                        12.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-15",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        330.0,
+                                        424.0,
+                                        21.0
+                                    ],
+                                    "text": "Observe that the length, sum and visual representation are as expected."
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-14",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        225.0,
+                                        150.0,
+                                        316.0,
+                                        21.0
+                                    ],
+                                    "text": "Generate a frame of 50 values all set to the number 2"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-8",
+                                    "local": 1,
+                                    "maxclass": "ezdac~",
+                                    "numinlets": 2,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        375.0,
+                                        45.0,
+                                        45.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-5",
+                                    "maxclass": "multislider",
+                                    "numinlets": 1,
+                                    "numoutlets": 2,
+                                    "outlettype": [
+                                        "",
+                                        ""
+                                    ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [
+                                        195.0,
+                                        240.0,
+                                        180.0,
+                                        75.0
+                                    ],
+                                    "setminmax": [
+                                        0.0,
+                                        10.0
+                                    ],
+                                    "setstyle": 1,
+                                    "size": 50
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-4",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        195.0,
+                                        195.0,
+                                        62.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.tomax~"
+                                }
+                            },
                             {
                                 "box": {
                                     "id": "obj-10",
@@ -445,6 +551,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.92549,
+                                        0.364706,
+                                        0.341176,
+                                        1.0
+                                    ],
                                     "id": "obj-2",
                                     "maxclass": "newobj",
                                     "numinlets": 2,
@@ -455,10 +567,10 @@
                                     "patching_rect": [
                                         15.0,
                                         150.0,
-                                        145.0,
+                                        141.0,
                                         23.0
                                     ],
-                                    "text": "fl.uniform~ 2. /length 50"
+                                    "text": "fl.uniform~ 2 /length 50"
                                 }
                             },
                             {
@@ -549,9 +661,28 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        189.0,
+                                        183.5,
                                         99.5,
-                                        189.0
+                                        183.5
+                                    ],
+                                    "order": 1,
+                                    "source": [
+                                        "obj-2",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-4",
+                                        0
+                                    ],
+                                    "midpoints": [
+                                        24.5,
+                                        183.5,
+                                        204.5,
+                                        183.5
                                     ],
                                     "order": 0,
                                     "source": [
@@ -566,9 +697,27 @@
                                         "obj-7",
                                         0
                                     ],
-                                    "order": 1,
+                                    "midpoints": [
+                                        24.5,
+                                        183.5,
+                                        24.5,
+                                        183.5
+                                    ],
+                                    "order": 2,
                                     "source": [
                                         "obj-2",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-5",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-4",
                                         0
                                     ]
                                 }
@@ -596,6 +745,50 @@
                                         0
                                     ]
                                 }
+                            }
+                        ],
+                        "styles": [
+                            {
+                                "name": "newobjBlue-1",
+                                "default": {
+                                    "accentcolor": [
+                                        0.317647,
+                                        0.654902,
+                                        0.976471,
+                                        1.0
+                                    ]
+                                },
+                                "parentstyle": "",
+                                "multi": 0
+                            },
+                            {
+                                "name": "newobjYellow-1",
+                                "default": {
+                                    "accentcolor": [
+                                        0.82517,
+                                        0.78181,
+                                        0.059545,
+                                        1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
+                                    ]
+                                },
+                                "parentstyle": "",
+                                "multi": 0
+                            },
+                            {
+                                "name": "numberGold-1",
+                                "default": {
+                                    "accentcolor": [
+                                        0.764706,
+                                        0.592157,
+                                        0.101961,
+                                        1.0
+                                    ]
+                                },
+                                "parentstyle": "",
+                                "multi": 0
                             }
                         ]
                     },

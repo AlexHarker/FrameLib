@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,6 +333,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
                             {
                                 "box": {
@@ -341,12 +343,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        376.7167663574219,
-                                        495.0,
-                                        151.0,
+                                        71.541748046875,
+                                        520.0,
+                                        555.0,
                                         50.0
                                     ],
-                                    "text": "The centroid is the point at which the 'centre of mass' is accumulated."
+                                    "text": "The centroid is the point at which the 'centre of mass' in the frame is accumulated.\n\nThis could be applied to the magnitudes of an FFT to look at the spectral centroid of a sound."
                                 }
                             },
                             {
@@ -358,7 +360,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         14.0,
-                                        495.0,
+                                        520.0,
                                         45.0,
                                         45.0
                                     ]
@@ -460,6 +462,7 @@
                             {
                                 "box": {
                                     "id": "obj-63",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -469,7 +472,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        14.0,
+                                        15.0,
                                         392.13336181640625,
                                         260.0,
                                         90.0
@@ -491,7 +494,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        14.0,
+                                        15.0,
                                         360.0,
                                         62.0,
                                         23.0
@@ -545,7 +548,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        14.0,
+                                        15.0,
                                         319.5,
                                         50.0,
                                         23.0
@@ -614,10 +617,10 @@
                                     "patching_rect": [
                                         375.7167663574219,
                                         460.13336181640625,
-                                        71.0,
+                                        161.0,
                                         21.0
                                     ],
-                                    "text": "Centroid"
+                                    "text": "Centroid (in frame indices)"
                                 }
                             },
                             {
@@ -789,7 +792,7 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        23.5,
+                                        24.5,
                                         352.0,
                                         289.9667663574219,
                                         352.0
@@ -900,14 +903,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
