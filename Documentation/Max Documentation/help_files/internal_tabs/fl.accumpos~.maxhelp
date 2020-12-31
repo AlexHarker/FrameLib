@@ -150,6 +150,105 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-24",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 474.875, 199.0, 31.25, 17.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-25",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 570.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-15",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 422.0, 241.0, 92.0, 23.0 ],
+									"presentation_linecount" : 2,
+									"text" : "percentage $1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-16",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 510.0, 196.0, 98.0, 21.0 ],
+									"presentation_linecount" : 3,
+									"text" : "Set Percentage"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"format" : 6,
+									"id" : "obj-17",
+									"maxclass" : "flonum",
+									"maximum" : 100.0,
+									"minimum" : 0.0,
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "bang" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 422.0, 196.0, 50.0, 23.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-18",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 422.0, 151.0, 82.0, 23.0 ],
+									"text" : "loadmess 50"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 422.0, 285.0, 124.0, 23.0 ],
+									"text" : "fl.frommax~ params"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 525.0, 154.0, 21.0 ],
+									"presentation_linecount" : 2,
+									"text" : "The interpolated position"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-41",
 									"maxclass" : "message",
 									"numinlets" : 2,
@@ -166,8 +265,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 269.0, 196.0, 150.0, 21.0 ],
-									"text" : "Length"
+									"patching_rect" : [ 269.0, 196.0, 71.0, 21.0 ],
+									"text" : "Set Length"
 								}
 
 							}
@@ -175,6 +274,8 @@
 								"box" : 								{
 									"id" : "obj-37",
 									"maxclass" : "number",
+									"maximum" : 100,
+									"minimum" : 1,
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
@@ -213,8 +314,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 173.0, 481.0, 141.0, 21.0 ],
-									"text" : "The sum of the frame"
+									"patching_rect" : [ 495.0, 525.0, 59.0, 21.0 ],
+									"text" : "The sum"
 								}
 
 							}
@@ -227,7 +328,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 121.0, 480.0, 50.0, 23.0 ]
+									"patching_rect" : [ 495.0, 485.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -238,7 +339,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 121.0, 435.0, 62.0, 23.0 ],
+									"patching_rect" : [ 495.0, 435.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -250,7 +351,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 121.0, 390.0, 51.0, 23.0 ],
+									"patching_rect" : [ 495.0, 390.0, 51.0, 23.0 ],
 									"text" : "fl.sum~"
 								}
 
@@ -258,25 +359,24 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-5",
-									"linecount" : 6,
+									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 121.0, 540.0, 255.0, 94.0 ],
-									"presentation_linecount" : 6,
-									"text" : "This asks fl.accumpos~ to find the index within the frame at which 50% of the sum is accumulated. 50% is a value of 22.5 which will be accumulated somewhere between the 7th and 8th value in the original frame."
+									"patching_rect" : [ 135.0, 390.0, 345.0, 108.0 ],
+									"text" : "The argument asks fl.accumpos~ to find the index within the frame at which 50% (or the requested percentage) of the sum is accumulated. \n\nFor the default setting this% is a value of 2.5 which will be accumulated somewhere between the 7th and 8th value in the original frame."
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato",
+									"fontname" : "Arial",
 									"id" : "obj-2",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 92.0, 433.0, 38.0 ],
+									"patching_rect" : [ 15.0, 92.0, 436.0, 36.0 ],
 									"text" : "The fl.accumpos~ object will tell you the position within a frame, where a percentage of the total sum of the frame is reached."
 								}
 
@@ -287,8 +387,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 238.0, 331.0, 255.0, 21.0 ],
-									"text" : "Generate a frame counting from 0 to 10"
+									"patching_rect" : [ 238.0, 331.0, 173.0, 21.0 ],
+									"text" : "Generate a ramp from 0 to 1"
 								}
 
 							}
@@ -301,7 +401,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 675.0, 75.0, 23.0 ]
+									"patching_rect" : [ 15.0, 485.0, 62.0, 23.0 ]
 								}
 
 							}
@@ -312,7 +412,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 630.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 435.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -324,7 +424,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 570.0, 104.0, 23.0 ],
+									"patching_rect" : [ 15.0, 390.0, 104.0, 23.0 ],
 									"text" : "fl.accumpos~ 50"
 								}
 
@@ -379,6 +479,36 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-7", 1 ],
+									"midpoints" : [ 431.5, 366.5, 109.5, 366.5 ],
+									"source" : [ "obj-11", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-11", 0 ],
+									"source" : [ "obj-15", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-15", 0 ],
+									"midpoints" : [ 431.5, 214.0, 431.5, 214.0 ],
+									"source" : [ "obj-17", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-17", 0 ],
+									"source" : [ "obj-18", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-6", 1 ],
 									"source" : [ "obj-34", 0 ]
 								}
@@ -401,8 +531,9 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-34", 0 ],
-									"midpoints" : [ 24.5, 270.0, 226.5, 270.0 ],
+									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
+									"destination" : [ "obj-11", 0 ],
+									"midpoints" : [ 24.5, 270.5, 431.5, 270.5 ],
 									"order" : 0,
 									"source" : [ "obj-4", 0 ]
 								}
@@ -410,8 +541,19 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-6", 0 ],
+									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
+									"destination" : [ "obj-34", 0 ],
+									"midpoints" : [ 24.5, 270.0, 226.5, 270.0 ],
 									"order" : 1,
+									"source" : [ "obj-4", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
+									"destination" : [ "obj-6", 0 ],
+									"order" : 2,
 									"source" : [ "obj-4", 0 ]
 								}
 
@@ -435,7 +577,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-9", 0 ],
-									"midpoints" : [ 24.5, 375.0, 130.5, 375.0 ],
+									"midpoints" : [ 24.5, 375.0, 504.5, 375.0 ],
 									"order" : 0,
 									"source" : [ "obj-6", 0 ]
 								}
@@ -462,6 +604,35 @@
 								}
 
 							}
+ ],
+						"styles" : [ 							{
+								"name" : "newobjBlue-1",
+								"default" : 								{
+									"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjYellow-1",
+								"default" : 								{
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "numberGold-1",
+								"default" : 								{
+									"accentcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
  ]
 					}
 ,
@@ -482,7 +653,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1

@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,14 +147,49 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-35",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 92.875, 425.0, 31.25, 17.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-34",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 129.0, 423.0, 50.0, 21.0 ],
+									"text" : "Spread"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-5",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 75.0, 495.0, 569.0, 21.0 ],
+									"text" : "fl.spread~ could be applied to the magnitudes of an FFT to look at the spectral spread of a sound."
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-1",
 									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 435.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 471.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -164,7 +201,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 303.875, 37.0, 15.25 ]
+									"patching_rect" : [ 90.0, 333.875, 37.0, 15.25 ]
 								}
 
 							}
@@ -176,7 +213,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 230.0, 142.375, 37.0, 15.25 ]
+									"patching_rect" : [ 270.0, 165.0, 37.0, 15.25 ]
 								}
 
 							}
@@ -187,7 +224,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 132.0, 217.0, 36.0 ],
+									"patching_rect" : [ 310.0, 154.625, 217.0, 36.0 ],
 									"text" : "Create your own frame. Experiment with different shapes!"
 								}
 
@@ -199,23 +236,27 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 135.0, 286.5, 375.0, 50.0 ],
-									"text" : "Spread is the extent to which a distribution is stretched or squeezed. If a frame has a large peak right in the centre the spread will be small. A flat distribution will have a large spread."
+									"patching_rect" : [ 135.0, 316.5, 405.0, 50.0 ],
+									"text" : "Spread is the extent to which a distribution is stretched or squeezed. If a frame has a large peak just in the centre then the spread will be small. A flat distribution will have a large spread."
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"candycane" : 8,
 									"contdata" : 1,
+									"ghostbar" : 45,
 									"id" : "obj-20",
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 105.0, 210.0, 90.0 ],
+									"patching_rect" : [ 15.0, 105.0, 240.0, 120.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 32
+									"size" : 32,
+									"spacing" : 2,
+									"thickness" : 1
 								}
 
 							}
@@ -226,7 +267,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 210.0, 75.0, 23.0 ],
+									"patching_rect" : [ 60.0, 240.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -238,7 +279,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 255.0, 77.0, 23.0 ],
+									"patching_rect" : [ 15.0, 285.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -252,7 +293,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 390.0, 146.0, 23.0 ]
+									"patching_rect" : [ 15.0, 420.0, 75.0, 23.0 ]
 								}
 
 							}
@@ -263,19 +304,20 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 345.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 375.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.960784, 0.827451, 0.156863, 1.0 ],
 									"id" : "obj-2",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 300.0, 66.0, 23.0 ],
+									"patching_rect" : [ 15.0, 330.0, 66.0, 23.0 ],
 									"text" : "fl.spread~"
 								}
 
@@ -300,7 +342,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 0 ],
-									"midpoints" : [ 24.5, 296.0, 24.5, 296.0 ],
+									"midpoints" : [ 24.5, 326.0, 24.5, 326.0 ],
 									"source" : [ "obj-17", 0 ]
 								}
 
@@ -308,7 +350,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-17", 0 ],
-									"midpoints" : [ 69.5, 240.0, 24.5, 240.0 ],
+									"midpoints" : [ 69.5, 273.5, 24.5, 273.5 ],
 									"source" : [ "obj-19", 0 ]
 								}
 
@@ -323,7 +365,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-17", 0 ],
-									"midpoints" : [ 24.5, 198.0, 24.5, 198.0 ],
 									"source" : [ "obj-20", 0 ]
 								}
 
@@ -348,8 +389,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -384,7 +425,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1

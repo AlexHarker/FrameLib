@@ -792,7 +792,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -879,7 +879,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 392.0, 328.0, 21.0 ],
+									"patching_rect" : [ 168.5, 396.666666666666742, 328.0, 21.0 ],
 									"text" : "Apply the sweep to the frequency parameter of the filter"
 								}
 
@@ -890,7 +890,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 195.0, 198.0, 21.0 ],
+									"patching_rect" : [ 242.0, 240.0, 198.0, 21.0 ],
 									"text" : "Play a short grain from the buffer"
 								}
 
@@ -901,7 +901,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 105.0, 157.0, 21.0 ],
+									"patching_rect" : [ 67.0, 105.0, 157.0, 21.0 ],
 									"text" : "Generate random triggers"
 								}
 
@@ -909,11 +909,10 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-21",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 465.0, 315.0, 154.0, 36.0 ],
+									"patching_rect" : [ 386.0, 350.0, 238.0, 21.0 ],
 									"text" : "Generate an exponential upward sweep"
 								}
 
@@ -925,7 +924,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 435.0, 70.0, 23.0 ],
+									"patching_rect" : [ 15.0, 438.333333333333485, 70.0, 23.0 ],
 									"text" : "fl.window~"
 								}
 
@@ -937,7 +936,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 240.0, 70.0, 23.0 ],
+									"patching_rect" : [ 15.0, 230.000000000000028, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -949,7 +948,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 270.0, 166.0, 23.0 ],
+									"patching_rect" : [ 15.0, 271.666666666666742, 166.0, 23.0 ],
 									"text" : "fl.map~ linear 0 1 200 4000"
 								}
 
@@ -973,7 +972,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 480.0, 49.0, 23.0 ],
+									"patching_rect" : [ 15.0, 480.000000000000171, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -985,7 +984,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 150.0, 67.0, 23.0 ],
+									"patching_rect" : [ 15.0, 146.666666666666657, 67.0, 23.0 ],
 									"text" : ">~ 0.9998"
 								}
 
@@ -997,7 +996,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 194.0, 95.0, 23.0 ],
+									"patching_rect" : [ 15.0, 188.333333333333343, 95.0, 23.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -1021,7 +1020,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 315.0, 34.0, 23.0 ],
+									"patching_rect" : [ 15.0, 313.333333333333428, 34.0, 23.0 ],
 									"text" : "fl.+~"
 								}
 
@@ -1045,7 +1044,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 350.0, 196.0, 23.0 ],
+									"patching_rect" : [ 15.0, 355.000000000000114, 196.0, 23.0 ],
 									"text" : "fl.read~ fl.onepole.help /units ms"
 								}
 
@@ -1082,7 +1081,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 390.0, 139.0, 23.0 ],
+									"patching_rect" : [ 15.0, 396.666666666666799, 139.0, 23.0 ],
 									"text" : "fl.onepole~ /dynamic 1"
 								}
 
@@ -1129,7 +1128,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-19", 1 ],
-									"midpoints" : [ 234.5, 381.0, 84.5, 381.0 ],
+									"midpoints" : [ 234.5, 384.333333333333371, 84.5, 384.333333333333371 ],
 									"source" : [ "obj-11", 0 ]
 								}
 
@@ -1168,7 +1167,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 1 ],
-									"midpoints" : [ 234.5, 306.5, 39.5, 306.5 ],
+									"midpoints" : [ 234.5, 302.666666666666686, 39.5, 302.666666666666686 ],
 									"order" : 1,
 									"source" : [ "obj-17", 0 ]
 								}
@@ -1237,7 +1236,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-17", 0 ],
-									"midpoints" : [ 24.5, 229.5, 234.5, 229.5 ],
+									"midpoints" : [ 24.5, 222.5, 234.5, 222.5 ],
 									"order" : 0,
 									"source" : [ "obj-8", 0 ]
 								}
@@ -1374,7 +1373,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,

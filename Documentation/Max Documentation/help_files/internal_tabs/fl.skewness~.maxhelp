@@ -485,6 +485,7 @@
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.701961, 0.415686, 0.886275, 1.0 ],
 									"id" : "obj-29",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
