@@ -88,12 +88,24 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-9",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 83.0, 609.0, 452.0, 36.0 ],
+									"text" : "This is based on the /mode parameter for the generator object, which uses the set length when in 'requested' mode and the input length in 'input' mode."
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-28",
 									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 600.0, 705.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 600.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -106,7 +118,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 408.0, 510.0, 127.0, 60.0 ],
-									"size" : 9
+									"size" : 7
 								}
 
 							}
@@ -131,7 +143,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 255.0, 510.0, 127.0, 60.0 ],
-									"size" : 9
+									"size" : 7
 								}
 
 							}
@@ -156,7 +168,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 15.0, 510.0, 127.0, 60.0 ],
-									"size" : 9
+									"size" : 7
 								}
 
 							}
@@ -281,14 +293,14 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato",
+									"fontname" : "Arial",
 									"id" : "obj-2",
 									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 77.0, 617.0, 69.0 ],
-									"text" : "Some FrameLib objects can adapt to the size of the input frames they receive. This is useful if you need the size of new downstream frames to match their inputs without explicitly setting the sizes or using copious amounts of fl.length~. Try modifying the length of the initial frame and seeing how the downstream FrameLib objects respond."
+									"patching_rect" : [ 15.0, 77.0, 608.0, 65.0 ],
+									"text" : "FrameLib generator objects can adapt to the size of the input frames they receive. This is useful if you need the size of new downstream frames to match their inputs without explicitly setting the sizes or using copious amounts of fl.length~. Try modifying the length of the initial frame and seeing how the downstream FrameLib objects respond."
 								}
 
 							}
@@ -449,8 +461,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -485,7 +497,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
