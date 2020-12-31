@@ -337,6 +337,21 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "id": "obj-2",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        360.0,
+                                        317.0,
+                                        226.0,
+                                        21.0
+                                    ],
+                                    "text": "Argument sets the number of outputs."
+                                }
+                            },
+                            {
+                                "box": {
                                     "arrows": 1,
                                     "border": 4.0,
                                     "id": "obj-23",
@@ -448,8 +463,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        540.0,
-                                        630.0,
+                                        541.0,
+                                        623.0,
                                         45.0,
                                         45.0
                                     ]
@@ -516,10 +531,10 @@
                                     "patching_rect": [
                                         30.0,
                                         90.0,
-                                        75.0,
+                                        101.0,
                                         23.0
                                     ],
-                                    "text": "fl.perblock~"
+                                    "text": "fl.interval~ 1024"
                                 }
                             },
                             {

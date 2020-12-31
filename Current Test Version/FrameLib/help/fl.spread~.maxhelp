@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,7 +333,54 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "arrows": 1,
+                                    "border": 4.0,
+                                    "id": "obj-35",
+                                    "maxclass": "live.line",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        92.875,
+                                        425.0,
+                                        31.25,
+                                        17.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-34",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        129.0,
+                                        423.0,
+                                        50.0,
+                                        21.0
+                                    ],
+                                    "text": "Spread"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-5",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        75.0,
+                                        495.0,
+                                        569.0,
+                                        21.0
+                                    ],
+                                    "text": "fl.spread~ could be applied to the magnitudes of an FFT to look at the spectral spread of a sound."
+                                }
+                            },
                             {
                                 "box": {
                                     "id": "obj-1",
@@ -342,7 +390,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        435.0,
+                                        471.0,
                                         45.0,
                                         45.0
                                     ]
@@ -358,7 +406,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         90.0,
-                                        303.875,
+                                        333.875,
                                         37.0,
                                         15.25
                                     ]
@@ -373,8 +421,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        230.0,
-                                        142.375,
+                                        270.0,
+                                        165.0,
                                         37.0,
                                         15.25
                                     ]
@@ -388,8 +436,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        270.0,
-                                        132.0,
+                                        310.0,
+                                        154.625,
                                         217.0,
                                         36.0
                                     ],
@@ -405,16 +453,18 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         135.0,
-                                        286.5,
-                                        375.0,
+                                        316.5,
+                                        405.0,
                                         50.0
                                     ],
-                                    "text": "Spread is the extent to which a distribution is stretched or squeezed. If a frame has a large peak right in the centre the spread will be small. A flat distribution will have a large spread."
+                                    "text": "Spread is the extent to which a distribution is stretched or squeezed. If a frame has a large peak just in the centre then the spread will be small. A flat distribution will have a large spread."
                                 }
                             },
                             {
                                 "box": {
+                                    "candycane": 8,
                                     "contdata": 1,
+                                    "ghostbar": 45,
                                     "id": "obj-20",
                                     "maxclass": "multislider",
                                     "numinlets": 1,
@@ -427,14 +477,16 @@
                                     "patching_rect": [
                                         15.0,
                                         105.0,
-                                        210.0,
-                                        90.0
+                                        240.0,
+                                        120.0
                                     ],
                                     "setminmax": [
                                         0.0,
                                         1.0
                                     ],
-                                    "size": 32
+                                    "size": 32,
+                                    "spacing": 2,
+                                    "thickness": 1
                                 }
                             },
                             {
@@ -448,7 +500,7 @@
                                     ],
                                     "patching_rect": [
                                         60.0,
-                                        210.0,
+                                        240.0,
                                         75.0,
                                         23.0
                                     ],
@@ -466,7 +518,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        255.0,
+                                        285.0,
                                         77.0,
                                         23.0
                                     ],
@@ -487,8 +539,8 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         15.0,
-                                        390.0,
-                                        146.0,
+                                        420.0,
+                                        75.0,
                                         23.0
                                     ]
                                 }
@@ -504,7 +556,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        345.0,
+                                        375.0,
                                         62.0,
                                         23.0
                                     ],
@@ -513,6 +565,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.960784,
+                                        0.827451,
+                                        0.156863,
+                                        1.0
+                                    ],
                                     "id": "obj-2",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -522,7 +580,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        300.0,
+                                        330.0,
                                         66.0,
                                         23.0
                                     ],
@@ -563,9 +621,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        296.0,
+                                        326.0,
                                         24.5,
-                                        296.0
+                                        326.0
                                     ],
                                     "source": [
                                         "obj-17",
@@ -581,9 +639,9 @@
                                     ],
                                     "midpoints": [
                                         69.5,
-                                        240.0,
+                                        273.5,
                                         24.5,
-                                        240.0
+                                        273.5
                                     ],
                                     "source": [
                                         "obj-19",
@@ -608,12 +666,6 @@
                                     "destination": [
                                         "obj-17",
                                         0
-                                    ],
-                                    "midpoints": [
-                                        24.5,
-                                        198.0,
-                                        24.5,
-                                        198.0
                                     ],
                                     "source": [
                                         "obj-20",
@@ -651,14 +703,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

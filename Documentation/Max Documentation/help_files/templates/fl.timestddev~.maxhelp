@@ -227,8 +227,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            105.0,
+                            0.0,
+                            26.0,
                             652.0,
                             761.0
                         ],
@@ -324,7 +324,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        143.5,
+                                        170.5,
                                         150.0,
                                         84.0,
                                         21.0
@@ -402,7 +402,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        165.0,
+                                        200.5,
                                         189.5,
                                         24.0,
                                         24.0
@@ -701,6 +701,12 @@
                                     "destination": [
                                         "obj-12",
                                         0
+                                    ],
+                                    "midpoints": [
+                                        210.0,
+                                        233.75,
+                                        174.5,
+                                        233.75
                                     ],
                                     "source": [
                                         "obj-23",
@@ -1953,8 +1959,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            105.0,
                             652.0,
                             761.0
                         ],
@@ -1990,6 +1996,21 @@
                         "showontab": 1,
                         "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "id": "obj-11",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        156.5,
+                                        525.0,
+                                        345.0,
+                                        21.0
+                                    ],
+                                    "text": "Arguments set /max_frames and /num_frames parameters"
+                                }
+                            },
                             {
                                 "box": {
                                     "id": "obj-16",

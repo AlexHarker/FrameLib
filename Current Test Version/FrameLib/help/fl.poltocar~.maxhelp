@@ -337,6 +337,90 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "id": "obj-2",
+                                    "linecount": 2,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        268.5,
+                                        616.5,
+                                        355.0,
+                                        36.0
+                                    ],
+                                    "text": "You can also operate in spherical coordinates by setting the object into 3D mode."
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-55",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        170.0,
+                                        624.0,
+                                        82.0,
+                                        21.0
+                                    ],
+                                    "text": "y / imaginary"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-56",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        67.0,
+                                        624.0,
+                                        48.0,
+                                        21.0
+                                    ],
+                                    "text": "x / real"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "format": 6,
+                                    "id": "obj-57",
+                                    "maxclass": "flonum",
+                                    "numinlets": 1,
+                                    "numoutlets": 2,
+                                    "outlettype": [
+                                        "",
+                                        "bang"
+                                    ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [
+                                        118.0,
+                                        623.0,
+                                        50.0,
+                                        23.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-58",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        118.0,
+                                        578.0,
+                                        62.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.tomax~"
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-16",
                                     "local": 1,
                                     "maxclass": "ezdac~",
@@ -374,22 +458,6 @@
                                         23.0
                                     ],
                                     "text": "fl.poltocar~ 3D"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-2",
-                                    "linecount": 2,
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        240.0,
-                                        616.5,
-                                        393.0,
-                                        36.0
-                                    ],
-                                    "text": "You can also operate in spherical coordinates by setting the object into 3D mode."
                                 }
                             },
                             {
@@ -478,74 +546,6 @@
                                         23.0
                                     ],
                                     "text": "fl.cartopol~ /angles degrees"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-55",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        157.0,
-                                        624.0,
-                                        68.0,
-                                        21.0
-                                    ],
-                                    "text": "imaginary"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-56",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        67.0,
-                                        624.0,
-                                        30.0,
-                                        21.0
-                                    ],
-                                    "text": "real"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "format": 6,
-                                    "id": "obj-57",
-                                    "maxclass": "flonum",
-                                    "numinlets": 1,
-                                    "numoutlets": 2,
-                                    "outlettype": [
-                                        "",
-                                        "bang"
-                                    ],
-                                    "parameter_enable": 0,
-                                    "patching_rect": [
-                                        105.0,
-                                        623.0,
-                                        50.0,
-                                        23.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-58",
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        ""
-                                    ],
-                                    "patching_rect": [
-                                        105.0,
-                                        578.0,
-                                        62.0,
-                                        23.0
-                                    ],
-                                    "text": "fl.tomax~"
                                 }
                             },
                             {
@@ -740,24 +740,6 @@
                                         "subpatcher_template": "",
                                         "assistshowspatchername": 0,
                                         "boxes": [
-                                            {
-                                                "box": {
-                                                    "id": "obj-4",
-                                                    "maxclass": "message",
-                                                    "numinlets": 2,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [
-                                                        ""
-                                                    ],
-                                                    "patching_rect": [
-                                                        160.0,
-                                                        320.0,
-                                                        50.0,
-                                                        22.0
-                                                    ],
-                                                    "text": "11 11"
-                                                }
-                                            },
                                             {
                                                 "box": {
                                                     "comment": "",
@@ -2730,7 +2712,7 @@
                                                     ],
                                                     "patching_rect": [
                                                         11.0,
-                                                        57.0,
+                                                        36.0,
                                                         64.0,
                                                         23.0
                                                     ],
@@ -2750,8 +2732,8 @@
                                                         ""
                                                     ],
                                                     "patching_rect": [
-                                                        106.0,
-                                                        61.0,
+                                                        74.0,
+                                                        82.0,
                                                         47.0,
                                                         23.0
                                                     ],
@@ -2837,20 +2819,6 @@
                                                         "obj-1",
                                                         0
                                                     ],
-                                                    "order": 1,
-                                                    "source": [
-                                                        "obj-31",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [
-                                                        "obj-4",
-                                                        1
-                                                    ],
-                                                    "order": 0,
                                                     "source": [
                                                         "obj-31",
                                                         0
@@ -2923,7 +2891,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         135.5,
-                                        525.0,
+                                        526.0,
                                         50.0,
                                         23.0
                                     ]
@@ -3165,7 +3133,7 @@
                                     "midpoints": [
                                         82.5,
                                         540.0,
-                                        114.5,
+                                        127.5,
                                         540.0
                                     ],
                                     "source": [
