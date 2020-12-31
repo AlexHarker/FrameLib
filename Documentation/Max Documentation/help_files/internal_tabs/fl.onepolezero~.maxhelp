@@ -792,7 +792,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -879,7 +879,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 277.0, 390.0, 328.0, 21.0 ],
+									"patching_rect" : [ 277.0, 398.0, 328.0, 21.0 ],
 									"text" : "Apply the sweep to the frequency parameter of the filter"
 								}
 
@@ -890,7 +890,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 195.0, 198.0, 21.0 ],
+									"patching_rect" : [ 252.0, 240.0, 198.0, 21.0 ],
 									"text" : "Play a short grain from the buffer"
 								}
 
@@ -901,7 +901,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 105.0, 157.0, 21.0 ],
+									"patching_rect" : [ 68.0, 105.0, 157.0, 21.0 ],
 									"text" : "Generate random triggers"
 								}
 
@@ -909,11 +909,10 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-21",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 465.0, 330.0, 154.0, 36.0 ],
+									"patching_rect" : [ 384.0, 352.0, 255.0, 21.0 ],
 									"text" : "Generate an exponential downward sweep"
 								}
 
@@ -925,7 +924,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 435.0, 286.0, 23.0 ],
+									"patching_rect" : [ 15.0, 438.333333333333428, 286.0, 23.0 ],
 									"text" : "fl.window~ /window trapezoid /parameters 25 99"
 								}
 
@@ -937,7 +936,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 240.0, 70.0, 23.0 ],
+									"patching_rect" : [ 15.0, 230.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -949,7 +948,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 270.0, 166.0, 23.0 ],
+									"patching_rect" : [ 15.0, 271.666666666666686, 166.0, 23.0 ],
 									"text" : "fl.map~ linear 0 1 200 4000"
 								}
 
@@ -973,7 +972,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 480.0, 49.0, 23.0 ],
+									"patching_rect" : [ 15.0, 480.000000000000114, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -985,7 +984,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 150.0, 67.0, 23.0 ],
+									"patching_rect" : [ 15.0, 146.666666666666657, 67.0, 23.0 ],
 									"text" : ">~ 0.9994"
 								}
 
@@ -997,7 +996,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 194.0, 95.0, 23.0 ],
+									"patching_rect" : [ 15.0, 188.333333333333314, 95.0, 23.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -1021,7 +1020,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 315.0, 34.0, 23.0 ],
+									"patching_rect" : [ 15.0, 313.333333333333371, 34.0, 23.0 ],
 									"text" : "fl.+~"
 								}
 
@@ -1045,7 +1044,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 350.0, 185.0, 23.0 ],
+									"patching_rect" : [ 15.0, 355.000000000000057, 185.0, 23.0 ],
 									"text" : "fl.read~ fl.onepz.help /units ms"
 								}
 
@@ -1082,7 +1081,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 390.0, 260.0, 23.0 ],
+									"patching_rect" : [ 15.0, 396.666666666666742, 260.0, 23.0 ],
 									"text" : "fl.onepolezero~ /dynamic 1 /mode highpass"
 								}
 
@@ -1374,7 +1373,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,

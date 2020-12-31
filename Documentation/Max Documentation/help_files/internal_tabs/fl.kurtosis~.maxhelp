@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,27 +147,51 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"arrows" : 1,
 									"border" : 4.0,
-									"id" : "obj-5",
+									"id" : "obj-35",
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 255.0, 160.5, 31.25, 17.0 ]
+									"patching_rect" : [ 92.875, 485.0, 31.25, 17.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-8",
+									"id" : "obj-34",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 287.25, 156.5, 193.0, 21.0 ],
-									"presentation_linecount" : 3,
-									"text" : "Draw your own frame of values"
+									"patching_rect" : [ 129.0, 483.0, 55.0, 21.0 ],
+									"presentation_linecount" : 2,
+									"text" : "Kurtosis"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-5",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 68.0, 549.0, 569.0, 21.0 ],
+									"presentation_linecount" : 2,
+									"text" : "fl.kurtosis~ can be applied to the magnitudes of an FFT to look at the spectral kurtosis of a sound."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 525.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -173,11 +199,92 @@
 								"box" : 								{
 									"arrows" : 1,
 									"border" : 4.0,
-									"id" : "obj-1",
+									"id" : "obj-24",
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 88.0, 350.0, 31.25, 17.0 ]
+									"patching_rect" : [ 90.0, 347.875, 37.0, 15.25 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-46",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 270.0, 165.0, 37.0, 15.25 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-21",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 310.0, 154.625, 217.0, 36.0 ],
+									"presentation_linecount" : 2,
+									"text" : "Create your own frame. Experiment with different shapes!"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"candycane" : 8,
+									"contdata" : 1,
+									"ghostbar" : 45,
+									"id" : "obj-20",
+									"maxclass" : "multislider",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 15.0, 105.0, 240.0, 120.0 ],
+									"setminmax" : [ 0.0, 1.0 ],
+									"size" : 32,
+									"spacing" : 2,
+									"thickness" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-19",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 60.0, 240.0, 75.0, 23.0 ],
+									"text" : "fl.perblock~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-17",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 285.0, 77.0, 23.0 ],
+									"text" : "fl.frommax~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"format" : 6,
+									"id" : "obj-9",
+									"maxclass" : "flonum",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "bang" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 15.0, 480.0, 75.0, 23.0 ]
 								}
 
 							}
@@ -188,99 +295,15 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 270.0, 77.0, 23.0 ],
-									"text" : "fl.frommax~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"contdata" : 1,
-									"id" : "obj-6",
-									"maxclass" : "multislider",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 105.0, 230.0, 128.0 ],
-									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 128
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-2",
-									"linecount" : 8,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 125.0, 295.0, 497.0, 123.0 ],
-									"text" : "Kurtosis is a statistical measure used to describe the degree to which scores cluster in the tails or the peak of a frequency distribution. The peak is the tallest part of the distribution, and the tails are the ends of the distribution. When the kurtosis is close to a value of 0 it means the distribtion of the data is 'mesokurtic'. This is a way of saying that the data is the same as the normal distribution. Negative values indicate that the data has thin tails, and is perhaps bulbous in shape. Positive values indicate that more of the values are located in the tails of the distribution rather than around the mean."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-4",
-									"local" : 1,
-									"maxclass" : "ezdac~",
-									"numinlets" : 2,
-									"numoutlets" : 0,
-									"patching_rect" : [ 600.0, 705.0, 45.0, 45.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-13",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 255.0, 210.0, 75.0, 23.0 ],
-									"text" : "fl.perblock~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-35",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 78.0, 485.0, 31.25, 17.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-34",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 111.25, 482.0, 71.0, 21.0 ],
-									"text" : "Kurtosis"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-30",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 420.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 416.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-29",
+									"color" : [ 0.960784, 0.827451, 0.156863, 1.0 ],
+									"id" : "obj-4",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -292,15 +315,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 14.0,
-									"format" : 6,
-									"id" : "obj-15",
-									"maxclass" : "flonum",
+									"id" : "obj-2",
+									"linecount" : 13,
+									"maxclass" : "comment",
 									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "bang" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 480.0, 61.0, 24.0 ]
+									"numoutlets" : 0,
+									"patching_rect" : [ 140.0, 258.0, 497.0, 195.0 ],
+									"text" : "Kurtosis is a statistical measure of the shape of a distritbuion used to describe the degree to which scores cluster in the tails of a distribution. \n\nThe peak is the tallest part of the distribution, and the tails are the ends of the distribution. When the kurtosis is close to a value of 3 it means the distribution of the data is 'mesokurtic'. This is a way of saying that the data is the same as the normal distribution. \n\nValues less than this indicate that the data has thin tails (platykurtic), and is perhaps flat-topped in shape (lacks outliers). \n\nHigher values indicate that more of the values are located in the tails of the distribution (leptokurtic)."
 								}
 
 							}
@@ -323,36 +344,36 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"source" : [ "obj-17", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-17", 0 ],
+									"midpoints" : [ 69.5, 273.5, 24.5, 273.5 ],
+									"source" : [ "obj-19", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-17", 0 ],
+									"source" : [ "obj-20", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-7", 0 ],
-									"midpoints" : [ 264.5, 249.0, 24.5, 249.0 ],
-									"source" : [ "obj-13", 0 ]
+									"source" : [ "obj-4", 0 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-30", 0 ],
-									"source" : [ "obj-29", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-15", 0 ],
-									"source" : [ "obj-30", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-7", 0 ],
-									"source" : [ "obj-6", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-29", 0 ],
+									"destination" : [ "obj-9", 0 ],
 									"source" : [ "obj-7", 0 ]
 								}
 
@@ -370,8 +391,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -406,7 +427,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
@@ -420,15 +441,15 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.frommax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.perblock~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.perblock~.mxo",
 				"type" : "iLaX"
 			}
  ],
