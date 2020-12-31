@@ -144,7 +144,7 @@ FrameLib_Chain::SchedulerInfo FrameLib_Chain::schedule(bool newFrame, bool noAdv
         unsigned long size = remain;
         unsigned long allocSize = mode == kReplace ? sizeIn : remain + sizeIn;
         
-        FrameLib_TimeFormat ref = (mode == kAppend && remain) ?  mTimes[mSize - 1]: now;
+        FrameLib_TimeFormat ref = (mode == kAppend && remain) ?  mTimes[mSize - 1] : now;
         
         auto times = allocAutoArray<FrameLib_TimeFormat>(allocSize);
         
