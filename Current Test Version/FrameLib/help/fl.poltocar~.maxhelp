@@ -337,17 +337,59 @@
                         "boxes": [
                             {
                                 "box": {
-                                    "id": "obj-73",
+                                    "id": "obj-16",
+                                    "local": 1,
+                                    "maxclass": "ezdac~",
+                                    "numinlets": 2,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        675.0,
+                                        45.0,
+                                        45.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "color": [
+                                        0.317647,
+                                        0.654902,
+                                        0.976471,
+                                        1.0
+                                    ],
+                                    "id": "obj-4",
+                                    "maxclass": "newobj",
+                                    "numinlets": 3,
+                                    "numoutlets": 3,
+                                    "outlettype": [
+                                        "",
+                                        "",
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        384.5,
+                                        585.0,
+                                        93.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.poltocar~ 3D"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-2",
+                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        92.0,
-                                        435.0,
-                                        21.0
+                                        240.0,
+                                        616.5,
+                                        393.0,
+                                        36.0
                                     ],
-                                    "text": "The fl.poltocar~ converts polar coordinates to cartesian coordinates. "
+                                    "text": "You can also operate in spherical coordinates by setting the object into 3D mode."
                                 }
                             },
                             {
@@ -374,7 +416,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         412.0,
-                                        547.0,
+                                        525.0,
                                         120.0,
                                         21.0
                                     ],
@@ -395,7 +437,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         360.0,
-                                        547.0,
+                                        525.0,
                                         50.0,
                                         23.0
                                     ]
@@ -412,7 +454,7 @@
                                     ],
                                     "patching_rect": [
                                         360.0,
-                                        502.0,
+                                        480.0,
                                         62.0,
                                         23.0
                                     ],
@@ -422,7 +464,6 @@
                             {
                                 "box": {
                                     "id": "obj-63",
-                                    "linecount": 2,
                                     "maxclass": "newobj",
                                     "numinlets": 2,
                                     "numoutlets": 2,
@@ -432,9 +473,9 @@
                                     ],
                                     "patching_rect": [
                                         360.0,
-                                        442.0,
-                                        105.0,
-                                        38.0
+                                        420.0,
+                                        169.0,
+                                        23.0
                                     ],
                                     "text": "fl.cartopol~ /angles degrees"
                                 }
@@ -447,7 +488,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         157.0,
-                                        668.0,
+                                        624.0,
                                         68.0,
                                         21.0
                                     ],
@@ -462,7 +503,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         67.0,
-                                        668.0,
+                                        624.0,
                                         30.0,
                                         21.0
                                     ],
@@ -483,7 +524,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         105.0,
-                                        667.0,
+                                        623.0,
                                         50.0,
                                         23.0
                                     ]
@@ -500,7 +541,7 @@
                                     ],
                                     "patching_rect": [
                                         105.0,
-                                        622.0,
+                                        578.0,
                                         62.0,
                                         23.0
                                     ],
@@ -521,7 +562,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         15.0,
-                                        667.0,
+                                        623.0,
                                         50.0,
                                         23.0
                                     ]
@@ -538,7 +579,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        622.0,
+                                        578.0,
                                         62.0,
                                         23.0
                                     ],
@@ -553,7 +594,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         307.0,
-                                        548.0,
+                                        526.0,
                                         40.0,
                                         21.0
                                     ],
@@ -568,7 +609,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         187.5,
-                                        548.0,
+                                        526.0,
                                         68.0,
                                         21.0
                                     ],
@@ -608,7 +649,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         255.0,
-                                        547.0,
+                                        525.0,
                                         50.0,
                                         23.0
                                     ]
@@ -625,7 +666,7 @@
                                     ],
                                     "patching_rect": [
                                         255.0,
-                                        502.0,
+                                        480.0,
                                         62.0,
                                         23.0
                                     ],
@@ -714,7 +755,7 @@
                                                         50.0,
                                                         22.0
                                                     ],
-                                                    "text": "21 -5"
+                                                    "text": "11 11"
                                                 }
                                             },
                                             {
@@ -2882,7 +2923,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         135.5,
-                                        547.0,
+                                        525.0,
                                         50.0,
                                         23.0
                                     ]
@@ -2899,7 +2940,7 @@
                                     ],
                                     "patching_rect": [
                                         135.5,
-                                        502.0,
+                                        480.0,
                                         62.0,
                                         23.0
                                     ],
@@ -2916,8 +2957,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        187.5,
-                                        232.0,
+                                        202.5,
+                                        225.0,
                                         75.0,
                                         23.0
                                     ],
@@ -2945,9 +2986,9 @@
                             {
                                 "box": {
                                     "color": [
-                                        0.756862745098039,
-                                        0.517647058823529,
-                                        0.517647058823529,
+                                        0.317647,
+                                        0.654902,
+                                        0.976471,
                                         1.0
                                     ],
                                     "id": "obj-17",
@@ -2960,7 +3001,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        502.0,
+                                        480.0,
                                         77.0,
                                         23.0
                                     ],
@@ -2979,11 +3020,26 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        442.0,
+                                        420.0,
                                         77.0,
                                         23.0
                                     ],
                                     "text": "fl.cartopol~"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-73",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        92.0,
+                                        435.0,
+                                        21.0
+                                    ],
+                                    "text": "The fl.poltocar~ converts polar coordinates to cartesian coordinates. "
                                 }
                             },
                             {
@@ -3014,6 +3070,12 @@
                         "lines": [
                             {
                                 "patchline": {
+                                    "color": [
+                                        0.0,
+                                        0.871366560459137,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "destination": [
                                         "obj-17",
                                         1
@@ -3058,9 +3120,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        487.0,
+                                        470.0,
                                         145.0,
-                                        487.0
+                                        470.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -3071,15 +3133,21 @@
                             },
                             {
                                 "patchline": {
+                                    "color": [
+                                        0.0,
+                                        0.871366560459137,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "destination": [
                                         "obj-45",
                                         0
                                     ],
                                     "midpoints": [
                                         82.5,
-                                        487.0,
+                                        455.0,
                                         264.5,
-                                        487.0
+                                        455.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -3096,9 +3164,9 @@
                                     ],
                                     "midpoints": [
                                         82.5,
-                                        607.0,
+                                        540.0,
                                         114.5,
-                                        607.0
+                                        540.0
                                     ],
                                     "source": [
                                         "obj-17",
@@ -3114,9 +3182,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        526.0,
+                                        504.0,
                                         24.5,
-                                        526.0
+                                        504.0
                                     ],
                                     "source": [
                                         "obj-17",
@@ -3143,7 +3211,7 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        197.0,
+                                        212.0,
                                         292.0,
                                         24.5,
                                         292.0
@@ -3192,6 +3260,12 @@
                             },
                             {
                                 "patchline": {
+                                    "color": [
+                                        0.0,
+                                        0.871366560459137,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "destination": [
                                         "obj-1",
                                         1
@@ -3218,15 +3292,21 @@
                             },
                             {
                                 "patchline": {
+                                    "color": [
+                                        0.0,
+                                        0.871366560459137,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "destination": [
                                         "obj-63",
                                         1
                                     ],
                                     "midpoints": [
                                         82.5,
-                                        427.0,
-                                        455.5,
-                                        427.0
+                                        388.0,
+                                        519.5,
+                                        388.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -3243,9 +3323,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        427.0,
+                                        408.0,
                                         369.5,
-                                        427.0
+                                        408.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -3285,10 +3365,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        455.5,
-                                        496.0,
+                                        519.5,
+                                        461.0,
                                         369.5,
-                                        496.0
+                                        461.0
                                     ],
                                     "source": [
                                         "obj-63",
