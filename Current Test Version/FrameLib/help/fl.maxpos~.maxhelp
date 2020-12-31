@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,7 +333,39 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "arrows": 1,
+                                    "border": 4.0,
+                                    "id": "obj-12",
+                                    "maxclass": "live.line",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        75.0,
+                                        424.0,
+                                        60.25,
+                                        15.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-25",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        140.25,
+                                        422.0,
+                                        288.0,
+                                        21.0
+                                    ],
+                                    "text": "The resulting index (indices are counted from 0)"
+                                }
+                            },
                             {
                                 "box": {
                                     "id": "obj-11",
@@ -342,18 +375,17 @@
                                     "patching_rect": [
                                         90.0,
                                         331.0,
-                                        388.0,
+                                        389.0,
                                         21.0
                                     ],
-                                    "text": "fl.maxpos~ returns you the index of the greatest value in a frame"
+                                    "text": "fl.maxpos~ returns you the index of the maximum value in a frame"
                                 }
                             },
                             {
                                 "box": {
-                                    "fontsize": 16.0,
-                                    "format": 6,
+                                    "fontsize": 13.0,
                                     "id": "obj-16",
-                                    "maxclass": "flonum",
+                                    "maxclass": "number",
                                     "numinlets": 1,
                                     "numoutlets": 2,
                                     "outlettype": [
@@ -364,8 +396,8 @@
                                     "patching_rect": [
                                         15.0,
                                         420.0,
-                                        56.0,
-                                        26.0
+                                        51.0,
+                                        23.0
                                     ]
                                 }
                             },
@@ -432,10 +464,10 @@
                                     "patching_rect": [
                                         15.0,
                                         105.0,
-                                        144.0,
+                                        194.0,
                                         23.0
                                     ],
-                                    "text": "loadmess 0.3 0.2 0.432"
+                                    "text": "loadmess 0.3 0.1 0.432 0.56 0.2"
                                 }
                             },
                             {
@@ -448,7 +480,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        225.0,
+                                        285.0,
                                         232.0,
                                         75.0,
                                         23.0
@@ -497,14 +529,14 @@
                                     "patching_rect": [
                                         15.0,
                                         135.0,
-                                        195.0,
+                                        255.0,
                                         120.0
                                     ],
                                     "setminmax": [
                                         0.0,
                                         1.0
                                     ],
-                                    "size": 3,
+                                    "size": 5,
                                     "slidercolor": [
                                         0.203921568627451,
                                         0.752941176470588,
@@ -570,7 +602,7 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        234.5,
+                                        294.5,
                                         270.0,
                                         24.5,
                                         270.0
@@ -635,14 +667,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

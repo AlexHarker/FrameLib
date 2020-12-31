@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,7 +333,23 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "id": "obj-1",
+                                    "local": 1,
+                                    "maxclass": "ezdac~",
+                                    "numinlets": 2,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        510.0,
+                                        610.0,
+                                        45.0,
+                                        45.0
+                                    ]
+                                }
+                            },
                             {
                                 "box": {
                                     "id": "obj-30",
@@ -343,10 +360,10 @@
                                     "patching_rect": [
                                         396.0,
                                         218.5,
-                                        255.5,
+                                        249.0,
                                         36.0
                                     ],
-                                    "text": "Pack 3 different length frames at different intervals into a multistream frame"
+                                    "text": "Pack 3 different length frames at different intervals into a multi-stream frame"
                                 }
                             },
                             {
@@ -358,7 +375,7 @@
                                     "patching_rect": [
                                         336.0,
                                         406.0,
-                                        235.5,
+                                        232.0,
                                         21.0
                                     ],
                                     "text": "Unpack each stream into its own outlet"
@@ -413,9 +430,9 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        96.5,
+                                        75.0,
                                         285.0,
-                                        348.5,
+                                        320.0,
                                         21.0
                                     ],
                                     "text": "Make the range of the incoming frames outside -1 to 1"
@@ -433,10 +450,10 @@
                                     "patching_rect": [
                                         15.0,
                                         285.0,
-                                        79.0,
+                                        53.0,
                                         23.0
                                     ],
-                                    "text": "fl.times~ 1.5"
+                                    "text": "fl.*~ 3.5"
                                 }
                             },
                             {
@@ -526,12 +543,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        90.0,
-                                        346.0,
-                                        348.5,
+                                        110.0,
+                                        345.0,
+                                        337.0,
                                         21.0
                                     ],
-                                    "text": "Apply a hard clip on all streams of the multistream frame"
+                                    "text": "Apply a hard clip on all streams of the multi-stream frame"
                                 }
                             },
                             {
@@ -546,10 +563,10 @@
                                     "patching_rect": [
                                         15.0,
                                         345.0,
-                                        72.0,
+                                        93.0,
                                         23.0
                                     ],
-                                    "text": "fl.clip~ -1 1"
+                                    "text": "fl.clip~ -0.6 0.6"
                                 }
                             },
                             {

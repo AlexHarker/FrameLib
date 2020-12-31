@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,7 +262,213 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "id": "obj-25",
+                                    "local": 1,
+                                    "maxclass": "ezdac~",
+                                    "numinlets": 2,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        510.0,
+                                        600.0,
+                                        45.0,
+                                        45.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-24",
+                                    "linecount": 10,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        195.0,
+                                        390.0,
+                                        352.0,
+                                        152.0
+                                    ],
+                                    "text": "This patch accumulates random values, reseting every five ticks from the fl.interval~ on the top left.\n\nThe green cables are needed to ensure that the ordering between different parts of the network is correct. For instance, if the initial frame is not written first (top right from fl.once~) then the recall to the left at the top will return an empty frame and the patch won't work. Note that the patch may work without it, but it is only guaranteed if the connection if made."
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-22",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        15.0,
+                                        375.0,
+                                        34.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.+~"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-19",
+                                    "maxclass": "button",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        "bang"
+                                    ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [
+                                        310.0,
+                                        585.0,
+                                        24.0,
+                                        24.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-17",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        156.5,
+                                        330.0,
+                                        31.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.*~"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "color": [
+                                        0.996078431372549,
+                                        0.2,
+                                        0.2,
+                                        1.0
+                                    ],
+                                    "id": "obj-16",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        435.0,
+                                        300.0,
+                                        88.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.store~ perth"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-14",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        435.0,
+                                        255.0,
+                                        131.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.random~ /length 50"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-13",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        435.0,
+                                        210.0,
+                                        54.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.once~"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "color": [
+                                        0.996078431372549,
+                                        0.2,
+                                        0.2,
+                                        1.0
+                                    ],
+                                    "id": "obj-12",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        156.5,
+                                        255.0,
+                                        91.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.recall~ perth"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-10",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        256.5,
+                                        285.0,
+                                        45.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.>~ 0"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-8",
+                                    "maxclass": "newobj",
+                                    "numinlets": 3,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        256.5,
+                                        255.0,
+                                        131.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.ticks~ 5 /mode loop"
+                                }
+                            },
                             {
                                 "box": {
                                     "id": "obj-50",
@@ -274,11 +480,11 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        420.0,
-                                        125.0,
+                                        465.0,
+                                        107.0,
                                         23.0
                                     ],
-                                    "text": "fl.interval~ 104.3 ms"
+                                    "text": "fl.interval~ 50 ms"
                                 }
                             },
                             {
@@ -292,7 +498,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        570.0,
+                                        540.0,
                                         62.0,
                                         23.0
                                     ],
@@ -316,8 +522,8 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        540.0,
-                                        304.0,
+                                        510.0,
+                                        160.0,
                                         23.0
                                     ],
                                     "text": "fl.recall~ perth"
@@ -325,114 +531,18 @@
                             },
                             {
                                 "box": {
-                                    "color": [
-                                        0.996078431372549,
-                                        0.2,
-                                        0.2,
-                                        1.0
-                                    ],
-                                    "id": "obj-35",
-                                    "maxclass": "newobj",
-                                    "numinlets": 2,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        ""
-                                    ],
-                                    "patching_rect": [
-                                        300.0,
-                                        510.0,
-                                        88.0,
-                                        23.0
-                                    ],
-                                    "text": "fl.store~ perth"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-34",
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        ""
-                                    ],
-                                    "patching_rect": [
-                                        331.0,
-                                        420.0,
-                                        59.0,
-                                        23.0
-                                    ],
-                                    "text": "fl.round~"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-33",
-                                    "maxclass": "newobj",
-                                    "numinlets": 2,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        ""
-                                    ],
-                                    "patching_rect": [
-                                        331.0,
-                                        450.0,
-                                        130.0,
-                                        23.0
-                                    ],
-                                    "text": "fl.map~ linear 0 1 0 5"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-32",
-                                    "maxclass": "newobj",
-                                    "numinlets": 2,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        ""
-                                    ],
-                                    "patching_rect": [
-                                        300.0,
-                                        480.0,
-                                        50.0,
-                                        23.0
-                                    ],
-                                    "text": "fl.plus~"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-28",
-                                    "maxclass": "newobj",
-                                    "numinlets": 2,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        ""
-                                    ],
-                                    "patching_rect": [
-                                        331.0,
-                                        390.0,
-                                        70.0,
-                                        23.0
-                                    ],
-                                    "text": "fl.random~"
-                                }
-                            },
-                            {
-                                "box": {
                                     "id": "obj-9",
-                                    "linecount": 6,
+                                    "linecount": 7,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        105.0,
-                                        435.0,
-                                        94.0
+                                        90.0,
+                                        540.0,
+                                        108.0
                                     ],
-                                    "text": "In some situations synchronising the storage and recall of values at a single point in time needs to be ordered to ensure that processing occurs correctly. This situation might arise if you are storing a value and performing some number crunching in between retrieving the value. You can use the ordering input and output between pairs of objects to guarantee a specific order of execution."
+                                    "text": "Synchronising the storage and recall of values is important to make sure that values are stored and recalled in the correct order.\n\nIf there's a direct path from pairs of object then FrameLib will handle the ordering for you. If not (as on the previous tab), you can use the ordering input and output between pairs of objects to guarantee a specific order of execution. If in doubt, be explicit and make the ordering connections."
                                 }
                             },
                             {
@@ -450,13 +560,13 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         15.0,
-                                        600.0,
-                                        233.0,
-                                        45.0
+                                        585.0,
+                                        270.0,
+                                        60.0
                                     ],
                                     "setminmax": [
                                         0.0,
-                                        6.0
+                                        5.0
                                     ],
                                     "size": 50
                                 }
@@ -514,35 +624,11 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        300.0,
+                                        420.0,
                                         88.0,
                                         23.0
                                     ],
                                     "text": "fl.store~ perth"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "color": [
-                                        0.996078431372549,
-                                        0.2,
-                                        0.2,
-                                        1.0
-                                    ],
-                                    "id": "obj-1",
-                                    "maxclass": "newobj",
-                                    "numinlets": 2,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        ""
-                                    ],
-                                    "patching_rect": [
-                                        15.0,
-                                        345.0,
-                                        91.0,
-                                        23.0
-                                    ],
-                                    "text": "fl.recall~ perth"
                                 }
                             },
                             {
@@ -574,18 +660,17 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-28",
-                                        0
+                                        "obj-17",
+                                        1
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        384.0,
-                                        340.5,
-                                        384.0
+                                        266.0,
+                                        318.5,
+                                        178.0,
+                                        318.5
                                     ],
-                                    "order": 0,
                                     "source": [
-                                        "obj-1",
+                                        "obj-10",
                                         0
                                     ]
                                 }
@@ -593,18 +678,11 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-32",
+                                        "obj-17",
                                         0
                                     ],
-                                    "midpoints": [
-                                        24.5,
-                                        405.0,
-                                        309.5,
-                                        405.0
-                                    ],
-                                    "order": 1,
                                     "source": [
-                                        "obj-1",
+                                        "obj-12",
                                         0
                                     ]
                                 }
@@ -612,8 +690,90 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-1",
+                                        "obj-14",
                                         0
+                                    ],
+                                    "source": [
+                                        "obj-13",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-16",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-14",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "color": [
+                                        0.0,
+                                        0.871366560459137,
+                                        0.0,
+                                        1.0
+                                    ],
+                                    "destination": [
+                                        "obj-12",
+                                        1
+                                    ],
+                                    "midpoints": [
+                                        444.5,
+                                        333.0,
+                                        412.75,
+                                        333.0,
+                                        412.75,
+                                        233.0,
+                                        238.0,
+                                        233.0
+                                    ],
+                                    "source": [
+                                        "obj-16",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-22",
+                                        1
+                                    ],
+                                    "midpoints": [
+                                        166.0,
+                                        363.5,
+                                        39.5,
+                                        363.5
+                                    ],
+                                    "source": [
+                                        "obj-17",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "color": [
+                                        0.0,
+                                        0.871366560459137,
+                                        0.0,
+                                        1.0
+                                    ],
+                                    "destination": [
+                                        "obj-36",
+                                        1
+                                    ],
+                                    "midpoints": [
+                                        24.5,
+                                        454.0,
+                                        165.5,
+                                        454.0
                                     ],
                                     "source": [
                                         "obj-2",
@@ -624,59 +784,11 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-34",
+                                        "obj-2",
                                         0
                                     ],
                                     "source": [
-                                        "obj-28",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-35",
-                                        0
-                                    ],
-                                    "source": [
-                                        "obj-32",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-32",
-                                        1
-                                    ],
-                                    "source": [
-                                        "obj-33",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-33",
-                                        0
-                                    ],
-                                    "source": [
-                                        "obj-34",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-36",
-                                        1
-                                    ],
-                                    "source": [
-                                        "obj-35",
+                                        "obj-22",
                                         0
                                     ]
                                 }
@@ -699,8 +811,47 @@
                                         "obj-11",
                                         0
                                     ],
+                                    "order": 1,
                                     "source": [
                                         "obj-37",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-19",
+                                        0
+                                    ],
+                                    "midpoints": [
+                                        24.5,
+                                        573.5,
+                                        319.5,
+                                        573.5
+                                    ],
+                                    "order": 0,
+                                    "source": [
+                                        "obj-37",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-12",
+                                        0
+                                    ],
+                                    "midpoints": [
+                                        24.5,
+                                        243.5,
+                                        166.0,
+                                        243.5
+                                    ],
+                                    "order": 1,
+                                    "source": [
+                                        "obj-5",
                                         0
                                     ]
                                 }
@@ -711,6 +862,26 @@
                                         "obj-6",
                                         0
                                     ],
+                                    "order": 2,
+                                    "source": [
+                                        "obj-5",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-8",
+                                        0
+                                    ],
+                                    "midpoints": [
+                                        24.5,
+                                        243.5,
+                                        266.0,
+                                        243.5
+                                    ],
+                                    "order": 0,
                                     "source": [
                                         "obj-5",
                                         0
@@ -732,11 +903,23 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-2",
+                                        "obj-22",
                                         0
                                     ],
                                     "source": [
                                         "obj-6",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-10",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-8",
                                         0
                                     ]
                                 }
@@ -770,7 +953,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -811,6 +994,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -840,7 +1024,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -881,37 +1065,53 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
                             {
                                 "box": {
+                                    "id": "obj-4",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        630.0,
+                                        550.0,
+                                        21.0
+                                    ],
+                                    "text": "Store and recall pairs are useful for allowing feedback between frames in a FrameLib network."
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-17",
-                                    "linecount": 5,
+                                    "linecount": 6,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         330.0,
-                                        440.5,
-                                        225.0,
-                                        79.0
+                                        420.5,
+                                        246.0,
+                                        94.0
                                     ],
-                                    "text": "Recall the number stored in 'nyc' every 1000ms. Note, the scheduler driving storage and recall are not synchronised and are decoupled from each other in timing."
+                                    "text": "Recall the number stored in 'nyc' once every 1000 ms. \n\nNote that the scheduler driving storage and recall are not synchronised and are decoupled from each other in timing."
                                 }
                             },
                             {
                                 "box": {
                                     "id": "obj-14",
-                                    "linecount": 4,
+                                    "linecount": 3,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         195.0,
-                                        157.5,
-                                        150.0,
-                                        65.0
+                                        137.5,
+                                        195.0,
+                                        50.0
                                     ],
-                                    "text": "Generate some random numbers very fast and store them in the fl.store~ named 'nyc'"
+                                    "text": "Generate some random numbers quite fast and store them in the fl.store~ named 'nyc'"
                                 }
                             },
                             {
@@ -922,8 +1122,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        525.0,
-                                        600.0,
+                                        510.0,
+                                        565.0,
                                         45.0,
                                         45.0
                                     ]
@@ -944,7 +1144,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         30.0,
-                                        480.0,
+                                        460.0,
                                         270.0,
                                         135.0
                                     ],
@@ -966,7 +1166,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        435.0,
+                                        415.0,
                                         62.0,
                                         23.0
                                     ],
@@ -984,7 +1184,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        345.0,
+                                        325.0,
                                         122.0,
                                         23.0
                                     ],
@@ -1002,7 +1202,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        180.0,
+                                        160.0,
                                         131.0,
                                         23.0
                                     ],
@@ -1020,7 +1220,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        120.0,
+                                        100.0,
                                         101.0,
                                         23.0
                                     ],
@@ -1038,7 +1238,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        240.0,
+                                        220.0,
                                         79.0,
                                         23.0
                                     ],
@@ -1047,6 +1247,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.439216,
+                                        0.74902,
+                                        0.254902,
+                                        1.0
+                                    ],
                                     "id": "obj-1",
                                     "maxclass": "newobj",
                                     "numinlets": 2,
@@ -1056,8 +1262,8 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        390.0,
-                                        81.0,
+                                        370.0,
+                                        165.0,
                                         23.0
                                     ],
                                     "text": "fl.recall~ nyc"
@@ -1099,9 +1305,9 @@
                                     ],
                                     "border": 2,
                                     "bordercolor": [
-                                        0.0,
-                                        0.0,
-                                        0.0,
+                                        0.952941,
+                                        0.564706,
+                                        0.098039,
                                         1.0
                                     ],
                                     "id": "obj-16",
@@ -1111,7 +1317,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        330.0,
+                                        310.0,
                                         300.0,
                                         300.0
                                     ],
@@ -1130,9 +1336,9 @@
                                     ],
                                     "border": 2,
                                     "bordercolor": [
-                                        0.0,
-                                        0.0,
-                                        0.0,
+                                        0.92549,
+                                        0.364706,
+                                        0.341176,
                                         1.0
                                     ],
                                     "id": "obj-15",
@@ -1142,7 +1348,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        110.0,
+                                        90.0,
                                         165.0,
                                         160.0
                                     ],
@@ -1159,6 +1365,24 @@
                                     ],
                                     "source": [
                                         "obj-1",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-1",
+                                        1
+                                    ],
+                                    "midpoints": [
+                                        39.5,
+                                        280.0,
+                                        185.5,
+                                        280.0
+                                    ],
+                                    "source": [
+                                        "obj-2",
                                         0
                                     ]
                                 }

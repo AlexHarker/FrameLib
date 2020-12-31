@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,6 +147,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-43",
@@ -152,7 +155,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 225.0, 195.0, 75.0, 23.0 ],
+									"patching_rect" : [ 225.0, 165.0, 75.0, 23.0 ],
 									"text" : "loadmess 0"
 								}
 
@@ -164,7 +167,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 87.0, 23.0 ],
+									"patching_rect" : [ 15.0, 165.0, 87.0, 23.0 ],
 									"text" : "loadmess -12"
 								}
 
@@ -177,7 +180,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 332.875, 345.0, 29.75, 16.5 ]
+									"patching_rect" : [ 332.875, 315.0, 29.75, 16.5 ]
 								}
 
 							}
@@ -187,7 +190,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 362.625, 341.75, 103.0, 21.0 ],
+									"patching_rect" : [ 362.625, 311.75, 103.0, 21.0 ],
 									"text" : "Conversion type"
 								}
 
@@ -200,7 +203,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 67.0, 244.25, 29.75, 16.5 ]
+									"patching_rect" : [ 69.0, 214.25, 29.75, 14.5 ]
 								}
 
 							}
@@ -210,7 +213,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 96.75, 241.0, 103.0, 21.0 ],
+									"patching_rect" : [ 102.75, 211.0, 103.0, 21.0 ],
 									"text" : "Value to convert"
 								}
 
@@ -222,7 +225,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 225.0, 480.0, 59.0, 23.0 ],
+									"patching_rect" : [ 266.25, 450.0, 59.0, 23.0 ],
 									"text" : "mode $1"
 								}
 
@@ -236,7 +239,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 240.0, 50.0, 23.0 ]
+									"patching_rect" : [ 15.0, 210.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -250,17 +253,17 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 225.0, 241.0, 100.25, 225.0 ],
+									"patching_rect" : [ 225.0, 211.0, 100.25, 225.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 15.0, 15.0, 105.0, 255.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_enum" : [ "db->amp", "amp->db", "midi->freq", "freq->midi", "semitones->ratios", "ratios->semitones", "degrees->radians", "radians->degrees" ],
 											"parameter_longname" : "live.tab",
 											"parameter_mmax" : 7,
 											"parameter_shortname" : "live.tab",
-											"parameter_enum" : [ "db->amp", "amp->db", "midi->freq", "freq->midi", "semitones->ratios", "ratios->semitones", "degrees->radians", "radians->degrees" ],
 											"parameter_type" : 2,
-											"parameter_unitstyle" : 0
+											"parameter_unitstyle" : 9
 										}
 
 									}
@@ -271,14 +274,14 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato",
+									"fontname" : "Arial",
 									"id" : "obj-8",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 92.0, 606.0, 53.0 ],
-									"text" : "fl.convert~ is the primary tool for converting between various units that aren't related to the samplerate. This includes conversion between amplitude and decibels, midi and frequency, semitones and ratios and degrees and radians."
+									"patching_rect" : [ 15.0, 92.0, 605.0, 50.0 ],
+									"text" : "fl.convert~ is the primary tool for converting between common units that don't relate to the sample rate. This includes conversion between amplitude and decibels, midi and frequency, semitones and ratios and degrees and radians."
 								}
 
 							}
@@ -289,7 +292,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 585.0, 705.0, 45.0, 45.0 ]
+									"patching_rect" : [ 540.0, 615.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -303,7 +306,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 675.0, 120.0, 23.0 ]
+									"patching_rect" : [ 15.0, 645.0, 105.0, 23.0 ]
 								}
 
 							}
@@ -314,7 +317,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 540.0, 77.0, 23.0 ],
+									"patching_rect" : [ 15.0, 510.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -326,7 +329,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 310.25, 480.0, 75.0, 23.0 ],
+									"patching_rect" : [ 351.5, 450.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -338,7 +341,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 225.0, 540.0, 124.0, 23.0 ],
+									"patching_rect" : [ 266.25, 510.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -350,7 +353,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 585.0, 229.0, 23.0 ],
+									"patching_rect" : [ 15.0, 555.0, 270.25, 23.0 ],
 									"text" : "fl.convert~"
 								}
 
@@ -362,7 +365,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 630.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 600.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -375,7 +378,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 137.0, 680.5, 49.75, 12.0 ]
+									"patching_rect" : [ 126.0, 649.5, 49.75, 12.0 ]
 								}
 
 							}
@@ -385,7 +388,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 188.75, 676.0, 103.0, 21.0 ],
+									"patching_rect" : [ 179.75, 647.0, 103.0, 21.0 ],
 									"text" : "Converted value"
 								}
 
@@ -416,8 +419,9 @@
 							}
 , 							{
 								"patchline" : 								{
+									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-15", 0 ],
-									"midpoints" : [ 319.75, 525.0, 234.5, 525.0 ],
+									"midpoints" : [ 361.0, 495.0, 275.75, 495.0 ],
 									"order" : 0,
 									"source" : [ "obj-17", 0 ]
 								}
@@ -425,8 +429,9 @@
 							}
 , 							{
 								"patchline" : 								{
+									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-22", 0 ],
-									"midpoints" : [ 319.75, 525.0, 24.5, 525.0 ],
+									"midpoints" : [ 361.0, 495.0, 24.5, 495.0 ],
 									"order" : 1,
 									"source" : [ "obj-17", 0 ]
 								}
@@ -449,7 +454,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-20", 0 ],
-									"midpoints" : [ 24.5, 633.5, 24.5, 633.5 ],
+									"midpoints" : [ 24.5, 603.5, 24.5, 603.5 ],
 									"source" : [ "obj-31", 0 ]
 								}
 
@@ -457,14 +462,14 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-36", 0 ],
-									"source" : [ "obj-32", 0 ]
+									"source" : [ "obj-32", 1 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-22", 0 ],
-									"midpoints" : [ 24.5, 504.0, 24.5, 504.0 ],
+									"midpoints" : [ 24.5, 474.0, 24.5, 474.0 ],
 									"source" : [ "obj-34", 0 ]
 								}
 
@@ -472,7 +477,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
-									"midpoints" : [ 234.5, 504.0, 234.5, 504.0 ],
+									"midpoints" : [ 275.75, 474.0, 275.75, 474.0 ],
 									"source" : [ "obj-36", 0 ]
 								}
 
@@ -504,8 +509,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -543,12 +548,13 @@
 			"parameterbanks" : 			{
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1

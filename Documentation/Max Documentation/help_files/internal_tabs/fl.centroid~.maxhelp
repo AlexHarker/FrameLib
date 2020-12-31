@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,6 +147,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-6",
@@ -152,8 +155,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 376.716766357421875, 495.0, 151.0, 50.0 ],
-									"text" : "The centroid is the point at which the 'centre of mass' is accumulated."
+									"patching_rect" : [ 71.541748046875, 520.0, 555.0, 50.0 ],
+									"text" : "The centroid is the point at which the 'centre of mass' in the frame is accumulated.\n\nThis could be applied to the magnitudes of an FFT to look at the spectral centroid of a sound."
 								}
 
 							}
@@ -164,7 +167,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 14.0, 495.0, 45.0, 45.0 ]
+									"patching_rect" : [ 14.0, 520.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -234,12 +237,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-63",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 14.0, 392.13336181640625, 260.0, 90.0 ],
+									"patching_rect" : [ 15.0, 392.13336181640625, 260.0, 90.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 1024
 								}
@@ -252,7 +256,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 14.0, 360.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 360.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -288,7 +292,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 14.0, 319.5, 50.0, 23.0 ],
+									"patching_rect" : [ 15.0, 319.5, 50.0, 23.0 ],
 									"text" : "fl.shift~"
 								}
 
@@ -335,8 +339,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 375.716766357421875, 460.13336181640625, 71.0, 21.0 ],
-									"text" : "Centroid"
+									"patching_rect" : [ 375.716766357421875, 460.13336181640625, 161.0, 21.0 ],
+									"text" : "Centroid (in frame indices)"
 								}
 
 							}
@@ -442,7 +446,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-29", 0 ],
-									"midpoints" : [ 23.5, 352.0, 289.966766357421875, 352.0 ],
+									"midpoints" : [ 24.5, 352.0, 289.966766357421875, 352.0 ],
 									"order" : 0,
 									"source" : [ "obj-37", 0 ]
 								}
@@ -507,8 +511,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -543,7 +547,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1

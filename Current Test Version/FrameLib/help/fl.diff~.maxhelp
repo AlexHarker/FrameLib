@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,7 +333,59 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "arrows": 1,
+                                    "border": 4.0,
+                                    "id": "obj-6",
+                                    "maxclass": "live.line",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        113.0,
+                                        304.0,
+                                        60.25,
+                                        15.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-25",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        178.25,
+                                        302.0,
+                                        324.0,
+                                        21.0
+                                    ],
+                                    "presentation_linecount": 3,
+                                    "text": "The absolute differences between the two input frames"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "hidden": 1,
+                                    "id": "obj-5",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        15.0,
+                                        330.0,
+                                        85.0,
+                                        23.0
+                                    ],
+                                    "text": "loadmess set"
+                                }
+                            },
                             {
                                 "box": {
                                     "id": "obj-4",
@@ -343,12 +396,12 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        120.0,
                                         165.0,
-                                        102.0,
+                                        165.0,
+                                        145.0,
                                         23.0
                                     ],
-                                    "text": "fl.register~ 1 3 5"
+                                    "text": "fl.register~ 1 3 5 103.45"
                                 }
                             },
                             {
@@ -363,10 +416,10 @@
                                     "patching_rect": [
                                         15.0,
                                         165.0,
-                                        102.0,
+                                        140.0,
                                         23.0
                                     ],
-                                    "text": "fl.register~ 1 2 3"
+                                    "text": "fl.register~ 1 2 -8 -0.45"
                                 }
                             },
                             {
@@ -377,7 +430,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        345.0,
+                                        360.0,
                                         45.0,
                                         45.0
                                     ]
@@ -395,10 +448,10 @@
                                     "patching_rect": [
                                         15.0,
                                         300.0,
-                                        55.0,
+                                        92.0,
                                         23.0
                                     ],
-                                    "text": "0. 1. 2."
+                                    "text": "0. 1. 13. 103.9"
                                 }
                             },
                             {
@@ -449,7 +502,7 @@
                                     "patching_rect": [
                                         15.0,
                                         210.0,
-                                        124.0,
+                                        169.0,
                                         23.0
                                     ],
                                     "text": "fl.diff~"
@@ -490,7 +543,7 @@
                                     "midpoints": [
                                         24.5,
                                         288.0,
-                                        60.5,
+                                        97.5,
                                         288.0
                                     ],
                                     "source": [
@@ -527,7 +580,7 @@
                                     "midpoints": [
                                         24.5,
                                         146.0,
-                                        129.5,
+                                        174.5,
                                         146.0
                                     ],
                                     "order": 0,
@@ -572,6 +625,19 @@
                                         0
                                     ]
                                 }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-22",
+                                        0
+                                    ],
+                                    "hidden": 1,
+                                    "source": [
+                                        "obj-5",
+                                        0
+                                    ]
+                                }
                             }
                         ],
                         "styles": [
@@ -591,14 +657,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
