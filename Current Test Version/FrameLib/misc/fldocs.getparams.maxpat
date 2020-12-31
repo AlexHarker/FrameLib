@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 5,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 113.0, 64.0, 346.0, 608.0 ],
+		"rect" : [ 113.0, 79.0, 475.0, 608.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -54,11 +54,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-2",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "bang" ],
 					"patching_rect" : [ 29.0, 15.0, 30.0, 30.0 ]
 				}
 
@@ -80,16 +80,15 @@
 					"fontname" : "Lato Regular",
 					"fontsize" : 13.0,
 					"id" : "obj-127",
-					"items" : [ "This object has no parameters.", ",", "This object has no parameters." ],
+					"items" : [ "1. /expression [instantiation string]", ",", "2. /mismatch [instantiation enum]", ",", "3. /trigger_ins [instantiation variable length bool array]" ],
 					"maxclass" : "umenu",
-					"menumode" : 2,
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "", "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 29.0, 172.000000000000028, 203.0, 24.0 ],
+					"patching_rect" : [ 29.0, 172.000000000000028, 344.0, 24.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 4.0, 31.000000000000028, 221.0, 24.0 ]
+					"presentation_rect" : [ 4.0, 31.000000000000028, 344.0, 24.0 ]
 				}
 
 			}
@@ -126,13 +125,14 @@
 					"fontname" : "Lato Regular",
 					"fontsize" : 13.0,
 					"id" : "obj-91",
+					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 112.0, 247.333333333333343, 191.0, 22.0 ],
+					"patching_rect" : [ 112.0, 247.333333333333343, 191.0, 38.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 4.0, 83.0, 616.0, 22.0 ],
-					"text" : "This object has no parameters."
+					"text" : "Sets which inputs trigger output using an array of bools."
 				}
 
 			}
@@ -255,7 +255,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -337,7 +337,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 1,
-											"revision" : 5,
+											"revision" : 8,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1081,16 +1081,7 @@
 				}
 
 			}
- ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.getname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : ".",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
- ],
-		"autosave" : 0
+ ]
 	}
 
 }
