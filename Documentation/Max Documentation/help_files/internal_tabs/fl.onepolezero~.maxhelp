@@ -771,7 +771,7 @@
 						"tags" : ""
 					}
 ,
-					"text" : "p \"Multi-output Mode\""
+					"text" : "p \"multi-output mode\""
 				}
 
 			}
@@ -1282,7 +1282,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 109.0, 30.0, 107.0, 22.0 ],
+					"patching_rect" : [ 109.0, 30.0, 105.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1291,7 +1291,7 @@
 						"tags" : ""
 					}
 ,
-					"text" : "p \"Dynamic Mode\""
+					"text" : "p \"dynamic mode\""
 				}
 
 			}
@@ -1741,7 +1741,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "bang" ],
-									"patching_rect" : [ 15.0, 163.0, 221.0, 23.0 ],
+									"patching_rect" : [ 15.0, 165.0, 221.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"basictuning" : 440,
 										"followglobaltempo" : 0,

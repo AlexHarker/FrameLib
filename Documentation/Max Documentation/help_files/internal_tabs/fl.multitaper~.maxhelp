@@ -168,7 +168,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 450.5, 603.5, 195.0, 36.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Observe the multitaper spectral estimate (in dB) here"
 								}
 
@@ -181,7 +180,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 94.0, 690.0, 532.0, 36.0 ],
-									"presentation_linecount" : 6,
 									"text" : "Increasing the number of tapers will result in a smoother less noisy spectrum (although the analysis is only on a single frame)."
 								}
 
@@ -265,7 +263,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 631.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 630.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -324,7 +322,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 428.5, 283.0, 36.0 ],
+									"patching_rect" : [ 270.0, 428.5, 285.0, 36.0 ],
 									"text" : "The first argument sets max_length which must at least as large as any input (default is 16834)"
 								}
 
@@ -367,6 +365,7 @@
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.317647, 0.654902, 0.976471, 1.0 ],
 									"id" : "obj-8",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
@@ -429,7 +428,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-38", 1 ],
-									"midpoints" : [ 24.5, 359.0, 50.5, 359.0 ],
+									"midpoints" : [ 24.5, 612.0, 50.5, 612.0 ],
 									"order" : 1,
 									"source" : [ "obj-14", 0 ]
 								}
