@@ -24,8 +24,11 @@ def main():
     parser.add_argument("-o", "--output", help="Provide a custom output for compile")
     args = parser.parse_args()
 
+
     if args.output:
         docs.set_current_location(args.output)
+
+    tmp.main(docs)
 
     sign_off()
     space()
