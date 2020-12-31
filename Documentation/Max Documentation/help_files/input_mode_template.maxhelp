@@ -287,7 +287,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 90.0, 615.0, 69.0 ],
+									"patching_rect" : [ 15.0, 77.0, 617.0, 69.0 ],
 									"text" : "Some FrameLib objects can adapt to the size of the input frames they receive. This is useful if you need the size of new downstream frames to match their inputs without explicitly setting the sizes or using copious amounts of fl.length~. Try modifying the length of the initial frame and seeing how the downstream FrameLib objects respond."
 								}
 
