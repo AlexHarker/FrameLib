@@ -5,14 +5,7 @@ from FrameLibDocs.utils import (
     read_yaml,
     strip_extension,
 )
-from FrameLibDocs.variables import (
-    raw_xml_dir,
-    refpages_dir,
-    category_database_path,
-    max_docs_dir,
-    object_relationships_path,
-    temporary_dir,
-)
+from FrameLibDocs.classes import Documentation
 
 
 def indent(elem, level=0):
@@ -35,15 +28,15 @@ def indent(elem, level=0):
             elem.tail = i
 
 
-def main():
+def main(docs):
     """
     The purpose of this script is to set the categories for the Raw_XML files.
     C++ doesnt know about the categories and its easier for me to iterate file structures in Python.
     It also copies the xml files to the refpages directory after they're processed.
     """
 
-    object_info = read_yaml(object_relationships_path)
-    category_database = read_json(category_database_path)
+    object_info = read_yaml(docs.object_relationships_path)
+    category_database = read_json(docs.category_database_path)
 
     # Get category of file
     def find_object_category(obj_string: str) -> str:
@@ -57,9 +50,9 @@ def main():
                 if obj == obj_string:
                     return key
 
-    raw_xml_list = [x for x in raw_xml_dir.rglob("fl.*.xml")]
+    raw_xml_list = [x for x in docs.raw_xml_dir.rglob("fl.*.xml")]
     print(f"Found {len(raw_xml_list)} .xml files to process.")
-    refpages_dir.mkdir(exist_ok=True)
+    docs.refpages_dir.mkdir(exist_ok=True)
 
     for raw_xml in raw_xml_list:
         obj_name = strip_extension(raw_xml.name, 2)  # just get the file name
@@ -103,17 +96,17 @@ def main():
         # Pretty Print
         indent(root)
 
-        # # Write out
-        xml_second_pass = temporary_dir / "raw_xml_2"
+        # Write out
+        xml_second_pass = docs.temporary_dir / "raw_xml_2"
         xml_second_pass.mkdir(exist_ok=True)
 
         unescaped_file = xml_second_pass / raw_xml.name
         tree.write(unescaped_file)
 
-        refpages_dir.mkdir(exist_ok=True)
-        refpages_parent = refpages_dir / category
+        docs.refpages_dir.mkdir(exist_ok=True)
+        refpages_parent = docs.refpages_dir / category
         refpages_parent.mkdir(exist_ok=True)
-        final_path = refpages_dir / category / raw_xml.name
+        final_path = docs.refpages_dir / category / raw_xml.name
         final_file = open(final_path, "w+")
         with open(unescaped_file, "r") as f:
             xml = f.read()
@@ -124,4 +117,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(Documentation())

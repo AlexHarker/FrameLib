@@ -1,12 +1,11 @@
 from FrameLibDocs.utils import read_json, write_json
-from FrameLibDocs.variables import help_dir, current_version
+from FrameLibDocs.classes import Documentation
 
-
-def main():
-    template_dir = help_dir / "templates"
-    internal_dir = help_dir / "internal_tabs"
-    external_dir = current_version / "FrameLib" / "externals"
-    master_template = help_dir / "help_template.maxhelp"
+def main(docs: Documentation):
+    template_dir = docs.help_dir / "templates"
+    internal_dir = docs.help_dir / "internal_tabs"
+    external_dir = docs.current_version / "FrameLib" / "externals"
+    master_template = docs.help_dir / "help_template.maxhelp"
 
     templates = [x for x in template_dir.rglob("fl.*.maxhelp")]
     for t in templates:
@@ -23,4 +22,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(Documentation())
