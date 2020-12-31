@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,23 +333,22 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
                             {
                                 "box": {
+                                    "fontsize": 20.0,
                                     "id": "obj-4",
-                                    "maxclass": "newobj",
+                                    "maxclass": "comment",
                                     "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        ""
-                                    ],
+                                    "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
                                         105.0,
-                                        108.0,
-                                        23.0
+                                        416.0,
+                                        29.0
                                     ],
-                                    "text": "fl.interval~ 44100"
+                                    "text": "Object is still under review - helpfile to follow..."
                                 }
                             },
                             {
