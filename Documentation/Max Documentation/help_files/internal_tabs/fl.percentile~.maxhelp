@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-2",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,6 +85,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -111,7 +113,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -145,13 +147,28 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-5",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 92.0, 510.0, 50.0 ],
+									"presentation_linecount" : 9,
+									"text" : "The fl.percentile~ object calculates a specified percentile of the input frame. This can be useful for understanding statistical features such as the median or for discarding outliers such as in robust scaling."
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-1",
+									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 330.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 390.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -161,8 +178,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 273.25, 151.5, 195.0, 21.0 ],
-									"text" : "100 discrete values from 0 to 1"
+									"patching_rect" : [ 171.375, 211.5, 195.0, 21.0 ],
+									"text" : "Count from 0 to 99"
 								}
 
 							}
@@ -174,7 +191,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 246.0, 154.5, 25.25, 14.0 ]
+									"patching_rect" : [ 144.125, 214.5, 25.25, 14.0 ]
 								}
 
 							}
@@ -187,7 +204,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 285.0, 50.0, 23.0 ]
+									"patching_rect" : [ 15.0, 345.0, 75.0, 23.0 ]
 								}
 
 							}
@@ -197,7 +214,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 144.125, 196.5, 170.0, 21.0 ],
+									"patching_rect" : [ 144.125, 256.5, 170.0, 21.0 ],
 									"text" : "What is the 10th percentile?"
 								}
 
@@ -209,8 +226,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 229.0, 23.0 ],
-									"text" : "fl.ramp~ /length 100 /scale normalised"
+									"patching_rect" : [ 15.0, 210.0, 124.0, 23.0 ],
+									"text" : "fl.ramp~ /length 100"
 								}
 
 							}
@@ -221,7 +238,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 75.0, 23.0 ],
+									"patching_rect" : [ 15.0, 165.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -233,7 +250,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 101.0, 23.0 ],
+									"patching_rect" : [ 15.0, 255.0, 101.0, 23.0 ],
 									"text" : "fl.percentile~ 10"
 								}
 
@@ -245,7 +262,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 240.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 300.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -258,7 +275,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 116.875, 199.5, 25.25, 14.0 ]
+									"patching_rect" : [ 116.875, 259.5, 25.25, 14.0 ]
 								}
 
 							}
