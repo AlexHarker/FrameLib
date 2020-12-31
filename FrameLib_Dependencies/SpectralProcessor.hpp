@@ -483,9 +483,12 @@ protected:
 
     uintptr_t calc_conv_corr_size(uintptr_t size1, uintptr_t size2, EdgeMode mode) const
     {
+        if (!size1 || !size2)
+            return 0;
+        
         op_sizes sizes(size1, size2, mode);
         
-        if ((sizes.fft() > max_fft_size()) || !size1 || !size2)
+        if ((sizes.fft() > max_fft_size()))
             return 0;
         
         return mode != kEdgeLinear ? sizes.max() : sizes.linear();
