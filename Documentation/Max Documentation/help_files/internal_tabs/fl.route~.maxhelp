@@ -150,6 +150,17 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-2",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 360.0, 317.0, 226.0, 21.0 ],
+									"text" : "Argument sets the number of outputs."
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"arrows" : 1,
 									"border" : 4.0,
 									"id" : "obj-23",
@@ -230,7 +241,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 540.0, 630.0, 45.0, 45.0 ]
+									"patching_rect" : [ 541.0, 623.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -276,8 +287,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 90.0, 75.0, 23.0 ],
-									"text" : "fl.perblock~"
+									"patching_rect" : [ 30.0, 90.0, 101.0, 23.0 ],
+									"text" : "fl.interval~ 1024"
 								}
 
 							}
@@ -637,11 +648,11 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.perblock~.mxo",
+				"name" : "fl.interval~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.perblock~.mxo",
+				"name" : "fl.interval~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
