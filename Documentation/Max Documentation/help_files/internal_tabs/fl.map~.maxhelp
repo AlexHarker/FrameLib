@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 653.0, 762.0 ],
+						"rect" : [ 0.0, 26.0, 653.0, 762.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -245,6 +245,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-36",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
@@ -271,6 +272,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-34",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
@@ -298,13 +300,14 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-30",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 456.5, 345.0, 140.0, 75.0 ],
-									"setminmax" : [ 0.0, 1000.0 ],
+									"setminmax" : [ 0.0, 100.0 ],
 									"size" : 200
 								}
 
@@ -372,6 +375,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-23",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
@@ -422,6 +426,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-11",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
@@ -448,6 +453,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-6",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
@@ -834,7 +840,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 653.0, 762.0 ],
+						"rect" : [ 34.0, 105.0, 653.0, 762.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1332,7 +1338,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 90.0, 698.0, 21.0 ],
+									"patching_rect" : [ 15.0, 90.0, 541.0, 21.0 ],
 									"text" : "fl.map~ is your go to object for mapping one range of numbers onto another. Try it out below."
 								}
 
