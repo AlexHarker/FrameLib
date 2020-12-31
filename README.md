@@ -3,15 +3,15 @@ FrameLib
 
 A DSP framework for arbitrary size frame processing with arbitrary sub-sample accurate timing.
 * Frame timing and length can vary freely across networks and over time.
-* Memory allocation is handled by the framework. 
-* FrameLib supports multi-threaded processing in real-time or non real-time. 
+* Memory allocation is handled by the framework.
+* FrameLib supports multi-threaded processing in real-time or non real-time.
 * FrameLib can be compiled and bound to any environment that processes (or can process) audio in blocks.
 * FrameLib can be easily extended.
 
 FrameLib might be useful for:
 ---------------------------------
-- Granular or spectral processing applications or more generally for multirate processing 
-- Working in cycling 74's Max with advanced spectral or multirate processing 
+- Granular or spectral processing applications or more generally for multirate processing
+- Working in cycling 74's Max with advanced spectral or multirate processing
 - Prototyping or rapid development of frame-based DSP chains
 
 FrameLib currently consists of:
@@ -23,10 +23,10 @@ FrameLib currently consists of:
 
 Where to start:
 ---------------------------------
-- To get the Max package [coming soon]:
+- To get the Max package: https://github.com/AlexHarker/FrameLib/releases/tag/v.1.0-beta
 - To compile FrameLib clone this repo and start in the XCode project or VS solution
-- If you wish to code new objects read the (limited) doxygen documentation of the framework source code 
-- FrameLib can be discussed at https://framelib.discourse.group 
+- If you wish to code new objects read the (limited) doxygen documentation of the framework source code
+- FrameLib can be discussed at https://framelib.discourse.group
 
 What is currently on the horizon:
 ---------------------------------
