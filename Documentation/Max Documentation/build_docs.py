@@ -12,18 +12,21 @@ merge = __import__("11_merge_help")
 mt = __import__("12_mt")
 
 from FrameLibDocs.utils import sign_off, space, hyp
+from FrameLibDocs.classes import Documentation
 import argparse
 
 
 def main():
+    docs = Documentation()
     parser = argparse.ArgumentParser(description="Build Documentation for FrameLib")
     parser.add_argument("-hf", "--helpfiles", default=True, action='store_false', help="Toggle to build help files")
     parser.add_argument("-c", "--clean", default=True, action='store_false', help="Toggle for post-cleanup")
+    parser.add_argument("-o", "--output", help="Provide a custom output for compile")
     args = parser.parse_args()
 
-    tmp.main()
+    if args.output:
+        docs.set_current_location(args.output)
 
-    print(args.clean)
     sign_off()
     space()
 
