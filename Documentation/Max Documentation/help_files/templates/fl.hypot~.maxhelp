@@ -1786,7 +1786,7 @@
                             },
                             {
                                 "box": {
-                                    "fontname": "Lato",
+                                    "fontname": "Arial",
                                     "id": "obj-2",
                                     "linecount": 6,
                                     "maxclass": "comment",
@@ -1795,8 +1795,8 @@
                                     "patching_rect": [
                                         15.0,
                                         92.0,
-                                        617.0,
-                                        100.0
+                                        615.0,
+                                        94.0
                                     ],
                                     "text": "Some FrameLib objects have a /trigger_ins parameter that will change which frame inputs (or pairs of inputs) trigger calculation. \n\nIn this example you can select which scheduler is driving the calculation of the multiplication (encapsulated in p \"trigger ins\"). You'll see the most difference when selecting between left and right, where the right selection will slow down the calculation to every 2 seconds."
                                 }
@@ -3095,7 +3095,7 @@
                             },
                             {
                                 "box": {
-                                    "fontname": "Lato",
+                                    "fontname": "Arial",
                                     "id": "obj-2",
                                     "linecount": 9,
                                     "maxclass": "comment",
@@ -3104,8 +3104,8 @@
                                     "patching_rect": [
                                         15.0,
                                         90.0,
-                                        615.0,
-                                        147.0
+                                        623.0,
+                                        137.0
                                     ],
                                     "text": "FrameLib objects have a configurable logic for dealing with scenarios where there is a mismatch between the lengths of different inputs (or pairs of inputs for objects dealing with complex numbers). If an object needs to deal with this problem it will possess a /mismatch parameter.\n\nThere are a number of modes for dealing with mismatched frame sizes and not all objects have the same (this will depend on whether they represent a binary or ternary operator, or something else).\n\nBelow is a generic demonstration of the four modes offered on all binary operators for mismatched inputs and the effect this has on the output."
                                 }

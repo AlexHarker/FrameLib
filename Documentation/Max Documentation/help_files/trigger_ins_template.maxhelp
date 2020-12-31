@@ -722,13 +722,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato",
+									"fontname" : "Arial",
 									"id" : "obj-2",
 									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 92.0, 617.0, 100.0 ],
+									"patching_rect" : [ 15.0, 92.0, 615.0, 94.0 ],
 									"text" : "Some FrameLib objects have a /trigger_ins parameter that will change which frame inputs (or pairs of inputs) trigger calculation. \n\nIn this example you can select which scheduler is driving the calculation of the multiplication (encapsulated in p \"trigger ins\"). You'll see the most difference when selecting between left and right, where the right selection will slow down the calculation to every 2 seconds."
 								}
 
@@ -901,7 +901,7 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
