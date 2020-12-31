@@ -46,6 +46,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_OnePoleZero.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_SVF.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Gaussian.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Generators\FrameLib_MakeWindow.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Ramp.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Random.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Uniform.h" />
@@ -139,6 +140,7 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Filters\FrameLib_OnePoleZero.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Filters\FrameLib_SVF.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Gaussian.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Generators\FrameLib_MakeWindow.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Ramp.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Random.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Uniform.cpp" />
