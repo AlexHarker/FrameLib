@@ -27,3 +27,6 @@ def main():
                 rmtree(files.resolve())
             except OSError:
                 print("Error cleaning out existing docs directories")
+
+if __name__ == "__main__":
+    main()
