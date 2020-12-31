@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 131.0, 652.0, 735.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -104,7 +104,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 405.0, 195.0, 139.0, 21.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Click to reset deviation"
 								}
 
@@ -228,13 +227,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato",
+									"fontname" : "Arial",
 									"fontsize" : 9.0,
 									"id" : "obj-21",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 473.5, 573.0, 105.0, 17.0 ],
+									"patching_rect" : [ 473.5, 573.0, 104.0, 17.0 ],
 									"text" : "Moving Deviation",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -254,13 +253,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato",
+									"fontname" : "Arial",
 									"fontsize" : 9.0,
 									"id" : "obj-20",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 211.0, 573.0, 72.0, 17.0 ],
+									"patching_rect" : [ 211.0, 573.0, 73.0, 17.0 ],
 									"text" : "Moving Average",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -268,13 +267,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato",
+									"fontname" : "Arial",
 									"fontsize" : 9.0,
 									"id" : "obj-19",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 575.0, 69.0, 17.0 ],
+									"patching_rect" : [ 15.0, 575.0, 72.0, 17.0 ],
 									"text" : "Gaussian Noise",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -516,8 +515,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -712,13 +711,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato",
+									"fontname" : "Arial",
 									"fontsize" : 9.0,
 									"id" : "obj-21",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 473.5, 663.0, 105.0, 17.0 ],
+									"patching_rect" : [ 473.5, 663.0, 104.0, 17.0 ],
 									"text" : "Moving Deviation",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -738,13 +737,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato",
+									"fontname" : "Arial",
 									"fontsize" : 9.0,
 									"id" : "obj-20",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 211.0, 663.0, 72.0, 17.0 ],
+									"patching_rect" : [ 211.0, 663.0, 73.0, 17.0 ],
 									"text" : "Moving Average",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -752,13 +751,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato",
+									"fontname" : "Arial",
 									"fontsize" : 9.0,
 									"id" : "obj-19",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 665.0, 69.0, 17.0 ],
+									"patching_rect" : [ 15.0, 665.0, 72.0, 17.0 ],
 									"text" : "Gaussian Noise",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -1101,8 +1100,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1150,7 +1149,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 735.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1212,7 +1211,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 735.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1322,13 +1321,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato",
+									"fontname" : "Arial",
 									"fontsize" : 9.0,
 									"id" : "obj-21",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 474.0, 618.0, 105.0, 17.0 ],
+									"patching_rect" : [ 474.0, 618.0, 104.0, 17.0 ],
 									"text" : "Moving Deviation",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -1348,13 +1347,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato",
+									"fontname" : "Arial",
 									"fontsize" : 9.0,
 									"id" : "obj-20",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 211.5, 618.0, 72.0, 17.0 ],
+									"patching_rect" : [ 211.5, 618.0, 73.0, 17.0 ],
 									"text" : "Moving Average",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -1362,13 +1361,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato",
+									"fontname" : "Arial",
 									"fontsize" : 9.0,
 									"id" : "obj-19",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.5, 620.0, 69.0, 17.0 ],
+									"patching_rect" : [ 15.5, 620.0, 72.0, 17.0 ],
 									"text" : "Gaussian Noise",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -1821,8 +1820,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
