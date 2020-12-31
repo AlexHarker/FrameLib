@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 8,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -39,6 +39,7 @@
 		"subpatcher_template" : "",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-3",
@@ -50,7 +51,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -84,7 +85,19 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 600.0, 705.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-32",
 									"maxclass" : "tab",
@@ -308,7 +321,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 147.0, 304.0, 253.0 ],
+									"patching_rect" : [ 330.0, 147.0, 307.0, 253.0 ],
 									"text" : "Because fl.source~ is 'collecting' the last n samples it has to wait for at least the number of samples specified by the /length parameter to have passed in time from the very beginning of when audio is started. This means it is always going to be delayed from its input and you may have to deal with this delay if you need tight synchronisation between FrameLib and other audio streams.\n\nIn the example to the left, a pink noise generator entering fl.source~ is converted to frames 1024 samples long every 1024 samples of time. The original source is delayed by 1024 samples and then subtracted from the output of fl.sink~. Because we have accounted for the delay in converting to frames with fl.source~ subtracting the two audio streams results in null summing."
 								}
 
@@ -471,8 +484,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -490,7 +503,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 330.0, 230.0, 47.0, 22.0 ],
+					"patching_rect" : [ 330.0, 230.0, 134.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -499,7 +512,7 @@
 						"tags" : ""
 					}
 ,
-					"text" : "p delay"
+					"text" : "p \"delay compensation\""
 				}
 
 			}
@@ -514,7 +527,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -548,6 +561,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [  ],
 						"lines" : [  ]
 					}
@@ -575,7 +589,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 1,
-							"revision" : 3,
+							"revision" : 8,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -609,7 +623,19 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"showontab" : 1,
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 600.0, 705.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"angle" : 270.0,
 									"bgcolor" : [ 0.2, 0.2, 0.2, 0.0 ],
@@ -809,7 +835,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 105.0, 646.0, 84.0 ],
+									"patching_rect" : [ 15.0, 105.0, 630.0, 84.0 ],
 									"text" : "The fl.source~ object is a fundamental member of the FrameLib library as it converts audio from Max into frames to be processed by other FrameLib objects. You might find it easier to conceive of the FrameLib object as a kind of small temporary buffer that retains a number of samples that it has most recently received, specified by the /length parameter. Whenever it receives a trigger frame in its second inlet it outputs the values it has stored and passes that frame along to wherever it goes next."
 								}
 
@@ -926,8 +952,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
