@@ -221,7 +221,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -262,6 +262,7 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [],
                         "lines": []
                     },
@@ -291,7 +292,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 1,
-                            "revision": 3,
+                            "revision": 8,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -332,7 +333,55 @@
                         "style": "",
                         "subpatcher_template": "",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "id": "obj-4",
+                                    "linecount": 2,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        645.0,
+                                        615.0,
+                                        36.0
+                                    ],
+                                    "presentation_linecount": 6,
+                                    "text": "fl.streamid~ allows you to set values differently in different streams. Stream ids count from zero and can be used to set parameters in a stream so each stream behaves differently."
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-1",
+                                    "local": 1,
+                                    "maxclass": "ezdac~",
+                                    "numinlets": 2,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        442.5,
+                                        550.0,
+                                        45.0,
+                                        45.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-2",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        180.0,
+                                        458.0,
+                                        206.0,
+                                        21.0
+                                    ],
+                                    "text": "Output the two streams separately"
+                                }
+                            },
                             {
                                 "box": {
                                     "fontsize": 13.0,
@@ -342,12 +391,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        315.0,
-                                        352.0,
-                                        259.0,
+                                        330.0,
+                                        302.0,
+                                        300.0,
                                         137.0
                                     ],
-                                    "text": "Using the two input streams, create two 'interval' streams at 512, 1024 samples in duration.\n\nDivide those values by 2 and use these values to set the length for each stream. \n\nAs a result, each stream has a length that is half the rate regarldess of the length."
+                                    "text": "Using the result of the calculation set the intervals for the fl.interval~ object seperateluy in the two streams (one every 512 and one every 1024).\n\nWe also divide those values by 2 and use these values to set the length for each stream. \n\nAs a result, each stream has a length that is half the interval."
                                 }
                             },
                             {
@@ -359,7 +408,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         104.0,
-                                        301.0,
+                                        251.0,
                                         171.0,
                                         21.0
                                     ],
@@ -374,8 +423,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        77.5,
-                                        246.0,
+                                        81.5,
+                                        196.0,
                                         255.0,
                                         21.0
                                     ],
@@ -386,17 +435,17 @@
                                 "box": {
                                     "fontsize": 13.0,
                                     "id": "obj-72",
-                                    "linecount": 5,
+                                    "linecount": 3,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         157.66666666666666,
-                                        152.0,
+                                        136.5,
                                         457.33333333333337,
-                                        79.0
+                                        50.0
                                     ],
-                                    "text": "Output two stream id's at when audio is started. The output of streamid is intended to be used as trigger frames operating across the number of streams. Although they are 'trigger frames' conceptually they contain a number which can be used to identify the stream number or to progrmatically calculate consecutive values (as is the case below)."
+                                    "text": "Output stream ids. The object is instantiated with two streams '=2' and hence in this case there will be two ids (0 and 1). These values are used to set values for the streams differently."
                                 }
                             },
                             {
@@ -424,10 +473,10 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        157.66666666666666,
-                                        555.0,
-                                        130.0,
-                                        130.0
+                                        150.0,
+                                        510.0,
+                                        125.0,
+                                        125.0
                                     ],
                                     "range": [
                                         -3.0,
@@ -445,9 +494,9 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        555.0,
-                                        130.0,
-                                        130.0
+                                        510.0,
+                                        125.0,
+                                        125.0
                                     ],
                                     "range": [
                                         -3.0,
@@ -466,8 +515,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        218.0,
-                                        383.0,
+                                        219.0,
+                                        333.0,
                                         74.0,
                                         23.0
                                     ],
@@ -486,7 +535,7 @@
                                     ],
                                     "patching_rect": [
                                         16.0,
-                                        378.0,
+                                        328.0,
                                         57.0,
                                         23.0
                                     ],
@@ -498,14 +547,14 @@
                                     "fontsize": 13.0,
                                     "id": "obj-56",
                                     "maxclass": "newobj",
-                                    "numinlets": 2,
+                                    "numinlets": 3,
                                     "numoutlets": 1,
                                     "outlettype": [
                                         ""
                                     ],
                                     "patching_rect": [
-                                        218.0,
-                                        417.0,
+                                        219.0,
+                                        367.0,
                                         86.0,
                                         23.0
                                     ],
@@ -524,7 +573,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        466.0,
+                                        416.0,
                                         223.0,
                                         23.0
                                     ],
@@ -544,8 +593,8 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        508.0,
-                                        162.0,
+                                        458.0,
+                                        154.0,
                                         23.0
                                     ],
                                     "text": "fl.sink~ =2"
@@ -556,14 +605,14 @@
                                     "fontsize": 13.0,
                                     "id": "obj-28",
                                     "maxclass": "newobj",
-                                    "numinlets": 2,
+                                    "numinlets": 3,
                                     "numoutlets": 1,
                                     "outlettype": [
                                         ""
                                     ],
                                     "patching_rect": [
                                         117.0,
-                                        383.0,
+                                        333.0,
                                         93.0,
                                         23.0
                                     ],
@@ -582,7 +631,7 @@
                                     ],
                                     "patching_rect": [
                                         117.0,
-                                        417.0,
+                                        367.0,
                                         71.0,
                                         23.0
                                     ],
@@ -607,7 +656,7 @@
                                     ],
                                     "patching_rect": [
                                         60.0,
-                                        180.0,
+                                        150.0,
                                         94.0,
                                         23.0
                                     ],
@@ -626,7 +675,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        300.0,
+                                        250.0,
                                         86.0,
                                         23.0
                                     ],
@@ -664,7 +713,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        245.0,
+                                        195.0,
                                         64.0,
                                         23.0
                                     ],
@@ -707,9 +756,9 @@
                                     ],
                                     "border": 2,
                                     "bordercolor": [
-                                        0.0,
-                                        0.0,
-                                        0.0,
+                                        0.439216,
+                                        0.74902,
+                                        0.254902,
                                         1.0
                                     ],
                                     "id": "obj-76",
@@ -718,10 +767,10 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        111.5,
-                                        378.0,
-                                        198.5,
-                                        69.0
+                                        104.0,
+                                        321.0,
+                                        211.0,
+                                        84.0
                                     ],
                                     "proportion": 0.39
                                 }
@@ -748,9 +797,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        363.0,
+                                        313.0,
                                         126.5,
-                                        363.0
+                                        313.0
                                     ],
                                     "order": 1,
                                     "source": [
@@ -767,9 +816,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        363.0,
-                                        227.5,
-                                        363.0
+                                        313.0,
+                                        228.5,
+                                        313.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -855,12 +904,6 @@
                                     "destination": [
                                         "obj-55",
                                         2
-                                    ],
-                                    "midpoints": [
-                                        227.5,
-                                        448.0,
-                                        228.5,
-                                        448.0
                                     ],
                                     "source": [
                                         "obj-56",

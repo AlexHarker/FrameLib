@@ -1349,6 +1349,7 @@
                             {
                                 "box": {
                                     "id": "obj-9",
+                                    "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
@@ -2592,6 +2593,21 @@
                         "showontab": 1,
                         "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "id": "obj-5",
+                                    "local": 1,
+                                    "maxclass": "ezdac~",
+                                    "numinlets": 2,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        615.0,
+                                        45.0,
+                                        45.0
+                                    ]
+                                }
+                            },
                             {
                                 "box": {
                                     "id": "obj-6",
