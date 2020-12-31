@@ -9,12 +9,14 @@ from FrameLibDocs.variables import (
     refpages_dir,
 )
 
+from FrameLibDocs.classes import Documentation
+
 # Check and make
 
-def main():
-    temporary_dir.mkdir(exist_ok=True)
-    databases_dir.mkdir(exist_ok=True)
-    raw_xml_dir.mkdir(exist_ok=True)
+def main(docs: Documentation):
+    docs.temporary_dir.mkdir(exist_ok=True)
+    docs.databases_dir.mkdir(exist_ok=True)
+    docs.raw_xml_dir.mkdir(exist_ok=True)
 
     # Interfaces
     for files in interfaces_dir.iterdir():
@@ -29,4 +31,4 @@ def main():
                 print("Error cleaning out existing docs directories")
 
 if __name__ == "__main__":
-    main()
+    main(Documentation())
