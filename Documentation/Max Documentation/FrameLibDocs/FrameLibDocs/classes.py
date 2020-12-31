@@ -1,5 +1,44 @@
 import xml.etree.ElementTree as et
+from pathlib import Path
 from FrameLibDocs.utils import write_json, strip_space, strip_extension
+from FrameLibDocs.variables import this_script
+
+class Documentation:
+    """
+    This class holds the relevant information about paths.
+    By making it a class it makes it more flexible than hard coded values.
+    """
+
+    def __init__(self):
+        self.this_script = this_script
+        self.max_docs_dir = this_script.parents[2]
+        self.package_root = this_script.parents[4]
+
+        # Import Max Paths
+        self.current_version = self.package_root / "Current Test Version"
+
+        # Temporary Directories
+        self.temporary_dir = self.max_docs_dir / "__tmp__"
+        self.databases_dir = self.temporary_dir / "db"
+        self.raw_xml_dir = self.temporary_dir / "raw_xml"
+
+        # Key Files
+        self.category_database_path = self.databases_dir / "category_databases.json"
+        self.object_relationships_path = self.max_docs_dir / "object_relationships.yaml"
+
+        self.set_max_paths()
+
+        # Help Files
+        self.help_dir = self.max_docs_dir / "help_files"
+    
+    def set_current_location(self, location:str) -> None:
+        """Sets the location of the folder holding that is the parent of the package"""
+        self.current_version = Path(location)
+        self.set_max_paths()
+
+    def set_max_paths(self) -> None:
+        self.refpages_dir = self.current_version / "FrameLib" / "docs" / "refpages"
+        self.interfaces_dir = self.current_version / "FrameLib" / "interfaces"
 
 
 # A class to parse the XML files and build a JSON file from it #
