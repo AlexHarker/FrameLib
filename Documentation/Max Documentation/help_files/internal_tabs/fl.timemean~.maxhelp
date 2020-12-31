@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -128,7 +128,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 143.5, 150.0, 84.0, 21.0 ],
+									"patching_rect" : [ 170.5, 150.0, 84.0, 21.0 ],
 									"text" : "Click to reset"
 								}
 
@@ -178,7 +178,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 165.0, 189.5, 24.0, 24.0 ]
+									"patching_rect" : [ 200.5, 189.5, 24.0, 24.0 ]
 								}
 
 							}
@@ -357,6 +357,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-12", 0 ],
+									"midpoints" : [ 210.0, 233.75, 174.5, 233.75 ],
 									"source" : [ "obj-23", 0 ]
 								}
 
@@ -1203,7 +1204,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1233,6 +1234,18 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-10",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 147.0, 525.0, 345.0, 21.0 ],
+									"presentation_linecount" : 2,
+									"text" : "Arguments set /max_frames and /num_frames parameters"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-16",
 									"local" : 1,

@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -838,7 +838,7 @@
 						"tags" : ""
 					}
 ,
-					"text" : "p \"Multi-output Mode\""
+					"text" : "p \"multi-output mode\""
 				}
 
 			}
@@ -1349,7 +1349,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 90.0, 30.0, 107.0, 22.0 ],
+					"patching_rect" : [ 90.0, 30.0, 105.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1358,7 +1358,7 @@
 						"tags" : ""
 					}
 ,
-					"text" : "p \"Dynamic Mode\""
+					"text" : "p \"dynamic mode\""
 				}
 
 			}
@@ -1441,7 +1441,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
