@@ -1,17 +1,7 @@
 import os
 from shutil import rmtree
-from FrameLibDocs.variables import (
-    max_docs_dir,
-    temporary_dir,
-    databases_dir,
-    raw_xml_dir,
-    interfaces_dir,
-    refpages_dir,
-)
-
 from FrameLibDocs.classes import Documentation
 
-# Check and make
 
 def main(docs: Documentation):
     docs.temporary_dir.mkdir(exist_ok=True)
