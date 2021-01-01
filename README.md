@@ -39,7 +39,7 @@ CeReNeM - The University of Huddersfield
 
 Max Documentation by James Bradbury.
 
-With thanks to all the beta testers
+With thanks to all the beta testers.
 Special thanks to Owen Green, Francesco Cameli and James Bradbury for code for some of the objects.
 
 **Contact:**
