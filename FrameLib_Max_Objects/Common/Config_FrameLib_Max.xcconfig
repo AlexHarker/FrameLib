@@ -14,7 +14,7 @@ GCC_PREFIX_HEADER = $(C74SUPPORT)/max-includes/macho-prefix.pch
 
 SKIP_INSTALL = NO
 DEPLOYMENT_LOCATION = YES
-DSTROOT = $(SRCROOT)/Current Test Version/FrameLib/externals/
+DSTROOT = $(SRCROOT)/Packaging/Max/FrameLib/externals/
 INSTALL_PATH = /
 COPY_PHASE_STRIP = NO
 
