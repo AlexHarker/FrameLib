@@ -4,7 +4,7 @@ from FrameLibDocs.classes import Documentation
 def main(docs: Documentation):
     template_dir = docs.help_dir / "templates"
     internal_dir = docs.help_dir / "internal_tabs"
-    external_dir = docs.current_version / "FrameLib" / "externals"
+    external_dir = docs.package / "FrameLib" / "externals"
     master_template = docs.help_dir / "help_template.maxhelp"
 
     templates = [x for x in template_dir.rglob("fl.*.maxhelp")]

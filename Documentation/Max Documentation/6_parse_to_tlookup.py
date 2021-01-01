@@ -12,7 +12,7 @@ def main(docs: Documentation):
     """
 
     tutorial_index = (
-        docs.current_version / "FrameLib" / "docs" / "tutorials" / "FrameLib-tut" / "00_fl_index.maxtut.xml"
+        docs.package / "FrameLib" / "docs" / "tutorials" / "FrameLib-tut" / "00_fl_index.maxtut.xml"
     )
     docs.interfaces_dir.mkdir(exist_ok=True)
 

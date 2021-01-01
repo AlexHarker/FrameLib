@@ -18,7 +18,7 @@ def main(docs: Documentation):
     in_mode = open(docs.help_dir / "input_mode_template.maxhelp").read()
     templates_dir = docs.help_dir / "templates"
     templates = [x for x in templates_dir.rglob("fl.*.maxhelp")]
-    max_objects_dir = docs.package_root / "FrameLib_Max_Objects"
+    max_objects_dir = docs.repo_root / "FrameLib_Max_Objects"
     max_objects = [x for x in max_objects_dir.rglob("fl.*.cpp")]
 
     binary = [x.stem for x in max_objects if x.parent.stem == "Binary"]
@@ -47,7 +47,7 @@ def main(docs: Documentation):
 
     # Now collect up and move all the templates to the dist
     # We could do this in the previous loop, but I think is clearer
-    dest = docs.current_version / "FrameLib" / "help"
+    dest = docs.package / "FrameLib" / "help"
     copy_tree(str(templates_dir), str(dest), update=1)
 
 if __name__ == "__main__":
