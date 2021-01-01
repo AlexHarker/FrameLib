@@ -1,3 +1,9 @@
+fl.kernelsmooth~:
+  keywords:
+  - smoothing 
+  seealso:
+  - fl.peaks~
+  - fl.multitaper~
 fl.svf~:
   keywords:
   - filters
