@@ -41,6 +41,9 @@
 		B846DEE0231042D900E660FA /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F558E207AB15C007774AD /* Accelerate.framework */; };
 		B846DEE22310433F00E660FA /* FrameLib_OnePoleZero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF0531F2D2A1E00264316 /* FrameLib_OnePoleZero.cpp */; };
 		B846DEE32310434D00E660FA /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B846DEDA231041E100E660FA /* libframelib.a */; };
+		B8698FD4259E9B3100F6BDAB /* FrameLib_KernelSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8698FD2259E9B3100F6BDAB /* FrameLib_KernelSmooth.cpp */; };
+		B8698FD5259E9B3100F6BDAB /* FrameLib_KernelSmooth.h in Headers */ = {isa = PBXBuildFile; fileRef = B8698FD3259E9B3100F6BDAB /* FrameLib_KernelSmooth.h */; };
+		B8698FD7259E9BC300F6BDAB /* FrameLib_Prioritise.h in Headers */ = {isa = PBXBuildFile; fileRef = B8698FD6259E9BC300F6BDAB /* FrameLib_Prioritise.h */; };
 		B88A482B2067DCC400CEB3AC /* FrameLib_SerialiseGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88A48292067DCC400CEB3AC /* FrameLib_SerialiseGraph.cpp */; };
 		B88A482C2067DCC400CEB3AC /* FrameLib_SerialiseGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = B88A482A2067DCC400CEB3AC /* FrameLib_SerialiseGraph.h */; };
 		B88F5559207A58DA007774AD /* FrameLib_Reverse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88F5558207A5873007774AD /* FrameLib_Reverse.cpp */; };
@@ -245,6 +248,9 @@
 		B861EBA119CA3AA500B89477 /* FrameLib_Percentile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Percentile.h; sourceTree = "<group>"; };
 		B86387D51F8DB4DE00D31E15 /* FrameLib_Timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Timer.cpp; sourceTree = "<group>"; };
 		B86387D61F8DB4DE00D31E15 /* FrameLib_Timer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Timer.h; sourceTree = "<group>"; };
+		B8698FD2259E9B3100F6BDAB /* FrameLib_KernelSmooth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_KernelSmooth.cpp; sourceTree = "<group>"; };
+		B8698FD3259E9B3100F6BDAB /* FrameLib_KernelSmooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_KernelSmooth.h; sourceTree = "<group>"; };
+		B8698FD6259E9BC300F6BDAB /* FrameLib_Prioritise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Prioritise.h; sourceTree = "<group>"; };
 		B878DB731D819C15001A5151 /* MaxClass_Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaxClass_Base.h; sourceTree = "<group>"; };
 		B87E5C091FB8C18700C63385 /* FrameLib_Gaussian.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Gaussian.cpp; sourceTree = "<group>"; };
 		B87E5C0A1FB8C18700C63385 /* FrameLib_Gaussian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Gaussian.h; sourceTree = "<group>"; };
@@ -584,37 +590,40 @@
 			children = (
 				B85753521F2E1FFA00478E9F /* FrameLib_Vector_Template.h */,
 				B85753511F2E1FCB00478E9F /* FrameLib_Vector_Objects.h */,
-				B85B68E319F28EE5002D6F1D /* FrameLib_Pad.h */,
-				B8891CD91F2C8D6900C5C4F0 /* FrameLib_Pad.cpp */,
-				B861EBA019CA389E00B89477 /* FrameLib_Sort.h */,
-				B8891CDB1F2C8D8C00C5C4F0 /* FrameLib_Sort.cpp */,
-				B85B68E719F29470002D6F1D /* FrameLib_Split.h */,
-				B8891CDD1F2C8DAA00C5C4F0 /* FrameLib_Split.cpp */,
 				B84A405A1FD73D2200A30455 /* FrameLib_AccumPos.h */,
 				B84A40591FD73D2100A30455 /* FrameLib_AccumPos.cpp */,
-				1A25CE74250A821900FC9148 /* FrameLib_Prioritise.cpp */,
-				B861EBA119CA3AA500B89477 /* FrameLib_Percentile.h */,
-				B8891CDF1F2C8DCF00C5C4F0 /* FrameLib_Percentile.cpp */,
 				B84943CA1B837B610037DFF1 /* FrameLib_Chop.h */,
 				B8891CE11F2C8DEA00C5C4F0 /* FrameLib_Chop.cpp */,
-				B85B68E819F29470002D6F1D /* FrameLib_Subframe.h */,
-				B8891CE31F2C90B200C5C4F0 /* FrameLib_Subframe.cpp */,
 				B85B68E619F29470002D6F1D /* FrameLib_Join.h */,
 				B8891CE51F2C90CE00C5C4F0 /* FrameLib_Join.cpp */,
-				B8AE692D19F45A1D0040B4EE /* FrameLib_Shift.h */,
-				B8891CE71F2C90E800C5C4F0 /* FrameLib_Shift.cpp */,
+				B8698FD3259E9B3100F6BDAB /* FrameLib_KernelSmooth.h */,
+				B8698FD2259E9B3100F6BDAB /* FrameLib_KernelSmooth.cpp */,
+				B861EBA119CA3AA500B89477 /* FrameLib_Percentile.h */,
+				B8891CDF1F2C8DCF00C5C4F0 /* FrameLib_Percentile.cpp */,
 				B84BE8781C1F592400A55F8C /* FrameLib_MedianFilter.h */,
 				B8BDF04B1F2D0BDC00264316 /* FrameLib_MedianFilter.cpp */,
 				B8ACCAA320AF14FD0054E1E0 /* FrameLib_NanFilter.h */,
 				B8ACCAA220AF14FD0054E1E0 /* FrameLib_NanFilter.cpp */,
 				B8213A461FA88F5D0013E31F /* FrameLib_NonZero.h */,
 				B8213A451FA88F5D0013E31F /* FrameLib_NonZero.cpp */,
+				B85B68E319F28EE5002D6F1D /* FrameLib_Pad.h */,
+				B8891CD91F2C8D6900C5C4F0 /* FrameLib_Pad.cpp */,
 				B8C5EBD91E5F9E5A0086E8B6 /* FrameLib_Peaks.h */,
 				B8BDF04D1F2D0E0600264316 /* FrameLib_Peaks.cpp */,
-				B88F5557207A5872007774AD /* FrameLib_Reverse.h */,
-				B88F5558207A5873007774AD /* FrameLib_Reverse.cpp */,
 				B8EA6B942203AEC700D23A86 /* FrameLib_Pattern.h */,
 				B8EA6BA92203B07800D23A86 /* FrameLib_Pattern.cpp */,
+				B8698FD6259E9BC300F6BDAB /* FrameLib_Prioritise.h */,
+				1A25CE74250A821900FC9148 /* FrameLib_Prioritise.cpp */,
+				B88F5557207A5872007774AD /* FrameLib_Reverse.h */,
+				B88F5558207A5873007774AD /* FrameLib_Reverse.cpp */,
+				B8AE692D19F45A1D0040B4EE /* FrameLib_Shift.h */,
+				B8891CE71F2C90E800C5C4F0 /* FrameLib_Shift.cpp */,
+				B861EBA019CA389E00B89477 /* FrameLib_Sort.h */,
+				B8891CDB1F2C8D8C00C5C4F0 /* FrameLib_Sort.cpp */,
+				B85B68E719F29470002D6F1D /* FrameLib_Split.h */,
+				B8891CDD1F2C8DAA00C5C4F0 /* FrameLib_Split.cpp */,
+				B85B68E819F29470002D6F1D /* FrameLib_Subframe.h */,
+				B8891CE31F2C90B200C5C4F0 /* FrameLib_Subframe.cpp */,
 			);
 			path = Vector;
 			sourceTree = "<group>";
@@ -983,6 +992,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8698FD7259E9BC300F6BDAB /* FrameLib_Prioritise.h in Headers */,
+				B8698FD5259E9B3100F6BDAB /* FrameLib_KernelSmooth.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1097,7 +1108,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "python3 \"${SRCROOT}/Documentation/Max Documentation/0_generate_Max_Object_List.h.py\" fl.contextcontrol~ fl.kernelsmooth~";
+			shellScript = "python3 \"${SRCROOT}/Documentation/Max Documentation/0_generate_Max_Object_List.h.py\" fl.contextcontrol~";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1139,6 +1150,7 @@
 				1A25CE64250A7D9C00FC9148 /* FrameLib_MovingAverage.cpp in Sources */,
 				B846DEE22310433F00E660FA /* FrameLib_OnePoleZero.cpp in Sources */,
 				B812606C20D697C2000B81D9 /* FrameLib_Expression.cpp in Sources */,
+				B8698FD4259E9B3100F6BDAB /* FrameLib_KernelSmooth.cpp in Sources */,
 				B83F0468223A77B700AF1F8E /* FrameLib_Pattern.cpp in Sources */,
 				B83F0467223A778E00AF1F8E /* FrameLib_Info.cpp in Sources */,
 				B812606B20D697BB000B81D9 /* FrameLib_ComplexExpression.cpp in Sources */,
