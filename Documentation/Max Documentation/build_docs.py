@@ -21,12 +21,12 @@ def main():
     parser = argparse.ArgumentParser(description="Build Documentation for FrameLib")
     parser.add_argument("-hf", "--helpfiles", default=True, action='store_false', help="Toggle to build help files")
     parser.add_argument("-c", "--clean", default=True, action='store_false', help="Toggle for post-cleanup")
-    parser.add_argument("-o", "--output", help="Provide a custom output for compile")
+    parser.add_argument("-p", "--package", help="Provide a custom location for a package")
     args = parser.parse_args()
 
 
-    if args.output:
-        docs.set_current_location(args.output)
+    if args.package:
+        docs.set_package(args.package)
 
     tmp.main(docs)
 
