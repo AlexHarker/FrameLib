@@ -9,11 +9,11 @@ def main(docs: Documentation):
     docs.raw_xml_dir.mkdir(exist_ok=True)
 
     # Interfaces
-    for files in interfaces_dir.iterdir():
+    for files in docs.interfaces_dir.iterdir():
         files.unlink()
 
     # Refpages
-    for files in refpages_dir.iterdir():
+    for files in docs.refpages_dir.iterdir():
         if files.is_dir():
             try:
                 rmtree(files.resolve())
