@@ -43,7 +43,7 @@ def main(docs: Documentation):
     op.write("using FrameLib_DSPList = detail::FrameLib_Typelist<\n\n")
 
     # Directory formation
-    max_objects = docs.package_root / "FrameLib_Max_Objects"
+    max_objects = docs.repo_root / "FrameLib_Max_Objects"
     max_objects_categories = [x for x in max_objects.iterdir() if x.is_dir()]
 
     source_file_list = []

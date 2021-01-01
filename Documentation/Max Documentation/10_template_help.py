@@ -6,7 +6,7 @@ from shutil import copyfile
 
 def main(docs: Documentation):
     template_dir = docs.help_dir / "templates"
-    external_dir = docs.current_version / "FrameLib" / "externals"
+    external_dir = docs.package / "FrameLib" / "externals"
     master_template = docs.help_dir / "help_template.maxhelp"
 
     # clean out templates folder

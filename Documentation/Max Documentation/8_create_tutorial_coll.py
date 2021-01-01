@@ -17,7 +17,7 @@ def alphanum_key(s: int):
 
 
 def main(docs: Documentation):
-    tutorial_path = docs.current_version / "FrameLib" / "docs" / "tutorial-patchers"
+    tutorial_path = docs.package / "FrameLib" / "docs" / "tutorial-patchers"
     coll_output_path = tutorial_path / "fl-tutorial-names.txt"
 
     # If dir doesnt exist make, otherwise edit existing

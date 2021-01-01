@@ -12,10 +12,10 @@ class Documentation:
     def __init__(self):
         self.this_script = this_script
         self.max_docs_dir = this_script.parents[2]
-        self.package_root = this_script.parents[4]
+        self.repo_root = this_script.parents[4]
 
         # Import Max Paths
-        self.current_version = self.package_root / "Current Test Version"
+        self.package = self.repo_root / "Packaging" / "Max"
 
         # Temporary Directories
         self.temporary_dir = self.max_docs_dir / "__tmp__"
@@ -31,20 +31,14 @@ class Documentation:
         # Help Files
         self.help_dir = self.max_docs_dir / "help_files"
     
-    def set_current_location(self, location:str) -> None:
+    def set_package(self, location:str) -> None:
         """Sets the location of the folder holding that is the parent of the package"""
-        self.current_version = Path(location)
-        # self.current_version.mkdir(exist_ok=True, parents=True)
-        # now copy the original file structure over
-        copytree(
-            self.package_root / "Current Test Version" / "FrameLib",
-            self.current_version / "FrameLib"
-        )
+        self.package = Path(location)
         self.set_max_paths()
 
     def set_max_paths(self) -> None:
-        self.refpages_dir = self.current_version / "FrameLib" / "docs" / "refpages"
-        self.interfaces_dir = self.current_version / "FrameLib" / "interfaces"
+        self.refpages_dir = self.package / "FrameLib" / "docs" / "refpages"
+        self.interfaces_dir = self.package / "FrameLib" / "interfaces"
         self.refpages_dir.mkdir(exist_ok=True, parents=True)
         self.interfaces_dir.mkdir(exist_ok=True, parents=True)
 
