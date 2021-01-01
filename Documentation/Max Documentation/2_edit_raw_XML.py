@@ -77,22 +77,26 @@ def main(docs):
                 pass
 
         # Create seealso and keywords
-        details = object_info[obj_name]
-        for elem in root:
-            if elem.tag == "seealsolist":
-                try:
-                    for seealso in details["seealso"]:
-                        new_element = et.Element("seealso")
-                        new_element.set("name", seealso)
-                        elem.append(new_element)
-                except KeyError:
-                    print(f"No seealso for {obj_name}")
-            if elem.tag == "misc" and elem.attrib["name"] == "Discussion":
-                for sub_elem in elem:
-                    if sub_elem.tag == "entry" and sub_elem.attrib["name"] == "Keywords":
-                        for desc in sub_elem:
-                            temp_string = ",".join(details["keywords"])
-                            desc.text = temp_string
+        try:
+            details = object_info[obj_name]
+        except KeyError:
+            print(f'No entry for {raw_xml} in object_relationships.yaml')
+        else:
+            for elem in root:
+                if elem.tag == "seealsolist":
+                    try:
+                        for seealso in details["seealso"]:
+                            new_element = et.Element("seealso")
+                            new_element.set("name", seealso)
+                            elem.append(new_element)
+                    except KeyError:
+                        print(f"No seealso for {obj_name}")
+                if elem.tag == "misc" and elem.attrib["name"] == "Discussion":
+                    for sub_elem in elem:
+                        if sub_elem.tag == "entry" and sub_elem.attrib["name"] == "Keywords":
+                            for desc in sub_elem:
+                                temp_string = ",".join(details["keywords"])
+                                desc.text = temp_string
         # Pretty Print
         indent(root)
 
