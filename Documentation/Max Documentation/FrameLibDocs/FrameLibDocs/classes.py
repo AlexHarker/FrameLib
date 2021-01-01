@@ -34,8 +34,6 @@ class Documentation:
     def set_package(self, location:str) -> None:
         """Sets the location of the folder holding that is the parent of the package"""
         self.package = Path(location)
-        # self.current_version.mkdir(exist_ok=True, parents=True)
-        # now copy the original file structure over
         self.set_max_paths()
 
     def set_max_paths(self) -> None:
