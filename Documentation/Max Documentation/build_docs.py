@@ -12,18 +12,24 @@ merge = __import__("11_merge_help")
 mt = __import__("12_mt")
 
 from FrameLibDocs.utils import sign_off, space, hyp
+from FrameLibDocs.classes import Documentation
 import argparse
 
 
 def main():
+    docs = Documentation()
     parser = argparse.ArgumentParser(description="Build Documentation for FrameLib")
     parser.add_argument("-hf", "--helpfiles", default=True, action='store_false', help="Toggle to build help files")
     parser.add_argument("-c", "--clean", default=True, action='store_false', help="Toggle for post-cleanup")
+    parser.add_argument("-p", "--package", help="Provide a custom location for a package")
     args = parser.parse_args()
 
-    tmp.main()
 
-    print(args.clean)
+    if args.package:
+        docs.set_package(args.package)
+
+    tmp.main(docs)
+
     sign_off()
     space()
 
@@ -35,63 +41,63 @@ def main():
     # Creates a category database in .json format.
     # The JSON file is used by 2_edit_raw_XML.py to assign object categories to the xml files.
     print("1. Building Category Database")
-    create_category_database.main()
+    create_category_database.main(docs)
     hyp()
 
     # The purpose of this script is to set the categories for the Raw XML files.
     # C++ doesnt know about the categories at XML creation.
     # Edited XML files are copied from /tmp/ to the refpages directory
     print("2. Editing XML Files")
-    edit_raw_XML.main()
+    edit_raw_XML.main(docs)
     hyp()
 
     # This script creates a dictionary used to display specific object info in the extras Max Patch.
     # Similar to the qlookup, but is specifically used to display the digest with mouse hovering
     print("4. Building dlookup")
-    parse_to_dlookup.main()
+    parse_to_dlookup.main(docs)
     hyp()
 
     ## This script creates a dictionary that contains specific object information.
     # This provides the dynamic hover behaviour
     print("5. Building qlookup")
-    parse_to_qlookup.main()
+    parse_to_qlookup.main(docs)
     hyp()
 
     # Creates a dictionary used to display names and descriptions of tutorials in the extras Max Patch.
     # The tutorials are categorised by difficulty. {Beginner, Intermediate, Advanced}
     print("6. Building tlookup")
-    parse_to_tlookup.main()
+    parse_to_tlookup.main(docs)
     hyp()
 
     # Creates a dict containing information about object parameters. This is used by the help file template.
     print("7. Building jlookup")
-    parse_to_jlookup.main()
+    parse_to_jlookup.main(docs)
     hyp()
 
     # Creates a coll containing the file names of the tutorials. Makes it a bit easier to load them.
     print("8. Building tutorial name coll")
-    create_tutorial_coll.main()
+    create_tutorial_coll.main(docs)
     hyp()
 
     if args.helpfiles:
         # Creates the templates for each help file.
         # This is an outer shell containing generic information and framework to be filled in
         print("10. Creating help file templates")
-        template_help.main()
+        template_help.main(docs)
         hyp()
 
         print("11. Merging master templates with internal patchers")
-        merge.main()
+        merge.main(docs)
         hyp()
 
         # Merges the hard coded tabs with the templates
         # This creates the finished help file
         print("12. Adding mismatch and trigger_ins tabs")
-        mt.main()
+        mt.main(docs)
         hyp()
 
     if args.clean:
-        cleanup.main()
+        cleanup.main(docs)
         print("Performing cleanup")
 
     print("Completed all python scripts.")

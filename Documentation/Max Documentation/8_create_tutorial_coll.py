@@ -1,5 +1,5 @@
 import re
-from FrameLibDocs.variables import current_version
+from FrameLibDocs.classes import Documentation
 
 
 # TODO cleanup this function and alphanum_key too
@@ -16,8 +16,8 @@ def alphanum_key(s: int):
     return [try_integer(c) for c in re.split("([0-9]+)", s)]
 
 
-def main():
-    tutorial_path = current_version / "FrameLib" / "docs" / "tutorial-patchers"
+def main(docs: Documentation):
+    tutorial_path = docs.package / "FrameLib" / "docs" / "tutorial-patchers"
     coll_output_path = tutorial_path / "fl-tutorial-names.txt"
 
     # If dir doesnt exist make, otherwise edit existing
@@ -37,4 +37,4 @@ def main():
     coll.close()
 
 if __name__ == "__main__":
-    main()
+    main(Documentation())

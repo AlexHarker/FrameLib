@@ -3,44 +3,8 @@
    LastUpgradeVersion = "0940"
    version = "1.7">
    <BuildAction
-      parallelizeBuildables = "NO"
+      parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
-      <PreActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "#!/bin/sh&#10;python3 ${SRCROOT}/Documentation/Max\ Documentation/0_generate_Max_Object_list.h.py fl.contextcontrol~&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "262AEAD323101CE10016ECF3"
-                     BuildableName = "Documentation"
-                     BlueprintName = "Documentation"
-                     ReferencedContainer = "container:framelib-documentation.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PreActions>
-      <PostActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "262AEAD323101CE10016ECF3"
-                     BuildableName = "Documentation"
-                     BlueprintName = "Documentation"
-                     ReferencedContainer = "container:framelib-documentation.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PostActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -50,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "262AEAD323101CE10016ECF3"
-               BuildableName = "Documentation"
-               BlueprintName = "Documentation"
-               ReferencedContainer = "container:framelib-documentation.xcodeproj">
+               BlueprintIdentifier = "B852586D259F4D05001D64B9"
+               BuildableName = "framelib_max_docs"
+               BlueprintName = "framelib_max_docs"
+               ReferencedContainer = "container:framelib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -68,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "262AEAD323101CE10016ECF3"
-            BuildableName = "Documentation"
-            BlueprintName = "Documentation"
-            ReferencedContainer = "container:framelib-documentation.xcodeproj">
+            BlueprintIdentifier = "B852586D259F4D05001D64B9"
+            BuildableName = "framelib_max_docs"
+            BlueprintName = "framelib_max_docs"
+            ReferencedContainer = "container:framelib.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -96,10 +60,10 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "262AEAD323101CE10016ECF3"
-                     BuildableName = "Documentation"
-                     BlueprintName = "Documentation"
-                     ReferencedContainer = "container:framelib-documentation.xcodeproj">
+                     BlueprintIdentifier = "B852586D259F4D05001D64B9"
+                     BuildableName = "framelib_max_docs"
+                     BlueprintName = "framelib_max_docs"
+                     ReferencedContainer = "container:framelib.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -110,14 +74,14 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "python3 &quot;${SRCROOT}/Documentation/Max Documentation/build_docs.py&quot; -c">
+               scriptText = "python3 &quot;${SRCROOT}/Documentation/Max Documentation/build_docs.py&quot;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "262AEAD323101CE10016ECF3"
-                     BuildableName = "Documentation"
-                     BlueprintName = "Documentation"
-                     ReferencedContainer = "container:framelib-documentation.xcodeproj">
+                     BlueprintIdentifier = "B852586D259F4D05001D64B9"
+                     BuildableName = "framelib_max_docs"
+                     BlueprintName = "framelib_max_docs"
+                     ReferencedContainer = "container:framelib.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -127,10 +91,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "262AEAD323101CE10016ECF3"
-            BuildableName = "Documentation"
-            BlueprintName = "Documentation"
-            ReferencedContainer = "container:framelib-documentation.xcodeproj">
+            BlueprintIdentifier = "B852586D259F4D05001D64B9"
+            BuildableName = "framelib_max_docs"
+            BlueprintName = "framelib_max_docs"
+            ReferencedContainer = "container:framelib.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -142,15 +106,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "262AEAD323101CE10016ECF3"
-            BuildableName = "Documentation"
-            BlueprintName = "Documentation"
-            ReferencedContainer = "container:framelib-documentation.xcodeproj">
+            BlueprintIdentifier = "B852586D259F4D05001D64B9"
+            BuildableName = "framelib_max_docs"
+            BlueprintName = "framelib_max_docs"
+            ReferencedContainer = "container:framelib.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Development">

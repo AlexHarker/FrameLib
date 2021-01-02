@@ -77,6 +77,9 @@
     "fl.skewness~": {
         "digest": "Calculates the skewness of the input frame."
     },
+    "fl.kernelsmooth~": {
+        "digest": "Smooth an input based on a provided smoothing kernel."
+    },
     "fl.join~": {
         "digest": "Concatenates all input frames into a single output frame."
     },

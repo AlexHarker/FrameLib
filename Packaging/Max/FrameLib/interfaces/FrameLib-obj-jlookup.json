@@ -299,6 +299,28 @@
             "description": "Sets the default output value."
         }
     },
+    "fl.kernelsmooth~": {
+        "1": {
+            "name": "1. /smooth [variable length double array]",
+            "description": "Sets the width of smoothing as interpreted by the scale parameter."
+        },
+        "2": {
+            "name": "2. /scale [enum]",
+            "description": "Sets the scaling for the smoothing parameter:\n\nParameter Options:\n[0] - samples\n[1] - normalised"
+        },
+        "3": {
+            "name": "3. /symmetric [bool]",
+            "description": "Indicates that the kernel is symmetric with only the right-hand side provided."
+        },
+        "4": {
+            "name": "4. /edges [enum]",
+            "description": "Sets the edge behaviour for smoothing:\n\nParameter Options:\n[0] - zero\n[1] - extend\n[2] - wrap\n[3] - fold\n[4] - mirror"
+        },
+        "5": {
+            "name": "5. /max_fft [instantiation int]",
+            "description": "Sets the maximum FFT size available for internal processing."
+        }
+    },
     "fl.join~": {
         "1": {
             "name": "1. /num_ins [instantiation int]",

@@ -1,6 +1,4 @@
 
-Figure out how to use templates to generate objects
-
 ******* CODE CLEAN-UP ******* 
 
 Move to Namespaces (use only one, or multiple)?
@@ -28,47 +26,4 @@ TEMP		Memory
 		- parameter errors
 		- scheduling errors
 		- connection/network errors
-
-******* OBJECT SUPPORT ******* 
-
-		Objects for dealing with data storage/retrieval (a la coll etc.) 
-		Abstract buffer type? 
-		Multistream support (how should expansion work for audio?)
-		Adding parameters via inheritance/wrapping
-
-******* OBJECT REVIEW ******* 
-
-DONE General Wrapper
-DONE	- Parameter naming style
-DONE	- Parameter entry style
-DONE	- Input entry style
-
-PROGRESS Unary (trig and degrees)
-PROGRESS Binary (symbols)
-
-Parameters
-Routing
-Mapping
-Timing
-
-Vector
-IO
-Storage
-Schedulers
-
-Generators
-Spectral
-Filters
-Spatial/Special
-
-
-OBJECT IDEAS
-
-Function Generators (from fixed numbers to allow mapping ?? / use 2D)
-Matching (fixed up version of entry matcher) - sort data storage problem
-Descriptor Analysis (per frame to start with?)
-Envelope Estimation
-Delays(solve co-incident issue - 3 solutions - first/last/move OR delay now??)
-Filters with time-varying parameters
-
 

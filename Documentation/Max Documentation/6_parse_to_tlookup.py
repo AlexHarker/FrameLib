@@ -2,26 +2,21 @@ import json
 import os
 import xml.etree.ElementTree as et
 from FrameLibDocs.utils import write_json, strip_space
-from FrameLibDocs.variables import (
-    object_relationships_path,
-    current_version,
-    interfaces_dir,
-)
-from FrameLibDocs.classes import tParseAndBuild
+from FrameLibDocs.classes import tParseAndBuild, Documentation
 
 
-def main():
+def main(docs: Documentation):
     """
     Creates tutorial information and stores it in a dictionary format. 
     This information is displayed to the user in a umenu.
     """
 
     tutorial_index = (
-        current_version / "FrameLib" / "docs" / "tutorials" / "FrameLib-tut" / "00_fl_index.maxtut.xml"
+        docs.package / "FrameLib" / "docs" / "tutorials" / "FrameLib-tut" / "00_fl_index.maxtut.xml"
     )
-    interfaces_dir.mkdir(exist_ok=True)
+    docs.interfaces_dir.mkdir(exist_ok=True)
 
-    obj_lookup = interfaces_dir / "FrameLib-obj-tlookup.json"
+    obj_lookup = docs.interfaces_dir / "FrameLib-obj-tlookup.json"
 
     worker = tParseAndBuild()
 
@@ -31,4 +26,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(Documentation())

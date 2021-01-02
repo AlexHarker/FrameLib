@@ -1,0 +1,56 @@
+<c74object category="FrameLib Vector" module="FrameLib" name="fl.kernelsmooth~">
+  <digest> 
+        Smooth an input based on a provided smoothing kernel.
+    </digest>
+  <description> 
+         The kernel is interpolated to the specified width(s) to perform smoothing. If the kernel is symmetric only the right-hand side should be provided. The edge behaviour can be set as appropriate for the application. The output is the same length as the frame at the first input. Internally kernels are always stretched across a whole number of samples. Kernels with zeroes at the ends are auto detected and stretched appropriately. The smoother may use FFT processing for efficiency but it is not required. Only the first input triggers output.
+    </description>
+  <misc name="Parameters">
+    <entry name="1. /smooth [variable length double array]">
+      <description> 
+                Sets the width of smoothing as interpreted by the scale parameter.<br/>If two values are provided they set the interpolated amounts at either edge.
+            </description>
+    </entry>
+    <entry name="2. /scale [enum]">
+      <description> 
+                Sets the scaling for the smoothing parameter:<br/><br/>samples - smoothing is specified in samples.<br/>normalised - smoothing is specified in relation to the width of the input [0-1].<br />
+        <bullet>[0] - samples</bullet>
+        <bullet>[1] - normalised</bullet>
+      </description>
+    </entry>
+    <entry name="3. /symmetric [bool]">
+      <description> 
+                Indicates that the kernel is symmetric with only the right-hand side provided.
+            </description>
+    </entry>
+    <entry name="4. /edges [enum]">
+      <description> 
+                Sets the edge behaviour for smoothing:<br/><br/>zero - values beyond the edges of the input are read as zeros.<br/>extend - the edge values are extended infinitely in either direction.<br/>wrap - values are read as wrapped or cyclical.<br/>fold - values are folded at edges without repetition of the edge values.<br/>mirror - values are mirrored at edges with the edge values repeated.<br />
+        <bullet>[0] - zero</bullet>
+        <bullet>[1] - extend</bullet>
+        <bullet>[2] - wrap</bullet>
+        <bullet>[3] - fold</bullet>
+        <bullet>[4] - mirror</bullet>
+      </description>
+    </entry>
+    <entry name="5. /max_fft [instantiation int]">
+      <description> 
+                Sets the maximum FFT size available for internal processing.<br/>Note that this needs to be large enough to contain the input, kernel and edges.
+            </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Vector</metadata>
+  </metadatalist>
+  <seealsolist>
+    <seealso name="fl.peaks~" />
+    <seealso name="fl.multitaper~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>smoothing</description>
+    </entry>
+  </misc>
+</c74object>

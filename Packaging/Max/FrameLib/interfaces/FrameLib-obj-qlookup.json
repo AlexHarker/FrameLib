@@ -805,6 +805,21 @@
             "fl.medianfilter~"
         ]
     },
+    "fl.kernelsmooth~": {
+        "digest": "Smooth an input based on a provided smoothing kernel.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "FrameLib Vector"
+        ],
+        "keywords": [
+            "smoothing"
+        ],
+        "seealso": [
+            "fl.peaks~",
+            "fl.multitaper~"
+        ]
+    },
     "fl.join~": {
         "digest": "Concatenates all input frames into a single output frame.",
         "module": "FrameLib",

@@ -1,12 +1,13 @@
 from FrameLibDocs.help import edit_help
-from FrameLibDocs.variables import help_dir, current_version
+from FrameLibDocs.classes import Documentation
 from shutil import copyfile
 
 
-def main():
-    template_dir = help_dir / "templates"
-    external_dir = current_version / "FrameLib" / "externals"
-    master_template = help_dir / "help_template.maxhelp"
+
+def main(docs: Documentation):
+    template_dir = docs.help_dir / "templates"
+    external_dir = docs.package / "FrameLib" / "externals"
+    master_template = docs.help_dir / "help_template.maxhelp"
 
     # clean out templates folder
     for x in template_dir.rglob("fl.*.maxhelp"):
@@ -21,4 +22,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(Documentation())
