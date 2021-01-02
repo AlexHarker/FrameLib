@@ -153,7 +153,7 @@ public:
         mData.mQueue.emplace(info, serial);
     }
     
-    void schedule()
+    void ready()
     {
         // Lock, copy onto the output queue and schedule
         
@@ -165,7 +165,11 @@ public:
         mOutput.emplace_back();
         std::swap(mData, mOutput.back());
         lock.destroy();
-        
+    }
+    
+    void schedule()
+    {
+        ready();
         schedule_delay(*this, (method)&service, 0, nullptr, 0, nullptr);
     }
     
@@ -182,27 +186,30 @@ public:
     
     static void service(MessageHandler* handler, t_symbol *s, short ac, t_atom *av)
     {
-        FrameLib_SpinLockHolder flushLock(&handler->mFlushLock);
-        MessageBlock data;
+        MessageBlock messages;
         
         // Swap data
-        
+
+        FrameLib_SpinLockHolder flushLock(&handler->mFlushLock);
         FrameLib_SpinLockHolder lock(&handler->mLock);
+        
         if (!handler->mOutput.empty())
         {
-            std::swap(handler->mOutput.front(), data);
+            std::swap(handler->mOutput.front(), messages);
             handler->mOutput.pop_front();
         }
+        
         lock.destroy();
+        flushLock.destroy();
         
         // Allocate temporary t_atoms and output
         
-        std::vector<t_atom> out(data.mMaxSize);
+        std::vector<t_atom> out(messages.mMaxSize);
         
-        while (!data.mQueue.empty())
+        while (!messages.mQueue.empty())
         {
-            output(data.mQueue.top(), out.data());
-            data.mQueue.pop();
+            output(messages.mQueue.top(), out.data());
+            messages.mQueue.pop();
         }
     }
     
@@ -463,7 +470,10 @@ public:
     
     void contextMessages(FrameLib_Context c)
     {
-        MessageHandler::service(getHandler(c), nullptr, 0, nullptr);
+        MessageHandler *handler = getHandler(c);
+        
+        handler->ready();
+        MessageHandler::service(handler, nullptr, 0, nullptr);
     }
     
     void contextMessages(FrameLib_Context c, t_object *object)
