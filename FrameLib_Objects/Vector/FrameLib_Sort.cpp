@@ -62,6 +62,9 @@ void FrameLib_Sort::process()
     
     double *output = getOutput(0, &size);
     
+    if (!size)
+        return;
+    
     if (!mParameters.getBool(kOutputIndices))
     {
         switch (mParameters.getEnum<Orders>(kOrder))
