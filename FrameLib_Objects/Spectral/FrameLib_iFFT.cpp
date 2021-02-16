@@ -129,7 +129,7 @@ void FrameLib_iFFT::process()
     double *outputR = getOutput(0, &sizeOut);
     double *outputI = nullptr;
     
-    auto temp = allocAutoArray<double>(mMode == kReal ? sizeOut : 0);
+    auto temp = allocAutoArray<double>(mMode != kComplex ? sizeOut : 0);
     
     if (mMode == kComplex)
     {
