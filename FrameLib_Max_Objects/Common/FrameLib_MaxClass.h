@@ -1551,7 +1551,7 @@ public:
     void process(t_atom_long length)
     {
         unsigned long updateLength = length > 0 ? static_cast<unsigned long>(length) : 0UL;
-        unsigned long time = static_cast<unsigned long>(mObject->getBlockTime());
+        unsigned long time = static_cast<unsigned long>(mObject->getBlockTime()) - 1UL;
         
         if (!updateLength || isRealtime())
             return;
