@@ -497,11 +497,11 @@ void FrameLib_LocalAllocatorSet::clear()
         
         for (unsigned int j = 0; j < FrameLib_LocalAllocator::numLocalFreeBlocks; j++)
         {
-            if (allocator->mFreeLists[i].mMemory)
+            if (allocator->mFreeLists[j].mMemory)
             {
-                pruner.dealloc(allocator->mFreeLists[i].mMemory);
-                allocator->mFreeLists[i].mMemory = nullptr;
-                allocator->mFreeLists[i].mSize = 0;
+                pruner.dealloc(allocator->mFreeLists[j].mMemory);
+                allocator->mFreeLists[j].mMemory = nullptr;
+                allocator->mFreeLists[j].mSize = 0;
             }
         }
     }
