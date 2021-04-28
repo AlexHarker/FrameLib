@@ -1703,9 +1703,9 @@ public:
         return x->patchLineUpdate(line, type, src, srcout, dst, dstin);
     }
 
-    static void extFindAudio(FrameLib_MaxClass *x, std::vector<FrameLib_MaxNRTAudio> objects)
+    static void extFindAudio(FrameLib_MaxClass *x, std::vector<FrameLib_MaxNRTAudio>* objects)
     {
-        objects.push_back(FrameLib_MaxNRTAudio{x->mObject.get(), x->mBuffer});
+        objects->push_back(FrameLib_MaxNRTAudio{x->mObject.get(), x->mBuffer});
     }
     
     static void extResolveContext(FrameLib_MaxClass *x)
