@@ -2302,6 +2302,20 @@
                ReferencedContainer = "container:framelib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B8D005FB263C11B2004D3E94"
+               BuildableName = "fl.nexttime~.mxo"
+               BlueprintName = "fl.nexttime~"
+               ReferencedContainer = "container:framelib.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
