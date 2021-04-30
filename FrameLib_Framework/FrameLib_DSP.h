@@ -207,7 +207,7 @@ protected:
     FrameLib_TimeFormat getQueueBlockEndTime() const    { return mProcessingQueue->getBlockEndTime(); }
     
     FrameLib_TimeFormat getInputFrameTime(unsigned long idx) const  { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : FrameLib_TimeFormat(0); }
-    FrameLib_TimeFormat getInputValidTime(unsigned long idx) const  { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : FrameLib_TimeFormat(0); }
+    FrameLib_TimeFormat getInputValidTime(unsigned long idx) const  { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : FrameLib_TimeFormat::largest(); }
     
     // Output Allocation
     
