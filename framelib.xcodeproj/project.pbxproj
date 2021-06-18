@@ -496,6 +496,10 @@
 		B8BA701C2078F30F00D3DB3D /* FrameLib_FromHost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DCDB3720753A4F008361FA /* FrameLib_FromHost.cpp */; };
 		B8BA701D2078F31300D3DB3D /* FrameLib_ToHost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A1128D2076CDEA000C74FC /* FrameLib_ToHost.cpp */; };
 		B8BA70392078F38100D3DB3D /* FrameLib_Objects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BA70382078F38100D3DB3D /* FrameLib_Objects.cpp */; };
+		B8BC057E267CE968004F5EDE /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		B8BC057F267CE968004F5EDE /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		B8BC0589267CE9A6004F5EDE /* FrameLib_SortMultiple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BC0587267CE9A5004F5EDE /* FrameLib_SortMultiple.cpp */; };
+		B8BC058B267CE9CB004F5EDE /* fl.sortmultiple~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BC058A267CE9CB004F5EDE /* fl.sortmultiple~.cpp */; };
 		B8BDF0461F2D0A3700264316 /* FrameLib_Register.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF0451F2D0A3600264316 /* FrameLib_Register.cpp */; };
 		B8BDF0481F2D0AA200264316 /* FrameLib_Recall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF0471F2D0AA200264316 /* FrameLib_Recall.cpp */; };
 		B8BDF04A1F2D0B3B00264316 /* FrameLib_Store.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF0491F2D0B3B00264316 /* FrameLib_Store.cpp */; };
@@ -1075,6 +1079,13 @@
 			remoteInfo = framelib;
 		};
 		B8B403271FB9E752006EE056 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
+			remoteInfo = framelib;
+		};
+		B8BC0577267CE968004F5EDE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
 			proxyType = 1;
@@ -2407,6 +2418,10 @@
 		B8BA6FD22078D49200D3DB3D /* libframelib_objects.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libframelib_objects.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8BA70372078F36200D3DB3D /* FrameLib_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Objects.h; sourceTree = "<group>"; };
 		B8BA70382078F38100D3DB3D /* FrameLib_Objects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Objects.cpp; sourceTree = "<group>"; };
+		B8BC0584267CE968004F5EDE /* fl.sortmultiple~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.sortmultiple~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8BC0586267CE9A5004F5EDE /* FrameLib_SortMultiple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_SortMultiple.h; sourceTree = "<group>"; };
+		B8BC0587267CE9A5004F5EDE /* FrameLib_SortMultiple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_SortMultiple.cpp; sourceTree = "<group>"; };
+		B8BC058A267CE9CB004F5EDE /* fl.sortmultiple~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.sortmultiple~.cpp"; sourceTree = "<group>"; };
 		B8BCCF46199CEF230038259B /* FrameLib_Memory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Memory.h; sourceTree = "<group>"; };
 		B8BDF0451F2D0A3600264316 /* FrameLib_Register.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Register.cpp; sourceTree = "<group>"; };
 		B8BDF0471F2D0AA200264316 /* FrameLib_Recall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Recall.cpp; sourceTree = "<group>"; };
@@ -3732,6 +3747,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B8BC057D267CE968004F5EDE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8BC057E267CE968004F5EDE /* libframelib.a in Frameworks */,
+				B8BC057F267CE968004F5EDE /* MaxAudioAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B8C2F8091F863A2A00075677 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -4348,6 +4372,7 @@
 				B852586E259F4D05001D64B9 /* framelib_max_docs */,
 				B8461D13263B2F5E00E61510 /* fl.recursive~.mxo */,
 				B8D0060A263C11B2004D3E94 /* fl.nexttime~.mxo */,
+				B8BC0584267CE968004F5EDE /* fl.sortmultiple~.mxo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4655,6 +4680,8 @@
 				B8891CE71F2C90E800C5C4F0 /* FrameLib_Shift.cpp */,
 				B861EBA019CA389E00B89477 /* FrameLib_Sort.h */,
 				B8891CDB1F2C8D8C00C5C4F0 /* FrameLib_Sort.cpp */,
+				B8BC0586267CE9A5004F5EDE /* FrameLib_SortMultiple.h */,
+				B8BC0587267CE9A5004F5EDE /* FrameLib_SortMultiple.cpp */,
 				B85B68E719F29470002D6F1D /* FrameLib_Split.h */,
 				B8891CDD1F2C8DAA00C5C4F0 /* FrameLib_Split.cpp */,
 				B85B68E819F29470002D6F1D /* FrameLib_Subframe.h */,
@@ -5241,6 +5268,7 @@
 				B8213A5C1FA891030013E31F /* fl.nonzero~.cpp */,
 				B861EBC519CA3EF100B89477 /* fl.percentile~.cpp */,
 				B861EBC619CA3EF100B89477 /* fl.sort~.cpp */,
+				B8BC058A267CE9CB004F5EDE /* fl.sortmultiple~.cpp */,
 				B8F83E3019C78E0000230CD4 /* fl.length~.cpp */,
 				B85B68E419F28F27002D6F1D /* fl.pad~.cpp */,
 				B84943C91B837B3C0037DFF1 /* fl.chop~.cpp */,
@@ -6142,6 +6170,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B8BA6FD02078D49200D3DB3D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8BC0578267CE968004F5EDE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -9040,6 +9075,26 @@
 			productReference = B8BA6FD22078D49200D3DB3D /* libframelib_objects.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		B8BC0575267CE968004F5EDE /* fl.sortmultiple~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8BC0580267CE968004F5EDE /* Build configuration list for PBXNativeTarget "fl.sortmultiple~" */;
+			buildPhases = (
+				B8BC0578267CE968004F5EDE /* Headers */,
+				B8BC0579267CE968004F5EDE /* Resources */,
+				B8BC057A267CE968004F5EDE /* Sources */,
+				B8BC057D267CE968004F5EDE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8BC0576267CE968004F5EDE /* PBXTargetDependency */,
+			);
+			name = "fl.sortmultiple~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = B8BC0584267CE968004F5EDE /* fl.sortmultiple~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
 		B8C2F7F71F863A2A00075677 /* fl.route~ */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B8C2F80D1F863A2A00075677 /* Build configuration list for PBXNativeTarget "fl.route~" */;
@@ -10113,6 +10168,7 @@
 				B898098524FCFA1E00FFE4E2 /* fl.makewindow~ */,
 				B8461D04263B2F5E00E61510 /* fl.recursive~ */,
 				B8D005FB263C11B2004D3E94 /* fl.nexttime~ */,
+				B8BC0575267CE968004F5EDE /* fl.sortmultiple~ */,
 			);
 		};
 /* End PBXProject section */
@@ -10980,6 +11036,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B8B4C8CB1F33D83F008E5D31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8BC0579267CE968004F5EDE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -12527,6 +12590,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B8BC057A267CE968004F5EDE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8BC0589267CE9A6004F5EDE /* FrameLib_SortMultiple.cpp in Sources */,
+				B8BC058B267CE9CB004F5EDE /* fl.sortmultiple~.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B8C2F7FD1F863A2A00075677 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -13152,6 +13224,11 @@
 			isa = PBXTargetDependency;
 			target = B89ABA8F1FA73483006DAD53 /* framelib */;
 			targetProxy = B8B403271FB9E752006EE056 /* PBXContainerItemProxy */;
+		};
+		B8BC0576267CE968004F5EDE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = B8BC0577267CE968004F5EDE /* PBXContainerItemProxy */;
 		};
 		B8BEEB941FA7400600ED26F4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -26568,6 +26645,97 @@
 			};
 			name = "Public Testing";
 		};
+		B8BC0581267CE968004F5EDE /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		B8BC0582267CE968004F5EDE /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		B8BC0583267CE968004F5EDE /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = "Public Testing";
+		};
 		B8C2F80E1F863A2A00075677 /* Development */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
@@ -30739,6 +30907,16 @@
 				B8BA6FD42078D49500D3DB3D /* Development */,
 				B8BA6FD52078D49500D3DB3D /* Deployment */,
 				B8BA6FD62078D49500D3DB3D /* Public Testing */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		B8BC0580267CE968004F5EDE /* Build configuration list for PBXNativeTarget "fl.sortmultiple~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8BC0581267CE968004F5EDE /* Development */,
+				B8BC0582267CE968004F5EDE /* Deployment */,
+				B8BC0583267CE968004F5EDE /* Public Testing */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;

@@ -292,6 +292,7 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_Reverse>::makeClass("fl.reverse~");
     FrameLib_PDClass_Expand<FrameLib_Shift>::makeClass("fl.shift~");
     FrameLib_PDClass_Expand<FrameLib_Sort>::makeClass("fl.sort~");
+    FrameLib_PDClass_Expand<FrameLib_SortMultiple>::makeClass("fl.sortmultiple~");
     FrameLib_PDClass_Expand<FrameLib_Split>::makeClass("fl.split~");
     FrameLib_PDClass_Expand<FrameLib_Subframe>::makeClass("fl.subframe~");
 
