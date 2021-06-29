@@ -185,7 +185,12 @@ void FrameLib_Expression::InputProcessor::process()
                 {
                     const double *input = getInput(i, &sizeIn);
                     double *output = getOutput(i, &sizeOut);
-                    copyVectorWrap(output, input, sizeOut, sizeIn);
+                    
+                    if (sizeIn == sizeOut)
+                        copyVector(output, input, sizeOut);
+                    else
+                        copyVectorWrap(output, input, sizeOut, sizeIn);
+                        
                 }
                 break;
                 
