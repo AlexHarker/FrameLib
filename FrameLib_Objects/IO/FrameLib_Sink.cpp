@@ -6,6 +6,8 @@
 FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_AudioOutput(context, proxy, &sParamInfo, 2, 0, 1)
 , FrameLib_IO_Helper(static_cast<FrameLib_DSP&>(*this))
+, mProxy(castProxy<Proxy>(proxy))
+, mClear(false)
 {
     double bufferSizeDefault = getBufferSizeDefault(serialisedParameters, 250000, 5);
 
@@ -34,6 +36,15 @@ FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, const FrameLib_Parameters
     setParameterInput(1);
 
     objectReset();
+    
+    if (mProxy)
+        mProxy->registerObject(this, this, 0);
+}
+
+FrameLib_Sink::~FrameLib_Sink()
+{
+    if (mProxy)
+        mProxy->unregisterObject(this, this, 0);
 }
 
 // Info
@@ -134,7 +145,15 @@ void FrameLib_Sink::objectReset()
 }
 
 void FrameLib_Sink::blockProcess(const double * const *ins, double **outs, unsigned long blockSize)
-{    
+{
+    // Clear
+    
+    if (mClear)
+    {
+        std::fill(mBuffer.begin(), mBuffer.end(), 0.0);
+        mClear = false;
+    }
+    
     // Safety
     
     if (blockSize > bufferSize() || isTimedOut())

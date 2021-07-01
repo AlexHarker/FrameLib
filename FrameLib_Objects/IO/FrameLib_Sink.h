@@ -5,6 +5,7 @@
 
 #include "FrameLib_DSP.h"
 #include "Framelib_IO_Helper.h"
+#include "Framelib_HostProxy.h"
 #include <vector>
 
 class FrameLib_Sink final : public FrameLib_AudioOutput, private FrameLib_IO_Helper
@@ -25,9 +26,23 @@ class FrameLib_Sink final : public FrameLib_AudioOutput, private FrameLib_IO_Hel
     
 public:
 
-    // Constructor
+    struct Proxy : public FrameLib_HostProxy<FrameLib_Sink>
+    {
+        Proxy() {}
+        
+        void clear()
+        {
+            for (auto it = mRegistered.begin(); it != mRegistered.end(); it++)
+                for (auto jt = it->mObjects.begin(); jt != it->mObjects.end(); jt++)
+                    (*jt)->mClear = true;
+        }
+    };
+    
+    // Constructor / Deconstructor
     
     FrameLib_Sink(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    
+    ~FrameLib_Sink();
     
     // Info
     
@@ -55,8 +70,10 @@ private:
     
     // Data
     
+    Proxy *mProxy;
     std::vector<double> mBuffer;
     unsigned long mCounter;
+    bool mClear;
 
     static ParameterInfo sParamInfo;
 };
