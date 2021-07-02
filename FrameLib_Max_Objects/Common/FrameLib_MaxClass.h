@@ -1245,16 +1245,6 @@ public:
     
     // Tag checks
     
-    static bool isContextNameTag(t_symbol *sym)
-    {
-        return !strcmp(sym->s_name, "{id}");
-    }
-    
-    static bool isContextTag(t_symbol *sym)
-    {
-        return isContextNameTag(sym) || !strcmp(sym->s_name, "{rt}");
-    }
-    
     static bool isParameterTag(t_symbol *sym)
     {
         return strlen(sym->s_name) > 1 && sym->s_name[0] == '/';
@@ -1273,7 +1263,7 @@ public:
     static bool isTag(t_atom *a)
     {
         t_symbol *sym = atom_getsym(a);
-        return isParameterTag(sym) || isInputTag(sym) || isContextTag(sym);
+        return isParameterTag(sym) || isInputTag(sym);
     }
     
     // Constructor and Destructor
