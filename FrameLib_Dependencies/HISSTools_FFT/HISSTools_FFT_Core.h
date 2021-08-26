@@ -1,12 +1,14 @@
 
 #include <cmath>
+#include <cstring>
+#include <cstdlib>
 #include <algorithm>
 #include <functional>
 
 #if defined(__arm__) || defined(__arm64)
 #include <arm_neon.h>
 #include <memory.h>
-#elif defined(__APPLE__) || defined(__LINUX__) || defined(_WIN32)
+#elif defined(__APPLE__) || defined(__linux__) || defined(_WIN32)
 #if defined(_WIN32)
 #include <malloc.h>
 #include <intrin.h>
@@ -60,34 +62,20 @@ namespace hisstools_fft_impl{
 
 #endif
     
+    static const int alignment_size = SIMDLimits<float>::max_size * sizeof(float);
+    
 // Aligned Allocation
 
-#if defined(__APPLE__)
+#if defined(__APPLE__) || defined (__linux__) || defined(__EMSCRIPTEN__)
     
     template <class T>
     T *allocate_aligned(size_t size)
     {
-        return static_cast<T *>(malloc(size * sizeof(T)));
-    }
-    
-#elif defined(__linux__)
-    
-    template <class T>
-    T *allocate_aligned(size_t size)
-    {
-        void *mem;
-        posix_memalign(&mem, SIMDLimits<T>::max_size * sizeof(T), size * sizeof(T));
-        return static_cast<T *>(mem);
-    }
-
-#elif defined(__EMSCRIPTEN__)
-
-    template <class T>
-    T *allocate_aligned(size_t size)
-    {
-        void *mem;
-        posix_memalign(&mem, 16, size * sizeof(T));
-        return static_cast<T *>(mem);
+        void *mem = nullptr;
+        if (!posix_memalign(&mem, alignment_size, size * sizeof(T)))
+            return static_cast<T *>(mem);
+        else
+            return nullptr;
     }
 
 #elif defined(__arm__) || defined(__arm64__)
@@ -95,7 +83,7 @@ namespace hisstools_fft_impl{
     template <class T>
     T *allocate_aligned(size_t size)
     {
-        return static_cast<T *>(aligned_alloc(16, size * sizeof(T)));
+        return static_cast<T *>(aligned_alloc(alignment_size, size * sizeof(T)));
     }
     
 #elif defined(_WIN32)
@@ -103,7 +91,7 @@ namespace hisstools_fft_impl{
     template <class T>
     T *allocate_aligned(size_t size)
     {
-        return static_cast<T *>(_aligned_malloc(size * sizeof(T), 16));
+        return static_cast<T *>(_aligned_malloc(size * sizeof(T), alignment_size));
     }
     
 #endif
@@ -123,7 +111,7 @@ namespace hisstools_fft_impl{
 #endif
     
     template <class T>
-    bool is_aligned(const T *ptr) { return !(reinterpret_cast<uintptr_t>(ptr) % 16); }
+    bool is_aligned(const T *ptr) { return !(reinterpret_cast<uintptr_t>(ptr) % alignment_size); }
     
     // Offset for Table
     
@@ -364,7 +352,7 @@ namespace hisstools_fft_impl{
         
         Vector4x() {}
         Vector4x(const Vector4x *ptr) { *this = *ptr; }
-        Vector4x(const T *array) { *this = *reinterpret_cast<const Vector4x *>(array); }
+        Vector4x(const T *array) { memcpy(mData, array, sizeof(ArrayType) * array_size); }
         
         // This template allows a static loop
         
@@ -426,7 +414,7 @@ namespace hisstools_fft_impl{
     template <class T>
     Setup<T> *create_setup(uintptr_t max_fft_log2)
     {
-        Setup<T> *setup = allocate_aligned<Setup<T>>(1);
+        Setup<T> *setup = new(Setup<T>);
         
         // Set Max FFT Size
         
@@ -469,7 +457,7 @@ namespace hisstools_fft_impl{
             for (uintptr_t i = trig_table_offset; i <= setup->max_fft_log2; i++)
                 deallocate_aligned(setup->tables[i - trig_table_offset].realp);
             
-            deallocate_aligned(setup);
+            delete(setup);
         }
     }
     
