@@ -1,7 +1,7 @@
 
 // Paths
 
-C74SUPPORT = $(SRCROOT)/FrameLib_Max_Objects/_MaxSDK_/c74support
+C74SUPPORT = $(SRCROOT)/../max-sdk-base/c74support
 HEADER_SEARCH_PATHS = "$(C74SUPPORT)/max-includes" "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes" "$(PROJECT_DIR)/FrameLib_Dependencies"
 FRAMEWORK_SEARCH_PATHS = "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes"
 

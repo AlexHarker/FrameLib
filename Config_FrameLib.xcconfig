@@ -5,7 +5,7 @@ PRODUCT_NAME = $(TARGET_NAME)
 
 // Per architecture and deployment settings
 
-ARCHS = i386 x86_64
+ARCHS = x86_64 arm64
 
 MACOSX_DEPLOYMENT_TARGET = 10.7
 CLANG_CXX_LANGUAGE_STANDARD = c++11
