@@ -53,7 +53,7 @@ public:
 
     private:
         
-        t_qelem mQelem;
+        t_qelem *mQelem;
     };
     
     // Default Constructor
