@@ -38,8 +38,8 @@ public:
     enum Type { kValue, kEnum, kString, kArray, kVariableArray };
     enum ClipMode { kNone, kMin, kMax, kClip };
     
-public:
-    
+    const static size_t maxStrLen = 128;
+
     /**
      
      @class Serial
@@ -477,10 +477,8 @@ private:
     
     class String final : public Parameter
     {
-        const static size_t maxLen = 128;
-        
     public:
-        
+     
         String(const char *name, long argumentIdx);
         
         // Setters
@@ -497,7 +495,7 @@ private:
         
     private:
         
-        char mCString[maxLen + 1];
+        char mCString[maxStrLen + 1];
     };
     
     /**

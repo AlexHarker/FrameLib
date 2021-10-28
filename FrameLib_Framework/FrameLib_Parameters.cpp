@@ -650,7 +650,7 @@ FrameLib_Parameters::SetError FrameLib_Parameters::String::set(const char *str)
     
     if (str != nullptr)
     {
-        for (i = 0; i < maxLen; i++)
+        for (i = 0; i < maxStrLen; i++)
             if ((mCString[i] = str[i]) == 0)
                 break;
     }

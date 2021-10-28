@@ -219,6 +219,7 @@ extern "C" void framelib_pd_setup(void)
     
     FrameLib_PDClass_Expand<FrameLib_CombineTags>::makeClass("fl.combinetags~");
     FrameLib_PDClass_Expand<FrameLib_FilterTags>::makeClass("fl.filtertags~");
+    FrameLib_PDClass_Expand<FrameLib_MakeString>::makeClass("fl.makestring~");
     FrameLib_PDClass_Expand<FrameLib_Tag>::makeClass("fl.tag~");
     FrameLib_PDClass_Expand<FrameLib_Untag>::makeClass("fl.untag~");
     
