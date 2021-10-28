@@ -2,6 +2,7 @@
 #ifndef FRAMELIB_ERRORS_H
 #define FRAMELIB_ERRORS_H
 
+#include "FrameLib_Strings.h"
 #include "FrameLib_Types.h"
 #include "FrameLib_Threading.h"
 
@@ -168,33 +169,15 @@ public:
             return false;
         }
         
-        bool addItem(size_t number)
+        bool addItem(char *str)
         {
-            const int strBufSize = 32;
-            char charArray[strBufSize];
-            snprintf(charArray, strBufSize, "%zu", number);
-            return addItem(charArray);
+            return addItem(const_cast<const char *>(str));
         }
         
-        bool addItem(long number)
+        template <typename T>
+        bool addItem(T number)
         {
-            const int strBufSize = 32;
-            char charArray[strBufSize];
-            snprintf(charArray, strBufSize, "%ld", number);
-            return addItem(charArray);
-        }
-        
-        bool addItem(int number)
-        {
-            return addItem(static_cast<long>(number));
-        }
-        
-        bool addItem(double number)
-        {
-            const int strBufSize = 32;
-            char charArray[strBufSize];
-            snprintf(charArray, strBufSize, "%lf", number);
-            return addItem(charArray);
+            return addItem(FrameLib_StringMaker<>(number));
         }
         
         bool addItems()
