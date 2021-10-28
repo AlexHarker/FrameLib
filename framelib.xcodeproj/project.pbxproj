@@ -1831,6 +1831,7 @@
 		B805E33F19C3AF69007D8D8B /* fl.times~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.times~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8061D501B8C0C00002C8BD2 /* FrameLib_Interval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Interval.h; sourceTree = "<group>"; };
 		B8075B131979173E00EB3A35 /* FrameLib_DSP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_DSP.h; sourceTree = "<group>"; };
+		B808035A272A9CA500916D39 /* FrameLib_Strings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Strings.h; sourceTree = "<group>"; };
 		B809BDC619C42CC500BA41F4 /* fl.abs~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.abs~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B809BDC719C42CC500BA41F4 /* fl.acos~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.acos~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B809BDC819C42CC500BA41F4 /* fl.acosh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.acosh~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -4478,6 +4479,7 @@
 				B8E5F08D2073A62400978385 /* FrameLib_Export.h */,
 				B88A482A2067DCC400CEB3AC /* FrameLib_SerialiseGraph.h */,
 				B88A48292067DCC400CEB3AC /* FrameLib_SerialiseGraph.cpp */,
+				B808035A272A9CA500916D39 /* FrameLib_Strings.h */,
 			);
 			name = Framework;
 			path = FrameLib_Framework;
