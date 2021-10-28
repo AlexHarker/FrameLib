@@ -58,6 +58,7 @@ FrameLib_SampleRate,
 
 FrameLib_CombineTags,
 FrameLib_FilterTags,
+FrameLib_MakeString,
 FrameLib_Tag,
 FrameLib_Untag,
 
@@ -208,7 +209,7 @@ FrameLib_LogicalOr,
 FrameLib_Pow,
 FrameLib_Atan2,
 FrameLib_Hypot,
-FrameLib_CopySign, 
+FrameLib_CopySign,
 FrameLib_Min,
 FrameLib_Max,
 FrameLib_Diff,
@@ -256,3 +257,4 @@ FrameLib_Read
 >;
 
 #endif /* FRAMELIB_TYPELIST_H */
+
