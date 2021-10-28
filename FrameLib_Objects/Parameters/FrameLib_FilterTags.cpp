@@ -6,11 +6,6 @@
 FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 1, 2)
 {
-    const int strBufSize = 10;
-    
-    char argStr[strBufSize];
-    char tagStr[strBufSize];
-    
     mParameters.addInt(kNumFilters, "num_filters", 1);
     mParameters.setClip(1, maxNumFilters);
     mParameters.setInstantiation();
@@ -27,9 +22,7 @@ FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, const FrameLi
     {
         for (int i = 0; i < maxNumFilters; i++)
         {
-            snprintf(argStr, strBufSize, "%d", i);
-            snprintf(tagStr, strBufSize, "tag_%02d", i + 1);
-            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(tagStr) != serialisedParameters->end())
+            if (serialisedParameters->find(FrameLib_StringMaker<>(i)) != serialisedParameters->end() || serialisedParameters->find(FrameLib_StringMaker<>("tag_", i + 1, 2)) != serialisedParameters->end())
                 mParameters.set(kNumFilters, (long) (i + 1));
         }
     }
@@ -39,10 +32,7 @@ FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, const FrameLi
     mNumFilters = mParameters.getInt(kNumFilters);
     
     for (unsigned long i = 0; i < mNumFilters; i++)
-    {
-        snprintf(tagStr, strBufSize, "tag_%02lu", i + 1);
-        mParameters.addString(kFilters + i, tagStr, i);
-    }
+        mParameters.addString(kFilters + i, FrameLib_StringMaker<>("tag_", i + 1, 2), i);
     
     // Read in again to get parameter names
     

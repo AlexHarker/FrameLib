@@ -6,11 +6,6 @@
 FrameLib_MakeString::FrameLib_MakeString(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo), mNumIns(1)
 {
-    const int strBufSize = 10;
-
-    char argStr[strBufSize];
-    char eleStr[strBufSize];
-    
     mParameters.addInt(kNumItems, "num_items", 1);
     mParameters.setClip(1, maxNumItems);
     mParameters.setInstantiation();
@@ -27,9 +22,7 @@ FrameLib_MakeString::FrameLib_MakeString(FrameLib_Context context, const FrameLi
     {
         for (int i = 0; i < maxNumItems; i++)
         {
-            snprintf(argStr, strBufSize, "%d", i + 1);
-            snprintf(eleStr, strBufSize, "item_%02d", i + 1);
-            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(eleStr) != serialisedParameters->end())
+            if (serialisedParameters->find(FrameLib_StringMaker<>(i + 1)) != serialisedParameters->end() || serialisedParameters->find(FrameLib_StringMaker<>("item_", i + 1, 2)) != serialisedParameters->end())
                 mParameters.set(kNumItems, (long) (i + 1));
         }
     }
@@ -46,10 +39,7 @@ FrameLib_MakeString::FrameLib_MakeString(FrameLib_Context context, const FrameLi
     mParameters.addVariableIntArray(kPadding, "padding", 0, maxNumItems, 0);
     
     for (unsigned long i = 0; i < mNumItems; i++)
-    {
-        snprintf(eleStr, strBufSize, "item_%02lu", i + 1);
-        mParameters.addString(kItems + i, eleStr, i + 1);
-    }
+        mParameters.addString(kItems + i, FrameLib_StringMaker<>("item_", i + 1, 2), i + 1);
     
     // Read in again to get most parameters
     
@@ -137,14 +127,9 @@ long FrameLib_MakeString::getInputNumber(unsigned long idx)
 {
     const char *str = mParameters.getString(kItems + idx);
     
-    const int strBufSize = 10;
-
-    char inStr[strBufSize];
-    
     for (long i = 0; i < maxNumItems; i++)
     {
-        snprintf(inStr, strBufSize, "in%ld", i + 1);
-        if (!strcmp(str, inStr))
+        if (!strcmp(str, FrameLib_StringMaker<>("in", i + 1, 0)))
             return i;
     }
     
@@ -200,9 +185,6 @@ void FrameLib_MakeString::process()
 
     for (int i = 0; i < mNumItems && !error; i++)
     {
-        char formatStr[maxLength + 1];
-        char numberStr[maxLength + 1];
-
         long idx = mInputs[i];
         
         // Convert number or add fixed string
@@ -220,9 +202,7 @@ void FrameLib_MakeString::process()
                 
             // Convert to string
             
-            snprintf(formatStr, maxLength + 1, "%%0%ldld", pad);
-            snprintf(numberStr, maxLength + 1, formatStr, number);
-            error = addString(numberStr);
+            error = addString(FrameLib_StringMaker<maxLength + 1>(i + 1, pad));
         }
         else
             error = addString(mParameters.getString(kItems + i));

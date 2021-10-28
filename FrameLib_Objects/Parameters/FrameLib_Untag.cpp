@@ -6,11 +6,6 @@
 FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo)
 {
-    const int strBufSize = 10;
-
-    char argStr[strBufSize];
-    char tagStr[strBufSize];
-    
     mParameters.addInt(kNumOuts, "num_outs", 1);
     mParameters.setClip(1, maxNumOuts);
     mParameters.setInstantiation();
@@ -27,9 +22,7 @@ FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, const FrameLib_Paramete
     {
         for (int i = 0; i < maxNumOuts; i++)
         {
-            snprintf(argStr, strBufSize, "%d", i);
-            snprintf(tagStr, strBufSize, "tag_%02d", i + 1);
-            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(tagStr) != serialisedParameters->end())
+            if (serialisedParameters->find(FrameLib_StringMaker<>(i)) != serialisedParameters->end() || serialisedParameters->find(FrameLib_StringMaker<>("tag_", i + 1, 2)) != serialisedParameters->end())
                 mParameters.set(kNumOuts, (long) (i + 1));
         }
     }
@@ -39,10 +32,7 @@ FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, const FrameLib_Paramete
     mNumOuts = mParameters.getInt(kNumOuts);
     
     for (unsigned long i = 0; i < mNumOuts; i++)
-    {
-        snprintf(tagStr, strBufSize, "tag_%02lu", i + 1);
-        mParameters.addString(kTags + i, tagStr, i);
-    }
+        mParameters.addString(kTags + i, FrameLib_StringMaker<>("tag_", i + 1, 2), i);
     
     // Read in again to get parameter tags
     
