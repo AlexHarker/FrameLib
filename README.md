@@ -23,8 +23,9 @@ FrameLib currently consists of:
 
 Where to start:
 ---------------------------------
-- To get the Max package: https://github.com/AlexHarker/FrameLib/releases/tag/v.1.0-beta
+- To get the Max package: https://github.com/AlexHarker/FrameLib/releases/
 - To compile FrameLib clone this repo and start in the XCode project or VS solution
+- For max builds you will require https://github.com/Cycling74/max-sdk-base (to be placed alongside this repo in the same enclosing folder)
 - If you wish to code new objects read the (limited) doxygen documentation of the framework source code
 - FrameLib can be discussed at https://framelib.discourse.group
 
