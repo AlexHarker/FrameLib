@@ -67,4 +67,4 @@ struct FrameLib_StringMaker
     char mChars[N];
 };
 
-#endif /* FRAMELIB_STRINGS_H */
+#endif 

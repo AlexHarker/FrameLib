@@ -58,6 +58,7 @@ FrameLib_SampleRate,
 
 FrameLib_CombineTags,
 FrameLib_FilterTags,
+FrameLib_LookupString,
 FrameLib_MakeString,
 FrameLib_Tag,
 FrameLib_Untag,
