@@ -56,14 +56,13 @@ FrameLib_LookupString::FrameLib_LookupString(FrameLib_Context context, const Fra
 // Info
 
 std::string FrameLib_LookupString::objectInfo(bool verbose)
-{
-    return formatInfo("Tags vectors with tags either in order to set parameters or for routing purposes: "
-                      "Tag inputs each deal with one tag and take input vectors. "
-                      "The number of tag inputs can be set explicitly by parameter. "
-                      "Alternatively, it can be set implicitly by the tag parameters present at instantiation. "
-                      "A further input takes pre-tagged input to concatanated with other inputs after tagging. "
-                      "All inputs except the parameter input trigger output.",
-                      "Tags vectors with tags either in order to set parameters or for routing purposes.", verbose);
+{    
+    return formatInfo("Lookup a specified string from an internally stored list of strings: "
+                      "The first number at the input is used to specify the string. "
+                      "The number of stored items can be set explicitly by parameter. "
+                      "Alternatively, it can be set implicitly by the parameters present at instantiation. "
+                      "Items may be dynamically updated by parameter. ",
+                      "Lookup a specified string from an internally stored list of strings.", verbose);
 }
 
 std::string FrameLib_LookupString::inputInfo(unsigned long idx, bool verbose)
@@ -91,7 +90,6 @@ FrameLib_LookupString::ParameterInfo::ParameterInfo()
     
     add("Sets the number of items.");
     add("Sets the output tag.");
-
     add("Sets the behaviour when empty frames are received: "
         "ignore - empty frames are ignored. "
         "reset - empty frames create empty tags to reset parameters to defaults.");

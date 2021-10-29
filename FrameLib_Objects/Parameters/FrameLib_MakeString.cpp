@@ -108,10 +108,8 @@ FrameLib_MakeString::ParameterInfo::ParameterInfo()
     
     add("Sets the number of items.");
     add("Sets the output tag.");
-    
     add("Sets which inputs trigger output using an array of bools. "
         "By default all inputs trigger output.");
-    
     add("Sets the zero padding for each input using an array of integers. "
         "By default there is no zero padding.");
     
