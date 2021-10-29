@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0920"
+   LastUpgradeVersion = "1300"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -2299,6 +2299,20 @@
                BlueprintIdentifier = "B88B48442729683200D33BBE"
                BuildableName = "fl.makestring~.mxo"
                BlueprintName = "fl.makestring~"
+               ReferencedContainer = "container:framelib.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B8675124272BF39300419AB7"
+               BuildableName = "fl.lookupstring~.mxo"
+               BlueprintName = "fl.lookupstring~"
                ReferencedContainer = "container:framelib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

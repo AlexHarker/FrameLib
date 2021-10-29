@@ -1,4 +1,8 @@
 
+// Deployment Target
+
+MACOSX_DEPLOYMENT_TARGET = 10.11
+
 // Paths
 
 C74SUPPORT = $(SRCROOT)/../max-sdk-base/c74support
