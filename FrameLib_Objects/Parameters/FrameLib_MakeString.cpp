@@ -10,6 +10,14 @@ FrameLib_MakeString::FrameLib_MakeString(FrameLib_Context context, const FrameLi
     mParameters.setClip(1, maxNumItems);
     mParameters.setInstantiation();
     
+    mParameters.addString(kTag, "tag", 0);
+
+    mParameters.addVariableBoolArray(kTriggers, "trigger_ins", true, maxNumItems, maxNumItems);
+    mParameters.setInstantiation();
+    
+    mParameters.addVariableIntArray(kPadding, "padding", 0, maxNumItems, 0);
+    
+    
     // Read in once to get number of items needed
     
     mParameters.setErrorReportingEnabled(false);
@@ -30,13 +38,6 @@ FrameLib_MakeString::FrameLib_MakeString(FrameLib_Context context, const FrameLi
     // Read number of items and setup parameters
     
     mNumItems = mParameters.getInt(kNumItems);
-    
-    mParameters.addString(kTag, "tag", 0);
-
-    mParameters.addVariableBoolArray(kTriggers, "trigger_ins", true, maxNumItems, maxNumItems);
-    mParameters.setInstantiation();
-    
-    mParameters.addVariableIntArray(kPadding, "padding", 0, maxNumItems, 0);
     
     for (unsigned long i = 0; i < mNumItems; i++)
         mParameters.addString(kItems + i, FrameLib_StringMaker<>("item_", i + 1, 2), i + 1);
@@ -202,7 +203,7 @@ void FrameLib_MakeString::process()
                 
             // Convert to string
             
-            error = addString(FrameLib_StringMaker<maxLength + 1>(i + 1, pad));
+            error = addString(FrameLib_StringMaker<maxLength + 1>(number, pad));
         }
         else
             error = addString(mParameters.getString(kItems + i));
