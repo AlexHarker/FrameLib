@@ -188,7 +188,7 @@ public:
         
         unsigned long numTags() const       { return mNumTags; };
         unsigned long size() const          { return mSize; }
-        void clear()                        { mSize = 0; }
+        void clear()                        { mSize = mNumTags = 0; }
         
         static unsigned long alignSize(size_t size)
         {
