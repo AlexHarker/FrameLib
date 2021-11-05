@@ -62,7 +62,7 @@ FrameLib_MakeString::FrameLib_MakeString(FrameLib_Context context, const FrameLi
     
     setIO(mNumIns, 1);
     
-    for (long i = 0; i < mNumIns; i++)
+    for (unsigned long i = 0; i < mNumIns; i++)
         setInputMode(i, false, (i < triggersSize) && triggers[i], false);
     
     setOutputType(0, kFrameTagged);
@@ -144,7 +144,7 @@ void FrameLib_MakeString::update()
         if (mParameters.changed(kItems + i))
         {
             long input = getInputNumber(i);
-            mInputs[i] = input < mNumIns ? input : -1;
+            mInputs[i] = input < static_cast<long>(mNumIns) ? input : -1;
         }
     }
 }
@@ -182,7 +182,7 @@ void FrameLib_MakeString::process()
     
     bool error = false;
 
-    for (int i = 0; i < mNumItems && !error; i++)
+    for (unsigned long i = 0; i < mNumItems && !error; i++)
     {
         long idx = mInputs[i];
         
@@ -191,7 +191,7 @@ void FrameLib_MakeString::process()
         if (idx >= 0)
         {            
             unsigned long sizeIn;
-            long pad = idx < paddingSize ? static_cast<long>(padding[idx]) : 0;
+            long pad = idx < static_cast<long>(paddingSize) ? static_cast<long>(padding[idx]) : 0;
             long number = 0;
             
             const double *input = getInput(mInputs[i], &sizeIn);
