@@ -185,13 +185,13 @@ public:
             return true;
         }
         
-        template<typename T>
+        template <typename T>
         bool addItems(T first)
         {
             return addItem(first);
         }
         
-        template<typename T, typename... Args>
+        template <typename T, typename... Args>
         bool addItems(T first, Args... args)
         {
             if (addItem(first))
@@ -199,7 +199,7 @@ public:
             return false;
         }
         
-        template<typename... Args>
+        template <typename... Args>
         void add(ErrorSource source, FrameLib_Proxy *reporter, const char *error, Args... args)
         {
             char *ptr = getItemsPointer();
