@@ -11,6 +11,7 @@
 #include <string>
 #include <cstdio>
 #include <cstring>
+#include <type_traits>
 
 /**
  
@@ -174,7 +175,7 @@ public:
             return addItem(const_cast<const char *>(str));
         }
         
-        template <typename T>
+        template <typename T, std::enable_if_t<std::is_arithmetic<T>::value, bool> = true>
         bool addItem(T number)
         {
             return addItem(FrameLib_StringMaker<>(number));
