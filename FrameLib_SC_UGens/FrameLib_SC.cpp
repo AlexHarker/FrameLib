@@ -1,5 +1,5 @@
 
-#include "SC_PlugIn.h"
+#include <SC_PlugIn.h>
 #include "../FrameLib_Exports/FrameLib_Objects.h"
 
 
@@ -431,7 +431,7 @@ void FLTest_CalcZero(FrameLib_SC_UGen *unit, int inNumSamples)
 
 void FLTest_CalcAudio(FrameLib_SC_UGen *unit, int inNumSamples)
 {
-    bool outputObject = unit->mObject->getType() == kOutput;
+    bool outputObject = unit->mObject->getType() == ObjectType::Output;
     unsigned long numAudioChannels = unit->mObject->getNumAudioChans();
     
     if (outputObject)
