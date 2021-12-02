@@ -8,7 +8,7 @@ class FrameLib_LookupString final : public FrameLib_Processor
 {
     typedef FrameLib_Parameters::Serial Serial;
 
-    const static int maxNumItems = 32;
+    static constexpr int maxNumItems = 32;
     
     // Parameter Enums and Info
 

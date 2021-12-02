@@ -38,7 +38,7 @@ public:
     enum Type { kValue, kEnum, kString, kArray, kVariableArray };
     enum ClipMode { kNone, kMin, kMax, kClip };
     
-    const static size_t maxStrLen = 128;
+    static constexpr size_t maxStrLen = 128;
 
     /**
      
@@ -54,7 +54,7 @@ public:
         
         // N.B. the assumption is that double is the largest type in use
         
-        static const size_t alignment = sizeof(double);
+        static constexpr size_t alignment = sizeof(double);
         
         /**
          
@@ -263,7 +263,7 @@ public:
     
     class AutoSerial : public Serial
     {
-        static const unsigned long minGrowSize = 512;
+        static constexpr unsigned long minGrowSize = 512;
         
     public:
         

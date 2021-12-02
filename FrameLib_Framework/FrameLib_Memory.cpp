@@ -6,10 +6,10 @@
 
 // N.B. - alignment must be a power of two
 
-static const size_t alignment = 16;
-static size_t const initSize = 1024 * 1024 * 2;
-static size_t const growSize = 1024 * 1024 * 2;
-static const int pruneInterval = 20;
+static constexpr size_t alignment = 16;
+static size_t constexpr initSize = 1024 * 1024 * 2;
+static size_t constexpr growSize = 1024 * 1024 * 2;
+static constexpr int pruneInterval = 20;
 
 // ************************************************************************************** //
 

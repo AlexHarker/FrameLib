@@ -6,7 +6,7 @@
 
 class FrameLib_Untag final : public FrameLib_Processor
 {
-    const static int maxNumOuts = 10;
+    static constexpr int maxNumOuts = 10;
     
     // Parameter Enums and Info
 

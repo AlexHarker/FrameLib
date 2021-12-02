@@ -118,8 +118,8 @@ inline uint32_t FrameLib_RandGen::CMWC()
     
     uint64_t t;
     
-    i = (i + 1) & (CMWC_LAG_SIZE - 1);
-    t = (uint64_t) CMWC_A_VALUE * mSTATE[i] + c;
+    i = (i + 1) & (cmwc_lag_size - 1);
+    t = (uint64_t) cmwc_a_value * mState[i] + c;
     c = (t >> 32);
     x = (uint32_t) ((t + c) & 0xFFFFFFFF);
     
@@ -129,38 +129,38 @@ inline uint32_t FrameLib_RandGen::CMWC()
         c++;
     }
     
-    mSTATE[i] = (0xFFFFFFFE - x);
+    mState[i] = (0xFFFFFFFE - x);
     mIncrement = i;
     mCarry = c;
     
-    return mSTATE[i];
+    return mState[i];
 }
 
 // Initialise with Seed Values
 
 void FrameLib_RandGen::initSeedCMWC(uint32_t *init)
 {
-    mIncrement = (CMWC_LAG_SIZE - 1);
+    mIncrement = (cmwc_lag_size - 1);
     mCarry = 123;
     
-    for (uint32_t i = 0; i < CMWC_LAG_SIZE; i++)
-        mSTATE[i] = init[i];
+    for (uint32_t i = 0; i < cmwc_lag_size; i++)
+        mState[i] = init[i];
 }
 
 void FrameLib_RandGen::randSeedCMWC()
 {
-    uint32_t seeds[CMWC_LAG_SIZE];
+    uint32_t seeds[cmwc_lag_size];
     
 #ifdef __APPLE__
-    for (uint32_t i = 0; i < CMWC_LAG_SIZE; i++)
+    for (uint32_t i = 0; i < cmwc_lag_size; i++)
         seeds[i] = arc4random();
 #elif defined (__linux__)
     srandom(time(nullptr));
-    for (uint32_t i = 0; i < CMWC_LAG_SIZE; i++)
+    for (uint32_t i = 0; i < cmwc_lag_size; i++)
         seeds[i] = random();
 #else
     HCRYPTPROV hProvider = 0;
-    const DWORD dwLength = 4 * CMWC_LAG_SIZE;
+    const DWORD dwLength = 4 * cmwc_lag_size;
     BYTE *pbBuffer = (BYTE *) seeds;
     
     if (!CryptAcquireContextW(&hProvider, 0, 0, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT | CRYPT_SILENT))

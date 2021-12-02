@@ -87,8 +87,8 @@ public:
     {
         friend class FrameLib_ErrorReporter;
         
-        const static int sCharArraySize = 8192;
-        const static int sReportArraySize = 1024;
+        static constexpr int charArraySize = 8192;
+        static constexpr int reportArraySize = 1024;
         
     public:
         
@@ -159,7 +159,7 @@ public:
             char *ptr = mItems + mItemsSize;
             size_t size = strlen(str) + 1;
             
-            if (mItemsSize + size < sCharArraySize)
+            if (mItemsSize + size < charArraySize)
             {
                 std::copy(str, str + size, ptr);
                 mItemsSize += size;
@@ -204,7 +204,7 @@ public:
         {
             char *ptr = getItemsPointer();
             
-            if (!mFull && (mReportsSize < sReportArraySize) && addItems(args...))
+            if (!mFull && (mReportsSize < reportArraySize) && addItems(args...))
             {
                 size_t itemSize = getItemsPointer() - ptr;
                 mReports[mReportsSize] = ErrorReport(source, reporter, error, ptr, itemSize, sizeof...(args));
@@ -227,8 +227,8 @@ public:
         
         // Data
         
-        ErrorReport mReports[sReportArraySize];
-        char mItems[sCharArraySize];
+        ErrorReport mReports[reportArraySize];
+        char mItems[charArraySize];
         size_t mReportsSize;
         size_t mItemsSize;
         bool mFull;
