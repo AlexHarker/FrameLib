@@ -77,6 +77,7 @@
 		B8213A511FA88FA20013E31F /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8213A5B1FA8909F0013E31F /* FrameLib_NonZero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8213A451FA88F5D0013E31F /* FrameLib_NonZero.cpp */; };
 		B8213A5D1FA891030013E31F /* fl.nonzero~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8213A5C1FA891030013E31F /* fl.nonzero~.cpp */; };
+		B822CE3B27590D5100A02141 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B822F4291FAE15DD003DC4CB /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B822F4341FAE162D003DC4CB /* fl.filtertags~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B822F4331FAE162D003DC4CB /* fl.filtertags~.cpp */; };
 		B822F4361FAE1685003DC4CB /* FrameLib_FilterTags.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B822F4351FAE1685003DC4CB /* FrameLib_FilterTags.cpp */; };
@@ -299,7 +300,6 @@
 		B8B4C8E51F33D88D008E5D31 /* FrameLib_AudioTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4C8E31F33D88D008E5D31 /* FrameLib_AudioTrigger.cpp */; };
 		B8B4C8E81F33D956008E5D31 /* fl.audiotrigger~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4C8E71F33D956008E5D31 /* fl.audiotrigger~.cpp */; };
 		B8B961DD1F1000D500D174F2 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
-		B8BA6FD82078D4F900D3DB3D /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8BA6FD92078D50900D3DB3D /* FrameLib_RandGen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */; };
 		B8BA6FDA2078D53400D3DB3D /* FrameLib_Interval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF05A1F2D40C800264316 /* FrameLib_Interval.cpp */; };
 		B8BA6FDB2078D53600D3DB3D /* FrameLib_Once.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B826E4AE1F31490100B920C8 /* FrameLib_Once.cpp */; };
@@ -3440,8 +3440,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B822CE3B27590D5100A02141 /* libframelib.a in Frameworks */,
 				B83F045E223A769800AF1F8E /* Accelerate.framework in Frameworks */,
-				B8BA6FD82078D4F900D3DB3D /* libframelib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
