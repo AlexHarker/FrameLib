@@ -168,8 +168,11 @@ void FrameLib_MakeString::process()
         size_t addLength = strlen(newStr);
         if (length + addLength < maxLength)
         {
-            strcpy_s(str + length, addLength + 1, newStr);
+            // Copy string and terminate it
+            
+            memcpy(str + length, newStr, addLength);
             length += addLength;
+            str[length] = 0;
         }
         else
         {
