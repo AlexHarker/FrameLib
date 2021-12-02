@@ -36,12 +36,12 @@ class FrameLib_DSP
     friend class FrameLib_ProcessingQueue;
     friend class FrameLib_AudioQueue;
     
-    enum NotificationType
+    enum class NotificationType
     {
-        kSelfConnection,
-        kOutputConnection,
-        kInputConnection,
-        kAudioBlock,
+        Self,
+        Output,
+        Input,
+        Audio,
     };
     
 protected:
@@ -79,9 +79,9 @@ private:
     
     struct Input
     {
-        Input() : mObject(nullptr), mIndex(0), mSize(0), mFixedInput(nullptr), mType(kFrameNormal), mUpdate(false), mParameters(false), mTrigger(true), mSwitchable(false) {}
+        Input() : mObject(nullptr), mIndex(0), mSize(0), mFixedInput(nullptr), mType(FrameType::Vector), mUpdate(false), mParameters(false), mTrigger(true), mSwitchable(false) {}
         
-        FrameType getCurrentType() const { return mObject ? mObject->mOutputs[mIndex].mCurrentType : kFrameNormal; }
+        FrameType getCurrentType() const { return mObject ? mObject->mOutputs[mIndex].mCurrentType : FrameType::Vector; }
         
         // Connection Info
         
@@ -113,7 +113,7 @@ private:
     
     struct Output
     {
-        Output() : mMemory(nullptr), mType(kFrameNormal), mCurrentType(kFrameNormal), mRequestedType(kFrameNormal), mCurrentSize(0), mRequestedSize(0), mPointerOffset(0) {}
+        Output() : mMemory(nullptr), mType(FrameType::Vector), mCurrentType(FrameType::Vector), mRequestedType(FrameType::Vector), mCurrentSize(0), mRequestedSize(0), mPointerOffset(0) {}
         
         void *mMemory;
         
@@ -171,7 +171,7 @@ protected:
     // Call these from your constructor only (unsafe elsewhere)
    
     void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
-    void setInputMode(unsigned long idx, bool update, bool trigger, bool switchable, FrameType type = kFrameNormal);
+    void setInputMode(unsigned long idx, bool update, bool trigger, bool switchable, FrameType type = FrameType::Vector);
     void setParameterInput(unsigned long idx);
     void addParameterInput();
     void setOutputType(unsigned long idx, FrameType type);
@@ -199,8 +199,8 @@ protected:
     FrameLib_TimeFormat getFrameTime() const        { return mFrameTime; }
     FrameLib_TimeFormat getValidTime() const        { return mValidTime; }
     FrameLib_TimeFormat getInputTime() const        { return mInputTime; }
-    FrameLib_TimeFormat getCurrentTime() const      { return getType() == kScheduler ? mValidTime : mFrameTime; }
-    FrameLib_TimeFormat getBlockStartTime() const   { return getType() == kOutput ? mBlockEndTime : mBlockStartTime; }
+    FrameLib_TimeFormat getCurrentTime() const      { return getType() == ObjectType::Scheduler ? mValidTime : mFrameTime; }
+    FrameLib_TimeFormat getBlockStartTime() const   { return getType() == ObjectType::Output ? mBlockEndTime : mBlockStartTime; }
     FrameLib_TimeFormat getBlockEndTime() const     { return mBlockEndTime; }
     
     FrameLib_TimeFormat getQueueBlockStartTime() const  { return mProcessingQueue->getBlockStartTime(); }
@@ -304,7 +304,7 @@ private:
     
     // This returns true if the object needs notification from an audio thread (is a scheduler/has audio input)
     
-    bool needsAudioNotification() { return getType() == kScheduler || getNumAudioIns(); }
+    bool needsAudioNotification() { return getType() == ObjectType::Scheduler || getNumAudioIns(); }
     
     // Manage Output Memory
 
@@ -390,11 +390,11 @@ class FrameLib_Processor : public FrameLib_DSP
 {
 public:
     
-    static constexpr ObjectType sType = kProcessor;
+    static constexpr ObjectType sType = ObjectType::Processor;
     static constexpr bool sHandlesAudio = false;
     
     FrameLib_Processor(FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0)
-    : FrameLib_DSP(kProcessor, context, proxy, info, nIns, nOuts) {}
+    : FrameLib_DSP(ObjectType::Processor, context, proxy, info, nIns, nOuts) {}
 
 protected:
     
@@ -422,11 +422,11 @@ class FrameLib_AudioInput : public FrameLib_DSP
 {
 public:
     
-    static constexpr ObjectType sType = kProcessor;
+    static constexpr ObjectType sType = ObjectType::Processor;
     static constexpr bool sHandlesAudio = true;
     
     FrameLib_AudioInput(FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
-    : FrameLib_DSP(kProcessor, context, proxy, info, nIns, nOuts, nAudioIns) {}
+    : FrameLib_DSP(ObjectType::Processor, context, proxy, info, nIns, nOuts, nAudioIns) {}
     
 protected:
     
@@ -452,11 +452,11 @@ class FrameLib_AudioOutput : public FrameLib_DSP
 {
 public:
     
-    static constexpr ObjectType sType = kOutput;
+    static constexpr ObjectType sType = ObjectType::Output;
     static constexpr bool sHandlesAudio = true;
     
     FrameLib_AudioOutput(FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioOuts = 0)
-    : FrameLib_DSP(kOutput, context, proxy, info, nIns, nOuts, nAudioOuts) {}
+    : FrameLib_DSP(ObjectType::Output, context, proxy, info, nIns, nOuts, nAudioOuts) {}
 
 protected:
     
@@ -482,11 +482,11 @@ class FrameLib_Scheduler : public FrameLib_DSP
 {
 public:
     
-    static constexpr ObjectType sType = kScheduler;
+    static constexpr ObjectType sType = ObjectType::Scheduler;
     static constexpr bool sHandlesAudio = true;
     
     FrameLib_Scheduler(FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
-    : FrameLib_DSP(kScheduler, context, proxy, info, nIns, nOuts, nAudioIns) {}
+    : FrameLib_DSP(ObjectType::Scheduler, context, proxy, info, nIns, nOuts, nAudioIns) {}
     
 protected:
 

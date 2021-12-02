@@ -18,7 +18,7 @@ class FrameLib_Window final : public FrameLib_Processor
     
     using Generator = FrameLib_WindowGenerator<kWindowType, kParameters, kExponent, kCompensation, kEndpoints>;
 
-    using WindowTypes = Generator::WindowTypes;
+    using WindowType = Generator::WindowType;
     using Compensation = Generator::Compensation;
     using Endpoints = Generator::Endpoints;
 
@@ -29,7 +29,7 @@ class FrameLib_Window final : public FrameLib_Processor
         
         bool operator == (const CompareWindowParams& a);
         
-        WindowTypes mWindowType;
+        WindowType mWindowType;
         Endpoints mEndpoints;
         double mParams[5];
         double mExponent;

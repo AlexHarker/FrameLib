@@ -20,8 +20,8 @@ FrameLib_CombineTags::FrameLib_CombineTags(FrameLib_Context context, const Frame
     setIO(mNumIns, 1);
     
     for (unsigned long i = 0; i < mNumIns; i++)
-        setInputMode(i, false, true, false, kFrameTagged);
-    setOutputType(0, kFrameTagged);
+        setInputMode(i, false, true, false, FrameType::Tagged);
+    setOutputType(0, FrameType::Tagged);
 }
 
 // Info

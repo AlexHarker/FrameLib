@@ -48,7 +48,7 @@ FrameLib_LookupString::FrameLib_LookupString(FrameLib_Context context, const Fra
 
     setIO(1, 1);
     
-    setOutputType(0, kFrameTagged);
+    setOutputType(0, FrameType::Tagged);
     
     addParameterInput();
 }

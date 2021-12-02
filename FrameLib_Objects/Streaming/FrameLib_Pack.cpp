@@ -4,7 +4,7 @@
 // Constructor
 
 FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
-: FrameLib_Multistream(kProcessor, context, proxy, false, 1)
+: FrameLib_Multistream(ObjectType::Processor, context, proxy, false, 1)
 , mParameters(context, proxy, &sParamInfo)
 {    
     mParameters.addInt(kNumIns, "num_ins", 2, 0 );

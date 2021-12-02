@@ -467,6 +467,9 @@ class FrameLib_PDClass : public PDClass_Base
     typedef FrameLib_Object<t_object>::Connection PDConnection;
     typedef FrameLib_PDGlobals::ConnectionInfo ConnectionInfo;
 
+    using ClipMode = FrameLib_Parameters::ClipMode;
+    using NumericType = FrameLib_Parameters::NumericType;
+    
     static t_atomtype atom_gettype(t_atom* a) { return a->a_type; }
     
     struct PDProxy : public PDClass_Base
@@ -624,9 +627,9 @@ public:
         
         ExportError error = exportGraph(x->mObject.get(), conformedPath, className->s_name);
         
-        if (error == kExportPathError)
+        if (error == ExportError::PathError)
             pd_error(x->mUserObject, "couldn't write to or find specified path");
-        else if (error == kExportWriteError)
+        else if (error == ExportError::WriteError)
             pd_error(x->mUserObject, "couldn't write file");
     }
     
@@ -680,7 +683,7 @@ public:
             for (long i = 0; i < mObject->getNumIns(); i++)
                 post("Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose).c_str());
             if (supportsOrderingConnections())
-                post("Ordering Input [%s]: Connect to ensure ordering", frameTypeString(kFrameAny));
+                post("Ordering Input [%s]: Connect to ensure ordering", frameTypeString(FrameType::Any));
         }
         
         if (flags & kInfoOutputs)
@@ -712,9 +715,9 @@ public:
                 // Name, type and default value
                 
                 if (defaultStr.size())
-                    post("Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i), defaultStr.c_str());
+                    post("Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i).c_str(), defaultStr.c_str());
                 else
-                    post("Parameter %ld: %s [%s]", i + 1, params->getName(i), params->getTypeString(i));
+                    post("Parameter %ld: %s [%s]", i + 1, params->getName(i), params->getTypeString(i).c_str());
 
                 // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
                 
@@ -722,22 +725,22 @@ public:
                 {
                     if (argsMode == kAsParams && params->getArgumentIdx(i) >= 0)
                         post("- Argument: %ld", params->getArgumentIdx(i) + 1);
-                    if (numericType == FrameLib_Parameters::kNumericInteger || numericType == FrameLib_Parameters::kNumericDouble)
+                    if (numericType == NumericType::Integer || numericType == NumericType::Double)
                     {
                         switch (params->getClipMode(i))
                         {
-                            case FrameLib_Parameters::kNone:    break;
-                            case FrameLib_Parameters::kMin:     post("- Min Value: %lg", params->getMin(i));                        break;
-                            case FrameLib_Parameters::kMax:     post("- Max Value: %lg", params->getMax(i));                        break;
-                            case FrameLib_Parameters::kClip:    post("- Clipped: %lg-%lg", params->getMin(i), params->getMax(i));   break;
+                            case ClipMode::None:    break;
+                            case ClipMode::Min:     post("- Min Value: %lg", params->getMin(i));                        break;
+                            case ClipMode::Max:     post("- Max Value: %lg", params->getMax(i));                        break;
+                            case ClipMode::Clip:    post("- Clipped: %lg-%lg", params->getMin(i), params->getMax(i));   break;
                         }
                     }
-                    if (type == FrameLib_Parameters::kEnum)
+                    if (type == FrameLib_Parameters::Type::Enum)
                         for (long j = 0; j <= params->getMax(i); j++)
                             post("   [%ld] - %s", j, params->getItemString(i, j));
-                    else if (type == FrameLib_Parameters::kArray)
+                    else if (type == FrameLib_Parameters::Type::Array)
                         post("- Array Size: %ld", params->getArraySize(i));
-                    else if (type == FrameLib_Parameters::kVariableArray)
+                    else if (type == FrameLib_Parameters::Type::VariableArray)
                         post("- Array Max Size: %ld", params->getArrayMaxSize(i));
                     postSplit(params->getInfo(i).c_str(), "- ", "-");
                 }
@@ -1168,21 +1171,21 @@ private:
 
         switch (result)
         {
-            case kConnectFeedbackDetected:
+            case ConnectionResult::FeedbackDetected:
                 pd_error(mUserObject, "feedback loop detected");
                 break;
                 
-            case kConnectWrongContext:
+            case ConnectionResult::WrongContext:
                 pd_error(mUserObject, "cannot connect objects from different top-level patchers");
                 break;
                 
-            case kConnectSelfConnection:
+            case ConnectionResult::SelfConnection:
                 pd_error(mUserObject, "direct feedback loop detected");
                 break;
                 
-            case kConnectSuccess:
-            case kConnectNoOrderingSupport:
-            case kConnectAliased:
+            case ConnectionResult::Success:
+            case ConnectionResult::NoOrderingSupport:
+            case ConnectionResult::Aliased:
                 break;
         }
     }
@@ -1219,9 +1222,9 @@ private:
     {
         switch (type)
         {
-            case kFrameAny:     return "either";
-            case kFrameNormal:  return "vector";
-            case kFrameTagged:  return "tagged";
+            case FrameType::Any:    return "either";
+            case FrameType::Vector: return "vector";
+            case FrameType::Tagged: return "tagged";
         }
     }
     

@@ -134,7 +134,7 @@ FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, const FrameLib_Pa
     
     mMode = mParameters.getEnum<Modes>(kMode);
     
-    setOutputType(0, mMode == kValues ? kFrameNormal : kFrameTagged);
+    setOutputType(0, mMode == kValues ? FrameType::Vector : FrameType::Tagged);
     
     if (mProxy)
         mProxy->registerObject(this, mStreamOwner, mStream);

@@ -209,7 +209,7 @@ void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_M
                 tagged.mTag = object->getParameters()->getName(idx);
                 tagged.mType = it.getType();
                 
-                if (tagged.mType == kVector)
+                if (tagged.mType == DataType::Vector)
                 {
                     const double *vector = it.getVector(&size);
                     tagged.mVector.assign(vector, vector + size);
@@ -286,7 +286,7 @@ std::string serialiseGraph(FrameLib_Multistream *requestObject)
         for (auto jt = it->mParameters.begin(); jt != it->mParameters.end(); jt++)
         {
             size_t idx = jt - it->mParameters.begin();
-            if (jt->mType == kVector)
+            if (jt->mType == DataType::Vector)
                 output << exportIndent << "parameters.write(\"" << jt->mTag << "\", fl_" << index << "_vector_" << idx << ", " << jt->mVector.size() << ");\n";
             else
                 output << exportIndent <<"parameters.write(\"" << jt->mTag << "\", \"" << jt->mString << "\");\n";
@@ -351,27 +351,27 @@ ExportError exportWriteFile(std::stringstream& contents, const char *path, const
     std::ofstream file(fileName.c_str(), std::ofstream::out);
     
     if (!file.is_open())
-        return kExportPathError;
+        return ExportError::PathError;
     
     file << contents.rdbuf();
     file.close();
     
-    return file.fail() ? kExportWriteError : kExportSuccess;
+    return file.fail() ? ExportError::WriteError : ExportError::Success;
 }
 
 ExportError exportGraph(FrameLib_Multistream *requestObject, const char *path, const char *className)
 {
-    ExportError error = kExportSuccess;
+    ExportError error = ExportError::Success;
     std::stringstream header, cpp;
     
     header << exportClassName(exportHeader, className);
     cpp << exportClassName(exportCPPOpen, className) << serialiseGraph(requestObject) << exportClassName(exportCPPClose, className);
 
-    if ((error = exportWriteFile(header, path, className, ".h")))
+    if ((error = exportWriteFile(header, path, className, ".h")) != ExportError::Success)
         return error;
     
-    if ((error = exportWriteFile(cpp, path, className, ".cpp")))
+    if ((error = exportWriteFile(cpp, path, className, ".cpp")) != ExportError::Success)
         return error;
     
-    return kExportSuccess;
+    return ExportError::Success;
 }

@@ -322,7 +322,7 @@ namespace FrameLib_ExprParser
         template <typename... Args>
         void reportError(const char *error, Args... args)
         {
-            (*mReporter)(kErrorObject, mProxy, error, args...);
+            (*mReporter)(ErrorSource::Object, mProxy, error, args...);
         }
         
         template <typename... Args>

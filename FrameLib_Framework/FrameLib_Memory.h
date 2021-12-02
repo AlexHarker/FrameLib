@@ -75,7 +75,7 @@ class FrameLib_GlobalAllocator
         public:
             
             NewThread(CoreAllocator& allocator)
-            : FrameLib_DelegateThread(FrameLib_Thread::kHighPriority)
+            : FrameLib_DelegateThread(FrameLib_Thread::PriorityLevel::High)
             , mAllocator(allocator)
             {}
             
@@ -99,7 +99,7 @@ class FrameLib_GlobalAllocator
         public:
             
             FreeThread(CoreAllocator& allocator)
-            : FrameLib_TriggerableThread(FrameLib_Thread::kLowPriority)
+            : FrameLib_TriggerableThread(FrameLib_Thread::PriorityLevel::Low)
             , mAllocator(allocator)
             {}
             
@@ -410,10 +410,10 @@ public:
         // Getters
         
         FrameType getType() const               { return mType; }
-        double *getVector() const               { return mType == kFrameNormal ? static_cast<double *>(mData) : nullptr; }
-        unsigned long getVectorSize() const     { return mType == kFrameNormal ? static_cast<unsigned long>(mSize) : 0; }
-        unsigned long getTaggedSize() const     { return mType == kFrameTagged ? static_cast<unsigned long>(mSize) : 0; }
-        Serial *getTagged() const               { return mType == kFrameTagged ? static_cast<Serial *>(mData) : nullptr; }
+        double *getVector() const               { return mType == FrameType::Vector ? static_cast<double *>(mData) : nullptr; }
+        unsigned long getVectorSize() const     { return mType == FrameType::Vector ? static_cast<unsigned long>(mSize) : 0; }
+        unsigned long getTaggedSize() const     { return mType == FrameType::Tagged ? static_cast<unsigned long>(mSize) : 0; }
+        Serial *getTagged() const               { return mType == FrameType::Tagged ? static_cast<Serial *>(mData) : nullptr; }
         
         // Resize the storage
         

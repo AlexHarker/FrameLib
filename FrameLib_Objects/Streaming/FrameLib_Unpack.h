@@ -14,7 +14,7 @@ class FrameLib_Unpack final : public FrameLib_Multistream
     
 public:
     
-    static constexpr ObjectType sType = kProcessor;
+    static constexpr ObjectType sType = ObjectType::Processor;
     static constexpr bool sHandlesAudio = false;
     
     // Constructor
@@ -45,8 +45,8 @@ public:
     
     // Connection Types
 
-    FrameType inputType(unsigned long idx) const override { return kFrameAny; }
-    FrameType outputType(unsigned long idx) const override { return kFrameAny; }
+    FrameType inputType(unsigned long idx) const override { return FrameType::Any; }
+    FrameType outputType(unsigned long idx) const override { return FrameType::Any; }
 
     // Auto Ordering Connections
     

@@ -46,8 +46,8 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
 
     setIO(mNumIns + 1, 1);
     
-    setInputMode(mNumIns, false, true, false, kFrameTagged);
-    setOutputType(0, kFrameTagged);
+    setInputMode(mNumIns, false, true, false, FrameType::Tagged);
+    setOutputType(0, FrameType::Tagged);
     
     addParameterInput();
 }

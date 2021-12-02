@@ -19,10 +19,6 @@
  */
 
 
-// Possible sources of error
-
-enum ErrorSource { kErrorObject, kErrorParameter, kErrorMemory, kErrorDSP  };
-
 /**
  
  @class FrameLib_ErrorReporter
@@ -54,7 +50,7 @@ public:
         
     public:
         
-        ErrorReport() : mSource(kErrorObject), mReporter(nullptr), mError(nullptr), mItems(nullptr), mItemSize(0), mNumItems(0) {}
+        ErrorReport() : mSource(ErrorSource::Object), mReporter(nullptr), mError(nullptr), mItems(nullptr), mItemSize(0), mNumItems(0) {}
 
         void getErrorText(std::string& text) const;
         void getErrorText(char *text, size_t N) const;

@@ -109,7 +109,7 @@ public:
     public:
         
         WorkerThreads(FrameLib_ProcessingQueue *queue)
-        : FrameLib_TriggerableThreadSet(FrameLib_Thread::kAudioPriority, numThreads())
+        : FrameLib_TriggerableThreadSet(FrameLib_Thread::PriorityLevel::Audio, numThreads())
         , mQueue(queue)
         {}
         

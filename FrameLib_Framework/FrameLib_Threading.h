@@ -238,7 +238,7 @@ class FrameLib_Thread
     
 public:
     
-    enum PriorityLevel { kLowPriority, kHighPriority, kAudioPriority };
+    enum class PriorityLevel { Low, High, Audio };
 
     // Structure for passing in priority settings from a host
     

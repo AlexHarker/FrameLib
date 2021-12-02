@@ -25,9 +25,9 @@ FrameLib_Dispatch::Select::Select(FrameLib_Context context, const FrameLib_Param
     mActiveIn = truncToInt(mParameters.getValue(kActiveIn) - 1.0);
     
     for (long i = 0; i < mNumIns; i++)
-        setInputMode(i, false, i == mActiveIn, true, kFrameAny);
+        setInputMode(i, false, i == mActiveIn, true, FrameType::Any);
     
-    setOutputType(0, kFrameAny);
+    setOutputType(0, FrameType::Any);
     addParameterInput();
 }
 
@@ -58,7 +58,7 @@ void FrameLib_Dispatch::Select::process()
 // Constructor
 
 FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Block(kProcessor, context, proxy)
+: FrameLib_Block(ObjectType::Processor, context, proxy)
 , mParameterObject(context, nullptr, proxy)
 {
     FrameLib_Parameters& parameters = mParameterObject.parameters();

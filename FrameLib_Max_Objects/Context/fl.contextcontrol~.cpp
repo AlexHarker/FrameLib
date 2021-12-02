@@ -147,9 +147,9 @@ public:
         path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
         ExportError error = exportGraph(flObject, conformedPath, className->s_name);
         
-        if (error == kExportPathError)
+        if (error == ExportError::PathError)
             object_error(*this, "couldn't write to or find specified path");
-        else if (error == kExportWriteError)
+        else if (error == ExportError::WriteError)
             object_error(*this, "couldn't write file");
     }
     
