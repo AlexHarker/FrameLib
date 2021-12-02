@@ -175,7 +175,7 @@ public:
             return addItem(const_cast<const char *>(str));
         }
         
-        template <typename T, std::enable_if_t<std::is_arithmetic<T>::value, bool> = true>
+        template <typename T, typename std::enable_if<std::is_arithmetic<T>::value, bool>::type = true>
         bool addItem(T number)
         {
             return addItem(FrameLib_StringMaker<>(number));
