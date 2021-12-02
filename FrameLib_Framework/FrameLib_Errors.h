@@ -2,6 +2,7 @@
 #ifndef FRAMELIB_ERRORS_H
 #define FRAMELIB_ERRORS_H
 
+#include "FrameLib_Strings.h"
 #include "FrameLib_Types.h"
 #include "FrameLib_Threading.h"
 
@@ -10,6 +11,7 @@
 #include <string>
 #include <cstdio>
 #include <cstring>
+#include <type_traits>
 
 /**
  
@@ -86,8 +88,8 @@ public:
     {
         friend class FrameLib_ErrorReporter;
         
-        const static int sCharArraySize = 8192;
-        const static int sReportArraySize = 1024;
+        static constexpr int charArraySize = 8192;
+        static constexpr int reportArraySize = 1024;
         
     public:
         
@@ -158,7 +160,7 @@ public:
             char *ptr = mItems + mItemsSize;
             size_t size = strlen(str) + 1;
             
-            if (mItemsSize + size < sCharArraySize)
+            if (mItemsSize + size < charArraySize)
             {
                 std::copy(str, str + size, ptr);
                 mItemsSize += size;
@@ -168,33 +170,15 @@ public:
             return false;
         }
         
-        bool addItem(size_t number)
+        bool addItem(char *str)
         {
-            const int strBufSize = 32;
-            char charArray[strBufSize];
-            snprintf(charArray, strBufSize, "%zu", number);
-            return addItem(charArray);
+            return addItem(const_cast<const char *>(str));
         }
         
-        bool addItem(long number)
+        template <typename T, typename std::enable_if<std::is_arithmetic<T>::value, bool>::type = true>
+        bool addItem(T number)
         {
-            const int strBufSize = 32;
-            char charArray[strBufSize];
-            snprintf(charArray, strBufSize, "%ld", number);
-            return addItem(charArray);
-        }
-        
-        bool addItem(int number)
-        {
-            return addItem(static_cast<long>(number));
-        }
-        
-        bool addItem(double number)
-        {
-            const int strBufSize = 32;
-            char charArray[strBufSize];
-            snprintf(charArray, strBufSize, "%lf", number);
-            return addItem(charArray);
+            return addItem(FrameLib_StringMaker<>(number));
         }
         
         bool addItems()
@@ -202,13 +186,13 @@ public:
             return true;
         }
         
-        template<typename T>
+        template <typename T>
         bool addItems(T first)
         {
             return addItem(first);
         }
         
-        template<typename T, typename... Args>
+        template <typename T, typename... Args>
         bool addItems(T first, Args... args)
         {
             if (addItem(first))
@@ -216,12 +200,12 @@ public:
             return false;
         }
         
-        template<typename... Args>
+        template <typename... Args>
         void add(ErrorSource source, FrameLib_Proxy *reporter, const char *error, Args... args)
         {
             char *ptr = getItemsPointer();
             
-            if (!mFull && (mReportsSize < sReportArraySize) && addItems(args...))
+            if (!mFull && (mReportsSize < reportArraySize) && addItems(args...))
             {
                 size_t itemSize = getItemsPointer() - ptr;
                 mReports[mReportsSize] = ErrorReport(source, reporter, error, ptr, itemSize, sizeof...(args));
@@ -244,8 +228,8 @@ public:
         
         // Data
         
-        ErrorReport mReports[sReportArraySize];
-        char mItems[sCharArraySize];
+        ErrorReport mReports[reportArraySize];
+        char mItems[charArraySize];
         size_t mReportsSize;
         size_t mItemsSize;
         bool mFull;

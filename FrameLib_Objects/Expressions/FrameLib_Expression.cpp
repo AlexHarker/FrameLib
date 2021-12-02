@@ -251,7 +251,7 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, const FrameLi
     mParameters.addEnumItem(kExtend, "extend");
     mParameters.setInstantiation();
 
-    mParameters.addVariableBoolArray(kTriggers, "trigger_ins", true, kMaxIns, kMaxIns);
+    mParameters.addVariableBoolArray(kTriggers, "trigger_ins", true, maxNumIns, maxNumIns);
     mParameters.setInstantiation();
 
     mParameters.set(serialisedParameters);
@@ -265,9 +265,9 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, const FrameLi
     Parser parser;
     ExprParseError error = parser.parse(graph, mParameters.getString(kExpression), getReporter(), proxy);
     
-    if (graph.mNumInputs > kMaxIns)
+    if (graph.mNumInputs > maxNumIns)
     {
-        getReporter()(kErrorObject, proxy, "expression has more than the maximum number of inputs (#)", kMaxIns);
+        getReporter()(kErrorObject, proxy, "expression has more than the maximum number of inputs (#)", maxNumIns);
         graph = Graph();
     }
     

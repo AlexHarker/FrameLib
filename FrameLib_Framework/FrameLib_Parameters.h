@@ -38,8 +38,8 @@ public:
     enum Type { kValue, kEnum, kString, kArray, kVariableArray };
     enum ClipMode { kNone, kMin, kMax, kClip };
     
-public:
-    
+    static constexpr size_t maxStrLen = 128;
+
     /**
      
      @class Serial
@@ -54,7 +54,7 @@ public:
         
         // N.B. the assumption is that double is the largest type in use
         
-        static const size_t alignment = sizeof(double);
+        static constexpr size_t alignment = sizeof(double);
         
         /**
          
@@ -188,7 +188,7 @@ public:
         
         unsigned long numTags() const       { return mNumTags; };
         unsigned long size() const          { return mSize; }
-        void clear()                        { mSize = 0; }
+        void clear()                        { mSize = mNumTags = 0; }
         
         static unsigned long alignSize(size_t size)
         {
@@ -263,7 +263,7 @@ public:
     
     class AutoSerial : public Serial
     {
-        static const unsigned long minGrowSize = 512;
+        static constexpr unsigned long minGrowSize = 512;
         
     public:
         
@@ -477,10 +477,8 @@ private:
     
     class String final : public Parameter
     {
-        const static size_t maxLen = 128;
-        
     public:
-        
+     
         String(const char *name, long argumentIdx);
         
         // Setters
@@ -497,7 +495,7 @@ private:
         
     private:
         
-        char mCString[maxLen + 1];
+        char mCString[maxStrLen + 1];
     };
     
     /**

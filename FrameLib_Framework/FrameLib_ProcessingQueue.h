@@ -11,7 +11,9 @@
 #include <chrono>
 #include <vector>
 
+#if defined(__i386__) || defined(__x86_64__) || defined(_M_IX86) || defined(_M_X64)
 #include <xmmintrin.h>
+#endif
 
 // Forward Declarations
 
@@ -90,7 +92,7 @@ public:
         std::chrono::steady_clock::time_point mStartTime;
     };
     
-    static const int sProcessPerTimeCheck = 200;
+    static constexpr int processPerTimeCheck = 200;
     
     /**
      

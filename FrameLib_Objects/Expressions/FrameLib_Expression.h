@@ -7,7 +7,7 @@
 
 class FrameLib_Expression : public FrameLib_Block
 {
-    const static int kMaxIns = 32;
+    static constexpr int maxNumIns = 32;
     
     // Parameter Enums and Info
     

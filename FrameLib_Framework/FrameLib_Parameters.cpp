@@ -650,7 +650,7 @@ FrameLib_Parameters::SetError FrameLib_Parameters::String::set(const char *str)
     
     if (str != nullptr)
     {
-        for (i = 0; i < maxLen; i++)
+        for (i = 0; i < maxStrLen; i++)
             if ((mCString[i] = str[i]) == 0)
                 break;
     }
@@ -763,17 +763,13 @@ std::string FrameLib_Parameters::getTypeString(unsigned long idx) const
 std::string FrameLib_Parameters::getDefaultString(unsigned long idx) const
 {
     Type type = getType(idx);
-    const int strBufSize = 64;
-    char numericStr[strBufSize];
-
+    
     if (type == kString)
         return "";
     else if (type == kEnum)
         return getItemString(idx, static_cast<unsigned long>(getDefault(idx)));
     else if (getNumericType(idx) == kNumericBool)
         return getDefault(idx) ? "true" : "false";
-    
-    snprintf(numericStr, strBufSize, "%lg", getDefault(idx));
-    
-    return numericStr;
+
+    return static_cast<const char*>(FrameLib_StringMaker<>(getDefault(idx), true));
 }

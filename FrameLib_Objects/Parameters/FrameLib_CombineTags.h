@@ -6,7 +6,7 @@
 
 class FrameLib_CombineTags final : public FrameLib_Processor
 {
-    const static int maxNumIns = 10;
+    static constexpr int maxNumIns = 10;
     
     // Parameter Enums and Info
 

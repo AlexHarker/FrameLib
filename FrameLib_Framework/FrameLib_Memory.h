@@ -241,7 +241,7 @@ private:
 
 class FrameLib_LocalAllocator
 {
-    static const int numLocalFreeBlocks = 16;
+    static constexpr int numLocalFreeBlocks = 16;
     
     friend class FrameLib_LocalAllocatorSet;
     

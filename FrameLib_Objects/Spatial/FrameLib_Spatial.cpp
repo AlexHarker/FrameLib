@@ -103,7 +103,7 @@ void FrameLib_Spatial::process()
     double rolloff = mParameters.getValue(kRolloff);
     double pointFactor = mParameters.getValue(kPoints);
     
-    double rolloffFactor =  rolloff / (20 * log10(2.0));;
+    double rolloffFactor =  rolloff / (20 * log10(2.0));
     double blur2 = blur * blur;
     maxSpeakers = maxSpeakers == 0 ? numSpeakers : maxSpeakers;
     
@@ -132,7 +132,7 @@ void FrameLib_Spatial::process()
         double y = sizeIn > 1 ? input[1] : 0.0;
         double z = sizeIn > 2 ? input[2] : 0.0;
         
-        panPosition = Cartesian(x, y, z);;
+        panPosition = Cartesian(x, y, z);
     }
     
     for (unsigned long i = 0; i < numSpeakers; i++)

@@ -6,7 +6,7 @@
 
 class FrameLib_FilterTags final : public FrameLib_Processor
 {
-    const static int maxNumFilters = 10;
+    static constexpr int maxNumFilters = 10;
     
     // Parameter Enums and Info
 

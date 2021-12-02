@@ -61,8 +61,8 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
                 
         FrameLib_Thread::sleepCurrentThread(100);
     }
-    
-    // Clear the thread local allocator
+
+    // Clear the thread local allocators
     
     mAllocators.clear();
     
@@ -77,7 +77,7 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
         while (FrameLib_DSP *object = mQueue.pop())
             object->ThreadNode::mNext = nullptr;
         
-        // Wait for all thhreads to return
+        // Wait for all threads to return
         
         while (mNumWorkersActive.load());
         
@@ -155,7 +155,7 @@ void FrameLib_ProcessingQueue::serviceQueue(FrameLib_LocalAllocator *allocator)
             
             // Check for time out
             
-            if (++timedOutCount == sProcessPerTimeCheck)
+            if (++timedOutCount == processPerTimeCheck)
             {
                 if (checkForTimeOut())
                     return;
