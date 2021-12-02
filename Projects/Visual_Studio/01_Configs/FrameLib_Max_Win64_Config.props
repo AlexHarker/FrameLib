@@ -12,7 +12,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)FrameLib_Max_Objects\_MaxSDK_\c74support\max-includes\x64;$(SolutionDir)FrameLib_Max_Objects\_MaxSDK_\c74support\msp-includes\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(C74Support)max-includes\x64;$(C74Support)msp-includes\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />

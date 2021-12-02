@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
-  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Label="UserMacros">
+    <C74Support>$(SolutionDir)..\max-sdk-base\c74support\</C74Support>
+  </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>FrameLib_Max_Base</_PropertySheetDisplayName>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Framework;$(SolutionDir)FrameLib_Objects\Common_Utilities;$(SolutionDir)FrameLib_Max_Objects\Common\;$(SolutionDir)FrameLib_Max_Objects\_MaxSDK_\c74support\max-includes\;$(SolutionDir)FrameLib_Max_Objects\Common\;$(SolutionDir)FrameLib_Max_Objects\_MaxSDK_\c74support\msp-includes\;$(SolutionDir)FrameLib_Max_Objects\Common\;$(SolutionDir)FrameLib_Max_Objects\_MaxSDK_\c74support\max-includes\;$(SolutionDir)FrameLib_Max_Objects\Common_Utilities;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Framework;$(SolutionDir)FrameLib_Objects\Common_Utilities;$(SolutionDir)FrameLib_Max_Objects\Common\;$(C74Support)max-includes\;$(C74Support)msp-includes\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NO_TRANSLATION_SUPPORT;WIN_VERSION;WINDOWS;_USRDLL;WIN_EXT_VERSION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
