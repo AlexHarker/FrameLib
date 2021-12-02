@@ -6,22 +6,23 @@
 #include <iomanip>
 #include "FrameLib_Errors.h"
 #include "FrameLib_Memory.h"
-#include "FrameLib_RandGen.h"
+
+#include "RandomGenerator.hpp"
 
 // ************************************************************************************** //
 
 // Random Numbers
 
-FrameLib_RandGen gen;
+random_generator<> gen;
 
 uint64_t randu64()
 {
-    return (uint64_t) gen.randInt() | (((uint64_t) gen.randInt()) << 0x20);
+    return (uint64_t) gen.rand_int() | (((uint64_t) gen.rand_int()) << 0x20);
 }
 
 uint64_t randu32()
 {
-    return (uint64_t) gen.randInt();
+    return (uint64_t) gen.rand_int();
 }
 // ************************************************************************************** //
 

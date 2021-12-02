@@ -5,22 +5,22 @@
 #include <iostream>
 #include <iomanip>
 #include "FrameLib_FixedPoint.h"
-#include "FrameLib_RandGen.h"
+#include "RandomGenerator.hpp"
 
 // ************************************************************************************** //
 
 // Random Numbers
 
-FrameLib_RandGen gen;
+random_generator<> gen;
 
 uint64_t randu64()
 {
-    return (uint64_t) gen.randInt() | (((uint64_t) gen.randInt()) << 0x20);
+    return (uint64_t) gen.rand_int() | (((uint64_t) gen.rand_int()) << 0x20);
 }
 
 uint64_t randu32()
 {
-    return (uint64_t) gen.randInt();
+    return (uint64_t) gen.rand_int();
 }
 
 FL_FP randSmallFixed()
@@ -37,7 +37,7 @@ FL_FP randFixed(uint64_t i)
     uint64_t lo = randu64();
     
     hi >>= (i % 64);
-    lo >>= gen.randInt(64);
+    lo >>= gen.rand_int(64);
     
     return FL_FP(hi, lo);
 }
@@ -592,8 +592,8 @@ void doubleComparisonSpeedTest(uint64_t count)
     
     for (uint64_t i = 0; i < count; i++)
     {
-        double a = gen.randInt() + gen.randInt();
-        double b = gen.randInt() + gen.randInt();
+        double a = gen.rand_int() + gen.rand_int();
+        double b = gen.rand_int() + gen.rand_int();
         
         if (a > b)
             countGreater++;
@@ -610,8 +610,8 @@ void fixedComparisonSpeedTest(uint64_t count)
 
     for (uint64_t i = 0; i < count; i++)
     {
-        FL_FP a = FL_FP(gen.randInt(), gen.randInt());
-        FL_FP b = FL_FP(gen.randInt(), gen.randInt());
+        FL_FP a = FL_FP(gen.rand_int(), gen.rand_int());
+        FL_FP b = FL_FP(gen.rand_int(), gen.rand_int());
         
         if (a > b)
             countGreater++;
@@ -628,8 +628,8 @@ void doubleEqualSpeedTest(uint64_t count)
 
     for (uint64_t i = 0; i < count; i++)
     {
-        double a = gen.randInt() + gen.randInt();
-        double b = gen.randInt() + gen.randInt();
+        double a = gen.rand_int() + gen.rand_int();
+        double b = gen.rand_int() + gen.rand_int();
         bool result = a == b;
         
         if (result)
@@ -645,7 +645,7 @@ void fixedEqualSpeedTest(uint64_t count)
 
     for (uint64_t i = 0; i < count; i++)
     {
-           bool result = FL_FP(gen.randInt(), gen.randInt()) == FL_FP(gen.randInt(), gen.randInt());
+        bool result = FL_FP(gen.rand_int(), gen.rand_int()) == FL_FP(gen.rand_int(), gen.rand_int());
         
         if (result)
             countTrue++;

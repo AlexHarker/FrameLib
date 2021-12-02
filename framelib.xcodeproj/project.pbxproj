@@ -2259,7 +2259,6 @@
 		B8C5EBDA1E5FA6180086E8B6 /* fl.peaks~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.peaks~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8C5EBEF1E5FA6340086E8B6 /* fl.peaks~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.peaks~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C680351B80EF0D00B74B90 /* FrameLib_Random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Random.h; sourceTree = "<group>"; };
-		B8C680371B80F2B800B74B90 /* FrameLib_RandGen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_RandGen.h; sourceTree = "<group>"; };
 		B8C680461B80F62300B74B90 /* fl.random~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.random~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C680481B80F65700B74B90 /* fl.random~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.random~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8C8563919F2957F006358DA /* fl.join~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.join~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -4192,7 +4191,6 @@
 				B8886F7E1FB7D715001C843E /* FrameLib_RingBuffer.h */,
 				B8F3EE171F34DB6C00D0E98E /* FrameLib_Scaling_Functions.h */,
 				B861EB9F19CA2DCE00B89477 /* FrameLib_Sort_Functions.h */,
-				B8C680371B80F2B800B74B90 /* FrameLib_RandGen.h */,
 				B898098424FCECB500FFE4E2 /* FrameLib_WindowGenerator.h */,
 				B8886F7F1FB7D715001C843E /* FrameLib_VectorSet.h */,
 			);
