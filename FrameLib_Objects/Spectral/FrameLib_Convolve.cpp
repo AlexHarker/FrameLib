@@ -15,11 +15,11 @@ FrameLib_Convolve::FrameLib_Convolve(FrameLib_Context context, const FrameLib_Pa
     mParameters.setInstantiation();
     
     mParameters.addEnum(kEdges, "edges", 2);
-    mParameters.addEnumItem(Edges::kEdgeLinear, "linear");
-    mParameters.addEnumItem(Edges::kEdgeWrap, "circular");
-    mParameters.addEnumItem(Edges::kEdgeWrapCentre, "wrap");
-    mParameters.addEnumItem(Edges::kEdgeFold, "fold");
-    mParameters.addEnumItem(Edges::kEdgeFoldRepeat, "mirror");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::Linear), "linear");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::Wrap), "circular");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::WrapCentre), "wrap");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::Fold), "fold");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::FoldRepeat), "mirror");
     mParameters.setInstantiation();
 
     mParameters.set(serialisedParameters);

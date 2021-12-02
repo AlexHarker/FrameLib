@@ -275,7 +275,7 @@ struct ReadProxy : public FrameLib_Read::Proxy
         //RELEASE_SNDBUF(mBuffer);
     }
     
-    void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeType edges, bool bound) override
+    void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeMode edges, bool bound) override
     {
         if (mBuffer)
         {

@@ -23,16 +23,15 @@ class kernel_smoother : private spectral_processor<T, Allocator>
     using in_ptr = typename processor::in_ptr;
  
     using Split = typename FFTTypes<T>::Split;
-    using EdgeMode = typename processor::EdgeMode;
     
     template <bool B>
     using enable_if_t = typename std::enable_if<B, int>::type;
     
-    enum Ends { kEndsZero, kEndsNonZero, kEndsSymZero, kEndsSymNonZero };
+    enum class Ends { Zero, NonZero, SymZero, SymNonZero };
     
 public:
     
-    enum EdgeType { kZeroPad, kExtend, kWrap, kFold, kMirror };
+    enum class EdgeMode { ZeroPad, Extend, Wrap, Fold, Mirror };
     
     template <typename U = Allocator, enable_if_t<std::is_default_constructible<U>::value> = 0>
     kernel_smoother(uintptr_t max_fft_size = 1 << 18)
@@ -53,7 +52,7 @@ public:
     
     uintptr_t max_fft_size() { return processor::max_fft_size(); }
 
-    void smooth(T *out, const T *in, const T *kernel, uintptr_t length, uintptr_t kernel_length, double width_lo, double width_hi, bool symmetric, EdgeType edges)
+    void smooth(T *out, const T *in, const T *kernel, uintptr_t length, uintptr_t kernel_length, double width_lo, double width_hi, bool symmetric, EdgeMode edges)
     {
         if (!length || !kernel_length)
             return;
@@ -77,7 +76,7 @@ public:
         uintptr_t max_per_filter = static_cast<uintptr_t>(width_mul ? (2.0 / width_mul) + 1.0 : length);
         uintptr_t data_width = max_per_filter + (filter_full - 1);
         
-        op_sizes sizes(data_width, filter_full, EdgeMode::kEdgeLinear);
+        op_sizes sizes(data_width, filter_full, processor::EdgeMode::Linear);
         
         if (auto_resize_fft && processor::max_fft_size() < sizes.fft())
             set_max_fft_size(sizes.fft());
@@ -90,7 +89,7 @@ public:
         T *filter = ptr + (fft_size << 1);
         T *padded = filter + filter_full;
         
-        Ends ends = kEndsNonZero;
+        Ends ends = Ends::NonZero;
         
         if (kernel_length)
         {
@@ -100,34 +99,34 @@ public:
             const T epsilon = std::numeric_limits<T>::epsilon();
             
             if ((symmetric || test_value_1 < epsilon) && test_value_2 < epsilon)
-                ends = symmetric ? kEndsSymZero : kEndsZero;
+                ends = symmetric ? Ends::SymZero : Ends::Zero;
         }
         
         // Copy data
         
         switch (edges)
         {
-            case kZeroPad:
+            case EdgeMode::ZeroPad:
                 std::fill_n(padded, filter_size, 0.0);
                 std::copy_n(in, length, padded + filter_size);
                 std::fill_n(padded + filter_size + length, filter_size, 0.0);
                 break;
                 
-            case kExtend:
+            case EdgeMode::Extend:
                 std::fill_n(padded, filter_size, in[0]);
                 std::copy_n(in, length, padded + filter_size);
                 std::fill_n(padded + filter_size + length, filter_size, in[length - 1]);
                 break;
                 
-            case kWrap:
+            case EdgeMode::Wrap:
                 copy_edges<table_fetcher_wrap>(in, padded, length, filter_size);
             break;
                 
-            case kFold:
+            case EdgeMode::Fold:
                 copy_edges<table_fetcher_fold>(in, padded, length, filter_size);
                 break;
                 
-            case kMirror:
+            case EdgeMode::Mirror:
                 copy_edges<table_fetcher_mirror>(in, padded, length, filter_size);
                 break;
         }
@@ -263,12 +262,12 @@ private:
             return filter[0] * width;
         }
         
-        const double width_adjust = (ends == kEndsNonZero) ? -1.0 : (ends == kEndsSymZero ? 0.0 : 1.0);
+        const double width_adjust = (ends == Ends::NonZero) ? -1.0 : (ends == Ends::SymZero ? 0.0 : 1.0);
         const double scale_width = std::max(1.0, width + width_adjust);
         const double width_normalise = static_cast<double>(kernel_length - 1) / scale_width;
         
-        uintptr_t offset = ends == kEndsZero ? 1 : 0;
-        uintptr_t loop_size = ends == kEndsNonZero ? width - 1 : width;
+        uintptr_t offset = ends == Ends::Zero ? 1 : 0;
+        uintptr_t loop_size = ends == Ends::NonZero ? width - 1 : width;
         
         T filter_sum(0);
         
@@ -278,7 +277,7 @@ private:
             filter_sum += filter[j];
         }
         
-        if (ends == kEndsNonZero)
+        if (ends == Ends::NonZero)
         {
             filter[width - 1] = kernel[kernel_length - 1];
             filter_sum += filter[width - 1];
@@ -318,7 +317,7 @@ private:
     void apply_filter_fft(T *out, const T *data, const T *filter, Split& io, Split& temp, uintptr_t width, uintptr_t n, T gain)
     {
         uintptr_t data_width = n + width - 1;
-        op_sizes sizes(data_width, width, EdgeMode::kEdgeLinear);
+        op_sizes sizes(data_width, width, processor::EdgeMode::Linear);
         in_ptr data_in(data, data_width);
         in_ptr filter_in(filter, width);
         

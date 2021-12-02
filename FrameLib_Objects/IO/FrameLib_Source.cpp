@@ -161,7 +161,7 @@ void FrameLib_Source::update()
 
 void FrameLib_Source::process()
 {
-    InterpType interpType = kInterpNone;
+    InterpType interpType = InterpType::None;
 
     unsigned long sizeOut = mLength;
     
@@ -184,10 +184,10 @@ void FrameLib_Source::process()
         switch (mParameters.getEnum<Interpolation>(kInterpolation))
         {
             case kNone:         break;
-            case kLinear:       interpType = kInterpLinear;             break;
-            case kHermite:      interpType = kInterpCubicHermite;       break;
-            case kBSpline:      interpType = kInterpCubicBSpline;       break;
-            case kLagrange:     interpType = kInterpCubicLagrange;      break;
+            case kLinear:       interpType = InterpType::Linear;            break;
+            case kHermite:      interpType = InterpType::CubicHermite;      break;
+            case kBSpline:      interpType = InterpType::CubicBSpline;      break;
+            case kLagrange:     interpType = InterpType::CubicLagrange;     break;
         }
     }
     
@@ -204,7 +204,7 @@ void FrameLib_Source::process()
     
     // Choose sample or sub-sample accuracy
     
-    if (interpType == kInterpNone)
+    if (interpType == InterpType::None)
     {
         // Calculate actual offset into buffer
     

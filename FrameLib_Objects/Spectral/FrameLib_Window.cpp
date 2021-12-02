@@ -187,7 +187,7 @@ void FrameLib_Window::process()
                 
                 // Interpolate from the window
                 
-                table_read(Fetch(mWindow, size + 2), output + i, output + i, workSize, gain, kInterpLinear);
+                table_read(Fetch(mWindow, size + 2), output + i, output + i, workSize, gain, InterpType::Linear);
                 
                 // Multiply
                 

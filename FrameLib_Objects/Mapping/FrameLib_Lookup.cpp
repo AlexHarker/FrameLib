@@ -10,12 +10,12 @@ FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, const FrameLib_Parame
     mParameters.addEnumItem(kBipolar, "bipolar");
     
     mParameters.addEnum(kEdges, "edges", 1);
-    mParameters.addEnumItem(kZeroPad, "zero");
-    mParameters.addEnumItem(kExtend, "extend");
-    mParameters.addEnumItem(kWrap, "wrap");
-    mParameters.addEnumItem(kFold, "fold");
-    mParameters.addEnumItem(kMirror, "mirror");
-    mParameters.addEnumItem(kExtrapolate, "extrapolate", true);
+    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::ZeroPad), "zero");
+    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Extend), "extend");
+    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Wrap), "wrap");
+    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Fold), "fold");
+    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Mirror), "mirror");
+    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Extrapolate), "extrapolate", true);
 
     mParameters.addBool(kBound, "bound", true, 2);
     
@@ -95,11 +95,11 @@ void FrameLib_Lookup::process()
 {
     double scaleFactor;
     
-    EdgeType edges = mParameters.getEnum<EdgeType>(kEdges);
+    EdgeMode edges = mParameters.getEnum<EdgeMode>(kEdges);
     Scales scale = mParameters.getEnum<Scales>(kScale);
-    InterpType interp = kInterpNone;
+    InterpType interp = InterpType::None;
     bool bound = mParameters.getBool(kBound);
-    bool adjustScaling = edges == kWrap || edges == kMirror;
+    bool adjustScaling = edges == EdgeMode::Wrap || edges == EdgeMode::Mirror;
 
     unsigned long sizeIn1, sizeIn2, sizeOut;
     
@@ -120,11 +120,11 @@ void FrameLib_Lookup::process()
     
     switch (mParameters.getEnum<Interpolation>(kInterpolation))
     {
-        case kNone:         interp = kInterpNone;               break;
-        case kLinear:       interp = kInterpLinear;             break;
-        case kHermite:      interp = kInterpCubicHermite;       break;
-        case kBSpline:      interp = kInterpCubicBSpline;       break;
-        case kLagrange:     interp = kInterpCubicLagrange;      break;
+        case kNone:         interp = InterpType::None;              break;
+        case kLinear:       interp = InterpType::Linear;            break;
+        case kHermite:      interp = InterpType::CubicHermite;      break;
+        case kBSpline:      interp = InterpType::CubicBSpline;      break;
+        case kLagrange:     interp = InterpType::CubicLagrange;     break;
     }
     
     // Deal with scaling

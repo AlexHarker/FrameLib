@@ -35,7 +35,7 @@ public:
     bool is_valid() const { return mTable && (mLength > 0); }
     int get_length() const { return mLength; }
     
-    void read(double *output, const double *positions, unsigned long size, double amp, InterpType interp, EdgeType edges, bool bound)
+    void read(double *output, const double *positions, unsigned long size, double amp, InterpType interp, EdgeMode edges, bool bound)
     {
         table_read_edges(fetch(mTable, mLength), output, positions, size, amp, interp, edges, bound);
     }
