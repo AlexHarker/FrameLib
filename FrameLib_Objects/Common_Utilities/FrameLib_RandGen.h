@@ -6,8 +6,8 @@
 
 class FrameLib_RandGen
 {
-    static const uint32_t CMWC_LAG_SIZE = 32;
-    static const uint64_t CMWC_A_VALUE = 987655670LL;
+    static constexpr uint32_t cmwc_lag_size = 32;
+    static constexpr uint64_t cmwc_a_value = 987655670LL;
     
 public:
     
@@ -59,7 +59,7 @@ private:
     
     uint32_t mIncrement;
     uint32_t mCarry;
-    uint32_t mSTATE[CMWC_LAG_SIZE];
+    uint32_t mState[cmwc_lag_size];
 };
 
 #endif

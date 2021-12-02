@@ -155,7 +155,7 @@ void FrameLib_ProcessingQueue::serviceQueue(FrameLib_LocalAllocator *allocator)
             
             // Check for time out
             
-            if (++timedOutCount == sProcessPerTimeCheck)
+            if (++timedOutCount == processPerTimeCheck)
             {
                 if (checkForTimeOut())
                     return;

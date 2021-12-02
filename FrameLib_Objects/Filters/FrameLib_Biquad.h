@@ -22,12 +22,12 @@ namespace FrameLib_Filters
 
         // Description / Parameters / Modes
         
-        constexpr static Description sDescription
+        static constexpr Description sDescription
         {
             "Applies a biquad filter to the input"
         };
         
-        constexpr static ParamType sParameters
+        static constexpr ParamType sParameters
         {
             Param("a1", "A1 Coefficients", "Sets the a1 coefficient.", 0.0, None()),
             Param("a2", "A2 Coefficients", "Sets the a2 coefficient.", 0.0, None()),
@@ -36,7 +36,7 @@ namespace FrameLib_Filters
             Param("b2", "B2 Coefficients", "Sets the b2 coefficient.", 0.0, None())
         };
         
-        constexpr static ModeType sModes
+        static constexpr ModeType sModes
         {
             Mode("biquad", "Biquad Output", "biquad", &Biquad::process)
         };

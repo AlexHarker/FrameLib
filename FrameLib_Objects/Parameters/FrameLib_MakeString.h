@@ -6,7 +6,7 @@
 
 class FrameLib_MakeString final : public FrameLib_Processor
 {
-    const static int maxNumItems = 10;
+    static constexpr int maxNumItems = 10;
     
     // Parameter Enums and Info
 

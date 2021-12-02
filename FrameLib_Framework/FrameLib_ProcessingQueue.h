@@ -92,7 +92,7 @@ public:
         std::chrono::steady_clock::time_point mStartTime;
     };
     
-    static const int sProcessPerTimeCheck = 200;
+    static constexpr int processPerTimeCheck = 200;
     
     /**
      

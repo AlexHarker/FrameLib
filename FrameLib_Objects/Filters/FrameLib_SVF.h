@@ -26,18 +26,18 @@ namespace FrameLib_Filters
         
         // Description / Parameters / Modes
         
-        constexpr static Description sDescription
+        static constexpr Description sDescription
         {
             "Applies a state variable filter to the input"
         };
         
-        constexpr static ParamType sParameters
+        static constexpr ParamType sParameters
         {
             Param("freq", "Frequency Values", "Sets the filter cutoff frequency.", 500.0, Min(0.0)),
             Param("res", "Resonance Values", "Sets the filter resonance.", 0.0, Clip(0.0, 1.0))
         };
         
-        constexpr static ModeType sModes
+        static constexpr ModeType sModes
         {
             Mode("lowpass", "Low Pass Output", "low pass", &SVF::lpf),
             Mode("bandpass", "Band Pass Output", "band pass", &SVF::bpf),

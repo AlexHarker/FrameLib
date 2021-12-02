@@ -8,7 +8,7 @@ class FrameLib_Tag final : public FrameLib_Processor
 {
     typedef FrameLib_Parameters::Serial Serial;
 
-    const static int maxNumIns = 10;
+    static constexpr int maxNumIns = 10;
     
     // Parameter Enums and Info
 

@@ -197,7 +197,7 @@ void FrameLib_Peaks::process()
     
     bool alwaysDetect = mParameters.getBool(kAlwaysDetect);
     
-    const static int padding = 4;
+    static constexpr int padding = 4;
     
     // Get Input
     

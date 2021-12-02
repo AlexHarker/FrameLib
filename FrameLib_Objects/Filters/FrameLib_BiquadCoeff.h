@@ -47,19 +47,19 @@ namespace FrameLib_Filters
 
         // Description / Parameters / Modes
         
-        constexpr static Description sDescription
+        static constexpr Description sDescription
         {
             "Calculates biquad filter coefficients"
         };
         
-        constexpr static ParamType sParameters
+        static constexpr ParamType sParameters
         {
             Param("freq", "Frequency Values", "Sets the filter frequency.", 0.0, Min(0.0)),
             Param("gain", "Gain Values", "Sets the linear gain of the filter.", 1.0, Min(0.0)),
             Param("qs", "Q or S Values", "Sets the q or s of the filter.", 0.0, Min(0.0))
         };
         
-        constexpr static CoeffType sCoefficients
+        static constexpr CoeffType sCoefficients
         {
             Coeff("a1", "A1 Coefficients"),
             Coeff("a2", "A2 Coefficients"),
@@ -68,7 +68,7 @@ namespace FrameLib_Filters
             Coeff("b2", "B2 Coefficients")
         };
         
-        constexpr static ModeType sModes
+        static constexpr ModeType sModes
         {
             Mode("lowpass", "low pass", &BiquadCoeff::lpf),
             Mode("bandpass", "band pass", &BiquadCoeff::bpf),

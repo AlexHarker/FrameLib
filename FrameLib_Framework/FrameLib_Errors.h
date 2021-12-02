@@ -11,6 +11,7 @@
 #include <string>
 #include <cstdio>
 #include <cstring>
+#include <type_traits>
 
 /**
  
@@ -83,8 +84,8 @@ public:
     {
         friend class FrameLib_ErrorReporter;
         
-        const static int sCharArraySize = 8192;
-        const static int sReportArraySize = 1024;
+        static constexpr int charArraySize = 8192;
+        static constexpr int reportArraySize = 1024;
         
     public:
         
@@ -155,7 +156,7 @@ public:
             char *ptr = mItems + mItemsSize;
             size_t size = strlen(str) + 1;
             
-            if (mItemsSize + size < sCharArraySize)
+            if (mItemsSize + size < charArraySize)
             {
                 std::copy(str, str + size, ptr);
                 mItemsSize += size;
@@ -170,7 +171,7 @@ public:
             return addItem(const_cast<const char *>(str));
         }
         
-        template <typename T>
+        template <typename T, std::enable_if_t<std::is_arithmetic<T>::value, bool> = true>
         bool addItem(T number)
         {
             return addItem(FrameLib_StringMaker<>(number));
@@ -181,13 +182,13 @@ public:
             return true;
         }
         
-        template<typename T>
+        template <typename T>
         bool addItems(T first)
         {
             return addItem(first);
         }
         
-        template<typename T, typename... Args>
+        template <typename T, typename... Args>
         bool addItems(T first, Args... args)
         {
             if (addItem(first))
@@ -195,12 +196,12 @@ public:
             return false;
         }
         
-        template<typename... Args>
+        template <typename... Args>
         void add(ErrorSource source, FrameLib_Proxy *reporter, const char *error, Args... args)
         {
             char *ptr = getItemsPointer();
             
-            if (!mFull && (mReportsSize < sReportArraySize) && addItems(args...))
+            if (!mFull && (mReportsSize < reportArraySize) && addItems(args...))
             {
                 size_t itemSize = getItemsPointer() - ptr;
                 mReports[mReportsSize] = ErrorReport(source, reporter, error, ptr, itemSize, sizeof...(args));
@@ -223,8 +224,8 @@ public:
         
         // Data
         
-        ErrorReport mReports[sReportArraySize];
-        char mItems[sCharArraySize];
+        ErrorReport mReports[reportArraySize];
+        char mItems[charArraySize];
         size_t mReportsSize;
         size_t mItemsSize;
         bool mFull;
