@@ -76,11 +76,6 @@ private:
         if (FrameLib_MaxClass<void>::isInputTag(sym))
             return true;
         
-        // Context Tag
-        
-        if (FrameLib_MaxClass<void>::isContextTag(sym))
-            return true;
-        
         // Basic parameter tag test
         
         if (!FrameLib_MaxClass<void>::isParameterTag(sym))
