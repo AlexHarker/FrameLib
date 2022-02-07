@@ -20,9 +20,9 @@ FrameLib_Select::FrameLib_Select(FrameLib_Context context, const FrameLib_Parame
     setIO(mNumIns, 1);
     
     for (long i = 0; i < mNumIns; i++)
-        setInputMode(i, false, i == mActiveIn, true, kFrameAny);
+        setInputMode(i, false, i == mActiveIn, true, FrameType::Any);
     
-    setOutputType(0, kFrameAny);
+    setOutputType(0, FrameType::Any);
     addParameterInput();
 }
 

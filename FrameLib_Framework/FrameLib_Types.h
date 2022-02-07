@@ -48,10 +48,11 @@ struct FrameLib_TimeFormat : public FL_FP
 
 // Basic Enum Types
 
-enum ObjectType { kOutput, kProcessor, kScheduler };
-enum FrameType { kFrameAny, kFrameNormal, kFrameTagged };
-enum DataType { kVector, kSingleString };
-enum ConnectionResult { kConnectSuccess, kConnectWrongContext, kConnectSelfConnection, kConnectFeedbackDetected, kConnectNoOrderingSupport, kConnectAliased };
+enum class ObjectType { Output, Processor, Scheduler };
+enum class FrameType { Any, Vector, Tagged };
+enum class DataType { Vector, String };
+enum class ConnectionResult { Success, WrongContext, SelfConnection, FeedbackDetected, NoOrderingSupport, Aliased };
+enum class ErrorSource { Object, Parameter, Memory, DSP  };
 
 /**
  

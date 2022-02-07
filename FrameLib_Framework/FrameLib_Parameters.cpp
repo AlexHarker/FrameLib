@@ -13,7 +13,7 @@
 FrameLib_Parameters::Serial::Iterator& FrameLib_Parameters::Serial::Iterator::operator ++ ()
 {
     DataType type = Serial::readType(&mPtr);
-    Serial::skipItem(&mPtr, kSingleString);
+    Serial::skipItem(&mPtr, DataType::String);
     Serial::skipItem(&mPtr, type);
     mIndex++;
     
@@ -32,7 +32,7 @@ const double *FrameLib_Parameters::Serial::Iterator::getVector(unsigned long *si
 {
     Entry entry = getEntry();
     
-    if (entry.mType == kVector)
+    if (entry.mType == DataType::Vector)
     {
         *size = entry.mSize;
         return entry.data<double>();
@@ -55,7 +55,7 @@ const char *FrameLib_Parameters::Serial::Iterator::getString() const
 {
     Entry entry = getEntry();
     
-    return entry.mType == kSingleString ? entry.data<char>() : nullptr;
+    return entry.mType == DataType::String ? entry.data<char>() : nullptr;
 }
 
 // Get Size
@@ -66,8 +66,8 @@ unsigned long FrameLib_Parameters::Serial::Iterator::getSize() const
     
     switch (entry.mType)
     {
-        case kVector:           return calcSize(entry.mTag, entry.mSize);
-        case kSingleString:     return calcSize(entry.mTag, entry.data<char>());
+        case DataType::Vector: return calcSize(entry.mTag, entry.mSize);
+        case DataType::String: return calcSize(entry.mTag, entry.data<char>());
     }
     
     return 0;
@@ -81,8 +81,8 @@ void FrameLib_Parameters::Serial::Iterator::read(Serial *serial) const
     
     switch (entry.mType)
     {
-        case kVector:           serial->write(entry.mTag, entry.data<double>(), entry.mSize);       break;
-        case kSingleString:     serial->write(entry.mTag, entry.data<char>());                      break;
+        case DataType::Vector:      serial->write(entry.mTag, entry.data<double>(), entry.mSize);       break;
+        case DataType::String:      serial->write(entry.mTag, entry.data<char>());                      break;
     }
 }
 
@@ -92,8 +92,8 @@ void FrameLib_Parameters::Serial::Iterator::read(FrameLib_Parameters *parameters
     
     switch (entry.mType)
     {
-        case kVector:           parameters->set(entry.mTag, entry.data<double>(), entry.mSize);     break;
-        case kSingleString:     parameters->set(entry.mTag, entry.data<char>());                    break;
+        case DataType::Vector:      parameters->set(entry.mTag, entry.data<double>(), entry.mSize);     break;
+        case DataType::String:      parameters->set(entry.mTag, entry.data<char>());                    break;
     }
 }
 
@@ -101,7 +101,7 @@ unsigned long FrameLib_Parameters::Serial::Iterator::read(double *output, unsign
 {
     Entry entry = getEntry();
     
-    if (entry.mType == kVector)
+    if (entry.mType == DataType::Vector)
     {
         size = std::min(entry.mSize, size);
         std::copy(entry.data<double>(), entry.data<double>() + entry.mSize, output);
@@ -119,8 +119,8 @@ void FrameLib_Parameters::Serial::Iterator::alias(Serial *serial, const char *ta
     
     switch (entry.mType)
     {
-        case kVector:           serial->write(tag, entry.data<double>(), entry.mSize);       break;
-        case kSingleString:     serial->write(tag, entry.data<char>());                      break;
+        case DataType::Vector:      serial->write(tag, entry.data<double>(), entry.mSize);      break;
+        case DataType::String:      serial->write(tag, entry.data<char>());                     break;
     }
 }
 
@@ -130,8 +130,8 @@ void FrameLib_Parameters::Serial::Iterator::alias(FrameLib_Parameters *parameter
     
     switch (entry.mType)
     {
-        case kVector:           parameters->set(tag, entry.data<double>(), entry.mSize);     break;
-        case kSingleString:     parameters->set(tag, entry.data<char>());                    break;
+        case DataType::Vector:      parameters->set(tag, entry.data<double>(), entry.mSize);    break;
+        case DataType::String:      parameters->set(tag, entry.data<char>());                   break;
     }
 }
 
@@ -144,7 +144,7 @@ FrameLib_Parameters::Serial::Iterator::Entry FrameLib_Parameters::Serial::Iterat
     BytePointer tagRaw;
     
     entry.mType = Serial::readType(&ptr);
-    Serial::readItem(&ptr, kSingleString, &tagRaw, &entry.mSize);
+    Serial::readItem(&ptr, DataType::String, &tagRaw, &entry.mSize);
     Serial::readItem(&ptr, entry.mType, &entry.mData, &entry.mSize);
     
     entry.mTag = reinterpret_cast<char *>(tagRaw);
@@ -180,17 +180,17 @@ unsigned long FrameLib_Parameters::Serial::calcSize(const FrameLib_Parameters *p
         
         switch(type)
         {
-            case kString:
+            case Type::String:
                 size += calcSize(params->getName(i), params->getString(i));
                 break;
                 
-            case kValue:
-            case kEnum:
+            case Type::Value:
+            case Type::Enum:
                 size += calcSize(params->getName(i), 1);
                 break;
                 
-            case kArray:
-            case kVariableArray:
+            case Type::Array:
+            case Type::VariableArray:
                 size += calcSize(params->getName(i), params->getArraySize(i));
 
         }
@@ -237,18 +237,18 @@ void FrameLib_Parameters::Serial::write(const FrameLib_Parameters *params)
         
         switch(type)
         {
-            case kString:
+            case Type::String:
                 write(params->getName(i), params->getString(i));
                 break;
                 
-            case kValue:
-            case kEnum:
+            case Type::Value:
+            case Type::Enum:
                 value = params->getValue(i);
                 write(params->getName(i), &value, 1);
                 break;
                 
-            case kArray:
-            case kVariableArray:
+            case Type::Array:
+            case Type::VariableArray:
                 write(params->getName(i), params->getArray(i), params->getArraySize(i));
         }
     }
@@ -264,7 +264,7 @@ void FrameLib_Parameters::Serial::write(const char *tag, const char *str)
     if (!checkSize(calcSize(tag, str)))
         return;
     
-    writeType(kSingleString);
+    writeType(DataType::String);
     writeString(tag);
     writeString(str);
     mNumTags++;
@@ -275,7 +275,7 @@ void FrameLib_Parameters::Serial::write(const char *tag, const double *values, u
     if (!checkSize(calcSize(tag, N)))
         return;
     
-    writeType(kVector);
+    writeType(DataType::Vector);
     writeString(tag);
     writeDoubles(values, N);
     mNumTags++;
@@ -381,14 +381,14 @@ void FrameLib_Parameters::Serial::readItem(BytePointer *readPtr, DataType type, 
 {
     readSize(readPtr, size);
     *data = *readPtr;
-    *readPtr += alignSize(*size * (type == kVector ? sizeof(double) : sizeof(char)));
+    *readPtr += alignSize(*size * (type == DataType::Vector ? sizeof(double) : sizeof(char)));
 }
 
 void FrameLib_Parameters::Serial::skipItem(BytePointer *readPtr, DataType type)
 {
     unsigned long size;
     Serial::readSize(readPtr, &size);
-    *readPtr += alignSize(size * (type == kVector ? sizeof(double) : sizeof(char)));
+    *readPtr += alignSize(size * (type == DataType::Vector ? sizeof(double) : sizeof(char)));
 }
 
 // Size Check
@@ -508,23 +508,23 @@ void FrameLib_Parameters::Parameter::setClip(double min, double max)
     mMax = max;
 }
 
-FrameLib_Parameters::SetError FrameLib_Parameters::Parameter::set(double *values, unsigned long N)
+FrameLib_Parameters::Error FrameLib_Parameters::Parameter::set(double *values, unsigned long N)
 {
     if (N)
         return set(*values);
     else
     {
         clear();
-        return kSetSucceeded;
+        return Error::None;
     }
 }
 
 FrameLib_Parameters::ClipMode FrameLib_Parameters::Parameter::getClipMode() const
 {    
     if (checkMin(mMin))
-        return checkMax(mMax) ? kNone : kMax;
+        return checkMax(mMax) ? ClipMode::None : ClipMode::Max;
     else
-        return checkMax(mMax) ? kMin : kClip;
+        return checkMax(mMax) ? ClipMode::Min : ClipMode::Clip;
 }
 
 void FrameLib_Parameters::Parameter::getRange(double *min, double *max) const
@@ -574,16 +574,16 @@ void FrameLib_Parameters::Enum::addEnumItem(unsigned long idx, const char *str, 
     mMax += 1.0;
 }
 
-FrameLib_Parameters::SetError FrameLib_Parameters::Enum::set(double value)
+FrameLib_Parameters::Error FrameLib_Parameters::Enum::set(double value)
 {
     bool outOfRange = value >= mItems.size();
     mValue = static_cast<unsigned long>(outOfRange ? (mItems.size() - 1) : (value < 0.0 ? 0.0 : value));
     mChanged = true;
     
-    return outOfRange ? kEnumUnknownIndex : kSetSucceeded;
+    return outOfRange ? Error::EnumUnknownIndex : Error::None;
 }
 
-FrameLib_Parameters::SetError FrameLib_Parameters::Enum::set(const char *str)
+FrameLib_Parameters::Error FrameLib_Parameters::Enum::set(const char *str)
 {
     for (unsigned long i = 0; i < mItems.size(); i++)
     {
@@ -591,14 +591,14 @@ FrameLib_Parameters::SetError FrameLib_Parameters::Enum::set(const char *str)
         {
             mValue = i;
             mChanged = true;
-            return kSetSucceeded;
+            return Error::None;
         }
     }
     
-    return kEnumUnknownString;
+    return Error::EnumUnknownString;
 }
 
-FrameLib_Parameters::SetError FrameLib_Parameters::Enum::set(double *values, unsigned long N)
+FrameLib_Parameters::Error FrameLib_Parameters::Enum::set(double *values, unsigned long N)
 {
     if (N)
     {
@@ -607,7 +607,7 @@ FrameLib_Parameters::SetError FrameLib_Parameters::Enum::set(double *values, uns
     else
     {
         Enum::clear();
-        return kSetSucceeded;
+        return Error::None;
     }
 }
 
@@ -615,22 +615,22 @@ FrameLib_Parameters::SetError FrameLib_Parameters::Enum::set(double *values, uns
 
 // Value Parameter Class
 
-FrameLib_Parameters::SetError FrameLib_Parameters::Value::set(double value)
+FrameLib_Parameters::Error FrameLib_Parameters::Value::set(double value)
 {
     mValue = (value < mMin) ? mMin : ((value > mMax) ? mMax : value);
     mChanged = true;
     
-    return kSetSucceeded;
+    return Error::None;
 }
 
-FrameLib_Parameters::SetError FrameLib_Parameters::Value::set(double *values, unsigned long N)
+FrameLib_Parameters::Error FrameLib_Parameters::Value::set(double *values, unsigned long N)
 {
     if (N)
         Value::set(*values);
     else
         Value::clear();
     
-    return kSetSucceeded;
+    return Error::None;
 }
 
 // ************************************************************************************** //
@@ -644,7 +644,7 @@ FrameLib_Parameters::String::String(const char *name, long argumentIdx) : Parame
     mMin = mMax = 0.0;
 }
 
-FrameLib_Parameters::SetError FrameLib_Parameters::String::set(const char *str)
+FrameLib_Parameters::Error FrameLib_Parameters::String::set(const char *str)
 {
     size_t i = 0;
     
@@ -658,7 +658,7 @@ FrameLib_Parameters::SetError FrameLib_Parameters::String::set(const char *str)
     mCString[i] = 0;
     mChanged = true;
     
-    return kSetSucceeded;
+    return Error::None;
 }
 
 // ************************************************************************************** //
@@ -687,25 +687,25 @@ FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double def
         mItems[i] = defaultValue;
 }
 
-FrameLib_Parameters::SetError FrameLib_Parameters::Array::set(double *values, unsigned long N)
+FrameLib_Parameters::Error FrameLib_Parameters::Array::set(double *values, unsigned long N)
 {
     N = std::min(N, static_cast<unsigned long>(mItems.size()));
     
     switch (getClipMode())
     {
-        case kNone:
+        case ClipMode::None:
             for (unsigned long i = 0; i < N; i++)
                 mItems[i] = values[i];
             break;
-        case kMin:
+        case ClipMode::Min:
             for (unsigned long i = 0; i < N; i++)
                 mItems[i] = values[i] < mMin ? mMin : values[i];
             break;
-        case kMax:
+        case ClipMode::Max:
             for (unsigned long i = 0; i < N; i++)
                 mItems[i] = values[i] > mMax ? mMax : values[i];
             break;
-        case kClip:
+        case ClipMode::Clip:
             for (unsigned long i = 0; i < N; i++)
                 mItems[i] = values[i] < mMin ? mMin : (values[i] > mMax ? mMax : values[i]);
             break;
@@ -719,7 +719,7 @@ FrameLib_Parameters::SetError FrameLib_Parameters::Array::set(double *values, un
     
     mChanged = true;
     
-    return kSetSucceeded;
+    return Error::None;
 }
 
 // ************************************************************************************** //
@@ -730,18 +730,18 @@ FrameLib_Parameters::NumericType FrameLib_Parameters::getNumericType(unsigned lo
 {
     int flags = mParameters[idx]->flags();
     
-    if (flags & Parameter::kFlagNonNumeric) return kNumericNone;
-    else if (flags & Parameter::kFlagBool) return kNumericBool;
-    else if (flags & Parameter::kFlagInteger) return kNumericInteger;
+    if (flags & Parameter::kFlagNonNumeric) return NumericType::None;
+    else if (flags & Parameter::kFlagBool) return NumericType::Bool;
+    else if (flags & Parameter::kFlagInteger) return NumericType::Integer;
     
-    return kNumericDouble;
+    return NumericType::Double;
 }
 
 std::string FrameLib_Parameters::getTypeString(unsigned long idx) const
 {
-    static const char *typeStringsDouble[] = {"double", "enum", "string", "fixed length double array", "variable length double array" };
-    static const char *typeStringsInteger[] = {"int", "enum", "string", "fixed length int array", "variable length int array" };
-    static const char *typeStringsBool[] = {"bool", "enum", "string", "fixed length bool array", "variable length bool array" };
+    static const char *typeStringsDouble[] = {"double", "fixed length double array", "variable length double array" };
+    static const char *typeStringsInteger[] = {"int", "fixed length int array", "variable length int array" };
+    static const char *typeStringsBool[] = {"bool", "fixed length bool array", "variable length bool array" };
 
     const char **typeStrings = typeStringsDouble;
     int flags = mParameters[idx]->flags();
@@ -755,7 +755,14 @@ std::string FrameLib_Parameters::getTypeString(unsigned long idx) const
     else if (flags & Parameter::kFlagInteger)
         typeStrings = typeStringsInteger;
     
-    str += typeStrings[mParameters[idx]->type()];
+    switch (mParameters[idx]->type())
+    {
+        case Type::Value:           str += typeStrings[0];     break;
+        case Type::Enum:            str += "enum";             break;
+        case Type::String:          str += "string";           break;
+        case Type::Array:           str += typeStrings[1];     break;
+        case Type::VariableArray:   str += typeStrings[2];     break;
+    }
     
     return str;
 }
@@ -764,11 +771,11 @@ std::string FrameLib_Parameters::getDefaultString(unsigned long idx) const
 {
     Type type = getType(idx);
     
-    if (type == kString)
+    if (type == Type::String)
         return "";
-    else if (type == kEnum)
+    else if (type == Type::Enum)
         return getItemString(idx, static_cast<unsigned long>(getDefault(idx)));
-    else if (getNumericType(idx) == kNumericBool)
+    else if (getNumericType(idx) == NumericType::Bool)
         return getDefault(idx) ? "true" : "false";
 
     return static_cast<const char*>(FrameLib_StringMaker<>(getDefault(idx), true));

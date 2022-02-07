@@ -65,7 +65,7 @@ FrameLib_MakeString::FrameLib_MakeString(FrameLib_Context context, const FrameLi
     for (unsigned long i = 0; i < mNumIns; i++)
         setInputMode(i, false, (i < triggersSize) && triggers[i], false);
     
-    setOutputType(0, kFrameTagged);
+    setOutputType(0, FrameType::Tagged);
     
     addParameterInput();
 }
@@ -176,7 +176,7 @@ void FrameLib_MakeString::process()
         }
         else
         {
-            getReporter()(kErrorObject, getProxy(), "string concatenation exceeds maximum string length");
+            getReporter()(ErrorSource::Object, getProxy(), "string concatenation exceeds maximum string length");
             return true;
         }
         

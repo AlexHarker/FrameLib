@@ -67,10 +67,10 @@ struct MessageInfo
 struct Message
 {
     Message(const MessageInfo& info, const double *values, unsigned long N)
-    : mInfo(info), mType(kFrameNormal), mVector(values, values + N) {}
+    : mInfo(info), mType(FrameType::Vector), mVector(values, values + N) {}
     
     Message(const MessageInfo& info, const FrameLib_Parameters::Serial *serial)
-    : mInfo(info), mType(kFrameTagged), mSerial(*serial) {}
+    : mInfo(info), mType(FrameType::Tagged), mSerial(*serial) {}
     
     Message(const Message&) = delete;
     Message& operator=(const Message&) = delete;
@@ -144,7 +144,7 @@ public:
         
         for (auto it = serial->begin(); it != serial->end(); it++)
         {
-            if (it.getType() == kVector)
+            if (it.getType() == DataType::Vector)
             {
                 unsigned long size = it.getVectorSize();
                 mData.mMaxSize = std::max(limit(size), mData.mMaxSize);
@@ -223,7 +223,7 @@ private:
         if (!proxy)
             return;
         
-        if (message.mType == kFrameNormal)
+        if (message.mType == FrameType::Vector)
         {
             unsigned long N = limit(static_cast<unsigned long>(message.mVector.size()));
             
@@ -241,7 +241,7 @@ private:
                 t_symbol *tag = gensym(it.getTag());
                 unsigned long size = 0;
                 
-                if (it.getType() == kVector)
+                if (it.getType() == DataType::Vector)
                 {
                     const double *vector = it.getVector(&size);
                     size = limit(size);
@@ -346,7 +346,7 @@ public:
                 {
                     if (object == ignore)
                         continue;
-                    if (it->getSource() == kErrorDSP)
+                    if (it->getSource() == ErrorSource::DSP)
                         object_error_obtrusive(userObject, errorText.c_str());
                     else
                         object_error(userObject, errorText.c_str());
@@ -675,7 +675,7 @@ public:
     {
         mObject = reinterpret_cast<t_object *>(ac ? atom_getobj(av) : nullptr);
         FLObject *object = mObject ? objectMethod<FLObject *>(mObject, gensym("__fl.get_framelib_object")) : nullptr;
-        mMode = object && object->getType() == kOutput ? SyncCheck::kDownOnly : SyncCheck::kDown;
+        mMode = object && object->getType() == ObjectType::Output ? SyncCheck::kDownOnly : SyncCheck::kDown;
     }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
@@ -890,7 +890,7 @@ public:
     
     void dsp(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
     {
-        if (isRealtime() && object()->getType() == kOutput)
+        if (isRealtime() && object()->getType() == ObjectType::Output)
             addPerform<Wrapper, &Wrapper<T>::perform>(dsp64);
     }
     
@@ -1060,6 +1060,8 @@ class FrameLib_MaxClass : public MaxClass_Base
     using FLConnection = FrameLib_Object<FLObject>::Connection;
     using MaxConnection = FrameLib_MaxGlobals::MaxConnection;
     using LockHold = FrameLib_SpinLockHolder;
+    using NumericType = FrameLib_Parameters::NumericType;
+    using ClipMode = FrameLib_Parameters::ClipMode;
     
     struct ConnectionConfirmation
     {
@@ -1277,7 +1279,7 @@ public:
     , mResolved(false)
     , mBuffer(gensym(""))
     , mOffset(0)
-    , mMaxContext{ T::sType == kScheduler, contextPatcher(gensym("#P")->s_thing), gensym("") }
+    , mMaxContext{ T::sType == ObjectType::Scheduler, contextPatcher(gensym("#P")->s_thing), gensym("") }
     {
         // Deal with attributes
         
@@ -1422,7 +1424,7 @@ public:
             for (long i = 0; i < getNumIns(); i++)
                 object_post(mUserObject, "Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose).c_str());
             if (supportsOrderingConnections())
-                object_post(mUserObject, "Ordering Input [%s]: Connect to ensure ordering", frameTypeString(kFrameAny));
+                object_post(mUserObject, "Ordering Input [%s]: Connect to ensure ordering", frameTypeString(FrameType::Any));
         }
         
         if (flags & kInfoOutputs)
@@ -1464,22 +1466,22 @@ public:
                 {
                     if (argsMode == kAsParams && params->getArgumentIdx(i) >= 0)
                         object_post(mUserObject, "- Argument: %ld", params->getArgumentIdx(i) + 1);
-                    if (numericType == FrameLib_Parameters::kNumericInteger || numericType == FrameLib_Parameters::kNumericDouble)
+                    if (numericType == NumericType::Integer || numericType == NumericType::Double)
                     {
                         switch (params->getClipMode(i))
                         {
-                            case FrameLib_Parameters::kNone:    break;
-                            case FrameLib_Parameters::kMin:     object_post(mUserObject, "- Min Value: %lg", params->getMin(i));                        break;
-                            case FrameLib_Parameters::kMax:     object_post(mUserObject, "- Max Value: %lg", params->getMax(i));                        break;
-                            case FrameLib_Parameters::kClip:    object_post(mUserObject, "- Clipped: %lg-%lg", params->getMin(i), params->getMax(i));   break;
+                            case ClipMode::None:    break;
+                            case ClipMode::Min:     object_post(mUserObject, "- Min Value: %lg", params->getMin(i));                        break;
+                            case ClipMode::Max:     object_post(mUserObject, "- Max Value: %lg", params->getMax(i));                        break;
+                            case ClipMode::Clip:    object_post(mUserObject, "- Clipped: %lg-%lg", params->getMin(i), params->getMax(i));   break;
                         }
                     }
-                    if (type == FrameLib_Parameters::kEnum)
+                    if (type == FrameLib_Parameters::Type::Enum)
                         for (unsigned long j = 0; j <= static_cast<unsigned long>(params->getMax(i)); j++)
                             object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j));
-                    else if (type == FrameLib_Parameters::kArray)
+                    else if (type == FrameLib_Parameters::Type::Array)
                         object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
-                    else if (type == FrameLib_Parameters::kVariableArray)
+                    else if (type == FrameLib_Parameters::Type::VariableArray)
                         object_post(mUserObject, "- Array Max Size: %ld", params->getArrayMaxSize(i));
                     postSplit(params->getInfo(i).c_str(), "- ", "-");
                 }
@@ -1605,7 +1607,7 @@ public:
                 
                 for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
                 {
-                    if (it->mObject->getType() == kOutput)
+                    if (it->mObject->getType() == ObjectType::Output)
                         continue;
                     
                     read(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioIns(), blockSize, time + i + it->mOffset);
@@ -1617,7 +1619,7 @@ public:
             
             for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
             {
-                if (it->mObject->getType() != kOutput)
+                if (it->mObject->getType() != ObjectType::Output)
                     continue;
                 
                 it->mObject->blockUpdate(nullptr, ioBuffers.data(), blockSize);
@@ -1637,7 +1639,7 @@ public:
         if (!isRealtime())
             return;
         
-        FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), getType() == kOutput);
+        FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), getType() == ObjectType::Output);
        
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && !mResolved)
             resolveGraph(false, true);
@@ -2094,26 +2096,26 @@ private:
 
         switch (result)
         {
-            case kConnectSuccess:
+            case ConnectionResult::Success:
                 mConnectionsUpdated = true;
                 objectMethod(connection.mObject, gensym("__fl.connection_update"), t_ptr_int(true));
                 break;
                 
-            case kConnectFeedbackDetected:
+            case ConnectionResult::FeedbackDetected:
                 object_error(mUserObject, "feedback loop detected");
                 break;
                 
-            case kConnectWrongContext:
+            case ConnectionResult::WrongContext:
                 if (mGlobal->getReportContextErrors())
                     object_error(mUserObject, "can't connect objects in different patching contexts");
                 break;
                 
-            case kConnectSelfConnection:
+            case ConnectionResult::SelfConnection:
                 object_error(mUserObject, "direct feedback loop detected");
                 break;
                 
-            case kConnectNoOrderingSupport:
-            case kConnectAliased:
+            case ConnectionResult::NoOrderingSupport:
+            case ConnectionResult::Aliased:
                 break;
         }
     }
@@ -2156,7 +2158,7 @@ private:
         if (!isRealtime() || !dspSetBroken())
         {
             FLObject *object = toFLObject(src);
-            bool objectHandlesAudio = object && (object->getType() == kScheduler || object->getNumAudioChans());
+            bool objectHandlesAudio = object && (object->getType() == ObjectType::Scheduler || object->getNumAudioChans());
             
             if (!objectHandlesAudio || object->getContext() == getContext())
             {
@@ -2217,8 +2219,8 @@ private:
     {
         switch (type)
         {
-            case kFrameNormal:          return "vector";
-            case kFrameTagged:          return "tagged";
+            case FrameType::Vector:     return "vector";
+            case FrameType::Tagged:     return "tagged";
             // kFrameAny
             default:                    return "either";
         }

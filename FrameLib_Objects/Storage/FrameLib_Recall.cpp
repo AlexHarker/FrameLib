@@ -16,7 +16,7 @@ FrameLib_Recall::FrameLib_Recall(FrameLib_Context context, const FrameLib_Parame
     mName = mParameters.getString(kName);
     mStorage = registerStorage(mName.c_str());
     
-    setOutputType(0, kFrameAny);
+    setOutputType(0, FrameType::Any);
 }
 
 // Info
@@ -72,7 +72,7 @@ void FrameLib_Recall::process()
     FrameType requestType = access.getType();
     unsigned long size = 0;
 
-    if (requestType == kFrameNormal)
+    if (requestType == FrameType::Vector)
         size = access.getVectorSize();
     else
         size = access.getTaggedSize();
@@ -85,7 +85,7 @@ void FrameLib_Recall::process()
     
     // Copy from storage to output
     
-    if (getOutputCurrentType(0) == kFrameNormal)
+    if (getOutputCurrentType(0) == FrameType::Vector)
     {
         double *output = getOutput(0, &size);
         copyVector(output, access.getVector(), std::min(access.getVectorSize(), size));

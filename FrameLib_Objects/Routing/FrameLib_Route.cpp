@@ -24,8 +24,8 @@ FrameLib_Route::Valve::Valve(FrameLib_Context context, const FrameLib_Parameters
     
     mActiveValve = truncToInt(mParameters.getValue(kActiveValve) - 1.0);
     
-    setInputMode(0, false, mValveNumber == mActiveValve, true, kFrameAny);
-    setOutputType(0, kFrameAny);
+    setInputMode(0, false, mValveNumber == mActiveValve, true, FrameType::Any);
+    setOutputType(0, FrameType::Any);
     
     setParameterInput(1);
 }
@@ -50,7 +50,7 @@ void FrameLib_Route::Valve::process()
 // Constructor
 
 FrameLib_Route::FrameLib_Route(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Block(kProcessor, context, proxy)
+: FrameLib_Block(ObjectType::Processor, context, proxy)
 , mParameterObject(context, nullptr, proxy)
 {
     FrameLib_Parameters& parameters = mParameterObject.parameters();

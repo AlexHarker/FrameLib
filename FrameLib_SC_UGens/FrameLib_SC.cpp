@@ -1,5 +1,5 @@
 
-#include "SC_PlugIn.h"
+#include <SC_PlugIn.h>
 #include "../FrameLib_Exports/FrameLib_Objects.h"
 
 
@@ -275,7 +275,7 @@ struct ReadProxy : public FrameLib_Read::Proxy
         //RELEASE_SNDBUF(mBuffer);
     }
     
-    void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeType edges, bool bound) override
+    void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeMode edges, bool bound) override
     {
         if (mBuffer)
         {
@@ -431,7 +431,7 @@ void FLTest_CalcZero(FrameLib_SC_UGen *unit, int inNumSamples)
 
 void FLTest_CalcAudio(FrameLib_SC_UGen *unit, int inNumSamples)
 {
-    bool outputObject = unit->mObject->getType() == kOutput;
+    bool outputObject = unit->mObject->getType() == ObjectType::Output;
     unsigned long numAudioChannels = unit->mObject->getNumAudioChans();
     
     if (outputObject)

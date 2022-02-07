@@ -18,7 +18,7 @@ public:
     
     // Parameter enums
     
-    enum WindowTypes { kRectangle, kTriangle, kTrapezoid, kWelch, kParzen, kTukey, kSine, kHann, kHamming, kBlackman, kExactBlackman, kBlackmanHarris, kNuttallContinuous, kNuttallMinimal, kFlatTop, kCosineSum, kKaiser, kSineTaper  };
+    enum WindowType { kRectangle, kTriangle, kTrapezoid, kWelch, kParzen, kTukey, kSine, kHann, kHamming, kBlackman, kExactBlackman, kBlackmanHarris, kNuttallContinuous, kNuttallMinimal, kFlatTop, kCosineSum, kKaiser, kSineTaper  };
     
     enum Compensation { kOff, kLinear, kSquare, kReconstruct };
     
@@ -240,12 +240,12 @@ public:
             
             if (mParamSize && arraySize > mParamSize)
             {
-                mOwner.getReporter()(kErrorObject, mOwner.getProxy(), "too many parameters given for window type #", mParameters.getItemString(TypeIdx, getType()));
+                mOwner.getReporter()(ErrorSource::Object, mOwner.getProxy(), "too many parameters given for window type #", mParameters.getItemString(TypeIdx, getType()));
             }
         }
     }
     
-    WindowTypes getType() const     { return mParameters.getEnum<WindowTypes>(TypeIdx); }
+    WindowType getType() const      { return mParameters.getEnum<WindowType>(TypeIdx); }
     Endpoints getEndpoints() const  { return mParameters.getEnum<Endpoints>(EndpointsIdx); }
     double getExponent() const      { return mParameters.getValue(ExponentIdx); }
     

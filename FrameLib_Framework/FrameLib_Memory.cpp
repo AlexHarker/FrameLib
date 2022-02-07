@@ -101,7 +101,7 @@ void *FrameLib_GlobalAllocator::CoreAllocator::alloc(size_t size)
     if (ptr)
         mAllocated += blockSize(ptr);
     else
-        mErrorReporter(kErrorMemory, nullptr, "FrameLib - couldn't allocate memory");
+        mErrorReporter(ErrorSource::Memory, nullptr, "FrameLib - couldn't allocate memory");
    
     // Check for near full
     
@@ -274,12 +274,12 @@ size_t FrameLib_GlobalAllocator::alignSize(size_t x)
 // Context Local Storage
 
 FrameLib_ContextAllocator::Storage::Storage(const char *name, FrameLib_ContextAllocator& allocator)
-:  mName(name), mType(kFrameNormal), mData(nullptr), mSize(0), mMaxSize(0), mCount(1), mAllocator(allocator)
+:  mName(name), mType(FrameType::Vector), mData(nullptr), mSize(0), mMaxSize(0), mCount(1), mAllocator(allocator)
 {}
 
 FrameLib_ContextAllocator::Storage::~Storage()
 {
-    if (mType == kFrameTagged)
+    if (mType == FrameType::Tagged)
         getTagged()->~Serial();
 
     mAllocator.dealloc(mData);
@@ -294,14 +294,14 @@ void FrameLib_ContextAllocator::Storage::resize(bool tagged, unsigned long size)
     {
         // Reallocate for tagged frames
         
-        if (mType == kFrameTagged)
+        if (mType == FrameType::Tagged)
             getTagged()->~Serial();
         if (tagged)
             Serial::newInPlace(mData, size);
         
         // Set Parameters
         
-        mType = tagged ? kFrameTagged : kFrameNormal;
+        mType = tagged ? FrameType::Tagged : FrameType::Vector;
         mSize = size;
     }
     else
@@ -312,7 +312,7 @@ void FrameLib_ContextAllocator::Storage::resize(bool tagged, unsigned long size)
         {
             // Deallocate
             
-            if (mType == kFrameTagged)
+            if (mType == FrameType::Tagged)
                 getTagged()->~Serial();
             mAllocator.dealloc(mData);
             
@@ -324,7 +324,7 @@ void FrameLib_ContextAllocator::Storage::resize(bool tagged, unsigned long size)
             
             // Set parameters
             
-            mType = tagged ? kFrameTagged : kFrameNormal;
+            mType = tagged ? FrameType::Tagged : FrameType::Vector;
             mMaxSize = maxSize;
             mSize = size;
         }

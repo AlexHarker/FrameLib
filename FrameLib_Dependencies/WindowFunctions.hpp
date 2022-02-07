@@ -8,7 +8,7 @@
 #include <limits>
 #include <vector>
 
-// Coefficients (and the basis for naming) can larged be found in:
+// Coefficients (and the basis for naming) can largely be found in:
 //
 // Nuttall, A. (1981). Some windows with very good sidelobe behavior.
 // IEEE Transactions on Acoustics, Speech, and Signal Processing, 29(1), 84-91.

@@ -111,7 +111,7 @@ void FrameLib_FFT::process()
     if (FFTSize > mProcessor.max_fft_size() || (!sizeInR && !sizeInI))
     {
         if (FFTSize > mProcessor.max_fft_size())
-            getReporter()(kErrorObject, getProxy(), "requested FFT size (#) larger than maximum FFT size (#)", static_cast<size_t>(FFTSize), mProcessor.max_fft_size());
+            getReporter()(ErrorSource::Object, getProxy(), "requested FFT size (#) larger than maximum FFT size (#)", static_cast<size_t>(FFTSize), mProcessor.max_fft_size());
         sizeOut = 0;
     }
     

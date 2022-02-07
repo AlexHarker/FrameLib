@@ -10,7 +10,7 @@
  
  */
 
-enum ExportError { kExportSuccess, kExportPathError, kExportWriteError };
+enum class ExportError { Success, PathError, WriteError };
 
 /**
  

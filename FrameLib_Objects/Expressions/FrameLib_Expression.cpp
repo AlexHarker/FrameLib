@@ -235,7 +235,7 @@ void FrameLib_Expression::ConstantOut::process()
 // Constructor
 
 FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Block(kProcessor, context, proxy)
+: FrameLib_Block(ObjectType::Processor, context, proxy)
 , mParameters(context, proxy, &sParamInfo)
 {
     typedef FrameLib_ExprParser::Graph<double> Graph;
@@ -267,7 +267,7 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, const FrameLi
     
     if (graph.mNumInputs > maxNumIns)
     {
-        getReporter()(kErrorObject, proxy, "expression has more than the maximum number of inputs (#)", maxNumIns);
+        getReporter()(ErrorSource::Object, proxy, "expression has more than the maximum number of inputs (#)", maxNumIns);
         graph = Graph();
     }
     

@@ -565,7 +565,7 @@ public:
         }
         
         if (isTagged())
-            setOutputType(0, kFrameTagged);
+            setOutputType(0, FrameType::Tagged);
         
         addParameterInput();
         

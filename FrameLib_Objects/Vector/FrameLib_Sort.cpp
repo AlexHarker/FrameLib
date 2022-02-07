@@ -91,7 +91,7 @@ void FrameLib_Sort::process()
         else
         {
             zeroVector(output, size);
-            getReporter()(kErrorObject, getProxy(), "couldn't allocate temporary memory");
+            getReporter()(ErrorSource::Object, getProxy(), "couldn't allocate temporary memory");
         }
     }
 }

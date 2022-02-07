@@ -30,7 +30,6 @@ using malloc_allocator = function_allocator<malloc, free>;
 
 struct aligned_allocator
 {
-    
     template <typename T>
     T* allocate(size_t size) { return allocate_aligned<T>(size); }
     

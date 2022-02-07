@@ -90,6 +90,6 @@ void FrameLib_Random::process()
     double *output = getOutput(0, &sizeOut);
     
     for (unsigned long i = 0; i < sizeOut; i++)
-        output[i] = mRandom.randDouble();
+        output[i] = mRandom.rand_double();
 }
 

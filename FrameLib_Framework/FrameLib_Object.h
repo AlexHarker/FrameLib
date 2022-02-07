@@ -245,8 +245,8 @@ public:
     
     unsigned long getNumIns() const             { return static_cast<unsigned long>(mInputConnections.size()); }
     unsigned long getNumOuts() const            { return static_cast<unsigned long>(mOutputConnections.size()); }
-    unsigned long getNumAudioIns() const        { return getType() != kOutput ? mNumAudioChans : 0; }
-    unsigned long getNumAudioOuts() const       { return getType() == kOutput ? mNumAudioChans : 0; }
+    unsigned long getNumAudioIns() const        { return getType() != ObjectType::Output ? mNumAudioChans : 0; }
+    unsigned long getNumAudioOuts() const       { return getType() == ObjectType::Output ? mNumAudioChans : 0; }
     unsigned long getNumAudioChans() const      { return mNumAudioChans; }
     
     // Set / Get Fixed Inputs
@@ -265,7 +265,7 @@ public:
     
     // Return to host to request to be passed audio
     
-    bool handlesAudio() const  { return mType == kScheduler || getNumAudioChans(); }
+    bool handlesAudio() const  { return mType == ObjectType::Scheduler || getNumAudioChans(); }
     
     // Info
 
@@ -286,7 +286,7 @@ public:
     ConnectionResult addConnection(Connection connection, unsigned long inIdx)
     {
         ConnectionResult result = connectionCheck(connection, false);
-        return (result == kConnectSuccess) ? changeConnection(connection, inIdx, true) : result;
+        return (result == ConnectionResult::Success) ? changeConnection(connection, inIdx, true) : result;
     }
     
     void deleteConnection(unsigned long inIdx)
@@ -298,7 +298,7 @@ public:
     {
         ConnectionResult result = connectionCheck(connection, true);
 
-        if (result == kConnectSuccess)
+        if (result == ConnectionResult::Success)
             return addOrderingConnection(connection, true);
 
         return result;
@@ -325,7 +325,7 @@ public:
     {
         ConnectionResult result = connectionCheck(alias, false);
         
-        if (result == kConnectSuccess)
+        if (result == ConnectionResult::Success)
         {
             changeConnection(Connection(), inIdx, false);
             changeAlias(&FrameLib_Object::getInputConnector, alias, inIdx, true);
@@ -338,7 +338,7 @@ public:
     {
         ConnectionResult result = connectionCheck(Connection(alias, 0), true);
 
-        if (result == kConnectSuccess)
+        if (result == ConnectionResult::Success)
         {
             clearOrderingConnections(false);
             changeOrderingAlias(alias, true);
@@ -351,7 +351,7 @@ public:
     {
         ConnectionResult result = alias.mObject->connectionCheck(thisConnection(outIdx), false);
 
-        if (result == kConnectSuccess)
+        if (result == ConnectionResult::Success)
         {
             clearOutput(outIdx);
             if (alias.mObject)
@@ -423,7 +423,7 @@ protected:
     {
         mNumAudioChans = nAudioChans;
         
-        mInputConnections.resize((getType() == kScheduler || nIns) ? nIns : 1);
+        mInputConnections.resize((getType() == ObjectType::Scheduler || nIns) ? nIns : 1);
         mOutputConnections.resize(nOuts);
     }
     
@@ -628,18 +628,18 @@ private:
     ConnectionResult connectionCheck(Connection connection, bool ordering)
     {
         if (ordering && !supportsOrderingConnections())
-            return kConnectNoOrderingSupport;
+            return ConnectionResult::NoOrderingSupport;
     
         if (connection.mObject == this)
-            return kConnectSelfConnection;
+            return ConnectionResult::SelfConnection;
     
         if (connection.mObject->mContext != mContext)
-            return kConnectWrongContext;
+            return ConnectionResult::WrongContext;
     
         if (detectFeedback(connection.mObject))
-            return kConnectFeedbackDetected;
+            return ConnectionResult::FeedbackDetected;
         
-        return kConnectSuccess;
+        return ConnectionResult::Success;
     }
     
     // Notifications
@@ -691,10 +691,10 @@ private:
     ConnectionResult changeConnection(Connection connection, unsigned long inIdx, bool notify, Queue *queue = nullptr)
     {
         if (mInputConnections[inIdx].mIn == connection)
-            return kConnectSuccess;
+            return ConnectionResult::Success;
      
         if (mInputConnections[inIdx].mInternal || (connection.mObject && connection.mObject->mOutputConnections[connection.mIndex].mInternal))
-            return kConnectAliased;
+            return ConnectionResult::Aliased;
         
         // Update all values (note the swap)
             
@@ -708,7 +708,7 @@ private:
         notifyConnectionsChanged(mInputConnections[inIdx].mIn, queue);
         notifySelf(notify, queue);
         
-        return kConnectSuccess;
+        return ConnectionResult::Success;
     }
     
     // Change Ordering Connection
@@ -719,15 +719,15 @@ private:
     ConnectionResult changeOrderingConnection(Connection connection, ListMethod listUpdate, AlterMethod alterConnector, bool notify, Queue *queue)
     {
         if (!supportsOrderingConnections())
-            return kConnectNoOrderingSupport;
+            return ConnectionResult::NoOrderingSupport;
         
         if (mOrderingConnector.mInternal || connection.mObject->mOutputConnections[connection.mIndex].mInternal)
-            return kConnectAliased;
+            return ConnectionResult::Aliased;
         
         // Add / Delete and update all values
         
         if (!listUpdate(mOrderingConnections, connection))
-            return kConnectSuccess;
+            return ConnectionResult::Success;
         
         (this->*alterConnector)(&FrameLib_Object::getOutputConnector, connection, kOrdering, false);
         
@@ -736,7 +736,7 @@ private:
         notifyConnectionsChanged(connection, queue);
         notifySelf(notify, queue);
         
-        return kConnectSuccess;
+        return ConnectionResult::Success;
     }
     
     ConnectionResult addOrderingConnection(Connection connection, bool notify, Queue *queue = nullptr)

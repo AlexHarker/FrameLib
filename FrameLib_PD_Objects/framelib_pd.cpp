@@ -29,7 +29,7 @@ class FrameLib_PDClass_Read : public FrameLib_PDClass_Expand<FrameLib_Read>
             mBuffer = pd_buffer();
         };
         
-        void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeType edges, bool bound) override
+        void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeMode edges, bool bound) override
         {
             mBuffer.read(output, positions, size, 1.0, interp, edges, bound);
         }

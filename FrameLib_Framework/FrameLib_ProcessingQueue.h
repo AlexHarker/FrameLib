@@ -38,28 +38,7 @@ class FrameLib_DSP;
  */
 
 class FrameLib_ProcessingQueue
-{
-    class DenormalHandling
-    {
-#if defined(__i386__) || defined(__x86_64__) || defined(_M_IX86) || defined(_M_X64)
-    public:
-
-        DenormalHandling() : mMXCSR(_mm_getcsr())
-        {
-            _mm_setcsr(mMXCSR | _MM_FLUSH_ZERO_ON);
-        }
-        
-        ~DenormalHandling()
-        {
-            _mm_setcsr(mMXCSR);
-        }
-        
-    private:
-
-        unsigned int mMXCSR;
-#endif
-    };
-    
+{    
 public:
     
     using MainQueue = FrameLib_LockFreeStack<FrameLib_DSP>;
@@ -109,7 +88,7 @@ public:
     public:
         
         WorkerThreads(FrameLib_ProcessingQueue *queue)
-        : FrameLib_TriggerableThreadSet(FrameLib_Thread::kAudioPriority, numThreads())
+        : FrameLib_TriggerableThreadSet(FrameLib_Thread::PriorityLevel::Audio, numThreads())
         , mQueue(queue)
         {}
         

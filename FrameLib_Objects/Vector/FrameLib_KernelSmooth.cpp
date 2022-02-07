@@ -17,11 +17,11 @@ FrameLib_KernelSmooth::FrameLib_KernelSmooth(FrameLib_Context context, const Fra
     mParameters.addBool(kSymmetric, "symmetric", true, 2);
 
     mParameters.addEnum(kEdges, "edges", 3);
-    mParameters.addEnumItem(Smoother::kZeroPad, "zero");
-    mParameters.addEnumItem(Smoother::kExtend, "extend");
-    mParameters.addEnumItem(Smoother::kWrap, "wrap");
-    mParameters.addEnumItem(Smoother::kFold, "fold");
-    mParameters.addEnumItem(Smoother::kMirror, "mirror");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::ZeroPad), "zero");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::Extend), "extend");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::Wrap), "wrap");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::Fold), "fold");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::Mirror), "mirror");
     
     mParameters.addInt(kMaxFFTSize, "max_fft", 32768);
     mParameters.setInstantiation();
@@ -111,7 +111,7 @@ void FrameLib_KernelSmooth::process()
             return;
         }
         
-        Smoother::EdgeType edges = mParameters.getEnum<Smoother::EdgeType>(kEdges);
+        Smoother::EdgeMode edges = mParameters.getEnum<Smoother::EdgeMode>(kEdges);
         
         Allocator allocator(*this);
         

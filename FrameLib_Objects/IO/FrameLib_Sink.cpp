@@ -172,9 +172,9 @@ void FrameLib_Sink::blockProcess(const double * const *ins, double **outs, unsig
 
 void FrameLib_Sink::process()
 {
-    auto interpIsCubic = [](InterpType type) { return type != kInterpNone && type != kInterpLinear; };
+    auto interpIsCubic = [](InterpType type) { return type != InterpType::None && type != InterpType::Linear; };
     
-    InterpType interpType = kInterpNone;
+    InterpType interpType = InterpType::None;
     
     unsigned long sizeIn, sizeFrame, offset;
     
@@ -188,10 +188,10 @@ void FrameLib_Sink::process()
         switch (mParameters.getEnum<Interpolation>(kInterpolation))
         {
             case kNone:         break;
-            case kLinear:       interpType = kInterpLinear;             break;
-            case kHermite:      interpType = kInterpCubicHermite;       break;
-            case kBSpline:      interpType = kInterpCubicBSpline;       break;
-            case kLagrange:     interpType = kInterpCubicLagrange;      break;
+            case kLinear:       interpType = InterpType::Linear;            break;
+            case kHermite:      interpType = InterpType::CubicHermite;      break;
+            case kBSpline:      interpType = InterpType::CubicBSpline;      break;
+            case kLagrange:     interpType = InterpType::CubicLagrange;     break;
         }
     }
     
@@ -215,7 +215,7 @@ void FrameLib_Sink::process()
         if (interpIsCubic(interpType) && !delayTime.intVal())
             timeOffset += FrameLib_TimeFormat(1, 0);
         
-        interpType = kInterpNone;
+        interpType = InterpType::None;
     }
     
     // If interpolation is cubic reduce latency if not required (delay is 1 or greater)
@@ -225,12 +225,12 @@ void FrameLib_Sink::process()
     if (cubic && delayTime.intVal())
         timeOffset -= FrameLib_TimeFormat(1, 0);
         
-    unsigned long interpSize = interpType != kInterpNone ? (cubic ? 3 : 1) : 0;
+    unsigned long interpSize = interpType != InterpType::None ? (cubic ? 3 : 1) : 0;
     auto interpolated = allocAutoArray<double>(sizeIn + interpSize);
 
     // Calculate time offset and interpolate if needed
 
-    if (interpType == kInterpNone)
+    if (interpType == InterpType::None)
     {
         offset = roundToUInt(timeOffset);
         sizeFrame = sizeIn;

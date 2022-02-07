@@ -3,6 +3,8 @@
 #include "FrameLib_Global.h"
 #include "FrameLib_DSP.h"
 
+#include "../FrameLib_Dependencies/SIMDSupport.hpp"
+
 #include <algorithm>
 
 // Worker Threads
@@ -70,7 +72,7 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
     
     if (mTimedOut)
     {
-        mErrorReporter(kErrorDSP, mEntryObject->getProxy(), "FrameLib - DSP time out - FrameLib disabled in this context");
+        mErrorReporter(ErrorSource::DSP, mEntryObject->getProxy(), "FrameLib - DSP time out - FrameLib disabled in this context");
         
         // Clear the queue
         
@@ -140,7 +142,7 @@ void FrameLib_ProcessingQueue::wakeWorkers()
 
 void FrameLib_ProcessingQueue::serviceQueue(FrameLib_LocalAllocator *allocator)
 {
-    DenormalHandling denormHandler;
+    SIMDDenormals denormHandler;
     
     unsigned long timedOutCount = 0;
     

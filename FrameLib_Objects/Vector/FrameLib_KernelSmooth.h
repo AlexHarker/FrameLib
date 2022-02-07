@@ -8,6 +8,7 @@
 class FrameLib_KernelSmooth final : public FrameLib_Processor
 {
     using Smoother = kernel_smoother<double, FrameLib_DSP::Allocator>;
+    using Edges = Smoother::EdgeMode;
     
     enum ParameterList { kSmooth, kScale, kSymmetric, kEdges, kMaxFFTSize };
     enum Scales { kSamples, kNormalised };
