@@ -1225,11 +1225,6 @@ public:
     
     // Tag checks
     
-    static bool isContextNameTag(t_symbol *sym)
-    {
-        return !strcmp(sym->s_name, "{id}");
-    }
-    
     static bool isParameterTag(t_symbol *sym)
     {
         return strlen(sym->s_name) > 1 && sym->s_name[0] == '/';
