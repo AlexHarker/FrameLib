@@ -55,25 +55,25 @@ private:
 struct EdgesExtend : EdgesBase<table_fetcher_extend>
 {
     EdgesExtend(const double *data, unsigned long size)
-    : EdgesBase<table_fetcher_extend>(EdgesBase(data, size)) {}
+    : EdgesBase<table_fetcher_extend>(data, size) {}
 };
 
 struct EdgesWrap : EdgesBase<table_fetcher_wrap>
 {
     EdgesWrap(const double *data, unsigned long size)
-    : EdgesBase<table_fetcher_wrap>(EdgesBase(data, size)) {}
+    : EdgesBase<table_fetcher_wrap>(data, size) {}
 };
 
 struct EdgesFold : EdgesBase<table_fetcher_fold>
 {
     EdgesFold(const double *data, unsigned long size)
-    : EdgesBase<table_fetcher_fold>(EdgesBase(data, size)) {}
+    : EdgesBase<table_fetcher_fold>(data, size) {}
 };
 
 struct EdgesMirror : EdgesBase<table_fetcher_mirror>
 {
     EdgesMirror(const double *data, unsigned long size)
-    : EdgesBase<table_fetcher_mirror>(EdgesBase(data, size)) {}
+    : EdgesBase<table_fetcher_mirror>(data, size) {}
 };
 
 #endif /* FRAMELIB_EDGES_H */
