@@ -1,6 +1,6 @@
 
 #include "FrameLib_Chain.h"
-#include "FrameLib_Sort_Functions.h"
+#include "FrameLib_Sorting_Functions.h"
 
 FrameLib_Chain::FrameLib_Chain(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Scheduler(context, proxy, &sParamInfo, 2, 2)

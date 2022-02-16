@@ -27,7 +27,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Buffer\FrameLib_Read.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Common_Utilities\FrameLib_RingBuffer.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Common_Utilities\FrameLib_Scaling_Functions.h" />
-    <ClInclude Include="..\..\..\FrameLib_Objects\Common_Utilities\FrameLib_Sort_Functions.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Common_Utilities\FrameLib_Sorting_Functions.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Common_Utilities\FrameLib_Spectral_Functions.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Common_Utilities\FrameLib_VectorSet.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Complex_Binary\FrameLib_Complex_Binary_Objects.h" />

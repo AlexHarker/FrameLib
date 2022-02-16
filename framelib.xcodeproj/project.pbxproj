@@ -2014,7 +2014,7 @@
 		B85E1D4C20C8408E00DEEE6E /* fl.complex.expr~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.expr~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B85E1D4F20C8494300DEEE6E /* fl.complex.expr~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.expr~.cpp"; sourceTree = "<group>"; };
 		B85ED7EA20795F6D00B78657 /* FrameLib_HostProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_HostProxy.h; sourceTree = "<group>"; };
-		B861EB9F19CA2DCE00B89477 /* FrameLib_Sort_Functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Sort_Functions.h; sourceTree = "<group>"; };
+		B861EB9F19CA2DCE00B89477 /* FrameLib_Sorting_Functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Sorting_Functions.h; sourceTree = "<group>"; };
 		B861EBA019CA389E00B89477 /* FrameLib_Sort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Sort.h; sourceTree = "<group>"; };
 		B861EBA119CA3AA500B89477 /* FrameLib_Percentile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Percentile.h; sourceTree = "<group>"; };
 		B861EBB219CA3E8700B89477 /* fl.sort~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.sort~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4190,7 +4190,7 @@
 				B8D383D724B796E600E8D807 /* FrameLib_PaddedVector.h */,
 				B8886F7E1FB7D715001C843E /* FrameLib_RingBuffer.h */,
 				B8F3EE171F34DB6C00D0E98E /* FrameLib_Scaling_Functions.h */,
-				B861EB9F19CA2DCE00B89477 /* FrameLib_Sort_Functions.h */,
+				B861EB9F19CA2DCE00B89477 /* FrameLib_Sorting_Functions.h */,
 				B898098424FCECB500FFE4E2 /* FrameLib_WindowGenerator.h */,
 				B8886F7F1FB7D715001C843E /* FrameLib_VectorSet.h */,
 			);
