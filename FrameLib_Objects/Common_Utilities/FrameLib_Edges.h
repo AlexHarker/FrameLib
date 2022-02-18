@@ -35,7 +35,7 @@ private:
     Fetch<EdgeFetch> mFetch;
 };
 
-// Edge types (padding type is explicit / others use TableReader.hpp)
+// Edge types (padding type is explicit / others use EdgesBase via TableReader.hpp adaptors)
 
 struct EdgesPad : private EdgeFetch
 {
@@ -52,28 +52,9 @@ private:
     double mPadding;
 };
 
-struct EdgesExtend : EdgesBase<table_fetcher_extend>
-{
-    EdgesExtend(const double *data, unsigned long size)
-    : EdgesBase<table_fetcher_extend>(data, size) {}
-};
-
-struct EdgesWrap : EdgesBase<table_fetcher_wrap>
-{
-    EdgesWrap(const double *data, unsigned long size)
-    : EdgesBase<table_fetcher_wrap>(data, size) {}
-};
-
-struct EdgesFold : EdgesBase<table_fetcher_fold>
-{
-    EdgesFold(const double *data, unsigned long size)
-    : EdgesBase<table_fetcher_fold>(data, size) {}
-};
-
-struct EdgesMirror : EdgesBase<table_fetcher_mirror>
-{
-    EdgesMirror(const double *data, unsigned long size)
-    : EdgesBase<table_fetcher_mirror>(data, size) {}
-};
+using EdgesExtend   = EdgesBase<table_fetcher_extend>;
+using EdgesWrap     = EdgesBase<table_fetcher_wrap>;
+using EdgesFold     = EdgesBase<table_fetcher_fold>;
+using EdgesMirror   = EdgesBase<table_fetcher_mirror>;
 
 #endif /* FRAMELIB_EDGES_H */
