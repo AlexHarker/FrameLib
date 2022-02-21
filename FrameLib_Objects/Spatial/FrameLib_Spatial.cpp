@@ -69,8 +69,19 @@ bool FrameLib_Spatial::ConstrainPoint::triangleTest(const Vec3& p, const Vec3& a
 {
     Vec3 nx = cross(b - a, p - a);
     
-    // FIX - Is there an issue with small numbers here?
     return dot(nx, n) < 0;
+}
+
+bool FrameLib_Spatial::ConstrainPoint::vertexTest(const Vec3& p, const Vec3& a, const Vec3& b, const Vec3& c)
+{
+    const Vec3 ab(a - b);
+    const Vec3 ac(a - c);
+    const Vec3 ap(a - p);
+    
+    const double d1 = dot(ab, ap);
+    const double d2 = dot(ac, ap);
+   
+    return d1 < 0.0 && d2 < 0.0;
 }
 
 bool FrameLib_Spatial::ConstrainPoint::pointProjectsInTriangle(const Vec3& p, const Vec3& a, const Vec3& b, const Vec3& c, const Vec3& n)
@@ -78,18 +89,18 @@ bool FrameLib_Spatial::ConstrainPoint::pointProjectsInTriangle(const Vec3& p, co
     return !(triangleTest(p, a, b, n) || triangleTest(p, b, c, n) || triangleTest(p, c, a, n));
 }
 
-FrameLib_Spatial::Cartesian FrameLib_Spatial::ConstrainPoint::operator()(Cartesian point)
+FrameLib_Spatial::Cartesian FrameLib_Spatial::ConstrainPoint::operator()(Cartesian point, ConstrainModes mode)
 {
     // No Spatial Constraint
     
-    if (mMode == kNone)
+    if (mode == kNone)
         return point;
         
     // Hemispherical / Spherical Constraint
     /*
-    if (mMode == kHemisphere || mMode == kSphere)
+    if (mode == kHemisphere || mode == kSphere)
     {
-        if (mMode == kHemisphere && point.z < mOrigin.z)
+        if (mode == kHemisphere && point.z < mOrigin.z)
             point.z = mOrigin.z;
         
         Vec3 v = point - mOrigin;
@@ -104,34 +115,59 @@ FrameLib_Spatial::Cartesian FrameLib_Spatial::ConstrainPoint::operator()(Cartesi
     
     double min_distance = std::numeric_limits<double>::infinity();
     Vec3 constrained = point;
-
-    for (unsigned long i = 0; i < mHull.mFaces.size(); i ++)
+    
+    for (unsigned long i = 0; i < mHull.size(); i ++)
     {
-        const Vec3& a = mHull.mFaces[i].p1;
-        const Vec3& b = mHull.mFaces[i].p2;
-        const Vec3& c = mHull.mFaces[i].p3;
-        const Vec3& n = mHull.mFaces[i].n;
+        const Vec3& a = mHull[i].p1;
+        const Vec3& b = mHull[i].p2;
+        const Vec3& c = mHull[i].p3;
+        const Vec3& n = mHull[i].n;
         
         const double distance = dot(point - a, n);
         const bool inFront = distance > 0.0;
         
-        // FIX - need to check if distance is positive or set to fabs
-        // Consider also very small distances to the face (basically the point is on a face)
-        // Might be advantageous to exit early at that point
+        // If we are not in front of the face, or the distance to the plane is greater than min_distance this face doesn't have the closest point
         
-        if (inFront && distance < min_distance && pointProjectsInTriangle(point, a, b, c, n))
+        if (inFront && distance < min_distance)
         {
-            min_distance = distance;
-            constrained = point - (n * distance);
+            // If we are above the triangle then use that value, otherwise the nearest point is an edge or vertex
+            
+            if (pointProjectsInTriangle(point, a, b, c, n))
+            {
+                min_distance = distance;
+                constrained = point - (n * distance);
+            }
+            else
+            {
+                Vec3 closest = Vec3(10000,10000,10000);
+                
+                // HERE WE NEED TO FIND CLOSEST POINT ON TRIANGLE EDGE...
+                
+                // Test to see if we are neareset to a vertex
+                
+                if (vertexTest(point, a, b, c))
+                    closest = a;
+                else if (vertexTest(point, b, c, a))
+                    closest = b;
+                else if (vertexTest(point, c, a, b))
+                    closest = c;
+                else
+                {
+                    // Edge tests...
+                }
+                
+                const double point_distance = (point - closest).mag();
+                
+                if (point_distance < min_distance)
+                {
+                    min_distance = point_distance;
+                    constrained = closest;
+                }
+            }
         }
     }
     
     return constrained;
-
-    //const double d1 = (constrained - mHull.mCentroid).mag();
-    //const double d2 = (point -  mHull.mCentroid).mag();
-
-    //return d1 < d2 ? constrained : point;
 }
 
 void FrameLib_Spatial::ConstrainPoint::setArray(FrameLib_Spatial& object, const std::vector<Cartesian>& array)
@@ -146,10 +182,12 @@ void FrameLib_Spatial::ConstrainPoint::setArray(FrameLib_Spatial& object, const 
                                                       
     convhull_3d_build(const_cast<ch_vertex *const>(vertices), numSpeakers, &faces, &numFaces);
     
-    mHull.mFaces = object.allocAutoArray<HullFace>(numFaces);
+    mHull = object.allocAutoArray<HullFace>(numFaces);
     
     for (int i = 0; i < numFaces; i++)
-        mHull.mFaces[i] = HullFace(array[faces[i * 3 + 0]], array[faces[i * 3 + 1]], array[faces[i * 3 + 2]]);
+        mHull[i] = HullFace(array[faces[i * 3 + 0]], array[faces[i * 3 + 1]], array[faces[i * 3 + 2]]);
+    
+    ch_free(faces);
 }
 
 // Constructor
@@ -177,7 +215,7 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, const FrameLib_Para
     mParameters.addEnumItem(kNone, "none");
     mParameters.addEnumItem(kHemisphere, "hemisphere");
     mParameters.addEnumItem(kSphere, "sphere");
-    mParameters.addEnumItem(kConvexHull, "hull");
+    mParameters.addEnumItem(kConvexHull, "hull", true);
     
     mParameters.set(serialisedParameters);
     
@@ -194,7 +232,6 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, const FrameLib_Para
     }
 
     mConstainer.setArray(*this, mSpeakers);
-    mConstainer.setMode(mParameters.getEnum<ConstrainModes>(kConstrain));
 }
 
 // Info
@@ -296,7 +333,7 @@ void FrameLib_Spatial::process()
     
     // Constrain Position
     
-    panPosition = mConstainer(panPosition);
+    panPosition = mConstainer(panPosition, mParameters.getEnum<ConstrainModes>(kConstrain));
     
     for (unsigned long i = 0; i < numSpeakers; i++)
     {

@@ -61,29 +61,21 @@ class FrameLib_Spatial final : public FrameLib_Processor
             Vec3 n;
         };
 
-        struct Hull
-        {
-            AutoArray<HullFace> mFaces;
-            Vec3 mCentroid;
-        };
-
     public:
         
-        Cartesian operator()(Cartesian point);
+        Cartesian operator()(Cartesian point, ConstrainModes mode);
         
         void setArray(FrameLib_Spatial& object, const std::vector<Cartesian>& array);
-        void setMode(ConstrainModes mode) { mMode = mode; }
 
     private:
         
         bool triangleTest(const Vec3& p, const Vec3& a, const Vec3& b, const Vec3& n);
+        bool vertexTest(const Vec3& p, const Vec3& a, const Vec3& b, const Vec3& c);
         bool pointProjectsInTriangle(const Vec3& p, const Vec3& a, const Vec3& b, const Vec3& c, const Vec3& n);
         
-        Hull mHull;
+        AutoArray<HullFace> mHull;
         Cartesian mOrigin;
         double mRadius;
-        
-        ConstrainModes mMode;
     };
     
 public:
