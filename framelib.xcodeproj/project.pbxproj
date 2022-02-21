@@ -2042,6 +2042,8 @@
 		B87E5C1D1FB8C44500C63385 /* fl.gaussian~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.gaussian~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B87E5C201FB8C4AF00C63385 /* fl.gaussian~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.gaussian~.cpp"; sourceTree = "<group>"; };
 		B87E5C4F1FB8EC2D00C63385 /* fl.movingaverage~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.movingaverage~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B87E777627C416DC009FDCFC /* Allocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Allocator.hpp; sourceTree = "<group>"; };
+		B87E777727C416DD009FDCFC /* convhull_3d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = convhull_3d.h; sourceTree = "<group>"; };
 		B87E875319C8EA4900B1D0CD /* FrameLib_FFT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_FFT.h; sourceTree = "<group>"; };
 		B87E876419C8EE9600B1D0CD /* fl.fft~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.fft~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B87E877419C8EEEB00B1D0CD /* fl.fft~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.fft~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -4450,6 +4452,7 @@
 		B8A70CDE19C11171005BA4E3 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				B87E777627C416DC009FDCFC /* Allocator.hpp */,
 				B8C2D6061F6BF933009A7C96 /* Interpolation.hpp */,
 				B85536D822FEB7A100D10495 /* KernelSmoother.hpp */,
 				B8C327E327593D1F00C0DB98 /* RandomGenerator.hpp */,
@@ -4459,6 +4462,7 @@
 				B8C89C071F56D24500B4E700 /* Statistics.hpp */,
 				B8C2D6071F6BFF60009A7C96 /* TableReader.hpp */,
 				B8C89C061F55C67C00B4E700 /* WindowFunctions.hpp */,
+				B87E777727C416DD009FDCFC /* convhull_3d.h */,
 				B87E876619C8EEB900B1D0CD /* HISSTools_FFT */,
 				B8F6E4DA199D24820073E06D /* tlsf */,
 			);

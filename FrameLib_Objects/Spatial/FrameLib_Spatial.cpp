@@ -1,7 +1,156 @@
 
 #include "FrameLib_Spatial.h"
 #include "FrameLib_Sorting_Functions.h"
+
 #include <cmath>
+#include <limits>
+
+#define CONVHULL_3D_ENABLE
+#include "../../FrameLib_Dependencies/convhull_3d.h"
+
+// Vec3 Type
+
+double FrameLib_Spatial::Vec3::mag() const
+{
+    return sqrt((x * x) + (y * y) + (z * z));
+}
+
+FrameLib_Spatial::Vec3& FrameLib_Spatial::Vec3::normalise()
+{
+    const double m = mag();
+    
+    return *this = m ? (*this * (1.0 / m)) : Vec3(0, 0, 1);
+}
+
+FrameLib_Spatial::Vec3 operator *(const FrameLib_Spatial::Vec3& a, double b)
+{
+    return { a.x * b, a.y * b,  a.z * b };
+}
+
+FrameLib_Spatial::Vec3 operator -(const FrameLib_Spatial::Vec3& a, const FrameLib_Spatial::Vec3& b)
+{
+    return { a.x - b.x, a.y - b.y, a.z - b.z };
+}
+
+FrameLib_Spatial::Vec3 operator +(const FrameLib_Spatial::Vec3& a, const FrameLib_Spatial::Vec3& b)
+{
+    return {a.x + b.x, a.y + b.y, a.z + b.z };
+}
+    
+double dot(const FrameLib_Spatial::Vec3& a, const FrameLib_Spatial::Vec3& b)
+{
+    return a.x * b.x + a.y * b.y + a.z * b.z;
+}
+
+FrameLib_Spatial::Vec3 cross(const FrameLib_Spatial::Vec3& v1, const FrameLib_Spatial::Vec3& v2)
+{
+    FrameLib_Spatial::Vec3 c;
+    
+    c.x = v1.y * v2.z - v1.z * v2.y;
+    c.y = v1.z * v2.x - v1.x * v2.z;
+    c.z = v1.x * v2.y - v1.y * v2.x;
+    
+    return c;
+}
+
+// Hull Face
+
+FrameLib_Spatial::Vec3 FrameLib_Spatial::ConstrainPoint::HullFace::faceNormal(const Vec3 &a, const Vec3 &b, const Vec3 &c)
+{
+    Vec3 v1 = b - a;
+    Vec3 v2 = c - a;
+    
+    return cross(v1, v2).normalise();
+}
+
+// Spatial Constraints
+
+bool FrameLib_Spatial::ConstrainPoint::triangleTest(const Vec3& p, const Vec3& a, const Vec3& b, const Vec3& n)
+{
+    Vec3 nx = cross(b - a, p - a);
+    
+    // FIX - Is there an issue with small numbers here?
+    return dot(nx, n) < 0;
+}
+
+bool FrameLib_Spatial::ConstrainPoint::pointProjectsInTriangle(const Vec3& p, const Vec3& a, const Vec3& b, const Vec3& c, const Vec3& n)
+{
+    return !(triangleTest(p, a, b, n) || triangleTest(p, b, c, n) || triangleTest(p, c, a, n));
+}
+
+FrameLib_Spatial::Cartesian FrameLib_Spatial::ConstrainPoint::operator()(Cartesian point)
+{
+    // No Spatial Constraint
+    
+    if (mMode == kNone)
+        return point;
+        
+    // Hemispherical / Spherical Constraint
+    /*
+    if (mMode == kHemisphere || mMode == kSphere)
+    {
+        if (mMode == kHemisphere && point.z < mOrigin.z)
+            point.z = mOrigin.z;
+        
+        Vec3 v = point - mOrigin;
+        
+        if (v.mag() <= mRadius)
+            return point;
+        
+        return v.normalise() * mRadius + mOrigin;
+    }*/
+    
+    // Convex Hull Constraint
+    
+    double min_distance = std::numeric_limits<double>::infinity();
+    Vec3 constrained = point;
+
+    for (unsigned long i = 0; i < mHull.mFaces.size(); i ++)
+    {
+        const Vec3& a = mHull.mFaces[i].p1;
+        const Vec3& b = mHull.mFaces[i].p2;
+        const Vec3& c = mHull.mFaces[i].p3;
+        const Vec3& n = mHull.mFaces[i].n;
+        
+        const double distance = dot(point - a, n);
+        const bool inFront = distance > 0.0;
+        
+        // FIX - need to check if distance is positive or set to fabs
+        // Consider also very small distances to the face (basically the point is on a face)
+        // Might be advantageous to exit early at that point
+        
+        if (inFront && distance < min_distance && pointProjectsInTriangle(point, a, b, c, n))
+        {
+            min_distance = distance;
+            constrained = point - (n * distance);
+        }
+    }
+    
+    return constrained;
+
+    //const double d1 = (constrained - mHull.mCentroid).mag();
+    //const double d2 = (point -  mHull.mCentroid).mag();
+
+    //return d1 < d2 ? constrained : point;
+}
+
+void FrameLib_Spatial::ConstrainPoint::setArray(FrameLib_Spatial& object, const std::vector<Cartesian>& array)
+{
+    int numSpeakers = static_cast<int>(array.size());
+    int *faces = nullptr;
+    int numFaces = 0;
+    
+    // FIX - this is nasty but the layout should be the same - should I copy just to be safe??
+    
+    auto vertices = reinterpret_cast<const ch_vertex *const>(array.data());
+                                                      
+    convhull_3d_build(const_cast<ch_vertex *const>(vertices), numSpeakers, &faces, &numFaces);
+    
+    mHull.mFaces = object.allocAutoArray<HullFace>(numFaces);
+    
+    for (int i = 0; i < numFaces; i++)
+        mHull.mFaces[i] = HullFace(array[faces[i * 3 + 0]], array[faces[i * 3 + 1]], array[faces[i * 3 + 2]]);
+}
 
 // Constructor
 
@@ -24,6 +173,12 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, const FrameLib_Para
     mParameters.addDouble(kPoints, "points", 0.0);
     mParameters.setClip(0.0, 1.0);
         
+    mParameters.addEnum(kConstrain, "constrain");
+    mParameters.addEnumItem(kNone, "none");
+    mParameters.addEnumItem(kHemisphere, "hemisphere");
+    mParameters.addEnumItem(kSphere, "sphere");
+    mParameters.addEnumItem(kConvexHull, "hull");
+    
     mParameters.set(serialisedParameters);
     
     unsigned long speakerSize;
@@ -37,6 +192,9 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, const FrameLib_Para
         
         mSpeakers.push_back(convertToCartesian(Polar(azimuth, elevation, radius)));
     }
+
+    mConstainer.setArray(*this, mSpeakers);
+    mConstainer.setMode(mParameters.getEnum<ConstrainModes>(kConstrain));
 }
 
 // Info
@@ -76,6 +234,7 @@ FrameLib_Spatial::ParameterInfo::ParameterInfo()
     add("Sets the maximum number of speakers to be used (the neaarest N speakers will be used only). "
         "If zero all speakers are used.");
     add("Interpolate to point source panning (0 is modified DBAP - 1 is point source).");
+    add("Sets the method for constraining positions outside of the speaker array.");
 }
 
 // Conversion Helper
@@ -135,6 +294,10 @@ void FrameLib_Spatial::process()
         panPosition = Cartesian(x, y, z);
     }
     
+    // Constrain Position
+    
+    panPosition = mConstainer(panPosition);
+    
     for (unsigned long i = 0; i < numSpeakers; i++)
     {
         double xDelta = panPosition.x - mSpeakers[i].x;
@@ -181,9 +344,8 @@ void FrameLib_Spatial::process()
     for (unsigned long i = 0; i < numSpeakers; i++)
         norm += output[i] * output[i];
     
-    norm = sqrt(1 / norm);
+    norm = sqrt(1.0 / norm);
     
     for (unsigned long i = 0; i < numSpeakers; i++)
         output[i] *= norm;
 }
-
