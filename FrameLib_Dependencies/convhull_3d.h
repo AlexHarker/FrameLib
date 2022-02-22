@@ -218,13 +218,11 @@ void extract_vertices_from_obj_file_alloc(/* input arguments */
   #define CH_FLT_MIN FLT_MIN
   #define CH_FLT_MAX FLT_MAX
   #define CH_NOISE_VAL 0.00001f
-  #define ch_pow powf
   #define ch_sqrt sqrtf
 #else
   #define CH_FLT_MIN DBL_MIN
   #define CH_FLT_MAX DBL_MAX
   #define CH_NOISE_VAL 0.0000001
-  #define ch_pow pow
   #define ch_sqrt sqrt
 #endif
 #ifndef MIN
@@ -246,6 +244,7 @@ void extract_vertices_from_obj_file_alloc(/* input arguments */
   #define ch_free free
 #endif
 #define CH_MAX_NUM_FACES 50000
+#define CONVHULL_3D_MAX_DIMENSIONS 3
 #define CONVHULL_ND_MAX_DIMENSIONS 5
 
 /* structs for qsort */
@@ -263,9 +262,9 @@ typedef struct int_w_idx {
 static int cmp_asc_float(const void*, const void*);
 static int cmp_desc_float(const void*, const void*);
 static int cmp_asc_int(const void*, const void*);
-static int cmp_desc_int(const void*, const void*);
 static void sort_float(CH_FLOAT*, CH_FLOAT*, int*, int, int, ch_allocator*);
-static void sort_int(int*, int*, int*, int, int, ch_allocator*);
+static void sort_int(int*, int);
+static CH_FLOAT square(CH_FLOAT);
 static ch_vec3 cross(ch_vec3*, ch_vec3*);
 static CH_FLOAT det_4x4(CH_FLOAT*);
 static void plane_3d(CH_FLOAT*, CH_FLOAT*, CH_FLOAT*);
@@ -277,22 +276,22 @@ static void default_free_func(void *, void *);
 static void init_default_allocator(ch_allocator*);
 
 /* default memory functions (wrap the #defines) */
-static void* default_malloc_func(void *, size_t size)
+static void* default_malloc_func(void *object, size_t size)
 {
     return ch_malloc(size);
 }
 
-static void* default_calloc_func(void *, size_t num, size_t size)
+static void* default_calloc_func(void *object, size_t num, size_t size)
 {
     return ch_calloc(num, size);
 }
 
-static void* default_realloc_func(void *, void* ptr, size_t size)
+static void* default_realloc_func(void *object, void* ptr, size_t size)
 {
     return ch_realloc(ptr, size);
 }
 
-static void default_free_func(void *, void *ptr)
+static void default_free_func(void *object, void *ptr)
 {
     return ch_free(ptr);
 }
@@ -324,18 +323,10 @@ static int cmp_desc_float(const void *a,const void *b) {
 }
 
 static int cmp_asc_int(const void *a,const void *b) {
-    struct int_w_idx *a1 = (struct int_w_idx*)a;
-    struct int_w_idx *a2 = (struct int_w_idx*)b;
-    if((*a1).val<(*a2).val)return -1;
-    else if((*a1).val>(*a2).val)return 1;
-    else return 0;
-}
-
-static int cmp_desc_int(const void *a,const void *b) {
-    struct int_w_idx *a1 = (struct int_w_idx*)a;
-    struct int_w_idx *a2 = (struct int_w_idx*)b;
-    if((*a1).val>(*a2).val)return -1;
-    else if((*a1).val<(*a2).val)return 1;
+    int *a1 = (int*)a;
+    int *a2 = (int*)b;
+    if((*a1)<(*a2))return -1;
+    else if((*a1)>(*a2))return 1;
     else return 0;
 }
 
@@ -375,34 +366,15 @@ static void sort_float
 static void sort_int
 (
     int* in_vec,            /* vector[len] to be sorted */
-    int* out_vec,           /* if NULL, then in_vec is sorted "in-place" */
-    int* new_idices,        /* set to NULL if you don't need them */
-    int len,                /* number of elements in vectors, must be consistent with the input data */
-    int descendFLAG,        /* !1:ascending, 1:descending */
-    ch_allocator* alloc     /* (stateful) allocator */
+    int len                 /* number of elements in vectors, must be consistent with the input data */
 )
 {
-    int i;
-    struct int_w_idx *data;
-    
-    data = (int_w_idx*)alloc->malloc_func(alloc->object, len*sizeof(int_w_idx));
-    for(i=0;i<len;i++) {
-        data[i].val=in_vec[i];
-        data[i].idx=i;
-    }
-    if(descendFLAG)
-        qsort(data,len,sizeof(data[0]),cmp_desc_int);
-    else
-        qsort(data,len,sizeof(data[0]),cmp_asc_int);
-    for(i=0;i<len;i++){
-        if (out_vec!=NULL)
-            out_vec[i] = data[i].val;
-        else
-            in_vec[i] = data[i].val; /* overwrite input vector */
-        if(new_idices!=NULL)
-            new_idices[i] = data[i].idx;
-    }
-    alloc->free_func(alloc->object, data);
+    qsort(in_vec,len,sizeof(in_vec[0]),cmp_asc_int);
+}
+
+static CH_FLOAT square(CH_FLOAT x)
+{
+    return x * x;
 }
 
 static ch_vec3 cross(ch_vec3* v1, ch_vec3* v2)
@@ -509,7 +481,7 @@ static void plane_3d
     }
     norm_c = (CH_FLOAT)0.0;
     for(i=0; i<3; i++)
-        norm_c += (ch_pow(c[i], 2.0));
+        norm_c += (square(c[i]));
     norm_c = ch_sqrt(norm_c);
     for(i=0; i<3; i++)
         c[i] /= norm_c;
@@ -569,8 +541,8 @@ static void plane_nd
     }
     norm_c = (CH_FLOAT)0.0;
     for(i=0; i<Nd; i++)
-        norm_c += (pow(c[i], 2.0));
-    norm_c = sqrt(norm_c);
+        norm_c += (square(c[i]));
+    norm_c = ch_sqrt(norm_c);
     for(i=0; i<Nd; i++)
         c[i] /= norm_c;
     (*d) = (CH_FLOAT)0.0;
@@ -653,7 +625,10 @@ void convhull_3d_build_alloc
     int nFaces, p, d;
     int* aVec, *faces;
     CH_FLOAT dfi, v, max_p, min_p;
-    CH_FLOAT* points, *cf, *cfi, *df, *p_s, *span;
+    CH_FLOAT span[CONVHULL_3D_MAX_DIMENSIONS];
+    CH_FLOAT cfi[CONVHULL_3D_MAX_DIMENSIONS];
+    CH_FLOAT p_s[CONVHULL_3D_MAX_DIMENSIONS*CONVHULL_3D_MAX_DIMENSIONS];
+    CH_FLOAT* points, *cf, *df;
     
     if(nVert<3 || in_vertices==NULL){
         (*out_faces) = NULL;
@@ -674,7 +649,6 @@ void convhull_3d_build_alloc
     }
 
     /* Find the span */
-    span = (CH_FLOAT*)alloc->malloc_func(alloc->object, d*sizeof(CH_FLOAT));
     for(j=0; j<d; j++){
         max_p = -2.23e+13; min_p = 2.23e+13;
         for(i=0; i<nVert; i++){
@@ -696,9 +670,7 @@ void convhull_3d_build_alloc
     
     /* Each column of cf contains the coefficients of a plane */
     cf = (CH_FLOAT*)alloc->malloc_func(alloc->object, nFaces*d*sizeof(CH_FLOAT));
-    cfi = (CH_FLOAT*)alloc->malloc_func(alloc->object, d*sizeof(CH_FLOAT));
     df = (CH_FLOAT*)alloc->malloc_func(alloc->object, nFaces*sizeof(CH_FLOAT));
-    p_s = (CH_FLOAT*)alloc->malloc_func(alloc->object, d*d*sizeof(CH_FLOAT));
     for(i=0; i<nFaces; i++){
         /* Set the indices of the points defining the face  */
         for(j=0, k=0; j<(d+1); j++){
@@ -719,24 +691,22 @@ void convhull_3d_build_alloc
             cf[i*d+j] = cfi[j];
         df[i] = dfi;
     }
-    CH_FLOAT *A;
-    int *bVec, *fVec, *asfVec;
+    CH_FLOAT A[(CONVHULL_3D_MAX_DIMENSIONS+1)*(CONVHULL_3D_MAX_DIMENSIONS+1)];
+    int fVec[CONVHULL_3D_MAX_DIMENSIONS+1];
     int face_tmp[2];
     
     /* Check to make sure that faces are correctly oriented */
-    bVec = (int*)alloc->malloc_func(alloc->object, 4*sizeof(int));
+    int bVec[CONVHULL_3D_MAX_DIMENSIONS+1];
     for(i=0; i<d+1; i++)
         bVec[i] = i;
     
     /* A contains the coordinates of the points forming a simplex */
-    A = (CH_FLOAT*)alloc->calloc_func(alloc->object, (d+1)*(d+1), sizeof(CH_FLOAT));
-    fVec = (int*)alloc->malloc_func(alloc->object, (d+1)*sizeof(int));
-    asfVec = (int*)alloc->malloc_func(alloc->object, (d+1)*sizeof(int));
+    memset(A, 0, sizeof(A));
     for(k=0; k<(d+1); k++){
         /* Get the point that is not on the current face (point p) */
         for(i=0; i<d; i++)
             fVec[i] = faces[k*d+i];
-        sort_int(fVec, NULL, NULL, d, 0, alloc); /* sort accending */
+        sort_int(fVec, d); /* sort ascending */
         p=k;
         for(i=0; i<d; i++)
             for(j=0; j<(d+1); j++)
@@ -770,8 +740,9 @@ void convhull_3d_build_alloc
     }
     
     /* Coordinates of the center of the point set */
-    CH_FLOAT* meanp, *absdist, *reldist, *desReldist;
-    meanp = (CH_FLOAT*)alloc->calloc_func(alloc->object, d, sizeof(CH_FLOAT));
+    CH_FLOAT meanp[CONVHULL_3D_MAX_DIMENSIONS];
+    CH_FLOAT* absdist, *reldist, *desReldist;
+    memset(meanp, 0, sizeof(meanp));
     for(i=d+1; i<nVert; i++)
         for(j=0; j<d; j++)
             meanp[j] += points[i*(d+1)+j];
@@ -789,7 +760,7 @@ void convhull_3d_build_alloc
     desReldist = (CH_FLOAT*)alloc->malloc_func(alloc->object, (nVert-d-1) * sizeof(CH_FLOAT));
     for(i=0; i<(nVert-d-1); i++)
         for(j=0; j<d; j++)
-            reldist[i] += ch_pow(absdist[i*d+j], 2.0);
+            reldist[i] += square(absdist[i*d+j]);
     
     /* Sort from maximum to minimum relative distance */
     int num_pleft, cnt;
@@ -806,17 +777,20 @@ void convhull_3d_build_alloc
     
     /* Loop over all remaining points that are not deleted. Deletion of points
      occurs every #iter2del# iterations of this while loop */
-    memset(A, 0, (d+1)*(d+1) * sizeof(CH_FLOAT));
-    
+    memset(A, 0, sizeof(A));
+
     /* cnt is equal to the points having been selected without deletion of
      nonvisible points (i.e. points inside the current convex hull) */
     cnt=0;
     
     /* The main loop for the quickhull algorithm */
     CH_FLOAT detA;
-    CH_FLOAT* points_cf, *points_s;
-    int* visible_ind, *visible, *nonvisible_faces, *f0, *face_s, *u, *gVec, *horizon, *hVec, *pp, *hVec_mem_face;
-    int num_visible_ind, num_nonvisible_faces, n_newfaces, count, vis;
+    CH_FLOAT* points_cf;
+    CH_FLOAT points_s[CONVHULL_3D_MAX_DIMENSIONS];
+    int face_s[CONVHULL_3D_MAX_DIMENSIONS];
+    int gVec[CONVHULL_3D_MAX_DIMENSIONS];
+    int* visible_ind, *visible, *nonvisible_faces, *f0, *u, *horizon, *hVec, *pp, *hVec_mem_face;
+    int num_visible_ind, num_nonvisible_faces, n_newfaces, n_realloc_faces, count, vis;
     int f0_sum, u_len, start, num_p, index, horizon_size1;
     int FUCKED;
     FUCKED = 0;
@@ -824,9 +798,6 @@ void convhull_3d_build_alloc
     nFaces = d+1;
     visible_ind = (int*)alloc->malloc_func(alloc->object, nFaces*sizeof(int));
     points_cf = (CH_FLOAT*)alloc->malloc_func(alloc->object, nFaces*sizeof(CH_FLOAT));
-    points_s = (CH_FLOAT*)alloc->malloc_func(alloc->object, d*sizeof(CH_FLOAT));
-    face_s = (int*)alloc->malloc_func(alloc->object, d*sizeof(int));
-    gVec = (int*)alloc->malloc_func(alloc->object, d*sizeof(int));
     while( (num_pleft>0) ){
         /* i is the first point of the points left */
         i = pleft[0];
@@ -907,7 +878,7 @@ void convhull_3d_build_alloc
                 vis = visible[j];
                 for(k=0; k<d; k++)
                     face_s[k] = faces[vis*d+k];
-                sort_int(face_s, NULL, NULL, d, 0, alloc);
+                sort_int(face_s, d);
                 ismember(nonvisible_faces, face_s, f0, num_nonvisible_faces*d, d);
                 u_len = 0;
                 
@@ -961,20 +932,21 @@ void convhull_3d_build_alloc
             
             /* Update the number of faces */
             nFaces = nFaces-num_visible_ind;
-            faces = (int*)alloc->realloc_func(alloc->object, faces, nFaces*d*sizeof(int));
-            cf = (CH_FLOAT*)alloc->realloc_func(alloc->object, cf, nFaces*d*sizeof(CH_FLOAT));
-            df = (CH_FLOAT*)alloc->realloc_func(alloc->object, df, nFaces*sizeof(CH_FLOAT));
             
             /* start is the first row of the new faces */
             start=nFaces;
             
             /* Add faces connecting horizon to the new point */
             n_newfaces = horizon_size1;
+            n_realloc_faces = nFaces + n_newfaces;
+            if (n_realloc_faces > CH_MAX_NUM_FACES)
+                n_realloc_faces = CH_MAX_NUM_FACES+1;
+            faces = (int*)alloc->realloc_func(alloc->object, faces, n_realloc_faces*d*sizeof(int));
+            cf = (CH_FLOAT*)alloc->realloc_func(alloc->object, cf, n_realloc_faces*d*sizeof(CH_FLOAT));
+            df = (CH_FLOAT*)alloc->realloc_func(alloc->object, df, n_realloc_faces*sizeof(CH_FLOAT));
+        
             for(j=0; j<n_newfaces; j++){
                 nFaces++;
-                faces = (int*)alloc->realloc_func(alloc->object, faces, nFaces*d*sizeof(int));
-                cf = (CH_FLOAT*)alloc->realloc_func(alloc->object, cf, nFaces*d*sizeof(CH_FLOAT));
-                df = (CH_FLOAT*)alloc->realloc_func(alloc->object, df, nFaces*sizeof(CH_FLOAT));
                 for(k=0; k<d-1; k++)
                     faces[(nFaces-1)*d+k] = horizon[j*(d-1)+k];
                 faces[(nFaces-1)*d+(d-1)] = i;
@@ -995,14 +967,14 @@ void convhull_3d_build_alloc
             }
             
             /* Orient each new face properly */
-            hVec = (int*)alloc->malloc_func(alloc->object,  nFaces*sizeof(int));
-            hVec_mem_face = (int*)alloc->malloc_func(alloc->object,  nFaces*sizeof(int));
+            hVec = (int*)alloc->malloc_func(alloc->object, nFaces*sizeof(int));
+            hVec_mem_face = (int*)alloc->malloc_func(alloc->object, nFaces*sizeof(int));
             for(j=0; j<nFaces; j++)
                 hVec[j] = j;
             for(k=start; k<nFaces; k++){
                 for(j=0; j<d; j++)
                     face_s[j] = faces[k*d+j];
-                sort_int(face_s, NULL, NULL, d, 0, alloc);
+                sort_int(face_s, d);
                 ismember(hVec, face_s, hVec_mem_face, nFaces, d);
                 num_p = 0;
                 for(j=0; j<nFaces; j++)
@@ -1084,26 +1056,15 @@ void convhull_3d_build_alloc
     /* clean-up */
     alloc->free_func(alloc->object, visible_ind);
     alloc->free_func(alloc->object, points_cf);
-    alloc->free_func(alloc->object, points_s);
-    alloc->free_func(alloc->object, face_s);
-    alloc->free_func(alloc->object, gVec);
-    alloc->free_func(alloc->object, meanp);
     alloc->free_func(alloc->object, absdist);
     alloc->free_func(alloc->object, reldist);
     alloc->free_func(alloc->object, desReldist);
     alloc->free_func(alloc->object, ind);
-    alloc->free_func(alloc->object, span);
     alloc->free_func(alloc->object, points);
     alloc->free_func(alloc->object, faces);
     alloc->free_func(alloc->object, aVec);
     alloc->free_func(alloc->object, cf);
-    alloc->free_func(alloc->object, cfi);
     alloc->free_func(alloc->object, df);
-    alloc->free_func(alloc->object, p_s);
-    alloc->free_func(alloc->object, fVec);
-    alloc->free_func(alloc->object, asfVec);
-    alloc->free_func(alloc->object, bVec);
-    alloc->free_func(alloc->object, A);
 }
 
 void convhull_3d_export_obj
@@ -1162,7 +1123,7 @@ void convhull_3d_export_obj
         normal = cross(&v1, &v2);
         
         /* normalise to unit length */
-        scale = ((CH_FLOAT)1.0)/(ch_sqrt(ch_pow(normal.x, (CH_FLOAT)2.0)+ch_pow(normal.y, (CH_FLOAT)2.0)+ch_pow(normal.z, (CH_FLOAT)2.0))+(CH_FLOAT)2.23e-9);
+        scale = ((CH_FLOAT)1.0)/(ch_sqrt(square(normal.x)+square(normal.y)+square(normal.z)+(CH_FLOAT)2.23e-9));
         normal.x *= scale;
         normal.y *= scale;
         normal.z *= scale;
@@ -1349,12 +1310,15 @@ void convhull_nd_build_alloc
     int nFaces, p;
     int* aVec, *faces;
     CH_FLOAT dfi, v, max_p, min_p;
-    CH_FLOAT* points, *cf, *cfi, *df, *p_s, *span;
+    CH_FLOAT span[CONVHULL_ND_MAX_DIMENSIONS];
+    CH_FLOAT cfi[CONVHULL_ND_MAX_DIMENSIONS];
+    CH_FLOAT p_s[CONVHULL_ND_MAX_DIMENSIONS*CONVHULL_ND_MAX_DIMENSIONS];
+    CH_FLOAT* points, *cf, *df;
 
     assert(d<=CONVHULL_ND_MAX_DIMENSIONS);
 
     /* Solution not possible... */
-    if(nVert<=d || in_vertices==NULL){
+    if(d>CONVHULL_ND_MAX_DIMENSIONS || nVert<=d || in_vertices==NULL){
         (*out_faces) = NULL;
         (*nOut_faces) = 0;
         if(out_cf!=NULL)
@@ -1373,7 +1337,6 @@ void convhull_nd_build_alloc
     }
 
     /* Find the span */
-    span = (CH_FLOAT*)alloc->malloc_func(alloc->object, d*sizeof(CH_FLOAT));
     for(j=0; j<d; j++){
         max_p = -2.23e+13; min_p = 2.23e+13;
         for(i=0; i<nVert; i++){
@@ -1395,9 +1358,7 @@ void convhull_nd_build_alloc
 
     /* Each column of cf contains the coefficients of a plane */
     cf = (CH_FLOAT*)alloc->malloc_func(alloc->object, nFaces*d*sizeof(CH_FLOAT));
-    cfi = (CH_FLOAT*)alloc->malloc_func(alloc->object, d*sizeof(CH_FLOAT));
     df = (CH_FLOAT*)alloc->malloc_func(alloc->object, nFaces*sizeof(CH_FLOAT));
-    p_s = (CH_FLOAT*)alloc->malloc_func(alloc->object, d*d*sizeof(CH_FLOAT));
     for(i=0; i<nFaces; i++){
         /* Set the indices of the points defining the face  */
         for(j=0, k=0; j<(d+1); j++){
@@ -1418,23 +1379,22 @@ void convhull_nd_build_alloc
             cf[i*d+j] = cfi[j];
         df[i] = dfi;
     }
-    CH_FLOAT *A;
-    int *bVec, *fVec;
+    CH_FLOAT A[(CONVHULL_ND_MAX_DIMENSIONS+1)*(CONVHULL_ND_MAX_DIMENSIONS+1)];
+    int fVec[CONVHULL_ND_MAX_DIMENSIONS+1];
     int face_tmp[2];
 
     /* Check to make sure that faces are correctly oriented */
-    bVec = (int*)alloc->malloc_func(alloc->object, (d+1)*sizeof(int));
+    int bVec[CONVHULL_ND_MAX_DIMENSIONS+1];
     for(i=0; i<d+1; i++)
         bVec[i] = i;
 
     /* A contains the coordinates of the points forming a simplex */
-    A = (CH_FLOAT*)alloc->calloc_func(alloc->object, (d+1)*(d+1), sizeof(CH_FLOAT));
-    fVec = (int*)alloc->malloc_func(alloc->object, (d+1)*sizeof(int));
+    memset(A, 0, sizeof(A));
     for(k=0; k<(d+1); k++){
         /* Get the point that is not on the current face (point p) */
         for(i=0; i<d; i++)
             fVec[i] = faces[k*d+i];
-        sort_int(fVec, NULL, NULL, d, 0, alloc); /* sort accending */
+        sort_int(fVec, d); /* sort ascending */
         p=k;
         for(i=0; i<d; i++)
             for(j=0; j<(d+1); j++)
@@ -1471,8 +1431,9 @@ void convhull_nd_build_alloc
     }
 
     /* Coordinates of the center of the point set */
-    CH_FLOAT* meanp, *reldist, *desReldist, *absdist;
-    meanp = (CH_FLOAT*)alloc->calloc_func(alloc->object, d, sizeof(CH_FLOAT));
+    CH_FLOAT meanp[CONVHULL_ND_MAX_DIMENSIONS];
+    CH_FLOAT* reldist, *desReldist, *absdist;
+    memset(meanp, 0, sizeof(meanp));
     for(i=d+1; i<nVert; i++)
         for(j=0; j<d; j++)
             meanp[j] += points[i*(d+1)+j];
@@ -1490,7 +1451,7 @@ void convhull_nd_build_alloc
     desReldist = (CH_FLOAT*)alloc->malloc_func(alloc->object, (nVert-d-1) * sizeof(CH_FLOAT));
     for(i=0; i<(nVert-d-1); i++)
         for(j=0; j<d; j++)
-            reldist[i] += pow(absdist[i*d+j], 2.0);
+            reldist[i] += square(absdist[i*d+j]);
 
     /* Sort from maximum to minimum relative distance */
     int num_pleft, cnt;
@@ -1507,7 +1468,7 @@ void convhull_nd_build_alloc
 
     /* Loop over all remaining points that are not deleted. Deletion of points
      occurs every #iter2del# iterations of this while loop */
-    memset(A, 0, (d+1)*(d+1) * sizeof(CH_FLOAT));
+    memset(A, 0, sizeof(A));
 
     /* cnt is equal to the points having been selected without deletion of
      nonvisible points (i.e. points inside the current convex hull) */
@@ -1515,9 +1476,12 @@ void convhull_nd_build_alloc
 
     /* The main loop for the quickhull algorithm */
     CH_FLOAT detA;
-    CH_FLOAT* points_cf, *points_s;
-    int* visible_ind, *visible, *nonvisible_faces, *f0, *face_s, *u, *gVec, *horizon, *hVec, *pp, *hVec_mem_face;
-    int num_visible_ind, num_nonvisible_faces, n_newfaces, count, vis;
+    CH_FLOAT* points_cf;
+    CH_FLOAT points_s[CONVHULL_ND_MAX_DIMENSIONS];
+    int face_s[CONVHULL_ND_MAX_DIMENSIONS];
+    int gVec[CONVHULL_ND_MAX_DIMENSIONS];
+    int* visible_ind, *visible, *nonvisible_faces, *f0, *u, *horizon, *hVec, *pp, *hVec_mem_face;
+    int num_visible_ind, num_nonvisible_faces, n_newfaces, n_realloc_faces, count, vis;
     int f0_sum, u_len, start, num_p, index, horizon_size1;
     int FUCKED;
     FUCKED = 0;
@@ -1525,9 +1489,6 @@ void convhull_nd_build_alloc
     nFaces = d+1;
     visible_ind = (int*)alloc->malloc_func(alloc->object, nFaces*sizeof(int));
     points_cf = (CH_FLOAT*)alloc->malloc_func(alloc->object, nFaces*sizeof(CH_FLOAT));
-    points_s = (CH_FLOAT*)alloc->malloc_func(alloc->object, d*sizeof(CH_FLOAT));
-    face_s = (int*)alloc->malloc_func(alloc->object, d*sizeof(int));
-    gVec = (int*)alloc->malloc_func(alloc->object, d*sizeof(int));
     while( (num_pleft>0) ){
         /* i is the first point of the points left */
         i = pleft[0];
@@ -1608,7 +1569,7 @@ void convhull_nd_build_alloc
                 vis = visible[j];
                 for(k=0; k<d; k++)
                     face_s[k] = faces[vis*d+k];
-                sort_int(face_s, NULL, NULL, d, 0, alloc);
+                sort_int(face_s, d);
                 ismember(nonvisible_faces, face_s, f0, num_nonvisible_faces*d, d);
                 u_len = 0;
 
@@ -1662,20 +1623,21 @@ void convhull_nd_build_alloc
 
             /* Update the number of faces */
             nFaces = nFaces-num_visible_ind;
-            faces = (int*)alloc->realloc_func(alloc->object, faces, nFaces*d*sizeof(int));
-            cf = (CH_FLOAT*)alloc->realloc_func(alloc->object, cf, nFaces*d*sizeof(CH_FLOAT));
-            df = (CH_FLOAT*)alloc->realloc_func(alloc->object, df, nFaces*sizeof(CH_FLOAT));
 
             /* start is the first row of the new faces */
             start=nFaces;
 
             /* Add faces connecting horizon to the new point */
             n_newfaces = horizon_size1;
+            n_realloc_faces = nFaces + n_newfaces;
+            if (n_realloc_faces > CH_MAX_NUM_FACES)
+                n_realloc_faces = CH_MAX_NUM_FACES+1;
+            faces = (int*)alloc->realloc_func(alloc->object, faces, (nFaces+n_newfaces)*d*sizeof(int));
+            cf = (CH_FLOAT*)alloc->realloc_func(alloc->object, cf, (nFaces+n_newfaces)*d*sizeof(CH_FLOAT));
+            df = (CH_FLOAT*)alloc->realloc_func(alloc->object, df, (nFaces+n_newfaces)*sizeof(CH_FLOAT));
+
             for(j=0; j<n_newfaces; j++){
                 nFaces++;
-                faces = (int*)alloc->realloc_func(alloc->object, faces, nFaces*d*sizeof(int));
-                cf = (CH_FLOAT*)alloc->realloc_func(alloc->object, cf, nFaces*d*sizeof(CH_FLOAT));
-                df = (CH_FLOAT*)alloc->realloc_func(alloc->object, df, nFaces*sizeof(CH_FLOAT));
                 for(k=0; k<d-1; k++)
                     faces[(nFaces-1)*d+k] = horizon[j*(d-1)+k];
                 faces[(nFaces-1)*d+(d-1)] = i;
@@ -1703,7 +1665,7 @@ void convhull_nd_build_alloc
             for(k=start; k<nFaces; k++){
                 for(j=0; j<d; j++)
                     face_s[j] = faces[k*d+j];
-                sort_int(face_s, NULL, NULL, d, 0, alloc);
+                sort_int(face_s, d);
                 ismember(hVec, face_s, hVec_mem_face, nFaces, d);
                 num_p = 0;
                 for(j=0; j<nFaces; j++)
@@ -1803,25 +1765,15 @@ void convhull_nd_build_alloc
     /* clean-up */
     alloc->free_func(alloc->object, visible_ind);
     alloc->free_func(alloc->object, points_cf);
-    alloc->free_func(alloc->object, points_s);
-    alloc->free_func(alloc->object, face_s);
-    alloc->free_func(alloc->object, gVec);
-    alloc->free_func(alloc->object, meanp);
     alloc->free_func(alloc->object, absdist);
     alloc->free_func(alloc->object, reldist);
     alloc->free_func(alloc->object, desReldist);
     alloc->free_func(alloc->object, ind);
-    alloc->free_func(alloc->object, span);
     alloc->free_func(alloc->object, points);
     alloc->free_func(alloc->object, faces);
     alloc->free_func(alloc->object, aVec);
     alloc->free_func(alloc->object, cf);
-    alloc->free_func(alloc->object, cfi);
     alloc->free_func(alloc->object, df);
-    alloc->free_func(alloc->object, p_s);
-    alloc->free_func(alloc->object, fVec);
-    alloc->free_func(alloc->object, bVec);
-    alloc->free_func(alloc->object, A);
 }
 
 void delaunay_nd_mesh
@@ -1870,6 +1822,14 @@ void delaunay_nd_mesh_alloc
     cf = df = NULL;
     convhull_nd_build(projpoints, nPoints, nd+1, &hullfaces, &cf, &df, &nHullFaces);
 
+    /* Solution not possible... */
+    if(nd>CONVHULL_ND_MAX_DIMENSIONS || !hullfaces || !nHullFaces){
+        (*Mesh) = NULL;
+        (*nMesh) = 0;
+        ch_free(projpoints);
+        return;
+    }
+    
     /* Find the coordinates of the point with the maximum (N+1 dimension) coordinate (i.e. the w vector) */
 #ifdef CONVHULL_3D_USE_CBLAS
     if(sizeof(CH_FLOAT)==sizeof(double))
@@ -1897,7 +1857,7 @@ void delaunay_nd_mesh_alloc
      * This is the point that can see the entire lower hull. */
     w_optimal = 0.0;
     for(j=0; j<nd; j++)
-       w_optimal += (2.0*pow(p0[j], 2.0));
+       w_optimal += (2.0*square(p0[j]));
     w_optimal = w0-w_optimal;
 
     /* Subtract 1000 times the absolute value of w_optimal to ensure that the point where the tangent plane
