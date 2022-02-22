@@ -67,9 +67,7 @@ FrameLib_Spatial::Vec3 FrameLib_Spatial::ConstrainPoint::HullFace::faceNormal(co
 
 bool FrameLib_Spatial::ConstrainPoint::triangleTest(const Vec3& p, const Vec3& a, const Vec3& b, const Vec3& n)
 {
-    Vec3 nx = cross(b - a, p - a);
-    
-    return dot(nx, n) < 0;
+    return dot(cross(b - a, p - a), n) < 0;
 }
 
 bool FrameLib_Spatial::ConstrainPoint::vertexTest(const Vec3& p, const Vec3& a, const Vec3& b, const Vec3& c)
@@ -170,7 +168,7 @@ FrameLib_Spatial::Cartesian FrameLib_Spatial::ConstrainPoint::operator()(Cartesi
     return constrained;
 }
 
-void FrameLib_Spatial::ConstrainPoint::setArray(FrameLib_Spatial& object, const std::vector<Cartesian>& array)
+void FrameLib_Spatial::ConstrainPoint::setArray(FrameLib_Spatial& object, const AutoArray<Cartesian>& array)
 {
     int numSpeakers = static_cast<int>(array.size());
     int *faces = nullptr;
@@ -221,14 +219,17 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, const FrameLib_Para
     
     unsigned long speakerSize;
     const double *speakers = mParameters.getArray(kSpeakers, &speakerSize);
+    unsigned long numSpeakers = (speakerSize + 2) / 3;
     
-    for (unsigned long i = 0; i < (speakerSize + 2) / 3; i++)
+    mSpeakers = allocAutoArray<Cartesian>(numSpeakers);
+    
+    for (unsigned long i = 0; i < numSpeakers; i++)
     {
         double azimuth = speakerSize > (i * 3 + 0) ? speakers[i * 3 + 0] : 0.0;
         double elevation = speakerSize > (i * 3 + 1) ? speakers[i * 3 + 1] : 0.0;
         double radius = speakerSize > (i * 3 + 2) ? speakers[i * 3 + 2] : 1.0;
         
-        mSpeakers.push_back(convertToCartesian(Polar(azimuth, elevation, radius)));
+        mSpeakers[i] = convertToCartesian(Polar(azimuth, elevation, radius));
     }
 
     mConstainer.setArray(*this, mSpeakers);

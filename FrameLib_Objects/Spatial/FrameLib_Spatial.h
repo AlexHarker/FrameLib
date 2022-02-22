@@ -65,7 +65,7 @@ class FrameLib_Spatial final : public FrameLib_Processor
         
         Cartesian operator()(Cartesian point, ConstrainModes mode);
         
-        void setArray(FrameLib_Spatial& object, const std::vector<Cartesian>& array);
+        void setArray(FrameLib_Spatial& object, const AutoArray<Cartesian>& array);
 
     private:
         
@@ -102,7 +102,7 @@ private:
     
     // Data
     
-    std::vector<Cartesian> mSpeakers;
+    AutoArray<Cartesian> mSpeakers;
 
     static ParameterInfo sParamInfo;
     
