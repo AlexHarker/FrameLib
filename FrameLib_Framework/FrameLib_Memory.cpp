@@ -529,6 +529,13 @@ void FrameLib_ContextAllocator::dealloc(void *ptr)
         mAllocator.dealloc(ptr);
 }
 
+// Memory Size
+
+size_t FrameLib_ContextAllocator::memorySize(void *ptr)
+{
+    return blockSize(ptr);
+}
+
 // Prune the global allocator
 
 void FrameLib_ContextAllocator::prune()

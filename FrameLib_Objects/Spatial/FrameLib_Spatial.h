@@ -37,6 +37,11 @@ class FrameLib_Spatial final : public FrameLib_Processor
         double azimuth, elevation, radius;
     };
     
+    static void *chMalloc(void *object, size_t size);
+    static void *chCalloc(void *object, size_t num, size_t size);
+    static void *chRealloc(void *object, void *ptr, size_t size);
+    static void chFree(void *object, void *ptr);
+    
     // Parameter Enums and Info
 
     enum ParameterList { kInputMode, kSpeakers, kWeights, kRolloff, kBlur, kMaxSpeakers, kPoints, kConstrain };

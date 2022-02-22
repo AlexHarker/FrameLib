@@ -516,6 +516,7 @@ public:
 
     void *alloc(size_t size);
     void dealloc(void *ptr);
+    size_t memorySize(void *ptr);
 
     // Prune global allocator
     

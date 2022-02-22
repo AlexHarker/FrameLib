@@ -463,6 +463,12 @@ protected:
         ptr = nullptr;
     }
     
+    template <class U>
+    size_t memorySize(U* ptr)
+    {
+        return mAllocator->memorySize(ptr) / sizeof(U);
+    }
+    
     void setLocalAllocator(FrameLib_LocalAllocator *allocator)      { mLocalAllocator = allocator; }
     void removeLocalAllocator()                                     { mLocalAllocator = nullptr; }
     void pruneAllocator()                                           { mAllocator->prune(); }

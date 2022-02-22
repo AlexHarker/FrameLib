@@ -3,10 +3,64 @@
 #include "FrameLib_Sorting_Functions.h"
 
 #include <cmath>
+#include <cstring>
 #include <limits>
 
 #define CONVHULL_3D_ENABLE
 #include "../../FrameLib_Dependencies/convhull_3d.h"
+
+// Memory Allocation
+
+FrameLib_Spatial *asSpatial(void *object)
+{
+    return static_cast<FrameLib_Spatial *>(object);
+}
+
+void *FrameLib_Spatial::chMalloc(void *object, size_t size)
+{
+    return asSpatial(object)->alloc<char>(size);
+}
+
+void *FrameLib_Spatial::chCalloc(void *object, size_t num, size_t size)
+{
+    void *ptr = chMalloc(object, num * size);
+    std::memset(ptr, 0, num * size);
+    return ptr;
+}
+
+void *FrameLib_Spatial::chRealloc(void *object, void *ptr, size_t size)
+{
+    size_t currentSize = asSpatial(object)->memorySize(reinterpret_cast<char *>(ptr));
+    size_t allocSize = 0;
+    
+    // Overallocate if we are growing
+    
+    if (currentSize < size)
+        allocSize = size * 2;
+    
+    // If we are shrinking then allocate exactly
+    
+    if (currentSize > (size * 2))
+        allocSize = size;
+    
+    // No need to reallocate
+    
+    if (!allocSize)
+        return ptr;
+    
+    // Make a new allocation and copy
+    
+    void *newPtr = chMalloc(object, allocSize);
+    std::memcpy(newPtr, ptr, std::min(currentSize, size));
+    chFree(object, ptr);
+    
+    return newPtr;
+}
+
+void FrameLib_Spatial::chFree(void *object, void *ptr)
+{
+    return asSpatial(object)->dealloc(ptr);
+}
 
 // Vec3 Type
 
@@ -168,6 +222,8 @@ FrameLib_Spatial::Cartesian FrameLib_Spatial::ConstrainPoint::operator()(Cartesi
 
 void FrameLib_Spatial::ConstrainPoint::setArray(FrameLib_Spatial& object, const AutoArray<Cartesian>& array)
 {
+    ch_allocator allocator { &object, chMalloc, chCalloc, chRealloc, chFree };
+    
     int numSpeakers = static_cast<int>(array.size());
     int *faces = nullptr;
     int numFaces = 0;
@@ -176,7 +232,7 @@ void FrameLib_Spatial::ConstrainPoint::setArray(FrameLib_Spatial& object, const 
     
     auto vertices = reinterpret_cast<const ch_vertex *const>(array.data());
                                                       
-    convhull_3d_build(const_cast<ch_vertex *const>(vertices), numSpeakers, &faces, &numFaces);
+    convhull_3d_build_alloc(const_cast<ch_vertex *const>(vertices), numSpeakers, &faces, &numFaces, &allocator);
     
     mHull = object.allocAutoArray<HullFace>(numFaces);
     
@@ -188,7 +244,7 @@ void FrameLib_Spatial::ConstrainPoint::setArray(FrameLib_Spatial& object, const 
     for (int i = 0; i < numSpeakers; i++)
         mRadius = std::max(mRadius, array[i].mag());
 
-    ch_free(faces);
+    (allocator.free_func)(allocator.object, faces);
 }
 
 // Constructor
