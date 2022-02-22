@@ -18,8 +18,7 @@ FrameLib_Spatial *asSpatial(void *object)
 
 void *FrameLib_Spatial::chMalloc(void *object, size_t size)
 {
-    size = std::max(size, 512UL);
-    return asSpatial(object)->alloc<Byte>(size);;
+    return asSpatial(object)->alloc<Byte>(size);
 }
 
 void *FrameLib_Spatial::chCalloc(void *object, size_t num, size_t size)
@@ -40,7 +39,7 @@ void *FrameLib_Spatial::chRealloc(void *object, void *ptr, size_t size)
     
     // Make a new allocation and copy (overallocate when growing)
     
-    void *newPtr = chMalloc(object, size * 2);
+    void *newPtr = chMalloc(object, std::max(512UL, size * 2));
     std::memcpy(newPtr, ptr, std::min(currentSize, size));
     chFree(object, ptr);
     
