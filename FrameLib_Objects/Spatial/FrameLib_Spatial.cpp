@@ -18,7 +18,8 @@ FrameLib_Spatial *asSpatial(void *object)
 
 void *FrameLib_Spatial::chMalloc(void *object, size_t size)
 {
-    return asSpatial(object)->alloc<char>(size);
+    size = std::max(size, 512UL);
+    return asSpatial(object)->alloc<Byte>(size);;
 }
 
 void *FrameLib_Spatial::chCalloc(void *object, size_t num, size_t size)
@@ -30,27 +31,16 @@ void *FrameLib_Spatial::chCalloc(void *object, size_t num, size_t size)
 
 void *FrameLib_Spatial::chRealloc(void *object, void *ptr, size_t size)
 {
-    size_t currentSize = asSpatial(object)->memorySize(reinterpret_cast<char *>(ptr));
-    size_t allocSize = 0;
-    
-    // Overallocate if we are growing
-    
-    if (currentSize < size)
-        allocSize = size * 2;
-    
-    // If we are shrinking then allocate exactly
-    
-    if (currentSize > (size * 2))
-        allocSize = size;
-    
+    size_t currentSize = asSpatial(object)->memorySize(static_cast<Byte *>(ptr));
+        
     // No need to reallocate
-    
-    if (!allocSize)
+
+    if (currentSize >= size)
         return ptr;
     
-    // Make a new allocation and copy
+    // Make a new allocation and copy (overallocate when growing)
     
-    void *newPtr = chMalloc(object, allocSize);
+    void *newPtr = chMalloc(object, size * 2);
     std::memcpy(newPtr, ptr, std::min(currentSize, size));
     chFree(object, ptr);
     
@@ -232,7 +222,7 @@ void FrameLib_Spatial::ConstrainPoint::setArray(FrameLib_Spatial& object, const 
     
     auto vertices = reinterpret_cast<const ch_vertex *const>(array.data());
                                                       
-    convhull_3d_build_alloc(const_cast<ch_vertex *const>(vertices), numSpeakers, &faces, &numFaces, &allocator);
+    convhull_3d_build_alloc(const_cast<ch_vertex *const>(vertices), numSpeakers, &faces, &numFaces, allocator);
     
     mHull = object.allocAutoArray<HullFace>(numFaces);
     
