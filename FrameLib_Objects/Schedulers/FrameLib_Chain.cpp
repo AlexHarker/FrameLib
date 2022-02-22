@@ -159,7 +159,7 @@ FrameLib_Chain::SchedulerInfo FrameLib_Chain::schedule(bool newFrame, bool noAdv
         
         // Copy pending old items
         
-        std::copy_n(mTimes.get() + mPosition, remain, times.get());
+        std::copy_n(mTimes.data() + mPosition, remain, times.data());
         
         // Write new items
         
@@ -211,8 +211,8 @@ FrameLib_Chain::SchedulerInfo FrameLib_Chain::schedule(bool newFrame, bool noAdv
         if (mode == kAdd || timeMode != kInterval)
         {
             unsigned long offset = mode == kAppend ? remain : 0;
-            sortAscending(times.get() + offset, size - offset);
-            size = removeDuplicates(times.get(), size, offset ? offset - 1 : 0);
+            sortAscending(times.data() + offset, size - offset);
+            size = removeDuplicates(times.data(), size, offset ? offset - 1 : 0);
         }
         
         // Check for a trigger now
