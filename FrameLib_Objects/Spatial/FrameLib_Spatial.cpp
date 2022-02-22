@@ -12,7 +12,7 @@
 
 double FrameLib_Spatial::Vec3::mag() const
 {
-    return sqrt((x * x) + (y * y) + (z * z));
+    return sqrt(dot(*this, *this));
 }
 
 FrameLib_Spatial::Vec3& FrameLib_Spatial::Vec3::normalise()
@@ -22,19 +22,19 @@ FrameLib_Spatial::Vec3& FrameLib_Spatial::Vec3::normalise()
     return *this = m ? (*this * (1.0 / m)) : Vec3(0, 0, 1);
 }
 
-FrameLib_Spatial::Vec3 operator *(const FrameLib_Spatial::Vec3& a, double b)
+FrameLib_Spatial::Vec3 operator * (const FrameLib_Spatial::Vec3& a, double b)
 {
     return { a.x * b, a.y * b,  a.z * b };
 }
 
-FrameLib_Spatial::Vec3 operator -(const FrameLib_Spatial::Vec3& a, const FrameLib_Spatial::Vec3& b)
+FrameLib_Spatial::Vec3 operator - (const FrameLib_Spatial::Vec3& a, const FrameLib_Spatial::Vec3& b)
 {
     return { a.x - b.x, a.y - b.y, a.z - b.z };
 }
 
-FrameLib_Spatial::Vec3 operator +(const FrameLib_Spatial::Vec3& a, const FrameLib_Spatial::Vec3& b)
+FrameLib_Spatial::Vec3 operator + (const FrameLib_Spatial::Vec3& a, const FrameLib_Spatial::Vec3& b)
 {
-    return {a.x + b.x, a.y + b.y, a.z + b.z };
+    return { a.x + b.x, a.y + b.y, a.z + b.z };
 }
     
 double dot(const FrameLib_Spatial::Vec3& a, const FrameLib_Spatial::Vec3& b)
@@ -95,19 +95,17 @@ FrameLib_Spatial::Cartesian FrameLib_Spatial::ConstrainPoint::operator()(Cartesi
         return point;
         
     // Hemispherical / Spherical Constraint
-    /*
+    
     if (mode == kHemisphere || mode == kSphere)
     {
-        if (mode == kHemisphere && point.z < mOrigin.z)
-            point.z = mOrigin.z;
-        
-        Vec3 v = point - mOrigin;
-        
-        if (v.mag() <= mRadius)
+        if (mode == kHemisphere)
+            point.z = std::max(point.z, 0.0);
+                
+        if (point.mag() <= mRadius)
             return point;
         
-        return v.normalise() * mRadius + mOrigin;
-    }*/
+        return point.normalise() * mRadius;
+    }
     
     // Convex Hull Constraint
     
@@ -184,7 +182,12 @@ void FrameLib_Spatial::ConstrainPoint::setArray(FrameLib_Spatial& object, const 
     
     for (int i = 0; i < numFaces; i++)
         mHull[i] = HullFace(array[faces[i * 3 + 0]], array[faces[i * 3 + 1]], array[faces[i * 3 + 2]]);
-    
+
+    mRadius = 0.0;
+
+    for (int i = 0; i < numSpeakers; i++)
+        mRadius = std::max(mRadius, array[i].mag());
+
     ch_free(faces);
 }
 

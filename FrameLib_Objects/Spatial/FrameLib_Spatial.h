@@ -74,7 +74,6 @@ class FrameLib_Spatial final : public FrameLib_Processor
         bool pointProjectsInTriangle(const Vec3& p, const Vec3& a, const Vec3& b, const Vec3& c, const Vec3& n);
         
         AutoArray<HullFace> mHull;
-        Cartesian mOrigin;
         double mRadius;
     };
     
