@@ -35,23 +35,20 @@ void *FrameLib_Spatial::chCalloc(void *object, size_t num, size_t size)
 
 void *FrameLib_Spatial::chRealloc(void *object, void *ptr, size_t size)
 {
-    size_t currentSize = asSpatial(object)->memorySize(static_cast<Byte *>(ptr));
-        
-    // No need to reallocate
-
-    if (currentSize >= size)
-        return ptr;
-    
-    // Make a new allocation and copy (overallocate when growing)
-    
-    void *newPtr = chMalloc(object, std::max(512UL, size * 2));
-    std::memcpy(newPtr, ptr, std::min(currentSize, size));
-    chFree(object, ptr);
-    
-    return newPtr;
+    return chResize(object, ptr, size, true);
 }
 
 void *FrameLib_Spatial::chResize(void *object, void *ptr, size_t size)
+{
+    return chResize(object, ptr, size, false);
+}
+
+void FrameLib_Spatial::chFree(void *object, void *ptr)
+{
+    asSpatial(object)->dealloc(ptr);
+}
+
+void *FrameLib_Spatial::chResize(void *object, void *ptr, size_t size, bool copy)
 {
     size_t currentSize = asSpatial(object)->memorySize(static_cast<Byte *>(ptr));
         
@@ -63,15 +60,15 @@ void *FrameLib_Spatial::chResize(void *object, void *ptr, size_t size)
     // Make a new allocation (overallocate when growing)
     
     void *newPtr = chMalloc(object, std::max(512UL, size * 2));
+    
+    // Copy and free if required
+    
+    if (copy)
+        std::memcpy(newPtr, ptr, std::min(currentSize, size));
     if (ptr)
         chFree(object, ptr);
     
     return newPtr;
-}
-
-void FrameLib_Spatial::chFree(void *object, void *ptr)
-{
-    asSpatial(object)->dealloc(ptr);
 }
 
 // Vec3 Type

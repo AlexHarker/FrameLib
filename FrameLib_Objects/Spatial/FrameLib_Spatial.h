@@ -9,13 +9,17 @@ class FrameLib_Spatial final : public FrameLib_Processor
 {
 public:
 
-    // Public static functions for memory allocation with wconvhull_3d
+    // Public static methods for memory allocation with wconvhull_3d
     
     static void *chMalloc(void *object, size_t size);
     static void *chCalloc(void *object, size_t num, size_t size);
     static void *chRealloc(void *object, void *ptr, size_t size);
     static void *chResize(void *object, void *ptr, size_t size);
     static void chFree(void *object, void *ptr);
+
+    // Joint resize/realloc method
+    
+    static void *chResize(void *object, void *ptr, size_t size, bool copy);
 
 private:
     
