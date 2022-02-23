@@ -59,10 +59,10 @@ void *FrameLib_Spatial::chResize(void *object, void *ptr, size_t size)
 
     if (currentSize >= size)
         return ptr;
-    
+        
     // Make a new allocation (overallocate when growing)
     
-    void *newPtr = chMalloc(object, std::max(1024UL, size * 2));
+    void *newPtr = chMalloc(object, std::max(512UL, size * 2));
     if (ptr)
         chFree(object, ptr);
     
@@ -233,26 +233,41 @@ FrameLib_Spatial::Cartesian FrameLib_Spatial::ConstrainPoint::operator()(Cartesi
 }
 
 void FrameLib_Spatial::ConstrainPoint::setArray(FrameLib_Spatial& object, const AutoArray<Cartesian>& array)
-{    
+{
     int numSpeakers = static_cast<int>(array.size());
     int *faces = nullptr;
     int numFaces = 0;
     
-    // FIX - this is nasty but the layout should be the same - should I copy just to be safe??
+    // Copy the array into a suitable format
     
-    auto vertices = reinterpret_cast<const ch_vertex *const>(array.data());
-    convhull_3d_build_alloc(const_cast<ch_vertex *const>(vertices), numSpeakers, &faces, &numFaces, &object);
+    auto vertices = object.allocAutoArray<ch_vertex>(array.size() + 1);
+
+    for (size_t i = 0; i < array.size(); i++)
+        vertices[i] = { array[i].x, array[i].y, array[i].z };
+    
+    // Add a vertex at the origin
+                 
+    vertices[array.size()] = { 0.0, 0.0, 0.0 };
+    
+    // Build the hull and keep a copy with calculated / stored normals
+    
+    convhull_3d_build_alloc(vertices.data(), numSpeakers, &faces, &numFaces, &object);
+
     mHull = object.allocAutoArray<HullFace>(numFaces);
     
     for (int i = 0; i < numFaces; i++)
         mHull[i] = HullFace(array[faces[i * 3 + 0]], array[faces[i * 3 + 1]], array[faces[i * 3 + 2]]);
 
+    // Free the faces returned from convhull
+    
+    chFree(&object, faces);
+
+    // Calculate the array sphere radius from the origin
+    
     mRadius = 0.0;
 
     for (int i = 0; i < numSpeakers; i++)
         mRadius = std::max(mRadius, array[i].mag());
-
-    chFree(&object, faces);
 }
 
 // Constructor
