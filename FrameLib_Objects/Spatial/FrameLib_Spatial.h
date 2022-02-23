@@ -9,21 +9,13 @@
 
 class FrameLib_Spatial final : public FrameLib_Processor
 {
-public:
+    // Parameter Enums and Info
 
-    // Public static methods for memory allocation with wconvhull_3d
-    
-    static void *chMalloc(void *object, size_t size);
-    static void *chCalloc(void *object, size_t num, size_t size);
-    static void *chRealloc(void *object, void *ptr, size_t size);
-    static void *chResize(void *object, void *ptr, size_t size);
-    static void chFree(void *object, void *ptr);
+    enum ParameterList { kInputMode, kSpeakers, kWeights, kRolloff, kBlur, kMaxSpeakers, kPoints, kConstrain };
+    enum InputModes { kPolar, kCartesian };
+    enum ConstrainModes { kNone, kHemisphere, kSphere, kConvexHull };
 
-    // Joint resize/realloc method
-    
-    static void *chResize(void *object, void *ptr, size_t size, bool copy);
-
-private:
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     
     // Spatial Types
     
@@ -37,13 +29,6 @@ private:
 
         double x, y, z;
     };
-
-    friend Vec3 operator *(const Vec3& a, double b);
-    friend Vec3 operator -(const Vec3& a, const Vec3& b);
-    friend Vec3 operator +(const Vec3& a, const Vec3& b);
-        
-    friend double dot(const Vec3& a, const Vec3& b);
-    friend Vec3 cross(const Vec3& v1, const Vec3& v2);
     
     using Cartesian = Vec3;
     
@@ -55,50 +40,45 @@ private:
         double azimuth, elevation, radius;
     };
     
-    // Parameter Enums and Info
-
-    enum ParameterList { kInputMode, kSpeakers, kWeights, kRolloff, kBlur, kMaxSpeakers, kPoints, kConstrain };
-    enum InputModes { kPolar, kCartesian };
-    enum ConstrainModes { kNone, kHemisphere, kSphere, kConvexHull };
-
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-
-    class ConstrainPoint
+    struct HullFace
     {
-        struct HullFace
-        {
-            HullFace() {}
-            HullFace(const Vec3& A, const Vec3& B, const Vec3& C)
-            : a(A), b(B), c(C), n(faceNormal(A, B, C)) {}
-            
-            static Vec3 faceNormal(const Vec3& A, const Vec3& B, const Vec3& C);
-
-            double distance(const Vec3& p);
-            std::pair<Vec3, double> closestPoint(const Vec3& p);
-
-            Vec3 a;
-            Vec3 b;
-            Vec3 c;
-            Vec3 n;
-        };
-
-    public:
+        HullFace() {}
+        HullFace(const Vec3& A, const Vec3& B, const Vec3& C)
+        : a(A), b(B), c(C), n(faceNormal(A, B, C)) {}
         
-        Cartesian operator()(Cartesian point, ConstrainModes mode);
-        
-        void setArray(FrameLib_Spatial& object, const AutoArray<Cartesian>& array);
+        static Vec3 faceNormal(const Vec3& A, const Vec3& B, const Vec3& C);
 
-    private:
-        
-        bool triangleTest(const Vec3& p, const Vec3& a, const Vec3& b, const Vec3& n);
-        bool vertexTest(const Vec3& p, const Vec3& a, const Vec3& b, const Vec3& c);
-        bool pointProjectsInTriangle(const Vec3& p, const Vec3& a, const Vec3& b, const Vec3& c, const Vec3& n);
-        
-        AutoArray<HullFace> mHull;
-        double mRadius;
+        double distance(const Vec3& p);
+        std::pair<Vec3, double> closestPoint(const Vec3& p);
+
+        Vec3 a;
+        Vec3 b;
+        Vec3 c;
+        Vec3 n;
     };
     
+    // Vec 3 Functions
+    
+    friend Vec3 operator *(const Vec3& a, double b);
+    friend Vec3 operator -(const Vec3& a, const Vec3& b);
+    friend Vec3 operator +(const Vec3& a, const Vec3& b);
+        
+    friend double dot(const Vec3& a, const Vec3& b);
+    friend Vec3 cross(const Vec3& v1, const Vec3& v2);
+    
 public:
+
+    // Public static methods for memory allocation for convhull_3d
+    
+    static void *chMalloc(void *object, size_t size);
+    static void *chCalloc(void *object, size_t num, size_t size);
+    static void *chRealloc(void *object, void *ptr, size_t size);
+    static void *chResize(void *object, void *ptr, size_t size);
+    static void chFree(void *object, void *ptr);
+
+    // Joint resize/realloc method
+    
+    static void *chResize(void *object, void *ptr, size_t size, bool copy);
     
     // Constructor
     
@@ -116,6 +96,11 @@ private:
     
     Cartesian convertToCartesian(Polar position);
     
+    // Constraints
+    
+    Cartesian constrain(Cartesian point);
+    void calculateBounds();
+   
     // Process
     
     void process() override;
@@ -126,7 +111,10 @@ private:
 
     static ParameterInfo sParamInfo;
     
-    ConstrainPoint mConstainer;
+    // Constraint Bounds
+    
+    AutoArray<HullFace> mHull;
+    double mRadius;
 };
 
 #endif

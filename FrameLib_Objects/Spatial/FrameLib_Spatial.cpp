@@ -6,15 +6,19 @@
 #include <cstring>
 #include <limits>
 
+// Compile code for building the convex hull, binding to allocation functions below
+
 #define ch_stateful_malloc FrameLib_Spatial::chMalloc
 #define ch_stateful_calloc FrameLib_Spatial::chCalloc
 #define ch_stateful_realloc FrameLib_Spatial::chRealloc
 #define ch_stateful_resize FrameLib_Spatial::chResize
 #define ch_stateful_free FrameLib_Spatial::chFree
+
 #define CONVHULL_3D_ENABLE
+
 #include "../../FrameLib_Dependencies/convhull_3d.h"
 
-// Memory Allocation
+// Convex Hull Memory Allocation
 
 FrameLib_Spatial *asSpatial(void *object)
 {
@@ -118,7 +122,7 @@ FrameLib_Spatial::Vec3 cross(const FrameLib_Spatial::Vec3& v1, const FrameLib_Sp
 
 // Hull Face
 
-FrameLib_Spatial::Vec3 FrameLib_Spatial::ConstrainPoint::HullFace::faceNormal(const Vec3 &a, const Vec3 &b, const Vec3 &c)
+FrameLib_Spatial::Vec3 FrameLib_Spatial::HullFace::faceNormal(const Vec3 &a, const Vec3 &b, const Vec3 &c)
 {
     Vec3 v1 = b - a;
     Vec3 v2 = c - a;
@@ -126,12 +130,12 @@ FrameLib_Spatial::Vec3 FrameLib_Spatial::ConstrainPoint::HullFace::faceNormal(co
     return cross(v1, v2).normalise();
 }
 
-double FrameLib_Spatial::ConstrainPoint::HullFace::distance(const Vec3& p)
+double FrameLib_Spatial::HullFace::distance(const Vec3& p)
 {
     return dot(p - a, n);
 }
 
-std::pair<FrameLib_Spatial::Vec3, double> FrameLib_Spatial::ConstrainPoint::HullFace::closestPoint(const Vec3& p)
+std::pair<FrameLib_Spatial::Vec3, double> FrameLib_Spatial::HullFace::closestPoint(const Vec3& p)
 {
     auto pointWithDistance = [](const Vec3& x, const Vec3& p)
     {
@@ -199,8 +203,10 @@ std::pair<FrameLib_Spatial::Vec3, double> FrameLib_Spatial::ConstrainPoint::Hull
 
 // Spatial Constraints
 
-FrameLib_Spatial::Cartesian FrameLib_Spatial::ConstrainPoint::operator()(Cartesian point, ConstrainModes mode)
+FrameLib_Spatial::Cartesian FrameLib_Spatial::constrain(Cartesian point)
 {
+    ConstrainModes mode = mParameters.getEnum<ConstrainModes>(kConstrain);
+    
     // No Spatial Constraint
     
     if (mode == kNone)
@@ -246,42 +252,42 @@ FrameLib_Spatial::Cartesian FrameLib_Spatial::ConstrainPoint::operator()(Cartesi
     return constrained;
 }
 
-void FrameLib_Spatial::ConstrainPoint::setArray(FrameLib_Spatial& object, const AutoArray<Cartesian>& array)
+void FrameLib_Spatial::calculateBounds()
 {
-    int numSpeakers = static_cast<int>(array.size());
+    int numSpeakers = static_cast<int>(mSpeakers.size());
     int *faces = nullptr;
     int numFaces = 0;
     
     // Copy the array into a suitable format
     
-    auto vertices = object.allocAutoArray<ch_vertex>(array.size() + 1);
+    auto vertices = allocAutoArray<ch_vertex>(mSpeakers.size() + 1);
 
-    for (size_t i = 0; i < array.size(); i++)
-        vertices[i] = { array[i].x, array[i].y, array[i].z };
+    for (size_t i = 0; i < mSpeakers.size(); i++)
+        vertices[i] = { mSpeakers[i].x, mSpeakers[i].y, mSpeakers[i].z };
     
     // Add a vertex at the origin
                  
-    vertices[array.size()] = { 0.0, 0.0, 0.0 };
+    vertices[mSpeakers.size()] = { 0.0, 0.0, 0.0 };
     
     // Build the hull and keep a copy with calculated / stored normals
     
-    convhull_3d_build_alloc(vertices.data(), numSpeakers, &faces, &numFaces, &object);
+    convhull_3d_build_alloc(vertices.data(), numSpeakers, &faces, &numFaces, this);
 
-    mHull = object.allocAutoArray<HullFace>(numFaces);
+    mHull = allocAutoArray<HullFace>(numFaces);
     
     for (int i = 0; i < numFaces; i++)
-        mHull[i] = HullFace(array[faces[i * 3 + 0]], array[faces[i * 3 + 1]], array[faces[i * 3 + 2]]);
+        mHull[i] = HullFace(mSpeakers[faces[i * 3 + 0]], mSpeakers[faces[i * 3 + 1]], mSpeakers[faces[i * 3 + 2]]);
 
     // Free the faces returned from convhull
     
-    chFree(&object, faces);
+    chFree(this, faces);
 
     // Calculate the array sphere radius from the origin
     
     mRadius = 0.0;
 
     for (int i = 0; i < numSpeakers; i++)
-        mRadius = std::max(mRadius, array[i].mag());
+        mRadius = std::max(mRadius, mSpeakers[i].mag());
 }
 
 // Constructor
@@ -328,7 +334,7 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, const FrameLib_Para
         mSpeakers[i] = convertToCartesian(Polar(azimuth, elevation, radius));
     }
 
-    mConstainer.setArray(*this, mSpeakers);
+    calculateBounds();
 }
 
 // Info
@@ -430,7 +436,7 @@ void FrameLib_Spatial::process()
     
     // Constrain Position
     
-    panPosition = mConstainer(panPosition, mParameters.getEnum<ConstrainModes>(kConstrain));
+    panPosition = constrain(panPosition);
     
     for (unsigned long i = 0; i < numSpeakers; i++)
     {
