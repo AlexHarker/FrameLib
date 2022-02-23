@@ -37,10 +37,13 @@ class FrameLib_Spatial final : public FrameLib_Processor
         double azimuth, elevation, radius;
     };
     
+public:
     static void *chMalloc(void *object, size_t size);
     static void *chCalloc(void *object, size_t num, size_t size);
     static void *chRealloc(void *object, void *ptr, size_t size);
+    static void *chResize(void *object, void *ptr, size_t size);
     static void chFree(void *object, void *ptr);
+private:
     
     // Parameter Enums and Info
 
