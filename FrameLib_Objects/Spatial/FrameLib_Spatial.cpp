@@ -144,9 +144,9 @@ std::pair<FrameLib_Spatial::Vec3, double> FrameLib_Spatial::HullFace::closestPoi
     
     // Based on https://github.com/LLNL/axom/blob/develop/src/axom/primal/operators/closest_point.hpp
     
-    const Vec3 ab = a - b;
-    const Vec3 ac = a - c;
-    const Vec3 ap = a - p;
+    const Vec3 ab = b - a;
+    const Vec3 ac = c - a;
+    const Vec3 ap = p - a;
     const double d1 = dot(ab, ap);
     const double d2 = dot(ac, ap);
     
@@ -155,7 +155,7 @@ std::pair<FrameLib_Spatial::Vec3, double> FrameLib_Spatial::HullFace::closestPoi
     if (d1 < 0 && d2 < 0)
         return pointWithDistance(a, p);
 
-    const Vec3 bp = b - p;
+    const Vec3 bp = p - b;
     const double d3 = dot(ab, bp);
     const double d4 = dot(ac, bp);
     
@@ -171,7 +171,7 @@ std::pair<FrameLib_Spatial::Vec3, double> FrameLib_Spatial::HullFace::closestPoi
     if (vc < 0 && d1 > 0 && d3 < 0)
         return pointWithDistance(a + ab * (d1 / (d1 - d3)), p);
 
-    const Vec3 cp = c - p;
+    const Vec3 cp = p - c;
     const double d5 = dot(ab, cp);
     const double d6 = dot(ac, cp);
     
@@ -259,7 +259,7 @@ void FrameLib_Spatial::calculateBounds()
     int numFaces = 0;
     
     // Copy the array into a suitable format
-    
+    size_t s = sizeof(ch_vertex);
     auto vertices = allocAutoArray<ch_vertex>(mSpeakers.size() + 1);
 
     for (size_t i = 0; i < mSpeakers.size(); i++)
@@ -271,7 +271,7 @@ void FrameLib_Spatial::calculateBounds()
     
     // Build the hull and keep a copy with calculated / stored normals
     
-    convhull_3d_build_alloc(vertices.data(), numSpeakers, &faces, &numFaces, this);
+    convhull_3d_build_alloc(vertices.data(), numSpeakers + 1, &faces, &numFaces, this);
 
     mHull = allocAutoArray<HullFace>(numFaces);
     
