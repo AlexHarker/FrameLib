@@ -3,6 +3,8 @@
 #define FRAMELIB_SPATIAL_H
 
 #include "FrameLib_DSP.h"
+
+#include <utility>
 #include <vector>
 
 class FrameLib_Spatial final : public FrameLib_Processor
@@ -66,14 +68,17 @@ private:
         struct HullFace
         {
             HullFace() {}
-            HullFace(const Vec3& a, const Vec3& b, const Vec3& c)
-            : p1(a), p2(b), p3(c), n(faceNormal(a, b, c)) {}
+            HullFace(const Vec3& A, const Vec3& B, const Vec3& C)
+            : a(A), b(B), c(C), n(faceNormal(A, B, C)) {}
             
-            static Vec3 faceNormal(const Vec3& a, const Vec3& b, const Vec3& c);
-            
-            Vec3 p1;
-            Vec3 p2;
-            Vec3 p3;
+            static Vec3 faceNormal(const Vec3& A, const Vec3& B, const Vec3& C);
+
+            double distance(const Vec3& p);
+            std::pair<Vec3, double> closestPoint(const Vec3& p);
+
+            Vec3 a;
+            Vec3 b;
+            Vec3 c;
             Vec3 n;
         };
 

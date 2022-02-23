@@ -126,29 +126,78 @@ FrameLib_Spatial::Vec3 FrameLib_Spatial::ConstrainPoint::HullFace::faceNormal(co
     return cross(v1, v2).normalise();
 }
 
-// Spatial Constraints
-
-bool FrameLib_Spatial::ConstrainPoint::triangleTest(const Vec3& p, const Vec3& a, const Vec3& b, const Vec3& n)
+double FrameLib_Spatial::ConstrainPoint::HullFace::distance(const Vec3& p)
 {
-    return dot(cross(b - a, p - a), n) < 0;
+    return dot(p - a, n);
 }
 
-bool FrameLib_Spatial::ConstrainPoint::vertexTest(const Vec3& p, const Vec3& a, const Vec3& b, const Vec3& c)
+std::pair<FrameLib_Spatial::Vec3, double> FrameLib_Spatial::ConstrainPoint::HullFace::closestPoint(const Vec3& p)
 {
-    const Vec3 ab(a - b);
-    const Vec3 ac(a - c);
-    const Vec3 ap(a - p);
+    auto pointWithDistance = [](const Vec3& x, const Vec3& p)
+    {
+        return std::pair<Vec3, double>(x, (p - x).mag());
+    };
     
+    // Based on https://github.com/LLNL/axom/blob/develop/src/axom/primal/operators/closest_point.hpp
+    
+    const Vec3 ab = a - b;
+    const Vec3 ac = a - c;
+    const Vec3 ap = a - p;
     const double d1 = dot(ab, ap);
     const double d2 = dot(ac, ap);
-   
-    return d1 < 0.0 && d2 < 0.0;
-}
+    
+    // Closest point is a
+    
+    if (d1 < 0 && d2 < 0)
+        return pointWithDistance(a, p);
 
-bool FrameLib_Spatial::ConstrainPoint::pointProjectsInTriangle(const Vec3& p, const Vec3& a, const Vec3& b, const Vec3& c, const Vec3& n)
-{
-    return !(triangleTest(p, a, b, n) || triangleTest(p, b, c, n) || triangleTest(p, c, a, n));
-}
+    const Vec3 bp = b - p;
+    const double d3 = dot(ab, bp);
+    const double d4 = dot(ac, bp);
+    
+    // Closest point is b
+
+    if (d3 > 0 && d4 < d3)
+        return pointWithDistance(b, p);
+
+    const double vc = d1 * d4 - d3 * d2;
+  
+    // Closest point is on ab
+    
+    if (vc < 0 && d1 > 0 && d3 < 0)
+        return pointWithDistance(a + ab * (d1 / (d1 - d3)), p);
+
+    const Vec3 cp = c - p;
+    const double d5 = dot(ab, cp);
+    const double d6 = dot(ac, cp);
+    
+    // Closest point is c
+  
+    if (d6 > 0 && d5 < d6)
+        return pointWithDistance(c, p);
+
+    const double vb = d5 * d2 - d1 * d6;
+  
+    // Closest point is on ac
+    
+    if (vb < 0 && d2 > 0 && d6 < 0)
+        return pointWithDistance(a + ac * (d2 / (d2 - d6)), p);
+
+    const double va = d3 * d6 - d5 * d4;
+    
+    // Closest point is on bc
+    
+    if (va < 0 && (d4 - d3) > 0 && (d5 - d6) > 0)
+        return pointWithDistance(b + (c - c) * ((d4 - d3) / ((d4 - d3) + (d5 - d6))), p);
+    
+    // Closest point is the projection onto the plane
+  
+    const double d7 = distance(p);
+    
+    return { p - (n * d7), d7 };
+};
+
+// Spatial Constraints
 
 FrameLib_Spatial::Cartesian FrameLib_Spatial::ConstrainPoint::operator()(Cartesian point, ConstrainModes mode)
 {
@@ -172,56 +221,24 @@ FrameLib_Spatial::Cartesian FrameLib_Spatial::ConstrainPoint::operator()(Cartesi
     
     // Convex Hull Constraint
     
-    double min_distance = std::numeric_limits<double>::infinity();
+    double minDistance = std::numeric_limits<double>::infinity();
     Vec3 constrained = point;
     
     for (unsigned long i = 0; i < mHull.size(); i ++)
     {
-        const Vec3& a = mHull[i].p1;
-        const Vec3& b = mHull[i].p2;
-        const Vec3& c = mHull[i].p3;
-        const Vec3& n = mHull[i].n;
-        
-        const double distance = dot(point - a, n);
-        const bool inFront = distance > 0.0;
+        const double planeDistance = mHull[i].distance(point);
+        const bool inFront = planeDistance > 0.0;
         
         // If we are not in front of the face, or the distance to the plane is greater than min_distance this face doesn't have the closest point
         
-        if (inFront && distance < min_distance)
+        if (inFront && planeDistance < minDistance)
         {
-            // If we are above the triangle then use that value, otherwise the nearest point is an edge or vertex
+            auto closest = mHull[i].closestPoint(point);
             
-            if (pointProjectsInTriangle(point, a, b, c, n))
+            if (closest.second < minDistance)
             {
-                min_distance = distance;
-                constrained = point - (n * distance);
-            }
-            else
-            {
-                Vec3 closest = Vec3(10000,10000,10000);
-                
-                // HERE WE NEED TO FIND CLOSEST POINT ON TRIANGLE EDGE...
-                
-                // Test to see if we are neareset to a vertex
-                
-                if (vertexTest(point, a, b, c))
-                    closest = a;
-                else if (vertexTest(point, b, c, a))
-                    closest = b;
-                else if (vertexTest(point, c, a, b))
-                    closest = c;
-                else
-                {
-                    // Edge tests...
-                }
-                
-                const double point_distance = (point - closest).mag();
-                
-                if (point_distance < min_distance)
-                {
-                    min_distance = point_distance;
-                    constrained = closest;
-                }
+                minDistance = closest.second;
+                constrained = closest.first;
             }
         }
     }
