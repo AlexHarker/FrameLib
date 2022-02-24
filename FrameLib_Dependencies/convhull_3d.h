@@ -591,7 +591,7 @@ void convhull_3d_build_alloc
     CH_FLOAT p_s[CONVHULL_3D_MAX_DIMENSIONS*CONVHULL_3D_MAX_DIMENSIONS];
     CH_FLOAT* points, *cf, *df;
     
-    if(nVert<3 || in_vertices==NULL){
+    if(nVert<=3 || in_vertices==NULL){
         (*out_faces) = NULL;
         (*nOut_faces) = 0;
         return;
@@ -617,9 +617,12 @@ void convhull_3d_build_alloc
             min_p = MIN(min_p, points[i*(d+1)+j]);
         }
         span[j] = max_p - min_p;
-        /* If you hit this assertion error, then the input vertices do not span all 3 dimensions. Therefore the convex hull cannot be built.
-         * In these cases, reduce the dimensionality of the points and call convhull_nd_build() instead with d<3 */
-        assert(span[j]>0.0000001f);
+#ifndef CONVHULL_ALLOW_BUILD_IN_HIGHER_DIM
+        /* If you hit this assertion error, then the input vertices do not span all 3 dimensions. Therefore the convex hull could be built in less dimensions.
+         * In these cases, consider reducing the dimensionality of the points and calling convhull_nd_build() instead with d<3
+         * You can turn this assert off using CONVHULL_ALLOW_BUILD_IN_HIGHER_DIM if you still wish to build in a higher number of dimensions. */
+        assert(span[j]>0.000000001);
+#endif
     }
     
     /* The initial convex hull is a simplex with (d+1) facets, where d is the number of dimensions */
@@ -1039,14 +1042,14 @@ void convhull_3d_export_obj
 {
     int i, j;
     char path[256] = "\0";
-	CV_STRNCPY(path, obj_filename, strlen(obj_filename));
-	FILE* obj_file;
+    CV_STRNCPY(path, obj_filename, strlen(obj_filename));
+    FILE* obj_file;
 #if defined(_MSC_VER) && !defined(_CRT_SECURE_NO_WARNINGS)
-	CV_STRCAT(path, ".obj");
-	fopen_s(&obj_file, path, "wt");
+    CV_STRCAT(path, ".obj");
+    fopen_s(&obj_file, path, "wt");
 #else
     errno = 0;
-	obj_file = fopen(strcat(path, ".obj"), "wt");
+    obj_file = fopen(strcat(path, ".obj"), "wt");
 #endif
     if (obj_file==NULL) {
         printf("Error %d \n", errno);
@@ -1122,14 +1125,14 @@ void convhull_3d_export_m
 )
 {
     int i;
-	char path[256] = { "\0" }; 
-	memcpy(path, m_filename, strlen(m_filename));
-	FILE* m_file; 
+    char path[256] = { "\0" };
+    memcpy(path, m_filename, strlen(m_filename));
+    FILE* m_file;
 #if defined(_MSC_VER) && !defined(_CRT_SECURE_NO_WARNINGS)
-	CV_STRCAT(path, ".m");
-	fopen_s(&m_file, path, "wt");
+    CV_STRCAT(path, ".m");
+    fopen_s(&m_file, path, "wt");
 #else
-	m_file = fopen(strcat(path, ".m"), "wt");
+    m_file = fopen(strcat(path, ".m"), "wt");
 #endif
     
     /* save face indices and vertices for verification in matlab: */
@@ -1167,10 +1170,10 @@ void extract_vertices_from_obj_file_alloc
 {
     FILE* obj_file;
 #if defined(_MSC_VER) && !defined(_CRT_SECURE_NO_WARNINGS)
-	CV_STRCAT(obj_filename, ".obj");
-	fopen_s(&obj_file, obj_filename, "r");
+    CV_STRCAT(obj_filename, ".obj");
+    fopen_s(&obj_file, obj_filename, "r");
 #else
-	obj_file = fopen(strcat(obj_filename, ".obj"), "r");
+    obj_file = fopen(strcat(obj_filename, ".obj"), "r");
 #endif 
     
     /* determine number of vertices */
@@ -1211,7 +1214,7 @@ void extract_vertices_from_obj_file_alloc
                         return;
                     }
                     (*out_vertices)[i].v[vertID] = (CH_FLOAT)atof(vert_char);
-					memset(vert_char, 0, 256 * sizeof(char)); 
+                    memset(vert_char, 0, 256 * sizeof(char));
                 }
                 prev_char_isDigit = current_char_isDigit;
             }
@@ -1296,9 +1299,12 @@ void convhull_nd_build_alloc
             min_p = MIN(min_p, points[i*(d+1)+j]);
         }
         span[j] = max_p - min_p;
-        /* If you hit this assertion error, then the input vertices do not span all 'd' dimensions. Therefore the convex hull cannot be built.
-         * In these cases, reduce the dimensionality of the points and call convhull_nd_build() instead with d<3 */
+#ifndef CONVHULL_ALLOW_BUILD_IN_HIGHER_DIM
+        /* If you hit this assertion error, then the input vertices do not span all 'd' dimensions. Therefore the convex hull could be built in less dimensions.
+         * In these cases, consider reducing the dimensionality of the points and calling convhull_nd_build() with a smaller d
+         * You can turn this assert off using CONVHULL_ALLOW_BUILD_IN_HIGHER_DIM if you still wish to build in a higher number of dimensions. */
         assert(span[j]>0.000000001);
+#endif
     }
 
     /* The initial convex hull is a simplex with (d+1) facets, where d is the number of dimensions */
