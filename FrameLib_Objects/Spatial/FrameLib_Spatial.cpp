@@ -64,7 +64,7 @@ void *FrameLib_Spatial::chResize(void *object, void *ptr, size_t size, bool copy
         
     // Make a new allocation (overallocate when growing)
     
-    void *newPtr = chMalloc(object, std::max(512UL, size * 2));
+    void *newPtr = chMalloc(object, std::max(static_cast<size_t>(512), size * 2));
     
     // Copy and free if required
     
