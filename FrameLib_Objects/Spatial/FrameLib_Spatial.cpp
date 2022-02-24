@@ -251,8 +251,9 @@ FrameLib_Spatial::Cartesian FrameLib_Spatial::constrain(Cartesian point)
     
     for (unsigned long i = 0; i < mHull.size(); i ++)
     {
-        const double planeDistance = fabs(mHull[i].toPlane(point));
-        const bool inFront = compareGT(planeDistance, 0.0);
+        const double toPlane = mHull[i].toPlane(point);
+        const double planeDistance = fabs(toPlane);
+        const bool inFront = compareGT(toPlane, 0.0);
         
         // If we are not in front of the face, or the distance to the plane is greater than min_distance this face doesn't have the closest point
         
