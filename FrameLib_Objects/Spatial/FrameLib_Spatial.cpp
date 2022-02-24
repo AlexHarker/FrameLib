@@ -17,7 +17,7 @@
 #define CONVHULL_3D_ENABLE
 #define CONVHULL_ALLOW_BUILD_IN_HIGHER_DIM
 
-#include "../../FrameLib_Dependencies/convhull_3d.h"
+#include "../../FrameLib_Dependencies/convhull_3d/convhull_3d.h"
 
 // Convex Hull Memory Allocation
 
