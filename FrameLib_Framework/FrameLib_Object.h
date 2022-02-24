@@ -231,7 +231,7 @@ public:
     template <class U>
     U *castProxy(FrameLib_Proxy *proxy)
     {
-        return proxy ? dynamic_cast<U *>(proxy) : nullptr;
+        return dynamic_cast<U *>(proxy);
     }
     
     template <class U>
