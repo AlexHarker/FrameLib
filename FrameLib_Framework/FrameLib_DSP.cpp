@@ -642,7 +642,7 @@ void FrameLib_DSP::connectionUpdate(BlockQueue *queue)
         
         Connection connection = i < getNumIns() ? getConnectionInternal(i) : getOrderingConnectionInternal(i - getNumIns());
         
-        mInputs[i].mObject = dynamic_cast<FrameLib_DSP *>(connection.mObject);
+        mInputs[i].mObject = static_cast<FrameLib_DSP *>(connection.mObject);
         mInputs[i].mIndex = mInputs[i].mObject ? connection.mIndex : 0;
 
         // Build the input dependency list

@@ -655,7 +655,7 @@ private:
         if (notify)
         {
             if (queue)
-                queue->add(dynamic_cast<T *>(const_cast<FrameLib_Object *>(this)));
+                queue->add(static_cast<T *>(const_cast<FrameLib_Object *>(this)));
             else
                 callConnectionUpdate();
         }
@@ -843,13 +843,13 @@ private:
         
     void addDependency(Queue *queue) const
     {
-        queue->add(dynamic_cast<T *>(const_cast<FrameLib_Object *>(this)));
+        queue->add(static_cast<T *>(const_cast<FrameLib_Object *>(this)));
     }
     
     template <class U>
     void addDependency(std::vector<U *>& dependencies) const
     {
-        U *object = dynamic_cast<U *>(const_cast<FrameLib_Object *>(this));
+        U *object = static_cast<U *>(const_cast<FrameLib_Object *>(this));
 
         if (object)
             addUniqueItem(dependencies, object);

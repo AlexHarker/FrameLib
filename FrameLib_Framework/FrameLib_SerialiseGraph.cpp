@@ -183,7 +183,7 @@ void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_M
     {
         // Create a space and store the typename and number of streams
         
-        FrameLib_Multistream *object = dynamic_cast<FrameLib_Multistream *>(*it);
+        FrameLib_Multistream *object = static_cast<FrameLib_Multistream *>(*it);
         objects.push_back(FrameLib_ObjectDescription());
         FrameLib_ObjectDescription& description = objects.back();
         
