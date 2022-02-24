@@ -140,9 +140,9 @@ public:
             case kReconstruct:  return mLinGain / mSqrGain;
         }
 
-		assert("This code should never run");
-
-		return 1.0;
+        assert("This code should never run");
+        
+        return 1.0;
     }
     
     // Parameter updates and retrieval

@@ -7,8 +7,8 @@
 
 template <typename T, typename U>
 unsigned long delta(T a, U b)
-{ 
-	return static_cast<unsigned long>(std::distance(a, b)); 
+{
+    return static_cast<unsigned long>(std::distance(a, b)); 
 }
 
 // Constructor
@@ -278,7 +278,7 @@ void FrameLib_Peaks::process()
 
     switch (refine)
     {
-        case kOff:             refinePeaks<refineNone>(output2, output3, data, indices, nPeaks);           break;
+        case kOff:              refinePeaks<refineNone>(output2, output3, data, indices, nPeaks);           break;
         case kParabolic:        refinePeaks<refineParabolic>(output2, output3, data, indices, nPeaks);      break;
         case kParabolicLog:     refinePeaks<refineParabolicLog>(output2, output3, data, indices, nPeaks);   break;
     }

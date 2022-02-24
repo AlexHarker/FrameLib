@@ -115,8 +115,8 @@ public:
         operator U*()                       { return mMemory; }
         operator const U*() const           { return mMemory; }
         
-        U* get()                            { return mMemory; }
-        const U* get() const                { return mMemory; }
+        U* data()                           { return mMemory; }
+        const U* data() const               { return mMemory; }
         
         unsigned long size() const          { return mSize; }
         
@@ -151,10 +151,10 @@ public:
         void deallocate(U *& ptr)           { mObject.dealloc(ptr); }
         
         template <class U>
-        AutoArray<U> allocAutoArray(unsigned long N)  
-		{ 
-			return mObject.allocAutoArray<U>(N); 
-		}
+        AutoArray<U> allocAutoArray(unsigned long N)
+        {
+            return mObject.allocAutoArray<U>(N);
+        }
         
     private:
         
@@ -461,6 +461,12 @@ protected:
             mAllocator->dealloc(ptr);
         
         ptr = nullptr;
+    }
+    
+    template <class U>
+    size_t memorySize(U* ptr)
+    {
+        return mAllocator->memorySize(ptr) / sizeof(U);
     }
     
     void setLocalAllocator(FrameLib_LocalAllocator *allocator)      { mLocalAllocator = allocator; }

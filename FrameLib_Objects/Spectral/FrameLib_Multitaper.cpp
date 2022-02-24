@@ -107,10 +107,10 @@ double FrameLib_Multitaper::getWeight(unsigned long k, unsigned long nTapers)
         case kParabolic:
             return 1.0 - (((k - 1) * (k - 1)) / static_cast<double>(nTapers * nTapers));
     }
-
-	assert("This code should never run");
-
-	return 1.0;
+    
+    assert("This code should never run");
+    
+    return 1.0;
 }
 
 // Process

@@ -99,9 +99,9 @@ double FrameLib_Sink::convertTimeToSamples(double time)
         case kSeconds:  return secondsToSamples(time);
     }
 
-	assert("This code should never run");
-
-	return time;
+    assert("This code should never run");
+    
+    return time;
 }
 
 unsigned long FrameLib_Sink::convertTimeToIntSamples(double time)
@@ -239,12 +239,12 @@ void FrameLib_Sink::process()
     {
         offset = static_cast<unsigned long>(timeOffset.intVal());
         sizeFrame = sizeIn + interpSize;
-        frame = interpolated.get();
+        frame = interpolated.data();
 
         uint64_t interpOffset = cubic ? 1 : 0;
         double position = -static_cast<double>(FrameLib_TimeFormat(interpOffset, timeOffset.fracVal()));
         
-        interpolate_zeropad(Fetcher(input, sizeIn), interpolated.get(), sizeFrame, position, interpType);
+        interpolate_zeropad(Fetcher(input, sizeIn), interpolated.data(), sizeFrame, position, interpType);
     }
     
     // Calculate actual offset into buffer

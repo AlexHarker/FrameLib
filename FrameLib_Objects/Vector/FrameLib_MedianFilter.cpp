@@ -1,6 +1,6 @@
 
 #include "FrameLib_MedianFilter.h"
-#include "FrameLib_Sort_Functions.h"
+#include "FrameLib_Sorting_Functions.h"
 #include "FrameLib_Edges.h"
 #include <algorithm>
 

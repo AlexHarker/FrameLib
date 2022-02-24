@@ -621,9 +621,7 @@ inline void FrameLib_DSP::releaseOutputMemory(LocalAllocator *allocator)
 // Connection Updating
 
 void FrameLib_DSP::connectionUpdate(BlockQueue *queue)
-{
-    std::vector<FrameLib_DSP *>::iterator it;
-    
+{    
     // Clear dependencies
     
     mInputDependencies.clear();

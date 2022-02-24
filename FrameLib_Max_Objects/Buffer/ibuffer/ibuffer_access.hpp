@@ -2,19 +2,19 @@
 /*
  *  ibuffer_access.hpp
  *
- *	Provides an interface for accessing and reading samples from an ibuffer (or MSP buffer).
- *	You should also compile ibufffer_access.cpp in the project
+ *  Provides an interface for accessing and reading samples from an ibuffer (or MSP buffer).
+ *  You should also compile ibufffer_access.cpp in the project
  *
- *	Various kinds of interpolation are supported using SIMD calculation and 32 bit / 64 bit output.
+ *  Various kinds of interpolation are supported using SIMD calculation and 32 bit / 64 bit output.
  *
- *	All output pointers used with SIMD routines should be suitably aligned.
+ *  All output pointers used with SIMD routines should be suitably aligned.
  *
  *  The ibuffer_data class handles acquisition of the (i)buffer~ using RAII.
- *	The main routines for accessing samples are then:
+ *  The main routines for accessing samples are then:
  *
  *  ibuffer_read            - read multiple samples at arbitrary positions with interpolation
- *	ibuffer_get_samp        - get a single sample
- *	ibuffer_get_samps       - get a number of consecutive samples in forward or reverse order
+ *  ibuffer_get_samp        - get a single sample
+ *  ibuffer_get_samps       - get a number of consecutive samples in forward or reverse order
  *
  *  Helpers are provided for using attributes to set the interpolation type.
  *
@@ -221,4 +221,4 @@ void add_ibuffer_interp_attribute(t_class *this_class, const char *attrname)
     CLASS_ATTR_LABEL(this_class, attrname, 0L, "Interpolation Type");
 }
 
-#endif	/* IBUFFER_ACCESS_H */
+#endif /* IBUFFER_ACCESS_H */

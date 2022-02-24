@@ -26,7 +26,7 @@ public:
     
     void reset(double initial = 0.0)
     {
-        std::fill_n(mFrames.get(), getNumFrames() * getFrameLength(), initial);
+        std::fill_n(mFrames.data(), getNumFrames() * getFrameLength(), initial);
     }
     
     // Resize without resetting the memory
