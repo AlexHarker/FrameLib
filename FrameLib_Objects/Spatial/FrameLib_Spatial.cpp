@@ -206,7 +206,7 @@ std::pair<FrameLib_Spatial::Vec3, double> FrameLib_Spatial::HullFace::closestPoi
     // Closest point is on bc
     
     if (compareLT(va, 0.0) && compareGT(d4 - d3, 0.0) && compareGT(d5 - d6, 0.0))
-        return pointWithDistance(b + (c - c) * ((d4 - d3) / ((d4 - d3) + (d5 - d6))), p);
+        return pointWithDistance(b + (c - b) * ((d4 - d3) / ((d4 - d3) + (d5 - d6))), p);
     
     // Closest point is the projection onto the plane
   
