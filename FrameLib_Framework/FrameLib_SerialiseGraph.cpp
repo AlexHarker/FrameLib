@@ -9,7 +9,10 @@
 #ifdef __GNUC__
 #include <cxxabi.h>
 
-void unmangleName(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
+using ObjectList = std::vector<FrameLib_Multistream *>;
+using Connection = FrameLib_Multistream::Connection;
+
+void unmangleName(std::string& name, FrameLib_Multistream *obj)
 {
     int status;
     
@@ -23,7 +26,7 @@ void unmangleName(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
     free(real_name);
 }
 #else
-void unmangleName(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
+void unmangleName(std::string& name, FrameLib_Multistream *obj)
 {
     // FIX - needs implementing
     
@@ -114,7 +117,7 @@ size_t findAndResolveFunctions(std::string& name, size_t beg, size_t end)
     }
 }
 
-void getTypeString(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
+void getTypeString(std::string& name, FrameLib_Multistream *obj)
 {
     unmangleName(name, obj);
 
@@ -123,7 +126,7 @@ void getTypeString(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj
     findAndResolveFunctions(name, 0, name.length() - 1);
 }
 
-void serialiseGraph(std::vector<FrameLib_Object<FrameLib_Multistream> *>& serial, FrameLib_Multistream *object)
+void serialiseGraph(ObjectList& serial, FrameLib_Multistream *object)
 {
     if (std::find(serial.begin(), serial.end(), object) != serial.end())
         return;
@@ -132,13 +135,13 @@ void serialiseGraph(std::vector<FrameLib_Object<FrameLib_Multistream> *>& serial
     
     for (unsigned long i = 0; i < object->getNumIns(); i++)
     {
-        FrameLib_Multistream::Connection connect = object->getConnection(i);
+        Connection connect = object->getConnection(i);
         if (connect.mObject) serialiseGraph(serial, connect.mObject);
     }
     
     for (unsigned long i = 0; i < object->getNumOrderingConnections(); i++)
     {
-        FrameLib_Multistream::Connection connect = object->getOrderingConnection(i);
+        Connection connect = object->getOrderingConnection(i);
         if (connect.mObject) serialiseGraph(serial, connect.mObject);
     }
     
@@ -149,7 +152,7 @@ void serialiseGraph(std::vector<FrameLib_Object<FrameLib_Multistream> *>& serial
     
     // Then search down
     
-    std::vector<FrameLib_Multistream *> outputDependencies;
+    ObjectList outputDependencies;
     
     object->addOutputDependencies(outputDependencies);
     
@@ -157,8 +160,7 @@ void serialiseGraph(std::vector<FrameLib_Object<FrameLib_Multistream> *>& serial
         serialiseGraph(serial, *it);
 }
 
-template <class T>
-void addConnection(FrameLib_ObjectDescription& description, std::vector<FrameLib_Object<T> *> serial, typename FrameLib_Object<T>::Connection connect, unsigned long idx)
+void addConnection(FrameLib_ObjectDescription& description, ObjectList& serial, Connection connect, unsigned long idx)
 {
     using Connection = FrameLib_ObjectDescription::Connection;
     
@@ -171,7 +173,7 @@ void addConnection(FrameLib_ObjectDescription& description, std::vector<FrameLib
 
 void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_Multistream *requestObject)
 {
-    std::vector<FrameLib_Object<FrameLib_Multistream> *> serial;
+    ObjectList serial;
     unsigned long size = 0;
     const unsigned long kOrdering = -1;
 
@@ -183,7 +185,7 @@ void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_M
     {
         // Create a space and store the typename and number of streams
         
-        FrameLib_Multistream *object = static_cast<FrameLib_Multistream *>(*it);
+        FrameLib_Multistream *object = *it;
         objects.push_back(FrameLib_ObjectDescription());
         FrameLib_ObjectDescription& description = objects.back();
         
