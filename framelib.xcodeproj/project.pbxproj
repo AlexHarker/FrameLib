@@ -13741,7 +13741,7 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUGGING_SYMBOLS = YES;
-				DSTROOT = "$(SRCROOT)/Current Test Version/FrameLib/init/";
+				DSTROOT = "$(SRCROOT)/Packaging/Max/FrameLib/init/";
 				GCC_AUTO_VECTORIZATION = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -13771,7 +13771,7 @@
 			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				DSTROOT = "$(SRCROOT)/Current Test Version/FrameLib/init/";
+				DSTROOT = "$(SRCROOT)/Packaging/Max/FrameLib/init/";
 				GCC_AUTO_VECTORIZATION = YES;
 				GCC_DEBUGGING_SYMBOLS = default;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -13801,7 +13801,7 @@
 			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				DSTROOT = "$(SRCROOT)/Current Test Version/FrameLib/init/";
+				DSTROOT = "$(SRCROOT)/Packaging/Max/FrameLib/init/";
 				GCC_AUTO_VECTORIZATION = YES;
 				GCC_DEBUGGING_SYMBOLS = default;
 				GCC_ENABLE_TRIGRAPHS = NO;
