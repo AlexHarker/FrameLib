@@ -120,6 +120,20 @@ FrameLib_Spatial::Vec3 cross(const FrameLib_Spatial::Vec3& v1, const FrameLib_Sp
     return c;
 }
 
+// Comparisons with epsilon
+
+static constexpr double epsilon = 1E-8;
+
+static inline bool compareGT(double a, double b)
+{
+    return a > (b - epsilon);
+}
+
+static inline bool compareLT(double a, double b)
+{
+    return a < (b + epsilon);
+}
+
 // Hull Face
 
 FrameLib_Spatial::Vec3 FrameLib_Spatial::HullFace::faceNormal(const Vec3 &a, const Vec3 &b, const Vec3 &c)
@@ -130,7 +144,7 @@ FrameLib_Spatial::Vec3 FrameLib_Spatial::HullFace::faceNormal(const Vec3 &a, con
     return cross(v1, v2).normalise();
 }
 
-double FrameLib_Spatial::HullFace::distance(const Vec3& p)
+double FrameLib_Spatial::HullFace::toPlane(const Vec3& p)
 {
     return dot(p - a, n);
 }
@@ -152,7 +166,7 @@ std::pair<FrameLib_Spatial::Vec3, double> FrameLib_Spatial::HullFace::closestPoi
     
     // Closest point is a
     
-    if (d1 < 0 && d2 < 0)
+    if (compareLT(d1, 0.0) && compareLT(d2, 0.0))
         return pointWithDistance(a, p);
 
     const Vec3 bp = p - b;
@@ -161,14 +175,14 @@ std::pair<FrameLib_Spatial::Vec3, double> FrameLib_Spatial::HullFace::closestPoi
     
     // Closest point is b
 
-    if (d3 > 0 && d4 < d3)
+    if (compareGT(d3, 0.0) && compareLT(d4, d3))
         return pointWithDistance(b, p);
 
     const double vc = d1 * d4 - d3 * d2;
   
     // Closest point is on ab
     
-    if (vc < 0 && d1 > 0 && d3 < 0)
+    if (compareLT(vc, 0.0) && compareGT(d1, 0.0) && compareLT(d3, 0.0))
         return pointWithDistance(a + ab * (d1 / (d1 - d3)), p);
 
     const Vec3 cp = p - c;
@@ -177,28 +191,28 @@ std::pair<FrameLib_Spatial::Vec3, double> FrameLib_Spatial::HullFace::closestPoi
     
     // Closest point is c
   
-    if (d6 > 0 && d5 < d6)
+    if (compareGT(d6, 0.0) && compareLT(d5, d6))
         return pointWithDistance(c, p);
 
     const double vb = d5 * d2 - d1 * d6;
   
     // Closest point is on ac
     
-    if (vb < 0 && d2 > 0 && d6 < 0)
+    if (compareLT(vb, 0.0) && compareGT(d2, 0.0) && compareLT(d6, 0.0))
         return pointWithDistance(a + ac * (d2 / (d2 - d6)), p);
 
     const double va = d3 * d6 - d5 * d4;
     
     // Closest point is on bc
     
-    if (va < 0 && (d4 - d3) > 0 && (d5 - d6) > 0)
+    if (compareLT(va, 0.0) && compareGT(d4 - d3, 0.0) && compareGT(d5 - d6, 0.0))
         return pointWithDistance(b + (c - c) * ((d4 - d3) / ((d4 - d3) + (d5 - d6))), p);
     
     // Closest point is the projection onto the plane
   
-    const double d7 = distance(p);
+    const double tp = toPlane(p);
     
-    return { p - (n * d7), d7 };
+    return { p - (n * tp), fabs(tp) };
 };
 
 // Spatial Constraints
@@ -227,13 +241,18 @@ FrameLib_Spatial::Cartesian FrameLib_Spatial::constrain(Cartesian point)
     
     // Convex Hull Constraint
     
+    // For a single speaker the hull is a single point
+    
+    if (mSpeakers.size() == 1)
+        return mSpeakers[0];
+    
     double minDistance = std::numeric_limits<double>::infinity();
     Vec3 constrained = point;
     
     for (unsigned long i = 0; i < mHull.size(); i ++)
     {
-        const double planeDistance = mHull[i].distance(point);
-        const bool inFront = planeDistance > 0.0;
+        const double planeDistance = fabs(mHull[i].toPlane(point));
+        const bool inFront = compareGT(planeDistance, 0.0);
         
         // If we are not in front of the face, or the distance to the plane is greater than min_distance this face doesn't have the closest point
         
@@ -255,32 +274,64 @@ FrameLib_Spatial::Cartesian FrameLib_Spatial::constrain(Cartesian point)
 void FrameLib_Spatial::calculateBounds()
 {
     int numSpeakers = static_cast<int>(mSpeakers.size());
+    int numVertices = std::max(numSpeakers, 4);
     int *faces = nullptr;
     int numFaces = 0;
-    
-    // Copy the array into a suitable format
-    size_t s = sizeof(ch_vertex);
-    auto vertices = allocAutoArray<ch_vertex>(mSpeakers.size() + 1);
 
-    for (size_t i = 0; i < mSpeakers.size(); i++)
-        vertices[i] = { mSpeakers[i].x, mSpeakers[i].y, mSpeakers[i].z };
-    
-    // Add a vertex at the origin
-                 
-    vertices[mSpeakers.size()] = { 0.0, 0.0, 0.0 };
-    
-    // Build the hull and keep a copy with calculated / stored normals
-    
-    convhull_3d_build_alloc(vertices.data(), numSpeakers + 1, &faces, &numFaces, this);
+    if (numSpeakers > 1)
+    {
+        // Copy the array into a suitable format
 
-    mHull = allocAutoArray<HullFace>(numFaces);
-    
-    for (int i = 0; i < numFaces; i++)
-        mHull[i] = HullFace(mSpeakers[faces[i * 3 + 0]], mSpeakers[faces[i * 3 + 1]], mSpeakers[faces[i * 3 + 2]]);
+        auto vertices = allocAutoArray<ch_vertex>(numVertices);
 
-    // Free the faces returned from convhull
-    
-    chFree(this, faces);
+        for (size_t i = 0; i < mSpeakers.size(); i++)
+            vertices[i] = { mSpeakers[i].x, mSpeakers[i].y, mSpeakers[i].z };
+        
+        // If we have less than 4 speaers then add synthetic vertices to ensure we can build the hull
+        
+        if (numSpeakers == 2)
+        {
+            // Add two equally space points along the line
+            
+            Vec3 p1 = mSpeakers[0] * (2.0/3.0) + mSpeakers[1] * (1.0/3.0);
+            Vec3 p2 = mSpeakers[1] * (2.0/3.0) + mSpeakers[0] * (1.0/3.0);
+
+            vertices[2] = { p1.x, p1.y, p1.z };
+            vertices[3] = { p2.x, p2.y, p2.z };
+        }
+        else if (numSpeakers == 3)
+        {
+            // Add the centroid of the triangle
+            
+            Vec3 centroid;
+            
+            for (size_t i = 0; i < mSpeakers.size(); i++)
+                centroid = centroid + (mSpeakers[i] * (1.0/3.0));
+            
+            vertices[3] = { centroid.x, centroid.y, centroid.z };
+        }
+        
+        // Build the hull and keep a copy with calculated / stored normals
+        
+        convhull_3d_build_alloc(vertices.data(), numVertices, &faces, &numFaces, this);
+
+        mHull = allocAutoArray<HullFace>(numFaces);
+        
+        for (int i = 0; i < numFaces; i++)
+        {
+            auto& va = vertices[faces[i * 3 + 0]];
+            auto& vb = vertices[faces[i * 3 + 1]];
+            auto& vc = vertices[faces[i * 3 + 2]];
+            
+            mHull[i] = HullFace(Vec3(va.x, va.y, va.z), Vec3(vb.x, vb.y, vb.z), Vec3(vc.x, vc.y, vc.z));
+        }
+
+        // Free the faces returned from convhull
+        
+        chFree(this, faces);
+    }
+    else
+        mHull = allocAutoArray<HullFace>(0);
 
     // Calculate the array sphere radius from the origin
     

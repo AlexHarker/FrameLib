@@ -48,7 +48,7 @@ class FrameLib_Spatial final : public FrameLib_Processor
         
         static Vec3 faceNormal(const Vec3& A, const Vec3& B, const Vec3& C);
 
-        double distance(const Vec3& p);
+        double toPlane(const Vec3& p);
         std::pair<Vec3, double> closestPoint(const Vec3& p);
 
         Vec3 a;
