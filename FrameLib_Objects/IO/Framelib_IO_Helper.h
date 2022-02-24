@@ -70,9 +70,9 @@ public:
             case kSeconds:      return seconds;
         }
 
-		assert("this code should never run");
-
-		return samples;
+        assert("this code should never run");
+        
+        return samples;
     }
     
 private:

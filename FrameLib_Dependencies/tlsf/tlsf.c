@@ -376,22 +376,22 @@ static void block_resize(block_header_t* block, size_t size)
 
 static void block_set_new_size(block_header_t* block, size_t size)
 {
-    block->size = size;
+	block->size = size;
 }
 
 static int block_is_last(const block_header_t* block)
 {
-	return block_size(block) == 0;
+    return block_size(block) == 0;
 }
 
 static int block_is_pool(const block_header_t* block)
 {
-    return tlsf_cast(int, (block->size & block_header_pool_bit) >> FL_INDEX_MAX);
+	return tlsf_cast(int, (block->size & block_header_pool_bit) >> FL_INDEX_MAX);
 }
 
 static void block_set_pool(block_header_t* block)
 {
-    block->size |= block_header_pool_bit;
+	block->size |= block_header_pool_bit;
 }
 
 static int block_is_free(const block_header_t* block)
@@ -1029,7 +1029,7 @@ pool_t tlsf_add_pool(tlsf_t tlsf, void* mem, size_t bytes)
 	*/
 	block = offset_to_block(mem, -(tlsfptr_t)block_header_overhead);
 	block_set_new_size(block, pool_bytes);
-    block_set_pool(block);
+	block_set_pool(block);
 	block_set_free(block);
 	block_set_prev_used(block);
 	block_insert(tlsf_cast(control_t*, tlsf), block);
@@ -1050,7 +1050,7 @@ void tlsf_remove_pool(tlsf_t tlsf, pool_t pool)
 
 	int fl = 0, sl = 0;
 
-    tlsf_assert(block_is_pool(block) && "block should be pool");
+	tlsf_assert(block_is_pool(block) && "block should be pool");
 	tlsf_assert(block_is_free(block) && "block should be free");
 	tlsf_assert(!block_is_free(block_next(block)) && "next block should not be free");
 	tlsf_assert(block_is_last(block_next(block)) && "next block should be last");
@@ -1132,17 +1132,17 @@ pool_t tlsf_get_pool(tlsf_t tlsf)
 
 pool_t block_get_pool(block_header_t* block)
 {
-    assert(block_is_pool(block) && "block must be pool");
-    return tlsf_cast(pool_t, (char*)block + block_header_overhead);
+	assert(block_is_pool(block) && "block must be pool");
+	return tlsf_cast(pool_t, (char*)block + block_header_overhead);
 }
 
 int tlsf_pool_is_free(pool_t pool)
 {
-    block_header_t* block = offset_to_block(pool, -(int)block_header_overhead);
-    
-    assert(block_is_pool(block) && "not a pool");
-    
-    return block_is_free(block) && block_is_last(block_next(block));
+	block_header_t* block = offset_to_block(pool, -(int)block_header_overhead);
+	
+	assert(block_is_pool(block) && "not a pool");
+	
+	return block_is_free(block) && block_is_last(block_next(block));
 }
 
 void* tlsf_malloc(tlsf_t tlsf, size_t size)
@@ -1223,11 +1223,11 @@ pool_t* tlsf_free(tlsf_t tlsf, void* ptr)
 		block = block_merge_next(control, block);
 		block_insert(control, block);
         
-        if (block_is_pool(block) && block_is_last(block_next(block)))
-            return block_get_pool(block);
+		if (block_is_pool(block) && block_is_last(block_next(block)))
+			return block_get_pool(block);
 	}
     
-    return NULL;
+	return NULL;
 }
 
 /*

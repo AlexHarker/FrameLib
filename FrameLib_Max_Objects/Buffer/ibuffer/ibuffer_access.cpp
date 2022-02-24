@@ -2,11 +2,11 @@
 /*
  *  ibuffer_access.cpp
  *
- *	Provides code for accessing and interpolating samplesfrom an ibuffer (or standard MSP buffer).
- *	Various kinds of interpolation are supported.
- *	All pointers used should be 16-byte aligned.
+ *  Provides code for accessing and interpolating samplesfrom an ibuffer (or standard MSP buffer).
+ *  Various kinds of interpolation are supported.
+ *  All pointers used should be 16-byte aligned.
  *
- *	See the accompanying header file for more details.
+ *  See the accompanying header file for more details.
  *
  *  Copyright 2010-20 Alex Harker. All rights reserved.
  *
@@ -204,7 +204,7 @@ void ibuffer_read_edges(const ibuffer_data& buffer, float *out, const float *pos
 template <class T, class Ft>
 void ibuffer_get_samps_loop(Ft fetch, T *out, intptr_t offset, intptr_t n_samps, bool reverse)
 {
-	if (reverse)
+    if (reverse)
     {
         for (intptr_t i = n_samps - 1; i >= 0; i--)
             *out++ = static_cast<T>(fetch.get(offset + i));

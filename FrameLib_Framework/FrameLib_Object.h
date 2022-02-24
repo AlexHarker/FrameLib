@@ -151,10 +151,10 @@ public:
         void deallocate(U *& ptr)           { mObject.dealloc(ptr); }
         
         template <class U>
-        AutoArray<U> allocAutoArray(unsigned long N)  
-		{ 
-			return mObject.allocAutoArray<U>(N); 
-		}
+        AutoArray<U> allocAutoArray(unsigned long N)
+        {
+            return mObject.allocAutoArray<U>(N);
+        }
         
     private:
         

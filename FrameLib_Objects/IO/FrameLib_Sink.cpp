@@ -88,9 +88,9 @@ double FrameLib_Sink::convertTimeToSamples(double time)
         case kSeconds:  return secondsToSamples(time);
     }
 
-	assert("This code should never run");
-
-	return time;
+    assert("This code should never run");
+    
+    return time;
 }
 
 unsigned long FrameLib_Sink::convertTimeToIntSamples(double time)

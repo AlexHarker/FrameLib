@@ -7,8 +7,8 @@
 
 template <typename T, typename U>
 unsigned long delta(T a, U b)
-{ 
-	return static_cast<unsigned long>(std::distance(a, b)); 
+{
+    return static_cast<unsigned long>(std::distance(a, b)); 
 }
 
 // Constructor

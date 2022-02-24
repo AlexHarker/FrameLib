@@ -491,14 +491,14 @@ public:
     {
         std::unique_ptr<RefData>& item = mContextRefs[key];
         
-		if (!item)
-		{
+        if (!item)
+        {
             item.reset(new RefData());
             FrameLib_Context context(key.mRealtime ? mRTGlobal : mNRTGlobal, item.get());
             
-			std::get<kKey>(*item) = key;
+            std::get<kKey>(*item) = key;
             std::get<kCount>(*item) = 1;
-			std::get<kFinal>(*item) = nullptr;
+            std::get<kFinal>(*item) = nullptr;
             std::get<kHandler>(*item) = unique_object_ptr((t_object *)object_new_typed(CLASS_NOBOX, gensym("__fl.message.handler"), 0, nullptr));
             std::get<kQueuePtr>(*item) = QueuePtr(new FrameLib_Context::ProcessingQueue(context));
             
@@ -508,7 +508,7 @@ public:
                 (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(16.0, 1.0);
             else
                 (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(100.0, 30.0);
-		}
+        }
         else
             std::get<kCount>(*item)++;
         
@@ -587,8 +587,8 @@ private:
         if (maxversion() >= 0x800)
             return { 31, 31, 43, SCHED_RR, false };
 #else
-		if (!realtime)
-			return { 31, 31, 31, 0, true };
+        if (!realtime)
+            return { 31, 31, 31, 0, true };
 #endif
         return FrameLib_Thread::defaultPriorities();
     }
@@ -1707,8 +1707,8 @@ public:
     
     static void extResolveConnections(FrameLib_MaxClass *x, t_ptr_int *flag)
     {
-		bool updated = x->resolveConnections();
-		*flag = *flag || updated;
+        bool updated = x->resolveConnections();
+        *flag = *flag || updated;
     }
     
     static void extMarkUnresolved(FrameLib_MaxClass *x)

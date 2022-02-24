@@ -71,7 +71,7 @@ public:
     
     template <class T>struct Gimme { typedef void (T::*MethodGimme) (t_symbol *s, long ac, t_atom *av); };
     template <class T, typename Gimme<T>::MethodGimme F> static void call(T *x, t_symbol *s, long ac, t_atom *av) {(x->*F)(s, ac, av); };
-	template <class T, typename Gimme<T>::MethodGimme F>
+    template <class T, typename Gimme<T>::MethodGimme F>
     static void addMethod(t_class *c, const char *name) { auto f = call<T, F>;  class_addmethod(c, (method) f, name, A_GIMME, 0); }
     
     template <class T> struct Long { typedef void (T::*MethodLong)(t_atom_long v); };
