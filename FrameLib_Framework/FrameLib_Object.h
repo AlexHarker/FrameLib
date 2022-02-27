@@ -376,7 +376,7 @@ public:
     
     // Automatic Dependency Connections
     
-    virtual void autoOrderingConnections() = 0;
+    virtual void makeAutoOrderingConnections() = 0;
     virtual void clearAutoOrderingConnections() = 0;
     
     // Connection Update

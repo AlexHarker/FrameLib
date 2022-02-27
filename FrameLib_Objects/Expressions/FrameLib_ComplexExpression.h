@@ -102,7 +102,7 @@ public:
     
     // Ordering Connections
     
-    void autoOrderingConnections() override {};
+    void makeAutoOrderingConnections() override {};
     void clearAutoOrderingConnections() override {};
     
 private:

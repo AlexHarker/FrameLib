@@ -656,13 +656,13 @@ void FrameLib_DSP::connectionUpdate(BlockQueue *queue)
     addOutputDependencies(mOutputDependencies);
 }
 
-void FrameLib_DSP::autoOrderingConnections()
+void FrameLib_DSP::makeAutoOrderingConnections()
 {
      if (supportsOrderingConnections())
-         LocalQueue(this, &FrameLib_DSP::autoOrderingConnections);
+         LocalQueue(this, &FrameLib_DSP::makeAutoOrderingConnections);
 }
 
-void FrameLib_DSP::autoOrderingConnections(LocalQueue *queue)
+void FrameLib_DSP::makeAutoOrderingConnections(LocalQueue *queue)
 {
     if (supportsOrderingConnections() && queue->getFirst())
         addOrderingConnection(Connection(queue->getFirst(), 0));
