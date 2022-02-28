@@ -403,7 +403,7 @@ bool FrameLib_Parameters::Serial::checkSize(unsigned long writeSize)
 
 // ************************************************************************************** //
 
-// AutoSerial Class (owning/resizing/allocating it's own memory using system routines - not suitable for audio thread use)
+// AutoSerial Class (owning/resizing/allocating its own memory using system routines - not suitable for audio thread use)
 
 FrameLib_Parameters::AutoSerial::AutoSerial(AutoSerial&& other) : Serial(other.mPtr, other.mMaxSize)
 {
