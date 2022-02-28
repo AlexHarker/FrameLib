@@ -2,7 +2,7 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-PACKAGE_PATH="$DIR/Max/FrameLib"
+PACKAGE_PATH="$DIR/FrameLib"
 EXTERNAL_PATH="$PACKAGE_PATH/externals"
 NOTARIZE="$DIR/package_notarize_external.sh"
 

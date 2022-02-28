@@ -1,23 +1,18 @@
-# FrameLib Documentation
+# FrameLib Max Documentation
 
 ## Welcome
-You are able to build the documentation for FrameLib yourself, except for certain resources such as:
+You are able to build the documentation for the Max FrameLib yourself, except for certain resources such as:
 
 1. Max help files
 2. Max tutorials
 
-Some elements of the above resources are automatically generated though, like `.json` files and `.txt` files that are automatically loaded into dictionaries in colls. For example, the landing page of the FrameLib tutorials contains `umenu` objects which are automatically populated with all the objects that exist in the source code. This means that if you fork FrameLib and create your own objects using the Framework, the documentation builder can be run in order to automatically create a number of things for you.
+Some elements of the above resources are automatically generated though `.json` files and `.txt` files that are automatically loaded into dictionaries in colls. For example, the landing page of the FrameLib tutorials contains `umenu` objects which are automatically populated with all the objects that exist in the source code. This means that if you fork FrameLib and create your own objects using the Framework, the documentation builder can be run in order to automatically create a number of things for you.
 
 ## How to build
 
-### Installing Xcode 9.4.1
+### Installing Xcode
 
-You will need to download Xcode. Building has been tested on version 9.4.1. The most recent version as 23/08/19 is Version 10.3. To download an old version you will need to look beyond the app store and follow these tops.
-
-1. Go to https://developer.apple.com/download/more/
-2. Follow the prompts
-
-Note you may need an account to get the older versions of xcode.
+You will need to download Xcode from the App Store. 
 
 ### Installing Dependencies
 
@@ -29,20 +24,20 @@ The website and guide on installing brew can be found here:
 
 https://brew.sh
 
-If you don't want to install `brew` to manage your python install, or you already have it managed another way then you will need to make sure that python version 3 can be called by invoking the command `python3` from your terminal. As a last resort you can modify the build settings for the xcode project scheme 'Documentation'. You will want to modify the pre and post shell commands and the syntax that is used for calling on Python.
+If you don't want to install `brew` to manage your python install, or you already have it managed another way then you will need to make sure that python version 3 can be called by invoking the command `python3` from your terminal.
 
 Once you have Python configured you will need to install the FrameLibDocs package using `pip`. Usually, `pip` for your Python 3 installation is aliased to the command `pip3` so the following commands refer to that usage.
 
 `cd` into FrameLib/Documentation/Max Documentation
 `pip3 install -e FrameLibDocs`
 
-This installs the FrameLibDocs in an editable mode, meaning you can make edits to the package for your own purpose without having to reinstall it everytime a change is mode. If you aren't interested in making changes then you can simply run the command and forget about it.
+This installs the FrameLibDocs in an editable mode, meaning you can make edits to the package for your own purpose without having to reinstall it everytime a change is made. If you aren't interested in making changes then you can simply run the command and forget about it.
 
 ### Building
 
-Once you have a working version of Xcode 9.4.1 and Python 3 there are a few options to build.
+Once you have a working version of Xcode and Python 3 there are a few options to build.
 
-The easiest way is to open the `framelib~-documentation.xcodeproj` and run (Cmd + R) the 'Documentation' scheme. 
+The easiest way is to open the `framelib.xcodeproj` and run (Cmd + R) the 'framelib Max Documentation' scheme. 
 
 ### Incorporating your own objects into the docs
 

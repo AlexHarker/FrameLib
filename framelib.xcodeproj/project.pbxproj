@@ -10975,7 +10975,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "python3 \"${SRCROOT}/Documentation/Max Documentation/0_generate_Max_Object_List.h.py\" fl.contextcontrol~";
+			shellScript = "pip3 install -e \"$SRCROOT/Documentation/Max Documentation/FrameLibDocs\" || exit 1\npython3 \"${SRCROOT}/Documentation/Max Documentation/0_generate_Max_Object_List.h.py\" fl.contextcontrol~ || exit 1\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

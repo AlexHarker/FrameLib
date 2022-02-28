@@ -127,7 +127,7 @@ void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
             // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
             if (verbose)
             {
-                if (type == FrameLib_Parameters::kEnum){
+                if (type == FrameLib_Parameters::Type::Enum){
                     
                     myfile << "<br></br> \n" ; // if enum put a break big break between description and the enum options
                     
