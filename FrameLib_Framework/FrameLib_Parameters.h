@@ -145,7 +145,7 @@ public:
         Serial(BytePointer ptr, unsigned long size);
         Serial();
         
-        // Non-copyable but movable
+        // Non-copyable but moveable
         
         Serial(const Serial&) = delete;
         Serial& operator=(const Serial&) = delete;
