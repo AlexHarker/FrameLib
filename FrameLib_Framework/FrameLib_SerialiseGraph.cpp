@@ -9,9 +9,6 @@
 #ifdef __GNUC__
 #include <cxxabi.h>
 
-using ObjectList = std::vector<FrameLib_Multistream *>;
-using Connection = FrameLib_Multistream::Connection;
-
 void unmangleName(std::string& name, FrameLib_Multistream *obj)
 {
     int status;
@@ -125,6 +122,9 @@ void getTypeString(std::string& name, FrameLib_Multistream *obj)
     
     findAndResolveFunctions(name, 0, name.length() - 1);
 }
+
+using ObjectList = std::vector<FrameLib_Multistream*>;
+using Connection = FrameLib_Multistream::Connection;
 
 void serialiseGraph(ObjectList& serial, FrameLib_Multistream *object)
 {
