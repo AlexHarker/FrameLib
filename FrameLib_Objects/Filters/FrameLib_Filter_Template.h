@@ -318,7 +318,8 @@ class FrameLib_Filter final : public FrameLib_Processor
             
             // Get Input
             
-            unsigned long sizeIn, sizeOut;
+            unsigned long sizeIn;
+            unsigned long sizeOut = 0;
             unsigned long numOuts = obj.getNumOuts();
             const double *input = obj.getInput(0, &sizeIn);
             
@@ -403,7 +404,7 @@ class FrameLib_Filter final : public FrameLib_Processor
             // Get Input
             
             unsigned long sizeIn = 1;
-            unsigned long sizeOut;
+            unsigned long sizeOut = 0;
             unsigned long numOuts = obj.getNumOuts();
             
             // Read in the parameter inputs and check if they change
