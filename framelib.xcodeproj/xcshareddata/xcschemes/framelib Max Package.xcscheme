@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B852586D259F4D05001D64B9"
-               BuildableName = "framelib_max_docs"
-               BlueprintName = "framelib_max_docs"
-               ReferencedContainer = "container:framelib.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8C2BB8B27CD9BB300B161F9"
-               BuildableName = "framelib_max_objects"
-               BlueprintName = "framelib_max_objects"
+               BuildableName = "framelib_max_package"
+               BlueprintName = "framelib_max_package"
                ReferencedContainer = "container:framelib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -61,15 +47,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B852586D259F4D05001D64B9"
-            BuildableName = "framelib_max_docs"
-            BlueprintName = "framelib_max_docs"
-            ReferencedContainer = "container:framelib.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

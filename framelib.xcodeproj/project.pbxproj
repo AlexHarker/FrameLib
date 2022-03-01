@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		B8C2BB8B27CD9BB300B161F9 /* framelib_max_objects */ = {
+		B8C2BB8B27CD9BB300B161F9 /* framelib_max_package */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = B8C2BB8C27CD9BB300B161F9 /* Build configuration list for PBXAggregateTarget "framelib_max_objects" */;
+			buildConfigurationList = B8C2BB8C27CD9BB300B161F9 /* Build configuration list for PBXAggregateTarget "framelib_max_package" */;
 			buildPhases = (
 				B8C2BCDA27CD9C2400B161F9 /* ShellScript */,
 			);
 			dependencies = (
+				B8DE5F1127CE1D81006957D8 /* PBXTargetDependency */,
 				B8C2BB9127CD9BD500B161F9 /* PBXTargetDependency */,
 				B8C2BB9327CD9BD500B161F9 /* PBXTargetDependency */,
 				B8C2BB9527CD9BD500B161F9 /* PBXTargetDependency */,
@@ -180,7 +181,7 @@
 				B8C2BCD727CD9BD500B161F9 /* PBXTargetDependency */,
 				B8C2BCD927CD9BD500B161F9 /* PBXTargetDependency */,
 			);
-			name = framelib_max_objects;
+			name = framelib_max_package;
 			productName = framelib_max_objects;
 		};
 /* End PBXAggregateTarget section */
@@ -3050,6 +3051,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
 			remoteInfo = framelib;
+		};
+		B8DE5F1027CE1D81006957D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B852586D259F4D05001D64B9;
+			remoteInfo = framelib_max_docs;
 		};
 		B8DF11451FBF97B600C6229D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -10923,7 +10931,7 @@
 				B88C0A3021733BF9007A65C0 /* FrameLib */,
 				B8020472231BDCB80062447A /* framelib_max */,
 				B852586D259F4D05001D64B9 /* framelib_max_docs */,
-				B8C2BB8B27CD9BB300B161F9 /* framelib_max_objects */,
+				B8C2BB8B27CD9BB300B161F9 /* framelib_max_package */,
 				B83E029B206674D4005925DD /* framelib_pd */,
 				B8454404230DC266000E42DE /* fl.contextcontrol~ */,
 				B8CA31DE199A20BE005F30A1 /* fl.pack~ */,
@@ -12325,7 +12333,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$SRCROOT/Packaging/Max/package_notarization.sh\"\n";
+			shellScript = "\"$SRCROOT/Packaging/Max/package_build.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -15558,6 +15566,11 @@
 			isa = PBXTargetDependency;
 			target = B89ABA8F1FA73483006DAD53 /* framelib */;
 			targetProxy = B8DA052D23C5F05E00D0894F /* PBXContainerItemProxy */;
+		};
+		B8DE5F1127CE1D81006957D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B852586D259F4D05001D64B9 /* framelib_max_docs */;
+			targetProxy = B8DE5F1027CE1D81006957D8 /* PBXContainerItemProxy */;
 		};
 		B8DF11441FBF97B600C6229D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -28121,7 +28134,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8C2BB8C27CD9BB300B161F9 /* Build configuration list for PBXAggregateTarget "framelib_max_objects" */ = {
+		B8C2BB8C27CD9BB300B161F9 /* Build configuration list for PBXAggregateTarget "framelib_max_package" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8C2BB8D27CD9BB300B161F9 /* Development */,
