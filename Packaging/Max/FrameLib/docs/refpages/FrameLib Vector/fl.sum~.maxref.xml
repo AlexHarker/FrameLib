@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.sum~">
+<c74object name="fl.sum~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Calculates the sum of the input frame.
     </digest>

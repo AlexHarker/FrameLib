@@ -1,4 +1,4 @@
-<c74object category="FrameLib Schedulers" module="FrameLib" name="fl.once~">
+<c74object name="fl.once~" module="FrameLib" category="FrameLib Schedulers">
   <digest> 
         Schedules a single frame at the begining of time that lasts forever.
     </digest>

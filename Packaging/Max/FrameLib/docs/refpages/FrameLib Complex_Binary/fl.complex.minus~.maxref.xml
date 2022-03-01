@@ -1,4 +1,4 @@
-<c74object category="FrameLib Complex_Binary" module="FrameLib" name="fl.complex.minus~">
+<c74object name="fl.complex.minus~" module="FrameLib" category="FrameLib Complex_Binary">
   <digest> 
         Subtracts complex values in the right input frame pair from those in the left pair.
     </digest>

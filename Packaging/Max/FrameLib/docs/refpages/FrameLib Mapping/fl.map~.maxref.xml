@@ -1,4 +1,4 @@
-<c74object category="FrameLib Mapping" module="FrameLib" name="fl.map~">
+<c74object name="fl.map~" module="FrameLib" category="FrameLib Mapping">
   <digest> 
         Maps values from input to output via a specified scaling.
     </digest>

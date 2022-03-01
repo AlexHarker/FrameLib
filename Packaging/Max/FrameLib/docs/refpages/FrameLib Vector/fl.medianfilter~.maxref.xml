@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.medianfilter~">
+<c74object name="fl.medianfilter~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Applies a median or other specified percentiled filter to the input.
     </digest>

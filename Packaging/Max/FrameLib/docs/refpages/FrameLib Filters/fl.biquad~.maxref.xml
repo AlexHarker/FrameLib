@@ -1,4 +1,4 @@
-<c74object category="FrameLib Filters" module="FrameLib" name="fl.biquad~">
+<c74object name="fl.biquad~" module="FrameLib" category="FrameLib Filters">
   <digest> 
         Applies a biquad filter to the input.
     </digest>

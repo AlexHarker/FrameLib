@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.nonzero~">
+<c74object name="fl.nonzero~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Outputs the indices of input samples that are non-zero.
     </digest>

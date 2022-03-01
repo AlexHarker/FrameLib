@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.spread~">
+<c74object name="fl.spread~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Calculates the spread of the input frame.
     </digest>

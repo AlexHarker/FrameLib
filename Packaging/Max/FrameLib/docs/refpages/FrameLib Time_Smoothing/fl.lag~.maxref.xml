@@ -1,4 +1,4 @@
-<c74object category="FrameLib Time_Smoothing" module="FrameLib" name="fl.lag~">
+<c74object name="fl.lag~" module="FrameLib" category="FrameLib Time_Smoothing">
   <digest> 
         Delay vector type input by a whole number of frames.
     </digest>

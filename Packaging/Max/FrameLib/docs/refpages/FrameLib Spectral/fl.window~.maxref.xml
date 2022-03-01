@@ -1,4 +1,4 @@
-<c74object category="FrameLib Spectral" module="FrameLib" name="fl.window~">
+<c74object name="fl.window~" module="FrameLib" category="FrameLib Spectral">
   <digest> 
         Multiplies the input frame by a specified window.
     </digest>

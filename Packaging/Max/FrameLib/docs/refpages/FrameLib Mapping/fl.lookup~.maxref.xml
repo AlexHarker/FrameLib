@@ -1,4 +1,4 @@
-<c74object category="FrameLib Mapping" module="FrameLib" name="fl.lookup~">
+<c74object name="fl.lookup~" module="FrameLib" category="FrameLib Mapping">
   <digest> 
         Lookup values from one input using a table provided at another.
     </digest>

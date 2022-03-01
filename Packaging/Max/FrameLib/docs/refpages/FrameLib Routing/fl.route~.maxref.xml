@@ -1,4 +1,4 @@
-<c74object category="FrameLib Routing" module="FrameLib" name="fl.route~">
+<c74object name="fl.route~" module="FrameLib" category="FrameLib Routing">
   <digest> 
         Routes the input to one of a number of outputs.
     </digest>

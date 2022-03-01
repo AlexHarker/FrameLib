@@ -1,4 +1,4 @@
-<c74object category="FrameLib Streaming" module="FrameLib" name="fl.pack~">
+<c74object name="fl.pack~" module="FrameLib" category="FrameLib Streaming">
   <digest> 
         Packs multiple frame streams into a multistream output.
     </digest>

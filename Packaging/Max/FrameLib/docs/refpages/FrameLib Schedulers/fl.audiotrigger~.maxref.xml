@@ -1,4 +1,4 @@
-<c74object category="FrameLib Schedulers" module="FrameLib" name="fl.audiotrigger~">
+<c74object name="fl.audiotrigger~" module="FrameLib" category="FrameLib Schedulers">
   <digest> 
         Schedules frames based on non-zero audio input.
     </digest>

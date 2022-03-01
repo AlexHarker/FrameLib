@@ -1,4 +1,4 @@
-<c74object category="FrameLib Expressions" module="FrameLib" name="fl.complex.expr~">
+<c74object name="fl.complex.expr~" module="FrameLib" category="FrameLib Expressions">
   <digest> 
         Calculates the result of a mathematical expression involving complex numbers.
     </digest>

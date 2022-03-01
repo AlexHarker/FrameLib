@@ -4558,8 +4558,39 @@
             "fl.complex.expr~"
         ]
     },
+    "fl.makestring~": {
+        "digest": "Creates a tagged string by concatenating strings and numbers.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "FrameLib Parameters"
+        ],
+        "keywords": [
+            "expression"
+        ],
+        "seealso": [
+            "fl.complex.expr~"
+        ]
+    },
     "fl.filtertags~": {
         "digest": "Filters tagged frames using a set of specified tags.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "FrameLib Parameters"
+        ],
+        "keywords": [
+            "parameters"
+        ],
+        "seealso": [
+            "fl.tag~",
+            "fl.untag~",
+            "fl.combinetags~",
+            "fl.getparam~"
+        ]
+    },
+    "fl.lookupstring~": {
+        "digest": "Lookup a specified string from an internally stored list of strings.",
         "module": "FrameLib",
         "category": [
             "FrameLib",

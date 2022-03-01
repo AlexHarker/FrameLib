@@ -1,4 +1,4 @@
-<c74object category="FrameLib Binary" module="FrameLib" name="fl.diff~">
+<c74object name="fl.diff~" module="FrameLib" category="FrameLib Binary">
   <digest> 
         Calculates the absolute differences between values in the two input frames.
     </digest>

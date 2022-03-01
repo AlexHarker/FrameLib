@@ -1,4 +1,4 @@
-<c74object category="FrameLib Streaming" module="FrameLib" name="fl.streamid~">
+<c74object name="fl.streamid~" module="FrameLib" category="FrameLib Streaming">
   <digest> 
         Outputs the stream id for each stream in a multistream connection.
     </digest>

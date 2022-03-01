@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.chop~">
+<c74object name="fl.chop~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Chops input frames into equally sized output frames of a specified size.
     </digest>

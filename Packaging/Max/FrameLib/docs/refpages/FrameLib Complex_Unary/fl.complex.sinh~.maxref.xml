@@ -1,4 +1,4 @@
-<c74object category="FrameLib Complex_Unary" module="FrameLib" name="fl.complex.sinh~">
+<c74object name="fl.complex.sinh~" module="FrameLib" category="FrameLib Complex_Unary">
   <digest> 
         Calculates the hyperbolic sine of each complex value at the inputs.
     </digest>

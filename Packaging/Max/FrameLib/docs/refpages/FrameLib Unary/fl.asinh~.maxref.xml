@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.asinh~">
+<c74object name="fl.asinh~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the hyperbolic arcsine of each value in the input frame.
     </digest>

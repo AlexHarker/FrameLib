@@ -1,4 +1,4 @@
-<c74object category="FrameLib Routing" module="FrameLib" name="fl.dispatch~">
+<c74object name="fl.dispatch~" module="FrameLib" category="FrameLib Routing">
   <digest> 
         Dispatches multiple inputs dynamically to multiple outputs.
     </digest>

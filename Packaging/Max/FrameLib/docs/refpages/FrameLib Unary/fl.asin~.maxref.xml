@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.asin~">
+<c74object name="fl.asin~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the arcsine (in radians) of each value in the input frame.
     </digest>

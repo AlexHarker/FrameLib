@@ -1,4 +1,4 @@
-<c74object category="FrameLib Buffer" module="FrameLib" name="fl.read~">
+<c74object name="fl.read~" module="FrameLib" category="FrameLib Buffer">
   <digest> 
         Reads from a specified host buffer given an input frame of positions.
     </digest>

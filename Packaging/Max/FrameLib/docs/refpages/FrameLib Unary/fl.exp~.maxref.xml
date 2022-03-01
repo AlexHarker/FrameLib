@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.exp~">
+<c74object name="fl.exp~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the exponent base e (e^x) of each value in the input frame.
     </digest>

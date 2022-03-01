@@ -1,4 +1,4 @@
-<c74object category="FrameLib Spectral" module="FrameLib" name="fl.ifft~">
+<c74object name="fl.ifft~" module="FrameLib" category="FrameLib Spectral">
   <digest> 
         Calculate the real or complex inverse Fast Fourier Transform of the inputs (real and imaginary).
     </digest>

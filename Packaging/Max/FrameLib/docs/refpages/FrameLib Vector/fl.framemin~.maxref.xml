@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.framemin~">
+<c74object name="fl.framemin~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Calculates the minimum value of the input frame.
     </digest>

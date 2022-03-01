@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.exp2~">
+<c74object name="fl.exp2~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the exponent base 2 (2^x) of each value in the input frame.
     </digest>

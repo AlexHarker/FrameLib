@@ -1,4 +1,4 @@
-<c74object category="FrameLib Time_Smoothing" module="FrameLib" name="fl.framedelta~">
+<c74object name="fl.framedelta~" module="FrameLib" category="FrameLib Time_Smoothing">
   <digest> 
         Outputs the deltas between consecutive frames.
     </digest>

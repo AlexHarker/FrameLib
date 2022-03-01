@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.crest~">
+<c74object name="fl.crest~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Calculates the crest factor of the input frame.
     </digest>

@@ -1,4 +1,4 @@
-<c74object category="FrameLib Mapping" module="FrameLib" name="fl.samplerate~">
+<c74object name="fl.samplerate~" module="FrameLib" category="FrameLib Mapping">
   <digest> 
         Convert or output values based on the sample rate.
     </digest>
@@ -8,7 +8,7 @@
   <misc name="Parameters">
     <entry name="1. /mode [enum]">
       <description> 
-                Sets the type of conversion or value to output:<br/><br/>rate - output the sample rate in Hz.<br/>nyquist - output the nyquist frequency in Hz.<br/>samples-ms - convert from samples to milliseconds.<br/>samples-seconds - convert from samples to seconds.<br/>ms-samples - convert from milliseconds to samples.<br/>seconds-samples - convert from seconds to samples.<br/>normalised-freq - convert from normalised frequency to frequency in Hz.<br/>freq-normalised  - convert from frequency in Hz to normalised frequency.<br />
+                Sets the type of conversion or value to output:<br/><br/>rate - output the sample rate in Hz.<br/>nyquist - output the nyquist frequency in Hz.<br/>samples-ms - convert from samples to milliseconds.<br/>samples-seconds - convert from samples to seconds.<br/>ms-samples - convert from milliseconds to samples.<br/>seconds-samples - convert from seconds to samples.<br/>normalised-hz - convert from normalised frequency to frequency in Hz.<br/>h-normalised - convert from frequency in Hz to normalised frequency.<br />
         <bullet>[0] - rate</bullet>
         <bullet>[1] - nyquist</bullet>
         <bullet>[2] - samples-&gt;ms</bullet>

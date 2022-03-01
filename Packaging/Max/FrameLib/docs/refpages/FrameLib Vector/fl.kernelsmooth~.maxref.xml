@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.kernelsmooth~">
+<c74object name="fl.kernelsmooth~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Smooth an input based on a provided smoothing kernel.
     </digest>

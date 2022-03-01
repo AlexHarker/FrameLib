@@ -1,4 +1,4 @@
-<c74object category="FrameLib Parameters" module="FrameLib" name="fl.filtertags~">
+<c74object name="fl.filtertags~" module="FrameLib" category="FrameLib Parameters">
   <digest> 
         Filters tagged frames using a set of specified tags.
     </digest>

@@ -1,4 +1,4 @@
-<c74object category="FrameLib Binary" module="FrameLib" name="fl.hypot~">
+<c74object name="fl.hypot~" module="FrameLib" category="FrameLib Binary">
   <digest> 
         Calculates the length of a hypotenuse given the two operands as the other lengths.
     </digest>

@@ -1,4 +1,4 @@
-<c74object category="FrameLib Timing" module="FrameLib" name="fl.ticks~">
+<c74object name="fl.ticks~" module="FrameLib" category="FrameLib Timing">
   <digest> 
         Counts incoming frames.
     </digest>

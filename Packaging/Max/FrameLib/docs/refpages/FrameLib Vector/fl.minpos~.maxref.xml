@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.minpos~">
+<c74object name="fl.minpos~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Calculates the index of the minimum value of the input frame.
     </digest>

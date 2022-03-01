@@ -1,4 +1,4 @@
-<c74object category="FrameLib Spectral" module="FrameLib" name="fl.fft~">
+<c74object name="fl.fft~" module="FrameLib" category="FrameLib Spectral">
   <digest> 
         Calculate the real or complex Fast Fourier Transform of the input(s).
     </digest>

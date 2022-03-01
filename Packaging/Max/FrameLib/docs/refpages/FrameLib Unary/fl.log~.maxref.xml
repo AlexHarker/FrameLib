@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.log~">
+<c74object name="fl.log~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the logarithm base e of each value in the input frame.
     </digest>

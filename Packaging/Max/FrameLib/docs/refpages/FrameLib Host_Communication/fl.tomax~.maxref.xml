@@ -1,4 +1,4 @@
-<c74object category="FrameLib Host_Communication" module="FrameLib" name="fl.tomax~">
+<c74object name="fl.tomax~" module="FrameLib" category="FrameLib Host_Communication">
   <digest> 
         Turn frames into host messages or control signals.
     </digest>

@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.erf~">
+<c74object name="fl.erf~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the error function of each value in the input frame.
     </digest>

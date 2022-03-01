@@ -1,4 +1,4 @@
-<c74object category="FrameLib Complex_Unary" module="FrameLib" name="fl.complex.tanh~">
+<c74object name="fl.complex.tanh~" module="FrameLib" category="FrameLib Complex_Unary">
   <digest> 
         Calculates the hyperbolic tangent of each complex value at the inputs.
     </digest>

@@ -1,4 +1,4 @@
-<c74object category="FrameLib Generators" module="FrameLib" name="fl.gaussian~">
+<c74object name="fl.gaussian~" module="FrameLib" category="FrameLib Generators">
   <digest> 
         Generates frames of normally distributed random values.
     </digest>

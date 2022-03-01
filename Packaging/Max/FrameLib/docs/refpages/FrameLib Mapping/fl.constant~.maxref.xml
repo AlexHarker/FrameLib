@@ -1,4 +1,4 @@
-<c74object category="FrameLib Mapping" module="FrameLib" name="fl.constant~">
+<c74object name="fl.constant~" module="FrameLib" category="FrameLib Mapping">
   <digest> 
         Outputs a specified constant.
     </digest>

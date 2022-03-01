@@ -1,4 +1,4 @@
-<c74object category="FrameLib Binary" module="FrameLib" name="fl.modulo~">
+<c74object name="fl.modulo~" module="FrameLib" category="FrameLib Binary">
   <digest> 
         Calculates the left input frame values modulo the right input frame values.
     </digest>

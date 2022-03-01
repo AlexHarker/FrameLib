@@ -1,4 +1,4 @@
-<c74object category="FrameLib Generators" module="FrameLib" name="fl.ramp~">
+<c74object name="fl.ramp~" module="FrameLib" category="FrameLib Generators">
   <digest> 
         Generates a linear ramp across each output frame.
     </digest>

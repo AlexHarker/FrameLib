@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.stddev~">
+<c74object name="fl.stddev~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Calculates the standard deviation of the input frame.
     </digest>

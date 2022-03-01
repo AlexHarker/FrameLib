@@ -1,4 +1,4 @@
-<c74object category="FrameLib Buffer" module="FrameLib" name="fl.info~">
+<c74object name="fl.info~" module="FrameLib" category="FrameLib Buffer">
   <digest> 
         Outputs the sample rate, number of channels and length of a specified buffer.
     </digest>

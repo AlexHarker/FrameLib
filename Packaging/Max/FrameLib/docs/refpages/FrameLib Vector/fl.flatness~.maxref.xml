@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.flatness~">
+<c74object name="fl.flatness~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Calculates the flatness (as a ratio) of the input frame.
     </digest>

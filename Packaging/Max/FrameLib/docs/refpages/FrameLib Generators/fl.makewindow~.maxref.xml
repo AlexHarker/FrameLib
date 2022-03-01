@@ -1,4 +1,4 @@
-<c74object category="FrameLib Generators" module="FrameLib" name="fl.makewindow~">
+<c74object name="fl.makewindow~" module="FrameLib" category="FrameLib Generators">
   <digest> 
         Generates a specified window function across each output frame.
     </digest>

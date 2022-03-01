@@ -1,4 +1,4 @@
-<c74object category="FrameLib Binary" module="FrameLib" name="fl.or~">
+<c74object name="fl.or~" module="FrameLib" category="FrameLib Binary">
   <digest> 
         Calculates the logical or of the left and right input frame values.
     </digest>

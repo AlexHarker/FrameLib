@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.length~">
+<c74object name="fl.length~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Calculates the length of the input frame.
     </digest>

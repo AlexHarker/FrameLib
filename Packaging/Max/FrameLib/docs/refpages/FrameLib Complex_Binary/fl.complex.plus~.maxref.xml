@@ -1,4 +1,4 @@
-<c74object category="FrameLib Complex_Binary" module="FrameLib" name="fl.complex.plus~">
+<c74object name="fl.complex.plus~" module="FrameLib" category="FrameLib Complex_Binary">
   <digest> 
         Adds complex values in the two pairs of input frames.
     </digest>

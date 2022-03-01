@@ -1,4 +1,4 @@
-<c74object category="FrameLib Generators" module="FrameLib" name="fl.random~">
+<c74object name="fl.random~" module="FrameLib" category="FrameLib Generators">
   <digest> 
         Generates linearly distributed random values in the range [0-1].
     </digest>

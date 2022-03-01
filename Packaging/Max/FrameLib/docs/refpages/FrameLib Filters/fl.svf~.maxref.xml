@@ -1,4 +1,4 @@
-<c74object category="FrameLib Filters" module="FrameLib" name="fl.svf~">
+<c74object name="fl.svf~" module="FrameLib" category="FrameLib Filters">
   <digest> 
         Applies a state variable filter to the input.
     </digest>

@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.prioritise~">
+<c74object name="fl.prioritise~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Apply a fixed priority ranking to synchronous input frames.
     </digest>

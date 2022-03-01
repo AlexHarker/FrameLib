@@ -1,4 +1,4 @@
-<c74object category="FrameLib Schedulers" module="FrameLib" name="fl.interval~">
+<c74object name="fl.interval~" module="FrameLib" category="FrameLib Schedulers">
   <digest> 
         Schedules frames at regular intervals set by the interval parameter.
     </digest>

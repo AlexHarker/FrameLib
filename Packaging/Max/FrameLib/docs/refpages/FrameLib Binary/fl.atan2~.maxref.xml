@@ -1,4 +1,4 @@
-<c74object category="FrameLib Binary" module="FrameLib" name="fl.atan2~">
+<c74object name="fl.atan2~" module="FrameLib" category="FrameLib Binary">
   <digest> 
         Calculates the arctangent using two arguments (left operand is y, right operand is x).
     </digest>

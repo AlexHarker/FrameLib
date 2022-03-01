@@ -1,4 +1,4 @@
-<c74object category="FrameLib Complex_Unary" module="FrameLib" name="fl.complex.exp~">
+<c74object name="fl.complex.exp~" module="FrameLib" category="FrameLib Complex_Unary">
   <digest> 
         Calculates the exponent base e (e^x) of each complex value at the inputs.
     </digest>

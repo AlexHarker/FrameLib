@@ -1,4 +1,4 @@
-<c74object category="FrameLib Complex_Unary" module="FrameLib" name="fl.complex.sin~">
+<c74object name="fl.complex.sin~" module="FrameLib" category="FrameLib Complex_Unary">
   <digest> 
         Calculates the sine of each complex value at the inputs.
     </digest>

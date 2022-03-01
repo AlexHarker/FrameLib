@@ -1,4 +1,4 @@
-<c74object category="FrameLib Storage" module="FrameLib" name="fl.register~">
+<c74object name="fl.register~" module="FrameLib" category="FrameLib Storage">
   <digest> 
         Store and recall frames locally.
     </digest>

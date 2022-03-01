@@ -1,4 +1,4 @@
-<c74object category="FrameLib Expressions" module="FrameLib" name="fl.expr~">
+<c74object name="fl.expr~" module="FrameLib" category="FrameLib Expressions">
   <digest> 
         Calculates the result of a mathematical expression.
     </digest>

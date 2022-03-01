@@ -1,4 +1,4 @@
-<c74object category="FrameLib Spectral" module="FrameLib" name="fl.correlate~">
+<c74object name="fl.correlate~" module="FrameLib" category="FrameLib Spectral">
   <digest> 
         Correlates two inputs (either real or complex).
     </digest>

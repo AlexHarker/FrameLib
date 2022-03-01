@@ -1,4 +1,4 @@
-<c74object category="FrameLib Binary" module="FrameLib" name="fl.pow~">
+<c74object name="fl.pow~" module="FrameLib" category="FrameLib Binary">
   <digest> 
         Raises left input frame values to the power of right input frame values.
     </digest>

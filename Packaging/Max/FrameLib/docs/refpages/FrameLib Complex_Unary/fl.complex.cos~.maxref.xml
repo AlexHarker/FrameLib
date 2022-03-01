@@ -1,4 +1,4 @@
-<c74object category="FrameLib Complex_Unary" module="FrameLib" name="fl.complex.cos~">
+<c74object name="fl.complex.cos~" module="FrameLib" category="FrameLib Complex_Unary">
   <digest> 
         Calculates the cosine of each complex value at the inputs.
     </digest>

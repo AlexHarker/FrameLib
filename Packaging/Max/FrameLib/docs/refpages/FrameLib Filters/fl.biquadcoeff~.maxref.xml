@@ -1,4 +1,4 @@
-<c74object category="FrameLib Filters" module="FrameLib" name="fl.biquadcoeff~">
+<c74object name="fl.biquadcoeff~" module="FrameLib" category="FrameLib Filters">
   <digest> 
         Calculates biquad filter coefficients.
     </digest>

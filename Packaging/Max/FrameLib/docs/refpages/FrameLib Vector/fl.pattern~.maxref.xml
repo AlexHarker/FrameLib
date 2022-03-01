@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.pattern~">
+<c74object name="fl.pattern~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Step through a frame of values (or pattern) one at a time.
     </digest>

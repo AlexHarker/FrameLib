@@ -1,4 +1,4 @@
-<c74object category="FrameLib Complex_Binary" module="FrameLib" name="fl.complex.divide~">
+<c74object name="fl.complex.divide~" module="FrameLib" category="FrameLib Complex_Binary">
   <digest> 
         Divides complex values in the left pair of input frames by those in the right pair.
     </digest>

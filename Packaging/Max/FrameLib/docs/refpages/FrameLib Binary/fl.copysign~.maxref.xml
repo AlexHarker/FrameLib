@@ -1,4 +1,4 @@
-<c74object category="FrameLib Binary" module="FrameLib" name="fl.copysign~">
+<c74object name="fl.copysign~" module="FrameLib" category="FrameLib Binary">
   <digest> 
         Copys the signs of the right input frame onto the magnitudes of the left input frame.
     </digest>

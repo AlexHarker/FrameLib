@@ -1,4 +1,4 @@
-<c74object category="FrameLib Storage" module="FrameLib" name="fl.recall~">
+<c74object name="fl.recall~" module="FrameLib" category="FrameLib Storage">
   <digest> 
         Recall a remotely stored frame for use.
     </digest>

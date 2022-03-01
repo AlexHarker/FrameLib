@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.nanfilter~">
+<c74object name="fl.nanfilter~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Filter NaNs from the input either by replacing or by removing them.
     </digest>

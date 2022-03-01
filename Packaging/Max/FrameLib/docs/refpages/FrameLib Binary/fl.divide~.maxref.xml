@@ -1,4 +1,4 @@
-<c74object category="FrameLib Binary" module="FrameLib" name="fl.divide~">
+<c74object name="fl.divide~" module="FrameLib" category="FrameLib Binary">
   <digest> 
         Divides the left input frame values by the right input frame values.
     </digest>

@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.accumpos~">
+<c74object name="fl.accumpos~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Finds the index where the cumulative sum reaches a specified percentage of its total.
     </digest>

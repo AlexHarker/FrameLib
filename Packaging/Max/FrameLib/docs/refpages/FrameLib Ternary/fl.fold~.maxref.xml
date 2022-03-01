@@ -1,4 +1,4 @@
-<c74object category="FrameLib Ternary" module="FrameLib" name="fl.fold~">
+<c74object name="fl.fold~" module="FrameLib" category="FrameLib Ternary">
   <digest> 
         Folds the incoming frame into the range delimited by the two parameters.
     </digest>

@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.mean~">
+<c74object name="fl.mean~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Calculates the mean of the input frame.
     </digest>

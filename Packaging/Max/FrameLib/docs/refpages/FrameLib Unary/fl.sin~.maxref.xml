@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.sin~">
+<c74object name="fl.sin~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the sine (for arguments in radians) of each value in the input frame.
     </digest>

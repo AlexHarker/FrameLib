@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.split~">
+<c74object name="fl.split~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Splits input frames into two frames, given a specified split point.
     </digest>

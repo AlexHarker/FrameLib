@@ -1,4 +1,4 @@
-<c74object category="FrameLib Streaming" module="FrameLib" name="fl.unpack~">
+<c74object name="fl.unpack~" module="FrameLib" category="FrameLib Streaming">
   <digest> 
         Unpacks multistream input into individual streams.
     </digest>

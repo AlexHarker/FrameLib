@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.acos~">
+<c74object name="fl.acos~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the arccosine (in radians) of each value in the input frame.
     </digest>

@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.atan~">
+<c74object name="fl.atan~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the arctangent (in radians) of each value in the input frame.
     </digest>

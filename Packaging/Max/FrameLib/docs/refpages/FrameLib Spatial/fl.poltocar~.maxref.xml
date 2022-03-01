@@ -1,4 +1,4 @@
-<c74object category="FrameLib Spatial" module="FrameLib" name="fl.poltocar~">
+<c74object name="fl.poltocar~" module="FrameLib" category="FrameLib Spatial">
   <digest> 
         Converts from polar values at the inputs to cartesian values at the outputs.
     </digest>

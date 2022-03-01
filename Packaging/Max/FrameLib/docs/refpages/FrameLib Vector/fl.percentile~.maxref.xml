@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.percentile~">
+<c74object name="fl.percentile~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Calculates a specified percentile of the input frame (by default the 50th or median).
     </digest>

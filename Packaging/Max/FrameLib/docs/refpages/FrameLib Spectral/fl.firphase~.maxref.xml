@@ -1,4 +1,4 @@
-<c74object category="FrameLib Spectral" module="FrameLib" name="fl.firphase~">
+<c74object name="fl.firphase~" module="FrameLib" category="FrameLib Spectral">
   <digest> 
         Transform FIR coefficients to preserve the amplitude spectrum but alter the phase.
     </digest>

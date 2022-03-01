@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.framemax~">
+<c74object name="fl.framemax~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Calculates the maximum value of the input frame.
     </digest>

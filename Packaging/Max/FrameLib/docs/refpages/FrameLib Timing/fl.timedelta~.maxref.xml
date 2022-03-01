@@ -1,4 +1,4 @@
-<c74object category="FrameLib Timing" module="FrameLib" name="fl.timedelta~">
+<c74object name="fl.timedelta~" module="FrameLib" category="FrameLib Timing">
   <digest> 
         Calculates the time interval between consecutive incoming frames.
     </digest>

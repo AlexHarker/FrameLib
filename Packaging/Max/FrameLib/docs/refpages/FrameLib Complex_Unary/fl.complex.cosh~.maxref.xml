@@ -1,4 +1,4 @@
-<c74object category="FrameLib Complex_Unary" module="FrameLib" name="fl.complex.cosh~">
+<c74object name="fl.complex.cosh~" module="FrameLib" category="FrameLib Complex_Unary">
   <digest> 
         Calculates the hyperbolic cosine of each complex value at the inputs.
     </digest>

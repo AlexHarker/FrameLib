@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.ceil~">
+<c74object name="fl.ceil~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the ceiling function of each value in the input frame.
     </digest>

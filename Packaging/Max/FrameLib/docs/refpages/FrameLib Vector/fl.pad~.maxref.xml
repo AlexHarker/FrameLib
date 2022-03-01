@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.pad~">
+<c74object name="fl.pad~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Pads the input frame with a repeated specified value.
     </digest>

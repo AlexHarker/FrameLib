@@ -1,0 +1,46 @@
+<c74object name="fl.lookupstring~" module="FrameLib" category="FrameLib Parameters">
+  <digest> 
+        Lookup a specified string from an internally stored list of strings.
+    </digest>
+  <description> 
+         The first number at the input is used to specify the string. The number of stored items can be set explicitly by parameter. Alternatively, it can be set implicitly by the parameters present at instantiation. Items may be dynamically updated by parameter. 
+    </description>
+  <misc name="Parameters">
+    <entry name="1. /num_items [instantiation int]">
+      <description> 
+                Sets the number of items.
+            </description>
+    </entry>
+    <entry name="2. /tag [string]">
+      <description> 
+                Sets the output tag.
+            </description>
+    </entry>
+    <entry name="3. /empty [enum]">
+      <description> 
+                Sets the behaviour when empty frames are received:<br/><br/>ignore - empty frames are ignored.<br/>reset - empty frames create empty tags to reset parameters to defaults.<br />
+        <bullet>[0] - ignore</bullet>
+        <bullet>[1] - reset</bullet>
+      </description>
+    </entry>
+    <entry name="4. /items_01 [string]">
+      <description> 
+                Sets the string for item 1.
+            </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Parameters</metadata>
+  </metadatalist>
+  <seealsolist> 
+    </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description> 
+                boilerplate keywords
+            </description>
+    </entry>
+  </misc>
+</c74object>

@@ -1,4 +1,4 @@
-<c74object category="FrameLib Schedulers" module="FrameLib" name="fl.perblock~">
+<c74object name="fl.perblock~" module="FrameLib" category="FrameLib Schedulers">
   <digest> 
         Schedules one frame at the start of each host audio block.
     </digest>

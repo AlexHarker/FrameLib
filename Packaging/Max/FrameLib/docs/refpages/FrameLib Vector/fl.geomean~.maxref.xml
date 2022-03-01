@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.geomean~">
+<c74object name="fl.geomean~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Calculates the geometric mean of the input frame.
     </digest>

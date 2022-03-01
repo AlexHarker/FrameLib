@@ -1,4 +1,4 @@
-<c74object category="FrameLib Complex_Unary" module="FrameLib" name="fl.complex.conj~">
+<c74object name="fl.complex.conj~" module="FrameLib" category="FrameLib Complex_Unary">
   <digest> 
         Calculates the complex conjugate of each complex value at the inputs.
     </digest>

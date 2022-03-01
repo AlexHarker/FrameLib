@@ -1,4 +1,4 @@
-<c74object category="FrameLib Complex_Unary" module="FrameLib" name="fl.complex.log~">
+<c74object name="fl.complex.log~" module="FrameLib" category="FrameLib Complex_Unary">
   <digest> 
         Calculates the logarithm base e of each complex value at the inputs.
     </digest>

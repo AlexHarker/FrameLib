@@ -1,4 +1,4 @@
-<c74object category="FrameLib Binary" module="FrameLib" name="fl.notequals~">
+<c74object name="fl.notequals~" module="FrameLib" category="FrameLib Binary">
   <digest> 
         Compares frame values for inequality (returns 1 or 0).
     </digest>

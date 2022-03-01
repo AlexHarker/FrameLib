@@ -1,4 +1,4 @@
-<c74object category="FrameLib Binary" module="FrameLib" name="fl.min~">
+<c74object name="fl.min~" module="FrameLib" category="FrameLib Binary">
   <digest> 
         Calculates the minimums of pairs of values in the two input frames.
     </digest>

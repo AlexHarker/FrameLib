@@ -1,4 +1,4 @@
-<c74object category="FrameLib Storage" module="FrameLib" name="fl.store~">
+<c74object name="fl.store~" module="FrameLib" category="FrameLib Storage">
   <digest> 
         Stores frames remotely for later recall.
     </digest>

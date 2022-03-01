@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.sort~">
+<c74object name="fl.sort~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Sorts an input frame into ascending or descending order.
     </digest>

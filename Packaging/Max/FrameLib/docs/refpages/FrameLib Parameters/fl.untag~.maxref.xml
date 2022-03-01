@@ -1,4 +1,4 @@
-<c74object category="FrameLib Parameters" module="FrameLib" name="fl.untag~">
+<c74object name="fl.untag~" module="FrameLib" category="FrameLib Parameters">
   <digest> 
         Retrieves vectors from a tagged frame according to a specified set of tags.
     </digest>

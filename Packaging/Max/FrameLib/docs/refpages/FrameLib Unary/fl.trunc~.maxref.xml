@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.trunc~">
+<c74object name="fl.trunc~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the truncated value of each value in the input frame.
     </digest>

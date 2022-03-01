@@ -1,4 +1,4 @@
-<c74object category="FrameLib IO" module="FrameLib" name="fl.trace~">
+<c74object name="fl.trace~" module="FrameLib" category="FrameLib IO">
   <digest> 
         Outputs values from the input as audio, continuing the last value till a new frame arrives.
     </digest>

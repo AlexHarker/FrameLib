@@ -1,4 +1,4 @@
-<c74object category="FrameLib Filters" module="FrameLib" name="fl.onepolezero~">
+<c74object name="fl.onepolezero~" module="FrameLib" category="FrameLib Filters">
   <digest> 
         Applies a one-pole with one-zero filter to the input.
     </digest>

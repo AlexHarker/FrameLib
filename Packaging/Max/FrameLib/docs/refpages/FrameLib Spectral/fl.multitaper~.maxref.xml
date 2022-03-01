@@ -1,4 +1,4 @@
-<c74object category="FrameLib Spectral" module="FrameLib" name="fl.multitaper~">
+<c74object name="fl.multitaper~" module="FrameLib" category="FrameLib Spectral">
   <digest> 
         Calculates a multitaper power (or amplitude) spectrum from a real input.
     </digest>

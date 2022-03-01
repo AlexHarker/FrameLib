@@ -1,4 +1,4 @@
-<c74object category="FrameLib Binary" module="FrameLib" name="fl.times~">
+<c74object name="fl.times~" module="FrameLib" category="FrameLib Binary">
   <digest> 
         Multiplies values in the two input frames.
     </digest>

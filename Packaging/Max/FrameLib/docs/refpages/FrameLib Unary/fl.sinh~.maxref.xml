@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.sinh~">
+<c74object name="fl.sinh~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the hyperbolic sine of each value in the input frame.
     </digest>

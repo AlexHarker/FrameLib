@@ -1,4 +1,4 @@
-<c74object category="FrameLib Binary" module="FrameLib" name="fl.max~">
+<c74object name="fl.max~" module="FrameLib" category="FrameLib Binary">
   <digest> 
         Calculates the maximums of pairs of values in the two input frames.
     </digest>

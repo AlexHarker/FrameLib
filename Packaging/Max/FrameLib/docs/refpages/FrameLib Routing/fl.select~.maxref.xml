@@ -1,4 +1,4 @@
-<c74object category="FrameLib Routing" module="FrameLib" name="fl.select~">
+<c74object name="fl.select~" module="FrameLib" category="FrameLib Routing">
   <digest> 
         Selects output from a number of inputs.
     </digest>

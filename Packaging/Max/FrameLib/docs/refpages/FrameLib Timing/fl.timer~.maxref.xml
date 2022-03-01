@@ -1,4 +1,4 @@
-<c74object category="FrameLib Timing" module="FrameLib" name="fl.timer~">
+<c74object name="fl.timer~" module="FrameLib" category="FrameLib Timing">
   <digest> 
         Calculates the time elapsed between the each trigger input and the previous reset.
     </digest>

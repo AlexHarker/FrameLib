@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.erfc~">
+<c74object name="fl.erfc~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the complimentary error function of each value in the input frame.
     </digest>

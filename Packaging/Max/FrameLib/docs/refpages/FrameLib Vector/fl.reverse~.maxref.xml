@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.reverse~">
+<c74object name="fl.reverse~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Computes the reverse of the input frame.
     </digest>

@@ -1,4 +1,4 @@
-<c74object category="FrameLib IO" module="FrameLib" name="fl.source~">
+<c74object name="fl.source~" module="FrameLib" category="FrameLib IO">
   <digest> 
         Captures audio from the host environment and outputs the most recent values as frames.
     </digest>

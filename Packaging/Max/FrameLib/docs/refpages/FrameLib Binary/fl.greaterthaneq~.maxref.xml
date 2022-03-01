@@ -1,4 +1,4 @@
-<c74object category="FrameLib Binary" module="FrameLib" name="fl.greaterthaneq~">
+<c74object name="fl.greaterthaneq~" module="FrameLib" category="FrameLib Binary">
   <digest> 
         Compares input frames using a greater than or equal to operation (returns 1 or 0).
     </digest>

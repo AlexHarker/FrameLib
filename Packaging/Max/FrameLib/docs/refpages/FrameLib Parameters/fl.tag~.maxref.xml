@@ -1,4 +1,4 @@
-<c74object category="FrameLib Parameters" module="FrameLib" name="fl.tag~">
+<c74object name="fl.tag~" module="FrameLib" category="FrameLib Parameters">
   <digest> 
         Tags vectors with tags either in order to set parameters or for routing purposes.
     </digest>

@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.join~">
+<c74object name="fl.join~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Concatenates all input frames into a single output frame.
     </digest>

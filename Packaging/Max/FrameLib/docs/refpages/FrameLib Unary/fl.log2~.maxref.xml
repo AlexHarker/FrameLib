@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.log2~">
+<c74object name="fl.log2~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the logarithm base 2 of each value in the input frame.
     </digest>

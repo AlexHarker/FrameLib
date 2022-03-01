@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.shift~">
+<c74object name="fl.shift~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Shifts samples within a frame.
     </digest>

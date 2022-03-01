@@ -1,4 +1,4 @@
-<c74object category="FrameLib Timing" module="FrameLib" name="fl.now~">
+<c74object name="fl.now~" module="FrameLib" category="FrameLib Timing">
   <digest> 
         Outputs the current time.
     </digest>

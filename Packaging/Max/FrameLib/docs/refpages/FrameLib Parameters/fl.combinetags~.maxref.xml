@@ -1,4 +1,4 @@
-<c74object category="FrameLib Parameters" module="FrameLib" name="fl.combinetags~">
+<c74object name="fl.combinetags~" module="FrameLib" category="FrameLib Parameters">
   <digest> 
         Combines a number of tagged input frames into a single tagged output frame.
     </digest>

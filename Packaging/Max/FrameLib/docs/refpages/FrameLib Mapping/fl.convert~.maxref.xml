@@ -1,4 +1,4 @@
-<c74object category="FrameLib Mapping" module="FrameLib" name="fl.convert~">
+<c74object name="fl.convert~" module="FrameLib" category="FrameLib Mapping">
   <digest> 
         Converts the input vector according to a specified conversion.
     </digest>

@@ -1,4 +1,4 @@
-<c74object category="FrameLib Generators" module="FrameLib" name="fl.uniform~">
+<c74object name="fl.uniform~" module="FrameLib" category="FrameLib Generators">
   <digest> 
         Generates frames in which all values are identical.
     </digest>

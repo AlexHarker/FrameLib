@@ -473,8 +473,14 @@
     "fl.expr~": {
         "digest": "Calculates the result of a mathematical expression."
     },
+    "fl.makestring~": {
+        "digest": "Creates a tagged string by concatenating strings and numbers."
+    },
     "fl.filtertags~": {
         "digest": "Filters tagged frames using a set of specified tags."
+    },
+    "fl.lookupstring~": {
+        "digest": "Lookup a specified string from an internally stored list of strings."
     },
     "fl.tag~": {
         "digest": "Tags vectors with tags either in order to set parameters or for routing purposes."

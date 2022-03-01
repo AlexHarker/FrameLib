@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.kurtosis~">
+<c74object name="fl.kurtosis~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Calculates the kurtosis of the input frame.
     </digest>

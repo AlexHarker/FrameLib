@@ -1,4 +1,4 @@
-<c74object category="FrameLib Time_Smoothing" module="FrameLib" name="fl.movingaverage~">
+<c74object name="fl.movingaverage~" module="FrameLib" category="FrameLib Time_Smoothing">
   <digest> 
         Calculates per sample moving averages and standard deviations.
     </digest>

@@ -1,4 +1,4 @@
-<c74object category="FrameLib Filters" module="FrameLib" name="fl.onepole~">
+<c74object name="fl.onepole~" module="FrameLib" category="FrameLib Filters">
   <digest> 
         Applies  a one-pole 6dB/octave filter to the input.
     </digest>

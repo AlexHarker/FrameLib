@@ -1,4 +1,4 @@
-<c74object category="FrameLib Time_Smoothing" module="FrameLib" name="fl.timestddev~">
+<c74object name="fl.timestddev~" module="FrameLib" category="FrameLib Time_Smoothing">
   <digest> 
         Calculates the standard deviation per sample over the most recent frames.
     </digest>

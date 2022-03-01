@@ -1,4 +1,4 @@
-<c74object category="FrameLib Complex_Binary" module="FrameLib" name="fl.complex.times~">
+<c74object name="fl.complex.times~" module="FrameLib" category="FrameLib Complex_Binary">
   <digest> 
         Multiplies complex values in the two pairs of input frames.
     </digest>

@@ -1,4 +1,4 @@
-<c74object category="FrameLib Ternary" module="FrameLib" name="fl.clip~">
+<c74object name="fl.clip~" module="FrameLib" category="FrameLib Ternary">
   <digest> 
         Clips the incoming frame to the range delimited by the two parameters.
     </digest>

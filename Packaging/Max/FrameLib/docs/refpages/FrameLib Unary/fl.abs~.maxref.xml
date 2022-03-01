@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.abs~">
+<c74object name="fl.abs~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the absolute value of each value in the input frame.
     </digest>

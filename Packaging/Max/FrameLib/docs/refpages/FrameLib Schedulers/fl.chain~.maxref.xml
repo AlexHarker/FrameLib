@@ -1,4 +1,4 @@
-<c74object category="FrameLib Schedulers" module="FrameLib" name="fl.chain~">
+<c74object name="fl.chain~" module="FrameLib" category="FrameLib Schedulers">
   <digest> 
         Schedules frames in the future at times specified times in the input frame.
     </digest>

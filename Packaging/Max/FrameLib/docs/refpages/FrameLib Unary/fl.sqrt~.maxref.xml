@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.sqrt~">
+<c74object name="fl.sqrt~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the square root of each value in the input frame.
     </digest>

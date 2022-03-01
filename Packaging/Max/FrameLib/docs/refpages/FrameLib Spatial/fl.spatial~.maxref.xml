@@ -1,4 +1,4 @@
-<c74object category="FrameLib Spatial" module="FrameLib" name="fl.spatial~">
+<c74object name="fl.spatial~" module="FrameLib" category="FrameLib Spatial">
   <digest> 
         Generates multiplication factors for a number of speakers from an input coordinate triple.
     </digest>
@@ -42,6 +42,15 @@
       <description> 
                 Interpolate to point source panning (0 is modified DBAP - 1 is point source).
             </description>
+    </entry>
+    <entry name="8. /constrain [enum]">
+      <description> 
+                Sets the method for constraining positions outside of the speaker array.<br />
+        <bullet>[0] - none</bullet>
+        <bullet>[1] - hemisphere</bullet>
+        <bullet>[2] - sphere</bullet>
+        <bullet>[3] - hull</bullet>
+      </description>
     </entry>
   </misc>
   <metadatalist>

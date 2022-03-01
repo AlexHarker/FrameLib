@@ -1,4 +1,4 @@
-<c74object category="FrameLib Unary" module="FrameLib" name="fl.cbrt~">
+<c74object name="fl.cbrt~" module="FrameLib" category="FrameLib Unary">
   <digest> 
         Calculates the cube root of each value in the input frame.
     </digest>

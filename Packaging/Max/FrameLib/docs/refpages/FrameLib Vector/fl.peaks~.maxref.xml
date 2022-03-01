@@ -1,4 +1,4 @@
-<c74object category="FrameLib Vector" module="FrameLib" name="fl.peaks~">
+<c74object name="fl.peaks~" module="FrameLib" category="FrameLib Vector">
   <digest> 
         Finds peaks in the input frame.
     </digest>

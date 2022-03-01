@@ -1,4 +1,4 @@
-<c74object category="FrameLib IO" module="FrameLib" name="fl.sink~">
+<c74object name="fl.sink~" module="FrameLib" category="FrameLib IO">
   <digest> 
         Outputs frames to the host environment as audio by overlap-adding into an output buffer.
     </digest>

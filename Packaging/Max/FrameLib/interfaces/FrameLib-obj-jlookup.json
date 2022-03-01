@@ -37,6 +37,10 @@
         "7": {
             "name": "7. /points [double]",
             "description": "Interpolate to point source panning (0 is modified DBAP - 1 is point source)."
+        },
+        "8": {
+            "name": "8. /constrain [enum]",
+            "description": "Sets the method for constraining positions outside of the speaker array.\n\nParameter Options:\n[0] - none\n[1] - hemisphere\n[2] - sphere\n[3] - hull"
         }
     },
     "fl.cartopol~": {
@@ -1887,6 +1891,28 @@
             "description": "Sets which inputs trigger output using an array of bools."
         }
     },
+    "fl.makestring~": {
+        "1": {
+            "name": "1. /num_items [instantiation int]",
+            "description": "Sets the number of items."
+        },
+        "2": {
+            "name": "2. /tag [string]",
+            "description": "Sets the output tag."
+        },
+        "3": {
+            "name": "3. /trigger_ins [instantiation variable length bool array]",
+            "description": "Sets which inputs trigger output using an array of bools."
+        },
+        "4": {
+            "name": "4. /padding [variable length int array]",
+            "description": "Sets the zero padding for each input using an array of integers."
+        },
+        "5": {
+            "name": "5. /item_01 [string]",
+            "description": "Sets the string or input for item 1."
+        }
+    },
     "fl.filtertags~": {
         "1": {
             "name": "1. /num_filters [instantiation int]",
@@ -1895,6 +1921,24 @@
         "2": {
             "name": "2. /tag_01 [string]",
             "description": "Sets tag number 1."
+        }
+    },
+    "fl.lookupstring~": {
+        "1": {
+            "name": "1. /num_items [instantiation int]",
+            "description": "Sets the number of items."
+        },
+        "2": {
+            "name": "2. /tag [string]",
+            "description": "Sets the output tag."
+        },
+        "3": {
+            "name": "3. /empty [enum]",
+            "description": "Sets the behaviour when empty frames are received:\n\nParameter Options:\n[0] - ignore\n[1] - reset"
+        },
+        "4": {
+            "name": "4. /items_01 [string]",
+            "description": "Sets the string for item 1."
         }
     },
     "fl.tag~": {
