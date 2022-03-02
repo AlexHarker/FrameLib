@@ -1718,7 +1718,7 @@ public:
     
     static void extAutoOrderingConnections(FrameLib_MaxClass *x)
     {
-        x->mObject->autoOrderingConnections();
+        x->mObject->makeAutoOrderingConnections();
     }
     
     static void extClearAutoOrderingConnections(FrameLib_MaxClass *x)
