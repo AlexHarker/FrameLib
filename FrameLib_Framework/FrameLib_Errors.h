@@ -253,7 +253,7 @@ public:
     template<typename... Args>
     void operator()(ErrorSource source, FrameLib_Proxy *reporter, const char *error, Args... args)
     {
-        FrameLib_SpinLockHolder lockHolder(&mLock);
+        FrameLib_LockHolder lockHolder(&mLock);
 
         mReports->add(source, reporter, error, args...);
         
@@ -275,7 +275,7 @@ private:
     HostNotifier *mNotifier;
     bool mNotified;
     std::unique_ptr<ErrorList> mReports;
-    FrameLib_SpinLock mLock;
+    FrameLib_Lock mLock;
 };
 
 #endif

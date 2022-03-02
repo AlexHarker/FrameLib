@@ -224,7 +224,7 @@ private:
    
     // Member Variables
     
-    FrameLib_SpinLock mLock;
+    FrameLib_Lock mLock;
     CoreAllocator mAllocator;
 };
 
@@ -445,7 +445,7 @@ public:
         size_t mMaxSize;
         unsigned long mCount;
         
-        FrameLib_SpinLock mLock;
+        FrameLib_Lock mLock;
         FrameLib_ContextAllocator& mAllocator;
     };
     

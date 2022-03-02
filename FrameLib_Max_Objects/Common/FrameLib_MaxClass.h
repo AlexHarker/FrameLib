@@ -133,7 +133,7 @@ public:
     {
         // Lock, get vector size and copy
         
-        FrameLib_SpinLockHolder lock(&mLock);
+        FrameLib_LockHolder lock(&mLock);
         mData.mMaxSize = std::max(limit(N), mData.mMaxSize);
         mData.mQueue.emplace(info, values, N);
     }
@@ -142,7 +142,7 @@ public:
     {
         // Lock, determine maximum vector size and copy
 
-        FrameLib_SpinLockHolder lock(&mLock);
+        FrameLib_LockHolder lock(&mLock);
         
         for (auto it = serial->begin(); it != serial->end(); it++)
         {
@@ -160,7 +160,7 @@ public:
     {
         // Lock, copy onto the output queue and schedule
         
-        FrameLib_SpinLockHolder lock(&mLock);
+        FrameLib_LockHolder lock(&mLock);
         
         if (!mData.mQueue.size())
             return;
@@ -178,8 +178,8 @@ public:
     
     void flush(FrameLib_MaxProxy *proxy)
     {
-        FrameLib_SpinLockHolder flushLock(&mFlushLock);
-        FrameLib_SpinLockHolder lock(&mLock);
+        FrameLib_LockHolder flushLock(&mFlushLock);
+        FrameLib_LockHolder lock(&mLock);
         
         mData.flush(proxy);
         
@@ -193,8 +193,8 @@ public:
         
         // Swap data
 
-        FrameLib_SpinLockHolder flushLock(&handler->mFlushLock);
-        FrameLib_SpinLockHolder lock(&handler->mLock);
+        FrameLib_LockHolder flushLock(&handler->mFlushLock);
+        FrameLib_LockHolder lock(&handler->mLock);
         
         if (!handler->mOutput.empty())
         {
@@ -264,8 +264,8 @@ private:
     
     static unsigned long limit(unsigned long N) { return std::min(N, 32767UL); }
     
-    mutable FrameLib_SpinLock mLock;
-    mutable FrameLib_SpinLock mFlushLock;
+    mutable FrameLib_Lock mLock;
+    mutable FrameLib_Lock mFlushLock;
 
     MessageBlock mData;
     std::deque<MessageBlock> mOutput;
@@ -282,7 +282,7 @@ public:
     enum ConnectionMode : t_ptr_int { kConnect, kConfirm, kDoubleCheck };
 
     using MaxConnection = FrameLib_Connection<t_object, long>;
-    using Lock = FrameLib_SpinLock;
+    using Lock = FrameLib_Lock;
 
 private:
     
@@ -1042,7 +1042,7 @@ class FrameLib_MaxClass : public MaxClass_Base
     using FLObject = FrameLib_Multistream;
     using FLConnection = FrameLib_Object<FLObject>::Connection;
     using MaxConnection = FrameLib_MaxGlobals::MaxConnection;
-    using LockHold = FrameLib_SpinLockHolder;
+    using LockHold = FrameLib_LockHolder;
     using NumericType = FrameLib_Parameters::NumericType;
     using ClipMode = FrameLib_Parameters::ClipMode;
     

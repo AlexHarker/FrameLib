@@ -137,28 +137,28 @@ struct FrameLib_LockFreePointer : public std::atomic<FrameLib_CountedPointer<T>>
 
 /**
  
- @class FrameLib_SpinLock
+ @class FrameLib_Lock
  
  @ingroup Threading
 
- @brief a spinlock that can be locked, attempted or acquired.
+ @brief a lock that can be locked, attempted or acquired.
  
  */
 
-class FrameLib_SpinLock
+class FrameLib_Lock
 {
     using Clock = std::chrono::high_resolution_clock;
     using NanoSeconds = std::chrono::nanoseconds;
 
 public:
     
-    FrameLib_SpinLock() {}
-    ~FrameLib_SpinLock() { acquire(); }
+    FrameLib_Lock() {}
+    ~FrameLib_Lock() { acquire(); }
     
     // Non-copyable
     
-    FrameLib_SpinLock(const FrameLib_SpinLock&) = delete;
-    FrameLib_SpinLock& operator=(const FrameLib_SpinLock&) = delete;
+    FrameLib_Lock(const FrameLib_Lock&) = delete;
+    FrameLib_Lock& operator=(const FrameLib_Lock&) = delete;
     
     void acquire()
     {
@@ -187,25 +187,25 @@ private:
 
 /**
  
- @class FrameLib_SpinLockHolder
+ @class FrameLib_LockHolder
  
  @ingroup Threading
 
- @brief a RAII hold utility for a FrameLib_SpinLock
+ @brief a RAII hold utility for a FrameLib_Lock
  
  */
 
-class FrameLib_SpinLockHolder
+class FrameLib_LockHolder
 {
 public:
     
-    FrameLib_SpinLockHolder(FrameLib_SpinLock *lock) : mLock(lock) { if (mLock) mLock->acquire(); }
-    ~FrameLib_SpinLockHolder() { if (mLock) mLock->release(); }
+    FrameLib_LockHolder(FrameLib_Lock *lock) : mLock(lock) { if (mLock) mLock->acquire(); }
+    ~FrameLib_LockHolder() { if (mLock) mLock->release(); }
     
     // Non-copyable
     
-    FrameLib_SpinLockHolder(const FrameLib_SpinLockHolder&) = delete;
-    FrameLib_SpinLockHolder& operator=(const FrameLib_SpinLockHolder&) = delete;
+    FrameLib_LockHolder(const FrameLib_LockHolder&) = delete;
+    FrameLib_LockHolder& operator=(const FrameLib_LockHolder&) = delete;
     
     void destroy()
     {
@@ -216,7 +216,7 @@ public:
     
 private:
     
-    FrameLib_SpinLock *mLock;
+    FrameLib_Lock *mLock;
 };
 
 
