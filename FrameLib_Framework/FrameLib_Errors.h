@@ -235,7 +235,7 @@ public:
      
      @class HostNotifier
      
-     @brief a virtual struct used to supply a method for notifying the host of errors.
+     @brief an abstract struct used to supply a method for notifying the host of errors.
      
      */
     
