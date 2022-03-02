@@ -9,7 +9,10 @@ class FrameLib_MaxClass_ToMax : public FrameLib_MaxClass_Expand<FrameLib_ToHost>
 {
     struct ToHostProxy : public FrameLib_ToHost::Proxy, public FrameLib_MaxProxy
     {
-        ToHostProxy(FrameLib_MaxClass_ToMax *object) : mObject(object) {}
+        ToHostProxy(FrameLib_MaxClass_ToMax *object)
+        : FrameLib_MaxProxy(*object)
+        , mObject(object)
+        {}
         
         void sendToHost(unsigned long index, unsigned long stream, const double *values, unsigned long N, FrameLib_TimeFormat time)  override;
         void sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial, FrameLib_TimeFormat time)  override;

@@ -58,18 +58,37 @@ enum class ErrorSource { Object, Parameter, Memory, DSP  };
  
  @struct FrameLib_Proxy
  
- @brief a virtual struct allowing for extensible communication to/from the host environment.
+ @brief a class allowing for extensible communication to/from the host environment.
  
- This structure is used to facilitate host environment communication with FrameLib objects. On construction each FrameLib_Object takes a pointer to a proxy which may be a nullptr or a valid pointer to a type inheriting from FrameLib_Proxy. By default the object does nothing, but hosts may wish to use inheriting types to store typesafe pointers to owning objects (thus allowing the owning object to be retrieved from FrameLib classes.
+ This structure is used to facilitate host environment communication with FrameLib objects. On construction each FrameLib_Object takes a pointer to a proxy which may be a nullptr or a valid pointer to a type inheriting from FrameLib_Proxy. By default the object simply stores a void pointer which can be used by inheriting types to store pointers to owning objects (thus allowing the owning object to be retrieved from FrameLib classes). This is stored without type in order to allow usage across different dynamic libraries if needed (where dynamic_cast is not 100% guaranteed to match across independent but identical type definitions).
  
- More importantly, specific objects (such as FrameLib_ToHost, FrameLib_FromHost and FrameLib_Read) make use of FrameLib_Proxy to allow custom host-specific functionality. In these cases such classes extend FrameLib_Proxy into abstract interfaces which a host can later implement. Pointers to the proxy are dynamically cast to the desired type in order to ensure that host support has been provided. It is advised that FrameLib_Proxy is always inherited as a virtual in order to allow a single type to multiply inherit different functionaility.
+ More importantly, specific objects (such as FrameLib_ToHost, FrameLib_FromHost and FrameLib_Read) make use of FrameLib_Proxy to allow custom host-specific functionality. In these cases such classes extend FrameLib_Proxy into abstract interfaces which a host can later implement. Pointers to the proxy are dynamically cast to the desired type in order to ensure that host support has been provided. FrameLib_Proxy should always be inherited as a virtual in order to allow a single type to multiply inherit different functionaility.
  */
 
-struct FrameLib_Proxy
+class FrameLib_Proxy
 {
+public:
+    
     /** A virtual destructor */
     
     virtual ~FrameLib_Proxy() {}
+    
+    /** A method for setting the owner
+     
+     @param owner a pointer to the owning object.
+
+     */
+    
+    void setOwner(void *owner) { mOwner = owner; }
+    
+    /** A template method for retrieving the owner with a given type */
+
+    template <class T>
+    T *getOwner() const { return static_cast<T *>(mOwner); }
+    
+private:
+    
+    void *mOwner;
 };
 
 /**
@@ -92,6 +111,7 @@ struct FrameLib_OwnedList : public std::vector<std::unique_ptr<T>>
      @param object the pointer to add to the owned list.
      
      */
+    
     void add(T *object)
     {
         std::vector<std::unique_ptr<T>>::push_back(std::unique_ptr<T>(object));

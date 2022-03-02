@@ -23,7 +23,10 @@
 
 struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
 {
-    t_object *mMaxObject;
+    FrameLib_MaxProxy(t_object *x)
+    {
+        setOwner(x);
+    }
     
     // Override for objects that require max messages to be sent from framelib
     
@@ -336,7 +339,7 @@ public:
             for (auto it = reports->begin(); it != reports->end(); it++)
             {
                 std::string errorText;
-                t_object *object = it->getReporter() ? dynamic_cast<FrameLib_MaxProxy *>(it->getReporter())->mMaxObject : nullptr;
+                t_object *object = it->getReporter() ? it->getReporter()->getOwner<t_object>() : nullptr;
                 t_object *userObject = object ? objectMethod<t_object *>(object, gensym("__fl.get_user_object")) : nullptr;
                 
                 it->getErrorText(errorText);
@@ -1248,8 +1251,8 @@ public:
     
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_object *x, t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy())
-    : mFrameLibProxy(proxy)
+    FrameLib_MaxClass(t_object *x, t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = nullptr)
+    : mFrameLibProxy(proxy ? proxy : new FrameLib_MaxProxy(x))
     , mConfirmation(nullptr)
     , mUserObject(detectUserObjectAtLoad())
     , mSpecifiedStreams(1)
@@ -1277,7 +1280,6 @@ public:
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
         FrameLib_Context context = mGlobal->makeContext(mMaxContext);
-        mFrameLibProxy->mMaxObject = *this;
         mObject.reset(new T(context, &serialisedParameters, mFrameLibProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
         
@@ -1945,7 +1947,7 @@ private:
     
     static t_object *toMaxObject(FLObject *object)
     {
-        return object ? (dynamic_cast<FrameLib_MaxProxy *>(object->getProxy()))->mMaxObject : nullptr;
+        return object ? object->getProxy()->getOwner<t_object>() : nullptr;
     }
     
     // Get the number of audio ins/outs safely from a generic pointer
