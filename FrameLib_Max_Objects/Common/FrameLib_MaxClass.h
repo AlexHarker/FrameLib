@@ -533,9 +533,9 @@ public:
         }
     }
     
-    void flushErrors(FrameLib_Context c, FrameLib_MaxProxy *proxy)
+    void flushErrors(FrameLib_Context c, t_object *object)
     {
-        ErrorNotifier::flushIgnore(data<kKey>(c).mRealtime ? &mRTGlobal : &mNRTGlobal, proxy->mMaxObject);
+        ErrorNotifier::flushIgnore(data<kKey>(c).mRealtime ? &mRTGlobal : &mNRTGlobal, object);
     }
 
     FrameLib_MaxContext getMaxContext(FrameLib_Context c)
@@ -1835,7 +1835,7 @@ private:
         mMaxContext = maxContext;
         mGlobal->retainContext(context);
         mGlobal->releaseContext(current);
-        mGlobal->flushErrors(context, mFrameLibProxy.get());
+        mGlobal->flushErrors(context, *this);
         
         mObject.reset(newObject);
     }
