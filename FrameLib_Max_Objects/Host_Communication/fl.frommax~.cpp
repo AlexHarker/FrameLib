@@ -35,7 +35,7 @@ private:
 
 // Max Class
 
-// Class Initisation
+// Class Initialisation
 
 void FrameLib_MaxClass_FromMax::classInit(t_class *c, t_symbol *nameSpace, const char *classname)
 {

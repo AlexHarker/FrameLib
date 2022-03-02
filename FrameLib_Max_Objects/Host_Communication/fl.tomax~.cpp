@@ -66,7 +66,7 @@ void FrameLib_MaxClass_ToMax::ToHostProxy::sendMessage(unsigned long stream, t_s
 
 // Max Class
 
-// Class Initisation
+// Class Initialisation
 
 void FrameLib_MaxClass_ToMax::classInit(t_class *c, t_symbol *nameSpace, const char *classname)
 {
