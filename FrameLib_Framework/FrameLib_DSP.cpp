@@ -469,21 +469,33 @@ void FrameLib_DSP::dependenciesReady(LocalAllocator *allocator)
     }
     else
     {
-        // Find the valid till time (the min valid time of connected inputs that can trigger) and input time (the min valid time of all inputs)
-        // Check for inputs at the current time that trigger (N.B. this is done after any update)
-
+        // Update the input time (the min valid time of all inputs) (and valid time if not updating inputs)
+        
         FrameLib_TimeFormat prevValidTime = mValidTime;
         bool trigger = false;
         mInputTime = FrameLib_TimeFormat::largest();
-        mValidTime = FrameLib_TimeFormat::largest();
-    
-        for (auto ins = mInputs.begin(); ins != mInputs.end(); ins++)
+
+        if (mUpdatingInputs)
         {
-            if (ins->mObject && (ins->mTrigger || ins->mSwitchable) && ins->mObject->mValidTime < mValidTime)
-                mValidTime = ins->mObject->mValidTime;
-            if (ins->mObject && ins->mObject->mValidTime < mInputTime)
-                mInputTime = ins->mObject->mValidTime;
-            trigger |= (ins->mObject && ins->mTrigger && prevValidTime == ins->mObject->mFrameTime);
+            for (auto ins = mInputs.begin(); ins != mInputs.end(); ins++)
+                if (ins->mObject && ins->mObject->mValidTime < mInputTime)
+                        mInputTime = ins->mObject->mValidTime;
+        }
+        else
+        {
+            // Find the valid till time (the min valid time of connected inputs that can trigger)
+            // Check for inputs at the current time that trigger (N.B. this is done after any update)
+
+            mValidTime = FrameLib_TimeFormat::largest();
+
+            for (auto ins = mInputs.begin(); ins != mInputs.end(); ins++)
+            {
+                if (ins->mObject && (ins->mTrigger || ins->mSwitchable) && ins->mObject->mValidTime < mValidTime)
+                    mValidTime = ins->mObject->mValidTime;
+                if (ins->mObject && ins->mObject->mValidTime < mInputTime)
+                    mInputTime = ins->mObject->mValidTime;
+                trigger |= (ins->mObject && ins->mTrigger && prevValidTime == ins->mObject->mFrameTime);
+            }
         }
 
         // If triggered update the frame time, process and release the inputs if we only have one dependency
