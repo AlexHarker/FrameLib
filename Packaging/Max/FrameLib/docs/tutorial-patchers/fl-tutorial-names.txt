@@ -7,7 +7,7 @@
 6, _7_FFT_in_FrameLib;
 7, _8_Multi-stream;
 8, _9_Multi-resolution_FFT;
-9, _10_contexts;
+9, _10_Contexts;
 10, _11_NRT_Mode;
 11, _12_Threading;
-12, _13_export;
+12, _13_Export;
