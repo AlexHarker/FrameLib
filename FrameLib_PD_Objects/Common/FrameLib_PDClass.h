@@ -912,7 +912,7 @@ public:
                                
     static void externalAutoOrderingConnections(FrameLib_PDClass *x)
     {
-        x->mObject->autoOrderingConnections();
+        x->mObject->makeAutoOrderingConnections();
     }
     
     static void externalClearAutoOrderingConnections(FrameLib_PDClass *x)

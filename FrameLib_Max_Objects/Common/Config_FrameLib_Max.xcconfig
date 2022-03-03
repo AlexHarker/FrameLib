@@ -36,6 +36,5 @@ C74_SYM_LINKER_FLAGS = @$(C74SUPPORT)/max-includes/c74_linker_flags.txt
 OTHER_CPLUSPLUSFLAGS = $(OTHER_CPLUSPLUSFLAGS) -Wno-invalid-offsetof
 OTHER_LDFLAGS =  $(OTHER_LDFLAGS) $(C74_SYM_LINKER_FLAGS) -framework MaxAudioAPI
 
-
-// all symbols hidden by default
+// all symbols hidden by default from global config
 // mark a function to be exported with the C74_EXPORT macro -- most likely this will only apply to the main() function

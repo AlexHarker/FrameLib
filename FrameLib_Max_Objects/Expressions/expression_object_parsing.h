@@ -129,7 +129,7 @@ template <class T>
 struct FrameLib_MaxClass_ExprParsed : public FrameLib_MaxClass_Expand<T>
 {
     FrameLib_MaxClass_ExprParsed(t_object *x, const ExprArgumentParser &parsed) :
-    FrameLib_MaxClass_Expand<T>(x, parsed.symbol(), parsed.count(), parsed.args(), new FrameLib_MaxProxy()) {}
+    FrameLib_MaxClass_Expand<T>(x, parsed.symbol(), parsed.count(), parsed.args()) {}
 };
 
 #endif /* EXPRESSION_OBJECT_PARSING_H */

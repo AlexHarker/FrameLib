@@ -393,7 +393,7 @@ void FLTest_Ctor(FrameLib_SC_UGen* unit)
         unit->mFrameLibCalcFunc = &FLTest_CalcZero;
 
 
-    unit->mObject->autoOrderingConnections();
+    unit->mObject->makeAutoOrderingConnections();
     unit->mObject->reset(unit->mRate->mSampleRate, unit->mRate->mBufLength);
     FLTest_CalcZero(unit, 1);
 }

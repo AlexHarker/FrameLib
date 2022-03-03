@@ -9,7 +9,10 @@ class FrameLib_MaxClass_ToMax : public FrameLib_MaxClass_Expand<FrameLib_ToHost>
 {
     struct ToHostProxy : public FrameLib_ToHost::Proxy, public FrameLib_MaxProxy
     {
-        ToHostProxy(FrameLib_MaxClass_ToMax *object) : mObject(object) {}
+        ToHostProxy(FrameLib_MaxClass_ToMax *object)
+        : FrameLib_MaxProxy(*object)
+        , mObject(object)
+        {}
         
         void sendToHost(unsigned long index, unsigned long stream, const double *values, unsigned long N, FrameLib_TimeFormat time)  override;
         void sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial, FrameLib_TimeFormat time)  override;
@@ -66,7 +69,7 @@ void FrameLib_MaxClass_ToMax::ToHostProxy::sendMessage(unsigned long stream, t_s
 
 // Max Class
 
-// Class Initisation
+// Class Initialisation
 
 void FrameLib_MaxClass_ToMax::classInit(t_class *c, t_symbol *nameSpace, const char *classname)
 {
@@ -85,7 +88,7 @@ FrameLib_MaxClass_ToMax::FrameLib_MaxClass_ToMax(t_object *x, t_symbol *s, long 
     for (unsigned long i = nStreams; i > 0; i--)
         mOutlets[i - 1] = outlet_new(this, 0L);
     
-    mProxy = dynamic_cast<ToHostProxy *>(mFrameLibProxy.get());
+    mProxy = static_cast<ToHostProxy *>(mFrameLibProxy.get());
 }
 
 // Assist

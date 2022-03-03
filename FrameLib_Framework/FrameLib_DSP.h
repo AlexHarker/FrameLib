@@ -161,7 +161,7 @@ public:
 
     // Automatic Ordering Connections
     
-    void autoOrderingConnections() final;
+    void makeAutoOrderingConnections() final;
     void clearAutoOrderingConnections() final;
 
 protected:
@@ -324,7 +324,7 @@ private:
     // Connections
     
     void connectionUpdate(BlockQueue *queue) final;
-    void autoOrderingConnections(LocalQueue *queue);
+    void makeAutoOrderingConnections(LocalQueue *queue);
 
 protected:
    

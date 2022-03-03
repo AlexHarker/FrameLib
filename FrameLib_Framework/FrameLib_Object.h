@@ -231,7 +231,7 @@ public:
     template <class U>
     U *castProxy(FrameLib_Proxy *proxy)
     {
-        return proxy ? dynamic_cast<U *>(proxy) : nullptr;
+        return dynamic_cast<U *>(proxy);
     }
     
     template <class U>
@@ -376,7 +376,7 @@ public:
     
     // Automatic Dependency Connections
     
-    virtual void autoOrderingConnections() = 0;
+    virtual void makeAutoOrderingConnections() = 0;
     virtual void clearAutoOrderingConnections() = 0;
     
     // Connection Update
