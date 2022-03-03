@@ -471,7 +471,6 @@ protected:
     
     void setLocalAllocator(FrameLib_LocalAllocator *allocator)      { mLocalAllocator = allocator; }
     void removeLocalAllocator()                                     { mLocalAllocator = nullptr; }
-    void pruneAllocator()                                           { mAllocator->prune(); }
     
     FrameLib_ContextAllocator::StoragePtr registerStorage(const char *name)
     {
