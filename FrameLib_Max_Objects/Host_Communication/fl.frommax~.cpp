@@ -8,7 +8,9 @@ class FrameLib_MaxClass_FromMax : public FrameLib_MaxClass_Expand<FrameLib_FromH
 {
     struct FromHostProxy : public FrameLib_FromHost::Proxy, public FrameLib_MaxProxy
     {
-        FromHostProxy() : FrameLib_FromHost::Proxy(true, true) {}
+        FromHostProxy(t_object *x)
+        : FrameLib_FromHost::Proxy(true, true)
+        , FrameLib_MaxProxy(x) {}
     };
     
 public:
@@ -35,7 +37,7 @@ private:
 
 // Max Class
 
-// Class Initisation
+// Class Initialisation
 
 void FrameLib_MaxClass_FromMax::classInit(t_class *c, t_symbol *nameSpace, const char *classname)
 {
@@ -50,9 +52,9 @@ void FrameLib_MaxClass_FromMax::classInit(t_class *c, t_symbol *nameSpace, const
 // Constructor
 
 FrameLib_MaxClass_FromMax::FrameLib_MaxClass_FromMax(t_object *x, t_symbol *s, long argc, t_atom *argv)
-: FrameLib_MaxClass(x, s, argc, argv, new FromHostProxy())
+: FrameLib_MaxClass(x, s, argc, argv, new FromHostProxy(x))
 {
-    mProxy = dynamic_cast<FromHostProxy *>(mFrameLibProxy.get());
+    mProxy = static_cast<FromHostProxy *>(mFrameLibProxy.get());
 }
 
 // Additional handlers
