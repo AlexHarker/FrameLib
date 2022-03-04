@@ -322,7 +322,7 @@ FrameLib_Parameters::Serial *FrameLib_DSP::getOutput(unsigned long idx) const
 
 void FrameLib_DSP::prepareCopyInputToOutput(unsigned long inIdx, unsigned long outIdx)
 {
-    FrameType requestType = mInputs[inIdx].getCurrentType();
+    FrameType requestType = getInputCurrentType(inIdx);
     
     unsigned long size = 0;
     
