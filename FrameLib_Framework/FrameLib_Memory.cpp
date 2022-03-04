@@ -522,9 +522,7 @@ void *FrameLib_ContextAllocator::alloc(size_t size)
 }
 
 void FrameLib_ContextAllocator::dealloc(void *ptr)
-{
-    // Deallocate using free blocks if present
-    
+{    
     if (ptr)
         mAllocator.dealloc(ptr);
 }
