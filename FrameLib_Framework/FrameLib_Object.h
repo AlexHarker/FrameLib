@@ -453,8 +453,12 @@ protected:
     template <class U>
     void dealloc(U *& ptr)
     {
-        FrameLib_LocalAllocator *allocator = mLocalAllocator;
+        dealloc(mLocalAllocator, ptr);
+    }
 
+    template <class U>
+    void dealloc(FrameLib_LocalAllocator *allocator, U *& ptr)
+    {
         if (allocator)
             allocator->dealloc(ptr);
         else
@@ -469,6 +473,7 @@ protected:
         return mAllocator->memorySize(ptr) / sizeof(U);
     }
     
+    FrameLib_LocalAllocator *getLocalAllocator()                    { return mLocalAllocator; }
     void setLocalAllocator(FrameLib_LocalAllocator *allocator)      { mLocalAllocator = allocator; }
     void removeLocalAllocator()                                     { mLocalAllocator = nullptr; }
     

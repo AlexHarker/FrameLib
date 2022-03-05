@@ -618,7 +618,12 @@ void FrameLib_DSP::resetOutputDependencyCount()
 
 // Manage Output Memory
 
-inline void FrameLib_DSP::freeOutputMemory()
+inline void  FrameLib_DSP::freeOutputMemory()
+{
+    freeOutputMemory(getLocalAllocator());
+}
+
+inline void FrameLib_DSP::freeOutputMemory(LocalAllocator *allocator)
 {
     if (getNumOuts() && mOutputs[0].mMemory)
     {        
@@ -630,7 +635,7 @@ inline void FrameLib_DSP::freeOutputMemory()
 
         // Then deallocate (will also set to nullptr)
         
-        dealloc(mOutputs[0].mMemory);
+        dealloc(allocator, mOutputs[0].mMemory);
     }
 }
 
@@ -639,11 +644,7 @@ inline void FrameLib_DSP::releaseOutputMemory(LocalAllocator *allocator)
     assert(mOutputMemoryCount > 0 && "Output memory count is already zero");
     
     if (--mOutputMemoryCount == 0)
-    {
-        setLocalAllocator(allocator);
-        freeOutputMemory();
-        removeLocalAllocator();
-    }
+        freeOutputMemory(allocator);
 }
 
 // Connection Updating

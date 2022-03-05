@@ -310,6 +310,7 @@ private:
     // Manage Output Memory
 
     inline void freeOutputMemory();
+    inline void freeOutputMemory(LocalAllocator *allocator);
     inline void releaseOutputMemory(LocalAllocator *allocator);
 
     // Dependency Notification
