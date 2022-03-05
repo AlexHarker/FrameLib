@@ -381,6 +381,8 @@ void FrameLib_DSP::dependencyNotify(NotificationType type, NotificationQueue& qu
         queue.push(this);
     }
     
+    assert(mDependencyCount >= 0 && "Dependency count shouldn't be negative");
+    assert(mInputCount >= 0 && "Input count shouldn't be negative");
 }
 
 // For updating the correct input count
@@ -550,21 +552,23 @@ void FrameLib_DSP::dependenciesReady(NotificationQueue& queue, LocalAllocator *a
     if (!endOfTime && !inputsCurrent)
         mInputCount--;
     
+    // Increment input dependency for the audio update if needed (must be after we know if we are updating inputs only)
+
     if (hostAligned)
         incrementInputDependency();
 
     removeLocalAllocator();
 
-    // Update dependency count for outputs and updating input state starting
+    // Update dependency count for outputs and when updating inputs mode starts
     
     mDependencyCount += ((timeUpdated ? getNumOutputDependencies() : 0) + (inputsStarting ? 1 : 0));
     
-    // Notify input dependencies that can be released as they are up to date (releasing memory where relevant for objects with more than one input dependency)
-        
+    // Inputs don't update further if we've reached the end of time
+    
     if (!endOfTime)
     {
-        // Inputs cannot move beyond the end of time...
-        
+        // Update input dependency counts and notify input dependencies that are up to date
+
         for (auto it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
         {
             if (mInputTime == (*it)->mValidTime)
@@ -583,13 +587,17 @@ void FrameLib_DSP::dependenciesReady(NotificationQueue& queue, LocalAllocator *a
         
     // Debug (before re-entering)
     
-    assert(!needsAudioNotification() || (inputTime >= mBlockStartTime && inputTime < mBlockEndTime) && "Out of sync with host");
+    assert(!needsAudioNotification() || (inputTime >= mBlockStartTime) && "Object behind host");
+    assert(!needsAudioNotification() || (inputTime < mBlockEndTime) && "Object ahead of host");
     assert(mInputTime > inputTime && "Failed to move time forward");
-    assert(mInputTime <= mValidTime && "Inputs are ahead of output");
-    assert(mFrameTime <= mInputTime && "Output is ahead of input dependencies");
-    
-    // After resolving all other dependencies do self-notifications allowing self triggering
+    assert(mInputTime <= mValidTime && "Input is ahead of output");
+    assert(mFrameTime <= mInputTime && "Output is ahead of input");
+    assert(mDependencyCount >= 1 && "Dependency count shouldn't be less than 1");
+    assert(mUpdatingInputs || mInputCount == 0 && "Input count should be 0");
+    assert(!mUpdatingInputs || mInputCount >= 1 && "Input count shouldn't be less than 1");
 
+    // After resolving all other dependencies do self-notifications allowing self triggering
+    
     if (!endOfTime)
     {
         if (inputsEnding)
