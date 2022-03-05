@@ -367,14 +367,17 @@ bool FrameLib_DSP::dependencyNotify(NotificationType type, bool releaseMemory, L
     if (releaseMemory)
         releaseOutputMemory(allocator);
     
-    bool useInputCount = mUpdatingInputs && (type == NotificationType::Input || type == NotificationType::Audio);
+    bool useInputCount = mUpdatingInputs && (type != NotificationType::Output && type != NotificationType::Self);
     
     if ((useInputCount && --mInputCount == 0) || (!useInputCount && --mDependencyCount == 0))
     {
-        // N.B. Avoid re-entrancy by increasing the dependency count before processing (plus matched notification)
+        // N.B. Avoid re-entrancy by increasing the relevant dependency counts before processing (plus matched notifications)
 
         assert((mDependencyCount > 0) || !mUpdatingInputs && "Dependency count shouldn't be zero if updating inputs");
+        
         mDependencyCount++;
+        mInputCount++;
+
         return true;
     }
     
@@ -538,9 +541,19 @@ void FrameLib_DSP::dependenciesReady(LocalAllocator *allocator)
     
     bool endOfTime = mInputTime == FrameLib_TimeFormat::largest();
     bool prevUpdatingInputs = mUpdatingInputs;
-    mUpdatingInputs = mInputTime < mValidTime;
     
-    // Increment  input dependency for the audio update if needed (must be after we know if we are updating inputs only)
+    // Resolve inputs updating state and store to locals to avoid re-entrancy issues
+    
+    mUpdatingInputs = mInputTime < mValidTime;
+
+    const bool inputsCurrent = mUpdatingInputs;
+    const bool inputsEnding = !mUpdatingInputs && prevUpdatingInputs;
+    const bool inputsStarting = mUpdatingInputs && !prevUpdatingInputs;
+    
+    // Reduce input count prior to sorting dependencies if we are not updating inputs
+    
+    if (!endOfTime && !inputsCurrent)
+        mInputCount--;
     
     if (hostAligned)
         incrementInputDependency();
@@ -574,12 +587,7 @@ void FrameLib_DSP::dependenciesReady(LocalAllocator *allocator)
             (*it)->dependencyNotify(NotificationType::Input, false, allocator, queue);
     
     removeLocalAllocator();
-
-    // See if the updating input status has expired (must be done after resolving all other dependencies)
-    
-    if (mUpdatingInputs < prevUpdatingInputs)
-        dependencyNotify(NotificationType::Self, false, allocator, queue);
-    
+   
     // Debug (before re-entering)
     
     assert(!needsAudioNotification() || (inputTime >= mBlockStartTime && inputTime < mBlockEndTime) && "Out of sync with host");
@@ -587,10 +595,18 @@ void FrameLib_DSP::dependenciesReady(LocalAllocator *allocator)
     assert(mInputTime <= mValidTime && "Inputs are ahead of output");
     assert(mFrameTime <= mInputTime && "Output is ahead of input dependencies");
     
-    // Allow self-triggering if we haven't reached the end of time
-    
+    // After resolving all other dependencies do self-notifications allowing self triggering
+
     if (!endOfTime)
+    {
+        if (inputsEnding)
+            dependencyNotify(NotificationType::Self, false, allocator, queue);
+        
         dependencyNotify(NotificationType::Self, false, allocator, queue);
+        
+        if (inputsCurrent)
+            dependencyNotify(NotificationType::SelfInput, false, allocator, queue);
+    }
     
     mProcessingQueue->add(queue, this);
 }

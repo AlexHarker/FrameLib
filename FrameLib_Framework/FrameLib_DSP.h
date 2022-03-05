@@ -39,6 +39,7 @@ class FrameLib_DSP
     enum class NotificationType
     {
         Self,
+        SelfInput,
         Output,
         Input,
         Audio,
