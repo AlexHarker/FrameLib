@@ -319,7 +319,7 @@ private:
     void dependenciesReady(NotificationQueue& queue, LocalAllocator *allocator);
     void incrementInputDependency();
     void resetOutputDependencyCount();
-    int32_t getNumOuputDependencies()         { return static_cast<int32_t>(mOutputDependencies.size()); }
+    int32_t getNumOutputDependencies()      { return static_cast<int32_t>(mOutputDependencies.size()); }
     
     // Connections
     

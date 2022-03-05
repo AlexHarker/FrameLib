@@ -557,7 +557,7 @@ void FrameLib_DSP::dependenciesReady(NotificationQueue& queue, LocalAllocator *a
 
     // Update dependency count for outputs and updating input state starting
     
-    mDependencyCount += ((timeUpdated ? getNumOuputDependencies() : 0)) + ((mUpdatingInputs > prevUpdatingInputs) ? 1 : 0);
+    mDependencyCount += ((timeUpdated ? getNumOutputDependencies() : 0) + (inputsStarting ? 1 : 0));
     
     // Notify input dependencies that can be released as they are up to date (releasing memory where relevant for objects with more than one input dependency)
         
@@ -604,7 +604,7 @@ void FrameLib_DSP::dependenciesReady(NotificationQueue& queue, LocalAllocator *a
 
 void FrameLib_DSP::resetOutputDependencyCount()
 {
-    mOutputMemoryCount = getNumOuputDependencies();
+    mOutputMemoryCount = getNumOutputDependencies();
 }
 
 // Manage Output Memory
