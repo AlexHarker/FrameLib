@@ -11,7 +11,7 @@ FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_P
 , mProcessingQueue(context)
 , mNoLiveInputs(true)
 , mInUpdate(false)
-{    
+{
     // Set IO
     
     setIO(nIns, nOuts, nAudioChans);
@@ -455,7 +455,7 @@ void FrameLib_DSP::dependenciesReady(NotificationQueue& queue, LocalAllocator *a
             }
             
             mValidTime += scheduleInfo.mTimeAdvance;
-            mOutputDone = scheduleInfo.mOutputDone;            
+            mOutputDone = scheduleInfo.mOutputDone;
         }
         
         // Revise the input time to take account of the end of the current frame (in order that we don't free anything we might still need)
@@ -602,7 +602,7 @@ void FrameLib_DSP::dependenciesReady(NotificationQueue& queue, LocalAllocator *a
     {
         if (inputsEnding)
             dependencyNotify(NotificationType::Self, queue);
-        
+
         dependencyNotify(NotificationType::Self, queue);
         
         if (inputsCurrent)
@@ -625,7 +625,7 @@ inline void  FrameLib_DSP::freeOutputMemory()
 inline void FrameLib_DSP::freeOutputMemory(LocalAllocator *allocator)
 {
     if (getNumOuts() && mOutputs[0].mMemory)
-    {        
+    {
         // Call the destructor for any serial outputs
         
         for (auto outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
@@ -649,7 +649,7 @@ inline void FrameLib_DSP::releaseOutputMemory(LocalAllocator *allocator)
 // Connection Updating
 
 void FrameLib_DSP::connectionUpdate(BlockQueue *queue)
-{    
+{
     // Clear dependencies
     
     mInputDependencies.clear();
