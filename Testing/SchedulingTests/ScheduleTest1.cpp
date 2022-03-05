@@ -12,6 +12,7 @@ ScheduleTest1::ScheduleTest1(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudi
 
     FrameLib_Context::ProcessingQueue processingQueue(context);
     processingQueue->setMultithreading(true);
+    processingQueue->setTimeOuts();
     
     mObjects.resize(7);
 
