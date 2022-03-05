@@ -315,10 +315,8 @@ private:
 
     // Dependency Notification
     
-    bool dependencyNotify(NotificationType type, bool releaseMemory, LocalAllocator *allocator);
-    void dependencyNotify(NotificationType type, bool releaseMemory, LocalAllocator *allocator, NotificationQueue &queue);
-    
-    void dependenciesReady(LocalAllocator *allocator);
+    void dependencyNotify(NotificationType type, NotificationQueue& queue, LocalAllocator *allocator = nullptr);
+    void dependenciesReady(NotificationQueue& queue, LocalAllocator *allocator);
     void incrementInputDependency();
     void resetOutputDependencyCount();
     int32_t getNumOuputDependencies()         { return static_cast<int32_t>(mOutputDependencies.size()); }

@@ -43,11 +43,8 @@ public:
     
     using MainQueue = FrameLib_LockFreeStack<FrameLib_DSP>;
     using PrepQueue = MainQueue::Queue;
-    using MainNode = MainQueue::Node;
-    using ThreadNode = FrameLib_Node<FrameLib_DSP, FrameLib_ProcessingQueue>;
-
-    struct Node : MainNode, ThreadNode {};
-
+    using Node = MainQueue::Node;
+    
     /**
      
      @class IntervalMicosecondsClock
@@ -114,7 +111,6 @@ public:
     // Start and add items to the queue
     
     void start(PrepQueue &queue);
-    void add(PrepQueue &queue, FrameLib_DSP *addedBy);
 
     // Additional functionality
     

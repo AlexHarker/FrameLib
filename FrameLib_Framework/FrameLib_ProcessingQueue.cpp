@@ -74,35 +74,12 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
     {
         mErrorReporter(ErrorSource::DSP, mEntryObject->getProxy(), "FrameLib - DSP time out - FrameLib disabled in this context");
         
-        // Clear the queue
-        
-        while (FrameLib_DSP *object = mQueue.pop())
-            object->ThreadNode::mNext = nullptr;
-        
         // Wait for all threads to return
         
         while (mNumWorkersActive.load());
         
         mNumItems = 0;
     }
-}
-
-void FrameLib_ProcessingQueue::add(PrepQueue &queue, FrameLib_DSP *addedBy)
-{
-    // Try to process this next in this thread, but if that isn't possible add to the queue
-    
-    if (!queue.size() || mTimedOut)
-        return;
-    
-    // Try to process one item in this thread
-
-    if (!addedBy->ThreadNode::mNext)
-        addedBy->ThreadNode::mNext = queue.pop();
-    
-    // Add the rest to the queue
-    
-    if (queue.size())
-        enqueue(queue);
 }
 
 void FrameLib_ProcessingQueue::enqueue(PrepQueue &queue)
@@ -150,10 +127,18 @@ void FrameLib_ProcessingQueue::serviceQueue(FrameLib_LocalAllocator *allocator)
     {
         while (object && !mTimedOut)
         {
-            object->dependenciesReady(allocator);
-            FrameLib_DSP *newObject = object->ThreadNode::mNext;
-            object->ThreadNode::mNext = nullptr;
-            object = newObject;
+            PrepQueue queue;
+            
+            object->dependenciesReady(queue, allocator);
+                        
+           // Process one item from the queue in this thread
+            
+            object = (queue.size() && !mTimedOut) ? queue.pop() : nullptr;
+          
+            // Add the rest to the main queue
+            
+            if (queue.size())
+                enqueue(queue);
             
             // Check for time out
             
