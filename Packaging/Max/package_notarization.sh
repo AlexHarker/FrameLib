@@ -16,14 +16,14 @@ LIST=`find *.mxo -depth 0`
 
 # Notarize externals
 
-notarise()
+notarize()
 {
     "$NOTARIZE" "$EXTERNAL_PATH" "$1"
 }
 
 for filename in $LIST
 do
-   notarise "$filename" &
+   notarize "$filename" &
    pids+="$! "
 done
 
@@ -43,3 +43,4 @@ else
     echo "FAILED - Some Externals Failed to Notarize! $COMPLETED Completed"
 fi
 
+exit $RESULT

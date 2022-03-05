@@ -10,7 +10,7 @@ fi
 
 # Notarize Mac externals
 
-"$SRCROOT/Packaging/Max/package_notarization.sh"
+"$SRCROOT/Packaging/Max/package_notarization.sh" || exit 1
 
 # Zip the package
 
