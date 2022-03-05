@@ -400,7 +400,7 @@ void FrameLib_DSP::dependenciesReady(NotificationQueue& queue, LocalAllocator *a
     setLocalAllocator(allocator);
     
 #ifndef NDEBUG
-    FrameLib_TimeFormat inputTime = mInputTime;
+    const FrameLib_TimeFormat inputTime = mInputTime;
 #endif
     
     bool timeUpdated = false;
@@ -523,15 +523,15 @@ void FrameLib_DSP::dependenciesReady(NotificationQueue& queue, LocalAllocator *a
 
     // Check for host alignment for objects needing audio notification (treating the audio notification as a time dependency)
 
-    bool hostAligned = needsAudioNotification() && mInputTime >= mBlockEndTime;
+    const bool hostAligned = needsAudioNotification() && mInputTime >= mBlockEndTime;
     
     if (hostAligned)
         mInputTime = mBlockEndTime;
     
     // Check if we have reached the end of time or need to just update inputs
     
-    bool endOfTime = mInputTime == FrameLib_TimeFormat::largest();
-    bool prevUpdatingInputs = mUpdatingInputs;
+    const bool endOfTime = mInputTime == FrameLib_TimeFormat::largest();
+    const bool prevUpdatingInputs = mUpdatingInputs;
 
     // Check if we need to release memory (schedulers and objects with more than one input dependency
     
