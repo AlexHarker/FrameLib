@@ -39,6 +39,8 @@ private:
 
 void FrameLib_MaxClass_Sink::classInit(t_class *c, t_symbol *nameSpace, const char *classname)
 {
+    // FIX - need to pass through from the wrapper
+    
     FrameLib_MaxClass::classInit(c, nameSpace, classname);
     
     addMethod<FrameLib_MaxClass_Sink, &FrameLib_MaxClass_Sink::clear>(c, "clear");
