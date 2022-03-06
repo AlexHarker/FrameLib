@@ -20,7 +20,7 @@ public:
         CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, FrameLib_MaxClass_ContextControl, mMaxContext.mName);
         CLASS_ATTR_ACCESSORS(c, "id", 0, &FrameLib_MaxClass_ContextControl::idSet);
         
-        CLASS_ATTR_ATOM_LONG(c, "rt", ATTR_FLAGS_NONE, FrameLib_MaxClass_ContextControl, mMaxContext.mRealtime);
+        CLASS_ATTR_LONG(c, "rt", ATTR_FLAGS_NONE, FrameLib_MaxClass_ContextControl, mMaxContext.mRealtime);
         CLASS_ATTR_ACCESSORS(c, "rt", 0, &FrameLib_MaxClass_ContextControl::rtSet);
     }
     
