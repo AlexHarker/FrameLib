@@ -722,15 +722,19 @@ public:
         addMethod<Wrapper<T>, &Wrapper<T>::parentpatcher>(c, "parentpatcher");
         addMethod<Wrapper<T>, &Wrapper<T>::subpatcher>(c, "subpatcher");
         addMethod<Wrapper<T>, &Wrapper<T>::assist>(c, "assist");
-        addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "anything");
         addMethod<Wrapper<T>, &Wrapper<T>::sync>(c, "sync");
         addMethod<Wrapper<T>, &Wrapper<T>::dsp>(c);
 
+        addMethod<Wrapper<T>, &Wrapper<T>::message>(c, "info");
+        addMethod<Wrapper<T>, &Wrapper<T>::frame>(c, "frame");
+        addMethod<Wrapper<T>, &Wrapper<T>::reset>(c, "reset");
+        addMethod<Wrapper<T>, &Wrapper<T>::process>(c, "process");
+            
         // N.B. MUST add signal handling after dspInit to override the builtin responses
         
         dspInit(c);
         *signalMethodCache() = class_method(c, gensym("signal"));
-        addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "signal");
+        addMethod<Wrapper<T>, &Wrapper<T>::signal>(c, "signal");
         
         addMethod(c, (method) &dblclick, "dblclick");
         addMethod(c, (method) &userConnect, "userconnect");
@@ -903,9 +907,33 @@ public:
             std::copy(internalOuts[i], internalOuts[i] + vec_size, outs[i]);
     }
     
-    void anything(t_symbol *sym, long ac, t_atom *av)
+    void message(t_symbol *sym, long ac, t_atom *av)
     {
         outlet_anything(mInOutlets[getInlet()].get(), sym, static_cast<int>(ac), av);
+    }
+    
+    void signal()
+    {
+        message(gensym("signal"), 0, nullptr);
+    }
+    
+    void frame()
+    {
+        message(gensym("frame"), 0, nullptr);
+    }
+    
+    void reset(def_double sampleRate = 0.0)
+    {
+        t_atom a;
+        atom_setfloat(&a, sampleRate);
+        message(gensym("reset"), 1, &a);
+    }
+    
+    void process(t_atom_long length)
+    {
+        t_atom a;
+        atom_setlong(&a, length);
+        message(gensym("process"), 1, &a);
     }
     
     // Double-click for buffer viewing
