@@ -4,6 +4,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_PropertySheetDisplayName>FrameLib_Max_Win64</_PropertySheetDisplayName>
+    <OutDir>$(SolutionDir)\Packaging\Max\FrameLib\externals\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
