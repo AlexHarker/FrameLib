@@ -6,45 +6,60 @@
 #include <fstream>
 #include <cstdio>
 
-#ifdef __GNUC__
+static void findReplace(std::string& name, const char *findStr, const char *replaceStr)
+{
+    size_t start_pos = name.find(findStr);
+    if (start_pos != std::string::npos)
+        name.replace(start_pos, strlen(findStr), replaceStr);
+}
+
+#if defined __GNUC__
 #include <cxxabi.h>
 
-void unmangleName(std::string& name, FrameLib_Multistream *obj)
+static void unmangleName(std::string& name, FrameLib_Multistream *obj)
 {
     int status;
     
-    const char *type_mangled_name = typeid(*obj).name();
-    char *real_name = abi::__cxa_demangle(type_mangled_name, 0, 0, &status);
+    const char *typeMangledName = typeid(*obj).name();
+    char *realName = abi::__cxa_demangle(typeMangledName, 0, 0, &status);
     
-    name = real_name;
-    size_t start_pos = name.find("std::__1");
-    if (start_pos != std::string::npos)
-        name.replace(start_pos, 8, "std");
-    free(real_name);
+    name = realName;
+    findReplace(name, "std::__1", "std");
+    free(realName);
+}
+#elif defined _MSC_VER
+static void unmangleName(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
+{
+    // N.B. on windows the name from typeid is unmangled
+    
+    name = typeid(*obj).name();
+ 
+    findReplace(name, "class ", "");
+    findReplace(name, "struct ", "");
+    findReplace(name, "__cdecl ", "");
 }
 #else
-void unmangleName(std::string& name, FrameLib_Multistream *obj)
+static void unmangleName(std::string& name, FrameLib_Multistream *obj)
 {
-    // FIX - needs implementing
+    // N.B. else assume the name from typeid is unmangled
     
-    const char *type_mangled_name = typeid(*obj).name();
-    name = type_mangled_name;
+    name = typeid(*obj).name();
 }
 #endif
 
-bool invalidPosition(size_t pos, size_t lo, size_t hi)
+static bool invalidPosition(size_t pos, size_t lo, size_t hi)
 {
     return pos == std::string::npos || (pos < lo) || (pos > hi);
 }
 
-void removeCharacters(std::string& name, size_t pos, size_t count, size_t& end, size_t& removed)
+static void removeCharacters(std::string& name, size_t pos, size_t count, size_t& end, size_t& removed)
 {
     name.erase(pos, count);
     end -= count;
     removed += count;
 }
 
-size_t resolveFunctionType(std::string& name, size_t beg, size_t end)
+static size_t resolveFunctionType(std::string& name, size_t beg, size_t end)
 {
     size_t searchPos;
     size_t removed = 0;
@@ -75,7 +90,7 @@ size_t resolveFunctionType(std::string& name, size_t beg, size_t end)
     return removed;
 }
 
-size_t findAndResolveFunctions(std::string& name, size_t beg, size_t end)
+static size_t findAndResolveFunctions(std::string& name, size_t beg, size_t end)
 {
     size_t function1, function2;
     size_t removed = 0;
@@ -114,7 +129,7 @@ size_t findAndResolveFunctions(std::string& name, size_t beg, size_t end)
     }
 }
 
-void getTypeString(std::string& name, FrameLib_Multistream *obj)
+static void getTypeString(std::string& name, FrameLib_Multistream *obj)
 {
     unmangleName(name, obj);
 
@@ -126,7 +141,7 @@ void getTypeString(std::string& name, FrameLib_Multistream *obj)
 using ObjectList = std::vector<FrameLib_Multistream*>;
 using Connection = FrameLib_Multistream::Connection;
 
-void serialiseGraph(ObjectList& serial, FrameLib_Multistream *object)
+static void serialiseGraph(ObjectList& serial, FrameLib_Multistream *object)
 {
     if (std::find(serial.begin(), serial.end(), object) != serial.end())
         return;
@@ -160,7 +175,7 @@ void serialiseGraph(ObjectList& serial, FrameLib_Multistream *object)
         serialiseGraph(serial, *it);
 }
 
-void addConnection(FrameLib_ObjectDescription& description, ObjectList& serial, Connection connect, unsigned long idx)
+static void addConnection(FrameLib_ObjectDescription& description, ObjectList& serial, Connection connect, unsigned long idx)
 {
     using Connection = FrameLib_ObjectDescription::Connection;
     
@@ -243,7 +258,7 @@ void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_M
     }
 }
 
-void serialiseVector(std::stringstream& output, size_t index, const char *type, size_t idx, const std::vector<double>& vector)
+static void serialiseVector(std::stringstream& output, size_t index, const char *type, size_t idx, const std::vector<double>& vector)
 {
     if (!vector.size())
         return;
@@ -265,7 +280,7 @@ void serialiseVector(std::stringstream& output, size_t index, const char *type, 
     output << " };\n";
 }
 
-std::string serialiseGraph(FrameLib_Multistream *requestObject)
+static std::string serialiseGraph(FrameLib_Multistream *requestObject)
 {
     std::vector<FrameLib_ObjectDescription> objects;
     std::stringstream output;
@@ -330,7 +345,7 @@ std::string serialiseGraph(FrameLib_Multistream *requestObject)
     return output.str();
 }
 
-std::string exportClassName(const char *codeIn, const char *classname)
+static std::string exportClassName(const char *codeIn, const char *classname)
 {
     std::string codeOut(codeIn);
     
@@ -342,7 +357,7 @@ std::string exportClassName(const char *codeIn, const char *classname)
     return codeOut;
 }
 
-ExportError exportWriteFile(std::stringstream& contents, const char *path, const char *className, const char *ext)
+static ExportError exportWriteFile(std::stringstream& contents, const char *path, const char *className, const char *ext)
 {
     std::string fileName(path);
 
