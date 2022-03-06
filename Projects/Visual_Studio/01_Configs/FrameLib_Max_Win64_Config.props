@@ -4,7 +4,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_PropertySheetDisplayName>FrameLib_Max_Win64</_PropertySheetDisplayName>
-    <OutDir>$(SolutionDir)\Packaging\Max\FrameLib\externals\</OutDir>
+    <OutDir>$(SolutionDir)Packaging\Max\FrameLib\externals\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
@@ -14,6 +14,8 @@
   <ItemDefinitionGroup>
     <Link>
       <AdditionalLibraryDirectories>$(C74Support)max-includes\x64;$(C74Support)msp-includes\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(IntDir)Extras\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(IntDir)Extras\$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />
