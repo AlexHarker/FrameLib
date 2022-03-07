@@ -26,10 +26,6 @@ class FrameLib_MaxClass_ToMax : public FrameLib_MaxClass_Expand<FrameLib_ToHost>
     
 public:
     
-    // Class Initialisation
-    
-    static void classInit(t_class *c, t_symbol *nameSpace, const char *classname);
-    
     // Constructor
     
     FrameLib_MaxClass_ToMax(t_object *x, t_symbol *s, long argc, t_atom *argv);
@@ -68,13 +64,6 @@ void FrameLib_MaxClass_ToMax::ToHostProxy::sendMessage(unsigned long stream, t_s
 }
 
 // Max Class
-
-// Class Initialisation
-
-void FrameLib_MaxClass_ToMax::classInit(t_class *c, t_symbol *nameSpace, const char *classname)
-{
-    FrameLib_MaxClass::classInit(c, nameSpace, classname);
-}
 
 // Constructor
 
