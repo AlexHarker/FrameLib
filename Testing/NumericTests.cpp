@@ -681,7 +681,6 @@ int main(int argc, const char * argv[]) {
     runTimeCompareTest("Multiply Speed", "Double", "Fixed", &doubleMultiplySpeedTest, &fixedMultiplySpeedTest, 0xFFFFFFF);
     runTimeCompareTest("Divide Speed", "Double", "Fixed", &doubleDivideSpeedTest, &fixedDivideSpeedTest, 0x8FFFFFF);
 
-
     testsCompleted();
     
     return 0;

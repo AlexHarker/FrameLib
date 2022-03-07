@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1300"
+   LastUpgradeVersion = "1320"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8A1F5BA1D5370DE00FA5FFC"
-               BuildableName = "NumericTesting"
-               BlueprintName = "NumericTesting"
+               BlueprintIdentifier = "B8B3F77027D65696008886BA"
+               BuildableName = "ExportTests"
+               BlueprintName = "ExportTests"
                ReferencedContainer = "container:framelib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -27,20 +27,11 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8A1F5BA1D5370DE00FA5FFC"
-            BuildableName = "NumericTesting"
-            BlueprintName = "NumericTesting"
-            ReferencedContainer = "container:framelib.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Deployment"
+      buildConfiguration = "Development"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -53,12 +44,18 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8A1F5BA1D5370DE00FA5FFC"
-            BuildableName = "NumericTesting"
-            BlueprintName = "NumericTesting"
+            BlueprintIdentifier = "B8B3F77027D65696008886BA"
+            BuildableName = "ExportTests"
+            BlueprintName = "ExportTests"
             ReferencedContainer = "container:framelib.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "&quot;$SRCROOT/build/export_test.txt&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Deployment"
@@ -70,9 +67,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8A1F5BA1D5370DE00FA5FFC"
-            BuildableName = "NumericTesting"
-            BlueprintName = "NumericTesting"
+            BlueprintIdentifier = "B8B3F77027D65696008886BA"
+            BuildableName = "ExportTests"
+            BlueprintName = "ExportTests"
             ReferencedContainer = "container:framelib.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

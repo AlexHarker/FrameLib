@@ -397,7 +397,6 @@ int main(int argc, const char * argv[]) {
     runTimeCompareTest("Comparison Speed", "malloc 2", "global 2", &mallocAllocTest2, &frameLibGlobalAllocTest2, 200000);
     runTimeCompareTest("Comparison Speed", "malloc 2", "local 2", &mallocAllocTest2, &frameLibLocalAllocTest2, 200000);
     
-
     testsCompleted();
     
     return 0;
