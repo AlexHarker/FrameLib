@@ -20,7 +20,7 @@ public:
         CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, FrameLib_MaxClass_ContextControl, mMaxContext.mName);
         CLASS_ATTR_ACCESSORS(c, "id", 0, &FrameLib_MaxClass_ContextControl::idSet);
         
-        CLASS_ATTR_LONG(c, "rt", ATTR_FLAGS_NONE, FrameLib_MaxClass_ContextControl, mMaxContext.mRealtime);
+        CLASS_ATTR_ATOM_LONG(c, "rt", ATTR_FLAGS_NONE, FrameLib_MaxClass_ContextControl, mMaxContext.mRealtime);
         CLASS_ATTR_ACCESSORS(c, "rt", 0, &FrameLib_MaxClass_ContextControl::rtSet);
     }
     
@@ -58,7 +58,7 @@ public:
     
     static t_max_err rtSet(FrameLib_MaxClass_ContextControl *x, t_object *attr, long argc, t_atom *argv)
     {
-        x->mMaxContext.mRealtime = argv ? static_cast<long>(atom_getlong(argv)) : 0;
+        x->mMaxContext.mRealtime = argv ? (atom_getlong(argv) ? 1 : 0) : 0;
         x->updateContext();
         
         return MAX_ERR_NONE;

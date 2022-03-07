@@ -41,7 +41,7 @@ struct FrameLib_MaxNRTAudio
 
 struct FrameLib_MaxContext
 {
-    long mRealtime;
+    t_atom_long mRealtime;
     t_object *mPatch;
     t_symbol *mName;
     
@@ -754,7 +754,7 @@ public:
         CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
         CLASS_ATTR_ACCESSORS(c, "id", &Wrapper<T>::idGet, &Wrapper<T>::idSet);
 
-        CLASS_ATTR_LONG(c, "rt", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
+        CLASS_ATTR_ATOM_LONG(c, "rt", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
         CLASS_ATTR_ACCESSORS(c, "rt", &Wrapper<T>::rtGet, &Wrapper<T>::rtSet);
     }
 
@@ -1110,7 +1110,7 @@ public:
         CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mMaxContext.mName);
         CLASS_ATTR_ACCESSORS(c, "id", 0, &FrameLib_MaxClass<T>::idSet);
 
-        CLASS_ATTR_LONG(c, "rt", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mMaxContext.mRealtime);
+        CLASS_ATTR_ATOM_LONG(c, "rt", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mMaxContext.mRealtime);
         CLASS_ATTR_ACCESSORS(c, "rt", 0, &FrameLib_MaxClass<T>::rtSet);
 
         addMethod(c, (method) &extPatchLineUpdate, "patchlineupdate");
