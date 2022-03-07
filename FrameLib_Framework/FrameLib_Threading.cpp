@@ -253,7 +253,7 @@ void FrameLib_Thread::join()
     {
         mValid = false;
         std::atomic_thread_fence(std::memory_order_seq_cst);
-
+        
         // Wait for thread to join before we allow the program to continue
         
         WaitForSingleObject(mInternal, INFINITE);
@@ -288,7 +288,7 @@ void FrameLib_Semaphore::close()
     {
         mValid = false;
         std::atomic_thread_fence(std::memory_order_seq_cst);
-
+        
         // Signal maximum count to ensure all threads are released, and check for completion
         
         for (long n = mInternal.mMaxCount; n > 0; n--)
@@ -311,7 +311,7 @@ bool FrameLib_Semaphore::wait()
 {
     if (mValid)
         WaitForSingleObject(mInternal.mHandle, INFINITE);
-
+    
     return mValid;
 }
 

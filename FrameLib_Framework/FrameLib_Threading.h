@@ -506,7 +506,7 @@ private:
     static void threadEntry(void *thread);
     void threadClassEntry(unsigned int index);
     
-    // Override this and provide code for the thread's functionality
+    // Override this and provide code for the threads functionality
     
     virtual void doTask(unsigned int index) = 0;
     
