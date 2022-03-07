@@ -8,12 +8,12 @@
 
 static void findReplace(std::string& name, const char *findStr, const char *replaceStr)
 {
-    size_t start_pos = name.find(findStr);
-    if (start_pos != std::string::npos)
+    for (size_t start_pos = name.find(findStr); start_pos != std::string::npos; start_pos = name.find(findStr))
         name.replace(start_pos, strlen(findStr), replaceStr);
 }
 
 #if defined __GNUC__
+
 #include <cxxabi.h>
 
 static void unmangleName(std::string& name, FrameLib_Multistream *obj)
@@ -27,7 +27,9 @@ static void unmangleName(std::string& name, FrameLib_Multistream *obj)
     findReplace(name, "std::__1", "std");
     free(realName);
 }
+
 #elif defined _MSC_VER
+
 static void unmangleName(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
 {
     // N.B. on windows the name from typeid is unmangled
@@ -36,15 +38,20 @@ static void unmangleName(std::string& name, FrameLib_Object<FrameLib_Multistream
  
     findReplace(name, "class ", "");
     findReplace(name, "struct ", "");
-    findReplace(name, "__cdecl ", "");
+    findReplace(name, " __ptr32", "");
+    findReplace(name, " __ptr64", "");
+    findReplace(name, "const *", "const*");
 }
+
 #else
+
 static void unmangleName(std::string& name, FrameLib_Multistream *obj)
 {
     // N.B. else assume the name from typeid is unmangled
     
     name = typeid(*obj).name();
 }
+
 #endif
 
 static bool invalidPosition(size_t pos, size_t lo, size_t hi)
@@ -97,38 +104,77 @@ static size_t findAndResolveFunctions(std::string& name, size_t beg, size_t end)
     
     while (true)
     {
-        // Recurse across the string to find any ampersands followed by a bracket (which are the start of a function)
-    
-        if (invalidPosition(function1 = name.find("&(", beg), beg, end))
+        // Recurse across the string to find any ampersands (which are the start of a function)
+        
+        if (invalidPosition(function1 = name.find("&", beg), beg, end))
             return removed;
-    
+        
         function1 = function1 + 1;
-        function2 = function1 + 1;
+
+        // Find first bracket
+
+        if (invalidPosition(function2 = name.find("(", function1), beg, end))
+            return removed;
     
         // Find the balancing bracket
     
         for (int bracketCount = 1; bracketCount; bracketCount = (name[function2] == '(') ? ++bracketCount : --bracketCount)
             if (invalidPosition(function2 = name.find_first_of("()", function2 + 1), beg, end))
                 return removed;
-    
-        // Erase the main brackets (last first to keep the positions correct)
         
-        removeCharacters(name, function2, 1, end, removed);
-        removeCharacters(name, function1, 1, end, removed);
-        function2 -= 2;
+        // On GNUC there are an additional pair of brackets around functions
+
+        if (name[function1] == '(')
+        {
+            // Erase the main brackets (last first to keep the positions correct)
+        
+            removeCharacters(name, function2, 1, end, removed);
+            removeCharacters(name, function1, 1, end, removed);
+            function2 -= 2;
+        }
         
         // Recurse downwards to resolve functions within functions
         
         size_t currentRemoved = findAndResolveFunctions(name, function1, function2);
-        end -= currentRemoved;
-        removed += currentRemoved;
 
         // We are now looking at a single function with no nested functions to resolve
         
-        resolveFunctionType(name, function1, function2 - currentRemoved);
+        currentRemoved += resolveFunctionType(name, function1, function2 - currentRemoved);
+        
+        // Update positions
+        
+        end -= currentRemoved;
+        removed += currentRemoved;
+        beg = 1 + function2 - currentRemoved;
     }
 }
 
+static void findAndRemoveCasts(std::string& name, size_t beg, size_t end)
+{
+    // On GNUC enums may be cast to the correct type (remove this)
+    
+    while (true)
+    {
+        size_t function1, function2;
+        size_t removed = 0;
+
+        // Find first bracket (with space)
+
+        if (invalidPosition(function1 = name.find(" (", beg), beg, end))
+            return;
+        
+        // Find second bracket
+        
+        if (invalidPosition(function2 = name.find(")", function1), beg, end))
+            return;
+        
+        // Remove
+        
+        removeCharacters(name, function1, 1 + function2 - function1, end, removed);
+        beg = 1 + function1;
+    }
+}
+    
 static void getTypeString(std::string& name, FrameLib_Multistream *obj)
 {
     unmangleName(name, obj);
@@ -136,6 +182,7 @@ static void getTypeString(std::string& name, FrameLib_Multistream *obj)
     // Resolve functions recursively
     
     findAndResolveFunctions(name, 0, name.length() - 1);
+    findAndRemoveCasts(name, 0, name.length() - 1);
 }
 
 using ObjectList = std::vector<FrameLib_Multistream*>;
