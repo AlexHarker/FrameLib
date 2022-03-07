@@ -87,6 +87,8 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_Interval>::makeClass("fl.interval~");
     FrameLib_MaxClass_Expand<FrameLib_Once>::makeClass("fl.once~");
     FrameLib_MaxClass_Expand<FrameLib_PerBlock>::makeClass("fl.perblock~");
+    FrameLib_MaxClass_Expand<FrameLib_Recursive>::makeClass("fl.recusivescheduler~");
+    FrameLib_MaxClass_Expand<FrameLib_Recursive::Time>::makeClass("fl.nexttime~");
     
     // Spatial
     

@@ -64,6 +64,7 @@
 #include "../FrameLib_Objects/Schedulers/FrameLib_Interval.h"
 #include "../FrameLib_Objects/Schedulers/FrameLib_Once.h"
 #include "../FrameLib_Objects/Schedulers/FrameLib_PerBlock.h"
+#include "../FrameLib_Objects/Schedulers/FrameLib_Recursive.h"
 
 // Spatial
 
@@ -126,6 +127,7 @@
 #include "../FrameLib_Objects/Vector/FrameLib_Reverse.h"
 #include "../FrameLib_Objects/Vector/FrameLib_Shift.h"
 #include "../FrameLib_Objects/Vector/FrameLib_Sort.h"
+#include "../FrameLib_Objects/Vector/FrameLib_SortMultiple.h"
 #include "../FrameLib_Objects/Vector/FrameLib_Split.h"
 #include "../FrameLib_Objects/Vector/FrameLib_Subframe.h"
 #include "../FrameLib_Objects/Vector/FrameLib_Vector_Objects.h"

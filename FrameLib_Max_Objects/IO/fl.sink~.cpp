@@ -12,6 +12,7 @@ class FrameLib_MaxClass_Sink : public FrameLib_MaxClass_Expand<FrameLib_Sink>
 {
     struct SinkProxy : public FrameLib_Sink::Proxy, public FrameLib_MaxProxy
     {
+        SinkProxy(t_object *x) : FrameLib_MaxProxy(x) {}
     };
     
 public:
@@ -49,7 +50,7 @@ void FrameLib_MaxClass_Sink::classInit(t_class *c, t_symbol *nameSpace, const ch
 // Constructor
 
 FrameLib_MaxClass_Sink::FrameLib_MaxClass_Sink(t_object *x, t_symbol *s, long argc, t_atom *argv)
-: FrameLib_MaxClass(x, s, argc, argv, new SinkProxy())
+: FrameLib_MaxClass(x, s, argc, argv, new SinkProxy(x))
 {
     mProxy = dynamic_cast<SinkProxy *>(mFrameLibProxy.get());
 }

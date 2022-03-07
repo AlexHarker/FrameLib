@@ -82,7 +82,7 @@ void FrameLib_SortMultiple::process()
     MismatchModes mismatch = mParameters.getEnum<MismatchModes>(kMismatch);
     double defaultValue = mParameters.getValue(kPadding);
     
-    unsigned long size, sizeMin, sizeMax, sizeIn;
+    unsigned long size, sizeIn, sizeMin = 0, sizeMax = 0;
     long sortIdx = mParameters.getInt(kSortInput) - 1;
     
     sortIdx = std::max(0L, std::min(mNumIO - 1, sortIdx));
