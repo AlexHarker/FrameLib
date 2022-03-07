@@ -178,6 +178,7 @@ namespace FrameLib_ExprParser
         
         using NodeList = std::vector<Node>;
         using NodeIt = typename std::vector<Node>::iterator;
+        using NodeRevIt = typename std::vector<Node>::reverse_iterator;
         using ConstOpPtr = const OpBase<T>*;
         
         // Constant Struct
@@ -553,19 +554,21 @@ namespace FrameLib_ExprParser
             return Node(kIsOutput, static_cast<long>(graph.mOperations.size() - 1), span);
         }
         
-        ExprParseError parseUnaryOperator(Graph<T>& graph, ConstOpPtr op, NodeList& nodes, const NodeIt& it)
+        ExprParseError parseUnaryOperator(Graph<T>& graph, ConstOpPtr op, NodeList& nodes, NodeRevIt& rit)
         {
+            NodeIt it = rit.base() - 1;
+
             // Check the operator isn't last, that it's either first, or precededed by an operator and not followed by one
             // N.B. return no error in case this is also an operator later, otherwise it'll be picked up as a stray item
             
             if ((it == nodes.end() - 1) || (it != nodes.begin() && !(it - 1)->isOperator()) || (it + 1)->isOperator())
                 return kNoError;
 
-            // Parse operation and erase consumed node (the iterator is still valid so don't alter)
+            // Parse operation and erase consumed node, ensuring the reverse iterator is valid even in debug mode 
             
             *it = parseOperation(graph, op, it + 1, it + 1, it + 1, it, it + 1);
-            nodes.erase(it + 1);
-            
+            rit = NodeRevIt(nodes.erase(it + 1));
+        
             return kNoError;
         }
 
@@ -622,9 +625,9 @@ namespace FrameLib_ExprParser
             
             // Now resolve unary operators by searching right-to-left
             
-            for (auto it = nodes.end(); it != nodes.begin(); it--)
-                if ((op = getOperator((it - 1)->getTokenString(), 0)))
-                    if ((error = parseUnaryOperator(graph, op, nodes, it - 1)))
+            for (auto it = nodes.rbegin(); it != nodes.rend(); it++)
+                if ((op = getOperator(it->getTokenString(), 0)))
+                    if ((error = parseUnaryOperator(graph, op, nodes, it)))
                         return error;
             
             // Now resolve binary operators in order of precedence
