@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include "FrameLib_TypeList.h"
+#include "../FrameLib_Exports/FrameLib_TypeList.h"
 #include "FrameLib_SerialiseGraph.h"
 
 // Ideally this would be generated, but for now this will work
@@ -225,7 +225,6 @@ int main(int argc, const char * argv[]) {
     
     std::ofstream oFile(argv[1]);
     
-    std::cout << argv[1] << "\n";
     if (oFile.is_open())
     {
         for (auto it = descriptions.begin(); it != descriptions.end(); it++)
@@ -239,7 +238,7 @@ int main(int argc, const char * argv[]) {
 
     oFile.close();
     
-    std::cout << "Output written!\n";
+    std::cout << "Output written to " << argv[1] << "\n";
 
     return 0;
 }
