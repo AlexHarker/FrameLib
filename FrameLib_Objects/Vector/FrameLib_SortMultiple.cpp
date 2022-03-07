@@ -148,20 +148,20 @@ void FrameLib_SortMultiple::process()
             switch (inputMismatch)
             {
                 case kShrink:
-                    for (long j = 0; j < size; j++)
+                    for (unsigned long j = 0; j < size; j++)
                         output[j] = input[indices[j]];
                     break;
             
                 case kPad:
-                    for (long j = 0; j < size; j++)
+                    for (unsigned long j = 0; j < size; j++)
                     {
-                        long idx = indices[j];
+                        unsigned long idx = indices[j];
                         output[j] = idx < sizeIn ? input[idx] : defaultValue;
                     }
                     break;
 
                 case kExtend:
-                    for (long j = 0; j < size; j++)
+                    for (unsigned long j = 0; j < size; j++)
                         output[j] = input[std::min(indices[j], sizeIn - 1)];
                     break;
             }

@@ -126,7 +126,7 @@ struct FrameLib_MaxNRTAudio
 {
     FrameLib_Multistream *mObject;
     t_symbol *mBuffer;
-    long mOffset;
+    t_atom_long mOffset;
 };
 
 struct FrameLib_MaxContext
@@ -846,7 +846,7 @@ public:
         CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
         CLASS_ATTR_ACCESSORS(c, "buffer", &Wrapper<T>::bufferGet, &Wrapper<T>::bufferSet);
         
-        CLASS_ATTR_LONG(c, "offset", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
+        CLASS_ATTR_ATOM_LONG(c, "offset", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
         CLASS_ATTR_ACCESSORS(c, "offset", &Wrapper<T>::offsetGet, &Wrapper<T>::offsetSet);
         
         CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
@@ -1244,7 +1244,7 @@ public:
             dspInit(c);
             
             CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mBuffer);
-            CLASS_ATTR_LONG(c, "offset", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mOffset);
+            CLASS_ATTR_ATOM_LONG(c, "offset", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mOffset);
             CLASS_ATTR_ACCESSORS(c, "offset", 0, &FrameLib_MaxClass<T>::offsetSet);
         }
         
@@ -2568,7 +2568,7 @@ public:
     // Attributes
     
     t_symbol *mBuffer;
-    long mOffset;
+    t_atom_long mOffset;
     FrameLib_MaxContext mMaxContext;
 };
 
