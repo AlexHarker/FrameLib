@@ -34,14 +34,33 @@ private:
     SinkProxy *mProxy;
 };
 
+// Wrapper Class
+
+using WrapperType = Wrapper<FrameLib_MaxClass_Sink>;
+
+// Clear Handler
+
+void clearHandler(WrapperType *x)
+{
+    x->message(gensym("clear"),  0, nullptr);
+}
+
+// Class Initialisation
+
+template <>
+void WrapperType::classInit(t_class *c, t_symbol *nameSpace, const char *classname)
+{
+    WrapperType::classInitCore(c, nameSpace, classname);
+    
+    class_addmethod(c, (method) &clearHandler, "clear", 0);
+}
+
 // Max Class
 
 // Class Initialisation
 
 void FrameLib_MaxClass_Sink::classInit(t_class *c, t_symbol *nameSpace, const char *classname)
 {
-    // FIX - need to pass through from the wrapper
-    
     FrameLib_MaxClass::classInit(c, nameSpace, classname);
     
     addMethod<FrameLib_MaxClass_Sink, &FrameLib_MaxClass_Sink::clear>(c, "clear");
@@ -52,7 +71,7 @@ void FrameLib_MaxClass_Sink::classInit(t_class *c, t_symbol *nameSpace, const ch
 FrameLib_MaxClass_Sink::FrameLib_MaxClass_Sink(t_object *x, t_symbol *s, long argc, t_atom *argv)
 : FrameLib_MaxClass(x, s, argc, argv, new SinkProxy(x))
 {
-    mProxy = dynamic_cast<SinkProxy *>(mFrameLibProxy.get());
+    mProxy = static_cast<SinkProxy *>(mFrameLibProxy.get());
 }
 
 // Additional handlers

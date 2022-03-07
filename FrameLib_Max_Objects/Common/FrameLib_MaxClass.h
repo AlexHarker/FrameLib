@@ -810,6 +810,11 @@ public:
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
+        classInitCore(c, nameSpace, classname);
+    }
+    
+    static void classInitCore(t_class *c, t_symbol *nameSpace, const char *classname)
+    {
         addMethod<Wrapper<T>, &Wrapper<T>::parentpatcher>(c, "parentpatcher");
         addMethod<Wrapper<T>, &Wrapper<T>::subpatcher>(c, "subpatcher");
         addMethod<Wrapper<T>, &Wrapper<T>::assist>(c, "assist");
