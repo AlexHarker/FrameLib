@@ -19,11 +19,22 @@
 #include <memory>
 #include <vector>
 
+/**
+  
+ @brief A constexpr value representing the framework version.
+ 
+ This can be used to ensure that wersions that might be compiled into different dynamic libraries are compatible at runtime.
+ 
+ The version is stored as a decimal with major version changes as multiples of 1000
+ 
+ */
+
+static constexpr uint32_t FrameLib_FrameworkVersion = 990;
+
 // Raw Bytes
 
 using Byte = unsigned char;
 using BytePointer = Byte *;
-
 
 /**
  

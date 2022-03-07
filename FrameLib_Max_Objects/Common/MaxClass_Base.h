@@ -126,6 +126,12 @@ public:
     // C++ style variadic call to object_method_imp
     
     template <class ReturnType = void *, typename...Args>
+    static ReturnType objectMethod(t_object *object, const char* theMethodName, Args...args)
+    {
+        return objectMethod<ReturnType>(object, gensym(theMethodName), args...);
+    }
+    
+    template <class ReturnType = void *, typename...Args>
     static ReturnType objectMethod(t_object *object, t_symbol* theMethod, Args...args)
     {
         void *pad = nullptr;

@@ -21,6 +21,95 @@
 #include <vector>
 #include <unordered_map>
 
+// Deal with private strings and versioning
+
+struct FrameLib_MaxPrivate
+{
+    // A constant representing the max wrapper version.
+    // The version is stored as a decimal with major version changes as multiples of 1000
+    
+    static inline constexpr uint32_t maxWrapperVersion()
+    {
+        return 990;
+    }
+
+    // A constant representing the max wrapper and framework versions.
+    // The versions are combined in a manner that they are both easily readable when viewed in decimal format
+    
+    static inline constexpr uint64_t version()
+    {
+        return static_cast<uint64_t>(FrameLib_FrameworkVersion) * 1000000000 + static_cast<uint64_t>(maxWrapperVersion());
+    }
+
+    struct VersionString
+    {
+        VersionString(const char *str) : mString(str)
+        {
+            mString.append(".v");
+            mString.append(std::to_string(version()));
+        }
+        
+        // Non-copyable but moveable
+        
+        VersionString(const VersionString&) = delete;
+        VersionString& operator=(const VersionString&) = delete;
+        VersionString(VersionString&&) = default;
+        VersionString& operator=(VersionString&&) = default;
+                
+        operator const char *() { return mString.c_str(); }
+        
+        std::string mString;
+    };
+        
+    static inline t_symbol *FLNamespace()                   { return gensym("__fl.framelib_private"); }
+    static inline t_symbol *globalTag()                     { return gensym(VersionString("__fl.max_global_tag")); }
+                                                 
+    static inline VersionString objectGlobal()              { return "__fl.max_global_items"; }
+    static inline VersionString objectMessageHandler()      { return "__fl.message.handler"; }
+    static inline VersionString objectMutator()             { return "__fl.signal.mutator"; }
+    
+    static inline const char *messageGetUserObject()        { return "__fl.get_user_object"; }
+    static inline const char *messageUnwrap()               { return "__fl.unwrap"; }
+    static inline const char *messageIsWrapper()            { return "__fl.is_wrapper"; }
+    static inline const char *messageFindAudioObjects()     { return "__fl.find_audio_objects"; }
+    static inline const char *messageResolveContext()       { return "__fl.resolve_context"; }
+    static inline const char *messageResolveConnections()   { return "__fl.resolve_connections"; }
+    static inline const char *messageMarkUnresolved()       { return "__fl.mark_unresolved"; }
+    static inline const char *messageMakeAutoOrdering()     { return "__fl.make_auto_ordering"; }
+    static inline const char *messageClearAutoOrdering()    { return "__fl.clear_auto_ordering"; }
+    static inline const char *messageReset()                { return "__fl.reset"; }
+    static inline const char *messageIsConnected()          { return "__fl.is_connected"; }
+    static inline const char *messageConnectionConfirm()    { return "__fl.connection_confirm"; }
+    static inline const char *messageConnectionUpdate()     { return "__fl.connection_update"; }
+    static inline const char *messageGetFrameLibObject()    { return "__fl.get_framelib_object"; }
+    static inline const char *messageGetNumAudioIns()       { return "__fl.get_num_audio_ins"; }
+    static inline const char *messageGetNumAudioOuts()      { return "__fl.get_num_audio_outs"; }
+    
+    static FrameLib_Multistream *toFrameLibObject(t_object *object, uint64_t& versionCheck)
+    {
+        if (!object)
+            return nullptr;
+     
+        return MaxClass_Base::objectMethod<FrameLib_Multistream *>(object, messageGetFrameLibObject(), &versionCheck);
+    }
+    
+    static FrameLib_Multistream *toFrameLibObject(t_object *object)
+    {
+        uint64_t versionCheck = 0;
+        FrameLib_Multistream *internalObject = toFrameLibObject(object, versionCheck);
+        return versionCheck == version() ? internalObject : nullptr;
+    }
+    
+    static bool versionMismatch(t_object *object)
+    {
+        uint64_t versionCheck = 0;
+        toFrameLibObject(object, versionCheck);
+        return versionCheck && versionCheck != version();
+    }
+};
+
+// Other Max-specific structures
+
 struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
 {
     FrameLib_MaxProxy(t_object *x)
@@ -340,7 +429,7 @@ public:
             {
                 std::string errorText;
                 t_object *object = it->getReporter() ? it->getReporter()->getOwner<t_object>() : nullptr;
-                t_object *userObject = object ? objectMethod<t_object *>(object, gensym("__fl.get_user_object")) : nullptr;
+                t_object *userObject = object ? objectMethod<t_object *>(object, FrameLib_MaxPrivate::messageGetUserObject()) : nullptr;
                 
                 it->getErrorText(errorText);
                 
@@ -496,13 +585,14 @@ public:
         
         if (!item)
         {
+            t_symbol *handlerSym = gensym(FrameLib_MaxPrivate::objectMessageHandler());
             item.reset(new RefData());
             FrameLib_Context context(key.mRealtime ? mRTGlobal : mNRTGlobal, item.get());
             
             std::get<kKey>(*item) = key;
             std::get<kCount>(*item) = 1;
             std::get<kFinal>(*item) = nullptr;
-            std::get<kHandler>(*item) = unique_object_ptr((t_object *)object_new_typed(CLASS_NOBOX, gensym("__fl.message.handler"), 0, nullptr));
+            std::get<kHandler>(*item) = unique_object_ptr((t_object *)object_new_typed(CLASS_NOBOX, handlerSym, 0, nullptr));
             std::get<kQueuePtr>(*item) = QueuePtr(new FrameLib_Context::ProcessingQueue(context));
             
             // Set timeouts
@@ -531,7 +621,7 @@ public:
 
         if (it != mUnresolvedContexts.end())
         {
-            objectMethod(it->second, gensym("__fl.resolve_context"));
+            objectMethod(it->second, FrameLib_MaxPrivate::messageResolveContext());
             mUnresolvedContexts.erase(it);
         }
     }
@@ -568,7 +658,7 @@ private:
     static void serviceContexts(FrameLib_MaxGlobals *x)
     {
         for (auto it = x->mUnresolvedContexts.begin(); it != x->mUnresolvedContexts.end(); it++)
-            objectMethod(it->second, gensym("__fl.resolve_context"));
+            objectMethod(it->second, FrameLib_MaxPrivate::messageResolveContext());
             
         x->mUnresolvedContexts.clear();
     }
@@ -600,10 +690,10 @@ private:
     
     static FrameLib_MaxGlobals *get()
     {
-        const char maxGlobalClass[] = "__fl.max_global_items";
-        const char messageClassName[] = "__fl.message.handler";
-        t_symbol *nameSpace = gensym("__fl.framelib_private");
-        t_symbol *globalTag = gensym("__fl.max_global_tag");
+        auto maxGlobalClass = FrameLib_MaxPrivate::objectGlobal();
+        auto messageClassName = FrameLib_MaxPrivate::objectMessageHandler();
+        t_symbol *nameSpace = FrameLib_MaxPrivate::FLNamespace();
+        t_symbol *globalTag = FrameLib_MaxPrivate::globalTag();
      
         // Make sure the max globals and message handler classes exist
 
@@ -676,7 +766,7 @@ public:
     Mutator(t_object *x, t_symbol *sym, long ac, t_atom *av)
     {
         mObject = reinterpret_cast<t_object *>(ac ? atom_getobj(av) : nullptr);
-        FLObject *object = mObject ? objectMethod<FLObject *>(mObject, gensym("__fl.get_framelib_object")) : nullptr;
+        FLObject *object = FrameLib_MaxPrivate::toFrameLibObject(mObject);
         mMode = object && object->getType() == ObjectType::Output ? SyncCheck::kDownOnly : SyncCheck::kDown;
     }
     
@@ -688,7 +778,7 @@ public:
     void mutate(t_symbol *sym, long ac, t_atom *av)
     {
         mSyncChecker.sync(mObject, gettime(), mMode);
-        objectMethod(mObject, gensym("sync"));
+        objectMethod(mObject, "sync");
         mSyncChecker.sync();
     }
     
@@ -736,12 +826,12 @@ public:
         addMethod(c, (method) &userConnect, "userconnect");
         addMethod(c, (method) &patchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &connectionAccept, "connectionaccept");
-        addMethod(c, (method) &unwrap, "__fl.wrapper_unwrap");
-        addMethod(c, (method) &isWrapper, "__fl.wrapper_is_wrapper");
+        addMethod(c, (method) &unwrap, FrameLib_MaxPrivate::messageUnwrap());
+        addMethod(c, (method) &isWrapper, FrameLib_MaxPrivate::messageIsWrapper());
 
         // Make sure the mutator class exists
         
-        const char mutatorClassName[] = "__fl.signal.mutator";
+        auto mutatorClassName = FrameLib_MaxPrivate::objectMutator();
         
         if (!class_findbyname(CLASS_NOBOX, gensym(mutatorClassName)))
             Mutator::makeClass<Mutator>(CLASS_NOBOX, mutatorClassName);
@@ -784,7 +874,7 @@ public:
         
         if ((textfield = jbox_get_textfield(textfield)))
         {
-            text = objectMethod<char *>(textfield, gensym("getptr"));
+            text = objectMethod<char *>(textfield, "getptr");
             text = strchr(text, ' ');
             
             if (text)
@@ -793,12 +883,12 @@ public:
         
         // Set the patch association
         
-        objectMethod(mPatch.get(), gensym("setassoc"), this);
+        objectMethod(mPatch.get(), "setassoc", this);
         
         // Make internal object and disallow editing
 
-        mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch.get(), "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", newObjectText.c_str()));
-        objectMethod(mPatch.get(), gensym("noedit"));
+        mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch.get(), "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 200 10", newObjectText.c_str()));
+        objectMethod(mPatch.get(), "noedit");
         
         // Free the dictionary
         
@@ -809,7 +899,8 @@ public:
         dspSetup(1);
             
         atom_setobj(&a, mObject);
-        mMutator = toUnique(object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 1, &a));
+        t_symbol *mutatorSym = gensym(FrameLib_MaxPrivate::objectMutator());
+        mMutator = toUnique(object_new_typed(CLASS_NOBOX, mutatorSym, 1, &a));
         outlet_add(outlet_nth(mObject, 0), inlet_nth(mMutator.get(), 0));
      
         // Get the object itself (typed)
@@ -1100,7 +1191,7 @@ public:
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::process>(c, "process");
 
             addMethod(c, (method) &dblclick, "dblclick");
-            addMethod(c, (method) &extFindAudio, "__fl.find_audio_objects");
+            addMethod(c, (method) &extFindAudio, FrameLib_MaxPrivate::messageFindAudioObjects());
 
             dspInit(c);
             
@@ -1115,19 +1206,19 @@ public:
 
         addMethod(c, (method) &extPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &extConnectionAccept, "connectionaccept");
-        addMethod(c, (method) &extResolveContext, "__fl.resolve_context");
-        addMethod(c, (method) &extResolveConnections, "__fl.resolve_connections");
-        addMethod(c, (method) &extMarkUnresolved, "__fl.mark_unresolved");
-        addMethod(c, (method) &extAutoOrderingConnections, "__fl.auto_ordering_connections");
-        addMethod(c, (method) &extClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
-        addMethod(c, (method) &extReset, "__fl.reset");
-        addMethod(c, (method) &extIsConnected, "__fl.is_connected");
-        addMethod(c, (method) &extConnectionConfirm, "__fl.connection_confirm");
-        addMethod(c, (method) &extConnectionUpdate, "__fl.connection_update");
-        addMethod(c, (method) &extGetFLObject, "__fl.get_framelib_object");
-        addMethod(c, (method) &extGetUserObject, "__fl.get_user_object");
-        addMethod(c, (method) &extGetNumAudioIns, "__fl.get_num_audio_ins");
-        addMethod(c, (method) &extGetNumAudioOuts, "__fl.get_num_audio_outs");
+        addMethod(c, (method) &extResolveContext, FrameLib_MaxPrivate::messageResolveContext());
+        addMethod(c, (method) &extResolveConnections, FrameLib_MaxPrivate::messageResolveConnections());
+        addMethod(c, (method) &extMarkUnresolved, FrameLib_MaxPrivate::messageMarkUnresolved());
+        addMethod(c, (method) &extMakeAutoOrdering, FrameLib_MaxPrivate::messageMakeAutoOrdering());
+        addMethod(c, (method) &extClearAutoOrdering, FrameLib_MaxPrivate::messageClearAutoOrdering());
+        addMethod(c, (method) &extReset, FrameLib_MaxPrivate::messageReset());
+        addMethod(c, (method) &extIsConnected, FrameLib_MaxPrivate::messageIsConnected());
+        addMethod(c, (method) &extConnectionConfirm, FrameLib_MaxPrivate::messageConnectionConfirm());
+        addMethod(c, (method) &extConnectionUpdate, FrameLib_MaxPrivate::messageConnectionUpdate());
+        addMethod(c, (method) &extGetFLObject, FrameLib_MaxPrivate::messageGetFrameLibObject());
+        addMethod(c, (method) &extGetUserObject, FrameLib_MaxPrivate::messageGetUserObject());
+        addMethod(c, (method) &extGetNumAudioIns, FrameLib_MaxPrivate::messageGetNumAudioIns());
+        addMethod(c, (method) &extGetNumAudioOuts, FrameLib_MaxPrivate::messageGetNumAudioOuts());
     }
 
     // Check if a patch in memory matches a symbol representing a path
@@ -1166,7 +1257,7 @@ public:
             
             // Traverse if the patch is in a box (subpatcher or abstraction) or it belongs to a wrapper
             
-            traverse = jpatcher_get_box(patch) || (assoc && objectMethod(assoc, gensym("__fl.wrapper_is_wrapper")));
+            traverse = jpatcher_get_box(patch) || (assoc && objectMethod(assoc, FrameLib_MaxPrivate::messageIsWrapper()));
             
             if (!traverse && !assoc)
             {
@@ -1176,7 +1267,7 @@ public:
                 
                 for (t_object *b = jpatcher_get_firstobject(parent); b && !text; b = jbox_get_nextobject(b))
                     if (jbox_get_maxclass(b) == gensym("newobj") && jbox_get_textfield(b))
-                        text = objectMethod<char *>(jbox_get_textfield(b), gensym("getptr"));
+                        text = objectMethod<char *>(jbox_get_textfield(b), "getptr");
 
                 if (text)
                 {
@@ -1223,7 +1314,7 @@ public:
         t_object *patch = gensym("#P")->s_thing;
         t_object *assoc = getAssociation(patch);
     
-        return (assoc && objectMethod(assoc, gensym("__fl.wrapper_is_wrapper"))) ? assoc : *this;
+        return (assoc && objectMethod(assoc, FrameLib_MaxPrivate::messageIsWrapper())) ? assoc : *this;
     }
     
     // Tag checks
@@ -1557,7 +1648,7 @@ public:
         // Retrieve all the audio objects in a list
         
         std::vector<FrameLib_MaxNRTAudio> audioObjects;
-        traversePatch(gensym("__fl.find_audio_objects"), &audioObjects);
+        traversePatch(FrameLib_MaxPrivate::messageFindAudioObjects(), &audioObjects);
         
         // Set up buffers
         
@@ -1635,11 +1726,11 @@ public:
             {
                 for (long i = 0; i < getNumIns(); i++)
                     if (isConnected(i))
-                        objectMethod(getConnection(i).mObject, gensym("sync"));
+                        objectMethod(getConnection(i).mObject, "sync");
                 
                 if (supportsOrderingConnections())
                     for (long i = 0; i < getNumOrderingConnections(); i++)
-                        objectMethod(getOrderingConnection(i).mObject, gensym("sync"));
+                        objectMethod(getOrderingConnection(i).mObject, "sync");
                 
                 mSyncChecker.restoreMode();
             }
@@ -1664,7 +1755,9 @@ public:
         
         long index = getInlet() - getNumAudioIns();
         
-        if (!connection.mObject)
+        // Make sure there's an object to connect that has the same framelib version
+        
+        if (!connection.mObject || versionMismatch(connection.mObject, true))
             return;
         
         if (mGlobal->getConnectionMode() == ConnectionMode::kConnect)
@@ -1718,12 +1811,12 @@ public:
         x->mResolved = false;
     }
     
-    static void extAutoOrderingConnections(FrameLib_MaxClass *x)
+    static void extMakeAutoOrdering(FrameLib_MaxClass *x)
     {
         x->mObject->makeAutoOrderingConnections();
     }
     
-    static void extClearAutoOrderingConnections(FrameLib_MaxClass *x)
+    static void extClearAutoOrdering(FrameLib_MaxClass *x)
     {
         x->mObject->clearAutoOrderingConnections();
     }
@@ -1738,8 +1831,9 @@ public:
         x->mConnectionsUpdated = state;
     }
     
-    static FLObject *extGetFLObject(FrameLib_MaxClass *x)
+    static FLObject *extGetFLObject(FrameLib_MaxClass *x, uint64_t *version)
     {
+        *version = FrameLib_MaxPrivate::version();
         return x->mObject.get();
     }
     
@@ -1847,7 +1941,7 @@ private:
     static t_object *getAssociation(t_object *patch)
     {
         t_object *assoc = 0;
-        objectMethod(patch, gensym("getassoc"), &assoc);
+        objectMethod(patch, "getassoc", &assoc);
         return assoc;
     }
     
@@ -1860,7 +1954,7 @@ private:
         
         // Avoid recursion into a poly / pfft / etc. - If the subpatcher is a wrapper we do need to deal with it
         
-        if (assoc != contextAssoc && !objectMethod(assoc, gensym("__fl.wrapper_is_wrapper")))
+        if (assoc != contextAssoc && !objectMethod(assoc, FrameLib_MaxPrivate::messageIsWrapper()))
             return;
         
         // Search for subpatchers, and call method on objects that don't have subpatchers
@@ -1880,8 +1974,10 @@ private:
     }
     
     template <typename...Args>
-    void traversePatch(t_symbol *theMethod, Args...args)
+    void traversePatch(const char *theMethodName, Args...args)
     {
+        t_symbol *theMethod = gensym(theMethodName);
+        
         // Clear the queue and after traversing call objects added to the queue
         
         mGlobal->clearQueue();
@@ -1900,21 +1996,21 @@ private:
         t_ptr_int updated = false;
         
         mGlobal->setReportContextErrors(true);
-        traversePatch(gensym("__fl.mark_unresolved"));
-        traversePatch(gensym("__fl.resolve_connections"), &updated);
-        traversePatch(gensym("__fl.connection_update"), t_ptr_int(false));
+        traversePatch(FrameLib_MaxPrivate::messageMarkUnresolved());
+        traversePatch(FrameLib_MaxPrivate::messageResolveConnections(), &updated);
+        traversePatch(FrameLib_MaxPrivate::messageConnectionUpdate(), t_ptr_int(false));
         mGlobal->setReportContextErrors(false);
 
         // If updated then redo auto ordering connections
         
         if (updated)
         {
-            traversePatch(gensym("__fl.clear_auto_ordering_connections"));
-            traversePatch(gensym("__fl.auto_ordering_connections"));
+            traversePatch(FrameLib_MaxPrivate::messageClearAutoOrdering());
+            traversePatch(FrameLib_MaxPrivate::messageMakeAutoOrdering());
         }
         
         if (markUnresolved)
-            traversePatch(gensym("__fl.mark_unresolved"));
+            traversePatch(FrameLib_MaxPrivate::messageMarkUnresolved());
         
         return updated;
     }
@@ -1924,7 +2020,7 @@ private:
         bool updated = resolveGraph(false);
         
         if (updated || forceReset)
-            traversePatch(gensym("__fl.reset"), &sampleRate, static_cast<t_ptr_int>(maxBlockSize()));
+            traversePatch(FrameLib_MaxPrivate::messageReset(), &sampleRate, static_cast<t_ptr_int>(maxBlockSize()));
     }
     
     void resolveContext()
@@ -1942,7 +2038,7 @@ private:
     
     static FLObject *toFLObject(t_object *x)
     {
-        return objectMethod<FLObject *>(x, gensym("__fl.get_framelib_object"));
+        return FrameLib_MaxPrivate::toFrameLibObject(x);
     }
     
     static t_object *toMaxObject(FLObject *object)
@@ -1950,17 +2046,28 @@ private:
         return object ? object->getProxy()->getOwner<t_object>() : nullptr;
     }
     
+    bool versionMismatch(t_object *object, bool report) const
+    {
+        bool mismatch = FrameLib_MaxPrivate::versionMismatch(object);
+
+        // FIX - more informative error
+        if (mismatch && report)
+            object_error(mUserObject, "objects complied with different versions of framelib cannot be connected.");
+            
+        return mismatch;
+    }
+    
     // Get the number of audio ins/outs safely from a generic pointer
     
     static long getNumAudioIns(t_object *x)
     {
-        t_ptr_int numAudioIns = objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_ins"));
+        t_ptr_int numAudioIns = objectMethod<t_ptr_int>(x, FrameLib_MaxPrivate::messageGetNumAudioIns());
         return static_cast<long>(numAudioIns);
     }
     
     static long getNumAudioOuts(t_object *x)
     {
-        t_ptr_int numAudioOuts = objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_outs"));
+        t_ptr_int numAudioOuts = objectMethod<t_ptr_int>(x, FrameLib_MaxPrivate::messageGetNumAudioOuts());
         return static_cast<long>(numAudioOuts);
     }
     
@@ -2040,7 +2147,7 @@ private:
         
         ConnectionConfirmation confirmation(connection, inIndex);
         mConfirmation = &confirmation;
-        objectMethod(connection.mObject, gensym("__fl.connection_confirm"), t_ptr_int(connection.mIndex), mode);
+        objectMethod(connection.mObject, FrameLib_MaxPrivate::messageConnectionConfirm(), t_ptr_int(connection.mIndex), mode);
         mConfirmation = nullptr;
         
         if (!confirmation.mConfirm)
@@ -2068,7 +2175,7 @@ private:
         {
             case ConnectionResult::Success:
                 mConnectionsUpdated = true;
-                objectMethod(connection.mObject, gensym("__fl.connection_update"), t_ptr_int(true));
+                objectMethod(connection.mObject, FrameLib_MaxPrivate::messageConnectionUpdate(), t_ptr_int(true));
                 break;
                 
             case ConnectionResult::FeedbackDetected:
@@ -2107,7 +2214,7 @@ private:
     
     void unwrapConnection(t_object *& object, long& connection)
     {
-        t_object *wrapped = objectMethod<t_object *>(object, gensym("__fl.wrapper_unwrap"), &connection);
+        t_object *wrapped = objectMethod<t_object *>(object, FrameLib_MaxPrivate::messageUnwrap(), &connection);
         object = wrapped ? wrapped : object;
     }
     
@@ -2122,7 +2229,9 @@ private:
         srcout -= getNumAudioOuts(src);
         dstin -= getNumAudioIns();
         
-        if (!isOrderingInput(dstin) && !validInput(dstin))
+        // Ignore if the framelib versions differ or the connection isn't to a framelib input
+        
+        if (versionMismatch(src, type == JPATCHLINE_CONNECT) || (!isOrderingInput(dstin) && !validInput(dstin)))
             return MAX_ERR_NONE;
 
         if (!isRealtime() || !dspSetBroken())
@@ -2159,9 +2268,13 @@ private:
         dstin -= getNumAudioIns(dst);
         srcout -= getNumAudioOuts();
         
-        // Allow connections - if not a frame outlet / to the ordering inlet / to a valid unconnected input
+        // Allow connections
+        // - if versions are mismatched (to preserve connections)
+        // - if not a frame outlet
+        // - if to the ordering inlet
+        // - if to a valid unconnected input
         
-        if (!validOutput(srcout) || isOrderingInput(dstin, toFLObject(dst)) || (validInput(dstin, toFLObject(dst)) && !objectMethod(dst, gensym("__fl.is_connected"), t_ptr_int(dstin))))
+        if (versionMismatch(dst, false) || !validOutput(srcout) || isOrderingInput(dstin, toFLObject(dst)) || (validInput(dstin, toFLObject(dst)) && !objectMethod(dst, FrameLib_MaxPrivate::messageIsConnected(), t_ptr_int(dstin))))
             return 1;
         
         return 0;
