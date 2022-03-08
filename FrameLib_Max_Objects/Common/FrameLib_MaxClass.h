@@ -78,7 +78,7 @@ struct FrameLib_MaxPrivate
     static inline const char *messageMakeAutoOrdering()     { return "__fl.make_auto_ordering"; }
     static inline const char *messageClearAutoOrdering()    { return "__fl.clear_auto_ordering"; }
     static inline const char *messageReset()                { return "__fl.reset"; }
-    static inline const char *messageIsConnected()          { return "__fl.is_connected"; }
+    static inline const char *messageIsDirectlyConnected()  { return "__fl.is_directly_connected"; }
     static inline const char *messageConnectionConfirm()    { return "__fl.connection_confirm"; }
     static inline const char *messageConnectionUpdate()     { return "__fl.connection_update"; }
     static inline const char *messageGetFrameLibObject()    { return "__fl.get_framelib_object"; }
@@ -137,6 +137,18 @@ struct FrameLib_MaxContext
     bool operator == (const FrameLib_MaxContext& b) const
     {
         return mRealtime == b.mRealtime && mPatch == b.mPatch && mName == b.mName;
+    }
+};
+
+struct FrameLib_MaxConnectAccept
+{
+    FrameLib_Connection<t_object, long> mSource;
+    t_object *mDestination;
+    long mTime;
+    
+    bool operator == (const FrameLib_MaxConnectAccept& b) const
+    {
+        return mSource == b.mSource && mDestination == b.mDestination && mTime == b.mTime;
     }
 };
 
@@ -371,6 +383,7 @@ public:
     enum ConnectionMode : t_ptr_int { kConnect, kConfirm, kDoubleCheck };
 
     using MaxConnection = FrameLib_Connection<t_object, long>;
+    using ConnectAccept = FrameLib_MaxConnectAccept;
     using Lock = FrameLib_Lock;
 
 private:
@@ -651,6 +664,9 @@ public:
     SyncCheck *getSyncCheck() const             { return mSyncCheck; }
     void setSyncCheck(SyncCheck *check)         { mSyncCheck = check; }
     
+    void setConnectAccept(ConnectAccept ca)     { mConnectAccept = ca; }
+    bool checkAccept(ConnectAccept ca) const    { return mConnectAccept == ca; }
+    
 private:
     
     // Context methods
@@ -734,6 +750,7 @@ private:
     
     MaxConnection mConnection;
     ConnectionMode mConnectionMode;
+    ConnectAccept mConnectAccept;
     bool mReportContextErrors;
     
     // Member Objects / Pointers
@@ -1240,7 +1257,7 @@ public:
         addMethod(c, (method) &extMakeAutoOrdering, FrameLib_MaxPrivate::messageMakeAutoOrdering());
         addMethod(c, (method) &extClearAutoOrdering, FrameLib_MaxPrivate::messageClearAutoOrdering());
         addMethod(c, (method) &extReset, FrameLib_MaxPrivate::messageReset());
-        addMethod(c, (method) &extIsConnected, FrameLib_MaxPrivate::messageIsConnected());
+        addMethod(c, (method) &extIsDirectlyConnected, FrameLib_MaxPrivate::messageIsDirectlyConnected());
         addMethod(c, (method) &extConnectionConfirm, FrameLib_MaxPrivate::messageConnectionConfirm());
         addMethod(c, (method) &extConnectionUpdate, FrameLib_MaxPrivate::messageConnectionUpdate());
         addMethod(c, (method) &extGetFLObject, FrameLib_MaxPrivate::messageGetFrameLibObject());
@@ -1406,6 +1423,7 @@ public:
 
         mInputs.resize(numIns);
         mOutputs.resize(getNumOuts());
+        mDirectlyConnected.resize(getNumIns(), false);
         
         // Create frame inlets and outlets
         
@@ -1875,9 +1893,9 @@ public:
         x->makeConnection(index, mode);
     }
     
-    static t_ptr_int extIsConnected(FrameLib_MaxClass *x, unsigned long index)
+    static t_ptr_int extIsDirectlyConnected(FrameLib_MaxClass *x, unsigned long index)
     {
-        return (t_ptr_int) x->confirmConnection(index, ConnectionMode::kConfirm);
+        return (t_ptr_int) x->mDirectlyConnected[index];
     }
     
     static t_ptr_int extGetNumAudioIns(FrameLib_MaxClass *x)
@@ -2262,9 +2280,22 @@ private:
         if (versionMismatch(src, type == JPATCHLINE_CONNECT) || (!isOrderingInput(dstin) && !validInput(dstin)))
             return MAX_ERR_NONE;
 
+        // Store direct connection status
+        
+        FLObject *object = toFLObject(src);
+        
+        if (object && dstin < getNumIns())
+        {
+            if (type == JPATCHLINE_CONNECT)
+                mDirectlyConnected[dstin] = true;
+            else
+                mDirectlyConnected[dstin] = false;
+        }
+        
+        // Deal with connection if relevant
+        
         if (!isRealtime() || !dspSetBroken())
         {
-            FLObject *object = toFLObject(src);
             bool objectHandlesAudio = object && (object->getType() == ObjectType::Scheduler || object->getNumAudioChans());
             
             if (!objectHandlesAudio || object->getContext() == getContext())
@@ -2281,14 +2312,14 @@ private:
         return MAX_ERR_NONE;
     }
     
-    long connectionAccept(t_object *dst, long srcout, long dstin, t_object *op, t_object *ip)
+    bool connectionAccept(t_object *dst, long srcout, long dstin, t_object *op, t_object *ip)
     {
         t_symbol *className = object_classname(dst);
         
         // Allow if connecting to an outlet or patcher
         
         if (className == gensym("outlet") || className == gensym("jpatcher"))
-            return 1;
+            return true;
 
         // Unwrap and offset connections
 
@@ -2296,16 +2327,37 @@ private:
         dstin -= getNumAudioIns(dst);
         srcout -= getNumAudioOuts();
         
-        // Allow connections
-        // - if versions are mismatched (to preserve connections)
-        // - if not a frame outlet
-        // - if to the ordering inlet
-        // - if to a valid unconnected input
+        // Allow connections:
         
-        if (versionMismatch(dst, false) || !validOutput(srcout) || isOrderingInput(dstin, toFLObject(dst)) || (validInput(dstin, toFLObject(dst)) && !objectMethod(dst, FrameLib_MaxPrivate::messageIsConnected(), t_ptr_int(dstin))))
-            return 1;
+        // if versions are mismatched (to preserve connections), or if the output is not a frame outlet
         
-        return 0;
+        if (versionMismatch(dst, false) || !validOutput(srcout))
+            return true;
+        
+        // if the connection is to the ordering inlet
+
+        FLObject *flDst = toFLObject(dst);
+            
+        if (isOrderingInput(dstin, flDst))
+            return true;
+                        
+        if (validInput(dstin, flDst))
+        {
+            // if the connection is to a valid input with no direct connection
+
+            if (!objectMethod(dst, FrameLib_MaxPrivate::messageIsDirectlyConnected(), t_ptr_int(dstin)))
+            {
+                mGlobal->setConnectAccept({{*this, srcout}, dst, gettime()});
+                return true;
+            }
+            
+            // if we are replacing the connection (using shift-drag)
+
+            if (mGlobal->checkAccept({ toMaxConnection(flDst->getConnection(dstin)), *this, gettime() }))
+                return true;
+        }
+        
+        return false;
     }
 
     // Info Utilities
@@ -2518,7 +2570,8 @@ private:
     std::vector<unique_object_ptr> mInputs;
     std::vector<void *> mOutputs;
     std::vector<double *> mSigOuts;
-
+    std::vector<bool> mDirectlyConnected;
+    
     long mProxyNum;
     ConnectionConfirmation *mConfirmation;
 
