@@ -66,9 +66,9 @@ public:
     
     // Convert an object to an FLObject
     
-    FrameLib_Multistream *toFLObject(t_object *object)
+    FrameLib_Multistream *toFLObject(t_object *x)
     {
-        return objectMethod<FrameLib_Multistream *>(object, gensym("__fl.get_framelib_object"));
+        return FrameLib_MaxPrivate::toFrameLibObject(x);
     }
     
     // Get the association of a patch
@@ -87,7 +87,7 @@ public:
         
         // Avoid recursion into a poly / pfft / etc. - If the subpatcher is a wrapper we do need to deal with it
         
-        if (assoc != contextAssoc && !objectMethod(assoc, gensym("__fl.wrapper_is_wrapper")))
+        if (assoc != contextAssoc && !objectMethod(assoc, FrameLib_MaxPrivate::messageIsWrapper()))
             return nullptr;
         
         // Search for subpatchers, or framelib objects
@@ -141,8 +141,7 @@ public:
             return;
         }
         
-        objectMethod(object, gensym("__fl.resolve_context"));
-        flObject = objectMethod<FrameLib_Multistream *>(object, gensym("__fl.get_framelib_object"));
+        objectMethod(object, FrameLib_MaxPrivate::messageResolveContext());
         
         path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
         ExportError error = exportGraph(flObject, conformedPath, className->s_name);
