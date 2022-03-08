@@ -273,7 +273,7 @@ protected:
         uintptr_t min() const           { return std::min(m_size1, m_size2); }
         uintptr_t max() const           { return std::max(m_size1, m_size2); }
         uintptr_t linear() const        { return m_size1 + m_size2 - 1; }
-        uintptr_t fold_copy() const     { return max() + (uintptr_t(1) << (min() >> 1)); }
+        uintptr_t fold_copy() const     { return max() + ((min() >> 1) << 1); }
         uintptr_t fft() const           { return uintptr_t(1) << m_fft_size_log2; }
         uintptr_t fft_log2() const      { return m_fft_size_log2; }
         
