@@ -2,18 +2,20 @@
 #include "ScheduleTest1.h"
 #include "FrameLib_Objects.h"
 
-ScheduleTest1::ScheduleTest1(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumAudioOuts(0), mProxy(proxy)
+ScheduleTest1::ScheduleTest1(FrameLib_Proxy *proxy, FrameLib_Thread::Priorities priorities)
+: mGlobal(nullptr)
+, mProcessingQueue(initialise(priorities))
+, mNumAudioIns(0)
+, mNumAudioOuts(0)
+, mProxy(proxy)
 {
     using Connection = FrameLib_Object<FrameLib_Multistream>::Connection;
 
-    FrameLib_Global::get(&mGlobal, { 31, 31, 31, 0, true });
     FrameLib_Context context(mGlobal, this);
     FrameLib_Parameters::AutoSerial parameters;
 
-    FrameLib_Context::ProcessingQueue processingQueue(context);
-    processingQueue->setMultithreading(true);
-    processingQueue->setTimeOuts();
-    
+    mProcessingQueue->setTimeOuts();
+
     mObjects.resize(7);
 
     double fl_0_vector_0[] = { 8 };
@@ -72,6 +74,12 @@ ScheduleTest1::ScheduleTest1(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudi
     }
 }
 
+FrameLib_Context ScheduleTest1::initialise(FrameLib_Thread::Priorities priorities)
+{
+    FrameLib_Global::get(&mGlobal, priorities);
+    return FrameLib_Context(mGlobal, this);
+}
+
 ScheduleTest1::~ScheduleTest1()
 {
     for (auto it = mObjects.begin(); it != mObjects.end(); it++)
@@ -101,10 +109,10 @@ void ScheduleTest1::process(double **inputs, double **outputs, unsigned long blo
         inputs += (*it)->getNumAudioIns();
         outputs += (*it)->getNumAudioOuts();
     }
-    
+
     for (auto it = mAudioOutObjects.begin(); it != mAudioOutObjects.end(); it++)
     {
-        (*it)->blockUpdate(inputs, outputs, blockSize);
+        (*it)->blockUpdate(inputs, outputs, blockSize, queue);
 
         inputs += (*it)->getNumAudioIns();
         outputs += (*it)->getNumAudioOuts();

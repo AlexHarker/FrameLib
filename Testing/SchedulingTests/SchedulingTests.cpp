@@ -17,7 +17,9 @@ void resize(std::vector<double>& io, std::vector<double *>& pointers, int blockS
 
 int main(int argc, const char * argv[]) {
     
-    ScheduleTest1 testGraph1;
+    ScheduleTest1 testGraph1(new FrameLib_Proxy, { 31, 31, 31, 0, true });
+    
+    testGraph1.setMultithreading(true);
     
     int blockSize = 16384;
     
