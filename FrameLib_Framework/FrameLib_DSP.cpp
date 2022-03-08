@@ -593,7 +593,7 @@ void FrameLib_DSP::dependenciesReady(NotificationQueue& queue, LocalAllocator *a
     assert(mInputTime <= mValidTime && "Input is ahead of output");
     assert(mFrameTime <= mInputTime && "Output is ahead of input");
     assert(mDependencyCount >= 1 && "Dependency count shouldn't be less than 1");
-    assert(mUpdatingInputs || mInputCount == 0 && "Input count should be 0");
+    assert(mUpdatingInputs || endOfTime || mInputCount == 0 && "Input count should be 0");
     assert(!mUpdatingInputs || mInputCount >= 1 && "Input count shouldn't be less than 1");
 
     // After resolving all other dependencies do self-notifications allowing self triggering
