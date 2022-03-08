@@ -36,7 +36,7 @@ template <class T, typename U>
 struct FrameLib_Connection
 {
     FrameLib_Connection() : mObject(nullptr), mIndex(0) {}
-    FrameLib_Connection(T *object, unsigned long index) : mObject(object), mIndex(index) {}
+    FrameLib_Connection(T *object, U index) : mObject(object), mIndex(index) {}
     
     friend bool operator == (const FrameLib_Connection& a, const FrameLib_Connection& b)
     {
