@@ -117,7 +117,7 @@ public:
     void reset() { mTimedOut = false; }
     bool isTimedOut() { return mTimedOut; }
     void setTimeOuts(double relative = 0.0, double absolute = 0.0);
-    void setMultithreading(bool multihread) { mMultithread = multihread; }
+    void setMultithreading(bool multithread) { mMultithread = multithread; }
     
     // Timing info
     
