@@ -34,7 +34,7 @@ public:
     
     template <typename U = Allocator, enable_if_t<std::is_default_constructible<U>::value> = 0>
     spectral_processor(uintptr_t max_fft_size = 32768)
-    :  m_max_fft_size_log2(0)
+    : m_max_fft_size_log2(0)
     , m_fft_setup(nullptr)
     {
         if (max_fft_size)
