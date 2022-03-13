@@ -1974,11 +1974,19 @@ private:
         if (mGlobal->isRealtime(context) || mGlobal->isRealtime(current))
             dspSetBroken();
         
+        bool rtChanged = mMaxContext.mRealtime != maxContext.mRealtime;
+        bool idChanged = mMaxContext.mName != maxContext.mName;
+        
         mMaxContext = maxContext;
         mGlobal->retainContext(context);
         mGlobal->releaseContext(current);
         mGlobal->flushErrors(context, *this);
         
+        if (rtChanged)
+            object_attr_touch(mUserObject, gensym("rt"));
+        if (idChanged)
+            object_attr_touch(mUserObject, gensym("id"));
+
         mObject.reset(newObject);
     }
     
