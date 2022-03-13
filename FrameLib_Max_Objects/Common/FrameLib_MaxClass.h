@@ -1264,6 +1264,7 @@ public:
         addMethod(c, (method) &extGetUserObject, FrameLib_MaxPrivate::messageGetUserObject());
         addMethod(c, (method) &extGetNumAudioIns, FrameLib_MaxPrivate::messageGetNumAudioIns());
         addMethod(c, (method) &extGetNumAudioOuts, FrameLib_MaxPrivate::messageGetNumAudioOuts());
+        addMethod(c, (method) &extLoadbang, "loadbang");
     }
 
     // Check if a patch in memory matches a symbol representing a path
@@ -1292,7 +1293,7 @@ public:
     
     // Find the patcher for the context
 
-    static t_object *contextPatcher(t_object *patch)
+    static t_object *contextPatch(t_object *patch, bool loading)
     {
         bool traverse = true;
         
@@ -1300,11 +1301,11 @@ public:
         {
             t_object *assoc = getAssociation(patch);
             
-            // Traverse if the patch is in a box (subpatcher or abstraction) or it belongs to a wrapper
+            // Traverse if the patch is in a box (subpatcher, bpatcher or abstraction) or it belongs to a wrapper
             
             traverse = jpatcher_get_box(patch) || (assoc && objectMethod(assoc, FrameLib_MaxPrivate::messageIsWrapper()));
             
-            if (!traverse && !assoc)
+            if (loading && !traverse && !assoc)
             {
                 // Get text of loading object in parent if there is no association (patch is currently loading)
 
@@ -1393,9 +1394,10 @@ public:
     , mUserObject(detectUserObjectAtLoad())
     , mSpecifiedStreams(1)
     , mConnectionsUpdated(false)
+    , mContextPatchConfirmed(false)
     , mResolved(false)
     , mBuffer(gensym(""))
-    , mMaxContext{ T::sType == ObjectType::Scheduler, contextPatcher(gensym("#P")->s_thing), gensym("") }
+    , mMaxContext{ T::sType == ObjectType::Scheduler, contextPatch(gensym("#P")->s_thing, true), gensym("") }
     {
         // Deal with attributes
         
@@ -1449,6 +1451,10 @@ public:
             mSyncIn = toUnique(outlet_new(nullptr, nullptr));
             outlet_add(mSyncIn.get(), inlet_nth(*this, 0));
         }
+        
+        // Ensure that the context patch is correct in case other methods fail
+        
+        defer_low(x, (method) ensureContextPatch, nullptr, 0, nullptr);
     }
 
     ~FrameLib_MaxClass()
@@ -1645,7 +1651,9 @@ public:
     {
         if (!isRealtime())
             return;
-        
+     
+        checkContextPatch();
+
         mSigOuts.clear();
         
         // Resolve connections (in case there are no schedulers left in the patch) and mark unresolved for next time
@@ -1808,6 +1816,7 @@ public:
         
         if (mGlobal->getConnectionMode() == ConnectionMode::kConnect)
         {
+            checkContextPatch();
             connect(connection, index);
         }
         else if (mConfirmation)
@@ -1907,7 +1916,12 @@ public:
     {
         return x->getNumAudioOuts();
     }
-
+    
+    static void extLoadbang(FrameLib_MaxClass *x)
+    {
+        x->checkContextPatch();
+    }
+    
     // id attribute
     
     static t_max_err idSet(FrameLib_MaxClass *x, t_object *attr, long argc, t_atom *argv)
@@ -1930,6 +1944,37 @@ public:
     
 private:
     
+    // Checks regarding the context patch (for scenarios that can only be detected post load)
+    
+    static void ensureContextPatch(FrameLib_MaxClass *x, t_symbol *s, short argc, t_atom *argv)
+    {
+        x->checkContextPatch();
+    }
+    
+    void checkContextPatch()
+    {
+        if (mContextPatchConfirmed)
+            return;
+        
+        t_object *patch;
+        t_max_err err = object_obex_lookup(*this, gensym("#P"), &patch);
+        
+        if (err != MAX_ERR_NONE)
+            return;
+
+        patch = contextPatch(patch, false);
+        
+        if (patch != mMaxContext.mPatch)
+        {
+            mMaxContext.mPatch = patch;
+            updateContext();
+        }
+        
+        mContextPatchConfirmed = true;
+    }
+    
+    // Update the context if any of the max context values have changed
+    
     void updateContext()
     {
         if (mObject)
@@ -1939,7 +1984,7 @@ private:
             if (context != mObject->getContext())
             {
                 mGlobal->addContextToResolve(context, *this);
-                matchContext(context);
+                matchContext(context, true);
             }
             
             // N.B. release because otherwise it is retained twice
@@ -1948,17 +1993,17 @@ private:
         }
     }
     
-    // Attempt to match the context to that of a given framelib object
+    // Attempt to match the context to a specified one
     
-    void matchContext(FrameLib_Context context)
+    void matchContext(FrameLib_Context context, bool force)
     {
         FrameLib_MaxContext maxContext = mGlobal->getMaxContext(context);
         FrameLib_Context current = getContext();
         bool mismatchedPatch = mGlobal->getMaxContext(current).mPatch != maxContext.mPatch;
 
         unsigned long size = 0;
-
-        if (mismatchedPatch || current == context)
+        
+        if ((!force && mismatchedPatch) || current == context)
             return;
         
         mResolved = false;
@@ -2218,7 +2263,7 @@ private:
         if (!(validOutput(connection.mIndex, internalConnection.mObject) && (isOrderingInput(inIdx) || (validInput(inIdx) && getConnection(inIdx) != connection && !confirmConnection(inIdx, ConnectionMode::kDoubleCheck)))))
             return;
         
-        matchContext(internalConnection.mObject->getContext());
+        matchContext(internalConnection.mObject->getContext(), false);
 
         if (isOrderingInput(inIdx))
             result = mObject->addOrderingConnection(internalConnection);
@@ -2590,6 +2635,7 @@ private:
     unsigned long mSpecifiedStreams;
 
     bool mConnectionsUpdated;
+    bool mContextPatchConfirmed;
     bool mResolved;
     
 public:

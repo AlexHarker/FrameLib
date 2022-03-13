@@ -14,7 +14,7 @@ public:
         addMethod<FrameLib_MaxClass_ContextControl, &FrameLib_MaxClass_ContextControl::multithread>(c, "multithread");
         addMethod<FrameLib_MaxClass_ContextControl, &FrameLib_MaxClass_ContextControl::assist>(c, "assist");
         
-        class_addmethod(c, (method) &timeOut, "timeout", A_DEFFLOAT, A_DEFFLOAT, 0);
+        class_addmethod(c, (method) &extTimeOut, "timeout", A_DEFFLOAT, A_DEFFLOAT, 0);
         class_addmethod(c, (method) &extCodeExport, "export", A_SYM, A_SYM, 0);
         
         CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, FrameLib_MaxClass_ContextControl, mMaxContext.mName);
@@ -25,8 +25,9 @@ public:
     }
     
     FrameLib_MaxClass_ContextControl(t_object *x, t_symbol *sym, long argc, t_atom *argv)
-    : mMaxContext{ true, FrameLib_MaxClass<void>::contextPatcher(gensym("#P")->s_thing), gensym("") }
+    : mMaxContext{ true, FrameLib_MaxClass<void>::contextPatch(gensym("#P")->s_thing, true), gensym("") }
     , mContext(mGlobal->makeContext(mMaxContext))
+    , mContextPatchConfirmed(false)
     {
         attr_args_process(this, static_cast<short>(argc), argv);
     }
@@ -37,12 +38,6 @@ public:
     }
     
     // Attributes
-    
-    void updateContext()
-    {
-        mGlobal->releaseContext(mContext);
-        mContext = mGlobal->makeContext(mMaxContext);
-    }
     
     // id attribute
     
@@ -64,6 +59,120 @@ public:
         return MAX_ERR_NONE;
     }
     
+    // Time out
+    
+    static void extTimeOut(FrameLib_MaxClass_ContextControl *x, double relative, double absolute)
+    {
+        x->timeOut(relative, absolute);
+    }
+    
+    // Export
+
+    static void extCodeExport(FrameLib_MaxClass_ContextControl *x, t_symbol *className, t_symbol *path)
+    {
+        t_atom argv[2];
+        
+        atom_setsym(argv + 0, className);
+        atom_setsym(argv + 1, path);
+        
+        defer_low(x, (method) deferredCodeExport, nullptr, 2, argv);
+    }
+
+    // Assist
+    
+    void assist(void *b, long m, long a, char *s)
+    {
+        sprintf(s,"(messages) Commands In" );
+    }
+    
+private:
+    
+    // Multithreading
+    
+    void multithread(t_atom_long on)
+    {
+        checkContextPatch();
+        FrameLib_Context::ProcessingQueue processingQueue(mContext);
+        processingQueue->setMultithreading(on);
+    }
+    
+    // Time out
+
+    void timeOut(double relative, double absolute)
+    {
+        checkContextPatch();
+        FrameLib_Context::ProcessingQueue processingQueue(mContext);
+        processingQueue->setTimeOuts(relative / 100.0, absolute / 1000.0);
+    }
+    
+    // Export
+    
+    static void deferredCodeExport(FrameLib_MaxClass_ContextControl *x, t_symbol *s, short argc, t_atom *argv)
+    {
+        t_symbol *className = atom_getsym(argv + 0);
+        t_symbol *path = atom_getsym(argv + 1);
+        
+        x->codeExport(className, path);
+    }
+    
+    void codeExport(t_symbol *className, t_symbol *path)
+    {
+        char conformedPath[MAX_PATH_CHARS];
+        
+        checkContextPatch();
+        
+        // Get the first object and its underlying framelib object
+        
+        t_object *object = searchPatch(mMaxContext.mPatch, getAssociation(mMaxContext.mPatch));
+        FrameLib_Multistream *flObject = toFLObject(object);
+        
+        if (!object || !flObject)
+        {
+            object_error(*this, "couldn't find any framelib objects in the current context");
+            return;
+        }
+        
+        objectMethod(object, FrameLib_MaxPrivate::messageResolveContext());
+        
+        path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
+        ExportError error = exportGraph(flObject, conformedPath, className->s_name);
+        
+        if (error == ExportError::PathError)
+            object_error(*this, "couldn't write to or find specified path");
+        else if (error == ExportError::WriteError)
+            object_error(*this, "couldn't write file");
+    }
+    
+    // Context
+    
+    void checkContextPatch()
+    {
+        if (mContextPatchConfirmed)
+            return;
+        
+        t_object *patch;
+        t_max_err err = object_obex_lookup(*this, gensym("#P"), &patch);
+        
+        if (err != MAX_ERR_NONE)
+            return;
+
+        patch = FrameLib_MaxClass<void>::contextPatch(patch, false);
+        
+        if (patch != mMaxContext.mPatch)
+        {
+            mMaxContext.mPatch = patch;
+            updateContext();
+        }
+        
+        mContextPatchConfirmed = true;
+    }
+    
+    void updateContext()
+    {
+        mGlobal->releaseContext(mContext);
+        mContext = mGlobal->makeContext(mMaxContext);
+    }
+    
     // Convert an object to an FLObject
     
     FrameLib_Multistream *toFLObject(t_object *x)
@@ -79,6 +188,8 @@ public:
         objectMethod(patch, gensym("getassoc"), &assoc);
         return assoc;
     }
+    
+    // Search a patch
     
     t_object *searchPatch(t_patcher *p, t_object *contextAssoc)
     {
@@ -110,70 +221,13 @@ public:
         return nullptr;
     }
     
-    // Time out
-    
-    static void timeOut(FrameLib_MaxClass_ContextControl *x, double relative, double absolute)
-    {
-        FrameLib_Context::ProcessingQueue processingQueue(x->mContext);
-
-        processingQueue->setTimeOuts(relative / 100.0, absolute / 1000.0);
-    }
-    
-    // Export
-
-    static void extCodeExport(FrameLib_MaxClass_ContextControl *x, t_symbol *className, t_symbol *path)
-    {
-        x->codeExport(className, path);
-    }
-
-    void codeExport(t_symbol *className, t_symbol *path)
-    {
-        char conformedPath[MAX_PATH_CHARS];
-        
-        // Get the first object and it's underlying framelib object
-        
-        t_object *object = searchPatch(mMaxContext.mPatch, getAssociation(mMaxContext.mPatch));
-        FrameLib_Multistream *flObject = toFLObject(object);
-        
-        if (!object || !flObject)
-        {
-            object_error(*this, "couldn't find any framelib objects in the current context");
-            return;
-        }
-        
-        objectMethod(object, FrameLib_MaxPrivate::messageResolveContext());
-        
-        path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
-        ExportError error = exportGraph(flObject, conformedPath, className->s_name);
-        
-        if (error == ExportError::PathError)
-            object_error(*this, "couldn't write to or find specified path");
-        else if (error == ExportError::WriteError)
-            object_error(*this, "couldn't write file");
-    }
-    
-    // Multithreading
-    
-    void multithread(t_atom_long on)
-    {
-        FrameLib_Context::ProcessingQueue processingQueue(mContext);
-        processingQueue->setMultithreading(on);
-    }
-    
-    // Assist
-    
-    void assist(void *b, long m, long a, char *s)
-    {
-        sprintf(s,"(messages) Commands In" );
-    }
-    
-private:
-    
     // Members
         
     FrameLib_MaxGlobals::ManagedPointer mGlobal;
     FrameLib_MaxContext mMaxContext;
     FrameLib_Context mContext;
+    
+    bool mContextPatchConfirmed;
 };
 
 // Main
