@@ -40,5 +40,5 @@ FrameLib_AccumPos::ParameterInfo::ParameterInfo()
 
 double FrameLib_AccumPos::compute(const double *input, size_t size)
 {
-    return statPDFPercentile(input, mParameters.getValue(kPercentage), size);
+    return stat_pdf_percentile(input, mParameters.getValue(kPercentage), size);
 }
