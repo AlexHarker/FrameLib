@@ -418,7 +418,7 @@ private:
         Error set(double *values, unsigned long N) override;
         Error set(const char *str) override;
         
-        void clear() override { Enum::set(0.0); }
+        void clear() override { Enum::set(mDefault); }
         
         Type type() override { return Type::Enum; }
         
