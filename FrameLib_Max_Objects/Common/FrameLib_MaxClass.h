@@ -124,14 +124,22 @@ struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
 
 struct FrameLib_MaxMessageProxy : FrameLib_MaxProxy
 {
-    FrameLib_MaxMessageProxy(t_object *x, t_object *userObject)
+    FrameLib_MaxMessageProxy(t_object *x)
     : FrameLib_MaxProxy(x)
     , mBox(nullptr)
     , mPatch(nullptr)
     , mDepth(0)
     {
         object_obex_lookup(x, gensym("#B"), &mBox);
-        mPatch = jbox_get_patcher(mBox);
+        object_obex_lookup(x, gensym("#P"), &mPatch);
+        
+        t_object *assoc = MaxClass_Base::getAssociation(mPatch);
+    
+        if (assoc && MaxClass_Base::objectMethod(assoc, FrameLib_MaxPrivate::messageIsWrapper()))
+        {
+            object_obex_lookup(assoc, gensym("#B"), &mBox);
+            object_obex_lookup(assoc, gensym("#P"), &mPatch);
+        }
     }
     
     // Override for objects that require max messages to be sent from framelib

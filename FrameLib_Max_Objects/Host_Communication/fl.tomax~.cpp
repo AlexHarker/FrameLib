@@ -10,7 +10,7 @@ class FrameLib_MaxClass_ToMax : public FrameLib_MaxClass_Expand<FrameLib_ToHost>
     struct ToHostProxy : public FrameLib_ToHost::Proxy, public FrameLib_MaxMessageProxy
     {
         ToHostProxy(FrameLib_MaxClass_ToMax *object)
-        : FrameLib_MaxMessageProxy(*object, *object)
+        : FrameLib_MaxMessageProxy(*object)
         , mObject(object)
         {}
         
