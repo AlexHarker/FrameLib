@@ -342,7 +342,7 @@ public:
     
     void ready()
     {
-        // Lock, copy onto the output queue and schedule
+        // Lock and copy onto the output queue 
         
         FrameLib_LockHolder lock(&mLock);
         
