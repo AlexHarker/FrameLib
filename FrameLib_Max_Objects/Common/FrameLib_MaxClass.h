@@ -2138,15 +2138,6 @@ private:
         mObject.reset(newObject);
     }
     
-    // Get the association of a patch
-    
-    static t_object *getAssociation(t_object *patch)
-    {
-        t_object *assoc = 0;
-        objectMethod(patch, "getassoc", &assoc);
-        return assoc;
-    }
-    
     // Graph methods
     
     template <typename...Args>

@@ -156,6 +156,15 @@ public:
         return reinterpret_cast<ReturnType>(ret);
     }
     
+    // Get the association of a patch
+    
+    static t_object *getAssociation(t_object *patch)
+    {
+        t_object *assoc = nullptr;
+        objectMethod(patch, "getassoc", &assoc);
+        return assoc;
+    }
+    
     // Static Methods for class initialisation, object creation and deletion
     
     template <class T>

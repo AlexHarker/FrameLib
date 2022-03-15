@@ -180,15 +180,6 @@ private:
         return FrameLib_MaxPrivate::toFrameLibObject(x);
     }
     
-    // Get the association of a patch
-    
-    static t_object *getAssociation(t_object *patch)
-    {
-        t_object *assoc = 0;
-        objectMethod(patch, gensym("getassoc"), &assoc);
-        return assoc;
-    }
-    
     // Search a patch
     
     t_object *searchPatch(t_patcher *p, t_object *contextAssoc)
