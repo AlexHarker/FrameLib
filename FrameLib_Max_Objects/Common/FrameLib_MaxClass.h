@@ -117,9 +117,34 @@ struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
         setOwner(x);
     }
     
+    // Override for object proxies that need to know about the patch hierarchy
+    
+    virtual void contextPatchUpdated(t_object *patch, unsigned long depth) {}
+};
+
+struct FrameLib_MaxMessageProxy : FrameLib_MaxProxy
+{
+    FrameLib_MaxMessageProxy(t_object *x, t_object *userObject)
+    : FrameLib_MaxProxy(x)
+    , mBox(nullptr)
+    , mPatch(nullptr)
+    , mDepth(0)
+    {
+        object_obex_lookup(x, gensym("#B"), &mBox);
+        mPatch = jbox_get_patcher(mBox);
+    }
+    
     // Override for objects that require max messages to be sent from framelib
     
     virtual void sendMessage(unsigned long stream, t_symbol *s, short ac, t_atom *av) {}
+    
+    // Store context patch info
+    
+    void contextPatchUpdated(t_object *patch, unsigned long depth) override { mDepth = depth; }
+
+    t_object *mBox;
+    t_object *mPatch;
+    unsigned long mDepth;
 };
 
 struct FrameLib_MaxNRTAudio
@@ -158,12 +183,11 @@ struct FrameLib_MaxConnectAccept
 
 struct MessageInfo
 {
-    MessageInfo(FrameLib_MaxProxy* proxy, FrameLib_TimeFormat time, t_ptr_uint order, unsigned long stream)
-    : mProxy(proxy), mTime(time), mOrder(order), mStream(stream) {}
+    MessageInfo(FrameLib_MaxMessageProxy* proxy, FrameLib_TimeFormat time, unsigned long stream)
+    : mProxy(proxy), mTime(time), mStream(stream) {}
     
-    FrameLib_MaxProxy* mProxy;
+    FrameLib_MaxMessageProxy* mProxy;
     FrameLib_TimeFormat mTime;
-    t_ptr_uint mOrder;
     unsigned long mStream;
 };
 
@@ -192,19 +216,70 @@ class MessageHandler : public MaxClass_Base
     {
         bool operator()(const Message& a, const Message& b) const
         {
-            bool time = a.mInfo.mTime > b.mInfo.mTime;
-    
+            // Use time
+            
             if (a.mInfo.mTime != b.mInfo.mTime)
-                return time;
-    
-            bool order = a.mInfo.mOrder > b.mInfo.mOrder;
+                return a.mInfo.mTime > b.mInfo.mTime;
+           
+            // Use streams - N.B. Streams run in reverse order
             
-            if (a.mInfo.mOrder != b.mInfo.mOrder)
-                return order;
+            if (a.mInfo.mProxy->mBox == b.mInfo.mProxy->mBox)
+                return a.mInfo.mStream < b.mInfo.mStream;
+                        
+            t_object *boxA = a.mInfo.mProxy->mBox;
+            t_object *boxB = b.mInfo.mProxy->mBox;
+
+            if (a.mInfo.mProxy->mPatch != b.mInfo.mProxy->mPatch)
+            {
+                // Traverse the hierachies until the parent patchers match
+                
+                t_object *patchA = a.mInfo.mProxy->mPatch;
+                t_object *patchB = b.mInfo.mProxy->mPatch;
+                t_object *objA = nullptr;
+                t_object *objB = nullptr;
+                unsigned long depthA = a.mInfo.mProxy->mDepth;
+                unsigned long depthB = b.mInfo.mProxy->mDepth;
+                unsigned long depth = std::min(depthA, depthB);
+                
+                for ( ; depthA > depth; depthA--)
+                {
+                    objA = patchA;
+                    patchA = jpatcher_get_parentpatcher(patchA);
+                }
+                
+                for ( ; depthB > depth; depthB--)
+                {
+                    objB = patchB;
+                    patchB = jpatcher_get_parentpatcher(patchB);
+                }
+        
+                for ( ; depth && patchA != patchB; depth--)
+                {
+                    objA = patchA;
+                    objB = patchB;
+                    patchA = jpatcher_get_parentpatcher(patchA);
+                    patchB = jpatcher_get_parentpatcher(patchB);
+                }
+               
+                // Once the patch matches use the relevant patch position
+                
+                if (objA)
+                    boxA = jpatcher_get_box(objA);
+                if (objB)
+                    boxB = jpatcher_get_box(objB);
+            }
             
-            // N.B. Streams run in reverse order
+            // Use object / patch positions
             
-            return a.mInfo.mStream < b.mInfo.mStream;
+            t_pt posA, posB;
+
+            jbox_get_patching_position(boxA, &posA);
+            jbox_get_patching_position(boxB, &posB);
+                        
+            if (posA.x != posB.x)
+                return posA.x < posB.x;
+            
+           return posA.y < posB.y;
         }
     };
     
@@ -321,7 +396,7 @@ private:
     
     static void output(const Message& message, t_atom *output)
     {
-        FrameLib_MaxProxy *proxy = message.mInfo.mProxy;
+        FrameLib_MaxMessageProxy *proxy = message.mInfo.mProxy;
         
         if (!proxy)
             return;
@@ -1293,9 +1368,11 @@ public:
     
     // Find the patcher for the context
 
-    static t_object *contextPatch(t_object *patch, bool loading)
+    static t_object *contextPatch(t_object *patch, bool loading, unsigned long& depth)
     {
         bool traverse = true;
+        
+        depth = 0;
         
         for (t_object *parent = nullptr; traverse && (parent = jpatcher_get_parentpatcher(patch)); patch = traverse ? parent : patch)
         {
@@ -1303,7 +1380,9 @@ public:
             
             // Traverse if the patch is in a box (subpatcher, bpatcher or abstraction) or it belongs to a wrapper
             
-            traverse = jpatcher_get_box(patch) || (assoc && objectMethod(assoc, FrameLib_MaxPrivate::messageIsWrapper()));
+            bool wrapped = assoc && objectMethod(assoc, FrameLib_MaxPrivate::messageIsWrapper());
+                            
+            traverse = jpatcher_get_box(patch) || wrapped;
             
             if (loading && !traverse && !assoc)
             {
@@ -1348,7 +1427,28 @@ public:
                     }
                 }
             }
+            
+            if (!wrapped && traverse)
+                depth++;
         }
+        
+        return patch;
+    }
+    
+    static t_object *contextPatch(t_object *patch, bool loading)
+    {
+        unsigned long depth;
+        return contextPatch(patch, loading, depth);
+    }
+
+    static t_object *contextPatch(t_object *patch, FrameLib_MaxProxy *proxy)
+    {
+        unsigned long depth;
+        patch = contextPatch(patch, true, depth);
+        
+        // Update context patch info on the proxy
+
+        proxy->contextPatchUpdated(patch, depth);
         
         return patch;
     }
@@ -1389,7 +1489,7 @@ public:
     // Constructor and Destructor
     
     FrameLib_MaxClass(t_object *x, t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = nullptr)
-    : mFrameLibProxy(proxy ? proxy : new FrameLib_MaxProxy(x))
+    : mProxy(proxy ? proxy : new FrameLib_MaxProxy(x))
     , mConfirmation(nullptr)
     , mUserObject(detectUserObjectAtLoad())
     , mSpecifiedStreams(1)
@@ -1397,7 +1497,7 @@ public:
     , mContextPatchConfirmed(false)
     , mResolved(false)
     , mBuffer(gensym(""))
-    , mMaxContext{ T::sType == ObjectType::Scheduler, contextPatch(gensym("#P")->s_thing, true), gensym("") }
+    , mMaxContext{ T::sType == ObjectType::Scheduler, contextPatch(gensym("#P")->s_thing, mProxy.get()), gensym("") }
     {
         // Deal with attributes
         
@@ -1418,7 +1518,7 @@ public:
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
         FrameLib_Context context = mGlobal->makeContext(mMaxContext);
-        mObject.reset(new T(context, &serialisedParameters, mFrameLibProxy.get(), mSpecifiedStreams));
+        mObject.reset(new T(context, &serialisedParameters, mProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
         
         long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
@@ -1467,7 +1567,7 @@ public:
                 dspSetBroken();
         }
         
-        mGlobal->flushContext(getContext(), mFrameLibProxy.get());
+        mGlobal->flushContext(getContext(), mProxy.get());
         mGlobal->releaseContext(getContext());
     }
     
@@ -1957,16 +2057,19 @@ private:
             return;
         
         t_object *patch;
+        unsigned long depth;
+        
         t_max_err err = object_obex_lookup(*this, gensym("#P"), &patch);
         
         if (err != MAX_ERR_NONE)
             return;
 
-        patch = contextPatch(patch, false);
+        patch = contextPatch(patch, false, depth);
         
         if (patch != mMaxContext.mPatch)
         {
             mMaxContext.mPatch = patch;
+            mProxy->contextPatchUpdated(mMaxContext.mPatch, depth);
             updateContext();
         }
         
@@ -2010,7 +2113,7 @@ private:
         
         mGlobal->pushToQueue(*this);
         
-        T *newObject = new T(context, mObject->getSerialised(), mFrameLibProxy.get(), mSpecifiedStreams);
+        T *newObject = new T(context, mObject->getSerialised(), mProxy.get(), mSpecifiedStreams);
         
         for (unsigned long i = 0; i < mObject->getNumIns(); i++)
             if (const double *values = mObject->getFixedInput(i, &size))
@@ -2609,7 +2712,7 @@ protected:
 
     // Proxy
     
-    std::unique_ptr<FrameLib_MaxProxy> mFrameLibProxy;
+    std::unique_ptr<FrameLib_MaxProxy> mProxy;
     
 private:
     
