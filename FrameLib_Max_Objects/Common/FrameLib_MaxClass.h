@@ -1376,12 +1376,19 @@ public:
     
     // Find the patcher for the context
 
-    static t_object *contextPatch(t_object *patch, bool loading, unsigned long& depth)
+    static t_object *contextPatch(t_object *x, bool loading, unsigned long& depth)
     {
-        bool traverse = true;
-        
         depth = 0;
+
+        t_object *patch;
         
+        t_max_err err = object_obex_lookup(x, gensym("#P"), &patch);
+
+        if (err != MAX_ERR_NONE)
+            return nullptr;
+        
+        bool traverse = true;
+                
         for (t_object *parent = nullptr; traverse && (parent = jpatcher_get_parentpatcher(patch)); patch = traverse ? parent : patch)
         {
             t_object *assoc = getAssociation(patch);
@@ -1443,16 +1450,16 @@ public:
         return patch;
     }
     
-    static t_object *contextPatch(t_object *patch, bool loading)
+    static t_object *contextPatch(t_object *x, bool loading)
     {
         unsigned long depth;
-        return contextPatch(patch, loading, depth);
+        return contextPatch(x, loading, depth);
     }
 
-    static t_object *contextPatch(t_object *patch, FrameLib_MaxProxy *proxy)
+    static t_object *contextPatch(t_object *x, FrameLib_MaxProxy *proxy)
     {
         unsigned long depth;
-        patch = contextPatch(patch, true, depth);
+        t_object *patch = contextPatch(x, true, depth);
         
         // Update context patch info on the proxy
 
@@ -1505,7 +1512,7 @@ public:
     , mContextPatchConfirmed(false)
     , mResolved(false)
     , mBuffer(gensym(""))
-    , mMaxContext{ T::sType == ObjectType::Scheduler, contextPatch(gensym("#P")->s_thing, mProxy.get()), gensym("") }
+    , mMaxContext{ T::sType == ObjectType::Scheduler, contextPatch(x, mProxy.get()), gensym("") }
     {
         // Deal with attributes
         
@@ -2064,17 +2071,11 @@ private:
         if (mContextPatchConfirmed)
             return;
         
-        t_object *patch;
         unsigned long depth;
-        
-        t_max_err err = object_obex_lookup(*this, gensym("#P"), &patch);
-        
-        if (err != MAX_ERR_NONE)
-            return;
 
-        patch = contextPatch(patch, false, depth);
+        t_object *patch = contextPatch(*this, false, depth);
         
-        if (patch != mMaxContext.mPatch)
+        if (patch && patch != mMaxContext.mPatch)
         {
             mMaxContext.mPatch = patch;
             mProxy->contextPatchUpdated(mMaxContext.mPatch, depth);

@@ -25,7 +25,7 @@ public:
     }
     
     FrameLib_MaxClass_ContextControl(t_object *x, t_symbol *sym, long argc, t_atom *argv)
-    : mMaxContext{ true, FrameLib_MaxClass<void>::contextPatch(gensym("#P")->s_thing, true), gensym("") }
+    : mMaxContext{ true, FrameLib_MaxClass<void>::contextPatch(x, true), gensym("") }
     , mContext(mGlobal->makeContext(mMaxContext))
     , mContextPatchConfirmed(false)
     {
@@ -149,16 +149,10 @@ private:
     {
         if (mContextPatchConfirmed)
             return;
-        
-        t_object *patch;
-        t_max_err err = object_obex_lookup(*this, gensym("#P"), &patch);
-        
-        if (err != MAX_ERR_NONE)
-            return;
 
-        patch = FrameLib_MaxClass<void>::contextPatch(patch, false);
+        t_object *patch = FrameLib_MaxClass<void>::contextPatch(*this, false);
         
-        if (patch != mMaxContext.mPatch)
+        if (patch && patch != mMaxContext.mPatch)
         {
             mMaxContext.mPatch = patch;
             updateContext();
