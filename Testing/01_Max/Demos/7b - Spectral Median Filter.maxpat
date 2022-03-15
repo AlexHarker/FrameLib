@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 5,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 193.0, 79.0, 1221.0, 889.0 ],
+		"rect" : [ 58.0, 102.0, 1221.0, 889.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -49,8 +49,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 5,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -331,7 +331,7 @@
 				"box" : 				{
 					"id" : "obj-91",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
+					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 802.75, 569.0, 114.0, 22.0 ],
@@ -343,7 +343,7 @@
 				"box" : 				{
 					"id" : "obj-89",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
+					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1023.0, 542.0, 114.0, 22.0 ],
@@ -945,18 +945,6 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "bang" ],
 					"patching_rect" : [ 282.0, 65.0, 49.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"basictuning" : 440,
-						"followglobaltempo" : 0,
-						"formantcorrection" : 0,
-						"mode" : "basic",
-						"originallength" : [ 353139.24414240004262, "ticks" ],
-						"originaltempo" : 120.000015000000005,
-						"pitchcorrection" : 0,
-						"quality" : "basic",
-						"timestretch" : [ 0 ]
-					}
-,
 					"text" : "sfplay~"
 				}
 
@@ -1462,7 +1450,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-41", 0 ],
-					"midpoints" : [ 837.25, 371.5, 792.5, 371.5 ],
+					"midpoints" : [ 837.25, 318.5, 792.5, 318.5 ],
 					"source" : [ "obj-49", 0 ]
 				}
 
@@ -1691,27 +1679,7 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
+				"name" : "fl.divide~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -1719,11 +1687,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.ifft~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
+				"name" : "fl.frommax~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -1731,35 +1695,11 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.lessthan~.mxo",
+				"name" : "fl.ifft~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.window~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.medianfilter~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.minus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.select~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.timemedian~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "spectrumdraw~.mxo",
+				"name" : "fl.interval~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -1767,15 +1707,19 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "fl.lessthan~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.medianfilter~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.minus~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.plus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tag~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.register~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -1783,7 +1727,39 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.divide~.mxo",
+				"name" : "fl.register~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.select~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.sink~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.source~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.tag~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.timemedian~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.times~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.window~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spectrumdraw~.mxo",
 				"type" : "iLaX"
 			}
  ],
