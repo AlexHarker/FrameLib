@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -291,15 +291,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -468,7 +468,7 @@
                                     "patching_rect": [
                                         105.0,
                                         390.0,
-                                        495.0,
+                                        496.0,
                                         79.0
                                     ],
                                     "text": "fl.ticks~ is a frame counter that can be driven forwards or backwards in between 0 and the limit - 1. \n\nThe count can be reset, either to the relevant end (according to whether progression is forwards or backwards) or to a specfic value, set by the /reset parameter"
@@ -540,9 +540,9 @@
                                 "box": {
                                     "id": "obj-29",
                                     "items": [
-                                        "forward",
+                                        "up",
                                         ",",
-                                        "backward"
+                                        "down"
                                     ],
                                     "maxclass": "umenu",
                                     "numinlets": 1,
@@ -554,9 +554,9 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        324.5,
+                                        338.25,
                                         181.0,
-                                        93.5,
+                                        65.5,
                                         23.0
                                     ]
                                 }

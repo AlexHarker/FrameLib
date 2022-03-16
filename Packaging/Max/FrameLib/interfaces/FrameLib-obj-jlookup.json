@@ -1933,11 +1933,15 @@
             "description": "Sets the output tag."
         },
         "3": {
-            "name": "3. /empty [enum]",
-            "description": "Sets the behaviour when empty frames are received:\n\nParameter Options:\n[0] - ignore\n[1] - reset"
+            "name": "3. /scale [enum]",
+            "description": "Sets the input scale:\n\nParameter Options:\n[0] - indices\n[1] - normalised"
         },
         "4": {
-            "name": "4. /items_01 [string]",
+            "name": "4. /empty [enum]",
+            "description": "Sets the behaviour when empty frames are received:\n\nParameter Options:\n[0] - ignore\n[1] - reset"
+        },
+        "5": {
+            "name": "5. /items_01 [string]",
             "description": "Sets the string for item 1."
         }
     },

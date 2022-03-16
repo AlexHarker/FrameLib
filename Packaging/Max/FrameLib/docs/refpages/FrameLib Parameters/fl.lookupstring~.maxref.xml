@@ -3,7 +3,7 @@
         Lookup a specified string from an internally stored list of strings.
     </digest>
   <description> 
-         The first number at the input is used to specify the string. The number of stored items can be set explicitly by parameter. Alternatively, it can be set implicitly by the parameters present at instantiation. Items may be dynamically updated by parameter. 
+         The string can be specified by index or normalised value. The first number at the input is used to specify the string. The number of stored items can be set explicitly by parameter. Alternatively, it can be set implicitly by the parameters present at instantiation. Items may be dynamically updated by parameter. 
     </description>
   <misc name="Parameters">
     <entry name="1. /num_items [instantiation int]">
@@ -16,14 +16,21 @@
                 Sets the output tag.
             </description>
     </entry>
-    <entry name="3. /empty [enum]">
+    <entry name="3. /scale [enum]">
+      <description> 
+                Sets the input scale:<br/><br/>indices - string lookup is done by index.<br/>normalised - string lookup is done by normalised value.<br />
+        <bullet>[0] - indices</bullet>
+        <bullet>[1] - normalised</bullet>
+      </description>
+    </entry>
+    <entry name="4. /empty [enum]">
       <description> 
                 Sets the behaviour when empty frames are received:<br/><br/>ignore - empty frames are ignored.<br/>reset - empty frames create empty tags to reset parameters to defaults.<br />
         <bullet>[0] - ignore</bullet>
         <bullet>[1] - reset</bullet>
       </description>
     </entry>
-    <entry name="4. /items_01 [string]">
+    <entry name="5. /items_01 [string]">
       <description> 
                 Sets the string for item 1.
             </description>
