@@ -2,13 +2,21 @@
 	"name": "FrameLib",
 	"type": "package",
 	"author": "Alex Harker",
-	"description": "A DSP framework for arbitrary size frame processing with arbitrary sub-sample accurate timing.",
-	"version": "2.1",
-	"major_version": "2",
-	"minor_version": "1",
-	"min_max_version": "7.3",
-	"min_osx_version": "10.7",
-	"min_win_version": "7",
-	"website": "https://github.com/AlexHarker/FrameLib",
-	"relative_path": " "
+	"description": "A DSP framework for arbitrary size frame processing with arbitrary sub-sample accurate timing. FrameLib in Max allows for explorations of multi-rate processing suited to complex granular or spectral applications. It supports realtime or non-realtime audio processing (with buffer~s as IO), and multithreaded operation.",
+	"version": "1.0.0",
+    "tags" : [ "audio", "frame-based processing", "granular", "spectral" ],
+    "max_version_min" : "7.2.3",
+    "os" :     {
+        "macintosh" :         {
+            "min_version" : "10.9.x",
+            "platform" : [ "x64", "aarch64" ]
+        }
+,
+        "windows" :         {
+            "min_version" : "7",
+            "platform" : [ "x64" ]
+        }
+    }
+,
+	"website": "https://github.com/AlexHarker/FrameLib"
 }
