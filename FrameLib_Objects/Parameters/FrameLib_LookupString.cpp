@@ -12,6 +12,10 @@ FrameLib_LookupString::FrameLib_LookupString(FrameLib_Context context, const Fra
     
     mParameters.addString(kTag, "tag", 0);
 
+    mParameters.addEnum(kScale, "scale");
+    mParameters.addEnumItem(kSamples, "indices");
+    mParameters.addEnumItem(kNormalised, "normalised");
+    
     mParameters.addEnum(kEmptyMode, "empty");
     mParameters.addEnumItem(kIgnore, "ignore");
     mParameters.addEnumItem(kReset, "reset");
@@ -58,6 +62,7 @@ FrameLib_LookupString::FrameLib_LookupString(FrameLib_Context context, const Fra
 std::string FrameLib_LookupString::objectInfo(bool verbose)
 {    
     return formatInfo("Lookup a specified string from an internally stored list of strings: "
+                      "The string can be specified by index or normalised value. "
                       "The first number at the input is used to specify the string. "
                       "The number of stored items can be set explicitly by parameter. "
                       "Alternatively, it can be set implicitly by the parameters present at instantiation. "
@@ -90,6 +95,9 @@ FrameLib_LookupString::ParameterInfo::ParameterInfo()
     
     add("Sets the number of items.");
     add("Sets the output tag.");
+    add("Sets the input scale: "
+        "indices - string lookup is done by index. "
+        "normalised - string lookup is done by normalised value.");
     add("Sets the behaviour when empty frames are received: "
         "ignore - empty frames are ignored. "
         "reset - empty frames create empty tags to reset parameters to defaults.");
@@ -119,12 +127,14 @@ void FrameLib_LookupString::process()
     
     if (sizeIn)
     {
+        Scales scale = mParameters.getEnum<Scales>(kScale);
+
         const double limit = static_cast<double>(mNumItems - 1);
-        double index = std::max(0.0, std::min(input[0], limit));
+        const double multiplier = scale == kNormalised ? static_cast<double>(mNumItems) : 1.0;
+        double index = std::max(0.0, std::min(input[0] * multiplier, limit));
                                    
         str = mParameters.getString(kItems +  static_cast<unsigned long>(index));
         requestOutputSize(0, Serial::calcSize(tag, str));
-
     }
     else
         requestOutputSize(0, Serial::calcSize(tag, 0UL));
