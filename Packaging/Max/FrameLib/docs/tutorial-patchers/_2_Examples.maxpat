@@ -132,7 +132,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 87.0, 723.0, 706.0 ],
+						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -162,7 +162,6 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"title" : "Simple Freeze",
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-7",
@@ -3879,7 +3878,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 723.0, 706.0 ],
+						"rect" : [ 0.0, 26.0, 723.0, 706.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3909,7 +3908,6 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"title" : "Stochastic Freeze",
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-7",
