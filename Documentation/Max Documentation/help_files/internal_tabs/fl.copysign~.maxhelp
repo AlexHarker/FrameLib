@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 59.0, 104.0, 638.0, 474.0 ],
+		"rect" : [ 34.0, 87.0, 638.0, 474.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 59.0, 130.0, 638.0, 448.0 ],
+						"rect" : [ 34.0, 113.0, 638.0, 448.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -191,7 +191,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 278.0, 196.0, 246.0, 21.0 ],
-									"presentation_linecount" : 2,
 									"text" : "A list of the same length of the number -1"
 								}
 
@@ -410,18 +409,18 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "fl.copysign~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.tomax~.mxo",
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "fl.once~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -429,15 +428,11 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "fl.tomax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.uniform~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.once~.mxo",
 				"type" : "iLaX"
 			}
  ],
