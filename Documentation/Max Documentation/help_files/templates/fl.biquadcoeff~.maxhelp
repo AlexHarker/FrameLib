@@ -220,15 +220,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -416,8 +416,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        390.0,
-                                        350.0,
+                                        383.0,
+                                        358.0,
                                         238.0,
                                         21.0
                                     ],
@@ -489,7 +489,7 @@
                                     ],
                                     "patching_rect": [
                                         225.0,
-                                        350.0,
+                                        357.0,
                                         156.0,
                                         23.0
                                     ],
@@ -634,7 +634,7 @@
                                     ],
                                     "patching_rect": [
                                         225.0,
-                                        270.0,
+                                        273.0,
                                         238.0,
                                         23.0
                                     ],
@@ -686,6 +686,7 @@
                                     "enablevscroll": 0,
                                     "id": "obj-2",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
                                     "name": "fl-mono-h.maxpat",
                                     "numinlets": 1,
@@ -743,9 +744,9 @@
                                     ],
                                     "midpoints": [
                                         234.5,
-                                        385.5,
+                                        389.0,
                                         204.83333333333331,
-                                        385.5
+                                        389.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -762,9 +763,9 @@
                                     ],
                                     "midpoints": [
                                         234.5,
-                                        385.5,
+                                        389.0,
                                         114.66666666666667,
-                                        385.5
+                                        389.0
                                     ],
                                     "order": 1,
                                     "source": [
@@ -1121,8 +1122,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -1590,8 +1591,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -1661,8 +1662,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -1776,6 +1777,7 @@
                                     "enablevscroll": 0,
                                     "id": "obj-8",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
                                     "name": "fl-mono-h.maxpat",
                                     "numinlets": 1,
@@ -2105,22 +2107,6 @@
                                         235.0,
                                         23.0
                                     ],
-                                    "saved_object_attributes": {
-                                        "basictuning": 440,
-                                        "followglobaltempo": 0,
-                                        "formantcorrection": 0,
-                                        "mode": "basic",
-                                        "originallength": [
-                                            8944.65306122449,
-                                            "ticks"
-                                        ],
-                                        "originaltempo": 120.0,
-                                        "pitchcorrection": 0,
-                                        "quality": "basic",
-                                        "timestretch": [
-                                            0
-                                        ]
-                                    },
                                     "text": "sfplay~ @audiofile brushes.aif @loop 1"
                                 }
                             },
@@ -2134,6 +2120,7 @@
                                     "enablevscroll": 0,
                                     "id": "obj-7",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
                                     "numinlets": 0,
                                     "numoutlets": 1,
@@ -2148,8 +2135,8 @@
                                         "fileversion": 1,
                                         "appversion": {
                                             "major": 8,
-                                            "minor": 1,
-                                            "revision": 8,
+                                            "minor": 3,
+                                            "revision": 0,
                                             "architecture": "x64",
                                             "modernui": 1
                                         },

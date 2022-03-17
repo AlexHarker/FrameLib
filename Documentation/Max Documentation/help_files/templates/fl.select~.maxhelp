@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -291,15 +291,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -427,10 +427,10 @@
                                     "patching_rect": [
                                         30.0,
                                         315.0,
-                                        110.0,
+                                        135.0,
                                         23.0
                                     ],
-                                    "text": "fl.map~ 0 0 1 -1 1"
+                                    "text": "fl.map~ linear 0 1 -1 1"
                                 }
                             },
                             {

@@ -220,15 +220,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -905,8 +905,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -976,7 +976,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         147.0,
-                                        609.9999999999999,
+                                        605.9999999999999,
                                         286.0,
                                         21.0
                                     ],
@@ -1026,6 +1026,7 @@
                                     "enablevscroll": 0,
                                     "id": "obj-2",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
                                     "name": "fl-mono-h.maxpat",
                                     "numinlets": 1,
@@ -1342,7 +1343,7 @@
                                     ],
                                     "patching_rect": [
                                         255.0,
-                                        153.25,
+                                        150.0,
                                         70.0,
                                         23.0
                                     ],
@@ -1378,7 +1379,7 @@
                                     ],
                                     "patching_rect": [
                                         430.5,
-                                        225.0,
+                                        240.0,
                                         42.0,
                                         23.0
                                     ],
@@ -1396,7 +1397,7 @@
                                     ],
                                     "patching_rect": [
                                         430.5,
-                                        191.16666666666663,
+                                        195.0,
                                         70.0,
                                         23.0
                                     ],
@@ -1414,7 +1415,7 @@
                                     ],
                                     "patching_rect": [
                                         403.0,
-                                        255.0,
+                                        285.0,
                                         46.5,
                                         23.0
                                     ],
@@ -1434,7 +1435,7 @@
                                     ],
                                     "patching_rect": [
                                         403.0,
-                                        153.25,
+                                        150.0,
                                         98.0,
                                         23.0
                                     ],
@@ -1701,9 +1702,9 @@
                                     ],
                                     "midpoints": [
                                         412.5,
-                                        411.0,
+                                        401.0,
                                         168.5,
-                                        411.0
+                                        401.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -1720,9 +1721,9 @@
                                     ],
                                     "midpoints": [
                                         412.5,
-                                        399.0,
+                                        401.0,
                                         39.5,
-                                        399.0
+                                        401.0
                                     ],
                                     "order": 1,
                                     "source": [
@@ -2068,8 +2069,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -2139,8 +2140,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -2318,6 +2319,7 @@
                                     "enablevscroll": 0,
                                     "id": "obj-2",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
                                     "name": "fl-mono-h.maxpat",
                                     "numinlets": 1,

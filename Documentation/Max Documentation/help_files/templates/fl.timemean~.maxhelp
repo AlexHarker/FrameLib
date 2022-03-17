@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -882,15 +882,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -1152,8 +1152,8 @@
                                         "fileversion": 1,
                                         "appversion": {
                                             "major": 8,
-                                            "minor": 1,
-                                            "revision": 8,
+                                            "minor": 3,
+                                            "revision": 0,
                                             "architecture": "x64",
                                             "modernui": 1
                                         },
@@ -1194,7 +1194,6 @@
                                         "style": "",
                                         "subpatcher_template": "",
                                         "assistshowspatchername": 0,
-                                        "visible": 1,
                                         "boxes": [
                                             {
                                                 "box": {
@@ -1480,6 +1479,7 @@
                                     "enablevscroll": 0,
                                     "id": "obj-12",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
                                     "name": "demosound.maxpat",
                                     "numinlets": 0,
@@ -1880,8 +1880,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -1951,15 +1951,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            105.0,
+                            0.0,
+                            26.0,
                             652.0,
                             761.0
                         ],
@@ -2007,7 +2007,6 @@
                                         345.0,
                                         21.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "Arguments set /max_frames and /num_frames parameters"
                                 }
                             },

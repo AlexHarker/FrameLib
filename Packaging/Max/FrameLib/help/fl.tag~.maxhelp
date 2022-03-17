@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -291,15 +291,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -394,6 +394,7 @@
                                     "enablevscroll": 0,
                                     "id": "obj-4",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
                                     "name": "fl-mono-h.maxpat",
                                     "numinlets": 1,
@@ -593,7 +594,7 @@
                                         363.5,
                                         123.0
                                     ],
-                                    "text": "fl.tag~ is initialised with 3 strings - freq, res and mode. The inputs that are created when the object is instantiated map to these names. Each input is tthen agged with the appropriate name and is sent to the 'parameter update' inlet of fl.svf~.\n\nThe first parameter controls the frequency of the filter.\nThe second parameter controls the resonance of the filter.\nThe third parameter changes the mode of the filter. "
+                                    "text": "fl.tag~ is initialised with 3 strings - freq, res and mode. The inputs that are created when the object is instantiated map to these names. Each input is then tagged with the appropriate name and is sent to the 'parameter update' inlet of fl.svf~.\n\nThe first parameter controls the frequency of the filter.\nThe second parameter controls the resonance of the filter.\nThe third parameter changes the mode of the filter. "
                                 }
                             },
                             {

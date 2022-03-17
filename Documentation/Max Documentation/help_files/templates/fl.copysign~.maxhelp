@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -291,15 +291,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
-                            59.0,
-                            130.0,
+                            34.0,
+                            113.0,
                             638.0,
                             448.0
                         ],
@@ -397,7 +397,6 @@
                                         246.0,
                                         21.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "A list of the same length of the number -1"
                                 }
                             },

@@ -220,8 +220,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -383,7 +383,7 @@
                                     "numoutlets": 2,
                                     "outlettype": [
                                         "signal",
-                                        "list"
+                                        ""
                                     ],
                                     "patching_rect": [
                                         15.0,
@@ -500,6 +500,7 @@
                                     "enablevscroll": 0,
                                     "id": "obj-2",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
                                     "name": "fl-mono-h.maxpat",
                                     "numinlets": 1,
@@ -533,6 +534,7 @@
                                     "enablevscroll": 0,
                                     "id": "obj-18",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
                                     "numinlets": 0,
                                     "numoutlets": 1,
@@ -547,8 +549,8 @@
                                         "fileversion": 1,
                                         "appversion": {
                                             "major": 8,
-                                            "minor": 1,
-                                            "revision": 8,
+                                            "minor": 3,
+                                            "revision": 0,
                                             "architecture": "x64",
                                             "modernui": 1
                                         },
@@ -852,34 +854,6 @@
                                         185.0,
                                         23.0
                                     ],
-                                    "saved_object_attributes": {
-                                        "basictuning": 440,
-                                        "followglobaltempo": 0,
-                                        "formantcorrection": 0,
-                                        "loopend": [
-                                            0.0,
-                                            "ms"
-                                        ],
-                                        "loopstart": [
-                                            0.0,
-                                            "ms"
-                                        ],
-                                        "mode": "basic",
-                                        "originallength": [
-                                            0.0,
-                                            "ticks"
-                                        ],
-                                        "originaltempo": 120.0,
-                                        "phase": [
-                                            0.0,
-                                            "ticks"
-                                        ],
-                                        "pitchcorrection": 0,
-                                        "quality": "basic",
-                                        "timestretch": [
-                                            0
-                                        ]
-                                    },
                                     "text": "groove~ fl.onepz.help @loop 1"
                                 }
                             },
@@ -1338,15 +1312,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -1462,7 +1436,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         277.0,
-                                        398.0,
+                                        398.66666666666674,
                                         328.0,
                                         21.0
                                     ],
@@ -1506,8 +1480,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        384.0,
-                                        352.0,
+                                        383.0,
+                                        355.00000000000006,
                                         255.0,
                                         21.0
                                     ],
@@ -1579,11 +1553,11 @@
                                     ],
                                     "patching_rect": [
                                         225.0,
-                                        350.0,
+                                        355.00000000000006,
                                         156.0,
                                         23.0
                                     ],
-                                    "text": "fl.map~ exp 1 0 20 12000"
+                                    "text": "fl.map~ exp 1 0 10 18000"
                                 }
                             },
                             {
@@ -1724,7 +1698,7 @@
                                     ],
                                     "patching_rect": [
                                         225.0,
-                                        270.0,
+                                        271.6666666666667,
                                         238.0,
                                         23.0
                                     ],
@@ -1782,6 +1756,7 @@
                                     "enablevscroll": 0,
                                     "id": "obj-2",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
                                     "name": "fl-mono-h.maxpat",
                                     "numinlets": 1,
@@ -1839,9 +1814,9 @@
                                     ],
                                     "midpoints": [
                                         234.5,
-                                        381.0,
+                                        386.83333333333337,
                                         145.0,
-                                        381.0
+                                        386.83333333333337
                                     ],
                                     "source": [
                                         "obj-11",
@@ -2042,9 +2017,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        229.5,
+                                        220.5,
                                         234.5,
-                                        229.5
+                                        220.5
                                     ],
                                     "order": 0,
                                     "source": [
@@ -2137,8 +2112,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -2208,8 +2183,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -2340,6 +2315,7 @@
                                     "enablevscroll": 0,
                                     "id": "obj-4",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
                                     "name": "fl-mono-h.maxpat",
                                     "numinlets": 1,
@@ -2374,6 +2350,7 @@
                                     "enablevscroll": 0,
                                     "id": "obj-18",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
                                     "numinlets": 0,
                                     "numoutlets": 1,
@@ -2388,8 +2365,8 @@
                                         "fileversion": 1,
                                         "appversion": {
                                             "major": 8,
-                                            "minor": 1,
-                                            "revision": 8,
+                                            "minor": 3,
+                                            "revision": 0,
                                             "architecture": "x64",
                                             "modernui": 1
                                         },
@@ -2751,22 +2728,6 @@
                                         221.0,
                                         23.0
                                     ],
-                                    "saved_object_attributes": {
-                                        "basictuning": 440,
-                                        "followglobaltempo": 0,
-                                        "formantcorrection": 0,
-                                        "mode": "basic",
-                                        "originallength": [
-                                            2708.8761904761905,
-                                            "ticks"
-                                        ],
-                                        "originaltempo": 120.0,
-                                        "pitchcorrection": 0,
-                                        "quality": "basic",
-                                        "timestretch": [
-                                            0
-                                        ]
-                                    },
                                     "text": "sfplay~ @audiofile jongly.aif @loop 1"
                                 }
                             },
