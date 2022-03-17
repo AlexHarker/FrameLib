@@ -3726,7 +3726,6 @@
 										"style" : "",
 										"subpatcher_template" : "default",
 										"assistshowspatchername" : 0,
-										"visible" : 1,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-1",

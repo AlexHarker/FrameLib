@@ -2251,7 +2251,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 826.0, 708.0 ],
+						"rect" : [ 0.0, 26.0, 826.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3796,7 +3796,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 87.0, 826.0, 708.0 ],
+						"rect" : [ 0.0, 26.0, 826.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3826,7 +3826,6 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"title" : "Using = notation (1)",
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-29",
