@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -473,14 +473,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -672,8 +672,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 1,
-											"revision" : 8,
+											"minor" : 3,
+											"revision" : 0,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -707,7 +707,6 @@
 										"style" : "",
 										"subpatcher_template" : "",
 										"assistshowspatchername" : 0,
-										"visible" : 1,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-13",
@@ -894,6 +893,7 @@
 									"enablevscroll" : 0,
 									"id" : "obj-12",
 									"lockeddragscroll" : 0,
+									"lockedsize" : 0,
 									"maxclass" : "bpatcher",
 									"name" : "demosound.maxpat",
 									"numinlets" : 0,
@@ -1135,8 +1135,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1197,14 +1197,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1240,7 +1240,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 147.0, 525.0, 345.0, 21.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Arguments set /max_frames and /num_frames parameters"
 								}
 
@@ -1643,20 +1642,74 @@
 		}
 ,
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "demosound.maxpat",
 				"bootpath" : "C74:/help/msp",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "sine.svg",
+				"name" : "fl.audiotrigger~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.clip~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.convert~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.fft~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.frommax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "fl.hypot~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.random~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.source~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.timemean~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.tomax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.window~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "interfacecolor.js",
+				"bootpath" : "C74:/interfaces",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "random.svg",
 				"bootpath" : "C74:/media/max/picts/m4l-picts",
 				"type" : "svg",
 				"implicit" : 1
@@ -1668,82 +1721,16 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "sine.svg",
+				"bootpath" : "C74:/media/max/picts/m4l-picts",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "square.svg",
 				"bootpath" : "C74:/media/max/picts/m4l-picts",
 				"type" : "svg",
 				"implicit" : 1
-			}
-, 			{
-				"name" : "random.svg",
-				"bootpath" : "C74:/media/max/picts/m4l-picts",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "interfacecolor.js",
-				"bootpath" : "C74:/interfaces",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.timemean~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.fft~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.window~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.hypot~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.convert~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.clip~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.audiotrigger~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.audiotrigger~.mxo",
-				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0
