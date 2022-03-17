@@ -275,6 +275,8 @@ FrameLib_Spatial::Cartesian FrameLib_Spatial::constrain(Cartesian point)
 
 void FrameLib_Spatial::calculateBounds()
 {
+    auto vertex = [](double x, double y, double z) { return ch_vertex { { x, y, z } }; };
+    
     int numSpeakers = static_cast<int>(mSpeakers.size());
     int numVertices = std::max(numSpeakers, 4);
     int *faces = nullptr;
@@ -287,7 +289,7 @@ void FrameLib_Spatial::calculateBounds()
         auto vertices = allocAutoArray<ch_vertex>(numVertices);
 
         for (size_t i = 0; i < mSpeakers.size(); i++)
-            vertices[i] = { mSpeakers[i].x, mSpeakers[i].y, mSpeakers[i].z };
+            vertices[i] = vertex(mSpeakers[i].x, mSpeakers[i].y, mSpeakers[i].z);
         
         // If we have less than 4 speaers then add synthetic vertices to ensure we can build the hull
         
@@ -298,8 +300,8 @@ void FrameLib_Spatial::calculateBounds()
             Vec3 p1 = mSpeakers[0] * (2.0/3.0) + mSpeakers[1] * (1.0/3.0);
             Vec3 p2 = mSpeakers[1] * (2.0/3.0) + mSpeakers[0] * (1.0/3.0);
 
-            vertices[2] = { p1.x, p1.y, p1.z };
-            vertices[3] = { p2.x, p2.y, p2.z };
+            vertices[2] = vertex(p1.x, p1.y, p1.z);
+            vertices[3] = vertex(p2.x, p2.y, p2.z);
         }
         else if (numSpeakers == 3)
         {
@@ -310,7 +312,7 @@ void FrameLib_Spatial::calculateBounds()
             for (size_t i = 0; i < mSpeakers.size(); i++)
                 centroid = centroid + (mSpeakers[i] * (1.0/3.0));
             
-            vertices[3] = { centroid.x, centroid.y, centroid.z };
+            vertices[3] = vertex(centroid.x, centroid.y, centroid.z);
         }
         
         // Build the hull and keep a copy with calculated / stored normals
