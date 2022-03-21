@@ -1,0 +1,3667 @@
+{
+    "fl.kernelsmooth~": {
+      "keywords": [
+        "smoothing"
+      ],
+      "seealso": [
+        "fl.peaks~",
+        "fl.multitaper~"
+      ]
+    },
+    "fl.svf~": {
+      "keywords": [
+        "filters"
+      ],
+      "seealso": [
+        "fl.onepolezero~",
+        "fl.onepole~"
+      ]
+    },
+    "fl.abs~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.accumpos~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.acosh~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.acos~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.and~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.maxpos~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.minpos~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.asinh~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.asin~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.atan2~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.atanh~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.atan~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.audiotrigger~": {
+      "keywords": [
+        "timing, schedulers",
+        "triggers"
+      ],
+      "seealso": [
+        "fl.interval~",
+        "fl.perblock~",
+        "fl.once~",
+        "fl.chain~",
+        "fl.future~"
+      ]
+    },
+    "fl.cartopol~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.cos~",
+        "fl.complex.log10~",
+        "fl.complex.sinh~",
+        "fl.complex.conj~",
+        "fl.complex.exp~",
+        "fl.complex.log~",
+        "fl.complex.cosh~",
+        "fl.complex.tan~",
+        "fl.complex.sin~",
+        "fl.complex.tanh~",
+        "fl.complex.sqrt~",
+        "fl.poltocar~"
+      ]
+    },
+    "fl.cbrt~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.ceil~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.centroid~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.chain~": {
+      "keywords": [
+        "timing, schedulers",
+        "triggers"
+      ],
+      "seealso": [
+        "fl.interval~",
+        "fl.perblock~",
+        "fl.audiotrigger~",
+        "fl.once~",
+        "fl.future~"
+      ]
+    },
+    "fl.chop~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.clip~": {
+      "keywords": [
+        "ternary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.wrap~",
+        "fl.fold~"
+      ]
+    },
+    "fl.combinetags~": {
+      "keywords": [
+        "parameters"
+      ],
+      "seealso": [
+        "fl.tag~",
+        "fl.untag~",
+        "fl.getparam~",
+        "fl.filtertags~"
+      ]
+    },
+    "fl.complex.conj~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.cos~",
+        "fl.complex.log10~",
+        "fl.complex.sinh~",
+        "fl.cartopol~",
+        "fl.complex.exp~",
+        "fl.complex.log~",
+        "fl.complex.cosh~",
+        "fl.complex.tan~",
+        "fl.complex.sin~",
+        "fl.complex.tanh~",
+        "fl.complex.sqrt~",
+        "fl.poltocar~"
+      ]
+    },
+    "fl.complex.cosh~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.cos~",
+        "fl.complex.log10~",
+        "fl.complex.sinh~",
+        "fl.cartopol~",
+        "fl.complex.conj~",
+        "fl.complex.exp~",
+        "fl.complex.log~",
+        "fl.complex.tan~",
+        "fl.complex.sin~",
+        "fl.complex.tanh~",
+        "fl.complex.sqrt~",
+        "fl.poltocar~"
+      ]
+    },
+    "fl.complex.cos~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.log10~",
+        "fl.complex.sinh~",
+        "fl.cartopol~",
+        "fl.complex.conj~",
+        "fl.complex.exp~",
+        "fl.complex.log~",
+        "fl.complex.cosh~",
+        "fl.complex.tan~",
+        "fl.complex.sin~",
+        "fl.complex.tanh~",
+        "fl.complex.sqrt~",
+        "fl.poltocar~"
+      ]
+    },
+    "fl.complex.divide~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.pow~",
+        "fl.complex.minus~",
+        "fl.complex.plus~",
+        "fl.complex.times~"
+      ]
+    },
+    "fl.complex.expr~": {
+      "keywords": [
+        "expression"
+      ],
+      "seealso": [
+        "fl.expr~"
+      ]
+    },
+    "fl.complex.exp~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.cos~",
+        "fl.complex.log10~",
+        "fl.complex.sinh~",
+        "fl.cartopol~",
+        "fl.complex.conj~",
+        "fl.complex.log~",
+        "fl.complex.cosh~",
+        "fl.complex.tan~",
+        "fl.complex.sin~",
+        "fl.complex.tanh~",
+        "fl.complex.sqrt~",
+        "fl.poltocar~"
+      ]
+    },
+    "fl.complex.log10~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.cos~",
+        "fl.complex.sinh~",
+        "fl.cartopol~",
+        "fl.complex.conj~",
+        "fl.complex.exp~",
+        "fl.complex.log~",
+        "fl.complex.cosh~",
+        "fl.complex.tan~",
+        "fl.complex.sin~",
+        "fl.complex.tanh~",
+        "fl.complex.sqrt~",
+        "fl.poltocar~"
+      ]
+    },
+    "fl.complex.log~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.cos~",
+        "fl.complex.log10~",
+        "fl.complex.sinh~",
+        "fl.cartopol~",
+        "fl.complex.conj~",
+        "fl.complex.exp~",
+        "fl.complex.cosh~",
+        "fl.complex.tan~",
+        "fl.complex.sin~",
+        "fl.complex.tanh~",
+        "fl.complex.sqrt~",
+        "fl.poltocar~"
+      ]
+    },
+    "fl.complex.minus~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.pow~",
+        "fl.complex.plus~",
+        "fl.complex.divide~",
+        "fl.complex.times~"
+      ]
+    },
+    "fl.complex.times~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.pow~",
+        "fl.complex.minus~",
+        "fl.complex.plus~",
+        "fl.complex.divide~"
+      ]
+    },
+    "fl.complex.plus~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.pow~",
+        "fl.complex.minus~",
+        "fl.complex.divide~",
+        "fl.complex.times~"
+      ]
+    },
+    "fl.complex.pow~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.minus~",
+        "fl.complex.plus~",
+        "fl.complex.divide~",
+        "fl.complex.times~"
+      ]
+    },
+    "fl.complex.sinh~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.cos~",
+        "fl.complex.log10~",
+        "fl.cartopol~",
+        "fl.complex.conj~",
+        "fl.complex.exp~",
+        "fl.complex.log~",
+        "fl.complex.cosh~",
+        "fl.complex.tan~",
+        "fl.complex.sin~",
+        "fl.complex.tanh~",
+        "fl.complex.sqrt~",
+        "fl.poltocar~"
+      ]
+    },
+    "fl.complex.sin~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.cos~",
+        "fl.complex.log10~",
+        "fl.complex.sinh~",
+        "fl.cartopol~",
+        "fl.complex.conj~",
+        "fl.complex.exp~",
+        "fl.complex.log~",
+        "fl.complex.cosh~",
+        "fl.complex.tan~",
+        "fl.complex.tanh~",
+        "fl.complex.sqrt~",
+        "fl.poltocar~"
+      ]
+    },
+    "fl.complex.sqrt~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.cos~",
+        "fl.complex.log10~",
+        "fl.complex.sinh~",
+        "fl.cartopol~",
+        "fl.complex.conj~",
+        "fl.complex.exp~",
+        "fl.complex.log~",
+        "fl.complex.cosh~",
+        "fl.complex.tan~",
+        "fl.complex.sin~",
+        "fl.complex.tanh~",
+        "fl.poltocar~"
+      ]
+    },
+    "fl.complex.tanh~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.cos~",
+        "fl.complex.log10~",
+        "fl.complex.sinh~",
+        "fl.cartopol~",
+        "fl.complex.conj~",
+        "fl.complex.exp~",
+        "fl.complex.log~",
+        "fl.complex.cosh~",
+        "fl.complex.tan~",
+        "fl.complex.sin~",
+        "fl.complex.sqrt~",
+        "fl.poltocar~"
+      ]
+    },
+    "fl.complex.tan~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.cos~",
+        "fl.complex.log10~",
+        "fl.complex.sinh~",
+        "fl.cartopol~",
+        "fl.complex.conj~",
+        "fl.complex.exp~",
+        "fl.complex.log~",
+        "fl.complex.cosh~",
+        "fl.complex.sin~",
+        "fl.complex.tanh~",
+        "fl.complex.sqrt~",
+        "fl.poltocar~"
+      ]
+    },
+    "fl.constant~": {
+      "keywords": [
+        "scaling",
+        "mapping"
+      ],
+      "seealso": [
+        "fl.convert~",
+        "fl.map~",
+        "fl.samplerate~",
+        "fl.lookup~"
+      ]
+    },
+    "fl.convert~": {
+      "keywords": [
+        "scaling",
+        "mapping"
+      ],
+      "seealso": [
+        "fl.map~",
+        "fl.constant~",
+        "fl.samplerate~",
+        "fl.lookup~"
+      ]
+    },
+    "fl.convolve~": {
+      "keywords": [
+        "FFT, windowing, frequency domain"
+      ],
+      "seealso": [
+        "fl.fft~",
+        "fl.multitaper~",
+        "fl.ifft~",
+        "fl.correlate~",
+        "fl.window~"
+      ]
+    },
+    "fl.copysign~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.correlate~": {
+      "keywords": [
+        "FFT, windowing, frequency domain"
+      ],
+      "seealso": [
+        "fl.fft~",
+        "fl.multitaper~",
+        "fl.convolve~",
+        "fl.ifft~",
+        "fl.window~"
+      ]
+    },
+    "fl.cosh~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.cos~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.crest~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.diff~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.dispatch~": {
+      "keywords": [
+        "routing"
+      ],
+      "seealso": [
+        "fl.route~",
+        "fl.select~"
+      ]
+    },
+    "fl.divide~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.equals~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.erfc~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.erf~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.exp2~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.expr~": {
+      "keywords": [
+        "expression"
+      ],
+      "seealso": [
+        "fl.complex.expr~"
+      ]
+    },
+    "fl.exp~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.fft~": {
+      "keywords": [
+        "FFT, windowing, frequency domain"
+      ],
+      "seealso": [
+        "fl.multitaper~",
+        "fl.convolve~",
+        "fl.ifft~",
+        "fl.correlate~",
+        "fl.window~"
+      ]
+    },
+    "fl.filtertags~": {
+      "keywords": [
+        "parameters"
+      ],
+      "seealso": [
+        "fl.tag~",
+        "fl.untag~",
+        "fl.combinetags~",
+        "fl.getparam~"
+      ]
+    },
+    "fl.flatness~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.floor~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.fold~": {
+      "keywords": [
+        "ternary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.wrap~",
+        "fl.clip~"
+      ]
+    },
+    "fl.framedelta~": {
+      "keywords": [
+        "time smoothing",
+        "statistics"
+      ],
+      "seealso": [
+        "fl.timestddev~",
+        "fl.timemedian~",
+        "fl.lag~",
+        "fl.timemean~"
+      ]
+    },
+    "fl.frommax~": {
+      "keywords": [
+        "conversion"
+      ],
+      "seealso": [
+        "fl.tomax~"
+      ]
+    },
+    "fl.future~": {
+      "keywords": [
+        "timing, schedulers",
+        "triggers"
+      ],
+      "seealso": [
+        "fl.interval~",
+        "fl.perblock~",
+        "fl.audiotrigger~",
+        "fl.once~",
+        "fl.chain~"
+      ]
+    },
+    "fl.gaussian~": {
+      "keywords": [
+        "generators"
+      ],
+      "seealso": [
+        "fl.random~",
+        "fl.uniform~",
+        "fl.ramp~"
+      ]
+    },
+    "fl.geomean~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.getparam~": {
+      "keywords": [
+        "parameters"
+      ],
+      "seealso": [
+        "fl.tag~",
+        "fl.untag~",
+        "fl.combinetags~",
+        "fl.filtertags~"
+      ]
+    },
+    "fl.greaterthaneq~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.greaterthan~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.hypot~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.ifft~": {
+      "keywords": [
+        "FFT, windowing, frequency domain"
+      ],
+      "seealso": [
+        "fl.fft~",
+        "fl.multitaper~",
+        "fl.convolve~",
+        "fl.correlate~",
+        "fl.window~"
+      ]
+    },
+    "fl.info~": {
+      "keywords": [
+        "buffer"
+      ],
+      "seealso": [
+        "fl.read~",
+        "ibuffer"
+      ]
+    },
+    "fl.interval~": {
+      "keywords": [
+        "timing, schedulers",
+        "triggers"
+      ],
+      "seealso": [
+        "fl.perblock~",
+        "fl.audiotrigger~",
+        "fl.once~",
+        "fl.chain~",
+        "fl.future~"
+      ]
+    },
+    "fl.join~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.kurtosis~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.lag~": {
+      "keywords": [
+        "time smoothing",
+        "statistics"
+      ],
+      "seealso": [
+        "fl.timestddev~",
+        "fl.timemedian~",
+        "fl.framedelta~",
+        "fl.timemean~"
+      ]
+    },
+    "fl.length~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.lessthaneq~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.lessthan~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.log10~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.log2~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.log~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.lookup~": {
+      "keywords": [
+        "scaling",
+        "mapping"
+      ],
+      "seealso": [
+        "fl.convert~",
+        "fl.map~",
+        "fl.constant~",
+        "fl.samplerate~"
+      ]
+    },
+    "fl.map~": {
+      "keywords": [
+        "scaling",
+        "mapping"
+      ],
+      "seealso": [
+        "fl.convert~",
+        "fl.constant~",
+        "fl.samplerate~",
+        "fl.lookup~"
+      ]
+    },
+    "fl.max~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.mean~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.medianfilter~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~"
+      ]
+    },
+    "fl.minus~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.min~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.modulo~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~"
+      ]
+    },
+    "fl.multitaper~": {
+      "keywords": [
+        "FFT, windowing, frequency domain"
+      ],
+      "seealso": [
+        "fl.fft~",
+        "fl.convolve~",
+        "fl.ifft~",
+        "fl.correlate~",
+        "fl.window~"
+      ]
+    },
+    "fl.nanfilter~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.nonzero~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.notequals~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.not~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.now~": {
+      "keywords": [
+        "timing"
+      ],
+      "seealso": [
+        "fl.timedelta~",
+        "fl.timer~",
+        "fl.ticks~"
+      ]
+    },
+    "fl.once~": {
+      "keywords": [
+        "timing, schedulers",
+        "triggers"
+      ],
+      "seealso": [
+        "fl.interval~",
+        "fl.perblock~",
+        "fl.audiotrigger~",
+        "fl.chain~",
+        "fl.future~"
+      ]
+    },
+    "fl.onepolezero~": {
+      "keywords": [
+        "filters"
+      ],
+      "seealso": [
+        "fl.svf~",
+        "fl.sallenkey~",
+        "fl.onepole~"
+      ]
+    },
+    "fl.onepole~": {
+      "keywords": [
+        "filters"
+      ],
+      "seealso": [
+        "fl.svf~",
+        "fl.sallenkey~",
+        "fl.onepolezero~"
+      ]
+    },
+    "fl.or~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.pack~": {
+      "keywords": [
+        "multistreaming",
+        "streams"
+      ],
+      "seealso": [
+        "fl.unpack~",
+        "fl.streamid~"
+      ]
+    },
+    "fl.pad~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.pattern~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.peaks~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.perblock~": {
+      "keywords": [
+        "timing, schedulers",
+        "triggers"
+      ],
+      "seealso": [
+        "fl.interval~",
+        "fl.audiotrigger~",
+        "fl.once~",
+        "fl.chain~",
+        "fl.future~"
+      ]
+    },
+    "fl.percentile~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.plus~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.poltocar~": {
+      "keywords": [
+        "complex numbers",
+        "complex operators"
+      ],
+      "seealso": [
+        "fl.complex.cos~",
+        "fl.complex.log10~",
+        "fl.complex.sinh~",
+        "fl.cartopol~",
+        "fl.complex.conj~",
+        "fl.complex.exp~",
+        "fl.complex.log~",
+        "fl.complex.cosh~",
+        "fl.complex.tan~",
+        "fl.complex.sin~",
+        "fl.complex.tanh~",
+        "fl.complex.sqrt~"
+      ]
+    },
+    "fl.pow~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.product~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.ramp~": {
+      "keywords": [
+        "generators"
+      ],
+      "seealso": [
+        "fl.random~",
+        "fl.gaussian~",
+        "fl.uniform~"
+      ]
+    },
+    "fl.random~": {
+      "keywords": [
+        "generators"
+      ],
+      "seealso": [
+        "fl.gaussian~",
+        "fl.uniform~",
+        "fl.ramp~"
+      ]
+    },
+    "fl.read~": {
+      "keywords": [
+        "buffer"
+      ],
+      "seealso": [
+        "fl.info~",
+        "ibuffer"
+      ]
+    },
+    "fl.recall~": {
+      "keywords": [
+        "storage"
+      ],
+      "seealso": [
+        "fl.store~",
+        "fl.register~"
+      ]
+    },
+    "fl.register~": {
+      "keywords": [
+        "storage"
+      ],
+      "seealso": [
+        "fl.store~",
+        "fl.recall~"
+      ]
+    },
+    "fl.reverse~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.rms~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.round~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.route~": {
+      "keywords": [
+        "routing"
+      ],
+      "seealso": [
+        "fl.dispatch~",
+        "fl.select~"
+      ]
+    },
+    "fl.samplerate~": {
+      "keywords": [
+        "scaling",
+        "mapping"
+      ],
+      "seealso": [
+        "fl.convert~",
+        "fl.map~",
+        "fl.constant~",
+        "fl.lookup~"
+      ]
+    },
+    "fl.select~": {
+      "keywords": [
+        "routing"
+      ],
+      "seealso": [
+        "fl.dispatch~",
+        "fl.route~"
+      ]
+    },
+    "fl.shift~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.sinh~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.sink~": {
+      "keywords": [
+        "conversion"
+      ],
+      "seealso": [
+        "fl.source~",
+        "fl.trace~"
+      ]
+    },
+    "fl.sin~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~"
+      ]
+    },
+    "fl.skewness~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.sort~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.source~": {
+      "keywords": [
+        "conversion"
+      ],
+      "seealso": [
+        "fl.trace~",
+        "fl.sink~"
+      ]
+    },
+    "fl.spatial~": {
+      "keywords": [
+        "spatialiastion"
+      ]
+    },
+    "fl.split~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.spread~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.sqrt~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.stddev~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.store~": {
+      "keywords": [
+        "storage"
+      ],
+      "seealso": [
+        "fl.register~",
+        "fl.recall~"
+      ]
+    },
+    "fl.streamid~": {
+      "keywords": [
+        "multistreaming",
+        "streams"
+      ],
+      "seealso": [
+        "fl.pack~",
+        "fl.unpack~"
+      ]
+    },
+    "fl.subframe~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.sum~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.tag~": {
+      "keywords": [
+        "parameters"
+      ],
+      "seealso": [
+        "fl.untag~",
+        "fl.combinetags~",
+        "fl.getparam~",
+        "fl.filtertags~"
+      ]
+    },
+    "fl.tanh~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.tan~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.sin~"
+      ]
+    },
+    "fl.ticks~": {
+      "keywords": [
+        "timing"
+      ],
+      "seealso": [
+        "fl.timedelta~",
+        "fl.now~",
+        "fl.timer~"
+      ]
+    },
+    "fl.timedelta~": {
+      "keywords": [
+        "timing"
+      ],
+      "seealso": [
+        "fl.now~",
+        "fl.timer~",
+        "fl.ticks~"
+      ]
+    },
+    "fl.timemean~": {
+      "keywords": [
+        "time smoothing",
+        "statistics"
+      ],
+      "seealso": [
+        "fl.timestddev~",
+        "fl.timemedian~",
+        "fl.lag~",
+        "fl.framedelta~"
+      ]
+    },
+    "fl.timemedian~": {
+      "keywords": [
+        "time smoothing",
+        "statistics"
+      ],
+      "seealso": [
+        "fl.timestddev~",
+        "fl.lag~",
+        "fl.framedelta~",
+        "fl.timemean~"
+      ]
+    },
+    "fl.timer~": {
+      "keywords": [
+        "timing"
+      ],
+      "seealso": [
+        "fl.timedelta~",
+        "fl.now~",
+        "fl.ticks~"
+      ]
+    },
+    "fl.timestddev~": {
+      "keywords": [
+        "time smoothing",
+        "statistics"
+      ],
+      "seealso": [
+        "fl.timemedian~",
+        "fl.lag~",
+        "fl.framedelta~",
+        "fl.timemean~"
+      ]
+    },
+    "fl.times~": {
+      "keywords": [
+        "binary ops, operators"
+      ],
+      "seealso": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+      ]
+    },
+    "fl.tomax~": {
+      "keywords": [
+        "conversion"
+      ],
+      "seealso": [
+        "fl.frommax~"
+      ]
+    },
+    "fl.trace~": {
+      "keywords": [
+        "conversion"
+      ],
+      "seealso": [
+        "fl.source~",
+        "fl.sink~"
+      ]
+    },
+    "fl.trunc~": {
+      "keywords": [
+        "unary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+      ]
+    },
+    "fl.uniform~": {
+      "keywords": [
+        "generators"
+      ],
+      "seealso": [
+        "fl.random~",
+        "fl.gaussian~",
+        "fl.ramp~"
+      ]
+    },
+    "fl.unpack~": {
+      "keywords": [
+        "multistreaming",
+        "streams"
+      ],
+      "seealso": [
+        "fl.pack~",
+        "fl.streamid~"
+      ]
+    },
+    "fl.untag~": {
+      "keywords": [
+        "parameters"
+      ],
+      "seealso": [
+        "fl.tag~",
+        "fl.combinetags~",
+        "fl.getparam~",
+        "fl.filtertags~"
+      ]
+    },
+    "fl.framemax~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.framemin~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.window~": {
+      "keywords": [
+        "FFT, windowing, frequency domain"
+      ],
+      "seealso": [
+        "fl.fft~",
+        "fl.multitaper~",
+        "fl.convolve~",
+        "fl.ifft~",
+        "fl.correlate~"
+      ]
+    },
+    "fl.wrap~": {
+      "keywords": [
+        "ternary ops",
+        "operators"
+      ],
+      "seealso": [
+        "fl.clip~",
+        "fl.fold~"
+      ]
+    },
+    "fl.firphase~": {
+      "keywords": [
+        "filters"
+      ],
+      "seealso": [
+        "fl.biquad~"
+      ]
+    },
+    "fl.biquad~": {
+      "keywords": [
+        "filters"
+      ],
+      "seealso": [
+        "fl.biquadcoeff~"
+      ]
+    },
+    "fl.biquadcoeff~": {
+      "keywords": [
+        "filters"
+      ],
+      "seealso": [
+        "fl.biquad~"
+      ]
+    },
+    "fl.makewindow~": {
+      "keywords": [
+        "FFT, windowing"
+      ],
+      "seealso": [
+        "fl.window~"
+      ]
+    },
+    "fl.movingaverage~": {
+      "keywords": [
+        "time smoothing",
+        "statistics"
+      ],
+      "seealso": [
+        "fl.timestddev~",
+        "fl.timemedian~",
+        "fl.framedelta~",
+        "fl.timemean~"
+      ]
+    },
+    "fl.prioritise~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.chain~"
+      ]
+    }
+  }
