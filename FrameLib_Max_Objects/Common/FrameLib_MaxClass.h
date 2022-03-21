@@ -780,7 +780,7 @@ private:
             return { 31, 31, 43, SCHED_RR, false };
 #else
         if (!realtime)
-            return { 31, 31, 31, 0, true };
+            return { THREAD_PRIORITY_NORMAL, THREAD_PRIORITY_NORMAL, THREAD_PRIORITY_TIME_CRITICAL, 0, true };
 #endif
         return FrameLib_Thread::defaultPriorities();
     }
