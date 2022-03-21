@@ -1,9 +1,10 @@
 import os
 from shutil import rmtree
-from FrameLibDocs.classes import Documentation
+from framelib import classes
 
 
-def main(docs: Documentation):
+if __name__ == "__main__":
+    docs = classes.Documentation()
     docs.temporary_dir.mkdir(exist_ok=True)
     docs.databases_dir.mkdir(exist_ok=True)
     docs.raw_xml_dir.mkdir(exist_ok=True)
@@ -19,6 +20,3 @@ def main(docs: Documentation):
                 rmtree(files.resolve())
             except OSError:
                 print("Error cleaning out existing docs directories")
-
-if __name__ == "__main__":
-    main(Documentation())
