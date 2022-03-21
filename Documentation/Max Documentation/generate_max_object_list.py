@@ -1,8 +1,10 @@
-from FrameLibDocs.classes import Documentation
+from framelib.classes import Documentation
 from pathlib import Path
 import sys
 
 docs = Documentation()
+print(docs)
+quit()
 op = open(docs.max_docs_dir / "Max_Object_List.h", "w+")
 
 
@@ -14,26 +16,21 @@ def write_comma(counter: int, ceiling: int) -> None:
     else:
         op.write("\n")
 
-
 def name_sanitisation(name: str) -> str:
     name = name.split(">")[0]
     name = name.split(",")[0]
-    if name == "FrameLib_MaxClass_ToMax":
-        name = "FrameLib_ToHost"
-    elif name == "FrameLib_MaxClass_FromMax":
-        name = "FrameLib_FromHost"
-    elif name == "FrameLib_MaxClass_Info":
-        name = "FrameLib_Info"
-    elif name == "FrameLib_MaxClass_Read":
-        name = "FrameLib_Read"
-    elif name == "FrameLib_MaxClass_ComplexExpression":
-        name = "FrameLib_ComplexExpression"
-    elif name == "FrameLib_MaxClass_Expression":
-        name = "FrameLib_Expression"
-    elif name == "FrameLib_MaxClass_ContextControl":
-        name = "FrameLib_ContextControl"
+    lookup = {
+        "FrameLib_MaxClass_ToMax" : "FrameLib_ToHost",
+        "FrameLib_MaxClass_FromMax" : "FrameLib_FromHost",
+        "FrameLib_MaxClass_Info" : "FrameLib_Info",
+        "FrameLib_MaxClass_Read" : "FrameLib_Read",
+        "FrameLib_MaxClass_ComplexExpression" : "FrameLib_ComplexExpression",
+        "FrameLib_MaxClass_Expression" : "FrameLib_Expression",
+        "FrameLib_MaxClass_ContextControl": "FrameLib_ContextControl"
+    }
+    if name in lookup:
+        return lookup[name]
     return name
-
 
 ignored_objects = [x for x in sys.argv[1:]]
 
