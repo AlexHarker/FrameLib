@@ -2,8 +2,7 @@ import os, json, errno, yaml, re
 import xml.etree.ElementTree as et
 from FrameLibDocs.utils import (
     read_json,
-    read_yaml,
-    strip_extension,
+    strip_extension
 )
 from FrameLibDocs.classes import Documentation
 
@@ -35,7 +34,7 @@ def main(docs):
     It also copies the xml files to the refpages directory after they're processed.
     """
 
-    object_info = read_yaml(docs.object_relationships_path)
+    object_info = read_json(docs.object_relationships_path)
     category_database = read_json(docs.category_database_path)
 
     # Get category of file
