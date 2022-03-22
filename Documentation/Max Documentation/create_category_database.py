@@ -1,6 +1,6 @@
 # from FrameLibDocs.variables import repo_root, category_database_path
-from FrameLibDocs.utils import write_json
-from FrameLibDocs.classes import Documentation
+from framelib.utils import write_json
+from framelib.classes import Documentation
 
 
 def main(docs):

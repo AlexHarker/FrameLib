@@ -1,8 +1,7 @@
-import json
-import os
+import json, os
 import xml.etree.ElementTree as et
-from FrameLibDocs.utils import write_json, strip_space
-from FrameLibDocs.classes import tParseAndBuild, Documentation
+from framelib.utils import write_json, strip_space
+from framelib.classes import tParseAndBuild, Documentation
 
 
 def main(docs: Documentation):

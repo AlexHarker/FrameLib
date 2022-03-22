@@ -1,5 +1,19 @@
 # FrameLib Max Documentation
 
+create_temp.py
+generate_max_object_list
+create_category_database
+edit_raw_xml
+dlookup
+qlookup
+tlookup
+jlookup
+tutorial_coll
+cleanup
+template_help
+merge_help
+mt
+
 ## Welcome
 You are able to build the documentation for the Max FrameLib yourself, except for certain resources such as:
 

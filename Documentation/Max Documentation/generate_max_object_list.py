@@ -3,10 +3,7 @@ from pathlib import Path
 import sys
 
 docs = Documentation()
-print(docs)
-quit()
 op = open(docs.max_docs_dir / "Max_Object_List.h", "w+")
-
 
 
 def write_comma(counter: int, ceiling: int) -> None:

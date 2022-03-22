@@ -1,7 +1,7 @@
 import json
 from distutils.dir_util import copy_tree
-from FrameLibDocs.utils import read_json, write_json
-from FrameLibDocs.classes import Documentation
+from framelib.utils import read_json, write_json
+from framelib.classes import Documentation
 
 
 def append_tabs(patch, object_name, source):

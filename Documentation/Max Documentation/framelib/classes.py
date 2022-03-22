@@ -13,8 +13,8 @@ class Documentation:
 
     def __init__(self):
         self.this_script = this_script
-        self.max_docs_dir = this_script.parents[2]
-        self.repo_root = this_script.parents[4]
+        self.max_docs_dir = this_script.parents[1]
+        self.repo_root = this_script.parents[3]
 
         # Import Max Paths
         self.package = self.repo_root / "Packaging" / "Max"

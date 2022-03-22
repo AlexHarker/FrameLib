@@ -1,5 +1,5 @@
 import re
-from FrameLibDocs.classes import Documentation
+from framelib.classes import Documentation
 
 
 # TODO cleanup this function and alphanum_key too

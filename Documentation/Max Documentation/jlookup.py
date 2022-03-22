@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as et
-from FrameLibDocs.utils import write_json, strip_space
-from FrameLibDocs.classes import jParseAndBuild, Documentation
+from framelib.utils import write_json, strip_space
+from framelib.classes import jParseAndBuild, Documentation
 
 
 def main(docs: Documentation):
