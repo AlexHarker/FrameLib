@@ -3310,6 +3310,7 @@
 		B82CC24A1F851DBC00077ECB /* fl.streamid~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.streamid~.cpp"; sourceTree = "<group>"; };
 		B833C2FC230BF621009253F3 /* FrameLib_Queues.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Queues.h; sourceTree = "<group>"; };
 		B835F31019A61128003CD5E7 /* FrameLib_Threading.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Threading.h; sourceTree = "<group>"; };
+		B8373FD227EB6FF300FD4091 /* FrameLib_TypeAliases.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_TypeAliases.h; sourceTree = "<group>"; };
 		B83E029220667499005925DD /* framelib_pd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framelib_pd.cpp; sourceTree = "<group>"; };
 		B83E0295206674CD005925DD /* FrameLib_PDClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_PDClass.h; sourceTree = "<group>"; };
 		B83E0296206674CD005925DD /* m_pd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_pd.h; sourceTree = "<group>"; };
@@ -6088,6 +6089,7 @@
 			isa = PBXGroup;
 			children = (
 				B83F0469223A82A600AF1F8E /* FrameLib_TypeList.h */,
+				B8373FD227EB6FF300FD4091 /* FrameLib_TypeAliases.h */,
 				B8BA70372078F36200D3DB3D /* FrameLib_Objects.h */,
 				B8BA70382078F38100D3DB3D /* FrameLib_Objects.cpp */,
 			);
