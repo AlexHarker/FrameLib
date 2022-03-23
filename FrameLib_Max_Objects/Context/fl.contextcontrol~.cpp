@@ -1,5 +1,6 @@
 
 #include "FrameLib_MaxClass.h"
+#include "FrameLib_TypeAliases.h"
 
 // A max class to communicate with the current context
 
@@ -134,8 +135,10 @@ private:
         
         objectMethod(object, FrameLib_MaxPrivate::messageResolveContext());
         
+        auto replace = FrameLib_TypeAliases::makeReplaceStrings();
+        
         path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
-        ExportError error = exportGraph(flObject, conformedPath, className->s_name);
+        ExportError error = exportGraph(flObject, conformedPath, className->s_name, &replace);
         
         if (error == ExportError::PathError)
             object_error(*this, "couldn't write to or find specified path");
