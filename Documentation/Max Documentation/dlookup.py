@@ -1,5 +1,5 @@
-from FrameLibDocs.utils import write_json
-from FrameLibDocs.classes import dParseAndBuild, Documentation
+from framelib.utils import write_json
+from framelib.classes import dParseAndBuild, Documentation
 
 
 def main(docs):

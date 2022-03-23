@@ -1,8 +1,10 @@
 import xml.etree.ElementTree as et
 from pathlib import Path
-from FrameLibDocs.utils import write_json, strip_space, strip_extension
-from FrameLibDocs.variables import this_script
+from framelib.utils import write_json, strip_space, strip_extension
+from framelib.variables import this_script
 from shutil import copytree
+
+
 class Documentation:
     """
     This class holds the relevant information about paths.
@@ -11,8 +13,8 @@ class Documentation:
 
     def __init__(self):
         self.this_script = this_script
-        self.max_docs_dir = this_script.parents[2]
-        self.repo_root = this_script.parents[4]
+        self.max_docs_dir = this_script.parents[1]
+        self.repo_root = this_script.parents[3]
 
         # Import Max Paths
         self.package = self.repo_root / "Packaging" / "Max"
@@ -24,7 +26,7 @@ class Documentation:
 
         # Key Files
         self.category_database_path = self.databases_dir / "category_databases.json"
-        self.object_relationships_path = self.max_docs_dir / "object_relationships.yaml"
+        self.object_relationships_path = self.max_docs_dir / "object_relationships.json"
 
         self.set_max_paths()
 

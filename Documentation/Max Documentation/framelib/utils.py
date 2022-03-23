@@ -1,9 +1,7 @@
-import os
 from pathlib import Path
+import os
 import random as rn
 import json
-import yaml
-
 
 def strip_space(tostrip: str) -> str:
     """Strips whitespace from the start and end of a string"""

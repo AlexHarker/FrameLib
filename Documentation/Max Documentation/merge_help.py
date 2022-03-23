@@ -1,5 +1,5 @@
-from FrameLibDocs.utils import read_json, write_json
-from FrameLibDocs.classes import Documentation
+from framelib.utils import read_json, write_json
+from framelib.classes import Documentation
 
 def main(docs: Documentation):
     template_dir = docs.help_dir / "templates"

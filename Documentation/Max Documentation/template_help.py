@@ -1,5 +1,5 @@
-from FrameLibDocs.help import edit_help
-from FrameLibDocs.classes import Documentation
+from framelib.help import edit_help
+from framelib.classes import Documentation
 from shutil import copyfile
 
 

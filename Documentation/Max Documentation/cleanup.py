@@ -1,5 +1,5 @@
 import shutil
-from FrameLibDocs.classes import Documentation
+from framelib.classes import Documentation
 
 
 def main(docs: Documentation):

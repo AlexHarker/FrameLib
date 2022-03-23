@@ -1,9 +1,9 @@
 import os
 from shutil import rmtree
-from FrameLibDocs.classes import Documentation
-
+from framelib.classes import Documentation
 
 def main(docs: Documentation):
+    docs = Documentation()
     docs.temporary_dir.mkdir(exist_ok=True)
     docs.databases_dir.mkdir(exist_ok=True)
     docs.raw_xml_dir.mkdir(exist_ok=True)
@@ -22,3 +22,4 @@ def main(docs: Documentation):
 
 if __name__ == "__main__":
     main(Documentation())
+

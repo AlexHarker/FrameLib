@@ -1,5 +1,5 @@
-from FrameLibDocs.utils import write_json, read_yaml
-from FrameLibDocs.classes import qParseAndBuild, Documentation
+from framelib.utils import write_json, read_json
+from framelib.classes import qParseAndBuild, Documentation
 
 
 def main(docs):
@@ -8,7 +8,7 @@ def main(docs):
     This dict contains is essential for maxObjectLauncher/Refpages to pull the right info.
     """
 
-    object_info = read_yaml(docs.object_relationships_path)
+    object_info = read_json(docs.object_relationships_path)
     docs.interfaces_dir.mkdir(exist_ok=True)
     obj_lookup = docs.interfaces_dir / "FrameLib-obj-qlookup.json"
 

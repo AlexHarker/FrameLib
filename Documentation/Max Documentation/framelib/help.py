@@ -1,5 +1,5 @@
 from shutil import copyfile
-from FrameLibDocs.utils import write_json, read_json
+from framelib.utils import write_json, read_json
 
 
 def edit_help(file_edit: str, obj_name: str) -> None:

@@ -1,11 +1,7 @@
-import os, json, errno, yaml, re
+import os, json, re
 import xml.etree.ElementTree as et
-from FrameLibDocs.utils import (
-    read_json,
-    read_yaml,
-    strip_extension,
-)
-from FrameLibDocs.classes import Documentation
+from framelib.utils import read_json, strip_extension
+from framelib.classes import Documentation
 
 
 def indent(elem, level=0):
@@ -29,13 +25,14 @@ def indent(elem, level=0):
 
 
 def main(docs):
+    print(docs.refpages_dir)
     """
     The purpose of this script is to set the categories for the Raw_XML files.
     C++ doesnt know about the categories and its easier for me to iterate file structures in Python.
     It also copies the xml files to the refpages directory after they're processed.
     """
 
-    object_info = read_yaml(docs.object_relationships_path)
+    object_info = read_json(docs.object_relationships_path)
     category_database = read_json(docs.category_database_path)
 
     # Get category of file
@@ -62,11 +59,11 @@ def main(docs):
         root = tree.getroot()  # get root and assign to root var
         root.set("category", category)  # set category attribute of root to the category found in json
 
-        for i in root.getiterator():
+        for i in root.iter():
             # Replace line breaks
             if "name" in i.attrib.keys():
                 if i.attrib["name"] == "Parameters":
-                    for j in i.getiterator():
+                    for j in i.iter():
                         if j.tag == "description":
                             j.text = j.text.replace(". ", ".<br>")
                             j.text = j.text.replace(": ", ":<br><br>")
@@ -80,7 +77,7 @@ def main(docs):
         try:
             details = object_info[obj_name]
         except KeyError:
-            print(f'No entry for {raw_xml} in object_relationships.yaml')
+            print(f'No entry for {raw_xml} in object_relationships.json')
         else:
             for elem in root:
                 if elem.tag == "seealsolist":
