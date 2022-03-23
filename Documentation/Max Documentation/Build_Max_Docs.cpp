@@ -40,7 +40,7 @@ std::string escape_xml(std::string str)
     return str;
 }
 
-void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
+bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
 {
     std::string fileName(__FILE__);
     std::string dirPath = dirname(const_cast<char *>(fileName.c_str()));
@@ -51,7 +51,7 @@ void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
     std::ofstream myfile;
     std::string sp = " "; // code is more readable with sp rather than " "
     std::string object = inputName; // refactor to not copy variable.
-    myfile.open (tmpFolder + object + ".maxref.xml"); // change to some temporary relative location
+    myfile.open(tmpFolder + object + ".maxref.xml"); // change to some temporary relative location
     std::string object_category = "!@#@#$";
     std::string object_keywords = "boilerplate keywords";
     std::string object_info;
@@ -62,6 +62,11 @@ void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
     std::string tab_2 = "        ";
     std::string tab_3 = "            ";
     std::string tab_4 = "                ";
+    
+    // Check that the file has opened correctly
+    
+    if (!myfile.is_open())
+        return false;
     
     // Write some stuff at the top of every xml file.
     myfile << "<?xml version='1.0' encoding='utf-8' standalone='yes'?> \n" ;
@@ -171,16 +176,19 @@ void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
     myfile << tab_1 + "</misc> \n \n";
     myfile << "</c74object>";
     myfile.close();
+    
+    return true;
 }
 
 template<typename T>
 struct DocumentationGenerator
 {
-    void operator ()(FrameLib_Context context, FrameLib_Parameters::Serial *parameters,  FrameLib_Proxy *proxy)
+    void operator ()(FrameLib_Context context, FrameLib_Parameters::Serial *parameters,  FrameLib_Proxy *proxy, bool *success)
     {
         T obj(context, parameters, proxy, 1);
         
-        write_info(&obj, FrameLib_ObjectName<T>().name());
+        if (!write_info(&obj, FrameLib_ObjectName<T>().name()))
+            *success = false;
     }
 };
 
@@ -194,11 +202,13 @@ int main()
     FrameLib_Context context(global, nullptr);
     FrameLib_Parameters::AutoSerial parameters;
 
+    bool success = true;
+    
     // Loop over objects using template list
-    FrameLib_DSPList::execute<DocumentationGenerator>(context, &parameters, proxy);
+    FrameLib_DSPList::execute<DocumentationGenerator>(context, &parameters, proxy, &success);
 
     // Cleanup
     delete proxy;
     FrameLib_Global::release(&global);
-    return 0;
+    return success ? 0 : 1;
 }
