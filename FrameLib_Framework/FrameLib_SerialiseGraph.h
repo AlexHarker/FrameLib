@@ -88,8 +88,8 @@ struct FrameLib_ObjectDescription
 
 struct FrameLib_StringReplace
 {
-    std::string mFind;
     std::string mReplace;
+    std::string mFind;
 };
 
 using ObjectListRef = std::vector<FrameLib_ObjectDescription>&;
