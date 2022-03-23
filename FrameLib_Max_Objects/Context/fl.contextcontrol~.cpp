@@ -1,6 +1,6 @@
 
 #include "FrameLib_MaxClass.h"
-#include "FrameLib_TypeAliases.h"
+#include "../FrameLib_Exports/FrameLib_TypeAliases.h"
 
 // A max class to communicate with the current context
 
