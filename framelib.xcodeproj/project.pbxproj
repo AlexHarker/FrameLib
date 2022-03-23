@@ -12444,7 +12444,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/Documentation/Max Documentation/\"\npython3 create_temp.py || exit 1\n$TARGET_BUILD_DIR/framelib_max_docs || exit 1\npython3 -m build_docs -c || exit 1\n";
+			shellScript = "cd \"$SRCROOT/Documentation/Max Documentation/\"\npython3 create_temp.py || exit 1\n$TARGET_BUILD_DIR/framelib_max_docs || exit 1\npython3 -m build_docs || exit 1\n";
 		};
 		B8C2BCDA27CD9C2400B161F9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

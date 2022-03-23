@@ -18,8 +18,8 @@ from framelib.classes import Documentation
 def main():
     docs = Documentation()
     parser = argparse.ArgumentParser(description="Build Documentation for FrameLib")
-    parser.add_argument("-hf", "--helpfiles", default=True, action='store_false', help="Toggle to build help files")
-    parser.add_argument("-c", "--clean", default=True, action='store_false', help="Toggle for post-cleanup")
+    parser.add_argument("-hf", "--helpfiles", default=True, action='store_false', help="Toggle to to switch off building help files")
+    parser.add_argument("-c", "--clean", default=True, action='store_false', help="Toggle to switch off post-cleanup")
     parser.add_argument("-p", "--package", help="Provide a custom location for a package")
     args = parser.parse_args()
 
