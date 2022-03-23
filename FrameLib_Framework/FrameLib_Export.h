@@ -74,16 +74,18 @@ void $::reset(double samplerate, unsigned long maxvectorsize)\n\
 }\n\n\
 void $::process(double **inputs, double **outputs, unsigned long blockSize)\n\
 {\n\
-    FrameLib_AudioQueue queue;\n\n\
-    for (auto it = mAudioInObjects.begin(); it != mAudioInObjects.end(); it++)\n\
     {\n\
-        (*it)->blockUpdate(inputs, outputs, blockSize, queue);\n\n\
-        inputs += (*it)->getNumAudioIns();\n\
-        outputs += (*it)->getNumAudioOuts();\n\
+        FrameLib_AudioQueue queue;\n\n\
+        for (auto it = mAudioInObjects.begin(); it != mAudioInObjects.end(); it++)\n\
+        {\n\
+            (*it)->blockUpdate(inputs, outputs, blockSize, queue);\n\n\
+            inputs += (*it)->getNumAudioIns();\n\
+            outputs += (*it)->getNumAudioOuts();\n\
+        }\n\
     }\n\n\
     for (auto it = mAudioOutObjects.begin(); it != mAudioOutObjects.end(); it++)\n\
     {\n\
-        (*it)->blockUpdate(inputs, outputs, blockSize, queue);\n\n\
+        (*it)->blockUpdate(inputs, outputs, blockSize);\n\n\
         inputs += (*it)->getNumAudioIns();\n\
         outputs += (*it)->getNumAudioOuts();\n\
     }\n\
