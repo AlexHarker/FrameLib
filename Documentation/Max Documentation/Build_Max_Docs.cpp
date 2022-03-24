@@ -143,6 +143,21 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
         return true;
     };
     
+    auto write_message = [&](const char *name, const char *digest, const char *description)
+    {
+        myfile << tab_2 + "<method name='" + name + "'> \n";
+        //myfile << tab_3 + "<arglist> \n";
+        //<arg name="input" optional="0" type="int" />
+        //myfile << tab_3 + "</arglist> \n";
+        myfile << tab_3 + "<digest> \n";
+        myfile << tab_4 + digest + " \n";
+        myfile << tab_3 + "</digest> \n";
+        myfile << tab_3 + "<description> \n";
+        myfile << tab_4 + description + " \n";
+        myfile << tab_3 + "</description> \n";
+        myfile << tab_2 + "</method> \n";
+    };
+    
     // Check that the file has opened correctly
     
     if (!myfile.is_open())
@@ -246,6 +261,20 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
     myfile << tab_1 + "<!--ARGUMENTS-->\n";
     for (int i = 0; write_argument(i); i++);
     
+    // Messages //
+    myfile << tab_1 + "<!--MESSAGES-->\n";
+    myfile << tab_1 + "<methodlist> \n";
+    write_message("info", "Get Object Info", "--detail--");
+    if (frameLibObject->handlesAudio())
+    {
+        write_message("process", "Process in non-realtime", "--detail--");
+        write_message("reset", "Reset a non-realtime network", "--detail--");
+        write_message("signal", "Synchronise with audio or accept signal IO", "--detail--");
+    }
+    write_message("frame", "Connect FrameLib objects", "Used internally by FrameLib connection routines. User messages have no effect");
+    write_message("sync", "Synchronise FrameLib audio objects", "Used internally by FrameLib connection routines. User messages have no effect");
+    myfile << tab_1 + "</methodlist> \n \n";
+
     // Attributes //
     myfile << tab_1 + "<!--ATTRIBUTES-->\n";
     myfile << tab_1 + "<attributelist> \n";
