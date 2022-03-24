@@ -275,7 +275,16 @@ FrameLib_Spatial::Cartesian FrameLib_Spatial::constrain(Cartesian point)
 
 void FrameLib_Spatial::calculateBounds()
 {
-    auto vertex = [](double x, double y, double z) { return ch_vertex { { x, y, z } }; };
+    auto vertex = [](double x, double y, double z)
+    {
+        ch_vertex v;
+        
+        v.x = x;
+        v.y = y;
+        v.z = z;
+        
+        return v;
+    };
     
     int numSpeakers = static_cast<int>(mSpeakers.size());
     int numVertices = std::max(numSpeakers, 4);
