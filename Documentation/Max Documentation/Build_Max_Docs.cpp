@@ -108,9 +108,9 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
         if (pIdx == -1)
         {
             if (idx)
-                myfile << tab_1 + "</objarglist> \n";
+                myfile << tab_1 + "</objarglist> \n \n";
             else
-                myfile << tab_1 + "<objarglist /> \n";
+                myfile << tab_1 + "<objarglist /> \n \n";
             return false;
         }
                 
