@@ -21,10 +21,17 @@ void find_replace(std::string& str, const char *findStr, const char *replaceStr)
         str.replace(start_pos, strlen(findStr), replaceStr);
 }
 
-std::string format_text(std::string str)
+std::string format_info(std::string str)
 {
     find_replace(str, ". ", ".<br />");
     find_replace(str, ": ", ":<br /><br />");
+    
+    return str;
+}
+
+std::string argument_name(std::string str)
+{
+    find_replace(str, " ", "-");
     
     return str;
 }
@@ -135,7 +142,7 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
         std::string rawDescription = escape_xml(params->getInfo(pIdx));
         std::string name = params->getName(pIdx);
         std::string digest = rawDescription.substr(0, rawDescription.find_first_of(".:"));
-        std::string description = format_text(rawDescription);
+        std::string description = format_info(rawDescription);
             
         myfile << tab_2 + "<objarg name='" + name + "' optional='1' type='" + type + "'> \n";
         myfile << tab_3 + "<digest> \n";
@@ -169,12 +176,14 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
         
         for (unsigned long i = 1; i < frameLibObject->getNumIns(); i++)
         {
-            myfile << tab_2 + "<objarg name='default-input' optional='1' type='number'> \n";
+            std::string inputName = to_lower(frameLibObject->inputInfo(i));
+            
+            myfile << tab_2 + "<objarg name='" + argument_name(inputName) + "' optional='1' type='number'> \n";
             myfile << tab_3 + "<digest> \n";
             myfile << tab_4 + "The value to use for input " + std::to_string(i + 1) +  " if it is disconnected \n";
             myfile << tab_3 + "</digest> \n";
             myfile << tab_3 + "<description> \n";
-            myfile << tab_4 + "Sets a single value for " + to_lower(frameLibObject->inputInfo(i)) +" \n";
+            myfile << tab_4 + "Sets a single value for " + inputName + " \n";
             myfile << tab_3 + "</description> \n";
             myfile << tab_2 + "</objarg> \n";
         }

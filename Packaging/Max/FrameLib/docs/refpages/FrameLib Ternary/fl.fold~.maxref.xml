@@ -21,7 +21,7 @@
     <metadata name="tag">FrameLib Ternary</metadata>
   </metadatalist>
   <objarglist>
-    <objarg name="default-input" optional="1" type="number">
+    <objarg name="parameter-1" optional="1" type="number">
       <digest> 
                 The value to use for input 2 if it is disconnected 
             </digest>
@@ -29,7 +29,7 @@
                 Sets a single value for parameter 1 
             </description>
     </objarg>
-    <objarg name="default-input" optional="1" type="number">
+    <objarg name="parameter-2" optional="1" type="number">
       <digest> 
                 The value to use for input 3 if it is disconnected 
             </digest>
