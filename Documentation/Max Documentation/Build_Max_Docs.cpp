@@ -126,9 +126,10 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
         else if (params->getType(pIdx) == FrameLib_Parameters::Type::String)
             type = "symbol";
         
+        std::string rawDescription = escape_xml(params->getInfo(pIdx));
         std::string name = params->getName(pIdx);
-        std::string digest = name;
-        std::string description = format_text(escape_xml(params->getInfo(pIdx)));
+        std::string digest = rawDescription.substr(0, rawDescription.find_first_of(".:"));
+        std::string description = format_text(rawDescription);
             
         myfile << tab_2 + "<objarg name='" + name + "' optional='1' type='" + type + "'> \n";
         myfile << tab_3 + "<digest> \n";
