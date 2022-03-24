@@ -18,6 +18,32 @@
     <metadata name="tag">FrameLib Vector</metadata>
   </metadatalist>
   <objarglist />
+  <methodlist>
+    <method name="info">
+      <digest> 
+                Get Object Info 
+            </digest>
+      <description> 
+                --detail-- 
+            </description>
+    </method>
+    <method name="frame">
+      <digest> 
+                Connect FrameLib objects 
+            </digest>
+      <description> 
+                Used internally by FrameLib connection routines. User messages have no effect 
+            </description>
+    </method>
+    <method name="sync">
+      <digest> 
+                Synchronise FrameLib audio objects 
+            </digest>
+      <description> 
+                Used internally by FrameLib connection routines. User messages have no effect 
+            </description>
+    </method>
+  </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
       <digest> 

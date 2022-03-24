@@ -58,6 +58,56 @@
             </description>
     </objarg>
   </objarglist>
+  <methodlist>
+    <method name="info">
+      <digest> 
+                Get Object Info 
+            </digest>
+      <description> 
+                --detail-- 
+            </description>
+    </method>
+    <method name="process">
+      <digest> 
+                Process in non-realtime 
+            </digest>
+      <description> 
+                --detail-- 
+            </description>
+    </method>
+    <method name="reset">
+      <digest> 
+                Reset a non-realtime network 
+            </digest>
+      <description> 
+                --detail-- 
+            </description>
+    </method>
+    <method name="signal">
+      <digest> 
+                Synchronise with audio or accept signal IO 
+            </digest>
+      <description> 
+                --detail-- 
+            </description>
+    </method>
+    <method name="frame">
+      <digest> 
+                Connect FrameLib objects 
+            </digest>
+      <description> 
+                Used internally by FrameLib connection routines. User messages have no effect 
+            </description>
+    </method>
+    <method name="sync">
+      <digest> 
+                Synchronise FrameLib audio objects 
+            </digest>
+      <description> 
+                Used internally by FrameLib connection routines. User messages have no effect 
+            </description>
+    </method>
+  </methodlist>
   <attributelist>
     <attribute name="buffer" get="1" set="1" type="symbol" size="1">
       <digest> 

@@ -18,9 +18,15 @@ namespace detail
 }
 
 template<typename T>
-struct FrameLib_ObjectName
+struct FrameLib_ObjectInfo
 {
     const char *name() { return "unknown"; }
+    
+    template <typename U, size_t Idx>
+    static U option()
+    {
+        return U();
+    }
 };
 
 using FrameLib_ObjectList = detail::FrameLib_Typelist<

@@ -34,7 +34,42 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Binary</metadata>
   </metadatalist>
-  <objarglist />
+  <objarglist>
+    <objarg name="default-input" optional="1" type="list">
+      <digest> 
+                The input vector to use for any disconnected inputs 
+            </digest>
+      <description> 
+                Values typed as arguments will be used as a vector for any inputs that are not connected. Either single values or multi-valued vectors can be entered. The behaviour is similar to that for arguments to standard objects such as +~, *~ or zl.reg. 
+            </description>
+    </objarg>
+  </objarglist>
+  <methodlist>
+    <method name="info">
+      <digest> 
+                Get Object Info 
+            </digest>
+      <description> 
+                --detail-- 
+            </description>
+    </method>
+    <method name="frame">
+      <digest> 
+                Connect FrameLib objects 
+            </digest>
+      <description> 
+                Used internally by FrameLib connection routines. User messages have no effect 
+            </description>
+    </method>
+    <method name="sync">
+      <digest> 
+                Synchronise FrameLib audio objects 
+            </digest>
+      <description> 
+                Used internally by FrameLib connection routines. User messages have no effect 
+            </description>
+    </method>
+  </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
       <digest> 

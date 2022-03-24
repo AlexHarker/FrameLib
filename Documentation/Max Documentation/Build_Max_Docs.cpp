@@ -56,7 +56,7 @@ std::string escape_xml(std::string str)
     return str;
 }
 
-bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
+bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, MaxObjectArgsMode argsMode)
 {
     std::string fileName(__FILE__);
     std::string dirPath = dirname(const_cast<char *>(fileName.c_str()));
@@ -81,6 +81,12 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
     
     const FrameLib_Parameters *params = frameLibObject->getParameters();
     
+    auto to_lower = [](std::string s)
+    {
+        std::transform(s.begin(), s.end(), s.begin(), [](unsigned char c){ return std::tolower(c); });
+        return s;
+    };
+    
     auto write_attribute = [&](const char *name, const char *type, const char *digest, const char *description, const char *label)
     {
         myfile << tab_2 + "<attribute name='" + name + "' get='1' set='1' type='"+ type + "' size='1'> \n";
@@ -97,13 +103,13 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
         myfile << tab_2 + "</attribute> \n";
     };
     
-    auto write_argument = [&](int idx)
+    auto write_argument = [&](unsigned long idx)
     {
-        int pIdx = -1;
+        long pIdx = -1;
         
-        for (int i = 0; params && i < params->size(); i++)
+        for (unsigned long i = 0; params && i < params->size(); i++)
             if (params->getArgumentIdx(i) == idx)
-                pIdx = i;
+                pIdx = static_cast<long>(i);
         
         if (pIdx == -1)
         {
@@ -141,6 +147,39 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
         myfile << tab_2 + "</objarg> \n";
     
         return true;
+    };
+    
+    auto write_arguments_all_inputs = [&]()
+    {
+        myfile << tab_1 + "<objarglist> \n";
+        myfile << tab_2 + "<objarg name='default-input' optional='1' type='list'> \n";
+        myfile << tab_3 + "<digest> \n";
+        myfile << tab_4 + "The input vector to use for any disconnected inputs \n";
+        myfile << tab_3 + "</digest> \n";
+        myfile << tab_3 + "<description> \n";
+        myfile << tab_4 + "Values typed as arguments will be used as a vector for any inputs that are not connected. Either single values or multi-valued vectors can be entered. The behaviour is similar to that for arguments to standard objects such as +~, *~ or zl.reg. \n";
+        myfile << tab_3 + "</description> \n";
+        myfile << tab_2 + "</objarg> \n";
+        myfile << tab_1 + "</objarglist> \n \n";
+    };
+    
+    auto write_arguments_distributed = [&]()
+    {
+        myfile << tab_1 + "<objarglist> \n";
+        
+        for (unsigned long i = 1; i < frameLibObject->getNumIns(); i++)
+        {
+            myfile << tab_2 + "<objarg name='default-input' optional='1' type='number'> \n";
+            myfile << tab_3 + "<digest> \n";
+            myfile << tab_4 + "The value to use for input " + std::to_string(i + 1) +  " if it is disconnected \n";
+            myfile << tab_3 + "</digest> \n";
+            myfile << tab_3 + "<description> \n";
+            myfile << tab_4 + "Sets a single value for " + to_lower(frameLibObject->inputInfo(i)) +" \n";
+            myfile << tab_3 + "</description> \n";
+            myfile << tab_2 + "</objarg> \n";
+        }
+        
+        myfile << tab_1 + "</objarglist> \n \n";
     };
     
     auto write_message = [&](const char *name, const char *digest, const char *description)
@@ -259,8 +298,21 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
     
     // Arguments //
     myfile << tab_1 + "<!--ARGUMENTS-->\n";
-    for (int i = 0; write_argument(i); i++);
-    
+    switch (argsMode)
+    {
+        case kAsParams:
+            for (unsigned long i = 0; write_argument(i); i++);
+            break;
+            
+        case kAllInputs:
+            write_arguments_all_inputs();
+            break;
+
+        case kDistribute:
+            write_arguments_distributed();
+            break;
+    }
+        
     // Messages //
     myfile << tab_1 + "<!--MESSAGES-->\n";
     myfile << tab_1 + "<methodlist> \n";
@@ -310,7 +362,7 @@ struct DocumentationGenerator
     {
         T obj(context, parameters, proxy, 1);
         
-        if (!write_info(&obj, FrameLib_ObjectName<T>().name()))
+        if (!write_info(&obj, FrameLib_ObjectInfo<T>().name(), FrameLib_ObjectInfo<T>().template option<MaxObjectArgsMode, 0>()))
             *success = false;
     }
 };

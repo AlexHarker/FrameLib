@@ -20,7 +20,50 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Ternary</metadata>
   </metadatalist>
-  <objarglist />
+  <objarglist>
+    <objarg name="default-input" optional="1" type="number">
+      <digest> 
+                The value to use for input 2 if it is disconnected 
+            </digest>
+      <description> 
+                Sets a single value for parameter 1 
+            </description>
+    </objarg>
+    <objarg name="default-input" optional="1" type="number">
+      <digest> 
+                The value to use for input 3 if it is disconnected 
+            </digest>
+      <description> 
+                Sets a single value for parameter 2 
+            </description>
+    </objarg>
+  </objarglist>
+  <methodlist>
+    <method name="info">
+      <digest> 
+                Get Object Info 
+            </digest>
+      <description> 
+                --detail-- 
+            </description>
+    </method>
+    <method name="frame">
+      <digest> 
+                Connect FrameLib objects 
+            </digest>
+      <description> 
+                Used internally by FrameLib connection routines. User messages have no effect 
+            </description>
+    </method>
+    <method name="sync">
+      <digest> 
+                Synchronise FrameLib audio objects 
+            </digest>
+      <description> 
+                Used internally by FrameLib connection routines. User messages have no effect 
+            </description>
+    </method>
+  </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
       <digest> 
