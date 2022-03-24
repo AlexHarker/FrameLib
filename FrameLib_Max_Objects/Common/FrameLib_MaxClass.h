@@ -1285,6 +1285,59 @@ class FrameLib_MaxClass : public MaxClass_Base
         long mInIndex;
     };
     
+    class Input
+    {
+    public:
+        
+        enum Error { kNone = 0x00, kVersion = 0x01, kContext = 0x02, kExtra= 0x04, kFeedback = 0x08, kDirect = 0x10 };
+        
+        Input(void *proxy, long index)
+        : mProxy(MaxClass_Base::toUnique(proxy))
+        , mIndex(index)
+        , mErrorTime(-1)
+        , mErrorFlags(0)
+        {}
+        
+        Input() : Input(nullptr, 0) {}
+        
+        void reportError(t_object *userObject, Error error) const
+        {
+            auto postError = [&](const char *str) { object_error(userObject, "%s input %ld", str, mIndex + 1); };
+            
+            long time = gettime();
+            
+            if (mErrorTime == time && mErrorFlags & error)
+                return;
+            
+            switch (error)
+            {
+                case kVersion:      postError("can't connect objects from different versions of framelib -");   break;
+                case kContext:      postError("can't connect objects in different patching contexts -");        break;
+                case kExtra:        postError("extra connection to");                                           break;
+                case kFeedback:     postError("feedback loop detected at");                                     break;
+                case kDirect:       postError("direct feedback loop detected at");                              break;
+                
+                default:
+                    return;
+            }
+            
+            if (mErrorTime == time)
+                mErrorFlags |= error;
+            else
+            {
+                mErrorTime = time;
+                mErrorFlags = error;
+            }
+        }
+        
+    private:
+        
+        unique_object_ptr mProxy;
+        long mIndex;
+        mutable long mErrorTime;
+        mutable long mErrorFlags;
+    };
+    
 public:
     
     // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxClass<>)
@@ -1547,7 +1600,7 @@ public:
         // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles realtime audio)
         
         for (long i = numIns - 1; i >= 0; i--)
-            mInputs[i] = toUnique((i || handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : nullptr);
+            mInputs[i] = Input(i || handlesAudio() ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : nullptr, i);
         
         for (long i = getNumOuts(); i > 0; i--)
             mOutputs[i - 1] = outlet_new(this, nullptr);
@@ -1926,7 +1979,7 @@ public:
         
         // Make sure there's an object to connect that has the same framelib version
         
-        if (!connection.mObject || versionMismatch(connection.mObject, true))
+        if (!connection.mObject || versionMismatch(connection.mObject, index, true))
             return;
         
         if (mGlobal->getConnectionMode() == ConnectionMode::kConnect)
@@ -1937,7 +1990,7 @@ public:
         else if (mConfirmation)
         {
             if (mConfirmation->confirm(connection, index) && mGlobal->getConnectionMode() == ConnectionMode::kDoubleCheck)
-                object_error(mUserObject, "extra connection to input %ld", index + 1);
+                mInputs[index].reportError(mUserObject, Input::kExtra);
         }
     }
     
@@ -2248,13 +2301,12 @@ private:
         return object ? object->getProxy()->getOwner<t_object>() : nullptr;
     }
     
-    bool versionMismatch(t_object *object, bool report) const
+    bool versionMismatch(t_object *object, long inIdx, bool report) const
     {
         bool mismatch = FrameLib_MaxPrivate::versionMismatch(object);
 
-        // FIX - more informative error
         if (mismatch && report)
-            object_error(mUserObject, "objects complied with different versions of framelib cannot be connected.");
+            mInputs[inIdx].reportError(mUserObject, Input::kVersion);
             
         return mismatch;
     }
@@ -2381,16 +2433,16 @@ private:
                 break;
                 
             case ConnectionResult::FeedbackDetected:
-                object_error(mUserObject, "feedback loop detected");
+                mInputs[inIdx].reportError(mUserObject, Input::kFeedback);
                 break;
                 
             case ConnectionResult::WrongContext:
                 if (mGlobal->getReportContextErrors())
-                    object_error(mUserObject, "can't connect objects in different patching contexts");
+                    mInputs[inIdx].reportError(mUserObject, Input::kContext);
                 break;
                 
             case ConnectionResult::SelfConnection:
-                object_error(mUserObject, "direct feedback loop detected");
+                mInputs[inIdx].reportError(mUserObject, Input::kDirect);
                 break;
                 
             case ConnectionResult::NoOrderingSupport:
@@ -2433,7 +2485,7 @@ private:
         
         // Ignore if the framelib versions differ or the connection isn't to a framelib input
         
-        if (versionMismatch(src, type == JPATCHLINE_CONNECT) || (!isOrderingInput(dstin) && !validInput(dstin)))
+        if (versionMismatch(src, dstin, type == JPATCHLINE_CONNECT) || (!isOrderingInput(dstin) && !validInput(dstin)))
             return MAX_ERR_NONE;
 
         // Store direct connection status
@@ -2487,7 +2539,7 @@ private:
         
         // if versions are mismatched (to preserve connections), or if the output is not a frame outlet
         
-        if (versionMismatch(dst, false) || !validOutput(srcout))
+        if (versionMismatch(dst, dstin, false) || !validOutput(srcout))
             return true;
         
         // if the connection is to the ordering inlet
@@ -2723,7 +2775,7 @@ private:
     
     std::unique_ptr<FLObject> mObject;
     
-    std::vector<unique_object_ptr> mInputs;
+    std::vector<Input> mInputs;
     std::vector<void *> mOutputs;
     std::vector<double *> mSigOuts;
     std::vector<bool> mDirectlyConnected;
