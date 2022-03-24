@@ -1305,8 +1305,9 @@ class FrameLib_MaxClass : public MaxClass_Base
             auto postError = [&](const char *str) { object_error(userObject, "%s input %ld", str, mIndex + 1); };
             
             long time = gettime();
+            bool validTime = mErrorTime + 500 >= time;
             
-            if (mErrorTime == time && mErrorFlags & error)
+            if (validTime && mErrorFlags & error)
                 return;
             
             switch (error)
@@ -1321,7 +1322,7 @@ class FrameLib_MaxClass : public MaxClass_Base
                     return;
             }
             
-            if (mErrorTime == time)
+            if (validTime)
                 mErrorFlags |= error;
             else
             {
