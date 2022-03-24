@@ -6,12 +6,28 @@
 #include "FrameLib_Global.h"
 #include "FrameLib_Context.h"
 #include "FrameLib_Multistream.h"
+
 // stl
+
 #include <string>
 #include <vector>
 #include <iostream>
 #include <fstream>
 #include <libgen.h>
+
+void find_replace(std::string& str, const char *findStr, const char *replaceStr)
+{
+    for (size_t start_pos = str.find(findStr); start_pos != std::string::npos; start_pos = str.find(findStr))
+        str.replace(start_pos, strlen(findStr), replaceStr);
+}
+
+std::string format_text(std::string str)
+{
+    find_replace(str, ". ", ".<br />");
+    find_replace(str, ": ", ":<br /><br />");
+    
+    return str;
+}
 
 std::string escape_xml(std::string str)
 {
@@ -63,6 +79,69 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
     std::string tab_3 = "            ";
     std::string tab_4 = "                ";
     
+    const FrameLib_Parameters *params = frameLibObject->getParameters();
+    
+    auto write_attribute = [&](const char *name, const char *type, const char *digest, const char *description, const char *label)
+    {
+        myfile << tab_2 + "<attribute name='" + name + "' get='1' set='1' type='"+ type + "' size='1'> \n";
+        myfile << tab_3 + "<digest> \n";
+        myfile << tab_4 + digest + " \n";
+        myfile << tab_3 + "</digest> \n";
+        myfile << tab_3 + "<description> \n";
+        myfile << tab_4 + description + " \n";
+        myfile << tab_3 + "</description> \n";
+        myfile << tab_3 + "<attributelist> \n";
+        myfile << tab_4 + "<attribute name='basic' get='1' set='1' type='int' size='1' value='1' /> \n";
+        myfile << tab_4 + "<attribute name='label' get='1' set='1' type='symbol' size='1' value='" + label + "' />\n";
+        myfile << tab_3 + "</attributelist> \n";
+        myfile << tab_2 + "</attribute> \n";
+    };
+    
+    auto write_argument = [&](int idx)
+    {
+        int pIdx = -1;
+        
+        for (int i = 0; params && i < params->size(); i++)
+            if (params->getArgumentIdx(i) == idx)
+                pIdx = i;
+        
+        if (pIdx == -1)
+        {
+            if (idx)
+                myfile << tab_1 + "</objarglist> \n";
+            else
+                myfile << tab_1 + "<objarglist /> \n";
+            return false;
+        }
+                
+        if (!idx)
+            myfile << tab_1 + "<objarglist> \n";
+        
+        std::string type = "number";
+        
+        if (params->getNumericType(pIdx) == FrameLib_Parameters::NumericType::Integer)
+            type = "int";
+        else if (params->getType(pIdx) == FrameLib_Parameters::Type::Enum)
+            type = "symbol";
+        else if (params->getType(pIdx) == FrameLib_Parameters::Type::String)
+            type = "symbol";
+        
+        std::string name = params->getName(pIdx);
+        std::string digest = name;
+        std::string description = format_text(escape_xml(params->getInfo(pIdx)));
+            
+        myfile << tab_2 + "<objarg name='" + name + "' optional='1' type='" + type + "'> \n";
+        myfile << tab_3 + "<digest> \n";
+        myfile << tab_4 + digest + "\n";
+        myfile << tab_3 + "</digest> \n";
+        myfile << tab_3 + "<description> \n";
+        myfile << tab_4 + description + "\n";
+        myfile << tab_3 + "</description> \n";
+        myfile << tab_2 + "</objarg> \n";
+    
+        return true;
+    };
+    
     // Check that the file has opened correctly
     
     if (!myfile.is_open())
@@ -93,7 +172,6 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
     // Parameters
     
     // If object has no parameters create the 'no parameters template'
-    const FrameLib_Parameters *params = frameLibObject->getParameters();
     
     if (!params || !params->size()) {
         myfile << tab_1 + "<misc name = 'Parameters'> \n";
@@ -156,13 +234,28 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
     // All the tail end stuff is going to here like see also and key words. //
     
     // Metadata //
+    myfile << tab_1 + "<!--METADATA-->\n";
     myfile << tab_1 + "<metadatalist> \n";
     myfile << tab_2 + "<metadata name='author'>Alex Harker</metadata> \n";
     myfile << tab_2 + "<metadata name='tag'>FrameLib</metadata> \n";
     myfile << tab_2 + "<metadata name='tag'>" + object_category + "</metadata> \n";
     myfile << tab_1 + "</metadatalist> \n \n";
     
+    // Arguments //
+    myfile << tab_1 + "<!--ARGUMENTS-->\n";
+    for (int i = 0; write_argument(i); i++);
+    
+    // Attributes //
+    myfile << tab_1 + "<!--ATTRIBUTES-->\n";
+    myfile << tab_1 + "<attributelist> \n";
+    if (frameLibObject->handlesAudio())
+        write_attribute("buffer", "symbol", "Non-realtime Buffer", "Sets the non-realtime buffer for this object", "Buffer");
+    write_attribute("rt", "int", "Realtime flag", "Sets the realtime state for this object", "Realtime");
+    write_attribute("id", "symbol", "Context ID", "Sets the context name for this object", "ID");
+    myfile << tab_1 + "</attributelist> \n \n";
+    
     // Seealso //
+    myfile << tab_1 + "<!--SEEALSO-->\n";
     myfile << tab_1 + "<seealsolist> \n";
     myfile << tab_1 + "</seealsolist> \n";
     
