@@ -34,6 +34,58 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Time_Smoothing</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="max_frames" optional="1" type="int">
+      <digest> 
+                Sets the maximum lag value in frames
+            </digest>
+      <description> 
+                Sets the maximum lag value in frames.<br />Note that the internal buffer is reset when this changes.
+            </description>
+    </objarg>
+    <objarg name="num_frames" optional="1" type="int">
+      <digest> 
+                Sets the current lag as an integer
+            </digest>
+      <description> 
+                Sets the current lag as an integer.
+            </description>
+    </objarg>
+    <objarg name="pad" optional="1" type="number">
+      <digest> 
+                Sets the padding value
+            </digest>
+      <description> 
+                Sets the padding value.
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.timestddev~" />
     <seealso name="fl.timemedian~" />

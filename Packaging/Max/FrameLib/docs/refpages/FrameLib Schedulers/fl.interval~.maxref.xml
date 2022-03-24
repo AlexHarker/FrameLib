@@ -36,6 +36,78 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Schedulers</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="interval" optional="1" type="number">
+      <digest> 
+                Sets the interval between frames in the units specified by the units parameter
+            </digest>
+      <description> 
+                Sets the interval between frames in the units specified by the units parameter.
+            </description>
+    </objarg>
+    <objarg name="units" optional="1" type="symbol">
+      <digest> 
+                Sets the time units used for setting the interval
+            </digest>
+      <description> 
+                Sets the time units used for setting the interval.
+            </description>
+    </objarg>
+    <objarg name="switchable" optional="1" type="number">
+      <digest> 
+                Sets whether the object is switchable or not (setting this on can reduce CPU efficiency)
+            </digest>
+      <description> 
+                Sets whether the object is switchable or not (setting this on can reduce CPU efficiency).
+            </description>
+    </objarg>
+    <objarg name="on" optional="1" type="number">
+      <digest> 
+                Sets the state when in switchable mode in order to start and stop the timing of intervals
+            </digest>
+      <description> 
+                Sets the state when in switchable mode in order to start and stop the timing of intervals.
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="buffer" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Non-realtime Buffer 
+            </digest>
+      <description> 
+                Sets the non-realtime buffer for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Buffer" />
+      </attributelist>
+    </attribute>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.perblock~" />
     <seealso name="fl.audiotrigger~" />

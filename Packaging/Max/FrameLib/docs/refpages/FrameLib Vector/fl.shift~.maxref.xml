@@ -39,6 +39,67 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Vector</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="shift" optional="1" type="number">
+      <digest> 
+                Sets the shift amount (-ve for left shift / +ve for right shift)
+            </digest>
+      <description> 
+                Sets the shift amount (-ve for left shift / +ve for right shift).
+            </description>
+    </objarg>
+    <objarg name="pad" optional="1" type="number">
+      <digest> 
+                Sets the padding value
+            </digest>
+      <description> 
+                Sets the padding value.
+            </description>
+    </objarg>
+    <objarg name="edges" optional="1" type="symbol">
+      <digest> 
+                Sets the edge behaviour
+            </digest>
+      <description> 
+                Sets the edge behaviour:<br />
+        <br />pad - values beyond the edges of the input are read as the padding value.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are read as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.
+            </description>
+    </objarg>
+    <objarg name="units" optional="1" type="symbol">
+      <digest> 
+                Sets the units for the shift (samples or ratio of the input length [-1 to 1])
+            </digest>
+      <description> 
+                Sets the units for the shift (samples or ratio of the input length [-1 to 1]).
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.minpos~" />
     <seealso name="fl.percentile~" />

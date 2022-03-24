@@ -24,6 +24,50 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Vector</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="num_ins" optional="1" type="int">
+      <digest> 
+                Sets the number of inputs
+            </digest>
+      <description> 
+                Sets the number of inputs.
+            </description>
+    </objarg>
+    <objarg name="order" optional="1" type="symbol">
+      <digest> 
+                Set whether to prioritise lower or higher numbered inputs
+            </digest>
+      <description> 
+                Set whether to prioritise lower or higher numbered inputs.
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.chain~" />
   </seealsolist>

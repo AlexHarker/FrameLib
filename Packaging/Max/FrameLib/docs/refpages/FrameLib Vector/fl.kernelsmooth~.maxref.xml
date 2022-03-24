@@ -44,6 +44,68 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Vector</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="smooth" optional="1" type="number">
+      <digest> 
+                Sets the width of smoothing as interpreted by the scale parameter
+            </digest>
+      <description> 
+                Sets the width of smoothing as interpreted by the scale parameter.<br />If two values are provided they set the interpolated amounts at either edge.
+            </description>
+    </objarg>
+    <objarg name="scale" optional="1" type="symbol">
+      <digest> 
+                Sets the scaling for the smoothing parameter
+            </digest>
+      <description> 
+                Sets the scaling for the smoothing parameter:<br />
+        <br />samples - smoothing is specified in samples.<br />normalised - smoothing is specified in relation to the width of the input [0-1].
+            </description>
+    </objarg>
+    <objarg name="symmetric" optional="1" type="number">
+      <digest> 
+                Indicates that the kernel is symmetric with only the right-hand side provided
+            </digest>
+      <description> 
+                Indicates that the kernel is symmetric with only the right-hand side provided.
+            </description>
+    </objarg>
+    <objarg name="edges" optional="1" type="symbol">
+      <digest> 
+                Sets the edge behaviour for smoothing
+            </digest>
+      <description> 
+                Sets the edge behaviour for smoothing:<br />
+        <br />zero - values beyond the edges of the input are read as zeros.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are read as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.peaks~" />
     <seealso name="fl.multitaper~" />

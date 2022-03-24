@@ -45,6 +45,59 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Filters</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="freq" optional="1" type="number">
+      <digest> 
+                Sets the filter cutoff frequency
+            </digest>
+      <description> 
+                Sets the filter cutoff frequency.
+            </description>
+    </objarg>
+    <objarg name="res" optional="1" type="number">
+      <digest> 
+                Sets the filter resonance
+            </digest>
+      <description> 
+                Sets the filter resonance.
+            </description>
+    </objarg>
+    <objarg name="mode" optional="1" type="symbol">
+      <digest> 
+                Sets the filter mode when multi-output mode is off
+            </digest>
+      <description> 
+                Sets the filter mode when multi-output mode is off:<br />
+        <br />lowpass - low pass.<br />bandpass - band pass.<br />highpass - high pass.
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.onepolezero~" />
     <seealso name="fl.onepole~" />

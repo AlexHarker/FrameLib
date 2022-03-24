@@ -68,6 +68,59 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Spectral</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="window" optional="1" type="symbol">
+      <digest> 
+                Sets the window type
+            </digest>
+      <description> 
+                Sets the window type:<br />
+        <br />rectangle - a window of equal values.<br />triangle - a triangular window.<br />trapezoid - an adjustable trapezoid window.<br />welch - the Welch polynomial window.<br />parzen - the Parzen polynomial window.<br />tukey - the adjustable Tukey (or cosine-tapered) window.<br />sine - the sine (or cosine) window.<br />hann - the Hann window.<br />hamming - the Hamming window with a0 = 0.54 and a1 = 0.46.<br />blackman - the Blackman window with a0 = 0.42, a1 = 0.50, and a2 = 0.08.<br />exact_blackman - the exact Blackman window as outlined in the literature.<br />The coefficients are a0 = 7938/18608, a1 = 9240/18608 and a2 = 1430/18608.<br />blackman_harris - the Blackman-Harris window with 92dB rejection.<br />nuttall_continuous - Nuttalls continuous 1st derivative window with 93dB rejection.<br />nuttall_minimal - Nuttalls minimal sidelobe window with 98dB rejection.<br />flat_top - Heinzels flat-top window with 95dB rejection.<br />cosine_sum - a sum of cosines as set by the parameters.<br />kaiser - an kaiser window adjustable via the beta parameter.<br />sine_taper - one of the sine tapers selectable by parameter.
+            </description>
+    </objarg>
+    <objarg name="size" optional="1" type="number">
+      <digest> 
+                Sets the size of the internal window
+            </digest>
+      <description> 
+                Sets the size of the internal window.<br />If zero the window is matched to input length (best for frequency domain applications).<br />Else the window is resampled by linear interpolation (best for granular applications).
+            </description>
+    </objarg>
+    <objarg name="exponent" optional="1" type="number">
+      <digest> 
+                Sets an exponent that each value in the window should be raised to
+            </digest>
+      <description> 
+                Sets an exponent that each value in the window should be raised to.
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.fft~" />
     <seealso name="fl.multitaper~" />

@@ -32,6 +32,52 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Mapping</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="mode" optional="1" type="symbol">
+      <digest> 
+                Sets the type of conversion or value to output
+            </digest>
+      <description> 
+                Sets the type of conversion or value to output:<br />
+        <br />rate - output the sample rate in Hz.<br />nyquist - output the nyquist frequency in Hz.<br />samples-ms - convert from samples to milliseconds.<br />samples-seconds - convert from samples to seconds.<br />ms-samples - convert from milliseconds to samples.<br />seconds-samples - convert from seconds to samples.<br />normalised-hz - convert from normalised frequency to frequency in Hz.<br />h-normalised - convert from frequency in Hz to normalised frequency.
+            </description>
+    </objarg>
+    <objarg name="normalisation" optional="1" type="symbol">
+      <digest> 
+                Sets the reference point for normalised frequency
+            </digest>
+      <description> 
+                Sets the reference point for normalised frequency:<br />
+        <br />rate - [0 - 1] is equivalent to [0 - sample rate].<br />nyquist - [0 - 1] is equivalent to [0 - nyquist].
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.convert~" />
     <seealso name="fl.map~" />

@@ -50,6 +50,77 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Generators</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="mode" optional="1" type="symbol">
+      <digest> 
+                Controls how the output length is determined
+            </digest>
+      <description> 
+                Controls how the output length is determined:<br />
+        <br />requested - the output length is set by the length parameter.<br />input - the output length follows the length of the trigger input.
+            </description>
+    </objarg>
+    <objarg name="length" optional="1" type="int">
+      <digest> 
+                Sets the requested output length in the units specified by the units parameter
+            </digest>
+      <description> 
+                Sets the requested output length in the units specified by the units parameter.
+            </description>
+    </objarg>
+    <objarg name="units" optional="1" type="symbol">
+      <digest> 
+                Sets the units used for the length parameter
+            </digest>
+      <description> 
+                Sets the units used for the length parameter.
+            </description>
+    </objarg>
+    <objarg name="scale" optional="1" type="symbol">
+      <digest> 
+                Sets the scaling of the output ramp
+            </digest>
+      <description> 
+                Sets the scaling of the output ramp:<br />
+        <br />count - scaled in samples (an interger count from zero).<br />ms - scaled in milliseconds starting at zero.<br />seconds - scaled in seconds starting at zero.<br />normalised - output is normalised according to the edges parameter.
+            </description>
+    </objarg>
+    <objarg name="endpoints" optional="1" type="symbol">
+      <digest> 
+                Sets the included edges when the scale parameter is set to normalised
+            </digest>
+      <description> 
+                Sets the included edges when the scale parameter is set to normalised:<br />
+        <br />both - the ramp is scaled [0-1].<br />first - the ramp is scaled [0-1).<br />last - the ramp is scaled (0-1].<br />none - the ramp is scaled (0-1).
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.random~" />
     <seealso name="fl.gaussian~" />

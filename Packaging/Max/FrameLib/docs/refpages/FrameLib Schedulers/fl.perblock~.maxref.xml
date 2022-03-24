@@ -17,6 +17,45 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Schedulers</metadata>
   </metadatalist>
+  <objarglist />
+  <attributelist>
+    <attribute name="buffer" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Non-realtime Buffer 
+            </digest>
+      <description> 
+                Sets the non-realtime buffer for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Buffer" />
+      </attributelist>
+    </attribute>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.interval~" />
     <seealso name="fl.audiotrigger~" />

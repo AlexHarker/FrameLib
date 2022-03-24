@@ -30,6 +30,42 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Expressions</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="expression" optional="1" type="symbol">
+      <digest> 
+                Sets the mathematical expression
+            </digest>
+      <description> 
+                Sets the mathematical expression.<br />Input pairs are indicated in1 to inx (where x is the number of input pairs created).<br />Complex numbers can be expressed directly in the form (a + bi).<br />A range of other constants, operators and functions are available.<br />Constants { i e pi epsilon inf }.<br />Unary Operators { - }.<br />Binary Operators { / * % + }.<br />Trigonometric Functions { sin cos tan asin acos atan }.<br />Hyperbolic Functions { sinh cosh tanh asinh acosh atanh }.<br />Unary Functions { log log10 exp conj sqrt }.<br />Binary Functions { pow }.
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.expr~" />
   </seealsolist>

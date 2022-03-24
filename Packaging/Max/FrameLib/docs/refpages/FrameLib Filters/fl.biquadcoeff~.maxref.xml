@@ -48,6 +48,67 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Filters</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="freq" optional="1" type="number">
+      <digest> 
+                Sets the filter frequency
+            </digest>
+      <description> 
+                Sets the filter frequency.
+            </description>
+    </objarg>
+    <objarg name="gain" optional="1" type="number">
+      <digest> 
+                Sets the linear gain of the filter
+            </digest>
+      <description> 
+                Sets the linear gain of the filter.
+            </description>
+    </objarg>
+    <objarg name="qs" optional="1" type="number">
+      <digest> 
+                Sets the q or s of the filter
+            </digest>
+      <description> 
+                Sets the q or s of the filter.
+            </description>
+    </objarg>
+    <objarg name="mode" optional="1" type="symbol">
+      <digest> 
+                Sets the filter mode
+            </digest>
+      <description> 
+                Sets the filter mode:<br />
+        <br />lowpass - low pass.<br />bandpass - band pass.<br />highpass - high pass.<br />peaknotch - peak notch.<br />resonant - resonant.<br />notch - band reject.<br />lowshelf - low shelf.<br />highshelf - high shelf.
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.biquad~" />
   </seealsolist>

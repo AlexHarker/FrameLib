@@ -30,6 +30,59 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Spectral</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="max_length" optional="1" type="int">
+      <digest> 
+                Sets the maximum output length and FFT size
+            </digest>
+      <description> 
+                Sets the maximum output length and FFT size.
+            </description>
+    </objarg>
+    <objarg name="normalise" optional="1" type="number">
+      <digest> 
+                Sets normalisation on or off (such that a full-scale real sine wave has an amplitude of 1)
+            </digest>
+      <description> 
+                Sets normalisation on or off (such that a full-scale real sine wave has an amplitude of 1).
+            </description>
+    </objarg>
+    <objarg name="mode" optional="1" type="symbol">
+      <digest> 
+                Sets the type of output produced and the input expected
+            </digest>
+      <description> 
+                Sets the type of output produced and the input expected:<br />
+        <br />real - real output (power of two length) for input without reflection (length is N / 2 + 1).<br />complex - complex output (two frames) with the same (power of two) input and output lengths.<br />full_spectrum - real output for input of the same (power of two) length input.<br />Note that in full_spectrum mode correct spectral reflection is expected and thus ignored.
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.fft~" />
     <seealso name="fl.multitaper~" />

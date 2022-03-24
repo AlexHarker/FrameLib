@@ -24,6 +24,50 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Vector</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="split" optional="1" type="number">
+      <digest> 
+                Sets the split point
+            </digest>
+      <description> 
+                Sets the split point.
+            </description>
+    </objarg>
+    <objarg name="units" optional="1" type="symbol">
+      <digest> 
+                Sets the units for the split point (samples or ratios [0-1])
+            </digest>
+      <description> 
+                Sets the units for the split point (samples or ratios [0-1]).
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.minpos~" />
     <seealso name="fl.percentile~" />

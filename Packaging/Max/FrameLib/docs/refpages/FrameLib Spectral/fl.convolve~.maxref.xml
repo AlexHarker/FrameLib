@@ -34,6 +34,59 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Spectral</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="max_length" optional="1" type="int">
+      <digest> 
+                Sets the maximum processing length
+            </digest>
+      <description> 
+                Sets the maximum processing length.<br />The processing length is M + N - 1 where M and N are the lengths of the two inputs.
+            </description>
+    </objarg>
+    <objarg name="mode" optional="1" type="symbol">
+      <digest> 
+                Sets the type of input and output
+            </digest>
+      <description> 
+                Sets the type of input and output.
+            </description>
+    </objarg>
+    <objarg name="edges" optional="1" type="symbol">
+      <digest> 
+                Sets the edge behaviour of the convolution process
+            </digest>
+      <description> 
+                Sets the edge behaviour of the convolution process:<br />
+        <br />The basic operation is a linear one with output of the processing length.<br />For modes other than linear the output length is reduced to the maximum of M and N.<br />Excess from the linear operation is added back into the available length as specified.<br />linear - the output is the full processing length with no further processing.<br />circular - excess at the end is added back to the beginning of the output.<br />wrap - as circular mode but rotated such that wrapping occurs equally at both ends.<br />fold - as wrap but folding not wrapping at the edges (edge values are not repeated).<br />mirror - as fold but with repeated edge values.
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.fft~" />
     <seealso name="fl.multitaper~" />

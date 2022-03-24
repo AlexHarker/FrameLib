@@ -25,6 +25,43 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Mapping</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="mode" optional="1" type="symbol">
+      <digest> 
+                Sets the mode of conversion
+            </digest>
+      <description> 
+                Sets the mode of conversion:<br />
+        <br />db-amp - converts from decibels to linear amplitudes.<br />amp-db - converts from linear amplitudes to decibels.<br />midi-freq - converts from midi notes to frequencies.<br />freq-mid - converts from frequencies to midi notes.<br />semitones-ratios - converts semitone transpositions to ratios.<br />ratios-semitones - converts from ratios to semitone transpositions.<br />degrees-radians - converts from degress to radians.<br />radians-degrees - converts from radians to degrees.
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.map~" />
     <seealso name="fl.constant~" />

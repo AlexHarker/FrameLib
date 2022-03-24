@@ -27,6 +27,58 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Spectral</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="max_length" optional="1" type="int">
+      <digest> 
+                Sets the input length and maximum FFT size
+            </digest>
+      <description> 
+                Sets the input length and maximum FFT size.
+            </description>
+    </objarg>
+    <objarg name="phase" optional="1" type="number">
+      <digest> 
+                Sets the phase for the transformed FIR [0 to 1]
+            </digest>
+      <description> 
+                Sets the phase for the transformed FIR [0 to 1].<br />minimum phase can be requested with a value of zero.<br />linear phase can be requested with value of a half.<br />maximum phase can be requested with a value of one.
+            </description>
+    </objarg>
+    <objarg name="time_factor" optional="1" type="number">
+      <digest> 
+                Sets the factor used to determine the length for zero padding the FIR before processing
+            </digest>
+      <description> 
+                Sets the factor used to determine the length for zero padding the FIR before processing.<br />The FIR is padded to at least its original length multiplied by this factor.<br />Note that this needs to be accounted for when setting the max_length parameter.
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.biquad~" />
   </seealsolist>

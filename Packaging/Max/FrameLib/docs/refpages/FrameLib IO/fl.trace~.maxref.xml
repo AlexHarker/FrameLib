@@ -45,6 +45,71 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib IO</metadata>
   </metadatalist>
+  <objarglist>
+    <objarg name="mode" optional="1" type="symbol">
+      <digest> 
+                Sets the mode used for output
+            </digest>
+      <description> 
+                Sets the mode used for output:<br />
+        <br />full - outputs the entire frame in full.<br />first - output the first sample of the frame only.<br />last - output the last sample of the frame only.<br />specified - output the sample specified by index using the position parameter.<br />ratio - output the sample specified by the position parameter as a ratio of the frame length.
+            </description>
+    </objarg>
+    <objarg name="buffer_size" optional="1" type="number">
+      <digest> 
+                Sets the internal buffer size in the units specified by the units parameter
+            </digest>
+      <description> 
+                Sets the internal buffer size in the units specified by the units parameter.
+            </description>
+    </objarg>
+    <objarg name="units" optional="1" type="symbol">
+      <digest> 
+                Sets the time units used to determine the buffer size and delay
+            </digest>
+      <description> 
+                Sets the time units used to determine the buffer size and delay.
+            </description>
+    </objarg>
+  </objarglist>
+  <attributelist>
+    <attribute name="buffer" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Non-realtime Buffer 
+            </digest>
+      <description> 
+                Sets the non-realtime buffer for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Buffer" />
+      </attributelist>
+    </attribute>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest> 
+                Realtime flag 
+            </digest>
+      <description> 
+                Sets the realtime state for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest> 
+                Context ID 
+            </digest>
+      <description> 
+                Sets the context name for this object 
+            </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
   <seealsolist>
     <seealso name="fl.source~" />
     <seealso name="fl.sink~" />
