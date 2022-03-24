@@ -944,12 +944,18 @@ public:
         
         CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
         CLASS_ATTR_ACCESSORS(c, "buffer", &Wrapper<T>::bufferGet, &Wrapper<T>::bufferSet);
-
+        CLASS_ATTR_BASIC(c, "buffer", 0L);
+        CLASS_ATTR_LABEL(c, "buffer", 0L, "Buffer");
+        
         CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
         CLASS_ATTR_ACCESSORS(c, "id", &Wrapper<T>::idGet, &Wrapper<T>::idSet);
+        CLASS_ATTR_BASIC(c, "id", 0L);
+        CLASS_ATTR_LABEL(c, "id", 0L, "ID");
 
         CLASS_ATTR_ATOM_LONG(c, "rt", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
         CLASS_ATTR_ACCESSORS(c, "rt", &Wrapper<T>::rtGet, &Wrapper<T>::rtSet);
+        CLASS_ATTR_BASIC(c, "rt", 0L);
+        CLASS_ATTR_LABEL(c, "rt", 0L, "Realtime");
     }
 
     // Constructor and Destructor
@@ -1378,13 +1384,19 @@ public:
             dspInit(c);
             
             CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mBuffer);
+            CLASS_ATTR_BASIC(c, "buffer", 0L);
+            CLASS_ATTR_LABEL(c, "buffer", 0L, "Buffer");
         }
         
         CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mMaxContext.mName);
         CLASS_ATTR_ACCESSORS(c, "id", 0, &FrameLib_MaxClass<T>::idSet);
+        CLASS_ATTR_BASIC(c, "id", 0L);
+        CLASS_ATTR_LABEL(c, "id", 0L, "ID");
 
         CLASS_ATTR_ATOM_LONG(c, "rt", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mMaxContext.mRealtime);
         CLASS_ATTR_ACCESSORS(c, "rt", 0, &FrameLib_MaxClass<T>::rtSet);
+        CLASS_ATTR_BASIC(c, "rt", 0L);
+        CLASS_ATTR_LABEL(c, "rt", 0L, "Realtime");
 
         addMethod(c, (method) &extPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &extConnectionAccept, "connectionaccept");
