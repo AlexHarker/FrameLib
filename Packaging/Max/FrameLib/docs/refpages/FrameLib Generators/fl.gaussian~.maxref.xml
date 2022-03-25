@@ -6,19 +6,19 @@
          Mean and standard deviation can be set per sample or by parameter. Per-sample mean and standard deviations are passed in by input. The length of the output is dependent on the mode parameter. Output length may be set by parameter or based on that of the trigger input.
     </description>
   <misc name="Parameters">
-    <entry name="1. /mode [enum]">
+    <entry name="/mode [enum]">
       <description> 
                 Controls how the output length is determined:<br/><br/>requested - the output length is set by the length parameter.<br/>input - the output length follows the length of the trigger input.<br />
         <bullet>[0] - requested</bullet>
         <bullet>[1] - input</bullet>
       </description>
     </entry>
-    <entry name="2. /length [int]">
+    <entry name="/length [int]">
       <description> 
                 Sets the requested output length in the units specified by the units parameter.
             </description>
     </entry>
-    <entry name="3. /units [enum]">
+    <entry name="/units [enum]">
       <description> 
                 Sets the units used for the length parameter.<br />
         <bullet>[0] - samples</bullet>
@@ -26,17 +26,17 @@
         <bullet>[2] - seconds</bullet>
       </description>
     </entry>
-    <entry name="4. /mean [double]">
+    <entry name="/mean [double]">
       <description> 
                 Sets the default mean.
             </description>
     </entry>
-    <entry name="5. /deviation [double]">
+    <entry name="/deviation [double]">
       <description> 
                 Sets the default standard deviation.
             </description>
     </entry>
-    <entry name="6. /mismatch [enum]">
+    <entry name="/mismatch [enum]">
       <description> 
                 Sets the mode used when dealing with mismatches between input and output lengths:<br/><br/>default - missing input values are substitued using the default values.<br/>extend - inputs are extended by repeating their final value.<br/>Note that default values are always used when an input is empty.<br />
         <bullet>[0] - default</bullet>

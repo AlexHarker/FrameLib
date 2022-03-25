@@ -6,19 +6,19 @@
          Tag inputs each deal with one tag and take input vectors. The number of tag inputs can be set explicitly by parameter. Alternatively, it can be set implicitly by the tag parameters present at instantiation. A further input takes pre-tagged input to concatanated with other inputs after tagging. All inputs except the parameter input trigger output.
     </description>
   <misc name="Parameters">
-    <entry name="1. /num_ins [instantiation int]">
+    <entry name="/num_ins [instantiation int]">
       <description> 
                 Sets the number of inputs (and hence the number of tags).
             </description>
     </entry>
-    <entry name="2. /empty [enum]">
+    <entry name="/empty [enum]">
       <description> 
                 Sets the behaviour when empty frames are received:<br/><br/>ignore - empty frames are ignored.<br/>reset - empty frames create empty tags to reset parameters to defaults.<br />
         <bullet>[0] - ignore</bullet>
         <bullet>[1] - reset</bullet>
       </description>
     </entry>
-    <entry name="3. /tag_01 [string]">
+    <entry name="/tag_01 [string]">
       <description> 
                 Sets the tag for input 1.
             </description>

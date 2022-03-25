@@ -6,12 +6,12 @@
          The units for reporting length can be set with the units parameter. If the named buffer is not found all outputs are given as zero.
     </description>
   <misc name="Parameters">
-    <entry name="1. /buffer [string]">
+    <entry name="/buffer [string]">
       <description> 
                 Sets the buffer to use.
             </description>
     </entry>
-    <entry name="2. /units [enum]">
+    <entry name="/units [enum]">
       <description> 
                 Sets the units for reporting the length of the buffer.<br />
         <bullet>[0] - samples</bullet>

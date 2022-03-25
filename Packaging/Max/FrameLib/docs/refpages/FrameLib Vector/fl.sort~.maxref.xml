@@ -6,14 +6,14 @@
          The sort can either be on values or indices as set by the indices parameter.
     </description>
   <misc name="Parameters">
-    <entry name="1. /order [enum]">
+    <entry name="/order [enum]">
       <description> 
                 Sets the ordering of the sorted output.<br />
         <bullet>[0] - up</bullet>
         <bullet>[1] - down</bullet>
       </description>
     </entry>
-    <entry name="2. /indices [bool]">
+    <entry name="/indices [bool]">
       <description> 
                 Performs the sort on the indices of the input rather than the values.
             </description>

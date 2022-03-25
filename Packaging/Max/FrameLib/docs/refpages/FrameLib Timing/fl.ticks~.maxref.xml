@@ -6,24 +6,24 @@
          Counting is between zero and one less than the limit parameter. Counting can be either up or down. Couting can be run (once), looped, paused or stopped. Triggers at the reset input set the count to the value of the reset parameter.
     </description>
   <misc name="Parameters">
-    <entry name="1. /limit [int]">
+    <entry name="/limit [int]">
       <description> 
                 Sets the count limit.
             </description>
     </entry>
-    <entry name="2. /direction [enum]">
+    <entry name="/direction [enum]">
       <description> 
                 Sets the direction of counting.<br />
         <bullet>[0] - up</bullet>
         <bullet>[1] - down</bullet>
       </description>
     </entry>
-    <entry name="3. /reset [int]">
+    <entry name="/reset [int]">
       <description> 
                 Sets the reset value.<br/>A value of -1 can be used for direction independent reset.<br/>This results in reset to 0 when counting up and (limit - 1) when counting down.
             </description>
     </entry>
-    <entry name="4. /mode [enum]">
+    <entry name="/mode [enum]">
       <description> 
                 Sets the mode:<br/><br/>run - the count continues until it hits the limit or zero.<br/>loop - the count loops between zero and the limit minus one.<br/>pause - the count is paused until the mode is changed.<br/>stop - the count returns to the reset value until the mode is changed.<br />
         <bullet>[0] - run</bullet>
@@ -32,7 +32,7 @@
         <bullet>[3] - stop</bullet>
       </description>
     </entry>
-    <entry name="5. /idle [enum]">
+    <entry name="/idle [enum]">
       <description> 
                 Sets the idle output (the output when stopped, paused or out of bounds):<br/><br/>repeat - repeat the current count.<br/>empty - output an empty frame.<br />
         <bullet>[0] - repeat</bullet>

@@ -6,17 +6,17 @@
          The output is the same length as the input. The scale, edges and bound parameters control the mapping of the input to the buffer. For hosts supporting multichannel buffers the channel read can also be selected. The reading can be performed with different types of interpolation (or none).
     </description>
   <misc name="Parameters">
-    <entry name="1. /buffer [string]">
+    <entry name="/buffer [string]">
       <description> 
                 Sets the buffer to use.
             </description>
     </entry>
-    <entry name="2. /channel [int]">
+    <entry name="/channel [int]">
       <description> 
                 Sets the buffer channel to use.
             </description>
     </entry>
-    <entry name="3. /units [enum]">
+    <entry name="/units [enum]">
       <description> 
                 Sets the units used for interpreting the input.<br/>Note that the edge parameter is also accounted for normalised mode.<br/>This adjusts the scaling to work sensibly with cyclical modes.<br />
         <bullet>[0] - samples</bullet>
@@ -25,7 +25,7 @@
         <bullet>[3] - normalised</bullet>
       </description>
     </entry>
-    <entry name="4. /interp [enum]">
+    <entry name="/interp [enum]">
       <description> 
                 Sets the interpolation mode:<br/><br/>none - no interpolation.<br/>linear - linear interpolation.<br/>hermite - cubic hermite interpolation.<br/>bspline - cubic bspline interpolation.<br/>lagrange - cubic lagrange interpolation.<br />
         <bullet>[0] - none</bullet>
@@ -35,7 +35,7 @@
         <bullet>[4] - lagrange</bullet>
       </description>
     </entry>
-    <entry name="5. /edges [enum]">
+    <entry name="/edges [enum]">
       <description> 
                 Sets the edge behaviour for both interpolation and reading:<br/><br/>zero - values beyond the edges of the buffer are read as zeros.<br/>extend - the edge values are extended infinitely in either direction.<br/>wrap - values are read as wrapped or cyclical.<br/>fold - values are folded at edges without repetition of the edge values.<br/>mirror - values are mirrored at edges with the edge values repeated.<br/>extrapolate - values out of range are extrapolated via interpolation.<br />
         <bullet>[0] - zero</bullet>
@@ -46,7 +46,7 @@
         <bullet>[5] - extrapolate</bullet>
       </description>
     </entry>
-    <entry name="6. /bound [bool]">
+    <entry name="/bound [bool]">
       <description> 
                 Sets whether reading is bounded to the edges of the buffer, or can extend beyond it.
             </description>

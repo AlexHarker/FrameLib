@@ -6,22 +6,22 @@
          The input frame is searched for peaks (values greater than the surrounding values). Each input sample is assigned to a peak. Peaks positions and values are also interpolated and output. The first output is the same length as the input. Other outputs are as long as the number of detected peaks. A Peak are detected if a value exceeds its neighbours and a fixed threshold. The parameters control the details of the way in which peaks are defined and detected.
     </description>
   <misc name="Parameters">
-    <entry name="1. /neighbours [int]">
+    <entry name="/neighbours [int]">
       <description> 
                 Sets the number of neighbours each side that must be exceeded in order to detect a peak.
             </description>
     </entry>
-    <entry name="2. /threshold [double]">
+    <entry name="/threshold [double]">
       <description> 
                 Sets the threshold value for detecting a peak.
             </description>
     </entry>
-    <entry name="3. /pad [double]">
+    <entry name="/pad [double]">
       <description> 
                 Sets the padding value.
             </description>
     </entry>
-    <entry name="4. /edges [enum]">
+    <entry name="/edges [enum]">
       <description> 
                 Sets the edge behaviour for peak detection:<br/><br/>pad - values beyond the edges of the input are read as the padding value.<br/>extend - the edge values are extended infinitely in either direction.<br/>wrap - values are read as wrapped or cyclical.<br/>fold - values are folded at edges without repetition of the edge values.<br/>mirror - values are mirrored at edges with the edge values repeated.<br />
         <bullet>[0] - pad</bullet>
@@ -31,7 +31,7 @@
         <bullet>[4] - mirror</bullet>
       </description>
     </entry>
-    <entry name="5. /refine [enum]">
+    <entry name="/refine [enum]">
       <description> 
                 Sets the method for refining peak values:<br/><br/>off - return the peak value without refinement.<br/>parabolic - apply parabolic interpolation to the three values around the peak.<br/>parabolic_log - apply parabolic interpolation to the log of the three values around the peak.<br/>Note that parabolic_log is suitable for interpolating linear amplitudes.<br />
         <bullet>[0] - off</bullet>
@@ -39,14 +39,14 @@
         <bullet>[2] - parabolic_log</bullet>
       </description>
     </entry>
-    <entry name="6. /boundaries [enum]">
+    <entry name="/boundaries [enum]">
       <description> 
                 Sets the method for selecting the boundaries between peaks:<br/><br/>minimum - boundaries are set at the minimum value between consecutive peaks.<br/>midpoint - boundaries are set to the indices halfway between consecutive peaks.<br />
         <bullet>[0] - minimum</bullet>
         <bullet>[1] - midpoint</bullet>
       </description>
     </entry>
-    <entry name="7. /always_detect [bool]">
+    <entry name="/always_detect [bool]">
       <description> 
                 If set on at least one peak will be detected even if no values match the peak criteria.<br/>Note that when set off the outputs will be empty if no peak is detected.
             </description>

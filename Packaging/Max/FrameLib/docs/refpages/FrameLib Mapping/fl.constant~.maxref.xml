@@ -6,7 +6,7 @@
          Output is a single value. The constant can be multiplied before output as set by the multiplier parameter.
     </description>
   <misc name="Parameters">
-    <entry name="1. /constant [enum]">
+    <entry name="/constant [enum]">
       <description> 
                 Sets the constant to output.<br />
         <bullet>[0] - pi</bullet>
@@ -18,7 +18,7 @@
         <bullet>[6] - epsilon</bullet>
       </description>
     </entry>
-    <entry name="2. /multiplier [double]">
+    <entry name="/multiplier [double]">
       <description> 
                 Sets the multiplier.
             </description>

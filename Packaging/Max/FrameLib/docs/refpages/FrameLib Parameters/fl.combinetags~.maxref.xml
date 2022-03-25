@@ -6,7 +6,7 @@
          The number of inputs is set using a parameter. All inputs trigger output. Tagged frames arriving asynchronously are sent to the output. Tagged frames arriving synchronously are combined at the output.
     </description>
   <misc name="Parameters">
-    <entry name="1. /num_ins [instantiation int]">
+    <entry name="/num_ins [instantiation int]">
       <description> 
                 Sets the number of inputs.
             </description>

@@ -6,14 +6,14 @@
          The length of the output depends on the mode parameter. The length of the output will be no longer than the input. The value for replacement can be specified using the value parameter.
     </description>
   <misc name="Parameters">
-    <entry name="1. /mode [enum]">
+    <entry name="/mode [enum]">
       <description> 
                 Sets whether NaNs are replaced or removed.<br />
         <bullet>[0] - replace</bullet>
         <bullet>[1] - remove</bullet>
       </description>
     </entry>
-    <entry name="2. /value [double]">
+    <entry name="/value [double]">
       <description> 
                 Sets the value with which to replace NaNs when in replace mode.
             </description>

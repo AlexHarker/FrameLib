@@ -6,7 +6,7 @@
          The first input is interpreted as the positions to read from the table at the second. The output is the same length as the frame at the first input. The scale, edges and bound parameters control the mapping of the input to the table. The lookup can be performed with different types of interpolation (or none). Only the first input triggers output.
     </description>
   <misc name="Parameters">
-    <entry name="1. /scale [enum]">
+    <entry name="/scale [enum]">
       <description> 
                 Sets the scaling of the input for lookup:<br/><br/>samples - the input is read as sample indices for reading from the table.<br/>normalised - the input range [0 to 1] is mapped across the table.<br/>bipolar - the input range [-1 to 1] is mapped across the table.<br/>Note that the edge parameter is also accounted for normalised and bipolar modes.<br/>This adjusts the scaling to work sensibly with cyclical modes.<br />
         <bullet>[0] - samples</bullet>
@@ -14,7 +14,7 @@
         <bullet>[2] - bipolar</bullet>
       </description>
     </entry>
-    <entry name="2. /edges [enum]">
+    <entry name="/edges [enum]">
       <description> 
                 Sets the edge behaviour for both interpolation and lookup:<br/><br/>zero - values beyond the edges of the table are treated as zeros.<br/>extend - the edge values are extended infinitely in either direction.<br/>wrap - values are treated as wrapped or cyclical.<br/>fold - values are folded at edges without repetition of the edge values.<br/>mirror - values are mirrored at edges with the edge values repeated.<br/>extrapolate - values out of range are extrapolated via interpolation.<br />
         <bullet>[0] - zero</bullet>
@@ -25,12 +25,12 @@
         <bullet>[5] - extrapolate</bullet>
       </description>
     </entry>
-    <entry name="3. /bound [bool]">
+    <entry name="/bound [bool]">
       <description> 
                 Sets whether lookup is bounded to the edges of the table, or can extend beyond it.
             </description>
     </entry>
-    <entry name="4. /interp [enum]">
+    <entry name="/interp [enum]">
       <description> 
                 Sets the interpolation mode:<br/><br/>none - no interpolation.<br/>linear - linear interpolation.<br/>hermite - cubic hermite interpolation.<br/>bspline - cubic bspline interpolation.<br/>lagrange - cubic lagrange interpolation.<br />
         <bullet>[0] - none</bullet>

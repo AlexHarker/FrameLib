@@ -6,17 +6,17 @@
          The phase can be directly specified using the phase parameter. Output frames will be the length of the FFT size used internally for processing. Inputs which are not a power of two are zero-padded before processing. Additionally the input can be further zero-padded to avoid time aliasing.
     </description>
   <misc name="Parameters">
-    <entry name="1. /max_length [instantiation int]">
+    <entry name="/max_length [instantiation int]">
       <description> 
                 Sets the input length and maximum FFT size.
             </description>
     </entry>
-    <entry name="2. /phase [double]">
+    <entry name="/phase [double]">
       <description> 
                 Sets the phase for the transformed FIR [0 to 1].<br/>minimum phase can be requested with a value of zero.<br/>linear phase can be requested with value of a half.<br/>maximum phase can be requested with a value of one.
             </description>
     </entry>
-    <entry name="3. /time_factor [double]">
+    <entry name="/time_factor [double]">
       <description> 
                 Sets the factor used to determine the length for zero padding the FIR before processing.<br/>The FIR is padded to at least its original length multiplied by this factor.<br/>Note that this needs to be accounted for when setting the max_length parameter.
             </description>

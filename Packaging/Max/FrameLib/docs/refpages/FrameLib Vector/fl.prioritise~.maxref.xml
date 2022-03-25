@@ -6,12 +6,12 @@
          Frames arriving asynchronously are sent to the output. When frames arrive synchronously only one is sent to the output. The input number is used to proritise synchonous inputs. Either higher or lower numbered inputs can be prioritised.
     </description>
   <misc name="Parameters">
-    <entry name="1. /num_ins [instantiation int]">
+    <entry name="/num_ins [instantiation int]">
       <description> 
                 Sets the number of inputs.
             </description>
     </entry>
-    <entry name="2. /order [instantiation enum]">
+    <entry name="/order [instantiation enum]">
       <description> 
                 Set whether to prioritise lower or higher numbered inputs.<br />
         <bullet>[0] - low</bullet>

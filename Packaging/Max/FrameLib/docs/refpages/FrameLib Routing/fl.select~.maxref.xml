@@ -6,12 +6,12 @@
          The number of inputs is variable. The selected input can be changed with a parameter.
     </description>
   <misc name="Parameters">
-    <entry name="1. /num_ins [instantiation double]">
+    <entry name="/num_ins [instantiation double]">
       <description> 
                 Sets the number of inputs.
             </description>
     </entry>
-    <entry name="2. /input [int]">
+    <entry name="/input [int]">
       <description> 
                 Sets the current input counting from 1 (or off if out of range).
             </description>

@@ -6,29 +6,29 @@
          Output is the same length as the input. The filter can output a single specifed mode at a time. Alternatively, in multi-output mode all modes are output simultaneously. Filter settings may be made either via parameters or per sample via inputs. The dynamic parameter is set to create the inputs for per sample values. Frames of per sample values are padded to length with their final value if required. Additional values are ignored. In this mode the parameter value is used if no corresponding input is provided. Thus, per sample values and parameters can be mixed. To process streams (not discrete frames) the reset parameter can be set off. This prevents the filter memories being cleared between frames.
     </description>
   <misc name="Parameters">
-    <entry name="1. /freq [double]">
+    <entry name="/freq [double]">
       <description> 
                 Sets the filter cutoff frequency.
             </description>
     </entry>
-    <entry name="2. /mode [enum]">
+    <entry name="/mode [enum]">
       <description> 
                 Sets the filter mode when multi-output mode is off:<br/><br/>lowpass - low pass.<br/>highpass - high pass.<br />
         <bullet>[0] - lowpass</bullet>
         <bullet>[1] - highpass</bullet>
       </description>
     </entry>
-    <entry name="3. /multi_output [instantiation bool]">
+    <entry name="/multi_output [instantiation bool]">
       <description> 
                 Creates an output per filter mode with all modes output simultaneously.
             </description>
     </entry>
-    <entry name="4. /dynamic [instantiation bool]">
+    <entry name="/dynamic [instantiation bool]">
       <description> 
                 Creates inputs for per sample values for each of the filter parameters.<br/>If an input is not provided the corresponding parameter value is used.
             </description>
     </entry>
-    <entry name="5. /reset [bool]">
+    <entry name="/reset [bool]">
       <description> 
                 Determines whether filter memories are reset before processing a new frame.
             </description>

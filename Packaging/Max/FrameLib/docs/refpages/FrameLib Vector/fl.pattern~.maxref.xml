@@ -6,7 +6,7 @@
          The pattern input takes the pattern frame without triggering output. Triggers step through the pattern either forwards or backwards. The pattern can be run (once), looped, paused or stopped. Triggers at the reset input set the position in the pattern using the reset parameter. The position is also reset whenever a new pattern is received.
     </description>
   <misc name="Parameters">
-    <entry name="1. /mode [enum]">
+    <entry name="/mode [enum]">
       <description> 
                 Sets the mode:<br/><br/>run - the pattern progresses until it hits the final value.<br/>loop - the pattern loops.<br/>pause - the pattern is paused until the mode is changed.<br/>stop - the pattern returns to the reset position until the mode is changed.<br />
         <bullet>[0] - run</bullet>
@@ -15,19 +15,19 @@
         <bullet>[3] - stop</bullet>
       </description>
     </entry>
-    <entry name="2. /direction [enum]">
+    <entry name="/direction [enum]">
       <description> 
                 Sets the direction of progress.<br />
         <bullet>[0] - forward</bullet>
         <bullet>[1] - backward</bullet>
       </description>
     </entry>
-    <entry name="3. /reset [int]">
+    <entry name="/reset [int]">
       <description> 
                 Sets the reset position as a sample index.<br/>A value of -1 can be used for direction independent reset.<br/>For forward direction reading this results in a reset to the first position.<br/>For backward direction reading this results in a reset to the last position.
             </description>
     </entry>
-    <entry name="4. /idle [enum]">
+    <entry name="/idle [enum]">
       <description> 
                 Sets the idle output (the output when stopped, paused or out of bounds):<br/><br/>repeat - repeat the current value.<br/>empty - output an empty frame.<br />
         <bullet>[0] - repeat</bullet>

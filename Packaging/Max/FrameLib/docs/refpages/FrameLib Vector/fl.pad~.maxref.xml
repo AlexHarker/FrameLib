@@ -6,22 +6,22 @@
          Padding may be applied to either the start or the end of the frame or both. Padding amounts may be set in samples, or as a ratio of the input length. The output length is at least the size of the input.
     </description>
   <misc name="Parameters">
-    <entry name="1. /pad [double]">
+    <entry name="/pad [double]">
       <description> 
                 Sets the padding value.
             </description>
     </entry>
-    <entry name="2. /start [double]">
+    <entry name="/start [double]">
       <description> 
                 Sets the amount of padding to apply to the start of the frame.
             </description>
     </entry>
-    <entry name="3. /end [double]">
+    <entry name="/end [double]">
       <description> 
                 Sets the amount of padding to apply to the end of the frame.
             </description>
     </entry>
-    <entry name="4. /units [enum]">
+    <entry name="/units [enum]">
       <description> 
                 Sets the units for padding amounts (samples or ratios [0-1]).<br />
         <bullet>[0] - samples</bullet>

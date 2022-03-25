@@ -6,17 +6,17 @@
          The size of captured frames is settable with the length parameter. The length of the internal buffer determines the maximum frame length. There is a minimum latency equivalent to the length of the captured frame. A longer delay can be optionally selected (subject to the frame and buffer length). Capture can optionally be interpolated (at greater CPU usage) for sub-sample accuracy.
     </description>
   <misc name="Parameters">
-    <entry name="1. /buffer_size [instantiation double]">
+    <entry name="/buffer_size [instantiation double]">
       <description> 
                 Sets the internal buffer size in the units specified by the units parameter.
             </description>
     </entry>
-    <entry name="2. /length [int]">
+    <entry name="/length [int]">
       <description> 
                 Sets the length of output frames in the units specified by the units parameter.
             </description>
     </entry>
-    <entry name="3. /units [enum]">
+    <entry name="/units [enum]">
       <description> 
                 Sets the time units used to determine the buffer size and output length.<br />
         <bullet>[0] - samples</bullet>
@@ -24,12 +24,12 @@
         <bullet>[2] - seconds</bullet>
       </description>
     </entry>
-    <entry name="4. /delay [double]">
+    <entry name="/delay [double]">
       <description> 
                 Sets the input delay in the units specified by the units parameter:<br/><br/>Note that a minimum delay (or latency) is applied of the output length.
             </description>
     </entry>
-    <entry name="5. /interp [enum]">
+    <entry name="/interp [enum]">
       <description> 
                 Sets the interpolation mode:<br/><br/>none - no interpolation.<br/>linear - linear interpolation.<br/>hermite - cubic hermite interpolation.<br/>bspline - cubic bspline interpolation.<br/>lagrange - cubic lagrange interpolation.<br />
         <bullet>[0] - none</bullet>

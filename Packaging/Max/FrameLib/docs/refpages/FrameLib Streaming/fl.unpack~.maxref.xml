@@ -6,7 +6,7 @@
          Multistream inputs are unpacked in order across the outputs.
     </description>
   <misc name="Parameters">
-    <entry name="1. /num_outs [instantiation int]">
+    <entry name="/num_outs [instantiation int]">
       <description> 
                 Sets the number of single stream outputs.
             </description>

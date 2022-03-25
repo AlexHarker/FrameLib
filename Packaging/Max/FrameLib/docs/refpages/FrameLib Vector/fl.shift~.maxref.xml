@@ -6,17 +6,17 @@
          The output is the same length as the input. Output can be shifted left or right in comparison to the input. The edge behaviour can be set as appropriate for the application.
     </description>
   <misc name="Parameters">
-    <entry name="1. /shift [double]">
+    <entry name="/shift [double]">
       <description> 
                 Sets the shift amount (-ve for left shift / +ve for right shift).
             </description>
     </entry>
-    <entry name="2. /pad [double]">
+    <entry name="/pad [double]">
       <description> 
                 Sets the padding value.
             </description>
     </entry>
-    <entry name="3. /edges [enum]">
+    <entry name="/edges [enum]">
       <description> 
                 Sets the edge behaviour:<br/><br/>pad - values beyond the edges of the input are read as the padding value.<br/>extend - the edge values are extended infinitely in either direction.<br/>wrap - values are read as wrapped or cyclical.<br/>fold - values are folded at edges without repetition of the edge values.<br/>mirror - values are mirrored at edges with the edge values repeated.<br />
         <bullet>[0] - pad</bullet>
@@ -26,7 +26,7 @@
         <bullet>[4] - mirror</bullet>
       </description>
     </entry>
-    <entry name="4. /units [enum]">
+    <entry name="/units [enum]">
       <description> 
                 Sets the units for the shift (samples or ratio of the input length [-1 to 1]).<br />
         <bullet>[0] - samples</bullet>

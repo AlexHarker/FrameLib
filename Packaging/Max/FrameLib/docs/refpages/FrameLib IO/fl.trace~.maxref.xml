@@ -6,7 +6,7 @@
          The mode parameter determines which value or values from the frame are output. This object is intended for passing control signals to the host environment at audio rate. The length of the internal buffer determines the maximum frame length for full output. Output suffers no latency but an optional delay may be added if desired. If a delay is applied then the maximum frame length will be reduced by the delay time.
     </description>
   <misc name="Parameters">
-    <entry name="1. /mode [enum]">
+    <entry name="/mode [enum]">
       <description> 
                 Sets the mode used for output:<br/><br/>full - outputs the entire frame in full.<br/>first - output the first sample of the frame only.<br/>last - output the last sample of the frame only.<br/>specified - output the sample specified by index using the position parameter.<br/>ratio - output the sample specified by the position parameter as a ratio of the frame length.<br />
         <bullet>[0] - full</bullet>
@@ -16,12 +16,12 @@
         <bullet>[4] - ratio</bullet>
       </description>
     </entry>
-    <entry name="2. /buffer_size [instantiation double]">
+    <entry name="/buffer_size [instantiation double]">
       <description> 
                 Sets the internal buffer size in the units specified by the units parameter.
             </description>
     </entry>
-    <entry name="3. /units [instantiation enum]">
+    <entry name="/units [instantiation enum]">
       <description> 
                 Sets the time units used to determine the buffer size and delay.<br />
         <bullet>[0] - samples</bullet>
@@ -29,12 +29,12 @@
         <bullet>[2] - seconds</bullet>
       </description>
     </entry>
-    <entry name="4. /position [double]">
+    <entry name="/position [double]">
       <description> 
                 Sets the position of the output sample in specified or ratio mode.<br/>Note that positions out of range will be clipped tp the input frame (to the first or last position).
             </description>
     </entry>
-    <entry name="5. /delay [double]">
+    <entry name="/delay [double]">
       <description> 
                 Sets the output delay in the units specified by the units parameter.
             </description>

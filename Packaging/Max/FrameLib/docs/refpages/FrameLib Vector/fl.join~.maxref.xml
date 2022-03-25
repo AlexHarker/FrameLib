@@ -6,12 +6,12 @@
          Each input may trigger output (or not), as set by the triggers_in parameter.
     </description>
   <misc name="Parameters">
-    <entry name="1. /num_ins [instantiation int]">
+    <entry name="/num_ins [instantiation int]">
       <description> 
                 Sets the number of inputs.
             </description>
     </entry>
-    <entry name="2. /trigger_ins [instantiation fixed length bool array]">
+    <entry name="/trigger_ins [instantiation fixed length bool array]">
       <description> 
                 Sets which inputs trigger output using an array of bools.<br/>By default all inputs trigger output.
             </description>

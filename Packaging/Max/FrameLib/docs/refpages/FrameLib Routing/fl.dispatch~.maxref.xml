@@ -6,22 +6,22 @@
          Each output can be independently connected to any one input. The number of inputs and outputs is variable. The selected input for each output is changed with a parameter.
     </description>
   <misc name="Parameters">
-    <entry name="1. /num_ins [instantiation double]">
+    <entry name="/num_ins [instantiation double]">
       <description> 
                 Sets the number of inputs.
             </description>
     </entry>
-    <entry name="2. /num_outs [instantiation double]">
+    <entry name="/num_outs [instantiation double]">
       <description> 
                 Sets the number of outputs.
             </description>
     </entry>
-    <entry name="3. /input_01 [int]">
+    <entry name="/input_01 [int]">
       <description> 
                 Sets the current input for output 1 counting from 1 (off if out of range).
             </description>
     </entry>
-    <entry name="4. /input_02 [int]">
+    <entry name="/input_02 [int]">
       <description> 
                 Sets the current input for output 2 counting from 1 (off if out of range).
             </description>

@@ -6,17 +6,17 @@
          The subframe is specified by a start and end point in the input frame. The start point is included in the output frame but the end point is not. Points may be specified in samples or as a ratio of the length of the input frame.
     </description>
   <misc name="Parameters">
-    <entry name="1. /start [double]">
+    <entry name="/start [double]">
       <description> 
                 Sets the start point of the subframe.
             </description>
     </entry>
-    <entry name="2. /end [double]">
+    <entry name="/end [double]">
       <description> 
                 Sets the end point of the subframe.
             </description>
     </entry>
-    <entry name="3. /units [enum]">
+    <entry name="/units [enum]">
       <description> 
                 Sets the units for the start and end points (samples or ratios [0-1]).<br />
         <bullet>[0] - samples</bullet>

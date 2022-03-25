@@ -6,7 +6,7 @@
          Calculation is performed on pairs of complex values. Both inputs and output are split into real and imaginary parts . The outputs are frames at least as long as the shorter of the two operands. If input pairs are mismatched then the shorter input is padded with zeros. If operands mismatch in length the result depends on the mismatch parameter. Either or both pairs of inputs may be set to trigger output.
     </description>
   <misc name="Parameters">
-    <entry name="1. /mismatch [enum]">
+    <entry name="/mismatch [enum]">
       <description> 
                 Sets the mode used when dealing with mismatched input lengths:<br/><br/>wrap - the smaller input is read modulo against the larger input.<br/>shrink - the output length is set to that of the smaller input.<br/>pad_in - the smaller input is padded prior to calculation to match the larger input.<br/>pad_out - the output is padded to match the length of the larger input.<br />
         <bullet>[0] - wrap</bullet>
@@ -15,7 +15,7 @@
         <bullet>[3] - pad_out</bullet>
       </description>
     </entry>
-    <entry name="2. /trigger_ins [enum]">
+    <entry name="/trigger_ins [enum]">
       <description> 
                 Sets which pairs of inputs trigger output.<br />
         <bullet>[0] - both</bullet>
@@ -23,7 +23,7 @@
         <bullet>[2] - right</bullet>
       </description>
     </entry>
-    <entry name="3. /pad [fixed length double array]">
+    <entry name="/pad [fixed length double array]">
       <description> 
                 Sets the complex value used for padding (for either pad_in or pad_out modes).
             </description>

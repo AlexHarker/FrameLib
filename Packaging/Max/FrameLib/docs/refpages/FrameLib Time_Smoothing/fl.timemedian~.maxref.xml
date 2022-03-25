@@ -6,27 +6,27 @@
          The default percentile is 50% which returns the median. The output is the same length as the input. Input frames are expected to be of a uniform length. If the input length changes then the internal storage is reset. The object can also be reset by sending a frame to the reset input. The start parameter controls behaviour when insufficient frames are stored. The underlength output indicates that insufficient frames are stored.
     </description>
   <misc name="Parameters">
-    <entry name="1. /max_frames [int]">
+    <entry name="/max_frames [int]">
       <description> 
                 Sets the maximum number of frames for calculation.<br/>Note that the internal buffer is reset when this changes.
             </description>
     </entry>
-    <entry name="2. /num_frames [int]">
+    <entry name="/num_frames [int]">
       <description> 
                 Sets the current number of frames for calculation as an integer.
             </description>
     </entry>
-    <entry name="3. /percentile [double]">
+    <entry name="/percentile [double]">
       <description> 
                 Sets the percentile to retrieve.
             </description>
     </entry>
-    <entry name="4. /pad [double]">
+    <entry name="/pad [double]">
       <description> 
                 Sets the padding value.
             </description>
     </entry>
-    <entry name="5. /start [enum]">
+    <entry name="/start [enum]">
       <description> 
                 Sets the behaviour when there are insufficient frames stored (as after a reset):<br/><br/>pad - pad the calculation with default values to account for the missing frames.<br/>shorten - calculate on all frames received since the reset.<br/>Note that frames at the reset input set the frame use for padding.<br/>If the frame is too short or empty it is padded with the pad parameter.<br />
         <bullet>[0] - pad</bullet>

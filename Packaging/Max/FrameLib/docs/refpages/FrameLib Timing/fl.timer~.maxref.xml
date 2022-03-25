@@ -6,7 +6,7 @@
          A frame in the reset input starts the timer. Frames in the trigger input cause the elapsed time to be reported. Time is reported in the specified units. Output is a single value (output is empty if no reset frame has yet been received).
     </description>
   <misc name="Parameters">
-    <entry name="1. /units [instantiation enum]">
+    <entry name="/units [instantiation enum]">
       <description> 
                 Sets the time units used for output.<br />
         <bullet>[0] - samples</bullet>

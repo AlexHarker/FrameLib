@@ -6,27 +6,27 @@
          Items for concatenatation are set as parameters and can be altered dynamically. Numeric inputs are indicated as in1 to inx (where x is the number of inputs created). Only a single number is read from each input, interpreted as an integer. Numbers can be optionally zero-padded. The number of items to concatenate can be set explicitly by parameter. Alternatively, it can be set implicitly by the item parameters present at instantiation.
     </description>
   <misc name="Parameters">
-    <entry name="1. /num_items [instantiation int]">
+    <entry name="/num_items [instantiation int]">
       <description> 
                 Sets the number of items.
             </description>
     </entry>
-    <entry name="2. /tag [string]">
+    <entry name="/tag [string]">
       <description> 
                 Sets the output tag.
             </description>
     </entry>
-    <entry name="3. /trigger_ins [instantiation variable length bool array]">
+    <entry name="/trigger_ins [instantiation variable length bool array]">
       <description> 
                 Sets which inputs trigger output using an array of bools.<br/>By default all inputs trigger output.
             </description>
     </entry>
-    <entry name="4. /padding [variable length int array]">
+    <entry name="/padding [variable length int array]">
       <description> 
                 Sets the zero padding for each input using an array of integers.<br/>By default there is no zero padding.
             </description>
     </entry>
-    <entry name="5. /item_01 [string]">
+    <entry name="/item_01 [string]">
       <description> 
                 Sets the string or input for item 1.
             </description>

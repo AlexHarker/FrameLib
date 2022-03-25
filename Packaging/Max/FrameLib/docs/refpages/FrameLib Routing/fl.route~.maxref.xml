@@ -6,12 +6,12 @@
          The number of outputs is variable. The selected output can be changed with a parameter.
     </description>
   <misc name="Parameters">
-    <entry name="1. /num_outs [instantiation double]">
+    <entry name="/num_outs [instantiation double]">
       <description> 
                 Sets the number of outputs.
             </description>
     </entry>
-    <entry name="2. /output [int]">
+    <entry name="/output [int]">
       <description> 
                 Sets the current output counting from 1 (off if out of range).
             </description>

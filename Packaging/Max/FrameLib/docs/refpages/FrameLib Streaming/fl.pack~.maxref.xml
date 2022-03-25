@@ -6,7 +6,7 @@
          Inputs may be single stream or multistream. All inputs are concatenated in order, with blank inputs ignored.
     </description>
   <misc name="Parameters">
-    <entry name="1. /num_ins [instantiation int]">
+    <entry name="/num_ins [instantiation int]">
       <description> 
                 Sets the number of inputs.
             </description>

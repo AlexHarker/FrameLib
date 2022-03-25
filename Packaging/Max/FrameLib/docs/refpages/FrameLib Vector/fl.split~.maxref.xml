@@ -6,12 +6,12 @@
          The split point may be specified in samples or as a ratio of the length of the input frame.
     </description>
   <misc name="Parameters">
-    <entry name="1. /split [double]">
+    <entry name="/split [double]">
       <description> 
                 Sets the split point.
             </description>
     </entry>
-    <entry name="2. /units [enum]">
+    <entry name="/units [enum]">
       <description> 
                 Sets the units for the split point (samples or ratios [0-1]).<br />
         <bullet>[0] - samples</bullet>

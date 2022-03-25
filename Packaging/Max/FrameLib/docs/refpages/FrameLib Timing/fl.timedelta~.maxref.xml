@@ -6,7 +6,7 @@
          Time is reported in the specified units. Output is a single value.
     </description>
   <misc name="Parameters">
-    <entry name="1. /units [instantiation enum]">
+    <entry name="/units [instantiation enum]">
       <description> 
                 Sets the time units used for output.<br />
         <bullet>[0] - samples</bullet>

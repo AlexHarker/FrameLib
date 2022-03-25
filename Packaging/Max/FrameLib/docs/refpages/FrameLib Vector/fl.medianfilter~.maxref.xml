@@ -6,17 +6,17 @@
          The default percentile is 50% which returns the median. The output is the same length as the input. Each output value is the specified percentile of the surrouding area in the input. The width of the filtering and the edge behaviour are both controllable.
     </description>
   <misc name="Parameters">
-    <entry name="1. /width [int]">
+    <entry name="/width [int]">
       <description> 
                 Sets the width of the filtering in samples.
             </description>
     </entry>
-    <entry name="2. /pad [double]">
+    <entry name="/pad [double]">
       <description> 
                 Sets the padding value.
             </description>
     </entry>
-    <entry name="3. /edges [enum]">
+    <entry name="/edges [enum]">
       <description> 
                 Sets the edge behaviour for filtering:<br/><br/>pad - values beyond the edges of the input are read as the padding value.<br/>extend - the edge values are extended infinitely in either direction.<br/>wrap - values are read as wrapped or cyclical.<br/>fold - values are folded at edges without repetition of the edge values.<br/>mirror - values are mirrored at edges with the edge values repeated.<br />
         <bullet>[0] - pad</bullet>
@@ -26,7 +26,7 @@
         <bullet>[4] - mirror</bullet>
       </description>
     </entry>
-    <entry name="4. /percentile [double]">
+    <entry name="/percentile [double]">
       <description> 
                 Sets the percentile to return.
             </description>

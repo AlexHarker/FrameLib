@@ -6,17 +6,17 @@
          The size can be set in samples or as a ratio of the length of the input frame. Outputs are formed by chopping the input into consecutive slices of the same length. Any additional input values once all outputs are formed are ignored. If there are insufficient input values to complete all outputs later outputs will be shortened. It is possible for the final output(s) to be empty in this case.
     </description>
   <misc name="Parameters">
-    <entry name="1. /num_outs [instantiation int]">
+    <entry name="/num_outs [instantiation int]">
       <description> 
                 Sets the number of outputs.
             </description>
     </entry>
-    <entry name="2. /size [double]">
+    <entry name="/size [double]">
       <description> 
                 Sets the size of the output frames.
             </description>
     </entry>
-    <entry name="3. /units [enum]">
+    <entry name="/units [enum]">
       <description> 
                 Sets the units for the size (samples or ratio of the input length [0-1]).<br />
         <bullet>[0] - samples</bullet>

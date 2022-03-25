@@ -6,19 +6,19 @@
          The output is a single value. When the input frame is empty then the output is determined by the empty parameter.
     </description>
   <misc name="Parameters">
-    <entry name="1. /percentage [double]">
+    <entry name="/percentage [double]">
       <description> 
                 Sets the percentage of the sum used for calculation [0-100].
             </description>
     </entry>
-    <entry name="2. /empty [instantiation enum]">
+    <entry name="/empty [instantiation enum]">
       <description> 
                 Sets the output to use when an empty input frame is received:<br/><br/>empty - output an empty frame.<br/>default - output the default value (see the default parameter).<br />
         <bullet>[0] - empty</bullet>
         <bullet>[1] - default</bullet>
       </description>
     </entry>
-    <entry name="3. /default [instantiation double]">
+    <entry name="/default [instantiation double]">
       <description> 
                 Sets the default output value.
             </description>
