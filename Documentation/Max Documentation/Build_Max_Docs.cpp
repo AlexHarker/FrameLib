@@ -77,11 +77,11 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
     std::string tmpFolder = dirPath + "/__tmp__/raw_xml/";
     
     enum InfoFlags { kInfoDesciption = 0x01, kInfoInputs = 0x02, kInfoOutputs = 0x04, kInfoParameters = 0x08 };
-    bool verbose = true;
+
     std::ofstream file;
-    std::string sp = " "; // code is more readable with sp rather than " "
-    std::string object = inputName; // refactor to not copy variable.
-    file.open(tmpFolder + object + ".maxref.xml"); // change to some temporary relative location
+    std::string sp = " ";               // code is more readable with sp rather than " "
+    std::string object = inputName;     // refactor to not copy variable.
+
     std::string object_category = "!@#@#$";
     std::string object_keywords = "boilerplate keywords";
     std::string object_info;
@@ -95,6 +95,10 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
     std::string tab_3 = tab_2 + tab_1;
     std::string tab_4 = tab_2 + tab_2;
     
+    // Write to a temporary relative location
+    
+    file.open(tmpFolder + object + ".maxref.xml");
+
     const FrameLib_Parameters *params = frameLibObject->getParameters();
     
     auto to_lower = [](std::string s)
@@ -227,7 +231,7 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
     // Description
     
     // split the object info into a description and a digest
-    object_info = escape_xml(frameLibObject->objectInfo(verbose));
+    object_info = escape_xml(frameLibObject->objectInfo(true));
     std::size_t pos = object_info.find_first_of(":.");
     object_digest = object_info.substr(0, pos) + ".";
     object_description = object_info.substr(pos + 1);
