@@ -103,15 +103,20 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
         return s;
     };
     
+    auto write_digest_description = [&](const std::string& tab, const std::string& digest, const std::string& description)
+    {
+        file << tab + "<digest> \n";
+        file << tab + tab_1 + digest + "\n";
+        file << tab + "</digest> \n";
+        file << tab + "<description> \n";
+        file << tab + tab_1 + description + "\n";
+        file << tab + "</description> \n";
+    };
+
     auto write_attribute = [&](const char *name, const char *type, const char *digest, const char *description, const char *label)
     {
         file << tab_2 + "<attribute name='" + name + "' get='1' set='1' type='"+ type + "' size='1'> \n";
-        file << tab_3 + "<digest> \n";
-        file << tab_4 + digest + " \n";
-        file << tab_3 + "</digest> \n";
-        file << tab_3 + "<description> \n";
-        file << tab_4 + description + " \n";
-        file << tab_3 + "</description> \n";
+        write_digest_description(tab_3, digest, description);
         file << tab_3 + "<attributelist> \n";
         file << tab_4 + "<attribute name='basic' get='1' set='1' type='int' size='1' value='1' /> \n";
         file << tab_4 + "<attribute name='label' get='1' set='1' type='symbol' size='1' value='" + label + "' />\n";
@@ -154,12 +159,7 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
         std::string description = format_info(rawDescription);
             
         file << tab_2 + "<objarg name='" + name + "' optional='1' type='" + type + "'> \n";
-        file << tab_3 + "<digest> \n";
-        file << tab_4 + digest + "\n";
-        file << tab_3 + "</digest> \n";
-        file << tab_3 + "<description> \n";
-        file << tab_4 + description + "\n";
-        file << tab_3 + "</description> \n";
+        write_digest_description(tab_3, digest, description);
         file << tab_2 + "</objarg> \n";
     
         return true;
@@ -167,14 +167,12 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
     
     auto write_arguments_all_inputs = [&]()
     {
+        std::string digest("The input vector to use for any disconnected inputs");
+        std::string description("Values typed as arguments will be used as a vector for any inputs that are not connected. Either single values or multi-valued vectors can be entered. The behaviour is similar to that for arguments to standard objects such as +~, *~ or zl.reg.");
+        
         file << tab_1 + "<objarglist> \n";
         file << tab_2 + "<objarg name='default-input' optional='1' type='list'> \n";
-        file << tab_3 + "<digest> \n";
-        file << tab_4 + "The input vector to use for any disconnected inputs \n";
-        file << tab_3 + "</digest> \n";
-        file << tab_3 + "<description> \n";
-        file << tab_4 + "Values typed as arguments will be used as a vector for any inputs that are not connected. Either single values or multi-valued vectors can be entered. The behaviour is similar to that for arguments to standard objects such as +~, *~ or zl.reg. \n";
-        file << tab_3 + "</description> \n";
+        write_digest_description(tab_3, digest, description);
         file << tab_2 + "</objarg> \n";
         file << tab_1 + "</objarglist> \n \n";
     };
@@ -186,14 +184,11 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
         for (unsigned long i = 1; i < frameLibObject->getNumIns(); i++)
         {
             std::string inputName = to_lower(frameLibObject->inputInfo(i));
+            std::string digest("The value to use for input " + std::to_string(i + 1) +  " if it is disconnected");
+            std::string description("Sets a single value for " + inputName);
             
             file << tab_2 + "<objarg name='" + argument_name(inputName) + "' optional='1' type='number'> \n";
-            file << tab_3 + "<digest> \n";
-            file << tab_4 + "The value to use for input " + std::to_string(i + 1) +  " if it is disconnected \n";
-            file << tab_3 + "</digest> \n";
-            file << tab_3 + "<description> \n";
-            file << tab_4 + "Sets a single value for " + inputName + " \n";
-            file << tab_3 + "</description> \n";
+            write_digest_description(tab_3, digest, description);
             file << tab_2 + "</objarg> \n";
         }
         
@@ -214,12 +209,8 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
         else
             file << tab_3 + "<arglist /> \n";
         
-        file << tab_3 + "<digest> \n";
-        file << tab_4 + digest + " \n";
-        file << tab_3 + "</digest> \n";
-        file << tab_3 + "<description> \n";
-        file << tab_4 + description + " \n";
-        file << tab_3 + "</description> \n";
+        write_digest_description(tab_3, digest, description);
+        
         file << tab_2 + "</method> \n";
     };
     
@@ -238,24 +229,21 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
     // split the object info into a description and a digest
     object_info = escape_xml(frameLibObject->objectInfo(verbose));
     std::size_t pos = object_info.find_first_of(":.");
-    object_digest = object_info.substr(0, pos);
+    object_digest = object_info.substr(0, pos) + ".";
     object_description = object_info.substr(pos + 1);
     
     // now write that info into sections
-    file << tab_1 + "<digest> \n";
-    file << tab_2 + object_digest + "." + "\n";
-    file << tab_1 + "</digest> \n \n";
     
-    file << tab_1 + "<description> \n";
-    file << tab_2 + object_description + "\n";
-    file << tab_1 + "</description> \n \n";
+    write_digest_description(tab_1, object_digest, object_description);
     
     // Parameters
     
-    // If object has no parameters create the 'no parameters template'
-    
+    file << tab_1 + "<!--PARAMETERS-->\n";
+
     if (!params || !params->size())
     {
+        // If object has no parameters create the 'no parameters template'
+
         file << tab_1 + "<misc name = 'Parameters'> \n";
         file << tab_2 + "<entry> \n";
         file << tab_3 + "<description> \n";
@@ -266,7 +254,7 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
     }
     else
     {
-        file << tab_1 + "<misc name = 'Parameters'> \n \n"; // Write parameters tag to start misc section named Parameters
+        file << tab_1 + "<misc name = 'Parameters'> \n"; // Write parameters tag to start misc section named Parameters
         for (int i = 0; params && i < params->size(); i++)
         {
             std::string param_num = std::to_string(i+1);
@@ -275,12 +263,14 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
             std::string defaultStr = params->getDefaultString(i);
             
             // Name, type and default value
+            
             if (defaultStr.size())
                 file << tab_2 + "<entry name = '" + param_num + ". /" + params->getName(i) + " [" + params->getTypeString(i) + "]' > \n";
             else
                 file << tab_2 + "<entry name = '" + param_num + ". /" + params->getName(i) + " [" + params->getTypeString(i) + "]' > \n";
 
             // Construct the description
+            
             file << tab_3 + "<description> \n";
             file << tab_4 + escape_xml(params->getInfo(i)); // The description
             
@@ -299,7 +289,7 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
                 }
             }
             file << "\n" + tab_3 + "</description> \n";
-            file << tab_2 + "</entry> \n \n";
+            file << tab_2 + "</entry> \n";
         }
         file << tab_1 + "</misc> \n \n";
     }
