@@ -78,20 +78,22 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
     
     enum InfoFlags { kInfoDesciption = 0x01, kInfoInputs = 0x02, kInfoOutputs = 0x04, kInfoParameters = 0x08 };
     bool verbose = true;
-    std::ofstream myfile;
+    std::ofstream file;
     std::string sp = " "; // code is more readable with sp rather than " "
     std::string object = inputName; // refactor to not copy variable.
-    myfile.open(tmpFolder + object + ".maxref.xml"); // change to some temporary relative location
+    file.open(tmpFolder + object + ".maxref.xml"); // change to some temporary relative location
     std::string object_category = "!@#@#$";
     std::string object_keywords = "boilerplate keywords";
     std::string object_info;
     std::string object_description;
     std::string object_digest;
-    // store some indentations - groups of 4 spaces
+    
+    // Store some indentations - groups of 4 spaces
+    
     std::string tab_1 = "    ";
-    std::string tab_2 = "        ";
-    std::string tab_3 = "            ";
-    std::string tab_4 = "                ";
+    std::string tab_2 = tab_1 + tab_1;
+    std::string tab_3 = tab_2 + tab_1;
+    std::string tab_4 = tab_2 + tab_2;
     
     const FrameLib_Parameters *params = frameLibObject->getParameters();
     
@@ -103,18 +105,18 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
     
     auto write_attribute = [&](const char *name, const char *type, const char *digest, const char *description, const char *label)
     {
-        myfile << tab_2 + "<attribute name='" + name + "' get='1' set='1' type='"+ type + "' size='1'> \n";
-        myfile << tab_3 + "<digest> \n";
-        myfile << tab_4 + digest + " \n";
-        myfile << tab_3 + "</digest> \n";
-        myfile << tab_3 + "<description> \n";
-        myfile << tab_4 + description + " \n";
-        myfile << tab_3 + "</description> \n";
-        myfile << tab_3 + "<attributelist> \n";
-        myfile << tab_4 + "<attribute name='basic' get='1' set='1' type='int' size='1' value='1' /> \n";
-        myfile << tab_4 + "<attribute name='label' get='1' set='1' type='symbol' size='1' value='" + label + "' />\n";
-        myfile << tab_3 + "</attributelist> \n";
-        myfile << tab_2 + "</attribute> \n";
+        file << tab_2 + "<attribute name='" + name + "' get='1' set='1' type='"+ type + "' size='1'> \n";
+        file << tab_3 + "<digest> \n";
+        file << tab_4 + digest + " \n";
+        file << tab_3 + "</digest> \n";
+        file << tab_3 + "<description> \n";
+        file << tab_4 + description + " \n";
+        file << tab_3 + "</description> \n";
+        file << tab_3 + "<attributelist> \n";
+        file << tab_4 + "<attribute name='basic' get='1' set='1' type='int' size='1' value='1' /> \n";
+        file << tab_4 + "<attribute name='label' get='1' set='1' type='symbol' size='1' value='" + label + "' />\n";
+        file << tab_3 + "</attributelist> \n";
+        file << tab_2 + "</attribute> \n";
     };
     
     auto write_argument = [&](unsigned long idx)
@@ -128,14 +130,14 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
         if (pIdx == -1)
         {
             if (idx)
-                myfile << tab_1 + "</objarglist> \n \n";
+                file << tab_1 + "</objarglist> \n \n";
             else
-                myfile << tab_1 + "<objarglist /> \n \n";
+                file << tab_1 + "<objarglist /> \n \n";
             return false;
         }
                 
         if (!idx)
-            myfile << tab_1 + "<objarglist> \n";
+            file << tab_1 + "<objarglist> \n";
         
         std::string type = "number";
         
@@ -151,85 +153,85 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
         std::string digest = rawDescription.substr(0, rawDescription.find_first_of(".:"));
         std::string description = format_info(rawDescription);
             
-        myfile << tab_2 + "<objarg name='" + name + "' optional='1' type='" + type + "'> \n";
-        myfile << tab_3 + "<digest> \n";
-        myfile << tab_4 + digest + "\n";
-        myfile << tab_3 + "</digest> \n";
-        myfile << tab_3 + "<description> \n";
-        myfile << tab_4 + description + "\n";
-        myfile << tab_3 + "</description> \n";
-        myfile << tab_2 + "</objarg> \n";
+        file << tab_2 + "<objarg name='" + name + "' optional='1' type='" + type + "'> \n";
+        file << tab_3 + "<digest> \n";
+        file << tab_4 + digest + "\n";
+        file << tab_3 + "</digest> \n";
+        file << tab_3 + "<description> \n";
+        file << tab_4 + description + "\n";
+        file << tab_3 + "</description> \n";
+        file << tab_2 + "</objarg> \n";
     
         return true;
     };
     
     auto write_arguments_all_inputs = [&]()
     {
-        myfile << tab_1 + "<objarglist> \n";
-        myfile << tab_2 + "<objarg name='default-input' optional='1' type='list'> \n";
-        myfile << tab_3 + "<digest> \n";
-        myfile << tab_4 + "The input vector to use for any disconnected inputs \n";
-        myfile << tab_3 + "</digest> \n";
-        myfile << tab_3 + "<description> \n";
-        myfile << tab_4 + "Values typed as arguments will be used as a vector for any inputs that are not connected. Either single values or multi-valued vectors can be entered. The behaviour is similar to that for arguments to standard objects such as +~, *~ or zl.reg. \n";
-        myfile << tab_3 + "</description> \n";
-        myfile << tab_2 + "</objarg> \n";
-        myfile << tab_1 + "</objarglist> \n \n";
+        file << tab_1 + "<objarglist> \n";
+        file << tab_2 + "<objarg name='default-input' optional='1' type='list'> \n";
+        file << tab_3 + "<digest> \n";
+        file << tab_4 + "The input vector to use for any disconnected inputs \n";
+        file << tab_3 + "</digest> \n";
+        file << tab_3 + "<description> \n";
+        file << tab_4 + "Values typed as arguments will be used as a vector for any inputs that are not connected. Either single values or multi-valued vectors can be entered. The behaviour is similar to that for arguments to standard objects such as +~, *~ or zl.reg. \n";
+        file << tab_3 + "</description> \n";
+        file << tab_2 + "</objarg> \n";
+        file << tab_1 + "</objarglist> \n \n";
     };
     
     auto write_arguments_distributed = [&]()
     {
-        myfile << tab_1 + "<objarglist> \n";
+        file << tab_1 + "<objarglist> \n";
         
         for (unsigned long i = 1; i < frameLibObject->getNumIns(); i++)
         {
             std::string inputName = to_lower(frameLibObject->inputInfo(i));
             
-            myfile << tab_2 + "<objarg name='" + argument_name(inputName) + "' optional='1' type='number'> \n";
-            myfile << tab_3 + "<digest> \n";
-            myfile << tab_4 + "The value to use for input " + std::to_string(i + 1) +  " if it is disconnected \n";
-            myfile << tab_3 + "</digest> \n";
-            myfile << tab_3 + "<description> \n";
-            myfile << tab_4 + "Sets a single value for " + inputName + " \n";
-            myfile << tab_3 + "</description> \n";
-            myfile << tab_2 + "</objarg> \n";
+            file << tab_2 + "<objarg name='" + argument_name(inputName) + "' optional='1' type='number'> \n";
+            file << tab_3 + "<digest> \n";
+            file << tab_4 + "The value to use for input " + std::to_string(i + 1) +  " if it is disconnected \n";
+            file << tab_3 + "</digest> \n";
+            file << tab_3 + "<description> \n";
+            file << tab_4 + "Sets a single value for " + inputName + " \n";
+            file << tab_3 + "</description> \n";
+            file << tab_2 + "</objarg> \n";
         }
         
-        myfile << tab_1 + "</objarglist> \n \n";
+        file << tab_1 + "</objarglist> \n \n";
     };
     
     auto write_message = [&](const char *name, const char *digest, const char *description, const std::vector<MessageArgument>& args)
     {
-        myfile << tab_2 + "<method name='" + name + "'> \n";
+        file << tab_2 + "<method name='" + name + "'> \n";
         
         if (args.size())
         {
-            myfile << tab_3 + "<arglist> \n";
+            file << tab_3 + "<arglist> \n";
             for (auto it = args.cbegin(); it != args.cend(); it++)
-                myfile << tab_4 + "<arg name='" + it->mName + "' optional='" + std::to_string(it->mOptional) + "' type='" + it->mType + "' /> \n";
-            myfile << tab_3 + "</arglist> \n";
+                file << tab_4 + "<arg name='" + it->mName + "' optional='" + std::to_string(it->mOptional) + "' type='" + it->mType + "' /> \n";
+            file << tab_3 + "</arglist> \n";
         }
         else
-            myfile << tab_3 + "<arglist /> \n";
+            file << tab_3 + "<arglist /> \n";
         
-        myfile << tab_3 + "<digest> \n";
-        myfile << tab_4 + digest + " \n";
-        myfile << tab_3 + "</digest> \n";
-        myfile << tab_3 + "<description> \n";
-        myfile << tab_4 + description + " \n";
-        myfile << tab_3 + "</description> \n";
-        myfile << tab_2 + "</method> \n";
+        file << tab_3 + "<digest> \n";
+        file << tab_4 + digest + " \n";
+        file << tab_3 + "</digest> \n";
+        file << tab_3 + "<description> \n";
+        file << tab_4 + description + " \n";
+        file << tab_3 + "</description> \n";
+        file << tab_2 + "</method> \n";
     };
     
     // Check that the file has opened correctly
     
-    if (!myfile.is_open())
+    if (!file.is_open())
         return false;
     
     // Write some stuff at the top of every xml file.
-    myfile << "<?xml version='1.0' encoding='utf-8' standalone='yes'?> \n" ;
-    myfile << "<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?> \n \n" ;
-    myfile << "<c74object name='" << object << "' " << "module='FrameLib' " << "category=" << "'" << object_category << std::string("'> ") << "\n \n";
+    file << "<?xml version='1.0' encoding='utf-8' standalone='yes'?> \n" ;
+    file << "<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?> \n \n" ;
+    file << "<c74object name='" << object << "' " << "module='FrameLib' " << "category=" << "'" << object_category << std::string("'> ") << "\n \n";
     
     // Description
     
@@ -240,88 +242,80 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
     object_description = object_info.substr(pos + 1);
     
     // now write that info into sections
-    myfile << tab_1 + "<digest> \n";
-    myfile << tab_2 + object_digest + "." + "\n";
-    myfile << tab_1 + "</digest> \n \n";
+    file << tab_1 + "<digest> \n";
+    file << tab_2 + object_digest + "." + "\n";
+    file << tab_1 + "</digest> \n \n";
     
-    myfile << tab_1 + "<description> \n";
-    myfile << tab_2 + object_description + "\n";
-    myfile << tab_1 + "</description> \n \n";
+    file << tab_1 + "<description> \n";
+    file << tab_2 + object_description + "\n";
+    file << tab_1 + "</description> \n \n";
     
     // Parameters
     
     // If object has no parameters create the 'no parameters template'
     
-    if (!params || !params->size()) {
-        myfile << tab_1 + "<misc name = 'Parameters'> \n";
-        myfile << tab_2 + "<entry> \n";
-        myfile << tab_3 + "<description> \n";
-        myfile << tab_4 + "This object has no parameters. \n";
-        myfile << tab_3 + "</description> \n";
-        myfile << tab_2 + "</entry> \n";
-        myfile << tab_1 + "</misc> \n \n";
+    if (!params || !params->size())
+    {
+        file << tab_1 + "<misc name = 'Parameters'> \n";
+        file << tab_2 + "<entry> \n";
+        file << tab_3 + "<description> \n";
+        file << tab_4 + "This object has no parameters. \n";
+        file << tab_3 + "</description> \n";
+        file << tab_2 + "</entry> \n";
+        file << tab_1 + "</misc> \n \n";
     }
-    
-    // Loop over parameters
-    
-    if (params->size() != 0) {
-        myfile << tab_1 + "<misc name = 'Parameters'> \n \n"; // Write parameters tag to start misc section named Parameters
+    else
+    {
+        file << tab_1 + "<misc name = 'Parameters'> \n \n"; // Write parameters tag to start misc section named Parameters
         for (int i = 0; params && i < params->size(); i++)
         {
             std::string param_num = std::to_string(i+1);
             FrameLib_Parameters::Type type = params->getType(i);
-//            FrameLib_Parameters::NumericType numericType = params->getNumericType(i); // remove possibly. its not being used
+            //FrameLib_Parameters::NumericType numericType = params->getNumericType(i); // remove possibly. its not being used
             std::string defaultStr = params->getDefaultString(i);
             
             // Name, type and default value
-            if (defaultStr.size()) {
-                
-                myfile << tab_2 + "<entry name = '" + param_num + ". /" + params->getName(i) + " [" + params->getTypeString(i) + "]' > \n";
-            }
-            else {
-                
-                myfile << tab_2 + "<entry name = '" + param_num + ". /" + params->getName(i) + " [" + params->getTypeString(i) + "]' > \n";
-            }
+            if (defaultStr.size())
+                file << tab_2 + "<entry name = '" + param_num + ". /" + params->getName(i) + " [" + params->getTypeString(i) + "]' > \n";
+            else
+                file << tab_2 + "<entry name = '" + param_num + ". /" + params->getName(i) + " [" + params->getTypeString(i) + "]' > \n";
+
             // Construct the description
-            myfile << tab_3 + "<description> \n";
-            myfile << tab_4 + escape_xml(params->getInfo(i)); // The description
+            file << tab_3 + "<description> \n";
+            file << tab_4 + escape_xml(params->getInfo(i)); // The description
             
-            // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
-            if (verbose)
+            if (type == FrameLib_Parameters::Type::Enum)
             {
-                if (type == FrameLib_Parameters::Type::Enum){
+                file << "<br></br> \n" ; // if enum put a break big break between description and the enum options
                     
-                    myfile << "<br></br> \n" ; // if enum put a break big break between description and the enum options
+                for (long j = 0; j <= params->getMax(i); j++)
+                {
+                    std::string enum_param_num = std::to_string(j);
                     
-                    for (long j = 0; j <= params->getMax(i); j++) {
-                        std::string enum_param_num = std::to_string(j);
-                        if (j == params->getMax(i))
-                            
-                            myfile << tab_4 + "<bullet>[" + enum_param_num + "]" + " - " + params->getItemString(i, j) + "</bullet>";
-                        
-                        else if (j != params->getMax(i))
-                            
-                            myfile << tab_4 + "<bullet>[" + enum_param_num + "]" + " - " + params->getItemString(i, j) + "</bullet> \n";
-                    }
+                    if (j == params->getMax(i))
+                        file << tab_4 + "<bullet>[" + enum_param_num + "]" + " - " + params->getItemString(i, j) + "</bullet>";
+                    else if (j != params->getMax(i))
+                        file << tab_4 + "<bullet>[" + enum_param_num + "]" + " - " + params->getItemString(i, j) + "</bullet> \n";
                 }
-                myfile << "\n" + tab_3 + "</description> \n";
-                myfile << tab_2 + "</entry> \n \n";
             }
+            file << "\n" + tab_3 + "</description> \n";
+            file << tab_2 + "</entry> \n \n";
         }
-        myfile << tab_1 + "</misc> \n \n";
+        file << tab_1 + "</misc> \n \n";
     }
-    // All the tail end stuff is going to here like see also and key words. //
     
-    // Metadata //
-    myfile << tab_1 + "<!--METADATA-->\n";
-    myfile << tab_1 + "<metadatalist> \n";
-    myfile << tab_2 + "<metadata name='author'>Alex Harker</metadata> \n";
-    myfile << tab_2 + "<metadata name='tag'>FrameLib</metadata> \n";
-    myfile << tab_2 + "<metadata name='tag'>" + object_category + "</metadata> \n";
-    myfile << tab_1 + "</metadatalist> \n \n";
+    // Metadata
     
-    // Arguments //
-    myfile << tab_1 + "<!--ARGUMENTS-->\n";
+    file << tab_1 + "<!--METADATA-->\n";
+    file << tab_1 + "<metadatalist> \n";
+    file << tab_2 + "<metadata name='author'>Alex Harker</metadata> \n";
+    file << tab_2 + "<metadata name='tag'>FrameLib</metadata> \n";
+    file << tab_2 + "<metadata name='tag'>" + object_category + "</metadata> \n";
+    file << tab_1 + "</metadatalist> \n \n";
+    
+    // Arguments
+    
+    file << tab_1 + "<!--ARGUMENTS-->\n";
     switch (argsMode)
     {
         case kAsParams:
@@ -336,15 +330,16 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
             write_arguments_distributed();
             break;
     }
-     
+
+    // Messages
+    
     std::vector<MessageArgument> emptyArgs;
     std::vector<MessageArgument> infoArgs { { "items", true, "list"} };
     std::vector<MessageArgument> resetArgs { { "samplerate", true, "number" } };
     std::vector<MessageArgument> processArgs { { "length", false, "int" } };
     
-    // Messages //
-    myfile << tab_1 + "<!--MESSAGES-->\n";
-    myfile << tab_1 + "<methodlist> \n";
+    file << tab_1 + "<!--MESSAGES-->\n";
+    file << tab_1 + "<methodlist> \n";
     write_message("info", "Get Object Info", "--detail--", infoArgs);
     if (frameLibObject->handlesAudio())
     {
@@ -354,32 +349,35 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
     }
     write_message("frame", "Connect FrameLib objects", "Used internally by FrameLib connection routines. User messages have no effect", emptyArgs);
     write_message("sync", "Synchronise FrameLib audio objects", "Used internally by FrameLib connection routines. User messages have no effect", emptyArgs);
-    myfile << tab_1 + "</methodlist> \n \n";
+    file << tab_1 + "</methodlist> \n \n";
 
-    // Attributes //
-    myfile << tab_1 + "<!--ATTRIBUTES-->\n";
-    myfile << tab_1 + "<attributelist> \n";
+    // Attributes
+    
+    file << tab_1 + "<!--ATTRIBUTES-->\n";
+    file << tab_1 + "<attributelist> \n";
     if (frameLibObject->handlesAudio())
         write_attribute("buffer", "symbol", "Non-realtime Buffer", "Sets the non-realtime buffer for this object", "Buffer");
     write_attribute("rt", "int", "Realtime flag", "Sets the realtime state for this object", "Realtime");
     write_attribute("id", "symbol", "Context ID", "Sets the context name for this object", "ID");
-    myfile << tab_1 + "</attributelist> \n \n";
+    file << tab_1 + "</attributelist> \n \n";
     
-    // Seealso //
-    myfile << tab_1 + "<!--SEEALSO-->\n";
-    myfile << tab_1 + "<seealsolist> \n";
-    myfile << tab_1 + "</seealsolist> \n";
+    // Seealso
     
-    // Keywords //
-    myfile << tab_1 + "<misc name = 'Discussion'> \n";
-    myfile << tab_2 + "<entry name = 'Keywords'> \n";
-    myfile << tab_3 + "<description> \n";
-    myfile << tab_4 + object_keywords + "\n";
-    myfile << tab_3 + "</description> \n";
-    myfile << tab_2 + "</entry> \n";
-    myfile << tab_1 + "</misc> \n \n";
-    myfile << "</c74object>";
-    myfile.close();
+    file << tab_1 + "<!--SEEALSO-->\n";
+    file << tab_1 + "<seealsolist> \n";
+    file << tab_1 + "</seealsolist> \n";
+    
+    // Keywords
+    
+    file << tab_1 + "<misc name = 'Discussion'> \n";
+    file << tab_2 + "<entry name = 'Keywords'> \n";
+    file << tab_3 + "<description> \n";
+    file << tab_4 + object_keywords + "\n";
+    file << tab_3 + "</description> \n";
+    file << tab_2 + "</entry> \n";
+    file << tab_1 + "</misc> \n \n";
+    file << "</c74object>";
+    file.close();
     
     return true;
 }
@@ -409,9 +407,11 @@ int main()
     bool success = true;
     
     // Loop over objects using template list
+    
     FrameLib_DSPList::execute<DocumentationGenerator>(context, &parameters, proxy, &success);
 
     // Cleanup
+    
     delete proxy;
     FrameLib_Global::release(&global);
     return success ? 0 : 1;
