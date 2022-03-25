@@ -1,22 +1,22 @@
 <c74object name="fl.crest~" module="FrameLib" category="FrameLib Vector">
-  <digest> 
-        Calculates the crest factor of the input frame.
-    </digest>
-  <description> 
-        The output is a single value. When the input frame is empty then the output is determined by the empty parameter.
-    </description>
+  <digest>
+    Calculates the crest factor of the input frame.
+  </digest>
+  <description>
+    The output is a single value. When the input frame is empty then the output is determined by the empty parameter.
+  </description>
   <misc name="Parameters">
     <entry name="/empty [instantiation enum]">
-      <description> 
-                Sets the output to use when an empty input frame is received:<br/><br/>empty - output an empty frame.<br/>default - output the default value (see the default parameter).<br />
+      <description>
+        Sets the output to use when an empty input frame is received:<br/><br/>empty - output an empty frame.<br/>default - output the default value (see the default parameter).<br />
         <bullet>[0] - empty</bullet>
         <bullet>[1] - default</bullet>
       </description>
     </entry>
     <entry name="/default [instantiation double]">
-      <description> 
-                Sets the default output value.
-            </description>
+      <description>
+        Sets the default output value.
+      </description>
     </entry>
   </misc>
   <metadatalist>
@@ -26,21 +26,21 @@
   </metadatalist>
   <objarglist>
     <objarg name="empty" optional="1" type="symbol">
-      <digest> 
-                Sets the output to use when an empty input frame is received
-            </digest>
-      <description> 
-                Sets the output to use when an empty input frame is received:<br />
+      <digest>
+        Sets the output to use when an empty input frame is received
+      </digest>
+      <description>
+        Sets the output to use when an empty input frame is received:<br />
         <br />empty - output an empty frame.<br />default - output the default value (see the default parameter).
-            </description>
+      </description>
     </objarg>
     <objarg name="default" optional="1" type="number">
-      <digest> 
-                Sets the default output value
-            </digest>
-      <description> 
-                Sets the default output value.
-            </description>
+      <digest>
+        Sets the default output value
+      </digest>
+      <description>
+        Sets the default output value.
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -48,52 +48,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

@@ -1,14 +1,14 @@
 <c74object name="fl.map~" module="FrameLib" category="FrameLib Mapping">
-  <digest> 
-        Maps values from input to output via a specified scaling.
-    </digest>
-  <description> 
-        The output length matches the input length. Scaling maps the specified range of input values to a corresponding specified output range. Different shapes and types of scaling are available. Values may be optionally constrained within the specified output range. The values specfying the ranges may be in either order for both input and output.
-    </description>
+  <digest>
+    Maps values from input to output via a specified scaling.
+  </digest>
+  <description>
+    The output length matches the input length. Scaling maps the specified range of input values to a corresponding specified output range. Different shapes and types of scaling are available. Values may be optionally constrained within the specified output range. The values specfying the ranges may be in either order for both input and output.
+  </description>
   <misc name="Parameters">
     <entry name="/mode [enum]">
-      <description> 
-                Sets the type of output scaling:<br/><br/>linear - linear scaling.<br/>log - logarithmic scaling.<br/>exp - exponential scaling.<br/>pow - input range scaled [0-1], raised to an exponent and then scaled to the output range.<br/>db - output range set in dB with mapping to corresponding linear gain values.<br/>transpose - output range set in semitones with mapping to corresponding ratios.<br/>inverse_pow - the inverse mapping of the pow mode.<br/>inverse_db - the inverse mapping of the db mode.<br/>inverse_transpose - the inverse mapping of the inverse_transpose mode.<br />
+      <description>
+        Sets the type of output scaling:<br/><br/>linear - linear scaling.<br/>log - logarithmic scaling.<br/>exp - exponential scaling.<br/>pow - input range scaled [0-1], raised to an exponent and then scaled to the output range.<br/>db - output range set in dB with mapping to corresponding linear gain values.<br/>transpose - output range set in semitones with mapping to corresponding ratios.<br/>inverse_pow - the inverse mapping of the pow mode.<br/>inverse_db - the inverse mapping of the db mode.<br/>inverse_transpose - the inverse mapping of the inverse_transpose mode.<br />
         <bullet>[0] - linear</bullet>
         <bullet>[1] - log</bullet>
         <bullet>[2] - exp</bullet>
@@ -21,34 +21,34 @@
       </description>
     </entry>
     <entry name="/in_1 [double]">
-      <description> 
-                Sets the first bound of the input range.
-            </description>
+      <description>
+        Sets the first bound of the input range.
+      </description>
     </entry>
     <entry name="/in_2 [double]">
-      <description> 
-                Sets the second bound of the input range.
-            </description>
+      <description>
+        Sets the second bound of the input range.
+      </description>
     </entry>
     <entry name="/out_1 [double]">
-      <description> 
-                Sets the first bound of the output range.
-            </description>
+      <description>
+        Sets the first bound of the output range.
+      </description>
     </entry>
     <entry name="/out_2 [double]">
-      <description> 
-                Sets the second bound of the output range.
-            </description>
+      <description>
+        Sets the second bound of the output range.
+      </description>
     </entry>
     <entry name="/clip [bool]">
-      <description> 
-                If set on then the output is constrained between the two output values.<br/>Note that scaling will otherwise continue outside of the specified ranges.
-            </description>
+      <description>
+        If set on then the output is constrained between the two output values.<br/>Note that scaling will otherwise continue outside of the specified ranges.
+      </description>
     </entry>
     <entry name="/exponent [double]">
-      <description> 
-                Sets the exponent for the pow and inverse_pow modes.
-            </description>
+      <description>
+        Sets the exponent for the pow and inverse_pow modes.
+      </description>
     </entry>
   </misc>
   <metadatalist>
@@ -58,53 +58,53 @@
   </metadatalist>
   <objarglist>
     <objarg name="mode" optional="1" type="symbol">
-      <digest> 
-                Sets the type of output scaling
-            </digest>
-      <description> 
-                Sets the type of output scaling:<br />
+      <digest>
+        Sets the type of output scaling
+      </digest>
+      <description>
+        Sets the type of output scaling:<br />
         <br />linear - linear scaling.<br />log - logarithmic scaling.<br />exp - exponential scaling.<br />pow - input range scaled [0-1], raised to an exponent and then scaled to the output range.<br />db - output range set in dB with mapping to corresponding linear gain values.<br />transpose - output range set in semitones with mapping to corresponding ratios.<br />inverse_pow - the inverse mapping of the pow mode.<br />inverse_db - the inverse mapping of the db mode.<br />inverse_transpose - the inverse mapping of the inverse_transpose mode.
-            </description>
+      </description>
     </objarg>
     <objarg name="in_1" optional="1" type="number">
-      <digest> 
-                Sets the first bound of the input range
-            </digest>
-      <description> 
-                Sets the first bound of the input range.
-            </description>
+      <digest>
+        Sets the first bound of the input range
+      </digest>
+      <description>
+        Sets the first bound of the input range.
+      </description>
     </objarg>
     <objarg name="in_2" optional="1" type="number">
-      <digest> 
-                Sets the second bound of the input range
-            </digest>
-      <description> 
-                Sets the second bound of the input range.
-            </description>
+      <digest>
+        Sets the second bound of the input range
+      </digest>
+      <description>
+        Sets the second bound of the input range.
+      </description>
     </objarg>
     <objarg name="out_1" optional="1" type="number">
-      <digest> 
-                Sets the first bound of the output range
-            </digest>
-      <description> 
-                Sets the first bound of the output range.
-            </description>
+      <digest>
+        Sets the first bound of the output range
+      </digest>
+      <description>
+        Sets the first bound of the output range.
+      </description>
     </objarg>
     <objarg name="out_2" optional="1" type="number">
-      <digest> 
-                Sets the second bound of the output range
-            </digest>
-      <description> 
-                Sets the second bound of the output range.
-            </description>
+      <digest>
+        Sets the second bound of the output range
+      </digest>
+      <description>
+        Sets the second bound of the output range.
+      </description>
     </objarg>
     <objarg name="clip" optional="1" type="number">
-      <digest> 
-                If set on then the output is constrained between the two output values
-            </digest>
-      <description> 
-                If set on then the output is constrained between the two output values.<br />Note that scaling will otherwise continue outside of the specified ranges.
-            </description>
+      <digest>
+        If set on then the output is constrained between the two output values
+      </digest>
+      <description>
+        If set on then the output is constrained between the two output values.<br />Note that scaling will otherwise continue outside of the specified ranges.
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -112,52 +112,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

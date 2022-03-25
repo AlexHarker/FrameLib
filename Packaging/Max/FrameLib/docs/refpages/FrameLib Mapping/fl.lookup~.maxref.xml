@@ -1,22 +1,22 @@
 <c74object name="fl.lookup~" module="FrameLib" category="FrameLib Mapping">
-  <digest> 
-        Lookup values from one input using a table provided at another.
-    </digest>
-  <description> 
-        The first input is interpreted as the positions to read from the table at the second. The output is the same length as the frame at the first input. The scale, edges and bound parameters control the mapping of the input to the table. The lookup can be performed with different types of interpolation (or none). Only the first input triggers output.
-    </description>
+  <digest>
+    Lookup values from one input using a table provided at another.
+  </digest>
+  <description>
+    The first input is interpreted as the positions to read from the table at the second. The output is the same length as the frame at the first input. The scale, edges and bound parameters control the mapping of the input to the table. The lookup can be performed with different types of interpolation (or none). Only the first input triggers output.
+  </description>
   <misc name="Parameters">
     <entry name="/scale [enum]">
-      <description> 
-                Sets the scaling of the input for lookup:<br/><br/>samples - the input is read as sample indices for reading from the table.<br/>normalised - the input range [0 to 1] is mapped across the table.<br/>bipolar - the input range [-1 to 1] is mapped across the table.<br/>Note that the edge parameter is also accounted for normalised and bipolar modes.<br/>This adjusts the scaling to work sensibly with cyclical modes.<br />
+      <description>
+        Sets the scaling of the input for lookup:<br/><br/>samples - the input is read as sample indices for reading from the table.<br/>normalised - the input range [0 to 1] is mapped across the table.<br/>bipolar - the input range [-1 to 1] is mapped across the table.<br/>Note that the edge parameter is also accounted for normalised and bipolar modes.<br/>This adjusts the scaling to work sensibly with cyclical modes.<br />
         <bullet>[0] - samples</bullet>
         <bullet>[1] - normalised</bullet>
         <bullet>[2] - bipolar</bullet>
       </description>
     </entry>
     <entry name="/edges [enum]">
-      <description> 
-                Sets the edge behaviour for both interpolation and lookup:<br/><br/>zero - values beyond the edges of the table are treated as zeros.<br/>extend - the edge values are extended infinitely in either direction.<br/>wrap - values are treated as wrapped or cyclical.<br/>fold - values are folded at edges without repetition of the edge values.<br/>mirror - values are mirrored at edges with the edge values repeated.<br/>extrapolate - values out of range are extrapolated via interpolation.<br />
+      <description>
+        Sets the edge behaviour for both interpolation and lookup:<br/><br/>zero - values beyond the edges of the table are treated as zeros.<br/>extend - the edge values are extended infinitely in either direction.<br/>wrap - values are treated as wrapped or cyclical.<br/>fold - values are folded at edges without repetition of the edge values.<br/>mirror - values are mirrored at edges with the edge values repeated.<br/>extrapolate - values out of range are extrapolated via interpolation.<br />
         <bullet>[0] - zero</bullet>
         <bullet>[1] - extend</bullet>
         <bullet>[2] - wrap</bullet>
@@ -26,13 +26,13 @@
       </description>
     </entry>
     <entry name="/bound [bool]">
-      <description> 
-                Sets whether lookup is bounded to the edges of the table, or can extend beyond it.
-            </description>
+      <description>
+        Sets whether lookup is bounded to the edges of the table, or can extend beyond it.
+      </description>
     </entry>
     <entry name="/interp [enum]">
-      <description> 
-                Sets the interpolation mode:<br/><br/>none - no interpolation.<br/>linear - linear interpolation.<br/>hermite - cubic hermite interpolation.<br/>bspline - cubic bspline interpolation.<br/>lagrange - cubic lagrange interpolation.<br />
+      <description>
+        Sets the interpolation mode:<br/><br/>none - no interpolation.<br/>linear - linear interpolation.<br/>hermite - cubic hermite interpolation.<br/>bspline - cubic bspline interpolation.<br/>lagrange - cubic lagrange interpolation.<br />
         <bullet>[0] - none</bullet>
         <bullet>[1] - linear</bullet>
         <bullet>[2] - hermite</bullet>
@@ -48,39 +48,39 @@
   </metadatalist>
   <objarglist>
     <objarg name="scale" optional="1" type="symbol">
-      <digest> 
-                Sets the scaling of the input for lookup
-            </digest>
-      <description> 
-                Sets the scaling of the input for lookup:<br />
+      <digest>
+        Sets the scaling of the input for lookup
+      </digest>
+      <description>
+        Sets the scaling of the input for lookup:<br />
         <br />samples - the input is read as sample indices for reading from the table.<br />normalised - the input range [0 to 1] is mapped across the table.<br />bipolar - the input range [-1 to 1] is mapped across the table.<br />Note that the edge parameter is also accounted for normalised and bipolar modes.<br />This adjusts the scaling to work sensibly with cyclical modes.
-            </description>
+      </description>
     </objarg>
     <objarg name="edges" optional="1" type="symbol">
-      <digest> 
-                Sets the edge behaviour for both interpolation and lookup
-            </digest>
-      <description> 
-                Sets the edge behaviour for both interpolation and lookup:<br />
+      <digest>
+        Sets the edge behaviour for both interpolation and lookup
+      </digest>
+      <description>
+        Sets the edge behaviour for both interpolation and lookup:<br />
         <br />zero - values beyond the edges of the table are treated as zeros.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are treated as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.<br />extrapolate - values out of range are extrapolated via interpolation.
-            </description>
+      </description>
     </objarg>
     <objarg name="bound" optional="1" type="number">
-      <digest> 
-                Sets whether lookup is bounded to the edges of the table, or can extend beyond it
-            </digest>
-      <description> 
-                Sets whether lookup is bounded to the edges of the table, or can extend beyond it.
-            </description>
+      <digest>
+        Sets whether lookup is bounded to the edges of the table, or can extend beyond it
+      </digest>
+      <description>
+        Sets whether lookup is bounded to the edges of the table, or can extend beyond it.
+      </description>
     </objarg>
     <objarg name="interp" optional="1" type="symbol">
-      <digest> 
-                Sets the interpolation mode
-            </digest>
-      <description> 
-                Sets the interpolation mode:<br />
+      <digest>
+        Sets the interpolation mode
+      </digest>
+      <description>
+        Sets the interpolation mode:<br />
         <br />none - no interpolation.<br />linear - linear interpolation.<br />hermite - cubic hermite interpolation.<br />bspline - cubic bspline interpolation.<br />lagrange - cubic lagrange interpolation.
-            </description>
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -88,52 +88,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

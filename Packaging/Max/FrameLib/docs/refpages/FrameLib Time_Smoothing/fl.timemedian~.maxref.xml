@@ -1,34 +1,34 @@
 <c74object name="fl.timemedian~" module="FrameLib" category="FrameLib Time_Smoothing">
-  <digest> 
-        Calculates the specified percentile per sample over the most recent frames.
-    </digest>
-  <description> 
-        The default percentile is 50% which returns the median. The output is the same length as the input. Input frames are expected to be of a uniform length. If the input length changes then the internal storage is reset. The object can also be reset by sending a frame to the reset input. The start parameter controls behaviour when insufficient frames are stored. The underlength output indicates that insufficient frames are stored.
-    </description>
+  <digest>
+    Calculates the specified percentile per sample over the most recent frames.
+  </digest>
+  <description>
+    The default percentile is 50% which returns the median. The output is the same length as the input. Input frames are expected to be of a uniform length. If the input length changes then the internal storage is reset. The object can also be reset by sending a frame to the reset input. The start parameter controls behaviour when insufficient frames are stored. The underlength output indicates that insufficient frames are stored.
+  </description>
   <misc name="Parameters">
     <entry name="/max_frames [int]">
-      <description> 
-                Sets the maximum number of frames for calculation.<br/>Note that the internal buffer is reset when this changes.
-            </description>
+      <description>
+        Sets the maximum number of frames for calculation.<br/>Note that the internal buffer is reset when this changes.
+      </description>
     </entry>
     <entry name="/num_frames [int]">
-      <description> 
-                Sets the current number of frames for calculation as an integer.
-            </description>
+      <description>
+        Sets the current number of frames for calculation as an integer.
+      </description>
     </entry>
     <entry name="/percentile [double]">
-      <description> 
-                Sets the percentile to retrieve.
-            </description>
+      <description>
+        Sets the percentile to retrieve.
+      </description>
     </entry>
     <entry name="/pad [double]">
-      <description> 
-                Sets the padding value.
-            </description>
+      <description>
+        Sets the padding value.
+      </description>
     </entry>
     <entry name="/start [enum]">
-      <description> 
-                Sets the behaviour when there are insufficient frames stored (as after a reset):<br/><br/>pad - pad the calculation with default values to account for the missing frames.<br/>shorten - calculate on all frames received since the reset.<br/>Note that frames at the reset input set the frame use for padding.<br/>If the frame is too short or empty it is padded with the pad parameter.<br />
+      <description>
+        Sets the behaviour when there are insufficient frames stored (as after a reset):<br/><br/>pad - pad the calculation with default values to account for the missing frames.<br/>shorten - calculate on all frames received since the reset.<br/>Note that frames at the reset input set the frame use for padding.<br/>If the frame is too short or empty it is padded with the pad parameter.<br />
         <bullet>[0] - pad</bullet>
         <bullet>[1] - shorten</bullet>
       </description>
@@ -41,36 +41,36 @@
   </metadatalist>
   <objarglist>
     <objarg name="max_frames" optional="1" type="int">
-      <digest> 
-                Sets the maximum number of frames for calculation
-            </digest>
-      <description> 
-                Sets the maximum number of frames for calculation.<br />Note that the internal buffer is reset when this changes.
-            </description>
+      <digest>
+        Sets the maximum number of frames for calculation
+      </digest>
+      <description>
+        Sets the maximum number of frames for calculation.<br />Note that the internal buffer is reset when this changes.
+      </description>
     </objarg>
     <objarg name="num_frames" optional="1" type="int">
-      <digest> 
-                Sets the current number of frames for calculation as an integer
-            </digest>
-      <description> 
-                Sets the current number of frames for calculation as an integer.
-            </description>
+      <digest>
+        Sets the current number of frames for calculation as an integer
+      </digest>
+      <description>
+        Sets the current number of frames for calculation as an integer.
+      </description>
     </objarg>
     <objarg name="percentile" optional="1" type="number">
-      <digest> 
-                Sets the percentile to retrieve
-            </digest>
-      <description> 
-                Sets the percentile to retrieve.
-            </description>
+      <digest>
+        Sets the percentile to retrieve
+      </digest>
+      <description>
+        Sets the percentile to retrieve.
+      </description>
     </objarg>
     <objarg name="pad" optional="1" type="number">
-      <digest> 
-                Sets the padding value
-            </digest>
-      <description> 
-                Sets the padding value.
-            </description>
+      <digest>
+        Sets the padding value
+      </digest>
+      <description>
+        Sets the padding value.
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -78,52 +78,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

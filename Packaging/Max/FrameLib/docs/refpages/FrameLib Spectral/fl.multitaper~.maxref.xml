@@ -1,36 +1,36 @@
 <c74object name="fl.multitaper~" module="FrameLib" category="FrameLib Spectral">
-  <digest> 
-        Calculates a multitaper power (or amplitude) spectrum from a real input.
-    </digest>
-  <description> 
-        The spectrum is calculated using the sine tapers. All FFTs use a power of two size, with zero-padding applied at the input if necessary. Output frames will be (N / 2) + 1 in length where N is the FFT size used. The number of tapers and their weighting are both controllable.
-    </description>
+  <digest>
+    Calculates a multitaper power (or amplitude) spectrum from a real input.
+  </digest>
+  <description>
+    The spectrum is calculated using the sine tapers. All FFTs use a power of two size, with zero-padding applied at the input if necessary. Output frames will be (N / 2) + 1 in length where N is the FFT size used. The number of tapers and their weighting are both controllable.
+  </description>
   <misc name="Parameters">
     <entry name="/max_length [instantiation int]">
-      <description> 
-                Sets the maximum input length (and associated internal FFT size).
-            </description>
+      <description>
+        Sets the maximum input length (and associated internal FFT size).
+      </description>
     </entry>
     <entry name="/num_tapers [int]">
-      <description> 
-                Sets the number of tapers to use.
-            </description>
+      <description>
+        Sets the number of tapers to use.
+      </description>
     </entry>
     <entry name="/normalise [bool]">
-      <description> 
-                Sets normalisation on or off (such that the energy of a full-scale sine wave is 1).
-            </description>
+      <description>
+        Sets normalisation on or off (such that the energy of a full-scale sine wave is 1).
+      </description>
     </entry>
     <entry name="/output [enum]">
-      <description> 
-                Sets whether to output values in terms of power or amplitude.<br />
+      <description>
+        Sets whether to output values in terms of power or amplitude.<br />
         <bullet>[0] - power</bullet>
         <bullet>[1] - amplitude</bullet>
       </description>
     </entry>
     <entry name="/weighting [enum]">
-      <description> 
-                Sets the weighting of the tapers:<br/><br/>uniform - all tapers are weighted equally.<br/>linear - tapers are weighted linearly in a decreasing manner.<br/>parabolic - tapers are weighted with a parabola in a decreasing manner.<br />
+      <description>
+        Sets the weighting of the tapers:<br/><br/>uniform - all tapers are weighted equally.<br/>linear - tapers are weighted linearly in a decreasing manner.<br/>parabolic - tapers are weighted with a parabola in a decreasing manner.<br />
         <bullet>[0] - uniform</bullet>
         <bullet>[1] - linear</bullet>
         <bullet>[2] - parabolic</bullet>
@@ -44,45 +44,45 @@
   </metadatalist>
   <objarglist>
     <objarg name="max_length" optional="1" type="int">
-      <digest> 
-                Sets the maximum input length (and associated internal FFT size)
-            </digest>
-      <description> 
-                Sets the maximum input length (and associated internal FFT size).
-            </description>
+      <digest>
+        Sets the maximum input length (and associated internal FFT size)
+      </digest>
+      <description>
+        Sets the maximum input length (and associated internal FFT size).
+      </description>
     </objarg>
     <objarg name="num_tapers" optional="1" type="int">
-      <digest> 
-                Sets the number of tapers to use
-            </digest>
-      <description> 
-                Sets the number of tapers to use.
-            </description>
+      <digest>
+        Sets the number of tapers to use
+      </digest>
+      <description>
+        Sets the number of tapers to use.
+      </description>
     </objarg>
     <objarg name="normalise" optional="1" type="number">
-      <digest> 
-                Sets normalisation on or off (such that the energy of a full-scale sine wave is 1)
-            </digest>
-      <description> 
-                Sets normalisation on or off (such that the energy of a full-scale sine wave is 1).
-            </description>
+      <digest>
+        Sets normalisation on or off (such that the energy of a full-scale sine wave is 1)
+      </digest>
+      <description>
+        Sets normalisation on or off (such that the energy of a full-scale sine wave is 1).
+      </description>
     </objarg>
     <objarg name="output" optional="1" type="symbol">
-      <digest> 
-                Sets whether to output values in terms of power or amplitude
-            </digest>
-      <description> 
-                Sets whether to output values in terms of power or amplitude.
-            </description>
+      <digest>
+        Sets whether to output values in terms of power or amplitude
+      </digest>
+      <description>
+        Sets whether to output values in terms of power or amplitude.
+      </description>
     </objarg>
     <objarg name="weighting" optional="1" type="symbol">
-      <digest> 
-                Sets the weighting of the tapers
-            </digest>
-      <description> 
-                Sets the weighting of the tapers:<br />
+      <digest>
+        Sets the weighting of the tapers
+      </digest>
+      <description>
+        Sets the weighting of the tapers:<br />
         <br />uniform - all tapers are weighted equally.<br />linear - tapers are weighted linearly in a decreasing manner.<br />parabolic - tapers are weighted with a parabola in a decreasing manner.
-            </description>
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -90,52 +90,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

@@ -1,51 +1,51 @@
 <c74object name="fl.spatial~" module="FrameLib" category="FrameLib Spatial">
-  <digest> 
-        Generates multiplication factors for a number of speakers from an input coordinate triple.
-    </digest>
-  <description> 
-        The algorithm used is a modified version of DBAP, with extra features. Input may be in cartesian coordinates (x, y, z) or polar ones (azimuth, elevation, radius. Missing values at the input are assumed zero. Extra values are ignored. The output size is equal to the number of loudspeakers.
-    </description>
+  <digest>
+    Generates multiplication factors for a number of speakers from an input coordinate triple.
+  </digest>
+  <description>
+    The algorithm used is a modified version of DBAP, with extra features. Input may be in cartesian coordinates (x, y, z) or polar ones (azimuth, elevation, radius. Missing values at the input are assumed zero. Extra values are ignored. The output size is equal to the number of loudspeakers.
+  </description>
   <misc name="Parameters">
     <entry name="/inputmode [enum]">
-      <description> 
-                Sets the input coordinate mode.<br />
+      <description>
+        Sets the input coordinate mode.<br />
         <bullet>[0] - polar</bullet>
         <bullet>[1] - cartesian</bullet>
       </description>
     </entry>
     <entry name="/speakers [variable length double array]">
-      <description> 
-                Sets the speaker positions in polar triples (one triple per speaker).
-            </description>
+      <description>
+        Sets the speaker positions in polar triples (one triple per speaker).
+      </description>
     </entry>
     <entry name="/weights [variable length double array]">
-      <description> 
-                Sets the speaker weightings (one value per speaker).
-            </description>
+      <description>
+        Sets the speaker weightings (one value per speaker).
+      </description>
     </entry>
     <entry name="/rolloff [double]">
-      <description> 
-                Sets the rolloff in dB.
-            </description>
+      <description>
+        Sets the rolloff in dB.
+      </description>
     </entry>
     <entry name="/blur [double]">
-      <description> 
-                Sets the blur factor.
-            </description>
+      <description>
+        Sets the blur factor.
+      </description>
     </entry>
     <entry name="/maxspeakers [int]">
-      <description> 
-                Sets the maximum number of speakers to be used (the neaarest N speakers will be used only).<br/>If zero all speakers are used.
-            </description>
+      <description>
+        Sets the maximum number of speakers to be used (the neaarest N speakers will be used only).<br/>If zero all speakers are used.
+      </description>
     </entry>
     <entry name="/points [double]">
-      <description> 
-                Interpolate to point source panning (0 is modified DBAP - 1 is point source).
-            </description>
+      <description>
+        Interpolate to point source panning (0 is modified DBAP - 1 is point source).
+      </description>
     </entry>
     <entry name="/constrain [enum]">
-      <description> 
-                Sets the method for constraining positions outside of the speaker array.<br />
+      <description>
+        Sets the method for constraining positions outside of the speaker array.<br />
         <bullet>[0] - none</bullet>
         <bullet>[1] - hemisphere</bullet>
         <bullet>[2] - sphere</bullet>
@@ -64,60 +64,60 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
       </attributelist>
     </attribute>
   </attributelist>
-  <seealsolist> 
-    </seealsolist>
+  <seealsolist>
+  </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">
       <description>spatialiastion</description>

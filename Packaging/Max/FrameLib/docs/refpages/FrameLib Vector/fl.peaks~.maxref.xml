@@ -1,29 +1,29 @@
 <c74object name="fl.peaks~" module="FrameLib" category="FrameLib Vector">
-  <digest> 
-        Finds peaks in the input frame.
-    </digest>
-  <description> 
-        The input frame is searched for peaks (values greater than the surrounding values). Each input sample is assigned to a peak. Peaks positions and values are also interpolated and output. The first output is the same length as the input. Other outputs are as long as the number of detected peaks. A Peak are detected if a value exceeds its neighbours and a fixed threshold. The parameters control the details of the way in which peaks are defined and detected.
-    </description>
+  <digest>
+    Finds peaks in the input frame.
+  </digest>
+  <description>
+    The input frame is searched for peaks (values greater than the surrounding values). Each input sample is assigned to a peak. Peaks positions and values are also interpolated and output. The first output is the same length as the input. Other outputs are as long as the number of detected peaks. A Peak are detected if a value exceeds its neighbours and a fixed threshold. The parameters control the details of the way in which peaks are defined and detected.
+  </description>
   <misc name="Parameters">
     <entry name="/neighbours [int]">
-      <description> 
-                Sets the number of neighbours each side that must be exceeded in order to detect a peak.
-            </description>
+      <description>
+        Sets the number of neighbours each side that must be exceeded in order to detect a peak.
+      </description>
     </entry>
     <entry name="/threshold [double]">
-      <description> 
-                Sets the threshold value for detecting a peak.
-            </description>
+      <description>
+        Sets the threshold value for detecting a peak.
+      </description>
     </entry>
     <entry name="/pad [double]">
-      <description> 
-                Sets the padding value.
-            </description>
+      <description>
+        Sets the padding value.
+      </description>
     </entry>
     <entry name="/edges [enum]">
-      <description> 
-                Sets the edge behaviour for peak detection:<br/><br/>pad - values beyond the edges of the input are read as the padding value.<br/>extend - the edge values are extended infinitely in either direction.<br/>wrap - values are read as wrapped or cyclical.<br/>fold - values are folded at edges without repetition of the edge values.<br/>mirror - values are mirrored at edges with the edge values repeated.<br />
+      <description>
+        Sets the edge behaviour for peak detection:<br/><br/>pad - values beyond the edges of the input are read as the padding value.<br/>extend - the edge values are extended infinitely in either direction.<br/>wrap - values are read as wrapped or cyclical.<br/>fold - values are folded at edges without repetition of the edge values.<br/>mirror - values are mirrored at edges with the edge values repeated.<br />
         <bullet>[0] - pad</bullet>
         <bullet>[1] - extend</bullet>
         <bullet>[2] - wrap</bullet>
@@ -32,24 +32,24 @@
       </description>
     </entry>
     <entry name="/refine [enum]">
-      <description> 
-                Sets the method for refining peak values:<br/><br/>off - return the peak value without refinement.<br/>parabolic - apply parabolic interpolation to the three values around the peak.<br/>parabolic_log - apply parabolic interpolation to the log of the three values around the peak.<br/>Note that parabolic_log is suitable for interpolating linear amplitudes.<br />
+      <description>
+        Sets the method for refining peak values:<br/><br/>off - return the peak value without refinement.<br/>parabolic - apply parabolic interpolation to the three values around the peak.<br/>parabolic_log - apply parabolic interpolation to the log of the three values around the peak.<br/>Note that parabolic_log is suitable for interpolating linear amplitudes.<br />
         <bullet>[0] - off</bullet>
         <bullet>[1] - parabolic</bullet>
         <bullet>[2] - parabolic_log</bullet>
       </description>
     </entry>
     <entry name="/boundaries [enum]">
-      <description> 
-                Sets the method for selecting the boundaries between peaks:<br/><br/>minimum - boundaries are set at the minimum value between consecutive peaks.<br/>midpoint - boundaries are set to the indices halfway between consecutive peaks.<br />
+      <description>
+        Sets the method for selecting the boundaries between peaks:<br/><br/>minimum - boundaries are set at the minimum value between consecutive peaks.<br/>midpoint - boundaries are set to the indices halfway between consecutive peaks.<br />
         <bullet>[0] - minimum</bullet>
         <bullet>[1] - midpoint</bullet>
       </description>
     </entry>
     <entry name="/always_detect [bool]">
-      <description> 
-                If set on at least one peak will be detected even if no values match the peak criteria.<br/>Note that when set off the outputs will be empty if no peak is detected.
-            </description>
+      <description>
+        If set on at least one peak will be detected even if no values match the peak criteria.<br/>Note that when set off the outputs will be empty if no peak is detected.
+      </description>
     </entry>
   </misc>
   <metadatalist>
@@ -59,54 +59,54 @@
   </metadatalist>
   <objarglist>
     <objarg name="neighbours" optional="1" type="int">
-      <digest> 
-                Sets the number of neighbours each side that must be exceeded in order to detect a peak
-            </digest>
-      <description> 
-                Sets the number of neighbours each side that must be exceeded in order to detect a peak.
-            </description>
+      <digest>
+        Sets the number of neighbours each side that must be exceeded in order to detect a peak
+      </digest>
+      <description>
+        Sets the number of neighbours each side that must be exceeded in order to detect a peak.
+      </description>
     </objarg>
     <objarg name="threshold" optional="1" type="number">
-      <digest> 
-                Sets the threshold value for detecting a peak
-            </digest>
-      <description> 
-                Sets the threshold value for detecting a peak.
-            </description>
+      <digest>
+        Sets the threshold value for detecting a peak
+      </digest>
+      <description>
+        Sets the threshold value for detecting a peak.
+      </description>
     </objarg>
     <objarg name="pad" optional="1" type="number">
-      <digest> 
-                Sets the padding value
-            </digest>
-      <description> 
-                Sets the padding value.
-            </description>
+      <digest>
+        Sets the padding value
+      </digest>
+      <description>
+        Sets the padding value.
+      </description>
     </objarg>
     <objarg name="edges" optional="1" type="symbol">
-      <digest> 
-                Sets the edge behaviour for peak detection
-            </digest>
-      <description> 
-                Sets the edge behaviour for peak detection:<br />
+      <digest>
+        Sets the edge behaviour for peak detection
+      </digest>
+      <description>
+        Sets the edge behaviour for peak detection:<br />
         <br />pad - values beyond the edges of the input are read as the padding value.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are read as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.
-            </description>
+      </description>
     </objarg>
     <objarg name="boundaries" optional="1" type="symbol">
-      <digest> 
-                Sets the method for selecting the boundaries between peaks
-            </digest>
-      <description> 
-                Sets the method for selecting the boundaries between peaks:<br />
+      <digest>
+        Sets the method for selecting the boundaries between peaks
+      </digest>
+      <description>
+        Sets the method for selecting the boundaries between peaks:<br />
         <br />minimum - boundaries are set at the minimum value between consecutive peaks.<br />midpoint - boundaries are set to the indices halfway between consecutive peaks.
-            </description>
+      </description>
     </objarg>
     <objarg name="always_detect" optional="1" type="number">
-      <digest> 
-                If set on at least one peak will be detected even if no values match the peak criteria
-            </digest>
-      <description> 
-                If set on at least one peak will be detected even if no values match the peak criteria.<br />Note that when set off the outputs will be empty if no peak is detected.
-            </description>
+      <digest>
+        If set on at least one peak will be detected even if no values match the peak criteria
+      </digest>
+      <description>
+        If set on at least one peak will be detected even if no values match the peak criteria.<br />Note that when set off the outputs will be empty if no peak is detected.
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -114,52 +114,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

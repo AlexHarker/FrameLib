@@ -1,24 +1,24 @@
 <c74object name="fl.shift~" module="FrameLib" category="FrameLib Vector">
-  <digest> 
-        Shifts samples within a frame.
-    </digest>
-  <description> 
-        The output is the same length as the input. Output can be shifted left or right in comparison to the input. The edge behaviour can be set as appropriate for the application.
-    </description>
+  <digest>
+    Shifts samples within a frame.
+  </digest>
+  <description>
+    The output is the same length as the input. Output can be shifted left or right in comparison to the input. The edge behaviour can be set as appropriate for the application.
+  </description>
   <misc name="Parameters">
     <entry name="/shift [double]">
-      <description> 
-                Sets the shift amount (-ve for left shift / +ve for right shift).
-            </description>
+      <description>
+        Sets the shift amount (-ve for left shift / +ve for right shift).
+      </description>
     </entry>
     <entry name="/pad [double]">
-      <description> 
-                Sets the padding value.
-            </description>
+      <description>
+        Sets the padding value.
+      </description>
     </entry>
     <entry name="/edges [enum]">
-      <description> 
-                Sets the edge behaviour:<br/><br/>pad - values beyond the edges of the input are read as the padding value.<br/>extend - the edge values are extended infinitely in either direction.<br/>wrap - values are read as wrapped or cyclical.<br/>fold - values are folded at edges without repetition of the edge values.<br/>mirror - values are mirrored at edges with the edge values repeated.<br />
+      <description>
+        Sets the edge behaviour:<br/><br/>pad - values beyond the edges of the input are read as the padding value.<br/>extend - the edge values are extended infinitely in either direction.<br/>wrap - values are read as wrapped or cyclical.<br/>fold - values are folded at edges without repetition of the edge values.<br/>mirror - values are mirrored at edges with the edge values repeated.<br />
         <bullet>[0] - pad</bullet>
         <bullet>[1] - extend</bullet>
         <bullet>[2] - wrap</bullet>
@@ -27,8 +27,8 @@
       </description>
     </entry>
     <entry name="/units [enum]">
-      <description> 
-                Sets the units for the shift (samples or ratio of the input length [-1 to 1]).<br />
+      <description>
+        Sets the units for the shift (samples or ratio of the input length [-1 to 1]).<br />
         <bullet>[0] - samples</bullet>
         <bullet>[1] - ratios</bullet>
       </description>
@@ -41,37 +41,37 @@
   </metadatalist>
   <objarglist>
     <objarg name="shift" optional="1" type="number">
-      <digest> 
-                Sets the shift amount (-ve for left shift / +ve for right shift)
-            </digest>
-      <description> 
-                Sets the shift amount (-ve for left shift / +ve for right shift).
-            </description>
+      <digest>
+        Sets the shift amount (-ve for left shift / +ve for right shift)
+      </digest>
+      <description>
+        Sets the shift amount (-ve for left shift / +ve for right shift).
+      </description>
     </objarg>
     <objarg name="pad" optional="1" type="number">
-      <digest> 
-                Sets the padding value
-            </digest>
-      <description> 
-                Sets the padding value.
-            </description>
+      <digest>
+        Sets the padding value
+      </digest>
+      <description>
+        Sets the padding value.
+      </description>
     </objarg>
     <objarg name="edges" optional="1" type="symbol">
-      <digest> 
-                Sets the edge behaviour
-            </digest>
-      <description> 
-                Sets the edge behaviour:<br />
+      <digest>
+        Sets the edge behaviour
+      </digest>
+      <description>
+        Sets the edge behaviour:<br />
         <br />pad - values beyond the edges of the input are read as the padding value.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are read as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.
-            </description>
+      </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
-      <digest> 
-                Sets the units for the shift (samples or ratio of the input length [-1 to 1])
-            </digest>
-      <description> 
-                Sets the units for the shift (samples or ratio of the input length [-1 to 1]).
-            </description>
+      <digest>
+        Sets the units for the shift (samples or ratio of the input length [-1 to 1])
+      </digest>
+      <description>
+        Sets the units for the shift (samples or ratio of the input length [-1 to 1]).
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -79,52 +79,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

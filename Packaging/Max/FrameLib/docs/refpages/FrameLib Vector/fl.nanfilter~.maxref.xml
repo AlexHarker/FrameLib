@@ -1,22 +1,22 @@
 <c74object name="fl.nanfilter~" module="FrameLib" category="FrameLib Vector">
-  <digest> 
-        Filter NaNs from the input either by replacing or by removing them.
-    </digest>
-  <description> 
-        The length of the output depends on the mode parameter. The length of the output will be no longer than the input. The value for replacement can be specified using the value parameter.
-    </description>
+  <digest>
+    Filter NaNs from the input either by replacing or by removing them.
+  </digest>
+  <description>
+    The length of the output depends on the mode parameter. The length of the output will be no longer than the input. The value for replacement can be specified using the value parameter.
+  </description>
   <misc name="Parameters">
     <entry name="/mode [enum]">
-      <description> 
-                Sets whether NaNs are replaced or removed.<br />
+      <description>
+        Sets whether NaNs are replaced or removed.<br />
         <bullet>[0] - replace</bullet>
         <bullet>[1] - remove</bullet>
       </description>
     </entry>
     <entry name="/value [double]">
-      <description> 
-                Sets the value with which to replace NaNs when in replace mode.
-            </description>
+      <description>
+        Sets the value with which to replace NaNs when in replace mode.
+      </description>
     </entry>
   </misc>
   <metadatalist>
@@ -26,20 +26,20 @@
   </metadatalist>
   <objarglist>
     <objarg name="mode" optional="1" type="symbol">
-      <digest> 
-                Sets whether NaNs are replaced or removed
-            </digest>
-      <description> 
-                Sets whether NaNs are replaced or removed.
-            </description>
+      <digest>
+        Sets whether NaNs are replaced or removed
+      </digest>
+      <description>
+        Sets whether NaNs are replaced or removed.
+      </description>
     </objarg>
     <objarg name="value" optional="1" type="number">
-      <digest> 
-                Sets the value with which to replace NaNs when in replace mode
-            </digest>
-      <description> 
-                Sets the value with which to replace NaNs when in replace mode.
-            </description>
+      <digest>
+        Sets the value with which to replace NaNs when in replace mode
+      </digest>
+      <description>
+        Sets the value with which to replace NaNs when in replace mode.
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -47,52 +47,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

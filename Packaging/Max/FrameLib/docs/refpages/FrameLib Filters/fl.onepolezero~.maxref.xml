@@ -1,37 +1,37 @@
 <c74object name="fl.onepolezero~" module="FrameLib" category="FrameLib Filters">
-  <digest> 
-        Applies a one-pole with one-zero filter to the input.
-    </digest>
-  <description> 
-        Output is the same length as the input. The filter can output a single specifed mode at a time. Alternatively, in multi-output mode all modes are output simultaneously. Filter settings may be made either via parameters or per sample via inputs. The dynamic parameter is set to create the inputs for per sample values. Frames of per sample values are padded to length with their final value if required. Additional values are ignored. In this mode the parameter value is used if no corresponding input is provided. Thus, per sample values and parameters can be mixed. To process streams (not discrete frames) the reset parameter can be set off. This prevents the filter memories being cleared between frames.
-    </description>
+  <digest>
+    Applies a one-pole with one-zero filter to the input.
+  </digest>
+  <description>
+    Output is the same length as the input. The filter can output a single specifed mode at a time. Alternatively, in multi-output mode all modes are output simultaneously. Filter settings may be made either via parameters or per sample via inputs. The dynamic parameter is set to create the inputs for per sample values. Frames of per sample values are padded to length with their final value if required. Additional values are ignored. In this mode the parameter value is used if no corresponding input is provided. Thus, per sample values and parameters can be mixed. To process streams (not discrete frames) the reset parameter can be set off. This prevents the filter memories being cleared between frames.
+  </description>
   <misc name="Parameters">
     <entry name="/freq [double]">
-      <description> 
-                Sets the filter cutoff frequency.
-            </description>
+      <description>
+        Sets the filter cutoff frequency.
+      </description>
     </entry>
     <entry name="/mode [enum]">
-      <description> 
-                Sets the filter mode when multi-output mode is off:<br/><br/>lowpass - low pass.<br/>highpass - high pass.<br />
+      <description>
+        Sets the filter mode when multi-output mode is off:<br/><br/>lowpass - low pass.<br/>highpass - high pass.<br />
         <bullet>[0] - lowpass</bullet>
         <bullet>[1] - highpass</bullet>
       </description>
     </entry>
     <entry name="/multi_output [instantiation bool]">
-      <description> 
-                Creates an output per filter mode with all modes output simultaneously.
-            </description>
+      <description>
+        Creates an output per filter mode with all modes output simultaneously.
+      </description>
     </entry>
     <entry name="/dynamic [instantiation bool]">
-      <description> 
-                Creates inputs for per sample values for each of the filter parameters.<br/>If an input is not provided the corresponding parameter value is used.
-            </description>
+      <description>
+        Creates inputs for per sample values for each of the filter parameters.<br/>If an input is not provided the corresponding parameter value is used.
+      </description>
     </entry>
     <entry name="/reset [bool]">
-      <description> 
-                Determines whether filter memories are reset before processing a new frame.
-            </description>
+      <description>
+        Determines whether filter memories are reset before processing a new frame.
+      </description>
     </entry>
   </misc>
   <metadatalist>
@@ -41,21 +41,21 @@
   </metadatalist>
   <objarglist>
     <objarg name="freq" optional="1" type="number">
-      <digest> 
-                Sets the filter cutoff frequency
-            </digest>
-      <description> 
-                Sets the filter cutoff frequency.
-            </description>
+      <digest>
+        Sets the filter cutoff frequency
+      </digest>
+      <description>
+        Sets the filter cutoff frequency.
+      </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">
-      <digest> 
-                Sets the filter mode when multi-output mode is off
-            </digest>
-      <description> 
-                Sets the filter mode when multi-output mode is off:<br />
+      <digest>
+        Sets the filter mode when multi-output mode is off
+      </digest>
+      <description>
+        Sets the filter mode when multi-output mode is off:<br />
         <br />lowpass - low pass.<br />highpass - high pass.
-            </description>
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -63,52 +63,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

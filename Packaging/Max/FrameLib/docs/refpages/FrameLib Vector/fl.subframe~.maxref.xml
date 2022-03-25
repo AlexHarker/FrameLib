@@ -1,24 +1,24 @@
 <c74object name="fl.subframe~" module="FrameLib" category="FrameLib Vector">
-  <digest> 
-        Output a specified segment of an input frame.
-    </digest>
-  <description> 
-        The subframe is specified by a start and end point in the input frame. The start point is included in the output frame but the end point is not. Points may be specified in samples or as a ratio of the length of the input frame.
-    </description>
+  <digest>
+    Output a specified segment of an input frame.
+  </digest>
+  <description>
+    The subframe is specified by a start and end point in the input frame. The start point is included in the output frame but the end point is not. Points may be specified in samples or as a ratio of the length of the input frame.
+  </description>
   <misc name="Parameters">
     <entry name="/start [double]">
-      <description> 
-                Sets the start point of the subframe.
-            </description>
+      <description>
+        Sets the start point of the subframe.
+      </description>
     </entry>
     <entry name="/end [double]">
-      <description> 
-                Sets the end point of the subframe.
-            </description>
+      <description>
+        Sets the end point of the subframe.
+      </description>
     </entry>
     <entry name="/units [enum]">
-      <description> 
-                Sets the units for the start and end points (samples or ratios [0-1]).<br />
+      <description>
+        Sets the units for the start and end points (samples or ratios [0-1]).<br />
         <bullet>[0] - samples</bullet>
         <bullet>[1] - ratios</bullet>
       </description>
@@ -31,28 +31,28 @@
   </metadatalist>
   <objarglist>
     <objarg name="start" optional="1" type="number">
-      <digest> 
-                Sets the start point of the subframe
-            </digest>
-      <description> 
-                Sets the start point of the subframe.
-            </description>
+      <digest>
+        Sets the start point of the subframe
+      </digest>
+      <description>
+        Sets the start point of the subframe.
+      </description>
     </objarg>
     <objarg name="end" optional="1" type="number">
-      <digest> 
-                Sets the end point of the subframe
-            </digest>
-      <description> 
-                Sets the end point of the subframe.
-            </description>
+      <digest>
+        Sets the end point of the subframe
+      </digest>
+      <description>
+        Sets the end point of the subframe.
+      </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
-      <digest> 
-                Sets the units for the start and end points (samples or ratios [0-1])
-            </digest>
-      <description> 
-                Sets the units for the start and end points (samples or ratios [0-1]).
-            </description>
+      <digest>
+        Sets the units for the start and end points (samples or ratios [0-1])
+      </digest>
+      <description>
+        Sets the units for the start and end points (samples or ratios [0-1]).
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -60,52 +60,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

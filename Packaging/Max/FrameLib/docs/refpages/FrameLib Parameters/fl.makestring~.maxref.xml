@@ -1,35 +1,35 @@
 <c74object name="fl.makestring~" module="FrameLib" category="FrameLib Parameters">
-  <digest> 
-        Creates a tagged string by concatenating strings and numbers.
-    </digest>
-  <description> 
-        Items for concatenatation are set as parameters and can be altered dynamically. Numeric inputs are indicated as in1 to inx (where x is the number of inputs created). Only a single number is read from each input, interpreted as an integer. Numbers can be optionally zero-padded. The number of items to concatenate can be set explicitly by parameter. Alternatively, it can be set implicitly by the item parameters present at instantiation.
-    </description>
+  <digest>
+    Creates a tagged string by concatenating strings and numbers.
+  </digest>
+  <description>
+    Items for concatenatation are set as parameters and can be altered dynamically. Numeric inputs are indicated as in1 to inx (where x is the number of inputs created). Only a single number is read from each input, interpreted as an integer. Numbers can be optionally zero-padded. The number of items to concatenate can be set explicitly by parameter. Alternatively, it can be set implicitly by the item parameters present at instantiation.
+  </description>
   <misc name="Parameters">
     <entry name="/num_items [instantiation int]">
-      <description> 
-                Sets the number of items.
-            </description>
+      <description>
+        Sets the number of items.
+      </description>
     </entry>
     <entry name="/tag [string]">
-      <description> 
-                Sets the output tag.
-            </description>
+      <description>
+        Sets the output tag.
+      </description>
     </entry>
     <entry name="/trigger_ins [instantiation variable length bool array]">
-      <description> 
-                Sets which inputs trigger output using an array of bools.<br/>By default all inputs trigger output.
-            </description>
+      <description>
+        Sets which inputs trigger output using an array of bools.<br/>By default all inputs trigger output.
+      </description>
     </entry>
     <entry name="/padding [variable length int array]">
-      <description> 
-                Sets the zero padding for each input using an array of integers.<br/>By default there is no zero padding.
-            </description>
+      <description>
+        Sets the zero padding for each input using an array of integers.<br/>By default there is no zero padding.
+      </description>
     </entry>
     <entry name="/item_01 [string]">
-      <description> 
-                Sets the string or input for item 1.
-            </description>
+      <description>
+        Sets the string or input for item 1.
+      </description>
     </entry>
   </misc>
   <metadatalist>
@@ -39,20 +39,20 @@
   </metadatalist>
   <objarglist>
     <objarg name="tag" optional="1" type="symbol">
-      <digest> 
-                Sets the output tag
-            </digest>
-      <description> 
-                Sets the output tag.
-            </description>
+      <digest>
+        Sets the output tag
+      </digest>
+      <description>
+        Sets the output tag.
+      </description>
     </objarg>
     <objarg name="item_01" optional="1" type="symbol">
-      <digest> 
-                Sets the string or input for item 1
-            </digest>
-      <description> 
-                Sets the string or input for item 1.
-            </description>
+      <digest>
+        Sets the string or input for item 1
+      </digest>
+      <description>
+        Sets the string or input for item 1.
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -60,65 +60,65 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
       </attributelist>
     </attribute>
   </attributelist>
-  <seealsolist> 
-    </seealsolist>
+  <seealsolist>
+  </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">
-      <description> 
-                boilerplate keywords
-            </description>
+      <description>
+        boilerplate keywords
+      </description>
     </entry>
   </misc>
 </c74object>

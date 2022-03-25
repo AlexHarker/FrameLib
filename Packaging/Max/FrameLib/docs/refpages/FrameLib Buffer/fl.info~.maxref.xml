@@ -1,19 +1,19 @@
 <c74object name="fl.info~" module="FrameLib" category="FrameLib Buffer">
-  <digest> 
-        Outputs the sample rate, number of channels and length of a specified buffer.
-    </digest>
-  <description> 
-        The units for reporting length can be set with the units parameter. If the named buffer is not found all outputs are given as zero.
-    </description>
+  <digest>
+    Outputs the sample rate, number of channels and length of a specified buffer.
+  </digest>
+  <description>
+    The units for reporting length can be set with the units parameter. If the named buffer is not found all outputs are given as zero.
+  </description>
   <misc name="Parameters">
     <entry name="/buffer [string]">
-      <description> 
-                Sets the buffer to use.
-            </description>
+      <description>
+        Sets the buffer to use.
+      </description>
     </entry>
     <entry name="/units [enum]">
-      <description> 
-                Sets the units for reporting the length of the buffer.<br />
+      <description>
+        Sets the units for reporting the length of the buffer.<br />
         <bullet>[0] - samples</bullet>
         <bullet>[1] - ms</bullet>
         <bullet>[2] - seconds</bullet>
@@ -27,20 +27,20 @@
   </metadatalist>
   <objarglist>
     <objarg name="buffer" optional="1" type="symbol">
-      <digest> 
-                Sets the buffer to use
-            </digest>
-      <description> 
-                Sets the buffer to use.
-            </description>
+      <digest>
+        Sets the buffer to use
+      </digest>
+      <description>
+        Sets the buffer to use.
+      </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
-      <digest> 
-                Sets the units for reporting the length of the buffer
-            </digest>
-      <description> 
-                Sets the units for reporting the length of the buffer.
-            </description>
+      <digest>
+        Sets the units for reporting the length of the buffer
+      </digest>
+      <description>
+        Sets the units for reporting the length of the buffer.
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -48,52 +48,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

@@ -1,14 +1,14 @@
 <c74object name="fl.samplerate~" module="FrameLib" category="FrameLib Mapping">
-  <digest> 
-        Convert or output values based on the sample rate.
-    </digest>
-  <description> 
-        For output modes the output is a single value. For conversion modes the size matches the input size. The sample rate or the nyquist frequency can be requested. Alternatively, a number of sample rate related conversions are offered.
-    </description>
+  <digest>
+    Convert or output values based on the sample rate.
+  </digest>
+  <description>
+    For output modes the output is a single value. For conversion modes the size matches the input size. The sample rate or the nyquist frequency can be requested. Alternatively, a number of sample rate related conversions are offered.
+  </description>
   <misc name="Parameters">
     <entry name="/mode [enum]">
-      <description> 
-                Sets the type of conversion or value to output:<br/><br/>rate - output the sample rate in Hz.<br/>nyquist - output the nyquist frequency in Hz.<br/>samples-ms - convert from samples to milliseconds.<br/>samples-seconds - convert from samples to seconds.<br/>ms-samples - convert from milliseconds to samples.<br/>seconds-samples - convert from seconds to samples.<br/>normalised-hz - convert from normalised frequency to frequency in Hz.<br/>h-normalised - convert from frequency in Hz to normalised frequency.<br />
+      <description>
+        Sets the type of conversion or value to output:<br/><br/>rate - output the sample rate in Hz.<br/>nyquist - output the nyquist frequency in Hz.<br/>samples-ms - convert from samples to milliseconds.<br/>samples-seconds - convert from samples to seconds.<br/>ms-samples - convert from milliseconds to samples.<br/>seconds-samples - convert from seconds to samples.<br/>normalised-hz - convert from normalised frequency to frequency in Hz.<br/>h-normalised - convert from frequency in Hz to normalised frequency.<br />
         <bullet>[0] - rate</bullet>
         <bullet>[1] - nyquist</bullet>
         <bullet>[2] - samples-&gt;ms</bullet>
@@ -20,8 +20,8 @@
       </description>
     </entry>
     <entry name="/normalisation [enum]">
-      <description> 
-                Sets the reference point for normalised frequency:<br/><br/>rate - [0 - 1] is equivalent to [0 - sample rate].<br/>nyquist - [0 - 1] is equivalent to [0 - nyquist].<br />
+      <description>
+        Sets the reference point for normalised frequency:<br/><br/>rate - [0 - 1] is equivalent to [0 - sample rate].<br/>nyquist - [0 - 1] is equivalent to [0 - nyquist].<br />
         <bullet>[0] - full</bullet>
         <bullet>[1] - nyquist</bullet>
       </description>
@@ -34,22 +34,22 @@
   </metadatalist>
   <objarglist>
     <objarg name="mode" optional="1" type="symbol">
-      <digest> 
-                Sets the type of conversion or value to output
-            </digest>
-      <description> 
-                Sets the type of conversion or value to output:<br />
+      <digest>
+        Sets the type of conversion or value to output
+      </digest>
+      <description>
+        Sets the type of conversion or value to output:<br />
         <br />rate - output the sample rate in Hz.<br />nyquist - output the nyquist frequency in Hz.<br />samples-ms - convert from samples to milliseconds.<br />samples-seconds - convert from samples to seconds.<br />ms-samples - convert from milliseconds to samples.<br />seconds-samples - convert from seconds to samples.<br />normalised-hz - convert from normalised frequency to frequency in Hz.<br />h-normalised - convert from frequency in Hz to normalised frequency.
-            </description>
+      </description>
     </objarg>
     <objarg name="normalisation" optional="1" type="symbol">
-      <digest> 
-                Sets the reference point for normalised frequency
-            </digest>
-      <description> 
-                Sets the reference point for normalised frequency:<br />
+      <digest>
+        Sets the reference point for normalised frequency
+      </digest>
+      <description>
+        Sets the reference point for normalised frequency:<br />
         <br />rate - [0 - 1] is equivalent to [0 - sample rate].<br />nyquist - [0 - 1] is equivalent to [0 - nyquist].
-            </description>
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -57,52 +57,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

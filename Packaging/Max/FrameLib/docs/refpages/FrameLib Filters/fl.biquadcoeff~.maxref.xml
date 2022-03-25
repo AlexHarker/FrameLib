@@ -1,29 +1,29 @@
 <c74object name="fl.biquadcoeff~" module="FrameLib" category="FrameLib Filters">
-  <digest> 
-        Calculates biquad filter coefficients.
-    </digest>
-  <description> 
-        The filter mode is set by the mode parameter. Filter settings may be made either via parameters or per sample via inputs. The type of input and output is determined by the coefficients parameter. If set to dynamic then inputs are created for per sample values. Output will be at least one sample or as long as the longest input frame. Frames of per sample values are padded to length with their final value if required. Additional values are ignored. In this mode the parameter value is used if no corresponding input is provided. Thus, per sample values and parameters can be mixed. If coefficients is set to tagged then a single frame of tagged output is output. In tagged mode and static mode filter settings are made via parameters only. In static mode each output is a single value.
-    </description>
+  <digest>
+    Calculates biquad filter coefficients.
+  </digest>
+  <description>
+    The filter mode is set by the mode parameter. Filter settings may be made either via parameters or per sample via inputs. The type of input and output is determined by the coefficients parameter. If set to dynamic then inputs are created for per sample values. Output will be at least one sample or as long as the longest input frame. Frames of per sample values are padded to length with their final value if required. Additional values are ignored. In this mode the parameter value is used if no corresponding input is provided. Thus, per sample values and parameters can be mixed. If coefficients is set to tagged then a single frame of tagged output is output. In tagged mode and static mode filter settings are made via parameters only. In static mode each output is a single value.
+  </description>
   <misc name="Parameters">
     <entry name="/freq [double]">
-      <description> 
-                Sets the filter frequency.
-            </description>
+      <description>
+        Sets the filter frequency.
+      </description>
     </entry>
     <entry name="/gain [double]">
-      <description> 
-                Sets the linear gain of the filter.
-            </description>
+      <description>
+        Sets the linear gain of the filter.
+      </description>
     </entry>
     <entry name="/qs [double]">
-      <description> 
-                Sets the q or s of the filter.
-            </description>
+      <description>
+        Sets the q or s of the filter.
+      </description>
     </entry>
     <entry name="/mode [enum]">
-      <description> 
-                Sets the filter mode:<br/><br/>lowpass - low pass.<br/>bandpass - band pass.<br/>highpass - high pass.<br/>peaknotch - peak notch.<br/>resonant - resonant.<br/>notch - band reject.<br/>lowshelf - low shelf.<br/>highshelf - high shelf.<br />
+      <description>
+        Sets the filter mode:<br/><br/>lowpass - low pass.<br/>bandpass - band pass.<br/>highpass - high pass.<br/>peaknotch - peak notch.<br/>resonant - resonant.<br/>notch - band reject.<br/>lowshelf - low shelf.<br/>highshelf - high shelf.<br />
         <bullet>[0] - lowpass</bullet>
         <bullet>[1] - bandpass</bullet>
         <bullet>[2] - highpass</bullet>
@@ -35,8 +35,8 @@
       </description>
     </entry>
     <entry name="/coefficients [instantiation enum]">
-      <description> 
-                Sets the coefficients input and output modes.<br/>static - settings are made via parameters with single value outputs.<br/>dynamic - settings are made via inputs or parameters with output as vectors.<br/>tagged - settings are made via parameters with output as a tagged frame.<br />
+      <description>
+        Sets the coefficients input and output modes.<br/>static - settings are made via parameters with single value outputs.<br/>dynamic - settings are made via inputs or parameters with output as vectors.<br/>tagged - settings are made via parameters with output as a tagged frame.<br />
         <bullet>[0] - static</bullet>
         <bullet>[1] - dynamic</bullet>
         <bullet>[2] - tagged</bullet>
@@ -50,37 +50,37 @@
   </metadatalist>
   <objarglist>
     <objarg name="freq" optional="1" type="number">
-      <digest> 
-                Sets the filter frequency
-            </digest>
-      <description> 
-                Sets the filter frequency.
-            </description>
+      <digest>
+        Sets the filter frequency
+      </digest>
+      <description>
+        Sets the filter frequency.
+      </description>
     </objarg>
     <objarg name="gain" optional="1" type="number">
-      <digest> 
-                Sets the linear gain of the filter
-            </digest>
-      <description> 
-                Sets the linear gain of the filter.
-            </description>
+      <digest>
+        Sets the linear gain of the filter
+      </digest>
+      <description>
+        Sets the linear gain of the filter.
+      </description>
     </objarg>
     <objarg name="qs" optional="1" type="number">
-      <digest> 
-                Sets the q or s of the filter
-            </digest>
-      <description> 
-                Sets the q or s of the filter.
-            </description>
+      <digest>
+        Sets the q or s of the filter
+      </digest>
+      <description>
+        Sets the q or s of the filter.
+      </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">
-      <digest> 
-                Sets the filter mode
-            </digest>
-      <description> 
-                Sets the filter mode:<br />
+      <digest>
+        Sets the filter mode
+      </digest>
+      <description>
+        Sets the filter mode:<br />
         <br />lowpass - low pass.<br />bandpass - band pass.<br />highpass - high pass.<br />peaknotch - peak notch.<br />resonant - resonant.<br />notch - band reject.<br />lowshelf - low shelf.<br />highshelf - high shelf.
-            </description>
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -88,52 +88,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

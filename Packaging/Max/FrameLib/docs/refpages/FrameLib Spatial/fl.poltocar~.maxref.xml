@@ -1,21 +1,21 @@
 <c74object name="fl.poltocar~" module="FrameLib" category="FrameLib Spatial">
-  <digest> 
-        Converts from polar values at the inputs to cartesian values at the outputs.
-    </digest>
-  <description> 
-        Conversion may be in 2D or 3D (using spherical coordinates). The outputs are frames of the same length as the longest input. Shorter inputs are padded with zeros prior to conversion.
-    </description>
+  <digest>
+    Converts from polar values at the inputs to cartesian values at the outputs.
+  </digest>
+  <description>
+    Conversion may be in 2D or 3D (using spherical coordinates). The outputs are frames of the same length as the longest input. Shorter inputs are padded with zeros prior to conversion.
+  </description>
   <misc name="Parameters">
     <entry name="/dimensions [instantiation enum]">
-      <description> 
-                Sets the number of dimensions (and hence inputs and outputs).<br />
+      <description>
+        Sets the number of dimensions (and hence inputs and outputs).<br />
         <bullet>[0] - 2D</bullet>
         <bullet>[1] - 3D</bullet>
       </description>
     </entry>
     <entry name="/angles [instantiation enum]">
-      <description> 
-                Sets the units used for angles.<br />
+      <description>
+        Sets the units used for angles.<br />
         <bullet>[0] - radians</bullet>
         <bullet>[1] - degrees</bullet>
       </description>
@@ -28,20 +28,20 @@
   </metadatalist>
   <objarglist>
     <objarg name="dimensions" optional="1" type="symbol">
-      <digest> 
-                Sets the number of dimensions (and hence inputs and outputs)
-            </digest>
-      <description> 
-                Sets the number of dimensions (and hence inputs and outputs).
-            </description>
+      <digest>
+        Sets the number of dimensions (and hence inputs and outputs)
+      </digest>
+      <description>
+        Sets the number of dimensions (and hence inputs and outputs).
+      </description>
     </objarg>
     <objarg name="angles" optional="1" type="symbol">
-      <digest> 
-                Sets the units used for angles
-            </digest>
-      <description> 
-                Sets the units used for angles.
-            </description>
+      <digest>
+        Sets the units used for angles
+      </digest>
+      <description>
+        Sets the units used for angles.
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -49,52 +49,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

@@ -1,30 +1,30 @@
 <c74object name="fl.dispatch~" module="FrameLib" category="FrameLib Routing">
-  <digest> 
-        Dispatches multiple inputs dynamically to multiple outputs.
-    </digest>
-  <description> 
-        Each output can be independently connected to any one input. The number of inputs and outputs is variable. The selected input for each output is changed with a parameter.
-    </description>
+  <digest>
+    Dispatches multiple inputs dynamically to multiple outputs.
+  </digest>
+  <description>
+    Each output can be independently connected to any one input. The number of inputs and outputs is variable. The selected input for each output is changed with a parameter.
+  </description>
   <misc name="Parameters">
     <entry name="/num_ins [instantiation double]">
-      <description> 
-                Sets the number of inputs.
-            </description>
+      <description>
+        Sets the number of inputs.
+      </description>
     </entry>
     <entry name="/num_outs [instantiation double]">
-      <description> 
-                Sets the number of outputs.
-            </description>
+      <description>
+        Sets the number of outputs.
+      </description>
     </entry>
     <entry name="/input_01 [int]">
-      <description> 
-                Sets the current input for output 1 counting from 1 (off if out of range).
-            </description>
+      <description>
+        Sets the current input for output 1 counting from 1 (off if out of range).
+      </description>
     </entry>
     <entry name="/input_02 [int]">
-      <description> 
-                Sets the current input for output 2 counting from 1 (off if out of range).
-            </description>
+      <description>
+        Sets the current input for output 2 counting from 1 (off if out of range).
+      </description>
     </entry>
   </misc>
   <metadatalist>
@@ -34,20 +34,20 @@
   </metadatalist>
   <objarglist>
     <objarg name="num_ins" optional="1" type="number">
-      <digest> 
-                Sets the number of inputs
-            </digest>
-      <description> 
-                Sets the number of inputs.
-            </description>
+      <digest>
+        Sets the number of inputs
+      </digest>
+      <description>
+        Sets the number of inputs.
+      </description>
     </objarg>
     <objarg name="num_outs" optional="1" type="number">
-      <digest> 
-                Sets the number of outputs
-            </digest>
-      <description> 
-                Sets the number of outputs.
-            </description>
+      <digest>
+        Sets the number of outputs
+      </digest>
+      <description>
+        Sets the number of outputs.
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -55,52 +55,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

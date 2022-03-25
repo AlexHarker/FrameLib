@@ -1,31 +1,31 @@
 <c74object name="fl.uniform~" module="FrameLib" category="FrameLib Generators">
-  <digest> 
-        Generates frames in which all values are identical.
-    </digest>
-  <description> 
-        The output value is set with a parameter. The length of the output is dependent on the mode parameter. Output length may be set by parameter or based on that of the trigger input.
-    </description>
+  <digest>
+    Generates frames in which all values are identical.
+  </digest>
+  <description>
+    The output value is set with a parameter. The length of the output is dependent on the mode parameter. Output length may be set by parameter or based on that of the trigger input.
+  </description>
   <misc name="Parameters">
     <entry name="/value [double]">
-      <description> 
-                Sets the value to output.
-            </description>
+      <description>
+        Sets the value to output.
+      </description>
     </entry>
     <entry name="/mode [enum]">
-      <description> 
-                Controls how the output length is determined:<br/><br/>requested - the output length is set by the length parameter.<br/>input - the output length follows the length of the trigger input.<br />
+      <description>
+        Controls how the output length is determined:<br/><br/>requested - the output length is set by the length parameter.<br/>input - the output length follows the length of the trigger input.<br />
         <bullet>[0] - requested</bullet>
         <bullet>[1] - input</bullet>
       </description>
     </entry>
     <entry name="/length [int]">
-      <description> 
-                Sets the requested output length in the units specified by the units parameter.
-            </description>
+      <description>
+        Sets the requested output length in the units specified by the units parameter.
+      </description>
     </entry>
     <entry name="/units [enum]">
-      <description> 
-                Sets the units used for the length parameter.<br />
+      <description>
+        Sets the units used for the length parameter.<br />
         <bullet>[0] - samples</bullet>
         <bullet>[1] - ms</bullet>
         <bullet>[2] - seconds</bullet>
@@ -39,37 +39,37 @@
   </metadatalist>
   <objarglist>
     <objarg name="value" optional="1" type="number">
-      <digest> 
-                Sets the value to output
-            </digest>
-      <description> 
-                Sets the value to output.
-            </description>
+      <digest>
+        Sets the value to output
+      </digest>
+      <description>
+        Sets the value to output.
+      </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">
-      <digest> 
-                Controls how the output length is determined
-            </digest>
-      <description> 
-                Controls how the output length is determined:<br />
+      <digest>
+        Controls how the output length is determined
+      </digest>
+      <description>
+        Controls how the output length is determined:<br />
         <br />requested - the output length is set by the length parameter.<br />input - the output length follows the length of the trigger input.
-            </description>
+      </description>
     </objarg>
     <objarg name="length" optional="1" type="int">
-      <digest> 
-                Sets the requested output length in the units specified by the units parameter
-            </digest>
-      <description> 
-                Sets the requested output length in the units specified by the units parameter.
-            </description>
+      <digest>
+        Sets the requested output length in the units specified by the units parameter
+      </digest>
+      <description>
+        Sets the requested output length in the units specified by the units parameter.
+      </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
-      <digest> 
-                Sets the units used for the length parameter
-            </digest>
-      <description> 
-                Sets the units used for the length parameter.
-            </description>
+      <digest>
+        Sets the units used for the length parameter
+      </digest>
+      <description>
+        Sets the units used for the length parameter.
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -77,52 +77,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

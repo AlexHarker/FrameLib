@@ -1,14 +1,14 @@
 <c74object name="fl.notequals~" module="FrameLib" category="FrameLib Binary">
-  <digest> 
-        Compares frame values for inequality (returns 1 or 0).
-    </digest>
-  <description> 
-        Calculation is performed on pairs of values in turn. The output is a frame at least as long as the smaller of the two inputs. If inputs mismatch in length the result depends on the mismatch parameter. Either or both inputs may be set to trigger output.
-    </description>
+  <digest>
+    Compares frame values for inequality (returns 1 or 0).
+  </digest>
+  <description>
+    Calculation is performed on pairs of values in turn. The output is a frame at least as long as the smaller of the two inputs. If inputs mismatch in length the result depends on the mismatch parameter. Either or both inputs may be set to trigger output.
+  </description>
   <misc name="Parameters">
     <entry name="/mismatch [instantiation enum]">
-      <description> 
-                Sets the mode used when dealing with mismatched input lengths:<br/><br/>wrap - the smaller input is read modulo against the larger input.<br/>shrink - the output length is set to that of the smaller input.<br/>pad_in - the smaller input is padded prior to calculation to match the larger input.<br/>pad_out - the output is padded to match the length of the larger input.<br />
+      <description>
+        Sets the mode used when dealing with mismatched input lengths:<br/><br/>wrap - the smaller input is read modulo against the larger input.<br/>shrink - the output length is set to that of the smaller input.<br/>pad_in - the smaller input is padded prior to calculation to match the larger input.<br/>pad_out - the output is padded to match the length of the larger input.<br />
         <bullet>[0] - wrap</bullet>
         <bullet>[1] - shrink</bullet>
         <bullet>[2] - pad_in</bullet>
@@ -16,17 +16,17 @@
       </description>
     </entry>
     <entry name="/trigger_ins [instantiation enum]">
-      <description> 
-                Sets which inputs trigger output.<br />
+      <description>
+        Sets which inputs trigger output.<br />
         <bullet>[0] - both</bullet>
         <bullet>[1] - left</bullet>
         <bullet>[2] - right</bullet>
       </description>
     </entry>
     <entry name="/pad [instantiation double]">
-      <description> 
-                Sets the value used for padding (for either pad_in or pad_out modes).
-            </description>
+      <description>
+        Sets the value used for padding (for either pad_in or pad_out modes).
+      </description>
     </entry>
   </misc>
   <metadatalist>
@@ -36,12 +36,12 @@
   </metadatalist>
   <objarglist>
     <objarg name="default-input" optional="1" type="list">
-      <digest> 
-                The input vector to use for any disconnected inputs
-            </digest>
-      <description> 
-                Values typed as arguments will be used as a vector for any inputs that are not connected. Either single values or multi-valued vectors can be entered. The behaviour is similar to that for arguments to standard objects such as +~, *~ or zl.reg.
-            </description>
+      <digest>
+        The input vector to use for any disconnected inputs
+      </digest>
+      <description>
+        Values typed as arguments will be used as a vector for any inputs that are not connected. Either single values or multi-valued vectors can be entered. The behaviour is similar to that for arguments to standard objects such as +~, *~ or zl.reg.
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -49,52 +49,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

@@ -1,14 +1,14 @@
 <c74object name="fl.trace~" module="FrameLib" category="FrameLib IO">
-  <digest> 
-        Outputs values from the input as audio, continuing the last value till a new frame arrives.
-    </digest>
-  <description> 
-        The mode parameter determines which value or values from the frame are output. This object is intended for passing control signals to the host environment at audio rate. The length of the internal buffer determines the maximum frame length for full output. Output suffers no latency but an optional delay may be added if desired. If a delay is applied then the maximum frame length will be reduced by the delay time.
-    </description>
+  <digest>
+    Outputs values from the input as audio, continuing the last value till a new frame arrives.
+  </digest>
+  <description>
+    The mode parameter determines which value or values from the frame are output. This object is intended for passing control signals to the host environment at audio rate. The length of the internal buffer determines the maximum frame length for full output. Output suffers no latency but an optional delay may be added if desired. If a delay is applied then the maximum frame length will be reduced by the delay time.
+  </description>
   <misc name="Parameters">
     <entry name="/mode [enum]">
-      <description> 
-                Sets the mode used for output:<br/><br/>full - outputs the entire frame in full.<br/>first - output the first sample of the frame only.<br/>last - output the last sample of the frame only.<br/>specified - output the sample specified by index using the position parameter.<br/>ratio - output the sample specified by the position parameter as a ratio of the frame length.<br />
+      <description>
+        Sets the mode used for output:<br/><br/>full - outputs the entire frame in full.<br/>first - output the first sample of the frame only.<br/>last - output the last sample of the frame only.<br/>specified - output the sample specified by index using the position parameter.<br/>ratio - output the sample specified by the position parameter as a ratio of the frame length.<br />
         <bullet>[0] - full</bullet>
         <bullet>[1] - first</bullet>
         <bullet>[2] - last</bullet>
@@ -17,27 +17,27 @@
       </description>
     </entry>
     <entry name="/buffer_size [instantiation double]">
-      <description> 
-                Sets the internal buffer size in the units specified by the units parameter.
-            </description>
+      <description>
+        Sets the internal buffer size in the units specified by the units parameter.
+      </description>
     </entry>
     <entry name="/units [instantiation enum]">
-      <description> 
-                Sets the time units used to determine the buffer size and delay.<br />
+      <description>
+        Sets the time units used to determine the buffer size and delay.<br />
         <bullet>[0] - samples</bullet>
         <bullet>[1] - ms</bullet>
         <bullet>[2] - seconds</bullet>
       </description>
     </entry>
     <entry name="/position [double]">
-      <description> 
-                Sets the position of the output sample in specified or ratio mode.<br/>Note that positions out of range will be clipped tp the input frame (to the first or last position).
-            </description>
+      <description>
+        Sets the position of the output sample in specified or ratio mode.<br/>Note that positions out of range will be clipped tp the input frame (to the first or last position).
+      </description>
     </entry>
     <entry name="/delay [double]">
-      <description> 
-                Sets the output delay in the units specified by the units parameter.
-            </description>
+      <description>
+        Sets the output delay in the units specified by the units parameter.
+      </description>
     </entry>
   </misc>
   <metadatalist>
@@ -47,29 +47,29 @@
   </metadatalist>
   <objarglist>
     <objarg name="mode" optional="1" type="symbol">
-      <digest> 
-                Sets the mode used for output
-            </digest>
-      <description> 
-                Sets the mode used for output:<br />
+      <digest>
+        Sets the mode used for output
+      </digest>
+      <description>
+        Sets the mode used for output:<br />
         <br />full - outputs the entire frame in full.<br />first - output the first sample of the frame only.<br />last - output the last sample of the frame only.<br />specified - output the sample specified by index using the position parameter.<br />ratio - output the sample specified by the position parameter as a ratio of the frame length.
-            </description>
+      </description>
     </objarg>
     <objarg name="buffer_size" optional="1" type="number">
-      <digest> 
-                Sets the internal buffer size in the units specified by the units parameter
-            </digest>
-      <description> 
-                Sets the internal buffer size in the units specified by the units parameter.
-            </description>
+      <digest>
+        Sets the internal buffer size in the units specified by the units parameter
+      </digest>
+      <description>
+        Sets the internal buffer size in the units specified by the units parameter.
+      </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
-      <digest> 
-                Sets the time units used to determine the buffer size and delay
-            </digest>
-      <description> 
-                Sets the time units used to determine the buffer size and delay.
-            </description>
+      <digest>
+        Sets the time units used to determine the buffer size and delay
+      </digest>
+      <description>
+        Sets the time units used to determine the buffer size and delay.
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -77,95 +77,95 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="process">
       <arglist>
         <arg name="length" optional="0" type="int" />
       </arglist>
-      <digest> 
-                Process in non-realtime
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Process in non-realtime
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="reset">
       <arglist>
         <arg name="samplerate" optional="1" type="number" />
       </arglist>
-      <digest> 
-                Reset a non-realtime network
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Reset a non-realtime network
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="signal">
       <arglist />
-      <digest> 
-                Synchronise with audio or accept signal IO
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Synchronise with audio or accept signal IO
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="buffer" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Non-realtime Buffer
-            </digest>
-      <description> 
-                Sets the non-realtime buffer for this object
-            </description>
+      <digest>
+        Non-realtime Buffer
+      </digest>
+      <description>
+        Sets the non-realtime buffer for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Buffer" />
       </attributelist>
     </attribute>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

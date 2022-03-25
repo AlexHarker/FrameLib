@@ -1,39 +1,39 @@
 <c74object name="fl.lookupstring~" module="FrameLib" category="FrameLib Parameters">
-  <digest> 
-        Lookup a specified string from an internally stored list of strings.
-    </digest>
-  <description> 
-        The string can be specified by index or normalised value. The first number at the input is used to specify the string. The number of stored items can be set explicitly by parameter. Alternatively, it can be set implicitly by the parameters present at instantiation. Items may be dynamically updated by parameter. 
-    </description>
+  <digest>
+    Lookup a specified string from an internally stored list of strings.
+  </digest>
+  <description>
+    The string can be specified by index or normalised value. The first number at the input is used to specify the string. The number of stored items can be set explicitly by parameter. Alternatively, it can be set implicitly by the parameters present at instantiation. Items may be dynamically updated by parameter. 
+  </description>
   <misc name="Parameters">
     <entry name="/num_items [instantiation int]">
-      <description> 
-                Sets the number of items.
-            </description>
+      <description>
+        Sets the number of items.
+      </description>
     </entry>
     <entry name="/tag [string]">
-      <description> 
-                Sets the output tag.
-            </description>
+      <description>
+        Sets the output tag.
+      </description>
     </entry>
     <entry name="/scale [enum]">
-      <description> 
-                Sets the input scale:<br/><br/>indices - string lookup is done by index.<br/>normalised - string lookup is done by normalised value.<br />
+      <description>
+        Sets the input scale:<br/><br/>indices - string lookup is done by index.<br/>normalised - string lookup is done by normalised value.<br />
         <bullet>[0] - indices</bullet>
         <bullet>[1] - normalised</bullet>
       </description>
     </entry>
     <entry name="/empty [enum]">
-      <description> 
-                Sets the behaviour when empty frames are received:<br/><br/>ignore - empty frames are ignored.<br/>reset - empty frames create empty tags to reset parameters to defaults.<br />
+      <description>
+        Sets the behaviour when empty frames are received:<br/><br/>ignore - empty frames are ignored.<br/>reset - empty frames create empty tags to reset parameters to defaults.<br />
         <bullet>[0] - ignore</bullet>
         <bullet>[1] - reset</bullet>
       </description>
     </entry>
     <entry name="/items_01 [string]">
-      <description> 
-                Sets the string for item 1.
-            </description>
+      <description>
+        Sets the string for item 1.
+      </description>
     </entry>
   </misc>
   <metadatalist>
@@ -43,20 +43,20 @@
   </metadatalist>
   <objarglist>
     <objarg name="tag" optional="1" type="symbol">
-      <digest> 
-                Sets the output tag
-            </digest>
-      <description> 
-                Sets the output tag.
-            </description>
+      <digest>
+        Sets the output tag
+      </digest>
+      <description>
+        Sets the output tag.
+      </description>
     </objarg>
     <objarg name="items_01" optional="1" type="symbol">
-      <digest> 
-                Sets the string for item 1
-            </digest>
-      <description> 
-                Sets the string for item 1.
-            </description>
+      <digest>
+        Sets the string for item 1
+      </digest>
+      <description>
+        Sets the string for item 1.
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -64,65 +64,65 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
       </attributelist>
     </attribute>
   </attributelist>
-  <seealsolist> 
-    </seealsolist>
+  <seealsolist>
+  </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">
-      <description> 
-                boilerplate keywords
-            </description>
+      <description>
+        boilerplate keywords
+      </description>
     </entry>
   </misc>
 </c74object>

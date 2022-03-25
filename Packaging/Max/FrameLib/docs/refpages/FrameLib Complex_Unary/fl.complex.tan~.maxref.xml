@@ -1,15 +1,15 @@
 <c74object name="fl.complex.tan~" module="FrameLib" category="FrameLib Complex_Unary">
-  <digest> 
-        Calculates the tangent of each complex value at the inputs.
-    </digest>
-  <description> 
-        Both input and output are split into real and imaginary parts. The outputs are frames of the same length as the longer of the two inputs. If inputs are mismatched then the shorter input is padded with zeros.
-    </description>
+  <digest>
+    Calculates the tangent of each complex value at the inputs.
+  </digest>
+  <description>
+    Both input and output are split into real and imaginary parts. The outputs are frames of the same length as the longer of the two inputs. If inputs are mismatched then the shorter input is padded with zeros.
+  </description>
   <misc name="Parameters">
     <entry>
-      <description> 
-                This object has no parameters.<br/>
-            </description>
+      <description>
+        This object has no parameters.<br/>
+      </description>
     </entry>
   </misc>
   <metadatalist>
@@ -23,52 +23,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

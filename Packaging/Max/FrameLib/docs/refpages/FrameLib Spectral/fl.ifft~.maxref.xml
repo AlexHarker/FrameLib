@@ -1,24 +1,24 @@
 <c74object name="fl.ifft~" module="FrameLib" category="FrameLib Spectral">
-  <digest> 
-        Calculate the real or complex inverse Fast Fourier Transform of the inputs (real and imaginary).
-    </digest>
-  <description> 
-        All FFTs use a power of two size, with zero-padding applied at the inputs if necessary. The expected input lengths depend on the mode parameter. The mode selects either real or complex iFFTs and also the input and the output type. In complex mode, real and imaginary values are output as separate frames.
-    </description>
+  <digest>
+    Calculate the real or complex inverse Fast Fourier Transform of the inputs (real and imaginary).
+  </digest>
+  <description>
+    All FFTs use a power of two size, with zero-padding applied at the inputs if necessary. The expected input lengths depend on the mode parameter. The mode selects either real or complex iFFTs and also the input and the output type. In complex mode, real and imaginary values are output as separate frames.
+  </description>
   <misc name="Parameters">
     <entry name="/max_length [instantiation int]">
-      <description> 
-                Sets the maximum output length and FFT size.
-            </description>
+      <description>
+        Sets the maximum output length and FFT size.
+      </description>
     </entry>
     <entry name="/normalise [instantiation bool]">
-      <description> 
-                Sets normalisation on or off (such that a full-scale real sine wave has an amplitude of 1).
-            </description>
+      <description>
+        Sets normalisation on or off (such that a full-scale real sine wave has an amplitude of 1).
+      </description>
     </entry>
     <entry name="/mode [instantiation enum]">
-      <description> 
-                Sets the type of output produced and the input expected:<br/><br/>real - real output (power of two length) for input without reflection (length is N / 2 + 1).<br/>complex - complex output (two frames) with the same (power of two) input and output lengths.<br/>full_spectrum - real output for input of the same (power of two) length input.<br/>Note that in full_spectrum mode correct spectral reflection is expected and thus ignored.<br />
+      <description>
+        Sets the type of output produced and the input expected:<br/><br/>real - real output (power of two length) for input without reflection (length is N / 2 + 1).<br/>complex - complex output (two frames) with the same (power of two) input and output lengths.<br/>full_spectrum - real output for input of the same (power of two) length input.<br/>Note that in full_spectrum mode correct spectral reflection is expected and thus ignored.<br />
         <bullet>[0] - real</bullet>
         <bullet>[1] - complex</bullet>
         <bullet>[2] - full_spectrum</bullet>
@@ -32,29 +32,29 @@
   </metadatalist>
   <objarglist>
     <objarg name="max_length" optional="1" type="int">
-      <digest> 
-                Sets the maximum output length and FFT size
-            </digest>
-      <description> 
-                Sets the maximum output length and FFT size.
-            </description>
+      <digest>
+        Sets the maximum output length and FFT size
+      </digest>
+      <description>
+        Sets the maximum output length and FFT size.
+      </description>
     </objarg>
     <objarg name="normalise" optional="1" type="number">
-      <digest> 
-                Sets normalisation on or off (such that a full-scale real sine wave has an amplitude of 1)
-            </digest>
-      <description> 
-                Sets normalisation on or off (such that a full-scale real sine wave has an amplitude of 1).
-            </description>
+      <digest>
+        Sets normalisation on or off (such that a full-scale real sine wave has an amplitude of 1)
+      </digest>
+      <description>
+        Sets normalisation on or off (such that a full-scale real sine wave has an amplitude of 1).
+      </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">
-      <digest> 
-                Sets the type of output produced and the input expected
-            </digest>
-      <description> 
-                Sets the type of output produced and the input expected:<br />
+      <digest>
+        Sets the type of output produced and the input expected
+      </digest>
+      <description>
+        Sets the type of output produced and the input expected:<br />
         <br />real - real output (power of two length) for input without reflection (length is N / 2 + 1).<br />complex - complex output (two frames) with the same (power of two) input and output lengths.<br />full_spectrum - real output for input of the same (power of two) length input.<br />Note that in full_spectrum mode correct spectral reflection is expected and thus ignored.
-            </description>
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -62,52 +62,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />

@@ -1,31 +1,31 @@
 <c74object name="fl.ticks~" module="FrameLib" category="FrameLib Timing">
-  <digest> 
-        Counts incoming frames.
-    </digest>
-  <description> 
-        Counting is between zero and one less than the limit parameter. Counting can be either up or down. Couting can be run (once), looped, paused or stopped. Triggers at the reset input set the count to the value of the reset parameter.
-    </description>
+  <digest>
+    Counts incoming frames.
+  </digest>
+  <description>
+    Counting is between zero and one less than the limit parameter. Counting can be either up or down. Couting can be run (once), looped, paused or stopped. Triggers at the reset input set the count to the value of the reset parameter.
+  </description>
   <misc name="Parameters">
     <entry name="/limit [int]">
-      <description> 
-                Sets the count limit.
-            </description>
+      <description>
+        Sets the count limit.
+      </description>
     </entry>
     <entry name="/direction [enum]">
-      <description> 
-                Sets the direction of counting.<br />
+      <description>
+        Sets the direction of counting.<br />
         <bullet>[0] - up</bullet>
         <bullet>[1] - down</bullet>
       </description>
     </entry>
     <entry name="/reset [int]">
-      <description> 
-                Sets the reset value.<br/>A value of -1 can be used for direction independent reset.<br/>This results in reset to 0 when counting up and (limit - 1) when counting down.
-            </description>
+      <description>
+        Sets the reset value.<br/>A value of -1 can be used for direction independent reset.<br/>This results in reset to 0 when counting up and (limit - 1) when counting down.
+      </description>
     </entry>
     <entry name="/mode [enum]">
-      <description> 
-                Sets the mode:<br/><br/>run - the count continues until it hits the limit or zero.<br/>loop - the count loops between zero and the limit minus one.<br/>pause - the count is paused until the mode is changed.<br/>stop - the count returns to the reset value until the mode is changed.<br />
+      <description>
+        Sets the mode:<br/><br/>run - the count continues until it hits the limit or zero.<br/>loop - the count loops between zero and the limit minus one.<br/>pause - the count is paused until the mode is changed.<br/>stop - the count returns to the reset value until the mode is changed.<br />
         <bullet>[0] - run</bullet>
         <bullet>[1] - loop</bullet>
         <bullet>[2] - pause</bullet>
@@ -33,8 +33,8 @@
       </description>
     </entry>
     <entry name="/idle [enum]">
-      <description> 
-                Sets the idle output (the output when stopped, paused or out of bounds):<br/><br/>repeat - repeat the current count.<br/>empty - output an empty frame.<br />
+      <description>
+        Sets the idle output (the output when stopped, paused or out of bounds):<br/><br/>repeat - repeat the current count.<br/>empty - output an empty frame.<br />
         <bullet>[0] - repeat</bullet>
         <bullet>[1] - empty</bullet>
       </description>
@@ -47,46 +47,46 @@
   </metadatalist>
   <objarglist>
     <objarg name="limit" optional="1" type="int">
-      <digest> 
-                Sets the count limit
-            </digest>
-      <description> 
-                Sets the count limit.
-            </description>
+      <digest>
+        Sets the count limit
+      </digest>
+      <description>
+        Sets the count limit.
+      </description>
     </objarg>
     <objarg name="direction" optional="1" type="symbol">
-      <digest> 
-                Sets the direction of counting
-            </digest>
-      <description> 
-                Sets the direction of counting.
-            </description>
+      <digest>
+        Sets the direction of counting
+      </digest>
+      <description>
+        Sets the direction of counting.
+      </description>
     </objarg>
     <objarg name="reset" optional="1" type="int">
-      <digest> 
-                Sets the reset value
-            </digest>
-      <description> 
-                Sets the reset value.<br />A value of -1 can be used for direction independent reset.<br />This results in reset to 0 when counting up and (limit - 1) when counting down.
-            </description>
+      <digest>
+        Sets the reset value
+      </digest>
+      <description>
+        Sets the reset value.<br />A value of -1 can be used for direction independent reset.<br />This results in reset to 0 when counting up and (limit - 1) when counting down.
+      </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">
-      <digest> 
-                Sets the mode
-            </digest>
-      <description> 
-                Sets the mode:<br />
+      <digest>
+        Sets the mode
+      </digest>
+      <description>
+        Sets the mode:<br />
         <br />run - the count continues until it hits the limit or zero.<br />loop - the count loops between zero and the limit minus one.<br />pause - the count is paused until the mode is changed.<br />stop - the count returns to the reset value until the mode is changed.
-            </description>
+      </description>
     </objarg>
     <objarg name="idle" optional="1" type="symbol">
-      <digest> 
-                Sets the idle output (the output when stopped, paused or out of bounds)
-            </digest>
-      <description> 
-                Sets the idle output (the output when stopped, paused or out of bounds):<br />
+      <digest>
+        Sets the idle output (the output when stopped, paused or out of bounds)
+      </digest>
+      <description>
+        Sets the idle output (the output when stopped, paused or out of bounds):<br />
         <br />repeat - repeat the current count.<br />empty - output an empty frame.
-            </description>
+      </description>
     </objarg>
   </objarglist>
   <methodlist>
@@ -94,52 +94,52 @@
       <arglist>
         <arg name="items" optional="1" type="list" />
       </arglist>
-      <digest> 
-                Get Object Info
-            </digest>
-      <description> 
-                --detail--
-            </description>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        --detail--
+      </description>
     </method>
     <method name="frame">
       <arglist />
-      <digest> 
-                Connect FrameLib objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
     <method name="sync">
       <arglist />
-      <digest> 
-                Synchronise FrameLib audio objects
-            </digest>
-      <description> 
-                Used internally by FrameLib connection routines. User messages have no effect
-            </description>
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib connection routines. User messages have no effect
+      </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
-      <digest> 
-                Realtime flag
-            </digest>
-      <description> 
-                Sets the realtime state for this object
-            </description>
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
       </attributelist>
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
-      <digest> 
-                Context ID
-            </digest>
-      <description> 
-                Sets the context name for this object
-            </description>
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for this object
+      </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
         <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
