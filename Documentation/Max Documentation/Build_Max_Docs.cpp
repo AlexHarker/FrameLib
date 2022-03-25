@@ -30,16 +30,16 @@ void findReplace(std::string& str, const char *findStr, const char *replaceStr)
 
 std::string formatInfo(std::string str)
 {
-    
     findReplace(str, ". ", ".<br />");
     findReplace(str, ": ", ":<br /><br />");
+ 
     return str;
 }
 
 std::string argumentName(std::string str)
 {
-    
     findReplace(str, " ", "-");
+    
     return str;
 }
 
@@ -230,13 +230,14 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     
     // Description
     
-    // split the object info into a description and a digest
+    // Split the object info into a description and a digest
+    
     objectInfo = escapeXML(frameLibObject->objectInfo(true));
     std::size_t pos = objectInfo.find_first_of(":.");
     objectDigest = objectInfo.substr(0, pos) + ".";
     objectDescription = objectInfo.substr(pos + 1);
     
-    // now write that info into sections
+    // Now write that info into sections
     
     writeDigestDescription(tab1, objectDigest, objectDescription);
     
