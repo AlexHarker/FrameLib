@@ -17,7 +17,6 @@ FrameLib_MakeString::FrameLib_MakeString(FrameLib_Context context, const FrameLi
     
     mParameters.addVariableIntArray(kPadding, "padding", 0, maxNumItems, 0);
     
-    
     // Read in once to get number of items needed
     
     mParameters.setErrorReportingEnabled(false);
