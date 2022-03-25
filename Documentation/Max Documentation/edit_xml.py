@@ -15,8 +15,9 @@ def indent(elem, level=0):
             elem.text = i + "  "
         if not elem.tail or not elem.tail.strip():
             elem.tail = i
-        for child_elem in elem:
-            indent(child_elem, level + 1)
+        if elem.tag != "description":
+            for child_elem in elem:
+                indent(child_elem, level + 1)
         if not elem[len(elem) - 1].tail or not elem[len(elem) - 1].tail.strip():
             elem[len(elem) - 1].tail = i
     else:
