@@ -39,6 +39,13 @@ std::string argumentName(std::string str)
     return str;
 }
 
+std::string replaceAudioStream(std::string str)
+{
+    findReplace(str, "[1]", "[N]");
+    
+    return str;
+}
+
 std::string escapeXML(std::string str)
 {
     std::string::size_type pos = 0;
@@ -344,6 +351,28 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     std::string signalDescription("Used to synchonise FrameLib objects with Max's DSP processing.");
     std::string connectionDescription("Used internally by FrameLib's connection routines. User messages have no effect.");
 
+    if (frameLibObject->getNumAudioChans())
+    {
+        std::string ioString;
+        signalDescription = "";
+        
+        if (frameLibObject->getNumAudioIns())
+        {
+            signalDescription += "Audio Inputs are as follows:<br /><br />";
+            ioString = "inputs";
+        }
+        else
+        {
+            signalDescription += "Audio Outputs are as follows:<br /><br />";
+            ioString = "outputs";
+        }
+            
+        for (unsigned long i = 0; i < frameLibObject->getNumAudioChans(); i++)
+            signalDescription += "<bullet>" + replaceAudioStream(frameLibObject->audioInfo(i, true)) + ".</bullet>";
+        
+        signalDescription += "<br />There are N audio " + ioString + ", as set by the number of explicitly set streams.";
+    }
+    
     file << tab1 + "<!--MESSAGES-->\n";
     file << tab1 + "<methodlist>\n";
     writeMessage("info", "Get Object Info", infoDescription, infoArgs);
