@@ -62,7 +62,7 @@ std::string escapeXML(std::string str)
             case '<':  replacement = "&lt;";   break;
             default: ;
         }
-
+        
         str.replace(pos, 1, replacement);
         pos += replacement.size();
     }
@@ -77,11 +77,11 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     std::string tmpFolder = dirPath + "/__tmp__/raw_xml/";
     
     enum InfoFlags { kInfoDesciption = 0x01, kInfoInputs = 0x02, kInfoOutputs = 0x04, kInfoParameters = 0x08 };
-
+    
     std::ofstream file;
     std::string sp = " ";               // code is more readable with sp rather than " "
     std::string object = inputName;     // refactor to not copy variable.
-
+    
     std::string objectCategory = "!@#@#$";
     std::string objectKeywords = "boilerplate keywords";
     std::string objectInfo;
@@ -98,7 +98,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     // Write to a temporary relative location
     
     file.open(tmpFolder + object + ".maxref.xml");
-
+    
     const FrameLib_Parameters *params = frameLibObject->getParameters();
     
     auto toLower = [](std::string s)
@@ -116,7 +116,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         file << tab + tab1 + description + "\n";
         file << tab + "</description> \n";
     };
-
+    
     auto writeAttribute = [&](const char *name, const char *type, const char *digest, const char *description, const char *label)
     {
         file << tab2 + "<attribute name='" + name + "' get='1' set='1' type='"+ type + "' size='1'> \n";
@@ -144,7 +144,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
                 file << tab1 + "<objarglist /> \n \n";
             return false;
         }
-                
+        
         if (!idx)
             file << tab1 + "<objarglist> \n";
         
@@ -161,11 +161,11 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         std::string name = params->getName(pIdx);
         std::string digest = rawDescription.substr(0, rawDescription.find_first_of(".:"));
         std::string description = formatInfo(rawDescription);
-            
+        
         file << tab2 + "<objarg name='" + name + "' optional='1' type='" + type + "'> \n";
         writeDigestDescription(tab3, digest, description);
         file << tab2 + "</objarg> \n";
-    
+        
         return true;
     };
     
@@ -221,7 +221,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     
     if (!file.is_open())
         return false;
-
+    
     // Write some stuff at the top of every xml file
     
     file << "<?xml version='1.0' encoding='utf-8' standalone='yes'?> \n" ;
@@ -243,11 +243,11 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     // Parameters
     
     file << tab1 + "<!--PARAMETERS-->\n";
-
+    
     if (!params || !params->size())
     {
         // If object has no parameters create the 'no parameters template'
-
+        
         file << tab1 + "<misc name = 'Parameters'> \n";
         file << tab2 + "<entry> \n";
         file << tab3 + "<description> \n";
@@ -273,7 +273,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
                 file << tab2 + "<entry name = '/" + params->getName(i) + " [" + params->getTypeString(i) + "]' > \n";
             else
                 file << tab2 + "<entry name = '/" + params->getName(i) + " [" + params->getTypeString(i) + "]' > \n";
-
+            
             // Construct the description
             
             file << tab3 + "<description> \n";
@@ -282,7 +282,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
             if (type == FrameLib_Parameters::Type::Enum)
             {
                 file << "<br></br> \n" ; // if enum put a break big break between description and the enum options
-                    
+                
                 for (long j = 0; j <= params->getMax(i); j++)
                 {
                     std::string enumParamNum = std::to_string(j);
@@ -320,12 +320,12 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         case kAllInputs:
             writeArgumentsAllInputs();
             break;
-
+            
         case kDistribute:
             writeArgumentsDistributed();
             break;
     }
-
+    
     // Messages
     
     std::vector<MessageArgument> emptyArgs;
@@ -345,7 +345,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     writeMessage("frame", "Connect FrameLib objects", "Used internally by FrameLib connection routines. User messages have no effect", emptyArgs);
     writeMessage("sync", "Synchronise FrameLib audio objects", "Used internally by FrameLib connection routines. User messages have no effect", emptyArgs);
     file << tab1 + "</methodlist> \n \n";
-
+    
     // Attributes
     
     file << tab1 + "<!--ATTRIBUTES-->\n";
@@ -398,16 +398,17 @@ int main()
     FrameLib_Proxy *proxy = new FrameLib_Proxy();
     FrameLib_Context context(global, nullptr);
     FrameLib_Parameters::AutoSerial parameters;
-
+    
     bool success = true;
     
     // Loop over objects using template list
     
     FrameLib_DSPList::execute<DocumentationGenerator>(context, &parameters, proxy, &success);
-
+    
     // Cleanup
     
     delete proxy;
     FrameLib_Global::release(&global);
     return success ? 0 : 1;
 }
+
