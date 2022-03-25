@@ -3,7 +3,7 @@
         Calculate the real or complex Fast Fourier Transform of the input(s).
     </digest>
   <description> 
-         All FFTs use a power of two size, with zero-padding applied at the input(s) if necessary. The output length and expected input lengths depend on the mode parameter. The mode parameter selects either real or complex FFTs and the output type. Real and imaginary values are output as separate frames. For complex FFTs two inputs are provided for real and imaginary values respectively.
+        All FFTs use a power of two size, with zero-padding applied at the input(s) if necessary. The output length and expected input lengths depend on the mode parameter. The mode parameter selects either real or complex FFTs and the output type. Real and imaginary values are output as separate frames. For complex FFTs two inputs are provided for real and imaginary values respectively.
     </description>
   <misc name="Parameters">
     <entry name="/max_length [instantiation int]">

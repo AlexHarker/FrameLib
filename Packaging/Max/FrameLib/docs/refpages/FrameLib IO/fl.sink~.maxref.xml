@@ -3,7 +3,7 @@
         Outputs frames to the host environment as audio by overlap-adding into an output buffer.
     </digest>
   <description> 
-         The length of the internal buffer determines the maximum frame length. Output suffers no latency but an optional delay may be added if desired. If a delay is applied then the maximum frame length will be reduced by the delay time.
+        The length of the internal buffer determines the maximum frame length. Output suffers no latency but an optional delay may be added if desired. If a delay is applied then the maximum frame length will be reduced by the delay time.
     </description>
   <misc name="Parameters">
     <entry name="/buffer_size [instantiation double]">

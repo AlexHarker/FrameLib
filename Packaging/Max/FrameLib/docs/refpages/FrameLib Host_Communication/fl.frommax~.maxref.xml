@@ -3,7 +3,7 @@
         Turn messages or control signals from the host into frames.
     </digest>
   <description> 
-         In values mode the output is the last received value(s) as a vector. In params mode messages are collected and output as a single tagged frame. Typically params mode is used to help set object parameters. Output is triggered by frames arriving at the trigger input.
+        In values mode the output is the last received value(s) as a vector. In params mode messages are collected and output as a single tagged frame. Typically params mode is used to help set object parameters. Output is triggered by frames arriving at the trigger input.
     </description>
   <misc name="Parameters">
     <entry name="/mode [instantiation enum]">

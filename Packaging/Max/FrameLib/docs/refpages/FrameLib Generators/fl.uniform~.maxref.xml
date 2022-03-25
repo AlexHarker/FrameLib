@@ -3,7 +3,7 @@
         Generates frames in which all values are identical.
     </digest>
   <description> 
-         The output value is set with a parameter. The length of the output is dependent on the mode parameter. Output length may be set by parameter or based on that of the trigger input.
+        The output value is set with a parameter. The length of the output is dependent on the mode parameter. Output length may be set by parameter or based on that of the trigger input.
     </description>
   <misc name="Parameters">
     <entry name="/value [double]">

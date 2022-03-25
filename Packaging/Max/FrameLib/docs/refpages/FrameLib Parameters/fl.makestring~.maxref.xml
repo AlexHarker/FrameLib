@@ -3,7 +3,7 @@
         Creates a tagged string by concatenating strings and numbers.
     </digest>
   <description> 
-         Items for concatenatation are set as parameters and can be altered dynamically. Numeric inputs are indicated as in1 to inx (where x is the number of inputs created). Only a single number is read from each input, interpreted as an integer. Numbers can be optionally zero-padded. The number of items to concatenate can be set explicitly by parameter. Alternatively, it can be set implicitly by the item parameters present at instantiation.
+        Items for concatenatation are set as parameters and can be altered dynamically. Numeric inputs are indicated as in1 to inx (where x is the number of inputs created). Only a single number is read from each input, interpreted as an integer. Numbers can be optionally zero-padded. The number of items to concatenate can be set explicitly by parameter. Alternatively, it can be set implicitly by the item parameters present at instantiation.
     </description>
   <misc name="Parameters">
     <entry name="/num_items [instantiation int]">

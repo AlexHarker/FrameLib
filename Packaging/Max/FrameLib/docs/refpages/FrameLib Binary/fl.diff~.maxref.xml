@@ -3,7 +3,7 @@
         Calculates the absolute differences between values in the two input frames.
     </digest>
   <description> 
-         Calculation is performed on pairs of values in turn. The output is a frame at least as long as the smaller of the two inputs. If inputs mismatch in length the result depends on the mismatch parameter. Either or both inputs may be set to trigger output.
+        Calculation is performed on pairs of values in turn. The output is a frame at least as long as the smaller of the two inputs. If inputs mismatch in length the result depends on the mismatch parameter. Either or both inputs may be set to trigger output.
     </description>
   <misc name="Parameters">
     <entry name="/mismatch [instantiation enum]">

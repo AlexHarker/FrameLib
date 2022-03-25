@@ -3,7 +3,7 @@
         Maps values from input to output via a specified scaling.
     </digest>
   <description> 
-         The output length matches the input length. Scaling maps the specified range of input values to a corresponding specified output range. Different shapes and types of scaling are available. Values may be optionally constrained within the specified output range. The values specfying the ranges may be in either order for both input and output.
+        The output length matches the input length. Scaling maps the specified range of input values to a corresponding specified output range. Different shapes and types of scaling are available. Values may be optionally constrained within the specified output range. The values specfying the ranges may be in either order for both input and output.
     </description>
   <misc name="Parameters">
     <entry name="/mode [enum]">

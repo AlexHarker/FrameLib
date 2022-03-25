@@ -3,7 +3,7 @@
         Folds the incoming frame into the range delimited by the two parameters.
     </digest>
   <description> 
-         Calculation is performed on triplets of values in turn. The output is a frame at least as long as the leftmost frame. If inputs mismatch in length the result depends on the mismatch parameter.
+        Calculation is performed on triplets of values in turn. The output is a frame at least as long as the leftmost frame. If inputs mismatch in length the result depends on the mismatch parameter.
     </description>
   <misc name="Parameters">
     <entry name="/mismatch [instantiation enum]">

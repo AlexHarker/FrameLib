@@ -3,7 +3,7 @@
         Counts incoming frames.
     </digest>
   <description> 
-         Counting is between zero and one less than the limit parameter. Counting can be either up or down. Couting can be run (once), looped, paused or stopped. Triggers at the reset input set the count to the value of the reset parameter.
+        Counting is between zero and one less than the limit parameter. Counting can be either up or down. Couting can be run (once), looped, paused or stopped. Triggers at the reset input set the count to the value of the reset parameter.
     </description>
   <misc name="Parameters">
     <entry name="/limit [int]">

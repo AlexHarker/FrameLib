@@ -3,7 +3,7 @@
         Packs multiple frame streams into a multistream output.
     </digest>
   <description> 
-         Inputs may be single stream or multistream. All inputs are concatenated in order, with blank inputs ignored.
+        Inputs may be single stream or multistream. All inputs are concatenated in order, with blank inputs ignored.
     </description>
   <misc name="Parameters">
     <entry name="/num_ins [instantiation int]">

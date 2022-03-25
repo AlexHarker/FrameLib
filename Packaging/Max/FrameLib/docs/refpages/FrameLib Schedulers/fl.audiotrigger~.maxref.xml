@@ -3,7 +3,7 @@
         Schedules frames based on non-zero audio input.
     </digest>
   <description> 
-         The output is an empty trigger frame. Non-zero input samples trigger frames.
+        The output is an empty trigger frame. Non-zero input samples trigger frames.
     </description>
   <misc name="Parameters">
     <entry>

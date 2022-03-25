@@ -3,7 +3,7 @@
         Outputs the sample rate, number of channels and length of a specified buffer.
     </digest>
   <description> 
-         The units for reporting length can be set with the units parameter. If the named buffer is not found all outputs are given as zero.
+        The units for reporting length can be set with the units parameter. If the named buffer is not found all outputs are given as zero.
     </description>
   <misc name="Parameters">
     <entry name="/buffer [string]">

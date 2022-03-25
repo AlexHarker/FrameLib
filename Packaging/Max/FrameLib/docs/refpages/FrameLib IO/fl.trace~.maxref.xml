@@ -3,7 +3,7 @@
         Outputs values from the input as audio, continuing the last value till a new frame arrives.
     </digest>
   <description> 
-         The mode parameter determines which value or values from the frame are output. This object is intended for passing control signals to the host environment at audio rate. The length of the internal buffer determines the maximum frame length for full output. Output suffers no latency but an optional delay may be added if desired. If a delay is applied then the maximum frame length will be reduced by the delay time.
+        The mode parameter determines which value or values from the frame are output. This object is intended for passing control signals to the host environment at audio rate. The length of the internal buffer determines the maximum frame length for full output. Output suffers no latency but an optional delay may be added if desired. If a delay is applied then the maximum frame length will be reduced by the delay time.
     </description>
   <misc name="Parameters">
     <entry name="/mode [enum]">

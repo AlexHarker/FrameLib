@@ -3,7 +3,7 @@
         Lookup values from one input using a table provided at another.
     </digest>
   <description> 
-         The first input is interpreted as the positions to read from the table at the second. The output is the same length as the frame at the first input. The scale, edges and bound parameters control the mapping of the input to the table. The lookup can be performed with different types of interpolation (or none). Only the first input triggers output.
+        The first input is interpreted as the positions to read from the table at the second. The output is the same length as the frame at the first input. The scale, edges and bound parameters control the mapping of the input to the table. The lookup can be performed with different types of interpolation (or none). Only the first input triggers output.
     </description>
   <misc name="Parameters">
     <entry name="/scale [enum]">

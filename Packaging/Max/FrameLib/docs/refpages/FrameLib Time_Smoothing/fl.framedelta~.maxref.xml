@@ -3,7 +3,7 @@
         Outputs the deltas between consecutive frames.
     </digest>
   <description> 
-         Frames are expected to be of uniform size otherwise the object will reset. The first output frame (and those after a reset) will consist entirely of zero values. The output is the same size as the input.
+        Frames are expected to be of uniform size otherwise the object will reset. The first output frame (and those after a reset) will consist entirely of zero values. The output is the same size as the input.
     </description>
   <misc name="Parameters">
     <entry>

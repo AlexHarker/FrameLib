@@ -3,7 +3,7 @@
         Pads the input frame with a repeated specified value.
     </digest>
   <description> 
-         Padding may be applied to either the start or the end of the frame or both. Padding amounts may be set in samples, or as a ratio of the input length. The output length is at least the size of the input.
+        Padding may be applied to either the start or the end of the frame or both. Padding amounts may be set in samples, or as a ratio of the input length. The output length is at least the size of the input.
     </description>
   <misc name="Parameters">
     <entry name="/pad [double]">

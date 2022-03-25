@@ -3,7 +3,7 @@
         Selects output from a number of inputs.
     </digest>
   <description> 
-         The number of inputs is variable. The selected input can be changed with a parameter.
+        The number of inputs is variable. The selected input can be changed with a parameter.
     </description>
   <misc name="Parameters">
     <entry name="/num_ins [instantiation double]">

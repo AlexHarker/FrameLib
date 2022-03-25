@@ -3,7 +3,7 @@
         Outputs the indices of input samples that are non-zero.
     </digest>
   <description> 
-         The length of the output frame depends on the number of non-zero items in the input. The output is an ordered list of indices for all non-zero input values (counting from zero)
+        The length of the output frame depends on the number of non-zero items in the input. The output is an ordered list of indices for all non-zero input values (counting from zero)
     </description>
   <misc name="Parameters">
     <entry>

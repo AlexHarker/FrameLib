@@ -3,7 +3,7 @@
         Calculates the result of a mathematical expression involving complex numbers.
     </digest>
   <description> 
-         Inputs and output are split into pairs of real and imaginary values. If input pairs are mismatched then the shorter input is padded with zeros. The expression can use input values, operators, functions and constants. The output is a frame at least as long as the shortest input pair. If input pairs mismatch in length the result depends on the mismatch parameter. Pre-computable elements are detected and reduced to constants. Thus it is efficient to synthesize constants or represent values precisely.
+        Inputs and output are split into pairs of real and imaginary values. If input pairs are mismatched then the shorter input is padded with zeros. The expression can use input values, operators, functions and constants. The output is a frame at least as long as the shortest input pair. If input pairs mismatch in length the result depends on the mismatch parameter. Pre-computable elements are detected and reduced to constants. Thus it is efficient to synthesize constants or represent values precisely.
     </description>
   <misc name="Parameters">
     <entry name="/expression [instantiation string]">

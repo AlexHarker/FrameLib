@@ -3,7 +3,7 @@
         Splits input frames into two frames, given a specified split point.
     </digest>
   <description> 
-         The split point may be specified in samples or as a ratio of the length of the input frame.
+        The split point may be specified in samples or as a ratio of the length of the input frame.
     </description>
   <misc name="Parameters">
     <entry name="/split [double]">

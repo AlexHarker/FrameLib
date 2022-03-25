@@ -3,7 +3,7 @@
         Converts the input vector according to a specified conversion.
     </digest>
   <description> 
-         The output length matches the input length.
+        The output length matches the input length.
     </description>
   <misc name="Parameters">
     <entry name="/mode [enum]">

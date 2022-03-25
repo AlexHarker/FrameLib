@@ -3,7 +3,7 @@
         Sorts an input frame into ascending or descending order.
     </digest>
   <description> 
-         The sort can either be on values or indices as set by the indices parameter.
+        The sort can either be on values or indices as set by the indices parameter.
     </description>
   <misc name="Parameters">
     <entry name="/order [enum]">

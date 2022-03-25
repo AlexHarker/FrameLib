@@ -3,7 +3,7 @@
         Unpacks multistream input into individual streams.
     </digest>
   <description> 
-         Multistream inputs are unpacked in order across the outputs.
+        Multistream inputs are unpacked in order across the outputs.
     </description>
   <misc name="Parameters">
     <entry name="/num_outs [instantiation int]">

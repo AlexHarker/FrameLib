@@ -3,7 +3,7 @@
         Turn frames into host messages or control signals.
     </digest>
   <description> 
-         The maximum length of the output message may be limited by the host environment. Vector and tagged frame types are both supported if supported by the host.
+        The maximum length of the output message may be limited by the host environment. Vector and tagged frame types are both supported if supported by the host.
     </description>
   <misc name="Parameters">
     <entry>

@@ -3,7 +3,7 @@
         Output a specified segment of an input frame.
     </digest>
   <description> 
-         The subframe is specified by a start and end point in the input frame. The start point is included in the output frame but the end point is not. Points may be specified in samples or as a ratio of the length of the input frame.
+        The subframe is specified by a start and end point in the input frame. The start point is included in the output frame but the end point is not. Points may be specified in samples or as a ratio of the length of the input frame.
     </description>
   <misc name="Parameters">
     <entry name="/start [double]">

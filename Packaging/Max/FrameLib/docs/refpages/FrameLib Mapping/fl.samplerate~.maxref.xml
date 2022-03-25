@@ -3,7 +3,7 @@
         Convert or output values based on the sample rate.
     </digest>
   <description> 
-         For output modes the output is a single value. For conversion modes the size matches the input size. The sample rate or the nyquist frequency can be requested. Alternatively, a number of sample rate related conversions are offered.
+        For output modes the output is a single value. For conversion modes the size matches the input size. The sample rate or the nyquist frequency can be requested. Alternatively, a number of sample rate related conversions are offered.
     </description>
   <misc name="Parameters">
     <entry name="/mode [enum]">

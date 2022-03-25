@@ -3,7 +3,7 @@
         Transform FIR coefficients to preserve the amplitude spectrum but alter the phase.
     </digest>
   <description> 
-         The phase can be directly specified using the phase parameter. Output frames will be the length of the FFT size used internally for processing. Inputs which are not a power of two are zero-padded before processing. Additionally the input can be further zero-padded to avoid time aliasing.
+        The phase can be directly specified using the phase parameter. Output frames will be the length of the FFT size used internally for processing. Inputs which are not a power of two are zero-padded before processing. Additionally the input can be further zero-padded to avoid time aliasing.
     </description>
   <misc name="Parameters">
     <entry name="/max_length [instantiation int]">

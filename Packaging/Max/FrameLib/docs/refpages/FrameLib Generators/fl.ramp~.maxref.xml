@@ -3,7 +3,7 @@
         Generates a linear ramp across each output frame.
     </digest>
   <description> 
-         The scale parameter is used to set the range of the ramp. The length of the output is dependent on the mode parameter. Output length may be set by parameter or based on that of the trigger input. The range of the output ramp is determined by the scale and edges parameters.
+        The scale parameter is used to set the range of the ramp. The length of the output is dependent on the mode parameter. Output length may be set by parameter or based on that of the trigger input. The range of the output ramp is determined by the scale and edges parameters.
     </description>
   <misc name="Parameters">
     <entry name="/mode [enum]">

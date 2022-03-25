@@ -3,7 +3,7 @@
         Routes the input to one of a number of outputs.
     </digest>
   <description> 
-         The number of outputs is variable. The selected output can be changed with a parameter.
+        The number of outputs is variable. The selected output can be changed with a parameter.
     </description>
   <misc name="Parameters">
     <entry name="/num_outs [instantiation double]">

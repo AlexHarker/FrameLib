@@ -3,7 +3,7 @@
         Generates linearly distributed random values in the range [0-1].
     </digest>
   <description> 
-         The length of the output is dependent on the mode parameter. Output length may be set by parameter or based on that of the trigger input.
+        The length of the output is dependent on the mode parameter. Output length may be set by parameter or based on that of the trigger input.
     </description>
   <misc name="Parameters">
     <entry name="/mode [enum]">

@@ -3,7 +3,7 @@
         Outputs the current time.
     </digest>
   <description> 
-         Time is reported in the specified units. Output is a single value.
+        Time is reported in the specified units. Output is a single value.
     </description>
   <misc name="Parameters">
     <entry name="/units [instantiation enum]">

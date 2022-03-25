@@ -3,7 +3,7 @@
         Converts from cartesian values at the inputs to polar values at the outputs.
     </digest>
   <description> 
-         Conversion may be in 2D or 3D (using spherical coordinates). The outputs are frames of the same length as the longest input. Shorter inputs are padded with zeros prior to conversion.
+        Conversion may be in 2D or 3D (using spherical coordinates). The outputs are frames of the same length as the longest input. Shorter inputs are padded with zeros prior to conversion.
     </description>
   <misc name="Parameters">
     <entry name="/dimensions [instantiation enum]">

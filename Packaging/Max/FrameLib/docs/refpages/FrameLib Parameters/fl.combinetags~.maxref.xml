@@ -3,7 +3,7 @@
         Combines a number of tagged input frames into a single tagged output frame.
     </digest>
   <description> 
-         The number of inputs is set using a parameter. All inputs trigger output. Tagged frames arriving asynchronously are sent to the output. Tagged frames arriving synchronously are combined at the output.
+        The number of inputs is set using a parameter. All inputs trigger output. Tagged frames arriving asynchronously are sent to the output. Tagged frames arriving synchronously are combined at the output.
     </description>
   <misc name="Parameters">
     <entry name="/num_ins [instantiation int]">

@@ -3,7 +3,7 @@
         Tags vectors with tags either in order to set parameters or for routing purposes.
     </digest>
   <description> 
-         Tag inputs each deal with one tag and take input vectors. The number of tag inputs can be set explicitly by parameter. Alternatively, it can be set implicitly by the tag parameters present at instantiation. A further input takes pre-tagged input to concatanated with other inputs after tagging. All inputs except the parameter input trigger output.
+        Tag inputs each deal with one tag and take input vectors. The number of tag inputs can be set explicitly by parameter. Alternatively, it can be set implicitly by the tag parameters present at instantiation. A further input takes pre-tagged input to concatanated with other inputs after tagging. All inputs except the parameter input trigger output.
     </description>
   <misc name="Parameters">
     <entry name="/num_ins [instantiation int]">

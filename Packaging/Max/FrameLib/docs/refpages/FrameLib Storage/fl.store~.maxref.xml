@@ -3,7 +3,7 @@
         Stores frames remotely for later recall.
     </digest>
   <description> 
-         The storage location is determined by the name parameter. The output / ordering input can be used to explicitly control ordering between related objects. In a multistream scenario each stream has separate storage for a given name.
+        The storage location is determined by the name parameter. The output / ordering input can be used to explicitly control ordering between related objects. In a multistream scenario each stream has separate storage for a given name.
     </description>
   <misc name="Parameters">
     <entry name="/name [instantiation string]">

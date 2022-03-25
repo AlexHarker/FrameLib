@@ -3,7 +3,7 @@
         Calculates a multitaper power (or amplitude) spectrum from a real input.
     </digest>
   <description> 
-         The spectrum is calculated using the sine tapers. All FFTs use a power of two size, with zero-padding applied at the input if necessary. Output frames will be (N / 2) + 1 in length where N is the FFT size used. The number of tapers and their weighting are both controllable.
+        The spectrum is calculated using the sine tapers. All FFTs use a power of two size, with zero-padding applied at the input if necessary. Output frames will be (N / 2) + 1 in length where N is the FFT size used. The number of tapers and their weighting are both controllable.
     </description>
   <misc name="Parameters">
     <entry name="/max_length [instantiation int]">

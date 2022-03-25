@@ -3,7 +3,7 @@
         Concatenates all input frames into a single output frame.
     </digest>
   <description> 
-         Each input may trigger output (or not), as set by the triggers_in parameter.
+        Each input may trigger output (or not), as set by the triggers_in parameter.
     </description>
   <misc name="Parameters">
     <entry name="/num_ins [instantiation int]">

@@ -3,7 +3,7 @@
         Calculates the spread of the input frame.
     </digest>
   <description> 
-         The output is a single value. When the input frame is empty then the output is determined by the empty parameter.
+        The output is a single value. When the input frame is empty then the output is determined by the empty parameter.
     </description>
   <misc name="Parameters">
     <entry name="/empty [instantiation enum]">

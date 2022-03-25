@@ -3,7 +3,7 @@
         Calculates the length of the input frame.
     </digest>
   <description> 
-         The output is a single value.
+        The output is a single value.
     </description>
   <misc name="Parameters">
     <entry>

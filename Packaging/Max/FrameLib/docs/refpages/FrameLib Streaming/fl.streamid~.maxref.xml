@@ -3,7 +3,7 @@
         Outputs the stream id for each stream in a multistream connection.
     </digest>
   <description> 
-         Any input triggers a single value output - the stream id (counting from one).
+        Any input triggers a single value output - the stream id (counting from one).
     </description>
   <misc name="Parameters">
     <entry>

@@ -3,7 +3,7 @@
         Schedules one frame at the start of each host audio block.
     </digest>
   <description> 
-         The output is an empty trigger frame.
+        The output is an empty trigger frame.
     </description>
   <misc name="Parameters">
     <entry>

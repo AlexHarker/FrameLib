@@ -3,7 +3,7 @@
         Schedules a single frame at the begining of time that lasts forever.
     </digest>
   <description> 
-         The output is an empty frame.
+        The output is an empty frame.
     </description>
   <misc name="Parameters">
     <entry>

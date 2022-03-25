@@ -3,7 +3,7 @@
         Calculates the hyperbolic arctangent of each value in the input frame.
     </digest>
   <description> 
-         The output is a frame of the same length as the input.
+        The output is a frame of the same length as the input.
     </description>
   <misc name="Parameters">
     <entry>

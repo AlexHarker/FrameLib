@@ -3,7 +3,7 @@
         Dispatches multiple inputs dynamically to multiple outputs.
     </digest>
   <description> 
-         Each output can be independently connected to any one input. The number of inputs and outputs is variable. The selected input for each output is changed with a parameter.
+        Each output can be independently connected to any one input. The number of inputs and outputs is variable. The selected input for each output is changed with a parameter.
     </description>
   <misc name="Parameters">
     <entry name="/num_ins [instantiation double]">

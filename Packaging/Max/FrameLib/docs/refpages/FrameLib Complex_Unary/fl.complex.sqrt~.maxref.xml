@@ -3,7 +3,7 @@
         Calculates the square root of each complex value at the inputs.
     </digest>
   <description> 
-         Both input and output are split into real and imaginary parts. The outputs are frames of the same length as the longer of the two inputs. If inputs are mismatched then the shorter input is padded with zeros.
+        Both input and output are split into real and imaginary parts. The outputs are frames of the same length as the longer of the two inputs. If inputs are mismatched then the shorter input is padded with zeros.
     </description>
   <misc name="Parameters">
     <entry>

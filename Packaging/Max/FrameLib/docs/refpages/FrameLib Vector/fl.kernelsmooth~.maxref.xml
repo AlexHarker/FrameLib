@@ -3,7 +3,7 @@
         Smooth an input based on a provided smoothing kernel.
     </digest>
   <description> 
-         The kernel is interpolated to the specified width(s) to perform smoothing. If the kernel is symmetric only the right-hand side should be provided. The edge behaviour can be set as appropriate for the application. The output is the same length as the frame at the first input. Internally kernels are always stretched across a whole number of samples. Kernels with zeroes at the ends are auto detected and stretched appropriately. The smoother may use FFT processing for efficiency but it is not required. Only the first input triggers output.
+        The kernel is interpolated to the specified width(s) to perform smoothing. If the kernel is symmetric only the right-hand side should be provided. The edge behaviour can be set as appropriate for the application. The output is the same length as the frame at the first input. Internally kernels are always stretched across a whole number of samples. Kernels with zeroes at the ends are auto detected and stretched appropriately. The smoother may use FFT processing for efficiency but it is not required. Only the first input triggers output.
     </description>
   <misc name="Parameters">
     <entry name="/smooth [variable length double array]">

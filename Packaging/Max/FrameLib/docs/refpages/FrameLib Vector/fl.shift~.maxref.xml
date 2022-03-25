@@ -3,7 +3,7 @@
         Shifts samples within a frame.
     </digest>
   <description> 
-         The output is the same length as the input. Output can be shifted left or right in comparison to the input. The edge behaviour can be set as appropriate for the application.
+        The output is the same length as the input. Output can be shifted left or right in comparison to the input. The edge behaviour can be set as appropriate for the application.
     </description>
   <misc name="Parameters">
     <entry name="/shift [double]">

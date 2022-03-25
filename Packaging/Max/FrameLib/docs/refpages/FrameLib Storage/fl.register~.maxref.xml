@@ -3,7 +3,7 @@
         Store and recall frames locally.
     </digest>
   <description> 
-         The left input triggers recall, whilst the right input stores a frame. The mode parameter is used to set whether the right input causes output.
+        The left input triggers recall, whilst the right input stores a frame. The mode parameter is used to set whether the right input causes output.
     </description>
   <misc name="Parameters">
     <entry name="/mode [instantiation enum]">

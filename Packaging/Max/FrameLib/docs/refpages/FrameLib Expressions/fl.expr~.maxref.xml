@@ -3,7 +3,7 @@
         Calculates the result of a mathematical expression.
     </digest>
   <description> 
-         The expression can use input values, operators, functions and constants. The output is a frame at least as long as the shortest input. If inputs mismatch in length the result depends on the mismatch parameter. Pre-computable elements are detected and reduced to constants. Thus it is efficient to synthesize constants or represent values precisely.
+        The expression can use input values, operators, functions and constants. The output is a frame at least as long as the shortest input. If inputs mismatch in length the result depends on the mismatch parameter. Pre-computable elements are detected and reduced to constants. Thus it is efficient to synthesize constants or represent values precisely.
     </description>
   <misc name="Parameters">
     <entry name="/expression [instantiation string]">
