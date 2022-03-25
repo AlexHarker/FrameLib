@@ -113,7 +113,11 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         file << tab + "</description>\n";
     };
     
-    auto writeAttribute = [&](const char *name, const char *type, const char *digest, const char *description, const char *label)
+    auto writeAttribute = [&](const std::string& name,
+                              const std::string& type,
+                              const std::string& digest,
+                              const std::string& description,
+                              const std::string& label)
     {
         file << tab2 + "<attribute name='" + name + "' get='1' set='1' type='"+ type + "' size='1'>\n";
         writeDigestDescription(tab3, digest, description);
@@ -124,7 +128,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         file << tab2 + "</attribute>\n";
     };
     
-    auto writeArgument = [&](unsigned long idx)
+    auto writeParamAsArgument = [&](unsigned long idx)
     {
         long pIdx = -1;
         
@@ -156,7 +160,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         std::string rawDescription = escapeXML(params->getInfo(pIdx));
         std::string name = params->getName(pIdx);
         std::string digest = rawDescription.substr(0, rawDescription.find_first_of(".:"));
-        std::string description = formatInfo(rawDescription);
+        std::string description = "This argument sets the " + name + " parameter:<br /><br />" + formatInfo(rawDescription);
         
         file << tab2 + "<objarg name='" + name + "' optional='1' type='" + type + "'>\n";
         writeDigestDescription(tab3, digest, description);
@@ -195,7 +199,10 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         file << tab1 + "</objarglist>\n\n";
     };
     
-    auto writeMessage = [&](const char *name, const char *digest, const char *description, const std::vector<MessageArgument>& args)
+    auto writeMessage = [&](const std::string& name,
+                            const std::string& digest,
+                            const std::string& description,
+                            const std::vector<MessageArgument>& args)
     {
         file << tab2 + "<method name='" + name + "'>\n";
         
@@ -312,7 +319,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     switch (argsMode)
     {
         case kAsParams:
-            for (unsigned long i = 0; writeArgument(i); i++);
+            for (unsigned long i = 0; writeParamAsArgument(i); i++);
             break;
             
         case kAllInputs:
@@ -331,27 +338,37 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     std::vector<MessageArgument> resetArgs { { "samplerate", true, "number" } };
     std::vector<MessageArgument> processArgs { { "length", false, "int" } };
     
+    std::string infoDescription("Print info about this object to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>");
+    std::string processDescription("Process a non-realtime network,advancing time by the number of samples specified by the required <m>length</m> argument. <br /><br />This will only take effect if the object has its <m>rt</m> attribute set to <m>0</m>");
+    std::string resetDescription("Resets a non-realtime network to the start of time ready for processing, optionally setting the sample rate. If the sample rate is omitted it will be set to the global sample rate.<br /><br />This will only take effect if the object has it's <m>rt</m> attribute set to <m>0</m>.");
+    std::string signalDescription("--detail--");
+    std::string connectionDescription("Used internally by FrameLib's connection routines. User messages have no effect.");
+
     file << tab1 + "<!--MESSAGES-->\n";
     file << tab1 + "<methodlist>\n";
-    writeMessage("info", "Get Object Info", "--detail--", infoArgs);
+    writeMessage("info", "Get Object Info", infoDescription, infoArgs);
     if (frameLibObject->handlesAudio())
     {
-        writeMessage("process", "Process in non-realtime", "--detail--", processArgs);
-        writeMessage("reset", "Reset a non-realtime network", "--detail--", resetArgs );
-        writeMessage("signal", "Synchronise with audio or accept signal IO", "--detail--", emptyArgs );
+        writeMessage("process", "Process a network in non-realtime", processDescription, processArgs);
+        writeMessage("reset", "Reset a non-realtime network", resetDescription, resetArgs );
+        writeMessage("signal", "Synchronise with audio or accept signal IO", signalDescription, emptyArgs );
     }
-    writeMessage("frame", "Connect FrameLib objects", "Used internally by FrameLib connection routines. User messages have no effect", emptyArgs);
-    writeMessage("sync", "Synchronise FrameLib audio objects", "Used internally by FrameLib connection routines. User messages have no effect", emptyArgs);
+    writeMessage("frame", "Connect FrameLib objects", connectionDescription, emptyArgs);
+    writeMessage("sync", "Synchronise FrameLib audio objects", connectionDescription, emptyArgs);
     file << tab1 + "</methodlist>\n\n";
     
     // Attributes
     
+    std::string bufferDescription("Sets the non-realtime <o>buffer~</o> for this object. This is the <o>buffer~</o> used for IO in a non-realtime setting.<br /><br /> More info on non-realtime processing with FrameLib can be found in <link name='11_fl_nrt' module='framelib' type='tutorial'>Tutorial 11</link>.");
+    std::string rtDescription("Sets the realtime state for this object. When set to <m>0</m> this object can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br /> More info on non-realtime processing with FrameLib can be found in <link name='11_fl_nrt' module='framelib' type='tutorial'>Tutorial 11</link>.");
+    std::string idDescription("Sets the context name for this object.<br /><br /> More info on FrameLib contexts can be found in <link name='10_fl_contexts' module='framelib' type='tutorial'>Tutorial 10</link>.");
+    
     file << tab1 + "<!--ATTRIBUTES-->\n";
     file << tab1 + "<attributelist>\n";
     if (frameLibObject->handlesAudio())
-        writeAttribute("buffer", "symbol", "Non-realtime Buffer", "Sets the non-realtime buffer for this object", "Buffer");
-    writeAttribute("rt", "int", "Realtime flag", "Sets the realtime state for this object", "Realtime");
-    writeAttribute("id", "symbol", "Context ID", "Sets the context name for this object", "ID");
+        writeAttribute("buffer", "symbol", "Non-realtime Buffer", bufferDescription, "Buffer");
+    writeAttribute("rt", "int", "Realtime flag", rtDescription, "Realtime");
+    writeAttribute("id", "symbol", "Context ID", idDescription, "ID");
     file << tab1 + "</attributelist>\n\n";
     
     // Seealso
