@@ -15,6 +15,13 @@
 #include <fstream>
 #include <libgen.h>
 
+struct MessageArgument
+{
+    std::string mName;
+    bool mOptional;
+    std::string mType;
+};
+
 void find_replace(std::string& str, const char *findStr, const char *replaceStr)
 {
     for (size_t start_pos = str.find(findStr); start_pos != std::string::npos; start_pos = str.find(findStr))
@@ -191,12 +198,20 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
         myfile << tab_1 + "</objarglist> \n \n";
     };
     
-    auto write_message = [&](const char *name, const char *digest, const char *description)
+    auto write_message = [&](const char *name, const char *digest, const char *description, const std::vector<MessageArgument>& args)
     {
         myfile << tab_2 + "<method name='" + name + "'> \n";
-        //myfile << tab_3 + "<arglist> \n";
-        //<arg name="input" optional="0" type="int" />
-        //myfile << tab_3 + "</arglist> \n";
+        
+        if (args.size())
+        {
+            myfile << tab_3 + "<arglist> \n";
+            for (auto it = args.cbegin(); it != args.cend(); it++)
+                myfile << tab_4 + "<arg name='" + it->mName + "' optional='" + std::to_string(it->mOptional) + "' type='" + it->mType + "' /> \n";
+            myfile << tab_3 + "</arglist> \n";
+        }
+        else
+            myfile << tab_3 + "<arglist /> \n";
+        
         myfile << tab_3 + "<digest> \n";
         myfile << tab_4 + digest + " \n";
         myfile << tab_3 + "</digest> \n";
@@ -321,19 +336,24 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
             write_arguments_distributed();
             break;
     }
-        
+     
+    std::vector<MessageArgument> emptyArgs;
+    std::vector<MessageArgument> infoArgs { { "items", true, "list"} };
+    std::vector<MessageArgument> resetArgs { { "samplerate", true, "number" } };
+    std::vector<MessageArgument> processArgs { { "length", false, "int" } };
+    
     // Messages //
     myfile << tab_1 + "<!--MESSAGES-->\n";
     myfile << tab_1 + "<methodlist> \n";
-    write_message("info", "Get Object Info", "--detail--");
+    write_message("info", "Get Object Info", "--detail--", infoArgs);
     if (frameLibObject->handlesAudio())
     {
-        write_message("process", "Process in non-realtime", "--detail--");
-        write_message("reset", "Reset a non-realtime network", "--detail--");
-        write_message("signal", "Synchronise with audio or accept signal IO", "--detail--");
+        write_message("process", "Process in non-realtime", "--detail--", processArgs);
+        write_message("reset", "Reset a non-realtime network", "--detail--", resetArgs );
+        write_message("signal", "Synchronise with audio or accept signal IO", "--detail--", emptyArgs );
     }
-    write_message("frame", "Connect FrameLib objects", "Used internally by FrameLib connection routines. User messages have no effect");
-    write_message("sync", "Synchronise FrameLib audio objects", "Used internally by FrameLib connection routines. User messages have no effect");
+    write_message("frame", "Connect FrameLib objects", "Used internally by FrameLib connection routines. User messages have no effect", emptyArgs);
+    write_message("sync", "Synchronise FrameLib audio objects", "Used internally by FrameLib connection routines. User messages have no effect", emptyArgs);
     myfile << tab_1 + "</methodlist> \n \n";
 
     // Attributes //
