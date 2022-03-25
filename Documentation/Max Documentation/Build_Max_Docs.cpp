@@ -257,7 +257,6 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
         file << tab_1 + "<misc name = 'Parameters'> \n"; // Write parameters tag to start misc section named Parameters
         for (int i = 0; params && i < params->size(); i++)
         {
-            std::string param_num = std::to_string(i+1);
             FrameLib_Parameters::Type type = params->getType(i);
             //FrameLib_Parameters::NumericType numericType = params->getNumericType(i); // remove possibly. its not being used
             std::string defaultStr = params->getDefaultString(i);
@@ -265,9 +264,9 @@ bool write_info(FrameLib_Multistream* frameLibObject, std::string inputName, Max
             // Name, type and default value
             
             if (defaultStr.size())
-                file << tab_2 + "<entry name = '" + param_num + ". /" + params->getName(i) + " [" + params->getTypeString(i) + "]' > \n";
+                file << tab_2 + "<entry name = '/" + params->getName(i) + " [" + params->getTypeString(i) + "]' > \n";
             else
-                file << tab_2 + "<entry name = '" + param_num + ". /" + params->getName(i) + " [" + params->getTypeString(i) + "]' > \n";
+                file << tab_2 + "<entry name = '/" + params->getName(i) + " [" + params->getTypeString(i) + "]' > \n";
 
             // Construct the description
             

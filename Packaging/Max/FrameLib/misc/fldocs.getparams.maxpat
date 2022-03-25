@@ -80,7 +80,7 @@
 					"fontname" : "Lato Regular",
 					"fontsize" : 13.0,
 					"id" : "obj-127",
-					"items" : [ "1. /expression [instantiation string]", ",", "2. /mismatch [instantiation enum]", ",", "3. /trigger_ins [instantiation variable length bool array]" ],
+					"items" : "<empty>",
 					"maxclass" : "umenu",
 					"numinlets" : 1,
 					"numoutlets" : 3,
