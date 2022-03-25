@@ -45,7 +45,7 @@
         Sets the maximum number of frames for calculation
       </digest>
       <description>
-        Sets the maximum number of frames for calculation.<br />Note that the internal buffer is reset when this changes.
+        This argument sets the max_frames parameter:<br /><br />Sets the maximum number of frames for calculation.<br />Note that the internal buffer is reset when this changes.
       </description>
     </objarg>
     <objarg name="num_frames" optional="1" type="int">
@@ -53,7 +53,7 @@
         Sets the current number of frames for calculation as an integer
       </digest>
       <description>
-        Sets the current number of frames for calculation as an integer.
+        This argument sets the num_frames parameter:<br /><br />Sets the current number of frames for calculation as an integer.
       </description>
     </objarg>
     <objarg name="percentile" optional="1" type="number">
@@ -61,7 +61,7 @@
         Sets the percentile to retrieve
       </digest>
       <description>
-        Sets the percentile to retrieve.
+        This argument sets the percentile parameter:<br /><br />Sets the percentile to retrieve.
       </description>
     </objarg>
     <objarg name="pad" optional="1" type="number">
@@ -69,7 +69,7 @@
         Sets the padding value
       </digest>
       <description>
-        Sets the padding value.
+        This argument sets the pad parameter:<br /><br />Sets the padding value.
       </description>
     </objarg>
   </objarglist>
@@ -82,7 +82,7 @@
         Get Object Info
       </digest>
       <description>
-        --detail--
+        Print info about this object to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">
@@ -91,7 +91,7 @@
         Connect FrameLib objects
       </digest>
       <description>
-        Used internally by FrameLib connection routines. User messages have no effect
+        Used internally by FrameLib's connection routines. User messages have no effect.
       </description>
     </method>
     <method name="sync">
@@ -100,7 +100,7 @@
         Synchronise FrameLib audio objects
       </digest>
       <description>
-        Used internally by FrameLib connection routines. User messages have no effect
+        Used internally by FrameLib's connection routines. User messages have no effect.
       </description>
     </method>
   </methodlist>
@@ -110,7 +110,7 @@
         Realtime flag
       </digest>
       <description>
-        Sets the realtime state for this object
+        Sets the realtime state for this object. When set to <m>0</m> this object can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br /> More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -122,7 +122,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for this object
+        Sets the context name for this object.<br /><br /> More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />

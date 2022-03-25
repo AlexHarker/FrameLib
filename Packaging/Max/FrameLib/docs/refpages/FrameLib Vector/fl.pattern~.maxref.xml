@@ -46,8 +46,7 @@
         Sets the mode
       </digest>
       <description>
-        Sets the mode:<br />
-        <br />run - the pattern progresses until it hits the final value.<br />loop - the pattern loops.<br />pause - the pattern is paused until the mode is changed.<br />stop - the pattern returns to the reset position until the mode is changed.
+        This argument sets the mode parameter:<br /><br />Sets the mode:<br /><br />run - the pattern progresses until it hits the final value.<br />loop - the pattern loops.<br />pause - the pattern is paused until the mode is changed.<br />stop - the pattern returns to the reset position until the mode is changed.
       </description>
     </objarg>
     <objarg name="direction" optional="1" type="symbol">
@@ -55,7 +54,7 @@
         Sets the direction of progress
       </digest>
       <description>
-        Sets the direction of progress.
+        This argument sets the direction parameter:<br /><br />Sets the direction of progress.
       </description>
     </objarg>
     <objarg name="reset" optional="1" type="int">
@@ -63,7 +62,7 @@
         Sets the reset position as a sample index
       </digest>
       <description>
-        Sets the reset position as a sample index.<br />A value of -1 can be used for direction independent reset.<br />For forward direction reading this results in a reset to the first position.<br />For backward direction reading this results in a reset to the last position.
+        This argument sets the reset parameter:<br /><br />Sets the reset position as a sample index.<br />A value of -1 can be used for direction independent reset.<br />For forward direction reading this results in a reset to the first position.<br />For backward direction reading this results in a reset to the last position.
       </description>
     </objarg>
     <objarg name="idle" optional="1" type="symbol">
@@ -71,8 +70,7 @@
         Sets the idle output (the output when stopped, paused or out of bounds)
       </digest>
       <description>
-        Sets the idle output (the output when stopped, paused or out of bounds):<br />
-        <br />repeat - repeat the current value.<br />empty - output an empty frame.
+        This argument sets the idle parameter:<br /><br />Sets the idle output (the output when stopped, paused or out of bounds):<br /><br />repeat - repeat the current value.<br />empty - output an empty frame.
       </description>
     </objarg>
   </objarglist>
@@ -85,7 +83,7 @@
         Get Object Info
       </digest>
       <description>
-        --detail--
+        Print info about this object to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">
@@ -94,7 +92,7 @@
         Connect FrameLib objects
       </digest>
       <description>
-        Used internally by FrameLib connection routines. User messages have no effect
+        Used internally by FrameLib's connection routines. User messages have no effect.
       </description>
     </method>
     <method name="sync">
@@ -103,7 +101,7 @@
         Synchronise FrameLib audio objects
       </digest>
       <description>
-        Used internally by FrameLib connection routines. User messages have no effect
+        Used internally by FrameLib's connection routines. User messages have no effect.
       </description>
     </method>
   </methodlist>
@@ -113,7 +111,7 @@
         Realtime flag
       </digest>
       <description>
-        Sets the realtime state for this object
+        Sets the realtime state for this object. When set to <m>0</m> this object can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br /> More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -125,7 +123,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for this object
+        Sets the context name for this object.<br /><br /> More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />

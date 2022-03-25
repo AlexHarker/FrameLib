@@ -38,8 +38,7 @@
         Sets the type of conversion or value to output
       </digest>
       <description>
-        Sets the type of conversion or value to output:<br />
-        <br />rate - output the sample rate in Hz.<br />nyquist - output the nyquist frequency in Hz.<br />samples-ms - convert from samples to milliseconds.<br />samples-seconds - convert from samples to seconds.<br />ms-samples - convert from milliseconds to samples.<br />seconds-samples - convert from seconds to samples.<br />normalised-hz - convert from normalised frequency to frequency in Hz.<br />h-normalised - convert from frequency in Hz to normalised frequency.
+        This argument sets the mode parameter:<br /><br />Sets the type of conversion or value to output:<br /><br />rate - output the sample rate in Hz.<br />nyquist - output the nyquist frequency in Hz.<br />samples-ms - convert from samples to milliseconds.<br />samples-seconds - convert from samples to seconds.<br />ms-samples - convert from milliseconds to samples.<br />seconds-samples - convert from seconds to samples.<br />normalised-hz - convert from normalised frequency to frequency in Hz.<br />h-normalised - convert from frequency in Hz to normalised frequency.
       </description>
     </objarg>
     <objarg name="normalisation" optional="1" type="symbol">
@@ -47,8 +46,7 @@
         Sets the reference point for normalised frequency
       </digest>
       <description>
-        Sets the reference point for normalised frequency:<br />
-        <br />rate - [0 - 1] is equivalent to [0 - sample rate].<br />nyquist - [0 - 1] is equivalent to [0 - nyquist].
+        This argument sets the normalisation parameter:<br /><br />Sets the reference point for normalised frequency:<br /><br />rate - [0 - 1] is equivalent to [0 - sample rate].<br />nyquist - [0 - 1] is equivalent to [0 - nyquist].
       </description>
     </objarg>
   </objarglist>
@@ -61,7 +59,7 @@
         Get Object Info
       </digest>
       <description>
-        --detail--
+        Print info about this object to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">
@@ -70,7 +68,7 @@
         Connect FrameLib objects
       </digest>
       <description>
-        Used internally by FrameLib connection routines. User messages have no effect
+        Used internally by FrameLib's connection routines. User messages have no effect.
       </description>
     </method>
     <method name="sync">
@@ -79,7 +77,7 @@
         Synchronise FrameLib audio objects
       </digest>
       <description>
-        Used internally by FrameLib connection routines. User messages have no effect
+        Used internally by FrameLib's connection routines. User messages have no effect.
       </description>
     </method>
   </methodlist>
@@ -89,7 +87,7 @@
         Realtime flag
       </digest>
       <description>
-        Sets the realtime state for this object
+        Sets the realtime state for this object. When set to <m>0</m> this object can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br /> More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -101,7 +99,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for this object
+        Sets the context name for this object.<br /><br /> More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />

@@ -51,7 +51,7 @@
         Sets the internal buffer size in the units specified by the units parameter
       </digest>
       <description>
-        Sets the internal buffer size in the units specified by the units parameter.
+        This argument sets the buffer_size parameter:<br /><br />Sets the internal buffer size in the units specified by the units parameter.
       </description>
     </objarg>
     <objarg name="length" optional="1" type="int">
@@ -59,7 +59,7 @@
         Sets the length of output frames in the units specified by the units parameter
       </digest>
       <description>
-        Sets the length of output frames in the units specified by the units parameter.
+        This argument sets the length parameter:<br /><br />Sets the length of output frames in the units specified by the units parameter.
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
@@ -67,7 +67,7 @@
         Sets the time units used to determine the buffer size and output length
       </digest>
       <description>
-        Sets the time units used to determine the buffer size and output length.
+        This argument sets the units parameter:<br /><br />Sets the time units used to determine the buffer size and output length.
       </description>
     </objarg>
   </objarglist>
@@ -80,7 +80,7 @@
         Get Object Info
       </digest>
       <description>
-        --detail--
+        Print info about this object to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="process">
@@ -88,10 +88,10 @@
         <arg name="length" optional="0" type="int" />
       </arglist>
       <digest>
-        Process in non-realtime
+        Process a network in non-realtime
       </digest>
       <description>
-        --detail--
+        Process a non-realtime network,advancing time by the number of samples specified by the required <m>length</m> argument. <br /><br />This will only take effect if the object has its <m>rt</m> attribute set to <m>0</m>
       </description>
     </method>
     <method name="reset">
@@ -102,7 +102,7 @@
         Reset a non-realtime network
       </digest>
       <description>
-        --detail--
+        Resets a non-realtime network to the start of time ready for processing, optionally setting the sample rate. If the sample rate is omitted it will be set to the global sample rate.<br /><br />This will only take effect if the object has it's <m>rt</m> attribute set to <m>0</m>.
       </description>
     </method>
     <method name="signal">
@@ -111,7 +111,7 @@
         Synchronise with audio or accept signal IO
       </digest>
       <description>
-        --detail--
+        Used to synchonise FrameLib objects with Max's DSP processing.
       </description>
     </method>
     <method name="frame">
@@ -120,7 +120,7 @@
         Connect FrameLib objects
       </digest>
       <description>
-        Used internally by FrameLib connection routines. User messages have no effect
+        Used internally by FrameLib's connection routines. User messages have no effect.
       </description>
     </method>
     <method name="sync">
@@ -129,7 +129,7 @@
         Synchronise FrameLib audio objects
       </digest>
       <description>
-        Used internally by FrameLib connection routines. User messages have no effect
+        Used internally by FrameLib's connection routines. User messages have no effect.
       </description>
     </method>
   </methodlist>
@@ -139,7 +139,7 @@
         Non-realtime Buffer
       </digest>
       <description>
-        Sets the non-realtime buffer for this object
+        Sets the non-realtime <o>buffer~</o> for this object. This is the <o>buffer~</o> used for IO in a non-realtime setting.<br /><br /> More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -151,7 +151,7 @@
         Realtime flag
       </digest>
       <description>
-        Sets the realtime state for this object
+        Sets the realtime state for this object. When set to <m>0</m> this object can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br /> More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -163,7 +163,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for this object
+        Sets the context name for this object.<br /><br /> More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />

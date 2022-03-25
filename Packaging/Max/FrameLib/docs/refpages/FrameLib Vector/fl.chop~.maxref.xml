@@ -35,7 +35,7 @@
         Sets the number of outputs
       </digest>
       <description>
-        Sets the number of outputs.
+        This argument sets the num_outs parameter:<br /><br />Sets the number of outputs.
       </description>
     </objarg>
     <objarg name="size" optional="1" type="number">
@@ -43,7 +43,7 @@
         Sets the size of the output frames
       </digest>
       <description>
-        Sets the size of the output frames.
+        This argument sets the size parameter:<br /><br />Sets the size of the output frames.
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
@@ -51,7 +51,7 @@
         Sets the units for the size (samples or ratio of the input length [0-1])
       </digest>
       <description>
-        Sets the units for the size (samples or ratio of the input length [0-1]).
+        This argument sets the units parameter:<br /><br />Sets the units for the size (samples or ratio of the input length [0-1]).
       </description>
     </objarg>
   </objarglist>
@@ -64,7 +64,7 @@
         Get Object Info
       </digest>
       <description>
-        --detail--
+        Print info about this object to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">
@@ -73,7 +73,7 @@
         Connect FrameLib objects
       </digest>
       <description>
-        Used internally by FrameLib connection routines. User messages have no effect
+        Used internally by FrameLib's connection routines. User messages have no effect.
       </description>
     </method>
     <method name="sync">
@@ -82,7 +82,7 @@
         Synchronise FrameLib audio objects
       </digest>
       <description>
-        Used internally by FrameLib connection routines. User messages have no effect
+        Used internally by FrameLib's connection routines. User messages have no effect.
       </description>
     </method>
   </methodlist>
@@ -92,7 +92,7 @@
         Realtime flag
       </digest>
       <description>
-        Sets the realtime state for this object
+        Sets the realtime state for this object. When set to <m>0</m> this object can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br /> More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -104,7 +104,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for this object
+        Sets the context name for this object.<br /><br /> More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />

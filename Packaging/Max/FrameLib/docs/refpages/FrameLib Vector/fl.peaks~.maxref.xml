@@ -63,7 +63,7 @@
         Sets the number of neighbours each side that must be exceeded in order to detect a peak
       </digest>
       <description>
-        Sets the number of neighbours each side that must be exceeded in order to detect a peak.
+        This argument sets the neighbours parameter:<br /><br />Sets the number of neighbours each side that must be exceeded in order to detect a peak.
       </description>
     </objarg>
     <objarg name="threshold" optional="1" type="number">
@@ -71,7 +71,7 @@
         Sets the threshold value for detecting a peak
       </digest>
       <description>
-        Sets the threshold value for detecting a peak.
+        This argument sets the threshold parameter:<br /><br />Sets the threshold value for detecting a peak.
       </description>
     </objarg>
     <objarg name="pad" optional="1" type="number">
@@ -79,7 +79,7 @@
         Sets the padding value
       </digest>
       <description>
-        Sets the padding value.
+        This argument sets the pad parameter:<br /><br />Sets the padding value.
       </description>
     </objarg>
     <objarg name="edges" optional="1" type="symbol">
@@ -87,8 +87,7 @@
         Sets the edge behaviour for peak detection
       </digest>
       <description>
-        Sets the edge behaviour for peak detection:<br />
-        <br />pad - values beyond the edges of the input are read as the padding value.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are read as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.
+        This argument sets the edges parameter:<br /><br />Sets the edge behaviour for peak detection:<br /><br />pad - values beyond the edges of the input are read as the padding value.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are read as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.
       </description>
     </objarg>
     <objarg name="boundaries" optional="1" type="symbol">
@@ -96,8 +95,7 @@
         Sets the method for selecting the boundaries between peaks
       </digest>
       <description>
-        Sets the method for selecting the boundaries between peaks:<br />
-        <br />minimum - boundaries are set at the minimum value between consecutive peaks.<br />midpoint - boundaries are set to the indices halfway between consecutive peaks.
+        This argument sets the boundaries parameter:<br /><br />Sets the method for selecting the boundaries between peaks:<br /><br />minimum - boundaries are set at the minimum value between consecutive peaks.<br />midpoint - boundaries are set to the indices halfway between consecutive peaks.
       </description>
     </objarg>
     <objarg name="always_detect" optional="1" type="number">
@@ -105,7 +103,7 @@
         If set on at least one peak will be detected even if no values match the peak criteria
       </digest>
       <description>
-        If set on at least one peak will be detected even if no values match the peak criteria.<br />Note that when set off the outputs will be empty if no peak is detected.
+        This argument sets the always_detect parameter:<br /><br />If set on at least one peak will be detected even if no values match the peak criteria.<br />Note that when set off the outputs will be empty if no peak is detected.
       </description>
     </objarg>
   </objarglist>
@@ -118,7 +116,7 @@
         Get Object Info
       </digest>
       <description>
-        --detail--
+        Print info about this object to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">
@@ -127,7 +125,7 @@
         Connect FrameLib objects
       </digest>
       <description>
-        Used internally by FrameLib connection routines. User messages have no effect
+        Used internally by FrameLib's connection routines. User messages have no effect.
       </description>
     </method>
     <method name="sync">
@@ -136,7 +134,7 @@
         Synchronise FrameLib audio objects
       </digest>
       <description>
-        Used internally by FrameLib connection routines. User messages have no effect
+        Used internally by FrameLib's connection routines. User messages have no effect.
       </description>
     </method>
   </methodlist>
@@ -146,7 +144,7 @@
         Realtime flag
       </digest>
       <description>
-        Sets the realtime state for this object
+        Sets the realtime state for this object. When set to <m>0</m> this object can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br /> More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -158,7 +156,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for this object
+        Sets the context name for this object.<br /><br /> More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />

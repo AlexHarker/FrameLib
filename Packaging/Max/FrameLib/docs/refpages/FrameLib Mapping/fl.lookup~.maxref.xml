@@ -52,8 +52,7 @@
         Sets the scaling of the input for lookup
       </digest>
       <description>
-        Sets the scaling of the input for lookup:<br />
-        <br />samples - the input is read as sample indices for reading from the table.<br />normalised - the input range [0 to 1] is mapped across the table.<br />bipolar - the input range [-1 to 1] is mapped across the table.<br />Note that the edge parameter is also accounted for normalised and bipolar modes.<br />This adjusts the scaling to work sensibly with cyclical modes.
+        This argument sets the scale parameter:<br /><br />Sets the scaling of the input for lookup:<br /><br />samples - the input is read as sample indices for reading from the table.<br />normalised - the input range [0 to 1] is mapped across the table.<br />bipolar - the input range [-1 to 1] is mapped across the table.<br />Note that the edge parameter is also accounted for normalised and bipolar modes.<br />This adjusts the scaling to work sensibly with cyclical modes.
       </description>
     </objarg>
     <objarg name="edges" optional="1" type="symbol">
@@ -61,8 +60,7 @@
         Sets the edge behaviour for both interpolation and lookup
       </digest>
       <description>
-        Sets the edge behaviour for both interpolation and lookup:<br />
-        <br />zero - values beyond the edges of the table are treated as zeros.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are treated as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.<br />extrapolate - values out of range are extrapolated via interpolation.
+        This argument sets the edges parameter:<br /><br />Sets the edge behaviour for both interpolation and lookup:<br /><br />zero - values beyond the edges of the table are treated as zeros.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are treated as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.<br />extrapolate - values out of range are extrapolated via interpolation.
       </description>
     </objarg>
     <objarg name="bound" optional="1" type="number">
@@ -70,7 +68,7 @@
         Sets whether lookup is bounded to the edges of the table, or can extend beyond it
       </digest>
       <description>
-        Sets whether lookup is bounded to the edges of the table, or can extend beyond it.
+        This argument sets the bound parameter:<br /><br />Sets whether lookup is bounded to the edges of the table, or can extend beyond it.
       </description>
     </objarg>
     <objarg name="interp" optional="1" type="symbol">
@@ -78,8 +76,7 @@
         Sets the interpolation mode
       </digest>
       <description>
-        Sets the interpolation mode:<br />
-        <br />none - no interpolation.<br />linear - linear interpolation.<br />hermite - cubic hermite interpolation.<br />bspline - cubic bspline interpolation.<br />lagrange - cubic lagrange interpolation.
+        This argument sets the interp parameter:<br /><br />Sets the interpolation mode:<br /><br />none - no interpolation.<br />linear - linear interpolation.<br />hermite - cubic hermite interpolation.<br />bspline - cubic bspline interpolation.<br />lagrange - cubic lagrange interpolation.
       </description>
     </objarg>
   </objarglist>
@@ -92,7 +89,7 @@
         Get Object Info
       </digest>
       <description>
-        --detail--
+        Print info about this object to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">
@@ -101,7 +98,7 @@
         Connect FrameLib objects
       </digest>
       <description>
-        Used internally by FrameLib connection routines. User messages have no effect
+        Used internally by FrameLib's connection routines. User messages have no effect.
       </description>
     </method>
     <method name="sync">
@@ -110,7 +107,7 @@
         Synchronise FrameLib audio objects
       </digest>
       <description>
-        Used internally by FrameLib connection routines. User messages have no effect
+        Used internally by FrameLib's connection routines. User messages have no effect.
       </description>
     </method>
   </methodlist>
@@ -120,7 +117,7 @@
         Realtime flag
       </digest>
       <description>
-        Sets the realtime state for this object
+        Sets the realtime state for this object. When set to <m>0</m> this object can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br /> More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -132,7 +129,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for this object
+        Sets the context name for this object.<br /><br /> More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />

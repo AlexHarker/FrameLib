@@ -33,7 +33,7 @@
         Sets the input length and maximum FFT size
       </digest>
       <description>
-        Sets the input length and maximum FFT size.
+        This argument sets the max_length parameter:<br /><br />Sets the input length and maximum FFT size.
       </description>
     </objarg>
     <objarg name="phase" optional="1" type="number">
@@ -41,7 +41,7 @@
         Sets the phase for the transformed FIR [0 to 1]
       </digest>
       <description>
-        Sets the phase for the transformed FIR [0 to 1].<br />minimum phase can be requested with a value of zero.<br />linear phase can be requested with value of a half.<br />maximum phase can be requested with a value of one.
+        This argument sets the phase parameter:<br /><br />Sets the phase for the transformed FIR [0 to 1].<br />minimum phase can be requested with a value of zero.<br />linear phase can be requested with value of a half.<br />maximum phase can be requested with a value of one.
       </description>
     </objarg>
     <objarg name="time_factor" optional="1" type="number">
@@ -49,7 +49,7 @@
         Sets the factor used to determine the length for zero padding the FIR before processing
       </digest>
       <description>
-        Sets the factor used to determine the length for zero padding the FIR before processing.<br />The FIR is padded to at least its original length multiplied by this factor.<br />Note that this needs to be accounted for when setting the max_length parameter.
+        This argument sets the time_factor parameter:<br /><br />Sets the factor used to determine the length for zero padding the FIR before processing.<br />The FIR is padded to at least its original length multiplied by this factor.<br />Note that this needs to be accounted for when setting the max_length parameter.
       </description>
     </objarg>
   </objarglist>
@@ -62,7 +62,7 @@
         Get Object Info
       </digest>
       <description>
-        --detail--
+        Print info about this object to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else, a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">
@@ -71,7 +71,7 @@
         Connect FrameLib objects
       </digest>
       <description>
-        Used internally by FrameLib connection routines. User messages have no effect
+        Used internally by FrameLib's connection routines. User messages have no effect.
       </description>
     </method>
     <method name="sync">
@@ -80,7 +80,7 @@
         Synchronise FrameLib audio objects
       </digest>
       <description>
-        Used internally by FrameLib connection routines. User messages have no effect
+        Used internally by FrameLib's connection routines. User messages have no effect.
       </description>
     </method>
   </methodlist>
@@ -90,7 +90,7 @@
         Realtime flag
       </digest>
       <description>
-        Sets the realtime state for this object
+        Sets the realtime state for this object. When set to <m>0</m> this object can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br /> More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -102,7 +102,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for this object
+        Sets the context name for this object.<br /><br /> More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
