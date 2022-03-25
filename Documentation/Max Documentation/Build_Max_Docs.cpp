@@ -32,13 +32,6 @@ std::string formatInfo(std::string str)
     return str;
 }
 
-std::string argumentName(std::string str)
-{
-    findReplace(str, " ", "-");
-    
-    return str;
-}
-
 std::string replaceAudioStream(std::string str)
 {
     findReplace(str, "[1]", "[N]");
@@ -194,11 +187,13 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         
         for (unsigned long i = 1; i < frameLibObject->getNumIns(); i++)
         {
-            std::string inputName = toLower(frameLibObject->inputInfo(i));
+            std::string argumentName = toLower(frameLibObject->inputInfo(i));
             std::string digest("The value to use for input " + std::to_string(i + 1) +  " if it is disconnected");
             std::string description("Sets a single value for " + inputName);
-            
-            file << tab2 + "<objarg name='" + argumentName(inputName) + "' optional='1' type='number'>\n";
+
+            findReplace(argumentName, " ", "-");
+
+            file << tab2 + "<objarg name='" + argumentName + "' optional='1' type='number'>\n";
             writeDigestDescription(tab3, digest, description);
             file << tab2 + "</objarg>\n";
         }
