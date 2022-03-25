@@ -111,7 +111,7 @@
         Synchronise with audio or accept signal IO
       </digest>
       <description>
-        Used to synchonise FrameLib objects with Max's DSP processing.
+        Audio Inputs are as follows:<br /><br /><bullet>Audio Input [N].</bullet><br />There are N audio inputs, as set by the number of explicitly set streams.
       </description>
     </method>
     <method name="frame">

@@ -58,7 +58,7 @@
         Synchronise with audio or accept signal IO
       </digest>
       <description>
-        Used to synchonise FrameLib objects with Max's DSP processing.
+        Used to synchonise FrameLib objects with Max's audio processing.
       </description>
     </method>
     <method name="frame">
