@@ -60,61 +60,73 @@
   </objarglist>
   <methodlist>
     <method name="info">
+      <arglist>
+        <arg name="items" optional="1" type="list" />
+      </arglist>
       <digest> 
-                Get Object Info 
+                Get Object Info
             </digest>
       <description> 
-                --detail-- 
+                --detail--
             </description>
     </method>
     <method name="process">
+      <arglist>
+        <arg name="length" optional="0" type="int" />
+      </arglist>
       <digest> 
-                Process in non-realtime 
+                Process in non-realtime
             </digest>
       <description> 
-                --detail-- 
+                --detail--
             </description>
     </method>
     <method name="reset">
+      <arglist>
+        <arg name="samplerate" optional="1" type="number" />
+      </arglist>
       <digest> 
-                Reset a non-realtime network 
+                Reset a non-realtime network
             </digest>
       <description> 
-                --detail-- 
+                --detail--
             </description>
     </method>
     <method name="signal">
+      <arglist />
       <digest> 
-                Synchronise with audio or accept signal IO 
+                Synchronise with audio or accept signal IO
             </digest>
       <description> 
-                --detail-- 
+                --detail--
             </description>
     </method>
     <method name="frame">
+      <arglist />
       <digest> 
-                Connect FrameLib objects 
+                Connect FrameLib objects
             </digest>
       <description> 
-                Used internally by FrameLib connection routines. User messages have no effect 
+                Used internally by FrameLib connection routines. User messages have no effect
             </description>
     </method>
     <method name="sync">
+      <arglist />
       <digest> 
-                Synchronise FrameLib audio objects 
+                Synchronise FrameLib audio objects
             </digest>
       <description> 
-                Used internally by FrameLib connection routines. User messages have no effect 
+                Used internally by FrameLib connection routines. User messages have no effect
             </description>
     </method>
   </methodlist>
   <attributelist>
     <attribute name="buffer" get="1" set="1" type="symbol" size="1">
       <digest> 
-                Non-realtime Buffer 
+                Non-realtime Buffer
             </digest>
       <description> 
-                Sets the non-realtime buffer for this object 
+                Sets the non-realtime buffer for this object
             </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -123,10 +135,10 @@
     </attribute>
     <attribute name="rt" get="1" set="1" type="int" size="1">
       <digest> 
-                Realtime flag 
+                Realtime flag
             </digest>
       <description> 
-                Sets the realtime state for this object 
+                Sets the realtime state for this object
             </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -135,10 +147,10 @@
     </attribute>
     <attribute name="id" get="1" set="1" type="symbol" size="1">
       <digest> 
-                Context ID 
+                Context ID
             </digest>
       <description> 
-                Sets the context name for this object 
+                Sets the context name for this object
             </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
