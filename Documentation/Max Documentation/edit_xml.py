@@ -107,9 +107,9 @@ def main(docs):
         tree.write(unescaped_file)
 
         docs.refpages_dir.mkdir(exist_ok=True)
-        refpages_parent = docs.refpages_dir / category
+        refpages_parent = docs.refpages_dir / "framelib-ref"
         refpages_parent.mkdir(exist_ok=True)
-        final_path = docs.refpages_dir / category / raw_xml.name
+        final_path = docs.refpages_dir / "framelib-ref" / raw_xml.name
         final_file = open(final_path, "w+")
         final_file.write("<?xml version='1.0' encoding='utf-8' standalone='yes'?>\n")
         final_file.write("<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>\n")
@@ -121,8 +121,7 @@ def main(docs):
             final_file.close()
 
     for manual_xml in manual_xml_list:
-        category = manual_xml.parents[0].name
-        refpages_parent = docs.refpages_dir / category
+        refpages_parent = docs.refpages_dir / "framelib-ref"
         refpages_parent.mkdir(exist_ok=True)
         final_path = refpages_parent / manual_xml.name
         final_file = open(final_path, "w+")

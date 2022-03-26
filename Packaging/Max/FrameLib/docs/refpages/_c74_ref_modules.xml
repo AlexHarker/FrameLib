@@ -1,26 +1,4 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <root>
-  <module>FrameLib Binary</module>
-  <module>FrameLib Buffer</module>
-  <module>FrameLib Complex_Binary</module>
-  <module>FrameLib Complex_Unary</module>
-  <module>FrameLib Context</module>
-  <module>FrameLib Expressions</module>
-  <module>FrameLib Filters</module>
-  <module>FrameLib Generators</module>
-  <module>FrameLib Host_Communication</module>
-  <module>FrameLib IO</module>
-  <module>FrameLib Mapping</module>
-  <module>FrameLib Parameters</module>
-  <module>FrameLib Routing</module>
-  <module>FrameLib Schedulers</module>
-  <module>FrameLib Spatial</module>
-  <module>FrameLib Spectral</module>
-  <module>FrameLib Storage</module>
-  <module>FrameLib Streaming</module>
-  <module>FrameLib Ternary</module>
-  <module>FrameLib Time_Smoothing</module>
-  <module>FrameLib Timing</module>
-  <module>FrameLib Unary</module>
-  <module>FrameLib Vector</module>
+  <module>framelib-ref</module>
 </root>
