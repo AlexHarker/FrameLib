@@ -40,7 +40,7 @@
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
 		"assistshowspatchername" : 0,
-		"title" : "Tutorial 7: FFT in FrameLib",
+		"title" : "Tutorial 7: FFT (Fast Fourier Transform)",
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-9",
@@ -2132,7 +2132,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 120.0, 525.0, 84.0 ],
-									"text" : "Having absolute control over each frame makes FrameLib a potent playground for FFT-based spectral processing. Now that we have extensively covered the basics of FrameLib and constructed our own granular synthesiser it's time to look at how we can implement FFT processes in FrameLib and to see the differences between working in FrameLib and examples constructed in pfft~."
+									"text" : "Having absolute control over each frame makes FrameLib a potent playground for FFT-based (Fast Fourier Transform) spectral processing. Now that we have extensively covered the basics of FrameLib and constructed our own granular synthesiser it's time to look at how we can implement FFT processes in FrameLib and to see the differences between working in FrameLib and examples constructed in pfft~."
 								}
 
 							}
@@ -2165,7 +2165,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 75.0, 399.0, 30.0 ],
-									"text" : "FFT in FrameLib"
+									"text" : "FFT (Fast Fourier Transform) in FrameLib"
 								}
 
 							}
@@ -2273,7 +2273,7 @@
 						"tags" : ""
 					}
 ,
-					"text" : "p \"FFT in FrameLib\""
+					"text" : "p \"FFT (Fast Fourier Transform)\""
 				}
 
 			}
@@ -2297,7 +2297,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 11.0, 180.0, 161.0, 21.0 ],
-					"text" : "title Tutorial 7: FFT in FrameLib"
+					"text" : "title Tutorial 7: FFT (Fast Fourier Transform)"
 				}
 
 			}
@@ -4502,7 +4502,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 0,
 									"numoutlets" : 0,
-									"patching_rect" : [ 390.0, 60.0, 347.0, 584.0 ],
+									"patching_rect" : [ 390.0, 60.0, 349.0, 584.0 ],
 									"suppressinlet" : 1,
 									"text" : "The previous examples demonstrate basic FFT processes that you might have seen before. FrameLib excels at implementing spectral processes where each frame needs to be processed individually and sometimes in quite complex ways. Objects in FrameLib generaly don't care about whether something is in the time domain or frequency domain, FrameLib objects just process numbers in groups - so all of the useful 'batteries included' objects can be used in quite a versatile manner.\n\nIn this example, fl.medianfilter~ (a median filter) is used to separate narrow and broadband components from an incoming signal. This creates the effect of isolating the percussive components, which you can then subtract from the original signal to isolate the harmonic components. This is not the same as a full harmonic-percussive separation algorithm, which would also use a time-based median filter alongside the frame-based filter, but it gives sonically similar results.\n\nIt works on the principle that harmonic components will form narrow peaks that sit at or above the median for each area in the spectral frame, whereas percussive components will not (and will sit below the median).\n\nThe stages for realising this are as follows:\n\n1. Compute FFT\n\n2. Calculate the magnitude of each real/imaginary pair of values\n\n3. Pass the magnitude through a median filter\n\n4. If the pre-filtered magnitude is less than the filtered magnitude multiply the original real/imaginary pair by 0 to leave only the broadband part  (in effect, a gate)."
 								}
@@ -6203,35 +6203,35 @@
 			}
 , 			{
 				"name" : "fl-freeze-simple.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-freeze-stoch.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-maxfft.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-tutorial-names.txt",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
@@ -6358,7 +6358,7 @@
 			}
 , 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
