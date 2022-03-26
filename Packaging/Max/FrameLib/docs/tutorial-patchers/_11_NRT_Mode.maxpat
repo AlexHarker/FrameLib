@@ -58,7 +58,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 720.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 720.0, 735.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -829,7 +829,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 720.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 720.0, 735.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1643,7 +1643,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 720.0, 761.0 ],
+						"rect" : [ 34.0, 139.0, 720.0, 735.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1875,7 +1875,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 60.0, 690.0, 147.0 ],
-									"text" : "Working with non-realtime and realtime networks brings us back to the way that contexts work in FrameLib. We looked initially at defining a context within a set of connected objects with the @id attribute. If this attribute isn't provided, the context is simply the default context governed by the hierarchy of the patcher itself. In addition to creating named contets, you can also determine whether or not a group of connected objects within a network are realtime or non-realtime with the @rt attribute. When we do this though, it is essential to remember that a NRT context is distinct from a real-time one, even if the name is the same.\n\nIn the example below, two different networks are assigned an @id \"random\" but they are NOT part of the same context because one network is in realtime mode and the other is not"
+									"text" : "Working with non-realtime and realtime networks brings us back to the way that contexts work in FrameLib. We looked initially at defining a context within a set of connected objects with the @id attribute. If this attribute isn't provided, the context is simply the default context governed by the hierarchy of the patcher itself. In addition to creating named contexts, you can also determine whether or not a group of connected objects within a network are realtime or non-realtime with the @rt attribute. When we do this though, it is essential to remember that a NRT context is distinct from a realtime one, even if the name is the same.\n\nIn the example below, two different networks are assigned an @id \"random\" but they are NOT part of the same context because one network is in realtime mode and the other is not"
 								}
 
 							}
@@ -2127,7 +2127,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 720.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 720.0, 735.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2976,7 +2976,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 720.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 720.0, 735.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3050,7 +3050,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 120.0, 527.0, 84.0 ],
-									"text" : "FrameLib networks can work in the default real-time mode, as well as a non-realtime (NRT) mode. In NRT mode FrameLib operates on input and output buffers instead of using audio input and output streams.  With a FrameLib context set to NRT mode you are required to manually move time forward using messages which gives you the ability to progress time for offline processing which completes as fast as possible."
+									"text" : "FrameLib networks can work in the default realtime mode, as well as a non-realtime (NRT) mode. In NRT mode FrameLib operates on input and output buffers instead of using audio input and output streams.  With a FrameLib context set to NRT mode you are required to manually move time forward using messages which gives you the ability to progress time for offline processing which completes as fast as possible."
 								}
 
 							}
@@ -3209,14 +3209,14 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-tutorial-names.txt",
-				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
@@ -3271,7 +3271,7 @@
 			}
 , 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
