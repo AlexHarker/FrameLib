@@ -110,6 +110,8 @@ def main(docs):
         refpages_parent.mkdir(exist_ok=True)
         final_path = docs.refpages_dir / category / raw_xml.name
         final_file = open(final_path, "w+")
+        final_file.write("<?xml version='1.0' encoding='utf-8' standalone='yes'?>\n")
+        final_file.write("<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>\n")
         with open(unescaped_file, "r") as f:
             xml = f.read()
             xml = xml.replace("&lt;br&gt;", "<br/>")
