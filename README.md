@@ -1,6 +1,8 @@
 FrameLib
 ========
 
+![FrameLib Logo](logo.png)
+
 A DSP framework for arbitrary size frame processing with arbitrary sub-sample accurate timing.
 * Frame timing and length can vary freely across networks and over time.
 * Memory allocation is handled by the framework.
