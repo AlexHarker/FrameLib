@@ -1162,7 +1162,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 120.0, 531.0, 100.0 ],
-									"text" : "The FrameLib context hasn't until now been discussed but has been operating stealthily under the hood. Contexts are the way that FrameLib differentiates between networks (both connected and unconnected). They are self-contained FrameLib 'worlds' that can be set to operate in certain ways, and which are independent of one another.  Understanding contexts is essential for controlling advanced features of FrameLib such as non-realtime processing and multithreading."
+									"text" : "The FrameLib context hasn't until now been discussed but has been operating stealthily under the hood. Contexts are the way that FrameLib differentiates between networks (both connected and unconnected). They are self-contained FrameLib 'worlds' that can be set to operate in certain ways, and which are independent of one another. Understanding contexts is essential for controlling advanced features of FrameLib such as non-realtime processing and multithreading."
 								}
 
 							}
@@ -1311,7 +1311,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl-tutorial-names.txt",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
@@ -1342,7 +1342,7 @@
 			}
 , 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1

@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 
-<?xml-stylesheet href="./_c74_tut.xsl" type="text/xsl"?>
+<chapter name="FrameLib Tutorial 11: Non-Realtime Networks in FrameLib">
+<openfile name="Non-Realtime Networks in FrameLib" patch="_11_NRT_Mode.maxpat"/>
+<header>FrameLib Tutorial 11: Non-Realtime Networks in FrameLib</header>
+<subhead>This tutorial outlines how to work with non-realtime FrameLib networks.</subhead>
+<body>So far in this tutorial series we've been concerned with realtime FrameLib networks. Every network can be made to work in non-realtime, meaning processing happens as fast as possible and independent from the main audio thread. In many cases minimal changes need to be made to an existing graph of objects, and this tutorial will guide you through these modifications.</body>
+<body><openpatchlink>Open the tutorial</openpatchlink>.</body>
 
-<chapter name="FrameLib Tutorial 11: Non-realtime networks in FrameLib">
-	<next name="12_fl_threading">Threading and 'contexts'</next>
-	<parent name="00_fl_index">FrameLib tutorials</parent>
+<previous name="10_fl_contexts">Contexts</previous>
+<next name="12_fl_threading">Multithreading</next>
+<parent name="00_fl_index">FrameLib Tutorials</parent>
+
+<seealsolist>
+<seealso name="fl.contextcontrol~" />
+</seealsolist>
 </chapter>
 

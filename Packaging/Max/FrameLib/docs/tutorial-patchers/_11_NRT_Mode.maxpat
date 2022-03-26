@@ -40,7 +40,7 @@
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
 		"assistshowspatchername" : 0,
-		"title" : "Tutorial 11: Non-realtime FrameLib",
+		"title" : "Tutorial 11: Non-Realtime FrameLib",
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-1",
@@ -2497,7 +2497,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 485.0, 120.0, 231.0, 490.0 ],
+									"patching_rect" : [ 485.0, 120.0, 238.0, 490.0 ],
 									"text" : "The first thing to notice is that the @rt attribute is set to 0 or non-realtime at the top most scheduler of each network.\n\nIn non-realtime mode the 'reset' message resets time back to 0 and the 'process' message progresses time forward by the amount of time given in samples.\n\nIn the left network the composite message \"reset, process 88200\" resets time and immediately asks for FrameLib to process 88200 samples of time (2 seconds at 44.1khz).\n\nIf you push the left \"reset, process 88200\" message button both networks process audio and push it to their respective output buffers. Why? Because both these networks belong to the same context! In non-realtime mode, context becomes important to how FrameLib networks run and triggering any scheduler belonging to the same context will make every network run.\n\nMove on to the next tab to see the solution to this problem."
 								}
 
@@ -3005,7 +3005,7 @@
 						"subpatcher_template" : "default",
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
-						"title" : "Non-realtime Basics",
+						"title" : "Non-Realtime Basics",
 						"boxes" : [ 							{
 								"box" : 								{
 									"args" : [ 11 ],
@@ -3049,8 +3049,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 120.0, 525.0, 84.0 ],
-									"text" : "FrameLib networks can work in the default real-time mode, as well as a non real-time (NRT) mode. In NRT mode FrameLib operates on input and output buffers instead of using audio input and output streams.  With a FrameLib context set to NRT mode you are required to manually move time forward using messages which gives you the ability to progress time for offline processing which completes as fast as possible."
+									"patching_rect" : [ 180.0, 120.0, 527.0, 84.0 ],
+									"text" : "FrameLib networks can work in the default real-time mode, as well as a non-realtime (NRT) mode. In NRT mode FrameLib operates on input and output buffers instead of using audio input and output streams.  With a FrameLib context set to NRT mode you are required to manually move time forward using messages which gives you the ability to progress time for offline processing which completes as fast as possible."
 								}
 
 							}
@@ -3083,7 +3083,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 75.0, 399.0, 30.0 ],
-									"text" : "Non real-time networks"
+									"text" : "Non-Realtime Networks"
 								}
 
 							}
@@ -3209,14 +3209,14 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-tutorial-names.txt",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
@@ -3271,7 +3271,7 @@
 			}
 , 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1

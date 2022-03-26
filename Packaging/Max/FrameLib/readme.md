@@ -5,7 +5,7 @@ A DSP framework for arbitrary size frame processing with arbitrary sub-sample ac
 
 * Frame timing and length can vary freely across networks and over time.
 
-* FrameLib supports multi-threaded processing in real-time or non real-time.
+* FrameLib supports multi-threaded processing in real-time or non-realtime.
 
 FrameLib might be useful for:
 ---------------------------------

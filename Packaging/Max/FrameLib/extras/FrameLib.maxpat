@@ -4218,7 +4218,7 @@
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
-									"tabs" : [ "Tutorial 1: An introduction to FrameLib and frame-based processing", "Tutorial 2: Getting to grips with frame-based processing", "Tutorial 3: FrameLib basics", "Tutorial 4: Getting in and out of FrameLib and Max", "Tutorial 5: Generator objects", "Tutorial 6: Building a granular synthesiser in FrameLib from scratch" ],
+									"tabs" : [ "Tutorial 1: An introduction to FrameLib and frame-based processing", "Tutorial 2: Getting to grips with frame-based processing", "Tutorial 3: FrameLib basics", "Tutorial 4: Getting in and out of FrameLib and Max", "Tutorial 5: Generator objects", "Tutorial 6: Building a Granular Synthesiser in FrameLib from scratch" ],
 									"truncate" : 0
 								}
 
