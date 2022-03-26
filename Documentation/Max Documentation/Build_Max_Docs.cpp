@@ -18,10 +18,15 @@ struct MessageArgument
     std::string mType;
 };
 
-void findReplace(std::string& str, const char *findStr, const char *replaceStr)
+void findReplace(std::string& str, const std::string& findStr, const std::string& replaceStr)
 {
     for (size_t startPos = str.find(findStr); startPos != std::string::npos; startPos = str.find(findStr))
-        str.replace(startPos, strlen(findStr), replaceStr);
+        str.replace(startPos, findStr.length(), replaceStr);
+}
+
+void findReplaceOnce(std::string& str, const std::string& findStr, const std::string& replaceStr)
+{
+    str.replace(str.find(findStr), findStr.length(), replaceStr);
 }
 
 std::string formatInfo(std::string str)
@@ -64,6 +69,51 @@ std::string escapeXML(std::string str)
     }
     
     return str;
+}
+
+std::string maxIndexString(const FrameLib_Parameters *params, unsigned long idx)
+{
+    long maxIndex = 1;
+
+    for (unsigned long i = 0; i < params->size(); i++)
+    {
+        std::string testName = params->getName(i);
+        
+        if (testName.find("num") != std::string::npos)
+        {
+            maxIndex = params->getMax(i);
+            break;
+        }
+    }
+    
+    return std::to_string(maxIndex);
+}
+
+bool detectIndexedParam(const FrameLib_Parameters *params, unsigned long idx)
+{
+    std::string name = params->getName(idx);
+    
+    return name.find("_01") != std::string::npos;
+}
+
+std::string getParamName(const FrameLib_Parameters *params, unsigned long idx)
+{
+    std::string name = params->getName(idx);
+    
+    if (detectIndexedParam(params, idx))
+        name += "..." + maxIndexString(params, idx);
+        
+    return name;
+}
+
+std::string processParamInfo(const FrameLib_Parameters *params, unsigned long idx)
+{
+    std::string info = params->getInfo(idx);
+    
+    if (detectIndexedParam(params, idx))
+        findReplaceOnce(info, "1", "N [1-" + maxIndexString(params, idx) + "]");
+    
+    return escapeXML(info);
 }
 
 bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxObjectArgsMode argsMode)
@@ -131,13 +181,13 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     
     auto writeParamAsArgument = [&](unsigned long idx)
     {
-        long pIdx = -1;
+        long paramIdx = -1;
         
         for (unsigned long i = 0; params && i < params->size(); i++)
             if (params->getArgumentIdx(i) == idx)
-                pIdx = static_cast<long>(i);
+                paramIdx = static_cast<long>(i);
         
-        if (pIdx == -1)
+        if (paramIdx == -1)
         {
             if (idx)
                 file << tab1 + "</objarglist>\n\n";
@@ -151,23 +201,31 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         
         std::string type = "number";
         
-        if (params->getNumericType(pIdx) == FrameLib_Parameters::NumericType::Integer)
+        if (params->getNumericType(paramIdx) == FrameLib_Parameters::NumericType::Integer)
             type = "int";
-        else if (params->getType(pIdx) == FrameLib_Parameters::Type::Enum)
+        else if (params->getType(paramIdx) == FrameLib_Parameters::Type::Enum)
             type = "symbol";
-        else if (params->getType(pIdx) == FrameLib_Parameters::Type::String)
+        else if (params->getType(paramIdx) == FrameLib_Parameters::Type::String)
             type = "symbol";
         
-        std::string rawDescription = escapeXML(params->getInfo(pIdx));
-        std::string name = params->getName(pIdx);
+        std::string name = getParamName(params, paramIdx);
+        std::string rawDescription = processParamInfo(params, paramIdx);
         std::string digest = rawDescription.substr(0, rawDescription.find_first_of(".:"));
         std::string description = "This argument sets the " + name + " parameter:<br /><br />" + formatInfo(rawDescription);
+        
+        if (detectIndexedParam(params, paramIdx))
+            description = "Arguments set parameters " + name + ":<br /><br />" + formatInfo(rawDescription);
         
         file << tab2 + "<objarg name='" + name + "' optional='1' type='" + type + "'>\n";
         writeDigestDescription(tab3, digest, description);
         file << tab2 + "</objarg>\n";
         
-        return true;
+        bool stop = detectIndexedParam(params, paramIdx);
+        
+        if (stop)
+            file << tab1 + "</objarglist>\n\n";
+        
+        return !stop;
     };
     
     auto writeArgumentsAllInputs = [&]()
@@ -269,23 +327,25 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         // Write parameters tag to start misc section named Parameters
         
         file << tab1 + "<misc name = 'Parameters'>\n";
-        for (int i = 0; params && i < params->size(); i++)
+        for (unsigned long i = 0; params && i < params->size(); i++)
         {
+            // Name, type and default value
+
+            std::string name = getParamName(params, i);
+            std::string defaultStr = params->getDefaultString(i);
+         
             FrameLib_Parameters::Type type = params->getType(i);
             //FrameLib_Parameters::NumericType numericType = params->getNumericType(i);
-            std::string defaultStr = params->getDefaultString(i);
-            
-            // Name, type and default value
-            
+                    
             if (defaultStr.size())
-                file << tab2 + "<entry name = '/" + params->getName(i) + " [" + params->getTypeString(i) + "]' >\n";
+                file << tab2 + "<entry name = '/" + name + " [" + params->getTypeString(i) + "]' >\n";
             else
-                file << tab2 + "<entry name = '/" + params->getName(i) + " [" + params->getTypeString(i) + "]' >\n";
+                file << tab2 + "<entry name = '/" + name + " [" + params->getTypeString(i) + "]' >\n";
             
             // Construct the description
             
             file << tab3 + "<description>\n";
-            file << tab4 + escapeXML(params->getInfo(i));
+            file << tab4 + processParamInfo(params, i);
             
             if (type == FrameLib_Parameters::Type::Enum)
             {
@@ -303,6 +363,9 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
             }
             file << "\n" + tab3 + "</description>\n";
             file << tab2 + "</entry>\n";
+            
+            if (detectIndexedParam(params, i))
+                break;
         }
         file << tab1 + "</misc>\n\n";
     }
