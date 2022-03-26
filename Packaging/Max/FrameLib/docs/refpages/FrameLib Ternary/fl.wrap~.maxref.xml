@@ -26,7 +26,7 @@
         The value to use for input 2 if it is disconnected
       </digest>
       <description>
-        Sets a single value for fl.wrap~
+        Sets a single value for parameter 1
       </description>
     </objarg>
     <objarg name="parameter-2" optional="1" type="number">
@@ -34,7 +34,7 @@
         The value to use for input 3 if it is disconnected
       </digest>
       <description>
-        Sets a single value for fl.wrap~
+        Sets a single value for parameter 2
       </description>
     </objarg>
   </objarglist>

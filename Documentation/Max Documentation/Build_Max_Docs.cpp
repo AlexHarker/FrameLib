@@ -248,7 +248,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         {
             std::string argumentName = toLower(frameLibObject->inputInfo(i));
             std::string digest("The value to use for input " + std::to_string(i + 1) +  " if it is disconnected");
-            std::string description("Sets a single value for " + inputName);
+            std::string description("Sets a single value for " + argumentName);
 
             findReplace(argumentName, " ", "-");
 
