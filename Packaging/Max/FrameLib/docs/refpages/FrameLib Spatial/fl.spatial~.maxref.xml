@@ -119,10 +119,12 @@
     </attribute>
   </attributelist>
   <seealsolist>
+    <seealso name="fl.cartopol~" />
+    <seealso name="fl.poltocar~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">
-      <description>spatialiastion</description>
+      <description>spatialisation</description>
     </entry>
   </misc>
 </c74object>

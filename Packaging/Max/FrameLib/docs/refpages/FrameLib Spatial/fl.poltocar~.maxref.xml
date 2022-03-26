@@ -116,6 +116,7 @@
     <seealso name="fl.complex.sin~" />
     <seealso name="fl.complex.tanh~" />
     <seealso name="fl.complex.sqrt~" />
+    <seealso name="fl.spatial~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

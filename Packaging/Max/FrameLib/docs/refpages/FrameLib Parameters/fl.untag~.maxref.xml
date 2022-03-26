@@ -94,8 +94,9 @@
   <seealsolist>
     <seealso name="fl.tag~" />
     <seealso name="fl.combinetags~" />
-    <seealso name="fl.getparam~" />
     <seealso name="fl.filtertags~" />
+    <seealso name="fl.looupstring~" />
+    <seealso name="fl.makestring~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

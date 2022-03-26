@@ -119,12 +119,15 @@
     </attribute>
   </attributelist>
   <seealsolist>
+    <seealso name="fl.tag~" />
+    <seealso name="fl.untag~" />
+    <seealso name="fl.combinetags~" />
+    <seealso name="fl.filtertags~" />
+    <seealso name="fl.makestring~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">
-      <description>
-        boilerplate keywords
-      </description>
+      <description>parameters</description>
     </entry>
   </misc>
 </c74object>

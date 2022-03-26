@@ -22,7 +22,8 @@
             "fl.complex.tan~",
             "fl.complex.sin~",
             "fl.complex.tanh~",
-            "fl.complex.sqrt~"
+            "fl.complex.sqrt~",
+            "fl.spatial~"
         ]
     },
     "fl.spatial~": {
@@ -33,21 +34,11 @@
             "FrameLib Spatial"
         ],
         "keywords": [
-            "spatialiastion"
+            "spatialisation"
         ],
         "seealso": [
-            "fl.complex.cos~",
-            "fl.complex.log10~",
-            "fl.complex.sinh~",
             "fl.cartopol~",
-            "fl.complex.conj~",
-            "fl.complex.exp~",
-            "fl.complex.log~",
-            "fl.complex.cosh~",
-            "fl.complex.tan~",
-            "fl.complex.sin~",
-            "fl.complex.tanh~",
-            "fl.complex.sqrt~"
+            "fl.poltocar~"
         ]
     },
     "fl.cartopol~": {
@@ -73,7 +64,8 @@
             "fl.complex.sin~",
             "fl.complex.tanh~",
             "fl.complex.sqrt~",
-            "fl.poltocar~"
+            "fl.poltocar~",
+            "fl.spatial~"
         ]
     },
     "fl.unpack~": {
@@ -4566,10 +4558,14 @@
             "FrameLib Parameters"
         ],
         "keywords": [
-            "expression"
+            "parameters"
         ],
         "seealso": [
-            "fl.complex.expr~"
+            "fl.tag~",
+            "fl.untag~",
+            "fl.combinetags~",
+            "fl.filtertags~",
+            "fl.looupstring~"
         ]
     },
     "fl.filtertags~": {
@@ -4586,7 +4582,8 @@
             "fl.tag~",
             "fl.untag~",
             "fl.combinetags~",
-            "fl.getparam~"
+            "fl.looupstring~",
+            "fl.makestring~"
         ]
     },
     "fl.lookupstring~": {
@@ -4603,7 +4600,8 @@
             "fl.tag~",
             "fl.untag~",
             "fl.combinetags~",
-            "fl.getparam~"
+            "fl.filtertags~",
+            "fl.makestring~"
         ]
     },
     "fl.tag~": {
@@ -4619,8 +4617,9 @@
         "seealso": [
             "fl.untag~",
             "fl.combinetags~",
-            "fl.getparam~",
-            "fl.filtertags~"
+            "fl.filtertags~",
+            "fl.looupstring~",
+            "fl.makestring~"
         ]
     },
     "fl.untag~": {
@@ -4636,8 +4635,9 @@
         "seealso": [
             "fl.tag~",
             "fl.combinetags~",
-            "fl.getparam~",
-            "fl.filtertags~"
+            "fl.filtertags~",
+            "fl.looupstring~",
+            "fl.makestring~"
         ]
     },
     "fl.combinetags~": {
@@ -4653,8 +4653,9 @@
         "seealso": [
             "fl.tag~",
             "fl.untag~",
-            "fl.getparam~",
-            "fl.filtertags~"
+            "fl.filtertags~",
+            "fl.looupstring~",
+            "fl.makestring~"
         ]
     }
 }
