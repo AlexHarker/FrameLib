@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 
 <chapter name="FrameLib Tutorial 6: Building a Granular Synthesiser">
-<openfile name="Building a Granular Synthesiser" patch="_6_Building_a_granulator.maxpat"/>
-<header>Framelib Tutorial 6: Building a Granular Synthesiser</header>
-<subhead>A step-by-step guide to building a granular synthesiser in FrameLib from scratch.</subhead>
-<body>In the previous tutorials we've built up some fundamental skills and knowledge with FrameLib. Let's put it to use and build a granular synthesiser!</body>
-<body><openpatchlink>Open the tutorial</openpatchlink>.</body>
-
-<previous name="05_fl_generators">Generators</previous>
-<next name="07_fl_fft">FFT (Fast Fourier Transform)</next>
-<parent name="00_fl_index">FrameLib Tutorials</parent>
-
-<seealsolist>
-<seealso name="fl.read~" />
-<seealso name="fl.window~" />
-<seealso name="fl.ramp~" />
-<seealso name="fl.interval~" />
-</seealsolist>
+  <openfile name="Building a Granular Synthesiser" patch="_6_Building_a_granulator.maxpat"/>
+  <header>Framelib Tutorial 6: Building a Granular Synthesiser</header>
+  <subhead>A step-by-step guide to building a granular synthesiser in FrameLib from scratch.</subhead>
+  <body>In the previous tutorials we've built up some fundamental skills and knowledge with FrameLib. Let's put it to use and build a granular synthesiser!</body>
+  <body><openpatchlink>Open the tutorial</openpatchlink>.</body>
+  
+  <previous name="05_fl_generators">Generators</previous>
+  <next name="07_fl_fft">FFT (Fast Fourier Transform)</next>
+  <parent name="00_fl_index">FrameLib Tutorials</parent>
+  
+  <seealsolist>
+    <seealso name="fl.read~">Read frames from a <o>buffer~</o></seealso>
+    <seealso name="fl.window~">Window incoming frames</seealso>
+    <seealso name="fl.ramp~">Generate frames of counting values</seealso>
+    <seealso name="fl.interval~">Schedule frames in a regular manner</seealso>
+  </seealsolist>
 </chapter>
+
 

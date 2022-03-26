@@ -3,21 +3,22 @@
 <?xml-stylesheet href="./_c74_tut.xsl" type="text/xsl"?>
 
 <chapter name="FrameLib Tutorial 5: Generators">
-<openfile name="Conversion" patch="_5_Generators.maxpat"/>
-<header>Framelib Tutorial 5: Generators</header>
-<subhead>An overview of 'generator' objects in FrameLib.</subhead>
-<body>Generators are a fundamental part of FrameLib as they facilitate the generation of new frames according to some key types of frames (linear ramps, uniform/gaussian distributed random numbers, uniform frames). This tutorial will introduce you to three primary generators in FrameLib.</body>
-<body><openpatchlink>Open the tutorial</openpatchlink>.</body>
-
-<previous name="04_fl_conversion">Getting In and Out of FrameLib</previous>
-<next name="06_fl_granulator">Building a Granular Synthesiser in Framelib</next>
-<parent name="00_fl_index">FrameLib Tutorials</parent>
-
-<seealsolist>
-<seealso name="fl.random~">Generate uniformly random numbers between 0.0 and 1.0</seealso>
-<seealso name="fl.ramp~">Generate frames of counting values</seealso>
-<seealso name="fl.uniform~">Generate frames of a uniform (singular) value</seealso>
-</seealsolist>
-
+  <openfile name="Conversion" patch="_5_Generators.maxpat"/>
+  <header>Framelib Tutorial 5: Generators</header>
+  <subhead>An overview of 'generator' objects in FrameLib.</subhead>
+  <body>Generators are a fundamental part of FrameLib as they facilitate the generation of new frames according to some key types of frames (linear ramps, uniform/gaussian distributed random numbers, uniform frames). This tutorial will introduce you to three primary generators in FrameLib.</body>
+  <body><openpatchlink>Open the tutorial</openpatchlink>.</body>
+  
+  <previous name="04_fl_conversion">Getting In and Out of FrameLib</previous>
+  <next name="06_fl_granulator">Building a Granular Synthesiser in Framelib</next>
+  <parent name="00_fl_index">FrameLib Tutorials</parent>
+  
+  <seealsolist>
+    <seealso name="fl.random~">Generate uniformly random numbers between 0.0 and 1.0</seealso>
+    <seealso name="fl.ramp~">Generate frames of counting values</seealso>
+    <seealso name="fl.uniform~">Generate frames of a uniform (singular) value</seealso>
+  </seealsolist>
+  
 </chapter>
+
 

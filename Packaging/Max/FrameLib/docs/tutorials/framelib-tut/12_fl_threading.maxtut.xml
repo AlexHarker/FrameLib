@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 
 <chapter name="FrameLib Tutorial 12: Multithreading">
-<openfile name="Multithreading" patch="_12_Threading.maxpat"/>
-<header>FrameLib Tutorial 12: Multithreading</header>
-<subhead>Managing threads and multithreading</subhead>
-<body>This tutorial will show you how straightforward it is to enable multithreading for a FrameLib network. In some cases this can drastically improve performance for otherwise expensive patches, making the possibilities much wider.</body>
-<body><openpatchlink>Open the tutorial</openpatchlink>.</body>
-
-<previous name="11_fl_nrt">Non-Realtime Networks in FrameLib</previous>
-<next name="13_fl_export">Code Export</next>
-<parent name="00_fl_index">FrameLib Tutorials</parent>
-
-<seealsolist>
-<seealso name="fl.contextcontrol~" />
-</seealsolist>
+  <openfile name="Multithreading" patch="_12_Threading.maxpat"/>
+  <header>FrameLib Tutorial 12: Multithreading</header>
+  <subhead>Managing threads and multithreading</subhead>
+  <body>This tutorial will show you how straightforward it is to enable multithreading for a FrameLib network. In some cases this can drastically improve performance for otherwise expensive patches, making the possibilities much wider.</body>
+  <body><openpatchlink>Open the tutorial</openpatchlink>.</body>
+  
+  <previous name="11_fl_nrt">Non-Realtime Networks in FrameLib</previous>
+  <next name="13_fl_export">Code Export</next>
+  <parent name="00_fl_index">FrameLib Tutorials</parent>
+  
+  <seealsolist>
+    <seealso name="fl.contextcontrol~">Set parameters for a specified context</seealso>
+  </seealsolist>
 </chapter>
+
+
 
