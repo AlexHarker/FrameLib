@@ -3589,7 +3589,7 @@
         ]
     },
     "fl.tomax~": {
-        "digest": "Turn frames into host messages or control signals.",
+        "digest": "Turn frames into Max messages.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3603,7 +3603,7 @@
         ]
     },
     "fl.frommax~": {
-        "digest": "Turn messages or control signals from the host into frames.",
+        "digest": "Turn Max messages into frames.",
         "module": "FrameLib",
         "category": [
             "FrameLib",

@@ -1,9 +1,11 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.tomax~" module="FrameLib" category="FrameLib Host_Communication">
   <digest>
-    Turn frames into host messages or control signals.
+    Turn frames into Max messages.
   </digest>
   <description>
-    The maximum length of the output message may be limited by the host environment. Vector and tagged frame types are both supported if supported by the host.
+    The maximum length of the output message may be limited by Max.<br /><br />More info on conversion between Max messages and FrameLib can be found in <link name="04_fl_conversion" module="framelib" type="tutorial">Tutorial 4</link>.
   </description>
   <misc name="Parameters">
     <entry>
@@ -67,7 +69,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for <o>fl.tomax~</o>.<br /><br /> More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+        Sets the context name for <o>fl.tomax~</o>.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -78,6 +80,18 @@
   <seealsolist>
     <seealso name="fl.frommax~" />
   </seealsolist>
+  <misc name="Output">
+    <entry name="anything">
+      <description>
+        If the frame input to <o>fl.tomax~</o> is a tagged frame then the output is a set of messages each starting with the relevant tag and followed by the related value(s).
+      </description>
+    </entry>
+    <entry name="list">
+      <description>
+        If the frame input to <o>fl.tomax~</o> is a vector then the output is a list.
+      </description>
+    </entry>
+  </misc>
   <misc name="Discussion">
     <entry name="Keywords">
       <description>conversion</description>

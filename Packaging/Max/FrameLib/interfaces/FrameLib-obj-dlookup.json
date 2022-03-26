@@ -318,10 +318,10 @@
         "digest": "Generates a linear ramp across each output frame."
     },
     "fl.tomax~": {
-        "digest": "Turn frames into host messages or control signals."
+        "digest": "Turn frames into Max messages."
     },
     "fl.frommax~": {
-        "digest": "Turn messages or control signals from the host into frames."
+        "digest": "Turn Max messages into frames."
     },
     "fl.sink~": {
         "digest": "Outputs frames to the host environment as audio by overlap-adding into an output buffer."

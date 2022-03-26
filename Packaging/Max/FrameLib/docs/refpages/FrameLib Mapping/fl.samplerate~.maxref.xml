@@ -1,3 +1,5 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.samplerate~" module="FrameLib" category="FrameLib Mapping">
   <digest>
     Convert or output values based on the sample rate.
@@ -99,7 +101,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for <o>fl.samplerate~</o>.<br /><br /> More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+        Sets the context name for <o>fl.samplerate~</o>.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
