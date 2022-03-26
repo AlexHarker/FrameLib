@@ -1,21 +1,21 @@
 {
     "Beginner": {
-        "Tutorial 1: An introduction to FrameLib and frame-based processing": "A general introduction to FrameLib.",
-        "Tutorial 2: Getting to grips with frame-based processing": "Familiarising yourself with the FrameLib library.",
-        "Tutorial 3: FrameLib basics": "The basics of FrameLib, such as its timing and patching architecture.",
-        "Tutorial 4: Getting in and out of FrameLib and Max": "Methods for converting data between the Max and FrameLib domains.",
-        "Tutorial 5: Generator objects": "An overview of 'generator' objects belonging to the FrameLib eco-system.",
-        "Tutorial 6: Building a granular synthesiser in FrameLib from scratch": "A step-by-step guide to building a granular synthesiser in FrameLib from scratch."
+        "Tutorial 1: Introduction": "A general introduction to FrameLib.",
+        "Tutorial 2: Learn by Example": "Familiarising yourself with the FrameLib library.",
+        "Tutorial 3: Key Concepts": "The basics of FrameLib, such as its timing and patching architecture.",
+        "Tutorial 4: Getting In and Out of FrameLib": "Methods for converting data between the Max and FrameLib domains.",
+        "Tutorial 5: Generators": "An overview of 'generator' objects belonging to the FrameLib eco-system.",
+        "Tutorial 6: Building a Granular Synthesiser in FrameLib": "A step-by-step guide to building a granular synthesiser in FrameLib from scratch."
     },
     "Intermediate": {
-        "Tutorial 7: FFT with FrameLib": "The Basics of FFT/STFT processing in FrameLib",
-        "Tutorial 8: Multi-stream processing": "Similar to 'mc' objects, multi-streaming allows you to manipulate multiple streams with a single set of processors."
+        "Tutorial 7: FFT (Fast Fourier Transform)": "The Basics of FFT/STFT processing in FrameLib",
+        "Tutorial 8: Multi-Stream Networks": "Similar to 'mc' objects, multi-streaming allows you to manipulate multiple streams with a single set of processors."
     },
     "Advanced": {
-        "Tutorial 9: Multi-resolution FFT": "Constructing multi-resolution FFT processes in FrameLib.",
+        "Tutorial 9: Multi-Resolution Processing": "Constructing multi-resolution FFT processes in FrameLib.",
         "Tutorial 10: Contexts": "Managing FrameLib 'contexts', a concept that is crucical to multithreading and non-realtime processing.",
-        "Tutorial 11: Non-realtime networks in FrameLib": "Designing, converting and understanding FrameLib networks in the non-realtime mode.",
+        "Tutorial 11: Non-Realtime Networks": "Designing, converting and understanding FrameLib networks in the non-realtime mode.",
         "Tutorial 12: Multithreading": "Managing threads and multithreading.",
-        "Tutorial 13: Exporting FrameLib from Max to C++": "Exporting your FrameLib networks from Max to C++ to be used in other environments and applications."
+        "Tutorial 13: Code Export": "Exporting your FrameLib networks from Max to C++ to be used in other environments and applications."
     }
 }
