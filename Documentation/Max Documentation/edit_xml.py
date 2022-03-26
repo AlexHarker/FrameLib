@@ -94,7 +94,7 @@ def main(docs):
                     for sub_elem in elem:
                         if sub_elem.tag == "entry" and sub_elem.attrib["name"] == "Keywords":
                             for desc in sub_elem:
-                                temp_string = ",".join(details["keywords"])
+                                temp_string = ", ".join(details["keywords"])
                                 desc.text = temp_string
         # Pretty Print
         indent(root)
