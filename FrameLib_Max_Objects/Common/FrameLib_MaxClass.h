@@ -1721,7 +1721,7 @@ public:
             if (argsMode == kAllInputs)
                 object_post(mUserObject, "N.B. - arguments set the fixed array values for all inputs.");
             if (argsMode == kDistribute)
-                object_post(mUserObject, "N.B - arguments are distributed one per input.");
+                object_post(mUserObject, "N.B - arguments are distributed one per input from the second input.");
             for (long i = 0; i < static_cast<long>(mObject->getNumAudioIns()); i++)
                 object_post(mUserObject, "Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
             for (long i = 0; i < getNumIns(); i++)
