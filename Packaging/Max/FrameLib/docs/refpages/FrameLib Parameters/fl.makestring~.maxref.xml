@@ -26,9 +26,9 @@
         Sets the zero padding for each input using an array of integers.<br/>By default there is no zero padding.
       </description>
     </entry>
-    <entry name="/item_01 [string]">
+    <entry name="/item_01...10 [string]">
       <description>
-        Sets the string or input for item 1.
+        Sets the string or input for item N [1-10].
       </description>
     </entry>
   </misc>
@@ -46,12 +46,12 @@
         This argument sets the tag parameter:<br /><br />Sets the output tag.
       </description>
     </objarg>
-    <objarg name="item_01" optional="1" type="symbol">
+    <objarg name="item_01...10" optional="1" type="symbol">
       <digest>
-        Sets the string or input for item 1
+        Sets the string or input for item N [1-10]
       </digest>
       <description>
-        This argument sets the item_01 parameter:<br /><br />Sets the string or input for item 1.
+        Arguments set parameters item_01...10:<br /><br />Sets the string or input for item N [1-10].
       </description>
     </objarg>
   </objarglist>

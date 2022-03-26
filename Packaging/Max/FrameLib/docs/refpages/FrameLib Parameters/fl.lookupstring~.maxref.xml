@@ -30,9 +30,9 @@
         <bullet>[1] - reset</bullet>
       </description>
     </entry>
-    <entry name="/items_01 [string]">
+    <entry name="/item_01...32 [string]">
       <description>
-        Sets the string for item 1.
+        Sets the string for item N [1-32].
       </description>
     </entry>
   </misc>
@@ -50,12 +50,12 @@
         This argument sets the tag parameter:<br /><br />Sets the output tag.
       </description>
     </objarg>
-    <objarg name="items_01" optional="1" type="symbol">
+    <objarg name="item_01...32" optional="1" type="symbol">
       <digest>
-        Sets the string for item 1
+        Sets the string for item N [1-32]
       </digest>
       <description>
-        This argument sets the items_01 parameter:<br /><br />Sets the string for item 1.
+        Arguments set parameters item_01...32:<br /><br />Sets the string for item N [1-32].
       </description>
     </objarg>
   </objarglist>

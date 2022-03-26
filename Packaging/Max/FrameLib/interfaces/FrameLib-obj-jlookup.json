@@ -81,12 +81,8 @@
             "description": "Sets the number of outputs."
         },
         "3": {
-            "name": "/input_01 [int]",
-            "description": "Sets the current input for output 1 counting from 1 (off if out of range)."
-        },
-        "4": {
-            "name": "/input_02 [int]",
-            "description": "Sets the current input for output 2 counting from 1 (off if out of range)."
+            "name": "/input_01...32 [int]",
+            "description": "Sets the current input for output N [1-32] counting from 1 (off if out of range)."
         }
     },
     "fl.route~": {
@@ -1909,8 +1905,8 @@
             "description": "Sets the zero padding for each input using an array of integers."
         },
         "5": {
-            "name": "/item_01 [string]",
-            "description": "Sets the string or input for item 1."
+            "name": "/item_01...10 [string]",
+            "description": "Sets the string or input for item N [1-10]."
         }
     },
     "fl.filtertags~": {
@@ -1919,8 +1915,8 @@
             "description": "Sets the number of tags."
         },
         "2": {
-            "name": "/tag_01 [string]",
-            "description": "Sets tag number 1."
+            "name": "/tag_01...10 [string]",
+            "description": "Sets tag number N [1-10]."
         }
     },
     "fl.lookupstring~": {
@@ -1941,8 +1937,8 @@
             "description": "Sets the behaviour when empty frames are received:\n\nParameter Options:\n[0] - ignore\n[1] - reset"
         },
         "5": {
-            "name": "/items_01 [string]",
-            "description": "Sets the string for item 1."
+            "name": "/item_01...32 [string]",
+            "description": "Sets the string for item N [1-32]."
         }
     },
     "fl.tag~": {
@@ -1955,8 +1951,8 @@
             "description": "Sets the behaviour when empty frames are received:\n\nParameter Options:\n[0] - ignore\n[1] - reset"
         },
         "3": {
-            "name": "/tag_01 [string]",
-            "description": "Sets the tag for input 1."
+            "name": "/tag_01...10 [string]",
+            "description": "Sets the tag for input N [1-10]."
         }
     },
     "fl.untag~": {
@@ -1965,8 +1961,8 @@
             "description": "Sets the number of outputs (and hence the number of tags)."
         },
         "2": {
-            "name": "/tag_01 [string]",
-            "description": "Sets the tag related to output 1."
+            "name": "/tag_01...10 [string]",
+            "description": "Sets the tag related to output N [1-10]."
         }
     },
     "fl.combinetags~": {

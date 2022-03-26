@@ -18,9 +18,9 @@
         <bullet>[1] - reset</bullet>
       </description>
     </entry>
-    <entry name="/tag_01 [string]">
+    <entry name="/tag_01...10 [string]">
       <description>
-        Sets the tag for input 1.
+        Sets the tag for input N [1-10].
       </description>
     </entry>
   </misc>
@@ -30,12 +30,12 @@
     <metadata name="tag">FrameLib Parameters</metadata>
   </metadatalist>
   <objarglist>
-    <objarg name="tag_01" optional="1" type="symbol">
+    <objarg name="tag_01...10" optional="1" type="symbol">
       <digest>
-        Sets the tag for input 1
+        Sets the tag for input N [1-10]
       </digest>
       <description>
-        This argument sets the tag_01 parameter:<br /><br />Sets the tag for input 1.
+        Arguments set parameters tag_01...10:<br /><br />Sets the tag for input N [1-10].
       </description>
     </objarg>
   </objarglist>

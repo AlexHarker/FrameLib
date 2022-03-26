@@ -16,14 +16,9 @@
         Sets the number of outputs.
       </description>
     </entry>
-    <entry name="/input_01 [int]">
+    <entry name="/input_01...32 [int]">
       <description>
-        Sets the current input for output 1 counting from 1 (off if out of range).
-      </description>
-    </entry>
-    <entry name="/input_02 [int]">
-      <description>
-        Sets the current input for output 2 counting from 1 (off if out of range).
+        Sets the current input for output N [1-32] counting from 1 (off if out of range).
       </description>
     </entry>
   </misc>
