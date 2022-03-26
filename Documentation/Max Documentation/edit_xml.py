@@ -49,6 +49,7 @@ def main(docs):
                     return key
 
     raw_xml_list = [x for x in docs.raw_xml_dir.rglob("fl.*.xml")]
+    manual_xml_list = [x for x in docs.manual_xml_dir.rglob("fl.*.xml")]
     print(f"Found {len(raw_xml_list)} .xml files to process.")
     docs.refpages_dir.mkdir(exist_ok=True)
 
@@ -119,6 +120,17 @@ def main(docs):
                 final_file.write(line)
             final_file.close()
 
+    for manual_xml in manual_xml_list:
+        category = manual_xml.parents[0].name
+        refpages_parent = docs.refpages_dir / category
+        refpages_parent.mkdir(exist_ok=True)
+        final_path = refpages_parent / manual_xml.name
+        final_file = open(final_path, "w+")
+        with open(manual_xml, "r") as f:
+            xml = f.read()
+            for line in xml:
+                final_file.write(line)
+            final_file.close()
 
 if __name__ == "__main__":
     main(Documentation())
