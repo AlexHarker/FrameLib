@@ -473,6 +473,9 @@
     "fl.expr~": {
         "digest": "Calculates the result of a mathematical expression."
     },
+    "fl.contextcontrol~": {
+        "digest": "Controls a named context via Max messages."
+    },
     "fl.makestring~": {
         "digest": "Creates a tagged string by concatenating strings and numbers."
     },

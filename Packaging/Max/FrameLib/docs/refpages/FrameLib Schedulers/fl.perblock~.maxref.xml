@@ -125,11 +125,10 @@
     <seealso name="fl.audiotrigger~" />
     <seealso name="fl.once~" />
     <seealso name="fl.chain~" />
-    <seealso name="fl.future~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">
-      <description>timing, schedulers,triggers</description>
+      <description>timing, schedulers, triggers</description>
     </entry>
   </misc>
 </c74object>

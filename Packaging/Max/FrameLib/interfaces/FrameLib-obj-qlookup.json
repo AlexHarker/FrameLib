@@ -8,7 +8,8 @@
         ],
         "keywords": [
             "complex numbers",
-            "complex operators"
+            "complex operators",
+            "spatial"
         ],
         "seealso": [
             "fl.complex.cos~",
@@ -34,6 +35,7 @@
             "FrameLib Spatial"
         ],
         "keywords": [
+            "spatial",
             "spatialisation"
         ],
         "seealso": [
@@ -50,7 +52,8 @@
         ],
         "keywords": [
             "complex numbers",
-            "complex operators"
+            "complex operators",
+            "spatial"
         ],
         "seealso": [
             "fl.complex.cos~",
@@ -76,7 +79,7 @@
             "FrameLib Streaming"
         ],
         "keywords": [
-            "multistreaming",
+            "multistream",
             "streams"
         ],
         "seealso": [
@@ -92,7 +95,7 @@
             "FrameLib Streaming"
         ],
         "keywords": [
-            "multistreaming",
+            "multistream",
             "streams"
         ],
         "seealso": [
@@ -108,7 +111,7 @@
             "FrameLib Streaming"
         ],
         "keywords": [
-            "multistreaming",
+            "multistream",
             "streams"
         ],
         "seealso": [
@@ -2870,7 +2873,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -2902,7 +2906,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -2934,7 +2939,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -2966,7 +2972,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -2998,7 +3005,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -3030,7 +3038,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -3062,7 +3071,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -3094,7 +3104,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -3126,7 +3137,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -3158,7 +3170,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -3190,7 +3203,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -3222,7 +3236,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -3254,7 +3269,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -3286,7 +3302,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -3318,7 +3335,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -3350,7 +3368,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.atan2~",
@@ -3382,7 +3401,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -3414,7 +3434,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -3446,7 +3467,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -3478,7 +3500,8 @@
             "FrameLib Binary"
         ],
         "keywords": [
-            "binary ops, operators"
+            "binary ops",
+            "operators"
         ],
         "seealso": [
             "fl.lessthan~",
@@ -3558,7 +3581,8 @@
             "FrameLib Generators"
         ],
         "keywords": [
-            "FFT, windowing"
+            "FFT",
+            "windowing"
         ],
         "seealso": [
             "fl.window~"
@@ -3661,7 +3685,9 @@
             "FrameLib Spectral"
         ],
         "keywords": [
-            "FFT, windowing, frequency domain"
+            "FFT",
+            "windowing",
+            "frequency domain"
         ],
         "seealso": [
             "fl.fft~",
@@ -3679,7 +3705,9 @@
             "FrameLib Spectral"
         ],
         "keywords": [
-            "FFT, windowing, frequency domain"
+            "FFT",
+            "windowing",
+            "frequency domain"
         ],
         "seealso": [
             "fl.fft~",
@@ -3711,7 +3739,8 @@
             "FrameLib Spectral"
         ],
         "keywords": [
-            "FFT, windowing, frequency domain"
+            "FFT",
+            "frequency domain"
         ],
         "seealso": [
             "fl.fft~",
@@ -3729,7 +3758,8 @@
             "FrameLib Spectral"
         ],
         "keywords": [
-            "FFT, windowing, frequency domain"
+            "FFT",
+            "frequency domain"
         ],
         "seealso": [
             "fl.multitaper~",
@@ -3747,7 +3777,8 @@
             "FrameLib Spectral"
         ],
         "keywords": [
-            "FFT, windowing, frequency domain"
+            "FFT",
+            "frequency domain"
         ],
         "seealso": [
             "fl.fft~",
@@ -3765,7 +3796,9 @@
             "FrameLib Spectral"
         ],
         "keywords": [
-            "FFT, windowing, frequency domain"
+            "FFT",
+            "windowing",
+            "frequency domain"
         ],
         "seealso": [
             "fl.fft~",
@@ -3936,15 +3969,15 @@
             "FrameLib Schedulers"
         ],
         "keywords": [
-            "timing, schedulers",
+            "timing",
+            "schedulers",
             "triggers"
         ],
         "seealso": [
             "fl.interval~",
             "fl.audiotrigger~",
             "fl.once~",
-            "fl.chain~",
-            "fl.future~"
+            "fl.chain~"
         ]
     },
     "fl.once~": {
@@ -3955,15 +3988,15 @@
             "FrameLib Schedulers"
         ],
         "keywords": [
-            "timing, schedulers",
+            "timing",
+            "schedulers",
             "triggers"
         ],
         "seealso": [
             "fl.interval~",
             "fl.perblock~",
             "fl.audiotrigger~",
-            "fl.chain~",
-            "fl.future~"
+            "fl.chain~"
         ]
     },
     "fl.audiotrigger~": {
@@ -3974,15 +4007,15 @@
             "FrameLib Schedulers"
         ],
         "keywords": [
-            "timing, schedulers",
+            "timing",
+            "schedulers",
             "triggers"
         ],
         "seealso": [
             "fl.interval~",
             "fl.perblock~",
             "fl.once~",
-            "fl.chain~",
-            "fl.future~"
+            "fl.chain~"
         ]
     },
     "fl.interval~": {
@@ -3993,15 +4026,15 @@
             "FrameLib Schedulers"
         ],
         "keywords": [
-            "timing, schedulers",
+            "timing",
+            "schedulers",
             "triggers"
         ],
         "seealso": [
             "fl.perblock~",
             "fl.audiotrigger~",
             "fl.once~",
-            "fl.chain~",
-            "fl.future~"
+            "fl.chain~"
         ]
     },
     "fl.chain~": {
@@ -4012,15 +4045,15 @@
             "FrameLib Schedulers"
         ],
         "keywords": [
-            "timing, schedulers",
+            "timing",
+            "schedulers",
             "triggers"
         ],
         "seealso": [
             "fl.interval~",
             "fl.perblock~",
             "fl.audiotrigger~",
-            "fl.once~",
-            "fl.future~"
+            "fl.once~"
         ]
     },
     "fl.complex.sinh~": {
@@ -4548,6 +4581,22 @@
         ],
         "seealso": [
             "fl.complex.expr~"
+        ]
+    },
+    "fl.contextcontrol~": {
+        "digest": "Controls a named context via Max messages.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "FrameLib Contexts"
+        ],
+        "keywords": [
+            "contexts"
+        ],
+        "seealso": [
+            "fl.interval~",
+            "fl.source~",
+            "fl.sink~"
         ]
     },
     "fl.makestring~": {

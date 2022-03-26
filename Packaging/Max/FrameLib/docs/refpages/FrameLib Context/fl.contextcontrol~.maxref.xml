@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
+<c74object name="fl.contextcontrol~" module="FrameLib" category="FrameLib Contexts">
+  <digest>
+    Controls a named context via Max messages.
+  </digest>
+  <description>
+    <o>fl.contextcontrol~</o> allows the user to control multithreading and time outs for a specified FrameLib context, as well as to export code to C++. As with normal FrameLib objects the context is set using attributes (as well as the implicit context patch). Please note that the <o>fl.contextcontrol~</o> object does not actually process frames, or participate in FrameLib networks in any direct manner. It is merely a control mechanism for pre-existing networks.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+  </description>
+  <methodlist>
+    <method name="multithread">
+      <arglist>
+        <arg name="flag" optional="0" type="int" />
+      </arglist>
+      <digest>
+        Set multithreading on or off for the specified context
+      </digest>
+      <description>
+        A non-zero value will turn multithreading on for the context currently being controlled. A zero value will turn it off.<br /><br />More info on multithreading with FrameLib contexts can be found in <link name="12_fl_multithreading" module="framelib" type="tutorial">Tutorial 12</link>.
+      </description>
+    </method>
+    <method name="timeout">
+        <arglist>
+            <arg name="relative" optional="0" type="float" />
+            <arg name="absolute" optional="0" type="float" />
+        </arglist>
+      <digest>
+        Set the time out values for a FrameLib context
+      </digest>
+      <description>
+        If a FrameLib context is taking too long to process it will exit early to avoid long periods of unresponsiveness. This message can be used to set the values that calculate if processing has taking too long. If the message is sent with no arguments then time outs are switched off for the specified context. Alternatively, two optional values can be used to set the relative (% of realtime) and absolute (ms) time out values. When processing audio the actual time out used for a given block of audio is the maximum of the calculated relative time (the length of the block modified by the specified percentage) and absolute time out values.
+      </description>
+    </method>
+    <method name="export">
+        <arglist>
+            <arg name="classname" optional="0" type="symbol" />
+            <arg name="path" optional="0" type="symbol" />
+        </arglist>
+      <digest>
+        Export a FrameLib network in Max to C++ code
+      </digest>
+      <description>
+        The <m>export</m> message will export a C++ header and source file for the specified network. The file names (and associated C++ class) are set with the first argument, whilst the second is used to provide a valid Max path to a folder into which to write the exported code. The path must exist prior to sending the <m>export</m> message.<br /><br />More info on code export with FrameLib can be found in <link name="13_fl_codeexport" module="framelib" type="tutorial">Tutorial 13</link>.
+      </description>
+    </method>
+  </methodlist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for <o>fl.contextcontrol~</o>. When set to <m>0</m> <o>fl.contextcontrol~</o> can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for <o>fl.contextcontrol~</o>.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
+  <seealsolist>
+    <seealso name="fl.interval~" />
+    <seealso name="fl.source~" />
+    <seealso name="fl.sink~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>contexts</description>
+    </entry>
+  </misc>
+</c74object>
