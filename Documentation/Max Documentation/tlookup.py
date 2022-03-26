@@ -6,12 +6,12 @@ from framelib.classes import tParseAndBuild, Documentation
 
 def main(docs: Documentation):
     """
-    Creates tutorial information and stores it in a dictionary format. 
+    Creates tutorial information and stores it in a dictionary format.
     This information is displayed to the user in a umenu.
     """
 
     tutorial_index = (
-        docs.package / "FrameLib" / "docs" / "tutorials" / "FrameLib-tut" / "00_fl_index.maxtut.xml"
+        docs.package / "FrameLib" / "docs" / "tutorials" / "framelib-tut" / "00_fl_index.maxtut.xml"
     )
     docs.interfaces_dir.mkdir(exist_ok=True)
 

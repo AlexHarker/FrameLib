@@ -32,10 +32,10 @@ class Documentation:
 
         # Help Files
         self.help_dir = self.max_docs_dir / "help_files"
-            
+
         # Manual XML
         self.manual_xml_dir = self.max_docs_dir / "refpages"
-            
+
     def set_package(self, location:str) -> None:
         """Sets the location of the folder holding that is the parent of the package"""
         self.package = Path(location)
@@ -155,7 +155,7 @@ class qParseAndBuild:
 # A class to parse the XML files and build a JSON file from it #
 class tParseAndBuild:
     """
-    Takes info from the tutorial refpages /FrameLib/Current Test Version/FrameLib/docs/tutorials/FrameLib-tut/.
+    Takes info from the tutorial refpages FrameLib/docs/tutorials/framelib-tut/.
     Extracts the title, number and formats it into a .json.
     """
 
@@ -245,7 +245,7 @@ class jParseAndBuild:
                                 elif item.tag == "o":
                                     blank_desc += item.text
                                     blank_desc += item.tail.rstrip()
-                                    
+
                         blank_desc = self.param_newlines(blank_desc)
                         blank_internal["description"] = blank_desc  # set the description
 
