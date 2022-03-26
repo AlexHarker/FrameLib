@@ -42,7 +42,7 @@ FrameLib_LookupString::FrameLib_LookupString(FrameLib_Context context, const Fra
     mNumItems = mParameters.getInt(kNumItems);
     
     for (unsigned long i = 0; i < mNumItems; i++)
-        mParameters.addString(kItems + i, FrameLib_StringMaker<>("items_", i + 1, 2), i + 1);
+        mParameters.addString(kItems + i, FrameLib_StringMaker<>("item_", i + 1, 2), i + 1);
     
     // Read in again to get item strings
     
