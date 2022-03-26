@@ -4540,7 +4540,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 75.0, 399.0, 30.0 ],
-									"text" : "Multi-stream Networks"
+									"text" : "Multi-Stream Networks"
 								}
 
 							}
@@ -4665,14 +4665,14 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl-stereo-h.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl-tutorial-names.txt",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
@@ -4759,7 +4759,7 @@
 			}
 , 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
