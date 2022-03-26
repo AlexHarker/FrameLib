@@ -32,7 +32,10 @@ class Documentation:
 
         # Help Files
         self.help_dir = self.max_docs_dir / "help_files"
-    
+            
+        # Manual XML
+        self.manual_xml_dir = self.max_docs_dir / "refpages"
+            
     def set_package(self, location:str) -> None:
         """Sets the location of the folder holding that is the parent of the package"""
         self.package = Path(location)
