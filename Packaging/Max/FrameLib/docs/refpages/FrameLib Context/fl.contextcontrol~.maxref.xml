@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8' standalone='yes'?>
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
-<c74object name="fl.contextcontrol~" module="FrameLib" category="FrameLib Contexts">
+<c74object name="fl.contextcontrol~" module="FrameLib" category="FrameLib Context">
   <digest>
     Controls a named context via Max messages.
   </digest>
