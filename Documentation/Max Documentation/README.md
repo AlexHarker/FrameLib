@@ -61,7 +61,7 @@ Once you have created your FrameLib_YOUROBJECT.cpp, FrameLib_YOUROBJECT.h and fl
 
 You will need to make your own help files and tutorials for the object however, which is not covered in the automatic building of FrameLib documentation.
 
-Prior to building the documentation you will also need to add an entry for your object in the `object_relationships.yaml` file. This provides the build process with knowledge of objects which are related to yours as well as any keywords that you want to associate with your object, and will populate the Max documentation with this information. Follow the format used for the native FrameLib objects. 
+Prior to building the documentation you will also need to add an entry for your object in the `object_relationships.json` file. This provides the build process with knowledge of objects which are related to yours as well as any keywords that you want to associate with your object, and will populate the Max documentation with this information. Follow the format used for the native FrameLib objects. 
 
 
 ## An deeper explanation

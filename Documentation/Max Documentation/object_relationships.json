@@ -451,7 +451,8 @@
         "fl.complex.sin~",
         "fl.complex.tanh~",
         "fl.complex.sqrt~",
-        "fl.poltocar~"
+        "fl.poltocar~",
+        "fl.spatial~"
       ]
     },
     "fl.cbrt~": {
@@ -628,8 +629,9 @@
       "seealso": [
         "fl.tag~",
         "fl.untag~",
-        "fl.getparam~",
-        "fl.filtertags~"
+        "fl.filtertags~",
+        "fl.looupstring~",
+        "fl.makestring~"
       ]
     },
     "fl.complex.conj~": {
@@ -1351,7 +1353,8 @@
         "fl.tag~",
         "fl.untag~",
         "fl.combinetags~",
-        "fl.getparam~"
+        "fl.looupstring~",
+        "fl.makestring~"
       ]
     },
     "fl.flatness~": {
@@ -1515,17 +1518,6 @@
         "fl.rms~",
         "fl.split~",
         "fl.medianfilter~"
-      ]
-    },
-    "fl.getparam~": {
-      "keywords": [
-        "parameters"
-      ],
-      "seealso": [
-        "fl.tag~",
-        "fl.untag~",
-        "fl.combinetags~",
-        "fl.filtertags~"
       ]
     },
     "fl.greaterthaneq~": {
@@ -1931,6 +1923,30 @@
         "fl.constant~",
         "fl.samplerate~"
       ]
+    },
+    "fl.lookupstring~": {
+        "keywords": [
+            "parameters"
+        ],
+        "seealso": [
+            "fl.tag~",
+            "fl.untag~",
+            "fl.combinetags~",
+            "fl.filtertags~",
+            "fl.makestring~"
+        ]
+    },
+    "fl.makestring~": {
+        "keywords": [
+            "parameters"
+        ],
+        "seealso": [
+            "fl.tag~",
+            "fl.untag~",
+            "fl.combinetags~",
+            "fl.filtertags~",
+            "fl.looupstring~"
+        ]
     },
     "fl.map~": {
       "keywords": [
@@ -2559,7 +2575,8 @@
         "fl.complex.tan~",
         "fl.complex.sin~",
         "fl.complex.tanh~",
-        "fl.complex.sqrt~"
+        "fl.complex.sqrt~",
+        "fl.spatial~"
       ]
     },
     "fl.pow~": {
@@ -3015,7 +3032,11 @@
     },
     "fl.spatial~": {
       "keywords": [
-        "spatialiastion"
+        "spatialisation"
+      ],
+      "seealso": [
+          "fl.cartopol~",
+          "fl.poltocar~"
       ]
     },
     "fl.split~": {
@@ -3268,8 +3289,9 @@
       "seealso": [
         "fl.untag~",
         "fl.combinetags~",
-        "fl.getparam~",
-        "fl.filtertags~"
+        "fl.filtertags~",
+        "fl.looupstring~",
+        "fl.makestring~"
       ]
     },
     "fl.tanh~": {
@@ -3510,8 +3532,9 @@
       "seealso": [
         "fl.tag~",
         "fl.combinetags~",
-        "fl.getparam~",
-        "fl.filtertags~"
+        "fl.filtertags~",
+        "fl.looupstring~",
+        "fl.makestring~"
       ]
     },
     "fl.framemax~": {
