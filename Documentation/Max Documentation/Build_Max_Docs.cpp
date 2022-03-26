@@ -142,6 +142,12 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     std::string tab3 = tab2 + tab1;
     std::string tab4 = tab2 + tab2;
     
+    
+    // Reuseable strings
+    
+    std::string conversionTutorial("More info on conversion between Max messages and FrameLib can be found in <link name='04_fl_conversion' module='framelib' type='tutorial'>Tutorial 4</link>.");
+    std::string nonRealtimeTutorial("More info on non-realtime processing with FrameLib can be found in <link name='11_fl_nrt' module='framelib' type='tutorial'>Tutorial 11</link>.");
+    
     // Write to a temporary relative location
     
     file.open(tmpFolder + object + ".maxref.xml");
@@ -301,6 +307,18 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     objectDigest = objectInfo.substr(0, pos) + ".";
     objectDescription = objectInfo.substr(objectInfo[pos + 1] == ' ' ? pos + 2 : pos + 1);
     
+    if (object == "fl.tomax~")
+    {
+        findReplaceOnce(objectDigest, "host messages or control signals", "Max messages");
+        findReplaceOnce(objectDescription, "the host environment. Vector and tagged frame types are both supported if supported by the host", "Max");
+        objectDescription += "<br /><br/>" + conversionTutorial;
+    }
+    else if (object == "fl.frommax~")
+    {
+        findReplaceOnce(objectDigest, "messages or control signals from the host", "Max messages");
+        objectDescription += "<br /><br/>" + conversionTutorial;
+    }
+    
     // Now write that info into sections
     
     writeDigestDescription(tab1, objectDigest, objectDescription);
@@ -397,11 +415,6 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
             break;
     }
     
-    // Reuseable strings
-    
-    std::string nonRealtimeTutorial("More info on non-realtime processing with FrameLib can be found in <link name='11_fl_nrt' module='framelib' type='tutorial'>Tutorial 11</link>.");
-    
-    
     // Messages
     
     std::vector<MessageArgument> emptyArgs;
@@ -439,6 +452,27 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     
     file << tab1 + "<!--MESSAGES-->\n";
     file << tab1 + "<methodlist>\n";
+    
+    // Input Special Case
+    
+    if (object == "fl.frommax~")
+    {
+        std::vector<MessageArgument> intArgs { { "value", false, "int" } };
+        std::vector<MessageArgument> floatArgs { { "value", false, "float" } };
+        std::vector<MessageArgument> listArgs { { "values", false, "list" } };
+        std::vector<MessageArgument> anythingArgs { { "parameter-input", false, "list" } };
+
+        std::string intDescription("Performs the same function as <m>list</m> but with a single value.");
+        std::string floatDescription("Performs the same function as <m>list</m> but with a single value.");
+        std::string listDescription("If <o>fl.frommax~</o> is set to values mode then incoming lists are stored as a vector. Whenever <o>fl.frommax~</o> is scheduled the vector is output, until it is replaced by a new set of values.<br /><br />If <o>fl.frommax~</o> is in params mode then numerical inputs are ignored.");
+        std::string anythingDescription("If <o>fl.frommax~</o> is set to params mode then messages starting with a symbol will be accumulated into an internal tagged frame. When <o>fl.frommax~</o> is next scheduled to output the tagged frame is output and the internal frame is reset to empty.<br /><br />If <o>fl.frommax~</o> is in values mode then messages starting with a symbol are ignored.");
+        
+        writeMessage("int", "Value to convert to a vector frame", intDescription, intArgs);
+        writeMessage("float", "Value to convert to a vector frame", floatDescription, floatArgs);
+        writeMessage("list", "Values to convert to a vector frame", listDescription, listArgs);
+        writeMessage("anything", "Tagged values to accumulate into a tagged output frame", anythingDescription, anythingArgs);
+    }
+    
     writeMessage("info", "Get Object Info", infoDescription, infoArgs);
     if (frameLibObject->handlesAudio())
     {
@@ -454,7 +488,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     
     std::string bufferDescription("Sets the non-realtime <o>buffer~</o> for " + objectDoc +". This is the <o>buffer~</o> used for IO in a non-realtime setting.<br /><br />" + nonRealtimeTutorial);
     std::string rtDescription("Sets the realtime state for " + objectDoc + ". When set to <m>0</m> " + objectDoc + " can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br />" + nonRealtimeTutorial);
-    std::string idDescription("Sets the context name for " + objectDoc + ".<br /><br /> More info on FrameLib contexts can be found in <link name='10_fl_contexts' module='framelib' type='tutorial'>Tutorial 10</link>.");
+    std::string idDescription("Sets the context name for " + objectDoc + ".<br /><br />More info on FrameLib contexts can be found in <link name='10_fl_contexts' module='framelib' type='tutorial'>Tutorial 10</link>.");
     
     file << tab1 + "<!--ATTRIBUTES-->\n";
     file << tab1 + "<attributelist>\n";
@@ -469,6 +503,24 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     file << tab1 + "<!--SEEALSO-->\n";
     file << tab1 + "<seealsolist>\n";
     file << tab1 + "</seealsolist>\n";
+    
+    // Output Special Case
+    
+    if (object == "fl.tomax~")
+    {
+        file << tab1 + "<misc name = 'Output'>\n";
+        file << tab2 + "<entry name = 'anything'>\n";
+        file << tab3 + "<description>\n";
+        file << tab4 + "If the frame input to <o>fl.tomax~</o> is a tagged frame then the output is a set of messages each starting with the relevant tag and followed by the related value(s).\n";
+        file << tab3 + "</description>\n";
+        file << tab2 + "</entry>\n";
+        file << tab2 + "<entry name = 'list'>\n";
+        file << tab3 + "<description>\n";
+        file << tab4 + "If the frame input to <o>fl.tomax~</o> is a vector then the output is a list.\n";
+        file << tab3 + "</description>\n";
+        file << tab2 + "</entry>\n";
+        file << tab1 + "</misc>\n\n";
+    }
     
     // Keywords
     
