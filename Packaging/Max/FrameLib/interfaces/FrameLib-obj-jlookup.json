@@ -62,7 +62,7 @@
     "fl.streamid~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.streamid~ has no parameters."
         }
     },
     "fl.pack~": {
@@ -270,7 +270,7 @@
     "fl.nonzero~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.nonzero~ has no parameters."
         }
     },
     "fl.stddev~": {
@@ -338,7 +338,7 @@
     "fl.length~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.length~ has no parameters."
         }
     },
     "fl.mean~": {
@@ -392,7 +392,7 @@
     "fl.reverse~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.reverse~ has no parameters."
         }
     },
     "fl.pattern~": {
@@ -670,163 +670,163 @@
     "fl.exp2~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.exp2~ has no parameters."
         }
     },
     "fl.asinh~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.asinh~ has no parameters."
         }
     },
     "fl.log~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.log~ has no parameters."
         }
     },
     "fl.erf~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.erf~ has no parameters."
         }
     },
     "fl.exp~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.exp~ has no parameters."
         }
     },
     "fl.sin~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.sin~ has no parameters."
         }
     },
     "fl.log2~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.log2~ has no parameters."
         }
     },
     "fl.asin~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.asin~ has no parameters."
         }
     },
     "fl.acos~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.acos~ has no parameters."
         }
     },
     "fl.cos~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.cos~ has no parameters."
         }
     },
     "fl.sinh~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.sinh~ has no parameters."
         }
     },
     "fl.floor~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.floor~ has no parameters."
         }
     },
     "fl.trunc~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.trunc~ has no parameters."
         }
     },
     "fl.log10~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.log10~ has no parameters."
         }
     },
     "fl.atanh~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.atanh~ has no parameters."
         }
     },
     "fl.sqrt~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.sqrt~ has no parameters."
         }
     },
     "fl.acosh~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.acosh~ has no parameters."
         }
     },
     "fl.tan~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.tan~ has no parameters."
         }
     },
     "fl.not~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.not~ has no parameters."
         }
     },
     "fl.atan~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.atan~ has no parameters."
         }
     },
     "fl.tanh~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.tanh~ has no parameters."
         }
     },
     "fl.erfc~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.erfc~ has no parameters."
         }
     },
     "fl.abs~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.abs~ has no parameters."
         }
     },
     "fl.round~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.round~ has no parameters."
         }
     },
     "fl.cbrt~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.cbrt~ has no parameters."
         }
     },
     "fl.cosh~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.cosh~ has no parameters."
         }
     },
     "fl.ceil~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.ceil~ has no parameters."
         }
     },
     "fl.copysign~": {
@@ -1226,7 +1226,7 @@
     "fl.tomax~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.tomax~ has no parameters."
         }
     },
     "fl.frommax~": {
@@ -1458,7 +1458,7 @@
     "fl.framedelta~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.framedelta~ has no parameters."
         }
     },
     "fl.lag~": {
@@ -1536,19 +1536,19 @@
     "fl.perblock~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.perblock~ has no parameters."
         }
     },
     "fl.once~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.once~ has no parameters."
         }
     },
     "fl.audiotrigger~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.audiotrigger~ has no parameters."
         }
     },
     "fl.interval~": {
@@ -1586,67 +1586,67 @@
     "fl.complex.sinh~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.complex.sinh~ has no parameters."
         }
     },
     "fl.complex.cos~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.complex.cos~ has no parameters."
         }
     },
     "fl.complex.sin~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.complex.sin~ has no parameters."
         }
     },
     "fl.complex.exp~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.complex.exp~ has no parameters."
         }
     },
     "fl.complex.log~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.complex.log~ has no parameters."
         }
     },
     "fl.complex.cosh~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.complex.cosh~ has no parameters."
         }
     },
     "fl.complex.log10~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.complex.log10~ has no parameters."
         }
     },
     "fl.complex.tanh~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.complex.tanh~ has no parameters."
         }
     },
     "fl.complex.tan~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.complex.tan~ has no parameters."
         }
     },
     "fl.complex.conj~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.complex.conj~ has no parameters."
         }
     },
     "fl.complex.sqrt~": {
         "1": {
             "name": null,
-            "description": "This object has no parameters."
+            "description": "fl.complex.sqrt~ has no parameters."
         }
     },
     "fl.wrap~": {
