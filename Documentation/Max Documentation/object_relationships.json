@@ -159,7 +159,8 @@
     },
     "fl.and~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -329,7 +330,8 @@
     },
     "fl.atan2~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -423,21 +425,22 @@
     },
     "fl.audiotrigger~": {
       "keywords": [
-        "timing, schedulers",
+        "timing",
+        "schedulers",
         "triggers"
       ],
       "seealso": [
         "fl.interval~",
         "fl.perblock~",
         "fl.once~",
-        "fl.chain~",
-        "fl.future~"
+        "fl.chain~"
       ]
     },
     "fl.cartopol~": {
       "keywords": [
         "complex numbers",
-        "complex operators"
+        "complex operators",
+        "spatial"
       ],
       "seealso": [
         "fl.complex.cos~",
@@ -563,15 +566,15 @@
     },
     "fl.chain~": {
       "keywords": [
-        "timing, schedulers",
+        "timing",
+        "schedulers",
         "triggers"
       ],
       "seealso": [
         "fl.interval~",
         "fl.perblock~",
         "fl.audiotrigger~",
-        "fl.once~",
-        "fl.future~"
+        "fl.once~"
       ]
     },
     "fl.chop~": {
@@ -934,6 +937,16 @@
         "fl.lookup~"
       ]
     },
+    "fl.contextcontrol~": {
+        "keywords": [
+            "contexts"
+        ],
+        "seealso": [
+            "fl.interval~",
+            "fl.source~",
+            "fl.sink~"
+        ]
+    },
     "fl.convert~": {
       "keywords": [
         "scaling",
@@ -948,7 +961,9 @@
     },
     "fl.convolve~": {
       "keywords": [
-        "FFT, windowing, frequency domain"
+        "FFT",
+        "windowing",
+        "frequency domain"
       ],
       "seealso": [
         "fl.fft~",
@@ -960,7 +975,8 @@
     },
     "fl.copysign~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -986,7 +1002,8 @@
     },
     "fl.correlate~": {
       "keywords": [
-        "FFT, windowing, frequency domain"
+        "FFT",
+        "frequency domain"
       ],
       "seealso": [
         "fl.fft~",
@@ -1104,7 +1121,8 @@
     },
     "fl.diff~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -1139,7 +1157,8 @@
     },
     "fl.divide~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -1165,7 +1184,8 @@
     },
     "fl.equals~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -1335,7 +1355,8 @@
     },
     "fl.fft~": {
       "keywords": [
-        "FFT, windowing, frequency domain"
+        "FFT",
+        "frequency domain"
       ],
       "seealso": [
         "fl.multitaper~",
@@ -1459,19 +1480,6 @@
         "fl.tomax~"
       ]
     },
-    "fl.future~": {
-      "keywords": [
-        "timing, schedulers",
-        "triggers"
-      ],
-      "seealso": [
-        "fl.interval~",
-        "fl.perblock~",
-        "fl.audiotrigger~",
-        "fl.once~",
-        "fl.chain~"
-      ]
-    },
     "fl.gaussian~": {
       "keywords": [
         "generators"
@@ -1522,7 +1530,8 @@
     },
     "fl.greaterthaneq~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -1548,7 +1557,8 @@
     },
     "fl.greaterthan~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -1574,7 +1584,8 @@
     },
     "fl.hypot~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -1600,7 +1611,8 @@
     },
     "fl.ifft~": {
       "keywords": [
-        "FFT, windowing, frequency domain"
+        "FFT",
+        "frequency domain"
       ],
       "seealso": [
         "fl.fft~",
@@ -1621,15 +1633,15 @@
     },
     "fl.interval~": {
       "keywords": [
-        "timing, schedulers",
+        "timing",
+        "schedulers",
         "triggers"
       ],
       "seealso": [
         "fl.perblock~",
         "fl.audiotrigger~",
         "fl.once~",
-        "fl.chain~",
-        "fl.future~"
+        "fl.chain~"
       ]
     },
     "fl.join~": {
@@ -1760,7 +1772,8 @@
     },
     "fl.lessthaneq~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -1786,7 +1799,8 @@
     },
     "fl.lessthan~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.atan2~",
@@ -1962,7 +1976,8 @@
     },
     "fl.max~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -2064,7 +2079,8 @@
     },
     "fl.minus~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -2090,7 +2106,8 @@
     },
     "fl.min~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -2116,7 +2133,8 @@
     },
     "fl.modulo~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -2142,7 +2160,9 @@
     },
     "fl.multitaper~": {
       "keywords": [
-        "FFT, windowing, frequency domain"
+        "FFT",
+        "windowing",
+        "frequency domain"
       ],
       "seealso": [
         "fl.fft~",
@@ -2230,7 +2250,8 @@
     },
     "fl.notequals~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -2300,15 +2321,15 @@
     },
     "fl.once~": {
       "keywords": [
-        "timing, schedulers",
+        "timing",
+        "schedulers",
         "triggers"
       ],
       "seealso": [
         "fl.interval~",
         "fl.perblock~",
         "fl.audiotrigger~",
-        "fl.chain~",
-        "fl.future~"
+        "fl.chain~"
       ]
     },
     "fl.onepolezero~": {
@@ -2333,7 +2354,8 @@
     },
     "fl.or~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -2359,7 +2381,7 @@
     },
     "fl.pack~": {
       "keywords": [
-        "multistreaming",
+        "multistream",
         "streams"
       ],
       "seealso": [
@@ -2483,15 +2505,15 @@
     },
     "fl.perblock~": {
       "keywords": [
-        "timing, schedulers",
+        "timing",
+        "schedulers",
         "triggers"
       ],
       "seealso": [
         "fl.interval~",
         "fl.audiotrigger~",
         "fl.once~",
-        "fl.chain~",
-        "fl.future~"
+        "fl.chain~"
       ]
     },
     "fl.percentile~": {
@@ -2534,7 +2556,8 @@
     },
     "fl.plus~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -2561,7 +2584,8 @@
     "fl.poltocar~": {
       "keywords": [
         "complex numbers",
-        "complex operators"
+        "complex operators",
+        "spatial"
       ],
       "seealso": [
         "fl.complex.cos~",
@@ -2581,7 +2605,8 @@
     },
     "fl.pow~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -3032,6 +3057,7 @@
     },
     "fl.spatial~": {
       "keywords": [
+        "spatial",
         "spatialisation"
       ],
       "seealso": [
@@ -3198,7 +3224,7 @@
     },
     "fl.streamid~": {
       "keywords": [
-        "multistreaming",
+        "multistream",
         "streams"
       ],
       "seealso": [
@@ -3430,7 +3456,8 @@
     },
     "fl.times~": {
       "keywords": [
-        "binary ops, operators"
+        "binary ops",
+        "operators"
       ],
       "seealso": [
         "fl.lessthan~",
@@ -3517,7 +3544,7 @@
     },
     "fl.unpack~": {
       "keywords": [
-        "multistreaming",
+        "multistream",
         "streams"
       ],
       "seealso": [
@@ -3615,7 +3642,9 @@
     },
     "fl.window~": {
       "keywords": [
-        "FFT, windowing, frequency domain"
+        "FFT",
+        "windowing",
+        "frequency domain"
       ],
       "seealso": [
         "fl.fft~",
@@ -3661,7 +3690,8 @@
     },
     "fl.makewindow~": {
       "keywords": [
-        "FFT, windowing"
+        "FFT",
+        "windowing"
       ],
       "seealso": [
         "fl.window~"
