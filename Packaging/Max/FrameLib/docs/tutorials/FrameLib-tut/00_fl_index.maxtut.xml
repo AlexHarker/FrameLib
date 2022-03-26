@@ -32,7 +32,7 @@ FrameLib Tutorials - Table of Contents
         <h2>Intermediate</h2>
             <ul>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="07_fl_fft" diff="Intermediate" digest="The Basics of FFT/STFT processing in FrameLib">Tutorial 7: FFT in FrameLib</link>
+                    <link type="tutorial" module="FrameLib" name="07_fl_fft" diff="Intermediate" digest="The Basics of FFT/STFT processing in FrameLib">Tutorial 7: FFT (Fast Fourier Transform)</link>
                 </li>
                 <li>
                     <link type="tutorial" module="FrameLib" name="08_fl_multistream" diff="Intermediate" digest="Similar to 'mc' objects, multi-streaming allows you to manipulate multiple streams with a single set of processors.">Tutorial 8: Multi-Stream Networks</link>
