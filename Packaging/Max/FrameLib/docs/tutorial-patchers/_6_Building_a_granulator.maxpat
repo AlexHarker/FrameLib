@@ -40,7 +40,7 @@
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
 		"assistshowspatchername" : 0,
-		"title" : "Tutorial 6: Building a granular synthesiser from scratch",
+		"title" : "Tutorial 6: Building a Granular Synthesiser from scratch",
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-16",
@@ -49,7 +49,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 111.84375, 640.0, 302.0, 21.0 ],
-					"text" : "title \"Tutorial 6: Building a granular synthesiser from scratch\""
+					"text" : "title \"Tutorial 6: Building a Granular Synthesiser from scratch\""
 				}
 
 			}
@@ -11946,7 +11946,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 15.0, 660.0, 59.0 ],
-									"text" : "Building a granular synthesiser"
+									"text" : "Building a Granular Synthesiser"
 								}
 
 							}
