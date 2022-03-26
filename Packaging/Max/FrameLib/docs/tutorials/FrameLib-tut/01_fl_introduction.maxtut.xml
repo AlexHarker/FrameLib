@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 
-<?xml-stylesheet href="./_c74_tut.xsl" type="text/xsl"?>
-
 <chapter name="FrameLib Tutorial 1: Introduction">
-<next name="02_fl_examples">Examples of how Framelib works and what it can be used for</next>
-<parent name="00_fl_index">FrameLib tutorials</parent>
+<openfile name="Introduction" patch="_1_introduction.maxpat"/>
+<header>Framelib Tutorial 1: Introduction</header>
+<subhead>A general introduction to FrameLib</subhead>
+<body>In this tutorial you'll be introduced to some general concepts that underpin the FrameLib package and frame-based processing.</body>
+<body><openpatchlink>Open the tutorial</openpatchlink>.</body>
 
+<seealsolist>
+<seealso name="fl.interval~" />
+<seealso name="fl.source~" />
+</seealsolist>
+
+<next name="02_fl_examples">Learn By Example</next>
+<parent name="00_fl_index">FrameLib Tutorials</parent>
 </chapter>
 
