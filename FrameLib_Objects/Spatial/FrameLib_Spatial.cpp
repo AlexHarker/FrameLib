@@ -435,7 +435,7 @@ FrameLib_Spatial::ParameterInfo::ParameterInfo()
     add("Sets the speaker weightings (one value per speaker).");
     add("Sets the rolloff in dB.");
     add("Sets the blur factor.");
-    add("Sets the maximum number of speakers to be used (the neaarest N speakers will be used only). "
+    add("Sets the maximum number of speakers to be used (the nearest N speakers will be used only). "
         "If zero all speakers are used.");
     add("Interpolate to point source panning (0 is modified DBAP - 1 is point source).");
     add("Sets the method for constraining positions outside of the speaker array.");
