@@ -62,7 +62,7 @@
         <bullet>[1] - <m>linear</m></bullet>
         <bullet>[2] - <m>square</m></bullet>
         <bullet>[3] - <m>reconstruct</m></bullet><br />
-        Sets the gain compensation (the window is divided by the compensated gain).<br />off - no compensation is used.<br />linear - compensate the linear gain of the window.<br />square - compensate the gain of the window when applied twice (squared).<br />reconstruct - compensate the gain of the squared window divided by the linear gain.<br />This last mode is suited to FFT output windows used with the same input window.<br />Note that the gain of the window is calculated after applying any exponent.
+        Sets the gain compensation (the window is divided by the compensated gain):<br /><br />off - no compensation is used.<br />linear - compensate the linear gain of the window.<br />square - compensate the gain of the window when applied twice (squared).<br />reconstruct - compensate the gain of the squared window divided by the linear gain.<br />This last mode is suited to FFT output windows used with the same input window.<br />Note that the gain of the window is calculated after applying any exponent.
       </description>
     </entry>
     <entry name="/parameters [variable length double array]">

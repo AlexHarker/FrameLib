@@ -308,7 +308,7 @@ public:
     
     static const char *getCompensationInfo()
     {
-        return "Sets the gain compensation (the window is divided by the compensated gain). "
+        return "Sets the gain compensation (the window is divided by the compensated gain): "
         "off - no compensation is used. "
         "linear - compensate the linear gain of the window. "
         "square - compensate the gain of the window when applied twice (squared). "
