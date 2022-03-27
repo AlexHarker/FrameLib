@@ -100,7 +100,10 @@ std::string getParamName(const FrameLib_Parameters *params, unsigned long idx)
 
 std::string formatParameterInfo(std::string str)
 {
-    findReplace(str, ". ", ".<br />");
+    // FIX - consider only after the colon and see the changes...
+    
+    if (str.find(": ") != std::string::npos)
+        findReplace(str, ". ", ".<br />");
     findReplace(str, ": ", ":<br /><br />");
     
     return str;
@@ -113,11 +116,7 @@ std::string processParamInfo(const FrameLib_Parameters *params, unsigned long id
     if (detectIndexedParam(params, idx))
         findReplaceOnce(info, "1", "N [1-" + maxIndexString(params, idx) + "]");
     
-    if (params->getType(idx) == FrameLib_Parameters::Type::Enum)
-        return formatParameterInfo(escapeXML(info));
-    else
-        return escapeXML(info);
-
+    return formatParameterInfo(escapeXML(info));
 }
 
 bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxObjectArgsMode argsMode)
