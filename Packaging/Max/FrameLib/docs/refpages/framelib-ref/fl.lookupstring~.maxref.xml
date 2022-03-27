@@ -20,16 +20,16 @@
     </entry>
     <entry name="/scale [enum]">
       <description>
-        Sets the input scale:<br /><br />indices - string lookup is done by index.<br />normalised - string lookup is done by normalised value.<br />
-        <bullet>[0] - indices</bullet>
-        <bullet>[1] - normalised</bullet>
+        <bullet>[0] - <m>indices</m></bullet>
+        <bullet>[1] - <m>normalised</m></bullet><br />
+        Sets the input scale:<br /><br />indices - string lookup is done by index.<br />normalised - string lookup is done by normalised value.
       </description>
     </entry>
     <entry name="/empty [enum]">
       <description>
-        Sets the behaviour when empty frames are received:<br /><br />ignore - empty frames are ignored.<br />reset - empty frames create empty tags to reset parameters to defaults.<br />
-        <bullet>[0] - ignore</bullet>
-        <bullet>[1] - reset</bullet>
+        <bullet>[0] - <m>ignore</m></bullet>
+        <bullet>[1] - <m>reset</m></bullet><br />
+        Sets the behaviour when empty frames are received:<br /><br />ignore - empty frames are ignored.<br />reset - empty frames create empty tags to reset parameters to defaults.
       </description>
     </entry>
     <entry name="/item_01...32 [string]">

@@ -10,16 +10,16 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        Sets the type of output scaling:<br /><br />linear - linear scaling.<br />log - logarithmic scaling.<br />exp - exponential scaling.<br />pow - input range scaled [0-1], raised to an exponent and then scaled to the output range.<br />db - output range set in dB with mapping to corresponding linear gain values.<br />transpose - output range set in semitones with mapping to corresponding ratios.<br />inverse_pow - the inverse mapping of the pow mode.<br />inverse_db - the inverse mapping of the db mode.<br />inverse_transpose - the inverse mapping of the inverse_transpose mode.<br />
-        <bullet>[0] - linear</bullet>
-        <bullet>[1] - log</bullet>
-        <bullet>[2] - exp</bullet>
-        <bullet>[3] - pow</bullet>
-        <bullet>[4] - db</bullet>
-        <bullet>[5] - transpose</bullet>
-        <bullet>[6] - inverse_pow</bullet>
-        <bullet>[7] - inverse_db</bullet>
-        <bullet>[8] - inverse_transpose</bullet>
+        <bullet>[0] - <m>linear</m></bullet>
+        <bullet>[1] - <m>log</m></bullet>
+        <bullet>[2] - <m>exp</m></bullet>
+        <bullet>[3] - <m>pow</m></bullet>
+        <bullet>[4] - <m>db</m></bullet>
+        <bullet>[5] - <m>transpose</m></bullet>
+        <bullet>[6] - <m>inverse_pow</m></bullet>
+        <bullet>[7] - <m>inverse_db</m></bullet>
+        <bullet>[8] - <m>inverse_transpose</m></bullet><br />
+        Sets the type of output scaling:<br /><br />linear - linear scaling.<br />log - logarithmic scaling.<br />exp - exponential scaling.<br />pow - input range scaled [0-1], raised to an exponent and then scaled to the output range.<br />db - output range set in dB with mapping to corresponding linear gain values.<br />transpose - output range set in semitones with mapping to corresponding ratios.<br />inverse_pow - the inverse mapping of the pow mode.<br />inverse_db - the inverse mapping of the db mode.<br />inverse_transpose - the inverse mapping of the inverse_transpose mode.
       </description>
     </entry>
     <entry name="/in_1 [double]">

@@ -25,17 +25,17 @@
     </entry>
     <entry name="/output [enum]">
       <description>
-        Sets whether to output values in terms of power or amplitude.<br />
-        <bullet>[0] - power</bullet>
-        <bullet>[1] - amplitude</bullet>
+        <bullet>[0] - <m>power</m></bullet>
+        <bullet>[1] - <m>amplitude</m></bullet><br />
+        Sets whether to output values in terms of power or amplitude.
       </description>
     </entry>
     <entry name="/weighting [enum]">
       <description>
-        Sets the weighting of the tapers:<br /><br />uniform - all tapers are weighted equally.<br />linear - tapers are weighted linearly in a decreasing manner.<br />parabolic - tapers are weighted with a parabola in a decreasing manner.<br />
-        <bullet>[0] - uniform</bullet>
-        <bullet>[1] - linear</bullet>
-        <bullet>[2] - parabolic</bullet>
+        <bullet>[0] - <m>uniform</m></bullet>
+        <bullet>[1] - <m>linear</m></bullet>
+        <bullet>[2] - <m>parabolic</m></bullet><br />
+        Sets the weighting of the tapers:<br /><br />uniform - all tapers are weighted equally.<br />linear - tapers are weighted linearly in a decreasing manner.<br />parabolic - tapers are weighted with a parabola in a decreasing manner.
       </description>
     </entry>
   </misc>

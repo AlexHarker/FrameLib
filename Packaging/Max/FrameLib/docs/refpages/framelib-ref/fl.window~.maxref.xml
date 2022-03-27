@@ -10,25 +10,25 @@
   <misc name="Parameters">
     <entry name="/window [enum]">
       <description>
-        Sets the window type:<br /><br />rectangle - a window of equal values.<br />triangle - a triangular window.<br />trapezoid - an adjustable trapezoid window.<br />welch - the Welch polynomial window.<br />parzen - the Parzen polynomial window.<br />tukey - the adjustable Tukey (or cosine-tapered) window.<br />sine - the sine (or cosine) window.<br />hann - the Hann window.<br />hamming - the Hamming window with a0 = 0.54 and a1 = 0.46.<br />blackman - the Blackman window with a0 = 0.42, a1 = 0.50, and a2 = 0.08.<br />exact_blackman - the exact Blackman window as outlined in the literature.<br />The coefficients are a0 = 7938/18608, a1 = 9240/18608 and a2 = 1430/18608.<br />blackman_harris - the Blackman-Harris window with 92dB rejection.<br />nuttall_continuous - Nuttalls continuous 1st derivative window with 93dB rejection.<br />nuttall_minimal - Nuttalls minimal sidelobe window with 98dB rejection.<br />flat_top - Heinzels flat-top window with 95dB rejection.<br />cosine_sum - a sum of cosines as set by the parameters.<br />kaiser - an kaiser window adjustable via the beta parameter.<br />sine_taper - one of the sine tapers selectable by parameter.<br />
-        <bullet>[0] - rectangle</bullet>
-        <bullet>[1] - triangle</bullet>
-        <bullet>[2] - trapezoid</bullet>
-        <bullet>[3] - welch</bullet>
-        <bullet>[4] - parzen</bullet>
-        <bullet>[5] - tukey</bullet>
-        <bullet>[6] - sine</bullet>
-        <bullet>[7] - hann</bullet>
-        <bullet>[8] - hamming</bullet>
-        <bullet>[9] - blackman</bullet>
-        <bullet>[10] - exact_blackman</bullet>
-        <bullet>[11] - blackman_harris</bullet>
-        <bullet>[12] - nuttall_continuous</bullet>
-        <bullet>[13] - nuttall_minimal</bullet>
-        <bullet>[14] - flat_top</bullet>
-        <bullet>[15] - cosine_sum</bullet>
-        <bullet>[16] - kaiser</bullet>
-        <bullet>[17] - sine_taper</bullet>
+        <bullet>[0] - <m>rectangle</m></bullet>
+        <bullet>[1] - <m>triangle</m></bullet>
+        <bullet>[2] - <m>trapezoid</m></bullet>
+        <bullet>[3] - <m>welch</m></bullet>
+        <bullet>[4] - <m>parzen</m></bullet>
+        <bullet>[5] - <m>tukey</m></bullet>
+        <bullet>[6] - <m>sine</m></bullet>
+        <bullet>[7] - <m>hann</m></bullet>
+        <bullet>[8] - <m>hamming</m></bullet>
+        <bullet>[9] - <m>blackman</m></bullet>
+        <bullet>[10] - <m>exact_blackman</m></bullet>
+        <bullet>[11] - <m>blackman_harris</m></bullet>
+        <bullet>[12] - <m>nuttall_continuous</m></bullet>
+        <bullet>[13] - <m>nuttall_minimal</m></bullet>
+        <bullet>[14] - <m>flat_top</m></bullet>
+        <bullet>[15] - <m>cosine_sum</m></bullet>
+        <bullet>[16] - <m>kaiser</m></bullet>
+        <bullet>[17] - <m>sine_taper</m></bullet><br />
+        Sets the window type:<br /><br />rectangle - a window of equal values.<br />triangle - a triangular window.<br />trapezoid - an adjustable trapezoid window.<br />welch - the Welch polynomial window.<br />parzen - the Parzen polynomial window.<br />tukey - the adjustable Tukey (or cosine-tapered) window.<br />sine - the sine (or cosine) window.<br />hann - the Hann window.<br />hamming - the Hamming window with a0 = 0.54 and a1 = 0.46.<br />blackman - the Blackman window with a0 = 0.42, a1 = 0.50, and a2 = 0.08.<br />exact_blackman - the exact Blackman window as outlined in the literature.<br />The coefficients are a0 = 7938/18608, a1 = 9240/18608 and a2 = 1430/18608.<br />blackman_harris - the Blackman-Harris window with 92dB rejection.<br />nuttall_continuous - Nuttalls continuous 1st derivative window with 93dB rejection.<br />nuttall_minimal - Nuttalls minimal sidelobe window with 98dB rejection.<br />flat_top - Heinzels flat-top window with 95dB rejection.<br />cosine_sum - a sum of cosines as set by the parameters.<br />kaiser - an kaiser window adjustable via the beta parameter.<br />sine_taper - one of the sine tapers selectable by parameter.
       </description>
     </entry>
     <entry name="/size [double]">
@@ -43,11 +43,11 @@
     </entry>
     <entry name="/compensate [enum]">
       <description>
-        Sets the gain compensation (the window is divided by the compensated gain).<br />off - no compensation is used.<br />linear - compensate the linear gain of the window.<br />square - compensate the gain of the window when applied twice (squared).<br />reconstruct - compensate the gain of the squared window divided by the linear gain.<br />This last mode is suited to FFT output windows used with the same input window.<br />Note that the gain of the window is calculated after applying any exponent.<br />
-        <bullet>[0] - off</bullet>
-        <bullet>[1] - linear</bullet>
-        <bullet>[2] - square</bullet>
-        <bullet>[3] - reconstruct</bullet>
+        <bullet>[0] - <m>off</m></bullet>
+        <bullet>[1] - <m>linear</m></bullet>
+        <bullet>[2] - <m>square</m></bullet>
+        <bullet>[3] - <m>reconstruct</m></bullet><br />
+        Sets the gain compensation (the window is divided by the compensated gain).<br />off - no compensation is used.<br />linear - compensate the linear gain of the window.<br />square - compensate the gain of the window when applied twice (squared).<br />reconstruct - compensate the gain of the squared window divided by the linear gain.<br />This last mode is suited to FFT output windows used with the same input window.<br />Note that the gain of the window is calculated after applying any exponent.
       </description>
     </entry>
     <entry name="/parameters [variable length double array]">
@@ -57,11 +57,11 @@
     </entry>
     <entry name="/endpoints [enum]">
       <description>
-        Sets which endpoints of the window will be generated.<br />For spectral applications a periodic window (first or last) is preferable.<br />For granular or filter usage a symmetric window (both or none) is preferable.<br />
-        <bullet>[0] - both</bullet>
-        <bullet>[1] - first</bullet>
-        <bullet>[2] - last</bullet>
-        <bullet>[3] - none</bullet>
+        <bullet>[0] - <m>both</m></bullet>
+        <bullet>[1] - <m>first</m></bullet>
+        <bullet>[2] - <m>last</m></bullet>
+        <bullet>[3] - <m>none</m></bullet><br />
+        Sets which endpoints of the window will be generated.<br />For spectral applications a periodic window (first or last) is preferable.<br />For granular or filter usage a symmetric window (both or none) is preferable.
       </description>
     </entry>
   </misc>

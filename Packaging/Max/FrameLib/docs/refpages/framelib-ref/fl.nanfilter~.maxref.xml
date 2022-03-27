@@ -10,9 +10,9 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        Sets whether NaNs are replaced or removed.<br />
-        <bullet>[0] - replace</bullet>
-        <bullet>[1] - remove</bullet>
+        <bullet>[0] - <m>replace</m></bullet>
+        <bullet>[1] - <m>remove</m></bullet><br />
+        Sets whether NaNs are replaced or removed.
       </description>
     </entry>
     <entry name="/value [double]">

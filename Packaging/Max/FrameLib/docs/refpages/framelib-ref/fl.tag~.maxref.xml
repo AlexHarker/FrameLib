@@ -15,9 +15,9 @@
     </entry>
     <entry name="/empty [enum]">
       <description>
-        Sets the behaviour when empty frames are received:<br /><br />ignore - empty frames are ignored.<br />reset - empty frames create empty tags to reset parameters to defaults.<br />
-        <bullet>[0] - ignore</bullet>
-        <bullet>[1] - reset</bullet>
+        <bullet>[0] - <m>ignore</m></bullet>
+        <bullet>[1] - <m>reset</m></bullet><br />
+        Sets the behaviour when empty frames are received:<br /><br />ignore - empty frames are ignored.<br />reset - empty frames create empty tags to reset parameters to defaults.
       </description>
     </entry>
     <entry name="/tag_01...10 [string]">

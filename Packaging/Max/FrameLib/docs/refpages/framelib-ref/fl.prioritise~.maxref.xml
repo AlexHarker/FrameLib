@@ -15,9 +15,9 @@
     </entry>
     <entry name="/order [instantiation enum]">
       <description>
-        Set whether to prioritise lower or higher numbered inputs.<br />
-        <bullet>[0] - low</bullet>
-        <bullet>[1] - high</bullet>
+        <bullet>[0] - <m>low</m></bullet>
+        <bullet>[1] - <m>high</m></bullet><br />
+        Set whether to prioritise lower or higher numbered inputs.
       </description>
     </entry>
   </misc>

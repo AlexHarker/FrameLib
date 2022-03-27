@@ -20,10 +20,10 @@
     </entry>
     <entry name="/mode [instantiation enum]">
       <description>
-        Sets the type of input expected and the output produced:<br /><br />real - real input (power of two length) and output without reflection (length is N / 2 + 1).<br />complex - complex input (two frames) with the same (power of two) input and output lengths.<br />full_spectrum - real input and output of the same (power of two) length with spectral reflection.<br />
-        <bullet>[0] - real</bullet>
-        <bullet>[1] - complex</bullet>
-        <bullet>[2] - full_spectrum</bullet>
+        <bullet>[0] - <m>real</m></bullet>
+        <bullet>[1] - <m>complex</m></bullet>
+        <bullet>[2] - <m>full_spectrum</m></bullet><br />
+        Sets the type of input expected and the output produced:<br /><br />real - real input (power of two length) and output without reflection (length is N / 2 + 1).<br />complex - complex input (two frames) with the same (power of two) input and output lengths.<br />full_spectrum - real input and output of the same (power of two) length with spectral reflection.
       </description>
     </entry>
   </misc>

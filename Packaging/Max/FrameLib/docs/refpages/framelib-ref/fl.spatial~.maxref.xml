@@ -10,9 +10,9 @@
   <misc name="Parameters">
     <entry name="/inputmode [enum]">
       <description>
-        Sets the input coordinate mode.<br />
-        <bullet>[0] - polar</bullet>
-        <bullet>[1] - cartesian</bullet>
+        <bullet>[0] - <m>polar</m></bullet>
+        <bullet>[1] - <m>cartesian</m></bullet><br />
+        Sets the input coordinate mode.
       </description>
     </entry>
     <entry name="/speakers [variable length double array]">
@@ -47,11 +47,11 @@
     </entry>
     <entry name="/constrain [enum]">
       <description>
-        Sets the method for constraining positions outside of the speaker array.<br />
-        <bullet>[0] - none</bullet>
-        <bullet>[1] - hemisphere</bullet>
-        <bullet>[2] - sphere</bullet>
-        <bullet>[3] - hull</bullet>
+        <bullet>[0] - <m>none</m></bullet>
+        <bullet>[1] - <m>hemisphere</m></bullet>
+        <bullet>[2] - <m>sphere</m></bullet>
+        <bullet>[3] - <m>hull</m></bullet><br />
+        Sets the method for constraining positions outside of the speaker array.
       </description>
     </entry>
   </misc>

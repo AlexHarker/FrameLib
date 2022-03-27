@@ -20,9 +20,9 @@
     </entry>
     <entry name="/units [enum]">
       <description>
-        Sets the units for the size (samples or ratio of the input length [0-1]).<br />
-        <bullet>[0] - samples</bullet>
-        <bullet>[1] - ratios</bullet>
+        <bullet>[0] - <m>samples</m></bullet>
+        <bullet>[1] - <m>ratios</m></bullet><br />
+        Sets the units for the size (samples or ratio of the input length [0-1]).
       </description>
     </entry>
   </misc>

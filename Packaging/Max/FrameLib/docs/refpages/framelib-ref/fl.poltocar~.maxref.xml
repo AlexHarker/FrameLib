@@ -10,16 +10,16 @@
   <misc name="Parameters">
     <entry name="/dimensions [instantiation enum]">
       <description>
-        Sets the number of dimensions (and hence inputs and outputs).<br />
-        <bullet>[0] - 2D</bullet>
-        <bullet>[1] - 3D</bullet>
+        <bullet>[0] - <m>2D</m></bullet>
+        <bullet>[1] - <m>3D</m></bullet><br />
+        Sets the number of dimensions (and hence inputs and outputs).
       </description>
     </entry>
     <entry name="/angles [instantiation enum]">
       <description>
-        Sets the units used for angles.<br />
-        <bullet>[0] - radians</bullet>
-        <bullet>[1] - degrees</bullet>
+        <bullet>[0] - <m>radians</m></bullet>
+        <bullet>[1] - <m>degrees</m></bullet><br />
+        Sets the units used for angles.
       </description>
     </entry>
   </misc>

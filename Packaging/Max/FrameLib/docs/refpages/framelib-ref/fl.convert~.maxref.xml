@@ -10,15 +10,15 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        Sets the mode of conversion:<br /><br />db-amp - converts from decibels to linear amplitudes.<br />amp-db - converts from linear amplitudes to decibels.<br />midi-freq - converts from midi notes to frequencies.<br />freq-mid - converts from frequencies to midi notes.<br />semitones-ratios - converts semitone transpositions to ratios.<br />ratios-semitones - converts from ratios to semitone transpositions.<br />degrees-radians - converts from degress to radians.<br />radians-degrees - converts from radians to degrees.<br />
-        <bullet>[0] - db-&gt;amp</bullet>
-        <bullet>[1] - amp-&gt;db</bullet>
-        <bullet>[2] - midi-&gt;freq</bullet>
-        <bullet>[3] - freq-&gt;midi</bullet>
-        <bullet>[4] - semitones-&gt;ratios</bullet>
-        <bullet>[5] - ratios-&gt;semitones</bullet>
-        <bullet>[6] - degrees-&gt;radians</bullet>
-        <bullet>[7] - radians-&gt;degrees</bullet>
+        <bullet>[0] - <m>db-&gt;amp</m></bullet>
+        <bullet>[1] - <m>amp-&gt;db</m></bullet>
+        <bullet>[2] - <m>midi-&gt;freq</m></bullet>
+        <bullet>[3] - <m>freq-&gt;midi</m></bullet>
+        <bullet>[4] - <m>semitones-&gt;ratios</m></bullet>
+        <bullet>[5] - <m>ratios-&gt;semitones</m></bullet>
+        <bullet>[6] - <m>degrees-&gt;radians</m></bullet>
+        <bullet>[7] - <m>radians-&gt;degrees</m></bullet><br />
+        Sets the mode of conversion:<br /><br />db-amp - converts from decibels to linear amplitudes.<br />amp-db - converts from linear amplitudes to decibels.<br />midi-freq - converts from midi notes to frequencies.<br />freq-mid - converts from frequencies to midi notes.<br />semitones-ratios - converts semitone transpositions to ratios.<br />ratios-semitones - converts from ratios to semitone transpositions.<br />degrees-radians - converts from degress to radians.<br />radians-degrees - converts from radians to degrees.
       </description>
     </entry>
   </misc>

@@ -10,14 +10,14 @@
   <misc name="Parameters">
     <entry name="/constant [enum]">
       <description>
-        Sets the constant to output.<br />
-        <bullet>[0] - pi</bullet>
-        <bullet>[1] - 1/pi</bullet>
-        <bullet>[2] - e</bullet>
-        <bullet>[3] - 1/e</bullet>
-        <bullet>[4] - sqrt2</bullet>
-        <bullet>[5] - 1/sqrt2</bullet>
-        <bullet>[6] - epsilon</bullet>
+        <bullet>[0] - <m>pi</m></bullet>
+        <bullet>[1] - <m>1/pi</m></bullet>
+        <bullet>[2] - <m>e</m></bullet>
+        <bullet>[3] - <m>1/e</m></bullet>
+        <bullet>[4] - <m>sqrt2</m></bullet>
+        <bullet>[5] - <m>1/sqrt2</m></bullet>
+        <bullet>[6] - <m>epsilon</m></bullet><br />
+        Sets the constant to output.
       </description>
     </entry>
     <entry name="/multiplier [double]">
