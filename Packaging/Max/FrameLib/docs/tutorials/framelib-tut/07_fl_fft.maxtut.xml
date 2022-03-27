@@ -12,9 +12,9 @@
   <parent name="00_fl_index">FrameLib Tutorials</parent>
   
   <seealsolist>
-    <seealso name="fl.fft~">Fast Fourier Transform</seealso>
-    <seealso name="fl.window~">Window incoming frames</seealso>
-    <seealso name="fl.ifft~">Inverse Fast Fourier Transform</seealso>
+    <seealso name="fl.fft~" />
+    <seealso name="fl.window~" />
+    <seealso name="fl.ifft~" />
   </seealsolist>
   
 </chapter>

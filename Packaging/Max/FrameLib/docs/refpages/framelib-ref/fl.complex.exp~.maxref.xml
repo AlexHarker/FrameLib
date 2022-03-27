@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.complex.exp~" module="FrameLib" category="FrameLib Complex_Unary">
   <digest>
-    Calculates the exponent base e (e^x) of each complex value at the inputs.
+    Calculates the exponent base e (e^x) of each complex value at the inputs
   </digest>
   <description>
     Both input and output are split into real and imaginary parts. The outputs are frames of the same length as the longer of the two inputs. If inputs are mismatched then the shorter input is padded with zeros.

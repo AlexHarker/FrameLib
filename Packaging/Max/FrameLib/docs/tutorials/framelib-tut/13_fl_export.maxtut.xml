@@ -11,7 +11,7 @@
   <parent name="00_fl_index">FrameLib Tutorials</parent>
   
   <seealsolist>
-    <seealso name="fl.contextcontrol~">Parameters and code export for a specified context</seealso>
+    <seealso name="fl.contextcontrol~" />
   </seealsolist>
 </chapter>
 

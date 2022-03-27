@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.poltocar~" module="FrameLib" category="FrameLib Spatial">
   <digest>
-    Converts from polar values at the inputs to cartesian values at the outputs.
+    Converts from polar values at the inputs to cartesian values at the outputs
   </digest>
   <description>
     Conversion may be in 2D or 3D (using spherical coordinates). The outputs are frames of the same length as the longest input. Shorter inputs are padded with zeros prior to conversion.

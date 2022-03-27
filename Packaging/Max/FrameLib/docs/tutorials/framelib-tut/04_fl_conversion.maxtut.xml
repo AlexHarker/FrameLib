@@ -14,11 +14,11 @@
   <parent name="00_fl_index">FrameLib Tutorials</parent>
   
   <seealsolist>
-    <seealso name="fl.frommax~"></seealso>
-    <seealso name="fl.tomax~"></seealso>
-    <seealso name="fl.source~"></seealso>
-    <seealso name="fl.sink~"></seealso>
-    <seealso name="fl.trace~"></seealso>
+    <seealso name="fl.frommax~" />
+    <seealso name="fl.tomax~" />
+    <seealso name="fl.source~" />
+    <seealso name="fl.sink~" />
+    <seealso name="fl.trace~" />
   </seealsolist>
 </chapter>
 

@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.window~" module="FrameLib" category="FrameLib Spectral">
   <digest>
-    Multiplies the input frame by a specified window.
+    Multiplies the input frame by a specified window
   </digest>
   <description>
     The output length will match the input length. The window can either be recalculated to match the incoming length or interpolated. Gain compensation can be applied using the compensate parameter. The included endpoints are controllable so as to fit different applications.

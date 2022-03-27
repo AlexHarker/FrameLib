@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.store~" module="FrameLib" category="FrameLib Storage">
   <digest>
-    Stores frames remotely for later recall.
+    Stores frames remotely for later recall
   </digest>
   <description>
     The storage location is determined by the name parameter. The output / ordering input can be used to explicitly control ordering between related objects. In a multistream scenario each stream has separate storage for a given name.

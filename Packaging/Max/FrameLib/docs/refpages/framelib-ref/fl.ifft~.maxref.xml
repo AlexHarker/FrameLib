@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.ifft~" module="FrameLib" category="FrameLib Spectral">
   <digest>
-    Calculate the real or complex inverse Fast Fourier Transform of the inputs (real and imaginary).
+    Calculate the real or complex inverse Fast Fourier Transform of the inputs (real and imaginary)
   </digest>
   <description>
     All FFTs use a power of two size, with zero-padding applied at the inputs if necessary. The expected input lengths depend on the mode parameter. The mode selects either real or complex iFFTs and also the input and the output type. In complex mode, real and imaginary values are output as separate frames.

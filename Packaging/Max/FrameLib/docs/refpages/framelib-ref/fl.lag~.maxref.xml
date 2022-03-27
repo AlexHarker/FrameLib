@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.lag~" module="FrameLib" category="FrameLib Time_Smoothing">
   <digest>
-    Delay vector type input by a whole number of frames.
+    Delay vector type input by a whole number of frames
   </digest>
   <description>
     Frames are expected to be of a uniform length. The output is the same length as the input. If the input length changes then the internal storage is reset. The object can also be reset by sending a frame to the reset input. The start parameter controls behaviour when insufficient frames are stored. The underlength output indicates that insufficient frames are stored.

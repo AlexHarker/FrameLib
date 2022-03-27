@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.subframe~" module="FrameLib" category="FrameLib Vector">
   <digest>
-    Output a specified segment of an input frame.
+    Output a specified segment of an input frame
   </digest>
   <description>
     The subframe is specified by a start and end point in the input frame. The start point is included in the output frame but the end point is not. Points may be specified in samples or as a ratio of the length of the input frame.

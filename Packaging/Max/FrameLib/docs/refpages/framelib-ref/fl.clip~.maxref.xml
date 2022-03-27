@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.clip~" module="FrameLib" category="FrameLib Ternary">
   <digest>
-    Clips the incoming frame to the range delimited by the two parameters.
+    Clips the incoming frame to the range delimited by the two parameters
   </digest>
   <description>
     Calculation is performed on triplets of values in turn. The output is a frame at least as long as the leftmost frame. If inputs mismatch in length the result depends on the mismatch parameter.

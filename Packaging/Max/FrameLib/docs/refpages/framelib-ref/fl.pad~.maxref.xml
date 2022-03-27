@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.pad~" module="FrameLib" category="FrameLib Vector">
   <digest>
-    Pads the input frame with a repeated specified value.
+    Pads the input frame with a repeated specified value
   </digest>
   <description>
     Padding may be applied to either the start or the end of the frame or both. Padding amounts may be set in samples, or as a ratio of the input length. The output length is at least the size of the input.

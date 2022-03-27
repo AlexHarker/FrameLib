@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.pattern~" module="FrameLib" category="FrameLib Vector">
   <digest>
-    Step through a frame of values (or pattern) one at a time.
+    Step through a frame of values (or pattern) one at a time
   </digest>
   <description>
     The pattern input takes the pattern frame without triggering output. Triggers step through the pattern either forwards or backwards. The pattern can be run (once), looped, paused or stopped. Triggers at the reset input set the position in the pattern using the reset parameter. The position is also reset whenever a new pattern is received.

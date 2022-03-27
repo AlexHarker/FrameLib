@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.acosh~" module="FrameLib" category="FrameLib Unary">
   <digest>
-    Calculates the hyperbolic arccosine of each value in the input frame.
+    Calculates the hyperbolic arccosine of each value in the input frame
   </digest>
   <description>
     The output is a frame of the same length as the input.

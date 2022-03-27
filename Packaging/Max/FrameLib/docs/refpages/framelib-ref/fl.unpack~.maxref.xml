@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.unpack~" module="FrameLib" category="FrameLib Streaming">
   <digest>
-    Unpacks multistream input into individual streams.
+    Unpacks multistream input into individual streams
   </digest>
   <description>
     Multistream inputs are unpacked in order across the outputs.

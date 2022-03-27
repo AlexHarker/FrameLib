@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.tomax~" module="FrameLib" category="FrameLib Host_Communication">
   <digest>
-    Turn frames into Max messages.
+    Turn frames into Max messages
   </digest>
   <description>
     The maximum length of the output message may be limited by Max.<br /><br />More info on conversion between Max messages and FrameLib can be found in <link name="04_fl_conversion" module="framelib" type="tutorial">Tutorial 4</link>.

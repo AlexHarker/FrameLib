@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.tag~" module="FrameLib" category="FrameLib Parameters">
   <digest>
-    Tags vectors with tags either in order to set parameters or for routing purposes.
+    Tags vectors with tags either in order to set parameters or for routing purposes
   </digest>
   <description>
     Tag inputs each deal with one tag and take input vectors. The number of tag inputs can be set explicitly by parameter. Alternatively, it can be set implicitly by the tag parameters present at instantiation. A further input takes pre-tagged input to concatanated with other inputs after tagging. All inputs except the parameter input trigger output.

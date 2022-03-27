@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.medianfilter~" module="FrameLib" category="FrameLib Vector">
   <digest>
-    Applies a median or other specified percentiled filter to the input.
+    Applies a median or other specified percentiled filter to the input
   </digest>
   <description>
     The default percentile is 50% which returns the median. The output is the same length as the input. Each output value is the specified percentile of the surrouding area in the input. The width of the filtering and the edge behaviour are both controllable.

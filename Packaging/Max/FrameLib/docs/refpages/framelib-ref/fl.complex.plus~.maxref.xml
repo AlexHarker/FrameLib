@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.complex.plus~" module="FrameLib" category="FrameLib Complex_Binary">
   <digest>
-    Adds complex values in the two pairs of input frames.
+    Adds complex values in the two pairs of input frames
   </digest>
   <description>
     Calculation is performed on pairs of complex values. Both inputs and output are split into real and imaginary parts . The outputs are frames at least as long as the shorter of the two operands. If input pairs are mismatched then the shorter input is padded with zeros. If operands mismatch in length the result depends on the mismatch parameter. Either or both pairs of inputs may be set to trigger output.

@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.source~" module="FrameLib" category="FrameLib IO">
   <digest>
-    Captures audio from the host environment and outputs the most recent values as frames.
+    Captures audio from the host environment and outputs the most recent values as frames
   </digest>
   <description>
     The size of captured frames is settable with the length parameter. The length of the internal buffer determines the maximum frame length. There is a minimum latency equivalent to the length of the captured frame. A longer delay can be optionally selected (subject to the frame and buffer length). Capture can optionally be interpolated (at greater CPU usage) for sub-sample accuracy.

@@ -12,7 +12,7 @@
   <parent name="00_fl_index">FrameLib Tutorials</parent>
   
   <seealsolist>
-    <seealso name="fl.streamid~">Get the index (id) for each stream</seealso>
+    <seealso name="fl.streamid~" />
   </seealsolist>
 </chapter>
 

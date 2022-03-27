@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.perblock~" module="FrameLib" category="FrameLib Schedulers">
   <digest>
-    Schedules one frame at the start of each host audio block.
+    Schedules one frame at the start of each host audio block
   </digest>
   <description>
     The output is an empty trigger frame.

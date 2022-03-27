@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.length~" module="FrameLib" category="FrameLib Vector">
   <digest>
-    Calculates the length of the input frame.
+    Calculates the length of the input frame
   </digest>
   <description>
     The output is a single value.

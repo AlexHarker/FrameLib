@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.chain~" module="FrameLib" category="FrameLib Schedulers">
   <digest>
-    Schedules frames in the future at times specified times in the input frame.
+    Schedules frames in the future at times specified times in the input frame
   </digest>
   <description>
     The output is an empty trigger frame. Inputs interact with previously scheduled frames according to time and mode parameters. The remaining count output can be used to track the number of currently scheduled frames.

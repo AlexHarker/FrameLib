@@ -12,10 +12,10 @@
   <parent name="00_fl_index">FrameLib Tutorials</parent>
   
   <seealsolist>
-    <seealso name="fl.read~">Read frames from a <o>buffer~</o></seealso>
-    <seealso name="fl.window~">Window incoming frames</seealso>
-    <seealso name="fl.ramp~">Generate frames of counting values</seealso>
-    <seealso name="fl.interval~">Schedule frames in a regular manner</seealso>
+    <seealso name="fl.read~" />
+    <seealso name="fl.window~" />
+    <seealso name="fl.ramp~" />
+    <seealso name="fl.interval~" />
   </seealsolist>
 </chapter>
 

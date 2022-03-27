@@ -12,13 +12,13 @@
   <parent name="00_fl_index">FrameLib Tutorials</parent>
   
   <seealsolist>
-    <seealso name="fl.interval~">Schedule frames in a regular manner</seealso>
-    <seealso name="fl.perblock~">Schedule frames once per audio block or vector</seealso>
-    <seealso name="fl.once~">Schedule one frame at the beginning of time</seealso>
-    <seealso name="fl.audiotrigger~">Schedule frames based on audio input</seealso>
-    <seealso name="fl.chain~">Schedule frames in a complex manner</seealso>
-    <seealso name="fl.tag~">Add tags to vector frames</seealso>
-    <seealso name="fl.combinetags~">Combine tagged frames</seealso>
+    <seealso name="fl.interval~" />
+    <seealso name="fl.perblock~" />
+    <seealso name="fl.once~" />
+    <seealso name="fl.audiotrigger~" />
+    <seealso name="fl.chain~" />
+    <seealso name="fl.tag~" />
+    <seealso name="fl.combinetags~" />
   </seealsolist>
 </chapter>
 

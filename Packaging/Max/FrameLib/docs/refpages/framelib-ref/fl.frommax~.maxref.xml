@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.frommax~" module="FrameLib" category="FrameLib Host_Communication">
   <digest>
-    Turn Max messages into frames.
+    Turn Max messages into frames
   </digest>
   <description>
     In values mode the output is the last received value(s) as a vector. In params mode messages are collected and output as a single tagged frame. Typically params mode is used to help set object parameters. Output is triggered by frames arriving at the trigger input.<br /><br />More info on conversion between Max messages and FrameLib can be found in <link name="04_fl_conversion" module="framelib" type="tutorial">Tutorial 4</link>.

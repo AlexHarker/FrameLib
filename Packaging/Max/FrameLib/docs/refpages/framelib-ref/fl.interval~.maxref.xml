@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.interval~" module="FrameLib" category="FrameLib Schedulers">
   <digest>
-    Schedules frames at regular intervals set by the interval parameter.
+    Schedules frames at regular intervals set by the interval parameter
   </digest>
   <description>
     The output is an empty trigger frame. Scheduling is optionally switchable if the switchable parameter is set at instantiation. The on parameter can be used to start and stop scheduling when this is the case.

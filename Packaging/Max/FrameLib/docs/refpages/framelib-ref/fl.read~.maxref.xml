@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.read~" module="FrameLib" category="FrameLib Buffer">
   <digest>
-    Reads from a specified host buffer given an input frame of positions.
+    Reads from a specified host buffer given an input frame of positions
   </digest>
   <description>
     The output is the same length as the input. The scale, edges and bound parameters control the mapping of the input to the buffer. For hosts supporting multichannel buffers the channel read can also be selected. The reading can be performed with different types of interpolation (or none).

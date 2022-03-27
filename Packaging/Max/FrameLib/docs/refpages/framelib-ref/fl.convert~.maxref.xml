@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.convert~" module="FrameLib" category="FrameLib Mapping">
   <digest>
-    Converts the input vector according to a specified conversion.
+    Converts the input vector according to a specified conversion
   </digest>
   <description>
     The output length matches the input length.

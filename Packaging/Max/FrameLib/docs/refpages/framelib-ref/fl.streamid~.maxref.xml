@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.streamid~" module="FrameLib" category="FrameLib Streaming">
   <digest>
-    Outputs the stream id for each stream in a multistream connection.
+    Outputs the stream id for each stream in a multistream connection
   </digest>
   <description>
     Any input triggers a single value output - the stream id (counting from one).

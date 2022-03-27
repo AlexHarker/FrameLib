@@ -2,10 +2,10 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.reverse~" module="FrameLib" category="FrameLib Vector">
   <digest>
-    Computes the reverse of the input frame.
+    Computes the reverse of the input frame
   </digest>
   <description>
-    
+    The output is the same length as the input.
   </description>
   <misc name="Parameters">
     <entry>

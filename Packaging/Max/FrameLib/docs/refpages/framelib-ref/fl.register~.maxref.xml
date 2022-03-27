@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.register~" module="FrameLib" category="FrameLib Storage">
   <digest>
-    Store and recall frames locally.
+    Store and recall frames locally
   </digest>
   <description>
     The left input triggers recall, whilst the right input stores a frame. The mode parameter is used to set whether the right input causes output.

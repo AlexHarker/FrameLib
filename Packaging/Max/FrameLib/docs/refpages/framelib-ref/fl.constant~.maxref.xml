@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.constant~" module="FrameLib" category="FrameLib Mapping">
   <digest>
-    Outputs a specified constant.
+    Outputs a specified constant
   </digest>
   <description>
     Output is a single value. The constant can be multiplied before output as set by the multiplier parameter.

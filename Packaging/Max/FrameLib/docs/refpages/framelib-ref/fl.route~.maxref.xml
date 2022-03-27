@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.route~" module="FrameLib" category="FrameLib Routing">
   <digest>
-    Routes the input to one of a number of outputs.
+    Routes the input to one of a number of outputs
   </digest>
   <description>
     The number of outputs is variable. The selected output can be changed with a parameter.

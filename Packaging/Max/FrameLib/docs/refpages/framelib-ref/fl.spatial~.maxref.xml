@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.spatial~" module="FrameLib" category="FrameLib Spatial">
   <digest>
-    Generates multiplication factors for a number of speakers from an input coordinate triple.
+    Generates multiplication factors for a number of speakers from an input coordinate triple
   </digest>
   <description>
     The algorithm used is a modified version of DBAP, with extra features. Input may be in cartesian coordinates (x, y, z) or polar ones (azimuth, elevation, radius. Missing values at the input are assumed zero. Extra values are ignored. The output size is equal to the number of loudspeakers.

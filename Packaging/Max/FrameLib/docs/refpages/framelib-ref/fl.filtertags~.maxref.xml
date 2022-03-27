@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.filtertags~" module="FrameLib" category="FrameLib Parameters">
   <digest>
-    Filters tagged frames using a set of specified tags.
+    Filters tagged frames using a set of specified tags
   </digest>
   <description>
     The filtered output contains any items from the input that match the given tags. The residual output contains any items from the input that do not match the given tags. The number of tags can be set explicitly by parameter. Alternatively, it can be set implicitly by the tag parameters present at instantiation.

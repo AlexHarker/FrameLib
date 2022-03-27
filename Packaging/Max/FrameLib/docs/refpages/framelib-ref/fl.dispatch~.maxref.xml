@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.dispatch~" module="FrameLib" category="FrameLib Routing">
   <digest>
-    Dispatches multiple inputs dynamically to multiple outputs.
+    Dispatches multiple inputs dynamically to multiple outputs
   </digest>
   <description>
     Each output can be independently connected to any one input. The number of inputs and outputs is variable. The selected input for each output is changed with a parameter.

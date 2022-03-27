@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.product~" module="FrameLib" category="FrameLib Vector">
   <digest>
-    Calculates the product of the input frame.
+    Calculates the product of the input frame
   </digest>
   <description>
     The output is a single value. When the input frame is empty then the output is determined by the empty parameter.

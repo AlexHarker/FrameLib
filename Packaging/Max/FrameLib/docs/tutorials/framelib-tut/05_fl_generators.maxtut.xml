@@ -14,9 +14,9 @@
   <parent name="00_fl_index">FrameLib Tutorials</parent>
   
   <seealsolist>
-    <seealso name="fl.random~">Generate uniformly random numbers between 0.0 and 1.0</seealso>
-    <seealso name="fl.ramp~">Generate frames of counting values</seealso>
-    <seealso name="fl.uniform~">Generate frames of a uniform (singular) value</seealso>
+    <seealso name="fl.random~" />
+    <seealso name="fl.ramp~" />
+    <seealso name="fl.uniform~" />
   </seealsolist>
   
 </chapter>

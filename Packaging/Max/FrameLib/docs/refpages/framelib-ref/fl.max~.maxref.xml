@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.max~" module="FrameLib" category="FrameLib Binary">
   <digest>
-    Calculates the maximums of pairs of values in the two input frames.
+    Calculates the maximums of pairs of values in the two input frames
   </digest>
   <description>
     Calculation is performed on pairs of values in turn. The output is a frame at least as long as the smaller of the two inputs. If inputs mismatch in length the result depends on the mismatch parameter. Either or both inputs may be set to trigger output.

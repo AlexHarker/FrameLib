@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.expr~" module="FrameLib" category="FrameLib Expressions">
   <digest>
-    Calculates the result of a mathematical expression.
+    Calculates the result of a mathematical expression
   </digest>
   <description>
     The expression can use input values, operators, functions and constants. The output is a frame at least as long as the shortest input. If inputs mismatch in length the result depends on the mismatch parameter. Pre-computable elements are detected and reduced to constants. Thus it is efficient to synthesize constants or represent values precisely.

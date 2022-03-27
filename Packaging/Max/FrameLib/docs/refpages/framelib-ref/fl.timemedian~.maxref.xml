@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.timemedian~" module="FrameLib" category="FrameLib Time_Smoothing">
   <digest>
-    Calculates the specified percentile per sample over the most recent frames.
+    Calculates the specified percentile per sample over the most recent frames
   </digest>
   <description>
     The default percentile is 50% which returns the median. The output is the same length as the input. Input frames are expected to be of a uniform length. If the input length changes then the internal storage is reset. The object can also be reset by sending a frame to the reset input. The start parameter controls behaviour when insufficient frames are stored. The underlength output indicates that insufficient frames are stored.

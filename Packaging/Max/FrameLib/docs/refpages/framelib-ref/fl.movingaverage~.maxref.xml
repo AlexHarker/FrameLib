@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.movingaverage~" module="FrameLib" category="FrameLib Time_Smoothing">
   <digest>
-    Calculates per sample moving averages and standard deviations.
+    Calculates per sample moving averages and standard deviations
   </digest>
   <description>
     The moving average and standard deviations are exponentially weighted. An alpha value [0-1] controls the rate of update from static to immediate. Alphas may be set per sample using the corresponding input or by parameters. Parameters allow different alphas when the average increases or decreases. Frames are expected to be of a uniform length. The output is the same length as the input. If the input length changes then the average and standard deviations are reset. These can also be individually reset using the corresponding reset inputs. Frames at the reset inputs set the starting values for calculation. When these are too short they are padded with values provided by parameter.

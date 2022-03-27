@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.pack~" module="FrameLib" category="FrameLib Streaming">
   <digest>
-    Packs multiple frame streams into a multistream output.
+    Packs multiple frame streams into a multistream output
   </digest>
   <description>
     Inputs may be single stream or multistream. All inputs are concatenated in order, with blank inputs ignored.

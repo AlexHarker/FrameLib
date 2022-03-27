@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.sink~" module="FrameLib" category="FrameLib IO">
   <digest>
-    Outputs frames to the host environment as audio by overlap-adding into an output buffer.
+    Outputs frames to the host environment as audio by overlap-adding into an output buffer
   </digest>
   <description>
     The length of the internal buffer determines the maximum frame length. Output suffers no latency but an optional delay may be added if desired. If a delay is applied then the maximum frame length will be reduced by the delay time.

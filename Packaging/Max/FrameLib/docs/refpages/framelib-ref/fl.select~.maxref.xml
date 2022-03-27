@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.select~" module="FrameLib" category="FrameLib Routing">
   <digest>
-    Selects output from a number of inputs.
+    Selects output from a number of inputs
   </digest>
   <description>
     The number of inputs is variable. The selected input can be changed with a parameter.

@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.join~" module="FrameLib" category="FrameLib Vector">
   <digest>
-    Concatenates all input frames into a single output frame.
+    Concatenates all input frames into a single output frame
   </digest>
   <description>
     Each input may trigger output (or not), as set by the triggers_in parameter.

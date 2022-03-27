@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.equals~" module="FrameLib" category="FrameLib Binary">
   <digest>
-    Compares frame values for equality (returns 1 or 0).
+    Compares frame values for equality (returns 1 or 0)
   </digest>
   <description>
     Calculation is performed on pairs of values in turn. The output is a frame at least as long as the smaller of the two inputs. If inputs mismatch in length the result depends on the mismatch parameter. Either or both inputs may be set to trigger output.

@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.once~" module="FrameLib" category="FrameLib Schedulers">
   <digest>
-    Schedules a single frame at the begining of time that lasts forever.
+    Schedules a single frame at the begining of time that lasts forever
   </digest>
   <description>
     The output is an empty frame.

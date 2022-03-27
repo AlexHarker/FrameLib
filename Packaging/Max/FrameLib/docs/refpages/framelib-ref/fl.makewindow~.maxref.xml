@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.makewindow~" module="FrameLib" category="FrameLib Generators">
   <digest>
-    Generates a specified window function across each output frame.
+    Generates a specified window function across each output frame
   </digest>
   <description>
     The length of the output is dependent on the mode parameter. Output length may be set by parameter or based on that of the trigger input. Gain compensation can be applied using the compensate parameter. The included endpoints are controllable so as to fit different applications.

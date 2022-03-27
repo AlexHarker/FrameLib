@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.timedelta~" module="FrameLib" category="FrameLib Timing">
   <digest>
-    Calculates the time interval between consecutive incoming frames.
+    Calculates the time interval between consecutive incoming frames
   </digest>
   <description>
     Time is reported in the specified units. Output is a single value.

@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.nonzero~" module="FrameLib" category="FrameLib Vector">
   <digest>
-    Outputs the indices of input samples that are non-zero.
+    Outputs the indices of input samples that are non-zero
   </digest>
   <description>
     The length of the output frame depends on the number of non-zero items in the input. The output is an ordered list of indices for all non-zero input values (counting from zero)

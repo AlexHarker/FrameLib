@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.now~" module="FrameLib" category="FrameLib Timing">
   <digest>
-    Outputs the current time.
+    Outputs the current time
   </digest>
   <description>
     Time is reported in the specified units. Output is a single value.

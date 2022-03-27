@@ -12,8 +12,8 @@
   <parent name="00_fl_index">FrameLib Tutorials</parent>
   
   <seealsolist>
-    <seealso name="fl.interval~">Schedule frames in a regular manner</seealso>
-    <seealso name="fl.source~">Turn audio signals into frames</seealso>
+    <seealso name="fl.interval~" />
+    <seealso name="fl.source~" />
   </seealsolist>
   
 </chapter>

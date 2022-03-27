@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.convolve~" module="FrameLib" category="FrameLib Spectral">
   <digest>
-    Convolves two inputs (either real or complex).
+    Convolves two inputs (either real or complex)
   </digest>
   <description>
     The output length depends on the edges parameter, which sets the edge behaviour. Output length is M + N - 1 for linear convolution (M and N are the input lengths). For other edge behaviours the output length is the maximum of M and N. In complex mode pairs of inputs and outputs are used to represent complex values. If one of a pair of inputs is shorter than the other it is zero padded to match. Internal processing is FFT-based.

@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.biquadcoeff~" module="FrameLib" category="FrameLib Filters">
   <digest>
-    Calculates biquad filter coefficients.
+    Calculates biquad filter coefficients
   </digest>
   <description>
     The filter mode is set by the mode parameter. Filter settings may be made either via parameters or per sample via inputs. The type of input and output is determined by the coefficients parameter. If set to dynamic then inputs are created for per sample values. Output will be at least one sample or as long as the longest input frame. Frames of per sample values are padded to length with their final value if required. Additional values are ignored. In this mode the parameter value is used if no corresponding input is provided. Thus, per sample values and parameters can be mixed. If coefficients is set to tagged then a single frame of tagged output is output. In tagged mode and static mode filter settings are made via parameters only. In static mode each output is a single value.

@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.framedelta~" module="FrameLib" category="FrameLib Time_Smoothing">
   <digest>
-    Outputs the deltas between consecutive frames.
+    Outputs the deltas between consecutive frames
   </digest>
   <description>
     Frames are expected to be of uniform size otherwise the object will reset. The first output frame (and those after a reset) will consist entirely of zero values. The output is the same size as the input.

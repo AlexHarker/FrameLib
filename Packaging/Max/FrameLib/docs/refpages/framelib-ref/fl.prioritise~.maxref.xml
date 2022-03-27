@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.prioritise~" module="FrameLib" category="FrameLib Vector">
   <digest>
-    Apply a fixed priority ranking to synchronous input frames.
+    Apply a fixed priority ranking to synchronous input frames
   </digest>
   <description>
     Frames arriving asynchronously are sent to the output. When frames arrive synchronously only one is sent to the output. The input number is used to proritise synchonous inputs. Either higher or lower numbered inputs can be prioritised.

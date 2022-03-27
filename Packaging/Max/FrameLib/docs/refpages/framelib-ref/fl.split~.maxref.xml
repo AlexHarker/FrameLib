@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.split~" module="FrameLib" category="FrameLib Vector">
   <digest>
-    Splits input frames into two frames, given a specified split point.
+    Splits input frames into two frames, given a specified split point
   </digest>
   <description>
     The split point may be specified in samples or as a ratio of the length of the input frame.

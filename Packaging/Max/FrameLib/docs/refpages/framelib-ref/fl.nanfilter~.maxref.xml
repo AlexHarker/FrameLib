@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.nanfilter~" module="FrameLib" category="FrameLib Vector">
   <digest>
-    Filter NaNs from the input either by replacing or by removing them.
+    Filter NaNs from the input either by replacing or by removing them
   </digest>
   <description>
     The length of the output depends on the mode parameter. The length of the output will be no longer than the input. The value for replacement can be specified using the value parameter.

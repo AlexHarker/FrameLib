@@ -1,6 +1,6 @@
 {
     "fl.sort~": {
-        "digest": "Sorts an input frame into ascending or descending order.",
+        "digest": "Sorts an input frame into ascending or descending order",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -44,7 +44,7 @@
         ]
     },
     "fl.complex.sinh~": {
-        "digest": "Calculates the hyperbolic sine of each complex value at the inputs.",
+        "digest": "Calculates the hyperbolic sine of each complex value at the inputs",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -70,7 +70,7 @@
         ]
     },
     "fl.shift~": {
-        "digest": "Shifts samples within a frame.",
+        "digest": "Shifts samples within a frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -114,7 +114,7 @@
         ]
     },
     "fl.tomax~": {
-        "digest": "Turn frames into Max messages.",
+        "digest": "Turn frames into Max messages",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -128,7 +128,7 @@
         ]
     },
     "fl.sink~": {
-        "digest": "Outputs frames to the host environment as audio by overlap-adding into an output buffer.",
+        "digest": "Outputs frames to the host environment as audio by overlap-adding into an output buffer",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -143,7 +143,7 @@
         ]
     },
     "fl.copysign~": {
-        "digest": "Copys the signs of the right input frame onto the magnitudes of the left input frame.",
+        "digest": "Copys the signs of the right input frame onto the magnitudes of the left input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -176,7 +176,7 @@
         ]
     },
     "fl.accumpos~": {
-        "digest": "Finds the index where the cumulative sum reaches a specified percentage of its total.",
+        "digest": "Finds the index where the cumulative sum reaches a specified percentage of its total",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -220,7 +220,7 @@
         ]
     },
     "fl.framemin~": {
-        "digest": "Calculates the minimum value of the input frame.",
+        "digest": "Calculates the minimum value of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -280,7 +280,7 @@
         ]
     },
     "fl.greaterthaneq~": {
-        "digest": "Compares input frames using a greater than or equal to operation (returns 1 or 0).",
+        "digest": "Compares input frames using a greater than or equal to operation (returns 1 or 0)",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -313,7 +313,7 @@
         ]
     },
     "fl.complex.cos~": {
-        "digest": "Calculates the cosine of each complex value at the inputs.",
+        "digest": "Calculates the cosine of each complex value at the inputs",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -339,7 +339,7 @@
         ]
     },
     "fl.makestring~": {
-        "digest": "Creates a tagged string by concatenating strings and numbers.",
+        "digest": "Creates a tagged string by concatenating strings and numbers",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -357,7 +357,7 @@
         ]
     },
     "fl.greaterthan~": {
-        "digest": "Compares input frames using a greater than operation (returns 1 or 0).",
+        "digest": "Compares input frames using a greater than operation (returns 1 or 0)",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -390,7 +390,7 @@
         ]
     },
     "fl.unpack~": {
-        "digest": "Unpacks multistream input into individual streams.",
+        "digest": "Unpacks multistream input into individual streams",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -406,7 +406,7 @@
         ]
     },
     "fl.complex.sin~": {
-        "digest": "Calculates the sine of each complex value at the inputs.",
+        "digest": "Calculates the sine of each complex value at the inputs",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -432,7 +432,7 @@
         ]
     },
     "fl.complex.minus~": {
-        "digest": "Subtracts complex values in the right input frame pair from those in the left pair.",
+        "digest": "Subtracts complex values in the right input frame pair from those in the left pair",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -450,7 +450,7 @@
         ]
     },
     "fl.or~": {
-        "digest": "Calculates the logical or of the left and right input frame values.",
+        "digest": "Calculates the logical or of the left and right input frame values",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -483,7 +483,7 @@
         ]
     },
     "fl.exp2~": {
-        "digest": "Calculates the exponent base 2 (2^x) of each value in the input frame.",
+        "digest": "Calculates the exponent base 2 (2^x) of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -523,7 +523,7 @@
         ]
     },
     "fl.complex.times~": {
-        "digest": "Multiplies complex values in the two pairs of input frames.",
+        "digest": "Multiplies complex values in the two pairs of input frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -541,7 +541,7 @@
         ]
     },
     "fl.convolve~": {
-        "digest": "Convolves two inputs (either real or complex).",
+        "digest": "Convolves two inputs (either real or complex)",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -561,7 +561,7 @@
         ]
     },
     "fl.centroid~": {
-        "digest": "Calculates the centroid of the input frame.",
+        "digest": "Calculates the centroid of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -605,7 +605,7 @@
         ]
     },
     "fl.medianfilter~": {
-        "digest": "Applies a median or other specified percentiled filter to the input.",
+        "digest": "Applies a median or other specified percentiled filter to the input",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -649,7 +649,7 @@
         ]
     },
     "fl.lookup~": {
-        "digest": "Lookup values from one input using a table provided at another.",
+        "digest": "Lookup values from one input using a table provided at another",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -667,7 +667,7 @@
         ]
     },
     "fl.wrap~": {
-        "digest": "Wraps the incoming frame into the range delimited by the two parameters.",
+        "digest": "Wraps the incoming frame into the range delimited by the two parameters",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -683,7 +683,7 @@
         ]
     },
     "fl.complex.exp~": {
-        "digest": "Calculates the exponent base e (e^x) of each complex value at the inputs.",
+        "digest": "Calculates the exponent base e (e^x) of each complex value at the inputs",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -709,7 +709,7 @@
         ]
     },
     "fl.multitaper~": {
-        "digest": "Calculates a multitaper power (or amplitude) spectrum from a real input.",
+        "digest": "Calculates a multitaper power (or amplitude) spectrum from a real input",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -729,7 +729,7 @@
         ]
     },
     "fl.and~": {
-        "digest": "Calculates the logical and of the left and right input frame values.",
+        "digest": "Calculates the logical and of the left and right input frame values",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -762,7 +762,7 @@
         ]
     },
     "fl.onepolezero~": {
-        "digest": "Applies a one-pole with one-zero filter to the input.",
+        "digest": "Applies a one-pole with one-zero filter to the input",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -778,7 +778,7 @@
         ]
     },
     "fl.percentile~": {
-        "digest": "Calculates a specified percentile of the input frame (by default the 50th or median).",
+        "digest": "Calculates a specified percentile of the input frame (by default the 50th or median)",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -822,7 +822,7 @@
         ]
     },
     "fl.firphase~": {
-        "digest": "Transform FIR coefficients to preserve the amplitude spectrum but alter the phase.",
+        "digest": "Transform FIR coefficients to preserve the amplitude spectrum but alter the phase",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -836,7 +836,7 @@
         ]
     },
     "fl.asinh~": {
-        "digest": "Calculates the hyperbolic arcsine of each value in the input frame.",
+        "digest": "Calculates the hyperbolic arcsine of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -876,7 +876,7 @@
         ]
     },
     "fl.times~": {
-        "digest": "Multiplies values in the two input frames.",
+        "digest": "Multiplies values in the two input frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -909,7 +909,7 @@
         ]
     },
     "fl.kurtosis~": {
-        "digest": "Calculates the kurtosis of the input frame.",
+        "digest": "Calculates the kurtosis of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -953,7 +953,7 @@
         ]
     },
     "fl.divide~": {
-        "digest": "Divides the left input frame values by the right input frame values.",
+        "digest": "Divides the left input frame values by the right input frame values",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -986,7 +986,7 @@
         ]
     },
     "fl.minus~": {
-        "digest": "Subtracts the right input frame values from the left input frame values.",
+        "digest": "Subtracts the right input frame values from the left input frame values",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1019,7 +1019,7 @@
         ]
     },
     "fl.log~": {
-        "digest": "Calculates the logarithm base e of each value in the input frame.",
+        "digest": "Calculates the logarithm base e of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1059,7 +1059,7 @@
         ]
     },
     "fl.pow~": {
-        "digest": "Raises left input frame values to the power of right input frame values.",
+        "digest": "Raises left input frame values to the power of right input frame values",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1092,7 +1092,7 @@
         ]
     },
     "fl.erf~": {
-        "digest": "Calculates the error function of each value in the input frame.",
+        "digest": "Calculates the error function of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1132,7 +1132,7 @@
         ]
     },
     "fl.filtertags~": {
-        "digest": "Filters tagged frames using a set of specified tags.",
+        "digest": "Filters tagged frames using a set of specified tags",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1150,7 +1150,7 @@
         ]
     },
     "fl.convert~": {
-        "digest": "Converts the input vector according to a specified conversion.",
+        "digest": "Converts the input vector according to a specified conversion",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1168,7 +1168,7 @@
         ]
     },
     "fl.maxpos~": {
-        "digest": "Calculates the index of the maximum value of the input frame.",
+        "digest": "Calculates the index of the maximum value of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1212,7 +1212,7 @@
         ]
     },
     "fl.trace~": {
-        "digest": "Outputs values from the input as audio, continuing the last value till a new frame arrives.",
+        "digest": "Outputs values from the input as audio, continuing the last value till a new frame arrives",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1227,7 +1227,7 @@
         ]
     },
     "fl.atan2~": {
-        "digest": "Calculates the arctangent using two arguments (left operand is y, right operand is x).",
+        "digest": "Calculates the arctangent using two arguments (left operand is y, right operand is x)",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1260,7 +1260,7 @@
         ]
     },
     "fl.perblock~": {
-        "digest": "Schedules one frame at the start of each host audio block.",
+        "digest": "Schedules one frame at the start of each host audio block",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1279,7 +1279,7 @@
         ]
     },
     "fl.complex.pow~": {
-        "digest": "Raises left operand values to the power of right operand values (both complex).",
+        "digest": "Raises left operand values to the power of right operand values (both complex)",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1297,7 +1297,7 @@
         ]
     },
     "fl.complex.log~": {
-        "digest": "Calculates the logarithm base e of each complex value at the inputs.",
+        "digest": "Calculates the logarithm base e of each complex value at the inputs",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1323,7 +1323,7 @@
         ]
     },
     "fl.nonzero~": {
-        "digest": "Outputs the indices of input samples that are non-zero.",
+        "digest": "Outputs the indices of input samples that are non-zero",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1367,7 +1367,7 @@
         ]
     },
     "fl.notequals~": {
-        "digest": "Compares frame values for inequality (returns 1 or 0).",
+        "digest": "Compares frame values for inequality (returns 1 or 0)",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1400,7 +1400,7 @@
         ]
     },
     "fl.timedelta~": {
-        "digest": "Calculates the time interval between consecutive incoming frames.",
+        "digest": "Calculates the time interval between consecutive incoming frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1416,7 +1416,7 @@
         ]
     },
     "fl.read~": {
-        "digest": "Reads from a specified host buffer given an input frame of positions.",
+        "digest": "Reads from a specified host buffer given an input frame of positions",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1431,7 +1431,7 @@
         ]
     },
     "fl.stddev~": {
-        "digest": "Calculates the standard deviation of the input frame.",
+        "digest": "Calculates the standard deviation of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1475,7 +1475,7 @@
         ]
     },
     "fl.streamid~": {
-        "digest": "Outputs the stream id for each stream in a multistream connection.",
+        "digest": "Outputs the stream id for each stream in a multistream connection",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1491,7 +1491,7 @@
         ]
     },
     "fl.lessthaneq~": {
-        "digest": "Compares input frames using a less than or equal to operation (returns 1 or 0).",
+        "digest": "Compares input frames using a less than or equal to operation (returns 1 or 0)",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1524,7 +1524,7 @@
         ]
     },
     "fl.once~": {
-        "digest": "Schedules a single frame at the begining of time that lasts forever.",
+        "digest": "Schedules a single frame at the begining of time that lasts forever",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1543,7 +1543,7 @@
         ]
     },
     "fl.exp~": {
-        "digest": "Calculates the exponent base e (e^x) of each value in the input frame.",
+        "digest": "Calculates the exponent base e (e^x) of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1583,7 +1583,7 @@
         ]
     },
     "fl.audiotrigger~": {
-        "digest": "Schedules frames based on non-zero audio input.",
+        "digest": "Schedules frames based on non-zero audio input",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1602,7 +1602,7 @@
         ]
     },
     "fl.sin~": {
-        "digest": "Calculates the sine (for arguments in radians) of each value in the input frame.",
+        "digest": "Calculates the sine (for arguments in radians) of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1642,7 +1642,7 @@
         ]
     },
     "fl.poltocar~": {
-        "digest": "Converts from polar values at the inputs to cartesian values at the outputs.",
+        "digest": "Converts from polar values at the inputs to cartesian values at the outputs",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1670,7 +1670,7 @@
         ]
     },
     "fl.lookupstring~": {
-        "digest": "Lookup a specified string from an internally stored list of strings.",
+        "digest": "Lookup a specified string from an internally stored list of strings",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1688,7 +1688,7 @@
         ]
     },
     "fl.flatness~": {
-        "digest": "Calculates the flatness (as a ratio) of the input frame.",
+        "digest": "Calculates the flatness (as a ratio) of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1732,7 +1732,7 @@
         ]
     },
     "fl.log2~": {
-        "digest": "Calculates the logarithm base 2 of each value in the input frame.",
+        "digest": "Calculates the logarithm base 2 of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1772,7 +1772,7 @@
         ]
     },
     "fl.max~": {
-        "digest": "Calculates the maximums of pairs of values in the two input frames.",
+        "digest": "Calculates the maximums of pairs of values in the two input frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1805,7 +1805,7 @@
         ]
     },
     "fl.asin~": {
-        "digest": "Calculates the arcsine (in radians) of each value in the input frame.",
+        "digest": "Calculates the arcsine (in radians) of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1845,7 +1845,7 @@
         ]
     },
     "fl.timemedian~": {
-        "digest": "Calculates the specified percentile per sample over the most recent frames.",
+        "digest": "Calculates the specified percentile per sample over the most recent frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1863,7 +1863,7 @@
         ]
     },
     "fl.correlate~": {
-        "digest": "Correlates two inputs (either real or complex).",
+        "digest": "Correlates two inputs (either real or complex)",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1882,7 +1882,7 @@
         ]
     },
     "fl.skewness~": {
-        "digest": "Calculates the skewness of the input frame.",
+        "digest": "Calculates the skewness of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1926,7 +1926,7 @@
         ]
     },
     "fl.interval~": {
-        "digest": "Schedules frames at regular intervals set by the interval parameter.",
+        "digest": "Schedules frames at regular intervals set by the interval parameter",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1945,7 +1945,7 @@
         ]
     },
     "fl.acos~": {
-        "digest": "Calculates the arccosine (in radians) of each value in the input frame.",
+        "digest": "Calculates the arccosine (in radians) of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -1985,7 +1985,7 @@
         ]
     },
     "fl.cos~": {
-        "digest": "Calculates the cosine (for arguments in radians) of each value in the input frame.",
+        "digest": "Calculates the cosine (for arguments in radians) of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2025,7 +2025,7 @@
         ]
     },
     "fl.sinh~": {
-        "digest": "Calculates the hyperbolic sine of each value in the input frame.",
+        "digest": "Calculates the hyperbolic sine of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2065,7 +2065,7 @@
         ]
     },
     "fl.floor~": {
-        "digest": "Calculates the floor function of each value in the input frame.",
+        "digest": "Calculates the floor function of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2105,7 +2105,7 @@
         ]
     },
     "fl.kernelsmooth~": {
-        "digest": "Smooth an input based on a provided smoothing kernel.",
+        "digest": "Smooth an input based on a provided smoothing kernel",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2120,7 +2120,7 @@
         ]
     },
     "fl.join~": {
-        "digest": "Concatenates all input frames into a single output frame.",
+        "digest": "Concatenates all input frames into a single output frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2164,7 +2164,7 @@
         ]
     },
     "fl.uniform~": {
-        "digest": "Generates frames in which all values are identical.",
+        "digest": "Generates frames in which all values are identical",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2180,7 +2180,7 @@
         ]
     },
     "fl.length~": {
-        "digest": "Calculates the length of the input frame.",
+        "digest": "Calculates the length of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2224,7 +2224,7 @@
         ]
     },
     "fl.trunc~": {
-        "digest": "Calculates the truncated value of each value in the input frame.",
+        "digest": "Calculates the truncated value of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2264,7 +2264,7 @@
         ]
     },
     "fl.store~": {
-        "digest": "Stores frames remotely for later recall.",
+        "digest": "Stores frames remotely for later recall",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2279,7 +2279,7 @@
         ]
     },
     "fl.log10~": {
-        "digest": "Calculates the logarithm base 10 of each value in the input frame.",
+        "digest": "Calculates the logarithm base 10 of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2319,7 +2319,7 @@
         ]
     },
     "fl.framedelta~": {
-        "digest": "Outputs the deltas between consecutive frames.",
+        "digest": "Outputs the deltas between consecutive frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2337,7 +2337,7 @@
         ]
     },
     "fl.spatial~": {
-        "digest": "Generates multiplication factors for a number of speakers from an input coordinate triple.",
+        "digest": "Generates multiplication factors for a number of speakers from an input coordinate triple",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2353,7 +2353,7 @@
         ]
     },
     "fl.constant~": {
-        "digest": "Outputs a specified constant.",
+        "digest": "Outputs a specified constant",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2371,7 +2371,7 @@
         ]
     },
     "fl.atanh~": {
-        "digest": "Calculates the hyperbolic arctangent of each value in the input frame.",
+        "digest": "Calculates the hyperbolic arctangent of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2411,7 +2411,7 @@
         ]
     },
     "fl.mean~": {
-        "digest": "Calculates the mean of the input frame.",
+        "digest": "Calculates the mean of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2455,7 +2455,7 @@
         ]
     },
     "fl.biquad~": {
-        "digest": "Applies a biquad filter to the input.",
+        "digest": "Applies a biquad filter to the input",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2469,7 +2469,7 @@
         ]
     },
     "fl.lag~": {
-        "digest": "Delay vector type input by a whole number of frames.",
+        "digest": "Delay vector type input by a whole number of frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2487,7 +2487,7 @@
         ]
     },
     "fl.complex.cosh~": {
-        "digest": "Calculates the hyperbolic cosine of each complex value at the inputs.",
+        "digest": "Calculates the hyperbolic cosine of each complex value at the inputs",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2513,7 +2513,7 @@
         ]
     },
     "fl.plus~": {
-        "digest": "Adds values in the two input frames.",
+        "digest": "Adds values in the two input frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2546,7 +2546,7 @@
         ]
     },
     "fl.sqrt~": {
-        "digest": "Calculates the square root of each value in the input frame.",
+        "digest": "Calculates the square root of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2586,7 +2586,7 @@
         ]
     },
     "fl.timer~": {
-        "digest": "Calculates the time elapsed between the each trigger input and the previous reset.",
+        "digest": "Calculates the time elapsed between the each trigger input and the previous reset",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2602,7 +2602,7 @@
         ]
     },
     "fl.framemax~": {
-        "digest": "Calculates the maximum value of the input frame.",
+        "digest": "Calculates the maximum value of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2646,7 +2646,7 @@
         ]
     },
     "fl.rms~": {
-        "digest": "Calculates the rms of the input frame.",
+        "digest": "Calculates the rms of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2690,7 +2690,7 @@
         ]
     },
     "fl.frommax~": {
-        "digest": "Turn Max messages into frames.",
+        "digest": "Turn Max messages into frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2704,7 +2704,7 @@
         ]
     },
     "fl.random~": {
-        "digest": "Generates linearly distributed random values in the range [0-1].",
+        "digest": "Generates linearly distributed random values in the range [0-1]",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2720,7 +2720,7 @@
         ]
     },
     "fl.complex.expr~": {
-        "digest": "Calculates the result of a mathematical expression involving complex numbers.",
+        "digest": "Calculates the result of a mathematical expression involving complex numbers",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2734,7 +2734,7 @@
         ]
     },
     "fl.pack~": {
-        "digest": "Packs multiple frame streams into a multistream output.",
+        "digest": "Packs multiple frame streams into a multistream output",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2750,7 +2750,7 @@
         ]
     },
     "fl.dispatch~": {
-        "digest": "Dispatches multiple inputs dynamically to multiple outputs.",
+        "digest": "Dispatches multiple inputs dynamically to multiple outputs",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2765,7 +2765,7 @@
         ]
     },
     "fl.biquadcoeff~": {
-        "digest": "Calculates biquad filter coefficients.",
+        "digest": "Calculates biquad filter coefficients",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2779,7 +2779,7 @@
         ]
     },
     "fl.source~": {
-        "digest": "Captures audio from the host environment and outputs the most recent values as frames.",
+        "digest": "Captures audio from the host environment and outputs the most recent values as frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2794,7 +2794,7 @@
         ]
     },
     "fl.modulo~": {
-        "digest": "Calculates the left input frame values modulo the right input frame values.",
+        "digest": "Calculates the left input frame values modulo the right input frame values",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2827,7 +2827,7 @@
         ]
     },
     "fl.pad~": {
-        "digest": "Pads the input frame with a repeated specified value.",
+        "digest": "Pads the input frame with a repeated specified value",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2871,7 +2871,7 @@
         ]
     },
     "fl.route~": {
-        "digest": "Routes the input to one of a number of outputs.",
+        "digest": "Routes the input to one of a number of outputs",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2886,7 +2886,7 @@
         ]
     },
     "fl.fold~": {
-        "digest": "Folds the incoming frame into the range delimited by the two parameters.",
+        "digest": "Folds the incoming frame into the range delimited by the two parameters",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2902,7 +2902,7 @@
         ]
     },
     "fl.lessthan~": {
-        "digest": "Compares input frames using a less than operation (returns 1 or 0).",
+        "digest": "Compares input frames using a less than operation (returns 1 or 0)",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2935,7 +2935,7 @@
         ]
     },
     "fl.complex.log10~": {
-        "digest": "Calculates the logarithm base 10 of each complex value at the inputs.",
+        "digest": "Calculates the logarithm base 10 of each complex value at the inputs",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -2961,7 +2961,7 @@
         ]
     },
     "fl.reverse~": {
-        "digest": "Computes the reverse of the input frame.",
+        "digest": "Computes the reverse of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3005,7 +3005,7 @@
         ]
     },
     "fl.complex.tanh~": {
-        "digest": "Calculates the hyperbolic tangent of each complex value at the inputs.",
+        "digest": "Calculates the hyperbolic tangent of each complex value at the inputs",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3031,7 +3031,7 @@
         ]
     },
     "fl.complex.tan~": {
-        "digest": "Calculates the tangent of each complex value at the inputs.",
+        "digest": "Calculates the tangent of each complex value at the inputs",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3057,7 +3057,7 @@
         ]
     },
     "fl.timemean~": {
-        "digest": "Calculates the mean per sample over the most recent frames.",
+        "digest": "Calculates the mean per sample over the most recent frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3075,7 +3075,7 @@
         ]
     },
     "fl.now~": {
-        "digest": "Outputs the current time.",
+        "digest": "Outputs the current time",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3091,7 +3091,7 @@
         ]
     },
     "fl.pattern~": {
-        "digest": "Step through a frame of values (or pattern) one at a time.",
+        "digest": "Step through a frame of values (or pattern) one at a time",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3135,7 +3135,7 @@
         ]
     },
     "fl.diff~": {
-        "digest": "Calculates the absolute differences between values in the two input frames.",
+        "digest": "Calculates the absolute differences between values in the two input frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3168,7 +3168,7 @@
         ]
     },
     "fl.gaussian~": {
-        "digest": "Generates frames of normally distributed random values.",
+        "digest": "Generates frames of normally distributed random values",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3184,7 +3184,7 @@
         ]
     },
     "fl.complex.conj~": {
-        "digest": "Calculates the complex conjugate of each complex value at the inputs.",
+        "digest": "Calculates the complex conjugate of each complex value at the inputs",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3210,7 +3210,7 @@
         ]
     },
     "fl.acosh~": {
-        "digest": "Calculates the hyperbolic arccosine of each value in the input frame.",
+        "digest": "Calculates the hyperbolic arccosine of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3250,7 +3250,7 @@
         ]
     },
     "fl.map~": {
-        "digest": "Maps values from input to output via a specified scaling.",
+        "digest": "Maps values from input to output via a specified scaling",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3268,7 +3268,7 @@
         ]
     },
     "fl.makewindow~": {
-        "digest": "Generates a specified window function across each output frame.",
+        "digest": "Generates a specified window function across each output frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3283,7 +3283,7 @@
         ]
     },
     "fl.select~": {
-        "digest": "Selects output from a number of inputs.",
+        "digest": "Selects output from a number of inputs",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3298,7 +3298,7 @@
         ]
     },
     "fl.tan~": {
-        "digest": "Calculates the tangent (for arguments in radians) of each value in the input frame.",
+        "digest": "Calculates the tangent (for arguments in radians) of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3338,7 +3338,7 @@
         ]
     },
     "fl.sum~": {
-        "digest": "Calculates the sum of the input frame.",
+        "digest": "Calculates the sum of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3382,7 +3382,7 @@
         ]
     },
     "fl.equals~": {
-        "digest": "Compares frame values for equality (returns 1 or 0).",
+        "digest": "Compares frame values for equality (returns 1 or 0)",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3415,7 +3415,7 @@
         ]
     },
     "fl.not~": {
-        "digest": "Calculates the logical not of each value in the input frame.",
+        "digest": "Calculates the logical not of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3455,7 +3455,7 @@
         ]
     },
     "fl.atan~": {
-        "digest": "Calculates the arctangent (in radians) of each value in the input frame.",
+        "digest": "Calculates the arctangent (in radians) of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3495,7 +3495,7 @@
         ]
     },
     "fl.clip~": {
-        "digest": "Clips the incoming frame to the range delimited by the two parameters.",
+        "digest": "Clips the incoming frame to the range delimited by the two parameters",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3511,7 +3511,7 @@
         ]
     },
     "fl.tanh~": {
-        "digest": "Calculates the hyperbolic tangent of each value in the input frame.",
+        "digest": "Calculates the hyperbolic tangent of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3551,7 +3551,7 @@
         ]
     },
     "fl.nanfilter~": {
-        "digest": "Filter NaNs from the input either by replacing or by removing them.",
+        "digest": "Filter NaNs from the input either by replacing or by removing them",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3595,7 +3595,7 @@
         ]
     },
     "fl.ramp~": {
-        "digest": "Generates a linear ramp across each output frame.",
+        "digest": "Generates a linear ramp across each output frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3611,7 +3611,7 @@
         ]
     },
     "fl.tag~": {
-        "digest": "Tags vectors with tags either in order to set parameters or for routing purposes.",
+        "digest": "Tags vectors with tags either in order to set parameters or for routing purposes",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3629,7 +3629,7 @@
         ]
     },
     "fl.timestddev~": {
-        "digest": "Calculates the standard deviation per sample over the most recent frames.",
+        "digest": "Calculates the standard deviation per sample over the most recent frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3647,7 +3647,7 @@
         ]
     },
     "fl.fft~": {
-        "digest": "Calculate the real or complex Fast Fourier Transform of the input(s).",
+        "digest": "Calculate the real or complex Fast Fourier Transform of the input(s)",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3666,7 +3666,7 @@
         ]
     },
     "fl.geomean~": {
-        "digest": "Calculates the geometric mean of the input frame.",
+        "digest": "Calculates the geometric mean of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3710,7 +3710,7 @@
         ]
     },
     "fl.ifft~": {
-        "digest": "Calculate the real or complex inverse Fast Fourier Transform of the inputs (real and imaginary).",
+        "digest": "Calculate the real or complex inverse Fast Fourier Transform of the inputs (real and imaginary)",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3729,7 +3729,7 @@
         ]
     },
     "fl.erfc~": {
-        "digest": "Calculates the complimentary error function of each value in the input frame.",
+        "digest": "Calculates the complimentary error function of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3769,7 +3769,7 @@
         ]
     },
     "fl.split~": {
-        "digest": "Splits input frames into two frames, given a specified split point.",
+        "digest": "Splits input frames into two frames, given a specified split point",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3813,7 +3813,7 @@
         ]
     },
     "fl.movingaverage~": {
-        "digest": "Calculates per sample moving averages and standard deviations.",
+        "digest": "Calculates per sample moving averages and standard deviations",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3831,7 +3831,7 @@
         ]
     },
     "fl.complex.divide~": {
-        "digest": "Divides complex values in the left pair of input frames by those in the right pair.",
+        "digest": "Divides complex values in the left pair of input frames by those in the right pair",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3849,7 +3849,7 @@
         ]
     },
     "fl.abs~": {
-        "digest": "Calculates the absolute value of each value in the input frame.",
+        "digest": "Calculates the absolute value of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3889,7 +3889,7 @@
         ]
     },
     "fl.svf~": {
-        "digest": "Applies a state variable filter to the input.",
+        "digest": "Applies a state variable filter to the input",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3904,7 +3904,7 @@
         ]
     },
     "fl.subframe~": {
-        "digest": "Output a specified segment of an input frame.",
+        "digest": "Output a specified segment of an input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3948,7 +3948,7 @@
         ]
     },
     "fl.minpos~": {
-        "digest": "Calculates the index of the minimum value of the input frame.",
+        "digest": "Calculates the index of the minimum value of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -3992,7 +3992,7 @@
         ]
     },
     "fl.hypot~": {
-        "digest": "Calculates the length of a hypotenuse given the two operands as the other lengths.",
+        "digest": "Calculates the length of a hypotenuse given the two operands as the other lengths",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4025,7 +4025,7 @@
         ]
     },
     "fl.onepole~": {
-        "digest": "Applies  a one-pole 6dB/octave filter to the input.",
+        "digest": "Applies  a one-pole 6dB/octave filter to the input",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4041,7 +4041,7 @@
         ]
     },
     "fl.untag~": {
-        "digest": "Retrieves vectors from a tagged frame according to a specified set of tags.",
+        "digest": "Retrieves vectors from a tagged frame according to a specified set of tags",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4059,7 +4059,7 @@
         ]
     },
     "fl.product~": {
-        "digest": "Calculates the product of the input frame.",
+        "digest": "Calculates the product of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4103,7 +4103,7 @@
         ]
     },
     "fl.crest~": {
-        "digest": "Calculates the crest factor of the input frame.",
+        "digest": "Calculates the crest factor of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4147,7 +4147,7 @@
         ]
     },
     "fl.chop~": {
-        "digest": "Chops input frames into equally sized output frames of a specified size.",
+        "digest": "Chops input frames into equally sized output frames of a specified size",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4191,7 +4191,7 @@
         ]
     },
     "fl.register~": {
-        "digest": "Store and recall frames locally.",
+        "digest": "Store and recall frames locally",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4206,7 +4206,7 @@
         ]
     },
     "fl.min~": {
-        "digest": "Calculates the minimums of pairs of values in the two input frames.",
+        "digest": "Calculates the minimums of pairs of values in the two input frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4239,7 +4239,7 @@
         ]
     },
     "fl.round~": {
-        "digest": "Calculates the rounded value of each value in the input frame.",
+        "digest": "Calculates the rounded value of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4279,7 +4279,7 @@
         ]
     },
     "fl.expr~": {
-        "digest": "Calculates the result of a mathematical expression.",
+        "digest": "Calculates the result of a mathematical expression",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4293,7 +4293,7 @@
         ]
     },
     "fl.peaks~": {
-        "digest": "Finds peaks in the input frame.",
+        "digest": "Finds peaks in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4337,7 +4337,7 @@
         ]
     },
     "fl.cbrt~": {
-        "digest": "Calculates the cube root of each value in the input frame.",
+        "digest": "Calculates the cube root of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4377,7 +4377,7 @@
         ]
     },
     "fl.complex.plus~": {
-        "digest": "Adds complex values in the two pairs of input frames.",
+        "digest": "Adds complex values in the two pairs of input frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4395,7 +4395,7 @@
         ]
     },
     "fl.complex.sqrt~": {
-        "digest": "Calculates the square root of each complex value at the inputs.",
+        "digest": "Calculates the square root of each complex value at the inputs",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4421,7 +4421,7 @@
         ]
     },
     "fl.ticks~": {
-        "digest": "Counts incoming frames.",
+        "digest": "Counts incoming frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4437,7 +4437,7 @@
         ]
     },
     "fl.cartopol~": {
-        "digest": "Converts from cartesian values at the inputs to polar values at the outputs.",
+        "digest": "Converts from cartesian values at the inputs to polar values at the outputs",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4465,7 +4465,7 @@
         ]
     },
     "fl.prioritise~": {
-        "digest": "Apply a fixed priority ranking to synchronous input frames.",
+        "digest": "Apply a fixed priority ranking to synchronous input frames",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4479,7 +4479,7 @@
         ]
     },
     "fl.cosh~": {
-        "digest": "Calculates the hyperbolic cosine of each value in the input frame.",
+        "digest": "Calculates the hyperbolic cosine of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4519,7 +4519,7 @@
         ]
     },
     "fl.spread~": {
-        "digest": "Calculates the spread of the input frame.",
+        "digest": "Calculates the spread of the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4563,7 +4563,7 @@
         ]
     },
     "fl.combinetags~": {
-        "digest": "Combines a number of tagged input frames into a single tagged output frame.",
+        "digest": "Combines a number of tagged input frames into a single tagged output frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4581,7 +4581,7 @@
         ]
     },
     "fl.ceil~": {
-        "digest": "Calculates the ceiling function of each value in the input frame.",
+        "digest": "Calculates the ceiling function of each value in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4621,7 +4621,7 @@
         ]
     },
     "fl.chain~": {
-        "digest": "Schedules frames in the future at times specified times in the input frame.",
+        "digest": "Schedules frames in the future at times specified times in the input frame",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4640,7 +4640,7 @@
         ]
     },
     "fl.info~": {
-        "digest": "Outputs the sample rate, number of channels and length of a specified buffer.",
+        "digest": "Outputs the sample rate, number of channels and length of a specified buffer",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4655,7 +4655,7 @@
         ]
     },
     "fl.recall~": {
-        "digest": "Recall a remotely stored frame for use.",
+        "digest": "Recall a remotely stored frame for use",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4670,7 +4670,7 @@
         ]
     },
     "fl.window~": {
-        "digest": "Multiplies the input frame by a specified window.",
+        "digest": "Multiplies the input frame by a specified window",
         "module": "FrameLib",
         "category": [
             "FrameLib",
@@ -4690,7 +4690,7 @@
         ]
     },
     "fl.samplerate~": {
-        "digest": "Convert or output values based on the sample rate.",
+        "digest": "Convert or output values based on the sample rate",
         "module": "FrameLib",
         "category": [
             "FrameLib",

@@ -2,7 +2,7 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.info~" module="FrameLib" category="FrameLib Buffer">
   <digest>
-    Outputs the sample rate, number of channels and length of a specified buffer.
+    Outputs the sample rate, number of channels and length of a specified buffer
   </digest>
   <description>
     The units for reporting length can be set with the units parameter. If the named buffer is not found all outputs are given as zero.
