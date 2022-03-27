@@ -24,7 +24,7 @@
         <bullet>[1] - <m>ms</m></bullet>
         <bullet>[2] - <m>seconds</m></bullet>
         <bullet>[3] - <m>normalised</m></bullet><br />
-        Sets the units used for interpreting the input.<br />Note that the edge parameter is also accounted for normalised mode.<br />This adjusts the scaling to work sensibly with cyclical modes.
+        Sets the units used for interpreting the input. Note that the edge parameter is also accounted for normalised mode. This adjusts the scaling to work sensibly with cyclical modes.
       </description>
     </entry>
     <entry name="/interp [enum]">
@@ -81,7 +81,7 @@
         Sets the units used for interpreting the input
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the units used for interpreting the input.<br />Note that the edge parameter is also accounted for normalised mode.<br />This adjusts the scaling to work sensibly with cyclical modes.
+        This argument sets the units parameter:<br /><br />Sets the units used for interpreting the input. Note that the edge parameter is also accounted for normalised mode. This adjusts the scaling to work sensibly with cyclical modes.
       </description>
     </objarg>
     <objarg name="interp" optional="1" type="symbol">
