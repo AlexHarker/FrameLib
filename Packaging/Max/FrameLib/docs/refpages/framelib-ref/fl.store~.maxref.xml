@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/name [instantiation string]">
       <description>
-        Sets the name of the storage to use.<br/>Note that names are local to the current context.
+        Sets the name of the storage to use.<br />Note that names are local to the current context.
       </description>
     </entry>
   </misc>

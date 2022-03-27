@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/mismatch [instantiation enum]">
       <description>
-        Sets the mode used when dealing with mismatched input lengths:<br/><br/>wrap - the smaller input is read modulo against the larger input.<br/>shrink - the output length is set to that of the smaller input.<br/>pad_in - the smaller input is padded prior to calculation to match the larger input.<br/>pad_out - the output is padded to match the length of the larger input.<br />
+        Sets the mode used when dealing with mismatched input lengths:<br /><br />wrap - the smaller input is read modulo against the larger input.<br />shrink - the output length is set to that of the smaller input.<br />pad_in - the smaller input is padded prior to calculation to match the larger input.<br />pad_out - the output is padded to match the length of the larger input.<br />
         <bullet>[0] - wrap</bullet>
         <bullet>[1] - shrink</bullet>
         <bullet>[2] - pad_in</bullet>

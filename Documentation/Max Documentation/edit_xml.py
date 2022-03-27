@@ -115,7 +115,7 @@ def main(docs):
         final_file.write("<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>\n")
         with open(unescaped_file, "r") as f:
             xml = f.read()
-            xml = xml.replace("&lt;br&gt;", "<br/>")
+            xml = xml.replace("&lt;br&gt;", "<br />")
             for line in xml:
                 final_file.write(line)
             final_file.close()

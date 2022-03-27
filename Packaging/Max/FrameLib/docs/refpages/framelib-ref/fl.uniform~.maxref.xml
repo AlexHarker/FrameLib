@@ -15,7 +15,7 @@
     </entry>
     <entry name="/mode [enum]">
       <description>
-        Controls how the output length is determined:<br/><br/>requested - the output length is set by the length parameter.<br/>input - the output length follows the length of the trigger input.<br />
+        Controls how the output length is determined:<br /><br />requested - the output length is set by the length parameter.<br />input - the output length follows the length of the trigger input.<br />
         <bullet>[0] - requested</bullet>
         <bullet>[1] - input</bullet>
       </description>

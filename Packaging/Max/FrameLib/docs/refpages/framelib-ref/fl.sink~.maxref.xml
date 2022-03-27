@@ -28,7 +28,7 @@
     </entry>
     <entry name="/interp [enum]">
       <description>
-        Sets the interpolation mode:<br/><br/>none - no interpolation.<br/>linear - linear interpolation.<br/>hermite - cubic hermite interpolation (incurs a minimum delay or latency of one sample).<br/>bspline - cubic bspline interpolation (incurs a minimum delay or latency of one sample).<br/>lagrange - cubic lagrange interpolation (incurs a minimum delay or latency of one sample).<br />
+        Sets the interpolation mode:<br /><br />none - no interpolation.<br />linear - linear interpolation.<br />hermite - cubic hermite interpolation (incurs a minimum delay or latency of one sample).<br />bspline - cubic bspline interpolation (incurs a minimum delay or latency of one sample).<br />lagrange - cubic lagrange interpolation (incurs a minimum delay or latency of one sample).<br />
         <bullet>[0] - none</bullet>
         <bullet>[1] - linear</bullet>
         <bullet>[2] - hermite</bullet>

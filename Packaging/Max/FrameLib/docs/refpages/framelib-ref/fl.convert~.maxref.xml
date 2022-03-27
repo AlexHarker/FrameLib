@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        Sets the mode of conversion:<br/><br/>db-amp - converts from decibels to linear amplitudes.<br/>amp-db - converts from linear amplitudes to decibels.<br/>midi-freq - converts from midi notes to frequencies.<br/>freq-mid - converts from frequencies to midi notes.<br/>semitones-ratios - converts semitone transpositions to ratios.<br/>ratios-semitones - converts from ratios to semitone transpositions.<br/>degrees-radians - converts from degress to radians.<br/>radians-degrees - converts from radians to degrees.<br />
+        Sets the mode of conversion:<br /><br />db-amp - converts from decibels to linear amplitudes.<br />amp-db - converts from linear amplitudes to decibels.<br />midi-freq - converts from midi notes to frequencies.<br />freq-mid - converts from frequencies to midi notes.<br />semitones-ratios - converts semitone transpositions to ratios.<br />ratios-semitones - converts from ratios to semitone transpositions.<br />degrees-radians - converts from degress to radians.<br />radians-degrees - converts from radians to degrees.<br />
         <bullet>[0] - db-&gt;amp</bullet>
         <bullet>[1] - amp-&gt;db</bullet>
         <bullet>[2] - midi-&gt;freq</bullet>

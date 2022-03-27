@@ -15,7 +15,7 @@
     </entry>
     <entry name="/mode [enum]">
       <description>
-        Sets the filter mode when multi-output mode is off:<br/><br/>lowpass - low pass.<br/>highpass - high pass.<br />
+        Sets the filter mode when multi-output mode is off:<br /><br />lowpass - low pass.<br />highpass - high pass.<br />
         <bullet>[0] - lowpass</bullet>
         <bullet>[1] - highpass</bullet>
       </description>
@@ -27,7 +27,7 @@
     </entry>
     <entry name="/dynamic [instantiation bool]">
       <description>
-        Creates inputs for per sample values for each of the filter parameters.<br/>If an input is not provided the corresponding parameter value is used.
+        Creates inputs for per sample values for each of the filter parameters.<br />If an input is not provided the corresponding parameter value is used.
       </description>
     </entry>
     <entry name="/reset [bool]">

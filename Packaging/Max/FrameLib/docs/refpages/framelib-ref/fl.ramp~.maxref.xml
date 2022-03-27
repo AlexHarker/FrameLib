@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        Controls how the output length is determined:<br/><br/>requested - the output length is set by the length parameter.<br/>input - the output length follows the length of the trigger input.<br />
+        Controls how the output length is determined:<br /><br />requested - the output length is set by the length parameter.<br />input - the output length follows the length of the trigger input.<br />
         <bullet>[0] - requested</bullet>
         <bullet>[1] - input</bullet>
       </description>
@@ -30,7 +30,7 @@
     </entry>
     <entry name="/scale [enum]">
       <description>
-        Sets the scaling of the output ramp:<br/><br/>count - scaled in samples (an interger count from zero).<br/>ms - scaled in milliseconds starting at zero.<br/>seconds - scaled in seconds starting at zero.<br/>normalised - output is normalised according to the edges parameter.<br />
+        Sets the scaling of the output ramp:<br /><br />count - scaled in samples (an interger count from zero).<br />ms - scaled in milliseconds starting at zero.<br />seconds - scaled in seconds starting at zero.<br />normalised - output is normalised according to the edges parameter.<br />
         <bullet>[0] - count</bullet>
         <bullet>[1] - ms</bullet>
         <bullet>[2] - seconds</bullet>
@@ -39,7 +39,7 @@
     </entry>
     <entry name="/endpoints [enum]">
       <description>
-        Sets the included edges when the scale parameter is set to normalised:<br/><br/>both - the ramp is scaled [0-1].<br/>first - the ramp is scaled [0-1).<br/>last - the ramp is scaled (0-1].<br/>none - the ramp is scaled (0-1).<br />
+        Sets the included edges when the scale parameter is set to normalised:<br /><br />both - the ramp is scaled [0-1].<br />first - the ramp is scaled [0-1).<br />last - the ramp is scaled (0-1].<br />none - the ramp is scaled (0-1).<br />
         <bullet>[0] - both</bullet>
         <bullet>[1] - first</bullet>
         <bullet>[2] - last</bullet>

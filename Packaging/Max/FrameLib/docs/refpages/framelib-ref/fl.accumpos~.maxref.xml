@@ -15,7 +15,7 @@
     </entry>
     <entry name="/empty [instantiation enum]">
       <description>
-        Sets the output to use when an empty input frame is received:<br/><br/>empty - output an empty frame.<br/>default - output the default value (see the default parameter).<br />
+        Sets the output to use when an empty input frame is received:<br /><br />empty - output an empty frame.<br />default - output the default value (see the default parameter).<br />
         <bullet>[0] - empty</bullet>
         <bullet>[1] - default</bullet>
       </description>

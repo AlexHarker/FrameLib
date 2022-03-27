@@ -10,22 +10,22 @@
   <misc name="Parameters">
     <entry name="/alpha_up [double]">
       <description>
-        Sets the alpha value when the average is increasing.<br/>Note this is only used if a sufficiently long alpha frame is not present.
+        Sets the alpha value when the average is increasing.<br />Note this is only used if a sufficiently long alpha frame is not present.
       </description>
     </entry>
     <entry name="/alpha_down [double]">
       <description>
-        Sets the alpha value when the average is increasing.<br/>Note this is only used if a sufficiently long alpha frame is not present.
+        Sets the alpha value when the average is increasing.<br />Note this is only used if a sufficiently long alpha frame is not present.
       </description>
     </entry>
     <entry name="/average [double]">
       <description>
-        Sets the padding value for averages.<br/>Note this is only used if a sufficiently long average reset frame is not present.
+        Sets the padding value for averages.<br />Note this is only used if a sufficiently long average reset frame is not present.
       </description>
     </entry>
     <entry name="/deviation [double]">
       <description>
-        Sets the padding value for deviations.<br/>Note this is only used if a sufficiently long deviation reset frame is not present.
+        Sets the padding value for deviations.<br />Note this is only used if a sufficiently long deviation reset frame is not present.
       </description>
     </entry>
   </misc>

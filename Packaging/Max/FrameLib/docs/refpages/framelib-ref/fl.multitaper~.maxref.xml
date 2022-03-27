@@ -32,7 +32,7 @@
     </entry>
     <entry name="/weighting [enum]">
       <description>
-        Sets the weighting of the tapers:<br/><br/>uniform - all tapers are weighted equally.<br/>linear - tapers are weighted linearly in a decreasing manner.<br/>parabolic - tapers are weighted with a parabola in a decreasing manner.<br />
+        Sets the weighting of the tapers:<br /><br />uniform - all tapers are weighted equally.<br />linear - tapers are weighted linearly in a decreasing manner.<br />parabolic - tapers are weighted with a parabola in a decreasing manner.<br />
         <bullet>[0] - uniform</bullet>
         <bullet>[1] - linear</bullet>
         <bullet>[2] - parabolic</bullet>

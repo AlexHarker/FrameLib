@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/max_length [instantiation int]">
       <description>
-        Sets the maximum processing length.<br/>The processing length is M + N - 1 where M and N are the lengths of the two inputs.
+        Sets the maximum processing length.<br />The processing length is M + N - 1 where M and N are the lengths of the two inputs.
       </description>
     </entry>
     <entry name="/mode [instantiation enum]">
@@ -22,7 +22,7 @@
     </entry>
     <entry name="/edges [instantiation enum]">
       <description>
-        Sets the edge behaviour of the correlation process:<br/><br/>The basic operation is a linear one with output of the processing length.<br/>For modes other than linear the output length is reduced to the maximum of M and N.<br/>Excess from the linear operation is added back into the available length as specified.<br/>linear - the output is the full processing length with no further processing.<br/>circular - excess at the end is added back to the beginning of the output.<br/>wrap - as circular mode but rotated such that wrapping occurs equally at both ends.<br/>fold - as wrap but folding not wrapping at the edges (edge values are not repeated).<br/>mirror - as fold but with repeated edge values.<br />
+        Sets the edge behaviour of the correlation process:<br /><br />The basic operation is a linear one with output of the processing length.<br />For modes other than linear the output length is reduced to the maximum of M and N.<br />Excess from the linear operation is added back into the available length as specified.<br />linear - the output is the full processing length with no further processing.<br />circular - excess at the end is added back to the beginning of the output.<br />wrap - as circular mode but rotated such that wrapping occurs equally at both ends.<br />fold - as wrap but folding not wrapping at the edges (edge values are not repeated).<br />mirror - as fold but with repeated edge values.<br />
         <bullet>[0] - linear</bullet>
         <bullet>[1] - circular</bullet>
         <bullet>[2] - wrap</bullet>

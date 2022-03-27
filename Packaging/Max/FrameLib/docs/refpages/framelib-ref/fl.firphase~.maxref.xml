@@ -15,12 +15,12 @@
     </entry>
     <entry name="/phase [double]">
       <description>
-        Sets the phase for the transformed FIR [0 to 1].<br/>minimum phase can be requested with a value of zero.<br/>linear phase can be requested with value of a half.<br/>maximum phase can be requested with a value of one.
+        Sets the phase for the transformed FIR [0 to 1].<br />minimum phase can be requested with a value of zero.<br />linear phase can be requested with value of a half.<br />maximum phase can be requested with a value of one.
       </description>
     </entry>
     <entry name="/time_factor [double]">
       <description>
-        Sets the factor used to determine the length for zero padding the FIR before processing.<br/>The FIR is padded to at least its original length multiplied by this factor.<br/>Note that this needs to be accounted for when setting the max_length parameter.
+        Sets the factor used to determine the length for zero padding the FIR before processing.<br />The FIR is padded to at least its original length multiplied by this factor.<br />Note that this needs to be accounted for when setting the max_length parameter.
       </description>
     </entry>
   </misc>

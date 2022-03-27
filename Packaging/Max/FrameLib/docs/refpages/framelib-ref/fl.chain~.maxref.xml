@@ -18,7 +18,7 @@
     </entry>
     <entry name="/time [enum]">
       <description>
-        Sets the way in which input values are interpreted:<br/><br/>absolute - times are interpreted as absolute values since the start of time.<br/>relative - times are interpreted as relative to the current reference time.<br/>interval - times are interpreted as intervals (deltas) relative to the current reference time.<br/>Note that the reference time depends on the mode parameter.<br />
+        Sets the way in which input values are interpreted:<br /><br />absolute - times are interpreted as absolute values since the start of time.<br />relative - times are interpreted as relative to the current reference time.<br />interval - times are interpreted as intervals (deltas) relative to the current reference time.<br />Note that the reference time depends on the mode parameter.<br />
         <bullet>[0] - absolute</bullet>
         <bullet>[1] - relative</bullet>
         <bullet>[2] - interval</bullet>
@@ -26,7 +26,7 @@
     </entry>
     <entry name="/mode [enum]">
       <description>
-        Sets the mode of operation:<br/><br/>replace - cancel previously scheduled frames before scheduling those in the input frame.<br/>add - add new frames to those already scheduled (even if before those already scheduled).<br/>append - schedule new frames only after those currently scheduled have completed.<br/>Note that in replace and add modes the reference time is the time of the incoming frame.<br/>In append mode the reference time is that of the last currently scheduled frame.<br/>In append mode absolute times prior to the end of those already scheduled are ignored.<br />
+        Sets the mode of operation:<br /><br />replace - cancel previously scheduled frames before scheduling those in the input frame.<br />add - add new frames to those already scheduled (even if before those already scheduled).<br />append - schedule new frames only after those currently scheduled have completed.<br />Note that in replace and add modes the reference time is the time of the incoming frame.<br />In append mode the reference time is that of the last currently scheduled frame.<br />In append mode absolute times prior to the end of those already scheduled are ignored.<br />
         <bullet>[0] - replace</bullet>
         <bullet>[1] - add</bullet>
         <bullet>[2] - append</bullet>

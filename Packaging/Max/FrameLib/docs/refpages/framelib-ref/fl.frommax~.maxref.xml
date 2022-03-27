@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/mode [instantiation enum]">
       <description>
-        Sets the mode:<br/><br/>values - translate values from the host into vectors.<br/>params - translate host messages into concatenated tagged frames.<br />
+        Sets the mode:<br /><br />values - translate values from the host into vectors.<br />params - translate host messages into concatenated tagged frames.<br />
         <bullet>[0] - values</bullet>
         <bullet>[1] - params</bullet>
       </description>

@@ -37,7 +37,7 @@
     </entry>
     <entry name="/maxspeakers [int]">
       <description>
-        Sets the maximum number of speakers to be used (the neaarest N speakers will be used only).<br/>If zero all speakers are used.
+        Sets the maximum number of speakers to be used (the neaarest N speakers will be used only).<br />If zero all speakers are used.
       </description>
     </entry>
     <entry name="/points [double]">

@@ -20,7 +20,7 @@
     </entry>
     <entry name="/units [enum]">
       <description>
-        Sets the units used for interpreting the input.<br/>Note that the edge parameter is also accounted for normalised mode.<br/>This adjusts the scaling to work sensibly with cyclical modes.<br />
+        Sets the units used for interpreting the input.<br />Note that the edge parameter is also accounted for normalised mode.<br />This adjusts the scaling to work sensibly with cyclical modes.<br />
         <bullet>[0] - samples</bullet>
         <bullet>[1] - ms</bullet>
         <bullet>[2] - seconds</bullet>
@@ -29,7 +29,7 @@
     </entry>
     <entry name="/interp [enum]">
       <description>
-        Sets the interpolation mode:<br/><br/>none - no interpolation.<br/>linear - linear interpolation.<br/>hermite - cubic hermite interpolation.<br/>bspline - cubic bspline interpolation.<br/>lagrange - cubic lagrange interpolation.<br />
+        Sets the interpolation mode:<br /><br />none - no interpolation.<br />linear - linear interpolation.<br />hermite - cubic hermite interpolation.<br />bspline - cubic bspline interpolation.<br />lagrange - cubic lagrange interpolation.<br />
         <bullet>[0] - none</bullet>
         <bullet>[1] - linear</bullet>
         <bullet>[2] - hermite</bullet>
@@ -39,7 +39,7 @@
     </entry>
     <entry name="/edges [enum]">
       <description>
-        Sets the edge behaviour for both interpolation and reading:<br/><br/>zero - values beyond the edges of the buffer are read as zeros.<br/>extend - the edge values are extended infinitely in either direction.<br/>wrap - values are read as wrapped or cyclical.<br/>fold - values are folded at edges without repetition of the edge values.<br/>mirror - values are mirrored at edges with the edge values repeated.<br/>extrapolate - values out of range are extrapolated via interpolation.<br />
+        Sets the edge behaviour for both interpolation and reading:<br /><br />zero - values beyond the edges of the buffer are read as zeros.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are read as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.<br />extrapolate - values out of range are extrapolated via interpolation.<br />
         <bullet>[0] - zero</bullet>
         <bullet>[1] - extend</bullet>
         <bullet>[2] - wrap</bullet>

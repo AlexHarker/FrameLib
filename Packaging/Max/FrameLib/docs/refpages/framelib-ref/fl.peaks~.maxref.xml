@@ -25,7 +25,7 @@
     </entry>
     <entry name="/edges [enum]">
       <description>
-        Sets the edge behaviour for peak detection:<br/><br/>pad - values beyond the edges of the input are read as the padding value.<br/>extend - the edge values are extended infinitely in either direction.<br/>wrap - values are read as wrapped or cyclical.<br/>fold - values are folded at edges without repetition of the edge values.<br/>mirror - values are mirrored at edges with the edge values repeated.<br />
+        Sets the edge behaviour for peak detection:<br /><br />pad - values beyond the edges of the input are read as the padding value.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are read as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.<br />
         <bullet>[0] - pad</bullet>
         <bullet>[1] - extend</bullet>
         <bullet>[2] - wrap</bullet>
@@ -35,7 +35,7 @@
     </entry>
     <entry name="/refine [enum]">
       <description>
-        Sets the method for refining peak values:<br/><br/>off - return the peak value without refinement.<br/>parabolic - apply parabolic interpolation to the three values around the peak.<br/>parabolic_log - apply parabolic interpolation to the log of the three values around the peak.<br/>Note that parabolic_log is suitable for interpolating linear amplitudes.<br />
+        Sets the method for refining peak values:<br /><br />off - return the peak value without refinement.<br />parabolic - apply parabolic interpolation to the three values around the peak.<br />parabolic_log - apply parabolic interpolation to the log of the three values around the peak.<br />Note that parabolic_log is suitable for interpolating linear amplitudes.<br />
         <bullet>[0] - off</bullet>
         <bullet>[1] - parabolic</bullet>
         <bullet>[2] - parabolic_log</bullet>
@@ -43,14 +43,14 @@
     </entry>
     <entry name="/boundaries [enum]">
       <description>
-        Sets the method for selecting the boundaries between peaks:<br/><br/>minimum - boundaries are set at the minimum value between consecutive peaks.<br/>midpoint - boundaries are set to the indices halfway between consecutive peaks.<br />
+        Sets the method for selecting the boundaries between peaks:<br /><br />minimum - boundaries are set at the minimum value between consecutive peaks.<br />midpoint - boundaries are set to the indices halfway between consecutive peaks.<br />
         <bullet>[0] - minimum</bullet>
         <bullet>[1] - midpoint</bullet>
       </description>
     </entry>
     <entry name="/always_detect [bool]">
       <description>
-        If set on at least one peak will be detected even if no values match the peak criteria.<br/>Note that when set off the outputs will be empty if no peak is detected.
+        If set on at least one peak will be detected even if no values match the peak criteria.<br />Note that when set off the outputs will be empty if no peak is detected.
       </description>
     </entry>
   </misc>

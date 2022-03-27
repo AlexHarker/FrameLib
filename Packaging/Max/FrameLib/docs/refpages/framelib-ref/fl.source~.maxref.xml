@@ -28,12 +28,12 @@
     </entry>
     <entry name="/delay [double]">
       <description>
-        Sets the input delay in the units specified by the units parameter:<br/><br/>Note that a minimum delay (or latency) is applied of the output length.
+        Sets the input delay in the units specified by the units parameter:<br /><br />Note that a minimum delay (or latency) is applied of the output length.
       </description>
     </entry>
     <entry name="/interp [enum]">
       <description>
-        Sets the interpolation mode:<br/><br/>none - no interpolation.<br/>linear - linear interpolation.<br/>hermite - cubic hermite interpolation.<br/>bspline - cubic bspline interpolation.<br/>lagrange - cubic lagrange interpolation.<br />
+        Sets the interpolation mode:<br /><br />none - no interpolation.<br />linear - linear interpolation.<br />hermite - cubic hermite interpolation.<br />bspline - cubic bspline interpolation.<br />lagrange - cubic lagrange interpolation.<br />
         <bullet>[0] - none</bullet>
         <bullet>[1] - linear</bullet>
         <bullet>[2] - hermite</bullet>

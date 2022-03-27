@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        Controls how the output length is determined:<br/><br/>requested - the output length is set by the length parameter.<br/>input - the output length follows the length of the trigger input.<br />
+        Controls how the output length is determined:<br /><br />requested - the output length is set by the length parameter.<br />input - the output length follows the length of the trigger input.<br />
         <bullet>[0] - requested</bullet>
         <bullet>[1] - input</bullet>
       </description>
@@ -40,7 +40,7 @@
     </entry>
     <entry name="/mismatch [enum]">
       <description>
-        Sets the mode used when dealing with mismatches between input and output lengths:<br/><br/>default - missing input values are substitued using the default values.<br/>extend - inputs are extended by repeating their final value.<br/>Note that default values are always used when an input is empty.<br />
+        Sets the mode used when dealing with mismatches between input and output lengths:<br /><br />default - missing input values are substitued using the default values.<br />extend - inputs are extended by repeating their final value.<br />Note that default values are always used when an input is empty.<br />
         <bullet>[0] - default</bullet>
         <bullet>[1] - extend</bullet>
       </description>

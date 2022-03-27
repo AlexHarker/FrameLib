@@ -20,14 +20,14 @@
     </entry>
     <entry name="/scale [enum]">
       <description>
-        Sets the input scale:<br/><br/>indices - string lookup is done by index.<br/>normalised - string lookup is done by normalised value.<br />
+        Sets the input scale:<br /><br />indices - string lookup is done by index.<br />normalised - string lookup is done by normalised value.<br />
         <bullet>[0] - indices</bullet>
         <bullet>[1] - normalised</bullet>
       </description>
     </entry>
     <entry name="/empty [enum]">
       <description>
-        Sets the behaviour when empty frames are received:<br/><br/>ignore - empty frames are ignored.<br/>reset - empty frames create empty tags to reset parameters to defaults.<br />
+        Sets the behaviour when empty frames are received:<br /><br />ignore - empty frames are ignored.<br />reset - empty frames create empty tags to reset parameters to defaults.<br />
         <bullet>[0] - ignore</bullet>
         <bullet>[1] - reset</bullet>
       </description>

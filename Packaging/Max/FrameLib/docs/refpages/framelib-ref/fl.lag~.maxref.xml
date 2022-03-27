@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/max_frames [int]">
       <description>
-        Sets the maximum lag value in frames.<br/>Note that the internal buffer is reset when this changes.
+        Sets the maximum lag value in frames.<br />Note that the internal buffer is reset when this changes.
       </description>
     </entry>
     <entry name="/num_frames [int]">
@@ -25,7 +25,7 @@
     </entry>
     <entry name="/start [enum]">
       <description>
-        Sets the behaviour when there are insufficient frames stored (as after a reset):<br/><br/>pad - output a frame of default values.<br/>shorten - output the oldest input frame since the reset.<br/>Note that frames at the reset input set the frame use for padding.<br/>If the frame is too short or empty it is padded with the pad parameter.<br />
+        Sets the behaviour when there are insufficient frames stored (as after a reset):<br /><br />pad - output a frame of default values.<br />shorten - output the oldest input frame since the reset.<br />Note that frames at the reset input set the frame use for padding.<br />If the frame is too short or empty it is padded with the pad parameter.<br />
         <bullet>[0] - pad</bullet>
         <bullet>[1] - shorten</bullet>
       </description>

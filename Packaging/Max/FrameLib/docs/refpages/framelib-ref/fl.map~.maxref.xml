@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        Sets the type of output scaling:<br/><br/>linear - linear scaling.<br/>log - logarithmic scaling.<br/>exp - exponential scaling.<br/>pow - input range scaled [0-1], raised to an exponent and then scaled to the output range.<br/>db - output range set in dB with mapping to corresponding linear gain values.<br/>transpose - output range set in semitones with mapping to corresponding ratios.<br/>inverse_pow - the inverse mapping of the pow mode.<br/>inverse_db - the inverse mapping of the db mode.<br/>inverse_transpose - the inverse mapping of the inverse_transpose mode.<br />
+        Sets the type of output scaling:<br /><br />linear - linear scaling.<br />log - logarithmic scaling.<br />exp - exponential scaling.<br />pow - input range scaled [0-1], raised to an exponent and then scaled to the output range.<br />db - output range set in dB with mapping to corresponding linear gain values.<br />transpose - output range set in semitones with mapping to corresponding ratios.<br />inverse_pow - the inverse mapping of the pow mode.<br />inverse_db - the inverse mapping of the db mode.<br />inverse_transpose - the inverse mapping of the inverse_transpose mode.<br />
         <bullet>[0] - linear</bullet>
         <bullet>[1] - log</bullet>
         <bullet>[2] - exp</bullet>
@@ -44,7 +44,7 @@
     </entry>
     <entry name="/clip [bool]">
       <description>
-        If set on then the output is constrained between the two output values.<br/>Note that scaling will otherwise continue outside of the specified ranges.
+        If set on then the output is constrained between the two output values.<br />Note that scaling will otherwise continue outside of the specified ranges.
       </description>
     </entry>
     <entry name="/exponent [double]">

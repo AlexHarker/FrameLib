@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        Sets the mode used for output:<br/><br/>full - outputs the entire frame in full.<br/>first - output the first sample of the frame only.<br/>last - output the last sample of the frame only.<br/>specified - output the sample specified by index using the position parameter.<br/>ratio - output the sample specified by the position parameter as a ratio of the frame length.<br />
+        Sets the mode used for output:<br /><br />full - outputs the entire frame in full.<br />first - output the first sample of the frame only.<br />last - output the last sample of the frame only.<br />specified - output the sample specified by index using the position parameter.<br />ratio - output the sample specified by the position parameter as a ratio of the frame length.<br />
         <bullet>[0] - full</bullet>
         <bullet>[1] - first</bullet>
         <bullet>[2] - last</bullet>
@@ -33,7 +33,7 @@
     </entry>
     <entry name="/position [double]">
       <description>
-        Sets the position of the output sample in specified or ratio mode.<br/>Note that positions out of range will be clipped tp the input frame (to the first or last position).
+        Sets the position of the output sample in specified or ratio mode.<br />Note that positions out of range will be clipped tp the input frame (to the first or last position).
       </description>
     </entry>
     <entry name="/delay [double]">
