@@ -29,14 +29,6 @@ void findReplaceOnce(std::string& str, const std::string& findStr, const std::st
     str.replace(str.find(findStr), findStr.length(), replaceStr);
 }
 
-std::string formatInfo(std::string str)
-{
-    findReplace(str, ". ", ".<br />");
-    findReplace(str, ": ", ":<br /><br />");
- 
-    return str;
-}
-
 std::string replaceAudioStream(std::string str)
 {
     findReplace(str, "[1]", "[N]");
@@ -106,6 +98,14 @@ std::string getParamName(const FrameLib_Parameters *params, unsigned long idx)
     return name;
 }
 
+std::string formatParameterInfo(std::string str)
+{
+    findReplace(str, ". ", ".<br />");
+    findReplace(str, ": ", ":<br /><br />");
+    
+    return str;
+}
+
 std::string processParamInfo(const FrameLib_Parameters *params, unsigned long idx)
 {
     std::string info = params->getInfo(idx);
@@ -113,7 +113,11 @@ std::string processParamInfo(const FrameLib_Parameters *params, unsigned long id
     if (detectIndexedParam(params, idx))
         findReplaceOnce(info, "1", "N [1-" + maxIndexString(params, idx) + "]");
     
-    return escapeXML(info);
+    if (params->getType(idx) == FrameLib_Parameters::Type::Enum)
+        return formatParameterInfo(escapeXML(info));
+    else
+        return escapeXML(info);
+
 }
 
 bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxObjectArgsMode argsMode)
@@ -217,10 +221,10 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         std::string name = getParamName(params, paramIdx);
         std::string rawDescription = processParamInfo(params, paramIdx);
         std::string digest = rawDescription.substr(0, rawDescription.find_first_of(".:"));
-        std::string description = "This argument sets the " + name + " parameter:<br /><br />" + formatInfo(rawDescription);
+        std::string description = "This argument sets the " + name + " parameter:<br /><br />" + rawDescription;
         
         if (detectIndexedParam(params, paramIdx))
-            description = "Arguments set parameters " + name + ":<br /><br />" + formatInfo(rawDescription);
+            description = "Arguments set parameters " + name + ":<br /><br />" + rawDescription;
         
         file << tab2 + "<objarg name='" + name + "' optional='1' type='" + type + "'>\n";
         writeDigestDescription(tab3, digest, description);
@@ -353,7 +357,6 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
             std::string defaultStr = params->getDefaultString(i);
          
             FrameLib_Parameters::Type type = params->getType(i);
-            //FrameLib_Parameters::NumericType numericType = params->getNumericType(i);
                     
             if (defaultStr.size())
                 file << tab2 + "<entry name = '/" + name + " [" + params->getTypeString(i) + "]' >\n";
@@ -363,22 +366,27 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
             // Construct the description
             
             file << tab3 + "<description>\n";
-            file << tab4 + processParamInfo(params, i);
+            
+            // Place enum items first in the description
+            
+            // FIX - move to processParamInfo??
             
             if (type == FrameLib_Parameters::Type::Enum)
             {
-                file << "<br></br>\n" ; // if enum put a break big break between description and the enum options
-                
                 for (long j = 0; j <= params->getMax(i); j++)
                 {
                     std::string enumParamNum = std::to_string(j);
                     
                     if (j == params->getMax(i))
-                        file << tab4 + "<bullet>[" + enumParamNum + "]" + " - " + params->getItemString(i, j) + "</bullet>";
+                        file << tab4 + "<bullet>[" + enumParamNum + "]" + " - <m>" + params->getItemString(i, j) + "</m></bullet>";
                     else if (j != params->getMax(i))
-                        file << tab4 + "<bullet>[" + enumParamNum + "]" + " - " + params->getItemString(i, j) + "</bullet>\n";
+                        file << tab4 + "<bullet>[" + enumParamNum + "]" + " - <m>" + params->getItemString(i, j) + "</m></bullet>\n";
                 }
+                
+                file << "<br />\n" ; // if enum put a break big break between the enum options and the description
             }
+            
+            file << tab4 + processParamInfo(params, i);
             file << "\n" + tab3 + "</description>\n";
             file << tab2 + "</entry>\n";
             

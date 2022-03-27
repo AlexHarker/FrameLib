@@ -62,14 +62,7 @@ def main(docs):
         root.set("category", category)  # set category attribute of root to the category found in json
 
         for i in root.iter():
-            # Replace line breaks
-            if "name" in i.attrib.keys():
-                if i.attrib["name"] == "Parameters":
-                    for j in i.iter():
-                        if j.tag == "description":
-                            j.text = j.text.replace(". ", ".<br>")
-                            j.text = j.text.replace(": ", ":<br><br>")
-            # Dirty pass
+            # Replace category
             try:
                 i.text = i.text.replace("!@#@#$", category)
             except AttributeError:
@@ -109,13 +102,12 @@ def main(docs):
         docs.refpages_dir.mkdir(exist_ok=True)
         refpages_parent = docs.refpages_dir / "framelib-ref"
         refpages_parent.mkdir(exist_ok=True)
-        final_path = docs.refpages_dir / "framelib-ref" / raw_xml.name
+        final_path = refpages_parent / raw_xml.name
         final_file = open(final_path, "w+")
         final_file.write("<?xml version='1.0' encoding='utf-8' standalone='yes'?>\n")
         final_file.write("<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>\n")
         with open(unescaped_file, "r") as f:
             xml = f.read()
-            xml = xml.replace("&lt;br&gt;", "<br />")
             for line in xml:
                 final_file.write(line)
             final_file.close()
