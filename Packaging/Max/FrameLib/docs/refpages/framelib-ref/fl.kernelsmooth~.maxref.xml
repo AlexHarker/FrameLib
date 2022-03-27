@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/smooth [variable length double array]">
       <description>
-        Sets the width of smoothing as interpreted by the scale parameter.<br />If two values are provided they set the interpolated amounts at either edge.
+        Sets the width of smoothing as interpreted by the scale parameter. If only one value is provided it sets the smoothing width directly. If two values are provided they set the smoothing amounts at either edge. The smoothing width is then interpolated per sample across the output.
       </description>
     </entry>
     <entry name="/scale [enum]">
@@ -37,7 +37,7 @@
     </entry>
     <entry name="/max_fft [instantiation int]">
       <description>
-        Sets the maximum FFT size available for internal processing.<br />Note that this needs to be large enough to contain the input, kernel and edges.
+        Sets the maximum FFT size available for internal processing. Note that this needs to be large enough to contain the input, kernel and edges.
       </description>
     </entry>
   </misc>
@@ -52,7 +52,7 @@
         Sets the width of smoothing as interpreted by the scale parameter
       </digest>
       <description>
-        This argument sets the smooth parameter:<br /><br />Sets the width of smoothing as interpreted by the scale parameter.<br />If two values are provided they set the interpolated amounts at either edge.
+        This argument sets the smooth parameter:<br /><br />Sets the width of smoothing as interpreted by the scale parameter. If only one value is provided it sets the smoothing width directly. If two values are provided they set the smoothing amounts at either edge. The smoothing width is then interpolated per sample across the output.
       </description>
     </objarg>
     <objarg name="scale" optional="1" type="symbol">

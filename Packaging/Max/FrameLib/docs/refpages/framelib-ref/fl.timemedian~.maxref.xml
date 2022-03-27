@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/max_frames [int]">
       <description>
-        Sets the maximum number of frames for calculation.<br />Note that the internal buffer is reset when this changes.
+        Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.
       </description>
     </entry>
     <entry name="/num_frames [int]">
@@ -47,7 +47,7 @@
         Sets the maximum number of frames for calculation
       </digest>
       <description>
-        This argument sets the max_frames parameter:<br /><br />Sets the maximum number of frames for calculation.<br />Note that the internal buffer is reset when this changes.
+        This argument sets the max_frames parameter:<br /><br />Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.
       </description>
     </objarg>
     <objarg name="num_frames" optional="1" type="int">

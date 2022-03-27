@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/max_length [instantiation int]">
       <description>
-        Sets the maximum processing length.<br />The processing length is M + N - 1 where M and N are the lengths of the two inputs.
+        Sets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs.
       </description>
     </entry>
     <entry name="/mode [instantiation enum]">
@@ -42,7 +42,7 @@
         Sets the maximum processing length
       </digest>
       <description>
-        This argument sets the max_length parameter:<br /><br />Sets the maximum processing length.<br />The processing length is M + N - 1 where M and N are the lengths of the two inputs.
+        This argument sets the max_length parameter:<br /><br />Sets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs.
       </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">

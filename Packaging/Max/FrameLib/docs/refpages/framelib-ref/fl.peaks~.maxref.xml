@@ -50,7 +50,7 @@
     </entry>
     <entry name="/always_detect [bool]">
       <description>
-        If set on at least one peak will be detected even if no values match the peak criteria.<br />Note that when set off the outputs will be empty if no peak is detected.
+        If set on at least one peak will be detected even if no values match the peak criteria. If set off then the outputs will be empty if no peak is detected.
       </description>
     </entry>
   </misc>
@@ -105,7 +105,7 @@
         If set on at least one peak will be detected even if no values match the peak criteria
       </digest>
       <description>
-        This argument sets the always_detect parameter:<br /><br />If set on at least one peak will be detected even if no values match the peak criteria.<br />Note that when set off the outputs will be empty if no peak is detected.
+        This argument sets the always_detect parameter:<br /><br />If set on at least one peak will be detected even if no values match the peak criteria. If set off then the outputs will be empty if no peak is detected.
       </description>
     </objarg>
   </objarglist>

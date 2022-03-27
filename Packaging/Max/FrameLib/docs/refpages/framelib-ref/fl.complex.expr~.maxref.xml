@@ -23,7 +23,7 @@
     </entry>
     <entry name="/trigger_ins [instantiation variable length bool array]">
       <description>
-        Sets which input pairs trigger output using an array of bools.<br />By default all inputs trigger output.
+        Sets which input pairs trigger output using an array of bools. By default all inputs trigger output.
       </description>
     </entry>
   </misc>

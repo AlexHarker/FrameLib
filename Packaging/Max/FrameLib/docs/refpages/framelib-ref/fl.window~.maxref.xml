@@ -33,7 +33,7 @@
     </entry>
     <entry name="/size [double]">
       <description>
-        Sets the size of the internal window.<br />If zero the window is matched to input length (best for frequency domain applications).<br />Else the window is resampled by linear interpolation (best for granular applications).
+        Sets the size of the internal window. If zero the window is matched to input length (best for frequency domain applications). Else the window is resampled by linear interpolation (best for granular applications).
       </description>
     </entry>
     <entry name="/exponent [double]">
@@ -84,7 +84,7 @@
         Sets the size of the internal window
       </digest>
       <description>
-        This argument sets the size parameter:<br /><br />Sets the size of the internal window.<br />If zero the window is matched to input length (best for frequency domain applications).<br />Else the window is resampled by linear interpolation (best for granular applications).
+        This argument sets the size parameter:<br /><br />Sets the size of the internal window. If zero the window is matched to input length (best for frequency domain applications). Else the window is resampled by linear interpolation (best for granular applications).
       </description>
     </objarg>
     <objarg name="exponent" optional="1" type="number">

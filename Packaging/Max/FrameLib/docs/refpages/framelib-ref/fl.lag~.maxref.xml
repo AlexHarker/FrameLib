@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/max_frames [int]">
       <description>
-        Sets the maximum lag value in frames.<br />Note that the internal buffer is reset when this changes.
+        Sets the maximum lag value in frames. Note that the internal buffer is reset when this changes.
       </description>
     </entry>
     <entry name="/num_frames [int]">
@@ -42,7 +42,7 @@
         Sets the maximum lag value in frames
       </digest>
       <description>
-        This argument sets the max_frames parameter:<br /><br />Sets the maximum lag value in frames.<br />Note that the internal buffer is reset when this changes.
+        This argument sets the max_frames parameter:<br /><br />Sets the maximum lag value in frames. Note that the internal buffer is reset when this changes.
       </description>
     </objarg>
     <objarg name="num_frames" optional="1" type="int">

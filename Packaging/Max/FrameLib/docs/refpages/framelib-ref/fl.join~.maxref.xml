@@ -15,7 +15,7 @@
     </entry>
     <entry name="/trigger_ins [instantiation fixed length bool array]">
       <description>
-        Sets which inputs trigger output using an array of bools.<br />By default all inputs trigger output.
+        Sets which inputs trigger output using an array of bools. By default all inputs trigger output.
       </description>
     </entry>
   </misc>

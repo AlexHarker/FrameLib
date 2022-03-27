@@ -20,12 +20,12 @@
     </entry>
     <entry name="/trigger_ins [instantiation variable length bool array]">
       <description>
-        Sets which inputs trigger output using an array of bools.<br />By default all inputs trigger output.
+        Sets which inputs trigger output using an array of bools. By default all inputs trigger output.
       </description>
     </entry>
     <entry name="/padding [variable length int array]">
       <description>
-        Sets the zero padding for each input using an array of integers.<br />By default there is no zero padding.
+        Sets the zero padding for each input using an array of integers. By default there is no zero padding.
       </description>
     </entry>
     <entry name="/item_01...10 [string]">

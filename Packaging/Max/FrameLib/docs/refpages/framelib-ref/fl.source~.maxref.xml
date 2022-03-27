@@ -28,7 +28,7 @@
     </entry>
     <entry name="/delay [double]">
       <description>
-        Sets the input delay in the units specified by the units parameter:<br /><br />Note that a minimum delay (or latency) is applied of the output length.
+        Sets the input delay in the units specified by the units parameter: Note that a minimum delay (or latency) is applied of the output length.
       </description>
     </entry>
     <entry name="/interp [enum]">

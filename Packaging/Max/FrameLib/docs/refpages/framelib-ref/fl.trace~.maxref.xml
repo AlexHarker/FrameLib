@@ -33,7 +33,7 @@
     </entry>
     <entry name="/position [double]">
       <description>
-        Sets the position of the output sample in specified or ratio mode.<br />Note that positions out of range will be clipped tp the input frame (to the first or last position).
+        Sets the position of the output sample in specified or ratio mode. Note that positions out of range will be clipped tp the input frame (to the first or last position).
       </description>
     </entry>
     <entry name="/delay [double]">

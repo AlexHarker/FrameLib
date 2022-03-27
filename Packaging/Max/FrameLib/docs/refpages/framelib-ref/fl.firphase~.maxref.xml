@@ -20,7 +20,7 @@
     </entry>
     <entry name="/time_factor [double]">
       <description>
-        Sets the factor used to determine the length for zero padding the FIR before processing.<br />The FIR is padded to at least its original length multiplied by this factor.<br />Note that this needs to be accounted for when setting the max_length parameter.
+        Sets the factor used to determine the length for zero padding the FIR before processing. The FIR is padded to at least its original length multiplied by this factor. Note that this needs to be accounted for when setting the max_length parameter.
       </description>
     </entry>
   </misc>
@@ -51,7 +51,7 @@
         Sets the factor used to determine the length for zero padding the FIR before processing
       </digest>
       <description>
-        This argument sets the time_factor parameter:<br /><br />Sets the factor used to determine the length for zero padding the FIR before processing.<br />The FIR is padded to at least its original length multiplied by this factor.<br />Note that this needs to be accounted for when setting the max_length parameter.
+        This argument sets the time_factor parameter:<br /><br />Sets the factor used to determine the length for zero padding the FIR before processing. The FIR is padded to at least its original length multiplied by this factor. Note that this needs to be accounted for when setting the max_length parameter.
       </description>
     </objarg>
   </objarglist>

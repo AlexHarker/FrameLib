@@ -22,7 +22,7 @@
     </entry>
     <entry name="/reset [int]">
       <description>
-        Sets the reset value.<br />A value of -1 can be used for direction independent reset.<br />This results in reset to 0 when counting up and (limit - 1) when counting down.
+        Sets the reset value. A value of -1 can be used for direction independent reset. This results in reset to 0 when counting up and (limit - 1) when counting down.
       </description>
     </entry>
     <entry name="/mode [enum]">
@@ -69,7 +69,7 @@
         Sets the reset value
       </digest>
       <description>
-        This argument sets the reset parameter:<br /><br />Sets the reset value.<br />A value of -1 can be used for direction independent reset.<br />This results in reset to 0 when counting up and (limit - 1) when counting down.
+        This argument sets the reset parameter:<br /><br />Sets the reset value. A value of -1 can be used for direction independent reset. This results in reset to 0 when counting up and (limit - 1) when counting down.
       </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">

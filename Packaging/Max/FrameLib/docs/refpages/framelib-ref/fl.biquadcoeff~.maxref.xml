@@ -41,7 +41,7 @@
         <bullet>[0] - <m>static</m></bullet>
         <bullet>[1] - <m>dynamic</m></bullet>
         <bullet>[2] - <m>tagged</m></bullet><br />
-        Sets the coefficients input and output modes.<br />static - settings are made via parameters with single value outputs.<br />dynamic - settings are made via inputs or parameters with output as vectors.<br />tagged - settings are made via parameters with output as a tagged frame.
+        Sets the coefficients input and output modes:<br /><br />static - settings are made via parameters with single value outputs.<br />dynamic - settings are made via inputs or parameters with output as vectors.<br />tagged - settings are made via parameters with output as a tagged frame.
       </description>
     </entry>
   </misc>

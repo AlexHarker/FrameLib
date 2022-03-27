@@ -33,7 +33,7 @@
     </entry>
     <entry name="/dynamic [instantiation bool]">
       <description>
-        Creates inputs for per sample values for each of the filter parameters.<br />If an input is not provided the corresponding parameter value is used.
+        Creates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used.
       </description>
     </entry>
     <entry name="/reset [bool]">

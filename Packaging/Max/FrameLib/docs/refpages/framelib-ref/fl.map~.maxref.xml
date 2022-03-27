@@ -44,7 +44,7 @@
     </entry>
     <entry name="/clip [bool]">
       <description>
-        If set on then the output is constrained between the two output values.<br />Note that scaling will otherwise continue outside of the specified ranges.
+        If set on then the output is constrained between the two output values. Note that scaling will otherwise continue outside of the specified ranges.
       </description>
     </entry>
     <entry name="/exponent [double]">
@@ -104,7 +104,7 @@
         If set on then the output is constrained between the two output values
       </digest>
       <description>
-        This argument sets the clip parameter:<br /><br />If set on then the output is constrained between the two output values.<br />Note that scaling will otherwise continue outside of the specified ranges.
+        This argument sets the clip parameter:<br /><br />If set on then the output is constrained between the two output values. Note that scaling will otherwise continue outside of the specified ranges.
       </description>
     </objarg>
   </objarglist>
