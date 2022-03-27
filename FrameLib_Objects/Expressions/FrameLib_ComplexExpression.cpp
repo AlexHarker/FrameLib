@@ -414,7 +414,7 @@ FrameLib_ComplexExpression::ParameterInfo::ParameterInfo()
     add("Sets the mathematical expression. "
         "Input pairs are indicated in1 to inx (where x is the number of input pairs created). "
         "Complex numbers can be expressed directly in the form (a + bi). "
-        "A range of other constants, operators and functions are available. "
+        "A range of other constants, operators and functions are available: "
         "Constants { i e pi epsilon inf }. "
         "Unary Operators { - }. "
         "Binary Operators { / * % + }. "

@@ -351,7 +351,7 @@ FrameLib_Expression::ParameterInfo::ParameterInfo()
 {
     add("Sets the mathematical expression. "
         "Inputs are indicated in1 to inx (where x is the number of input pairs created). "
-        "A range of other constants, operators and functions are available. "
+        "A range of other constants, operators and functions are available: "
         "Constants { e pi epsilon inf }. "
         "Unary Operators { ! - }. "
         "Binary Operators { / * % + - > < >= <= == != && || }. "

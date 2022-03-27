@@ -73,7 +73,9 @@ FrameLib_KernelSmooth::ParameterInfo FrameLib_KernelSmooth::sParamInfo;
 FrameLib_KernelSmooth::ParameterInfo::ParameterInfo()
 {
     add("Sets the width of smoothing as interpreted by the scale parameter. "
-        "If two values are provided they set the interpolated amounts at either edge.");
+        "If only one value is provided it sets the smoothing width directly. "
+        "If two values are provided they set the smoothing amounts at either edge. "
+        "The smoothing width is then interpolated per sample across the output.");
     add("Sets the scaling for the smoothing parameter: "
         "samples - smoothing is specified in samples. "
         "normalised - smoothing is specified in relation to the width of the input [0-1].");

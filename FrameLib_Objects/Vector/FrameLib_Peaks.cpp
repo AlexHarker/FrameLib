@@ -97,7 +97,7 @@ FrameLib_Peaks::ParameterInfo::ParameterInfo()
         "minimum - boundaries are set at the minimum value between consecutive peaks. "
         "midpoint - boundaries are set to the indices halfway between consecutive peaks.");
     add("If set on at least one peak will be detected even if no values match the peak criteria. "
-        "Note that when set off the outputs will be empty if no peak is detected.");
+        "If set off then the outputs will be empty if no peak is detected.");
 }
 
 // Edges

@@ -488,7 +488,7 @@ class FrameLib_Filter final : public FrameLib_Processor
             
             if (DoesCoefficients)
             {
-                add("Sets the coefficients input and output modes. "
+                add("Sets the coefficients input and output modes: "
                     "static - settings are made via parameters with single value outputs. "
                     "dynamic - settings are made via inputs or parameters with output as vectors. "
                     "tagged - settings are made via parameters with output as a tagged frame.");
