@@ -304,7 +304,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     
     objectInfo = escapeXML(frameLibObject->objectInfo(true));
     std::size_t pos = objectInfo.find_first_of(":.");
-    objectDigest = objectInfo.substr(0, pos) + ".";
+    objectDigest = objectInfo.substr(0, pos);
     objectDescription = objectInfo.substr(objectInfo[pos + 1] == ' ' ? pos + 2 : pos + 1);
     
     if (object == "fl.tomax~")
