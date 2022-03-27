@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 
-<chapter name="FrameLib Tutorial 2: Learn by Example.">
+<chapter name="FrameLib Tutorial 2: Learn by Example">
   <openfile name="Examples of FrameLib" patch="_2_Examples.maxpat"/>
   <header>FrameLib Tutorial 2: Learn by Example</header>
   <subhead>Real-world examples of FrameLib.</subhead>
