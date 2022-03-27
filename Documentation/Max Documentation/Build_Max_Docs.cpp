@@ -18,9 +18,9 @@ struct MessageArgument
     std::string mType;
 };
 
-void findReplace(std::string& str, const std::string& findStr, const std::string& replaceStr)
+void findReplace(std::string& str, const std::string& findStr, const std::string& replaceStr, size_t startPos = 0)
 {
-    for (size_t startPos = str.find(findStr); startPos != std::string::npos; startPos = str.find(findStr))
+    for (startPos = str.find(findStr, startPos); startPos != std::string::npos; startPos = str.find(findStr, startPos))
         str.replace(startPos, findStr.length(), replaceStr);
 }
 
@@ -100,10 +100,7 @@ std::string getParamName(const FrameLib_Parameters *params, unsigned long idx)
 
 std::string formatParameterInfo(std::string str)
 {
-    // FIX - consider only after the colon and see the changes...
-    
-    if (str.find(": ") != std::string::npos)
-        findReplace(str, ". ", ".<br />");
+    findReplace(str, ". ", ".<br />", str.find(": "));
     findReplace(str, ": ", ":<br /><br />");
     
     return str;
