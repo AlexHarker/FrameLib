@@ -80,7 +80,7 @@ FrameLib_Source::ParameterInfo::ParameterInfo()
     add("Sets the internal buffer size in the units specified by the units parameter.");
     add("Sets the length of output frames in the units specified by the units parameter.");
     add("Sets the time units used to determine the buffer size and output length.");
-    add("Sets the input delay in the units specified by the units parameter: "
+    add("Sets the input delay in the units specified by the units parameter. "
         "Note that a minimum delay (or latency) is applied of the output length.");
     add("Sets the interpolation mode: "
         "none - no interpolation. "

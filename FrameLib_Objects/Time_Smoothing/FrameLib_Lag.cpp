@@ -72,7 +72,7 @@ FrameLib_Lag::ParameterInfo::ParameterInfo()
     add("Sets the behaviour when there are insufficient frames stored (as after a reset): "
         "pad - output a frame of default values. "
         "shorten - output the oldest input frame since the reset. "
-        "Note that frames at the reset input set the frame use for padding. "
+        "Note that frames at the reset input set the frame used for padding. "
         "If the frame is too short or empty it is padded with the pad parameter.");
 }
 

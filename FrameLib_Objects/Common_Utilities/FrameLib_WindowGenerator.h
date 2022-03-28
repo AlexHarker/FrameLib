@@ -298,7 +298,7 @@ public:
                "The defaults are set to the values for a Hann window. "
                "kaiser - takes a single parameter to set beta (defaults to 6.24). "
                "sine_taper - takes a single integer parameter to select the taper (defaults to 1). "
-               "Other window types do not taken any parameters.";
+               "Other window types do not take any parameters.";
     }
     
     static const char *getExponentInfo()
