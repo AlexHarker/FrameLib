@@ -27,9 +27,9 @@ bool matchPartialString(const std::string& str, const std::string& findStr, size
 
 bool detectItem(const std::string& str, size_t pos)
 {
-    std::string line = str.substr(pos, str.find(". ", pos));
+    std::string line = str.substr(pos, str.find(". ", pos) - pos);
     
-    // Match bullet point enum item
+    // Match bullet point style item
     
     const std::regex item_regex("^[^\\s]+ -");
     
@@ -41,6 +41,17 @@ bool detectExprItem(const std::string& str, size_t pos)
     pos = str.find_first_of(".{", pos);
     
     return pos == std::string::npos || str[pos] != '.';
+}
+
+bool detectFormulaItem(const std::string& str, size_t pos)
+{
+    std::string line = str.substr(pos, str.find(". ", pos) - pos);
+
+    // Match formula (might be made more advanced later)
+    
+    const std::regex item_regex(".*π.*");
+    
+    return std::regex_search(line, item_regex) && line.find(": ") != std::string::npos;
 }
 
 void addMessageTags(std::string& str, size_t pos)
@@ -83,6 +94,17 @@ void addMessageTags(std::string& str, size_t pos)
     }
 }
     
+bool startFormulaTags(std::string& str, size_t pos)
+{
+    if (detectFormulaItem(str, pos))
+    {
+        str.insert(str.find(": ", pos) + 2, "<bluebox><i>");
+        return true;
+    }
+    
+    return false;
+}
+
 void findReplace(std::string& str, const std::string& findStr, const std::string& replaceStr, size_t pos = 0)
 {
     for (pos = str.find(findStr, pos); pos != std::string::npos; pos = str.find(findStr, pos))
@@ -276,11 +298,17 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
         if (!numEnumItems)
             isEnumItem(pos);
         
+        std::string sub = info.substr(pos);
+        if (matchPartialString(info, "cosine_sum", pos))
+            newItem = newItem;
+        
         if (newItem)
         {
             addMessageTags(info, pos);
             startBullet();
         }
+        
+        bool formula = startFormulaTags(info, pos);
         
         // Find next line
         
@@ -292,7 +320,10 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
             
             if (isExprItem(pos + 2) || isEnumItem(pos + 2) || isItem(pos + 2) || finalNote)
             {
-                replaceLineEnd(".");
+                if (formula)
+                    replaceLineEnd("</i></bluebox>");
+                else
+                    replaceLineEnd(".");
                 endBullet();
                 if (multiLine && !finalNote)
                     insertString("<br />");
