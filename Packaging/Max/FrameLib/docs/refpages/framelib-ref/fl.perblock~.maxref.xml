@@ -40,7 +40,7 @@
         Process a network in non-realtime
       </digest>
       <description>
-        Process a non-realtime network,advancing time by the number of samples specified by the required <m>length</m> argument. <br /><br />This will only take effect if the object has its <m>rt</m> attribute set to <m>0</m> More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+        Processes a non-realtime network, advancing time by the number of samples specified by the required <m>length</m> argument. <br /><br />This will only take effect if the object has its <m>rt</m> attribute set to <m>0</m> More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
     </method>
     <method name="reset">
@@ -51,7 +51,7 @@
         Reset a non-realtime network
       </digest>
       <description>
-        Resets a non-realtime network to the start of time ready for processing, optionally setting the sample rate. If the sample rate is omitted it will be set to the global sample rate.<br /><br />This will only take effect if <o>fl.perblock~</o> has its <m>rt</m> attribute set to <m>0</m>. More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+        Resets a non-realtime network to the start of time ready for processing, optionally setting the sample rate. If the <m>samplerate</m> argument is omitted the network will be set to the global sample rate.<br /><br />This will only take effect if <o>fl.perblock~</o> has its <m>rt</m> attribute set to <m>0</m>. More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
     </method>
     <method name="signal">
@@ -60,7 +60,7 @@
         Synchronise with audio or accept signal IO
       </digest>
       <description>
-        Used to synchonise FrameLib objects with Max's audio processing.
+        Synchonises FrameLib objects with Max's audio processing.
       </description>
     </method>
     <method name="frame">
@@ -100,7 +100,7 @@
         Realtime flag
       </digest>
       <description>
-        Sets the realtime state for <o>fl.perblock~</o>. When set to <m>0</m> <o>fl.perblock~</o> can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+        Sets the realtime state for <o>fl.perblock~</o>. When set to <m>0</m> <o>fl.perblock~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -112,7 +112,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for <o>fl.perblock~</o>.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+        Sets the context name for <o>fl.perblock~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
