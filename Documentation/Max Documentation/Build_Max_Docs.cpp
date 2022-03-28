@@ -25,7 +25,7 @@ bool matchPartialString(const std::string& str, const std::string& findStr, size
     return !strncmp(findStr.c_str(), str.data() + pos, findStr.length());
 }
 
-bool detectNonEnumItem(const std::string& str, size_t pos)
+bool detectItem(const std::string& str, size_t pos)
 {
     std::string line = str.substr(pos, str.find(". ", pos));
     
@@ -36,6 +36,15 @@ bool detectNonEnumItem(const std::string& str, size_t pos)
     return std::regex_search(line, item_regex);
 }
    
+void addMessageTag(std::string& str, size_t pos)
+{
+    if (detectItem(str, pos))
+    {
+        str.insert(pos, "<m>");
+        str.insert(str.find(" -", pos), "</m>");
+    }
+}
+
 bool detectExprItem(const std::string& str, size_t pos)
 {
     pos = str.find_first_of(".{", pos);
@@ -130,11 +139,10 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
 {
     std::string info = escapeXML(params->getInfo(idx));
     std::string lineEnd = ". ";
-    std::string lineBreak = ".<br />";
-    std::string doubleLineBreak = ".<br /><br />";
 
     bool isEnum = params->getType(idx) == FrameLib_Parameters::Type::Enum;
     unsigned long numEnumItems = 0;
+    unsigned long bulletCount = 0;
     
     // Helpers
     
@@ -148,9 +156,9 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
         return detectExprItem(info, pos);
     };
     
-    auto isNonEnumItem = [&](size_t pos)
+    auto isItem = [&](size_t pos)
     {
-        return detectNonEnumItem(info, pos);
+        return detectItem(info, pos);
     };
     
     auto matchEnumItem = [&](size_t pos)
@@ -187,34 +195,65 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
     if (pos != std::string::npos)
         pos += 2;
     
-    bool multiline = false;
+    bool multiLine = false;
+    bool newItem = true;
     
-    // Helper for line breaks
+    // Helper for insertions
     
-    auto insertBreak = [&](const std::string& breakStr)
+    auto replaceLineEnd = [&](const std::string& str)
     {
-        info.replace(pos, lineEnd.length(), breakStr);
-        pos += breakStr.length();
+        info.replace(pos, lineEnd.length(), str);
+        pos += str.length();
+    };
+    
+    auto insertString = [&](const std::string& str)
+    {
+        info.insert(pos, str);
+        pos += str.length();
+    };
+    
+    auto startBullet = [&]()
+    {
+        insertString("<bullet>");
+        bulletCount++;
+        if (isEnum)
+            insertString("[" + std::to_string(numEnumItems - 1) + "] - ");
+    };
+    
+    auto endBullet = [&]()
+    {
+        insertString("</bullet>");
+        bulletCount--;
     };
     
     // Process items that need to go onto separate lines / bullet points
     
+    // TODO - look at expr/enum formatting
+
     while (pos != std::string::npos)
     {
         // If there's a final note separate it and finish
         
         if (isFinalNote(pos))
         {
+            if (bulletCount)
+                endBullet();
             info.insert(pos, "<br />");
             break;
         }
         
-        // Find the first enum item (remember to account for the ": " in the position
+        // Find the first enum item
         
         if (!numEnumItems)
             isEnumItem(pos);
-            
-        // TODO - look at expr/enum formatting
+        
+        if (newItem)
+        {
+            addMessageTag(info, pos);
+            startBullet();
+        }
+        
+        // Find next line
         
         pos = info.find(lineEnd, pos);
         
@@ -222,20 +261,25 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
         {
             bool finalNote = isFinalNote(pos + 2);
             
-            if (isExprItem(pos + 2) || isEnumItem(pos + 2) || isNonEnumItem(pos + 2) || finalNote)
+            if (isExprItem(pos + 2) || isEnumItem(pos + 2) || isItem(pos + 2) || finalNote)
             {
-                if (multiline && !finalNote)
-                    insertBreak(doubleLineBreak);
-                else
-                    insertBreak(lineBreak);
+                replaceLineEnd(".");
+                endBullet();
+                if (multiLine && !finalNote)
+                    insertString("<br />");
+                newItem = true;
             }
             else
             {
                 pos += lineEnd.length();
-                multiline = true;
+                multiLine = true;
+                newItem = false;
             }
         }
     }
+
+    if (bulletCount)
+        info += "</bullet>";
     
     // Check enums
     
@@ -243,7 +287,12 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
     {
         if (!numEnumItems)
         {
+            // If there's no list in the info string then insert it here
             
+            info += "<br />" ; // put a break big break between description and enum options
+
+            for (long i = 0; i <= params->getMax(idx); i++)
+                info += "<bullet>[" + std::to_string(i) + "]" + " - <m>" + params->getItemString(idx, i) + "</m></bullet>";
         }
         else if (numEnumItems != params->getMax(idx) + 1)
         {
@@ -254,7 +303,7 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
     
     // Replace any colons
     
-    findReplace(info, ": ", ":<br /><br />");
+    findReplace(info, ": ", ":<br />");
     
     return info;
 }
@@ -494,9 +543,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
 
             std::string name = getParamName(params, i);
             std::string defaultStr = params->getDefaultString(i);
-         
-            FrameLib_Parameters::Type type = params->getType(i);
-                    
+                             
             if (defaultStr.size())
                 file << tab2 + "<entry name = '/" + name + " [" + params->getTypeString(i) + "]' >\n";
             else
@@ -505,26 +552,6 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
             // Construct the description
             
             file << tab3 + "<description>\n";
-            
-            // Place enum items first in the description
-            
-            // FIX - move to processParamInfo??
-            
-            if (type == FrameLib_Parameters::Type::Enum)
-            {
-                for (long j = 0; j <= params->getMax(i); j++)
-                {
-                    std::string enumParamNum = std::to_string(j);
-                    
-                    if (j == params->getMax(i))
-                        file << tab4 + "<bullet>[" + enumParamNum + "]" + " - <m>" + params->getItemString(i, j) + "</m></bullet>";
-                    else if (j != params->getMax(i))
-                        file << tab4 + "<bullet>[" + enumParamNum + "]" + " - <m>" + params->getItemString(i, j) + "</m></bullet>\n";
-                }
-                
-                file << "<br />\n" ; // if enum put a break big break between the enum options and the description
-            }
-            
             file << tab4 + processParamInfo(object, params, i);
             file << "\n" + tab3 + "</description>\n";
             file << tab2 + "</entry>\n";
