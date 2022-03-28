@@ -79,6 +79,9 @@ std::string escapeXML(std::string str)
         {
             case '&':  replacement = "&amp;";  break;
             case '<':  replacement = "&lt;";   break;
+            case '>':  replacement = "&gt;";   break;
+            case '\'':  replacement = "&#39;";   break;
+            case '"':  replacement = "&#34;";   break;
             default: ;
         }
         

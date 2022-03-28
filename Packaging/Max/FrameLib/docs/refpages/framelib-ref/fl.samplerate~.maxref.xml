@@ -18,7 +18,7 @@
         <bullet>[5] - <m>seconds-&gt;samples</m></bullet>
         <bullet>[6] - <m>normalised-&gt;hz</m></bullet>
         <bullet>[7] - <m>hz-&gt;normalised</m></bullet><br />
-        Sets the type of conversion or value to output:<br /><br />rate - output the sample rate in Hz.<br />nyquist - output the nyquist frequency in Hz.<br />samples-ms - convert from samples to milliseconds.<br />samples-seconds - convert from samples to seconds.<br />ms-samples - convert from milliseconds to samples.<br />seconds-samples - convert from seconds to samples.<br />normalised-hz - convert from normalised frequency to frequency in Hz.<br />h-normalised - convert from frequency in Hz to normalised frequency.
+        Sets the type of conversion or value to output:<br /><br />rate - output the sample rate in Hz.<br />nyquist - output the nyquist frequency in Hz.<br />samples-&gt;ms - convert from samples to milliseconds.<br />samples-&gt;seconds - convert from samples to seconds.<br />ms-&gt;samples - convert from milliseconds to samples.<br />seconds-&gt;samples - convert from seconds to samples.<br />normalised-&gt;hz - convert from normalised frequency to frequency in Hz.<br />h-&gt;normalised - convert from frequency in Hz to normalised frequency.
       </description>
     </entry>
     <entry name="/normalisation [enum]">
@@ -40,7 +40,7 @@
         Sets the type of conversion or value to output
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the type of conversion or value to output:<br /><br />rate - output the sample rate in Hz.<br />nyquist - output the nyquist frequency in Hz.<br />samples-ms - convert from samples to milliseconds.<br />samples-seconds - convert from samples to seconds.<br />ms-samples - convert from milliseconds to samples.<br />seconds-samples - convert from seconds to samples.<br />normalised-hz - convert from normalised frequency to frequency in Hz.<br />h-normalised - convert from frequency in Hz to normalised frequency.
+        This argument sets the mode parameter:<br /><br />Sets the type of conversion or value to output:<br /><br />rate - output the sample rate in Hz.<br />nyquist - output the nyquist frequency in Hz.<br />samples-&gt;ms - convert from samples to milliseconds.<br />samples-&gt;seconds - convert from samples to seconds.<br />ms-&gt;samples - convert from milliseconds to samples.<br />seconds-&gt;samples - convert from seconds to samples.<br />normalised-&gt;hz - convert from normalised frequency to frequency in Hz.<br />h-&gt;normalised - convert from frequency in Hz to normalised frequency.
       </description>
     </objarg>
     <objarg name="normalisation" optional="1" type="symbol">
