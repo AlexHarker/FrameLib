@@ -15,19 +15,12 @@
     </entry>
     <entry name="/mode [instantiation enum]">
       <description>
-        <bullet>[0] - <m>real</m></bullet>
-        <bullet>[1] - <m>complex</m></bullet><br />
-        Sets the type of input and output.
+        Sets the type of input and output.<br /><bullet>[0] - <m>real</m></bullet><bullet>[1] - <m>complex</m></bullet>
       </description>
     </entry>
     <entry name="/edges [instantiation enum]">
       <description>
-        <bullet>[0] - <m>linear</m></bullet>
-        <bullet>[1] - <m>circular</m></bullet>
-        <bullet>[2] - <m>wrap</m></bullet>
-        <bullet>[3] - <m>fold</m></bullet>
-        <bullet>[4] - <m>mirror</m></bullet><br />
-        Sets the edge behaviour of the correlation process. The basic operation is a linear one with output of the processing length. For modes other than linear the output length is reduced to the maximum of M and N. Excess from the linear operation is added back into the available length as specified:<br /><br />linear - the output is the full processing length with no further processing.<br />circular - excess at the end is added back to the beginning of the output.<br />wrap - as circular mode but rotated such that wrapping occurs equally at both ends.<br />fold - as wrap but folding not wrapping at the edges (edge values are not repeated).<br />mirror - as fold but with repeated edge values.
+        Sets the edge behaviour of the correlation process. The basic operation is a linear one with output of the processing length. For modes other than linear the output length is reduced to the maximum of M and N. Excess from the linear operation is added back into the available length as specified:<br /><bullet>[0] - <m>linear</m> - the output is the full processing length with no further processing.</bullet><bullet>[1] - <m>circular</m> - excess at the end is added back to the beginning of the output.</bullet><bullet>[2] - <m>wrap</m> - as circular mode but rotated such that wrapping occurs equally at both ends.</bullet><bullet>[3] - <m>fold</m> - as wrap but folding not wrapping at the edges (edge values are not repeated).</bullet><bullet>[4] - <m>mirror</m> - as fold but with repeated edge values.</bullet>
       </description>
     </entry>
   </misc>
@@ -50,7 +43,7 @@
         Sets the type of input and output
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the type of input and output.
+        This argument sets the mode parameter:<br /><br />Sets the type of input and output.<br /><bullet>[0] - <m>real</m></bullet><bullet>[1] - <m>complex</m></bullet>
       </description>
     </objarg>
     <objarg name="edges" optional="1" type="symbol">
@@ -58,7 +51,7 @@
         Sets the edge behaviour of the correlation process
       </digest>
       <description>
-        This argument sets the edges parameter:<br /><br />Sets the edge behaviour of the correlation process. The basic operation is a linear one with output of the processing length. For modes other than linear the output length is reduced to the maximum of M and N. Excess from the linear operation is added back into the available length as specified:<br /><br />linear - the output is the full processing length with no further processing.<br />circular - excess at the end is added back to the beginning of the output.<br />wrap - as circular mode but rotated such that wrapping occurs equally at both ends.<br />fold - as wrap but folding not wrapping at the edges (edge values are not repeated).<br />mirror - as fold but with repeated edge values.
+        This argument sets the edges parameter:<br /><br />Sets the edge behaviour of the correlation process. The basic operation is a linear one with output of the processing length. For modes other than linear the output length is reduced to the maximum of M and N. Excess from the linear operation is added back into the available length as specified:<br /><bullet>[0] - <m>linear</m> - the output is the full processing length with no further processing.</bullet><bullet>[1] - <m>circular</m> - excess at the end is added back to the beginning of the output.</bullet><bullet>[2] - <m>wrap</m> - as circular mode but rotated such that wrapping occurs equally at both ends.</bullet><bullet>[3] - <m>fold</m> - as wrap but folding not wrapping at the edges (edge values are not repeated).</bullet><bullet>[4] - <m>mirror</m> - as fold but with repeated edge values.</bullet>
       </description>
     </objarg>
   </objarglist>

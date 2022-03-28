@@ -15,9 +15,7 @@
     </entry>
     <entry name="/scale [enum]">
       <description>
-        <bullet>[0] - <m>samples</m></bullet>
-        <bullet>[1] - <m>normalised</m></bullet><br />
-        Sets the scaling for the smoothing parameter:<br /><br />samples - smoothing is specified in samples.<br />normalised - smoothing is specified in relation to the width of the input [0-1].
+        Sets the scaling for the smoothing parameter:<br /><bullet>[0] - <m>samples</m> - smoothing is specified in samples.</bullet><bullet>[1] - <m>normalised</m> - smoothing is specified in relation to the width of the input [0-1].</bullet>
       </description>
     </entry>
     <entry name="/symmetric [bool]">
@@ -27,12 +25,7 @@
     </entry>
     <entry name="/edges [enum]">
       <description>
-        <bullet>[0] - <m>zero</m></bullet>
-        <bullet>[1] - <m>extend</m></bullet>
-        <bullet>[2] - <m>wrap</m></bullet>
-        <bullet>[3] - <m>fold</m></bullet>
-        <bullet>[4] - <m>mirror</m></bullet><br />
-        Sets the edge behaviour for smoothing:<br /><br />zero - values beyond the edges of the input are read as zeros.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are read as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.
+        Sets the edge behaviour for smoothing:<br /><bullet>[0] - <m>zero</m> - values beyond the edges of the input are read as zeros.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet>
       </description>
     </entry>
     <entry name="/max_fft [instantiation int]">
@@ -60,7 +53,7 @@
         Sets the scaling for the smoothing parameter
       </digest>
       <description>
-        This argument sets the scale parameter:<br /><br />Sets the scaling for the smoothing parameter:<br /><br />samples - smoothing is specified in samples.<br />normalised - smoothing is specified in relation to the width of the input [0-1].
+        This argument sets the scale parameter:<br /><br />Sets the scaling for the smoothing parameter:<br /><bullet>[0] - <m>samples</m> - smoothing is specified in samples.</bullet><bullet>[1] - <m>normalised</m> - smoothing is specified in relation to the width of the input [0-1].</bullet>
       </description>
     </objarg>
     <objarg name="symmetric" optional="1" type="number">
@@ -76,7 +69,7 @@
         Sets the edge behaviour for smoothing
       </digest>
       <description>
-        This argument sets the edges parameter:<br /><br />Sets the edge behaviour for smoothing:<br /><br />zero - values beyond the edges of the input are read as zeros.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are read as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.
+        This argument sets the edges parameter:<br /><br />Sets the edge behaviour for smoothing:<br /><bullet>[0] - <m>zero</m> - values beyond the edges of the input are read as zeros.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet>
       </description>
     </objarg>
   </objarglist>

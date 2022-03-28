@@ -10,9 +10,7 @@
   <misc name="Parameters">
     <entry name="/order [enum]">
       <description>
-        <bullet>[0] - <m>up</m></bullet>
-        <bullet>[1] - <m>down</m></bullet><br />
-        Sets the ordering of the sorted output.
+        Sets the ordering of the sorted output.<br /><bullet>[0] - <m>up</m></bullet><bullet>[1] - <m>down</m></bullet>
       </description>
     </entry>
     <entry name="/indices [bool]">
@@ -32,7 +30,7 @@
         Sets the ordering of the sorted output
       </digest>
       <description>
-        This argument sets the order parameter:<br /><br />Sets the ordering of the sorted output.
+        This argument sets the order parameter:<br /><br />Sets the ordering of the sorted output.<br /><bullet>[0] - <m>up</m></bullet><bullet>[1] - <m>down</m></bullet>
       </description>
     </objarg>
     <objarg name="indices" optional="1" type="number">

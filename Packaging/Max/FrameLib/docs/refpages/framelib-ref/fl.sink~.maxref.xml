@@ -15,10 +15,7 @@
     </entry>
     <entry name="/units [instantiation enum]">
       <description>
-        <bullet>[0] - <m>samples</m></bullet>
-        <bullet>[1] - <m>ms</m></bullet>
-        <bullet>[2] - <m>seconds</m></bullet><br />
-        Sets the time units used to determine the buffer size and delay.
+        Sets the time units used to determine the buffer size and delay.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
       </description>
     </entry>
     <entry name="/delay [double]">
@@ -28,12 +25,7 @@
     </entry>
     <entry name="/interp [enum]">
       <description>
-        <bullet>[0] - <m>none</m></bullet>
-        <bullet>[1] - <m>linear</m></bullet>
-        <bullet>[2] - <m>hermite</m></bullet>
-        <bullet>[3] - <m>bspline</m></bullet>
-        <bullet>[4] - <m>lagrange</m></bullet><br />
-        Sets the interpolation mode:<br /><br />none - no interpolation.<br />linear - linear interpolation.<br />hermite - cubic hermite interpolation (incurs a minimum delay or latency of one sample).<br />bspline - cubic bspline interpolation (incurs a minimum delay or latency of one sample).<br />lagrange - cubic lagrange interpolation (incurs a minimum delay or latency of one sample).
+        Sets the interpolation mode:<br /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation (incurs a minimum delay or latency of one sample).</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation (incurs a minimum delay or latency of one sample).</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation (incurs a minimum delay or latency of one sample).</bullet>
       </description>
     </entry>
   </misc>
@@ -56,7 +48,7 @@
         Sets the time units used to determine the buffer size and delay
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the time units used to determine the buffer size and delay.
+        This argument sets the units parameter:<br /><br />Sets the time units used to determine the buffer size and delay.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
       </description>
     </objarg>
   </objarglist>

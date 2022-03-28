@@ -10,15 +10,7 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        <bullet>[0] - <m>db-&gt;amp</m></bullet>
-        <bullet>[1] - <m>amp-&gt;db</m></bullet>
-        <bullet>[2] - <m>midi-&gt;freq</m></bullet>
-        <bullet>[3] - <m>freq-&gt;midi</m></bullet>
-        <bullet>[4] - <m>semitones-&gt;ratios</m></bullet>
-        <bullet>[5] - <m>ratios-&gt;semitones</m></bullet>
-        <bullet>[6] - <m>degrees-&gt;radians</m></bullet>
-        <bullet>[7] - <m>radians-&gt;degrees</m></bullet><br />
-        Sets the mode of conversion:<br /><br />db-&gt;amp - converts from decibels to linear amplitudes.<br />amp-&gt;db - converts from linear amplitudes to decibels.<br />midi-&gt;freq - converts from midi notes to frequencies.<br />freq-&gt;midi - converts from frequencies to midi notes.<br />semitones-&gt;ratios - converts semitone transpositions to ratios.<br />ratios-&gt;semitones - converts from ratios to semitone transpositions.<br />degrees-&gt;radians - converts from degress to radians.<br />radians-&gt;degrees - converts from radians to degrees.
+        Sets the mode of conversion:<br /><bullet>[0] - <m>db-&gt;amp</m> - converts from decibels to linear amplitudes.</bullet><bullet>[1] - <m>amp-&gt;db</m> - converts from linear amplitudes to decibels.</bullet><bullet>[2] - <m>midi-&gt;freq</m> - converts from midi notes to frequencies.</bullet><bullet>[3] - <m>freq-&gt;midi</m> - converts from frequencies to midi notes.</bullet><bullet>[4] - <m>semitones-&gt;ratios</m> - converts semitone transpositions to ratios.</bullet><bullet>[5] - <m>ratios-&gt;semitones</m> - converts from ratios to semitone transpositions.</bullet><bullet>[6] - <m>degrees-&gt;radians</m> - converts from degress to radians.</bullet><bullet>[7] - <m>radians-&gt;degrees</m> - converts from radians to degrees.</bullet>
       </description>
     </entry>
   </misc>
@@ -33,7 +25,7 @@
         Sets the mode of conversion
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the mode of conversion:<br /><br />db-&gt;amp - converts from decibels to linear amplitudes.<br />amp-&gt;db - converts from linear amplitudes to decibels.<br />midi-&gt;freq - converts from midi notes to frequencies.<br />freq-&gt;midi - converts from frequencies to midi notes.<br />semitones-&gt;ratios - converts semitone transpositions to ratios.<br />ratios-&gt;semitones - converts from ratios to semitone transpositions.<br />degrees-&gt;radians - converts from degress to radians.<br />radians-&gt;degrees - converts from radians to degrees.
+        This argument sets the mode parameter:<br /><br />Sets the mode of conversion:<br /><bullet>[0] - <m>db-&gt;amp</m> - converts from decibels to linear amplitudes.</bullet><bullet>[1] - <m>amp-&gt;db</m> - converts from linear amplitudes to decibels.</bullet><bullet>[2] - <m>midi-&gt;freq</m> - converts from midi notes to frequencies.</bullet><bullet>[3] - <m>freq-&gt;midi</m> - converts from frequencies to midi notes.</bullet><bullet>[4] - <m>semitones-&gt;ratios</m> - converts semitone transpositions to ratios.</bullet><bullet>[5] - <m>ratios-&gt;semitones</m> - converts from ratios to semitone transpositions.</bullet><bullet>[6] - <m>degrees-&gt;radians</m> - converts from degress to radians.</bullet><bullet>[7] - <m>radians-&gt;degrees</m> - converts from radians to degrees.</bullet>
       </description>
     </objarg>
   </objarglist>

@@ -25,27 +25,17 @@
     </entry>
     <entry name="/edges [enum]">
       <description>
-        <bullet>[0] - <m>pad</m></bullet>
-        <bullet>[1] - <m>extend</m></bullet>
-        <bullet>[2] - <m>wrap</m></bullet>
-        <bullet>[3] - <m>fold</m></bullet>
-        <bullet>[4] - <m>mirror</m></bullet><br />
-        Sets the edge behaviour for peak detection:<br /><br />pad - values beyond the edges of the input are read as the padding value.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are read as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.
+        Sets the edge behaviour for peak detection:<br /><bullet>[0] - <m>pad</m> - values beyond the edges of the input are read as the padding value.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet>
       </description>
     </entry>
     <entry name="/refine [enum]">
       <description>
-        <bullet>[0] - <m>off</m></bullet>
-        <bullet>[1] - <m>parabolic</m></bullet>
-        <bullet>[2] - <m>parabolic_log</m></bullet><br />
-        Sets the method for refining peak values:<br /><br />off - return the peak value without refinement.<br />parabolic - apply parabolic interpolation to the three values around the peak.<br />parabolic_log - apply parabolic interpolation to the log of the three values around the peak.<br /><br />Note that parabolic_log is suitable for interpolating linear amplitudes.
+        Sets the method for refining peak values:<br /><bullet>[0] - <m>off</m> - return the peak value without refinement.</bullet><bullet>[1] - <m>parabolic</m> - apply parabolic interpolation to the three values around the peak.</bullet><bullet>[2] - <m>parabolic_log</m> - apply parabolic interpolation to the log of the three values around the peak.</bullet><br />Note that parabolic_log is suitable for interpolating linear amplitudes.
       </description>
     </entry>
     <entry name="/boundaries [enum]">
       <description>
-        <bullet>[0] - <m>minimum</m></bullet>
-        <bullet>[1] - <m>midpoint</m></bullet><br />
-        Sets the method for selecting the boundaries between peaks:<br /><br />minimum - boundaries are set at the minimum value between consecutive peaks.<br />midpoint - boundaries are set to the indices halfway between consecutive peaks.
+        Sets the method for selecting the boundaries between peaks:<br /><bullet>[0] - <m>minimum</m> - boundaries are set at the minimum value between consecutive peaks.</bullet><bullet>[1] - <m>midpoint</m> - boundaries are set to the indices halfway between consecutive peaks.</bullet>
       </description>
     </entry>
     <entry name="/always_detect [bool]">
@@ -89,7 +79,7 @@
         Sets the edge behaviour for peak detection
       </digest>
       <description>
-        This argument sets the edges parameter:<br /><br />Sets the edge behaviour for peak detection:<br /><br />pad - values beyond the edges of the input are read as the padding value.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are read as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.
+        This argument sets the edges parameter:<br /><br />Sets the edge behaviour for peak detection:<br /><bullet>[0] - <m>pad</m> - values beyond the edges of the input are read as the padding value.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet>
       </description>
     </objarg>
     <objarg name="boundaries" optional="1" type="symbol">
@@ -97,7 +87,7 @@
         Sets the method for selecting the boundaries between peaks
       </digest>
       <description>
-        This argument sets the boundaries parameter:<br /><br />Sets the method for selecting the boundaries between peaks:<br /><br />minimum - boundaries are set at the minimum value between consecutive peaks.<br />midpoint - boundaries are set to the indices halfway between consecutive peaks.
+        This argument sets the boundaries parameter:<br /><br />Sets the method for selecting the boundaries between peaks:<br /><bullet>[0] - <m>minimum</m> - boundaries are set at the minimum value between consecutive peaks.</bullet><bullet>[1] - <m>midpoint</m> - boundaries are set to the indices halfway between consecutive peaks.</bullet>
       </description>
     </objarg>
     <objarg name="always_detect" optional="1" type="number">

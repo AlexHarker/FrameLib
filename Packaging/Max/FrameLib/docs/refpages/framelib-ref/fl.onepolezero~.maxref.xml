@@ -15,9 +15,7 @@
     </entry>
     <entry name="/mode [enum]">
       <description>
-        <bullet>[0] - <m>lowpass</m></bullet>
-        <bullet>[1] - <m>highpass</m></bullet><br />
-        Sets the filter mode when multi-output mode is off:<br /><br />lowpass - low pass.<br />highpass - high pass.
+        Sets the filter mode when multi-output mode is off:<br /><bullet>[0] - <m>lowpass</m> - low pass.</bullet><bullet>[1] - <m>highpass</m> - high pass.</bullet>
       </description>
     </entry>
     <entry name="/multi_output [instantiation bool]">
@@ -55,7 +53,7 @@
         Sets the filter mode when multi-output mode is off
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the filter mode when multi-output mode is off:<br /><br />lowpass - low pass.<br />highpass - high pass.
+        This argument sets the mode parameter:<br /><br />Sets the filter mode when multi-output mode is off:<br /><bullet>[0] - <m>lowpass</m> - low pass.</bullet><bullet>[1] - <m>highpass</m> - high pass.</bullet>
       </description>
     </objarg>
   </objarglist>

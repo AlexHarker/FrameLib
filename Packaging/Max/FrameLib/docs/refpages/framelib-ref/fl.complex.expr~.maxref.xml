@@ -10,15 +10,12 @@
   <misc name="Parameters">
     <entry name="/expression [instantiation string]">
       <description>
-        Sets the mathematical expression. Input pairs are indicated in1 to inx (where x is the number of input pairs created). Complex numbers can be expressed directly in the form (a + bi). A range of other constants, operators and functions are available:<br /><br />Constants { i e pi epsilon inf }.<br />Unary Operators { - }.<br />Binary Operators { / * % + }.<br />Trigonometric Functions { sin cos tan asin acos atan }.<br />Hyperbolic Functions { sinh cosh tanh asinh acosh atanh }.<br />Unary Functions { log log10 exp conj sqrt }.<br />Binary Functions { pow }.
+        Sets the mathematical expression. Input pairs are indicated in1 to inx (where x is the number of input pairs created). Complex numbers can be expressed directly in the form (a + bi). A range of other constants, operators and functions are available:<br /><bullet>Constants { <m>i</m> <m>e</m> <m>pi</m> <m>epsilon</m> <m>inf</m> }.</bullet><bullet>Unary Operators { <m>-</m> }.</bullet><bullet>Binary Operators { <m>/</m> <m>*</m> <m>%</m> <m>+</m> }.</bullet><bullet>Trigonometric Functions { <m>sin</m> <m>cos</m> <m>tan</m> <m>asin</m> <m>acos</m> <m>atan</m> }.</bullet><bullet>Hyperbolic Functions { <m>sinh</m> <m>cosh</m> <m>tanh</m> <m>asinh</m> <m>acosh</m> <m>atanh</m> }.</bullet><bullet>Unary Functions { <m>log</m> <m>log10</m> <m>exp</m> <m>conj</m> <m>sqrt</m> }.</bullet><bullet>Binary Functions { <m>pow</m> }.</bullet>
       </description>
     </entry>
     <entry name="/mismatch [instantiation enum]">
       <description>
-        <bullet>[0] - <m>wrap</m></bullet>
-        <bullet>[1] - <m>shrink</m></bullet>
-        <bullet>[2] - <m>extend</m></bullet><br />
-        Sets the mode used when dealing with mismatched input lengths:<br /><br />wrap - smaller input pairs are read modulo against the longest input pair.<br />shrink - the output length is set to that of the shortest input pair.<br />extend - if required input pairs are extended by repeating their final value.
+        Sets the mode used when dealing with mismatched input lengths:<br /><bullet>[0] - <m>wrap</m> - smaller input pairs are read modulo against the longest input pair.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the shortest input pair.</bullet><bullet>[2] - <m>extend</m> - if required input pairs are extended by repeating their final value.</bullet>
       </description>
     </entry>
     <entry name="/trigger_ins [instantiation variable length bool array]">
@@ -38,7 +35,7 @@
         Sets the mathematical expression
       </digest>
       <description>
-        This argument sets the expression parameter:<br /><br />Sets the mathematical expression. Input pairs are indicated in1 to inx (where x is the number of input pairs created). Complex numbers can be expressed directly in the form (a + bi). A range of other constants, operators and functions are available:<br /><br />Constants { i e pi epsilon inf }.<br />Unary Operators { - }.<br />Binary Operators { / * % + }.<br />Trigonometric Functions { sin cos tan asin acos atan }.<br />Hyperbolic Functions { sinh cosh tanh asinh acosh atanh }.<br />Unary Functions { log log10 exp conj sqrt }.<br />Binary Functions { pow }.
+        This argument sets the expression parameter:<br /><br />Sets the mathematical expression. Input pairs are indicated in1 to inx (where x is the number of input pairs created). Complex numbers can be expressed directly in the form (a + bi). A range of other constants, operators and functions are available:<br /><bullet>Constants { <m>i</m> <m>e</m> <m>pi</m> <m>epsilon</m> <m>inf</m> }.</bullet><bullet>Unary Operators { <m>-</m> }.</bullet><bullet>Binary Operators { <m>/</m> <m>*</m> <m>%</m> <m>+</m> }.</bullet><bullet>Trigonometric Functions { <m>sin</m> <m>cos</m> <m>tan</m> <m>asin</m> <m>acos</m> <m>atan</m> }.</bullet><bullet>Hyperbolic Functions { <m>sinh</m> <m>cosh</m> <m>tanh</m> <m>asinh</m> <m>acosh</m> <m>atanh</m> }.</bullet><bullet>Unary Functions { <m>log</m> <m>log10</m> <m>exp</m> <m>conj</m> <m>sqrt</m> }.</bullet><bullet>Binary Functions { <m>pow</m> }.</bullet>
       </description>
     </objarg>
   </objarglist>

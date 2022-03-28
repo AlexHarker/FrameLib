@@ -10,18 +10,12 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        <bullet>[0] - <m>run</m></bullet>
-        <bullet>[1] - <m>loop</m></bullet>
-        <bullet>[2] - <m>pause</m></bullet>
-        <bullet>[3] - <m>stop</m></bullet><br />
-        Sets the mode:<br /><br />run - the pattern progresses until it hits the final value.<br />loop - the pattern loops.<br />pause - the pattern is paused until the mode is changed.<br />stop - the pattern returns to the reset position until the mode is changed.
+        Sets the mode:<br /><bullet>[0] - <m>run</m> - the pattern progresses until it hits the final value.</bullet><bullet>[1] - <m>loop</m> - the pattern loops.</bullet><bullet>[2] - <m>pause</m> - the pattern is paused until the mode is changed.</bullet><bullet>[3] - <m>stop</m> - the pattern returns to the reset position until the mode is changed.</bullet>
       </description>
     </entry>
     <entry name="/direction [enum]">
       <description>
-        <bullet>[0] - <m>forward</m></bullet>
-        <bullet>[1] - <m>backward</m></bullet><br />
-        Sets the direction of progress.
+        Sets the direction of progress.<br /><bullet>[0] - <m>forward</m></bullet><bullet>[1] - <m>backward</m></bullet>
       </description>
     </entry>
     <entry name="/reset [int]">
@@ -31,9 +25,7 @@
     </entry>
     <entry name="/idle [enum]">
       <description>
-        <bullet>[0] - <m>repeat</m></bullet>
-        <bullet>[1] - <m>empty</m></bullet><br />
-        Sets the idle output (the output when stopped, paused or out of bounds):<br /><br />repeat - repeat the current value.<br />empty - output an empty frame.
+        Sets the idle output (the output when stopped, paused or out of bounds):<br /><bullet>[0] - <m>repeat</m> - repeat the current value.</bullet><bullet>[1] - <m>empty</m> - output an empty frame.</bullet>
       </description>
     </entry>
   </misc>
@@ -48,7 +40,7 @@
         Sets the mode
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the mode:<br /><br />run - the pattern progresses until it hits the final value.<br />loop - the pattern loops.<br />pause - the pattern is paused until the mode is changed.<br />stop - the pattern returns to the reset position until the mode is changed.
+        This argument sets the mode parameter:<br /><br />Sets the mode:<br /><bullet>[0] - <m>run</m> - the pattern progresses until it hits the final value.</bullet><bullet>[1] - <m>loop</m> - the pattern loops.</bullet><bullet>[2] - <m>pause</m> - the pattern is paused until the mode is changed.</bullet><bullet>[3] - <m>stop</m> - the pattern returns to the reset position until the mode is changed.</bullet>
       </description>
     </objarg>
     <objarg name="direction" optional="1" type="symbol">
@@ -56,7 +48,7 @@
         Sets the direction of progress
       </digest>
       <description>
-        This argument sets the direction parameter:<br /><br />Sets the direction of progress.
+        This argument sets the direction parameter:<br /><br />Sets the direction of progress.<br /><bullet>[0] - <m>forward</m></bullet><bullet>[1] - <m>backward</m></bullet>
       </description>
     </objarg>
     <objarg name="reset" optional="1" type="int">
@@ -72,7 +64,7 @@
         Sets the idle output (the output when stopped, paused or out of bounds)
       </digest>
       <description>
-        This argument sets the idle parameter:<br /><br />Sets the idle output (the output when stopped, paused or out of bounds):<br /><br />repeat - repeat the current value.<br />empty - output an empty frame.
+        This argument sets the idle parameter:<br /><br />Sets the idle output (the output when stopped, paused or out of bounds):<br /><bullet>[0] - <m>repeat</m> - repeat the current value.</bullet><bullet>[1] - <m>empty</m> - output an empty frame.</bullet>
       </description>
     </objarg>
   </objarglist>

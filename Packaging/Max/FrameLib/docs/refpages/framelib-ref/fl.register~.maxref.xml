@@ -10,9 +10,7 @@
   <misc name="Parameters">
     <entry name="/mode [instantiation enum]">
       <description>
-        <bullet>[0] - <m>store</m></bullet>
-        <bullet>[1] - <m>pass</m></bullet><br />
-        Sets the behaviour of the right input:<br /><br />store - stores without output.<br />pass - stores and outputs.
+        Sets the behaviour of the right input:<br /><bullet>[0] - <m>store</m> - stores without output.</bullet><bullet>[1] - <m>pass</m> - stores and outputs.</bullet>
       </description>
     </entry>
   </misc>

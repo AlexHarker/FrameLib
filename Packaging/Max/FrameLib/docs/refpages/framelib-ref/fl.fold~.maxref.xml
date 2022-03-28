@@ -10,10 +10,7 @@
   <misc name="Parameters">
     <entry name="/mismatch [instantiation enum]">
       <description>
-        <bullet>[0] - <m>wrap</m></bullet>
-        <bullet>[1] - <m>shrink</m></bullet>
-        <bullet>[2] - <m>extend</m></bullet><br />
-        Sets the mode used when dealing with mismatched input lengths:<br /><br />wrap - smaller right inputs are read modulo against larger left input.<br />shrink - the output length is set to the length of the smaller input.<br />extend - smaller right inputs are extended by repeating their final value.
+        Sets the mode used when dealing with mismatched input lengths:<br /><bullet>[0] - <m>wrap</m> - smaller right inputs are read modulo against larger left input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to the length of the smaller input.</bullet><bullet>[2] - <m>extend</m> - smaller right inputs are extended by repeating their final value.</bullet>
       </description>
     </entry>
   </misc>

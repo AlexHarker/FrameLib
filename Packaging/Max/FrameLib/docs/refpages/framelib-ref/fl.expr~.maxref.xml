@@ -10,15 +10,12 @@
   <misc name="Parameters">
     <entry name="/expression [instantiation string]">
       <description>
-        Sets the mathematical expression. Inputs are indicated in1 to inx (where x is the number of input pairs created). A range of other constants, operators and functions are available:<br /><br />Constants { e pi epsilon inf }.<br />Unary Operators { ! - }.<br />Binary Operators { / * % + - &gt; &lt; &gt;= &lt;= == != &amp;&amp; || }.<br />Trigonometric Functions { sin cos tan asin acos atan }.<br />Hyperbolic Functions { sinh cosh tanh asinh acosh atanh }.<br />Unary Functions { log log2 log10 exp exp2 abs ceil floor round trunc sqrt cbrt erf erfc }.<br />Binary Functions { diff hypot max min pow }.<br />Ternary Functions { clip, wrap, fold }.
+        Sets the mathematical expression. Inputs are indicated in1 to inx (where x is the number of input pairs created). A range of other constants, operators and functions are available:<br /><bullet>Constants { <m>e</m> <m>pi</m> <m>epsilon</m> <m>inf</m> }.</bullet><bullet>Unary Operators { <m>!</m> <m>-</m> }.</bullet><bullet>Binary Operators { <m>/</m> <m>*</m> <m>%</m> <m>+</m> <m>-</m> <m>&gt;</m> <m>&lt;</m> <m>&gt;=</m> <m>&lt;=</m> <m>==</m> <m>!=</m> <m>&amp;&amp;</m> <m>||</m> }.</bullet><bullet>Trigonometric Functions { <m>sin</m> <m>cos</m> <m>tan</m> <m>asin</m> <m>acos</m> <m>atan</m> }.</bullet><bullet>Hyperbolic Functions { <m>sinh</m> <m>cosh</m> <m>tanh</m> <m>asinh</m> <m>acosh</m> <m>atanh</m> }.</bullet><bullet>Unary Functions { <m>log</m> <m>log2</m> <m>log10</m> <m>exp</m> <m>exp2</m> <m>abs</m> <m>ceil</m> <m>floor</m> <m>round</m> <m>trunc</m> <m>sqrt</m> <m>cbrt</m> <m>erf</m> <m>erfc</m> }.</bullet><bullet>Binary Functions { <m>diff</m> <m>hypot</m> <m>max</m> <m>min</m> <m>pow</m> }.</bullet><bullet>Ternary Functions { <m>clip,</m> <m>wrap,</m> <m>fold</m> }.</bullet>
       </description>
     </entry>
     <entry name="/mismatch [instantiation enum]">
       <description>
-        <bullet>[0] - <m>wrap</m></bullet>
-        <bullet>[1] - <m>shrink</m></bullet>
-        <bullet>[2] - <m>extend</m></bullet><br />
-        Sets the mode used when dealing with mismatched input lengths:<br /><br />wrap - smaller inputs are read modulo against the longest input.<br />shrink - the output length is set to that of the shortest input.<br />extend - if required inputs are extended by repeating their final value.
+        Sets the mode used when dealing with mismatched input lengths:<br /><bullet>[0] - <m>wrap</m> - smaller inputs are read modulo against the longest input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the shortest input.</bullet><bullet>[2] - <m>extend</m> - if required inputs are extended by repeating their final value.</bullet>
       </description>
     </entry>
     <entry name="/trigger_ins [instantiation variable length bool array]">
@@ -38,7 +35,7 @@
         Sets the mathematical expression
       </digest>
       <description>
-        This argument sets the expression parameter:<br /><br />Sets the mathematical expression. Inputs are indicated in1 to inx (where x is the number of input pairs created). A range of other constants, operators and functions are available:<br /><br />Constants { e pi epsilon inf }.<br />Unary Operators { ! - }.<br />Binary Operators { / * % + - &gt; &lt; &gt;= &lt;= == != &amp;&amp; || }.<br />Trigonometric Functions { sin cos tan asin acos atan }.<br />Hyperbolic Functions { sinh cosh tanh asinh acosh atanh }.<br />Unary Functions { log log2 log10 exp exp2 abs ceil floor round trunc sqrt cbrt erf erfc }.<br />Binary Functions { diff hypot max min pow }.<br />Ternary Functions { clip, wrap, fold }.
+        This argument sets the expression parameter:<br /><br />Sets the mathematical expression. Inputs are indicated in1 to inx (where x is the number of input pairs created). A range of other constants, operators and functions are available:<br /><bullet>Constants { <m>e</m> <m>pi</m> <m>epsilon</m> <m>inf</m> }.</bullet><bullet>Unary Operators { <m>!</m> <m>-</m> }.</bullet><bullet>Binary Operators { <m>/</m> <m>*</m> <m>%</m> <m>+</m> <m>-</m> <m>&gt;</m> <m>&lt;</m> <m>&gt;=</m> <m>&lt;=</m> <m>==</m> <m>!=</m> <m>&amp;&amp;</m> <m>||</m> }.</bullet><bullet>Trigonometric Functions { <m>sin</m> <m>cos</m> <m>tan</m> <m>asin</m> <m>acos</m> <m>atan</m> }.</bullet><bullet>Hyperbolic Functions { <m>sinh</m> <m>cosh</m> <m>tanh</m> <m>asinh</m> <m>acosh</m> <m>atanh</m> }.</bullet><bullet>Unary Functions { <m>log</m> <m>log2</m> <m>log10</m> <m>exp</m> <m>exp2</m> <m>abs</m> <m>ceil</m> <m>floor</m> <m>round</m> <m>trunc</m> <m>sqrt</m> <m>cbrt</m> <m>erf</m> <m>erfc</m> }.</bullet><bullet>Binary Functions { <m>diff</m> <m>hypot</m> <m>max</m> <m>min</m> <m>pow</m> }.</bullet><bullet>Ternary Functions { <m>clip,</m> <m>wrap,</m> <m>fold</m> }.</bullet>
       </description>
     </objarg>
   </objarglist>

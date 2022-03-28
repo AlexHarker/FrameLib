@@ -25,9 +25,7 @@
     </entry>
     <entry name="/start [enum]">
       <description>
-        <bullet>[0] - <m>pad</m></bullet>
-        <bullet>[1] - <m>shorten</m></bullet><br />
-        Sets the behaviour when there are insufficient frames stored (as after a reset):<br /><br />pad - output a frame of default values.<br />shorten - output the oldest input frame since the reset.<br /><br />Note that frames at the reset input set the frame used for padding. If the frame is too short or empty it is padded with the pad parameter.
+        Sets the behaviour when there are insufficient frames stored (as after a reset):<br /><bullet>[0] - <m>pad</m> - output a frame of default values.</bullet><bullet>[1] - <m>shorten</m> - output the oldest input frame since the reset.</bullet><br />Note that frames at the reset input set the frame used for padding. If the frame is too short or empty it is padded with the pad parameter.
       </description>
     </entry>
   </misc>

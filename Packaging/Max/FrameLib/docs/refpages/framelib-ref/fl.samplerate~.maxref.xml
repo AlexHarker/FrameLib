@@ -10,22 +10,12 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        <bullet>[0] - <m>rate</m></bullet>
-        <bullet>[1] - <m>nyquist</m></bullet>
-        <bullet>[2] - <m>samples-&gt;ms</m></bullet>
-        <bullet>[3] - <m>samples-&gt;seconds</m></bullet>
-        <bullet>[4] - <m>ms-&gt;samples</m></bullet>
-        <bullet>[5] - <m>seconds-&gt;samples</m></bullet>
-        <bullet>[6] - <m>normalised-&gt;hz</m></bullet>
-        <bullet>[7] - <m>hz-&gt;normalised</m></bullet><br />
-        Sets the type of conversion or value to output:<br /><br />rate - output the sample rate in Hz.<br />nyquist - output the nyquist frequency in Hz.<br />samples-&gt;ms - convert from samples to milliseconds.<br />samples-&gt;seconds - convert from samples to seconds.<br />ms-&gt;samples - convert from milliseconds to samples.<br />seconds-&gt;samples - convert from seconds to samples.<br />normalised-&gt;hz - convert from normalised frequency to frequency in Hz.<br />hz-&gt;normalised - convert from frequency in Hz to normalised frequency.
+        Sets the type of conversion or value to output:<br /><bullet>[0] - <m>rate</m> - output the sample rate in Hz.</bullet><bullet>[1] - <m>nyquist</m> - output the nyquist frequency in Hz.</bullet><bullet>[2] - <m>samples-&gt;ms</m> - convert from samples to milliseconds.</bullet><bullet>[3] - <m>samples-&gt;seconds</m> - convert from samples to seconds.</bullet><bullet>[4] - <m>ms-&gt;samples</m> - convert from milliseconds to samples.</bullet><bullet>[5] - <m>seconds-&gt;samples</m> - convert from seconds to samples.</bullet><bullet>[6] - <m>normalised-&gt;hz</m> - convert from normalised frequency to frequency in Hz.</bullet><bullet>[7] - <m>hz-&gt;normalised</m> - convert from frequency in Hz to normalised frequency.</bullet>
       </description>
     </entry>
     <entry name="/normalisation [enum]">
       <description>
-        <bullet>[0] - <m>full</m></bullet>
-        <bullet>[1] - <m>nyquist</m></bullet><br />
-        Sets the reference point for normalised frequency:<br /><br />full - [0 - 1] is equivalent to [0 - sample rate].<br />nyquist - [0 - 1] is equivalent to [0 - nyquist].
+        Sets the reference point for normalised frequency:<br /><bullet>[0] - <m>full</m> - [0 - 1] is equivalent to [0 - sample rate].</bullet><bullet>[1] - <m>nyquist</m> - [0 - 1] is equivalent to [0 - nyquist].</bullet>
       </description>
     </entry>
   </misc>
@@ -40,7 +30,7 @@
         Sets the type of conversion or value to output
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the type of conversion or value to output:<br /><br />rate - output the sample rate in Hz.<br />nyquist - output the nyquist frequency in Hz.<br />samples-&gt;ms - convert from samples to milliseconds.<br />samples-&gt;seconds - convert from samples to seconds.<br />ms-&gt;samples - convert from milliseconds to samples.<br />seconds-&gt;samples - convert from seconds to samples.<br />normalised-&gt;hz - convert from normalised frequency to frequency in Hz.<br />hz-&gt;normalised - convert from frequency in Hz to normalised frequency.
+        This argument sets the mode parameter:<br /><br />Sets the type of conversion or value to output:<br /><bullet>[0] - <m>rate</m> - output the sample rate in Hz.</bullet><bullet>[1] - <m>nyquist</m> - output the nyquist frequency in Hz.</bullet><bullet>[2] - <m>samples-&gt;ms</m> - convert from samples to milliseconds.</bullet><bullet>[3] - <m>samples-&gt;seconds</m> - convert from samples to seconds.</bullet><bullet>[4] - <m>ms-&gt;samples</m> - convert from milliseconds to samples.</bullet><bullet>[5] - <m>seconds-&gt;samples</m> - convert from seconds to samples.</bullet><bullet>[6] - <m>normalised-&gt;hz</m> - convert from normalised frequency to frequency in Hz.</bullet><bullet>[7] - <m>hz-&gt;normalised</m> - convert from frequency in Hz to normalised frequency.</bullet>
       </description>
     </objarg>
     <objarg name="normalisation" optional="1" type="symbol">
@@ -48,7 +38,7 @@
         Sets the reference point for normalised frequency
       </digest>
       <description>
-        This argument sets the normalisation parameter:<br /><br />Sets the reference point for normalised frequency:<br /><br />full - [0 - 1] is equivalent to [0 - sample rate].<br />nyquist - [0 - 1] is equivalent to [0 - nyquist].
+        This argument sets the normalisation parameter:<br /><br />Sets the reference point for normalised frequency:<br /><bullet>[0] - <m>full</m> - [0 - 1] is equivalent to [0 - sample rate].</bullet><bullet>[1] - <m>nyquist</m> - [0 - 1] is equivalent to [0 - nyquist].</bullet>
       </description>
     </objarg>
   </objarglist>

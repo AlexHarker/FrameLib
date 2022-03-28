@@ -10,9 +10,7 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        <bullet>[0] - <m>requested</m></bullet>
-        <bullet>[1] - <m>input</m></bullet><br />
-        Controls how the output length is determined:<br /><br />requested - the output length is set by the length parameter.<br />input - the output length follows the length of the trigger input.
+        Controls how the output length is determined:<br /><bullet>[0] - <m>requested</m> - the output length is set by the length parameter.</bullet><bullet>[1] - <m>input</m> - the output length follows the length of the trigger input.</bullet>
       </description>
     </entry>
     <entry name="/length [int]">
@@ -22,10 +20,7 @@
     </entry>
     <entry name="/units [enum]">
       <description>
-        <bullet>[0] - <m>samples</m></bullet>
-        <bullet>[1] - <m>ms</m></bullet>
-        <bullet>[2] - <m>seconds</m></bullet><br />
-        Sets the units used for the length parameter.
+        Sets the units used for the length parameter.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
       </description>
     </entry>
   </misc>
@@ -40,7 +35,7 @@
         Controls how the output length is determined
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Controls how the output length is determined:<br /><br />requested - the output length is set by the length parameter.<br />input - the output length follows the length of the trigger input.
+        This argument sets the mode parameter:<br /><br />Controls how the output length is determined:<br /><bullet>[0] - <m>requested</m> - the output length is set by the length parameter.</bullet><bullet>[1] - <m>input</m> - the output length follows the length of the trigger input.</bullet>
       </description>
     </objarg>
     <objarg name="length" optional="1" type="int">
@@ -56,7 +51,7 @@
         Sets the units used for the length parameter
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the units used for the length parameter.
+        This argument sets the units parameter:<br /><br />Sets the units used for the length parameter.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
       </description>
     </objarg>
   </objarglist>

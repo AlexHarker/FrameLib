@@ -15,9 +15,7 @@
     </entry>
     <entry name="/empty [instantiation enum]">
       <description>
-        <bullet>[0] - <m>empty</m></bullet>
-        <bullet>[1] - <m>default</m></bullet><br />
-        Sets the output to use when an empty input frame is received:<br /><br />empty - output an empty frame.<br />default - output the default value (see the default parameter).
+        Sets the output to use when an empty input frame is received:<br /><bullet>[0] - <m>empty</m> - output an empty frame.</bullet><bullet>[1] - <m>default</m> - output the default value (see the default parameter).</bullet>
       </description>
     </entry>
     <entry name="/default [instantiation double]">
@@ -45,7 +43,7 @@
         Sets the output to use when an empty input frame is received
       </digest>
       <description>
-        This argument sets the empty parameter:<br /><br />Sets the output to use when an empty input frame is received:<br /><br />empty - output an empty frame.<br />default - output the default value (see the default parameter).
+        This argument sets the empty parameter:<br /><br />Sets the output to use when an empty input frame is received:<br /><bullet>[0] - <m>empty</m> - output an empty frame.</bullet><bullet>[1] - <m>default</m> - output the default value (see the default parameter).</bullet>
       </description>
     </objarg>
     <objarg name="default" optional="1" type="number">

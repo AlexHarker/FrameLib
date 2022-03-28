@@ -36,20 +36,51 @@ bool detectItem(const std::string& str, size_t pos)
     return std::regex_search(line, item_regex);
 }
    
-void addMessageTag(std::string& str, size_t pos)
-{
-    if (detectItem(str, pos))
-    {
-        str.insert(pos, "<m>");
-        str.insert(str.find(" -", pos), "</m>");
-    }
-}
-
 bool detectExprItem(const std::string& str, size_t pos)
 {
     pos = str.find_first_of(".{", pos);
     
     return pos == std::string::npos || str[pos] != '.';
+}
+
+void addMessageTags(std::string& str, size_t pos)
+{
+    auto replace =[&](const std::string& s)
+    {
+        str.replace(pos, 1, s);
+        pos += s.length();
+    };
+    
+    if (detectItem(str, pos))
+    {
+        str.insert(pos, "<m>");
+        str.insert(str.find(" -", pos), "</m>");
+    }
+    else if (detectExprItem(str, pos))
+    {
+        bool start = true;
+        pos = str.find("{", pos);
+        
+        while ((pos = str.find_first_of(" .}", pos)) != std::string::npos)
+        {
+            if (str[pos] == '.' || str[pos] == '}')
+                break;
+            
+            bool end = str[pos + 1] == '}';
+            
+            if (start && end)
+                break;
+            
+            if (end)
+                replace("</m> ");
+            else if (start)
+                replace(" <m>");
+            else
+                replace("</m> <m>");
+            
+            start = false;
+        }
+    }
 }
     
 void findReplace(std::string& str, const std::string& findStr, const std::string& replaceStr, size_t pos = 0)
@@ -228,8 +259,6 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
     
     // Process items that need to go onto separate lines / bullet points
     
-    // TODO - look at expr/enum formatting
-
     while (pos != std::string::npos)
     {
         // If there's a final note separate it and finish
@@ -249,7 +278,7 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
         
         if (newItem)
         {
-            addMessageTag(info, pos);
+            addMessageTags(info, pos);
             startBullet();
         }
         

@@ -15,9 +15,7 @@
     </entry>
     <entry name="/units [enum]">
       <description>
-        <bullet>[0] - <m>samples</m></bullet>
-        <bullet>[1] - <m>ratios</m></bullet><br />
-        Sets the units for the split point (samples or ratios [0-1]).
+        Sets the units for the split point (samples or ratios [0-1]).<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ratios</m></bullet>
       </description>
     </entry>
   </misc>
@@ -40,7 +38,7 @@
         Sets the units for the split point (samples or ratios [0-1])
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the units for the split point (samples or ratios [0-1]).
+        This argument sets the units parameter:<br /><br />Sets the units for the split point (samples or ratios [0-1]).<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ratios</m></bullet>
       </description>
     </objarg>
   </objarglist>

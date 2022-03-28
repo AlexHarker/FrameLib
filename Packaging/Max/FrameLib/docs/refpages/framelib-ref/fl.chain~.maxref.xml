@@ -10,26 +10,17 @@
   <misc name="Parameters">
     <entry name="/units [enum]">
       <description>
-        <bullet>[0] - <m>samples</m></bullet>
-        <bullet>[1] - <m>ms</m></bullet>
-        <bullet>[2] - <m>seconds</m></bullet><br />
-        Sets the time units used at the input.
+        Sets the time units used at the input.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
       </description>
     </entry>
     <entry name="/time [enum]">
       <description>
-        <bullet>[0] - <m>absolute</m></bullet>
-        <bullet>[1] - <m>relative</m></bullet>
-        <bullet>[2] - <m>interval</m></bullet><br />
-        Sets the way in which input values are interpreted:<br /><br />absolute - times are interpreted as absolute values since the start of time.<br />relative - times are interpreted as relative to the current reference time.<br />interval - times are interpreted as intervals (deltas) relative to the current reference time.<br /><br />Note that the reference time depends on the mode parameter.
+        Sets the way in which input values are interpreted:<br /><bullet>[0] - <m>absolute</m> - times are interpreted as absolute values since the start of time.</bullet><bullet>[1] - <m>relative</m> - times are interpreted as relative to the current reference time.</bullet><bullet>[2] - <m>interval</m> - times are interpreted as intervals (deltas) relative to the current reference time.</bullet><br />Note that the reference time depends on the mode parameter.
       </description>
     </entry>
     <entry name="/mode [enum]">
       <description>
-        <bullet>[0] - <m>replace</m></bullet>
-        <bullet>[1] - <m>add</m></bullet>
-        <bullet>[2] - <m>append</m></bullet><br />
-        Sets the mode of operation:<br /><br />replace - cancel previously scheduled frames before scheduling those in the input frame.<br />add - add new frames to those already scheduled (even if before those already scheduled).<br />append - schedule new frames only after those currently scheduled have completed.<br /><br />Note that in replace and add modes the reference time is the time of the incoming frame. In append mode the reference time is that of the last currently scheduled frame. In append mode absolute times prior to the end of those already scheduled are ignored.
+        Sets the mode of operation:<br /><bullet>[0] - <m>replace</m> - cancel previously scheduled frames before scheduling those in the input frame.</bullet><bullet>[1] - <m>add</m> - add new frames to those already scheduled (even if before those already scheduled).</bullet><bullet>[2] - <m>append</m> - schedule new frames only after those currently scheduled have completed.</bullet><br />Note that in replace and add modes the reference time is the time of the incoming frame. In append mode the reference time is that of the last currently scheduled frame. In append mode absolute times prior to the end of those already scheduled are ignored.
       </description>
     </entry>
   </misc>

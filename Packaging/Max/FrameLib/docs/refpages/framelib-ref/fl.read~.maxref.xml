@@ -20,32 +20,17 @@
     </entry>
     <entry name="/units [enum]">
       <description>
-        <bullet>[0] - <m>samples</m></bullet>
-        <bullet>[1] - <m>ms</m></bullet>
-        <bullet>[2] - <m>seconds</m></bullet>
-        <bullet>[3] - <m>normalised</m></bullet><br />
-        Sets the units used for interpreting the input. Note that the edge parameter is also accounted for normalised mode. This adjusts the scaling to work sensibly with cyclical modes.
+        Sets the units used for interpreting the input. Note that the edge parameter is also accounted for normalised mode. This adjusts the scaling to work sensibly with cyclical modes.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><bullet>[3] - <m>normalised</m></bullet>
       </description>
     </entry>
     <entry name="/interp [enum]">
       <description>
-        <bullet>[0] - <m>none</m></bullet>
-        <bullet>[1] - <m>linear</m></bullet>
-        <bullet>[2] - <m>hermite</m></bullet>
-        <bullet>[3] - <m>bspline</m></bullet>
-        <bullet>[4] - <m>lagrange</m></bullet><br />
-        Sets the interpolation mode:<br /><br />none - no interpolation.<br />linear - linear interpolation.<br />hermite - cubic hermite interpolation.<br />bspline - cubic bspline interpolation.<br />lagrange - cubic lagrange interpolation.
+        Sets the interpolation mode:<br /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation.</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation.</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation.</bullet>
       </description>
     </entry>
     <entry name="/edges [enum]">
       <description>
-        <bullet>[0] - <m>zero</m></bullet>
-        <bullet>[1] - <m>extend</m></bullet>
-        <bullet>[2] - <m>wrap</m></bullet>
-        <bullet>[3] - <m>fold</m></bullet>
-        <bullet>[4] - <m>mirror</m></bullet>
-        <bullet>[5] - <m>extrapolate</m></bullet><br />
-        Sets the edge behaviour for both interpolation and reading:<br /><br />zero - values beyond the edges of the buffer are read as zeros.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are read as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.<br />extrapolate - values out of range are extrapolated via interpolation.
+        Sets the edge behaviour for both interpolation and reading:<br /><bullet>[0] - <m>zero</m> - values beyond the edges of the buffer are read as zeros.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><bullet>[5] - <m>extrapolate</m> - values out of range are extrapolated via interpolation.</bullet>
       </description>
     </entry>
     <entry name="/bound [bool]">
@@ -81,7 +66,7 @@
         Sets the units used for interpreting the input
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the units used for interpreting the input. Note that the edge parameter is also accounted for normalised mode. This adjusts the scaling to work sensibly with cyclical modes.
+        This argument sets the units parameter:<br /><br />Sets the units used for interpreting the input. Note that the edge parameter is also accounted for normalised mode. This adjusts the scaling to work sensibly with cyclical modes.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><bullet>[3] - <m>normalised</m></bullet>
       </description>
     </objarg>
     <objarg name="interp" optional="1" type="symbol">
@@ -89,7 +74,7 @@
         Sets the interpolation mode
       </digest>
       <description>
-        This argument sets the interp parameter:<br /><br />Sets the interpolation mode:<br /><br />none - no interpolation.<br />linear - linear interpolation.<br />hermite - cubic hermite interpolation.<br />bspline - cubic bspline interpolation.<br />lagrange - cubic lagrange interpolation.
+        This argument sets the interp parameter:<br /><br />Sets the interpolation mode:<br /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation.</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation.</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation.</bullet>
       </description>
     </objarg>
     <objarg name="edges" optional="1" type="symbol">
@@ -97,7 +82,7 @@
         Sets the edge behaviour for both interpolation and reading
       </digest>
       <description>
-        This argument sets the edges parameter:<br /><br />Sets the edge behaviour for both interpolation and reading:<br /><br />zero - values beyond the edges of the buffer are read as zeros.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are read as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.<br />extrapolate - values out of range are extrapolated via interpolation.
+        This argument sets the edges parameter:<br /><br />Sets the edge behaviour for both interpolation and reading:<br /><bullet>[0] - <m>zero</m> - values beyond the edges of the buffer are read as zeros.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><bullet>[5] - <m>extrapolate</m> - values out of range are extrapolated via interpolation.</bullet>
       </description>
     </objarg>
     <objarg name="bound" optional="1" type="number">

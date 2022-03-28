@@ -20,10 +20,7 @@
     </entry>
     <entry name="/units [enum]">
       <description>
-        <bullet>[0] - <m>samples</m></bullet>
-        <bullet>[1] - <m>ms</m></bullet>
-        <bullet>[2] - <m>seconds</m></bullet><br />
-        Sets the time units used to determine the buffer size and output length.
+        Sets the time units used to determine the buffer size and output length.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
       </description>
     </entry>
     <entry name="/delay [double]">
@@ -33,12 +30,7 @@
     </entry>
     <entry name="/interp [enum]">
       <description>
-        <bullet>[0] - <m>none</m></bullet>
-        <bullet>[1] - <m>linear</m></bullet>
-        <bullet>[2] - <m>hermite</m></bullet>
-        <bullet>[3] - <m>bspline</m></bullet>
-        <bullet>[4] - <m>lagrange</m></bullet><br />
-        Sets the interpolation mode:<br /><br />none - no interpolation.<br />linear - linear interpolation.<br />hermite - cubic hermite interpolation.<br />bspline - cubic bspline interpolation.<br />lagrange - cubic lagrange interpolation.
+        Sets the interpolation mode:<br /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation.</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation.</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation.</bullet>
       </description>
     </entry>
   </misc>
@@ -69,7 +61,7 @@
         Sets the time units used to determine the buffer size and output length
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the time units used to determine the buffer size and output length.
+        This argument sets the units parameter:<br /><br />Sets the time units used to determine the buffer size and output length.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
       </description>
     </objarg>
   </objarglist>

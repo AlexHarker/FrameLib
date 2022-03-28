@@ -10,19 +10,12 @@
   <misc name="Parameters">
     <entry name="/mismatch [instantiation enum]">
       <description>
-        <bullet>[0] - <m>wrap</m></bullet>
-        <bullet>[1] - <m>shrink</m></bullet>
-        <bullet>[2] - <m>pad_in</m></bullet>
-        <bullet>[3] - <m>pad_out</m></bullet><br />
-        Sets the mode used when dealing with mismatched input lengths:<br /><br />wrap - the smaller input is read modulo against the larger input.<br />shrink - the output length is set to that of the smaller input.<br />pad_in - the smaller input is padded prior to calculation to match the larger input.<br />pad_out - the output is padded to match the length of the larger input.
+        Sets the mode used when dealing with mismatched input lengths:<br /><bullet>[0] - <m>wrap</m> - the smaller input is read modulo against the larger input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the smaller input.</bullet><bullet>[2] - <m>pad_in</m> - the smaller input is padded prior to calculation to match the larger input.</bullet><bullet>[3] - <m>pad_out</m> - the output is padded to match the length of the larger input.</bullet>
       </description>
     </entry>
     <entry name="/trigger_ins [instantiation enum]">
       <description>
-        <bullet>[0] - <m>both</m></bullet>
-        <bullet>[1] - <m>left</m></bullet>
-        <bullet>[2] - <m>right</m></bullet><br />
-        Sets which inputs trigger output.
+        Sets which inputs trigger output.<br /><bullet>[0] - <m>both</m></bullet><bullet>[1] - <m>left</m></bullet><bullet>[2] - <m>right</m></bullet>
       </description>
     </entry>
     <entry name="/pad [instantiation double]">

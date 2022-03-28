@@ -10,16 +10,12 @@
   <misc name="Parameters">
     <entry name="/dimensions [instantiation enum]">
       <description>
-        <bullet>[0] - <m>2D</m></bullet>
-        <bullet>[1] - <m>3D</m></bullet><br />
-        Sets the number of dimensions (and hence inputs and outputs).
+        Sets the number of dimensions (and hence inputs and outputs).<br /><bullet>[0] - <m>2D</m></bullet><bullet>[1] - <m>3D</m></bullet>
       </description>
     </entry>
     <entry name="/angles [instantiation enum]">
       <description>
-        <bullet>[0] - <m>radians</m></bullet>
-        <bullet>[1] - <m>degrees</m></bullet><br />
-        Sets the units used for angles.
+        Sets the units used for angles.<br /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet>
       </description>
     </entry>
   </misc>
@@ -34,7 +30,7 @@
         Sets the number of dimensions (and hence inputs and outputs)
       </digest>
       <description>
-        This argument sets the dimensions parameter:<br /><br />Sets the number of dimensions (and hence inputs and outputs).
+        This argument sets the dimensions parameter:<br /><br />Sets the number of dimensions (and hence inputs and outputs).<br /><bullet>[0] - <m>2D</m></bullet><bullet>[1] - <m>3D</m></bullet>
       </description>
     </objarg>
     <objarg name="angles" optional="1" type="symbol">
@@ -42,7 +38,7 @@
         Sets the units used for angles
       </digest>
       <description>
-        This argument sets the angles parameter:<br /><br />Sets the units used for angles.
+        This argument sets the angles parameter:<br /><br />Sets the units used for angles.<br /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet>
       </description>
     </objarg>
   </objarglist>

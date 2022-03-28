@@ -20,12 +20,7 @@
     </entry>
     <entry name="/edges [enum]">
       <description>
-        <bullet>[0] - <m>pad</m></bullet>
-        <bullet>[1] - <m>extend</m></bullet>
-        <bullet>[2] - <m>wrap</m></bullet>
-        <bullet>[3] - <m>fold</m></bullet>
-        <bullet>[4] - <m>mirror</m></bullet><br />
-        Sets the edge behaviour for filtering:<br /><br />pad - values beyond the edges of the input are read as the padding value.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are read as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.
+        Sets the edge behaviour for filtering:<br /><bullet>[0] - <m>pad</m> - values beyond the edges of the input are read as the padding value.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet>
       </description>
     </entry>
     <entry name="/percentile [double]">
@@ -61,7 +56,7 @@
         Sets the edge behaviour for filtering
       </digest>
       <description>
-        This argument sets the edges parameter:<br /><br />Sets the edge behaviour for filtering:<br /><br />pad - values beyond the edges of the input are read as the padding value.<br />extend - the edge values are extended infinitely in either direction.<br />wrap - values are read as wrapped or cyclical.<br />fold - values are folded at edges without repetition of the edge values.<br />mirror - values are mirrored at edges with the edge values repeated.
+        This argument sets the edges parameter:<br /><br />Sets the edge behaviour for filtering:<br /><bullet>[0] - <m>pad</m> - values beyond the edges of the input are read as the padding value.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet>
       </description>
     </objarg>
     <objarg name="percentile" optional="1" type="number">
