@@ -42,7 +42,7 @@
       <description>
         <bullet>[0] - <m>default</m></bullet>
         <bullet>[1] - <m>extend</m></bullet><br />
-        Sets the mode used when dealing with mismatches between input and output lengths:<br /><br />default - missing input values are substitued using the default values.<br />extend - inputs are extended by repeating their final value.<br />Note that default values are always used when an input is empty.
+        Sets the mode used when dealing with mismatches between input and output lengths:<br /><br />default - missing input values are substitued using the default values.<br />extend - inputs are extended by repeating their final value.<br /><br />Note that default values are always used when an input is empty.
       </description>
     </entry>
   </misc>
@@ -97,7 +97,7 @@
         Sets the mode used when dealing with mismatches between input and output lengths
       </digest>
       <description>
-        This argument sets the mismatch parameter:<br /><br />Sets the mode used when dealing with mismatches between input and output lengths:<br /><br />default - missing input values are substitued using the default values.<br />extend - inputs are extended by repeating their final value.<br />Note that default values are always used when an input is empty.
+        This argument sets the mismatch parameter:<br /><br />Sets the mode used when dealing with mismatches between input and output lengths:<br /><br />default - missing input values are substitued using the default values.<br />extend - inputs are extended by repeating their final value.<br /><br />Note that default values are always used when an input is empty.
       </description>
     </objarg>
   </objarglist>
