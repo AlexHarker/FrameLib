@@ -25,7 +25,7 @@ bool matchPartialString(const std::string& str, const std::string& findStr, size
     return !strncmp(findStr.c_str(), str.data() + pos, findStr.length());
 }
 
-bool detectEnumItem(const std::string& str, size_t pos)
+bool detectNonEnumItem(const std::string& str, size_t pos)
 {
     std::string line = str.substr(pos, str.find(". ", pos));
     
@@ -131,6 +131,7 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
     std::string info = escapeXML(params->getInfo(idx));
     std::string lineEnd = ". ";
     std::string lineBreak = ".<br />";
+    std::string doubleLineBreak = ".<br /><br />";
 
     bool isEnum = params->getType(idx) == FrameLib_Parameters::Type::Enum;
     unsigned long numEnumItems = 0;
@@ -147,6 +148,11 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
         return detectExprItem(info, pos);
     };
     
+    auto isNonEnumItem = [&](size_t pos)
+    {
+        return detectNonEnumItem(info, pos);
+    };
+    
     auto matchEnumItem = [&](size_t pos)
     {
         if (isEnum && numEnumItems < params->getMax(idx) + 1)
@@ -154,8 +160,8 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
             std::string next = escapeXML(params->getItemString(idx, numEnumItems)) + " -";
             return matchPartialString(info, next, pos);
         }
-        else
-            return detectEnumItem(info, pos);
+        
+        return false;
     };
     
     auto isEnumItem = [&](size_t pos)
@@ -165,8 +171,8 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
             numEnumItems++;
             return true;
         }
-        else
-            return !isEnum && detectEnumItem(info, pos);
+        
+        return false;
     };
            
     // Deal with indexed parameters
@@ -180,7 +186,17 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
     
     if (pos != std::string::npos)
         pos += 2;
-        
+    
+    bool multiline = false;
+    
+    // Helper for line breaks
+    
+    auto insertBreak = [&](const std::string& breakStr)
+    {
+        info.replace(pos, lineEnd.length(), breakStr);
+        pos += breakStr.length();
+    };
+    
     // Process items that need to go onto separate lines / bullet points
     
     while (pos != std::string::npos)
@@ -204,13 +220,20 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
         
         if (pos != std::string::npos)
         {
-            if (isExprItem(pos + 2) || isEnumItem(pos + 2) || isFinalNote(pos + 2))
+            bool finalNote = isFinalNote(pos + 2);
+            
+            if (isExprItem(pos + 2) || isEnumItem(pos + 2) || isNonEnumItem(pos + 2) || finalNote)
             {
-                info.replace(pos, lineEnd.length(), lineBreak);
-                pos += lineBreak.length();
+                if (multiline && !finalNote)
+                    insertBreak(doubleLineBreak);
+                else
+                    insertBreak(lineBreak);
             }
             else
+            {
                 pos += lineEnd.length();
+                multiline = true;
+            }
         }
     }
     
