@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/expression [instantiation string]">
       <description>
-        Sets the mathematical expression.<br />Input pairs are indicated in1 to inx (where x is the number of input pairs created).<br />Complex numbers can be expressed directly in the form (a + bi).<br />A range of other constants, operators and functions are available.<br />Constants { i e pi epsilon inf }.<br />Unary Operators { - }.<br />Binary Operators { / * % + }.<br />Trigonometric Functions { sin cos tan asin acos atan }.<br />Hyperbolic Functions { sinh cosh tanh asinh acosh atanh }.<br />Unary Functions { log log10 exp conj sqrt }.<br />Binary Functions { pow }.
+        Sets the mathematical expression. Input pairs are indicated in1 to inx (where x is the number of input pairs created). Complex numbers can be expressed directly in the form (a + bi). A range of other constants, operators and functions are available:<br /><br />Constants { i e pi epsilon inf }.<br />Unary Operators { - }.<br />Binary Operators { / * % + }.<br />Trigonometric Functions { sin cos tan asin acos atan }.<br />Hyperbolic Functions { sinh cosh tanh asinh acosh atanh }.<br />Unary Functions { log log10 exp conj sqrt }.<br />Binary Functions { pow }.
       </description>
     </entry>
     <entry name="/mismatch [instantiation enum]">
@@ -38,7 +38,7 @@
         Sets the mathematical expression
       </digest>
       <description>
-        This argument sets the expression parameter:<br /><br />Sets the mathematical expression.<br />Input pairs are indicated in1 to inx (where x is the number of input pairs created).<br />Complex numbers can be expressed directly in the form (a + bi).<br />A range of other constants, operators and functions are available.<br />Constants { i e pi epsilon inf }.<br />Unary Operators { - }.<br />Binary Operators { / * % + }.<br />Trigonometric Functions { sin cos tan asin acos atan }.<br />Hyperbolic Functions { sinh cosh tanh asinh acosh atanh }.<br />Unary Functions { log log10 exp conj sqrt }.<br />Binary Functions { pow }.
+        This argument sets the expression parameter:<br /><br />Sets the mathematical expression. Input pairs are indicated in1 to inx (where x is the number of input pairs created). Complex numbers can be expressed directly in the form (a + bi). A range of other constants, operators and functions are available:<br /><br />Constants { i e pi epsilon inf }.<br />Unary Operators { - }.<br />Binary Operators { / * % + }.<br />Trigonometric Functions { sin cos tan asin acos atan }.<br />Hyperbolic Functions { sinh cosh tanh asinh acosh atanh }.<br />Unary Functions { log log10 exp conj sqrt }.<br />Binary Functions { pow }.
       </description>
     </objarg>
   </objarglist>

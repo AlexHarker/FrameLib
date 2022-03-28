@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/expression [instantiation string]">
       <description>
-        Sets the mathematical expression.<br />Inputs are indicated in1 to inx (where x is the number of input pairs created).<br />A range of other constants, operators and functions are available.<br />Constants { e pi epsilon inf }.<br />Unary Operators { ! - }.<br />Binary Operators { / * % + -  &lt; = &lt;= == != &amp;&amp; || }.<br />Trigonometric Functions { sin cos tan asin acos atan }.<br />Hyperbolic Functions { sinh cosh tanh asinh acosh atanh }.<br />Unary Functions { log log2 log10 exp exp2 abs ceil floor round trunc sqrt cbrt erf erfc }.<br />Binary Functions { diff hypot max min pow }.<br />Ternary Functions { clip, wrap, fold }.
+        Sets the mathematical expression. Inputs are indicated in1 to inx (where x is the number of input pairs created). A range of other constants, operators and functions are available:<br /><br />Constants { e pi epsilon inf }.<br />Unary Operators { ! - }.<br />Binary Operators { / * % + - &gt; &lt; &gt;= &lt;= == != &amp;&amp; || }.<br />Trigonometric Functions { sin cos tan asin acos atan }.<br />Hyperbolic Functions { sinh cosh tanh asinh acosh atanh }.<br />Unary Functions { log log2 log10 exp exp2 abs ceil floor round trunc sqrt cbrt erf erfc }.<br />Binary Functions { diff hypot max min pow }.<br />Ternary Functions { clip, wrap, fold }.
       </description>
     </entry>
     <entry name="/mismatch [instantiation enum]">
@@ -38,7 +38,7 @@
         Sets the mathematical expression
       </digest>
       <description>
-        This argument sets the expression parameter:<br /><br />Sets the mathematical expression.<br />Inputs are indicated in1 to inx (where x is the number of input pairs created).<br />A range of other constants, operators and functions are available.<br />Constants { e pi epsilon inf }.<br />Unary Operators { ! - }.<br />Binary Operators { / * % + -  &lt; = &lt;= == != &amp;&amp; || }.<br />Trigonometric Functions { sin cos tan asin acos atan }.<br />Hyperbolic Functions { sinh cosh tanh asinh acosh atanh }.<br />Unary Functions { log log2 log10 exp exp2 abs ceil floor round trunc sqrt cbrt erf erfc }.<br />Binary Functions { diff hypot max min pow }.<br />Ternary Functions { clip, wrap, fold }.
+        This argument sets the expression parameter:<br /><br />Sets the mathematical expression. Inputs are indicated in1 to inx (where x is the number of input pairs created). A range of other constants, operators and functions are available:<br /><br />Constants { e pi epsilon inf }.<br />Unary Operators { ! - }.<br />Binary Operators { / * % + - &gt; &lt; &gt;= &lt;= == != &amp;&amp; || }.<br />Trigonometric Functions { sin cos tan asin acos atan }.<br />Hyperbolic Functions { sinh cosh tanh asinh acosh atanh }.<br />Unary Functions { log log2 log10 exp exp2 abs ceil floor round trunc sqrt cbrt erf erfc }.<br />Binary Functions { diff hypot max min pow }.<br />Ternary Functions { clip, wrap, fold }.
       </description>
     </objarg>
   </objarglist>
