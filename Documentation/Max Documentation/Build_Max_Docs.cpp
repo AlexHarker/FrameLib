@@ -657,9 +657,9 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     std::vector<MessageArgument> processArgs { { "length", false, "int" } };
     
     std::string infoDescription("Print info about " + objectDoc + " to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>");
-    std::string processDescription("Process a non-realtime network,advancing time by the number of samples specified by the required <m>length</m> argument. <br /><br />This will only take effect if the object has its <m>rt</m> attribute set to <m>0</m> " + nonRealtimeTutorial);
-    std::string resetDescription("Resets a non-realtime network to the start of time ready for processing, optionally setting the sample rate. If the sample rate is omitted it will be set to the global sample rate.<br /><br />This will only take effect if " + objectDoc + " has its <m>rt</m> attribute set to <m>0</m>. " + nonRealtimeTutorial);
-    std::string signalDescription("Used to synchonise FrameLib objects with Max's audio processing.");
+    std::string processDescription("Processes a non-realtime network, advancing time by the number of samples specified by the required <m>length</m> argument. <br /><br />This will only take effect if the object has its <m>rt</m> attribute set to <m>0</m> " + nonRealtimeTutorial);
+    std::string resetDescription("Resets a non-realtime network to the start of time ready for processing, optionally setting the sample rate. If the <m>samplerate</m> argument is omitted the network will be set to the global sample rate.<br /><br />This will only take effect if " + objectDoc + " has its <m>rt</m> attribute set to <m>0</m>. " + nonRealtimeTutorial);
+    std::string signalDescription("Synchonises FrameLib objects with Max's audio processing.");
     std::string connectionDescription("Used internally by FrameLib's connection routines. User messages have no effect.");
 
     if (frameLibObject->getNumAudioChans())
@@ -721,8 +721,8 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     // Attributes
     
     std::string bufferDescription("Sets the non-realtime <o>buffer~</o> for " + objectDoc +". This is the <o>buffer~</o> used for IO in a non-realtime setting.<br /><br />" + nonRealtimeTutorial);
-    std::string rtDescription("Sets the realtime state for " + objectDoc + ". When set to <m>0</m> " + objectDoc + " can form part of a non-realtime network for processing in message threads, using <o>buffer~</o> objects for audio IO.<br /><br />" + nonRealtimeTutorial);
-    std::string idDescription("Sets the context name for " + objectDoc + ".<br /><br />More info on FrameLib contexts can be found in <link name='10_fl_contexts' module='framelib' type='tutorial'>Tutorial 10</link>.");
+    std::string rtDescription("Sets the realtime state for " + objectDoc + ". When set to <m>0</m> " + objectDoc + " forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />" + nonRealtimeTutorial);
+    std::string idDescription("Sets the context name for " + objectDoc + " in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name='10_fl_contexts' module='framelib' type='tutorial'>Tutorial 10</link>.");
     
     file << tab1 + "<!--ATTRIBUTES-->\n";
     file << tab1 + "<attributelist>\n";
@@ -745,12 +745,12 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         file << tab1 + "<misc name = 'Output'>\n";
         file << tab2 + "<entry name = 'anything'>\n";
         file << tab3 + "<description>\n";
-        file << tab4 + "If the frame input to <o>fl.tomax~</o> is a tagged frame then the output is a set of messages each starting with the relevant tag and followed by the related value(s).\n";
+        file << tab4 + "If the input to <o>fl.tomax~</o> is a tagged frame then the output is a set of messages each starting with the relevant tag and followed by the related value(s).\n";
         file << tab3 + "</description>\n";
         file << tab2 + "</entry>\n";
         file << tab2 + "<entry name = 'list'>\n";
         file << tab3 + "<description>\n";
-        file << tab4 + "If the frame input to <o>fl.tomax~</o> is a vector then the output is a list.\n";
+        file << tab4 + "If the input to <o>fl.tomax~</o> is a vector then the output is a list.\n";
         file << tab3 + "</description>\n";
         file << tab2 + "</entry>\n";
         file << tab1 + "</misc>\n\n";
