@@ -18,6 +18,30 @@ struct MessageArgument
     std::string mType;
 };
 
+void findReplaceSpecial(std::string& str, const std::string& findStr, const std::string& replaceStr, size_t startPos = 0)
+{
+    while (startPos != std::string::npos)
+    {
+        if (!strncmp("Note that ", str.data() + startPos, 10))
+        {
+            str.insert(startPos, "<br />");
+            break;
+        }
+
+        // TODO - look at expr handling
+        
+        //size_t pos = str.find_first_of("-.{", startPos);
+        //if (pos != std::string::npos && str[pos] == '.')
+        //    str.insert(startPos, "**QUESTION**");
+        startPos = str.find(findStr, startPos);
+        if (startPos != std::string::npos)
+        {
+            str.replace(startPos, findStr.length(), replaceStr);
+            startPos += replaceStr.length();
+        }
+    }
+}
+
 void findReplace(std::string& str, const std::string& findStr, const std::string& replaceStr, size_t startPos = 0)
 {
     for (startPos = str.find(findStr, startPos); startPos != std::string::npos; startPos = str.find(findStr, startPos))
@@ -100,7 +124,7 @@ std::string getParamName(const FrameLib_Parameters *params, unsigned long idx)
 
 std::string formatParameterInfo(std::string str)
 {
-    findReplace(str, ". ", ".<br />", str.find(": "));
+    findReplaceSpecial(str, ". ", ".<br />", str.find(": "));
     findReplace(str, ": ", ":<br /><br />");
     
     return str;
