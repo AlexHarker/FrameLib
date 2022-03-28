@@ -15,7 +15,7 @@
     </entry>
     <entry name="/phase [double]">
       <description>
-        Sets the phase for the transformed FIR [0 to 1].<br />minimum phase can be requested with a value of zero.<br />linear phase can be requested with value of a half.<br />maximum phase can be requested with a value of one.
+        Sets the phase for the transformed FIR [0 to 1]. Minimum phase can be requested with a value of zero. Linear phase can be requested with value of a half. Maximum phase can be requested with a value of one.
       </description>
     </entry>
     <entry name="/time_factor [double]">
@@ -43,7 +43,7 @@
         Sets the phase for the transformed FIR [0 to 1]
       </digest>
       <description>
-        This argument sets the phase parameter:<br /><br />Sets the phase for the transformed FIR [0 to 1].<br />minimum phase can be requested with a value of zero.<br />linear phase can be requested with value of a half.<br />maximum phase can be requested with a value of one.
+        This argument sets the phase parameter:<br /><br />Sets the phase for the transformed FIR [0 to 1]. Minimum phase can be requested with a value of zero. Linear phase can be requested with value of a half. Maximum phase can be requested with a value of one.
       </description>
     </objarg>
     <objarg name="time_factor" optional="1" type="number">
