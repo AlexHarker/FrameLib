@@ -210,11 +210,6 @@ class jParseAndBuild:
         self.root = 0
         self.j_master_dict = {}
 
-    def param_newlines(self, f):
-        f = f.replace(". ", f".\n")
-        f = f.replace(": ", f":\n\n")
-        return f
-
     def extract_from_refpage(self, x):
         self.tree = et.parse(x)
         self.root = self.tree.getroot()
@@ -222,6 +217,7 @@ class jParseAndBuild:
         blank_internal = {}
 
         # Find Information
+        
         self.object_name = self.root.get("name")  # get the object name
         param_idx = 1  # reset a variable to track the parameter number
         for child in self.root:  # iterate over the sections
@@ -230,23 +226,44 @@ class jParseAndBuild:
                     for elem in child:  # for sub-sections
                         blank_internal = {"name": elem.get("name")}  # store the name with the key/pair 'name'
 
-                        for description in elem:  # get the description out
+                        for subchild in elem:
+                            if subchild.tag == "description":  # get the description out
+                            
+                                # Format the parameter info for the helpfile
+                                
+                                blank_desc = strip_space(subchild.text)
+                                firstBullet = True;
+                                
+                                for item in subchild:
+                                    if item.tag == "bullet":  # if there are any bullet points
+                                        if item.text != None:  # and its not none
+                                            # if it is the first line of an enum it will be the title 'Parameter Options'
+                                            if item.text[1] == "0":
+                                                blank_desc += f"Parameter Options:"
+                                                firstBullet = False
+                                        
+                                        # Deal with breaks in bullets
+                                        
+                                        for nested in item:
+                                            if nested.tag == "br":
+                                                nested.text = "\n\n    "
+                                        if firstBullet:
+                                            text = "".join(item.itertext());
+                                            blank_desc += text
+                                            firstBullet = False
+                                        else:
+                                            text = "".join(item.itertext());
+                                            blank_desc += f"\n{text}"
+                                    elif item.tag == "o":  # strip object tabs
+                                        blank_desc += item.text
+                                        blank_desc += item.tail.rstrip()
+                                    elif item.tag == "br":  # add line breaks
+                                        if item.tail != None:
+                                            blank_desc += "\n\n" + item.tail.rstrip()
+                                        else:
+                                            blank_desc += "\n\n"
+                                        firstBullet = True
 
-                            blank_desc = strip_space(description.text)
-
-                            for item in description:  # if there are any bullet points
-                                if item.tag == "bullet":
-                                    if item.text != None:  # and its not none
-                                        # if it is the first line it will be the title 'Parameter Options'
-                                        if item.text[1] == "0":
-                                            blank_desc += f"\n\nParameter Options:"
-
-                                        blank_desc += f"\n{item.text}"
-                                elif item.tag == "o":
-                                    blank_desc += item.text
-                                    blank_desc += item.tail.rstrip()
-
-                        blank_desc = self.param_newlines(blank_desc)
                         blank_internal["description"] = blank_desc  # set the description
 
                         # assign the blank_internal dict to a parameter number
