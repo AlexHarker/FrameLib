@@ -29,10 +29,12 @@ void findReplaceSpecial(std::string& str, const std::string& findStr, const std:
         }
 
         // TODO - look at expr handling
+        // TODO detect enum list
         
         //size_t pos = str.find_first_of("-.{", startPos);
         //if (pos != std::string::npos && str[pos] == '.')
         //    str.insert(startPos, "**QUESTION**");
+        
         startPos = str.find(findStr, startPos);
         if (startPos != std::string::npos)
         {
