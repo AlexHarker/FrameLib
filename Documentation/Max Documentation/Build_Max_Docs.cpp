@@ -9,6 +9,8 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <regex>
+#include <stdexcept>
 #include <libgen.h>
 
 struct MessageArgument
@@ -18,36 +20,33 @@ struct MessageArgument
     std::string mType;
 };
 
-void findReplaceSpecial(std::string& str, const std::string& findStr, const std::string& replaceStr, size_t startPos = 0)
+bool matchPartialString(const std::string& str, const std::string& findStr, size_t pos)
 {
-    while (startPos != std::string::npos)
-    {
-        if (!strncmp("Note that ", str.data() + startPos, 10))
-        {
-            str.insert(startPos, "<br />");
-            break;
-        }
-
-        // TODO - look at expr handling
-        // TODO detect enum list
-        
-        //size_t pos = str.find_first_of("-.{", startPos);
-        //if (pos != std::string::npos && str[pos] == '.')
-        //    str.insert(startPos, "**QUESTION**");
-        
-        startPos = str.find(findStr, startPos);
-        if (startPos != std::string::npos)
-        {
-            str.replace(startPos, findStr.length(), replaceStr);
-            startPos += replaceStr.length();
-        }
-    }
+    return !strncmp(findStr.c_str(), str.data() + pos, findStr.length());
 }
 
-void findReplace(std::string& str, const std::string& findStr, const std::string& replaceStr, size_t startPos = 0)
+bool detectEnumItem(const std::string& str, size_t pos)
 {
-    for (startPos = str.find(findStr, startPos); startPos != std::string::npos; startPos = str.find(findStr, startPos))
-        str.replace(startPos, findStr.length(), replaceStr);
+    std::string line = str.substr(pos, str.find(". ", pos));
+    
+    // Match bullet point enum item
+    
+    const std::regex item_regex("^[^\\s]+ -");
+    
+    return std::regex_search(line, item_regex);
+}
+   
+bool detectExprItem(const std::string& str, size_t pos)
+{
+    pos = str.find_first_of(".{", pos);
+    
+    return pos == std::string::npos || str[pos] != '.';
+}
+    
+void findReplace(std::string& str, const std::string& findStr, const std::string& replaceStr, size_t pos = 0)
+{
+    for (pos = str.find(findStr, pos); pos != std::string::npos; pos = str.find(findStr, pos))
+        str.replace(pos, findStr.length(), replaceStr);
 }
 
 void findReplaceOnce(std::string& str, const std::string& findStr, const std::string& replaceStr)
@@ -127,22 +126,114 @@ std::string getParamName(const FrameLib_Parameters *params, unsigned long idx)
     return name;
 }
 
-std::string formatParameterInfo(std::string str)
+std::string processParamInfo(const std::string& objectName, const FrameLib_Parameters *params, unsigned long idx)
 {
-    findReplaceSpecial(str, ". ", ".<br />", str.find(": "));
-    findReplace(str, ": ", ":<br /><br />");
-    
-    return str;
-}
+    std::string info = escapeXML(params->getInfo(idx));
+    std::string lineEnd = ". ";
+    std::string lineBreak = ".<br />";
 
-std::string processParamInfo(const FrameLib_Parameters *params, unsigned long idx)
-{
-    std::string info = params->getInfo(idx);
+    bool isEnum = params->getType(idx) == FrameLib_Parameters::Type::Enum;
+    unsigned long numEnumItems = 0;
+    
+    // Helpers
+    
+    auto isFinalNote = [&](size_t pos)
+    {
+        return matchPartialString(info, "Note that ", pos);
+    };
+    
+    auto isExprItem = [&](size_t pos)
+    {
+        return detectExprItem(info, pos);
+    };
+    
+    auto matchEnumItem = [&](size_t pos)
+    {
+        if (isEnum && numEnumItems < params->getMax(idx) + 1)
+        {
+            std::string next = escapeXML(params->getItemString(idx, numEnumItems)) + " -";
+            return matchPartialString(info, next, pos);
+        }
+        else
+            return detectEnumItem(info, pos);
+    };
+    
+    auto isEnumItem = [&](size_t pos)
+    {
+        if (isEnum && matchEnumItem(pos))
+        {
+            numEnumItems++;
+            return true;
+        }
+        else
+            return !isEnum && detectEnumItem(info, pos);
+    };
+           
+    // Deal with indexed parameters
     
     if (detectIndexedParam(params, idx))
         findReplaceOnce(info, "1", "N [1-" + maxIndexString(params, idx) + "]");
     
-    return formatParameterInfo(escapeXML(info));
+    // Ignore anything before the first colon (if there is none we are done with the info from the objects)
+    
+    size_t pos = info.find(": ");
+    
+    if (pos != std::string::npos)
+        pos += 2;
+        
+    // Process items that need to go onto separate lines / bullet points
+    
+    while (pos != std::string::npos)
+    {
+        // If there's a final note separate it and finish
+        
+        if (isFinalNote(pos))
+        {
+            info.insert(pos, "<br />");
+            break;
+        }
+        
+        // Find the first enum item (remember to account for the ": " in the position
+        
+        if (!numEnumItems)
+            isEnumItem(pos);
+            
+        // TODO - look at expr/enum formatting
+        
+        pos = info.find(lineEnd, pos);
+        
+        if (pos != std::string::npos)
+        {
+            if (isExprItem(pos + 2) || isEnumItem(pos + 2) || isFinalNote(pos + 2))
+            {
+                info.replace(pos, lineEnd.length(), lineBreak);
+                pos += lineBreak.length();
+            }
+            else
+                pos += lineEnd.length();
+        }
+    }
+    
+    // Check enums
+    
+    if (isEnum)
+    {
+        if (!numEnumItems)
+        {
+            
+        }
+        else if (numEnumItems != params->getMax(idx) + 1)
+        {
+            std::string enumName = params->getName(idx);
+            throw std::runtime_error("partial or incorrect enum list (content or formatting) detected in object " + objectName + " enum " + enumName);
+        }
+    }
+    
+    // Replace any colons
+    
+    findReplace(info, ": ", ":<br /><br />");
+    
+    return info;
 }
 
 bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxObjectArgsMode argsMode)
@@ -244,7 +335,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
             type = "symbol";
         
         std::string name = getParamName(params, paramIdx);
-        std::string rawDescription = processParamInfo(params, paramIdx);
+        std::string rawDescription = processParamInfo(object, params, paramIdx);
         std::string digest = rawDescription.substr(0, rawDescription.find_first_of(".:"));
         std::string description = "This argument sets the " + name + " parameter:<br /><br />" + rawDescription;
         
@@ -411,7 +502,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
                 file << "<br />\n" ; // if enum put a break big break between the enum options and the description
             }
             
-            file << tab4 + processParamInfo(params, i);
+            file << tab4 + processParamInfo(object, params, i);
             file << "\n" + tab3 + "</description>\n";
             file << tab2 + "</entry>\n";
             
