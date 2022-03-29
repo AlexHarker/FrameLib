@@ -218,7 +218,7 @@ class jParseAndBuild:
 
         # Find Information
         
-        self.object_name = self.root.get("name")  # get the object name
+        self.object_name = x.stem.split('.maxref')[0]  # get the object name (use the maxref name in case it is aliased)
         param_idx = 1  # reset a variable to track the parameter number
         for child in self.root:  # iterate over the sections
             if child.tag == "misc":  # if the section is misc
