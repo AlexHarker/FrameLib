@@ -92,6 +92,11 @@
     <seealso name="fl.poltocar~" />
   </seealsolist>
   <misc name="Discussion">
+    <entry name="Aliases">
+      <description>
+        <b>fl.ccos~</b>
+      </description>
+    </entry>
     <entry name="Keywords">
       <description>complex numbers, complex operators</description>
     </entry>

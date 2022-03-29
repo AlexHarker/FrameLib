@@ -49,9 +49,9 @@ bool detectFormulaItem(const std::string& str, size_t pos)
 
     // Match formula (might be made more advanced later)
     
-    const std::regex item_regex(".*π.*");
+    const std::regex formula_regex(".*π.*");
     
-    return std::regex_search(line, item_regex) && line.find(": ") != std::string::npos;
+    return std::regex_search(line, formula_regex) && line.find(": ") != std::string::npos;
 }
 
 void addMessageTags(std::string& str, size_t pos)
@@ -366,6 +366,46 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
     findReplace(info, ": ", ":<br />");
     
     return info;
+}
+
+std::string getAliases(const std::string& object)
+{
+    std::string fileName(__FILE__);
+    std::string dirPath = dirname(const_cast<char *>(fileName.c_str()));
+    std::string objectMappings = dirPath + "/../../Packaging/Max/FrameLib/init/fl-objectmappings.txt";
+    
+    std::ifstream file(objectMappings);
+    
+    std::string aliases;
+    
+    if (file.is_open())
+    {
+        std::string aliasMappings((std::istreambuf_iterator<char>(file)), (std::istreambuf_iterator<char>()));
+        
+        // Match bullet point style item
+    
+        const std::regex alias_regex("max objectfile (.+) " + object + ";");
+    
+        std::smatch results;
+        
+        while (std::regex_search(aliasMappings, results, alias_regex))
+        {
+            std::string submatch = escapeXML(results[1]);
+                
+            if (aliases.length())
+                aliases += ", ";
+            
+            aliases += "<b>" + submatch + "</b>";
+            
+            // Get rid of the text already matched
+            
+            aliasMappings = results.suffix();
+        }
+    }
+
+    file.close();
+    
+    return aliases;
 }
 
 bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxObjectArgsMode argsMode)
@@ -756,9 +796,20 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         file << tab1 + "</misc>\n\n";
     }
     
-    // Keywords
+    // Keywords and Aliases
     
+    std::string aliases = getAliases(object);
+    
+    file << tab1 + "<!--DISCUSSION-->\n";
     file << tab1 + "<misc name = 'Discussion'>\n";
+    if (aliases.length())
+    {
+        file << tab2 + "<entry name = 'Aliases'>\n";
+        file << tab3 + "<description>\n";
+        file << tab4 + aliases + "\n";
+        file << tab3 + "</description>\n";
+        file << tab2 + "</entry>\n";
+    }
     file << tab2 + "<entry name = 'Keywords'>\n";
     file << tab3 + "<description>\n";
     file << tab4 + objectKeywords + "\n";

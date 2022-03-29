@@ -118,6 +118,11 @@
     <seealso name="fl.greaterthaneq~" />
   </seealsolist>
   <misc name="Discussion">
+    <entry name="Aliases">
+      <description>
+        <b>fl.%~</b>
+      </description>
+    </entry>
     <entry name="Keywords">
       <description>binary ops, operators</description>
     </entry>
