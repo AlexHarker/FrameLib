@@ -8,9 +8,9 @@
     Multistream inputs are unpacked in order across the outputs.
   </description>
   <misc name="Parameters">
-    <entry name="/num_outs [instantiation int]">
+    <entry name="/num_outs [int]">
       <description>
-        Sets the number of single stream outputs.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of single stream outputs.
       </description>
     </entry>
   </misc>

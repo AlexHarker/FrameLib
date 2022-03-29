@@ -263,6 +263,10 @@ class jParseAndBuild:
                                         else:
                                             blank_desc += "\n\n"
                                         firstBullet = True
+                                    elif item.tag == "h6":  # instantiation flag will be wrapped in a <h6>
+                                            blank_desc += "".join(item.itertext())
+                                            if item.tail.rstrip() != None:
+                                                blank_desc += "\n\n" + item.tail.rstrip()
 
                         blank_internal["description"] = blank_desc  # set the description
 

@@ -8,9 +8,9 @@
     Each output deals with one tag and outputs vectors at the input with that tag. Outputs will be empty if the tag is not present at the input with a vector value. The number of outputs can be set explicitly by parameter. Alternatively, it can be set implicitly by the tag parameters present at instantiation.
   </description>
   <misc name="Parameters">
-    <entry name="/num_outs [instantiation int]">
+    <entry name="/num_outs [int]">
       <description>
-        Sets the number of outputs (and hence the number of tags).
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of outputs (and hence the number of tags).
       </description>
     </entry>
     <entry name="/tag_01...10 [string]">

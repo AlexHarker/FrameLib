@@ -8,9 +8,9 @@
     Inputs may be single stream or multistream. All inputs are concatenated in order, with blank inputs ignored.
   </description>
   <misc name="Parameters">
-    <entry name="/num_ins [instantiation int]">
+    <entry name="/num_ins [int]">
       <description>
-        Sets the number of inputs.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of inputs.
       </description>
     </entry>
   </misc>

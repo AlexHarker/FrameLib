@@ -8,9 +8,9 @@
     The left input triggers recall, whilst the right input stores a frame. The mode parameter is used to set whether the right input causes output.
   </description>
   <misc name="Parameters">
-    <entry name="/mode [instantiation enum]">
+    <entry name="/mode [enum]">
       <description>
-        Sets the behaviour of the right input:<br /><bullet>[0] - <m>store</m> - stores without output.</bullet><bullet>[1] - <m>pass</m> - stores and outputs.</bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the behaviour of the right input:<br /><bullet>[0] - <m>store</m> - stores without output.</bullet><bullet>[1] - <m>pass</m> - stores and outputs.</bullet>
       </description>
     </entry>
   </misc>

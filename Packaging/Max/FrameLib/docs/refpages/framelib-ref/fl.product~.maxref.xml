@@ -8,14 +8,14 @@
     The output is a single value. When the input frame is empty then the output is determined by the empty parameter.
   </description>
   <misc name="Parameters">
-    <entry name="/empty [instantiation enum]">
+    <entry name="/empty [enum]">
       <description>
-        Sets the output to use when an empty input frame is received:<br /><bullet>[0] - <m>empty</m> - output an empty frame.</bullet><bullet>[1] - <m>default</m> - output the default value (see the default parameter).</bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the output to use when an empty input frame is received:<br /><bullet>[0] - <m>empty</m> - output an empty frame.</bullet><bullet>[1] - <m>default</m> - output the default value (see the default parameter).</bullet>
       </description>
     </entry>
-    <entry name="/default [instantiation double]">
+    <entry name="/default [double]">
       <description>
-        Sets the default output value.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the default output value.
       </description>
     </entry>
   </misc>

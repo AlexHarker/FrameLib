@@ -8,9 +8,9 @@
     The filtered output contains any items from the input that match the given tags. The residual output contains any items from the input that do not match the given tags. The number of tags can be set explicitly by parameter. Alternatively, it can be set implicitly by the tag parameters present at instantiation.
   </description>
   <misc name="Parameters">
-    <entry name="/num_filters [instantiation int]">
+    <entry name="/num_filters [int]">
       <description>
-        Sets the number of tags.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of tags.
       </description>
     </entry>
     <entry name="/tag_01...10 [string]">

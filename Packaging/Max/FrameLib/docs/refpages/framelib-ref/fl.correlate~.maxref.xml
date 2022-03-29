@@ -8,19 +8,19 @@
     The output length depends on the edges parameter, which sets the edge behaviour. Output length is M + N - 1 for linear correlation (M and N are the input lengths). For other edge behaviours the output length is the maximum of M and N. In complex mode pairs of inputs and outputs are used to represent complex values. If one of a pair of inputs is shorter than the other it is zero padded to match. Internal processing is FFT-based.
   </description>
   <misc name="Parameters">
-    <entry name="/max_length [instantiation int]">
+    <entry name="/max_length [int]">
       <description>
-        Sets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs.
       </description>
     </entry>
-    <entry name="/mode [instantiation enum]">
+    <entry name="/mode [enum]">
       <description>
-        Sets the type of input and output.<br /><bullet>[0] - <m>real</m></bullet><bullet>[1] - <m>complex</m></bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the type of input and output.<br /><bullet>[0] - <m>real</m></bullet><bullet>[1] - <m>complex</m></bullet>
       </description>
     </entry>
-    <entry name="/edges [instantiation enum]">
+    <entry name="/edges [enum]">
       <description>
-        Sets the edge behaviour of the correlation process. The basic operation is a linear one with output of the processing length. For modes other than linear the output length is reduced to the maximum of M and N. Excess from the linear operation is added back into the available length as specified:<br /><bullet>[0] - <m>linear</m> - the output is the full processing length with no further processing.</bullet><bullet>[1] - <m>circular</m> - excess at the end is added back to the beginning of the output.</bullet><bullet>[2] - <m>wrap</m> - as circular mode but rotated such that wrapping occurs equally at both ends.</bullet><bullet>[3] - <m>fold</m> - as wrap but folding not wrapping at the edges (edge values are not repeated).</bullet><bullet>[4] - <m>mirror</m> - as fold but with repeated edge values.</bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the edge behaviour of the correlation process. The basic operation is a linear one with output of the processing length. For modes other than linear the output length is reduced to the maximum of M and N. Excess from the linear operation is added back into the available length as specified:<br /><bullet>[0] - <m>linear</m> - the output is the full processing length with no further processing.</bullet><bullet>[1] - <m>circular</m> - excess at the end is added back to the beginning of the output.</bullet><bullet>[2] - <m>wrap</m> - as circular mode but rotated such that wrapping occurs equally at both ends.</bullet><bullet>[3] - <m>fold</m> - as wrap but folding not wrapping at the edges (edge values are not repeated).</bullet><bullet>[4] - <m>mirror</m> - as fold but with repeated edge values.</bullet>
       </description>
     </entry>
   </misc>

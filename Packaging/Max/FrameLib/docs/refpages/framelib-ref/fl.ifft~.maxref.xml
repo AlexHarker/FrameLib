@@ -8,19 +8,19 @@
     All FFTs use a power of two size, with zero-padding applied at the inputs if necessary. The expected input lengths depend on the mode parameter. The mode selects either real or complex iFFTs and also the input and the output type. In complex mode, real and imaginary values are output as separate frames.
   </description>
   <misc name="Parameters">
-    <entry name="/max_length [instantiation int]">
+    <entry name="/max_length [int]">
       <description>
-        Sets the maximum output length and FFT size.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the maximum output length and FFT size.
       </description>
     </entry>
-    <entry name="/normalise [instantiation bool]">
+    <entry name="/normalise [bool]">
       <description>
-        Sets normalisation on or off (such that a full-scale real sine wave has an amplitude of 1).
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets normalisation on or off (such that a full-scale real sine wave has an amplitude of 1).
       </description>
     </entry>
-    <entry name="/mode [instantiation enum]">
+    <entry name="/mode [enum]">
       <description>
-        Sets the type of output produced and the input expected:<br /><bullet>[0] - <m>real</m> - real output (power of two length) for input without reflection (length is N / 2 + 1).</bullet><bullet>[1] - <m>complex</m> - complex output (two frames) with the same (power of two) input and output lengths.</bullet><bullet>[2] - <m>full_spectrum</m> - real output for input of the same (power of two) length input.</bullet><br />Note that in full_spectrum mode correct spectral reflection is expected and thus ignored.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the type of output produced and the input expected:<br /><bullet>[0] - <m>real</m> - real output (power of two length) for input without reflection (length is N / 2 + 1).</bullet><bullet>[1] - <m>complex</m> - complex output (two frames) with the same (power of two) input and output lengths.</bullet><bullet>[2] - <m>full_spectrum</m> - real output for input of the same (power of two) length input.</bullet><br />Note that in full_spectrum mode correct spectral reflection is expected and thus ignored.
       </description>
     </entry>
   </misc>

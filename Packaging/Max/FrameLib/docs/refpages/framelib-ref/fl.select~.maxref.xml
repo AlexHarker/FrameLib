@@ -8,9 +8,9 @@
     The number of inputs is variable. The selected input can be changed with a parameter.
   </description>
   <misc name="Parameters">
-    <entry name="/num_ins [instantiation double]">
+    <entry name="/num_ins [double]">
       <description>
-        Sets the number of inputs.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of inputs.
       </description>
     </entry>
     <entry name="/input [int]">

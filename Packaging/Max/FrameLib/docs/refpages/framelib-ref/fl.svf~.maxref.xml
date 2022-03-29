@@ -23,14 +23,14 @@
         Sets the filter mode when multi-output mode is off:<br /><bullet>[0] - <m>lowpass</m> - low pass.</bullet><bullet>[1] - <m>bandpass</m> - band pass.</bullet><bullet>[2] - <m>highpass</m> - high pass.</bullet>
       </description>
     </entry>
-    <entry name="/multi_output [instantiation bool]">
+    <entry name="/multi_output [bool]">
       <description>
-        Creates an output per filter mode with all modes output simultaneously.
+        <h6><i>INSTANTIATION ONLY</i></h6>Creates an output per filter mode with all modes output simultaneously.
       </description>
     </entry>
-    <entry name="/dynamic [instantiation bool]">
+    <entry name="/dynamic [bool]">
       <description>
-        Creates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used.
+        <h6><i>INSTANTIATION ONLY</i></h6>Creates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used.
       </description>
     </entry>
     <entry name="/reset [bool]">

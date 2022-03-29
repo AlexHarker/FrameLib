@@ -8,9 +8,9 @@
     The number of outputs is variable. The selected output can be changed with a parameter.
   </description>
   <misc name="Parameters">
-    <entry name="/num_outs [instantiation double]">
+    <entry name="/num_outs [double]">
       <description>
-        Sets the number of outputs.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of outputs.
       </description>
     </entry>
     <entry name="/output [int]">

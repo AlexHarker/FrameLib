@@ -8,19 +8,19 @@
     The expression can use input values, operators, functions and constants. The output is a frame at least as long as the shortest input. If inputs mismatch in length the result depends on the mismatch parameter. Pre-computable elements are detected and reduced to constants. Thus it is efficient to synthesize constants or represent values precisely.
   </description>
   <misc name="Parameters">
-    <entry name="/expression [instantiation string]">
+    <entry name="/expression [string]">
       <description>
-        Sets the mathematical expression. Inputs are indicated in1 to inx (where x is the number of input pairs created). A range of other constants, operators and functions are available:<br /><bullet>Constants { <m>e</m> <m>pi</m> <m>epsilon</m> <m>inf</m> }.</bullet><bullet>Unary Operators { <m>!</m> <m>-</m> }.</bullet><bullet>Binary Operators { <m>/</m> <m>*</m> <m>%</m> <m>+</m> <m>-</m> <m>&gt;</m> <m>&lt;</m> <m>&gt;=</m> <m>&lt;=</m> <m>==</m> <m>!=</m> <m>&amp;&amp;</m> <m>||</m> }.</bullet><bullet>Trigonometric Functions { <m>sin</m> <m>cos</m> <m>tan</m> <m>asin</m> <m>acos</m> <m>atan</m> }.</bullet><bullet>Hyperbolic Functions { <m>sinh</m> <m>cosh</m> <m>tanh</m> <m>asinh</m> <m>acosh</m> <m>atanh</m> }.</bullet><bullet>Unary Functions { <m>log</m> <m>log2</m> <m>log10</m> <m>exp</m> <m>exp2</m> <m>abs</m> <m>ceil</m> <m>floor</m> <m>round</m> <m>trunc</m> <m>sqrt</m> <m>cbrt</m> <m>erf</m> <m>erfc</m> }.</bullet><bullet>Binary Functions { <m>diff</m> <m>hypot</m> <m>max</m> <m>min</m> <m>pow</m> }.</bullet><bullet>Ternary Functions { <m>clip,</m> <m>wrap,</m> <m>fold</m> }.</bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the mathematical expression. Inputs are indicated in1 to inx (where x is the number of input pairs created). A range of other constants, operators and functions are available:<br /><bullet>Constants { <m>e</m> <m>pi</m> <m>epsilon</m> <m>inf</m> }.</bullet><bullet>Unary Operators { <m>!</m> <m>-</m> }.</bullet><bullet>Binary Operators { <m>/</m> <m>*</m> <m>%</m> <m>+</m> <m>-</m> <m>&gt;</m> <m>&lt;</m> <m>&gt;=</m> <m>&lt;=</m> <m>==</m> <m>!=</m> <m>&amp;&amp;</m> <m>||</m> }.</bullet><bullet>Trigonometric Functions { <m>sin</m> <m>cos</m> <m>tan</m> <m>asin</m> <m>acos</m> <m>atan</m> }.</bullet><bullet>Hyperbolic Functions { <m>sinh</m> <m>cosh</m> <m>tanh</m> <m>asinh</m> <m>acosh</m> <m>atanh</m> }.</bullet><bullet>Unary Functions { <m>log</m> <m>log2</m> <m>log10</m> <m>exp</m> <m>exp2</m> <m>abs</m> <m>ceil</m> <m>floor</m> <m>round</m> <m>trunc</m> <m>sqrt</m> <m>cbrt</m> <m>erf</m> <m>erfc</m> }.</bullet><bullet>Binary Functions { <m>diff</m> <m>hypot</m> <m>max</m> <m>min</m> <m>pow</m> }.</bullet><bullet>Ternary Functions { <m>clip,</m> <m>wrap,</m> <m>fold</m> }.</bullet>
       </description>
     </entry>
-    <entry name="/mismatch [instantiation enum]">
+    <entry name="/mismatch [enum]">
       <description>
-        Sets the mode used when dealing with mismatched input lengths:<br /><bullet>[0] - <m>wrap</m> - smaller inputs are read modulo against the longest input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the shortest input.</bullet><bullet>[2] - <m>extend</m> - if required inputs are extended by repeating their final value.</bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the mode used when dealing with mismatched input lengths:<br /><bullet>[0] - <m>wrap</m> - smaller inputs are read modulo against the longest input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the shortest input.</bullet><bullet>[2] - <m>extend</m> - if required inputs are extended by repeating their final value.</bullet>
       </description>
     </entry>
-    <entry name="/trigger_ins [instantiation variable length bool array]">
+    <entry name="/trigger_ins [variable length bool array]">
       <description>
-        Sets which inputs trigger output using an array of bools. By default all inputs trigger output.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets which inputs trigger output using an array of bools. By default all inputs trigger output.
       </description>
     </entry>
   </misc>

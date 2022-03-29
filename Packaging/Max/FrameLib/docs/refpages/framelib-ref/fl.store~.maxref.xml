@@ -8,9 +8,9 @@
     The storage location is determined by the name parameter. The output / ordering input can be used to explicitly control ordering between related objects. In a multistream scenario each stream has separate storage for a given name.
   </description>
   <misc name="Parameters">
-    <entry name="/name [instantiation string]">
+    <entry name="/name [string]">
       <description>
-        Sets the name of the storage to use. Note that names are local to the current context.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the name of the storage to use. Note that names are local to the current context.
       </description>
     </entry>
   </misc>

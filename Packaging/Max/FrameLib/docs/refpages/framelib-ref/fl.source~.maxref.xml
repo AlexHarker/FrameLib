@@ -8,9 +8,9 @@
     The size of captured frames is settable with the length parameter. The length of the internal buffer determines the maximum frame length. There is a minimum latency equivalent to the length of the captured frame. A longer delay can be optionally selected (subject to the frame and buffer length). Capture can optionally be interpolated (at greater CPU usage) for sub-sample accuracy.
   </description>
   <misc name="Parameters">
-    <entry name="/buffer_size [instantiation double]">
+    <entry name="/buffer_size [double]">
       <description>
-        Sets the internal buffer size in the units specified by the units parameter.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the internal buffer size in the units specified by the units parameter.
       </description>
     </entry>
     <entry name="/length [int]">

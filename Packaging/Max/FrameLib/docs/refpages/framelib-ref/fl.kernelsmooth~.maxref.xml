@@ -28,9 +28,9 @@
         Sets the edge behaviour for smoothing:<br /><bullet>[0] - <m>zero</m> - values beyond the edges of the input are read as zeros.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet>
       </description>
     </entry>
-    <entry name="/max_fft [instantiation int]">
+    <entry name="/max_fft [int]">
       <description>
-        Sets the maximum FFT size available for internal processing. Note that this needs to be large enough to contain the input, kernel and edges.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the maximum FFT size available for internal processing. Note that this needs to be large enough to contain the input, kernel and edges.
       </description>
     </entry>
   </misc>

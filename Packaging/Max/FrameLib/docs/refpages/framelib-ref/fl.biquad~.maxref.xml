@@ -33,9 +33,9 @@
         Sets the b2 coefficient.
       </description>
     </entry>
-    <entry name="/dynamic [instantiation bool]">
+    <entry name="/dynamic [bool]">
       <description>
-        Creates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used.
+        <h6><i>INSTANTIATION ONLY</i></h6>Creates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used.
       </description>
     </entry>
     <entry name="/reset [bool]">

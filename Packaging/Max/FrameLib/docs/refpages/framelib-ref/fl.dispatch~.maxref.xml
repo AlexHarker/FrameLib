@@ -8,14 +8,14 @@
     Each output can be independently connected to any one input. The number of inputs and outputs is variable. The selected input for each output is changed with a parameter.
   </description>
   <misc name="Parameters">
-    <entry name="/num_ins [instantiation double]">
+    <entry name="/num_ins [double]">
       <description>
-        Sets the number of inputs.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of inputs.
       </description>
     </entry>
-    <entry name="/num_outs [instantiation double]">
+    <entry name="/num_outs [double]">
       <description>
-        Sets the number of outputs.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of outputs.
       </description>
     </entry>
     <entry name="/input_01...32 [int]">

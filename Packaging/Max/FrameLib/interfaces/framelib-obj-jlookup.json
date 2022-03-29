@@ -41,12 +41,12 @@
     },
     "fl.sink~": {
         "1": {
-            "name": "/buffer_size [instantiation double]",
-            "description": "Sets the internal buffer size in the units specified by the units parameter."
+            "name": "/buffer_size [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the internal buffer size in the units specified by the units parameter."
         },
         "2": {
-            "name": "/units [instantiation enum]",
-            "description": "Sets the time units used to determine the buffer size and delay.\n\nParameter Options:\n[0] - samples\n[1] - ms\n[2] - seconds"
+            "name": "/units [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the time units used to determine the buffer size and delay.\n\nParameter Options:\n[0] - samples\n[1] - ms\n[2] - seconds"
         },
         "3": {
             "name": "/delay [double]",
@@ -59,16 +59,16 @@
     },
     "fl.copysign~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.accumpos~": {
@@ -77,37 +77,37 @@
             "description": "Sets the percentage of the sum used for calculation [0-100]."
         },
         "2": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "3": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.framemin~": {
         "1": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "2": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.contextcontrol~": {},
     "fl.greaterthaneq~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.complex.cos~": {
@@ -118,16 +118,16 @@
     },
     "fl.makestring~": {
         "1": {
-            "name": "/num_items [instantiation int]",
-            "description": "Sets the number of items."
+            "name": "/num_items [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of items."
         },
         "2": {
             "name": "/tag [string]",
             "description": "Sets the output tag."
         },
         "3": {
-            "name": "/trigger_ins [instantiation variable length bool array]",
-            "description": "Sets which inputs trigger output using an array of bools. By default all inputs trigger output."
+            "name": "/trigger_ins [variable length bool array]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output using an array of bools. By default all inputs trigger output."
         },
         "4": {
             "name": "/padding [variable length int array]",
@@ -140,22 +140,22 @@
     },
     "fl.greaterthan~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.unpack~": {
         "1": {
-            "name": "/num_outs [instantiation int]",
-            "description": "Sets the number of single stream outputs."
+            "name": "/num_outs [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of single stream outputs."
         }
     },
     "fl.complex.sin~": {
@@ -180,16 +180,16 @@
     },
     "fl.or~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.exp2~": {
@@ -214,26 +214,26 @@
     },
     "fl.convolve~": {
         "1": {
-            "name": "/max_length [instantiation int]",
-            "description": "Sets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs."
+            "name": "/max_length [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs."
         },
         "2": {
-            "name": "/mode [instantiation enum]",
-            "description": "Sets the type of input and output.\n\nParameter Options:\n[0] - real\n[1] - complex"
+            "name": "/mode [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the type of input and output.\n\nParameter Options:\n[0] - real\n[1] - complex"
         },
         "3": {
-            "name": "/edges [instantiation enum]",
-            "description": "Sets the edge behaviour of the convolution process. The basic operation is a linear one with output of the processing length. For modes other than linear the output length is reduced to the maximum of M and N. Excess from the linear operation is added back into the available length as specified:\n\nParameter Options:\n[0] - linear - the output is the full processing length with no further processing.\n[1] - circular - excess at the end is added back to the beginning of the output.\n[2] - wrap - as circular mode but rotated such that wrapping occurs equally at both ends.\n[3] - fold - as wrap but folding not wrapping at the edges (edge values are not repeated).\n[4] - mirror - as fold but with repeated edge values."
+            "name": "/edges [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the edge behaviour of the convolution process. The basic operation is a linear one with output of the processing length. For modes other than linear the output length is reduced to the maximum of M and N. Excess from the linear operation is added back into the available length as specified:\n\nParameter Options:\n[0] - linear - the output is the full processing length with no further processing.\n[1] - circular - excess at the end is added back to the beginning of the output.\n[2] - wrap - as circular mode but rotated such that wrapping occurs equally at both ends.\n[3] - fold - as wrap but folding not wrapping at the edges (edge values are not repeated).\n[4] - mirror - as fold but with repeated edge values."
         }
     },
     "fl.centroid~": {
         "1": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "2": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.medianfilter~": {
@@ -274,8 +274,8 @@
     },
     "fl.wrap~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - smaller right inputs are read modulo against larger left input.\n[1] - shrink - the output length is set to the length of the smaller input.\n[2] - extend - smaller right inputs are extended by repeating their final value."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - smaller right inputs are read modulo against larger left input.\n[1] - shrink - the output length is set to the length of the smaller input.\n[2] - extend - smaller right inputs are extended by repeating their final value."
         }
     },
     "fl.complex.exp~": {
@@ -286,8 +286,8 @@
     },
     "fl.multitaper~": {
         "1": {
-            "name": "/max_length [instantiation int]",
-            "description": "Sets the maximum input length (and associated internal FFT size)."
+            "name": "/max_length [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the maximum input length (and associated internal FFT size)."
         },
         "2": {
             "name": "/num_tapers [int]",
@@ -308,16 +308,16 @@
     },
     "fl.and~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.onepolezero~": {
@@ -330,12 +330,12 @@
             "description": "Sets the filter mode when multi-output mode is off:\n\nParameter Options:\n[0] - lowpass - low pass.\n[1] - highpass - high pass."
         },
         "3": {
-            "name": "/multi_output [instantiation bool]",
-            "description": "Creates an output per filter mode with all modes output simultaneously."
+            "name": "/multi_output [bool]",
+            "description": "INSTANTIATION ONLY\n\nCreates an output per filter mode with all modes output simultaneously."
         },
         "4": {
-            "name": "/dynamic [instantiation bool]",
-            "description": "Creates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used."
+            "name": "/dynamic [bool]",
+            "description": "INSTANTIATION ONLY\n\nCreates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used."
         },
         "5": {
             "name": "/reset [bool]",
@@ -352,18 +352,18 @@
             "description": "Sets whether interpolation is used to estimate values between data points."
         },
         "3": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "4": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.firphase~": {
         "1": {
-            "name": "/max_length [instantiation int]",
-            "description": "Sets the input length and maximum FFT size."
+            "name": "/max_length [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the input length and maximum FFT size."
         },
         "2": {
             "name": "/phase [double]",
@@ -382,54 +382,54 @@
     },
     "fl.times~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.kurtosis~": {
         "1": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "2": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.divide~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.minus~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.log~": {
@@ -440,16 +440,16 @@
     },
     "fl.pow~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.erf~": {
@@ -460,8 +460,8 @@
     },
     "fl.filtertags~": {
         "1": {
-            "name": "/num_filters [instantiation int]",
-            "description": "Sets the number of tags."
+            "name": "/num_filters [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of tags."
         },
         "2": {
             "name": "/tag_01...10 [string]",
@@ -476,12 +476,12 @@
     },
     "fl.maxpos~": {
         "1": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "2": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.trace~": {
@@ -490,12 +490,12 @@
             "description": "Sets the mode used for output:\n\nParameter Options:\n[0] - full - outputs the entire frame in full.\n[1] - first - output the first sample of the frame only.\n[2] - last - output the last sample of the frame only.\n[3] - specified - output the sample specified by index using the position parameter.\n[4] - ratio - output the sample specified by the position parameter as a ratio of the frame length."
         },
         "2": {
-            "name": "/buffer_size [instantiation double]",
-            "description": "Sets the internal buffer size in the units specified by the units parameter."
+            "name": "/buffer_size [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the internal buffer size in the units specified by the units parameter."
         },
         "3": {
-            "name": "/units [instantiation enum]",
-            "description": "Sets the time units used to determine the buffer size and delay.\n\nParameter Options:\n[0] - samples\n[1] - ms\n[2] - seconds"
+            "name": "/units [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the time units used to determine the buffer size and delay.\n\nParameter Options:\n[0] - samples\n[1] - ms\n[2] - seconds"
         },
         "4": {
             "name": "/position [double]",
@@ -508,16 +508,16 @@
     },
     "fl.atan2~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.perblock~": {
@@ -554,22 +554,22 @@
     },
     "fl.notequals~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.timedelta~": {
         "1": {
-            "name": "/units [instantiation enum]",
-            "description": "Sets the time units used for output.\n\nParameter Options:\n[0] - samples\n[1] - ms\n[2] - seconds"
+            "name": "/units [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the time units used for output.\n\nParameter Options:\n[0] - samples\n[1] - ms\n[2] - seconds"
         }
     },
     "fl.read~": {
@@ -600,12 +600,12 @@
     },
     "fl.stddev~": {
         "1": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "2": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.streamid~": {
@@ -616,16 +616,16 @@
     },
     "fl.lessthaneq~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.once~": {
@@ -654,18 +654,18 @@
     },
     "fl.poltocar~": {
         "1": {
-            "name": "/dimensions [instantiation enum]",
-            "description": "Sets the number of dimensions (and hence inputs and outputs).\n\nParameter Options:\n[0] - 2D\n[1] - 3D"
+            "name": "/dimensions [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of dimensions (and hence inputs and outputs).\n\nParameter Options:\n[0] - 2D\n[1] - 3D"
         },
         "2": {
-            "name": "/angles [instantiation enum]",
-            "description": "Sets the units used for angles.\n\nParameter Options:\n[0] - radians\n[1] - degrees"
+            "name": "/angles [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the units used for angles.\n\nParameter Options:\n[0] - radians\n[1] - degrees"
         }
     },
     "fl.lookupstring~": {
         "1": {
-            "name": "/num_items [instantiation int]",
-            "description": "Sets the number of items."
+            "name": "/num_items [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of items."
         },
         "2": {
             "name": "/tag [string]",
@@ -686,12 +686,12 @@
     },
     "fl.flatness~": {
         "1": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "2": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.log2~": {
@@ -702,16 +702,16 @@
     },
     "fl.max~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.asin~": {
@@ -744,26 +744,26 @@
     },
     "fl.correlate~": {
         "1": {
-            "name": "/max_length [instantiation int]",
-            "description": "Sets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs."
+            "name": "/max_length [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs."
         },
         "2": {
-            "name": "/mode [instantiation enum]",
-            "description": "Sets the type of input and output.\n\nParameter Options:\n[0] - real\n[1] - complex"
+            "name": "/mode [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the type of input and output.\n\nParameter Options:\n[0] - real\n[1] - complex"
         },
         "3": {
-            "name": "/edges [instantiation enum]",
-            "description": "Sets the edge behaviour of the correlation process. The basic operation is a linear one with output of the processing length. For modes other than linear the output length is reduced to the maximum of M and N. Excess from the linear operation is added back into the available length as specified:\n\nParameter Options:\n[0] - linear - the output is the full processing length with no further processing.\n[1] - circular - excess at the end is added back to the beginning of the output.\n[2] - wrap - as circular mode but rotated such that wrapping occurs equally at both ends.\n[3] - fold - as wrap but folding not wrapping at the edges (edge values are not repeated).\n[4] - mirror - as fold but with repeated edge values."
+            "name": "/edges [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the edge behaviour of the correlation process. The basic operation is a linear one with output of the processing length. For modes other than linear the output length is reduced to the maximum of M and N. Excess from the linear operation is added back into the available length as specified:\n\nParameter Options:\n[0] - linear - the output is the full processing length with no further processing.\n[1] - circular - excess at the end is added back to the beginning of the output.\n[2] - wrap - as circular mode but rotated such that wrapping occurs equally at both ends.\n[3] - fold - as wrap but folding not wrapping at the edges (edge values are not repeated).\n[4] - mirror - as fold but with repeated edge values."
         }
     },
     "fl.skewness~": {
         "1": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "2": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.interval~": {
@@ -776,8 +776,8 @@
             "description": "Sets the time units used for setting the interval.\n\nParameter Options:\n[0] - samples\n[1] - ms\n[2] - seconds\n[3] - hz"
         },
         "3": {
-            "name": "/switchable [instantiation bool]",
-            "description": "Sets whether the object is switchable or not (setting this on can reduce CPU efficiency)."
+            "name": "/switchable [bool]",
+            "description": "INSTANTIATION ONLY\n\nSets whether the object is switchable or not (setting this on can reduce CPU efficiency)."
         },
         "4": {
             "name": "/on [bool]",
@@ -826,18 +826,18 @@
             "description": "Sets the edge behaviour for smoothing:\n\nParameter Options:\n[0] - zero - values beyond the edges of the input are read as zeros.\n[1] - extend - the edge values are extended infinitely in either direction.\n[2] - wrap - values are read as wrapped or cyclical.\n[3] - fold - values are folded at edges without repetition of the edge values.\n[4] - mirror - values are mirrored at edges with the edge values repeated."
         },
         "5": {
-            "name": "/max_fft [instantiation int]",
-            "description": "Sets the maximum FFT size available for internal processing. Note that this needs to be large enough to contain the input, kernel and edges."
+            "name": "/max_fft [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the maximum FFT size available for internal processing. Note that this needs to be large enough to contain the input, kernel and edges."
         }
     },
     "fl.join~": {
         "1": {
-            "name": "/num_ins [instantiation int]",
-            "description": "Sets the number of inputs."
+            "name": "/num_ins [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of inputs."
         },
         "2": {
-            "name": "/trigger_ins [instantiation fixed length bool array]",
-            "description": "Sets which inputs trigger output using an array of bools. By default all inputs trigger output."
+            "name": "/trigger_ins [fixed length bool array]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output using an array of bools. By default all inputs trigger output."
         }
     },
     "fl.uniform~": {
@@ -872,8 +872,8 @@
     },
     "fl.store~": {
         "1": {
-            "name": "/name [instantiation string]",
-            "description": "Sets the name of the storage to use. Note that names are local to the current context."
+            "name": "/name [string]",
+            "description": "INSTANTIATION ONLY\n\nSets the name of the storage to use. Note that names are local to the current context."
         }
     },
     "fl.log10~": {
@@ -940,12 +940,12 @@
     },
     "fl.mean~": {
         "1": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "2": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.biquad~": {
@@ -970,8 +970,8 @@
             "description": "Sets the b2 coefficient."
         },
         "6": {
-            "name": "/dynamic [instantiation bool]",
-            "description": "Creates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used."
+            "name": "/dynamic [bool]",
+            "description": "INSTANTIATION ONLY\n\nCreates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used."
         },
         "7": {
             "name": "/reset [bool]",
@@ -1004,16 +1004,16 @@
     },
     "fl.plus~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.sqrt~": {
@@ -1024,34 +1024,34 @@
     },
     "fl.timer~": {
         "1": {
-            "name": "/units [instantiation enum]",
-            "description": "Sets the time units used for output.\n\nParameter Options:\n[0] - samples\n[1] - ms\n[2] - seconds"
+            "name": "/units [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the time units used for output.\n\nParameter Options:\n[0] - samples\n[1] - ms\n[2] - seconds"
         }
     },
     "fl.framemax~": {
         "1": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "2": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.rms~": {
         "1": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "2": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.frommax~": {
         "1": {
-            "name": "/mode [instantiation enum]",
-            "description": "Sets the mode:\n\nParameter Options:\n[0] - values - translate values from the host into vectors.\n[1] - params - translate host messages into concatenated tagged frames."
+            "name": "/mode [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode:\n\nParameter Options:\n[0] - values - translate values from the host into vectors.\n[1] - params - translate host messages into concatenated tagged frames."
         }
     },
     "fl.random~": {
@@ -1070,32 +1070,32 @@
     },
     "fl.complex.expr~": {
         "1": {
-            "name": "/expression [instantiation string]",
-            "description": "Sets the mathematical expression. Input pairs are indicated in1 to inx (where x is the number of input pairs created). Complex numbers can be expressed directly in the form (a + bi). A range of other constants, operators and functions are available:\n\nConstants { i e pi epsilon inf }.\nUnary Operators { - }.\nBinary Operators { / * % + }.\nTrigonometric Functions { sin cos tan asin acos atan }.\nHyperbolic Functions { sinh cosh tanh asinh acosh atanh }.\nUnary Functions { log log10 exp conj sqrt }.\nBinary Functions { pow }."
+            "name": "/expression [string]",
+            "description": "INSTANTIATION ONLY\n\nSets the mathematical expression. Input pairs are indicated in1 to inx (where x is the number of input pairs created). Complex numbers can be expressed directly in the form (a + bi). A range of other constants, operators and functions are available:\n\nConstants { i e pi epsilon inf }.\nUnary Operators { - }.\nBinary Operators { / * % + }.\nTrigonometric Functions { sin cos tan asin acos atan }.\nHyperbolic Functions { sinh cosh tanh asinh acosh atanh }.\nUnary Functions { log log10 exp conj sqrt }.\nBinary Functions { pow }."
         },
         "2": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - smaller input pairs are read modulo against the longest input pair.\n[1] - shrink - the output length is set to that of the shortest input pair.\n[2] - extend - if required input pairs are extended by repeating their final value."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - smaller input pairs are read modulo against the longest input pair.\n[1] - shrink - the output length is set to that of the shortest input pair.\n[2] - extend - if required input pairs are extended by repeating their final value."
         },
         "3": {
-            "name": "/trigger_ins [instantiation variable length bool array]",
-            "description": "Sets which input pairs trigger output using an array of bools. By default all inputs trigger output."
+            "name": "/trigger_ins [variable length bool array]",
+            "description": "INSTANTIATION ONLY\n\nSets which input pairs trigger output using an array of bools. By default all inputs trigger output."
         }
     },
     "fl.pack~": {
         "1": {
-            "name": "/num_ins [instantiation int]",
-            "description": "Sets the number of inputs."
+            "name": "/num_ins [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of inputs."
         }
     },
     "fl.dispatch~": {
         "1": {
-            "name": "/num_ins [instantiation double]",
-            "description": "Sets the number of inputs."
+            "name": "/num_ins [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of inputs."
         },
         "2": {
-            "name": "/num_outs [instantiation double]",
-            "description": "Sets the number of outputs."
+            "name": "/num_outs [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of outputs."
         },
         "3": {
             "name": "/input_01...32 [int]",
@@ -1120,14 +1120,14 @@
             "description": "Sets the filter mode:\n\nParameter Options:\n[0] - lowpass - low pass.\n[1] - bandpass - band pass.\n[2] - highpass - high pass.\n[3] - peaknotch - peak notch.\n[4] - resonant - resonant.\n[5] - notch - band reject.\n[6] - lowshelf - low shelf.\n[7] - highshelf - high shelf."
         },
         "5": {
-            "name": "/coefficients [instantiation enum]",
-            "description": "Sets the coefficients input and output modes:\n\nParameter Options:\n[0] - static - settings are made via parameters with single value outputs.\n[1] - dynamic - settings are made via inputs or parameters with output as vectors.\n[2] - tagged - settings are made via parameters with output as a tagged frame."
+            "name": "/coefficients [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the coefficients input and output modes:\n\nParameter Options:\n[0] - static - settings are made via parameters with single value outputs.\n[1] - dynamic - settings are made via inputs or parameters with output as vectors.\n[2] - tagged - settings are made via parameters with output as a tagged frame."
         }
     },
     "fl.source~": {
         "1": {
-            "name": "/buffer_size [instantiation double]",
-            "description": "Sets the internal buffer size in the units specified by the units parameter."
+            "name": "/buffer_size [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the internal buffer size in the units specified by the units parameter."
         },
         "2": {
             "name": "/length [int]",
@@ -1148,16 +1148,16 @@
     },
     "fl.modulo~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.pad~": {
@@ -1180,8 +1180,8 @@
     },
     "fl.route~": {
         "1": {
-            "name": "/num_outs [instantiation double]",
-            "description": "Sets the number of outputs."
+            "name": "/num_outs [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of outputs."
         },
         "2": {
             "name": "/output [int]",
@@ -1190,22 +1190,22 @@
     },
     "fl.fold~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - smaller right inputs are read modulo against larger left input.\n[1] - shrink - the output length is set to the length of the smaller input.\n[2] - extend - smaller right inputs are extended by repeating their final value."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - smaller right inputs are read modulo against larger left input.\n[1] - shrink - the output length is set to the length of the smaller input.\n[2] - extend - smaller right inputs are extended by repeating their final value."
         }
     },
     "fl.lessthan~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.complex.log10~": {
@@ -1252,8 +1252,8 @@
     },
     "fl.now~": {
         "1": {
-            "name": "/units [instantiation enum]",
-            "description": "Sets the time units used for output.\n\nParameter Options:\n[0] - samples\n[1] - ms\n[2] - seconds"
+            "name": "/units [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the time units used for output.\n\nParameter Options:\n[0] - samples\n[1] - ms\n[2] - seconds"
         }
     },
     "fl.pattern~": {
@@ -1276,16 +1276,16 @@
     },
     "fl.diff~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.gaussian~": {
@@ -1392,8 +1392,8 @@
     },
     "fl.select~": {
         "1": {
-            "name": "/num_ins [instantiation double]",
-            "description": "Sets the number of inputs."
+            "name": "/num_ins [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of inputs."
         },
         "2": {
             "name": "/input [int]",
@@ -1408,26 +1408,26 @@
     },
     "fl.sum~": {
         "1": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "2": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.equals~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.not~": {
@@ -1444,8 +1444,8 @@
     },
     "fl.clip~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - smaller right inputs are read modulo against larger left input.\n[1] - shrink - the output length is set to the length of the smaller input.\n[2] - extend - smaller right inputs are extended by repeating their final value."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - smaller right inputs are read modulo against larger left input.\n[1] - shrink - the output length is set to the length of the smaller input.\n[2] - extend - smaller right inputs are extended by repeating their final value."
         }
     },
     "fl.tanh~": {
@@ -1488,8 +1488,8 @@
     },
     "fl.tag~": {
         "1": {
-            "name": "/num_ins [instantiation int]",
-            "description": "Sets the number of inputs (and hence the number of tags)."
+            "name": "/num_ins [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of inputs (and hence the number of tags)."
         },
         "2": {
             "name": "/empty [enum]",
@@ -1520,40 +1520,40 @@
     },
     "fl.fft~": {
         "1": {
-            "name": "/max_length [instantiation int]",
-            "description": "Sets the maximum input length and FFT size."
+            "name": "/max_length [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the maximum input length and FFT size."
         },
         "2": {
-            "name": "/normalise [instantiation bool]",
-            "description": "Sets normalisation on or off (such that a full-scale real sine wave produces an amplitude of 1)."
+            "name": "/normalise [bool]",
+            "description": "INSTANTIATION ONLY\n\nSets normalisation on or off (such that a full-scale real sine wave produces an amplitude of 1)."
         },
         "3": {
-            "name": "/mode [instantiation enum]",
-            "description": "Sets the type of input expected and the output produced:\n\nParameter Options:\n[0] - real - real input (power of two length) and output without reflection (length is N / 2 + 1).\n[1] - complex - complex input (two frames) with the same (power of two) input and output lengths.\n[2] - full_spectrum - real input and output of the same (power of two) length with spectral reflection."
+            "name": "/mode [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the type of input expected and the output produced:\n\nParameter Options:\n[0] - real - real input (power of two length) and output without reflection (length is N / 2 + 1).\n[1] - complex - complex input (two frames) with the same (power of two) input and output lengths.\n[2] - full_spectrum - real input and output of the same (power of two) length with spectral reflection."
         }
     },
     "fl.geomean~": {
         "1": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "2": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.ifft~": {
         "1": {
-            "name": "/max_length [instantiation int]",
-            "description": "Sets the maximum output length and FFT size."
+            "name": "/max_length [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the maximum output length and FFT size."
         },
         "2": {
-            "name": "/normalise [instantiation bool]",
-            "description": "Sets normalisation on or off (such that a full-scale real sine wave has an amplitude of 1)."
+            "name": "/normalise [bool]",
+            "description": "INSTANTIATION ONLY\n\nSets normalisation on or off (such that a full-scale real sine wave has an amplitude of 1)."
         },
         "3": {
-            "name": "/mode [instantiation enum]",
-            "description": "Sets the type of output produced and the input expected:\n\nParameter Options:\n[0] - real - real output (power of two length) for input without reflection (length is N / 2 + 1).\n[1] - complex - complex output (two frames) with the same (power of two) input and output lengths.\n[2] - full_spectrum - real output for input of the same (power of two) length input.\n\nNote that in full_spectrum mode correct spectral reflection is expected and thus ignored."
+            "name": "/mode [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the type of output produced and the input expected:\n\nParameter Options:\n[0] - real - real output (power of two length) for input without reflection (length is N / 2 + 1).\n[1] - complex - complex output (two frames) with the same (power of two) input and output lengths.\n[2] - full_spectrum - real output for input of the same (power of two) length input.\n\nNote that in full_spectrum mode correct spectral reflection is expected and thus ignored."
         }
     },
     "fl.erfc~": {
@@ -1624,12 +1624,12 @@
             "description": "Sets the filter mode when multi-output mode is off:\n\nParameter Options:\n[0] - lowpass - low pass.\n[1] - bandpass - band pass.\n[2] - highpass - high pass."
         },
         "4": {
-            "name": "/multi_output [instantiation bool]",
-            "description": "Creates an output per filter mode with all modes output simultaneously."
+            "name": "/multi_output [bool]",
+            "description": "INSTANTIATION ONLY\n\nCreates an output per filter mode with all modes output simultaneously."
         },
         "5": {
-            "name": "/dynamic [instantiation bool]",
-            "description": "Creates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used."
+            "name": "/dynamic [bool]",
+            "description": "INSTANTIATION ONLY\n\nCreates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used."
         },
         "6": {
             "name": "/reset [bool]",
@@ -1652,26 +1652,26 @@
     },
     "fl.minpos~": {
         "1": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "2": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.hypot~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.onepole~": {
@@ -1684,12 +1684,12 @@
             "description": "Sets the filter mode when multi-output mode is off:\n\nParameter Options:\n[0] - lowpass - low pass.\n[1] - highpass - high pass."
         },
         "3": {
-            "name": "/multi_output [instantiation bool]",
-            "description": "Creates an output per filter mode with all modes output simultaneously."
+            "name": "/multi_output [bool]",
+            "description": "INSTANTIATION ONLY\n\nCreates an output per filter mode with all modes output simultaneously."
         },
         "4": {
-            "name": "/dynamic [instantiation bool]",
-            "description": "Creates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used."
+            "name": "/dynamic [bool]",
+            "description": "INSTANTIATION ONLY\n\nCreates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used."
         },
         "5": {
             "name": "/reset [bool]",
@@ -1698,8 +1698,8 @@
     },
     "fl.untag~": {
         "1": {
-            "name": "/num_outs [instantiation int]",
-            "description": "Sets the number of outputs (and hence the number of tags)."
+            "name": "/num_outs [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of outputs (and hence the number of tags)."
         },
         "2": {
             "name": "/tag_01...10 [string]",
@@ -1708,28 +1708,28 @@
     },
     "fl.product~": {
         "1": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "2": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.crest~": {
         "1": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "2": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.chop~": {
         "1": {
-            "name": "/num_outs [instantiation int]",
-            "description": "Sets the number of outputs."
+            "name": "/num_outs [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of outputs."
         },
         "2": {
             "name": "/size [double]",
@@ -1742,22 +1742,22 @@
     },
     "fl.register~": {
         "1": {
-            "name": "/mode [instantiation enum]",
-            "description": "Sets the behaviour of the right input:\n\nParameter Options:\n[0] - store - stores without output.\n[1] - pass - stores and outputs."
+            "name": "/mode [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the behaviour of the right input:\n\nParameter Options:\n[0] - store - stores without output.\n[1] - pass - stores and outputs."
         }
     },
     "fl.min~": {
         "1": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input."
         },
         "2": {
-            "name": "/trigger_ins [instantiation enum]",
-            "description": "Sets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
+            "name": "/trigger_ins [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output.\n\nParameter Options:\n[0] - both\n[1] - left\n[2] - right"
         },
         "3": {
-            "name": "/pad [instantiation double]",
-            "description": "Sets the value used for padding (for either pad_in or pad_out modes)."
+            "name": "/pad [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes)."
         }
     },
     "fl.round~": {
@@ -1768,16 +1768,16 @@
     },
     "fl.expr~": {
         "1": {
-            "name": "/expression [instantiation string]",
-            "description": "Sets the mathematical expression. Inputs are indicated in1 to inx (where x is the number of input pairs created). A range of other constants, operators and functions are available:\n\nConstants { e pi epsilon inf }.\nUnary Operators { ! - }.\nBinary Operators { / * % + - > < >= <= == != && || }.\nTrigonometric Functions { sin cos tan asin acos atan }.\nHyperbolic Functions { sinh cosh tanh asinh acosh atanh }.\nUnary Functions { log log2 log10 exp exp2 abs ceil floor round trunc sqrt cbrt erf erfc }.\nBinary Functions { diff hypot max min pow }.\nTernary Functions { clip, wrap, fold }."
+            "name": "/expression [string]",
+            "description": "INSTANTIATION ONLY\n\nSets the mathematical expression. Inputs are indicated in1 to inx (where x is the number of input pairs created). A range of other constants, operators and functions are available:\n\nConstants { e pi epsilon inf }.\nUnary Operators { ! - }.\nBinary Operators { / * % + - > < >= <= == != && || }.\nTrigonometric Functions { sin cos tan asin acos atan }.\nHyperbolic Functions { sinh cosh tanh asinh acosh atanh }.\nUnary Functions { log log2 log10 exp exp2 abs ceil floor round trunc sqrt cbrt erf erfc }.\nBinary Functions { diff hypot max min pow }.\nTernary Functions { clip, wrap, fold }."
         },
         "2": {
-            "name": "/mismatch [instantiation enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - smaller inputs are read modulo against the longest input.\n[1] - shrink - the output length is set to that of the shortest input.\n[2] - extend - if required inputs are extended by repeating their final value."
+            "name": "/mismatch [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - smaller inputs are read modulo against the longest input.\n[1] - shrink - the output length is set to that of the shortest input.\n[2] - extend - if required inputs are extended by repeating their final value."
         },
         "3": {
-            "name": "/trigger_ins [instantiation variable length bool array]",
-            "description": "Sets which inputs trigger output using an array of bools. By default all inputs trigger output."
+            "name": "/trigger_ins [variable length bool array]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output using an array of bools. By default all inputs trigger output."
         }
     },
     "fl.peaks~": {
@@ -1860,22 +1860,22 @@
     },
     "fl.cartopol~": {
         "1": {
-            "name": "/dimensions [instantiation enum]",
-            "description": "Sets the number of dimensions (and hence inputs and outputs).\n\nParameter Options:\n[0] - 2D\n[1] - 3D"
+            "name": "/dimensions [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of dimensions (and hence inputs and outputs).\n\nParameter Options:\n[0] - 2D\n[1] - 3D"
         },
         "2": {
-            "name": "/angles [instantiation enum]",
-            "description": "Sets the units used for angles.\n\nParameter Options:\n[0] - radians\n[1] - degrees"
+            "name": "/angles [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the units used for angles.\n\nParameter Options:\n[0] - radians\n[1] - degrees"
         }
     },
     "fl.prioritise~": {
         "1": {
-            "name": "/num_ins [instantiation int]",
-            "description": "Sets the number of inputs."
+            "name": "/num_ins [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of inputs."
         },
         "2": {
-            "name": "/order [instantiation enum]",
-            "description": "Set whether to prioritise lower or higher numbered inputs.\n\nParameter Options:\n[0] - low\n[1] - high"
+            "name": "/order [enum]",
+            "description": "INSTANTIATION ONLY\n\nSet whether to prioritise lower or higher numbered inputs.\n\nParameter Options:\n[0] - low\n[1] - high"
         }
     },
     "fl.cosh~": {
@@ -1886,18 +1886,18 @@
     },
     "fl.spread~": {
         "1": {
-            "name": "/empty [instantiation enum]",
-            "description": "Sets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
+            "name": "/empty [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the output to use when an empty input frame is received:\n\nParameter Options:\n[0] - empty - output an empty frame.\n[1] - default - output the default value (see the default parameter)."
         },
         "2": {
-            "name": "/default [instantiation double]",
-            "description": "Sets the default output value."
+            "name": "/default [double]",
+            "description": "INSTANTIATION ONLY\n\nSets the default output value."
         }
     },
     "fl.combinetags~": {
         "1": {
-            "name": "/num_ins [instantiation int]",
-            "description": "Sets the number of inputs."
+            "name": "/num_ins [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of inputs."
         }
     },
     "fl.ceil~": {
@@ -1932,8 +1932,8 @@
     },
     "fl.recall~": {
         "1": {
-            "name": "/name [instantiation string]",
-            "description": "Sets the name of the storage to use. Note that names are local to the current context."
+            "name": "/name [string]",
+            "description": "INSTANTIATION ONLY\n\nSets the name of the storage to use. Note that names are local to the current context."
         }
     },
     "fl.window~": {

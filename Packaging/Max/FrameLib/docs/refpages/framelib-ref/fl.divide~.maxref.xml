@@ -8,19 +8,19 @@
     Calculation is performed on pairs of values in turn. The output is a frame at least as long as the smaller of the two inputs. If inputs mismatch in length the result depends on the mismatch parameter. Either or both inputs may be set to trigger output.
   </description>
   <misc name="Parameters">
-    <entry name="/mismatch [instantiation enum]">
+    <entry name="/mismatch [enum]">
       <description>
-        Sets the mode used when dealing with mismatched input lengths:<br /><bullet>[0] - <m>wrap</m> - the smaller input is read modulo against the larger input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the smaller input.</bullet><bullet>[2] - <m>pad_in</m> - the smaller input is padded prior to calculation to match the larger input.</bullet><bullet>[3] - <m>pad_out</m> - the output is padded to match the length of the larger input.</bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the mode used when dealing with mismatched input lengths:<br /><bullet>[0] - <m>wrap</m> - the smaller input is read modulo against the larger input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the smaller input.</bullet><bullet>[2] - <m>pad_in</m> - the smaller input is padded prior to calculation to match the larger input.</bullet><bullet>[3] - <m>pad_out</m> - the output is padded to match the length of the larger input.</bullet>
       </description>
     </entry>
-    <entry name="/trigger_ins [instantiation enum]">
+    <entry name="/trigger_ins [enum]">
       <description>
-        Sets which inputs trigger output.<br /><bullet>[0] - <m>both</m></bullet><bullet>[1] - <m>left</m></bullet><bullet>[2] - <m>right</m></bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets which inputs trigger output.<br /><bullet>[0] - <m>both</m></bullet><bullet>[1] - <m>left</m></bullet><bullet>[2] - <m>right</m></bullet>
       </description>
     </entry>
-    <entry name="/pad [instantiation double]">
+    <entry name="/pad [double]">
       <description>
-        Sets the value used for padding (for either pad_in or pad_out modes).
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the value used for padding (for either pad_in or pad_out modes).
       </description>
     </entry>
   </misc>

@@ -8,14 +8,14 @@
     Conversion may be in 2D or 3D (using spherical coordinates). The outputs are frames of the same length as the longest input. Shorter inputs are padded with zeros prior to conversion.
   </description>
   <misc name="Parameters">
-    <entry name="/dimensions [instantiation enum]">
+    <entry name="/dimensions [enum]">
       <description>
-        Sets the number of dimensions (and hence inputs and outputs).<br /><bullet>[0] - <m>2D</m></bullet><bullet>[1] - <m>3D</m></bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of dimensions (and hence inputs and outputs).<br /><bullet>[0] - <m>2D</m></bullet><bullet>[1] - <m>3D</m></bullet>
       </description>
     </entry>
-    <entry name="/angles [instantiation enum]">
+    <entry name="/angles [enum]">
       <description>
-        Sets the units used for angles.<br /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the units used for angles.<br /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet>
       </description>
     </entry>
   </misc>

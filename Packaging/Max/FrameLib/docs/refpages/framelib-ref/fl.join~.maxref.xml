@@ -8,14 +8,14 @@
     Each input may trigger output (or not), as set by the triggers_in parameter.
   </description>
   <misc name="Parameters">
-    <entry name="/num_ins [instantiation int]">
+    <entry name="/num_ins [int]">
       <description>
-        Sets the number of inputs.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of inputs.
       </description>
     </entry>
-    <entry name="/trigger_ins [instantiation fixed length bool array]">
+    <entry name="/trigger_ins [fixed length bool array]">
       <description>
-        Sets which inputs trigger output using an array of bools. By default all inputs trigger output.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets which inputs trigger output using an array of bools. By default all inputs trigger output.
       </description>
     </entry>
   </misc>

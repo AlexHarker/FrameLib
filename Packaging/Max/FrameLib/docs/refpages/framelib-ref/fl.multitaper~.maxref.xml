@@ -8,9 +8,9 @@
     The spectrum is calculated using the sine tapers. All FFTs use a power of two size, with zero-padding applied at the input if necessary. Output frames will be (N / 2) + 1 in length where N is the FFT size used. The number of tapers and their weighting are both controllable.
   </description>
   <misc name="Parameters">
-    <entry name="/max_length [instantiation int]">
+    <entry name="/max_length [int]">
       <description>
-        Sets the maximum input length (and associated internal FFT size).
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the maximum input length (and associated internal FFT size).
       </description>
     </entry>
     <entry name="/num_tapers [int]">

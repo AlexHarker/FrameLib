@@ -8,9 +8,9 @@
     In values mode the output is the last received value(s) as a vector. In params mode messages are collected and output as a single tagged frame. Typically params mode is used to help set object parameters. Output is triggered by frames arriving at the trigger input.<br /><br />More info on conversion between Max messages and FrameLib can be found in <link name="04_fl_conversion" module="framelib" type="tutorial">Tutorial 4</link>.
   </description>
   <misc name="Parameters">
-    <entry name="/mode [instantiation enum]">
+    <entry name="/mode [enum]">
       <description>
-        Sets the mode:<br /><bullet>[0] - <m>values</m> - translate values from the host into vectors.</bullet><bullet>[1] - <m>params</m> - translate host messages into concatenated tagged frames.</bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the mode:<br /><bullet>[0] - <m>values</m> - translate values from the host into vectors.</bullet><bullet>[1] - <m>params</m> - translate host messages into concatenated tagged frames.</bullet>
       </description>
     </entry>
   </misc>

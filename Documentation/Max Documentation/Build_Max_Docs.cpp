@@ -597,6 +597,16 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         file << tab2 + "</method>\n";
     };
     
+    auto paramTypeOnly= [&](unsigned long i)
+    {
+        std::string(str) = params->getTypeString(i);
+        
+        if (matchPartialString(str, "instantiation ", 0))
+            findReplaceOnce(str, "instantiation ", "");
+        
+        return str;
+    };
+    
     // Check that the file has opened correctly
     
     if (!file.is_open())
@@ -660,17 +670,15 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
             // Name, type and default value
 
             std::string name = getParamName(params, i);
+            std::string instantiation(params->getInstantiation(i) ? "<h6><i>INSTANTIATION ONLY</i></h6>" : "");
             std::string defaultStr = params->getDefaultString(i);
                              
-            if (defaultStr.size())
-                file << tab2 + "<entry name = '/" + name + " [" + params->getTypeString(i) + "]' >\n";
-            else
-                file << tab2 + "<entry name = '/" + name + " [" + params->getTypeString(i) + "]' >\n";
+            file << tab2 + "<entry name = '/" + name + " [" + paramTypeOnly(i) + "]' >\n";
             
             // Construct the description
             
             file << tab3 + "<description>\n";
-            file << tab4 + processParamInfo(object, params, i);
+            file << tab4 + instantiation + processParamInfo(object, params, i);
             file << "\n" + tab3 + "</description>\n";
             file << tab2 + "</entry>\n";
             

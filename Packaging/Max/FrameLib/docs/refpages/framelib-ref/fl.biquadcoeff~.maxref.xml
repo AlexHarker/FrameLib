@@ -28,9 +28,9 @@
         Sets the filter mode:<br /><bullet>[0] - <m>lowpass</m> - low pass.</bullet><bullet>[1] - <m>bandpass</m> - band pass.</bullet><bullet>[2] - <m>highpass</m> - high pass.</bullet><bullet>[3] - <m>peaknotch</m> - peak notch.</bullet><bullet>[4] - <m>resonant</m> - resonant.</bullet><bullet>[5] - <m>notch</m> - band reject.</bullet><bullet>[6] - <m>lowshelf</m> - low shelf.</bullet><bullet>[7] - <m>highshelf</m> - high shelf.</bullet>
       </description>
     </entry>
-    <entry name="/coefficients [instantiation enum]">
+    <entry name="/coefficients [enum]">
       <description>
-        Sets the coefficients input and output modes:<br /><bullet>[0] - <m>static</m> - settings are made via parameters with single value outputs.</bullet><bullet>[1] - <m>dynamic</m> - settings are made via inputs or parameters with output as vectors.</bullet><bullet>[2] - <m>tagged</m> - settings are made via parameters with output as a tagged frame.</bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the coefficients input and output modes:<br /><bullet>[0] - <m>static</m> - settings are made via parameters with single value outputs.</bullet><bullet>[1] - <m>dynamic</m> - settings are made via inputs or parameters with output as vectors.</bullet><bullet>[2] - <m>tagged</m> - settings are made via parameters with output as a tagged frame.</bullet>
       </description>
     </entry>
   </misc>
