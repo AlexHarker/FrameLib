@@ -7,7 +7,7 @@ def main(docs):
     A simplified version of the qlookup used to display information about specific objects when hovered over in the umenu.
     """
     docs.interfaces_dir.mkdir(exist_ok=True)
-    obj_lookup = docs.interfaces_dir / "FrameLib-obj-dlookup.json"
+    obj_lookup = docs.interfaces_dir / "framelib-obj-dlookup.json"
 
     worker = dParseAndBuild()
 

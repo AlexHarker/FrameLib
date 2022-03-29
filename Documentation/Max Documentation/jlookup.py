@@ -9,7 +9,7 @@ def main(docs: Documentation):
     This dict contains more detailed information displayed in real-time when hovering over a certain tutorial in the umenu.
     """
 
-    obj_lookup = docs.interfaces_dir / "FrameLib-obj-jlookup.json"
+    obj_lookup = docs.interfaces_dir / "framelib-obj-jlookup.json"
 
     worker = jParseAndBuild()
 

@@ -15,7 +15,7 @@ def main(docs: Documentation):
     )
     docs.interfaces_dir.mkdir(exist_ok=True)
 
-    obj_lookup = docs.interfaces_dir / "FrameLib-obj-tlookup.json"
+    obj_lookup = docs.interfaces_dir / "framelib-obj-tlookup.json"
 
     worker = tParseAndBuild()
 

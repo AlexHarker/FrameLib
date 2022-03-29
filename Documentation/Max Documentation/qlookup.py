@@ -10,7 +10,7 @@ def main(docs):
 
     object_info = read_json(docs.object_relationships_path)
     docs.interfaces_dir.mkdir(exist_ok=True)
-    obj_lookup = docs.interfaces_dir / "FrameLib-obj-qlookup.json"
+    obj_lookup = docs.interfaces_dir / "framelib-obj-qlookup.json"
 
     worker = qParseAndBuild()
 
