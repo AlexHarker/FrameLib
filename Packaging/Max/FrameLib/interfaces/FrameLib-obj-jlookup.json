@@ -1433,7 +1433,7 @@
     "fl.not~": {
         "1": {
             "name": null,
-            "description": "fl.not~ has no parameters."
+            "description": "fl.!~ has no parameters."
         }
     },
     "fl.atan~": {
