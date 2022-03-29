@@ -368,7 +368,7 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
     return info;
 }
 
-std::string getAliases(const std::string& object)
+std::vector<std::string> getAliasStrings(const std::string& objectName)
 {
     std::string fileName(__FILE__);
     std::string dirPath = dirname(const_cast<char *>(fileName.c_str()));
@@ -376,36 +376,54 @@ std::string getAliases(const std::string& object)
     
     std::ifstream file(objectMappings);
     
-    std::string aliases;
+    std::vector<std::string> aliases;
     
     if (file.is_open())
     {
         std::string aliasMappings((std::istreambuf_iterator<char>(file)), (std::istreambuf_iterator<char>()));
         
         // Match bullet point style item
-    
-        const std::regex alias_regex("max objectfile (.+) " + object + ";");
-    
+        
+        const std::regex alias_regex("max objectfile (.+) " + objectName + ";");
         std::smatch results;
         
         while (std::regex_search(aliasMappings, results, alias_regex))
         {
-            std::string submatch = escapeXML(results[1]);
-                
-            if (aliases.length())
-                aliases += ", ";
-            
-            aliases += "<b>" + submatch + "</b>";
-            
-            // Get rid of the text already matched
-            
+            // Store sub string and get rid of the text already matched
+
+            aliases.push_back(escapeXML(results[1]));
             aliasMappings = results.suffix();
         }
     }
-
+    
     file.close();
     
     return aliases;
+}
+
+std::string getAliases(const std::string& fileName, const std::string& objectName)
+{
+    std::string aliases;
+    
+    auto aliasStrings = getAliasStrings(fileName);
+   
+    for (auto it = aliasStrings.begin(); it != aliasStrings.end(); it++)
+    {
+        std::string alias = (objectName == *it) ? fileName : *it;
+        aliases += std::string(aliases.length() ? ", <b>" : "<b>") + alias + "</b>";
+    }
+    
+    return aliases;
+}
+
+std::string aliasName(const std::string& fileName)
+{
+    auto aliases = getAliasStrings(fileName);
+
+    if (aliases.size() && aliases[0].find_first_of("+-/*;|%!=") != std::string::npos)
+        return aliases[0];
+    
+    return fileName;
 }
 
 bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxObjectArgsMode argsMode)
@@ -417,10 +435,9 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     enum InfoFlags { kInfoDesciption = 0x01, kInfoInputs = 0x02, kInfoOutputs = 0x04, kInfoParameters = 0x08 };
     
     std::ofstream file;
-    std::string sp = " ";               // code is more readable with sp rather than " "
-    std::string object = inputName;     // refactor to not copy variable.
+    std::string object = aliasName(inputName);
     
-    std::string objectDoc = "<o>" + inputName + "</o>";
+    std::string objectDoc = "<o>" + object + "</o>";
     std::string objectCategory = "!@#@#$";
     std::string objectKeywords = "boilerplate keywords";
     std::string objectInfo;
@@ -434,7 +451,6 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     std::string tab3 = tab2 + tab1;
     std::string tab4 = tab2 + tab2;
     
-    
     // Reuseable strings
     
     std::string conversionTutorial("More info on conversion between Max messages and FrameLib can be found in <link name='04_fl_conversion' module='framelib' type='tutorial'>Tutorial 4</link>.");
@@ -442,7 +458,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     
     // Write to a temporary relative location
     
-    file.open(tmpFolder + object + ".maxref.xml");
+    file.open(tmpFolder + inputName + ".maxref.xml");
     
     const FrameLib_Parameters *params = frameLibObject->getParameters();
     
@@ -451,6 +467,8 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         std::transform(s.begin(), s.end(), s.begin(), [](unsigned char c){ return std::tolower(c); });
         return s;
     };
+    
+    // Writing Helpers
     
     auto writeDigestDescription = [&](const std::string& tab, const std::string& digest, const std::string& description)
     {
@@ -798,7 +816,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     
     // Keywords and Aliases
     
-    std::string aliases = getAliases(object);
+    std::string aliases = getAliases(inputName, object);
     
     file << tab1 + "<!--DISCUSSION-->\n";
     file << tab1 + "<misc name = 'Discussion'>\n";
