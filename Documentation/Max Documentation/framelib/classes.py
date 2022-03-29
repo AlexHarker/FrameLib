@@ -124,7 +124,7 @@ class qParseAndBuild:
 
         # Find Information
         self.category = self.root.get("category")
-        self.object_name = self.root.get("name")
+        self.object_name = x.stem.split('.maxref')[0]  # get the object name (use the maxref name in case it is aliased)
 
         for child in self.root:
             if child.tag == "digest":
