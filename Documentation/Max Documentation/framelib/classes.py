@@ -72,7 +72,7 @@ class dParseAndBuild:
         self.root = self.tree.getroot()  # c74object
 
         # Find Information #
-        self.object_name = self.root.get("name")  # finds the name so you don't have to do regex
+        self.object_name = x.stem.split('.maxref')[0]  # get the object name (use the maxref name in case it is aliased)
 
         for child in self.root:
             if child.tag == "digest":
