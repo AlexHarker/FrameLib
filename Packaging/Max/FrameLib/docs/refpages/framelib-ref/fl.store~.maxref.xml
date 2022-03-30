@@ -87,8 +87,8 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.register~" />
     <seealso name="fl.recall~" />
+    <seealso name="fl.register~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

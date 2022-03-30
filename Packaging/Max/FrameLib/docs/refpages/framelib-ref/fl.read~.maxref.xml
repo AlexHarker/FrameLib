@@ -152,8 +152,8 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.info~" />
     <seealso name="buffer~" />
+    <seealso name="fl.info~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

@@ -139,8 +139,8 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.timedelta~" />
     <seealso name="fl.now~" />
+    <seealso name="fl.timedelta~" />
     <seealso name="fl.timer~" />
   </seealsolist>
   <misc name="Discussion">

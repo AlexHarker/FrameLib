@@ -128,11 +128,11 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.fft~" />
-    <seealso name="fl.multitaper~" />
     <seealso name="fl.convolve~" />
-    <seealso name="fl.ifft~" />
     <seealso name="fl.correlate~" />
+    <seealso name="fl.fft~" />
+    <seealso name="fl.ifft~" />
+    <seealso name="fl.multitaper~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

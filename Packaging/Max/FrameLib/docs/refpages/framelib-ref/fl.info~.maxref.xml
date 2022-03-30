@@ -100,8 +100,8 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.read~" />
     <seealso name="buffer~" />
+    <seealso name="fl.read~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

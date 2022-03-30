@@ -97,30 +97,30 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.lessthan~" />
+    <seealso name="fl.!=~" />
+    <seealso name="fl.%~" />
+    <seealso name="fl.&amp;&amp;~" />
+    <seealso name="fl.+~" />
+    <seealso name="fl.-~" />
+    <seealso name="fl./~" />
+    <seealso name="fl.&lt;=~" />
+    <seealso name="fl.&lt;~" />
+    <seealso name="fl.==~" />
+    <seealso name="fl.&gt;=~" />
+    <seealso name="fl.&gt;~" />
     <seealso name="fl.atan2~" />
-    <seealso name="fl.minus~" />
-    <seealso name="fl.hypot~" />
-    <seealso name="fl.equals~" />
-    <seealso name="fl.pow~" />
-    <seealso name="fl.divide~" />
-    <seealso name="fl.max~" />
-    <seealso name="fl.notequals~" />
-    <seealso name="fl.greaterthan~" />
-    <seealso name="fl.and~" />
-    <seealso name="fl.min~" />
-    <seealso name="fl.lessthaneq~" />
-    <seealso name="fl.diff~" />
-    <seealso name="fl.plus~" />
-    <seealso name="fl.or~" />
     <seealso name="fl.copysign~" />
-    <seealso name="fl.greaterthaneq~" />
-    <seealso name="fl.modulo~" />
+    <seealso name="fl.diff~" />
+    <seealso name="fl.hypot~" />
+    <seealso name="fl.max~" />
+    <seealso name="fl.min~" />
+    <seealso name="fl.pow~" />
+    <seealso name="fl.||~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Aliases">
       <description>
-        <b>fl.times~</b>
+        <o>fl.times~</o>
       </description>
     </entry>
     <entry name="Keywords">

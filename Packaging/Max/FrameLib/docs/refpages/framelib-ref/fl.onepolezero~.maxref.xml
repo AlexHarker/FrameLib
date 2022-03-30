@@ -115,8 +115,8 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.svf~" />
     <seealso name="fl.onepole~" />
+    <seealso name="fl.svf~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

@@ -26,7 +26,7 @@
     "fl.contextcontrol~": {
         "digest": "Controls a named context via Max messages."
     },
-    "fl.greaterthaneq~": {
+    "fl.>=~": {
         "digest": "Compares input frames using a greater than or equal to operation (returns 1 or 0)"
     },
     "fl.complex.cos~": {
@@ -35,7 +35,7 @@
     "fl.makestring~": {
         "digest": "Creates a tagged string by concatenating strings and numbers"
     },
-    "fl.greaterthan~": {
+    "fl.>~": {
         "digest": "Compares input frames using a greater than operation (returns 1 or 0)"
     },
     "fl.unpack~": {
@@ -44,16 +44,16 @@
     "fl.complex.sin~": {
         "digest": "Calculates the sine of each complex value at the inputs"
     },
-    "fl.complex.minus~": {
+    "fl.complex.-~": {
         "digest": "Subtracts complex values in the right input frame pair from those in the left pair"
     },
-    "fl.or~": {
+    "fl.||~": {
         "digest": "Calculates the logical or of the left and right input frame values"
     },
     "fl.exp2~": {
         "digest": "Calculates the exponent base 2 (2^x) of each value in the input frame"
     },
-    "fl.complex.times~": {
+    "fl.complex.*~": {
         "digest": "Multiplies complex values in the two pairs of input frames"
     },
     "fl.convolve~": {
@@ -77,7 +77,7 @@
     "fl.multitaper~": {
         "digest": "Calculates a multitaper power (or amplitude) spectrum from a real input"
     },
-    "fl.and~": {
+    "fl.&&~": {
         "digest": "Calculates the logical and of the left and right input frame values"
     },
     "fl.onepolezero~": {
@@ -92,16 +92,16 @@
     "fl.asinh~": {
         "digest": "Calculates the hyperbolic arcsine of each value in the input frame"
     },
-    "fl.times~": {
+    "fl.*~": {
         "digest": "Multiplies values in the two input frames"
     },
     "fl.kurtosis~": {
         "digest": "Calculates the kurtosis of the input frame"
     },
-    "fl.divide~": {
+    "fl./~": {
         "digest": "Divides the left input frame values by the right input frame values"
     },
-    "fl.minus~": {
+    "fl.-~": {
         "digest": "Subtracts the right input frame values from the left input frame values"
     },
     "fl.log~": {
@@ -140,7 +140,7 @@
     "fl.nonzero~": {
         "digest": "Outputs the indices of input samples that are non-zero"
     },
-    "fl.notequals~": {
+    "fl.!=~": {
         "digest": "Compares frame values for inequality (returns 1 or 0)"
     },
     "fl.timedelta~": {
@@ -155,7 +155,7 @@
     "fl.streamid~": {
         "digest": "Outputs the stream id for each stream in a multistream connection"
     },
-    "fl.lessthaneq~": {
+    "fl.<=~": {
         "digest": "Compares input frames using a less than or equal to operation (returns 1 or 0)"
     },
     "fl.once~": {
@@ -257,7 +257,7 @@
     "fl.complex.cosh~": {
         "digest": "Calculates the hyperbolic cosine of each complex value at the inputs"
     },
-    "fl.plus~": {
+    "fl.+~": {
         "digest": "Adds values in the two input frames"
     },
     "fl.sqrt~": {
@@ -293,7 +293,7 @@
     "fl.source~": {
         "digest": "Captures audio from the host environment and outputs the most recent values as frames"
     },
-    "fl.modulo~": {
+    "fl.%~": {
         "digest": "Calculates the left input frame values modulo the right input frame values"
     },
     "fl.pad~": {
@@ -305,7 +305,7 @@
     "fl.fold~": {
         "digest": "Folds the incoming frame into the range delimited by the two parameters"
     },
-    "fl.lessthan~": {
+    "fl.<~": {
         "digest": "Compares input frames using a less than operation (returns 1 or 0)"
     },
     "fl.complex.log10~": {
@@ -356,10 +356,10 @@
     "fl.sum~": {
         "digest": "Calculates the sum of the input frame"
     },
-    "fl.equals~": {
+    "fl.==~": {
         "digest": "Compares frame values for equality (returns 1 or 0)"
     },
-    "fl.not~": {
+    "fl.!~": {
         "digest": "Calculates the logical not of each value in the input frame"
     },
     "fl.atan~": {
@@ -401,7 +401,7 @@
     "fl.movingaverage~": {
         "digest": "Calculates per sample moving averages and standard deviations"
     },
-    "fl.complex.divide~": {
+    "fl.complex./~": {
         "digest": "Divides complex values in the left pair of input frames by those in the right pair"
     },
     "fl.abs~": {
@@ -452,7 +452,7 @@
     "fl.cbrt~": {
         "digest": "Calculates the cube root of each value in the input frame"
     },
-    "fl.complex.plus~": {
+    "fl.complex.+~": {
         "digest": "Adds complex values in the two pairs of input frames"
     },
     "fl.complex.sqrt~": {

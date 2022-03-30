@@ -78,23 +78,23 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.complex.cos~" />
-    <seealso name="fl.complex.sinh~" />
     <seealso name="fl.cartopol~" />
     <seealso name="fl.complex.conj~" />
+    <seealso name="fl.complex.cosh~" />
+    <seealso name="fl.complex.cos~" />
     <seealso name="fl.complex.exp~" />
     <seealso name="fl.complex.log~" />
-    <seealso name="fl.complex.cosh~" />
-    <seealso name="fl.complex.tan~" />
+    <seealso name="fl.complex.sinh~" />
     <seealso name="fl.complex.sin~" />
-    <seealso name="fl.complex.tanh~" />
     <seealso name="fl.complex.sqrt~" />
+    <seealso name="fl.complex.tanh~" />
+    <seealso name="fl.complex.tan~" />
     <seealso name="fl.poltocar~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Aliases">
       <description>
-        <b>fl.clog10~</b>
+        <o>fl.clog10~</o>
       </description>
     </entry>
     <entry name="Keywords">

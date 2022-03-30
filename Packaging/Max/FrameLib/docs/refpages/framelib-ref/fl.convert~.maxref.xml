@@ -87,10 +87,10 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.map~" />
     <seealso name="fl.constant~" />
-    <seealso name="fl.samplerate~" />
     <seealso name="fl.lookup~" />
+    <seealso name="fl.map~" />
+    <seealso name="fl.samplerate~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

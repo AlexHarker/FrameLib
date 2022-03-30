@@ -88,8 +88,8 @@
   </attributelist>
   <seealsolist>
     <seealso name="fl.now~" />
-    <seealso name="fl.timer~" />
     <seealso name="fl.ticks~" />
+    <seealso name="fl.timer~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

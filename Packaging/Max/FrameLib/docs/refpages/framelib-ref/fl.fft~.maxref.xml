@@ -113,10 +113,10 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.multitaper~" />
     <seealso name="fl.convolve~" />
-    <seealso name="fl.ifft~" />
     <seealso name="fl.correlate~" />
+    <seealso name="fl.ifft~" />
+    <seealso name="fl.multitaper~" />
     <seealso name="fl.window~" />
   </seealsolist>
   <misc name="Discussion">

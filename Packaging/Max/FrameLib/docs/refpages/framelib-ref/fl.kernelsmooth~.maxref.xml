@@ -131,8 +131,8 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.peaks~" />
     <seealso name="fl.multitaper~" />
+    <seealso name="fl.peaks~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

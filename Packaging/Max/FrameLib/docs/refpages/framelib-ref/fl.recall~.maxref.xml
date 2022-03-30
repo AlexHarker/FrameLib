@@ -87,8 +87,8 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.store~" />
     <seealso name="fl.register~" />
+    <seealso name="fl.store~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

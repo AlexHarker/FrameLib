@@ -100,18 +100,18 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.complex.cos~" />
-    <seealso name="fl.complex.log10~" />
-    <seealso name="fl.complex.sinh~" />
     <seealso name="fl.cartopol~" />
     <seealso name="fl.complex.conj~" />
-    <seealso name="fl.complex.exp~" />
-    <seealso name="fl.complex.log~" />
     <seealso name="fl.complex.cosh~" />
-    <seealso name="fl.complex.tan~" />
+    <seealso name="fl.complex.cos~" />
+    <seealso name="fl.complex.exp~" />
+    <seealso name="fl.complex.log10~" />
+    <seealso name="fl.complex.log~" />
+    <seealso name="fl.complex.sinh~" />
     <seealso name="fl.complex.sin~" />
-    <seealso name="fl.complex.tanh~" />
     <seealso name="fl.complex.sqrt~" />
+    <seealso name="fl.complex.tanh~" />
+    <seealso name="fl.complex.tan~" />
     <seealso name="fl.spatial~" />
   </seealsolist>
   <misc name="Discussion">

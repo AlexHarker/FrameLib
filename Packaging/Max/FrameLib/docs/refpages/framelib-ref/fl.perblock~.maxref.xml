@@ -121,10 +121,10 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.interval~" />
     <seealso name="fl.audiotrigger~" />
-    <seealso name="fl.once~" />
     <seealso name="fl.chain~" />
+    <seealso name="fl.interval~" />
+    <seealso name="fl.once~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

@@ -97,15 +97,15 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.complex.minus~" />
-    <seealso name="fl.complex.plus~" />
-    <seealso name="fl.complex.divide~" />
-    <seealso name="fl.complex.times~" />
+    <seealso name="fl.complex.*~" />
+    <seealso name="fl.complex.+~" />
+    <seealso name="fl.complex.-~" />
+    <seealso name="fl.complex./~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Aliases">
       <description>
-        <b>fl.cpow~</b>
+        <o>fl.cpow~</o>
       </description>
     </entry>
     <entry name="Keywords">

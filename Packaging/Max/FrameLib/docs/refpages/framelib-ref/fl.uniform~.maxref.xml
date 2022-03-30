@@ -126,9 +126,9 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.random~" />
     <seealso name="fl.gaussian~" />
     <seealso name="fl.ramp~" />
+    <seealso name="fl.random~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

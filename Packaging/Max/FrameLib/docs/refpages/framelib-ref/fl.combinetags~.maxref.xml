@@ -87,11 +87,11 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.tag~" />
-    <seealso name="fl.untag~" />
     <seealso name="fl.filtertags~" />
     <seealso name="fl.lookupstring~" />
     <seealso name="fl.makestring~" />
+    <seealso name="fl.tag~" />
+    <seealso name="fl.untag~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

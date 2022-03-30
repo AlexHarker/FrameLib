@@ -166,8 +166,8 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.source~" />
     <seealso name="fl.sink~" />
+    <seealso name="fl.source~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

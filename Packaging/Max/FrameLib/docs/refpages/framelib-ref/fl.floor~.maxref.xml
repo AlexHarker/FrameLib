@@ -78,32 +78,32 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.sqrt~" />
-    <seealso name="fl.exp2~" />
-    <seealso name="fl.tanh~" />
-    <seealso name="fl.cbrt~" />
-    <seealso name="fl.cos~" />
-    <seealso name="fl.atanh~" />
+    <seealso name="fl.!~" />
+    <seealso name="fl.abs~" />
     <seealso name="fl.acosh~" />
-    <seealso name="fl.atan~" />
-    <seealso name="fl.erf~" />
-    <seealso name="fl.cosh~" />
+    <seealso name="fl.acos~" />
+    <seealso name="fl.asinh~" />
     <seealso name="fl.asin~" />
+    <seealso name="fl.atanh~" />
+    <seealso name="fl.atan~" />
+    <seealso name="fl.cbrt~" />
+    <seealso name="fl.ceil~" />
+    <seealso name="fl.cosh~" />
+    <seealso name="fl.cos~" />
+    <seealso name="fl.erfc~" />
+    <seealso name="fl.erf~" />
+    <seealso name="fl.exp2~" />
     <seealso name="fl.exp~" />
     <seealso name="fl.log10~" />
     <seealso name="fl.log2~" />
-    <seealso name="fl.erfc~" />
-    <seealso name="fl.acos~" />
-    <seealso name="fl.abs~" />
     <seealso name="fl.log~" />
-    <seealso name="fl.asinh~" />
-    <seealso name="fl.trunc~" />
-    <seealso name="fl.not~" />
-    <seealso name="fl.sinh~" />
-    <seealso name="fl.ceil~" />
     <seealso name="fl.round~" />
-    <seealso name="fl.tan~" />
+    <seealso name="fl.sinh~" />
     <seealso name="fl.sin~" />
+    <seealso name="fl.sqrt~" />
+    <seealso name="fl.tanh~" />
+    <seealso name="fl.tan~" />
+    <seealso name="fl.trunc~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

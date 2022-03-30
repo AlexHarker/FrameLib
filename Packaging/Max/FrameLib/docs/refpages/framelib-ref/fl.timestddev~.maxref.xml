@@ -118,10 +118,10 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.timemedian~" />
-    <seealso name="fl.lag~" />
     <seealso name="fl.framedelta~" />
+    <seealso name="fl.lag~" />
     <seealso name="fl.timemean~" />
+    <seealso name="fl.timemedian~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">
