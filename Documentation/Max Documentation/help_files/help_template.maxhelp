@@ -90,12 +90,11 @@
 								"box" : 								{
 									"hidden" : 1,
 									"id" : "obj-1",
-									"linecount" : 7,
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
-									"patching_rect" : [ 626.0, 63.0, 19.0, 102.0 ],
+									"patching_rect" : [ 15.0, 143.0, 58.0, 22.0 ],
 									"text" : "loadbang"
 								}
 
@@ -137,7 +136,15 @@
 
 							}
  ],
-						"lines" : [  ]
+						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-128", 0 ],
+									"hidden" : 1,
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+ ]
 					}
 ,
 					"patching_rect" : [ 2.0, 5.0, 38.0, 22.0 ],
