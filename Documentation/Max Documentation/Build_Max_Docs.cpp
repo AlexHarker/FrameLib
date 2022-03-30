@@ -410,7 +410,7 @@ std::string getAliases(const std::string& fileName, const std::string& objectNam
     for (auto it = aliasStrings.begin(); it != aliasStrings.end(); it++)
     {
         std::string alias = (objectName == *it) ? fileName : *it;
-        aliases += std::string(aliases.length() ? ", <b>" : "<b>") + alias + "</b>";
+        aliases += std::string(aliases.length() ? ", <o>" : "<o>") + alias + "</o>";
     }
     
     return aliases;

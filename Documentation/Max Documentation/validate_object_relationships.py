@@ -8,7 +8,7 @@ def main(docs):
     object_names = [x.stem for x in docs.source_files]
     valid_names = object_names[:]
     
-    valid_names.append("buffer~");
+    valid_names += docs.additional_valid_objects
     
     for object in object_names:
         try:

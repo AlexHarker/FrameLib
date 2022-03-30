@@ -75,7 +75,7 @@ def main(docs):
             for elem in root:
                 if elem.tag == "seealsolist":
                     try:
-                        for seealso in details["seealso"]:
+                        for seealso in docs.seealso_aliased(obj_name):
                             new_element = et.Element("seealso")
                             new_element.set("name", seealso)
                             elem.append(new_element)

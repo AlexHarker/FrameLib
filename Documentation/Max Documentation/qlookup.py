@@ -17,8 +17,8 @@ def main(docs):
 
     for ref in refpages:
         worker.extract_from_refpage(ref)
-        worker.extract_keywords(docs.object_info)
-        worker.extract_seealso(docs.object_info)
+        worker.extract_keywords(docs)
+        worker.extract_seealso(docs)
         worker.build_json_file()
 
     write_json(obj_lookup, worker.d_master_dict)
