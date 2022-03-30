@@ -521,6 +521,15 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
                 file << tab1 + "</objarglist>\n\n";
             else
                 file << tab1 + "<objarglist />\n\n";
+        
+            for (unsigned long i = 0; params && i < params->size(); i++)
+
+            // Check object arguments
+                
+            for (unsigned long i = 0; params && i < params->size(); i++)
+                if (params->getArgumentIdx(i) > static_cast<long>(idx))
+                    throw std::runtime_error("n argument " + std::to_string(idx) + " for " + object + " but " + std::to_string(params->getArgumentIdx(i)));
+            
             return false;
         }
         
