@@ -269,7 +269,7 @@ class jParseAndBuild:
                                         # Deal with breaks in bullets
                                         
                                         for nested in item:
-                                            if nested.tag == "br":
+                                            if nested.tag == "br" or nested.tag == "p":
                                                 nested.text = "\n\n    "
                                         if firstBullet:
                                             text = "".join(item.itertext());
@@ -281,7 +281,7 @@ class jParseAndBuild:
                                     elif item.tag == "o":  # strip object tabs
                                         blank_desc += item.text
                                         blank_desc += item.tail.rstrip()
-                                    elif item.tag == "br":  # add line breaks
+                                    elif item.tag == "br" or item.tag == "p":  # add line breaks
                                         if item.tail != None:
                                             blank_desc += "\n\n" + item.tail.rstrip()
                                         else:

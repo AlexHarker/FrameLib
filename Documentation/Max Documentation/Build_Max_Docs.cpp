@@ -363,7 +363,7 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
     
     // Replace any colons
     
-    findReplace(info, ": ", ":<br />");
+    findReplace(info, ": ", ":<p />");
     
     return info;
 }
