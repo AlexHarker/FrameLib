@@ -10,27 +10,27 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        Controls how the output length is determined:<br /><bullet>[0] - <m>requested</m> - the output length is set by the length parameter.</bullet><bullet>[1] - <m>input</m> - the output length follows the length of the trigger input.</bullet>
+        Controls how the output length is determined:<p /><bullet>[0] - <m>requested</m> - the output length is set by the length parameter.</bullet><bullet>[1] - <m>input</m> - the output length follows the length of the trigger input.</bullet><p /><i>(default: <m>requested</m>)</i>
       </description>
     </entry>
     <entry name="/length [int]">
       <description>
-        Sets the requested output length in the units specified by the units parameter.
+        Sets the requested output length in the units specified by the units parameter.<p /><i>(default: 1)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
       <description>
-        Sets the units used for the length parameter.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
+        Sets the units used for the length parameter.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><p /><i>(default: <m>samples</m>)</i>
       </description>
     </entry>
     <entry name="/scale [enum]">
       <description>
-        Sets the scaling of the output ramp:<br /><bullet>[0] - <m>count</m> - scaled in samples (an interger count from zero).</bullet><bullet>[1] - <m>ms</m> - scaled in milliseconds starting at zero.</bullet><bullet>[2] - <m>seconds</m> - scaled in seconds starting at zero.</bullet><bullet>[3] - <m>normalised</m> - output is normalised according to the edges parameter.</bullet>
+        Sets the scaling of the output ramp:<p /><bullet>[0] - <m>count</m> - scaled in samples (an interger count from zero).</bullet><bullet>[1] - <m>ms</m> - scaled in milliseconds starting at zero.</bullet><bullet>[2] - <m>seconds</m> - scaled in seconds starting at zero.</bullet><bullet>[3] - <m>normalised</m> - output is normalised according to the edges parameter.</bullet><p /><i>(default: <m>count</m>)</i>
       </description>
     </entry>
     <entry name="/endpoints [enum]">
       <description>
-        Sets the included edges when the scale parameter is set to normalised:<br /><bullet>[0] - <m>both</m> - the ramp is scaled [0-1].</bullet><bullet>[1] - <m>first</m> - the ramp is scaled [0-1).</bullet><bullet>[2] - <m>last</m> - the ramp is scaled (0-1].</bullet><bullet>[3] - <m>none</m> - the ramp is scaled (0-1).</bullet>
+        Sets the included edges when the scale parameter is set to normalised:<p /><bullet>[0] - <m>both</m> - the ramp is scaled [0-1].</bullet><bullet>[1] - <m>first</m> - the ramp is scaled [0-1).</bullet><bullet>[2] - <m>last</m> - the ramp is scaled (0-1].</bullet><bullet>[3] - <m>none</m> - the ramp is scaled (0-1).</bullet><p /><i>(default: <m>both</m>)</i>
       </description>
     </entry>
   </misc>
@@ -45,7 +45,7 @@
         Controls how the output length is determined
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Controls how the output length is determined:<br /><bullet>[0] - <m>requested</m> - the output length is set by the length parameter.</bullet><bullet>[1] - <m>input</m> - the output length follows the length of the trigger input.</bullet>
+        This argument sets the mode parameter:<p /><p />Controls how the output length is determined:<p /><bullet>[0] - <m>requested</m> - the output length is set by the length parameter.</bullet><bullet>[1] - <m>input</m> - the output length follows the length of the trigger input.</bullet><p /><i>(default: <m>requested</m>)</i>
       </description>
     </objarg>
     <objarg name="length" optional="1" type="int">
@@ -53,7 +53,7 @@
         Sets the requested output length in the units specified by the units parameter
       </digest>
       <description>
-        This argument sets the length parameter:<br /><br />Sets the requested output length in the units specified by the units parameter.
+        This argument sets the length parameter:<p /><p />Sets the requested output length in the units specified by the units parameter.<p /><i>(default: 1)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
@@ -61,7 +61,7 @@
         Sets the units used for the length parameter
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the units used for the length parameter.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
+        This argument sets the units parameter:<p /><p />Sets the units used for the length parameter.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><p /><i>(default: <m>samples</m>)</i>
       </description>
     </objarg>
     <objarg name="scale" optional="1" type="symbol">
@@ -69,7 +69,7 @@
         Sets the scaling of the output ramp
       </digest>
       <description>
-        This argument sets the scale parameter:<br /><br />Sets the scaling of the output ramp:<br /><bullet>[0] - <m>count</m> - scaled in samples (an interger count from zero).</bullet><bullet>[1] - <m>ms</m> - scaled in milliseconds starting at zero.</bullet><bullet>[2] - <m>seconds</m> - scaled in seconds starting at zero.</bullet><bullet>[3] - <m>normalised</m> - output is normalised according to the edges parameter.</bullet>
+        This argument sets the scale parameter:<p /><p />Sets the scaling of the output ramp:<p /><bullet>[0] - <m>count</m> - scaled in samples (an interger count from zero).</bullet><bullet>[1] - <m>ms</m> - scaled in milliseconds starting at zero.</bullet><bullet>[2] - <m>seconds</m> - scaled in seconds starting at zero.</bullet><bullet>[3] - <m>normalised</m> - output is normalised according to the edges parameter.</bullet><p /><i>(default: <m>count</m>)</i>
       </description>
     </objarg>
     <objarg name="endpoints" optional="1" type="symbol">
@@ -77,7 +77,7 @@
         Sets the included edges when the scale parameter is set to normalised
       </digest>
       <description>
-        This argument sets the endpoints parameter:<br /><br />Sets the included edges when the scale parameter is set to normalised:<br /><bullet>[0] - <m>both</m> - the ramp is scaled [0-1].</bullet><bullet>[1] - <m>first</m> - the ramp is scaled [0-1).</bullet><bullet>[2] - <m>last</m> - the ramp is scaled (0-1].</bullet><bullet>[3] - <m>none</m> - the ramp is scaled (0-1).</bullet>
+        This argument sets the endpoints parameter:<p /><p />Sets the included edges when the scale parameter is set to normalised:<p /><bullet>[0] - <m>both</m> - the ramp is scaled [0-1].</bullet><bullet>[1] - <m>first</m> - the ramp is scaled [0-1).</bullet><bullet>[2] - <m>last</m> - the ramp is scaled (0-1].</bullet><bullet>[3] - <m>none</m> - the ramp is scaled (0-1).</bullet><p /><i>(default: <m>both</m>)</i>
       </description>
     </objarg>
   </objarglist>

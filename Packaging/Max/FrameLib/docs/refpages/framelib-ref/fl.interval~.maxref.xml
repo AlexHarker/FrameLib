@@ -10,22 +10,22 @@
   <misc name="Parameters">
     <entry name="/interval [double]">
       <description>
-        Sets the interval between frames in the units specified by the units parameter.
+        Sets the interval between frames in the units specified by the units parameter.<p /><i>(default: 64)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
       <description>
-        Sets the time units used for setting the interval.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><bullet>[3] - <m>hz</m></bullet>
+        Sets the time units used for setting the interval.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><bullet>[3] - <m>hz</m></bullet><p /><i>(default: <m>samples</m>)</i>
       </description>
     </entry>
     <entry name="/switchable [bool]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets whether the object is switchable or not (setting this on can reduce CPU efficiency).
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets whether the object is switchable or not (setting this on can reduce CPU efficiency).<p /><i>(default: false)</i>
       </description>
     </entry>
     <entry name="/on [bool]">
       <description>
-        Sets the state when in switchable mode in order to start and stop the timing of intervals.
+        Sets the state when in switchable mode in order to start and stop the timing of intervals.<p /><i>(default: true)</i>
       </description>
     </entry>
   </misc>
@@ -40,7 +40,7 @@
         Sets the interval between frames in the units specified by the units parameter
       </digest>
       <description>
-        This argument sets the interval parameter:<br /><br />Sets the interval between frames in the units specified by the units parameter.
+        This argument sets the interval parameter:<p /><p />Sets the interval between frames in the units specified by the units parameter.<p /><i>(default: 64)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
@@ -48,7 +48,7 @@
         Sets the time units used for setting the interval
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the time units used for setting the interval.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><bullet>[3] - <m>hz</m></bullet>
+        This argument sets the units parameter:<p /><p />Sets the time units used for setting the interval.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><bullet>[3] - <m>hz</m></bullet><p /><i>(default: <m>samples</m>)</i>
       </description>
     </objarg>
     <objarg name="switchable" optional="1" type="number">
@@ -56,7 +56,7 @@
         Sets whether the object is switchable or not (setting this on can reduce CPU efficiency)
       </digest>
       <description>
-        This argument sets the switchable parameter:<br /><br />Sets whether the object is switchable or not (setting this on can reduce CPU efficiency).
+        This argument sets the switchable parameter:<p /><p />Sets whether the object is switchable or not (setting this on can reduce CPU efficiency).<p /><i>(default: false)</i>
       </description>
     </objarg>
     <objarg name="on" optional="1" type="number">
@@ -64,7 +64,7 @@
         Sets the state when in switchable mode in order to start and stop the timing of intervals
       </digest>
       <description>
-        This argument sets the on parameter:<br /><br />Sets the state when in switchable mode in order to start and stop the timing of intervals.
+        This argument sets the on parameter:<p /><p />Sets the state when in switchable mode in order to start and stop the timing of intervals.<p /><i>(default: true)</i>
       </description>
     </objarg>
   </objarglist>

@@ -10,17 +10,17 @@
   <misc name="Parameters">
     <entry name="/num_ins [double]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of inputs.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of inputs.<p /><i>(default: 2)</i>
       </description>
     </entry>
     <entry name="/num_outs [double]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of outputs.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of outputs.<p /><i>(default: 2)</i>
       </description>
     </entry>
     <entry name="/input_01...32 [int]">
       <description>
-        Sets the current input for output N [1-32] counting from 1 (off if out of range).
+        Sets the current input for output N [1-32] counting from 1 (off if out of range).<p /><i>(default: 0)</i>
       </description>
     </entry>
   </misc>
@@ -35,7 +35,7 @@
         Sets the number of inputs
       </digest>
       <description>
-        This argument sets the num_ins parameter:<br /><br />Sets the number of inputs.
+        This argument sets the num_ins parameter:<p /><p />Sets the number of inputs.<p /><i>(default: 2)</i>
       </description>
     </objarg>
     <objarg name="num_outs" optional="1" type="number">
@@ -43,7 +43,7 @@
         Sets the number of outputs
       </digest>
       <description>
-        This argument sets the num_outs parameter:<br /><br />Sets the number of outputs.
+        This argument sets the num_outs parameter:<p /><p />Sets the number of outputs.<p /><i>(default: 2)</i>
       </description>
     </objarg>
   </objarglist>

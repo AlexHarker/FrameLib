@@ -10,22 +10,22 @@
   <misc name="Parameters">
     <entry name="/buffer_size [double]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the internal buffer size in the units specified by the units parameter.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the internal buffer size in the units specified by the units parameter.<p /><i>(default: 250000)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the time units used to determine the buffer size and delay.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the time units used to determine the buffer size and delay.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><p /><i>(default: <m>samples</m>)</i>
       </description>
     </entry>
     <entry name="/delay [double]">
       <description>
-        Sets the outpu delay in the units specified by the units parameter.
+        Sets the outpu delay in the units specified by the units parameter.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/interp [enum]">
       <description>
-        Sets the interpolation mode:<br /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation (incurs a minimum delay or latency of one sample).</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation (incurs a minimum delay or latency of one sample).</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation (incurs a minimum delay or latency of one sample).</bullet>
+        Sets the interpolation mode:<p /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation (incurs a minimum delay or latency of one sample).</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation (incurs a minimum delay or latency of one sample).</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation (incurs a minimum delay or latency of one sample).</bullet><p /><i>(default: <m>none</m>)</i>
       </description>
     </entry>
   </misc>
@@ -40,7 +40,7 @@
         Sets the internal buffer size in the units specified by the units parameter
       </digest>
       <description>
-        This argument sets the buffer_size parameter:<br /><br />Sets the internal buffer size in the units specified by the units parameter.
+        This argument sets the buffer_size parameter:<p /><p />Sets the internal buffer size in the units specified by the units parameter.<p /><i>(default: 250000)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
@@ -48,7 +48,7 @@
         Sets the time units used to determine the buffer size and delay
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the time units used to determine the buffer size and delay.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
+        This argument sets the units parameter:<p /><p />Sets the time units used to determine the buffer size and delay.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><p /><i>(default: <m>samples</m>)</i>
       </description>
     </objarg>
   </objarglist>

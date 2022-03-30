@@ -10,27 +10,27 @@
   <misc name="Parameters">
     <entry name="/max_length [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the maximum input length (and associated internal FFT size).
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the maximum input length (and associated internal FFT size).<p /><i>(default: 16384)</i>
       </description>
     </entry>
     <entry name="/num_tapers [int]">
       <description>
-        Sets the number of tapers to use.
+        Sets the number of tapers to use.<p /><i>(default: 3)</i>
       </description>
     </entry>
     <entry name="/normalise [bool]">
       <description>
-        Sets normalisation on or off (such that the energy of a full-scale sine wave is 1).
+        Sets normalisation on or off (such that the energy of a full-scale sine wave is 1).<p /><i>(default: true)</i>
       </description>
     </entry>
     <entry name="/output [enum]">
       <description>
-        Sets whether to output values in terms of power or amplitude.<br /><bullet>[0] - <m>power</m></bullet><bullet>[1] - <m>amplitude</m></bullet>
+        Sets whether to output values in terms of power or amplitude.<p /><bullet>[0] - <m>power</m></bullet><bullet>[1] - <m>amplitude</m></bullet><p /><i>(default: <m>amplitude</m>)</i>
       </description>
     </entry>
     <entry name="/weighting [enum]">
       <description>
-        Sets the weighting of the tapers:<br /><bullet>[0] - <m>uniform</m> - all tapers are weighted equally.</bullet><bullet>[1] - <m>linear</m> - tapers are weighted linearly in a decreasing manner.</bullet><bullet>[2] - <m>parabolic</m> - tapers are weighted with a parabola in a decreasing manner.</bullet>
+        Sets the weighting of the tapers:<p /><bullet>[0] - <m>uniform</m> - all tapers are weighted equally.</bullet><bullet>[1] - <m>linear</m> - tapers are weighted linearly in a decreasing manner.</bullet><bullet>[2] - <m>parabolic</m> - tapers are weighted with a parabola in a decreasing manner.</bullet><p /><i>(default: <m>parabolic</m>)</i>
       </description>
     </entry>
   </misc>
@@ -45,7 +45,7 @@
         Sets the maximum input length (and associated internal FFT size)
       </digest>
       <description>
-        This argument sets the max_length parameter:<br /><br />Sets the maximum input length (and associated internal FFT size).
+        This argument sets the max_length parameter:<p /><p />Sets the maximum input length (and associated internal FFT size).<p /><i>(default: 16384)</i>
       </description>
     </objarg>
     <objarg name="num_tapers" optional="1" type="int">
@@ -53,7 +53,7 @@
         Sets the number of tapers to use
       </digest>
       <description>
-        This argument sets the num_tapers parameter:<br /><br />Sets the number of tapers to use.
+        This argument sets the num_tapers parameter:<p /><p />Sets the number of tapers to use.<p /><i>(default: 3)</i>
       </description>
     </objarg>
     <objarg name="normalise" optional="1" type="number">
@@ -61,7 +61,7 @@
         Sets normalisation on or off (such that the energy of a full-scale sine wave is 1)
       </digest>
       <description>
-        This argument sets the normalise parameter:<br /><br />Sets normalisation on or off (such that the energy of a full-scale sine wave is 1).
+        This argument sets the normalise parameter:<p /><p />Sets normalisation on or off (such that the energy of a full-scale sine wave is 1).<p /><i>(default: true)</i>
       </description>
     </objarg>
     <objarg name="output" optional="1" type="symbol">
@@ -69,7 +69,7 @@
         Sets whether to output values in terms of power or amplitude
       </digest>
       <description>
-        This argument sets the output parameter:<br /><br />Sets whether to output values in terms of power or amplitude.<br /><bullet>[0] - <m>power</m></bullet><bullet>[1] - <m>amplitude</m></bullet>
+        This argument sets the output parameter:<p /><p />Sets whether to output values in terms of power or amplitude.<p /><bullet>[0] - <m>power</m></bullet><bullet>[1] - <m>amplitude</m></bullet><p /><i>(default: <m>amplitude</m>)</i>
       </description>
     </objarg>
     <objarg name="weighting" optional="1" type="symbol">
@@ -77,7 +77,7 @@
         Sets the weighting of the tapers
       </digest>
       <description>
-        This argument sets the weighting parameter:<br /><br />Sets the weighting of the tapers:<br /><bullet>[0] - <m>uniform</m> - all tapers are weighted equally.</bullet><bullet>[1] - <m>linear</m> - tapers are weighted linearly in a decreasing manner.</bullet><bullet>[2] - <m>parabolic</m> - tapers are weighted with a parabola in a decreasing manner.</bullet>
+        This argument sets the weighting parameter:<p /><p />Sets the weighting of the tapers:<p /><bullet>[0] - <m>uniform</m> - all tapers are weighted equally.</bullet><bullet>[1] - <m>linear</m> - tapers are weighted linearly in a decreasing manner.</bullet><bullet>[2] - <m>parabolic</m> - tapers are weighted with a parabola in a decreasing manner.</bullet><p /><i>(default: <m>parabolic</m>)</i>
       </description>
     </objarg>
   </objarglist>

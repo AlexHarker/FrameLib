@@ -10,42 +10,42 @@
   <misc name="Parameters">
     <entry name="/inputmode [enum]">
       <description>
-        Sets the input coordinate mode.<br /><bullet>[0] - <m>polar</m></bullet><bullet>[1] - <m>cartesian</m></bullet>
+        Sets the input coordinate mode.<p /><bullet>[0] - <m>polar</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>polar</m>)</i>
       </description>
     </entry>
     <entry name="/speakers [variable length double array]">
       <description>
-        Sets the speaker positions in polar triples (one triple per speaker).
+        Sets the speaker positions in polar triples (one triple per speaker).<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/weights [variable length double array]">
       <description>
-        Sets the speaker weightings (one value per speaker).
+        Sets the speaker weightings (one value per speaker).<p /><i>(default: 1)</i>
       </description>
     </entry>
     <entry name="/rolloff [double]">
       <description>
-        Sets the rolloff in dB.
+        Sets the rolloff in dB.<p /><i>(default: 6)</i>
       </description>
     </entry>
     <entry name="/blur [double]">
       <description>
-        Sets the blur factor.
+        Sets the blur factor.<p /><i>(default: 0.4)</i>
       </description>
     </entry>
     <entry name="/maxspeakers [int]">
       <description>
-        Sets the maximum number of speakers to be used (the nearest N speakers will be used only). If zero all speakers are used.
+        Sets the maximum number of speakers to be used (the nearest N speakers will be used only). If zero all speakers are used.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/points [double]">
       <description>
-        Interpolate to point source panning (0 is modified DBAP - 1 is point source).
+        Interpolate to point source panning (0 is modified DBAP - 1 is point source).<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/constrain [enum]">
       <description>
-        Sets the method for constraining positions outside of the speaker array.<br /><bullet>[0] - <m>none</m></bullet><bullet>[1] - <m>hemisphere</m></bullet><bullet>[2] - <m>sphere</m></bullet><bullet>[3] - <m>hull</m></bullet>
+        Sets the method for constraining positions outside of the speaker array.<p /><bullet>[0] - <m>none</m></bullet><bullet>[1] - <m>hemisphere</m></bullet><bullet>[2] - <m>sphere</m></bullet><bullet>[3] - <m>hull</m></bullet><p /><i>(default: <m>hull</m>)</i>
       </description>
     </entry>
   </misc>

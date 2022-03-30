@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/num_filters [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of tags.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of tags.<p /><i>(default: 1)</i>
       </description>
     </entry>
     <entry name="/tag_01...10 [string]">

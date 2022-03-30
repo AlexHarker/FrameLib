@@ -10,12 +10,12 @@
   <misc name="Parameters">
     <entry name="/num_ins [double]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of inputs.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of inputs.<p /><i>(default: 2)</i>
       </description>
     </entry>
     <entry name="/input [int]">
       <description>
-        Sets the current input counting from 1 (or off if out of range).
+        Sets the current input counting from 1 (or off if out of range).<p /><i>(default: 0)</i>
       </description>
     </entry>
   </misc>
@@ -30,7 +30,7 @@
         Sets the number of inputs
       </digest>
       <description>
-        This argument sets the num_ins parameter:<br /><br />Sets the number of inputs.
+        This argument sets the num_ins parameter:<p /><p />Sets the number of inputs.<p /><i>(default: 2)</i>
       </description>
     </objarg>
     <objarg name="input" optional="1" type="int">
@@ -38,7 +38,7 @@
         Sets the current input counting from 1 (or off if out of range)
       </digest>
       <description>
-        This argument sets the input parameter:<br /><br />Sets the current input counting from 1 (or off if out of range).
+        This argument sets the input parameter:<p /><p />Sets the current input counting from 1 (or off if out of range).<p /><i>(default: 0)</i>
       </description>
     </objarg>
   </objarglist>

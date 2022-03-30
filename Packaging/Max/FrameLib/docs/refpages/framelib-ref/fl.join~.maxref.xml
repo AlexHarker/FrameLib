@@ -10,12 +10,12 @@
   <misc name="Parameters">
     <entry name="/num_ins [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of inputs.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of inputs.<p /><i>(default: 2)</i>
       </description>
     </entry>
     <entry name="/trigger_ins [fixed length bool array]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets which inputs trigger output using an array of bools. By default all inputs trigger output.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets which inputs trigger output using an array of bools. By default all inputs trigger output.<p /><i>(default: true)</i>
       </description>
     </entry>
   </misc>
@@ -30,7 +30,7 @@
         Sets the number of inputs
       </digest>
       <description>
-        This argument sets the num_ins parameter:<br /><br />Sets the number of inputs.
+        This argument sets the num_ins parameter:<p /><p />Sets the number of inputs.<p /><i>(default: 2)</i>
       </description>
     </objarg>
   </objarglist>

@@ -10,12 +10,12 @@
   <misc name="Parameters">
     <entry name="/split [double]">
       <description>
-        Sets the split point.
+        Sets the split point.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
       <description>
-        Sets the units for the split point (samples or ratios [0-1]).<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ratios</m></bullet>
+        Sets the units for the split point (samples or ratios [0-1]).<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ratios</m></bullet><p /><i>(default: <m>samples</m>)</i>
       </description>
     </entry>
   </misc>
@@ -30,7 +30,7 @@
         Sets the split point
       </digest>
       <description>
-        This argument sets the split parameter:<br /><br />Sets the split point.
+        This argument sets the split parameter:<p /><p />Sets the split point.<p /><i>(default: 0)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
@@ -38,7 +38,7 @@
         Sets the units for the split point (samples or ratios [0-1])
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the units for the split point (samples or ratios [0-1]).<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ratios</m></bullet>
+        This argument sets the units parameter:<p /><p />Sets the units for the split point (samples or ratios [0-1]).<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ratios</m></bullet><p /><i>(default: <m>samples</m>)</i>
       </description>
     </objarg>
   </objarglist>

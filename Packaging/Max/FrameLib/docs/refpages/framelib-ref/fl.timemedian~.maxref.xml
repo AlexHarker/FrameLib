@@ -10,27 +10,27 @@
   <misc name="Parameters">
     <entry name="/max_frames [int]">
       <description>
-        Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.
+        Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.<p /><i>(default: 10)</i>
       </description>
     </entry>
     <entry name="/num_frames [int]">
       <description>
-        Sets the current number of frames for calculation as an integer.
+        Sets the current number of frames for calculation as an integer.<p /><i>(default: 10)</i>
       </description>
     </entry>
     <entry name="/percentile [double]">
       <description>
-        Sets the percentile to retrieve.
+        Sets the percentile to retrieve.<p /><i>(default: 50)</i>
       </description>
     </entry>
     <entry name="/pad [double]">
       <description>
-        Sets the padding value.
+        Sets the padding value.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/start [enum]">
       <description>
-        Sets the behaviour when there are insufficient frames stored (as after a reset):<br /><bullet>[0] - <m>pad</m> - pad the calculation with default values to account for the missing frames.</bullet><bullet>[1] - <m>shorten</m> - calculate on all frames received since the reset.</bullet><br />Note that frames at the reset input set the frame used for padding. If the frame is too short or empty it is padded with the pad parameter.
+        Sets the behaviour when there are insufficient frames stored (as after a reset):<p /><bullet>[0] - <m>pad</m> - pad the calculation with default values to account for the missing frames.</bullet><bullet>[1] - <m>shorten</m> - calculate on all frames received since the reset.</bullet><p />Note that frames at the reset input set the frame used for padding. If the frame is too short or empty it is padded with the pad parameter.<p /><i>(default: <m>pad</m>)</i>
       </description>
     </entry>
   </misc>
@@ -45,7 +45,7 @@
         Sets the maximum number of frames for calculation
       </digest>
       <description>
-        This argument sets the max_frames parameter:<br /><br />Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.
+        This argument sets the max_frames parameter:<p /><p />Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.<p /><i>(default: 10)</i>
       </description>
     </objarg>
     <objarg name="num_frames" optional="1" type="int">
@@ -53,7 +53,7 @@
         Sets the current number of frames for calculation as an integer
       </digest>
       <description>
-        This argument sets the num_frames parameter:<br /><br />Sets the current number of frames for calculation as an integer.
+        This argument sets the num_frames parameter:<p /><p />Sets the current number of frames for calculation as an integer.<p /><i>(default: 10)</i>
       </description>
     </objarg>
     <objarg name="percentile" optional="1" type="number">
@@ -61,7 +61,7 @@
         Sets the percentile to retrieve
       </digest>
       <description>
-        This argument sets the percentile parameter:<br /><br />Sets the percentile to retrieve.
+        This argument sets the percentile parameter:<p /><p />Sets the percentile to retrieve.<p /><i>(default: 50)</i>
       </description>
     </objarg>
     <objarg name="pad" optional="1" type="number">
@@ -69,7 +69,7 @@
         Sets the padding value
       </digest>
       <description>
-        This argument sets the pad parameter:<br /><br />Sets the padding value.
+        This argument sets the pad parameter:<p /><p />Sets the padding value.<p /><i>(default: 0)</i>
       </description>
     </objarg>
   </objarglist>

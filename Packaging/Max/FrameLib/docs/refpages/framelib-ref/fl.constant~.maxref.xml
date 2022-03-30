@@ -10,12 +10,12 @@
   <misc name="Parameters">
     <entry name="/constant [enum]">
       <description>
-        Sets the constant to output.<br /><bullet>[0] - <m>pi</m></bullet><bullet>[1] - <m>1/pi</m></bullet><bullet>[2] - <m>e</m></bullet><bullet>[3] - <m>1/e</m></bullet><bullet>[4] - <m>sqrt2</m></bullet><bullet>[5] - <m>1/sqrt2</m></bullet><bullet>[6] - <m>epsilon</m></bullet>
+        Sets the constant to output.<p /><bullet>[0] - <m>pi</m></bullet><bullet>[1] - <m>1/pi</m></bullet><bullet>[2] - <m>e</m></bullet><bullet>[3] - <m>1/e</m></bullet><bullet>[4] - <m>sqrt2</m></bullet><bullet>[5] - <m>1/sqrt2</m></bullet><bullet>[6] - <m>epsilon</m></bullet><p /><i>(default: <m>pi</m>)</i>
       </description>
     </entry>
     <entry name="/multiplier [double]">
       <description>
-        Sets the multiplier.
+        Sets the multiplier.<p /><i>(default: 1)</i>
       </description>
     </entry>
   </misc>
@@ -30,7 +30,7 @@
         Sets the constant to output
       </digest>
       <description>
-        This argument sets the constant parameter:<br /><br />Sets the constant to output.<br /><bullet>[0] - <m>pi</m></bullet><bullet>[1] - <m>1/pi</m></bullet><bullet>[2] - <m>e</m></bullet><bullet>[3] - <m>1/e</m></bullet><bullet>[4] - <m>sqrt2</m></bullet><bullet>[5] - <m>1/sqrt2</m></bullet><bullet>[6] - <m>epsilon</m></bullet>
+        This argument sets the constant parameter:<p /><p />Sets the constant to output.<p /><bullet>[0] - <m>pi</m></bullet><bullet>[1] - <m>1/pi</m></bullet><bullet>[2] - <m>e</m></bullet><bullet>[3] - <m>1/e</m></bullet><bullet>[4] - <m>sqrt2</m></bullet><bullet>[5] - <m>1/sqrt2</m></bullet><bullet>[6] - <m>epsilon</m></bullet><p /><i>(default: <m>pi</m>)</i>
       </description>
     </objarg>
     <objarg name="multiplier" optional="1" type="number">
@@ -38,7 +38,7 @@
         Sets the multiplier
       </digest>
       <description>
-        This argument sets the multiplier parameter:<br /><br />Sets the multiplier.
+        This argument sets the multiplier parameter:<p /><p />Sets the multiplier.<p /><i>(default: 1)</i>
       </description>
     </objarg>
   </objarglist>

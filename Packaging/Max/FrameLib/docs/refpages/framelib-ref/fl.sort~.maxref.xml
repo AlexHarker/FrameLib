@@ -10,12 +10,12 @@
   <misc name="Parameters">
     <entry name="/order [enum]">
       <description>
-        Sets the ordering of the sorted output.<br /><bullet>[0] - <m>up</m></bullet><bullet>[1] - <m>down</m></bullet>
+        Sets the ordering of the sorted output.<p /><bullet>[0] - <m>up</m></bullet><bullet>[1] - <m>down</m></bullet><p /><i>(default: <m>up</m>)</i>
       </description>
     </entry>
     <entry name="/indices [bool]">
       <description>
-        Performs the sort on the indices of the input rather than the values.
+        Performs the sort on the indices of the input rather than the values.<p /><i>(default: false)</i>
       </description>
     </entry>
   </misc>
@@ -30,7 +30,7 @@
         Sets the ordering of the sorted output
       </digest>
       <description>
-        This argument sets the order parameter:<br /><br />Sets the ordering of the sorted output.<br /><bullet>[0] - <m>up</m></bullet><bullet>[1] - <m>down</m></bullet>
+        This argument sets the order parameter:<p /><p />Sets the ordering of the sorted output.<p /><bullet>[0] - <m>up</m></bullet><bullet>[1] - <m>down</m></bullet><p /><i>(default: <m>up</m>)</i>
       </description>
     </objarg>
     <objarg name="indices" optional="1" type="number">
@@ -38,7 +38,7 @@
         Performs the sort on the indices of the input rather than the values
       </digest>
       <description>
-        This argument sets the indices parameter:<br /><br />Performs the sort on the indices of the input rather than the values.
+        This argument sets the indices parameter:<p /><p />Performs the sort on the indices of the input rather than the values.<p /><i>(default: false)</i>
       </description>
     </objarg>
   </objarglist>

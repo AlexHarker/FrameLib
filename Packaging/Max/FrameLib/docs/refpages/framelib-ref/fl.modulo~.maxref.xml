@@ -10,17 +10,17 @@
   <misc name="Parameters">
     <entry name="/mismatch [enum]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the mode used when dealing with mismatched input lengths:<br /><bullet>[0] - <m>wrap</m> - the smaller input is read modulo against the larger input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the smaller input.</bullet><bullet>[2] - <m>pad_in</m> - the smaller input is padded prior to calculation to match the larger input.</bullet><bullet>[3] - <m>pad_out</m> - the output is padded to match the length of the larger input.</bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the mode used when dealing with mismatched input lengths:<p /><bullet>[0] - <m>wrap</m> - the smaller input is read modulo against the larger input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the smaller input.</bullet><bullet>[2] - <m>pad_in</m> - the smaller input is padded prior to calculation to match the larger input.</bullet><bullet>[3] - <m>pad_out</m> - the output is padded to match the length of the larger input.</bullet><p /><i>(default: <m>wrap</m>)</i>
       </description>
     </entry>
     <entry name="/trigger_ins [enum]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets which inputs trigger output.<br /><bullet>[0] - <m>both</m></bullet><bullet>[1] - <m>left</m></bullet><bullet>[2] - <m>right</m></bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets which inputs trigger output.<p /><bullet>[0] - <m>both</m></bullet><bullet>[1] - <m>left</m></bullet><bullet>[2] - <m>right</m></bullet><p /><i>(default: <m>both</m>)</i>
       </description>
     </entry>
     <entry name="/pad [double]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the value used for padding (for either pad_in or pad_out modes).
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the value used for padding (for either pad_in or pad_out modes).<p /><i>(default: 0)</i>
       </description>
     </entry>
   </misc>

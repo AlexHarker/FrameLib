@@ -10,32 +10,32 @@
   <misc name="Parameters">
     <entry name="/freq [double]">
       <description>
-        Sets the filter cutoff frequency.
+        Sets the filter cutoff frequency.<p /><i>(default: 500)</i>
       </description>
     </entry>
     <entry name="/res [double]">
       <description>
-        Sets the filter resonance.
+        Sets the filter resonance.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/mode [enum]">
       <description>
-        Sets the filter mode when multi-output mode is off:<br /><bullet>[0] - <m>lowpass</m> - low pass.</bullet><bullet>[1] - <m>bandpass</m> - band pass.</bullet><bullet>[2] - <m>highpass</m> - high pass.</bullet>
+        Sets the filter mode when multi-output mode is off:<p /><bullet>[0] - <m>lowpass</m> - low pass.</bullet><bullet>[1] - <m>bandpass</m> - band pass.</bullet><bullet>[2] - <m>highpass</m> - high pass.</bullet><p /><i>(default: <m>lowpass</m>)</i>
       </description>
     </entry>
     <entry name="/multi_output [bool]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Creates an output per filter mode with all modes output simultaneously.
+        <h6><i>INSTANTIATION ONLY</i></h6>Creates an output per filter mode with all modes output simultaneously.<p /><i>(default: false)</i>
       </description>
     </entry>
     <entry name="/dynamic [bool]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Creates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used.
+        <h6><i>INSTANTIATION ONLY</i></h6>Creates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used.<p /><i>(default: false)</i>
       </description>
     </entry>
     <entry name="/reset [bool]">
       <description>
-        Determines whether filter memories are reset before processing a new frame.
+        Determines whether filter memories are reset before processing a new frame.<p /><i>(default: true)</i>
       </description>
     </entry>
   </misc>
@@ -50,7 +50,7 @@
         Sets the filter cutoff frequency
       </digest>
       <description>
-        This argument sets the freq parameter:<br /><br />Sets the filter cutoff frequency.
+        This argument sets the freq parameter:<p /><p />Sets the filter cutoff frequency.<p /><i>(default: 500)</i>
       </description>
     </objarg>
     <objarg name="res" optional="1" type="number">
@@ -58,7 +58,7 @@
         Sets the filter resonance
       </digest>
       <description>
-        This argument sets the res parameter:<br /><br />Sets the filter resonance.
+        This argument sets the res parameter:<p /><p />Sets the filter resonance.<p /><i>(default: 0)</i>
       </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">
@@ -66,7 +66,7 @@
         Sets the filter mode when multi-output mode is off
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the filter mode when multi-output mode is off:<br /><bullet>[0] - <m>lowpass</m> - low pass.</bullet><bullet>[1] - <m>bandpass</m> - band pass.</bullet><bullet>[2] - <m>highpass</m> - high pass.</bullet>
+        This argument sets the mode parameter:<p /><p />Sets the filter mode when multi-output mode is off:<p /><bullet>[0] - <m>lowpass</m> - low pass.</bullet><bullet>[1] - <m>bandpass</m> - band pass.</bullet><bullet>[2] - <m>highpass</m> - high pass.</bullet><p /><i>(default: <m>lowpass</m>)</i>
       </description>
     </objarg>
   </objarglist>

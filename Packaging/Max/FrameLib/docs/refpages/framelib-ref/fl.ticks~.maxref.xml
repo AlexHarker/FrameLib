@@ -10,27 +10,27 @@
   <misc name="Parameters">
     <entry name="/limit [int]">
       <description>
-        Sets the count limit.
+        Sets the count limit.<p /><i>(default: 10)</i>
       </description>
     </entry>
     <entry name="/direction [enum]">
       <description>
-        Sets the direction of counting.<br /><bullet>[0] - <m>up</m></bullet><bullet>[1] - <m>down</m></bullet>
+        Sets the direction of counting.<p /><bullet>[0] - <m>up</m></bullet><bullet>[1] - <m>down</m></bullet><p /><i>(default: <m>up</m>)</i>
       </description>
     </entry>
     <entry name="/reset [int]">
       <description>
-        Sets the reset value. A value of -1 can be used for direction independent reset. This results in reset to 0 when counting up and (limit - 1) when counting down.
+        Sets the reset value. A value of -1 can be used for direction independent reset. This results in reset to 0 when counting up and (limit - 1) when counting down.<p /><i>(default: -1)</i>
       </description>
     </entry>
     <entry name="/mode [enum]">
       <description>
-        Sets the mode:<br /><bullet>[0] - <m>run</m> - the count continues until it hits the limit or zero.</bullet><bullet>[1] - <m>loop</m> - the count loops between zero and the limit minus one.</bullet><bullet>[2] - <m>pause</m> - the count is paused until the mode is changed.</bullet><bullet>[3] - <m>stop</m> - the count returns to the reset value until the mode is changed.</bullet>
+        Sets the mode:<p /><bullet>[0] - <m>run</m> - the count continues until it hits the limit or zero.</bullet><bullet>[1] - <m>loop</m> - the count loops between zero and the limit minus one.</bullet><bullet>[2] - <m>pause</m> - the count is paused until the mode is changed.</bullet><bullet>[3] - <m>stop</m> - the count returns to the reset value until the mode is changed.</bullet><p /><i>(default: <m>run</m>)</i>
       </description>
     </entry>
     <entry name="/idle [enum]">
       <description>
-        Sets the idle output (the output when stopped, paused or out of bounds):<br /><bullet>[0] - <m>repeat</m> - repeat the current count.</bullet><bullet>[1] - <m>empty</m> - output an empty frame.</bullet>
+        Sets the idle output (the output when stopped, paused or out of bounds):<p /><bullet>[0] - <m>repeat</m> - repeat the current count.</bullet><bullet>[1] - <m>empty</m> - output an empty frame.</bullet><p /><i>(default: <m>repeat</m>)</i>
       </description>
     </entry>
   </misc>
@@ -45,7 +45,7 @@
         Sets the count limit
       </digest>
       <description>
-        This argument sets the limit parameter:<br /><br />Sets the count limit.
+        This argument sets the limit parameter:<p /><p />Sets the count limit.<p /><i>(default: 10)</i>
       </description>
     </objarg>
     <objarg name="direction" optional="1" type="symbol">
@@ -53,7 +53,7 @@
         Sets the direction of counting
       </digest>
       <description>
-        This argument sets the direction parameter:<br /><br />Sets the direction of counting.<br /><bullet>[0] - <m>up</m></bullet><bullet>[1] - <m>down</m></bullet>
+        This argument sets the direction parameter:<p /><p />Sets the direction of counting.<p /><bullet>[0] - <m>up</m></bullet><bullet>[1] - <m>down</m></bullet><p /><i>(default: <m>up</m>)</i>
       </description>
     </objarg>
     <objarg name="reset" optional="1" type="int">
@@ -61,7 +61,7 @@
         Sets the reset value
       </digest>
       <description>
-        This argument sets the reset parameter:<br /><br />Sets the reset value. A value of -1 can be used for direction independent reset. This results in reset to 0 when counting up and (limit - 1) when counting down.
+        This argument sets the reset parameter:<p /><p />Sets the reset value. A value of -1 can be used for direction independent reset. This results in reset to 0 when counting up and (limit - 1) when counting down.<p /><i>(default: -1)</i>
       </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">
@@ -69,7 +69,7 @@
         Sets the mode
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the mode:<br /><bullet>[0] - <m>run</m> - the count continues until it hits the limit or zero.</bullet><bullet>[1] - <m>loop</m> - the count loops between zero and the limit minus one.</bullet><bullet>[2] - <m>pause</m> - the count is paused until the mode is changed.</bullet><bullet>[3] - <m>stop</m> - the count returns to the reset value until the mode is changed.</bullet>
+        This argument sets the mode parameter:<p /><p />Sets the mode:<p /><bullet>[0] - <m>run</m> - the count continues until it hits the limit or zero.</bullet><bullet>[1] - <m>loop</m> - the count loops between zero and the limit minus one.</bullet><bullet>[2] - <m>pause</m> - the count is paused until the mode is changed.</bullet><bullet>[3] - <m>stop</m> - the count returns to the reset value until the mode is changed.</bullet><p /><i>(default: <m>run</m>)</i>
       </description>
     </objarg>
     <objarg name="idle" optional="1" type="symbol">
@@ -77,7 +77,7 @@
         Sets the idle output (the output when stopped, paused or out of bounds)
       </digest>
       <description>
-        This argument sets the idle parameter:<br /><br />Sets the idle output (the output when stopped, paused or out of bounds):<br /><bullet>[0] - <m>repeat</m> - repeat the current count.</bullet><bullet>[1] - <m>empty</m> - output an empty frame.</bullet>
+        This argument sets the idle parameter:<p /><p />Sets the idle output (the output when stopped, paused or out of bounds):<p /><bullet>[0] - <m>repeat</m> - repeat the current count.</bullet><bullet>[1] - <m>empty</m> - output an empty frame.</bullet><p /><i>(default: <m>repeat</m>)</i>
       </description>
     </objarg>
   </objarglist>

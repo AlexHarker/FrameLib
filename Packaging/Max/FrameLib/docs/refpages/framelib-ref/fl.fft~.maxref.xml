@@ -10,17 +10,17 @@
   <misc name="Parameters">
     <entry name="/max_length [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the maximum input length and FFT size.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the maximum input length and FFT size.<p /><i>(default: 16384)</i>
       </description>
     </entry>
     <entry name="/normalise [bool]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets normalisation on or off (such that a full-scale real sine wave produces an amplitude of 1).
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets normalisation on or off (such that a full-scale real sine wave produces an amplitude of 1).<p /><i>(default: true)</i>
       </description>
     </entry>
     <entry name="/mode [enum]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the type of input expected and the output produced:<br /><bullet>[0] - <m>real</m> - real input (power of two length) and output without reflection (length is N / 2 + 1).</bullet><bullet>[1] - <m>complex</m> - complex input (two frames) with the same (power of two) input and output lengths.</bullet><bullet>[2] - <m>full_spectrum</m> - real input and output of the same (power of two) length with spectral reflection.</bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the type of input expected and the output produced:<p /><bullet>[0] - <m>real</m> - real input (power of two length) and output without reflection (length is N / 2 + 1).</bullet><bullet>[1] - <m>complex</m> - complex input (two frames) with the same (power of two) input and output lengths.</bullet><bullet>[2] - <m>full_spectrum</m> - real input and output of the same (power of two) length with spectral reflection.</bullet><p /><i>(default: <m>real</m>)</i>
       </description>
     </entry>
   </misc>
@@ -35,7 +35,7 @@
         Sets the maximum input length and FFT size
       </digest>
       <description>
-        This argument sets the max_length parameter:<br /><br />Sets the maximum input length and FFT size.
+        This argument sets the max_length parameter:<p /><p />Sets the maximum input length and FFT size.<p /><i>(default: 16384)</i>
       </description>
     </objarg>
     <objarg name="normalise" optional="1" type="number">
@@ -43,7 +43,7 @@
         Sets normalisation on or off (such that a full-scale real sine wave produces an amplitude of 1)
       </digest>
       <description>
-        This argument sets the normalise parameter:<br /><br />Sets normalisation on or off (such that a full-scale real sine wave produces an amplitude of 1).
+        This argument sets the normalise parameter:<p /><p />Sets normalisation on or off (such that a full-scale real sine wave produces an amplitude of 1).<p /><i>(default: true)</i>
       </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">
@@ -51,7 +51,7 @@
         Sets the type of input expected and the output produced
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the type of input expected and the output produced:<br /><bullet>[0] - <m>real</m> - real input (power of two length) and output without reflection (length is N / 2 + 1).</bullet><bullet>[1] - <m>complex</m> - complex input (two frames) with the same (power of two) input and output lengths.</bullet><bullet>[2] - <m>full_spectrum</m> - real input and output of the same (power of two) length with spectral reflection.</bullet>
+        This argument sets the mode parameter:<p /><p />Sets the type of input expected and the output produced:<p /><bullet>[0] - <m>real</m> - real input (power of two length) and output without reflection (length is N / 2 + 1).</bullet><bullet>[1] - <m>complex</m> - complex input (two frames) with the same (power of two) input and output lengths.</bullet><bullet>[2] - <m>full_spectrum</m> - real input and output of the same (power of two) length with spectral reflection.</bullet><p /><i>(default: <m>real</m>)</i>
       </description>
     </objarg>
   </objarglist>

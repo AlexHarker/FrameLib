@@ -25,7 +25,7 @@
         Sets the name of the storage to use
       </digest>
       <description>
-        This argument sets the name parameter:<br /><br />Sets the name of the storage to use. Note that names are local to the current context.
+        This argument sets the name parameter:<p /><p />Sets the name of the storage to use. Note that names are local to the current context.
       </description>
     </objarg>
   </objarglist>

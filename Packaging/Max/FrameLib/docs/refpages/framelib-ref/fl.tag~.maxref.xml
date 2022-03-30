@@ -10,12 +10,12 @@
   <misc name="Parameters">
     <entry name="/num_ins [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of inputs (and hence the number of tags).
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of inputs (and hence the number of tags).<p /><i>(default: 1)</i>
       </description>
     </entry>
     <entry name="/empty [enum]">
       <description>
-        Sets the behaviour when empty frames are received:<br /><bullet>[0] - <m>ignore</m> - empty frames are ignored.</bullet><bullet>[1] - <m>reset</m> - empty frames create empty tags to reset parameters to defaults.</bullet>
+        Sets the behaviour when empty frames are received:<p /><bullet>[0] - <m>ignore</m> - empty frames are ignored.</bullet><bullet>[1] - <m>reset</m> - empty frames create empty tags to reset parameters to defaults.</bullet><p /><i>(default: <m>ignore</m>)</i>
       </description>
     </entry>
     <entry name="/tag_01...10 [string]">

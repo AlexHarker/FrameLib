@@ -10,37 +10,37 @@
   <misc name="Parameters">
     <entry name="/a1 [double]">
       <description>
-        Sets the a1 coefficient.
+        Sets the a1 coefficient.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/a2 [double]">
       <description>
-        Sets the a2 coefficient.
+        Sets the a2 coefficient.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/b0 [double]">
       <description>
-        Sets the b0 coefficient.
+        Sets the b0 coefficient.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/b1 [double]">
       <description>
-        Sets the b1 coefficient.
+        Sets the b1 coefficient.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/b2 [double]">
       <description>
-        Sets the b2 coefficient.
+        Sets the b2 coefficient.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/dynamic [bool]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Creates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used.
+        <h6><i>INSTANTIATION ONLY</i></h6>Creates inputs for per sample values for each of the filter parameters. If an input is not provided the corresponding parameter value is used.<p /><i>(default: false)</i>
       </description>
     </entry>
     <entry name="/reset [bool]">
       <description>
-        Determines whether filter memories are reset before processing a new frame.
+        Determines whether filter memories are reset before processing a new frame.<p /><i>(default: true)</i>
       </description>
     </entry>
   </misc>
@@ -55,7 +55,7 @@
         Sets the a1 coefficient
       </digest>
       <description>
-        This argument sets the a1 parameter:<br /><br />Sets the a1 coefficient.
+        This argument sets the a1 parameter:<p /><p />Sets the a1 coefficient.<p /><i>(default: 0)</i>
       </description>
     </objarg>
     <objarg name="a2" optional="1" type="number">
@@ -63,7 +63,7 @@
         Sets the a2 coefficient
       </digest>
       <description>
-        This argument sets the a2 parameter:<br /><br />Sets the a2 coefficient.
+        This argument sets the a2 parameter:<p /><p />Sets the a2 coefficient.<p /><i>(default: 0)</i>
       </description>
     </objarg>
     <objarg name="b0" optional="1" type="number">
@@ -71,7 +71,7 @@
         Sets the b0 coefficient
       </digest>
       <description>
-        This argument sets the b0 parameter:<br /><br />Sets the b0 coefficient.
+        This argument sets the b0 parameter:<p /><p />Sets the b0 coefficient.<p /><i>(default: 0)</i>
       </description>
     </objarg>
     <objarg name="b1" optional="1" type="number">
@@ -79,7 +79,7 @@
         Sets the b1 coefficient
       </digest>
       <description>
-        This argument sets the b1 parameter:<br /><br />Sets the b1 coefficient.
+        This argument sets the b1 parameter:<p /><p />Sets the b1 coefficient.<p /><i>(default: 0)</i>
       </description>
     </objarg>
     <objarg name="b2" optional="1" type="number">
@@ -87,7 +87,7 @@
         Sets the b2 coefficient
       </digest>
       <description>
-        This argument sets the b2 parameter:<br /><br />Sets the b2 coefficient.
+        This argument sets the b2 parameter:<p /><p />Sets the b2 coefficient.<p /><i>(default: 0)</i>
       </description>
     </objarg>
   </objarglist>

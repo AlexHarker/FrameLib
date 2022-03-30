@@ -10,37 +10,37 @@
   <misc name="Parameters">
     <entry name="/neighbours [int]">
       <description>
-        Sets the number of neighbours each side that must be exceeded in order to detect a peak.
+        Sets the number of neighbours each side that must be exceeded in order to detect a peak.<p /><i>(default: 1)</i>
       </description>
     </entry>
     <entry name="/threshold [double]">
       <description>
-        Sets the threshold value for detecting a peak.
+        Sets the threshold value for detecting a peak.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/pad [double]">
       <description>
-        Sets the padding value.
+        Sets the padding value.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/edges [enum]">
       <description>
-        Sets the edge behaviour for peak detection:<br /><bullet>[0] - <m>pad</m> - values beyond the edges of the input are read as the padding value.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet>
+        Sets the edge behaviour for peak detection:<p /><bullet>[0] - <m>pad</m> - values beyond the edges of the input are read as the padding value.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><p /><i>(default: <m>pad</m>)</i>
       </description>
     </entry>
     <entry name="/refine [enum]">
       <description>
-        Sets the method for refining peak values:<br /><bullet>[0] - <m>off</m> - return the peak value without refinement.</bullet><bullet>[1] - <m>parabolic</m> - apply parabolic interpolation to the three values around the peak.</bullet><bullet>[2] - <m>parabolic_log</m> - apply parabolic interpolation to the log of the three values around the peak.</bullet><br />Note that parabolic_log is suitable for interpolating linear amplitudes.
+        Sets the method for refining peak values:<p /><bullet>[0] - <m>off</m> - return the peak value without refinement.</bullet><bullet>[1] - <m>parabolic</m> - apply parabolic interpolation to the three values around the peak.</bullet><bullet>[2] - <m>parabolic_log</m> - apply parabolic interpolation to the log of the three values around the peak.</bullet><p />Note that parabolic_log is suitable for interpolating linear amplitudes.<p /><i>(default: <m>parabolic</m>)</i>
       </description>
     </entry>
     <entry name="/boundaries [enum]">
       <description>
-        Sets the method for selecting the boundaries between peaks:<br /><bullet>[0] - <m>minimum</m> - boundaries are set at the minimum value between consecutive peaks.</bullet><bullet>[1] - <m>midpoint</m> - boundaries are set to the indices halfway between consecutive peaks.</bullet>
+        Sets the method for selecting the boundaries between peaks:<p /><bullet>[0] - <m>minimum</m> - boundaries are set at the minimum value between consecutive peaks.</bullet><bullet>[1] - <m>midpoint</m> - boundaries are set to the indices halfway between consecutive peaks.</bullet><p /><i>(default: <m>minimum</m>)</i>
       </description>
     </entry>
     <entry name="/always_detect [bool]">
       <description>
-        If set on at least one peak will be detected even if no values match the peak criteria. If set off then the outputs will be empty if no peak is detected.
+        If set on at least one peak will be detected even if no values match the peak criteria. If set off then the outputs will be empty if no peak is detected.<p /><i>(default: true)</i>
       </description>
     </entry>
   </misc>
@@ -55,7 +55,7 @@
         Sets the number of neighbours each side that must be exceeded in order to detect a peak
       </digest>
       <description>
-        This argument sets the neighbours parameter:<br /><br />Sets the number of neighbours each side that must be exceeded in order to detect a peak.
+        This argument sets the neighbours parameter:<p /><p />Sets the number of neighbours each side that must be exceeded in order to detect a peak.<p /><i>(default: 1)</i>
       </description>
     </objarg>
     <objarg name="threshold" optional="1" type="number">
@@ -63,7 +63,7 @@
         Sets the threshold value for detecting a peak
       </digest>
       <description>
-        This argument sets the threshold parameter:<br /><br />Sets the threshold value for detecting a peak.
+        This argument sets the threshold parameter:<p /><p />Sets the threshold value for detecting a peak.<p /><i>(default: 0)</i>
       </description>
     </objarg>
     <objarg name="pad" optional="1" type="number">
@@ -71,7 +71,7 @@
         Sets the padding value
       </digest>
       <description>
-        This argument sets the pad parameter:<br /><br />Sets the padding value.
+        This argument sets the pad parameter:<p /><p />Sets the padding value.<p /><i>(default: 0)</i>
       </description>
     </objarg>
     <objarg name="edges" optional="1" type="symbol">
@@ -79,7 +79,7 @@
         Sets the edge behaviour for peak detection
       </digest>
       <description>
-        This argument sets the edges parameter:<br /><br />Sets the edge behaviour for peak detection:<br /><bullet>[0] - <m>pad</m> - values beyond the edges of the input are read as the padding value.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet>
+        This argument sets the edges parameter:<p /><p />Sets the edge behaviour for peak detection:<p /><bullet>[0] - <m>pad</m> - values beyond the edges of the input are read as the padding value.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><p /><i>(default: <m>pad</m>)</i>
       </description>
     </objarg>
     <objarg name="boundaries" optional="1" type="symbol">
@@ -87,7 +87,7 @@
         Sets the method for selecting the boundaries between peaks
       </digest>
       <description>
-        This argument sets the boundaries parameter:<br /><br />Sets the method for selecting the boundaries between peaks:<br /><bullet>[0] - <m>minimum</m> - boundaries are set at the minimum value between consecutive peaks.</bullet><bullet>[1] - <m>midpoint</m> - boundaries are set to the indices halfway between consecutive peaks.</bullet>
+        This argument sets the boundaries parameter:<p /><p />Sets the method for selecting the boundaries between peaks:<p /><bullet>[0] - <m>minimum</m> - boundaries are set at the minimum value between consecutive peaks.</bullet><bullet>[1] - <m>midpoint</m> - boundaries are set to the indices halfway between consecutive peaks.</bullet><p /><i>(default: <m>minimum</m>)</i>
       </description>
     </objarg>
     <objarg name="always_detect" optional="1" type="number">
@@ -95,7 +95,7 @@
         If set on at least one peak will be detected even if no values match the peak criteria
       </digest>
       <description>
-        This argument sets the always_detect parameter:<br /><br />If set on at least one peak will be detected even if no values match the peak criteria. If set off then the outputs will be empty if no peak is detected.
+        This argument sets the always_detect parameter:<p /><p />If set on at least one peak will be detected even if no values match the peak criteria. If set off then the outputs will be empty if no peak is detected.<p /><i>(default: true)</i>
       </description>
     </objarg>
   </objarglist>

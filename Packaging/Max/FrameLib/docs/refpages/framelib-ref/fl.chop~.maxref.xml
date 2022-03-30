@@ -10,17 +10,17 @@
   <misc name="Parameters">
     <entry name="/num_outs [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of outputs.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of outputs.<p /><i>(default: 1)</i>
       </description>
     </entry>
     <entry name="/size [double]">
       <description>
-        Sets the size of the output frames.
+        Sets the size of the output frames.<p /><i>(default: 1)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
       <description>
-        Sets the units for the size (samples or ratio of the input length [0-1]).<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ratios</m></bullet>
+        Sets the units for the size (samples or ratio of the input length [0-1]).<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ratios</m></bullet><p /><i>(default: <m>samples</m>)</i>
       </description>
     </entry>
   </misc>
@@ -35,7 +35,7 @@
         Sets the number of outputs
       </digest>
       <description>
-        This argument sets the num_outs parameter:<br /><br />Sets the number of outputs.
+        This argument sets the num_outs parameter:<p /><p />Sets the number of outputs.<p /><i>(default: 1)</i>
       </description>
     </objarg>
     <objarg name="size" optional="1" type="number">
@@ -43,7 +43,7 @@
         Sets the size of the output frames
       </digest>
       <description>
-        This argument sets the size parameter:<br /><br />Sets the size of the output frames.
+        This argument sets the size parameter:<p /><p />Sets the size of the output frames.<p /><i>(default: 1)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
@@ -51,7 +51,7 @@
         Sets the units for the size (samples or ratio of the input length [0-1])
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the units for the size (samples or ratio of the input length [0-1]).<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ratios</m></bullet>
+        This argument sets the units parameter:<p /><p />Sets the units for the size (samples or ratio of the input length [0-1]).<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ratios</m></bullet><p /><i>(default: <m>samples</m>)</i>
       </description>
     </objarg>
   </objarglist>

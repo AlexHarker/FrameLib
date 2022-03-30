@@ -10,37 +10,37 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        Sets the type of output scaling:<br /><bullet>[0] - <m>linear</m> - linear scaling.</bullet><bullet>[1] - <m>log</m> - logarithmic scaling.</bullet><bullet>[2] - <m>exp</m> - exponential scaling.</bullet><bullet>[3] - <m>pow</m> - input range scaled [0-1], raised to an exponent and then scaled to the output range.</bullet><bullet>[4] - <m>db</m> - output range set in dB with mapping to corresponding linear gain values.</bullet><bullet>[5] - <m>transpose</m> - output range set in semitones with mapping to corresponding ratios.</bullet><bullet>[6] - <m>inverse_pow</m> - the inverse mapping of the pow mode.</bullet><bullet>[7] - <m>inverse_db</m> - the inverse mapping of the db mode.</bullet><bullet>[8] - <m>inverse_transpose</m> - the inverse mapping of the inverse_transpose mode.</bullet>
+        Sets the type of output scaling:<p /><bullet>[0] - <m>linear</m> - linear scaling.</bullet><bullet>[1] - <m>log</m> - logarithmic scaling.</bullet><bullet>[2] - <m>exp</m> - exponential scaling.</bullet><bullet>[3] - <m>pow</m> - input range scaled [0-1], raised to an exponent and then scaled to the output range.</bullet><bullet>[4] - <m>db</m> - output range set in dB with mapping to corresponding linear gain values.</bullet><bullet>[5] - <m>transpose</m> - output range set in semitones with mapping to corresponding ratios.</bullet><bullet>[6] - <m>inverse_pow</m> - the inverse mapping of the pow mode.</bullet><bullet>[7] - <m>inverse_db</m> - the inverse mapping of the db mode.</bullet><bullet>[8] - <m>inverse_transpose</m> - the inverse mapping of the inverse_transpose mode.</bullet><p /><i>(default: <m>linear</m>)</i>
       </description>
     </entry>
     <entry name="/in_1 [double]">
       <description>
-        Sets the first bound of the input range.
+        Sets the first bound of the input range.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/in_2 [double]">
       <description>
-        Sets the second bound of the input range.
+        Sets the second bound of the input range.<p /><i>(default: 1)</i>
       </description>
     </entry>
     <entry name="/out_1 [double]">
       <description>
-        Sets the first bound of the output range.
+        Sets the first bound of the output range.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/out_2 [double]">
       <description>
-        Sets the second bound of the output range.
+        Sets the second bound of the output range.<p /><i>(default: 1)</i>
       </description>
     </entry>
     <entry name="/clip [bool]">
       <description>
-        If set on then the output is constrained between the two output values. Note that scaling will otherwise continue outside of the specified ranges.
+        If set on then the output is constrained between the two output values. Note that scaling will otherwise continue outside of the specified ranges.<p /><i>(default: true)</i>
       </description>
     </entry>
     <entry name="/exponent [double]">
       <description>
-        Sets the exponent for the pow and inverse_pow modes.
+        Sets the exponent for the pow and inverse_pow modes.<p /><i>(default: 1)</i>
       </description>
     </entry>
   </misc>
@@ -55,7 +55,7 @@
         Sets the type of output scaling
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the type of output scaling:<br /><bullet>[0] - <m>linear</m> - linear scaling.</bullet><bullet>[1] - <m>log</m> - logarithmic scaling.</bullet><bullet>[2] - <m>exp</m> - exponential scaling.</bullet><bullet>[3] - <m>pow</m> - input range scaled [0-1], raised to an exponent and then scaled to the output range.</bullet><bullet>[4] - <m>db</m> - output range set in dB with mapping to corresponding linear gain values.</bullet><bullet>[5] - <m>transpose</m> - output range set in semitones with mapping to corresponding ratios.</bullet><bullet>[6] - <m>inverse_pow</m> - the inverse mapping of the pow mode.</bullet><bullet>[7] - <m>inverse_db</m> - the inverse mapping of the db mode.</bullet><bullet>[8] - <m>inverse_transpose</m> - the inverse mapping of the inverse_transpose mode.</bullet>
+        This argument sets the mode parameter:<p /><p />Sets the type of output scaling:<p /><bullet>[0] - <m>linear</m> - linear scaling.</bullet><bullet>[1] - <m>log</m> - logarithmic scaling.</bullet><bullet>[2] - <m>exp</m> - exponential scaling.</bullet><bullet>[3] - <m>pow</m> - input range scaled [0-1], raised to an exponent and then scaled to the output range.</bullet><bullet>[4] - <m>db</m> - output range set in dB with mapping to corresponding linear gain values.</bullet><bullet>[5] - <m>transpose</m> - output range set in semitones with mapping to corresponding ratios.</bullet><bullet>[6] - <m>inverse_pow</m> - the inverse mapping of the pow mode.</bullet><bullet>[7] - <m>inverse_db</m> - the inverse mapping of the db mode.</bullet><bullet>[8] - <m>inverse_transpose</m> - the inverse mapping of the inverse_transpose mode.</bullet><p /><i>(default: <m>linear</m>)</i>
       </description>
     </objarg>
     <objarg name="in_1" optional="1" type="number">
@@ -63,7 +63,7 @@
         Sets the first bound of the input range
       </digest>
       <description>
-        This argument sets the in_1 parameter:<br /><br />Sets the first bound of the input range.
+        This argument sets the in_1 parameter:<p /><p />Sets the first bound of the input range.<p /><i>(default: 0)</i>
       </description>
     </objarg>
     <objarg name="in_2" optional="1" type="number">
@@ -71,7 +71,7 @@
         Sets the second bound of the input range
       </digest>
       <description>
-        This argument sets the in_2 parameter:<br /><br />Sets the second bound of the input range.
+        This argument sets the in_2 parameter:<p /><p />Sets the second bound of the input range.<p /><i>(default: 1)</i>
       </description>
     </objarg>
     <objarg name="out_1" optional="1" type="number">
@@ -79,7 +79,7 @@
         Sets the first bound of the output range
       </digest>
       <description>
-        This argument sets the out_1 parameter:<br /><br />Sets the first bound of the output range.
+        This argument sets the out_1 parameter:<p /><p />Sets the first bound of the output range.<p /><i>(default: 0)</i>
       </description>
     </objarg>
     <objarg name="out_2" optional="1" type="number">
@@ -87,7 +87,7 @@
         Sets the second bound of the output range
       </digest>
       <description>
-        This argument sets the out_2 parameter:<br /><br />Sets the second bound of the output range.
+        This argument sets the out_2 parameter:<p /><p />Sets the second bound of the output range.<p /><i>(default: 1)</i>
       </description>
     </objarg>
     <objarg name="clip" optional="1" type="number">
@@ -95,7 +95,7 @@
         If set on then the output is constrained between the two output values
       </digest>
       <description>
-        This argument sets the clip parameter:<br /><br />If set on then the output is constrained between the two output values. Note that scaling will otherwise continue outside of the specified ranges.
+        This argument sets the clip parameter:<p /><p />If set on then the output is constrained between the two output values. Note that scaling will otherwise continue outside of the specified ranges.<p /><i>(default: true)</i>
       </description>
     </objarg>
   </objarglist>

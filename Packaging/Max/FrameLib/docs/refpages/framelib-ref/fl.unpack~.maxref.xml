@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/num_outs [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of single stream outputs.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of single stream outputs.<p /><i>(default: 2)</i>
       </description>
     </entry>
   </misc>
@@ -25,7 +25,7 @@
         Sets the number of single stream outputs
       </digest>
       <description>
-        This argument sets the num_outs parameter:<br /><br />Sets the number of single stream outputs.
+        This argument sets the num_outs parameter:<p /><p />Sets the number of single stream outputs.<p /><i>(default: 2)</i>
       </description>
     </objarg>
   </objarglist>

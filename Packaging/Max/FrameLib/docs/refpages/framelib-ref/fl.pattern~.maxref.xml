@@ -10,22 +10,22 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        Sets the mode:<br /><bullet>[0] - <m>run</m> - the pattern progresses until it hits the final value.</bullet><bullet>[1] - <m>loop</m> - the pattern loops.</bullet><bullet>[2] - <m>pause</m> - the pattern is paused until the mode is changed.</bullet><bullet>[3] - <m>stop</m> - the pattern returns to the reset position until the mode is changed.</bullet>
+        Sets the mode:<p /><bullet>[0] - <m>run</m> - the pattern progresses until it hits the final value.</bullet><bullet>[1] - <m>loop</m> - the pattern loops.</bullet><bullet>[2] - <m>pause</m> - the pattern is paused until the mode is changed.</bullet><bullet>[3] - <m>stop</m> - the pattern returns to the reset position until the mode is changed.</bullet><p /><i>(default: <m>run</m>)</i>
       </description>
     </entry>
     <entry name="/direction [enum]">
       <description>
-        Sets the direction of progress.<br /><bullet>[0] - <m>forward</m></bullet><bullet>[1] - <m>backward</m></bullet>
+        Sets the direction of progress.<p /><bullet>[0] - <m>forward</m></bullet><bullet>[1] - <m>backward</m></bullet><p /><i>(default: <m>forward</m>)</i>
       </description>
     </entry>
     <entry name="/reset [int]">
       <description>
-        Sets the reset position as a sample index. A value of -1 can be used for direction independent reset. For forward direction reading this results in a reset to the first position. For backward direction reading this results in a reset to the last position.
+        Sets the reset position as a sample index. A value of -1 can be used for direction independent reset. For forward direction reading this results in a reset to the first position. For backward direction reading this results in a reset to the last position.<p /><i>(default: -1)</i>
       </description>
     </entry>
     <entry name="/idle [enum]">
       <description>
-        Sets the idle output (the output when stopped, paused or out of bounds):<br /><bullet>[0] - <m>repeat</m> - repeat the current value.</bullet><bullet>[1] - <m>empty</m> - output an empty frame.</bullet>
+        Sets the idle output (the output when stopped, paused or out of bounds):<p /><bullet>[0] - <m>repeat</m> - repeat the current value.</bullet><bullet>[1] - <m>empty</m> - output an empty frame.</bullet><p /><i>(default: <m>repeat</m>)</i>
       </description>
     </entry>
   </misc>
@@ -40,7 +40,7 @@
         Sets the mode
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the mode:<br /><bullet>[0] - <m>run</m> - the pattern progresses until it hits the final value.</bullet><bullet>[1] - <m>loop</m> - the pattern loops.</bullet><bullet>[2] - <m>pause</m> - the pattern is paused until the mode is changed.</bullet><bullet>[3] - <m>stop</m> - the pattern returns to the reset position until the mode is changed.</bullet>
+        This argument sets the mode parameter:<p /><p />Sets the mode:<p /><bullet>[0] - <m>run</m> - the pattern progresses until it hits the final value.</bullet><bullet>[1] - <m>loop</m> - the pattern loops.</bullet><bullet>[2] - <m>pause</m> - the pattern is paused until the mode is changed.</bullet><bullet>[3] - <m>stop</m> - the pattern returns to the reset position until the mode is changed.</bullet><p /><i>(default: <m>run</m>)</i>
       </description>
     </objarg>
     <objarg name="direction" optional="1" type="symbol">
@@ -48,7 +48,7 @@
         Sets the direction of progress
       </digest>
       <description>
-        This argument sets the direction parameter:<br /><br />Sets the direction of progress.<br /><bullet>[0] - <m>forward</m></bullet><bullet>[1] - <m>backward</m></bullet>
+        This argument sets the direction parameter:<p /><p />Sets the direction of progress.<p /><bullet>[0] - <m>forward</m></bullet><bullet>[1] - <m>backward</m></bullet><p /><i>(default: <m>forward</m>)</i>
       </description>
     </objarg>
     <objarg name="reset" optional="1" type="int">
@@ -56,7 +56,7 @@
         Sets the reset position as a sample index
       </digest>
       <description>
-        This argument sets the reset parameter:<br /><br />Sets the reset position as a sample index. A value of -1 can be used for direction independent reset. For forward direction reading this results in a reset to the first position. For backward direction reading this results in a reset to the last position.
+        This argument sets the reset parameter:<p /><p />Sets the reset position as a sample index. A value of -1 can be used for direction independent reset. For forward direction reading this results in a reset to the first position. For backward direction reading this results in a reset to the last position.<p /><i>(default: -1)</i>
       </description>
     </objarg>
     <objarg name="idle" optional="1" type="symbol">
@@ -64,7 +64,7 @@
         Sets the idle output (the output when stopped, paused or out of bounds)
       </digest>
       <description>
-        This argument sets the idle parameter:<br /><br />Sets the idle output (the output when stopped, paused or out of bounds):<br /><bullet>[0] - <m>repeat</m> - repeat the current value.</bullet><bullet>[1] - <m>empty</m> - output an empty frame.</bullet>
+        This argument sets the idle parameter:<p /><p />Sets the idle output (the output when stopped, paused or out of bounds):<p /><bullet>[0] - <m>repeat</m> - repeat the current value.</bullet><bullet>[1] - <m>empty</m> - output an empty frame.</bullet><p /><i>(default: <m>repeat</m>)</i>
       </description>
     </objarg>
   </objarglist>

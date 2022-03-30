@@ -10,12 +10,12 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        Sets whether NaNs are replaced or removed.<br /><bullet>[0] - <m>replace</m></bullet><bullet>[1] - <m>remove</m></bullet>
+        Sets whether NaNs are replaced or removed.<p /><bullet>[0] - <m>replace</m></bullet><bullet>[1] - <m>remove</m></bullet><p /><i>(default: <m>replace</m>)</i>
       </description>
     </entry>
     <entry name="/value [double]">
       <description>
-        Sets the value with which to replace NaNs when in replace mode.
+        Sets the value with which to replace NaNs when in replace mode.<p /><i>(default: 0)</i>
       </description>
     </entry>
   </misc>
@@ -30,7 +30,7 @@
         Sets whether NaNs are replaced or removed
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets whether NaNs are replaced or removed.<br /><bullet>[0] - <m>replace</m></bullet><bullet>[1] - <m>remove</m></bullet>
+        This argument sets the mode parameter:<p /><p />Sets whether NaNs are replaced or removed.<p /><bullet>[0] - <m>replace</m></bullet><bullet>[1] - <m>remove</m></bullet><p /><i>(default: <m>replace</m>)</i>
       </description>
     </objarg>
     <objarg name="value" optional="1" type="number">
@@ -38,7 +38,7 @@
         Sets the value with which to replace NaNs when in replace mode
       </digest>
       <description>
-        This argument sets the value parameter:<br /><br />Sets the value with which to replace NaNs when in replace mode.
+        This argument sets the value parameter:<p /><p />Sets the value with which to replace NaNs when in replace mode.<p /><i>(default: 0)</i>
       </description>
     </objarg>
   </objarglist>

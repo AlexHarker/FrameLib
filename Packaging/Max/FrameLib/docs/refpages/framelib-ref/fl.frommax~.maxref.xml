@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the mode:<br /><bullet>[0] - <m>values</m> - translate values from the host into vectors.</bullet><bullet>[1] - <m>params</m> - translate host messages into concatenated tagged frames.</bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the mode:<p /><bullet>[0] - <m>values</m> - translate values from the host into vectors.</bullet><bullet>[1] - <m>params</m> - translate host messages into concatenated tagged frames.</bullet><p /><i>(default: <m>values</m>)</i>
       </description>
     </entry>
   </misc>
@@ -25,7 +25,7 @@
         Sets the mode
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the mode:<br /><bullet>[0] - <m>values</m> - translate values from the host into vectors.</bullet><bullet>[1] - <m>params</m> - translate host messages into concatenated tagged frames.</bullet>
+        This argument sets the mode parameter:<p /><p />Sets the mode:<p /><bullet>[0] - <m>values</m> - translate values from the host into vectors.</bullet><bullet>[1] - <m>params</m> - translate host messages into concatenated tagged frames.</bullet><p /><i>(default: <m>values</m>)</i>
       </description>
     </objarg>
   </objarglist>

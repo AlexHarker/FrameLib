@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/num_items [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of items.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of items.<p /><i>(default: 1)</i>
       </description>
     </entry>
     <entry name="/tag [string]">
@@ -20,12 +20,12 @@
     </entry>
     <entry name="/scale [enum]">
       <description>
-        Sets the input scale:<br /><bullet>[0] - <m>indices</m> - string lookup is done by index.</bullet><bullet>[1] - <m>normalised</m> - string lookup is done by normalised value.</bullet>
+        Sets the input scale:<p /><bullet>[0] - <m>indices</m> - string lookup is done by index.</bullet><bullet>[1] - <m>normalised</m> - string lookup is done by normalised value.</bullet><p /><i>(default: <m>indices</m>)</i>
       </description>
     </entry>
     <entry name="/empty [enum]">
       <description>
-        Sets the behaviour when empty frames are received:<br /><bullet>[0] - <m>ignore</m> - empty frames are ignored.</bullet><bullet>[1] - <m>reset</m> - empty frames create empty tags to reset parameters to defaults.</bullet>
+        Sets the behaviour when empty frames are received:<p /><bullet>[0] - <m>ignore</m> - empty frames are ignored.</bullet><bullet>[1] - <m>reset</m> - empty frames create empty tags to reset parameters to defaults.</bullet><p /><i>(default: <m>ignore</m>)</i>
       </description>
     </entry>
     <entry name="/item_01...32 [string]">
@@ -45,7 +45,7 @@
         Sets the output tag
       </digest>
       <description>
-        This argument sets the tag parameter:<br /><br />Sets the output tag.
+        This argument sets the tag parameter:<p /><p />Sets the output tag.
       </description>
     </objarg>
     <objarg name="item_01...32" optional="1" type="symbol">

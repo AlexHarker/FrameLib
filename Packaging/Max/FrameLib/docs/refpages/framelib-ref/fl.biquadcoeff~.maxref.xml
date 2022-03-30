@@ -10,27 +10,27 @@
   <misc name="Parameters">
     <entry name="/freq [double]">
       <description>
-        Sets the filter frequency.
+        Sets the filter frequency.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/gain [double]">
       <description>
-        Sets the linear gain of the filter.
+        Sets the linear gain of the filter.<p /><i>(default: 1)</i>
       </description>
     </entry>
     <entry name="/qs [double]">
       <description>
-        Sets the q or s of the filter.
+        Sets the q or s of the filter.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/mode [enum]">
       <description>
-        Sets the filter mode:<br /><bullet>[0] - <m>lowpass</m> - low pass.</bullet><bullet>[1] - <m>bandpass</m> - band pass.</bullet><bullet>[2] - <m>highpass</m> - high pass.</bullet><bullet>[3] - <m>peaknotch</m> - peak notch.</bullet><bullet>[4] - <m>resonant</m> - resonant.</bullet><bullet>[5] - <m>notch</m> - band reject.</bullet><bullet>[6] - <m>lowshelf</m> - low shelf.</bullet><bullet>[7] - <m>highshelf</m> - high shelf.</bullet>
+        Sets the filter mode:<p /><bullet>[0] - <m>lowpass</m> - low pass.</bullet><bullet>[1] - <m>bandpass</m> - band pass.</bullet><bullet>[2] - <m>highpass</m> - high pass.</bullet><bullet>[3] - <m>peaknotch</m> - peak notch.</bullet><bullet>[4] - <m>resonant</m> - resonant.</bullet><bullet>[5] - <m>notch</m> - band reject.</bullet><bullet>[6] - <m>lowshelf</m> - low shelf.</bullet><bullet>[7] - <m>highshelf</m> - high shelf.</bullet><p /><i>(default: <m>lowpass</m>)</i>
       </description>
     </entry>
     <entry name="/coefficients [enum]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the coefficients input and output modes:<br /><bullet>[0] - <m>static</m> - settings are made via parameters with single value outputs.</bullet><bullet>[1] - <m>dynamic</m> - settings are made via inputs or parameters with output as vectors.</bullet><bullet>[2] - <m>tagged</m> - settings are made via parameters with output as a tagged frame.</bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the coefficients input and output modes:<p /><bullet>[0] - <m>static</m> - settings are made via parameters with single value outputs.</bullet><bullet>[1] - <m>dynamic</m> - settings are made via inputs or parameters with output as vectors.</bullet><bullet>[2] - <m>tagged</m> - settings are made via parameters with output as a tagged frame.</bullet><p /><i>(default: <m>static</m>)</i>
       </description>
     </entry>
   </misc>
@@ -45,7 +45,7 @@
         Sets the filter frequency
       </digest>
       <description>
-        This argument sets the freq parameter:<br /><br />Sets the filter frequency.
+        This argument sets the freq parameter:<p /><p />Sets the filter frequency.<p /><i>(default: 0)</i>
       </description>
     </objarg>
     <objarg name="gain" optional="1" type="number">
@@ -53,7 +53,7 @@
         Sets the linear gain of the filter
       </digest>
       <description>
-        This argument sets the gain parameter:<br /><br />Sets the linear gain of the filter.
+        This argument sets the gain parameter:<p /><p />Sets the linear gain of the filter.<p /><i>(default: 1)</i>
       </description>
     </objarg>
     <objarg name="qs" optional="1" type="number">
@@ -61,7 +61,7 @@
         Sets the q or s of the filter
       </digest>
       <description>
-        This argument sets the qs parameter:<br /><br />Sets the q or s of the filter.
+        This argument sets the qs parameter:<p /><p />Sets the q or s of the filter.<p /><i>(default: 0)</i>
       </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">
@@ -69,7 +69,7 @@
         Sets the filter mode
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the filter mode:<br /><bullet>[0] - <m>lowpass</m> - low pass.</bullet><bullet>[1] - <m>bandpass</m> - band pass.</bullet><bullet>[2] - <m>highpass</m> - high pass.</bullet><bullet>[3] - <m>peaknotch</m> - peak notch.</bullet><bullet>[4] - <m>resonant</m> - resonant.</bullet><bullet>[5] - <m>notch</m> - band reject.</bullet><bullet>[6] - <m>lowshelf</m> - low shelf.</bullet><bullet>[7] - <m>highshelf</m> - high shelf.</bullet>
+        This argument sets the mode parameter:<p /><p />Sets the filter mode:<p /><bullet>[0] - <m>lowpass</m> - low pass.</bullet><bullet>[1] - <m>bandpass</m> - band pass.</bullet><bullet>[2] - <m>highpass</m> - high pass.</bullet><bullet>[3] - <m>peaknotch</m> - peak notch.</bullet><bullet>[4] - <m>resonant</m> - resonant.</bullet><bullet>[5] - <m>notch</m> - band reject.</bullet><bullet>[6] - <m>lowshelf</m> - low shelf.</bullet><bullet>[7] - <m>highshelf</m> - high shelf.</bullet><p /><i>(default: <m>lowpass</m>)</i>
       </description>
     </objarg>
   </objarglist>

@@ -10,12 +10,12 @@
   <misc name="Parameters">
     <entry name="/dimensions [enum]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of dimensions (and hence inputs and outputs).<br /><bullet>[0] - <m>2D</m></bullet><bullet>[1] - <m>3D</m></bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of dimensions (and hence inputs and outputs).<p /><bullet>[0] - <m>2D</m></bullet><bullet>[1] - <m>3D</m></bullet><p /><i>(default: <m>2D</m>)</i>
       </description>
     </entry>
     <entry name="/angles [enum]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the units used for angles.<br /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the units used for angles.<p /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet><p /><i>(default: <m>radians</m>)</i>
       </description>
     </entry>
   </misc>
@@ -30,7 +30,7 @@
         Sets the number of dimensions (and hence inputs and outputs)
       </digest>
       <description>
-        This argument sets the dimensions parameter:<br /><br />Sets the number of dimensions (and hence inputs and outputs).<br /><bullet>[0] - <m>2D</m></bullet><bullet>[1] - <m>3D</m></bullet>
+        This argument sets the dimensions parameter:<p /><p />Sets the number of dimensions (and hence inputs and outputs).<p /><bullet>[0] - <m>2D</m></bullet><bullet>[1] - <m>3D</m></bullet><p /><i>(default: <m>2D</m>)</i>
       </description>
     </objarg>
     <objarg name="angles" optional="1" type="symbol">
@@ -38,7 +38,7 @@
         Sets the units used for angles
       </digest>
       <description>
-        This argument sets the angles parameter:<br /><br />Sets the units used for angles.<br /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet>
+        This argument sets the angles parameter:<p /><p />Sets the units used for angles.<p /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet><p /><i>(default: <m>radians</m>)</i>
       </description>
     </objarg>
   </objarglist>

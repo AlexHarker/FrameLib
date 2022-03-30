@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the behaviour of the right input:<br /><bullet>[0] - <m>store</m> - stores without output.</bullet><bullet>[1] - <m>pass</m> - stores and outputs.</bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the behaviour of the right input:<p /><bullet>[0] - <m>store</m> - stores without output.</bullet><bullet>[1] - <m>pass</m> - stores and outputs.</bullet><p /><i>(default: <m>store</m>)</i>
       </description>
     </entry>
   </misc>

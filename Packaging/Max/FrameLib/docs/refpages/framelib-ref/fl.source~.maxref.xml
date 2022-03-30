@@ -10,27 +10,27 @@
   <misc name="Parameters">
     <entry name="/buffer_size [double]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the internal buffer size in the units specified by the units parameter.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the internal buffer size in the units specified by the units parameter.<p /><i>(default: 16384)</i>
       </description>
     </entry>
     <entry name="/length [int]">
       <description>
-        Sets the length of output frames in the units specified by the units parameter.
+        Sets the length of output frames in the units specified by the units parameter.<p /><i>(default: 4096)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
       <description>
-        Sets the time units used to determine the buffer size and output length.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
+        Sets the time units used to determine the buffer size and output length.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><p /><i>(default: <m>samples</m>)</i>
       </description>
     </entry>
     <entry name="/delay [double]">
       <description>
-        Sets the input delay in the units specified by the units parameter. Note that a minimum delay (or latency) is applied of the output length.
+        Sets the input delay in the units specified by the units parameter. Note that a minimum delay (or latency) is applied of the output length.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/interp [enum]">
       <description>
-        Sets the interpolation mode:<br /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation.</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation.</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation.</bullet>
+        Sets the interpolation mode:<p /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation.</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation.</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation.</bullet><p /><i>(default: <m>none</m>)</i>
       </description>
     </entry>
   </misc>
@@ -45,7 +45,7 @@
         Sets the internal buffer size in the units specified by the units parameter
       </digest>
       <description>
-        This argument sets the buffer_size parameter:<br /><br />Sets the internal buffer size in the units specified by the units parameter.
+        This argument sets the buffer_size parameter:<p /><p />Sets the internal buffer size in the units specified by the units parameter.<p /><i>(default: 16384)</i>
       </description>
     </objarg>
     <objarg name="length" optional="1" type="int">
@@ -53,7 +53,7 @@
         Sets the length of output frames in the units specified by the units parameter
       </digest>
       <description>
-        This argument sets the length parameter:<br /><br />Sets the length of output frames in the units specified by the units parameter.
+        This argument sets the length parameter:<p /><p />Sets the length of output frames in the units specified by the units parameter.<p /><i>(default: 4096)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
@@ -61,7 +61,7 @@
         Sets the time units used to determine the buffer size and output length
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the time units used to determine the buffer size and output length.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
+        This argument sets the units parameter:<p /><p />Sets the time units used to determine the buffer size and output length.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><p /><i>(default: <m>samples</m>)</i>
       </description>
     </objarg>
   </objarglist>

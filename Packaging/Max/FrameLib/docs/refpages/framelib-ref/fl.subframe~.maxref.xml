@@ -10,17 +10,17 @@
   <misc name="Parameters">
     <entry name="/start [double]">
       <description>
-        Sets the start point of the subframe.
+        Sets the start point of the subframe.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/end [double]">
       <description>
-        Sets the end point of the subframe.
+        Sets the end point of the subframe.<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
       <description>
-        Sets the units for the start and end points (samples or ratios [0-1]).<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ratios</m></bullet>
+        Sets the units for the start and end points (samples or ratios [0-1]).<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ratios</m></bullet><p /><i>(default: <m>samples</m>)</i>
       </description>
     </entry>
   </misc>
@@ -35,7 +35,7 @@
         Sets the start point of the subframe
       </digest>
       <description>
-        This argument sets the start parameter:<br /><br />Sets the start point of the subframe.
+        This argument sets the start parameter:<p /><p />Sets the start point of the subframe.<p /><i>(default: 0)</i>
       </description>
     </objarg>
     <objarg name="end" optional="1" type="number">
@@ -43,7 +43,7 @@
         Sets the end point of the subframe
       </digest>
       <description>
-        This argument sets the end parameter:<br /><br />Sets the end point of the subframe.
+        This argument sets the end parameter:<p /><p />Sets the end point of the subframe.<p /><i>(default: 0)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
@@ -51,7 +51,7 @@
         Sets the units for the start and end points (samples or ratios [0-1])
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the units for the start and end points (samples or ratios [0-1]).<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ratios</m></bullet>
+        This argument sets the units parameter:<p /><p />Sets the units for the start and end points (samples or ratios [0-1]).<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ratios</m></bullet><p /><i>(default: <m>samples</m>)</i>
       </description>
     </objarg>
   </objarglist>

@@ -10,17 +10,17 @@
   <misc name="Parameters">
     <entry name="/percentage [double]">
       <description>
-        Sets the percentage of the sum used for calculation [0-100].
+        Sets the percentage of the sum used for calculation [0-100].<p /><i>(default: 50)</i>
       </description>
     </entry>
     <entry name="/empty [enum]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the output to use when an empty input frame is received:<br /><bullet>[0] - <m>empty</m> - output an empty frame.</bullet><bullet>[1] - <m>default</m> - output the default value (see the default parameter).</bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the output to use when an empty input frame is received:<p /><bullet>[0] - <m>empty</m> - output an empty frame.</bullet><bullet>[1] - <m>default</m> - output the default value (see the default parameter).</bullet><p /><i>(default: <m>empty</m>)</i>
       </description>
     </entry>
     <entry name="/default [double]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the default output value.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the default output value.<p /><i>(default: 0)</i>
       </description>
     </entry>
   </misc>
@@ -35,7 +35,7 @@
         Sets the percentage of the sum used for calculation [0-100]
       </digest>
       <description>
-        This argument sets the percentage parameter:<br /><br />Sets the percentage of the sum used for calculation [0-100].
+        This argument sets the percentage parameter:<p /><p />Sets the percentage of the sum used for calculation [0-100].<p /><i>(default: 50)</i>
       </description>
     </objarg>
     <objarg name="empty" optional="1" type="symbol">
@@ -43,7 +43,7 @@
         Sets the output to use when an empty input frame is received
       </digest>
       <description>
-        This argument sets the empty parameter:<br /><br />Sets the output to use when an empty input frame is received:<br /><bullet>[0] - <m>empty</m> - output an empty frame.</bullet><bullet>[1] - <m>default</m> - output the default value (see the default parameter).</bullet>
+        This argument sets the empty parameter:<p /><p />Sets the output to use when an empty input frame is received:<p /><bullet>[0] - <m>empty</m> - output an empty frame.</bullet><bullet>[1] - <m>default</m> - output the default value (see the default parameter).</bullet><p /><i>(default: <m>empty</m>)</i>
       </description>
     </objarg>
     <objarg name="default" optional="1" type="number">
@@ -51,7 +51,7 @@
         Sets the default output value
       </digest>
       <description>
-        This argument sets the default parameter:<br /><br />Sets the default output value.
+        This argument sets the default parameter:<p /><p />Sets the default output value.<p /><i>(default: 0)</i>
       </description>
     </objarg>
   </objarglist>

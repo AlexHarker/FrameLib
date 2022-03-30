@@ -10,27 +10,27 @@
   <misc name="Parameters">
     <entry name="/mode [enum]">
       <description>
-        Sets the mode used for output:<br /><bullet>[0] - <m>full</m> - outputs the entire frame in full.</bullet><bullet>[1] - <m>first</m> - output the first sample of the frame only.</bullet><bullet>[2] - <m>last</m> - output the last sample of the frame only.</bullet><bullet>[3] - <m>specified</m> - output the sample specified by index using the position parameter.</bullet><bullet>[4] - <m>ratio</m> - output the sample specified by the position parameter as a ratio of the frame length.</bullet>
+        Sets the mode used for output:<p /><bullet>[0] - <m>full</m> - outputs the entire frame in full.</bullet><bullet>[1] - <m>first</m> - output the first sample of the frame only.</bullet><bullet>[2] - <m>last</m> - output the last sample of the frame only.</bullet><bullet>[3] - <m>specified</m> - output the sample specified by index using the position parameter.</bullet><bullet>[4] - <m>ratio</m> - output the sample specified by the position parameter as a ratio of the frame length.</bullet><p /><i>(default: <m>full</m>)</i>
       </description>
     </entry>
     <entry name="/buffer_size [double]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the internal buffer size in the units specified by the units parameter.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the internal buffer size in the units specified by the units parameter.<p /><i>(default: 250000)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the time units used to determine the buffer size and delay.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the time units used to determine the buffer size and delay.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><p /><i>(default: <m>samples</m>)</i>
       </description>
     </entry>
     <entry name="/position [double]">
       <description>
-        Sets the position of the output sample in specified or ratio mode. Note that positions out of range will be clipped tp the input frame (to the first or last position).
+        Sets the position of the output sample in specified or ratio mode. Note that positions out of range will be clipped tp the input frame (to the first or last position).<p /><i>(default: 0)</i>
       </description>
     </entry>
     <entry name="/delay [double]">
       <description>
-        Sets the output delay in the units specified by the units parameter.
+        Sets the output delay in the units specified by the units parameter.<p /><i>(default: 0)</i>
       </description>
     </entry>
   </misc>
@@ -45,7 +45,7 @@
         Sets the mode used for output
       </digest>
       <description>
-        This argument sets the mode parameter:<br /><br />Sets the mode used for output:<br /><bullet>[0] - <m>full</m> - outputs the entire frame in full.</bullet><bullet>[1] - <m>first</m> - output the first sample of the frame only.</bullet><bullet>[2] - <m>last</m> - output the last sample of the frame only.</bullet><bullet>[3] - <m>specified</m> - output the sample specified by index using the position parameter.</bullet><bullet>[4] - <m>ratio</m> - output the sample specified by the position parameter as a ratio of the frame length.</bullet>
+        This argument sets the mode parameter:<p /><p />Sets the mode used for output:<p /><bullet>[0] - <m>full</m> - outputs the entire frame in full.</bullet><bullet>[1] - <m>first</m> - output the first sample of the frame only.</bullet><bullet>[2] - <m>last</m> - output the last sample of the frame only.</bullet><bullet>[3] - <m>specified</m> - output the sample specified by index using the position parameter.</bullet><bullet>[4] - <m>ratio</m> - output the sample specified by the position parameter as a ratio of the frame length.</bullet><p /><i>(default: <m>full</m>)</i>
       </description>
     </objarg>
     <objarg name="buffer_size" optional="1" type="number">
@@ -53,7 +53,7 @@
         Sets the internal buffer size in the units specified by the units parameter
       </digest>
       <description>
-        This argument sets the buffer_size parameter:<br /><br />Sets the internal buffer size in the units specified by the units parameter.
+        This argument sets the buffer_size parameter:<p /><p />Sets the internal buffer size in the units specified by the units parameter.<p /><i>(default: 250000)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
@@ -61,7 +61,7 @@
         Sets the time units used to determine the buffer size and delay
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the time units used to determine the buffer size and delay.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet>
+        This argument sets the units parameter:<p /><p />Sets the time units used to determine the buffer size and delay.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><p /><i>(default: <m>samples</m>)</i>
       </description>
     </objarg>
   </objarglist>

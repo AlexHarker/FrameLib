@@ -10,22 +10,22 @@
   <misc name="Parameters">
     <entry name="/scale [enum]">
       <description>
-        Sets the scaling of the input for lookup:<br /><bullet>[0] - <m>samples</m> - the input is read as sample indices for reading from the table.</bullet><bullet>[1] - <m>normalised</m> - the input range [0 to 1] is mapped across the table.</bullet><bullet>[2] - <m>bipolar</m> - the input range [-1 to 1] is mapped across the table.</bullet><br />Note that the edge parameter is also accounted for normalised and bipolar modes. This adjusts the scaling to work sensibly with cyclical modes.
+        Sets the scaling of the input for lookup:<p /><bullet>[0] - <m>samples</m> - the input is read as sample indices for reading from the table.</bullet><bullet>[1] - <m>normalised</m> - the input range [0 to 1] is mapped across the table.</bullet><bullet>[2] - <m>bipolar</m> - the input range [-1 to 1] is mapped across the table.</bullet><p />Note that the edge parameter is also accounted for normalised and bipolar modes. This adjusts the scaling to work sensibly with cyclical modes.<p /><i>(default: <m>samples</m>)</i>
       </description>
     </entry>
     <entry name="/edges [enum]">
       <description>
-        Sets the edge behaviour for both interpolation and lookup:<br /><bullet>[0] - <m>zero</m> - values beyond the edges of the table are treated as zeros.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are treated as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><bullet>[5] - <m>extrapolate</m> - values out of range are extrapolated via interpolation.</bullet>
+        Sets the edge behaviour for both interpolation and lookup:<p /><bullet>[0] - <m>zero</m> - values beyond the edges of the table are treated as zeros.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are treated as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><bullet>[5] - <m>extrapolate</m> - values out of range are extrapolated via interpolation.</bullet><p /><i>(default: <m>extrapolate</m>)</i>
       </description>
     </entry>
     <entry name="/bound [bool]">
       <description>
-        Sets whether lookup is bounded to the edges of the table, or can extend beyond it.
+        Sets whether lookup is bounded to the edges of the table, or can extend beyond it.<p /><i>(default: true)</i>
       </description>
     </entry>
     <entry name="/interp [enum]">
       <description>
-        Sets the interpolation mode:<br /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation.</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation.</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation.</bullet>
+        Sets the interpolation mode:<p /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation.</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation.</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation.</bullet><p /><i>(default: <m>hermite</m>)</i>
       </description>
     </entry>
   </misc>
@@ -40,7 +40,7 @@
         Sets the scaling of the input for lookup
       </digest>
       <description>
-        This argument sets the scale parameter:<br /><br />Sets the scaling of the input for lookup:<br /><bullet>[0] - <m>samples</m> - the input is read as sample indices for reading from the table.</bullet><bullet>[1] - <m>normalised</m> - the input range [0 to 1] is mapped across the table.</bullet><bullet>[2] - <m>bipolar</m> - the input range [-1 to 1] is mapped across the table.</bullet><br />Note that the edge parameter is also accounted for normalised and bipolar modes. This adjusts the scaling to work sensibly with cyclical modes.
+        This argument sets the scale parameter:<p /><p />Sets the scaling of the input for lookup:<p /><bullet>[0] - <m>samples</m> - the input is read as sample indices for reading from the table.</bullet><bullet>[1] - <m>normalised</m> - the input range [0 to 1] is mapped across the table.</bullet><bullet>[2] - <m>bipolar</m> - the input range [-1 to 1] is mapped across the table.</bullet><p />Note that the edge parameter is also accounted for normalised and bipolar modes. This adjusts the scaling to work sensibly with cyclical modes.<p /><i>(default: <m>samples</m>)</i>
       </description>
     </objarg>
     <objarg name="edges" optional="1" type="symbol">
@@ -48,7 +48,7 @@
         Sets the edge behaviour for both interpolation and lookup
       </digest>
       <description>
-        This argument sets the edges parameter:<br /><br />Sets the edge behaviour for both interpolation and lookup:<br /><bullet>[0] - <m>zero</m> - values beyond the edges of the table are treated as zeros.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are treated as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><bullet>[5] - <m>extrapolate</m> - values out of range are extrapolated via interpolation.</bullet>
+        This argument sets the edges parameter:<p /><p />Sets the edge behaviour for both interpolation and lookup:<p /><bullet>[0] - <m>zero</m> - values beyond the edges of the table are treated as zeros.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are treated as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><bullet>[5] - <m>extrapolate</m> - values out of range are extrapolated via interpolation.</bullet><p /><i>(default: <m>extrapolate</m>)</i>
       </description>
     </objarg>
     <objarg name="bound" optional="1" type="number">
@@ -56,7 +56,7 @@
         Sets whether lookup is bounded to the edges of the table, or can extend beyond it
       </digest>
       <description>
-        This argument sets the bound parameter:<br /><br />Sets whether lookup is bounded to the edges of the table, or can extend beyond it.
+        This argument sets the bound parameter:<p /><p />Sets whether lookup is bounded to the edges of the table, or can extend beyond it.<p /><i>(default: true)</i>
       </description>
     </objarg>
     <objarg name="interp" optional="1" type="symbol">
@@ -64,7 +64,7 @@
         Sets the interpolation mode
       </digest>
       <description>
-        This argument sets the interp parameter:<br /><br />Sets the interpolation mode:<br /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation.</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation.</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation.</bullet>
+        This argument sets the interp parameter:<p /><p />Sets the interpolation mode:<p /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation.</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation.</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation.</bullet><p /><i>(default: <m>hermite</m>)</i>
       </description>
     </objarg>
   </objarglist>

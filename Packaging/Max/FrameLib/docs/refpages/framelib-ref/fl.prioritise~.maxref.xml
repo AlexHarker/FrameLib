@@ -10,12 +10,12 @@
   <misc name="Parameters">
     <entry name="/num_ins [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of inputs.
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of inputs.<p /><i>(default: 2)</i>
       </description>
     </entry>
     <entry name="/order [enum]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Set whether to prioritise lower or higher numbered inputs.<br /><bullet>[0] - <m>low</m></bullet><bullet>[1] - <m>high</m></bullet>
+        <h6><i>INSTANTIATION ONLY</i></h6>Set whether to prioritise lower or higher numbered inputs.<p /><bullet>[0] - <m>low</m></bullet><bullet>[1] - <m>high</m></bullet><p /><i>(default: <m>low</m>)</i>
       </description>
     </entry>
   </misc>
@@ -30,7 +30,7 @@
         Sets the number of inputs
       </digest>
       <description>
-        This argument sets the num_ins parameter:<br /><br />Sets the number of inputs.
+        This argument sets the num_ins parameter:<p /><p />Sets the number of inputs.<p /><i>(default: 2)</i>
       </description>
     </objarg>
     <objarg name="order" optional="1" type="symbol">
@@ -38,7 +38,7 @@
         Set whether to prioritise lower or higher numbered inputs
       </digest>
       <description>
-        This argument sets the order parameter:<br /><br />Set whether to prioritise lower or higher numbered inputs.<br /><bullet>[0] - <m>low</m></bullet><bullet>[1] - <m>high</m></bullet>
+        This argument sets the order parameter:<p /><p />Set whether to prioritise lower or higher numbered inputs.<p /><bullet>[0] - <m>low</m></bullet><bullet>[1] - <m>high</m></bullet><p /><i>(default: <m>low</m>)</i>
       </description>
     </objarg>
   </objarglist>

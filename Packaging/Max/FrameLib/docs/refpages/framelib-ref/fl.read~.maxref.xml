@@ -15,27 +15,27 @@
     </entry>
     <entry name="/channel [int]">
       <description>
-        Sets the buffer channel to use.
+        Sets the buffer channel to use.<p /><i>(default: 1)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
       <description>
-        Sets the units used for interpreting the input. Note that the edge parameter is also accounted for normalised mode. This adjusts the scaling to work sensibly with cyclical modes.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><bullet>[3] - <m>normalised</m></bullet>
+        Sets the units used for interpreting the input. Note that the edge parameter is also accounted for normalised mode. This adjusts the scaling to work sensibly with cyclical modes.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><bullet>[3] - <m>normalised</m></bullet><p /><i>(default: <m>ms</m>)</i>
       </description>
     </entry>
     <entry name="/interp [enum]">
       <description>
-        Sets the interpolation mode:<br /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation.</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation.</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation.</bullet>
+        Sets the interpolation mode:<p /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation.</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation.</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation.</bullet><p /><i>(default: <m>hermite</m>)</i>
       </description>
     </entry>
     <entry name="/edges [enum]">
       <description>
-        Sets the edge behaviour for both interpolation and reading:<br /><bullet>[0] - <m>zero</m> - values beyond the edges of the buffer are read as zeros.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><bullet>[5] - <m>extrapolate</m> - values out of range are extrapolated via interpolation.</bullet>
+        Sets the edge behaviour for both interpolation and reading:<p /><bullet>[0] - <m>zero</m> - values beyond the edges of the buffer are read as zeros.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><bullet>[5] - <m>extrapolate</m> - values out of range are extrapolated via interpolation.</bullet><p /><i>(default: <m>zero</m>)</i>
       </description>
     </entry>
     <entry name="/bound [bool]">
       <description>
-        Sets whether reading is bounded to the edges of the buffer, or can extend beyond it.
+        Sets whether reading is bounded to the edges of the buffer, or can extend beyond it.<p /><i>(default: true)</i>
       </description>
     </entry>
   </misc>
@@ -50,7 +50,7 @@
         Sets the buffer to use
       </digest>
       <description>
-        This argument sets the buffer parameter:<br /><br />Sets the buffer to use.
+        This argument sets the buffer parameter:<p /><p />Sets the buffer to use.
       </description>
     </objarg>
     <objarg name="channel" optional="1" type="int">
@@ -58,7 +58,7 @@
         Sets the buffer channel to use
       </digest>
       <description>
-        This argument sets the channel parameter:<br /><br />Sets the buffer channel to use.
+        This argument sets the channel parameter:<p /><p />Sets the buffer channel to use.<p /><i>(default: 1)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
@@ -66,7 +66,7 @@
         Sets the units used for interpreting the input
       </digest>
       <description>
-        This argument sets the units parameter:<br /><br />Sets the units used for interpreting the input. Note that the edge parameter is also accounted for normalised mode. This adjusts the scaling to work sensibly with cyclical modes.<br /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><bullet>[3] - <m>normalised</m></bullet>
+        This argument sets the units parameter:<p /><p />Sets the units used for interpreting the input. Note that the edge parameter is also accounted for normalised mode. This adjusts the scaling to work sensibly with cyclical modes.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><bullet>[3] - <m>normalised</m></bullet><p /><i>(default: <m>ms</m>)</i>
       </description>
     </objarg>
     <objarg name="interp" optional="1" type="symbol">
@@ -74,7 +74,7 @@
         Sets the interpolation mode
       </digest>
       <description>
-        This argument sets the interp parameter:<br /><br />Sets the interpolation mode:<br /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation.</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation.</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation.</bullet>
+        This argument sets the interp parameter:<p /><p />Sets the interpolation mode:<p /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation.</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation.</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation.</bullet><p /><i>(default: <m>hermite</m>)</i>
       </description>
     </objarg>
     <objarg name="edges" optional="1" type="symbol">
@@ -82,7 +82,7 @@
         Sets the edge behaviour for both interpolation and reading
       </digest>
       <description>
-        This argument sets the edges parameter:<br /><br />Sets the edge behaviour for both interpolation and reading:<br /><bullet>[0] - <m>zero</m> - values beyond the edges of the buffer are read as zeros.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><bullet>[5] - <m>extrapolate</m> - values out of range are extrapolated via interpolation.</bullet>
+        This argument sets the edges parameter:<p /><p />Sets the edge behaviour for both interpolation and reading:<p /><bullet>[0] - <m>zero</m> - values beyond the edges of the buffer are read as zeros.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><bullet>[5] - <m>extrapolate</m> - values out of range are extrapolated via interpolation.</bullet><p /><i>(default: <m>zero</m>)</i>
       </description>
     </objarg>
     <objarg name="bound" optional="1" type="number">
@@ -90,7 +90,7 @@
         Sets whether reading is bounded to the edges of the buffer, or can extend beyond it
       </digest>
       <description>
-        This argument sets the bound parameter:<br /><br />Sets whether reading is bounded to the edges of the buffer, or can extend beyond it.
+        This argument sets the bound parameter:<p /><p />Sets whether reading is bounded to the edges of the buffer, or can extend beyond it.<p /><i>(default: true)</i>
       </description>
     </objarg>
   </objarglist>
