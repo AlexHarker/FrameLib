@@ -2,7 +2,7 @@
 
 create_temp.py
 generate_max_object_list
-validate_seealso
+validate_object_relationships
 create_category_database
 edit_raw_xml
 dlookup

@@ -633,7 +633,7 @@
         "fl.tag~",
         "fl.untag~",
         "fl.filtertags~",
-        "fl.looupstring~",
+        "fl.lookupstring~",
         "fl.makestring~"
       ]
     },
@@ -1374,7 +1374,7 @@
         "fl.tag~",
         "fl.untag~",
         "fl.combinetags~",
-        "fl.looupstring~",
+        "fl.lookupstring~",
         "fl.makestring~"
       ]
     },
@@ -1628,7 +1628,7 @@
       ],
       "seealso": [
         "fl.read~",
-        "ibuffer"
+        "buffer~"
       ]
     },
     "fl.interval~": {
@@ -1959,7 +1959,7 @@
             "fl.untag~",
             "fl.combinetags~",
             "fl.filtertags~",
-            "fl.looupstring~"
+            "fl.lookupstring~"
         ]
     },
     "fl.map~": {
@@ -2338,7 +2338,6 @@
       ],
       "seealso": [
         "fl.svf~",
-        "fl.sallenkey~",
         "fl.onepole~"
       ]
     },
@@ -2348,7 +2347,6 @@
       ],
       "seealso": [
         "fl.svf~",
-        "fl.sallenkey~",
         "fl.onepolezero~"
       ]
     },
@@ -2694,7 +2692,7 @@
       ],
       "seealso": [
         "fl.info~",
-        "ibuffer"
+        "buffer~"
       ]
     },
     "fl.recall~": {
@@ -3316,7 +3314,7 @@
         "fl.untag~",
         "fl.combinetags~",
         "fl.filtertags~",
-        "fl.looupstring~",
+        "fl.lookupstring~",
         "fl.makestring~"
       ]
     },
@@ -3560,7 +3558,7 @@
         "fl.tag~",
         "fl.combinetags~",
         "fl.filtertags~",
-        "fl.looupstring~",
+        "fl.lookupstring~",
         "fl.makestring~"
       ]
     },

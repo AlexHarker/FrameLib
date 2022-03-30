@@ -90,7 +90,7 @@
     <seealso name="fl.tag~" />
     <seealso name="fl.untag~" />
     <seealso name="fl.filtertags~" />
-    <seealso name="fl.looupstring~" />
+    <seealso name="fl.lookupstring~" />
     <seealso name="fl.makestring~" />
   </seealsolist>
   <misc name="Discussion">

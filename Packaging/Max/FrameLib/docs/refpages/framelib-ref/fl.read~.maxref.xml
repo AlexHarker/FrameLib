@@ -153,7 +153,7 @@
   </attributelist>
   <seealsolist>
     <seealso name="fl.info~" />
-    <seealso name="ibuffer" />
+    <seealso name="buffer~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

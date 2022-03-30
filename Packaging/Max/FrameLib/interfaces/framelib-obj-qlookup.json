@@ -353,7 +353,7 @@
             "fl.untag~",
             "fl.combinetags~",
             "fl.filtertags~",
-            "fl.looupstring~"
+            "fl.lookupstring~"
         ]
     },
     "fl.greaterthan~": {
@@ -773,7 +773,6 @@
         ],
         "seealso": [
             "fl.svf~",
-            "fl.sallenkey~",
             "fl.onepole~"
         ]
     },
@@ -1145,7 +1144,7 @@
             "fl.tag~",
             "fl.untag~",
             "fl.combinetags~",
-            "fl.looupstring~",
+            "fl.lookupstring~",
             "fl.makestring~"
         ]
     },
@@ -1427,7 +1426,7 @@
         ],
         "seealso": [
             "fl.info~",
-            "ibuffer"
+            "buffer~"
         ]
     },
     "fl.stddev~": {
@@ -3624,7 +3623,7 @@
             "fl.untag~",
             "fl.combinetags~",
             "fl.filtertags~",
-            "fl.looupstring~",
+            "fl.lookupstring~",
             "fl.makestring~"
         ]
     },
@@ -4036,7 +4035,6 @@
         ],
         "seealso": [
             "fl.svf~",
-            "fl.sallenkey~",
             "fl.onepolezero~"
         ]
     },
@@ -4054,7 +4052,7 @@
             "fl.tag~",
             "fl.combinetags~",
             "fl.filtertags~",
-            "fl.looupstring~",
+            "fl.lookupstring~",
             "fl.makestring~"
         ]
     },
@@ -4576,7 +4574,7 @@
             "fl.tag~",
             "fl.untag~",
             "fl.filtertags~",
-            "fl.looupstring~",
+            "fl.lookupstring~",
             "fl.makestring~"
         ]
     },
@@ -4651,7 +4649,7 @@
         ],
         "seealso": [
             "fl.read~",
-            "ibuffer"
+            "buffer~"
         ]
     },
     "fl.recall~": {
