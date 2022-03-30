@@ -72,7 +72,7 @@ class dParseAndBuild:
         self.root = self.tree.getroot()  # c74object
 
         # Find Information #
-        self.object_name = x.stem.split('.maxref')[0]  # get the object name (use the maxref name in case it is aliased)
+        self.object_name = strip_extension(x.stem, 1)  # get the object name (use the maxref name in case it is aliased)
 
         for child in self.root:
             if child.tag == "digest":
@@ -124,7 +124,7 @@ class qParseAndBuild:
 
         # Find Information
         self.category = self.root.get("category")
-        self.object_name = x.stem.split('.maxref')[0]  # get the object name (use the maxref name in case it is aliased)
+        self.object_name = strip_extension(x.stem, 1)  # get the object name (use the maxref name in case it is aliased)
 
         for child in self.root:
             if child.tag == "digest":
@@ -218,7 +218,7 @@ class jParseAndBuild:
 
         # Find Information
         
-        self.object_name = x.stem.split('.maxref')[0]  # get the object name (use the maxref name in case it is aliased)
+        self.object_name = strip_extension(x.stem, 1)  # get the object name (use the maxref name in case it is aliased)
         param_idx = 1  # reset a variable to track the parameter number
         for child in self.root:  # iterate over the sections
             if child.tag == "misc":  # if the section is misc
