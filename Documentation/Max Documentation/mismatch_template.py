@@ -18,13 +18,11 @@ def main(docs: Documentation):
     in_mode = open(docs.help_dir / "input_mode_template.maxhelp").read()
     templates_dir = docs.help_dir / "templates"
     templates = [x for x in templates_dir.rglob("fl.*.maxhelp")]
-    max_objects_dir = docs.repo_root / "FrameLib_Max_Objects"
-    max_objects = [x for x in max_objects_dir.rglob("fl.*.cpp")]
 
-    binary = [x.stem for x in max_objects if x.parent.stem == "Binary"]
-    ternary = [x.stem for x in max_objects if x.parent.stem == "Ternary"]
-    complex_binary = [x.stem for x in max_objects if x.parent.stem == "Complex_Binary"]
-    generators = [x.stem for x in max_objects if x.parent.stem == "Generators"]
+    binary = [x.stem for x in docs.source_files if x.parent.stem == "Binary"]
+    ternary = [x.stem for x in docs.source_files if x.parent.stem == "Ternary"]
+    complex_binary = [x.stem for x in docs.source_files if x.parent.stem == "Complex_Binary"]
+    generators = [x.stem for x in docs.source_files if x.parent.stem == "Generators"]
 
     # Now insert the necessary tabs
     for path in templates:

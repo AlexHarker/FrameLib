@@ -9,10 +9,9 @@ def main(docs):
     Used by edit_raw_XML.py to assign object categories to the xml files.
     """
 
-    max_objects = docs.repo_root / "FrameLib_Max_Objects"
     d = {}
 
-    for f in max_objects.rglob("fl.*.cpp"):
+    for f in docs.source_files:
         category = f"FrameLib {str(f.parent.parts[-1])}"
         if category in d:
             d[category].append(f.stem)

@@ -38,12 +38,11 @@ def main(docs: Documentation):
     op.write("using FrameLib_DSPList = detail::FrameLib_Typelist<\n\n")
 
     # Directory formation
-    max_objects = docs.repo_root / "FrameLib_Max_Objects"
-    max_objects_categories = [x for x in max_objects.iterdir() if x.is_dir()]
+    max_object_category_paths = [x for x in docs.source_path.iterdir() if x.is_dir()]
 
     source_file_list = []
     ## Get folders in the parent Max Objects Folder
-    for category in max_objects_categories:
+    for category in max_object_category_paths:
         for name in Path(category).rglob("fl.*.cpp"):
             if name.stem not in ignored_objects:
                 source_file_list.append([category, name])
