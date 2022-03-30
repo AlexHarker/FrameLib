@@ -12,7 +12,7 @@ tutorial_coll
 cleanup
 template_help
 merge_help
-mt
+fixed_help_tabs
 
 ## Welcome
 You are able to build the documentation for the Max FrameLib yourself, except for certain resources such as:
@@ -64,7 +64,7 @@ You will need to make your own help files and tutorials for the object however, 
 Prior to building the documentation you will also need to add an entry for your object in the `object_relationships.json` file. This provides the build process with knowledge of objects which are related to yours as well as any keywords that you want to associate with your object, and will populate the Max documentation with this information. Follow the format used for the native FrameLib objects. 
 
 
-## An deeper explanation
+## A deeper explanation
 
 The docs are built in a number of stages that involve creating instances of those objects and extracting the information that way. It is important to note that all information is stored in the source code itself as info strings. This means that you should make this information as concise and clear as possible. Try and follow the convention of objects that exist in the native FrameLib package. 
 

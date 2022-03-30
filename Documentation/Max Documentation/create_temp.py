@@ -7,7 +7,8 @@ def main(docs: Documentation):
     docs.temporary_dir.mkdir(exist_ok=True)
     docs.databases_dir.mkdir(exist_ok=True)
     docs.raw_xml_dir.mkdir(exist_ok=True)
-
+    docs.help_templates_dir.mkdir(exist_ok=True)
+    
     # Interfaces
     for files in docs.interfaces_dir.iterdir():
         files.unlink()

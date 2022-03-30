@@ -32,7 +32,7 @@ class Documentation:
 
         # Help Files
         self.help_dir = self.max_docs_dir / "help_files"
-        self.help_templates_dir = self.help_dir / "templates"
+        self.help_templates_dir = self.temporary_dir / "help_templates"
 
         # Manual XML
         self.manual_xml_dir = self.max_docs_dir / "refpages"
