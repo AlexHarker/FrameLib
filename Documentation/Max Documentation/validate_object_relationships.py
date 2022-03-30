@@ -1,3 +1,5 @@
+from framelib.classes import Documentation
+
 
 def main(docs):
     """

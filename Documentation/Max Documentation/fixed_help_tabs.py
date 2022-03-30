@@ -50,7 +50,7 @@ def main(docs: Documentation):
 
     # Now collect up and move all the templates to the dist
     # We could do this in the previous loop, but I think is clearer
-    dest = docs.package / "FrameLib" / "help"
+    dest = docs.package / "help"
     copy_tree(str(docs.help_templates_dir), str(dest), update=1)
 
 if __name__ == "__main__":

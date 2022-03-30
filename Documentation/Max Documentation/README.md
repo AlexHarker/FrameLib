@@ -13,6 +13,7 @@ create_tutorial_coll
 template_help
 merge_help
 fixed_help_tabs
+create_max_db
 cleanup
 
 ## Welcome

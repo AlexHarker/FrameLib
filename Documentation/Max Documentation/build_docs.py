@@ -12,6 +12,7 @@ import cleanup
 import template_help
 import merge_help
 import fixed_help_tabs
+import create_max_db
 from framelib.utils import sign_off, space, hyp
 from framelib.classes import Documentation
 
@@ -99,6 +100,11 @@ def main():
         print("12. Adding mismatch and trigger_ins tabs")
         fixed_help_tabs.main(docs)
         hyp()
+
+    # Creates a database of files to exclude
+    print("10. Creating help file templates")
+    create_max_db.main(docs)
+    hyp()
 
     if args.clean:
         cleanup.main(docs)

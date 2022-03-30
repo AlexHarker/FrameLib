@@ -17,7 +17,7 @@ class Documentation:
         self.repo_root = this_script.parents[3]
 
         # Import Max Paths
-        self.package = self.repo_root / "Packaging" / "Max"
+        self.package = self.repo_root / "Packaging" / "Max" / "FrameLib"
 
         # Temporary Directories
         self.temporary_dir = self.max_docs_dir / "__tmp__"
@@ -46,15 +46,10 @@ class Documentation:
 
         # Objects
         self.additional_valid_objects = [ "buffer~" ]
-        
-    def set_package(self, location:str) -> None:
-        """Sets the location of the folder holding that is the parent of the package"""
-        self.package = Path(location)
-        self.set_max_paths()
 
     def set_max_paths(self) -> None:
-        self.refpages_dir = self.package / "FrameLib" / "docs" / "refpages"
-        self.interfaces_dir = self.package / "FrameLib" / "interfaces"
+        self.refpages_dir = self.package / "docs" / "refpages"
+        self.interfaces_dir = self.package / "interfaces"
         self.refpages_dir.mkdir(exist_ok=True, parents=True)
         self.interfaces_dir.mkdir(exist_ok=True, parents=True)
         
