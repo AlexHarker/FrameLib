@@ -39,7 +39,7 @@ class Documentation:
         # The Max Objects Source Files
         
         self.source_path = self.repo_root / "FrameLib_Max_Objects"
-        self.source_files = self.source_path.rglob("fl.*.cpp")
+        self.source_files = [x for x in self.source_path.rglob("fl.*.cpp")]
         
     def set_package(self, location:str) -> None:
         """Sets the location of the folder holding that is the parent of the package"""
