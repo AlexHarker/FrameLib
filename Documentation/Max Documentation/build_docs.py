@@ -10,7 +10,7 @@ import create_tutorial_coll
 import cleanup
 import template_help
 import merge_help
-import mismatch_template
+import fixed_help_tabs
 from framelib.utils import sign_off, space, hyp
 from framelib.classes import Documentation
 
@@ -92,7 +92,7 @@ def main():
         # Merges the hard coded tabs with the templates
         # This creates the finished help file
         print("12. Adding mismatch and trigger_ins tabs")
-        mismatch_template.main(docs)
+        fixed_help_tabs.main(docs)
         hyp()
 
     if args.clean:

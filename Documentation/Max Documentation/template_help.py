@@ -15,7 +15,7 @@ def main(docs: Documentation):
         name = obj.stem
         help_path = template_dir / f"{name}.maxhelp"
         copyfile(master_template, help_path)
-        edit_help(file_edit=help_path, obj_name=name)
+        edit_help(docs=docs, file_edit=help_path, obj_name=name)
 
 
 if __name__ == "__main__":
