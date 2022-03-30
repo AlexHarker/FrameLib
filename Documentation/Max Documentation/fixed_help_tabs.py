@@ -16,8 +16,8 @@ def main(docs: Documentation):
     mismatch = open(docs.help_dir / "mismatch_template.maxhelp", "r").read()
     trigger_ins = open(docs.help_dir / "trigger_ins_template.maxhelp", "r").read()
     in_mode = open(docs.help_dir / "input_mode_template.maxhelp").read()
-    templates_dir = docs.help_dir / "templates"
-    templates = [x for x in templates_dir.rglob("fl.*.maxhelp")]
+
+    templates = [x for x in docs.help_templates_dir.rglob("fl.*.maxhelp")]
 
     binary = [x.stem for x in docs.source_files if x.parent.stem == "Binary"]
     ternary = [x.stem for x in docs.source_files if x.parent.stem == "Ternary"]
@@ -46,7 +46,7 @@ def main(docs: Documentation):
     # Now collect up and move all the templates to the dist
     # We could do this in the previous loop, but I think is clearer
     dest = docs.package / "FrameLib" / "help"
-    copy_tree(str(templates_dir), str(dest), update=1)
+    copy_tree(str(docs.help_templates_dir), str(dest), update=1)
 
 if __name__ == "__main__":
     main(Documentation())
