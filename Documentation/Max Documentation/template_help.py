@@ -1,4 +1,3 @@
-from framelib.help import edit_help
 from framelib.classes import Documentation
 from shutil import copyfile
 
@@ -14,8 +13,7 @@ def main(docs: Documentation):
         name = obj.stem
         help_path = docs.help_templates_dir / f"{name}.maxhelp"
         copyfile(master_template, help_path)
-        edit_help(docs=docs, file_edit=help_path, obj_name=name)
-
+        
 
 if __name__ == "__main__":
     main(Documentation())

@@ -2,12 +2,12 @@ import json
 from distutils.dir_util import copy_tree
 from framelib.utils import read_json, write_json
 from framelib.classes import Documentation
+from framelib.help import edit_help
 
 
-def append_tabs(patch, object_name, source):
-    """Take a string, replace FLOBJECTNAME and append the tabs to the source"""
-    modified_patch = patch.replace("FLOBJECTNAME", object_name)
-    converted = json.loads(modified_patch)
+def append_tabs(patch, source):
+    """Take a string, append the tabs to the source"""
+    converted = json.loads(patch)
     for tab in converted["patcher"]["boxes"]:
         source["patcher"]["boxes"].append(tab)
 
@@ -27,21 +27,26 @@ def main(docs: Documentation):
     # Now insert the necessary tabs
     for path in templates:
         template = read_json(path)
+    
         if path.stem in ternary:
-            append_tabs(mismatch, path.stem, template)
+            append_tabs(mismatch, template)
 
         if path.stem in binary:
-            append_tabs(trigger_ins, path.stem, template)
-            append_tabs(mismatch, path.stem, template)
+            append_tabs(trigger_ins, template)
+            append_tabs(mismatch, template)
         
         if path.stem in complex_binary:
-            append_tabs(trigger_ins, path.stem, template)
-            append_tabs(mismatch, path.stem, template)
+            append_tabs(trigger_ins, template)
+            append_tabs(mismatch, template)
         
         if path.stem in generators:
-            append_tabs(in_mode, path.stem, template)
+            append_tabs(in_mode, template)
 
         write_json(path, template)
+        
+        # Now ensure the arguments to js help file objects are correct
+        
+        edit_help(docs, path, path.stem)
 
     # Now collect up and move all the templates to the dist
     # We could do this in the previous loop, but I think is clearer
