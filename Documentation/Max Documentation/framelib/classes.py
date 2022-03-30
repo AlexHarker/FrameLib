@@ -291,6 +291,10 @@ class jParseAndBuild:
                                             blank_desc += "".join(item.itertext())
                                             if item.tail.rstrip() != None:
                                                 blank_desc += "\n\n" + item.tail.rstrip()
+                                    elif item.tag == "i":  # default will be wrapped in a <i>
+                                            blank_desc += "".join(item.itertext())
+                                            if item.tail.rstrip() != None:
+                                                blank_desc += item.tail.rstrip()
 
                         blank_internal["description"] = blank_desc  # set the description
 

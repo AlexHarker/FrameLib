@@ -365,6 +365,18 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
     
     findReplace(info, ": ", ":<p />");
     
+    // Finally, denote the default
+    
+    auto defaultString = params->getDefaultString(idx);
+    
+    if (defaultString.length())
+    {
+        if (isEnum)
+            info += "<p /><i>(default: <m>" + defaultString + "</m>)</i>";
+        else
+            info += "<p /><i>(default: " + defaultString + ")</i>";
+    }
+    
     return info;
 }
 
