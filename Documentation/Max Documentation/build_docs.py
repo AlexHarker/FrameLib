@@ -23,7 +23,6 @@ def main():
     parser.add_argument("-p", "--package", help="Provide a custom location for a package")
     args = parser.parse_args()
 
-
     if args.package:
         docs.set_package(args.package)
 
