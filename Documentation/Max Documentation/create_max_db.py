@@ -14,9 +14,12 @@ def main(docs):
     d_aliases = {}
     d_inner = {}
     
+    filters = [ { "filter" : "ignore", "path" : "package@FrameLib:/misc", "kind" : "*" },
+                { "filter" : "ignore", "path" : "package@FrameLib:/docs/tutorial-patchers", "kind" : "*" }]
+
     object_mapping_path = docs.package / "init" / "fl-objectmappings.txt"
-    tut_patcher_path = docs.package / "docs" / "tutorial-patchers"
     misc_path = docs.package / "misc"
+    tut_patcher_path = docs.package / "docs" / "tutorial-patchers"
     db_path = docs.interfaces_dir / "max.db.json"
     
     f = open(object_mapping_path, "r")
@@ -27,6 +30,7 @@ def main(docs):
     
     f.close;
     
+    d_inner["filters"] = filters
     d_inner["aliases"] = d_aliases
     d_inner["exclusions"] = list_files(tut_patcher_path) + list_files(misc_path)
     d_inner["exclusions"].sort()
