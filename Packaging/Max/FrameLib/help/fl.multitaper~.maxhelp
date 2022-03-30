@@ -3,7 +3,7 @@
         "fileversion": 1,
         "appversion": {
             "major": 8,
-            "minor": 1,
+            "minor": 3,
             "revision": 0,
             "architecture": "x64",
             "modernui": 1
@@ -11,7 +11,7 @@
         "classnamespace": "box",
         "rect": [
             34.0,
-            79.0,
+            87.0,
             662.0,
             787.0
         ],
@@ -46,6 +46,7 @@
         "subpatcher_template": "nobars",
         "showrootpatcherontab": 0,
         "showontab": 0,
+        "assistshowspatchername": 0,
         "boxes": [
             {
                 "box": {
@@ -57,7 +58,7 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
+                            "minor": 3,
                             "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
@@ -65,7 +66,7 @@
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
+                            113.0,
                             662.0,
                             761.0
                         ],
@@ -99,6 +100,7 @@
                         "style": "",
                         "subpatcher_template": "nobars",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
                             {
                                 "box": {
@@ -151,8 +153,9 @@
                                     "enablevscroll": 0,
                                     "id": "obj-128",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
-                                    "name": "fldocs.getparams.maxpat",
+                                    "name": "fl.docs.getparams.maxpat",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "offset": [
@@ -169,31 +172,7 @@
                                 }
                             }
                         ],
-                        "lines": [
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-128",
-                                        0
-                                    ],
-                                    "hidden": 1,
-                                    "midpoints": [
-                                        635.5,
-                                        168.0,
-                                        657.0,
-                                        168.0,
-                                        657.0,
-                                        166.0,
-                                        24.5,
-                                        166.0
-                                    ],
-                                    "source": [
-                                        "obj-1",
-                                        0
-                                    ]
-                                }
-                            }
-                        ]
+                        "lines": []
                     },
                     "patching_rect": [
                         2.0,
@@ -1013,23 +992,23 @@
         "lines": [],
         "dependency_cache": [
             {
-                "name": "fldocs.getparams.maxpat",
-                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
-                "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
+                "name": "fl.docs.getparams.maxpat",
+                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+                "patcherrelativepath": "../../../Packaging/Max/FrameLib/misc",
                 "type": "JSON",
                 "implicit": 1
             },
             {
                 "name": "fl.getname.js",
-                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
-                "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
+                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+                "patcherrelativepath": "../../../Packaging/Max/FrameLib/misc",
                 "type": "TEXT",
                 "implicit": 1
             },
             {
                 "name": "fl.helpdetails.js",
-                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
-                "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
+                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+                "patcherrelativepath": "../../../Packaging/Max/FrameLib/misc",
                 "type": "TEXT",
                 "implicit": 1
             }
