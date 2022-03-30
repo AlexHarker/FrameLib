@@ -139,21 +139,21 @@ class qParseAndBuild:
         # #strips whitespace from things
         self.digest = strip_space(self.digest)
 
-    def extract_seealso(self, yaml):
+    def extract_seealso(self, object_info):
         """
-        Extracts the see also contents from the master yaml file
+        Extracts the see also contents from the master json file
         """
         try:
-            self.seealso = yaml[self.object_name]["seealso"]
+            self.seealso = object_info[self.object_name]["seealso"]
         except KeyError:
             print(f"No seealso for {self.object_name}")
 
-    def extract_keywords(self, yaml):
+    def extract_keywords(self, object_info):
         """
-        Extracts the keywords contents from the master yaml file
+        Extracts the keywords contents from the master json file
         """
         try:
-            self.keywords = yaml[self.object_name]["keywords"]
+            self.keywords = object_info[self.object_name]["keywords"]
         except KeyError:
             print(f"No keywords for {self.object_name}")
 

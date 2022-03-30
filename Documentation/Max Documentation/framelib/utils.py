@@ -31,14 +31,6 @@ def read_json(json_file_path: str) -> dict:
         return data
 
 
-def read_yaml(yaml_file_path: str) -> dict:
-    with open(yaml_file_path, "r") as stream:
-        try:
-            return yaml.safe_load(stream)
-        except yaml.YAMLError as exc:
-            print(exc)
-
-
 # -- Functions to make the console prints much more pleasant --#
 
 
