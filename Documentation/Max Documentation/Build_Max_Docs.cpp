@@ -289,7 +289,7 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
         {
             if (bulletCount)
                 endBullet();
-            info.insert(pos, "<br />");
+            info.insert(pos, "<p />");
             break;
         }
         
@@ -326,7 +326,7 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
                     replaceLineEnd(".");
                 endBullet();
                 if (multiLine && !finalNote)
-                    insertString("<br />");
+                    insertString("<p />");
                 newItem = true;
             }
             else
@@ -349,7 +349,7 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
         {
             // If there's no list in the info string then insert it here
             
-            info += "<br />" ; // put a break big break between description and enum options
+            info += "<p />" ; // put a break big break between description and enum options
 
             for (long i = 0; i <= params->getMax(idx); i++)
                 info += "<bullet>[" + std::to_string(i) + "]" + " - <m>" + params->getItemString(idx, i) + "</m></bullet>";
@@ -548,7 +548,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         std::string name = getParamName(params, paramIdx);
         std::string rawDescription = processParamInfo(object, params, paramIdx);
         std::string digest = rawDescription.substr(0, rawDescription.find_first_of(".:"));
-        std::string description = "This argument sets the " + name + " parameter:<br /><br />" + rawDescription;
+        std::string description = "This argument sets the " + name + " parameter:<p /><p />" + rawDescription;
         
         if (detectIndexedParam(params, paramIdx))
             description = "Arguments set parameters " + name + ":<br /><br />" + rawDescription;
