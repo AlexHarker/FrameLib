@@ -32,8 +32,6 @@ def main(docs):
     C++ doesnt know about the categories and its easier for me to iterate file structures in Python.
     It also copies the xml files to the refpages directory after they're processed.
     """
-
-    object_info = read_json(docs.object_relationships_path)
     category_database = read_json(docs.category_database_path)
 
     # Get category of file
@@ -70,7 +68,7 @@ def main(docs):
 
         # Create seealso and keywords
         try:
-            details = object_info[obj_name]
+            details = docs.object_info[obj_name]
         except KeyError:
             print(f'No entry for {raw_xml} in object_relationships.json')
         else:

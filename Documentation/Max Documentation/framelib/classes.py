@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as et
 from pathlib import Path
-from framelib.utils import write_json, strip_space, strip_extension
+from framelib.utils import read_json, write_json, strip_space, strip_extension
 from framelib.variables import this_script
 from shutil import copytree
 
@@ -38,10 +38,12 @@ class Documentation:
         self.manual_xml_dir = self.max_docs_dir / "refpages"
 
         # The Max Objects Source Files
-        
         self.source_path = self.repo_root / "FrameLib_Max_Objects"
         self.source_files = [x for x in self.source_path.rglob("fl.*.cpp")]
         
+        # Read Object Info
+        self.object_info = read_json(self.object_relationships_path)
+
     def set_package(self, location:str) -> None:
         """Sets the location of the folder holding that is the parent of the package"""
         self.package = Path(location)
