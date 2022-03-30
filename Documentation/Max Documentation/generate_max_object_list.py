@@ -37,15 +37,13 @@ def main(docs: Documentation):
     
     op.write("using FrameLib_DSPList = detail::FrameLib_Typelist<\n\n")
 
-    # Directory formation
-    max_object_category_paths = [x for x in docs.source_path.iterdir() if x.is_dir()]
-
+    # Category list formation
+    
     source_file_list = []
-    ## Get folders in the parent Max Objects Folder
-    for category in max_object_category_paths:
-        for name in Path(category).rglob("fl.*.cpp"):
-            if name.stem not in ignored_objects:
-                source_file_list.append([category, name])
+    ## Get sources files and store with their category
+    for file in docs.source_files:
+        if file.stem not in ignored_objects:
+            source_file_list.append([file.parent.stem, file])
 
     # TODO - lookwithin and realise this is not okay
     # Recreate full paths to open and parse for type cases
