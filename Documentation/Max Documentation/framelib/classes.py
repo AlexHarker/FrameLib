@@ -73,7 +73,8 @@ class Documentation:
         seealso = self.object_info[object_name]["seealso"][:]
     
         aliased = [self.refpage_name(x) for x in seealso]
-            
+        aliased.sort()
+        
         return aliased
     
 
