@@ -212,8 +212,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -283,15 +283,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -450,10 +450,9 @@
                                     "patching_rect": [
                                         345.0,
                                         525.0,
-                                        259.0,
+                                        260.0,
                                         50.0
                                     ],
-                                    "presentation_linecount": 3,
                                     "text": "Here as our random generator is normally distributed with a mean of 0.1 numbers this should be relatively close to 0.1 each time ."
                                 }
                             },
@@ -467,7 +466,7 @@
                                     "patching_rect": [
                                         15.0,
                                         525.0,
-                                        258.0,
+                                        259.0,
                                         50.0
                                     ],
                                     "text": "Here as our random generator is equally distributed  between 0 and 1 this should be relatively close to 0.5 each time."
@@ -514,6 +513,7 @@
                             {
                                 "box": {
                                     "id": "obj-8",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -759,6 +759,7 @@
                             {
                                 "box": {
                                     "id": "obj-23",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,

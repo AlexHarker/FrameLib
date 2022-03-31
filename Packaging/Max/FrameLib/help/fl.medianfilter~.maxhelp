@@ -212,8 +212,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -283,15 +283,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -342,7 +342,6 @@
                                         83.0,
                                         23.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "percentile $1"
                                 }
                             },
@@ -406,6 +405,7 @@
                             },
                             {
                                 "box": {
+                                    "hidden": 1,
                                     "id": "obj-7",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -455,6 +455,7 @@
                             },
                             {
                                 "box": {
+                                    "hidden": 1,
                                     "id": "obj-118",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -473,6 +474,7 @@
                             },
                             {
                                 "box": {
+                                    "hidden": 1,
                                     "id": "obj-117",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -868,6 +870,7 @@
                                         "obj-116",
                                         0
                                     ],
+                                    "hidden": 1,
                                     "source": [
                                         "obj-117",
                                         0
@@ -880,6 +883,7 @@
                                         "obj-110",
                                         0
                                     ],
+                                    "hidden": 1,
                                     "source": [
                                         "obj-118",
                                         0
@@ -946,6 +950,7 @@
                                         "obj-9",
                                         0
                                     ],
+                                    "hidden": 1,
                                     "source": [
                                         "obj-7",
                                         0
@@ -1070,14 +1075,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",

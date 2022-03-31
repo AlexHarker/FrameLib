@@ -1056,6 +1056,7 @@
                             },
                             {
                                 "box": {
+                                    "hidden": 1,
                                     "id": "obj-36",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -1710,6 +1711,7 @@
                                         "obj-31",
                                         0
                                     ],
+                                    "hidden": 1,
                                     "source": [
                                         "obj-36",
                                         0

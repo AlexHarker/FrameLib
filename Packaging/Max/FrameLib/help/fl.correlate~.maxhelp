@@ -212,8 +212,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -266,7 +266,7 @@
                                     "patching_rect": [
                                         15.0,
                                         105.0,
-                                        148.0,
+                                        151.0,
                                         36.0
                                     ],
                                     "text": "Autocorrelate the output of the tri~ oscillator"
@@ -300,7 +300,6 @@
                                         96.0,
                                         21.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "Autocorrelation"
                                 }
                             },
@@ -322,6 +321,7 @@
                             {
                                 "box": {
                                     "id": "obj-21",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -469,6 +469,7 @@
                             {
                                 "box": {
                                     "id": "obj-6",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -872,7 +873,6 @@
                         98.0,
                         22.0
                     ],
-                    "presentation_linecount": 3,
                     "saved_object_attributes": {
                         "description": "",
                         "digest": "",
@@ -893,15 +893,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            113.0,
                             654.0,
                             761.0
                         ],
@@ -993,6 +993,7 @@
                             {
                                 "box": {
                                     "id": "obj-16",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -1035,6 +1036,7 @@
                             {
                                 "box": {
                                     "id": "obj-12",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -1129,6 +1131,7 @@
                             {
                                 "box": {
                                     "id": "obj-6",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -1743,8 +1746,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -1814,15 +1817,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            105.0,
+                            0.0,
+                            26.0,
                             654.0,
                             761.0
                         ],
@@ -1871,7 +1874,6 @@
                                         618.0,
                                         50.0
                                     ],
-                                    "presentation_linecount": 3,
                                     "text": "fl.correlate~ can convolve real or complex input signals (internally it uses FFT processing).\nA variety of edge behaviours is available. Here we correlate a ramp with its self as well as two random vectors. Neither correlates highly after the initial peak."
                                 }
                             },
@@ -1896,6 +1898,7 @@
                             {
                                 "box": {
                                     "id": "obj-14",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -2016,6 +2019,7 @@
                             {
                                 "box": {
                                     "id": "obj-4",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
