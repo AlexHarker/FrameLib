@@ -64,9 +64,9 @@ function wordwrap(str, width, brk, cut)
     var regex = '.{1,' +width+ '}(\\s|$)' + (cut ? '|.{' +width+ '}|.+$' : '|\\S+?(\\s|$)');
     var v=str.match( RegExp(regex, 'g') );
     for(i=0;i<=v.length;i++)
-        {   
-            mgraphics.show_text(v[i], 1);
-            mgraphics.move_to(4, 105+15*i);
-        }
+    {   
+		mgraphics.show_text(v[i], 1);
+        mgraphics.move_to(4, 105+15*i);
+    }
     return;
 }
