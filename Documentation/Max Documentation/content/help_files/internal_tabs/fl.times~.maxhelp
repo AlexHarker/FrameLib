@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -191,8 +191,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 405.0, 135.0, 114.0, 21.0 ],
-									"text" : "Abbreviated name",
+									"patching_rect" : [ 411.0, 135.0, 123.0, 21.0 ],
+									"text" : "Non-symbolic name",
 									"textjustification" : 1
 								}
 
@@ -227,8 +227,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 442.0, 330.0, 84.0, 23.0 ],
-									"text" : "0. 1. 4. 9. 16."
+									"patching_rect" : [ 442.0, 330.0, 84.0, 23.0 ]
 								}
 
 							}
@@ -251,8 +250,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 442.0, 225.0, 53.0, 23.0 ],
-									"text" : "fl.*~"
+									"patching_rect" : [ 442.0, 225.0, 57.0, 23.0 ],
+									"text" : "fl.times~"
 								}
 
 							}
@@ -263,8 +262,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 330.0, 330.0, 99.0, 23.0 ],
-									"text" : "0. 5. 10. 15. 20."
+									"patching_rect" : [ 330.0, 330.0, 99.0, 23.0 ]
 								}
 
 							}
@@ -311,8 +309,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 330.0, 225.0, 42.0, 23.0 ],
-									"text" : "fl.*~ 5"
+									"patching_rect" : [ 330.0, 225.0, 68.0, 23.0 ],
+									"text" : "fl.times~ 5"
 								}
 
 							}
@@ -435,7 +433,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 15.0, 255.0, 109.0, 23.0 ],
-									"text" : "fl.times~"
+									"text" : "fl.*~"
 								}
 
 							}
@@ -578,7 +576,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-9", 1 ],
-									"midpoints" : [ 339.5, 210.0, 485.5, 210.0 ],
+									"midpoints" : [ 339.5, 210.0, 489.5, 210.0 ],
 									"order" : 0,
 									"source" : [ "obj-6", 0 ]
 								}
@@ -662,26 +660,18 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.frommax~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.perblock~.mxo",
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "fl.once~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -693,11 +683,11 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.once~.mxo",
+				"name" : "fl.times~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.once~.mxo",
+				"name" : "fl.tomax~.mxo",
 				"type" : "iLaX"
 			}
  ],
