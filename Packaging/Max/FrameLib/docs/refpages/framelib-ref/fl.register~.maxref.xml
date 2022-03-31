@@ -25,7 +25,7 @@
         The input vector to use for any disconnected inputs
       </digest>
       <description>
-        Values typed as arguments will be used as a vector for any inputs that are not connected. Either single values or multi-valued vectors can be entered. The behaviour is similar to that for arguments to standard objects such as +~, *~ or zl.reg.
+        Values typed as arguments will be used as a vector for any inputs that are not connected. Either single values or multi-valued vectors can be entered. The behaviour is similar to that for arguments to standard objects such as <o>+~</o>, or <o>*~</o>.
       </description>
     </objarg>
   </objarglist>

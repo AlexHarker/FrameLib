@@ -568,7 +568,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     auto writeArgumentsAllInputs = [&]()
     {
         std::string digest("The input vector to use for any disconnected inputs");
-        std::string description("Values typed as arguments will be used as a vector for any inputs that are not connected. Either single values or multi-valued vectors can be entered. The behaviour is similar to that for arguments to standard objects such as +~, *~ or zl.reg.");
+        std::string description("Values typed as arguments will be used as a vector for any inputs that are not connected. Either single values or multi-valued vectors can be entered. The behaviour is similar to that for arguments to standard objects such as <o>+~</o>, or <o>*~</o>.");
         
         file << tab1 + "<objarglist>\n";
         file << tab2 + "<objarg name='default-input' optional='1' type='list'>\n";
