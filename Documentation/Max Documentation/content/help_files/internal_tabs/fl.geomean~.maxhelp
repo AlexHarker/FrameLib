@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -156,7 +156,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 201.0, 479.875, 37.0, 15.25 ]
+									"patching_rect" : [ 201.0, 434.875, 37.0, 15.25 ]
 								}
 
 							}
@@ -166,7 +166,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 240.0, 477.0, 298.0, 21.0 ],
+									"patching_rect" : [ 240.0, 432.0, 298.0, 21.0 ],
 									"text" : "Divide the geometric mean by the mean"
 								}
 
@@ -179,7 +179,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 79.0, 396.875, 37.0, 15.25 ]
+									"patching_rect" : [ 79.0, 351.875, 37.0, 15.25 ]
 								}
 
 							}
@@ -189,7 +189,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 118.0, 393.875, 298.0, 21.0 ],
+									"patching_rect" : [ 118.0, 348.875, 298.0, 21.0 ],
 									"text" : "Take the magnitude of the spectrum"
 								}
 
@@ -202,7 +202,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 79.0, 347.875, 37.0, 15.25 ]
+									"patching_rect" : [ 79.0, 302.875, 37.0, 15.25 ]
 								}
 
 							}
@@ -212,7 +212,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 118.0, 344.875, 298.0, 21.0 ],
+									"patching_rect" : [ 118.0, 299.875, 298.0, 21.0 ],
 									"text" : "Convert our input frame to the frequency domain"
 								}
 
@@ -225,7 +225,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 233.0, 300.875, 37.0, 15.25 ]
+									"patching_rect" : [ 233.0, 255.875, 37.0, 15.25 ]
 								}
 
 							}
@@ -235,7 +235,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 272.0, 297.875, 276.0, 21.0 ],
+									"patching_rect" : [ 272.0, 252.875, 276.0, 21.0 ],
 									"text" : "Window the input frame using a hann function"
 								}
 
@@ -248,7 +248,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 162.0, 255.875, 37.0, 15.25 ]
+									"patching_rect" : [ 162.0, 210.875, 37.0, 15.25 ]
 								}
 
 							}
@@ -258,7 +258,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 200.0, 252.875, 215.0, 21.0 ],
+									"patching_rect" : [ 200.0, 207.875, 215.0, 21.0 ],
 									"text" : "4096 randomly distributed samples"
 								}
 
@@ -271,7 +271,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 117.0, 213.875, 37.0, 15.25 ]
+									"patching_rect" : [ 117.0, 168.875, 37.0, 15.25 ]
 								}
 
 							}
@@ -281,7 +281,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 153.0, 211.0, 215.0, 21.0 ],
+									"patching_rect" : [ 153.0, 166.0, 215.0, 21.0 ],
 									"text" : "Trigger frame every 4096 samples"
 								}
 
@@ -293,7 +293,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 630.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 585.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -304,7 +304,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 297.0, 216.0, 23.0 ],
+									"patching_rect" : [ 15.0, 252.0, 216.0, 23.0 ],
 									"text" : "fl.window~ hann /compensate linear"
 								}
 
@@ -315,7 +315,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 67.0, 592.0, 379.0, 21.0 ],
+									"patching_rect" : [ 67.0, 547.0, 379.0, 21.0 ],
 									"text" : "Spectral flatness measure. Noisy spectra are flatter (closer to 1)."
 								}
 
@@ -327,7 +327,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 555.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 510.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -339,7 +339,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 501.0, 139.0, 23.0 ],
+									"patching_rect" : [ 15.0, 456.0, 139.0, 23.0 ],
 									"text" : "fl.divide~"
 								}
 
@@ -351,7 +351,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 447.0, 59.0, 23.0 ],
+									"patching_rect" : [ 135.0, 402.0, 59.0, 23.0 ],
 									"text" : "fl.mean~"
 								}
 
@@ -363,7 +363,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 393.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 348.0, 62.0, 23.0 ],
 									"text" : "fl.hypot~"
 								}
 
@@ -375,7 +375,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 210.0, 101.0, 23.0 ],
+									"patching_rect" : [ 15.0, 165.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 4096"
 								}
 
@@ -387,7 +387,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 252.0, 145.0, 23.0 ],
+									"patching_rect" : [ 15.0, 207.0, 145.0, 23.0 ],
 									"text" : "fl.random~ /length 4096"
 								}
 
@@ -399,7 +399,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 15.0, 344.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 299.0, 62.0, 23.0 ],
 									"text" : "fl.fft~"
 								}
 
@@ -413,7 +413,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 592.0, 50.0, 23.0 ]
+									"patching_rect" : [ 15.0, 547.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -424,7 +424,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 447.0, 80.0, 23.0 ],
+									"patching_rect" : [ 15.0, 402.0, 80.0, 23.0 ],
 									"text" : "fl.geomean~"
 								}
 
@@ -433,11 +433,11 @@
 								"box" : 								{
 									"fontname" : "Arial",
 									"id" : "obj-52",
-									"linecount" : 5,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 105.0, 438.0, 79.0 ],
+									"patching_rect" : [ 15.0, 90.0, 600.0, 50.0 ],
 									"text" : "We can use the geometric mean to calculate spectral flatness of a noisy input. A flatter spectrum often correlates to perceptually noise or pitchless sound - you might expect the flatness measure to be close to 1 when computing this value on frame containing randomly distributed numbers (white noise)."
 								}
 
@@ -470,7 +470,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 9.0, 435.0, 190.0, 105.0 ],
+									"patching_rect" : [ 9.0, 390.0, 190.0, 105.0 ],
 									"proportion" : 0.5
 								}
 
@@ -507,7 +507,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-26", 0 ],
-									"midpoints" : [ 24.5, 426.0, 144.5, 426.0 ],
+									"midpoints" : [ 24.5, 381.0, 144.5, 381.0 ],
 									"order" : 0,
 									"source" : [ "obj-25", 0 ]
 								}
@@ -604,14 +604,7 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.geomean~.mxo",
+				"name" : "fl.divide~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -619,19 +612,22 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.random~.mxo",
+				"name" : "fl.geomean~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.hypot~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.interval~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -639,7 +635,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.divide~.mxo",
+				"name" : "fl.random~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

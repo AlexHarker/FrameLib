@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -167,7 +167,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 520.00006103515625, 358.0, 104.0, 57.33331298828125 ],
+									"patching_rect" : [ 520.00006103515625, 358.0, 104.0, 57.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 100
 								}
@@ -241,7 +241,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 105.0, 600.0, 65.0 ],
+									"patching_rect" : [ 15.0, 92.0, 600.0, 65.0 ],
 									"text" : "This patch compare the flatness of three frames (a ramp, a flat line and a frame of random values). \n\nThe flatness calculation might be applied to the magnitudes of spectral frames in order to produce a timbral audio descriptor."
 								}
 
@@ -265,7 +265,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 310.00006103515625, 358.0, 104.0, 57.33331298828125 ],
+									"patching_rect" : [ 310.00006103515625, 358.0, 104.0, 57.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 100
 								}
@@ -279,7 +279,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 90.0, 358.0, 104.0, 57.33331298828125 ],
+									"patching_rect" : [ 90.0, 358.0, 104.0, 57.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 100
 								}
@@ -629,23 +629,15 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.flatness~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.once~.mxo",
@@ -656,11 +648,15 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.uniform~.mxo",
+				"name" : "fl.random~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.random~.mxo",
+				"name" : "fl.tomax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.uniform~.mxo",
 				"type" : "iLaX"
 			}
  ],
