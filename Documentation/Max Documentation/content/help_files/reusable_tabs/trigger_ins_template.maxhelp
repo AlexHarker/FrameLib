@@ -112,6 +112,7 @@
 							}
 , 							{
 								"box" : 								{
+									"blinktime" : 70,
 									"id" : "obj-11",
 									"maxclass" : "button",
 									"numinlets" : 1,
@@ -742,7 +743,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 92.0, 615.0, 79.0 ],
-									"text" : "FrameLib binary operators have a /trigger_ins parameter that will change which inputs trigger calculation. \n\nBelow you can select which inputs (and hence scheduler(s)) drive the calculation of fl.*~ (there are three different versions encapsulated in p \"trigger ins\"). You'll see the most obvious difference when switching between left or both to right, where calculation will slow down to once every 1.3 seconds."
+									"text" : "FrameLib binary operators have a /trigger_ins parameter that sets which inputs trigger calculation. \n\nBelow you can select which inputs (and hence scheduler(s)) drive the calculation of fl.*~ (there are three different versions encapsulated in p \"trigger ins\"). You'll see the most obvious difference when switching between either left or both to right, where calculation will slow down to once every 1.3 seconds."
 								}
 
 							}
