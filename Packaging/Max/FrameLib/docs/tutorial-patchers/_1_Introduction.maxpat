@@ -118,7 +118,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 797.0, 696.0 ],
+						"rect" : [ 34.0, 113.0, 797.0, 696.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -622,11 +622,11 @@
 									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-8",
-									"linecount" : 33,
+									"linecount" : 34,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 135.0, 457.0, 521.0 ],
+									"patching_rect" : [ 15.0, 135.0, 442.0, 537.0 ],
 									"text" : "In the previous tab \"What is a frame?\" a bpatcher example demonstrates the concept of scheduling short fragments of audio to be played back in time. That bpatcher is composed of Max objects that play samples from a buffer~ object using play~. We encourage you to go and open that bpatcher up and see how it is put together.\n\nIn that bpatcher, Max uses a 'play from this position in time to that position over this amount of time' way of programming a simple playback routine. This single statement tells the play object to play a certain segment of a buffer over a duration of time which is all triggered when play~ receives that message. In FrameLib we construct algorithms in steps that control the flow of frames between FrameLib objects. This flow of frames occurs at audio rate, and the passing of frames is confined to flow between FrameLib objects. This flow is always initiated using a 'scheduler' object, with the most common one being fl.interval~.\n\nThe fl.read~ object's (in blue) primary function is to extract samples from a buffer like play~, peek~ or index~. Instead of describing the playback routine with a message (\"start 0 1000 1000\") we use a frame of values that dictate which positions from the buffer we want. Whenever fl.read~ receives that frame it will output a new frame of sample values corresponding to those positions in the buffer. So to get the first second of audio (0 1000) we pass a frame containing 44100 values that count from 0 to 44100. You can see that output frame in the multislider and it looks a lot like a waveform! This frame is converted into audio is through the fl.sink~ object which receives a frame of values and converts it into a normal msp signal. As fl.sink~ here receives a frame of 44100 values, it will stream these out over 1 second (assuming your sample rate is set to 44100 samples). The fl.interval~ at the top of the FrameLib chain is dictating how often this whole series of events is occurring much like a metro could trigger a message like \"start 0 1000 1000\" which would make play~ output audio. This means that we get the first 44100 samples from fl.read~ every 44100 samples of time. fl.sink~ converts this to audio for us taking care of the conversion between a frame and a signal."
 								}
 
@@ -2187,7 +2187,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 797.0, 696.0 ],
+						"rect" : [ 0.0, 26.0, 797.0, 696.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
