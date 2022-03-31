@@ -1184,7 +1184,7 @@
                                         98.0,
                                         23.0
                                     ],
-                                    "text": "mode lowpass"
+                                    "text": "mode highpass"
                                 }
                             },
                             {
@@ -1204,25 +1204,6 @@
                                         23.0
                                     ],
                                     "text": "fl.tomax~"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "fontsize": 13.0,
-                                    "id": "obj-34",
-                                    "maxclass": "newobj",
-                                    "numinlets": 2,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        "signal"
-                                    ],
-                                    "patching_rect": [
-                                        15.0,
-                                        415.0,
-                                        43.0,
-                                        23.0
-                                    ],
-                                    "text": "*~ 0.2"
                                 }
                             },
                             {
@@ -1355,7 +1336,7 @@
                                         112.0,
                                         23.0
                                     ],
-                                    "text": "fl.read~ fl-lus-help"
+                                    "text": "fl.read~ fl-help-lus"
                                 }
                             },
                             {
@@ -1393,7 +1374,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         111.0,
-                                        503.0,
+                                        458.0,
                                         30.0,
                                         11.0
                                     ]
@@ -1407,7 +1388,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         150.0,
-                                        498.0,
+                                        453.0,
                                         164.0,
                                         21.0
                                     ],
@@ -1437,7 +1418,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        495.0,
+                                        450.0,
                                         90.0,
                                         45.0
                                     ],
@@ -1453,7 +1434,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        570.0,
+                                        525.0,
                                         45.0,
                                         45.0
                                     ]
@@ -1471,11 +1452,11 @@
                                     ],
                                     "patching_rect": [
                                         105.0,
-                                        592.0,
+                                        547.0,
                                         163.0,
                                         23.0
                                     ],
-                                    "text": "buffer~ fl-lus-help jongly.aif"
+                                    "text": "buffer~ fl-help-lus jongly.aif"
                                 }
                             },
                             {
@@ -1649,23 +1630,11 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-34",
-                                        0
-                                    ],
-                                    "source": [
-                                        "obj-33",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
                                         "obj-2",
                                         0
                                     ],
                                     "source": [
-                                        "obj-34",
+                                        "obj-33",
                                         0
                                     ]
                                 }
