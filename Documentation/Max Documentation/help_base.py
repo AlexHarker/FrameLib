@@ -3,7 +3,7 @@ from shutil import copyfile
 
 
 def main(docs: Documentation):
-    master_template = docs.help_dir / "help_template.maxhelp"
+    master_template = docs.help_dir / "templates" / "help_template.maxhelp"
 
     # clean out templates folder
     for x in docs.help_templates_dir.rglob("fl.*.maxhelp"):

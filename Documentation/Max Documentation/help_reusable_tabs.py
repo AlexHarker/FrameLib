@@ -13,9 +13,9 @@ def append_tabs(patch, source):
 
 
 def main(docs: Documentation):
-    mismatch = open(docs.help_dir / "mismatch_template.maxhelp", "r").read()
-    trigger_ins = open(docs.help_dir / "trigger_ins_template.maxhelp", "r").read()
-    in_mode = open(docs.help_dir / "input_mode_template.maxhelp").read()
+    mismatch = open(docs.help_dir / "reusable_tabs" / "mismatch_template.maxhelp", "r").read()
+    trigger_ins = open(docs.help_dir / "reusable_tabs" / "trigger_ins_template.maxhelp", "r").read()
+    in_mode = open(docs.help_dir / "reusable_tabs" / "input_mode_template.maxhelp").read()
 
     templates = [x for x in docs.help_templates_dir.rglob("fl.*.maxhelp")]
 

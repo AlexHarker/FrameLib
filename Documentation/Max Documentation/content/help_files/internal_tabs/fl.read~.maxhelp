@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1318,7 +1318,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1425,7 +1425,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 314.0, 166.5, 314.0, 50.0 ],
-									"text" : "Create a counting from of 2000 ms converted internally to sample values. At 44.1khz this would be a frame of 88200 values counting from 0 to 88200"
+									"text" : "Create a  frame of 2000 ms length converted scaled as a sample count. At 44.1khz this would be a frame of 88200 values counting from 0 to 88200"
 								}
 
 							}
@@ -1488,12 +1488,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-18",
-									"linecount" : 3,
+									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 241.5, 309.0, 50.0 ],
-									"text" : "fl.read~ is pointed to the buffer \"fl-help-read\". This will output a frame of the first two seconds from the buffer it is pointed to"
+									"patching_rect" : [ 270.0, 235.5, 309.0, 65.0 ],
+									"text" : "fl.read~ is pointed to the buffer \"fl-help-read\". This will output a frame of the first two seconds from the buffer it is pointed to. Note that the units are set to samples to match the input scaling."
 								}
 
 							}

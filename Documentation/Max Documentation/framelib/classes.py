@@ -31,11 +31,11 @@ class Documentation:
         self.set_max_paths()
 
         # Help Files
-        self.help_dir = self.max_docs_dir / "help_files"
+        self.help_dir = self.max_docs_dir / "content" / "help_files"
         self.help_templates_dir = self.temporary_dir / "help_templates"
 
         # Manual XML
-        self.manual_xml_dir = self.max_docs_dir / "refpages"
+        self.manual_xml_dir = self.max_docs_dir / "content" / "refpages"
 
         # The Max Objects Source Files
         self.source_path = self.repo_root / "FrameLib_Max_Objects"

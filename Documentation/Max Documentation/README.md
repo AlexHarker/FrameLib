@@ -5,14 +5,14 @@ generate_max_object_list
 validate_object_relationships
 create_category_database
 edit_raw_xml
-dlookup
-qlookup
-tlookup
-jlookup
+lookup_dlookup
+lookup_qlookup
+lookup_tlookup
+lookup_jlookup
 create_tutorial_coll
-template_help
-merge_help
-fixed_help_tabs
+help_base
+help_merge
+help_reusable_tabs
 create_max_db
 cleanup
 

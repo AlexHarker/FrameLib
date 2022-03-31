@@ -701,7 +701,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 183.0, 202.0, 294.0, 21.0 ],
+									"patching_rect" : [ 235.0, 202.0, 294.0, 21.0 ],
 									"text" : "Arguments set the output tag and possible values"
 								}
 
@@ -790,7 +790,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 15.0, 329.0, 229.0, 23.0 ],
-									"text" : "fl.window~ trapezoid /parameters 2 40"
+									"text" : "fl.window~ trapezoid /parameters 2 80"
 								}
 
 							}
@@ -802,8 +802,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 165.0, 131.0, 23.0 ],
-									"text" : "fl.ramp~ /length 2000"
+									"patching_rect" : [ 15.0, 165.0, 190.0, 23.0 ],
+									"text" : "fl.ramp~ /length 2000 /scale ms"
 								}
 
 							}
@@ -816,7 +816,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 15.0, 285.0, 97.0, 23.0 ],
-									"text" : "fl.svf~ 2000 0.2"
+									"text" : "fl.svf~ 1600 0.6"
 								}
 
 							}
@@ -841,7 +841,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 158.0, 165.0, 131.0, 23.0 ],
+									"patching_rect" : [ 210.0, 165.0, 131.0, 23.0 ],
 									"text" : "fl.ticks~ 2 /mode loop"
 								}
 
@@ -868,7 +868,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 158.0, 240.0, 239.0, 23.0 ],
+									"patching_rect" : [ 210.0, 240.0, 239.0, 23.0 ],
 									"text" : "fl.lookupstring~ mode lowpass highpass"
 								}
 
@@ -984,7 +984,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
-									"midpoints" : [ 24.5, 149.5, 167.5, 149.5 ],
+									"midpoints" : [ 24.5, 149.5, 219.5, 149.5 ],
 									"order" : 0,
 									"source" : [ "obj-24", 0 ]
 								}
@@ -1000,7 +1000,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-30", 1 ],
-									"midpoints" : [ 167.5, 273.0, 102.5, 273.0 ],
+									"midpoints" : [ 219.5, 273.0, 102.5, 273.0 ],
 									"order" : 1,
 									"source" : [ "obj-27", 0 ]
 								}
@@ -1009,7 +1009,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-36", 0 ],
-									"midpoints" : [ 167.5, 273.0, 343.5, 273.0 ],
+									"midpoints" : [ 219.5, 273.0, 343.5, 273.0 ],
 									"order" : 0,
 									"source" : [ "obj-27", 0 ]
 								}

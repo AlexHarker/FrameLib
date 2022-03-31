@@ -3,15 +3,15 @@ import create_temp
 import validate_object_relationships
 import create_category_database
 import edit_xml
-import dlookup
-import qlookup
-import tlookup
-import jlookup
+import lookup_dlookup
+import lookup_qlookup
+import lookup_tlookup
+import lookup_jlookup
 import create_tutorial_coll
 import cleanup
-import template_help
-import merge_help
-import fixed_help_tabs
+import help_base
+import help_merge
+import help_reusable_tabs
 import create_max_db
 from framelib.utils import sign_off, space, hyp
 from framelib.classes import Documentation
@@ -59,24 +59,24 @@ def main():
     # This script creates a dictionary used to display specific object info in the extras Max Patch.
     # Similar to the qlookup, but is specifically used to display the digest with mouse hovering
     print("4. Building dlookup")
-    dlookup.main(docs)
+    lookup_dlookup.main(docs)
     hyp()
 
     ## This script creates a dictionary that contains specific object information.
     # This provides the dynamic hover behaviour
     print("5. Building qlookup")
-    qlookup.main(docs)
+    lookup_qlookup.main(docs)
     hyp()
 
     # Creates a dictionary used to display names and descriptions of tutorials in the extras Max Patch.
     # The tutorials are categorised by difficulty. {Beginner, Intermediate, Advanced}
     print("6. Building tlookup")
-    tlookup.main(docs)
+    lookup_tlookup.main(docs)
     hyp()
 
     # Creates a dict containing information about object parameters. This is used by the help file template.
     print("7. Building jlookup")
-    jlookup.main(docs)
+    lookup_jlookup.main(docs)
     hyp()
 
     # Creates a coll containing the file names of the tutorials. Makes it a bit easier to load them.
@@ -88,17 +88,17 @@ def main():
         # Creates the templates for each help file.
         # This is an outer shell containing generic information and framework to be filled in
         print("10. Creating help file templates")
-        template_help.main(docs)
+        help_base.main(docs)
         hyp()
 
         print("11. Merging master templates with internal patchers")
-        merge_help.main(docs)
+        help_merge.main(docs)
         hyp()
 
-        # Merges the hard coded tabs with the templates
+        # Merges the common reusable tabs with the templates
         # This creates the finished help file
-        print("12. Adding mismatch and trigger_ins tabs")
-        fixed_help_tabs.main(docs)
+        print("12. Adding reusable tabs")
+        help_reusable_tabs.main(docs)
         hyp()
 
     # Creates a database of files to exclude

@@ -3,8 +3,6 @@ from framelib.classes import Documentation
 
 def main(docs: Documentation):
     internal_dir = docs.help_dir / "internal_tabs"
-    external_dir = docs.package / "FrameLib" / "externals"
-    master_template = docs.help_dir / "help_template.maxhelp"
 
     templates = [x for x in docs.help_templates_dir.rglob("fl.*.maxhelp")]
     for t in templates:
