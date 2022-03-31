@@ -701,6 +701,7 @@
 							}
 , 							{
 								"box" : 								{
+									"dontreplace" : 1,
 									"id" : "obj-33",
 									"maxclass" : "message",
 									"numinlets" : 2,
