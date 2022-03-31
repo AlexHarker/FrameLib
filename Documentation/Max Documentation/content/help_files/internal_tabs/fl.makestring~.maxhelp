@@ -410,7 +410,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.lookupstring~" ],
+									"jsarguments" : [ "fl.makestring~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -551,7 +551,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 90.0, 30.0, 117.0, 22.0 ],
+					"patching_rect" : [ 90.0, 30.0, 62.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -560,7 +560,7 @@
 						"tags" : ""
 					}
 ,
-					"text" : "p \"normalised scale\""
+					"text" : "p details"
 				}
 
 			}
@@ -614,7 +614,7 @@
 						"lines" : [  ]
 					}
 ,
-					"patching_rect" : [ 225.0, 30.0, 25.0, 22.0 ],
+					"patching_rect" : [ 180.0, 30.0, 25.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -674,24 +674,84 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-11",
+									"id" : "obj-20",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 287.0, 92.0, 21.0 ],
-									"text" : "Set filter mode"
+									"patching_rect" : [ 337.0, 211.0, 189.0, 21.0 ],
+									"text" : "Add one to go between 1 and 5"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-19",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 285.0, 210.0, 45.0, 23.0 ],
+									"text" : "fl.+~ 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-17",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 294.0, 696.0, 30.0, 11.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-18",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 330.0, 691.0, 230.0, 21.0 ],
+									"presentation_linecount" : 2,
+									"text" : "Look inside to see the samples loaded"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-15",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 71.5, 329.5, 132.0, 21.0 ],
+									"text" : "Sets the buffer to use"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-13",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 324.0, 323.0, 301.0, 36.0 ],
+									"presentation_linecount" : 3,
+									"text" : "- use in1, in2 - inx for input numbers\n- string inputs will be concatenated with no spaces"
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-10",
-									"linecount" : 3,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 105.0, 375.0, 495.0, 50.0 ],
-									"text" : "The default mode treats the input as an index into the set of available strings. Thus, the input can used to select a specific string output, in this case tagged ready to set the mode parameter of the svf filter."
+									"patching_rect" : [ 61.5, 495.0, 495.0, 79.0 ],
+									"text" : "The simplest operation is just to change one numeric part of a string, perhaps to determine which element of a polybuffer~ to access (as in this example).\n\nHowever, strings can be combined from multiple elements with control of numerical padding"
 								}
 
 							}
@@ -701,8 +761,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 235.0, 202.0, 294.0, 21.0 ],
-									"text" : "Arguments set the output tag and possible values"
+									"patching_rect" : [ 312.0, 300.0, 257.0, 21.0 ],
+									"text" : "Arguments set the output tag and elements"
 								}
 
 							}
@@ -714,7 +774,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 361.0, 334.0, 30.0, 11.0 ]
+									"patching_rect" : [ 312.0, 448.0, 30.0, 11.0 ]
 								}
 
 							}
@@ -724,8 +784,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 399.0, 331.0, 232.0, 21.0 ],
-									"text" : "Cycles between lowpass and highpass"
+									"patching_rect" : [ 350.0, 445.0, 232.0, 21.0 ],
+									"text" : "Cycles through the polybuffer~"
 								}
 
 							}
@@ -737,8 +797,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 255.0, 329.0, 98.0, 23.0 ],
-									"text" : "mode highpass"
+									"patching_rect" : [ 145.0, 443.0, 159.0, 23.0 ],
+									"text" : "buffer fl-help-ms-polybuf.1"
 								}
 
 							}
@@ -750,7 +810,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 334.0, 285.0, 62.0, 23.0 ],
+									"patching_rect" : [ 285.0, 383.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -763,7 +823,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 370.0, 49.0, 23.0 ],
+									"patching_rect" : [ 15.0, 443.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -776,7 +836,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 329.0, 229.0, 23.0 ],
+									"patching_rect" : [ 15.0, 383.0, 229.0, 23.0 ],
 									"text" : "fl.window~ trapezoid /parameters 2 80"
 								}
 
@@ -789,21 +849,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 165.0, 190.0, 23.0 ],
-									"text" : "fl.ramp~ /length 2000 /scale ms"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 13.0,
-									"id" : "obj-30",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 97.0, 23.0 ],
-									"text" : "fl.svf~ 1600 0.6"
+									"patching_rect" : [ 15.0, 165.0, 245.0, 23.0 ],
+									"text" : "fl.ramp~ /length 2000 /scale ms /units ms"
 								}
 
 							}
@@ -815,8 +862,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 114.0, 23.0 ],
-									"text" : "fl.interval~ 500 ms"
+									"patching_rect" : [ 15.0, 105.0, 122.0, 23.0 ],
+									"text" : "fl.interval~ 1400 ms"
 								}
 
 							}
@@ -828,8 +875,8 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 210.0, 165.0, 131.0, 23.0 ],
-									"text" : "fl.ticks~ 2 /mode loop"
+									"patching_rect" : [ 285.0, 165.0, 149.0, 23.0 ],
+									"text" : "fl.ticks~ 5 up /mode loop"
 								}
 
 							}
@@ -841,8 +888,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 240.0, 112.0, 23.0 ],
-									"text" : "fl.read~ fl-help-lus"
+									"patching_rect" : [ 15.0, 329.5, 52.0, 23.0 ],
+									"text" : "fl.read~"
 								}
 
 							}
@@ -855,8 +902,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 210.0, 240.0, 239.0, 23.0 ],
-									"text" : "fl.lookupstring~ mode lowpass highpass"
+									"patching_rect" : [ 285.0, 255.0, 258.0, 23.0 ],
+									"text" : "fl.makestring~ buffer fl-help-ms-polybuf. in1"
 								}
 
 							}
@@ -868,7 +915,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 111.0, 458.0, 30.0, 11.0 ]
+									"patching_rect" : [ 111.0, 601.0, 30.0, 11.0 ]
 								}
 
 							}
@@ -878,8 +925,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 453.0, 164.0, 21.0 ],
-									"text" : "Turn up to hear the filtering"
+									"patching_rect" : [ 150.0, 596.0, 221.0, 21.0 ],
+									"text" : "Turn up to hear the different samples"
 								}
 
 							}
@@ -899,7 +946,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 450.0, 90.0, 45.0 ],
+									"patching_rect" : [ 15.0, 593.0, 90.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -911,19 +958,31 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 525.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 668.0, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"embed_buffers" : 									{
+										"fl-help-ms-polybuf.1" : "jongly.aif",
+										"fl-help-ms-polybuf.2" : "cherokee.aif",
+										"fl-help-ms-polybuf.3" : "anton.aif",
+										"fl-help-ms-polybuf.4" : "duduk.aif",
+										"fl-help-ms-polybuf.5" : "rainstick.aif"
+									}
+,
 									"id" : "obj-40",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 2,
-									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 105.0, 547.0, 163.0, 23.0 ],
-									"text" : "buffer~ fl-help-lus jongly.aif"
+									"outlettype" : [ "", "bang" ],
+									"patching_rect" : [ 105.0, 690.0, 180.0, 23.0 ],
+									"saved_object_attributes" : 									{
+										"embed" : 1
+									}
+,
+									"text" : "polybuffer~ fl-help-ms-polybuf"
 								}
 
 							}
@@ -933,7 +992,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.lookupstring~" ],
+									"jsarguments" : [ "fl.makestring~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -945,6 +1004,13 @@
 							}
  ],
 						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-27", 0 ],
+									"source" : [ "obj-19", 0 ]
+								}
+
+							}
+, 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 1 ],
 									"order" : 0,
@@ -971,7 +1037,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
-									"midpoints" : [ 24.5, 149.5, 219.5, 149.5 ],
+									"midpoints" : [ 24.5, 149.5, 294.5, 149.5 ],
 									"order" : 0,
 									"source" : [ "obj-24", 0 ]
 								}
@@ -979,15 +1045,15 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-30", 0 ],
+									"destination" : [ "obj-32", 0 ],
 									"source" : [ "obj-26", 0 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-30", 1 ],
-									"midpoints" : [ 219.5, 273.0, 102.5, 273.0 ],
+									"destination" : [ "obj-26", 1 ],
+									"midpoints" : [ 294.5, 285.0, 57.5, 285.0 ],
 									"order" : 1,
 									"source" : [ "obj-27", 0 ]
 								}
@@ -996,16 +1062,8 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-36", 0 ],
-									"midpoints" : [ 219.5, 273.0, 343.5, 273.0 ],
 									"order" : 0,
 									"source" : [ "obj-27", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-32", 0 ],
-									"source" : [ "obj-30", 0 ]
 								}
 
 							}
@@ -1039,7 +1097,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-27", 0 ],
+									"destination" : [ "obj-19", 0 ],
 									"source" : [ "obj-4", 0 ]
 								}
 
@@ -1123,6 +1181,14 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "fl.makestring~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.plus~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.ramp~.mxo",
 				"type" : "iLaX"
 			}
@@ -1136,10 +1202,6 @@
 			}
 , 			{
 				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.svf~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
