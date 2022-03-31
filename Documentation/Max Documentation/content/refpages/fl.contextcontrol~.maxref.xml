@@ -5,7 +5,7 @@
     Controls a named context via Max messages.
   </digest>
   <description>
-    <o>fl.contextcontrol~</o> allows the user to control multithreading and time outs for a specified FrameLib context, as well as to export code to C++. As with normal FrameLib objects the context is set using attributes (as well as the implicit context patch). Please note that the <o>fl.contextcontrol~</o> object does not actually process frames, or participate in FrameLib networks in any direct manner. It is merely a control mechanism for pre-existing networks.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+    <o>fl.contextcontrol~</o> allows the user to control multithreading and time outs for a specified FrameLib context, as well as to export code to C++. As with normal FrameLib objects the context is set using attributes (as well as the implicit context patch). Please note that the <o>fl.contextcontrol~</o> object does not actually process frames, or participate in FrameLib networks in any direct manner. It is merely a control mechanism for pre-existing networks.
   </description>
   <methodlist>
     <method name="multithread">
@@ -71,6 +71,9 @@
     </attribute>
   </attributelist>
   <seealsolist>
+    <seealso name="10_fl_contexts" type="tutorial" module="FrameLib" />
+    <seealso name="12_fl_threading" type="tutorial" module="FrameLib" />
+    <seealso name="13_fl_export" type="tutorial" module="FrameLib" />
     <seealso name="fl.interval~" />
     <seealso name="fl.source~" />
     <seealso name="fl.sink~" />
