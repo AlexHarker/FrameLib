@@ -102,7 +102,7 @@ def main():
         hyp()
 
     # Creates a database of files to exclude
-    print("10. Creating help file templates")
+    print("13. Creating help file templates")
     create_max_db.main(docs)
     hyp()
 

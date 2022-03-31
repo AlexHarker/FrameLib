@@ -22,6 +22,13 @@ def lookup_input_string(object) -> str:
                 
     return object + " " + dict[object]
 
+def fix_mapping(patch, name):
+    if name == "fl.and~" or name == "fl.or~":
+        return patch.replace("linear 0.2 0.8 0.2 0.8 1", "linear 0.5 0.8 0. 0.8 1")
+    if name == "fl.copysign~":
+        return patch.replace("linear 0.2 0.8 0.2 0.8 1", "linear 0.2 0.8 -0.8 0.8 1", 1)
+    return patch
+
 def main(docs: Documentation):
     mismatch_binary = open(docs.help_dir / "reusable_tabs" / "mismatch_binary_template.maxhelp", "r").read()
     mismatch_ternary = open(docs.help_dir / "reusable_tabs" / "mismatch_ternary_template.maxhelp", "r").read()
@@ -47,7 +54,8 @@ def main(docs: Documentation):
             append_tabs(mismatch_ternary, template, "fl.fold~", name)
 
         if path.stem in binary:
-            append_tabs(trigger_ins, template, "fl.*~", name)
+            trigger_ins_fixed = fix_mapping(trigger_ins, path.stem)
+            append_tabs(trigger_ins_fixed, template, "fl.*~", name)
             append_tabs(mismatch_binary, template, "fl.-~", name)
         
         if path.stem in complex_binary:
