@@ -212,8 +212,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -283,15 +283,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -334,12 +334,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        333.5,
+                                        349.0,
                                         284.0,
-                                        153.0,
+                                        189.0,
                                         21.0
                                     ],
-                                    "text": "Can also be abbreviated!"
+                                    "text": "Also has a non-symbolic name!"
                                 }
                             },
                             {
@@ -354,10 +354,10 @@
                                     "patching_rect": [
                                         273.5,
                                         284.0,
-                                        38.0,
+                                        69.0,
                                         23.0
                                     ],
-                                    "text": "fl.%~"
+                                    "text": "fl.modulo~"
                                 }
                             },
                             {
@@ -560,7 +560,7 @@
                                         169.0,
                                         23.0
                                     ],
-                                    "text": "fl.modulo~ 0.5"
+                                    "text": "fl.%~ 0.5"
                                 }
                             },
                             {

@@ -212,8 +212,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -283,15 +283,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -329,17 +329,17 @@
                         "boxes": [
                             {
                                 "box": {
-                                    "id": "obj-4",
+                                    "id": "obj-19",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        360.0,
-                                        210.0,
-                                        153.0,
+                                        375.0,
+                                        211.0,
+                                        189.0,
                                         21.0
                                     ],
-                                    "text": "Can also be abbreviated!"
+                                    "text": "Also has a non-symbolic name!"
                                 }
                             },
                             {
@@ -354,10 +354,10 @@
                                     "patching_rect": [
                                         315.0,
                                         210.0,
-                                        30.0,
+                                        44.0,
                                         23.0
                                     ],
-                                    "text": "fl.!~"
+                                    "text": "fl.not~"
                                 }
                             },
                             {
@@ -408,8 +408,7 @@
                                         296.0,
                                         92.0,
                                         23.0
-                                    ],
-                                    "text": "1. 0. 0. 0. 0. 1."
+                                    ]
                                 }
                             },
                             {
@@ -460,10 +459,10 @@
                                     "patching_rect": [
                                         15.0,
                                         195.0,
-                                        44.0,
+                                        30.0,
                                         23.0
                                     ],
-                                    "text": "fl.not~"
+                                    "text": "fl.!~"
                                 }
                             },
                             {

@@ -212,8 +212,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -283,15 +283,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -385,12 +385,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        405.0,
+                                        411.0,
                                         135.0,
-                                        114.0,
+                                        123.0,
                                         21.0
                                     ],
-                                    "text": "Abbreviated name",
+                                    "text": "Non-symbolic name",
                                     "textjustification": 1
                                 }
                             },
@@ -439,8 +439,7 @@
                                         330.0,
                                         84.0,
                                         23.0
-                                    ],
-                                    "text": "0. 1. 4. 9. 16."
+                                    ]
                                 }
                             },
                             {
@@ -473,10 +472,10 @@
                                     "patching_rect": [
                                         442.0,
                                         225.0,
-                                        53.0,
+                                        57.0,
                                         23.0
                                     ],
-                                    "text": "fl.*~"
+                                    "text": "fl.times~"
                                 }
                             },
                             {
@@ -493,8 +492,7 @@
                                         330.0,
                                         99.0,
                                         23.0
-                                    ],
-                                    "text": "0. 5. 10. 15. 20."
+                                    ]
                                 }
                             },
                             {
@@ -563,10 +561,10 @@
                                     "patching_rect": [
                                         330.0,
                                         225.0,
-                                        42.0,
+                                        68.0,
                                         23.0
                                     ],
-                                    "text": "fl.*~ 5"
+                                    "text": "fl.times~ 5"
                                 }
                             },
                             {
@@ -752,7 +750,7 @@
                                         109.0,
                                         23.0
                                     ],
-                                    "text": "fl.times~"
+                                    "text": "fl.*~"
                                 }
                             },
                             {
@@ -1017,7 +1015,7 @@
                                     "midpoints": [
                                         339.5,
                                         210.0,
-                                        485.5,
+                                        489.5,
                                         210.0
                                     ],
                                     "order": 0,

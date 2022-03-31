@@ -212,8 +212,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -283,15 +283,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -336,10 +336,10 @@
                                     "patching_rect": [
                                         360.0,
                                         300.0,
-                                        153.0,
+                                        189.0,
                                         21.0
                                     ],
-                                    "text": "Can also be abbreviated!"
+                                    "text": "Also has a non-symbolic name!"
                                 }
                             },
                             {
@@ -354,10 +354,10 @@
                                     "patching_rect": [
                                         300.0,
                                         300.0,
-                                        44.0,
+                                        48.0,
                                         23.0
                                     ],
-                                    "text": "fl.&&~"
+                                    "text": "fl.and~"
                                 }
                             },
                             {
@@ -597,10 +597,10 @@
                                     "patching_rect": [
                                         15.0,
                                         300.0,
-                                        109.0,
+                                        44.0,
                                         23.0
                                     ],
-                                    "text": "fl.and~"
+                                    "text": "fl.&&~"
                                 }
                             },
                             {
@@ -834,6 +834,12 @@
                                     "destination": [
                                         "obj-16",
                                         1
+                                    ],
+                                    "midpoints": [
+                                        114.5,
+                                        288.5,
+                                        49.5,
+                                        288.5
                                     ],
                                     "source": [
                                         "obj-21",

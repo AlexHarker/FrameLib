@@ -212,8 +212,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -283,15 +283,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -334,12 +334,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        423.5,
+                                        438.0,
                                         375.0,
-                                        153.0,
+                                        189.0,
                                         21.0
                                     ],
-                                    "text": "Can also be abbreviated!"
+                                    "text": "Also has a non-symbolic name!"
                                 }
                             },
                             {
@@ -352,12 +352,12 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        363.5,
+                                        345.0,
                                         375.0,
-                                        37.0,
+                                        83.0,
                                         23.0
                                     ],
-                                    "text": "fl.!=~"
+                                    "text": "fl.notequals~"
                                 }
                             },
                             {
@@ -367,12 +367,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        105.0,
-                                        331.0,
-                                        232.0,
+                                        60.0,
+                                        332.0,
+                                        187.0,
                                         21.0
                                     ],
-                                    "text": "fl.notequals~ compares the two frames"
+                                    "text": "fl.!=~ compares the two frames"
                                 }
                             },
                             {
@@ -772,10 +772,10 @@
                                     "patching_rect": [
                                         15.0,
                                         330.0,
-                                        83.0,
+                                        37.0,
                                         23.0
                                     ],
-                                    "text": "fl.notequals~"
+                                    "text": "fl.!=~"
                                 }
                             },
                             {
@@ -949,7 +949,7 @@
                                     "midpoints": [
                                         178.5,
                                         324.0,
-                                        88.5,
+                                        42.5,
                                         324.0
                                     ],
                                     "source": [
