@@ -270,9 +270,9 @@ public:
                "tukey - the adjustable Tukey (or cosine-tapered) window. "
                "sine - the sine (or cosine) window. "
                "hann - the Hann window. "
-               "hamming - the Hamming window with a0=0.54, a1=0.46. "
-               "blackman - the Blackman window with a0=0.42, a1=0.50, a2 = 0.08. "
-               "exact_blackman - the Blackman window with a0=7938/18608, a1=9240/18608, a2=1430/18608. "
+               "hamming - the Hamming window (a0=0.54, a1=0.46). "
+               "blackman - the Blackman window (a0=0.42, a1=0.50, a2 = 0.08). "
+               "exact_blackman - the Blackman window (a0=7938/18608, a1=9240/18608, a2=1430/18608). "
                "blackman_harris - the Blackman-Harris window with 92dB rejection. "
                "nuttall_continuous - Nuttall's continuous 1st derivative window with 93dB rejection. "
                "nuttall_minimal - Nuttall's minimal sidelobe window with 98dB rejection. "
@@ -310,7 +310,8 @@ public:
     static const char *getCompensationInfo()
     {
         return "Sets the gain compensation (the window is divided by the compensated gain). "
-               "For FFT output windowing reconstruct correctly compensates gain if the same input window is used: "
+               "For FFT input windowing linear compensatation is recommended. "
+               "For output windowing reconstruct correctly compensates for a matched input window: "
                "off - no compensation is used. "
                "linear - compensate the linear gain of the window. "
                "square - compensate the gain of the window when applied twice (squared). "
