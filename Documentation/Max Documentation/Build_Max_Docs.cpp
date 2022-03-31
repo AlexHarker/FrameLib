@@ -13,6 +13,8 @@
 #include <stdexcept>
 #include <libgen.h>
 
+static bool aliasSymbolicNames = true;
+
 struct MessageArgument
 {
     std::string mName;
@@ -430,6 +432,9 @@ std::string getAliases(const std::string& fileName, const std::string& objectNam
 
 std::string aliasName(const std::string& fileName)
 {
+    if (!aliasSymbolicNames)
+        return fileName;
+    
     auto aliases = getAliasStrings(fileName);
 
     if (aliases.size() && aliases[0].find_first_of("+-/*;|%!=") != std::string::npos)
