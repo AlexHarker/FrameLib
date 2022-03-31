@@ -1091,15 +1091,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -1137,32 +1137,622 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "fontname": "Arial",
+                                    "id": "obj-2",
+                                    "linecount": 12,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        90.0,
+                                        623.0,
+                                        181.0
+                                    ],
+                                    "text": "FrameLib ternary operators objects have a configurable logic for dealing with scenarios where there is a mismatch between the lengths of different inputs. \n\nThis is done via the /mismatch parameter.\n\nThe available options are:\n\nwrap -  reads shorter imputs in a wrapped manner (the output is as long as the longest input)\nshrink - the output is as long as the shortest input, other values are discarded\nextend - extends shorter inputs by padding them with their final value\n\nSee how these operate in practice for fl.clip~ below:"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-21",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        159.0,
+                                        525.0,
+                                        258.0,
+                                        21.0
+                                    ],
+                                    "text": "See inside for details of how this is patched"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-20",
+                                    "maxclass": "newobj",
+                                    "numinlets": 4,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patcher": {
+                                        "fileversion": 1,
+                                        "appversion": {
+                                            "major": 8,
+                                            "minor": 3,
+                                            "revision": 0,
+                                            "architecture": "x64",
+                                            "modernui": 1
+                                        },
+                                        "classnamespace": "box",
+                                        "rect": [
+                                            59.0,
+                                            106.0,
+                                            771.0,
+                                            276.0
+                                        ],
+                                        "bglocked": 0,
+                                        "openinpresentation": 0,
+                                        "default_fontsize": 12.0,
+                                        "default_fontface": 0,
+                                        "default_fontname": "Arial",
+                                        "gridonopen": 1,
+                                        "gridsize": [
+                                            15.0,
+                                            15.0
+                                        ],
+                                        "gridsnaponopen": 1,
+                                        "objectsnaponopen": 1,
+                                        "statusbarvisible": 2,
+                                        "toolbarvisible": 1,
+                                        "lefttoolbarpinned": 0,
+                                        "toptoolbarpinned": 0,
+                                        "righttoolbarpinned": 0,
+                                        "bottomtoolbarpinned": 0,
+                                        "toolbars_unpinned_last_save": 0,
+                                        "tallnewobj": 0,
+                                        "boxanimatetime": 200,
+                                        "enablehscroll": 1,
+                                        "enablevscroll": 1,
+                                        "devicewidth": 0.0,
+                                        "description": "",
+                                        "digest": "",
+                                        "tags": "",
+                                        "style": "",
+                                        "subpatcher_template": "",
+                                        "assistshowspatchername": 0,
+                                        "boxes": [
+                                            {
+                                                "box": {
+                                                    "id": "obj-6",
+                                                    "maxclass": "newobj",
+                                                    "numinlets": 1,
+                                                    "numoutlets": 1,
+                                                    "outlettype": [
+                                                        ""
+                                                    ],
+                                                    "patching_rect": [
+                                                        611.0,
+                                                        139.0,
+                                                        124.0,
+                                                        22.0
+                                                    ],
+                                                    "text": "fl.frommax~ params"
+                                                }
+                                            },
+                                            {
+                                                "box": {
+                                                    "id": "obj-26",
+                                                    "maxclass": "newobj",
+                                                    "numinlets": 3,
+                                                    "numoutlets": 1,
+                                                    "outlettype": [
+                                                        ""
+                                                    ],
+                                                    "patching_rect": [
+                                                        416.0,
+                                                        139.0,
+                                                        174.0,
+                                                        22.0
+                                                    ],
+                                                    "text": "fl.clip~ 0 1 /mismatch extend"
+                                                }
+                                            },
+                                            {
+                                                "box": {
+                                                    "id": "obj-25",
+                                                    "maxclass": "newobj",
+                                                    "numinlets": 4,
+                                                    "numoutlets": 1,
+                                                    "outlettype": [
+                                                        ""
+                                                    ],
+                                                    "patching_rect": [
+                                                        26.0,
+                                                        183.0,
+                                                        604.0,
+                                                        22.0
+                                                    ],
+                                                    "text": "fl.select~ 3"
+                                                }
+                                            },
+                                            {
+                                                "box": {
+                                                    "id": "obj-24",
+                                                    "maxclass": "newobj",
+                                                    "numinlets": 3,
+                                                    "numoutlets": 1,
+                                                    "outlettype": [
+                                                        ""
+                                                    ],
+                                                    "patching_rect": [
+                                                        221.0,
+                                                        139.0,
+                                                        170.0,
+                                                        22.0
+                                                    ],
+                                                    "text": "fl.clip~ 0 1 /mismatch shrink"
+                                                }
+                                            },
+                                            {
+                                                "box": {
+                                                    "id": "obj-13",
+                                                    "maxclass": "newobj",
+                                                    "numinlets": 3,
+                                                    "numoutlets": 1,
+                                                    "outlettype": [
+                                                        ""
+                                                    ],
+                                                    "patching_rect": [
+                                                        26.0,
+                                                        139.0,
+                                                        163.0,
+                                                        22.0
+                                                    ],
+                                                    "text": "fl.clip~ 0 1 /mismatch wrap"
+                                                }
+                                            },
+                                            {
+                                                "box": {
+                                                    "comment": "Input",
+                                                    "id": "obj-14",
+                                                    "index": 1,
+                                                    "maxclass": "inlet",
+                                                    "numinlets": 0,
+                                                    "numoutlets": 1,
+                                                    "outlettype": [
+                                                        ""
+                                                    ],
+                                                    "patching_rect": [
+                                                        26.0,
+                                                        26.0,
+                                                        30.0,
+                                                        30.0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "box": {
+                                                    "comment": "Parameter 1",
+                                                    "id": "obj-15",
+                                                    "index": 2,
+                                                    "maxclass": "inlet",
+                                                    "numinlets": 0,
+                                                    "numoutlets": 1,
+                                                    "outlettype": [
+                                                        ""
+                                                    ],
+                                                    "patching_rect": [
+                                                        98.0,
+                                                        26.0,
+                                                        30.0,
+                                                        30.0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "box": {
+                                                    "comment": "Parameter 2",
+                                                    "id": "obj-16",
+                                                    "index": 3,
+                                                    "maxclass": "inlet",
+                                                    "numinlets": 0,
+                                                    "numoutlets": 1,
+                                                    "outlettype": [
+                                                        ""
+                                                    ],
+                                                    "patching_rect": [
+                                                        170.0,
+                                                        26.0,
+                                                        30.0,
+                                                        30.0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "box": {
+                                                    "comment": "Mode Selector",
+                                                    "id": "obj-17",
+                                                    "index": 4,
+                                                    "maxclass": "inlet",
+                                                    "numinlets": 0,
+                                                    "numoutlets": 1,
+                                                    "outlettype": [
+                                                        ""
+                                                    ],
+                                                    "patching_rect": [
+                                                        611.0,
+                                                        49.0,
+                                                        30.0,
+                                                        30.0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "box": {
+                                                    "comment": "Result",
+                                                    "id": "obj-19",
+                                                    "index": 1,
+                                                    "maxclass": "outlet",
+                                                    "numinlets": 1,
+                                                    "numoutlets": 0,
+                                                    "patching_rect": [
+                                                        26.0,
+                                                        219.0,
+                                                        30.0,
+                                                        30.0
+                                                    ]
+                                                }
+                                            }
+                                        ],
+                                        "lines": [
+                                            {
+                                                "patchline": {
+                                                    "destination": [
+                                                        "obj-25",
+                                                        0
+                                                    ],
+                                                    "source": [
+                                                        "obj-13",
+                                                        0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "patchline": {
+                                                    "destination": [
+                                                        "obj-13",
+                                                        0
+                                                    ],
+                                                    "order": 2,
+                                                    "source": [
+                                                        "obj-14",
+                                                        0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "patchline": {
+                                                    "destination": [
+                                                        "obj-24",
+                                                        0
+                                                    ],
+                                                    "midpoints": [
+                                                        35.5,
+                                                        126.0,
+                                                        230.5,
+                                                        126.0
+                                                    ],
+                                                    "order": 1,
+                                                    "source": [
+                                                        "obj-14",
+                                                        0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "patchline": {
+                                                    "destination": [
+                                                        "obj-26",
+                                                        0
+                                                    ],
+                                                    "midpoints": [
+                                                        35.5,
+                                                        126.0,
+                                                        425.5,
+                                                        126.0
+                                                    ],
+                                                    "order": 0,
+                                                    "source": [
+                                                        "obj-14",
+                                                        0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "patchline": {
+                                                    "color": [
+                                                        0.0,
+                                                        0.742061376571655,
+                                                        0.0,
+                                                        1.0
+                                                    ],
+                                                    "destination": [
+                                                        "obj-13",
+                                                        1
+                                                    ],
+                                                    "midpoints": [
+                                                        107.5,
+                                                        112.5,
+                                                        107.5,
+                                                        112.5
+                                                    ],
+                                                    "order": 3,
+                                                    "source": [
+                                                        "obj-15",
+                                                        0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "patchline": {
+                                                    "color": [
+                                                        0.0,
+                                                        0.742061376571655,
+                                                        0.0,
+                                                        1.0
+                                                    ],
+                                                    "destination": [
+                                                        "obj-24",
+                                                        1
+                                                    ],
+                                                    "midpoints": [
+                                                        107.5,
+                                                        112.5,
+                                                        306.0,
+                                                        112.5
+                                                    ],
+                                                    "order": 2,
+                                                    "source": [
+                                                        "obj-15",
+                                                        0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "patchline": {
+                                                    "color": [
+                                                        0.0,
+                                                        0.742061376571655,
+                                                        0.0,
+                                                        1.0
+                                                    ],
+                                                    "destination": [
+                                                        "obj-26",
+                                                        1
+                                                    ],
+                                                    "midpoints": [
+                                                        107.5,
+                                                        112.5,
+                                                        503.0,
+                                                        112.5
+                                                    ],
+                                                    "order": 1,
+                                                    "source": [
+                                                        "obj-15",
+                                                        0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "patchline": {
+                                                    "color": [
+                                                        0.0,
+                                                        0.742061376571655,
+                                                        0.0,
+                                                        1.0
+                                                    ],
+                                                    "destination": [
+                                                        "obj-6",
+                                                        0
+                                                    ],
+                                                    "midpoints": [
+                                                        107.5,
+                                                        112.5,
+                                                        620.5,
+                                                        112.5
+                                                    ],
+                                                    "order": 0,
+                                                    "source": [
+                                                        "obj-15",
+                                                        0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "patchline": {
+                                                    "color": [
+                                                        0.774018049240112,
+                                                        0.0,
+                                                        0.0,
+                                                        1.0
+                                                    ],
+                                                    "destination": [
+                                                        "obj-13",
+                                                        2
+                                                    ],
+                                                    "midpoints": [
+                                                        179.5,
+                                                        97.0,
+                                                        179.5,
+                                                        97.0
+                                                    ],
+                                                    "order": 2,
+                                                    "source": [
+                                                        "obj-16",
+                                                        0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "patchline": {
+                                                    "color": [
+                                                        0.774018049240112,
+                                                        0.0,
+                                                        0.0,
+                                                        1.0
+                                                    ],
+                                                    "destination": [
+                                                        "obj-24",
+                                                        2
+                                                    ],
+                                                    "midpoints": [
+                                                        179.5,
+                                                        97.0,
+                                                        381.5,
+                                                        97.0
+                                                    ],
+                                                    "order": 1,
+                                                    "source": [
+                                                        "obj-16",
+                                                        0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "patchline": {
+                                                    "color": [
+                                                        0.774018049240112,
+                                                        0.0,
+                                                        0.0,
+                                                        1.0
+                                                    ],
+                                                    "destination": [
+                                                        "obj-26",
+                                                        2
+                                                    ],
+                                                    "midpoints": [
+                                                        179.5,
+                                                        97.0,
+                                                        580.5,
+                                                        97.0
+                                                    ],
+                                                    "order": 0,
+                                                    "source": [
+                                                        "obj-16",
+                                                        0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "patchline": {
+                                                    "destination": [
+                                                        "obj-6",
+                                                        0
+                                                    ],
+                                                    "source": [
+                                                        "obj-17",
+                                                        0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "patchline": {
+                                                    "destination": [
+                                                        "obj-25",
+                                                        1
+                                                    ],
+                                                    "source": [
+                                                        "obj-24",
+                                                        0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "patchline": {
+                                                    "destination": [
+                                                        "obj-19",
+                                                        0
+                                                    ],
+                                                    "source": [
+                                                        "obj-25",
+                                                        0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "patchline": {
+                                                    "destination": [
+                                                        "obj-25",
+                                                        2
+                                                    ],
+                                                    "source": [
+                                                        "obj-26",
+                                                        0
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "patchline": {
+                                                    "destination": [
+                                                        "obj-25",
+                                                        3
+                                                    ],
+                                                    "source": [
+                                                        "obj-6",
+                                                        0
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "patching_rect": [
+                                        30.0,
+                                        495.0,
+                                        454.0,
+                                        23.0
+                                    ],
+                                    "saved_object_attributes": {
+                                        "description": "",
+                                        "digest": "",
+                                        "globalpatchername": "",
+                                        "tags": ""
+                                    },
+                                    "text": "p tenrary_mismatch"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-12",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        320.0,
+                                        390.0,
+                                        91.0,
+                                        23.0
+                                    ],
+                                    "text": "fl.register~ 1 2"
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-5",
                                     "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        615.0,
+                                        30.0,
+                                        675.0,
                                         45.0,
                                         45.0
                                     ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-6",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        90.52499389648438,
-                                        496.0,
-                                        230.0,
-                                        21.0
-                                    ],
-                                    "text": "The internal operation is a subtraction."
                                 }
                             },
                             {
@@ -1174,8 +1764,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        139.0,
-                                        559.8999938964844,
+                                        154.0,
+                                        619.8999938964844,
                                         53.04998779296875,
                                         13.20001220703125
                                     ]
@@ -1188,8 +1778,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        195.0,
-                                        555.0,
+                                        210.0,
+                                        619.8999938964844,
                                         207.0,
                                         21.0
                                     ],
@@ -1206,6 +1796,7 @@
                                     "enablevscroll": 0,
                                     "id": "obj-1",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
                                     "numinlets": 0,
                                     "numoutlets": 1,
@@ -1220,8 +1811,8 @@
                                         "fileversion": 1,
                                         "appversion": {
                                             "major": 8,
-                                            "minor": 1,
-                                            "revision": 8,
+                                            "minor": 3,
+                                            "revision": 0,
                                             "architecture": "x64",
                                             "modernui": 1
                                         },
@@ -1357,7 +1948,7 @@
                                                     "id": "obj-1",
                                                     "maxclass": "live.tab",
                                                     "num_lines_patching": 4,
-                                                    "num_lines_presentation": 4,
+                                                    "num_lines_presentation": 3,
                                                     "numinlets": 1,
                                                     "numoutlets": 3,
                                                     "outlettype": [
@@ -1384,11 +1975,10 @@
                                                             "parameter_enum": [
                                                                 "wrap",
                                                                 "shrink",
-                                                                "pad_in",
-                                                                "pad_out"
+                                                                "extend"
                                                             ],
                                                             "parameter_longname": "live.tab",
-                                                            "parameter_mmax": 3,
+                                                            "parameter_mmax": 2,
                                                             "parameter_shortname": "live.tab",
                                                             "parameter_type": 2,
                                                             "parameter_unitstyle": 9
@@ -1483,14 +2073,14 @@
                                             {
                                                 "name": "newobjYellow-1",
                                                 "default": {
-                                                    "fontsize": [
-                                                        12.059008
-                                                    ],
                                                     "accentcolor": [
                                                         0.82517,
                                                         0.78181,
                                                         0.059545,
                                                         1.0
+                                                    ],
+                                                    "fontsize": [
+                                                        12.059008
                                                     ]
                                                 },
                                                 "parentstyle": "",
@@ -1512,8 +2102,8 @@
                                         ]
                                     },
                                     "patching_rect": [
-                                        345.0,
-                                        240.0,
+                                        465.0,
+                                        285.0,
                                         150.0,
                                         195.0
                                     ],
@@ -1530,12 +2120,11 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        555.0,
+                                        30.0,
+                                        615.0,
                                         120.0,
                                         23.0
-                                    ],
-                                    "text": "-60. 29.9 -80."
+                                    ]
                                 }
                             },
                             {
@@ -1548,8 +2137,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        495.0,
+                                        30.0,
+                                        540.0,
                                         62.0,
                                         23.0
                                     ],
@@ -1566,12 +2155,12 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        180.0,
-                                        300.0,
-                                        117.0,
+                                        175.0,
+                                        390.0,
+                                        91.0,
                                         23.0
                                     ],
-                                    "text": "fl.register~ 100 0.1"
+                                    "text": "fl.register~ 0 0"
                                 }
                             },
                             {
@@ -1584,558 +2173,12 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        300.0,
-                                        124.0,
+                                        30.0,
+                                        390.0,
+                                        139.0,
                                         23.0
                                     ],
-                                    "text": "fl.register~ 40 30 20"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-28",
-                                    "maxclass": "newobj",
-                                    "numinlets": 3,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        ""
-                                    ],
-                                    "patcher": {
-                                        "fileversion": 1,
-                                        "appversion": {
-                                            "major": 8,
-                                            "minor": 1,
-                                            "revision": 8,
-                                            "architecture": "x64",
-                                            "modernui": 1
-                                        },
-                                        "classnamespace": "box",
-                                        "rect": [
-                                            162.0,
-                                            218.0,
-                                            845.0,
-                                            301.0
-                                        ],
-                                        "bglocked": 0,
-                                        "openinpresentation": 0,
-                                        "default_fontsize": 12.0,
-                                        "default_fontface": 0,
-                                        "default_fontname": "Arial",
-                                        "gridonopen": 1,
-                                        "gridsize": [
-                                            15.0,
-                                            15.0
-                                        ],
-                                        "gridsnaponopen": 1,
-                                        "objectsnaponopen": 1,
-                                        "statusbarvisible": 2,
-                                        "toolbarvisible": 1,
-                                        "lefttoolbarpinned": 0,
-                                        "toptoolbarpinned": 0,
-                                        "righttoolbarpinned": 0,
-                                        "bottomtoolbarpinned": 0,
-                                        "toolbars_unpinned_last_save": 0,
-                                        "tallnewobj": 0,
-                                        "boxanimatetime": 200,
-                                        "enablehscroll": 1,
-                                        "enablevscroll": 1,
-                                        "devicewidth": 0.0,
-                                        "description": "",
-                                        "digest": "",
-                                        "tags": "",
-                                        "style": "",
-                                        "subpatcher_template": "",
-                                        "assistshowspatchername": 0,
-                                        "boxes": [
-                                            {
-                                                "box": {
-                                                    "id": "obj-6",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [
-                                                        ""
-                                                    ],
-                                                    "patching_rect": [
-                                                        715.0,
-                                                        132.0,
-                                                        116.0,
-                                                        22.0
-                                                    ],
-                                                    "text": "fl.frommax~ params"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "comment": "Mode Selector",
-                                                    "id": "obj-5",
-                                                    "index": 3,
-                                                    "maxclass": "inlet",
-                                                    "numinlets": 0,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [
-                                                        ""
-                                                    ],
-                                                    "patching_rect": [
-                                                        715.0,
-                                                        24.0,
-                                                        30.0,
-                                                        30.0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "comment": "Result",
-                                                    "id": "obj-4",
-                                                    "index": 1,
-                                                    "maxclass": "outlet",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 0,
-                                                    "patching_rect": [
-                                                        22.0,
-                                                        249.0,
-                                                        30.0,
-                                                        30.0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "comment": "Right Frame",
-                                                    "id": "obj-2",
-                                                    "index": 2,
-                                                    "maxclass": "inlet",
-                                                    "numinlets": 0,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [
-                                                        ""
-                                                    ],
-                                                    "patching_rect": [
-                                                        119.0,
-                                                        24.0,
-                                                        30.0,
-                                                        30.0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "comment": "Left Frame",
-                                                    "id": "obj-1",
-                                                    "index": 1,
-                                                    "maxclass": "inlet",
-                                                    "numinlets": 0,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [
-                                                        ""
-                                                    ],
-                                                    "patching_rect": [
-                                                        22.0,
-                                                        24.0,
-                                                        30.0,
-                                                        30.0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-27",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 2,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [
-                                                        ""
-                                                    ],
-                                                    "patching_rect": [
-                                                        541.0,
-                                                        132.0,
-                                                        134.0,
-                                                        22.0
-                                                    ],
-                                                    "text": "fl.-~ /mismatch pad_out"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-26",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 2,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [
-                                                        ""
-                                                    ],
-                                                    "patching_rect": [
-                                                        368.0,
-                                                        132.0,
-                                                        126.0,
-                                                        22.0
-                                                    ],
-                                                    "text": "fl.-~ /mismatch pad_in"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-25",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 5,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [
-                                                        ""
-                                                    ],
-                                                    "patching_rect": [
-                                                        22.0,
-                                                        207.0,
-                                                        711.0,
-                                                        22.0
-                                                    ],
-                                                    "text": "fl.select~ 4"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-24",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 2,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [
-                                                        ""
-                                                    ],
-                                                    "patching_rect": [
-                                                        195.0,
-                                                        132.0,
-                                                        122.0,
-                                                        22.0
-                                                    ],
-                                                    "text": "fl.-~ /mismatch shrink"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-13",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 2,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [
-                                                        ""
-                                                    ],
-                                                    "patching_rect": [
-                                                        22.0,
-                                                        132.0,
-                                                        116.0,
-                                                        22.0
-                                                    ],
-                                                    "text": "fl.-~ /mismatch wrap"
-                                                }
-                                            }
-                                        ],
-                                        "lines": [
-                                            {
-                                                "patchline": {
-                                                    "destination": [
-                                                        "obj-13",
-                                                        0
-                                                    ],
-                                                    "order": 3,
-                                                    "source": [
-                                                        "obj-1",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [
-                                                        "obj-24",
-                                                        0
-                                                    ],
-                                                    "midpoints": [
-                                                        31.5,
-                                                        118.0,
-                                                        204.5,
-                                                        118.0
-                                                    ],
-                                                    "order": 2,
-                                                    "source": [
-                                                        "obj-1",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [
-                                                        "obj-26",
-                                                        0
-                                                    ],
-                                                    "midpoints": [
-                                                        31.5,
-                                                        118.0,
-                                                        377.5,
-                                                        118.0
-                                                    ],
-                                                    "order": 1,
-                                                    "source": [
-                                                        "obj-1",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [
-                                                        "obj-27",
-                                                        0
-                                                    ],
-                                                    "midpoints": [
-                                                        31.5,
-                                                        118.0,
-                                                        550.5,
-                                                        118.0
-                                                    ],
-                                                    "order": 0,
-                                                    "source": [
-                                                        "obj-1",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [
-                                                        "obj-25",
-                                                        0
-                                                    ],
-                                                    "source": [
-                                                        "obj-13",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "color": [
-                                                        0.0,
-                                                        0.871366560459137,
-                                                        0.0,
-                                                        1.0
-                                                    ],
-                                                    "destination": [
-                                                        "obj-13",
-                                                        1
-                                                    ],
-                                                    "order": 4,
-                                                    "source": [
-                                                        "obj-2",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "color": [
-                                                        0.0,
-                                                        0.871366560459137,
-                                                        0.0,
-                                                        1.0
-                                                    ],
-                                                    "destination": [
-                                                        "obj-24",
-                                                        1
-                                                    ],
-                                                    "midpoints": [
-                                                        128.5,
-                                                        92.5,
-                                                        307.5,
-                                                        92.5
-                                                    ],
-                                                    "order": 3,
-                                                    "source": [
-                                                        "obj-2",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "color": [
-                                                        0.0,
-                                                        0.871366560459137,
-                                                        0.0,
-                                                        1.0
-                                                    ],
-                                                    "destination": [
-                                                        "obj-26",
-                                                        1
-                                                    ],
-                                                    "midpoints": [
-                                                        128.5,
-                                                        92.5,
-                                                        484.5,
-                                                        92.5
-                                                    ],
-                                                    "order": 2,
-                                                    "source": [
-                                                        "obj-2",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "color": [
-                                                        0.0,
-                                                        0.871366560459137,
-                                                        0.0,
-                                                        1.0
-                                                    ],
-                                                    "destination": [
-                                                        "obj-27",
-                                                        1
-                                                    ],
-                                                    "midpoints": [
-                                                        128.5,
-                                                        92.5,
-                                                        665.5,
-                                                        92.5
-                                                    ],
-                                                    "order": 1,
-                                                    "source": [
-                                                        "obj-2",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "color": [
-                                                        0.0,
-                                                        0.871366560459137,
-                                                        0.0,
-                                                        1.0
-                                                    ],
-                                                    "destination": [
-                                                        "obj-6",
-                                                        0
-                                                    ],
-                                                    "midpoints": [
-                                                        128.5,
-                                                        92.5,
-                                                        724.5,
-                                                        92.5
-                                                    ],
-                                                    "order": 0,
-                                                    "source": [
-                                                        "obj-2",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [
-                                                        "obj-25",
-                                                        1
-                                                    ],
-                                                    "source": [
-                                                        "obj-24",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [
-                                                        "obj-4",
-                                                        0
-                                                    ],
-                                                    "source": [
-                                                        "obj-25",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [
-                                                        "obj-25",
-                                                        2
-                                                    ],
-                                                    "source": [
-                                                        "obj-26",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [
-                                                        "obj-25",
-                                                        3
-                                                    ],
-                                                    "source": [
-                                                        "obj-27",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [
-                                                        "obj-6",
-                                                        0
-                                                    ],
-                                                    "source": [
-                                                        "obj-5",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [
-                                                        "obj-25",
-                                                        4
-                                                    ],
-                                                    "source": [
-                                                        "obj-6",
-                                                        0
-                                                    ]
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    "patching_rect": [
-                                        15.0,
-                                        450.0,
-                                        349.0,
-                                        23.0
-                                    ],
-                                    "saved_object_attributes": {
-                                        "description": "",
-                                        "digest": "",
-                                        "globalpatchername": "",
-                                        "tags": ""
-                                    },
-                                    "text": "p binary_mismatch"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "fontname": "Arial",
-                                    "id": "obj-2",
-                                    "linecount": 9,
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        15.0,
-                                        90.0,
-                                        623.0,
-                                        137.0
-                                    ],
-                                    "text": "FrameLib objects have a configurable logic for dealing with scenarios where there is a mismatch between the lengths of different inputs (or pairs of inputs for objects dealing with complex numbers). If an object needs to deal with this problem it will possess a /mismatch parameter.\n\nThere are a number of modes for dealing with mismatched frame sizes and not all objects have the same (this will depend on whether they represent a binary or ternary operator, or something else).\n\nBelow is a generic demonstration of the four modes offered on all binary operators for mismatched inputs and the effect this has on the output."
+                                    "text": "fl.register~ -0.2 0.9 1.6"
                                 }
                             },
                             {
@@ -2148,8 +2191,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        240.0,
+                                        30.0,
+                                        300.0,
                                         101.0,
                                         23.0
                                     ],
@@ -2183,11 +2226,23 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-28",
-                                        2
+                                        "obj-20",
+                                        3
                                     ],
                                     "source": [
                                         "obj-1",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-20",
+                                        2
+                                    ],
+                                    "source": [
+                                        "obj-12",
                                         0
                                     ]
                                 }
@@ -2199,7 +2254,7 @@
                                         0
                                     ],
                                     "source": [
-                                        "obj-28",
+                                        "obj-20",
                                         0
                                     ]
                                 }
@@ -2207,7 +2262,7 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-28",
+                                        "obj-20",
                                         0
                                     ],
                                     "source": [
@@ -2219,7 +2274,7 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-28",
+                                        "obj-20",
                                         1
                                     ],
                                     "source": [
@@ -2235,10 +2290,10 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        536.0,
-                                        125.5,
-                                        536.0
+                                        39.5,
+                                        588.5,
+                                        140.5,
+                                        588.5
                                     ],
                                     "source": [
                                         "obj-31",
@@ -2249,10 +2304,29 @@
                             {
                                 "patchline": {
                                     "destination": [
+                                        "obj-12",
+                                        0
+                                    ],
+                                    "midpoints": [
+                                        39.5,
+                                        356.0,
+                                        329.5,
+                                        356.0
+                                    ],
+                                    "order": 0,
+                                    "source": [
+                                        "obj-4",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
                                         "obj-29",
                                         0
                                     ],
-                                    "order": 1,
+                                    "order": 2,
                                     "source": [
                                         "obj-4",
                                         0
@@ -2266,12 +2340,12 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        287.0,
-                                        189.5,
-                                        287.0
+                                        39.5,
+                                        356.0,
+                                        184.5,
+                                        356.0
                                     ],
-                                    "order": 0,
+                                    "order": 1,
                                     "source": [
                                         "obj-4",
                                         0
@@ -2296,14 +2370,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
