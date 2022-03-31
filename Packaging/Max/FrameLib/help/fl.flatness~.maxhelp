@@ -212,8 +212,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -283,15 +283,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -357,7 +357,7 @@
                                         520.0000610351562,
                                         358.0,
                                         104.0,
-                                        57.33331298828125
+                                        57.0
                                     ],
                                     "setminmax": [
                                         0.0,
@@ -467,7 +467,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        105.0,
+                                        92.0,
                                         600.0,
                                         65.0
                                     ],
@@ -504,7 +504,7 @@
                                         310.00006103515625,
                                         358.0,
                                         104.0,
-                                        57.33331298828125
+                                        57.0
                                     ],
                                     "setminmax": [
                                         0.0,
@@ -528,7 +528,7 @@
                                         90.0,
                                         358.0,
                                         104.0,
-                                        57.33331298828125
+                                        57.0
                                     ],
                                     "setminmax": [
                                         0.0,

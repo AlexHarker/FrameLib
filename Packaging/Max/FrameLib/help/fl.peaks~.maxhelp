@@ -212,15 +212,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            113.0,
                             652.0,
                             761.0
                         ],
@@ -341,7 +341,7 @@
                                         63.0,
                                         23.0
                                     ],
-                                    "text": "fl.>~ 0.05"
+                                    "text": "fl.>~ 0.02"
                                 }
                             },
                             {
@@ -431,8 +431,8 @@
                                         "fileversion": 1,
                                         "appversion": {
                                             "major": 8,
-                                            "minor": 1,
-                                            "revision": 8,
+                                            "minor": 3,
+                                            "revision": 0,
                                             "architecture": "x64",
                                             "modernui": 1
                                         },
@@ -501,7 +501,6 @@
                                                         137.0,
                                                         20.0
                                                     ],
-                                                    "presentation_linecount": 2,
                                                     "text": "Compensate for overlap"
                                                 }
                                             },
@@ -517,7 +516,6 @@
                                                         75.0,
                                                         20.0
                                                     ],
-                                                    "presentation_linecount": 2,
                                                     "text": "Overlap-add"
                                                 }
                                             },
@@ -781,7 +779,6 @@
                                         151.0,
                                         21.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "Turn up to hear the gate!"
                                 }
                             },
@@ -794,6 +791,7 @@
                                     "enablevscroll": 0,
                                     "id": "obj-2",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
                                     "name": "fl-mono-h.maxpat",
                                     "numinlets": 1,
@@ -828,8 +826,8 @@
                                         "fileversion": 1,
                                         "appversion": {
                                             "major": 8,
-                                            "minor": 1,
-                                            "revision": 8,
+                                            "minor": 3,
+                                            "revision": 0,
                                             "architecture": "x64",
                                             "modernui": 1
                                         },
@@ -883,7 +881,6 @@
                                                         79.0,
                                                         20.0
                                                     ],
-                                                    "presentation_linecount": 2,
                                                     "text": "Take the FFT"
                                                 }
                                             },
@@ -1158,7 +1155,7 @@
                                     "patching_rect": [
                                         240.0,
                                         117.0,
-                                        385.0,
+                                        386.0,
                                         65.0
                                     ],
                                     "text": "Here we make a simple spectral gate and instead of thresholding based on the value of each bin we use fl.peaks~ along with fl.lookup~ to retrieve the value of the peak to which each bin belongs, so all values in a peak are treated together."
@@ -1182,7 +1179,9 @@
                             {
                                 "box": {
                                     "args": [
-                                        2
+                                        2,
+                                        "@vol",
+                                        0
                                     ],
                                     "bgmode": 0,
                                     "border": 0,
@@ -1191,6 +1190,7 @@
                                     "enablevscroll": 0,
                                     "id": "obj-14",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
                                     "name": "demosound.maxpat",
                                     "numinlets": 0,
@@ -1501,14 +1501,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
@@ -1535,7 +1535,6 @@
                         61.0,
                         22.0
                     ],
-                    "presentation_linecount": 3,
                     "saved_object_attributes": {
                         "description": "",
                         "digest": "",
@@ -1556,8 +1555,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -1769,7 +1768,7 @@
                                         327.0,
                                         23.0
                                     ],
-                                    "text": "0.9 0.808333"
+                                    "text": "2.380371 0.582977"
                                 }
                             },
                             {
@@ -1787,7 +1786,7 @@
                                         285.0,
                                         23.0
                                     ],
-                                    "text": "2. 5."
+                                    "text": "0.455826 6.221424"
                                 }
                             },
                             {
@@ -2186,14 +2185,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
@@ -2220,7 +2219,6 @@
                         49.0,
                         22.0
                     ],
-                    "presentation_linecount": 2,
                     "saved_object_attributes": {
                         "description": "",
                         "digest": "",
@@ -2241,8 +2239,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -2312,15 +2310,15 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            105.0,
+                            0.0,
+                            26.0,
                             652.0,
                             761.0
                         ],
@@ -2369,7 +2367,6 @@
                                         632.0,
                                         65.0
                                     ],
-                                    "presentation_linecount": 13,
                                     "text": "fl.peaks~ find peaks in an incoming frame as defined by the parameters. \n\nIn this example a peak is any value greater than the two neighbours to the right and two neighbours to the left. The first argument sets the number of neighbours, and we could also set an absolute threshold."
                                 }
                             },
@@ -2400,7 +2397,6 @@
                                         270.0,
                                         21.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "What are the peak values (non-interpolated)"
                                 }
                             },
@@ -2449,7 +2445,7 @@
                                         327.0,
                                         23.0
                                     ],
-                                    "text": "0.95 0.35 0.85"
+                                    "text": "0.891667 1."
                                 }
                             },
                             {
@@ -2467,7 +2463,7 @@
                                         285.0,
                                         23.0
                                     ],
-                                    "text": "3. 8. 13."
+                                    "text": "4. 10."
                                 }
                             },
                             {
@@ -2693,7 +2689,7 @@
                                         255.0,
                                         23.0
                                     ],
-                                    "text": "0. 0. 0. 0. 0. 0. 0. 1. 1. 2. 2. 2. 2. 2. 2. 2."
+                                    "text": "0. 0. 0. 0. 0. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1."
                                 }
                             },
                             {
@@ -2876,14 +2872,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
