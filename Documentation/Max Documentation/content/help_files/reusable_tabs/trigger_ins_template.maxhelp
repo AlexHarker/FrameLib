@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -87,6 +87,18 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "button",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "bang" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 15.0, 585.0, 24.0, 24.0 ]
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-14",
 									"maxclass" : "comment",
@@ -163,8 +175,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 150.0, 390.0, 79.0, 23.0 ],
-									"text" : "fl.plus~ 0.01"
+									"patching_rect" : [ 150.0, 390.0, 63.0, 23.0 ],
+									"text" : "fl.+~ 0.01"
 								}
 
 							}
@@ -227,6 +239,7 @@
 									"enablevscroll" : 0,
 									"id" : "obj-1",
 									"lockeddragscroll" : 0,
+									"lockedsize" : 0,
 									"maxclass" : "bpatcher",
 									"numinlets" : 0,
 									"numoutlets" : 1,
@@ -236,8 +249,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 1,
-											"revision" : 8,
+											"minor" : 3,
+											"revision" : 0,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -441,8 +454,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 1,
-											"revision" : 8,
+											"minor" : 3,
+											"revision" : 0,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -534,7 +547,7 @@
 													"numinlets" : 0,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 129.0, 25.0, 30.0, 30.0 ]
+													"patching_rect" : [ 157.0, 25.0, 30.0, 30.0 ]
 												}
 
 											}
@@ -558,7 +571,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 375.0, 138.0, 119.0, 22.0 ],
+													"patching_rect" : [ 375.0, 138.0, 147.0, 22.0 ],
 													"text" : "fl.*~ /trigger_ins right"
 												}
 
@@ -582,7 +595,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 202.0, 138.0, 112.0, 22.0 ],
+													"patching_rect" : [ 202.0, 138.0, 140.0, 22.0 ],
 													"text" : "fl.*~ /trigger_ins left"
 												}
 
@@ -594,7 +607,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 29.0, 138.0, 119.0, 22.0 ],
+													"patching_rect" : [ 29.0, 138.0, 147.0, 22.0 ],
 													"text" : "fl.*~ /trigger_ins both"
 												}
 
@@ -646,7 +659,7 @@
 												"patchline" : 												{
 													"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 													"destination" : [ "obj-24", 1 ],
-													"midpoints" : [ 138.5, 75.0, 304.5, 75.0 ],
+													"midpoints" : [ 166.5, 75.0, 332.5, 75.0 ],
 													"order" : 1,
 													"source" : [ "obj-2", 0 ]
 												}
@@ -656,7 +669,7 @@
 												"patchline" : 												{
 													"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 													"destination" : [ "obj-26", 1 ],
-													"midpoints" : [ 138.5, 75.0, 484.5, 75.0 ],
+													"midpoints" : [ 166.5, 75.0, 512.5, 75.0 ],
 													"order" : 0,
 													"source" : [ "obj-2", 0 ]
 												}
@@ -724,12 +737,12 @@
 								"box" : 								{
 									"fontname" : "Arial",
 									"id" : "obj-2",
-									"linecount" : 6,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 92.0, 615.0, 94.0 ],
-									"text" : "Some FrameLib objects have a /trigger_ins parameter that will change which frame inputs (or pairs of inputs) trigger calculation. \n\nIn this example you can select which scheduler is driving the calculation of the multiplication (encapsulated in p \"trigger ins\"). You'll see the most difference when selecting between left and right, where the right selection will slow down the calculation to every 2 seconds."
+									"patching_rect" : [ 15.0, 92.0, 615.0, 79.0 ],
+									"text" : "FrameLib binary operators have a /trigger_ins parameter that will change which inputs trigger calculation. \n\nIn this example you can select which scheduler is driving the calculation of fl.*~ (there are three different versions ncapsulated in p \"trigger ins\"). You'll see the most difference when selecting between left and right, where the right selection will slow down the calculation to every 2 seconds."
 								}
 
 							}
@@ -818,6 +831,13 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-11", 0 ],
+									"source" : [ "obj-29", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-33", 0 ],
 									"source" : [ "obj-30", 0 ]
 								}
@@ -900,9 +920,13 @@
 		}
 ,
 		"dependency_cache" : [ 			{
+				"name" : "fl.frommax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
@@ -911,39 +935,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.select~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.round~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -951,15 +943,31 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "fl.random~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.register~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.sink~.mxo",
+				"name" : "fl.round~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.select~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
 				"name" : "fl.sink~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.times~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.tomax~.mxo",
 				"type" : "iLaX"
 			}
  ],

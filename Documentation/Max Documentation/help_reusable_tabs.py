@@ -5,13 +5,22 @@ from framelib.classes import Documentation
 from framelib.help import edit_help
 
 
-def append_tabs(docs, patch, source, find_object, replace_object):
+def append_tabs(patch, source, find_object, replace_object):
     """Take a string, append the tabs to the source"""
-    modified_patch = patch.replace(find_object, docs.refpage_name(replace_object))
+    modified_patch = patch.replace(find_object, replace_object)
     converted = json.loads(modified_patch)
     for tab in converted["patcher"]["boxes"]:
         source["patcher"]["boxes"].append(tab)
 
+def lookup_input_string(object) -> str:
+
+    dict = {    "fl.ramp~": "/scale normalised",
+                "fl.uniform~": "/value 0.657",
+                "fl.gaussian~": "/deviation 0.1",
+                "fl.makewindow~": "/window kaiser",
+                "fl.random~": ""     }
+                
+    return object + " " + dict[object]
 
 def main(docs: Documentation):
     mismatch_binary = open(docs.help_dir / "reusable_tabs" / "mismatch_binary_template.maxhelp", "r").read()
@@ -32,19 +41,21 @@ def main(docs: Documentation):
     for path in templates:
         template = read_json(path)
     
+        name = docs.refpage_name(path.stem)
+        
         if path.stem in ternary:
-            append_tabs(docs, mismatch_ternary, template, "fl.fold~", path.stem)
+            append_tabs(mismatch_ternary, template, "fl.fold~", name)
 
         if path.stem in binary:
-            append_tabs(docs, trigger_ins, template, "objectnameneedsentering", path.stem)
-            append_tabs(docs, mismatch_binary, template, "fl.-~", path.stem)
+            append_tabs(trigger_ins, template, "fl.*~", name)
+            append_tabs(mismatch_binary, template, "fl.-~", name)
         
         if path.stem in complex_binary:
-            append_tabs(docs, trigger_ins_complex, template, "objectnameneedsentering", path.stem)
-            append_tabs(docs, mismatch_complex, template, "fl.complex.-~", path.stem)
+            append_tabs(trigger_ins_complex, template, "fl.complex.*~", name)
+            append_tabs(mismatch_complex, template, "fl.complex.-~", name)
         
         if path.stem in generators:
-            append_tabs(docs, in_mode, template, "objectnameneedsentering", path.stem)
+            append_tabs(in_mode, template, "fl.random~", lookup_input_string(name))
 
         write_json(path, template)
         

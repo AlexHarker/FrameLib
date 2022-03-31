@@ -93,7 +93,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 308.5, 288.0, 36.0 ],
+									"patching_rect" : [ 150.0, 323.5, 288.0, 36.0 ],
 									"text" : "Generate pairs of inputs of different lengths\n(real and imaginary values are always the same)"
 								}
 
@@ -429,7 +429,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 247.5, 375.0, 135.0, 23.0 ],
+									"patching_rect" : [ 247.5, 401.0, 135.0, 23.0 ],
 									"text" : "fl.register~ =2 100 0.1"
 								}
 
@@ -441,7 +441,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 375.0, 142.0, 23.0 ],
+									"patching_rect" : [ 30.0, 401.0, 142.0, 23.0 ],
 									"text" : "fl.register~ =2 40 30 20"
 								}
 
@@ -1003,7 +1003,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 315.0, 101.0, 23.0 ],
+									"patching_rect" : [ 30.0, 330.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 1024"
 								}
 
@@ -1094,7 +1094,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-30", 0 ],
-									"midpoints" : [ 39.5, 362.0, 257.0, 362.0 ],
+									"midpoints" : [ 39.5, 382.0, 257.0, 382.0 ],
 									"order" : 0,
 									"source" : [ "obj-4", 0 ]
 								}

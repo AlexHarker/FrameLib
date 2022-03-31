@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -88,62 +88,47 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-9",
-									"linecount" : 2,
+									"id" : "obj-32",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 83.0, 609.0, 452.0, 36.0 ],
-									"text" : "This is based on the /mode parameter for the generator object, which uses the set length when in 'requested' mode and the input length in 'input' mode."
+									"patching_rect" : [ 363.0, 526.0, 84.0, 21.0 ],
+									"text" : "Check length"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-28",
-									"local" : 1,
-									"maxclass" : "ezdac~",
-									"numinlets" : 2,
-									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 600.0, 45.0, 45.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-26",
-									"maxclass" : "multislider",
+									"id" : "obj-29",
+									"maxclass" : "comment",
 									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 408.0, 510.0, 127.0, 60.0 ],
-									"size" : 7
+									"numoutlets" : 0,
+									"patching_rect" : [ 393.0, 615.0, 225.0, 21.0 ],
+									"text" : "Length should match the value above"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-30",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 348.0, 619.125, 39.0, 14.75 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-27",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 408.0, 465.0, 62.0, 23.0 ],
-									"text" : "fl.tomax~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-24",
-									"maxclass" : "multislider",
+									"maxclass" : "number",
 									"numinlets" : 1,
 									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
+									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 255.0, 510.0, 127.0, 60.0 ],
-									"size" : 7
+									"patching_rect" : [ 288.0, 615.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -154,8 +139,88 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 255.0, 465.0, 62.0, 23.0 ],
+									"patching_rect" : [ 288.0, 525.0, 62.0, 23.0 ],
+									"text" : "fl.length~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-24",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 288.0, 570.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-21",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 342.0, 225.0, 209.0, 21.0 ],
+									"text" : "Change the size of the initial frame"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-20",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 297.0, 229.125, 39.0, 14.75 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-18",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 229.0, 561.0, 19.0, 21.0 ],
+									"text" : "1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-17",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 229.0, 645.0, 20.0, 21.0 ],
+									"text" : "-1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-9",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 105.0, 694.5, 501.5, 36.0 ],
+									"text" : "In 'input' mode frames have the same length as the input.\nThe default 'requested' mode makes use of the length parameter to set output length."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-28",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 30.0, 690.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -167,8 +232,8 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 510.0, 127.0, 60.0 ],
-									"size" : 7
+									"patching_rect" : [ 30.0, 570.0, 195.0, 90.0 ],
+									"size" : 81
 								}
 
 							}
@@ -179,7 +244,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 465.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 525.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -191,8 +256,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 162.0, 165.0, 75.0, 23.0 ],
-									"text" : "loadmess 5"
+									"patching_rect" : [ 240.0, 180.0, 81.0, 23.0 ],
+									"text" : "loadmess 11"
 								}
 
 							}
@@ -200,11 +265,13 @@
 								"box" : 								{
 									"id" : "obj-15",
 									"maxclass" : "number",
+									"maximum" : 1000000,
+									"minimum" : 2,
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 162.0, 210.0, 50.0, 23.0 ]
+									"patching_rect" : [ 240.0, 225.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -215,7 +282,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 162.0, 255.0, 62.0, 23.0 ],
+									"patching_rect" : [ 240.0, 270.0, 62.0, 23.0 ],
 									"text" : "length $1"
 								}
 
@@ -227,7 +294,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 162.0, 315.0, 124.0, 23.0 ],
+									"patching_rect" : [ 240.0, 330.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -238,32 +305,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 183.0, 360.0, 244.0, 21.0 ],
-									"text" : "generate an initial frame of size 100."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-8",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 408.0, 420.0, 173.0, 23.0 ],
-									"text" : "fl.makewindow~ /mode input"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-7",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 255.0, 420.0, 142.0, 23.0 ],
-									"text" : "fl.random~ /mode input"
+									"patching_rect" : [ 270.0, 375.0, 331.0, 21.0 ],
+									"text" : "Generate an initial frame of 100 values using fl.ramp~"
 								}
 
 							}
@@ -274,8 +317,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 420.0, 232.0, 23.0 ],
-									"text" : "fl.ramp~ /mode input /scale normalised"
+									"patching_rect" : [ 30.0, 435.0, 142.0, 23.0 ],
+									"text" : "fl.random~ /mode input"
 								}
 
 							}
@@ -286,8 +329,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 360.0, 166.0, 23.0 ],
-									"text" : "fl.uniform~ 3.14 /length 100"
+									"patching_rect" : [ 30.0, 375.0, 229.0, 23.0 ],
+									"text" : "fl.ramp~ /length 100 /scale normalised"
 								}
 
 							}
@@ -295,12 +338,12 @@
 								"box" : 								{
 									"fontname" : "Arial",
 									"id" : "obj-2",
-									"linecount" : 4,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 77.0, 608.0, 65.0 ],
-									"text" : "FrameLib generator objects can adapt to the size of the input frames they receive. This is useful if you need the size of new downstream frames to match their inputs without explicitly setting the sizes or using copious amounts of fl.length~. Try modifying the length of the initial frame and seeing how the downstream FrameLib objects respond."
+									"patching_rect" : [ 15.0, 77.0, 610.0, 79.0 ],
+									"text" : "FrameLib generator objects can adapt to the size of the input frames they receive. \n\nThis is useful if you need the size of new downstream frames to match their inputs without the need to explicitly set the length parameter at instantiation in order to match sizes (or for dynamic changes to use a combination of fl.length~ and fl.tag~ to do the same thing on-the-fly)."
 								}
 
 							}
@@ -311,7 +354,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 165.0, 101.0, 23.0 ],
+									"patching_rect" : [ 30.0, 180.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 1024"
 								}
 
@@ -370,6 +413,13 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-27", 0 ],
+									"source" : [ "obj-24", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-24", 0 ],
 									"source" : [ "obj-25", 0 ]
 								}
@@ -377,15 +427,8 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-26", 0 ],
-									"source" : [ "obj-27", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-11", 0 ],
-									"midpoints" : [ 24.5, 300.0, 171.5, 300.0 ],
+									"midpoints" : [ 39.5, 315.0, 249.5, 315.0 ],
 									"order" : 0,
 									"source" : [ "obj-4", 0 ]
 								}
@@ -394,7 +437,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 24.5, 189.0, 24.5, 189.0 ],
+									"midpoints" : [ 39.5, 204.0, 39.5, 204.0 ],
 									"order" : 1,
 									"source" : [ "obj-4", 0 ]
 								}
@@ -403,26 +446,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"midpoints" : [ 24.5, 384.0, 24.5, 384.0 ],
-									"order" : 2,
-									"source" : [ "obj-5", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-7", 0 ],
-									"midpoints" : [ 24.5, 405.0, 264.5, 405.0 ],
-									"order" : 1,
-									"source" : [ "obj-5", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-8", 0 ],
-									"midpoints" : [ 24.5, 405.0, 417.5, 405.0 ],
-									"order" : 0,
+									"midpoints" : [ 39.5, 399.0, 39.5, 399.0 ],
 									"source" : [ "obj-5", 0 ]
 								}
 
@@ -430,6 +454,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-22", 0 ],
+									"order" : 1,
 									"source" : [ "obj-6", 0 ]
 								}
 
@@ -437,14 +462,9 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-25", 0 ],
-									"source" : [ "obj-7", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-27", 0 ],
-									"source" : [ "obj-8", 0 ]
+									"midpoints" : [ 39.5, 509.0, 297.5, 509.0 ],
+									"order" : 0,
+									"source" : [ "obj-6", 0 ]
 								}
 
 							}
@@ -461,8 +481,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -496,9 +516,13 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
+				"name" : "fl.frommax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
@@ -507,11 +531,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.uniform~.mxo",
+				"name" : "fl.length~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -520,14 +540,6 @@
 			}
 , 			{
 				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.makewindow~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
