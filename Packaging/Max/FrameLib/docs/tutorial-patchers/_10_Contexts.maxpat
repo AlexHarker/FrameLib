@@ -58,7 +58,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 723.0, 694.0 ],
+						"rect" : [ 34.0, 113.0, 723.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -355,7 +355,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 60.0, 702.0, 53.0 ],
-									"text" : "The fl.store~ and fl.recall~ objects are two objects that are linked by their names. They are also bound to the context they belong to (in which resources are alloacted). This means that an fl.recall~ and fl.store~ object pair (or group) with the same name use unique storage if they exist in different contexts."
+									"text" : "The fl.store~ and fl.recall~ objects are two objects that are linked by their names. They are also bound to the context they belong to (in which resources are allocated). This means that an fl.recall~ and fl.store~ object pair (or group) with the same name use unique storage if they exist in different contexts."
 								}
 
 							}
@@ -1088,7 +1088,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 723.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 723.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1161,7 +1161,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 120.0, 531.0, 100.0 ],
+									"patching_rect" : [ 180.0, 120.0, 534.0, 100.0 ],
 									"text" : "The FrameLib context hasn't until now been discussed but has been operating stealthily under the hood. Contexts are the way that FrameLib differentiates between networks (both connected and unconnected). They are self-contained FrameLib 'worlds' that can be set to operate in certain ways, and which are independent of one another. Understanding contexts is essential for controlling advanced features of FrameLib such as non-realtime processing and multithreading."
 								}
 
@@ -1311,7 +1311,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl-tutorial-names.txt",
-				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
@@ -1342,7 +1342,7 @@
 			}
 , 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
