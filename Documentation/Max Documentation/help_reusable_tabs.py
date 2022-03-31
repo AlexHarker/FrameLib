@@ -13,8 +13,11 @@ def append_tabs(patch, source):
 
 
 def main(docs: Documentation):
-    mismatch = open(docs.help_dir / "reusable_tabs" / "mismatch_template.maxhelp", "r").read()
+    mismatch_binary = open(docs.help_dir / "reusable_tabs" / "mismatch_binary_template.maxhelp", "r").read()
+    mismatch_ternary = open(docs.help_dir / "reusable_tabs" / "mismatch_ternary_template.maxhelp", "r").read()
+    mismatch_complex = open(docs.help_dir / "reusable_tabs" / "mismatch_complex_template.maxhelp", "r").read()
     trigger_ins = open(docs.help_dir / "reusable_tabs" / "trigger_ins_template.maxhelp", "r").read()
+    trigger_ins_complex = open(docs.help_dir / "reusable_tabs" / "trigger_ins_complex_template.maxhelp", "r").read()
     in_mode = open(docs.help_dir / "reusable_tabs" / "input_mode_template.maxhelp").read()
 
     templates = [x for x in docs.help_templates_dir.rglob("fl.*.maxhelp")]
@@ -29,15 +32,15 @@ def main(docs: Documentation):
         template = read_json(path)
     
         if path.stem in ternary:
-            append_tabs(mismatch, template)
+            append_tabs(mismatch_ternary, template)
 
         if path.stem in binary:
             append_tabs(trigger_ins, template)
-            append_tabs(mismatch, template)
+            append_tabs(mismatch_binary, template)
         
         if path.stem in complex_binary:
-            append_tabs(trigger_ins, template)
-            append_tabs(mismatch, template)
+            append_tabs(trigger_ins_complex, template)
+            append_tabs(mismatch_complex, template)
         
         if path.stem in generators:
             append_tabs(in_mode, template)
