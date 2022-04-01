@@ -5,7 +5,7 @@
     Lookup a specified string from an internally stored list of strings
   </digest>
   <description>
-    The string can be specified by index or normalised value. The first number at the input is used to specify the string. The number of stored items can be set explicitly by parameter. Alternatively, it can be set implicitly by the parameters present at instantiation. Items may be dynamically updated by parameter. 
+    The string can be specified by index or normalised value. The first number at the input is used to specify the string. The number of stored items can be set explicitly by parameter. Alternatively, it can be set implicitly by the parameters present at instantiation. Items may be dynamically updated by parameter.
   </description>
   <misc name="Parameters">
     <entry name="/num_items [int]">
