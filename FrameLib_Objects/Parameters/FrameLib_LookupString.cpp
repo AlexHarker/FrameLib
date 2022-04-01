@@ -66,7 +66,7 @@ std::string FrameLib_LookupString::objectInfo(bool verbose)
                       "The first number at the input is used to specify the string. "
                       "The number of stored items can be set explicitly by parameter. "
                       "Alternatively, it can be set implicitly by the parameters present at instantiation. "
-                      "Items may be dynamically updated by parameter. ",
+                      "Items may be dynamically updated by parameter.",
                       "Lookup a specified string from an internally stored list of strings.", verbose);
 }
 

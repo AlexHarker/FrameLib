@@ -1703,7 +1703,7 @@ public:
         
         // Start Tag
         
-        object_post(mUserObject, "********* %s *********", object_classname(mUserObject)->s_name);
+        object_post(mUserObject, "------------------ %s ------------------", object_classname(mUserObject)->s_name);
 
         // Description
         

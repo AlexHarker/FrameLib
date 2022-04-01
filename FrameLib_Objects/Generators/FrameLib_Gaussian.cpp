@@ -39,8 +39,8 @@ std::string FrameLib_Gaussian::objectInfo(bool verbose)
                       "Mean and standard deviation can be set per sample or by parameter. "
                       "Per-sample mean and standard deviations are passed in by input. "
                       "The length of the output is dependent on the mode parameter. "
-                      "Output length may be set by parameter or based on that of the trigger input.",
-                      "When input and output lengths are mismatched the result depends on the mismatch parameter. ",
+                      "Output length may be set by parameter or based on that of the trigger input. "
+                      "When input and output lengths are mismatched the result depends on the mismatch parameter.",
                       "Generates frames of gaussian distributed random values.", verbose);
 }
 
