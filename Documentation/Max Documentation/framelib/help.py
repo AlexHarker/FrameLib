@@ -41,7 +41,7 @@ def resize_patch(patch: dict, width: float, height: float, pad: float, js_resize
             if is_jshelp(box):
                 box["patching_rect"][2] = width - (pad * 2)
             if is_details(box):
-                box["jsarguments"] = [ "objname", int(width / 6.3) ]
+                box["jsarguments"] = [ "objname", int((width - (pad * 2)) / 5.8) ]
 
 def resize_help(docs: Documentation, file_edit: str, width: float, height: float) -> None:
     """Takes a path to a Max patch and resizes the window for the main patch and all tabs"""
