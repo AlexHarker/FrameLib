@@ -14,12 +14,12 @@ def rename_help(docs: Documentation, file_edit: str, obj_name: str) -> None:
 
     # Iterate over tabs
     
-    for box in outer_boxes:
-        inner_boxes = box["box"]["patcher"]["boxes"]
+    for item in outer_boxes:
+        inner_boxes = item["box"]["patcher"]["boxes"]
         for child in inner_boxes:
-            child_box = child["box"]
-            if is_jshelp(child_box):
-                child_box["jsarguments"] = obj_name
+            box = child["box"]
+            if is_jshelp(box):
+                box["jsarguments"] = obj_name
 
     write_json(file_edit, d)
     
@@ -48,5 +48,16 @@ def resize_help(docs: Documentation, file_edit: str, width: float, height: float
     for box in outer_boxes:
         inner_patch = box["box"]["patcher"]
         resize_patch(inner_patch, width, height - 26, True)
+
+    # Resize parameter detail bpatchers
+    
+    for item in outer_boxes:
+        if item["box"]["text"] == "p info":
+            tab_boxes = item["box"]["patcher"]["boxes"]
+            for child in tab_boxes:
+                box = child["box"]
+                if box["maxclass"] == "bpatcher" and box["name"] == "fl.docs.getparams.maxpat":
+                    box["patching_rect"][2] = width - 30
+                    box["patching_rect"][3] = height - 197
 
     write_json(file_edit, d)
