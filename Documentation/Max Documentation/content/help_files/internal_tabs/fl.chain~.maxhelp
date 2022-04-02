@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 633.0, 713.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 633.0, 687.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -93,7 +93,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 370.5, 285.0, 76.0, 23.0 ],
+									"patching_rect" : [ 266.0, 316.5, 76.0, 23.0 ],
 									"text" : "pak mode s"
 								}
 
@@ -105,7 +105,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 210.0, 117.0, 420.0, 108.0 ],
+									"patching_rect" : [ 180.0, 450.5, 420.0, 108.0 ],
 									"text" : "replace - cancels and previoulsy scheduled frames.\n\nadd - any new frames to those already scheduled\n\nappend - only schedule beyond the end of the currently scheduled frames (for /time set to interval that means the new timings are relative to the end of those already scheduled."
 								}
 
@@ -117,7 +117,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 370.5, 328.5, 124.0, 23.0 ],
+									"patching_rect" : [ 266.0, 360.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -129,7 +129,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 167.0, 23.0 ],
+									"patching_rect" : [ 60.0, 315.0, 167.0, 23.0 ],
 									"text" : "fl.register~ 0 30 600 900 40"
 								}
 
@@ -140,7 +140,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 80.0, 124.5, 107.0, 21.0 ],
+									"patching_rect" : [ 135.0, 154.5, 107.0, 21.0 ],
 									"text" : "Click to schedule"
 								}
 
@@ -153,7 +153,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 105.0, 60.0, 60.0 ]
+									"patching_rect" : [ 60.0, 135.0, 60.0, 60.0 ]
 								}
 
 							}
@@ -164,7 +164,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 195.0, 41.0, 23.0 ],
+									"patching_rect" : [ 60.0, 225.0, 41.0, 23.0 ],
 									"text" : "click~"
 								}
 
@@ -176,7 +176,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 240.0, 95.0, 23.0 ],
+									"patching_rect" : [ 60.0, 270.0, 95.0, 23.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -190,7 +190,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 387.0, 240.0, 100.0, 23.0 ]
+									"patching_rect" : [ 282.5, 271.5, 100.0, 23.0 ]
 								}
 
 							}
@@ -200,7 +200,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 210.0, 89.0, 182.0, 21.0 ],
+									"patching_rect" : [ 390.0, 271.5, 182.0, 21.0 ],
 									"text" : "Sets the mode for new frames"
 								}
 
@@ -211,7 +211,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 523.0, 45.0, 45.0 ]
+									"patching_rect" : [ 60.0, 553.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -222,7 +222,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 418.0, 98.0, 23.0 ],
+									"patching_rect" : [ 60.0, 448.0, 98.0, 23.0 ],
 									"text" : "fl.register~ 0.25"
 								}
 
@@ -234,19 +234,20 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 463.0, 49.0, 23.0 ],
+									"patching_rect" : [ 60.0, 493.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 1.0, 0.011764705882353, 0.011764705882353, 1.0 ],
 									"id" : "obj-1",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 15.0, 373.0, 225.0, 23.0 ],
+									"patching_rect" : [ 60.0, 403.0, 225.0, 23.0 ],
 									"text" : "fl.chain~ /units ms /time interval"
 								}
 
@@ -271,7 +272,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-11", 0 ],
-									"midpoints" : [ 24.5, 367.0, 24.5, 367.0 ],
+									"midpoints" : [ 69.5, 397.0, 69.5, 397.0 ],
 									"source" : [ "obj-1", 0 ]
 								}
 
@@ -322,7 +323,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-50", 0 ],
-									"midpoints" : [ 24.5, 317.75, 380.0, 317.75 ],
+									"midpoints" : [ 69.5, 347.75, 275.5, 347.75 ],
 									"order" : 0,
 									"source" : [ "obj-48", 0 ]
 								}
@@ -331,7 +332,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 1 ],
-									"midpoints" : [ 380.0, 361.75, 230.5, 361.75 ],
 									"source" : [ "obj-50", 0 ]
 								}
 
@@ -339,7 +339,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-35", 1 ],
-									"midpoints" : [ 24.5, 504.0, 50.5, 504.0 ],
+									"midpoints" : [ 69.5, 534.0, 95.5, 534.0 ],
 									"order" : 0,
 									"source" : [ "obj-7", 0 ]
 								}
@@ -348,7 +348,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-35", 0 ],
-									"midpoints" : [ 24.5, 457.0, 24.5, 457.0 ],
+									"midpoints" : [ 69.5, 487.0, 69.5, 487.0 ],
 									"order" : 1,
 									"source" : [ "obj-7", 0 ]
 								}
@@ -374,8 +374,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -416,14 +416,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 633.0, 687.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -478,14 +478,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 633.0, 687.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -533,7 +533,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 597.0, 541.0, 108.0 ],
+									"patching_rect" : [ 85.5, 555.0, 510.0, 108.0 ],
 									"text" : "fl.chain~ allows you to schedule in the future in a fixed pattern of timings. \n\nUnits can be set to samples milliseconds or seconds and there are three different time modes. \n\nFinally there are three modes that deal with how new values interact with previously scheduled"
 								}
 
@@ -557,7 +557,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 615.0, 43.0, 23.0 ],
+									"patching_rect" : [ 15.0, 583.0, 43.0, 23.0 ],
 									"text" : "*~ 0.2"
 								}
 
@@ -569,7 +569,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 660.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 628.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -580,7 +580,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 570.0, 41.0, 23.0 ],
+									"patching_rect" : [ 15.0, 538.0, 41.0, 23.0 ],
 									"text" : "click~"
 								}
 
@@ -592,7 +592,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 337.0, 512.5, 284.0, 36.0 ],
+									"patching_rect" : [ 337.0, 480.5, 284.0, 36.0 ],
 									"text" : "timing between the first trigger frame (made by you) and successive fl.chain~ outputs."
 								}
 
@@ -604,7 +604,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 142.0, 512.5, 100.0, 36.0 ],
+									"patching_rect" : [ 142.0, 480.5, 100.0, 36.0 ],
 									"text" : "timing between frames"
 								}
 
@@ -616,7 +616,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 482.0, 62.0, 23.0 ],
+									"patching_rect" : [ 285.0, 450.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -629,7 +629,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 285.0, 519.0, 50.0, 23.0 ]
+									"patching_rect" : [ 285.0, 487.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -640,7 +640,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 437.0, 111.0, 23.0 ],
+									"patching_rect" : [ 285.0, 405.0, 111.0, 23.0 ],
 									"text" : "fl.timer~ /units ms"
 								}
 
@@ -663,7 +663,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 90.0, 482.0, 62.0, 23.0 ],
+									"patching_rect" : [ 90.0, 450.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -676,7 +676,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 90.0, 519.0, 50.0, 23.0 ]
+									"patching_rect" : [ 90.0, 487.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -688,7 +688,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 482.0, 60.0, 60.0 ]
+									"patching_rect" : [ 15.0, 450.0, 60.0, 60.0 ]
 								}
 
 							}
@@ -699,7 +699,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 437.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 405.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -711,7 +711,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 90.0, 437.0, 135.0, 23.0 ],
+									"patching_rect" : [ 90.0, 405.0, 135.0, 23.0 ],
 									"text" : "fl.timedelta~ /units ms"
 								}
 
@@ -783,12 +783,13 @@
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 1.0, 0.011764705882353, 0.011764705882353, 1.0 ],
 									"id" : "obj-47",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 15.0, 377.0, 113.0, 23.0 ],
+									"patching_rect" : [ 15.0, 360.0, 113.0, 23.0 ],
 									"text" : "fl.chain~ /units ms"
 								}
 
@@ -888,7 +889,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-56", 0 ],
-									"midpoints" : [ 24.5, 422.0, 99.5, 422.0 ],
+									"midpoints" : [ 24.5, 393.5, 99.5, 393.5 ],
 									"order" : 1,
 									"source" : [ "obj-47", 0 ]
 								}
@@ -905,7 +906,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-65", 1 ],
-									"midpoints" : [ 24.5, 422.0, 386.5, 422.0 ],
+									"midpoints" : [ 24.5, 393.5, 386.5, 393.5 ],
 									"order" : 0,
 									"source" : [ "obj-47", 0 ]
 								}
@@ -915,7 +916,6 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-47", 0 ],
-									"midpoints" : [ 24.5, 371.0, 24.5, 371.0 ],
 									"order" : 2,
 									"source" : [ "obj-48", 0 ]
 								}
@@ -1034,8 +1034,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1078,30 +1078,11 @@
 		}
 ,
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.audiotrigger~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.audiotrigger~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
 				"name" : "fl.chain~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.chain~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.register~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -1109,11 +1090,22 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.timedelta~.mxo",
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "fl.register~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.tomax~.mxo",
+				"name" : "fl.sink~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.timedelta~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -1121,11 +1113,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
+				"name" : "fl.tomax~.mxo",
 				"type" : "iLaX"
 			}
  ],

@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 573.0, 563.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 573.0, 537.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 573.0, 537.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,7 +155,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 75.0, 480.0, 466.0, 50.0 ],
+									"patching_rect" : [ 87.5, 462.5, 466.0, 50.0 ],
 									"text" : "fl.audiotrigger~ turns non-zero samples into trigger frames.\n\nThe two examples above demonstrate different ways of controlling this process."
 								}
 
@@ -167,7 +167,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 480.0, 45.0, 45.0 ]
+									"patching_rect" : [ 30.0, 465.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -178,8 +178,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 105.0, 150.0, 36.0 ],
-									"text" : "Using noise and logic for random triggers"
+									"patching_rect" : [ 15.0, 90.0, 165.0, 36.0 ],
+									"text" : "Triggering using noise and logic for random triggers"
 								}
 
 							}
@@ -190,7 +190,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 105.0, 174.0, 36.0 ],
+									"patching_rect" : [ 315.0, 90.0, 174.0, 36.0 ],
 									"text" : "A simple way of translating max bang into trigger frames"
 								}
 
@@ -203,7 +203,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 285.0, 150.0, 24.0, 24.0 ]
+									"patching_rect" : [ 330.0, 135.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -214,19 +214,20 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 285.0, 195.0, 41.0, 23.0 ],
+									"patching_rect" : [ 330.0, 180.0, 41.0, 23.0 ],
 									"text" : "click~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.129411764705882, 0.866666666666667, 0.905882352941176, 1.0 ],
 									"id" : "obj-34",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 240.0, 95.0, 23.0 ],
+									"patching_rect" : [ 330.0, 225.0, 95.0, 23.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -242,7 +243,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 285.0, 375.0, 215.0, 69.0 ],
+									"patching_rect" : [ 330.0, 360.0, 215.0, 69.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 512
 								}
@@ -255,7 +256,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 330.0, 62.0, 23.0 ],
+									"patching_rect" : [ 330.0, 315.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -267,7 +268,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 285.0, 138.0, 23.0 ],
+									"patching_rect" : [ 330.0, 270.0, 138.0, 23.0 ],
 									"text" : "fl.random~ /length 512"
 								}
 
@@ -279,7 +280,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 195.0, 45.0, 23.0 ],
+									"patching_rect" : [ 30.0, 180.0, 45.0, 23.0 ],
 									"text" : ">~ 0.5"
 								}
 
@@ -291,19 +292,20 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 150.0, 60.0, 23.0 ],
+									"patching_rect" : [ 30.0, 135.0, 60.0, 23.0 ],
 									"text" : "rand~ 10"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.129411764705882, 0.866666666666667, 0.905882352941176, 1.0 ],
 									"id" : "obj-14",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 240.0, 95.0, 23.0 ],
+									"patching_rect" : [ 30.0, 225.0, 95.0, 23.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -319,7 +321,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 375.0, 215.0, 69.0 ],
+									"patching_rect" : [ 30.0, 360.0, 215.0, 69.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 512
 								}
@@ -332,7 +334,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 330.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 315.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -344,7 +346,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 138.0, 23.0 ],
+									"patching_rect" : [ 30.0, 270.0, 138.0, 23.0 ],
 									"text" : "fl.random~ /length 512"
 								}
 
@@ -484,9 +486,13 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
+				"name" : "fl.audiotrigger~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
@@ -496,14 +502,6 @@
 			}
 , 			{
 				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.audiotrigger~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.audiotrigger~.mxo",
 				"type" : "iLaX"
 			}
  ],

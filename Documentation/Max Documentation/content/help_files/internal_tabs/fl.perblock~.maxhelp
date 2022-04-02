@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 594.0, 406.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 594.0, 380.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 594.0, 380.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -154,8 +154,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 75.0, 339.0, 377.0, 21.0 ],
-									"text" : "fl.perblcok~ schedules a frame once per signal vecotr (or block)."
+									"patching_rect" : [ 75.0, 327.0, 377.0, 21.0 ],
+									"text" : "fl.perblock~ schedules a frame once per signal vector (or block)."
 								}
 
 							}
@@ -173,12 +173,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-14",
-									"linecount" : 3,
+									"linecount" : 8,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 75.0, 233.5, 272.0, 50.0 ],
-									"text" : "Difference in time between scheduled frames of fl.perblock~. The time difference will match the signal vector size set in the host."
+									"patching_rect" : [ 96.5, 145.0, 243.0, 123.0 ],
+									"text" : "Calculate the difference in time between scheduled frames of fl.perblock~. \n\n\n\n\nThe time difference will match the signal vector size set in the host."
 								}
 
 							}
@@ -189,7 +189,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 435.0, 233.5, 150.0, 36.0 ],
+									"patching_rect" : [ 450.0, 233.5, 128.0, 36.0 ],
 									"text" : "Signal vector size in Max audio settings"
 								}
 
@@ -204,7 +204,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 375.666666666666686, 240.0, 50.0, 23.0 ]
+									"patching_rect" : [ 390.666666666666686, 240.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -215,7 +215,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 4,
 									"outlettype" : [ "int", "float", "int", "int" ],
-									"patching_rect" : [ 345.0, 150.0, 65.0, 23.0 ],
+									"patching_rect" : [ 360.0, 150.0, 65.0, 23.0 ],
 									"text" : "dspstate~"
 								}
 
@@ -259,6 +259,7 @@
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.36078431372549, 0.870588235294118, 0.094117647058824, 1.0 ],
 									"id" : "obj-1",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -426,14 +427,10 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
 			}
 , 			{
 				"name" : "fl.perblock~.mxo",
