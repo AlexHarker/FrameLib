@@ -179,7 +179,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 199.25, 295.5, 346.0, 36.0 ],
-									"presentation_linecount" : 2,
 									"text" : "fl.interval~ is the most common scheduler - it's FrameLib's metro, but unlike metro it is sub-sample accurate."
 								}
 
@@ -334,6 +333,7 @@
 								"box" : 								{
 									"ghostbar" : 90,
 									"id" : "obj-13",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
