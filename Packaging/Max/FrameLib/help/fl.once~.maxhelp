@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            662.0,
-            787.0
+            556.0,
+            409.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            662.0,
-                            761.0
+                            556.0,
+                            383.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -108,7 +108,10 @@
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.once~",
+                                    "jsarguments": [
+                                        "fl.once~",
+                                        90
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -119,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
+                                        526.0,
                                         150.0
                                     ]
                                 }
@@ -145,10 +148,13 @@
                                     "patching_rect": [
                                         15.0,
                                         167.0,
-                                        630.0,
-                                        565.0
+                                        526.0,
+                                        201.0
                                     ],
-                                    "viewvisibility": 1
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        526.0
+                                    ]
                                 }
                             }
                         ],
@@ -179,8 +185,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -188,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            556.0,
+                            383.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -250,17 +256,17 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
-                            652.0,
-                            761.0
+                            113.0,
+                            556.0,
+                            383.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -322,7 +328,7 @@
                                         "int"
                                     ],
                                     "patching_rect": [
-                                        330.0,
+                                        360.0,
                                         195.0,
                                         65.0,
                                         23.0
@@ -357,7 +363,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        330.0,
+                                        360.0,
                                         230.0,
                                         81.0,
                                         31.0
@@ -382,17 +388,18 @@
                             {
                                 "box": {
                                     "id": "obj-17",
-                                    "linecount": 3,
+                                    "linecount": 4,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        330.0,
-                                        120.0,
-                                        240.0,
-                                        50.0
+                                        258.0,
+                                        105.0,
+                                        285.0,
+                                        65.0
                                     ],
-                                    "text": "Restarting the audio engine also restarts time. In this example it triggers the generation of new random values."
+                                    "text": "Restarting the audio engine also restarts time. \n\nIn this example it triggers the generation of new random values.",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -403,7 +410,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        330.0,
+                                        360.0,
                                         270.0,
                                         45.0,
                                         45.0
@@ -412,6 +419,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        1.0,
+                                        0.592156862745098,
+                                        0.176470588235294,
+                                        1.0
+                                    ],
                                     "id": "obj-14",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -507,7 +520,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        526.0,
                                         75.0
                                     ]
                                 }

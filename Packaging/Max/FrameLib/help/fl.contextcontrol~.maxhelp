@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            652.0,
-            787.0
+            680.0,
+            707.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -65,10 +65,10 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
-                            652.0,
-                            761.0
+                            34.0,
+                            113.0,
+                            680.0,
+                            681.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -182,7 +182,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        443.5,
+                                        458.5,
                                         480.0,
                                         90.0,
                                         60.0
@@ -214,7 +214,7 @@
                             {
                                 "box": {
                                     "id": "obj-5",
-                                    "linecount": 6,
+                                    "linecount": 5,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
@@ -222,9 +222,9 @@
                                         15.0,
                                         364.0,
                                         360.0,
-                                        94.0
+                                        79.0
                                     ],
-                                    "text": "The export message takes a class name and the path of a folder to output to.\n\nThe class name is also used to name the files.\n\nFiles need to be compiled against the FrameLib source code:"
+                                    "text": "The export message takes a class name / folder to output to.\n\nThe class name is also used to name the files.\n\nFiles need to be compiled against the FrameLib source code:"
                                 }
                             },
                             {
@@ -318,10 +318,10 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        443.5,
+                                        458.5,
                                         578.0,
-                                        60.0,
-                                        60.0
+                                        45.0,
+                                        45.0
                                     ]
                                 }
                             },
@@ -566,7 +566,7 @@
                                         ]
                                     },
                                     "patching_rect": [
-                                        413.0,
+                                        428.0,
                                         197.0,
                                         102.0,
                                         23.0
@@ -590,7 +590,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        443.5,
+                                        458.5,
                                         390.0,
                                         57.0,
                                         23.0
@@ -608,7 +608,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        390.0,
+                                        405.0,
                                         240.0,
                                         42.0,
                                         23.0
@@ -627,7 +627,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        443.5,
+                                        458.5,
                                         435.0,
                                         90.0,
                                         23.0
@@ -645,7 +645,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        390.0,
+                                        405.0,
                                         330.0,
                                         70.0,
                                         23.0
@@ -663,7 +663,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        390.0,
+                                        405.0,
                                         285.0,
                                         120.0,
                                         23.0
@@ -681,7 +681,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        524.0,
+                                        539.0,
                                         197.0,
                                         70.0,
                                         23.0
@@ -718,7 +718,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        390.0,
+                                        405.0,
                                         150.0,
                                         241.0,
                                         23.0
@@ -736,27 +736,12 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        390.0,
+                                        405.0,
                                         105.0,
                                         184.0,
                                         23.0
                                     ],
                                     "text": "fl.interval~ =8 50 ms @id code"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-14",
-                                    "local": 1,
-                                    "maxclass": "ezdac~",
-                                    "numinlets": 2,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        660.0,
-                                        840.0,
-                                        45.0,
-                                        45.0
-                                    ]
                                 }
                             },
                             {
@@ -814,9 +799,9 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        533.5,
+                                        548.5,
                                         372.0,
-                                        491.0,
+                                        506.0,
                                         372.0
                                     ],
                                     "source": [
@@ -844,9 +829,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        399.5,
+                                        414.5,
                                         373.5,
-                                        453.0,
+                                        468.0,
                                         373.5
                                     ],
                                     "source": [
@@ -886,9 +871,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        399.5,
+                                        414.5,
                                         185.25,
-                                        533.5,
+                                        548.5,
                                         185.25
                                     ],
                                     "order": 0,
@@ -918,9 +903,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        399.5,
+                                        414.5,
                                         185.25,
-                                        422.5,
+                                        437.5,
                                         185.25
                                     ],
                                     "order": 1,
@@ -949,9 +934,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        399.5,
+                                        414.5,
                                         134.0,
-                                        399.5,
+                                        414.5,
                                         134.0
                                     ],
                                     "source": [
@@ -967,7 +952,7 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        524.0,
+                                        539.0,
                                         547.0,
                                         494.0,
                                         547.0
@@ -1227,8 +1212,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            680.0,
+                            681.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1296,10 +1281,10 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            113.0,
-                            652.0,
-                            761.0
+                            0.0,
+                            26.0,
+                            680.0,
+                            681.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -2463,7 +2448,10 @@
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.contextcontrol~",
+                                    "jsarguments": [
+                                        "fl.contextcontrol~",
+                                        113
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -2474,7 +2462,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
+                                        645.0,
                                         165.0
                                     ]
                                 }

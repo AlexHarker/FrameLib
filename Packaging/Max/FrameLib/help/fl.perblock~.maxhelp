@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            662.0,
-            787.0
+            594.0,
+            406.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            662.0,
-                            761.0
+                            594.0,
+                            380.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -108,7 +108,10 @@
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.perblock~",
+                                    "jsarguments": [
+                                        "fl.perblock~",
+                                        97
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -119,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
+                                        564.0,
                                         150.0
                                     ]
                                 }
@@ -145,10 +148,13 @@
                                     "patching_rect": [
                                         15.0,
                                         167.0,
-                                        630.0,
-                                        565.0
+                                        564.0,
+                                        198.0
                                     ],
-                                    "viewvisibility": 1
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        564.0
+                                    ]
                                 }
                             }
                         ],
@@ -179,8 +185,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -188,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            594.0,
+                            380.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -250,17 +256,17 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
-                            652.0,
-                            761.0
+                            113.0,
+                            594.0,
+                            380.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -302,11 +308,11 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         75.0,
-                                        339.0,
+                                        327.0,
                                         377.0,
                                         21.0
                                     ],
-                                    "text": "fl.perblcok~ schedules a frame once per signal vecotr (or block)."
+                                    "text": "fl.perblock~ schedules a frame once per signal vector (or block)."
                                 }
                             },
                             {
@@ -327,17 +333,17 @@
                             {
                                 "box": {
                                     "id": "obj-14",
-                                    "linecount": 3,
+                                    "linecount": 8,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        75.0,
-                                        233.5,
-                                        272.0,
-                                        50.0
+                                        96.5,
+                                        145.0,
+                                        243.0,
+                                        123.0
                                     ],
-                                    "text": "Difference in time between scheduled frames of fl.perblock~. The time difference will match the signal vector size set in the host."
+                                    "text": "Calculate the difference in time between scheduled frames of fl.perblock~. \n\n\n\n\nThe time difference will match the signal vector size set in the host."
                                 }
                             },
                             {
@@ -348,9 +354,9 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        435.0,
+                                        450.0,
                                         233.5,
-                                        150.0,
+                                        128.0,
                                         36.0
                                     ],
                                     "text": "Signal vector size in Max audio settings"
@@ -370,7 +376,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        375.6666666666667,
+                                        390.6666666666667,
                                         240.0,
                                         50.0,
                                         23.0
@@ -390,7 +396,7 @@
                                         "int"
                                     ],
                                     "patching_rect": [
-                                        345.0,
+                                        360.0,
                                         150.0,
                                         65.0,
                                         23.0
@@ -456,6 +462,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.36078431372549,
+                                        0.870588235294118,
+                                        0.094117647058824,
+                                        1.0
+                                    ],
                                     "id": "obj-1",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -489,7 +501,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        564.0,
                                         75.0
                                     ]
                                 }

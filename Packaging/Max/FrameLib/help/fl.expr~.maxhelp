@@ -310,6 +310,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.847058823529412,
+                                        0.819607843137255,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "fontsize": 13.0,
                                     "id": "obj-33",
                                     "linecount": 2,
@@ -462,6 +468,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.847058823529412,
+                                        0.819607843137255,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "id": "obj-13",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -819,25 +831,6 @@
                         "boxes": [
                             {
                                 "box": {
-                                    "hidden": 1,
-                                    "id": "obj-2",
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        ""
-                                    ],
-                                    "patching_rect": [
-                                        15.0,
-                                        351.5,
-                                        85.0,
-                                        23.0
-                                    ],
-                                    "text": "loadmess set"
-                                }
-                            },
-                            {
-                                "box": {
                                     "bgmode": 0,
                                     "border": 0,
                                     "clickthrough": 0,
@@ -975,6 +968,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.847058823529412,
+                                        0.819607843137255,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "id": "obj-8",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -1008,6 +1007,7 @@
                             },
                             {
                                 "box": {
+                                    "dontreplace": 1,
                                     "id": "obj-67",
                                     "maxclass": "message",
                                     "numinlets": 2,
@@ -1095,6 +1095,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.847058823529412,
+                                        0.819607843137255,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "id": "obj-54",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -1238,19 +1244,6 @@
                                     "order": 1,
                                     "source": [
                                         "obj-19",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-67",
-                                        0
-                                    ],
-                                    "hidden": 1,
-                                    "source": [
-                                        "obj-2",
                                         0
                                     ]
                                 }
@@ -1578,6 +1571,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.847058823529412,
+                                        0.819607843137255,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "id": "obj-9",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -1667,6 +1666,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.847058823529412,
+                                        0.819607843137255,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "id": "obj-41",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -1759,6 +1764,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.847058823529412,
+                                        0.819607843137255,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "id": "obj-35",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -2527,6 +2538,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.847058823529412,
+                                        0.819607843137255,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "id": "obj-13",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
