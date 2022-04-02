@@ -14,8 +14,9 @@ def main(docs: Documentation):
     expressions = [x.stem for x in docs.source_files if x.parent.stem == "Expressions"]
     schedulers = [x.stem for x in docs.source_files if x.parent.stem == "Schedulers"]
     host_communication = [x.stem for x in docs.source_files if x.parent.stem == "Host_Communication"]
+    io = [x.stem for x in docs.source_files if x.parent.stem == "IO"]
 
-    auto_resize_list = unary + complex_unary + expressions + schedulers + host_communication
+    auto_resize_list = unary + complex_unary + expressions + schedulers + host_communication + io
 
     # Now fix sizes and naming
 

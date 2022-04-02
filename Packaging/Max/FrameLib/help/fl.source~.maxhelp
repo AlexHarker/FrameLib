@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            662.0,
-            787.0
+            679.0,
+            801.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            662.0,
-                            761.0
+                            679.0,
+                            775.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -108,7 +108,10 @@
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.source~",
+                                    "jsarguments": [
+                                        "fl.source~",
+                                        111
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -119,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
+                                        649.0,
                                         150.0
                                     ]
                                 }
@@ -145,10 +148,13 @@
                                     "patching_rect": [
                                         15.0,
                                         167.0,
-                                        630.0,
-                                        565.0
+                                        649.0,
+                                        593.0
                                     ],
-                                    "viewvisibility": 1
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        649.0
+                                    ]
                                 }
                             }
                         ],
@@ -179,17 +185,17 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
-                            652.0,
-                            761.0
+                            34.0,
+                            113.0,
+                            679.0,
+                            775.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -232,8 +238,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        290.875,
-                                        303.0,
+                                        350.875,
+                                        333.0,
                                         31.25,
                                         17.0
                                     ]
@@ -246,8 +252,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
+                                        390.0,
                                         330.0,
-                                        300.0,
                                         181.0,
                                         21.0
                                     ],
@@ -261,8 +267,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        105.0,
-                                        255.0,
+                                        165.0,
+                                        285.0,
                                         214.0,
                                         21.0
                                     ],
@@ -276,8 +282,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        105.0,
-                                        210.0,
+                                        165.0,
+                                        240.0,
                                         388.0,
                                         21.0
                                     ],
@@ -294,8 +300,8 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        255.0,
+                                        75.0,
+                                        285.0,
                                         59.0,
                                         23.0
                                     ],
@@ -312,8 +318,8 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        300.0,
+                                        75.0,
+                                        330.0,
                                         56.0,
                                         23.0
                                     ],
@@ -330,8 +336,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        165.0,
+                                        75.0,
+                                        195.0,
                                         115.0,
                                         23.0
                                     ],
@@ -349,8 +355,8 @@
                                         "float"
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        210.0,
+                                        75.0,
+                                        240.0,
                                         83.0,
                                         23.0
                                     ],
@@ -367,8 +373,8 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        345.0,
+                                        75.0,
+                                        375.0,
                                         36.0,
                                         23.0
                                     ],
@@ -385,8 +391,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        480.0,
+                                        75.0,
+                                        510.0,
                                         62.0,
                                         23.0
                                     ],
@@ -396,6 +402,7 @@
                             {
                                 "box": {
                                     "id": "obj-9",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -405,8 +412,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        525.0,
+                                        75.0,
+                                        555.0,
                                         345.0,
                                         165.0
                                     ],
@@ -437,8 +444,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        184.5,
-                                        300.0,
+                                        244.5,
+                                        330.0,
                                         100.0,
                                         23.0
                                     ]
@@ -454,8 +461,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        225.0,
-                                        345.0,
+                                        285.0,
+                                        375.0,
                                         59.0,
                                         23.0
                                     ],
@@ -472,8 +479,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        122.0,
-                                        405.0,
+                                        182.0,
+                                        435.0,
                                         124.0,
                                         23.0
                                     ],
@@ -488,8 +495,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        570.0,
-                                        645.0,
+                                        526.0,
+                                        615.0,
                                         45.0,
                                         45.0
                                     ]
@@ -505,8 +512,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        68.5,
-                                        345.0,
+                                        128.5,
+                                        375.0,
                                         119.0,
                                         23.0
                                     ],
@@ -529,8 +536,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        447.0,
+                                        75.0,
+                                        477.0,
                                         126.0,
                                         23.0
                                     ],
@@ -541,17 +548,17 @@
                                 "box": {
                                     "fontname": "Arial",
                                     "id": "obj-21",
-                                    "linecount": 4,
+                                    "linecount": 5,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        90.0,
-                                        618.0,
-                                        65.0
+                                        75.0,
+                                        630.0,
+                                        79.0
                                     ],
-                                    "text": "By default fl.source~ grabs the nearest samples to the ones you asked for and copies them exactly without interpolation. However, if you require subsample accuracy you may wish to switch interpolation on. This may be more expensive on the CPU but it might make a difference for certain detailed processes requiring very precise timing."
+                                    "text": "By default fl.source~ grabs the nearest samples to the ones you asked for and copies them exactly without interpolation. However, if you require subsample accuracy you can switch interpolation on. \n\nThis may be more expensive on the CPU but it might make a difference for certain detailed processes requiring very precise timing."
                                 }
                             },
                             {
@@ -571,7 +578,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        649.0,
                                         75.0
                                     ]
                                 }
@@ -670,10 +677,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        78.0,
-                                        386.0,
-                                        131.5,
-                                        386.0
+                                        138.0,
+                                        416.0,
+                                        191.5,
+                                        416.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -713,10 +720,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        234.5,
-                                        386.0,
-                                        131.5,
-                                        386.0
+                                        294.5,
+                                        416.0,
+                                        191.5,
+                                        416.0
                                     ],
                                     "source": [
                                         "obj-7",
@@ -754,14 +761,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
@@ -808,8 +815,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -817,8 +824,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            679.0,
+                            775.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -854,14 +861,31 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "fontname": "Arial",
+                                    "id": "obj-2",
+                                    "linecount": 8,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        180.0,
+                                        281.5,
+                                        368.0,
+                                        123.0
+                                    ],
+                                    "text": "In the example to the left, a pink noise generator entering fl.source~ is converted to frames of 1024 samples in length every 1024 samples. The original source is delayed by 1024 samples and then subtracted from the output of fl.sink~. \n\nBecause we have accounted for the delay in converting to frames with fl.source~ subtracting the two audio streams results in null summing."
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-1",
                                     "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        585.0,
-                                        690.0,
+                                        570.0,
+                                        327.5,
                                         45.0,
                                         45.0
                                     ]
@@ -937,7 +961,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         615.0,
                                         29.5,
                                         23.0
@@ -952,10 +976,10 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         645.0,
-                                        255.0,
-                                        90.0
+                                        240.0,
+                                        105.0
                                     ]
                                 }
                             },
@@ -987,11 +1011,11 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         285.0,
-                                        585.0,
-                                        289.0,
+                                        615.0,
+                                        360.0,
                                         152.0
                                     ],
-                                    "text": "You can also manually set the delay of the fl.source~ object in order to compensate for other delays that might be incurred elsewhere in a FrameLib network or to add delay (e.g. for a live granular process). Note, this cannot magically warp your fl.source~ object through time! and this value only has an effect when it is greater than the /length parameter. Experiment by changing the delay amount above and observing how well the signals null sum."
+                                    "text": "You can also manually set the delay of the fl.source~ object in order to compensate for other delays that might be incurred elsewhere in a FrameLib network or to add delay (e.g. for a live granular process). \n\nNote, this cannot magically warp your fl.source~ object through time! and this value only has an effect when it is greater than the /length parameter. Experiment by changing the delay amount above and observing how well the signals null sum."
                                 }
                             },
                             {
@@ -1001,7 +1025,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         285.0,
                                         130.0,
                                         130.0
@@ -1036,7 +1060,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         240.0,
                                         29.5,
                                         23.0
@@ -1054,7 +1078,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         570.0,
                                         49.0,
                                         23.0
@@ -1072,7 +1096,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         435.0,
                                         40.0,
                                         23.0
@@ -1090,7 +1114,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        111.0,
+                                        126.0,
                                         495.0,
                                         101.0,
                                         23.0
@@ -1114,7 +1138,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         537.0,
                                         211.0,
                                         23.0
@@ -1132,7 +1156,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         195.0,
                                         49.0,
                                         23.0
@@ -1150,7 +1174,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         105.0,
                                         40.0,
                                         23.0
@@ -1168,7 +1192,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        88.0,
+                                        90.5,
                                         105.0,
                                         101.0,
                                         23.0
@@ -1192,9 +1216,9 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         147.0,
-                                        165.0,
+                                        140.0,
                                         23.0
                                     ],
                                     "text": "fl.source~ /length 1024"
@@ -1204,17 +1228,17 @@
                                 "box": {
                                     "fontname": "Arial",
                                     "id": "obj-21",
-                                    "linecount": 17,
+                                    "linecount": 9,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        315.0,
-                                        147.0,
-                                        310.0,
-                                        253.0
+                                        330.0,
+                                        105.0,
+                                        316.0,
+                                        137.0
                                     ],
-                                    "text": "Because fl.source~ is 'collecting' the last n samples it has to wait for at least the number of samples specified by the /length parameter to have passed before they can be output. This means it is always going to be delayed in relation to the input and you may have to deal with this delay if you need tight synchronisation between FrameLib and other audio streams.\n\nIn the example to the left, a pink noise generator entering fl.source~ is converted to frames 1024 samples long every 1024 samples of time. The original source is delayed by 1024 samples and then subtracted from the output of fl.sink~. Because we have accounted for the delay in converting to frames with fl.source~ subtracting the two audio streams results in null summing."
+                                    "text": "Because fl.source~ needs to collect the last N samples it has to wait for at least the number of samples specified by the /length parameter before it can output. \n\nThis means it is always delayed in relation to the input, and you may have to deal with this delay if you need tight synchronisation between FrameLib and other audio streams."
                                 }
                             },
                             {
@@ -1234,7 +1258,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        649.0,
                                         75.0
                                     ]
                                 }
@@ -1260,9 +1284,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
+                                        39.5,
                                         459.0,
-                                        24.5,
+                                        39.5,
                                         459.0
                                     ],
                                     "order": 1,
@@ -1279,7 +1303,7 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
+                                        39.5,
                                         480.0,
                                         264.5,
                                         480.0
@@ -1336,7 +1360,7 @@
                                     "midpoints": [
                                         204.5,
                                         234.0,
-                                        35.0,
+                                        50.0,
                                         234.0
                                     ],
                                     "source": [
@@ -1354,7 +1378,7 @@
                                     "midpoints": [
                                         264.5,
                                         609.0,
-                                        35.0,
+                                        50.0,
                                         609.0
                                     ],
                                     "source": [
@@ -1418,7 +1442,7 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
+                                        39.5,
                                         140.0,
                                         204.5,
                                         140.0
@@ -1497,14 +1521,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
@@ -1551,8 +1575,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -1560,8 +1584,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            679.0,
+                            775.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1622,19 +1646,19 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            105.0,
-                            652.0,
-                            761.0
+                            0.0,
+                            26.0,
+                            679.0,
+                            775.0
                         ],
-                        "bglocked": 0,
+                        "bglocked": 1,
                         "openinpresentation": 0,
                         "default_fontsize": 13.0,
                         "default_fontface": 0,
@@ -1668,14 +1692,31 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "fontname": "Arial",
+                                    "id": "obj-21",
+                                    "linecount": 8,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        30.0,
+                                        75.0,
+                                        630.0,
+                                        123.0
+                                    ],
+                                    "text": "The fl.source~ object is a fundamental member of the FrameLib library as it converts audio from Max into frames to be processed by other FrameLib objects. \n\nYou might find it easier to conceive of the FrameLib object as a kind of small temporary buffer that retains a number of samples that it has most recently received, specified by the /length parameter. \n\nWhenever it receives a trigger frame in its second inlet it outputs the values it has stored and passes that frame along to wherever it goes next."
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-1",
                                     "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        570.0,
-                                        635.0,
+                                        571.5,
+                                        619.5,
                                         45.0,
                                         45.0
                                     ]
@@ -1689,8 +1730,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        225.0,
-                                        495.0,
+                                        346.5,
+                                        557.0,
                                         165.0,
                                         166.0
                                     ],
@@ -1700,6 +1741,7 @@
                             {
                                 "box": {
                                     "id": "obj-34",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -1709,8 +1751,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        30.0,
-                                        627.0,
+                                        151.5,
+                                        689.0,
                                         178.0,
                                         33.0
                                     ],
@@ -1727,8 +1769,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
-                                        597.0,
+                                        151.5,
+                                        659.0,
                                         62.0,
                                         23.0
                                     ],
@@ -1745,8 +1787,8 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        30.0,
-                                        510.0,
+                                        151.5,
+                                        557.0,
                                         71.0,
                                         23.0
                                     ],
@@ -1763,8 +1805,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        109.5,
-                                        495.0,
+                                        231.0,
+                                        557.0,
                                         101.0,
                                         23.0
                                     ],
@@ -1787,8 +1829,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
-                                        537.0,
+                                        151.5,
+                                        617.0,
                                         178.0,
                                         23.0
                                     ],
@@ -1803,12 +1845,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        210.0,
-                                        195.0,
+                                        360.75,
+                                        242.0,
                                         121.0,
                                         65.0
                                     ],
-                                    "text": "Hit the bang object to output the last 1024 frames from fl.source."
+                                    "text": "Hit the bang object to output the last 1024 frames from fl.source~."
                                 }
                             },
                             {
@@ -1823,8 +1865,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        30.0,
-                                        420.0,
+                                        180.75,
+                                        467.0,
                                         180.0,
                                         30.0
                                     ],
@@ -1841,8 +1883,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
-                                        390.0,
+                                        180.75,
+                                        422.0,
                                         62.0,
                                         23.0
                                     ],
@@ -1859,8 +1901,8 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        30.0,
-                                        210.0,
+                                        180.75,
+                                        332.0,
                                         71.0,
                                         23.0
                                     ],
@@ -1878,8 +1920,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        150.5,
-                                        195.0,
+                                        301.25,
+                                        242.0,
                                         24.0,
                                         24.0
                                     ]
@@ -1895,8 +1937,8 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        150.5,
-                                        240.0,
+                                        301.25,
+                                        287.0,
                                         41.0,
                                         23.0
                                     ],
@@ -1913,29 +1955,12 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        150.5,
-                                        285.0,
+                                        301.25,
+                                        332.0,
                                         95.0,
                                         23.0
                                     ],
                                     "text": "fl.audiotrigger~"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "fontname": "Arial",
-                                    "id": "obj-21",
-                                    "linecount": 5,
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        15.0,
-                                        90.0,
-                                        600.0,
-                                        79.0
-                                    ],
-                                    "text": "The fl.source~ object is a fundamental member of the FrameLib library as it converts audio from Max into frames to be processed by other FrameLib objects. You might find it easier to conceive of the FrameLib object as a kind of small temporary buffer that retains a number of samples that it has most recently received, specified by the /length parameter. Whenever it receives a trigger frame in its second inlet it outputs the values it has stored and passes that frame along to wherever it goes next."
                                 }
                             },
                             {
@@ -1954,8 +1979,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
-                                        330.0,
+                                        180.75,
+                                        377.0,
                                         260.0,
                                         23.0
                                     ],
@@ -1979,7 +2004,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        649.0,
                                         75.0
                                     ]
                                 }
@@ -1987,6 +2012,7 @@
                             {
                                 "box": {
                                     "angle": 270.0,
+                                    "background": 1,
                                     "bgcolor": [
                                         0.2,
                                         0.2,
@@ -2006,17 +2032,19 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        180.0,
+                                        165.75,
+                                        227.0,
                                         330.0,
                                         283.0
                                     ],
-                                    "proportion": 0.5
+                                    "proportion": 0.5,
+                                    "rounded": 16
                                 }
                             },
                             {
                                 "box": {
                                     "angle": 270.0,
+                                    "background": 1,
                                     "bgcolor": [
                                         0.2,
                                         0.2,
@@ -2036,12 +2064,13 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        480.0,
-                                        390.0,
-                                        200.0
+                                        135.0,
+                                        540.0,
+                                        391.5,
+                                        197.0
                                     ],
-                                    "proportion": 0.5
+                                    "proportion": 0.5,
+                                    "rounded": 16
                                 }
                             }
                         ],
@@ -2184,14 +2213,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
