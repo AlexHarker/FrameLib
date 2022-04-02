@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 646.0, 764.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 646.0, 738.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -93,19 +93,20 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 48.5, 360.0, 53.0, 23.0 ],
+									"patching_rect" : [ 138.5, 390.0, 53.0, 23.0 ],
 									"text" : "fl.*~ 0.1"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.266666666666667, 0.643137254901961, 1.0, 1.0 ],
 									"id" : "obj-5",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 48.5, 315.0, 142.0, 23.0 ],
+									"patching_rect" : [ 138.5, 345.0, 142.0, 23.0 ],
 									"text" : "fl.random~ /mode input"
 								}
 
@@ -124,7 +125,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 105.0, 105.0, 304.0, 120.0 ],
+									"patching_rect" : [ 225.0, 135.0, 304.0, 120.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 20,
 									"slidercolor" : [ 0.701961, 0.415686, 0.886275, 1.0 ]
@@ -138,7 +139,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 255.0, 77.0, 23.0 ],
+									"patching_rect" : [ 105.0, 285.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -150,7 +151,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 608.0, 45.0, 45.0 ]
+									"patching_rect" : [ 495.0, 638.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -161,7 +162,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 446.0, 62.0, 23.0 ],
+									"patching_rect" : [ 105.0, 476.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -180,7 +181,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 510.0, 270.0, 143.0 ],
+									"patching_rect" : [ 105.0, 540.0, 270.0, 143.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 20,
 									"slidercolor" : [ 0.701961, 0.415686, 0.886275, 1.0 ]
@@ -194,7 +195,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 75.0, 23.0 ],
+									"patching_rect" : [ 105.0, 135.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -207,7 +208,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 94.0, 248.5, 315.0, 36.0 ],
+									"patching_rect" : [ 225.0, 285.0, 315.0, 36.0 ],
 									"text" : "The fl.frommax~ object accepts multiple values. This can be useful for converting lists into frames."
 								}
 
@@ -219,7 +220,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 401.0, 52.5, 23.0 ],
+									"patching_rect" : [ 105.0, 431.0, 52.5, 23.0 ],
 									"text" : "fl.+~"
 								}
 
@@ -251,7 +252,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-12", 0 ],
-									"midpoints" : [ 24.5, 279.0, 24.5, 279.0 ],
+									"midpoints" : [ 114.5, 309.0, 114.5, 309.0 ],
 									"order" : 1,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -260,7 +261,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 24.5, 300.0, 58.0, 300.0 ],
+									"midpoints" : [ 114.5, 330.0, 148.0, 330.0 ],
 									"order" : 0,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -269,7 +270,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 0 ],
-									"midpoints" : [ 24.5, 129.0, 24.5, 129.0 ],
+									"midpoints" : [ 114.5, 159.0, 114.5, 159.0 ],
 									"source" : [ "obj-20", 0 ]
 								}
 
@@ -284,7 +285,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 0 ],
-									"midpoints" : [ 114.5, 240.0, 24.5, 240.0 ],
+									"midpoints" : [ 234.5, 270.0, 114.5, 270.0 ],
 									"source" : [ "obj-4", 0 ]
 								}
 
@@ -358,14 +359,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 646.0, 738.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -420,14 +421,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 646.0, 738.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -487,7 +488,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 435.0, 439.0, 184.0, 36.0 ],
+									"patching_rect" : [ 450.0, 450.0, 150.0, 36.0 ],
 									"text" : "Here we convert directy into a tagged frame."
 								}
 
@@ -499,7 +500,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 439.0, 165.0, 36.0 ],
+									"patching_rect" : [ 120.0, 450.0, 165.0, 36.0 ],
 									"text" : "Here we add a tag once we already have a frame."
 								}
 
@@ -594,6 +595,7 @@
 									"candycane" : 4,
 									"ghostbar" : 90,
 									"id" : "obj-29",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
@@ -601,7 +603,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 360.0, 525.0, 209.0, 58.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 20,
+									"size" : 12,
 									"slidercolor" : [ 0.701961, 0.415686, 0.886275, 1.0 ]
 								}
 
@@ -632,6 +634,7 @@
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.266666666666667, 0.643137254901961, 1.0, 1.0 ],
 									"id" : "obj-33",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -686,6 +689,7 @@
 									"candycane" : 4,
 									"ghostbar" : 90,
 									"id" : "obj-24",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
@@ -693,7 +697,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 30.0, 525.0, 209.0, 58.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 11,
+									"size" : 28,
 									"slidercolor" : [ 0.701961, 0.415686, 0.886275, 1.0 ]
 								}
 
@@ -736,12 +740,13 @@
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.266666666666667, 0.643137254901961, 1.0, 1.0 ],
 									"id" : "obj-18",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 81.0, 349.0, 77.0, 23.0 ],
+									"patching_rect" : [ 81.0, 360.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -840,7 +845,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-18", 0 ],
-									"midpoints" : [ 39.5, 340.5, 90.5, 340.5 ],
+									"midpoints" : [ 39.5, 345.5, 90.5, 345.5 ],
 									"order" : 0,
 									"source" : [ "obj-20", 0 ]
 								}
@@ -849,7 +854,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-18", 0 ],
-									"midpoints" : [ 159.5, 340.0, 90.5, 340.0 ],
+									"midpoints" : [ 159.5, 345.5, 90.5, 345.5 ],
 									"source" : [ "obj-22", 0 ]
 								}
 
@@ -984,34 +989,22 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.frommax~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.interval~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.tag~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
+				"name" : "fl.perblock~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -1019,15 +1012,19 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.perblock~.mxo",
+				"name" : "fl.random~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.perblock~.mxo",
+				"name" : "fl.tag~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
 				"name" : "fl.times~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.tomax~.mxo",
 				"type" : "iLaX"
 			}
  ],
