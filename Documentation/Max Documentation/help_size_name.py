@@ -10,10 +10,9 @@ def main(docs: Documentation):
     templates = [x for x in docs.help_templates_dir.rglob("fl.*.maxhelp")]
 
     unary = [x.stem for x in docs.source_files if x.parent.stem == "Unary"]
-    binary = [x.stem for x in docs.source_files if x.parent.stem == "Binary"]
-    ternary = [x.stem for x in docs.source_files if x.parent.stem == "Ternary"]
-    complex_binary = [x.stem for x in docs.source_files if x.parent.stem == "Complex_Binary"]
-    generators = [x.stem for x in docs.source_files if x.parent.stem == "Generators"]
+    complex_unary = [x.stem for x in docs.source_files if x.parent.stem == "Complex_Unary"]
+
+    auto_resize_list = unary + complex_unary
 
     # Now fix sizes and naming
 
@@ -23,7 +22,7 @@ def main(docs: Documentation):
 
         # Resize
 
-        if path.stem in unary:
+        if path.stem in auto_resize_list:
             auto_resize_help(docs, path)
 
         # Now ensure the arguments to js help file objects are correct

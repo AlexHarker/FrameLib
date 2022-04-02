@@ -2,8 +2,11 @@ from shutil import copyfile
 from framelib.utils import write_json, read_json
 from framelib.classes import Documentation
 
+def is_details(box: dict) -> bool:
+    return "jsarguments" in box and box["filename"] == "fl.helpdetails.js"
+
 def is_jshelp(box: dict) -> bool:
-    return "jsarguments" in box and (box["filename"] == "fl.helpdetails.js" or box["filename"] == "fl.helpname.js")
+    return "jsarguments" in box and (is_details(box) or box["filename"] == "fl.helpname.js")
 
 def rename_help(docs: Documentation, file_edit: str, obj_name: str) -> None:
     """Takes a path to a Max patch and does a find and replace on object names"""
@@ -19,7 +22,10 @@ def rename_help(docs: Documentation, file_edit: str, obj_name: str) -> None:
         for child in inner_boxes:
             box = child["box"]
             if is_jshelp(box):
-                box["jsarguments"] = obj_name
+                if isinstance(box["jsarguments"], list) and len(box["jsarguments"]) > 1:
+                    box["jsarguments"][0] = obj_name
+                else:
+                    box["jsarguments"] = obj_name
 
     write_json(file_edit, d)
 
@@ -34,6 +40,8 @@ def resize_patch(patch: dict, width: float, height: float, pad: float, js_resize
             box = item["box"]
             if is_jshelp(box):
                 box["patching_rect"][2] = width - (pad * 2)
+            if is_details(box):
+                box["jsarguments"] = [ "objname", int(width / 6.3) ]
 
 def resize_help(docs: Documentation, file_edit: str, width: float, height: float) -> None:
     """Takes a path to a Max patch and resizes the window for the main patch and all tabs"""
@@ -77,14 +85,14 @@ def auto_resize_help(docs: Documentation, file_edit: str) -> None:
     outer_boxes = outer_patch["boxes"]
 
     # Minimum width is the size of the umenu in fl.docs.getparams (352) + 4 per side
-    
+
     width = 352
     height = 0
 
     # Iterate over tabs
 
     for item in outer_boxes:
-        if item["box"]["text"] != "p info":
+        if item["box"]["text"] != "p info" and item["box"]["text"] != "p ?":
             inner_patch = item["box"]["patcher"]
             rect = inner_patch["rect"]
             width = max(width, rect[2])
