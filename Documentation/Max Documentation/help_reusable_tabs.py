@@ -1,12 +1,10 @@
 import json
-from distutils.dir_util import copy_tree
 from framelib.utils import read_json, write_json
 from framelib.classes import Documentation
-from framelib.help import edit_help
 
 
 def append_tabs(patch, source, find_object, replace_object):
-    """Take a string, append the tabs to the source"""
+    """Take a string of the raw patch file, append the tabs to the source"""
     modified_patch = patch.replace(find_object, replace_object)
     converted = json.loads(modified_patch)
     for tab in converted["patcher"]["boxes"]:
@@ -39,6 +37,7 @@ def main(docs: Documentation):
 
     templates = [x for x in docs.help_templates_dir.rglob("fl.*.maxhelp")]
 
+    unary = [x.stem for x in docs.source_files if x.parent.stem == "Unary"]
     binary = [x.stem for x in docs.source_files if x.parent.stem == "Binary"]
     ternary = [x.stem for x in docs.source_files if x.parent.stem == "Ternary"]
     complex_binary = [x.stem for x in docs.source_files if x.parent.stem == "Complex_Binary"]
@@ -46,35 +45,31 @@ def main(docs: Documentation):
 
     # Now insert the necessary tabs
     for path in templates:
-        template = read_json(path)
     
         name = docs.refpage_name(path.stem)
-        
+                    
         if path.stem in ternary:
+            template = read_json(path)
             append_tabs(mismatch_ternary, template, "fl.fold~", name)
+            write_json(path, template)
 
         if path.stem in binary:
+            template = read_json(path)
             trigger_ins_fixed = fix_mapping(trigger_ins, path.stem)
             append_tabs(trigger_ins_fixed, template, "fl.*~", name)
             append_tabs(mismatch_binary, template, "fl.-~", name)
-        
+            write_json(path, template)
+
         if path.stem in complex_binary:
+            template = read_json(path)
             append_tabs(trigger_ins_complex, template, "fl.complex.*~", name)
             append_tabs(mismatch_complex, template, "fl.complex.-~", name)
-        
+            write_json(path, template)
+
         if path.stem in generators:
+            template = read_json(path)
             append_tabs(in_mode, template, "fl.random~", lookup_input_string(name))
-
-        write_json(path, template)
-        
-        # Now ensure the arguments to js help file objects are correct
-        
-        edit_help(docs, path, path.stem)
-
-    # Now collect up and move all the templates to the dist
-    # We could do this in the previous loop, but I think is clearer
-    dest = docs.package / "help"
-    copy_tree(str(docs.help_templates_dir), str(dest), update=1)
+            write_json(path, template)
 
 if __name__ == "__main__":
     main(Documentation())

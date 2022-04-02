@@ -12,6 +12,7 @@ import cleanup
 import help_base
 import help_merge
 import help_reusable_tabs
+import help_size_name
 import create_max_db
 from framelib.utils import sign_off, space, hyp
 from framelib.classes import Documentation
@@ -96,13 +97,19 @@ def main():
         hyp()
 
         # Merges the common reusable tabs with the templates
-        # This creates the finished help file
+        # This completes all patch contents
         print("12. Adding reusable tabs")
         help_reusable_tabs.main(docs)
         hyp()
+        
+        # Resizes and (internally) renames help files
+        # This creates the finished help file
+        print("13. Cosmetic changes")
+        help_size_name.main(docs)
+        hyp()
 
     # Creates a database of files to exclude
-    print("13. Creating help file templates")
+    print("14. Creating help file templates")
     create_max_db.main(docs)
     hyp()
 

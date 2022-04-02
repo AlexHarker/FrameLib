@@ -13,6 +13,7 @@ create_tutorial_coll
 help_base
 help_merge
 help_reusable_tabs
+help_size_name
 create_max_db
 cleanup
 
