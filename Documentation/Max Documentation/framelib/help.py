@@ -40,7 +40,7 @@ def resize_help(docs: Documentation, file_edit: str, width: float, height: float
     d = read_json(file_edit)
     
     outer_patch = d["patcher"]
-    resize_patch(outer_patch, width, height)
+    resize_patch(outer_patch, width, height, False)
     outer_boxes = outer_patch["boxes"]
     
     # Iterate over tabs
