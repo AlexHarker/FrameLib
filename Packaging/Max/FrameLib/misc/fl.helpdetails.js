@@ -56,9 +56,8 @@ function paint()
 
 function wordwrap(str, width, brk, cut) 
 {
-    if(jsarguments[2]==null){jsarguments[2]=95};
     brk = brk || '\\cr';
-    width = width || jsarguments[2];
+    width = jsarguments[2] || width;
     cut = cut || false;
     if (!str) { return str; }
     var regex = '.{1,' +width+ '}(\\s|$)' + (cut ? '|.{' +width+ '}|.+$' : '|\\S+?(\\s|$)');
