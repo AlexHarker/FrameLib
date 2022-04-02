@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            662.0,
-            787.0
+            428.0,
+            478.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            662.0,
-                            761.0
+                            428.0,
+                            452.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -108,7 +108,10 @@
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.atanh~",
+                                    "jsarguments": [
+                                        "fl.atanh~",
+                                        68
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -119,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
+                                        398.0,
                                         150.0
                                     ]
                                 }
@@ -145,10 +148,13 @@
                                     "patching_rect": [
                                         15.0,
                                         167.0,
-                                        630.0,
-                                        565.0
+                                        398.0,
+                                        270.0
                                     ],
-                                    "viewvisibility": 1
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        398.0
+                                    ]
                                 }
                             }
                         ],
@@ -179,8 +185,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -188,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            428.0,
+                            452.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -250,17 +256,17 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            105.0,
-                            652.0,
-                            761.0
+                            0.0,
+                            26.0,
+                            428.0,
+                            452.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -463,7 +469,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        130.75,
+                                        135.75,
                                         331.0,
                                         268.0,
                                         21.0
@@ -518,7 +524,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        398.0,
                                         75.0
                                     ]
                                 }

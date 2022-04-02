@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            662.0,
-            787.0
+            492.0,
+            582.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            662.0,
-                            761.0
+                            492.0,
+                            556.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -108,7 +108,10 @@
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.tan~",
+                                    "jsarguments": [
+                                        "fl.tan~",
+                                        79
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -119,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
+                                        462.0,
                                         150.0
                                     ]
                                 }
@@ -145,10 +148,13 @@
                                     "patching_rect": [
                                         15.0,
                                         167.0,
-                                        630.0,
-                                        565.0
+                                        462.0,
+                                        374.0
                                     ],
-                                    "viewvisibility": 1
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        462.0
+                                    ]
                                 }
                             }
                         ],
@@ -179,8 +185,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -188,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            492.0,
+                            556.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -250,19 +256,19 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            105.0,
-                            652.0,
-                            761.0
+                            0.0,
+                            26.0,
+                            492.0,
+                            556.0
                         ],
-                        "bglocked": 0,
+                        "bglocked": 1,
                         "openinpresentation": 0,
                         "default_fontsize": 13.0,
                         "default_fontface": 0,
@@ -379,6 +385,7 @@
                             {
                                 "box": {
                                     "id": "obj-27",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -518,21 +525,45 @@
                             {
                                 "box": {
                                     "id": "obj-23",
+                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         330.0,
-                                        151.0,
-                                        269.0,
-                                        21.0
+                                        143.5,
+                                        150.0,
+                                        36.0
                                     ],
                                     "text": "A ramp from 0. to 1. with 4096 discrete points"
                                 }
                             },
                             {
                                 "box": {
+                                    "border": 0,
+                                    "filename": "fl.helpname.js",
+                                    "id": "obj-3",
+                                    "ignoreclick": 1,
+                                    "jsarguments": "fl.tan~",
+                                    "maxclass": "jsui",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        15.0,
+                                        462.0,
+                                        75.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
                                     "angle": 270.0,
+                                    "background": 1,
                                     "bgcolor": [
                                         0.0,
                                         0.0,
@@ -558,28 +589,6 @@
                                         90.0
                                     ],
                                     "proportion": 0.5
-                                }
-                            },
-                            {
-                                "box": {
-                                    "border": 0,
-                                    "filename": "fl.helpname.js",
-                                    "id": "obj-3",
-                                    "ignoreclick": 1,
-                                    "jsarguments": "fl.tan~",
-                                    "maxclass": "jsui",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        ""
-                                    ],
-                                    "parameter_enable": 0,
-                                    "patching_rect": [
-                                        15.0,
-                                        15.0,
-                                        435.0,
-                                        75.0
-                                    ]
                                 }
                             }
                         ],
@@ -694,14 +703,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
