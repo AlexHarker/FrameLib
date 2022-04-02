@@ -76,7 +76,9 @@ def auto_resize_help(docs: Documentation, file_edit: str) -> None:
     outer_patch = d["patcher"]
     outer_boxes = outer_patch["boxes"]
 
-    width = 0
+    # Minimum width is the size of the umenu in fl.docs.getparams (352) + 4 per side
+    
+    width = 352
     height = 0
 
     # Iterate over tabs
