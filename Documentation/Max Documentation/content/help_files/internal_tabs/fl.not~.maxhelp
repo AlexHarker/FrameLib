@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 568.0, 429.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 568.0, 403.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 568.0, 403.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -154,7 +154,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 375.0, 211.0, 189.0, 21.0 ],
+									"patching_rect" : [ 366.0, 211.0, 189.0, 21.0 ],
 									"text" : "Also has a non-symbolic name!"
 								}
 
@@ -173,19 +173,6 @@
 							}
 , 							{
 								"box" : 								{
-									"hidden" : 1,
-									"id" : "obj-2",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 78.5, 330.0, 85.0, 23.0 ],
-									"text" : "loadmess set"
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-1",
 									"local" : 1,
 									"maxclass" : "ezdac~",
@@ -197,12 +184,14 @@
 							}
 , 							{
 								"box" : 								{
+									"dontreplace" : 1,
 									"id" : "obj-17",
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 296.0, 92.0, 23.0 ]
+									"patching_rect" : [ 15.0, 296.0, 92.0, 23.0 ],
+									"text" : "1. 0. 0. 0. 0. 1."
 								}
 
 							}
@@ -344,14 +333,6 @@
 								"patchline" : 								{
 									"destination" : [ "obj-12", 0 ],
 									"source" : [ "obj-16", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-17", 0 ],
-									"hidden" : 1,
-									"source" : [ "obj-2", 0 ]
 								}
 
 							}
