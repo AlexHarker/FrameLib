@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 609.0, 582.0 ],
+		"rect" : [ 34.0, 87.0, 492.0, 582.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 609.0, 556.0 ],
+						"rect" : [ 0.0, 26.0, 492.0, 556.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 609.0, 556.0 ],
+						"rect" : [ 34.0, 113.0, 491.0, 556.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -306,10 +306,11 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-23",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 151.0, 269.0, 21.0 ],
+									"patching_rect" : [ 330.0, 143.5, 153.0, 36.0 ],
 									"text" : "A ramp from 0. to 1. with 4096 discrete points"
 								}
 

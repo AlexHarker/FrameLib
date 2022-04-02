@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 463.0, 481.0 ],
+		"rect" : [ 34.0, 87.0, 474.0, 481.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 463.0, 455.0 ],
+						"rect" : [ 0.0, 26.0, 474.0, 455.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 463.0, 455.0 ],
+						"rect" : [ 34.0, 113.0, 474.0, 455.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -264,7 +264,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 130.75, 331.0, 316.0, 21.0 ],
+									"patching_rect" : [ 138.75, 331.0, 316.0, 21.0 ],
 									"text" : "Complementary error function of input frame's values"
 								}
 
