@@ -71,7 +71,7 @@ def resize_help(docs: Documentation, file_edit: str, width: float, height: float
                 if box["maxclass"] == "bpatcher" and box["name"] == "fl.docs.getparams.maxpat":
                     box["patching_rect"][2] = width - (pad * 2)
                     box["patching_rect"][3] = height - (details_offset + height_reduce + pad)
-                    box["args"] = [ width ]
+                    box["args"] = [ width - (pad * 2) ]
 
     write_json(file_edit, d)
 

@@ -11,8 +11,9 @@ def main(docs: Documentation):
 
     unary = [x.stem for x in docs.source_files if x.parent.stem == "Unary"]
     complex_unary = [x.stem for x in docs.source_files if x.parent.stem == "Complex_Unary"]
+    expressions = [x.stem for x in docs.source_files if x.parent.stem == "Expressions"]
 
-    auto_resize_list = unary + complex_unary
+    auto_resize_list = unary + complex_unary + expressions
 
     # Now fix sizes and naming
 
