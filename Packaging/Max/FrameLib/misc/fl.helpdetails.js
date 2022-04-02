@@ -47,7 +47,7 @@ function paint()
             set_source_rgba(detailstextcolor);
             if(longDesc!=null)
             {
-                wordwrap(longDesc, 110);
+                wordwrap(longDesc, 105);
             }
             fill();
         }
