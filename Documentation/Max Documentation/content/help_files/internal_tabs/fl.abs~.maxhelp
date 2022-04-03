@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 424.0, 413.0 ],
+		"rect" : [ 34.0, 87.0, 464.0, 434.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 424.0, 387.0 ],
+						"rect" : [ 0.0, 26.0, 464.0, 408.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 424.0, 387.0 ],
+						"rect" : [ 34.0, 113.0, 464.0, 408.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,7 +155,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 329.0, 45.0, 45.0 ]
+									"patching_rect" : [ 30.0, 330.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -167,7 +167,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 148.0, 203.0, 60.25, 15.0 ]
+									"patching_rect" : [ 163.0, 188.0, 60.25, 15.0 ]
 								}
 
 							}
@@ -177,7 +177,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 212.25, 199.5, 183.0, 21.0 ],
+									"patching_rect" : [ 227.25, 184.5, 183.0, 21.0 ],
 									"text" : "Convert to absolute value"
 								}
 
@@ -190,7 +190,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 105.0, 146.0, 60.25, 15.0 ]
+									"patching_rect" : [ 120.0, 131.0, 60.25, 15.0 ]
 								}
 
 							}
@@ -200,7 +200,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 167.25, 142.5, 245.0, 21.0 ],
+									"patching_rect" : [ 182.25, 127.5, 245.0, 21.0 ],
 									"text" : "Frame containing a single negative value"
 								}
 
@@ -215,7 +215,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 91.0, 270.0, 50.0, 23.0 ]
+									"patching_rect" : [ 106.0, 270.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -229,7 +229,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 270.0, 50.0, 23.0 ]
+									"patching_rect" : [ 30.0, 270.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -240,7 +240,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 54.0, 23.0 ],
+									"patching_rect" : [ 30.0, 90.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -252,7 +252,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 237.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 222.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -264,19 +264,20 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 91.0, 237.0, 62.0, 23.0 ],
+									"patching_rect" : [ 106.0, 222.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 1.0, 0.227450980392157, 0.92156862745098, 1.0 ],
 									"id" : "obj-32",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 91.0, 199.0, 47.0, 23.0 ],
+									"patching_rect" : [ 106.0, 184.0, 47.0, 23.0 ],
 									"text" : "fl.abs~"
 								}
 
@@ -288,7 +289,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 142.0, 85.0, 23.0 ],
+									"patching_rect" : [ 30.0, 127.0, 85.0, 23.0 ],
 									"text" : "fl.uniform~ -1"
 								}
 
@@ -321,6 +322,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-32", 0 ],
+									"midpoints" : [ 39.5, 166.5, 115.5, 166.5 ],
 									"order" : 0,
 									"source" : [ "obj-13", 0 ]
 								}
@@ -408,7 +410,7 @@
 , 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

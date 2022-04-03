@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 580.0, 600.0 ],
+		"rect" : [ 34.0, 87.0, 588.0, 597.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 580.0, 574.0 ],
+						"rect" : [ 0.0, 26.0, 588.0, 571.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,8 +119,8 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 580.0, 574.0 ],
-						"bglocked" : 1,
+						"rect" : [ 34.0, 113.0, 588.0, 571.0 ],
+						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
 						"default_fontface" : 0,
@@ -155,7 +155,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 300.0, 482.0, 259.0, 36.0 ],
+									"patching_rect" : [ 300.0, 467.0, 259.0, 36.0 ],
 									"text" : "Numbers are truncated to 0, 1, 2, 3 with no fractional part."
 								}
 
@@ -167,7 +167,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 510.0, 45.0, 45.0 ]
+									"patching_rect" : [ 30.0, 495.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -179,7 +179,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 189.249935150146484, 152.5, 60.25, 15.0 ]
+									"patching_rect" : [ 189.249935150146484, 137.5, 60.25, 15.0 ]
 								}
 
 							}
@@ -190,7 +190,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 251.499935150146484, 142.0, 136.0, 36.0 ],
+									"patching_rect" : [ 251.499935150146484, 127.0, 136.0, 36.0 ],
 									"text" : "100 random numbers between 0. and 3."
 								}
 
@@ -201,7 +201,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 360.0, 307.0, 103.0, 21.0 ],
+									"patching_rect" : [ 376.0, 292.0, 103.0, 21.0 ],
 									"text" : "Truncated frame",
 									"textjustification" : 1
 								}
@@ -213,7 +213,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 112.5, 307.0, 90.0, 21.0 ],
+									"patching_rect" : [ 112.5, 292.0, 90.0, 21.0 ],
 									"text" : "Original frame",
 									"textjustification" : 1
 								}
@@ -231,7 +231,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 330.0, 255.0, 150.0 ],
+									"patching_rect" : [ 30.0, 315.0, 255.0, 150.0 ],
 									"setminmax" : [ 0.0, 3.0 ],
 									"size" : 100,
 									"slidercolor" : [ 0.701961, 0.415686, 0.886275, 1.0 ]
@@ -250,7 +250,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 300.0, 330.0, 255.0, 150.0 ],
+									"patching_rect" : [ 300.0, 315.0, 255.0, 150.0 ],
 									"setminmax" : [ 0.0, 3.0 ],
 									"size" : 100,
 									"slidercolor" : [ 0.701961, 0.415686, 0.886275, 1.0 ]
@@ -264,7 +264,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 270.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 255.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -276,19 +276,20 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 176.499984741210938, 68.0, 23.0 ],
+									"patching_rect" : [ 30.0, 161.499984741210938, 68.0, 23.0 ],
 									"text" : "fl.times~ 3"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 1.0, 0.227450980392157, 0.92156862745098, 1.0 ],
 									"id" : "obj-31",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 240.0, 55.0, 23.0 ],
+									"patching_rect" : [ 300.0, 225.0, 55.0, 23.0 ],
 									"text" : "fl.trunc~"
 								}
 
@@ -300,7 +301,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 270.0, 62.0, 23.0 ],
+									"patching_rect" : [ 300.0, 255.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -312,7 +313,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 120.0, 122.0, 23.0 ],
+									"patching_rect" : [ 30.0, 105.0, 122.0, 23.0 ],
 									"text" : "fl.interval~ 3000 ms"
 								}
 
@@ -324,7 +325,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 148.5, 138.0, 23.0 ],
+									"patching_rect" : [ 30.0, 133.5, 138.0, 23.0 ],
 									"text" : "fl.random~ /length 100"
 								}
 
@@ -357,8 +358,9 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 105.0, 166.999996185302734, 105.0 ],
-									"proportion" : 0.39
+									"patching_rect" : [ 15.0, 90.0, 166.999996185302734, 105.0 ],
+									"proportion" : 0.39,
+									"rounded" : 16
 								}
 
 							}
@@ -380,7 +382,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-21", 0 ],
-									"midpoints" : [ 39.5, 201.0, 39.5, 201.0 ],
+									"midpoints" : [ 39.5, 186.0, 39.5, 186.0 ],
 									"order" : 1,
 									"source" : [ "obj-19", 0 ]
 								}
@@ -389,7 +391,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-31", 0 ],
-									"midpoints" : [ 39.5, 228.0, 309.5, 228.0 ],
+									"midpoints" : [ 39.5, 213.0, 309.5, 213.0 ],
 									"order" : 0,
 									"source" : [ "obj-19", 0 ]
 								}
@@ -466,7 +468,7 @@
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
