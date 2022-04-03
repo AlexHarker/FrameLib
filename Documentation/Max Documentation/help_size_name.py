@@ -10,6 +10,7 @@ def main(docs: Documentation):
     templates = [x for x in docs.help_templates_dir.rglob("fl.*.maxhelp")]
 
     unary = [x.stem for x in docs.source_files if x.parent.stem == "Unary"]
+    binary = [x.stem for x in docs.source_files if x.parent.stem == "Binary"]
     ternary = [x.stem for x in docs.source_files if x.parent.stem == "Ternary"]
     complex_unary = [x.stem for x in docs.source_files if x.parent.stem == "Complex_Unary"]
     complex_binary = [x.stem for x in docs.source_files if x.parent.stem == "Complex_Binary"]
@@ -36,6 +37,9 @@ def main(docs: Documentation):
 
         if path.stem in ternary:
             auto_resize_help(docs, path, 5.55)
+
+        if path.stem in binary:
+            auto_resize_help(docs, path, 5.75)
 
         if path.stem in complex_binary:
             auto_resize_help(docs, path, 5.75)
