@@ -87,6 +87,7 @@
     </attribute>
   </attributelist>
   <seealsolist>
+    <seealso name="08_fl_multistream" type="tutorial" module="FrameLib" />
     <seealso name="fl.pack~" />
     <seealso name="fl.streamid~" />
   </seealsolist>
