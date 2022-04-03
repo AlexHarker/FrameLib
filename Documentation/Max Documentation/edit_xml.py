@@ -78,6 +78,9 @@ def main(docs):
                         for seealso in docs.seealso_aliased(obj_name):
                             new_element = et.Element("seealso")
                             new_element.set("name", seealso)
+                            if docs.is_tutorial(seealso):
+                                new_element.set("type", "tutorial")
+                                new_element.set("module", "FrameLib")
                             elem.append(new_element)
                     except KeyError:
                         print(f"No seealso for {obj_name}")

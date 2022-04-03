@@ -2383,6 +2383,7 @@
         "streams"
       ],
       "seealso": [
+        "08_fl_multistream",
         "fl.unpack~",
         "fl.streamid~"
       ]
@@ -3226,6 +3227,7 @@
         "streams"
       ],
       "seealso": [
+        "08_fl_multistream",
         "fl.pack~",
         "fl.unpack~"
       ]
@@ -3546,6 +3548,7 @@
         "streams"
       ],
       "seealso": [
+        "08_fl_multistream",
         "fl.pack~",
         "fl.streamid~"
       ]

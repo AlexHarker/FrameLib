@@ -24,23 +24,26 @@ class Documentation:
         self.databases_dir = self.temporary_dir / "db"
         self.raw_xml_dir = self.temporary_dir / "raw_xml"
 
+        # Content Directory
+        self.content_dir = self.max_docs_dir / "content"
+
         # Key Files
         self.category_database_path = self.databases_dir / "category_databases.json"
-        self.object_relationships_path = self.max_docs_dir / "object_relationships.json"
+        self.object_relationships_path = self.content_dir / "object_relationships" / "object_relationships.json"
 
         self.set_max_paths()
 
         # Help Files
-        self.help_dir = self.max_docs_dir / "content" / "help_files"
+        self.help_dir = self.content_dir / "help_files"
         self.help_templates_dir = self.temporary_dir / "help_templates"
 
         # Manual XML
-        self.manual_xml_dir = self.max_docs_dir / "content" / "refpages"
+        self.manual_xml_dir = self.content_dir / "refpages"
 
         # The Max Objects Source Files
         self.source_path = self.repo_root / "FrameLib_Max_Objects"
         self.source_files = [x for x in self.source_path.rglob("fl.*.cpp")]
-        
+
         # Read Object Info
         self.object_info = read_json(self.object_relationships_path)
 
@@ -52,26 +55,29 @@ class Documentation:
         self.interfaces_dir = self.package / "interfaces"
         self.refpages_dir.mkdir(exist_ok=True, parents=True)
         self.interfaces_dir.mkdir(exist_ok=True, parents=True)
-        
+
+    def is_tutorial(self, name: str) -> bool:
+        return "_" in name
+
     def refpage_name(self, obj_name: str) -> str:
         """Returns the refpage name of an object"""
-        if obj_name in self.additional_valid_objects:
+        if self.is_tutorial(obj_name) or obj_name in self.additional_valid_objects:
             return obj_name
         file_name = obj_name + ".maxref.xml"
         ref_path = self.raw_xml_dir / file_name
         if not ref_path.exists():
             ref_path = self.manual_xml_dir / file_name
         return et.parse(ref_path).getroot().get("name")
-    
+
     def seealso_aliased(self, object_name: str) -> dict:
         """Returns a seealso dict correctly aliased"""
         seealso = self.object_info[object_name]["seealso"][:]
-    
+
         aliased = [self.refpage_name(x) for x in seealso]
         aliased.sort()
-        
+
         return aliased
-    
+
 
 
 # A class to parse the XML files and build a JSON file from it #
@@ -165,6 +171,9 @@ class qParseAndBuild:
         Extracts the see also contents from the master json file
         """
         self.seealso = docs.seealso_aliased(self.object_proper_name)
+        for item in self.seealso:
+            if docs.is_tutorial(item):
+                self.seealso.remove(item)
 
     def extract_keywords(self, docs):
         """
@@ -241,7 +250,7 @@ class jParseAndBuild:
         blank_internal = {}
 
         # Find Information
-        
+
         self.object_name = strip_extension(x.stem, 1)  # get the object name (use the maxref name in case it is aliased)
         param_idx = 1  # reset a variable to track the parameter number
         for child in self.root:  # iterate over the sections
@@ -252,12 +261,12 @@ class jParseAndBuild:
 
                         for subchild in elem:
                             if subchild.tag == "description":  # get the description out
-                            
+
                                 # Format the parameter info for the helpfile
-                                
+
                                 blank_desc = strip_space(subchild.text)
                                 firstBullet = True;
-                                
+
                                 for item in subchild:
                                     if item.tag == "bullet":  # if there are any bullet points
                                         if item.text != None:  # and its not none
@@ -265,9 +274,9 @@ class jParseAndBuild:
                                             if item.text[1] == "0":
                                                 blank_desc += f"Parameter Options:"
                                                 firstBullet = False
-                                        
+
                                         # Deal with breaks in bullets
-                                        
+
                                         for nested in item:
                                             if nested.tag == "br" or nested.tag == "p":
                                                 nested.text = "\n\n    "
