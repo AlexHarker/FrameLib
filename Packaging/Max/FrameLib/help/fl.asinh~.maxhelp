@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            424.0,
-            478.0
+            446,
+            452
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            424.0,
-                            452.0
+                            446,
+                            426
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.asinh~",
-                                        67
+                                        71
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        394.0,
+                                        416,
                                         150.0
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         167.0,
-                                        394.0,
-                                        270.0
+                                        416,
+                                        244
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        394.0
+                                        416
                                     ]
                                 }
                             }
@@ -194,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            424.0,
-                            452.0
+                            446,
+                            426
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -263,10 +263,10 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
-                            424.0,
-                            452.0
+                            34.0,
+                            113.0,
+                            446,
+                            426
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -302,6 +302,21 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "id": "obj-11",
+                                    "local": 1,
+                                    "maxclass": "ezdac~",
+                                    "numinlets": 2,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        30.0,
+                                        345.0,
+                                        50.0,
+                                        50.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
                                     "format": 6,
                                     "id": "obj-30",
                                     "maxclass": "flonum",
@@ -313,8 +328,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        330.0,
+                                        30.0,
+                                        285.0,
                                         50.0,
                                         23.0
                                     ]
@@ -333,8 +348,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        150.0,
+                                        30.0,
+                                        105.0,
                                         50.0,
                                         23.0
                                     ]
@@ -342,6 +357,7 @@
                             },
                             {
                                 "box": {
+                                    "hidden": 1,
                                     "id": "obj-26",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -350,8 +366,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        105.0,
+                                        30.0,
+                                        67.0,
                                         79.0,
                                         23.0
                                     ],
@@ -367,8 +383,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        97.5,
-                                        199.0,
+                                        112.5,
+                                        154.0,
                                         60.25,
                                         15.0
                                     ]
@@ -376,6 +392,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.207843137254902,
+                                        0.76078431372549,
+                                        0.749019607843137,
+                                        1.0
+                                    ],
                                     "id": "obj-31",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -384,8 +406,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        240.0,
+                                        30.0,
+                                        195.0,
                                         57.0,
                                         23.0
                                     ],
@@ -402,8 +424,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        285.0,
+                                        30.0,
+                                        240.0,
                                         62.0,
                                         23.0
                                     ],
@@ -420,7 +442,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        106.5,
+                                        90.0,
                                         105.0,
                                         75.0,
                                         23.0
@@ -438,8 +460,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        195.0,
+                                        30.0,
+                                        150.0,
                                         77.0,
                                         23.0
                                     ],
@@ -455,8 +477,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        68.5,
-                                        334.0,
+                                        83.5,
+                                        289.0,
                                         60.25,
                                         15.0
                                     ]
@@ -469,8 +491,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        130.75,
-                                        331.0,
+                                        145.75,
+                                        286.0,
                                         249.0,
                                         21.0
                                     ],
@@ -484,27 +506,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        167.75,
-                                        196.0,
+                                        182.75,
+                                        151.0,
                                         234.0,
                                         21.0
                                     ],
                                     "text": "Frame containing values for calculation"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-11",
-                                    "local": 1,
-                                    "maxclass": "ezdac~",
-                                    "numinlets": 2,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        15.0,
-                                        390.0,
-                                        50.0,
-                                        50.0
-                                    ]
                                 }
                             },
                             {
@@ -524,7 +531,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        394.0,
+                                        416,
                                         75.0
                                     ]
                                 }
@@ -550,10 +557,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        116.0,
-                                        184.0,
-                                        24.5,
-                                        184.0
+                                        99.5,
+                                        139.0,
+                                        39.5,
+                                        139.0
                                     ],
                                     "source": [
                                         "obj-13",
@@ -579,6 +586,7 @@
                                         "obj-28",
                                         0
                                     ],
+                                    "hidden": 1,
                                     "source": [
                                         "obj-26",
                                         0
