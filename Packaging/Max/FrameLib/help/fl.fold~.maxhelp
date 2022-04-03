@@ -735,10 +735,10 @@
                                     "patching_rect": [
                                         489.0,
                                         345.0,
-                                        134.0,
+                                        129.0,
                                         21.0
                                     ],
-                                    "text": "Look inside for details"
+                                    "text": "See inside for details"
                                 }
                             },
                             {

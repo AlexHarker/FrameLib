@@ -92,8 +92,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 489.0, 345.0, 134.0, 21.0 ],
-									"text" : "Look inside for details"
+									"patching_rect" : [ 489.0, 345.0, 129.0, 21.0 ],
+									"text" : "See inside for details"
 								}
 
 							}
