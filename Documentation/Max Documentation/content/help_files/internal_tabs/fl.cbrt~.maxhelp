@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 427.0, 434.0 ],
+		"rect" : [ 34.0, 87.0, 463.0, 446.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 427.0, 408.0 ],
+						"rect" : [ 0.0, 26.0, 463.0, 420.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 427.0, 408.0 ],
+						"rect" : [ 34.0, 113.0, 463.0, 420.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,7 +155,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 98.0, 23.0 ],
+									"patching_rect" : [ 30.0, 150.0, 98.0, 23.0 ],
 									"text" : "fl.register~ 8 27"
 								}
 
@@ -167,7 +167,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 345.0, 45.0, 45.0 ]
+									"patching_rect" : [ 30.0, 345.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -179,7 +179,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 34.0, 23.0 ]
+									"patching_rect" : [ 30.0, 285.0, 34.0, 23.0 ]
 								}
 
 							}
@@ -191,7 +191,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 71.0, 199.0, 60.25, 15.0 ]
+									"patching_rect" : [ 86.0, 199.0, 60.25, 15.0 ]
 								}
 
 							}
@@ -201,7 +201,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 137.25, 195.0, 225.0, 21.0 ],
+									"patching_rect" : [ 152.25, 195.0, 225.0, 21.0 ],
 									"text" : "Calculate the cube root of 8 and 27."
 								}
 
@@ -214,7 +214,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 122.0, 154.0, 60.25, 15.0 ]
+									"patching_rect" : [ 137.0, 154.0, 60.25, 15.0 ]
 								}
 
 							}
@@ -224,7 +224,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 187.25, 150.0, 230.0, 21.0 ],
+									"patching_rect" : [ 202.25, 150.0, 230.0, 21.0 ],
 									"text" : "Frame containing some cube numbers"
 								}
 
@@ -236,7 +236,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 54.0, 23.0 ],
+									"patching_rect" : [ 30.0, 105.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -248,19 +248,20 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 240.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 240.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.23921568627451, 0.76078431372549, 0.207843137254902, 1.0 ],
 									"id" : "obj-32",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 48.0, 23.0 ],
+									"patching_rect" : [ 30.0, 195.0, 48.0, 23.0 ],
 									"text" : "fl.cbrt~"
 								}
 
@@ -277,7 +278,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 15.0, 235.0, 75.0 ]
+									"patching_rect" : [ 15.0, 15.0, 434.0, 75.0 ]
 								}
 
 							}
@@ -306,7 +307,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-17", 1 ],
-									"midpoints" : [ 24.5, 273.5, 39.5, 273.5 ],
+									"midpoints" : [ 39.5, 273.5, 54.5, 273.5 ],
 									"source" : [ "obj-34", 0 ]
 								}
 
@@ -365,7 +366,7 @@
 , 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
