@@ -39,7 +39,7 @@ def main(docs: Documentation):
             auto_resize_help(docs, path, 5.55)
 
         if path.stem in binary:
-            auto_resize_help(docs, path, 5.75)
+            auto_resize_help(docs, path, 5.7)
 
         if path.stem in complex_binary:
             auto_resize_help(docs, path, 5.75)

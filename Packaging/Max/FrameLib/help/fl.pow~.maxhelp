@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.pow~",
-                                        108
+                                        109
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
