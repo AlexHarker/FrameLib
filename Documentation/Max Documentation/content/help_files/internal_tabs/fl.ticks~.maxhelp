@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 648.0, 570.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 648.0, 544.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 648.0, 544.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -154,8 +154,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 28.5, 495.0, 154.0, 21.0 ],
-									"text" : "The current count or 'tick'"
+									"patching_rect" : [ 135.0, 406.0, 131.0, 21.0 ],
+									"text" : "Current count or 'tick'"
 								}
 
 							}
@@ -168,7 +168,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 462.0, 19.25, 28.166671752929688 ]
+									"patching_rect" : [ 90.0, 408.5, 35.625, 16.0 ]
 								}
 
 							}
@@ -178,7 +178,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 418.0, 151.0, 112.0, 21.0 ],
+									"patching_rect" : [ 452.0, 135.0, 112.0, 21.0 ],
 									"text" : "Set the count limit"
 								}
 
@@ -193,7 +193,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 448.0, 181.0, 50.0, 23.0 ]
+									"patching_rect" : [ 482.0, 165.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -204,7 +204,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 448.0, 234.5, 50.0, 23.0 ],
+									"patching_rect" : [ 482.0, 218.5, 50.0, 23.0 ],
 									"text" : "limit $1"
 								}
 
@@ -217,7 +217,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 28.5, 435.0, 50.0, 23.0 ]
+									"patching_rect" : [ 30.0, 405.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -228,20 +228,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 28.5, 390.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 359.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-40",
-									"linecount" : 5,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 105.0, 390.0, 496.0, 79.0 ],
-									"text" : "fl.ticks~ is a frame counter that can be driven forwards or backwards in between 0 and the limit - 1. \n\nThe count can be reset, either to the relevant end (according to whether progression is forwards or backwards) or to a specfic value, set by the /reset parameter"
 								}
 
 							}
@@ -251,7 +239,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 255.0, 150.0, 150.0, 21.0 ],
+									"patching_rect" : [ 289.0, 134.0, 150.0, 21.0 ],
 									"text" : "Control the progression"
 								}
 
@@ -265,7 +253,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 242.25, 181.0, 70.5, 23.0 ]
+									"patching_rect" : [ 276.25, 165.0, 70.5, 23.0 ]
 								}
 
 							}
@@ -276,7 +264,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 361.5, 234.5, 76.0, 23.0 ],
+									"patching_rect" : [ 395.5, 218.5, 76.0, 23.0 ],
 									"text" : "direction $1"
 								}
 
@@ -290,7 +278,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 338.25, 181.0, 65.5, 23.0 ]
+									"patching_rect" : [ 372.25, 165.0, 65.5, 23.0 ]
 								}
 
 							}
@@ -301,7 +289,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 268.0, 234.5, 59.0, 23.0 ],
+									"patching_rect" : [ 302.0, 218.5, 59.0, 23.0 ],
 									"text" : "mode $1"
 								}
 
@@ -313,7 +301,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 178.0, 234.5, 75.0, 23.0 ],
+									"patching_rect" : [ 212.0, 218.5, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -325,7 +313,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 268.0, 286.0, 124.0, 23.0 ],
+									"patching_rect" : [ 302.0, 270.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -336,7 +324,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 79.0, 186.0, 42.0, 21.0 ],
+									"patching_rect" : [ 81.0, 170.0, 42.0, 21.0 ],
 									"text" : "Reset"
 								}
 
@@ -347,7 +335,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 105.0, 191.0, 21.0 ],
+									"patching_rect" : [ 150.0, 90.0, 191.0, 21.0 ],
 									"text" : "Schedule regular trigger frames"
 								}
 
@@ -360,7 +348,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 88.0, 213.0, 24.0, 24.0 ]
+									"patching_rect" : [ 90.0, 197.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -372,7 +360,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 88.0, 250.0, 41.0, 23.0 ],
+									"patching_rect" : [ 90.0, 234.0, 41.0, 23.0 ],
 									"text" : "click~"
 								}
 
@@ -385,7 +373,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 88.0, 286.0, 95.0, 23.0 ],
+									"patching_rect" : [ 90.0, 270.0, 95.0, 23.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -397,7 +385,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 28.5, 540.0, 45.0, 45.0 ]
+									"patching_rect" : [ 452.0, 348.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -409,21 +397,21 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 105.0, 114.0, 23.0 ],
+									"patching_rect" : [ 30.0, 90.0, 114.0, 23.0 ],
 									"text" : "fl.interval~ 300 ms"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"color" : [ 0.439216, 0.74902, 0.254902, 1.0 ],
+									"color" : [ 1.0, 0.011764705882353, 0.011764705882353, 1.0 ],
 									"fontsize" : 13.0,
 									"id" : "obj-21",
 									"maxclass" : "newobj",
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 28.5, 346.0, 138.0, 23.0 ],
+									"patching_rect" : [ 30.0, 315.0, 138.0, 23.0 ],
 									"text" : "fl.ticks~ 10 /mode loop"
 								}
 
@@ -441,6 +429,18 @@
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 15.0, 15.0, 435.0, 75.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-40",
+									"linecount" : 4,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 30.0, 450.0, 585.0, 65.0 ],
+									"text" : "fl.ticks~ is a frame counter that can be driven forwards or backwards in between 0 and the limit - 1. \n\nThe count can be reset, either to the relevant end (according to whether progression is forwards or backwards) or to a specfic value, set by the /reset parameter"
 								}
 
 							}
@@ -490,7 +490,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-21", 2 ],
-									"midpoints" : [ 277.5, 327.0, 157.0, 327.0 ],
+									"midpoints" : [ 311.5, 303.5, 158.5, 303.5 ],
 									"source" : [ "obj-25", 0 ]
 								}
 
@@ -498,6 +498,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-25", 0 ],
+									"midpoints" : [ 221.5, 255.25, 311.5, 255.25 ],
 									"source" : [ "obj-26", 0 ]
 								}
 
@@ -519,6 +520,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-25", 0 ],
+									"midpoints" : [ 405.0, 255.25, 311.5, 255.25 ],
 									"source" : [ "obj-36", 0 ]
 								}
 
@@ -540,6 +542,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-25", 0 ],
+									"midpoints" : [ 491.5, 255.25, 311.5, 255.25 ],
 									"source" : [ "obj-6", 0 ]
 								}
 
@@ -602,7 +605,7 @@
 , 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
