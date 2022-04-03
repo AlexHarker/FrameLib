@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 671.0, 596.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 671.0, 570.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -88,13 +88,24 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-42",
-									"linecount" : 2,
+									"id" : "obj-4",
+									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 375.0, 503.5, 162.0, 36.0 ],
-									"text" : "Indicates that the internal buffer is underlength"
+									"patching_rect" : [ 300.0, 486.0, 339.0, 65.0 ],
+									"text" : "pad - pads the output with values from the reset frame (or the /pad parameter)\n\nshorten -  uses the oldest frame received so far"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-42",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 401.0, 448.0, 239.0, 21.0 ],
+									"text" : "Indicates underflow in the internal buffer"
 								}
 
 							}
@@ -106,7 +117,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 315.0, 510.0, 50.0, 23.0 ]
+									"patching_rect" : [ 341.0, 448.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -117,7 +128,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 315.0, 429.0, 62.0, 23.0 ],
+									"patching_rect" : [ 341.0, 399.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -128,7 +139,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 143.5, 150.0, 84.0, 21.0 ],
+									"patching_rect" : [ 156.5, 150.0, 84.0, 21.0 ],
 									"text" : "Click to reset"
 								}
 
@@ -136,12 +147,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-32",
-									"linecount" : 6,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 276.0, 151.5, 350.0, 94.0 ],
-									"text" : "Select the behaviour when reseting or changing frame size:\n\npad - will pad the output with values from the reset frame (or the /pad parameter)\n\nshorten - will use the oldest frame received so far"
+									"patching_rect" : [ 258.0, 180.0, 192.0, 36.0 ],
+									"text" : "Select the behaviour when reseting / changing frame size",
+									"textjustification" : 1
 								}
 
 							}
@@ -154,7 +166,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 281.75, 255.0, 85.5, 23.0 ]
+									"patching_rect" : [ 307.75, 225.0, 85.5, 23.0 ]
 								}
 
 							}
@@ -165,7 +177,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 114.0, 23.0 ],
+									"patching_rect" : [ 15.0, 137.0, 114.0, 23.0 ],
 									"text" : "fl.interval~ 100 ms"
 								}
 
@@ -178,7 +190,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 165.0, 189.5, 24.0, 24.0 ]
+									"patching_rect" : [ 178.0, 176.5, 24.0, 24.0 ]
 								}
 
 							}
@@ -189,7 +201,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 165.0, 255.0, 41.0, 23.0 ],
+									"patching_rect" : [ 178.0, 225.0, 41.0, 23.0 ],
 									"text" : "click~"
 								}
 
@@ -201,7 +213,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 165.0, 300.0, 95.0, 23.0 ],
+									"patching_rect" : [ 178.0, 270.0, 95.0, 23.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -213,7 +225,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 189.5, 138.0, 23.0 ],
+									"patching_rect" : [ 15.0, 176.5, 138.0, 23.0 ],
 									"text" : "fl.random~ /length 100"
 								}
 
@@ -224,7 +236,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 105.0, 483.0, 21.0 ],
+									"patching_rect" : [ 15.0, 92.0, 433.0, 21.0 ],
 									"text" : "fl.lag~ offers control over resetting and behaviour when the buffer is filling."
 								}
 
@@ -236,7 +248,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 600.0, 45.0, 45.0 ]
+									"patching_rect" : [ 540.0, 293.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -247,7 +259,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 315.0, 300.0, 52.0, 23.0 ],
+									"patching_rect" : [ 341.0, 270.0, 52.0, 23.0 ],
 									"text" : "start $1"
 								}
 
@@ -259,7 +271,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 315.0, 345.0, 124.0, 23.0 ],
+									"patching_rect" : [ 341.0, 315.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -267,12 +279,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-10",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 474.0, 270.0, 96.0 ],
+									"patching_rect" : [ 15.0, 448.0, 270.0, 103.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 100
 								}
@@ -285,7 +298,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 429.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 399.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -298,7 +311,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 15.0, 384.0, 319.0, 23.0 ],
+									"patching_rect" : [ 15.0, 354.0, 345.0, 23.0 ],
 									"text" : "fl.lag~ 20 20"
 								}
 
@@ -324,7 +337,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-18", 0 ],
-									"midpoints" : [ 24.5, 332.5, 324.5, 332.5 ],
+									"midpoints" : [ 24.5, 306.5, 350.5, 306.5 ],
 									"order" : 0,
 									"source" : [ "obj-1", 0 ]
 								}
@@ -349,7 +362,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 2 ],
-									"midpoints" : [ 324.5, 375.5, 324.5, 375.5 ],
 									"source" : [ "obj-18", 0 ]
 								}
 
@@ -472,14 +484,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 671.0, 570.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -534,14 +546,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 671.0, 570.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -572,12 +584,23 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-2",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 465.0, 135.0, 141.0, 21.0 ],
+									"text" : "Set the delay in frames"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-10",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 420.0, 278.5, 210.0, 36.0 ],
+									"patching_rect" : [ 435.0, 263.5, 200.0, 36.0 ],
 									"text" : "Arguments set /max_frames and /num_frames parameters"
 								}
 
@@ -589,7 +612,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 585.0, 45.0, 45.0 ]
+									"patching_rect" : [ 142.5, 407.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -599,7 +622,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 540.0, 516.0, 21.0 ],
+									"patching_rect" : [ 30.0, 525.0, 516.0, 21.0 ],
 									"text" : "fl.lag~ is a frame-based delay. It might be useful for sycnronising processes with latency."
 								}
 
@@ -611,7 +634,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 360.0, 315.0, 166.0 ],
+									"patching_rect" : [ 330.0, 345.0, 315.0, 166.0 ],
 									"text" : "fl.lag~ is set to be two frames behind fl.ticks~ by default in this patch. \n\nSee how the multislider here is always trailing the one to the left? Increase the lag amount to increase how far behind it follows.\n\nBecause fl.ticks~ produces a looping ramp pattern, if the lag is higher than the length of the loop the two outputs appear to be much closer than they are actually are in terms of time."
 								}
 
@@ -622,7 +645,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 157.5, 150.0, 210.0, 21.0 ],
+									"patching_rect" : [ 172.5, 135.0, 210.0, 21.0 ],
 									"text" : "fl.ticks~ is like a FrameLib 'counter'"
 								}
 
@@ -631,12 +654,13 @@
 								"box" : 								{
 									"ghostbar" : 100,
 									"id" : "obj-38",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 240.0, 375.0, 45.0, 140.0 ],
+									"patching_rect" : [ 255.0, 360.0, 45.0, 140.0 ],
 									"setminmax" : [ 0.0, 10.0 ],
 									"slidercolor" : [ 0.062745098039216, 0.643137254901961, 0.717647058823529, 1.0 ]
 								}
@@ -646,12 +670,13 @@
 								"box" : 								{
 									"ghostbar" : 100,
 									"id" : "obj-37",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 375.0, 45.0, 140.0 ],
+									"patching_rect" : [ 30.0, 360.0, 45.0, 140.0 ],
 									"setminmax" : [ 0.0, 10.0 ],
 									"slidercolor" : [ 0.062745098039216, 0.643137254901961, 0.717647058823529, 1.0 ]
 								}
@@ -659,12 +684,13 @@
 							}
 , 							{
 								"box" : 								{
+									"hidden" : 1,
 									"id" : "obj-36",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 390.0, 105.0, 75.0, 23.0 ],
+									"patching_rect" : [ 405.0, 90.0, 75.0, 23.0 ],
 									"text" : "loadmess 2"
 								}
 
@@ -679,7 +705,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 390.0, 150.0, 50.0, 23.0 ]
+									"patching_rect" : [ 405.0, 135.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -690,7 +716,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 390.0, 195.0, 99.0, 23.0 ],
+									"patching_rect" : [ 405.0, 180.0, 99.0, 23.0 ],
 									"text" : "num_frames $1"
 								}
 
@@ -702,7 +728,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 390.0, 240.0, 124.0, 23.0 ],
+									"patching_rect" : [ 405.0, 225.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -714,7 +740,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 330.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 315.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -726,7 +752,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 330.0, 62.0, 23.0 ],
+									"patching_rect" : [ 255.0, 315.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -738,7 +764,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 138.0, 23.0 ],
+									"patching_rect" : [ 30.0, 135.0, 138.0, 23.0 ],
 									"text" : "fl.ticks~ 10 /mode loop"
 								}
 
@@ -751,7 +777,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 240.0, 285.0, 169.0, 23.0 ],
+									"patching_rect" : [ 255.0, 270.0, 169.0, 23.0 ],
 									"text" : "fl.lag~ 30 2"
 								}
 
@@ -763,7 +789,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 114.0, 23.0 ],
+									"patching_rect" : [ 30.0, 90.0, 114.0, 23.0 ],
 									"text" : "fl.interval~ 190 ms"
 								}
 
@@ -823,6 +849,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-31", 0 ],
+									"hidden" : 1,
 									"source" : [ "obj-36", 0 ]
 								}
 
@@ -837,7 +864,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
-									"midpoints" : [ 24.5, 234.0, 249.5, 234.0 ],
+									"midpoints" : [ 39.5, 219.0, 264.5, 219.0 ],
 									"order" : 1,
 									"source" : [ "obj-6", 0 ]
 								}
@@ -854,7 +881,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-27", 0 ],
-									"midpoints" : [ 24.5, 234.0, 399.5, 234.0 ],
+									"midpoints" : [ 39.5, 219.0, 414.5, 219.0 ],
 									"order" : 0,
 									"source" : [ "obj-6", 0 ]
 								}
@@ -915,15 +942,19 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
+				"name" : "fl.audiotrigger~.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
+				"name" : "fl.frommax~.mxo",
 				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.interval~.mxo",
@@ -934,27 +965,15 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "fl.random~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.ticks~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
 				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.audiotrigger~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.audiotrigger~.mxo",
 				"type" : "iLaX"
 			}
  ],

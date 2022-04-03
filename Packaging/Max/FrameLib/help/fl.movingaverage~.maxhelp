@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            662.0,
-            787.0
+            629.0,
+            728.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            662.0,
-                            761.0
+                            629.0,
+                            702.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -108,7 +108,10 @@
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.movingaverage~",
+                                    "jsarguments": [
+                                        "fl.movingaverage~",
+                                        103
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -119,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
+                                        599.0,
                                         150.0
                                     ]
                                 }
@@ -145,10 +148,13 @@
                                     "patching_rect": [
                                         15.0,
                                         167.0,
-                                        630.0,
-                                        565.0
+                                        599.0,
+                                        520.0
                                     ],
-                                    "viewvisibility": 1
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        599.0
+                                    ]
                                 }
                             }
                         ],
@@ -179,17 +185,17 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            131.0,
-                            652.0,
-                            735.0
+                            0.0,
+                            26.0,
+                            629.0,
+                            702.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -231,7 +237,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         30.0,
-                                        375.0,
+                                        435.0,
                                         174.0,
                                         21.0
                                     ],
@@ -245,12 +251,13 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        405.0,
-                                        195.0,
+                                        397.25,
+                                        234.0,
                                         139.0,
                                         21.0
                                     ],
-                                    "text": "Click to reset deviation"
+                                    "text": "Click to reset deviation",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -264,8 +271,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        443.75,
-                                        234.5,
+                                        454.75,
+                                        264.5,
                                         24.0,
                                         24.0
                                     ]
@@ -281,8 +288,8 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        443.75,
-                                        279.5,
+                                        454.75,
+                                        309.5,
                                         41.0,
                                         23.0
                                     ],
@@ -299,8 +306,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        443.75,
-                                        324.5,
+                                        454.75,
+                                        354.5,
                                         95.0,
                                         23.0
                                     ],
@@ -314,12 +321,13 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        270.0,
-                                        195.0,
+                                        263.0,
+                                        234.0,
                                         120.0,
                                         21.0
                                     ],
-                                    "text": "Click to reset mean"
+                                    "text": "Click to reset mean",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -333,8 +341,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        300.0,
-                                        234.5,
+                                        311.0,
+                                        264.5,
                                         24.0,
                                         24.0
                                     ]
@@ -350,8 +358,8 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        300.0,
-                                        279.5,
+                                        311.0,
+                                        309.5,
                                         41.0,
                                         23.0
                                     ],
@@ -368,8 +376,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        300.0,
-                                        324.5,
+                                        311.0,
+                                        354.5,
                                         95.0,
                                         23.0
                                     ],
@@ -384,8 +392,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        390.0,
-                                        507.5,
+                                        392.5,
+                                        567.5,
                                         45.0,
                                         45.0
                                     ]
@@ -394,17 +402,17 @@
                             {
                                 "box": {
                                     "id": "obj-37",
-                                    "linecount": 6,
+                                    "linecount": 8,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        45.0,
-                                        234.5,
-                                        209.5,
-                                        94.0
+                                        41.0,
+                                        270.0,
+                                        227.5,
+                                        123.0
                                     ],
-                                    "text": "The mean and deviation can be reset separately. If frames are send to the reset inputs these are used as the reset values. If not then the value of the padding parameters is used instead."
+                                    "text": "The mean and deviation can be reset separately. \n\nIf frames are send to the reset inputs these are used as the reset values. \n\nIf not then the value of the padding parameters is used instead."
                                 }
                             },
                             {
@@ -415,7 +423,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         315.0,
-                                        150.0,
+                                        180.0,
                                         153.0,
                                         21.0
                                     ],
@@ -424,6 +432,12 @@
                             },
                             {
                                 "box": {
+                                    "bgcolor": [
+                                        0.16078431372549,
+                                        0.16078431372549,
+                                        0.16078431372549,
+                                        0.301960784313725
+                                    ],
                                     "fontname": "Arial",
                                     "fontsize": 9.0,
                                     "id": "obj-21",
@@ -432,8 +446,8 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         473.5,
-                                        573.0,
-                                        104.0,
+                                        633.0,
+                                        78.0,
                                         17.0
                                     ],
                                     "text": "Moving Deviation",
@@ -455,8 +469,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        473.5,
-                                        420.0,
+                                        532.5,
+                                        480.0,
                                         62.0,
                                         23.0
                                     ],
@@ -465,6 +479,12 @@
                             },
                             {
                                 "box": {
+                                    "bgcolor": [
+                                        0.16078431372549,
+                                        0.16078431372549,
+                                        0.16078431372549,
+                                        0.301960784313725
+                                    ],
                                     "fontname": "Arial",
                                     "fontsize": 9.0,
                                     "id": "obj-20",
@@ -472,8 +492,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        211.0,
-                                        573.0,
+                                        222.0,
+                                        633.0,
                                         73.0,
                                         17.0
                                     ],
@@ -488,6 +508,12 @@
                             },
                             {
                                 "box": {
+                                    "bgcolor": [
+                                        0.16078431372549,
+                                        0.16078431372549,
+                                        0.16078431372549,
+                                        0.301960784313725
+                                    ],
                                     "fontname": "Arial",
                                     "fontsize": 9.0,
                                     "id": "obj-19",
@@ -496,7 +522,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        575.0,
+                                        635.0,
                                         72.0,
                                         17.0
                                     ],
@@ -521,8 +547,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        210.5,
-                                        465.0,
+                                        221.5,
+                                        525.0,
                                         135.0,
                                         130.0
                                     ],
@@ -546,7 +572,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         15.0,
-                                        465.0,
+                                        525.0,
                                         165.0,
                                         130.0
                                     ],
@@ -568,7 +594,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        420.0,
+                                        480.0,
                                         62.0,
                                         23.0
                                     ],
@@ -585,8 +611,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        210.5,
-                                        420.0,
+                                        221.5,
+                                        480.0,
                                         62.0,
                                         23.0
                                     ],
@@ -604,7 +630,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        105.0,
+                                        135.0,
                                         101.0,
                                         23.0
                                     ],
@@ -622,11 +648,11 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        150.0,
+                                        180.0,
                                         296.0,
                                         23.0
                                     ],
-                                    "text": "fl.gaussian~ /length 1000 /mean 0.5 /deviation 0.1"
+                                    "text": "fl.gaussian~ /length 1000 /mean 0.5 /deviation 0.3"
                                 }
                             },
                             {
@@ -646,8 +672,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        210.5,
-                                        375.0,
+                                        221.5,
+                                        435.0,
                                         330.0,
                                         23.0
                                     ],
@@ -671,7 +697,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        599.0,
                                         75.0
                                     ]
                                 }
@@ -689,7 +715,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         473.5,
-                                        465.0,
+                                        525.0,
                                         135.0,
                                         130.0
                                     ],
@@ -707,12 +733,6 @@
                                     "destination": [
                                         "obj-23",
                                         0
-                                    ],
-                                    "midpoints": [
-                                        531.0,
-                                        408.5,
-                                        483.0,
-                                        408.5
                                     ],
                                     "source": [
                                         "obj-1",
@@ -763,10 +783,10 @@
                                         2
                                     ],
                                     "midpoints": [
-                                        309.5,
-                                        360.75,
-                                        375.5,
-                                        360.75
+                                        320.5,
+                                        405.75,
+                                        386.5,
+                                        405.75
                                     ],
                                     "source": [
                                         "obj-14",
@@ -816,6 +836,12 @@
                                         "obj-22",
                                         0
                                     ],
+                                    "midpoints": [
+                                        542.0,
+                                        513.5,
+                                        483.0,
+                                        513.5
+                                    ],
                                     "source": [
                                         "obj-23",
                                         0
@@ -830,9 +856,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        360.0,
-                                        220.0,
-                                        360.0
+                                        417.0,
+                                        231.0,
+                                        417.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -908,14 +934,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
@@ -962,17 +988,17 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            79.0,
-                            652.0,
-                            761.0
+                            0.0,
+                            26.0,
+                            629.0,
+                            702.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1005,7 +1031,6 @@
                         "subpatcher_template": "",
                         "showontab": 1,
                         "assistshowspatchername": 0,
-                        "visible": 1,
                         "boxes": [
                             {
                                 "box": {
@@ -1017,7 +1042,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         337.0,
-                                        424.0,
+                                        402.0,
                                         35.0,
                                         13.0
                                     ]
@@ -1031,7 +1056,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         377.0,
-                                        420.0,
+                                        398.0,
                                         209.0,
                                         21.0
                                     ],
@@ -1049,7 +1074,7 @@
                                     ],
                                     "patching_rect": [
                                         276.25,
-                                        420.0,
+                                        398.0,
                                         53.0,
                                         23.0
                                     ],
@@ -1067,7 +1092,7 @@
                                     ],
                                     "patching_rect": [
                                         276.25,
-                                        375.0,
+                                        360.0,
                                         280.0,
                                         23.0
                                     ],
@@ -1084,7 +1109,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         278.0,
-                                        109.0,
+                                        103.0,
                                         35.0,
                                         13.0
                                     ]
@@ -1099,7 +1124,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         390.0,
-                                        597.5,
+                                        567.5,
                                         45.0,
                                         45.0
                                     ]
@@ -1112,9 +1137,9 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        705.0,
-                                        563.0,
+                                        46.5,
+                                        664.0,
+                                        493.0,
                                         21.0
                                     ],
                                     "text": "Note how the running statistics react more quickly at the right hand side of the frame"
@@ -1128,7 +1153,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         315.0,
-                                        105.0,
+                                        99.0,
                                         261.0,
                                         21.0
                                     ],
@@ -1170,6 +1195,12 @@
                             },
                             {
                                 "box": {
+                                    "bgcolor": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.3
+                                    ],
                                     "fontname": "Arial",
                                     "fontsize": 9.0,
                                     "id": "obj-21",
@@ -1178,8 +1209,8 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         473.5,
-                                        663.0,
-                                        104.0,
+                                        633.0,
+                                        78.0,
                                         17.0
                                     ],
                                     "text": "Moving Deviation",
@@ -1202,7 +1233,7 @@
                                     ],
                                     "patching_rect": [
                                         473.5,
-                                        510.0,
+                                        480.0,
                                         62.0,
                                         23.0
                                     ],
@@ -1211,6 +1242,12 @@
                             },
                             {
                                 "box": {
+                                    "bgcolor": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.3
+                                    ],
                                     "fontname": "Arial",
                                     "fontsize": 9.0,
                                     "id": "obj-20",
@@ -1219,7 +1256,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         211.0,
-                                        663.0,
+                                        633.0,
                                         73.0,
                                         17.0
                                     ],
@@ -1234,6 +1271,12 @@
                             },
                             {
                                 "box": {
+                                    "bgcolor": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.3
+                                    ],
                                     "fontname": "Arial",
                                     "fontsize": 9.0,
                                     "id": "obj-19",
@@ -1242,7 +1285,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        665.0,
+                                        635.0,
                                         72.0,
                                         17.0
                                     ],
@@ -1268,7 +1311,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         210.5,
-                                        555.0,
+                                        525.0,
                                         135.0,
                                         130.0
                                     ],
@@ -1292,7 +1335,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         15.0,
-                                        555.0,
+                                        525.0,
                                         165.0,
                                         130.0
                                     ],
@@ -1314,7 +1357,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        510.0,
+                                        480.0,
                                         62.0,
                                         23.0
                                     ],
@@ -1332,7 +1375,7 @@
                                     ],
                                     "patching_rect": [
                                         210.5,
-                                        510.0,
+                                        480.0,
                                         62.0,
                                         23.0
                                     ],
@@ -1393,7 +1436,7 @@
                                     ],
                                     "patching_rect": [
                                         210.5,
-                                        465.0,
+                                        435.0,
                                         282.0,
                                         23.0
                                     ],
@@ -1417,7 +1460,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        599.0,
                                         75.0
                                     ]
                                 }
@@ -1442,7 +1485,7 @@
                                     "saved_attribute_attributes": {
                                         "valueof": {
                                             "parameter_initial": [
-                                                0.1
+                                                0.2
                                             ],
                                             "parameter_initial_enable": 1,
                                             "parameter_longname": "Deviation[1]",
@@ -1537,7 +1580,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         473.5,
-                                        555.0,
+                                        525.0,
                                         135.0,
                                         130.0
                                     ],
@@ -1684,9 +1727,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        438.0,
+                                        348.5,
                                         220.0,
-                                        438.0
+                                        348.5
                                     ],
                                     "order": 1,
                                     "source": [
@@ -1703,9 +1746,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        353.0,
+                                        348.5,
                                         285.75,
-                                        353.0
+                                        348.5
                                     ],
                                     "order": 0,
                                     "source": [
@@ -1735,9 +1778,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        256.5,
+                                        262.5,
                                         158.5,
-                                        256.5
+                                        262.5
                                     ],
                                     "order": 0,
                                     "source": [
@@ -1801,14 +1844,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
@@ -1855,8 +1898,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -1864,8 +1907,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            735.0
+                            629.0,
+                            702.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1926,17 +1969,17 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
-                            652.0,
-                            735.0
+                            34.0,
+                            113.0,
+                            629.0,
+                            702.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1980,7 +2023,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         278.0,
-                                        109.0,
+                                        103.0,
                                         35.0,
                                         13.0
                                     ]
@@ -2008,8 +2051,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        15.5,
-                                        660.0,
+                                        30.0,
+                                        656.0,
                                         563.0,
                                         21.0
                                     ],
@@ -2024,7 +2067,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         315.0,
-                                        105.0,
+                                        99.0,
                                         241.0,
                                         21.0
                                     ],
@@ -2039,7 +2082,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         173.5,
-                                        317.0,
+                                        319.0,
                                         153.0,
                                         21.0
                                     ],
@@ -2081,6 +2124,12 @@
                             },
                             {
                                 "box": {
+                                    "bgcolor": [
+                                        0.16078431372549,
+                                        0.16078431372549,
+                                        0.16078431372549,
+                                        0.301960784313725
+                                    ],
                                     "fontname": "Arial",
                                     "fontsize": 9.0,
                                     "id": "obj-21",
@@ -2090,7 +2139,7 @@
                                     "patching_rect": [
                                         474.0,
                                         618.0,
-                                        104.0,
+                                        78.0,
                                         17.0
                                     ],
                                     "text": "Moving Deviation",
@@ -2122,6 +2171,12 @@
                             },
                             {
                                 "box": {
+                                    "bgcolor": [
+                                        0.16078431372549,
+                                        0.16078431372549,
+                                        0.16078431372549,
+                                        0.301960784313725
+                                    ],
                                     "fontname": "Arial",
                                     "fontsize": 9.0,
                                     "id": "obj-20",
@@ -2145,6 +2200,12 @@
                             },
                             {
                                 "box": {
+                                    "bgcolor": [
+                                        0.16078431372549,
+                                        0.16078431372549,
+                                        0.16078431372549,
+                                        0.301960784313725
+                                    ],
                                     "fontname": "Arial",
                                     "fontsize": 9.0,
                                     "id": "obj-19",
@@ -2346,7 +2407,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        599.0,
                                         75.0
                                     ]
                                 }
@@ -2371,7 +2432,7 @@
                                     "saved_attribute_attributes": {
                                         "valueof": {
                                             "parameter_initial": [
-                                                0.1
+                                                0.2
                                             ],
                                             "parameter_initial_enable": 1,
                                             "parameter_longname": "Deviation",
@@ -2691,9 +2752,9 @@
                                     ],
                                     "midpoints": [
                                         399.5,
-                                        360.75,
+                                        356.0,
                                         483.5,
-                                        360.75
+                                        356.0
                                     ],
                                     "source": [
                                         "obj-18",
@@ -2757,9 +2818,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        406.0,
+                                        356.0,
                                         220.5,
-                                        406.0
+                                        356.0
                                     ],
                                     "order": 1,
                                     "source": [
@@ -2776,9 +2837,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        360.0,
+                                        356.0,
                                         483.5,
-                                        360.0
+                                        356.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -2808,9 +2869,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        268.5,
+                                        262.5,
                                         158.5,
-                                        268.5
+                                        262.5
                                     ],
                                     "order": 0,
                                     "source": [
@@ -2874,14 +2935,14 @@
                             {
                                 "name": "newobjYellow-1",
                                 "default": {
-                                    "fontsize": [
-                                        12.059008
-                                    ],
                                     "accentcolor": [
                                         0.82517,
                                         0.78181,
                                         0.059545,
                                         1.0
+                                    ],
+                                    "fontsize": [
+                                        12.059008
                                     ]
                                 },
                                 "parentstyle": "",
