@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 676.0, 701.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 676.0, 675.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 676.0, 675.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,19 +155,19 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 510.0, 610.0, 45.0, 45.0 ]
+									"patching_rect" : [ 540.0, 552.5, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-30",
-									"linecount" : 2,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 396.0, 218.5, 249.0, 36.0 ],
-									"text" : "Pack 3 different length frames at different intervals into a multi-stream frame"
+									"patching_rect" : [ 435.0, 196.5, 210.0, 50.0 ],
+									"text" : "Pack 3 streams of different length frames at different intervals into a multi-stream"
 								}
 
 							}
@@ -177,7 +177,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 336.0, 406.0, 232.0, 21.0 ],
+									"patching_rect" : [ 373.0, 391.0, 232.0, 21.0 ],
 									"text" : "Unpack each stream into its own outlet"
 								}
 
@@ -188,7 +188,7 @@
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 525.0, 130.0, 130.0 ]
+									"patching_rect" : [ 345.0, 510.0, 130.0, 130.0 ]
 								}
 
 							}
@@ -198,7 +198,7 @@
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 165.0, 525.0, 130.0, 130.0 ]
+									"patching_rect" : [ 195.0, 510.0, 130.0, 130.0 ]
 								}
 
 							}
@@ -208,7 +208,7 @@
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 525.0, 130.0, 130.0 ]
+									"patching_rect" : [ 45.0, 510.0, 130.0, 130.0 ]
 								}
 
 							}
@@ -218,8 +218,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 75.0, 285.0, 320.0, 21.0 ],
-									"text" : "Make the range of the incoming frames outside -1 to 1"
+									"patching_rect" : [ 104.0, 271.0, 269.0, 21.0 ],
+									"text" : "Scale the range of the  frames beyond -1 to 1"
 								}
 
 							}
@@ -230,7 +230,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 53.0, 23.0 ],
+									"patching_rect" : [ 45.0, 270.0, 53.0, 23.0 ],
 									"text" : "fl.*~ 3.5"
 								}
 
@@ -242,7 +242,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 315.0, 465.0, 55.0, 23.0 ],
+									"patching_rect" : [ 345.0, 450.0, 55.0, 23.0 ],
 									"text" : "fl.trace~"
 								}
 
@@ -254,7 +254,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 165.0, 465.0, 55.0, 23.0 ],
+									"patching_rect" : [ 195.0, 450.0, 55.0, 23.0 ],
 									"text" : "fl.trace~"
 								}
 
@@ -266,7 +266,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 465.0, 55.0, 23.0 ],
+									"patching_rect" : [ 45.0, 450.0, 55.0, 23.0 ],
 									"text" : "fl.trace~"
 								}
 
@@ -279,7 +279,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 15.0, 405.0, 319.0, 23.0 ],
+									"patching_rect" : [ 45.0, 390.0, 319.0, 23.0 ],
 									"text" : "fl.unpack~ 3"
 								}
 
@@ -290,7 +290,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 110.0, 345.0, 337.0, 21.0 ],
+									"patching_rect" : [ 142.0, 330.0, 337.0, 21.0 ],
 									"text" : "Apply a hard clip on all streams of the multi-stream frame"
 								}
 
@@ -302,7 +302,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 345.0, 93.0, 23.0 ],
+									"patching_rect" : [ 45.0, 330.0, 93.0, 23.0 ],
 									"text" : "fl.clip~ -0.6 0.6"
 								}
 
@@ -314,7 +314,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 375.0, 105.0, 64.0, 23.0 ],
+									"patching_rect" : [ 405.0, 90.0, 64.0, 23.0 ],
 									"text" : "cycle~ 10"
 								}
 
@@ -326,7 +326,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 195.0, 105.0, 40.0, 23.0 ],
+									"patching_rect" : [ 225.0, 90.0, 40.0, 23.0 ],
 									"text" : "tri~ 1"
 								}
 
@@ -338,7 +338,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 105.0, 50.0, 23.0 ],
+									"patching_rect" : [ 45.0, 90.0, 50.0, 23.0 ],
 									"text" : "saw~ 3"
 								}
 
@@ -350,7 +350,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 448.0, 105.0, 86.0, 23.0 ],
+									"patching_rect" : [ 478.0, 90.0, 86.0, 23.0 ],
 									"text" : "fl.interval~ 64"
 								}
 
@@ -362,7 +362,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 248.5, 105.0, 86.0, 23.0 ],
+									"patching_rect" : [ 278.5, 90.0, 86.0, 23.0 ],
 									"text" : "fl.interval~ 32"
 								}
 
@@ -374,7 +374,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 72.0, 105.0, 93.0, 23.0 ],
+									"patching_rect" : [ 102.0, 90.0, 93.0, 23.0 ],
 									"text" : "fl.interval~ 512"
 								}
 
@@ -386,7 +386,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 375.0, 165.0, 126.0, 23.0 ],
+									"patching_rect" : [ 405.0, 150.0, 165.0, 23.0 ],
 									"text" : "fl.source~ /length 64"
 								}
 
@@ -398,7 +398,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 195.0, 165.0, 126.0, 23.0 ],
+									"patching_rect" : [ 225.0, 150.0, 126.0, 23.0 ],
 									"text" : "fl.source~ /length 32"
 								}
 
@@ -410,7 +410,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 165.0, 133.0, 23.0 ],
+									"patching_rect" : [ 45.0, 150.0, 133.0, 23.0 ],
 									"text" : "fl.source~ /length 512"
 								}
 
@@ -423,7 +423,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 225.0, 379.0, 23.0 ],
+									"patching_rect" : [ 45.0, 210.0, 379.0, 23.0 ],
 									"text" : "fl.pack~ 3"
 								}
 
@@ -434,7 +434,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.pack~" ],
+									"jsarguments" : [ "fl.unpack~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -567,7 +567,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 1 ],
-									"midpoints" : [ 457.5, 138.5, 438.0, 138.5 ],
 									"source" : [ "obj-9", 0 ]
 								}
 
@@ -591,11 +590,19 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
+				"name" : "fl.clip~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
+			}
+, 			{
+				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
 			}
 , 			{
 				"name" : "fl.pack~.mxo",
@@ -606,35 +613,15 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.source~.mxo",
+				"name" : "fl.times~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.clip~.mxo",
+				"name" : "fl.trace~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
 				"name" : "fl.unpack~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.trace~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.trace~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
 				"type" : "iLaX"
 			}
  ],

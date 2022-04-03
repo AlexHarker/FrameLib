@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 680.0, 675.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 680.0, 649.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,15 +112,15 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
-						"bglocked" : 0,
+						"rect" : [ 34.0, 113.0, 680.0, 649.0 ],
+						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
 						"default_fontface" : 0,
@@ -150,25 +150,12 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-4",
-									"linecount" : 2,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 645.0, 615.0, 36.0 ],
-									"presentation_linecount" : 6,
-									"text" : "fl.streamid~ allows you to set values differently in different streams. Stream ids count from zero and can be used to set parameters in a stream so each stream behaves differently."
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-1",
 									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 442.5, 550.0, 45.0, 45.0 ]
+									"patching_rect" : [ 466.5, 537.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -178,7 +165,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 458.0, 206.0, 21.0 ],
+									"patching_rect" : [ 188.0, 446.0, 206.0, 21.0 ],
 									"text" : "Output the two streams separately"
 								}
 
@@ -191,8 +178,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 302.0, 300.0, 137.0 ],
-									"text" : "Using the result of the calculation set the intervals for the fl.interval~ object seperateluy in the two streams (one every 512 and one every 1024).\n\nWe also divide those values by 2 and use these values to set the length for each stream. \n\nAs a result, each stream has a length that is half the interval."
+									"patching_rect" : [ 345.0, 289.0, 300.0, 137.0 ],
+									"text" : "Using the result of the calculation set the intervals for the fl.interval~ object separately in the two streams (one every 512 and one every 1024).\n\nWe also divide those values by 2 and use these values to set the length for each stream. \n\nThus, each stream has frames that are half the length of the interval between frames."
 								}
 
 							}
@@ -203,7 +190,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 104.0, 251.0, 171.0, 21.0 ],
+									"patching_rect" : [ 274.5, 240.0, 165.0, 21.0 ],
 									"text" : "Multiply by 512 (512, 1024)"
 								}
 
@@ -215,7 +202,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 81.5, 196.0, 255.0, 21.0 ],
+									"patching_rect" : [ 251.5, 186.0, 255.0, 21.0 ],
 									"text" : "Calculate consecutive powers of two (1, 2)"
 								}
 
@@ -224,12 +211,12 @@
 								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-72",
-									"linecount" : 3,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 157.666666666666657, 136.5, 457.333333333333371, 50.0 ],
-									"text" : "Output stream ids. The object is instantiated with two streams '=2' and hence in this case there will be two ids (0 and 1). These values are used to set values for the streams differently."
+									"patching_rect" : [ 331.5, 133.5, 315.0, 36.0 ],
+									"text" : "Output stream IDs. (Instantiated with two streams using '=2' and hence there will be two ids - 0 and 1)."
 								}
 
 							}
@@ -240,7 +227,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 119.5, 105.0, 247.0, 21.0 ],
+									"patching_rect" : [ 286.5, 96.0, 247.0, 21.0 ],
 									"text" : "Output a trigger frame at the start of time"
 								}
 
@@ -253,7 +240,7 @@
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 510.0, 125.0, 125.0 ],
+									"patching_rect" : [ 165.0, 497.0, 125.0, 125.0 ],
 									"range" : [ -3.0, 3.0 ]
 								}
 
@@ -266,7 +253,7 @@
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 510.0, 125.0, 125.0 ],
+									"patching_rect" : [ 30.0, 497.0, 125.0, 125.0 ],
 									"range" : [ -3.0, 3.0 ]
 								}
 
@@ -279,7 +266,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 219.0, 333.0, 74.0, 23.0 ],
+									"patching_rect" : [ 234.0, 320.0, 74.0, 23.0 ],
 									"text" : "fl.divide~ 2"
 								}
 
@@ -292,7 +279,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 16.0, 328.0, 57.0, 23.0 ],
+									"patching_rect" : [ 30.0, 354.0, 57.0, 23.0 ],
 									"text" : "cycle~ 8"
 								}
 
@@ -305,7 +292,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 219.0, 367.0, 86.0, 23.0 ],
+									"patching_rect" : [ 234.0, 354.0, 86.0, 23.0 ],
 									"text" : "fl.tag~ length"
 								}
 
@@ -318,7 +305,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 416.0, 223.0, 23.0 ],
+									"patching_rect" : [ 30.0, 403.0, 223.0, 23.0 ],
 									"text" : "fl.source~ /length 100"
 								}
 
@@ -331,7 +318,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "signal" ],
-									"patching_rect" : [ 15.0, 458.0, 154.0, 23.0 ],
+									"patching_rect" : [ 30.0, 445.0, 154.0, 23.0 ],
 									"text" : "fl.sink~ =2"
 								}
 
@@ -344,7 +331,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 117.0, 333.0, 93.0, 23.0 ],
+									"patching_rect" : [ 132.0, 320.0, 93.0, 23.0 ],
 									"text" : "fl.tag~ interval"
 								}
 
@@ -357,7 +344,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 117.0, 367.0, 71.0, 23.0 ],
+									"patching_rect" : [ 132.0, 354.0, 71.0, 23.0 ],
 									"text" : "fl.interval~"
 								}
 
@@ -371,7 +358,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 150.0, 94.0, 23.0 ],
+									"patching_rect" : [ 226.5, 140.0, 94.0, 23.0 ],
 									"text" : "fl.streamid~ =2"
 								}
 
@@ -384,7 +371,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 250.0, 86.0, 23.0 ],
+									"patching_rect" : [ 181.5, 240.0, 86.0, 23.0 ],
 									"text" : "fl.times~ 512"
 								}
 
@@ -397,7 +384,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 105.0, 57.0, 23.0 ],
+									"patching_rect" : [ 226.5, 95.0, 57.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -410,7 +397,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 64.0, 23.0 ],
+									"patching_rect" : [ 181.5, 185.0, 64.0, 23.0 ],
 									"text" : "fl.pow~ 2"
 								}
 
@@ -443,8 +430,9 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 104.0, 321.0, 211.0, 84.0 ],
-									"proportion" : 0.39
+									"patching_rect" : [ 119.0, 308.0, 211.0, 84.0 ],
+									"proportion" : 0.39,
+									"rounded" : 16
 								}
 
 							}
@@ -459,7 +447,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 0 ],
-									"midpoints" : [ 24.5, 313.0, 126.5, 313.0 ],
+									"midpoints" : [ 191.0, 291.0, 141.5, 291.0 ],
 									"order" : 1,
 									"source" : [ "obj-21", 0 ]
 								}
@@ -468,7 +456,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-58", 0 ],
-									"midpoints" : [ 24.5, 313.0, 228.5, 313.0 ],
+									"midpoints" : [ 191.0, 291.0, 243.5, 291.0 ],
 									"order" : 0,
 									"source" : [ "obj-21", 0 ]
 								}
@@ -655,26 +643,34 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
+				"name" : "fl.divide~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
+			}
+, 			{
+				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.once~.mxo",
+				"type" : "iLaX"
 			}
 , 			{
 				"name" : "fl.pow~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.once~.mxo",
+				"name" : "fl.sink~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
+				"name" : "fl.source~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -682,35 +678,11 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.tag~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.divide~.mxo",
+				"name" : "fl.times~.mxo",
 				"type" : "iLaX"
 			}
  ],

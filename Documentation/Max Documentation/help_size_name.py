@@ -16,8 +16,9 @@ def main(docs: Documentation):
     host_communication = [x.stem for x in docs.source_files if x.parent.stem == "Host_Communication"]
     io = [x.stem for x in docs.source_files if x.parent.stem == "IO"]
     timing = [x.stem for x in docs.source_files if x.parent.stem == "Timing"]
+    streaming = [x.stem for x in docs.source_files if x.parent.stem == "Streaming"]
 
-    auto_resize_list = unary + complex_unary + expressions + schedulers + host_communication + io + timing
+    auto_resize_list = unary + complex_unary + expressions + schedulers + host_communication + io + timing + streaming
 
     # Now fix sizes and naming
 
