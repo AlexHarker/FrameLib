@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 474.0, 481.0 ],
+		"rect" : [ 34.0, 87.0, 484.0, 446.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 474.0, 455.0 ],
+						"rect" : [ 0.0, 26.0, 484.0, 420.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 474.0, 455.0 ],
+						"rect" : [ 34.0, 113.0, 484.0, 420.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -157,7 +157,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 330.0, 50.0, 23.0 ]
+									"patching_rect" : [ 30.0, 285.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -170,18 +170,19 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 150.0, 50.0, 23.0 ]
+									"patching_rect" : [ 30.0, 105.0, 50.0, 23.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"hidden" : 1,
 									"id" : "obj-26",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 75.0, 23.0 ],
+									"patching_rect" : [ 30.0, 75.0, 75.0, 23.0 ],
 									"text" : "loadmess 1"
 								}
 
@@ -194,18 +195,19 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 97.5, 199.0, 60.25, 15.0 ]
+									"patching_rect" : [ 112.5, 154.0, 60.25, 15.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.23921568627451, 0.76078431372549, 0.207843137254902, 1.0 ],
 									"id" : "obj-31",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 240.0, 48.0, 23.0 ],
+									"patching_rect" : [ 30.0, 195.0, 48.0, 23.0 ],
 									"text" : "fl.erfc~"
 								}
 
@@ -217,7 +219,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 240.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -229,7 +231,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 106.5, 105.0, 75.0, 23.0 ],
+									"patching_rect" : [ 90.0, 105.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -241,7 +243,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 77.0, 23.0 ],
+									"patching_rect" : [ 30.0, 151.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -254,7 +256,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 68.5, 334.0, 60.25, 15.0 ]
+									"patching_rect" : [ 88.5, 289.0, 60.25, 15.0 ]
 								}
 
 							}
@@ -264,7 +266,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 138.75, 331.0, 316.0, 21.0 ],
+									"patching_rect" : [ 153.75, 286.0, 316.0, 21.0 ],
 									"text" : "Complementary error function of input frame's values"
 								}
 
@@ -275,7 +277,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 167.75, 196.0, 234.0, 21.0 ],
+									"patching_rect" : [ 182.75, 151.0, 234.0, 21.0 ],
 									"text" : "Frame containing values for calculation"
 								}
 
@@ -287,7 +289,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 390.0, 50.0, 50.0 ]
+									"patching_rect" : [ 30.0, 345.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -303,7 +305,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 15.0, 435.0, 75.0 ]
+									"patching_rect" : [ 15.0, 15.0, 454.0, 75.0 ]
 								}
 
 							}
@@ -318,7 +320,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-12", 0 ],
-									"midpoints" : [ 116.0, 184.0, 24.5, 184.0 ],
+									"midpoints" : [ 99.5, 139.0, 39.5, 139.0 ],
 									"source" : [ "obj-13", 0 ]
 								}
 
@@ -333,6 +335,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 0 ],
+									"hidden" : 1,
 									"source" : [ "obj-26", 0 ]
 								}
 
@@ -409,7 +412,7 @@
 , 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
