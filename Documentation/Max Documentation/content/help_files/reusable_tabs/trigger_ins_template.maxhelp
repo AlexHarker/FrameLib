@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 652.0, 687.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 661.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -92,7 +92,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 465.0, 449.0, 129.0, 21.0 ],
+									"patching_rect" : [ 465.0, 376.0, 129.0, 21.0 ],
 									"text" : "See inside for details"
 								}
 
@@ -130,7 +130,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 45.0, 600.0, 24.0, 24.0 ]
+									"patching_rect" : [ 45.0, 527.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -140,7 +140,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 600.0, 346.0, 21.0 ],
+									"patching_rect" : [ 285.0, 527.0, 346.0, 21.0 ],
 									"text" : "Switch the gate~ on to hear the triggers as a set of clicks"
 								}
 
@@ -153,7 +153,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 218.0, 555.0, 24.0, 24.0 ]
+									"patching_rect" : [ 218.0, 482.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -164,7 +164,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 218.0, 600.0, 56.0, 23.0 ],
+									"patching_rect" : [ 218.0, 527.0, 56.0, 23.0 ],
 									"text" : "gate~"
 								}
 
@@ -176,7 +176,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 218.0, 645.0, 45.0, 45.0 ]
+									"patching_rect" : [ 218.0, 572.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -187,7 +187,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 255.0, 555.0, 49.0, 23.0 ],
+									"patching_rect" : [ 255.0, 482.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -199,7 +199,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 255.0, 510.0, 91.0, 23.0 ],
+									"patching_rect" : [ 255.0, 437.0, 91.0, 23.0 ],
 									"text" : "fl.register~ 0.1"
 								}
 
@@ -213,7 +213,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 45.0, 555.0, 105.0, 23.0 ]
+									"patching_rect" : [ 45.0, 482.0, 105.0, 23.0 ]
 								}
 
 							}
@@ -369,7 +369,7 @@
 													"parameter_enable" : 1,
 													"patching_rect" : [ 22.0, 87.0, 116.0, 171.0 ],
 													"presentation" : 1,
-													"presentation_rect" : [ 14.0, 14.0, 124.0, 171.0 ],
+													"presentation_rect" : [ 14.0, 14.0, 108.0, 108.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
 															"parameter_enum" : [ "both", "left", "right" ],
@@ -426,7 +426,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 435.0, 210.0, 150.0, 195.0 ],
+									"patching_rect" : [ 435.0, 195.0, 135.0, 135.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -438,7 +438,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 45.0, 510.0, 62.0, 23.0 ],
+									"patching_rect" : [ 45.0, 437.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -733,7 +733,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 45.0, 448.0, 409.0, 23.0 ],
+									"patching_rect" : [ 45.0, 375.0, 409.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -753,7 +753,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 92.0, 615.0, 79.0 ],
+									"patching_rect" : [ 15.0, 75.0, 615.0, 79.0 ],
 									"text" : "FrameLib binary operators have a /trigger_ins parameter that sets which inputs trigger calculation. \n\nBelow you can select which inputs (and hence scheduler(s)) drive the calculation of fl.*~ (there are three different versions encapsulated in p \"trigger ins\"). You'll see the most obvious difference when switching between either left or both to right, where calculation will slow down to once every 1.3 seconds."
 								}
 
@@ -842,7 +842,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"midpoints" : [ 54.5, 490.0, 264.5, 490.0 ],
+									"midpoints" : [ 54.5, 417.0, 264.5, 417.0 ],
 									"order" : 0,
 									"source" : [ "obj-28", 0 ]
 								}

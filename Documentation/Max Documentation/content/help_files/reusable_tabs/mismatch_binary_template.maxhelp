@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 655.0, 690.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 655.0, 664.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -88,12 +88,36 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-13",
+									"linecount" : 6,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 30.0, 540.0, 555.0, 94.0 ],
+									"text" : "The available options are:\n\nwrap -  reads shorter imputs in a wrapped manner (the output is as long as the longest input)\nshrink - the output is as long as the shortest input and other values are discarded\npad_in - extends shorter inputs by padding them with the parameter padding value\npad_out - extends the output for missing values by padding it with the padding parameter value"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 411.0, 330.0, 129.0, 21.0 ],
+									"text" : "See inside for details"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-10",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 106.04998779296875, 702.0, 432.0, 21.0 ],
-									"text" : "Note that the padding value detaults to zero, but can be set by parameter."
+									"patching_rect" : [ 96.0, 495.0, 432.0, 21.0 ],
+									"text" : "Note that the padding value detaults to zero, but can be set by parameter.",
+									"textjustification" : 1
 								}
 
 							}
@@ -104,18 +128,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 690.0, 45.0, 45.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-6",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 245.0, 555.0, 134.0, 21.0 ],
-									"text" : "Look inside for details"
+									"patching_rect" : [ 520.54998779296875, 375.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -247,7 +260,7 @@
 													"parameter_enable" : 1,
 													"patching_rect" : [ 40.0, 88.0, 116.0, 171.0 ],
 													"presentation" : 1,
-													"presentation_rect" : [ 14.0, 14.0, 124.0, 171.0 ],
+													"presentation_rect" : [ 14.0, 14.0, 109.0, 122.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
 															"parameter_enum" : [ "wrap", "shrink", "pad_in", "pad_out" ],
@@ -333,7 +346,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 360.0, 315.0, 150.0, 195.0 ],
+									"patching_rect" : [ 375.0, 165.0, 135.0, 151.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -345,7 +358,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 585.0, 62.0, 23.0 ],
+									"patching_rect" : [ 45.0, 386.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -357,7 +370,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 195.0, 375.0, 114.0, 23.0 ],
+									"patching_rect" : [ 210.0, 270.0, 114.0, 23.0 ],
 									"text" : "fl.register~ 10 -0.1"
 								}
 
@@ -369,7 +382,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 375.0, 157.0, 23.0 ],
+									"patching_rect" : [ 45.0, 270.0, 157.0, 23.0 ],
 									"text" : "fl.register~ 10 3 -2 0 7 1.4"
 								}
 
@@ -680,7 +693,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 30.0, 525.0, 349.0, 23.0 ],
+									"patching_rect" : [ 45.0, 330.0, 349.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -696,12 +709,12 @@
 								"box" : 								{
 									"fontname" : "Arial",
 									"id" : "obj-2",
-									"linecount" : 13,
+									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 90.0, 623.0, 195.0 ],
-									"text" : "FrameLib binary operators have a configurable logic for dealing with scenarios where there is a mismatch between the lengths of different inputs. \n\nThis is done via the /mismatch parameter.\n\nThe available options are:\n\nwrap -  reads shorter imputs in a wrapped manner (the output is as long as the longest input)\nshrink - the output is as long as the shortest input and other values are discarded\npad_in - extends shorter inputs by padding them with the parameter padding value\npad_out - extends the output for missing values by padding it with the padding parameter value\n\nSee how these operate in practice for fl.-~ below:"
+									"patching_rect" : [ 15.0, 75.0, 618.0, 65.0 ],
+									"text" : "FrameLib binary operators have a configurable logic for dealing with scenarios where there is a mismatch between the lengths of different inputs. \n\nThis is done via the /mismatch parameter. See how these operate in practice for fl.-~ below:"
 								}
 
 							}
@@ -712,7 +725,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 315.0, 101.0, 23.0 ],
+									"patching_rect" : [ 45.0, 195.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 1024"
 								}
 
@@ -741,7 +754,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 396.0, 648.899993896484375, 53.04998779296875, 13.20001220703125 ]
+									"patching_rect" : [ 411.0, 453.899993896484375, 53.04998779296875, 13.20001220703125 ]
 								}
 
 							}
@@ -751,7 +764,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 453.04998779296875, 645.0, 150.0, 21.0 ],
+									"patching_rect" : [ 468.04998779296875, 450.0, 150.0, 21.0 ],
 									"text" : "Observe output changes"
 								}
 
@@ -764,7 +777,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 645.0, 360.0, 23.0 ]
+									"patching_rect" : [ 45.0, 450.0, 360.0, 23.0 ]
 								}
 
 							}
@@ -800,7 +813,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-9", 1 ],
-									"midpoints" : [ 39.5, 626.0, 380.5, 626.0 ],
+									"midpoints" : [ 54.5, 431.0, 395.5, 431.0 ],
 									"source" : [ "obj-31", 0 ]
 								}
 
@@ -816,7 +829,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-30", 0 ],
-									"midpoints" : [ 39.5, 362.0, 204.5, 362.0 ],
+									"midpoints" : [ 54.5, 243.5, 219.5, 243.5 ],
 									"order" : 0,
 									"source" : [ "obj-4", 0 ]
 								}
