@@ -29,7 +29,7 @@ def rename_help(docs: Documentation, file_edit: str, obj_name: str) -> None:
 
     write_json(file_edit, d)
 
-def resize_patch(patch: dict, width: float, height: float, pad: float, js_resize: bool) -> None:
+def resize_patch(patch: dict, width: float, height: float, pad: float, detail_factor: float, js_resize: bool) -> None:
     """Takes a patcher as a dict and resizes it"""
     patch["rect"][2] = width
     patch["rect"][3] = height
@@ -41,9 +41,9 @@ def resize_patch(patch: dict, width: float, height: float, pad: float, js_resize
             if is_jshelp(box):
                 box["patching_rect"][2] = width - (pad * 2)
             if is_details(box):
-                box["jsarguments"] = [ "objname", int((width - (pad * 2)) / 5.8) ]
+                box["jsarguments"] = [ "objname", int((width - (pad * 2)) / detail_factor) ]
 
-def resize_help(docs: Documentation, file_edit: str, width: float, height: float) -> None:
+def resize_help(docs: Documentation, file_edit: str, width: float, height: float, detail_factor: float = 5.8) -> None:
     """Takes a path to a Max patch and resizes the window for the main patch and all tabs"""
     d = read_json(file_edit)
 
@@ -52,14 +52,14 @@ def resize_help(docs: Documentation, file_edit: str, width: float, height: float
     height_reduce = 26
 
     outer_patch = d["patcher"]
-    resize_patch(outer_patch, width, height, pad, False)
+    resize_patch(outer_patch, width, height, pad, detail_factor, False)
     outer_boxes = outer_patch["boxes"]
 
     # Iterate over tabs
 
     for item in outer_boxes:
         inner_patch = item["box"]["patcher"]
-        resize_patch(inner_patch, width, height - height_reduce, pad, True)
+        resize_patch(inner_patch, width, height - height_reduce, pad, detail_factor, True)
 
     # Resize parameter detail bpatchers
 
@@ -75,7 +75,7 @@ def resize_help(docs: Documentation, file_edit: str, width: float, height: float
 
     write_json(file_edit, d)
 
-def auto_resize_help(docs: Documentation, file_edit: str) -> None:
+def auto_resize_help(docs: Documentation, file_edit: str, detail_factor:float = 5.8) -> None:
     """Takes a path to a Max patch and automatically resizes the window for the main patch and all tabs"""
     d = read_json(file_edit)
 
@@ -98,4 +98,4 @@ def auto_resize_help(docs: Documentation, file_edit: str) -> None:
             width = max(width, rect[2])
             height = max(height, rect[3])
 
-    resize_help(docs, file_edit, width, height + height_reduce )
+    resize_help(docs, file_edit, width, height + height_reduce, detail_factor)
