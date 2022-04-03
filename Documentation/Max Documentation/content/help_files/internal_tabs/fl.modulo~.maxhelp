@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 652.0, 690.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 664.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 664.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -150,23 +150,46 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-8",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 345.0, 390.0, 19.0, 21.0 ],
+									"text" : "1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-7",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 345.0, 499.0, 19.0, 21.0 ],
+									"text" : "0"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-17",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 349.0, 284.0, 189.0, 21.0 ],
+									"patching_rect" : [ 431.0, 300.0, 189.0, 21.0 ],
 									"text" : "Also has a non-symbolic name!"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.196078431372549, 0.380392156862745, 1.0, 1.0 ],
 									"id" : "obj-1",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 273.5, 284.0, 69.0, 23.0 ],
+									"patching_rect" : [ 355.0, 300.0, 69.0, 23.0 ],
 									"text" : "fl.modulo~"
 								}
 
@@ -180,30 +203,31 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 217.0, 149.125, 48.0, 24.75 ]
+									"patching_rect" : [ 265.0, 209.125, 48.0, 24.75 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-21",
-									"linecount" : 3,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 267.0, 136.5, 208.0, 50.0 ],
+									"patching_rect" : [ 322.0, 203.5, 268.0, 36.0 ],
 									"text" : "Wiggle this number box to modify the 'width' of the random numbers between 0.0 and 1.0."
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"hidden" : 1,
 									"id" : "obj-19",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 165.0, 105.0, 100.0, 23.0 ],
+									"patching_rect" : [ 210.0, 165.0, 100.0, 23.0 ],
 									"text" : "loadmess 0.647"
 								}
 
@@ -219,7 +243,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 165.0, 150.0, 50.0, 23.0 ]
+									"patching_rect" : [ 210.0, 210.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -230,7 +254,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 165.0, 195.0, 77.0, 23.0 ],
+									"patching_rect" : [ 210.0, 255.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -244,7 +268,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 335.0, 203.0, 95.0 ],
+									"patching_rect" : [ 45.0, 390.0, 285.0, 130.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 1024
 								}
@@ -257,7 +281,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 145.0, 23.0 ],
+									"patching_rect" : [ 45.0, 210.0, 145.0, 23.0 ],
 									"text" : "fl.random~ /length 1024"
 								}
 
@@ -269,7 +293,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 101.0, 23.0 ],
+									"patching_rect" : [ 45.0, 165.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 1024"
 								}
 
@@ -281,7 +305,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 385.0, 45.0, 45.0 ]
+									"patching_rect" : [ 465.0, 432.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -292,19 +316,20 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 284.0, 62.0, 23.0 ],
+									"patching_rect" : [ 45.0, 345.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.196078431372549, 0.380392156862745, 1.0, 1.0 ],
 									"id" : "obj-16",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 240.0, 169.0, 23.0 ],
+									"patching_rect" : [ 45.0, 300.0, 184.0, 23.0 ],
 									"text" : "fl.%~ 0.5"
 								}
 
@@ -321,28 +346,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 15.0, 435.0, 75.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"background" : 1,
-									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
-									"fontface" : 1,
-									"hint" : "",
-									"id" : "obj-30",
-									"ignoreclick" : 1,
-									"legacytextcolor" : 1,
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 480.0, 150.0, 20.0, 20.0 ],
-									"rounded" : 60.0,
-									"text" : "1",
-									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+									"patching_rect" : [ 15.0, 15.0, 622.0, 75.0 ]
 								}
 
 							}
@@ -378,6 +382,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
+									"hidden" : 1,
 									"source" : [ "obj-19", 0 ]
 								}
 
@@ -392,7 +397,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
-									"midpoints" : [ 24.5, 183.5, 174.5, 183.5 ],
+									"midpoints" : [ 54.5, 243.5, 219.5, 243.5 ],
 									"order" : 0,
 									"source" : [ "obj-6", 0 ]
 								}
