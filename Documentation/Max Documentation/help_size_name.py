@@ -17,6 +17,7 @@ def main(docs: Documentation):
     io = [x.stem for x in docs.source_files if x.parent.stem == "IO"]
     timing = [x.stem for x in docs.source_files if x.parent.stem == "Timing"]
     streaming = [x.stem for x in docs.source_files if x.parent.stem == "Streaming"]
+    ternary = [x.stem for x in docs.source_files if x.parent.stem == "Ternary"]
 
     auto_resize_list = unary + complex_unary + expressions + schedulers + host_communication + io + timing + streaming
 
@@ -30,6 +31,9 @@ def main(docs: Documentation):
 
         if path.stem in auto_resize_list:
             auto_resize_help(docs, path)
+
+        if path.stem in ternary:
+            auto_resize_help(docs, path, 5.6)
 
         # Now ensure the arguments to js help file objects are correct
 

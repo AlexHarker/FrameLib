@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 644.0, 670.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 644.0, 644.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,15 +112,15 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
-						"bglocked" : 0,
+						"rect" : [ 34.0, 113.0, 644.0, 644.0 ],
+						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
 						"default_fontface" : 0,
@@ -154,8 +154,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 152.5, 653.0, 373.0, 21.0 ],
-									"presentation_linecount" : 2,
+									"patching_rect" : [ 151.75, 593.0, 373.0, 21.0 ],
 									"text" : "(Note that the waveform display automatically adjusts its range)",
 									"textjustification" : 1
 								}
@@ -167,7 +166,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 540.0, 555.0, 53.0, 21.0 ],
+									"patching_rect" : [ 480.0, 514.5, 53.0, 21.0 ],
 									"text" : "Clipped",
 									"textjustification" : 1
 								}
@@ -179,7 +178,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 540.0, 477.0, 53.0, 21.0 ],
+									"patching_rect" : [ 480.0, 439.5, 53.0, 21.0 ],
 									"text" : "Original",
 									"textjustification" : 1
 								}
@@ -194,7 +193,7 @@
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 450.0, 405.0, 75.0 ]
+									"patching_rect" : [ 210.0, 420.0, 256.5, 60.0 ]
 								}
 
 							}
@@ -204,7 +203,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 172.5, 630.0, 300.0, 21.0 ],
+									"patching_rect" : [ 188.25, 570.0, 300.0, 21.0 ],
 									"text" : "Observe how square the waveform is after clipping",
 									"textjustification" : 1
 								}
@@ -218,7 +217,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 100.0, 378.0, 31.25, 17.0 ]
+									"patching_rect" : [ 113.5, 369.0, 31.25, 17.0 ]
 								}
 
 							}
@@ -228,7 +227,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 133.25, 375.0, 436.0, 21.0 ],
+									"patching_rect" : [ 146.75, 366.0, 436.0, 21.0 ],
 									"text" : "Get back some of the lost gain by clipping so harshly."
 								}
 
@@ -241,7 +240,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 126.875, 318.0, 31.25, 17.0 ]
+									"patching_rect" : [ 140.375, 309.0, 31.25, 17.0 ]
 								}
 
 							}
@@ -252,7 +251,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 160.125, 301.5, 436.0, 50.0 ],
+									"patching_rect" : [ 173.625, 292.5, 436.0, 50.0 ],
 									"text" : "Clip the audio at the values -0.1 and 0.1. This will abruptly square off the audio if it raises above or below these values, resulting in a distorted sound effect."
 								}
 
@@ -265,7 +264,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 272.0, 216.0, 31.25, 17.0 ]
+									"patching_rect" : [ 285.5, 207.0, 31.25, 17.0 ]
 								}
 
 							}
@@ -275,7 +274,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 305.25, 214.0, 291.0, 21.0 ],
+									"patching_rect" : [ 318.75, 205.0, 291.0, 21.0 ],
 									"text" : "Convert some audio playback stream into frames"
 								}
 
@@ -288,7 +287,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 56.0, 108.5, 31.25, 17.0 ]
+									"patching_rect" : [ 69.5, 99.5, 31.25, 17.0 ]
 								}
 
 							}
@@ -299,7 +298,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.5, 99.0, 436.0, 36.0 ],
+									"patching_rect" : [ 104.0, 90.0, 436.0, 36.0 ],
 									"text" : "Start the audio. Careful! We are clipping some audio on purpose to create a distorted effect. Make sure your volume is at an appropriate level."
 								}
 
@@ -311,7 +310,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 375.0, 68.0, 23.0 ],
+									"patching_rect" : [ 43.5, 366.0, 68.0, 23.0 ],
 									"text" : "fl.times~ 2"
 								}
 
@@ -325,7 +324,7 @@
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 540.0, 405.0, 75.0 ]
+									"patching_rect" : [ 207.3125, 495.0, 261.875, 60.0 ]
 								}
 
 							}
@@ -337,7 +336,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 105.0, 24.0, 24.0 ]
+									"patching_rect" : [ 43.5, 96.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -348,7 +347,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 630.0, 45.0, 45.0 ]
+									"patching_rect" : [ 43.5, 540.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -359,7 +358,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 435.0, 49.0, 23.0 ],
+									"patching_rect" : [ 43.5, 426.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -371,19 +370,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "bang" ],
-									"patching_rect" : [ 30.0, 165.0, 224.0, 23.0 ],
-									"saved_object_attributes" : 									{
-										"basictuning" : 440,
-										"followglobaltempo" : 0,
-										"formantcorrection" : 0,
-										"mode" : "basic",
-										"originallength" : [ 8501.463945578230778, "ticks" ],
-										"originaltempo" : 120.0,
-										"pitchcorrection" : 0,
-										"quality" : "basic",
-										"timestretch" : [ 0 ]
-									}
-,
+									"patching_rect" : [ 43.5, 156.0, 224.0, 23.0 ],
 									"text" : "sfplay~ @audiofile duduk.aif @loop 1"
 								}
 
@@ -395,7 +382,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 90.5, 210.0, 101.0, 23.0 ],
+									"patching_rect" : [ 104.0, 201.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 1024"
 								}
 
@@ -407,19 +394,20 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 255.0, 140.0, 23.0 ],
+									"patching_rect" : [ 43.5, 246.0, 140.0, 23.0 ],
 									"text" : "fl.source~ /length 1024"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.815686274509804, 0.341176470588235, 0.8, 1.0 ],
 									"id" : "obj-5",
 									"maxclass" : "newobj",
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 315.0, 93.0, 23.0 ],
+									"patching_rect" : [ 43.5, 306.0, 93.0, 23.0 ],
 									"text" : "fl.clip~ -0.1 0.1"
 								}
 
@@ -436,7 +424,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 15.0, 435.0, 75.0 ]
+									"patching_rect" : [ 15.0, 15.0, 614.0, 75.0 ]
 								}
 
 							}
@@ -452,8 +440,9 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 157.5, 255.0, 127.5 ],
-									"proportion" : 0.5
+									"patching_rect" : [ 28.5, 148.5, 255.0, 127.5 ],
+									"proportion" : 0.5,
+									"rounded" : 16
 								}
 
 							}
@@ -504,7 +493,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
-									"midpoints" : [ 39.5, 198.0, 603.0, 198.0, 603.0, 436.0, 129.5, 436.0 ],
+									"midpoints" : [ 53.0, 189.0, 616.5, 189.0, 616.5, 408.0, 219.5, 408.0 ],
 									"order" : 0,
 									"source" : [ "obj-7", 0 ]
 								}
@@ -513,7 +502,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-10", 1 ],
-									"midpoints" : [ 39.5, 583.5, 65.5, 583.5 ],
+									"midpoints" : [ 53.0, 527.5, 79.0, 527.5 ],
 									"order" : 1,
 									"source" : [ "obj-9", 0 ]
 								}
@@ -522,7 +511,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-10", 0 ],
-									"midpoints" : [ 39.5, 459.0, 39.5, 459.0 ],
+									"midpoints" : [ 53.0, 450.0, 53.0, 450.0 ],
 									"order" : 2,
 									"source" : [ "obj-9", 0 ]
 								}
@@ -531,7 +520,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
-									"midpoints" : [ 39.5, 533.0, 129.5, 533.0 ],
+									"midpoints" : [ 53.0, 487.0, 216.8125, 487.0 ],
 									"order" : 0,
 									"source" : [ "obj-9", 0 ]
 								}
@@ -648,27 +637,15 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "fl.clip~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.interval~.mxo",
@@ -679,7 +656,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.sink~.mxo",
+				"name" : "fl.source~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

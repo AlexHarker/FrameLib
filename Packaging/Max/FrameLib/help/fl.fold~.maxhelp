@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.fold~",
-                                        105
+                                        109
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
