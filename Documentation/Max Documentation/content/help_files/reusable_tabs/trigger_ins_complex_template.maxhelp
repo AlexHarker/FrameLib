@@ -465,7 +465,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 435.0, 195.0, 135.0, 135.0 ],
+									"patching_rect" : [ 435.0, 210.0, 135.0, 135.0 ],
 									"viewvisibility" : 1
 								}
 
