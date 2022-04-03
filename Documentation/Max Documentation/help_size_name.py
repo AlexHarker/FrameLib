@@ -11,6 +11,7 @@ def main(docs: Documentation):
 
     unary = [x.stem for x in docs.source_files if x.parent.stem == "Unary"]
     complex_unary = [x.stem for x in docs.source_files if x.parent.stem == "Complex_Unary"]
+    complex_binary = [x.stem for x in docs.source_files if x.parent.stem == "Complex_Binary"]
     expressions = [x.stem for x in docs.source_files if x.parent.stem == "Expressions"]
     schedulers = [x.stem for x in docs.source_files if x.parent.stem == "Schedulers"]
     host_communication = [x.stem for x in docs.source_files if x.parent.stem == "Host_Communication"]
@@ -33,7 +34,10 @@ def main(docs: Documentation):
             auto_resize_help(docs, path)
 
         if path.stem in ternary:
-            auto_resize_help(docs, path, 5.6)
+            auto_resize_help(docs, path, 5.55)
+
+        if path.stem in complex_binary:
+            auto_resize_help(docs, path, 5.75)
 
         # Now ensure the arguments to js help file objects are correct
 

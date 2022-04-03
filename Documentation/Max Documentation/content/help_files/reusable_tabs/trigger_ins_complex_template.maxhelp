@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 652.0, 688.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 662.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -93,7 +93,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 286.5, 75.0, 50.0 ],
+									"patching_rect" : [ 150.0, 256.5, 75.0, 50.0 ],
 									"text" : "Generate complex values",
 									"textjustification" : 1
 								}
@@ -105,7 +105,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 465.0, 464.0, 129.0, 21.0 ],
+									"patching_rect" : [ 465.0, 392.0, 129.0, 21.0 ],
 									"text" : "See inside for details"
 								}
 
@@ -117,7 +117,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 240.0, 375.0, 116.0, 23.0 ],
+									"patching_rect" : [ 240.0, 330.0, 116.0, 23.0 ],
 									"text" : "fl.unpack~"
 								}
 
@@ -129,7 +129,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 45.0, 375.0, 116.0, 23.0 ],
+									"patching_rect" : [ 45.0, 330.0, 116.0, 23.0 ],
 									"text" : "fl.unpack~"
 								}
 
@@ -143,7 +143,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 120.0, 615.0, 24.0, 24.0 ]
+									"patching_rect" : [ 120.0, 540.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -156,7 +156,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 120.0, 570.0, 60.0, 23.0 ]
+									"patching_rect" : [ 120.0, 495.0, 60.0, 23.0 ]
 								}
 
 							}
@@ -169,7 +169,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 45.0, 615.0, 24.0, 24.0 ]
+									"patching_rect" : [ 45.0, 540.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -179,7 +179,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 615.0, 346.0, 21.0 ],
+									"patching_rect" : [ 285.0, 540.0, 335.0, 21.0 ],
 									"text" : "Switch the gate~ on to hear the triggers as a set of clicks"
 								}
 
@@ -192,7 +192,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 218.0, 570.0, 24.0, 24.0 ]
+									"patching_rect" : [ 218.0, 495.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -203,7 +203,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 218.0, 615.0, 56.0, 23.0 ],
+									"patching_rect" : [ 218.0, 540.0, 56.0, 23.0 ],
 									"text" : "gate~"
 								}
 
@@ -215,7 +215,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 218.0, 660.0, 45.0, 45.0 ]
+									"patching_rect" : [ 218.0, 585.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -226,7 +226,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 255.0, 570.0, 49.0, 23.0 ],
+									"patching_rect" : [ 255.0, 495.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -238,7 +238,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 255.0, 525.0, 98.0, 23.0 ],
+									"patching_rect" : [ 255.0, 450.0, 98.0, 23.0 ],
 									"text" : "fl.register~ 0.05"
 								}
 
@@ -252,7 +252,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 45.0, 570.0, 60.0, 23.0 ]
+									"patching_rect" : [ 45.0, 495.0, 60.0, 23.0 ]
 								}
 
 							}
@@ -263,7 +263,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 45.0, 300.0, 89.0, 23.0 ],
+									"patching_rect" : [ 45.0, 270.0, 89.0, 23.0 ],
 									"text" : "fl.random~ =2"
 								}
 
@@ -275,7 +275,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 225.0, 122.0, 23.0 ],
+									"patching_rect" : [ 240.0, 210.0, 122.0, 23.0 ],
 									"text" : "fl.interval~ 1300 ms"
 								}
 
@@ -408,7 +408,7 @@
 													"parameter_enable" : 1,
 													"patching_rect" : [ 22.0, 87.0, 116.0, 171.0 ],
 													"presentation" : 1,
-													"presentation_rect" : [ 14.0, 14.0, 124.0, 171.0 ],
+													"presentation_rect" : [ 14.0, 14.0, 108.0, 108.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
 															"parameter_enum" : [ "both", "left", "right" ],
@@ -465,7 +465,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 435.0, 225.0, 150.0, 195.0 ],
+									"patching_rect" : [ 435.0, 195.0, 135.0, 135.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -477,7 +477,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 45.0, 525.0, 94.0, 23.0 ],
+									"patching_rect" : [ 45.0, 450.0, 94.0, 23.0 ],
 									"text" : "fl.tomax~ =2"
 								}
 
@@ -489,7 +489,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 300.0, 89.0, 23.0 ],
+									"patching_rect" : [ 240.0, 270.0, 89.0, 23.0 ],
 									"text" : "fl.random~ =2"
 								}
 
@@ -512,7 +512,7 @@
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 94.0, 207.0, 811.0, 356.0 ],
+										"rect" : [ 73.0, 204.0, 816.0, 356.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -540,7 +540,6 @@
 										"style" : "",
 										"subpatcher_template" : "",
 										"assistshowspatchername" : 0,
-										"visible" : 1,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-11",
@@ -691,6 +690,7 @@
 											}
 , 											{
 												"box" : 												{
+													"color" : [ 1.0, 0.227450980392157, 0.92156862745098, 1.0 ],
 													"id" : "obj-26",
 													"maxclass" : "newobj",
 													"numinlets" : 4,
@@ -715,6 +715,7 @@
 											}
 , 											{
 												"box" : 												{
+													"color" : [ 1.0, 0.227450980392157, 0.92156862745098, 1.0 ],
 													"id" : "obj-24",
 													"maxclass" : "newobj",
 													"numinlets" : 4,
@@ -727,6 +728,7 @@
 											}
 , 											{
 												"box" : 												{
+													"color" : [ 1.0, 0.227450980392157, 0.92156862745098, 1.0 ],
 													"id" : "obj-13",
 													"maxclass" : "newobj",
 													"numinlets" : 4,
@@ -946,7 +948,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 45.0, 463.0, 409.0, 23.0 ],
+									"patching_rect" : [ 45.0, 390.0, 409.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -966,7 +968,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 92.0, 615.0, 94.0 ],
+									"patching_rect" : [ 15.0, 75.0, 615.0, 94.0 ],
 									"text" : "FrameLib complex binary operators have a /trigger_ins parameter that sets which pairs of inputs trigger calculation.\n\nBelow you can select which input pairs (hence scheduler(s)) drive the calculation of fl.complex.*~ (there are three different versions encapsulated in p \"trigger ins\"). You'll see the most obvious difference when switching between either left or both to right, where calculation will slow down to once every 1.3 seconds."
 								}
 
@@ -978,7 +980,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 45.0, 225.0, 114.0, 23.0 ],
+									"patching_rect" : [ 45.0, 210.0, 114.0, 23.0 ],
 									"text" : "fl.interval~ 600 ms"
 								}
 
@@ -995,7 +997,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 15.0, 435.0, 60.0 ]
+									"patching_rect" : [ 15.0, 15.0, 622.0, 60.0 ]
 								}
 
 							}
@@ -1083,7 +1085,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"midpoints" : [ 54.5, 505.0, 264.5, 505.0 ],
+									"midpoints" : [ 54.5, 431.0, 264.5, 431.0 ],
 									"order" : 0,
 									"source" : [ "obj-28", 0 ]
 								}

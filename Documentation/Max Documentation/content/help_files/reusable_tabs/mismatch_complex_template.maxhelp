@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 652.0, 688.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 662.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -88,11 +88,23 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-11",
+									"linecount" : 6,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 30.0, 543.0, 555.0, 94.0 ],
+									"text" : "The available options are:\n\nwrap -  reads shorter imputs in a wrapped manner (the output is as long as the longest input)\nshrink - the output is as long as the shortest input and other values are discarded\npad_in - extends shorter inputs by padding them with the parameter padding value\npad_out - extends the output for missing values by padding it with the padding parameter value"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-10",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 106.04998779296875, 702.0, 432.0, 21.0 ],
+									"patching_rect" : [ 82.5, 510.0, 432.0, 21.0 ],
 									"text" : "Note that the padding value detaults to zero, but can be set by parameter."
 								}
 
@@ -103,8 +115,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 350.0, 555.0, 134.0, 21.0 ],
-									"text" : "Look inside for details"
+									"patching_rect" : [ 489.0, 347.0, 129.0, 21.0 ],
+									"text" : "See inside for details"
 								}
 
 							}
@@ -114,7 +126,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 58.5, 375.0, 320.0, 21.0 ],
+									"patching_rect" : [ 60.0, 243.0, 320.0, 21.0 ],
 									"text" : "(use the same values for the real and imaginary parts)"
 								}
 
@@ -125,7 +137,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 138.0, 331.0, 258.0, 21.0 ],
+									"patching_rect" : [ 135.0, 195.0, 258.0, 21.0 ],
 									"text" : "Generate pairs of inputs of different lengths"
 								}
 
@@ -138,7 +150,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 231.0, 645.0, 189.0, 23.0 ]
+									"patching_rect" : [ 231.0, 465.0, 189.0, 23.0 ]
 								}
 
 							}
@@ -149,7 +161,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 690.0, 45.0, 45.0 ]
+									"patching_rect" : [ 525.0, 394.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -161,7 +173,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 429.0, 648.899993896484375, 46.04998779296875, 12.100006103515625 ]
+									"patching_rect" : [ 429.0, 468.899993896484375, 46.04998779296875, 12.100006103515625 ]
 								}
 
 							}
@@ -171,7 +183,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 480.0, 645.0, 150.0, 21.0 ],
+									"patching_rect" : [ 480.0, 465.0, 150.0, 21.0 ],
 									"text" : "Observe output changes"
 								}
 
@@ -304,7 +316,7 @@
 													"parameter_enable" : 1,
 													"patching_rect" : [ 40.0, 88.0, 116.0, 171.0 ],
 													"presentation" : 1,
-													"presentation_rect" : [ 14.0, 14.0, 124.0, 171.0 ],
+													"presentation_rect" : [ 14.0, 14.0, 109.0, 122.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
 															"parameter_enum" : [ "wrap", "shrink", "pad_in", "pad_out" ],
@@ -390,7 +402,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 465.0, 315.0, 150.0, 195.0 ],
+									"patching_rect" : [ 465.0, 183.0, 135.0, 151.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -403,7 +415,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 645.0, 189.0, 23.0 ]
+									"patching_rect" : [ 30.0, 465.0, 189.0, 23.0 ]
 								}
 
 							}
@@ -414,7 +426,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 30.0, 585.0, 80.0, 23.0 ],
+									"patching_rect" : [ 30.0, 405.0, 80.0, 23.0 ],
 									"text" : "fl.tomax~ =2"
 								}
 
@@ -426,7 +438,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 247.5, 435.0, 102.0, 23.0 ],
+									"patching_rect" : [ 247.5, 285.0, 102.0, 23.0 ],
 									"text" : "fl.register~ 3 0.1"
 								}
 
@@ -438,7 +450,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 435.0, 139.0, 23.0 ],
+									"patching_rect" : [ 30.0, 285.0, 139.0, 23.0 ],
 									"text" : "fl.register~ 2.2 1.1 -0.1"
 								}
 
@@ -461,7 +473,7 @@
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 67.0, 166.0, 1068.0, 342.0 ],
+										"rect" : [ 67.0, 166.0, 1072.0, 354.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -639,6 +651,7 @@
 											}
 , 											{
 												"box" : 												{
+													"color" : [ 1.0, 0.227450980392157, 0.92156862745098, 1.0 ],
 													"id" : "obj-27",
 													"maxclass" : "newobj",
 													"numinlets" : 4,
@@ -651,6 +664,7 @@
 											}
 , 											{
 												"box" : 												{
+													"color" : [ 1.0, 0.227450980392157, 0.92156862745098, 1.0 ],
 													"id" : "obj-26",
 													"maxclass" : "newobj",
 													"numinlets" : 4,
@@ -675,6 +689,7 @@
 											}
 , 											{
 												"box" : 												{
+													"color" : [ 1.0, 0.227450980392157, 0.92156862745098, 1.0 ],
 													"id" : "obj-24",
 													"maxclass" : "newobj",
 													"numinlets" : 4,
@@ -687,6 +702,7 @@
 											}
 , 											{
 												"box" : 												{
+													"color" : [ 1.0, 0.227450980392157, 0.92156862745098, 1.0 ],
 													"id" : "obj-13",
 													"maxclass" : "newobj",
 													"numinlets" : 4,
@@ -968,7 +984,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 30.0, 525.0, 454.0, 23.0 ],
+									"patching_rect" : [ 30.0, 345.0, 454.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -984,12 +1000,12 @@
 								"box" : 								{
 									"fontname" : "Arial",
 									"id" : "obj-2",
-									"linecount" : 14,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 90.0, 623.0, 210.0 ],
-									"text" : "FrameLib complex binary operators have a configurable logic for dealing with scenarios where there is a mismatch between the lengths of different pairs of inputs.  Note that pairs (real and imagiinary) of inputs are always padded with zeros to the longer of the two inputs where required.\n\nThe logic for pairs of inputs is accessed via the /mismatch parameter.\n\nThe available options are:\n\nwrap -  reads shorter imputs in a wrapped manner (the output is as long as the longest input)\nshrink - the output is as long as the shortest input and other values are discarded\npad_in - extends shorter inputs by padding them with the parameter padding value\npad_out - extends the output for missing values by padding it with the padding parameter value\n\nSee how these operate in practice for fl.complex.-~ below:"
+									"patching_rect" : [ 15.0, 75.0, 623.0, 79.0 ],
+									"text" : "FrameLib complex binary operators have a configurable logic for dealing with scenarios where there is a mismatch between the lengths of different pairs of inputs.  Note that pairs (real and imagiinary) of inputs are always padded with zeros to the longer of the two inputs where required.\n\nThe is accessed via the /mismatch parameter. See how it operates in practice for fl.complex.-~ below:"
 								}
 
 							}
@@ -1000,7 +1016,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 330.0, 101.0, 23.0 ],
+									"patching_rect" : [ 30.0, 195.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 1024"
 								}
 
@@ -1017,7 +1033,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 15.0, 435.0, 60.0 ]
+									"patching_rect" : [ 15.0, 15.0, 622.0, 60.0 ]
 								}
 
 							}
@@ -1039,7 +1055,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 1 ],
-									"midpoints" : [ 39.5, 491.0, 148.25, 491.0 ],
+									"midpoints" : [ 39.5, 326.0, 148.25, 326.0 ],
 									"order" : 0,
 									"source" : [ "obj-29", 0 ]
 								}
@@ -1056,7 +1072,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 3 ],
-									"midpoints" : [ 257.0, 491.0, 365.75, 491.0 ],
+									"midpoints" : [ 257.0, 326.0, 365.75, 326.0 ],
 									"order" : 0,
 									"source" : [ "obj-30", 0 ]
 								}
@@ -1065,7 +1081,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 2 ],
-									"midpoints" : [ 257.0, 491.0, 257.0, 491.0 ],
 									"order" : 1,
 									"source" : [ "obj-30", 0 ]
 								}
@@ -1074,7 +1089,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-33", 1 ],
-									"midpoints" : [ 39.5, 634.0, 209.5, 634.0 ],
+									"midpoints" : [ 39.5, 453.0, 209.5, 453.0 ],
 									"source" : [ "obj-31", 0 ]
 								}
 
@@ -1082,7 +1097,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-7", 1 ],
-									"midpoints" : [ 100.5, 619.0, 410.5, 619.0 ],
+									"midpoints" : [ 100.5, 441.0, 410.5, 441.0 ],
 									"source" : [ "obj-31", 1 ]
 								}
 
@@ -1098,7 +1113,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-30", 0 ],
-									"midpoints" : [ 39.5, 417.0, 257.0, 417.0 ],
+									"midpoints" : [ 39.5, 276.0, 257.0, 276.0 ],
 									"order" : 0,
 									"source" : [ "obj-4", 0 ]
 								}
