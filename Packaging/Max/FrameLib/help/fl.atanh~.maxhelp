@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            446,
-            452
+            446.0,
+            448.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            446,
-                            426
+                            446.0,
+                            422.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        416,
+                                        416.0,
                                         150.0
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         167.0,
-                                        416,
-                                        244
+                                        416.0,
+                                        240.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        416
+                                        416.0
                                     ]
                                 }
                             }
@@ -194,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            446,
-                            426
+                            446.0,
+                            422.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -265,8 +265,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            446,
-                            426
+                            446.0,
+                            422.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -300,6 +300,21 @@
                         "showontab": 1,
                         "assistshowspatchername": 0,
                         "boxes": [
+                            {
+                                "box": {
+                                    "id": "obj-11",
+                                    "local": 1,
+                                    "maxclass": "ezdac~",
+                                    "numinlets": 2,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        30.0,
+                                        345.0,
+                                        45.0,
+                                        45.0
+                                    ]
+                                }
+                            },
                             {
                                 "box": {
                                     "format": 6,
@@ -501,21 +516,6 @@
                             },
                             {
                                 "box": {
-                                    "id": "obj-11",
-                                    "local": 1,
-                                    "maxclass": "ezdac~",
-                                    "numinlets": 2,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        30.0,
-                                        345.0,
-                                        50.0,
-                                        50.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
                                     "border": 0,
                                     "filename": "fl.helpname.js",
                                     "id": "obj-3",
@@ -531,7 +531,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        416,
+                                        416.0,
                                         75.0
                                     ]
                                 }

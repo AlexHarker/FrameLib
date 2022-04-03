@@ -243,7 +243,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 510.0, 50.0, 50.0 ]
+									"patching_rect" : [ 15.0, 533.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -423,7 +423,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 1 ],
-									"midpoints" : [ 24.5, 502.0, 55.5, 502.0 ],
+									"midpoints" : [ 24.5, 513.5, 50.5, 513.5 ],
 									"order" : 0,
 									"source" : [ "obj-17", 0 ]
 								}
@@ -598,7 +598,7 @@
 		"dependency_cache" : [ 			{
 				"name" : "fl-mono-h.maxpat",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
@@ -609,7 +609,7 @@
 , 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
