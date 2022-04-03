@@ -14,8 +14,8 @@ def main():
     args = parser.parse_args()
 
     dir = Path(args.path)
-    
-    files = [x for x in dir.rglob("fl.*.maxhelp")]
+
+    files = [x for x in dir.rglob("*.maxhelp")]
 
     # Now fix sizes and naming
 
