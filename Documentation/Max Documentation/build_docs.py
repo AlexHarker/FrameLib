@@ -108,8 +108,8 @@ def main():
         help_size_name.main(docs)
         hyp()
 
-    # Creates a database of files to exclude
-    print("14. Creating help file templates")
+    # Creates a database file
+    print("14. Creating max database")
     create_max_db.main(docs)
     hyp()
 

@@ -67,6 +67,8 @@ class Documentation:
         ref_path = self.raw_xml_dir / file_name
         if not ref_path.exists():
             ref_path = self.manual_xml_dir / file_name
+        if not ref_path.exists():
+            ref_path = self.refpages_dir / "framelib-ref" / file_name
         return et.parse(ref_path).getroot().get("name")
 
     def seealso_aliased(self, object_name: str) -> dict:
