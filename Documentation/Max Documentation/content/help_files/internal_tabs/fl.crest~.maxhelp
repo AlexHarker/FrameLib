@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 743.0, 581.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 743.0, 555.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 743.0, 555.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,8 +155,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 439.5, 248.5, 165.0, 36.0 ],
-									"text" : "Here we calculate the crest factor of frames of noise."
+									"patching_rect" : [ 544.5, 218.5, 169.0, 36.0 ],
+									"text" : "Here we calculate the crest factor of frames of noise.",
+									"textjustification" : 1
 								}
 
 							}
@@ -169,7 +170,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 465.0, 527.0, 50.0, 23.0 ]
+									"patching_rect" : [ 570.0, 497.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -181,7 +182,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 465.0, 433.0, 54.0, 23.0 ],
+									"patching_rect" : [ 570.0, 403.0, 54.0, 23.0 ],
 									"text" : "fl.crest~"
 								}
 
@@ -193,7 +194,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 465.0, 480.0, 62.0, 23.0 ],
+									"patching_rect" : [ 570.0, 450.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -205,7 +206,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 465.0, 390.0, 135.0, 23.0 ],
+									"patching_rect" : [ 570.0, 360.0, 135.0, 23.0 ],
 									"text" : "fl.map~ linear 0 1 -1 1"
 								}
 
@@ -217,7 +218,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 465.0, 345.0, 145.0, 23.0 ],
+									"patching_rect" : [ 570.0, 315.0, 145.0, 23.0 ],
 									"text" : "fl.random~ /length 4096"
 								}
 
@@ -229,7 +230,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 465.0, 300.0, 114.0, 23.0 ],
+									"patching_rect" : [ 570.0, 270.0, 114.0, 23.0 ],
 									"text" : "fl.interval~ 100 ms"
 								}
 
@@ -242,7 +243,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 527.0, 34.0, 29.0 ],
+									"patching_rect" : [ 285.0, 497.0, 34.0, 29.0 ],
 									"text" : "=",
 									"textjustification" : 1
 								}
@@ -257,7 +258,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 315.0, 527.0, 50.0, 23.0 ]
+									"patching_rect" : [ 330.0, 497.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -268,7 +269,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 315.0, 484.0, 62.0, 23.0 ],
+									"patching_rect" : [ 330.0, 454.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -280,7 +281,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 315.0, 433.0, 93.0, 23.0 ],
+									"patching_rect" : [ 330.0, 403.0, 93.0, 23.0 ],
 									"text" : "fl.expr~ sqrt(2)"
 								}
 
@@ -293,7 +294,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 173.5, 527.0, 34.0, 29.0 ],
+									"patching_rect" : [ 188.5, 497.0, 34.0, 29.0 ],
 									"text" : "=",
 									"textjustification" : 1
 								}
@@ -307,7 +308,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 74.0, 525.0, 34.0, 29.0 ],
+									"patching_rect" : [ 89.0, 495.0, 34.0, 29.0 ],
 									"text" : "/",
 									"textjustification" : 1
 								}
@@ -322,7 +323,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 529.0, 50.0, 23.0 ]
+									"patching_rect" : [ 30.0, 499.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -333,7 +334,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 484.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 454.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -345,7 +346,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 433.0, 84.0, 23.0 ],
+									"patching_rect" : [ 30.0, 403.0, 84.0, 23.0 ],
 									"text" : "fl.framemax~"
 								}
 
@@ -357,7 +358,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 117.0, 484.0, 62.0, 23.0 ],
+									"patching_rect" : [ 132.0, 454.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -371,7 +372,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 117.0, 529.0, 50.0, 23.0 ]
+									"patching_rect" : [ 132.0, 499.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -382,7 +383,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 117.0, 433.0, 48.0, 23.0 ],
+									"patching_rect" : [ 132.0, 403.0, 48.0, 23.0 ],
 									"text" : "fl.rms~"
 								}
 
@@ -390,12 +391,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-52",
-									"linecount" : 7,
+									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 90.0, 585.0, 108.0 ],
-									"text" : "Crest factor is defined as the ratio of the peak value to the RMS value of a frame, or more simply, the peak value divided by the RMS.\n\nIn this example, we generate a frame containing a single cycle of sinusoidal waveform. This frame should have an RMS value of 0.707 and its peak should always be 1.0 as it is sinusoidal. Therefore, we can show how crest works by calculating RMS (fl.rms~) and finding the peak value of the frame (fl.peaks~) and verifying with the equivalent maths."
+									"patching_rect" : [ 15.0, 75.0, 698.5, 94.0 ],
+									"text" : "Crest factor is defined as the ratio of the peak value to the RMS value of a frame, or more simply, the peak value divided by the RMS.\n\nBelow, we generate a frame containing a single cycle of sinusoidal waveform. This frame should have an RMS value of 0.707 and its peak is 1.0. Therefore, we can verify the result of fl.crest~ by dividing the maximum value of the frame (fl.framemax~) by the RMS (fl.rms~)."
 								}
 
 							}
@@ -408,7 +409,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 210.0, 529.0, 50.0, 23.0 ]
+									"patching_rect" : [ 225.0, 499.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -420,7 +421,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 210.0, 433.0, 54.0, 23.0 ],
+									"patching_rect" : [ 225.0, 403.0, 54.0, 23.0 ],
 									"text" : "fl.crest~"
 								}
 
@@ -432,7 +433,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 390.0, 43.0, 23.0 ],
+									"patching_rect" : [ 30.0, 360.0, 43.0, 23.0 ],
 									"text" : "fl.sin~"
 								}
 
@@ -444,7 +445,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 210.0, 484.0, 62.0, 23.0 ],
+									"patching_rect" : [ 225.0, 454.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -456,7 +457,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 339.0, 57.0, 23.0 ],
+									"patching_rect" : [ 30.0, 309.0, 57.0, 23.0 ],
 									"text" : "fl.times~"
 								}
 
@@ -468,7 +469,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 255.0, 324.0, 23.0 ],
+									"patching_rect" : [ 30.0, 225.0, 324.0, 23.0 ],
 									"text" : "fl.ramp~ /length 4096 /scale normalised /endpoints first"
 								}
 
@@ -480,7 +481,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 53.0, 300.0, 159.0, 23.0 ],
+									"patching_rect" : [ 68.0, 270.0, 159.0, 23.0 ],
 									"text" : "fl.constant~ pi /multiplier 2"
 								}
 
@@ -492,7 +493,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 210.0, 54.0, 23.0 ],
+									"patching_rect" : [ 30.0, 180.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -504,7 +505,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 14.0, 573.0, 50.0, 50.0 ]
+									"patching_rect" : [ 465.0, 475.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -570,6 +571,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-33", 0 ],
+									"midpoints" : [ 39.5, 258.5, 77.5, 258.5 ],
 									"order" : 0,
 									"source" : [ "obj-42", 0 ]
 								}
@@ -600,7 +602,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
-									"midpoints" : [ 24.5, 422.5, 324.5, 422.5 ],
+									"midpoints" : [ 39.5, 392.5, 339.5, 392.5 ],
 									"order" : 0,
 									"source" : [ "obj-47", 0 ]
 								}
@@ -609,7 +611,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-48", 0 ],
-									"midpoints" : [ 24.5, 422.5, 219.5, 422.5 ],
+									"midpoints" : [ 39.5, 392.5, 234.5, 392.5 ],
 									"order" : 1,
 									"source" : [ "obj-47", 0 ]
 								}
@@ -618,7 +620,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-53", 0 ],
-									"midpoints" : [ 24.5, 422.5, 126.5, 422.5 ],
+									"midpoints" : [ 39.5, 392.5, 141.5, 392.5 ],
 									"order" : 2,
 									"source" : [ "obj-47", 0 ]
 								}
@@ -627,7 +629,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-56", 0 ],
-									"midpoints" : [ 24.5, 422.5, 24.5, 422.5 ],
+									"midpoints" : [ 39.5, 392.5, 39.5, 392.5 ],
 									"order" : 3,
 									"source" : [ "obj-47", 0 ]
 								}
@@ -657,7 +659,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-57", 0 ],
-									"midpoints" : [ 24.5, 469.5, 24.5, 469.5 ],
+									"midpoints" : [ 39.5, 439.5, 39.5, 439.5 ],
 									"source" : [ "obj-56", 0 ]
 								}
 
@@ -738,26 +740,54 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.constant~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "fl.crest~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.expr~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.framemax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.map~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.once~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.ramp~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.random~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.rms~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.sin~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -766,42 +796,6 @@
 			}
 , 			{
 				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sin~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.crest~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.rms~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.framemax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.expr~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.map~.mxo",
 				"type" : "iLaX"
 			}
  ],
