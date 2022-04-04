@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 683.0, 558.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 683.0, 532.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 683.0, 532.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,19 +155,20 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 525.0, 45.0, 45.0 ]
+									"patching_rect" : [ 482.5, 429.5, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-18",
-									"linecount" : 6,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 405.0, 330.0, 229.0, 94.0 ],
-									"text" : "If the /mode parameter is set to pass then frames in the right inlet are immediately output.\n\nOtherwise, output only occurs when a trigger is received in the left inlet."
+									"patching_rect" : [ 365.75, 315.0, 278.5, 79.0 ],
+									"text" : "If the /mode parameter is set to pass then frames in the right inlet are immediately output.\n\nOtherwise, output only occurs when a trigger is received in the left inlet.",
+									"textjustification" : 1
 								}
 
 							}
@@ -180,7 +181,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 420.0, 285.0, 50.0, 23.0 ]
+									"patching_rect" : [ 435.0, 270.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -191,7 +192,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 420.0, 240.0, 62.0, 23.0 ],
+									"patching_rect" : [ 435.0, 225.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -203,7 +204,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 420.0, 150.0, 70.0, 23.0 ],
+									"patching_rect" : [ 461.0, 135.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -215,19 +216,20 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 420.0, 105.0, 122.0, 23.0 ],
+									"patching_rect" : [ 461.0, 90.0, 122.0, 23.0 ],
 									"text" : "fl.interval~ 1000 ms"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.847058823529412, 0.819607843137255, 0.0, 1.0 ],
 									"id" : "obj-8",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 420.0, 195.0, 140.0, 23.0 ],
+									"patching_rect" : [ 435.0, 180.0, 140.0, 23.0 ],
 									"text" : "fl.register~ /mode pass"
 								}
 
@@ -235,12 +237,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-13",
-									"linecount" : 4,
+									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 450.0, 618.0, 65.0 ],
-									"text" : "fl.register~ is similar to zl.reg or a sample and hold mechanism. \n\nThis is a very basic example that demonstrates sampling a very rapid stream of data by storing the output of a fast fl.random~ in the right inlet of fl.register~ and outputting whatever is stored every 1000 ms."
+									"patching_rect" : [ 15.0, 405.0, 300.0, 94.0 ],
+									"text" : "fl.register~ is similar to zl.reg.\n\nThis example that demonstrates sampling a  rapid stream of data by storing the output of a fast fl.random~ in the right inlet of fl.register~ and only outputting its contents every 1000 ms.",
+									"textjustification" : 1
 								}
 
 							}
@@ -254,8 +257,9 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 300.0, 165.0, 125.0 ],
-									"setminmax" : [ 0.0, 1.0 ]
+									"patching_rect" : [ 45.0, 272.0, 62.0, 109.0 ],
+									"setminmax" : [ 0.0, 1.0 ],
+									"slidercolor" : [ 0.847058823529412, 0.819607843137255, 0.0, 1.0 ]
 								}
 
 							}
@@ -269,8 +273,9 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 195.0, 300.0, 165.0, 125.0 ],
-									"setminmax" : [ 0.0, 1.0 ]
+									"patching_rect" : [ 225.0, 272.0, 60.0, 118.0 ],
+									"setminmax" : [ 0.0, 1.0 ],
+									"slidercolor" : [ 0.847058823529412, 0.819607843137255, 0.0, 1.0 ]
 								}
 
 							}
@@ -281,7 +286,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 195.0, 195.0, 62.0, 23.0 ],
+									"patching_rect" : [ 225.0, 182.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -293,7 +298,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 240.0, 62.0, 23.0 ],
+									"patching_rect" : [ 45.0, 227.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -305,7 +310,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 122.0, 23.0 ],
+									"patching_rect" : [ 45.0, 92.0, 122.0, 23.0 ],
 									"text" : "fl.interval~ 1000 ms"
 								}
 
@@ -317,7 +322,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 150.0, 105.0, 75.0, 23.0 ],
+									"patching_rect" : [ 180.0, 92.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -329,19 +334,20 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 150.0, 150.0, 70.0, 23.0 ],
+									"patching_rect" : [ 180.0, 137.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.847058823529412, 0.819607843137255, 0.0, 1.0 ],
 									"id" : "obj-1",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 154.0, 23.0 ],
+									"patching_rect" : [ 45.0, 182.0, 154.0, 23.0 ],
 									"text" : "fl.register~"
 								}
 
@@ -373,7 +379,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 1 ],
-									"midpoints" : [ 429.5, 183.5, 550.5, 183.5 ],
+									"midpoints" : [ 470.5, 168.5, 565.5, 168.5 ],
 									"source" : [ "obj-12", 0 ]
 								}
 
@@ -396,7 +402,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-9", 0 ],
-									"midpoints" : [ 159.5, 183.5, 204.5, 183.5 ],
+									"midpoints" : [ 189.5, 170.5, 234.5, 170.5 ],
 									"order" : 0,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -493,13 +499,17 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.register~.mxo",
+				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.perblock~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -507,19 +517,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
+				"name" : "fl.register~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
