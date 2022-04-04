@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 557.0, 492.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 557.0, 466.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 557.0, 466.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -154,7 +154,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 72.0, 281.0, 172.0, 21.0 ],
+									"patching_rect" : [ 111.0, 268.0, 172.0, 21.0 ],
 									"text" : "Generate a sine wave frame"
 								}
 
@@ -166,19 +166,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 600.0, 45.0, 45.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-31",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 257.0, 390.5, 32.958335876464844, 14.0 ]
+									"patching_rect" : [ 427.5, 315.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -190,8 +178,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 72.0, 360.0, 181.0, 75.0 ],
-									"size" : 1024
+									"patching_rect" : [ 30.0, 355.0, 180.0, 80.0 ],
+									"setstyle" : 1,
+									"signed" : 1,
+									"size" : 1024,
+									"slidercolor" : [ 0.43921568627451, 0.749019607843137, 0.254901960784314, 1.0 ]
 								}
 
 							}
@@ -203,7 +194,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 463.0, 48.0, 23.0 ],
+									"patching_rect" : [ 240.0, 315.0, 48.0, 23.0 ],
 									"text" : "fl.rms~"
 								}
 
@@ -216,29 +207,20 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 96.0, 559.5, 32.958335876464844, 14.0 ]
+									"patching_rect" : [ 330.0, 411.5, 32.958335876464844, 14.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-45",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 132.958335876464844, 556.0, 335.0, 21.0 ],
-									"text" : "RMS of the sine wave (should be 1/sqrt(2) = 0.707107...)"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-44",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 291.958335876464844, 387.0, 190.0, 21.0 ],
-									"text" : "Take pure sine wave in as input"
+									"patching_rect" : [ 375.0, 400.5, 150.0, 36.0 ],
+									"text" : "RMS of the sine wave (1/sqrt(2) = 0.707107...)",
+									"textjustification" : 1
 								}
 
 							}
@@ -251,7 +233,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 555.0, 76.0, 23.0 ]
+									"patching_rect" : [ 240.0, 407.0, 76.0, 23.0 ]
 								}
 
 							}
@@ -262,7 +244,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 510.0, 62.0, 23.0 ],
+									"patching_rect" : [ 240.0, 362.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -290,7 +272,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 72.0, 320.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 315.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -302,7 +284,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 54.0, 23.0 ],
+									"patching_rect" : [ 30.0, 92.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -314,7 +296,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 45.0, 195.0, 324.0, 23.0 ],
+									"patching_rect" : [ 60.0, 182.0, 324.0, 23.0 ],
 									"text" : "fl.ramp~ /length 1024 /scale normalised /endpoints first"
 								}
 
@@ -326,7 +308,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 281.0, 43.0, 23.0 ],
+									"patching_rect" : [ 30.0, 268.0, 43.0, 23.0 ],
 									"text" : "fl.sin~"
 								}
 
@@ -338,7 +320,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 148.375, 159.0, 23.0 ],
+									"patching_rect" : [ 30.0, 135.375, 159.0, 23.0 ],
 									"text" : "fl.constant~ pi /multiplier 2"
 								}
 
@@ -350,7 +332,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 233.5, 49.0, 23.0 ],
+									"patching_rect" : [ 30.0, 220.5, 49.0, 23.0 ],
 									"text" : "fl.*~"
 								}
 
@@ -396,7 +378,8 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-19", 0 ],
-									"order" : 1,
+									"midpoints" : [ 39.5, 302.5, 249.5, 302.5 ],
+									"order" : 0,
 									"source" : [ "obj-21", 0 ]
 								}
 
@@ -404,8 +387,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-27", 0 ],
-									"midpoints" : [ 24.5, 311.5, 81.5, 311.5 ],
-									"order" : 0,
+									"order" : 1,
 									"source" : [ "obj-21", 0 ]
 								}
 
@@ -479,22 +461,18 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.constant~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.sin~.mxo",
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "fl.once~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -502,19 +480,19 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.once~.mxo",
+				"name" : "fl.rms~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.once~.mxo",
+				"name" : "fl.sin~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.times~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
 				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.rms~.mxo",
 				"type" : "iLaX"
 			}
  ],

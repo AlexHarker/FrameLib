@@ -15,6 +15,7 @@ def main(docs: Documentation):
     complex_unary = [x.stem for x in docs.source_files if x.parent.stem == "Complex_Unary"]
     complex_binary = [x.stem for x in docs.source_files if x.parent.stem == "Complex_Binary"]
     expressions = [x.stem for x in docs.source_files if x.parent.stem == "Expressions"]
+    generators = [x.stem for x in docs.source_files if x.parent.stem == "Generators"]
     host_communication = [x.stem for x in docs.source_files if x.parent.stem == "Host_Communication"]
     io = [x.stem for x in docs.source_files if x.parent.stem == "IO"]
     mapping = [x.stem for x in docs.source_files if x.parent.stem == "Mapping"]
@@ -25,7 +26,10 @@ def main(docs: Documentation):
     timing = [x.stem for x in docs.source_files if x.parent.stem == "Timing"]
     time_smoothing = [x.stem for x in docs.source_files if x.parent.stem == "Time_Smoothing"]
 
-    auto_resize_list = unary + complex_unary + expressions + schedulers + host_communication + io + timing + streaming + spectral + mapping + routing
+    vector = [ "fl.sum~", "fl.product~", "fl.geomean~", "fl.minpos~", "fl.maxpos~", "fl.framemin~", "fl.framemax~", "fl.length~", "fl.stddev~", "fl.crest~", "fl.rms~" ]
+
+    auto_resize_list = unary + complex_unary + expressions + schedulers + host_communication + io + timing + streaming + spectral + mapping + routing + vector
+
     # Now fix sizes and naming
 
     for path in templates:
