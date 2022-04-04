@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            662.0,
-            787.0
+            599.0,
+            631.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            662.0,
-                            761.0
+                            599.0,
+                            605.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -108,7 +108,10 @@
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.firphase~",
+                                    "jsarguments": [
+                                        "fl.firphase~",
+                                        98
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -119,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
+                                        569.0,
                                         150.0
                                     ]
                                 }
@@ -145,10 +148,13 @@
                                     "patching_rect": [
                                         15.0,
                                         167.0,
-                                        630.0,
-                                        565.0
+                                        569.0,
+                                        423.0
                                     ],
-                                    "viewvisibility": 1
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        569.0
+                                    ]
                                 }
                             }
                         ],
@@ -179,8 +185,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -188,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            599.0,
+                            605.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -250,17 +256,17 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
-                            652.0,
-                            761.0
+                            113.0,
+                            599.0,
+                            605.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -303,10 +309,10 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        390.0,
-                                        213.5,
-                                        33.25,
-                                        16.0
+                                        420.0,
+                                        108.5,
+                                        28.25,
+                                        18.0
                                     ]
                                 }
                             },
@@ -317,8 +323,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        425.25,
-                                        210.5,
+                                        449.25,
+                                        105.5,
                                         135.0,
                                         21.0
                                     ],
@@ -332,13 +338,13 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        371.0,
-                                        555.0,
+                                        413.5,
+                                        465.0,
                                         58.0,
                                         21.0
                                     ],
-                                    "presentation_linecount": 2,
-                                    "text": "Modified"
+                                    "text": "Modified",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -348,12 +354,13 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        108.5,
-                                        555.0,
+                                        131.0,
+                                        465.0,
                                         53.0,
                                         21.0
                                     ],
-                                    "text": "Original"
+                                    "text": "Original",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -364,12 +371,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        75.0,
-                                        600.0,
-                                        523.0,
+                                        105.0,
+                                        510.0,
+                                        450.0,
                                         65.0
                                     ],
-                                    "text": "The phase of the FIR can be modified between 0 (minimum phase - as early as possible) and 1 (maximum phase - as late as possible).\n\nIn between at 0.5 the output is linear phase which results in a symettic IR."
+                                    "text": "The phase of the FIR can be modified between 0 (minimum phase - as early as possible) and 1 (maximum phase - as late as possible).\n\nIn between at 0.5 the output is linear phase which results in a symmetric IR."
                                 }
                             },
                             {
@@ -379,12 +386,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        105.0,
+                                        120.0,
                                         150.0,
-                                        150.0,
+                                        152.0,
                                         21.0
                                     ],
-                                    "text": "Generate a random FIR"
+                                    "text": "Generates a random FIR"
                                 }
                             },
                             {
@@ -400,8 +407,8 @@
                                         "fileversion": 1,
                                         "appversion": {
                                             "major": 8,
-                                            "minor": 1,
-                                            "revision": 8,
+                                            "minor": 3,
+                                            "revision": 0,
                                             "architecture": "x64",
                                             "modernui": 1
                                         },
@@ -701,7 +708,7 @@
                                         ]
                                     },
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         150.0,
                                         78.0,
                                         23.0
@@ -730,8 +737,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        338.0,
-                                        210.0,
+                                        368.0,
+                                        105.0,
                                         50.0,
                                         23.0
                                     ]
@@ -740,6 +747,7 @@
                             {
                                 "box": {
                                     "id": "obj-19",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -749,9 +757,9 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        285.0,
-                                        435.0,
-                                        240.0,
+                                        315.0,
+                                        345.0,
+                                        255.0,
                                         105.0
                                     ],
                                     "size": 512
@@ -767,8 +775,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        285.0,
-                                        390.0,
+                                        315.0,
+                                        300.0,
                                         62.0,
                                         23.0
                                     ],
@@ -778,6 +786,7 @@
                             {
                                 "box": {
                                     "id": "obj-16",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -787,9 +796,9 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        435.0,
-                                        240.0,
+                                        30.0,
+                                        345.0,
+                                        255.0,
                                         105.0
                                     ],
                                     "size": 300
@@ -805,8 +814,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        390.0,
+                                        30.0,
+                                        300.0,
                                         62.0,
                                         23.0
                                     ],
@@ -823,8 +832,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        338.0,
-                                        255.0,
+                                        368.0,
+                                        150.0,
                                         62.0,
                                         23.0
                                     ],
@@ -841,7 +850,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         105.0,
                                         114.0,
                                         23.0
@@ -857,8 +866,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        615.0,
+                                        38.5,
+                                        520.0,
                                         45.0,
                                         45.0
                                     ]
@@ -874,8 +883,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        338.0,
-                                        300.0,
+                                        368.0,
+                                        210.0,
                                         124.0,
                                         23.0
                                     ],
@@ -898,8 +907,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        285.0,
-                                        345.0,
+                                        315.0,
+                                        255.0,
                                         72.0,
                                         23.0
                                     ],
@@ -923,7 +932,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        569.0,
                                         75.0
                                     ]
                                 }
@@ -985,10 +994,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        289.5,
-                                        294.5,
-                                        289.5
+                                        39.5,
+                                        199.5,
+                                        324.5,
+                                        199.5
                                     ],
                                     "order": 1,
                                     "source": [
@@ -1017,10 +1026,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        288.0,
-                                        347.5,
-                                        288.0
+                                        39.5,
+                                        199.5,
+                                        377.5,
+                                        199.5
                                     ],
                                     "order": 0,
                                     "source": [
