@@ -123,6 +123,7 @@
 							}
 , 							{
 								"box" : 								{
+									"fgcolor" : [ 0.317647058823529, 0.654901960784314, 0.976470588235294, 1.0 ],
 									"id" : "obj-6",
 									"maxclass" : "spectroscope~",
 									"numinlets" : 2,
@@ -403,7 +404,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 626.0, 551.0 ],
+						"rect" : [ 0.0, 26.0, 626.0, 551.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1016,7 +1017,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 626.0, 551.0 ],
+						"rect" : [ 34.0, 113.0, 626.0, 551.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
