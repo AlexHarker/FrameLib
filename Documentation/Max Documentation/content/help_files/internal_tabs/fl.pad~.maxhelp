@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 510.0, 478.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 510.0, 452.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 510.0, 452.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,7 +155,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 435.0, 45.0, 45.0 ]
+									"patching_rect" : [ 435.0, 369.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -166,7 +166,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 195.0, 173.0, 36.0 ],
+									"patching_rect" : [ 45.0, 182.0, 173.0, 36.0 ],
 									"text" : "Using samples to determine padding amounts",
 									"textjustification" : 1
 								}
@@ -181,7 +181,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 78.520797729492188, 233.0, 35.958343505859375, 36.0 ]
+									"patching_rect" : [ 93.520797729492188, 220.0, 35.958343505859375, 36.0 ]
 								}
 
 							}
@@ -192,7 +192,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 225.0, 195.0, 157.0, 36.0 ],
+									"patching_rect" : [ 240.0, 182.0, 157.0, 36.0 ],
 									"text" : "Using ratios to determine the padding amounts.",
 									"textjustification" : 1
 								}
@@ -206,9 +206,10 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 225.0, 344.875, 162.99993896484375, 63.125 ],
+									"patching_rect" : [ 240.0, 360.0, 163.0, 63.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 1622
+									"size" : 1622,
+									"slidercolor" : [ 0.670588235294118, 0.866666666666667, 1.0, 1.0 ]
 								}
 
 							}
@@ -219,19 +220,20 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 225.0, 316.0, 62.0, 23.0 ],
+									"patching_rect" : [ 240.0, 315.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.0, 0.588235294117647, 1.0, 1.0 ],
 									"id" : "obj-50",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 225.0, 285.0, 183.0, 23.0 ],
+									"patching_rect" : [ 240.0, 272.0, 183.0, 23.0 ],
 									"text" : "fl.pad~ 0.5 0.5 0.9 /units ratios"
 								}
 
@@ -244,9 +246,10 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 344.875, 162.99993896484375, 63.125 ],
+									"patching_rect" : [ 30.0, 360.0, 163.0, 63.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 1250
+									"size" : 1250,
+									"slidercolor" : [ 0.670588235294118, 0.866666666666667, 1.0, 1.0 ]
 								}
 
 							}
@@ -257,7 +260,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 316.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 315.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -269,19 +272,20 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 75.0, 23.0 ],
+									"patching_rect" : [ 30.0, 92.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.0, 0.588235294117647, 1.0, 1.0 ],
 									"id" : "obj-41",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 120.0, 23.0 ],
+									"patching_rect" : [ 30.0, 272.0, 120.0, 23.0 ],
 									"text" : "fl.pad~ 0.5 174 400"
 								}
 
@@ -293,7 +297,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 140.0, 138.0, 23.0 ],
+									"patching_rect" : [ 30.0, 127.0, 138.0, 23.0 ],
 									"text" : "fl.random~ /length 676"
 								}
 
@@ -307,7 +311,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 285.520828247070312, 233.0, 35.958343505859375, 36.0 ]
+									"patching_rect" : [ 300.520828247070312, 220.0, 35.958343505859375, 36.0 ]
 								}
 
 							}
@@ -339,7 +343,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-50", 0 ],
-									"midpoints" : [ 24.5, 278.0, 234.5, 278.0 ],
+									"midpoints" : [ 39.5, 265.0, 249.5, 265.0 ],
 									"order" : 0,
 									"source" : [ "obj-40", 0 ]
 								}
@@ -429,14 +433,10 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
 			}
 , 			{
 				"name" : "fl.pad~.mxo",
@@ -447,7 +447,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.perblock~.mxo",
+				"name" : "fl.random~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
