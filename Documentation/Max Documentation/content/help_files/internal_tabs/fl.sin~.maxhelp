@@ -216,7 +216,10 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 30.0, 405.0, 168.0, 60.0 ],
-									"size" : 4096
+									"setstyle" : 1,
+									"signed" : 1,
+									"size" : 4096,
+									"slidercolor" : [ 0.996078431372549, 0.0, 0.0, 1.0 ]
 								}
 
 							}
@@ -338,7 +341,7 @@
 									"background" : 1,
 									"bgcolor" : [ 0.0, 0.0, 0.0, 0.0 ],
 									"border" : 2,
-									"bordercolor" : [ 0.701961, 0.415686, 0.886275, 1.0 ],
+									"bordercolor" : [ 0.23921568627451, 0.76078431372549, 0.207843137254902, 1.0 ],
 									"id" : "obj-5",
 									"maxclass" : "panel",
 									"mode" : 0,
@@ -457,7 +460,7 @@
 , 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

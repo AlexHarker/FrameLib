@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 588.0, 597.0 ],
+		"rect" : [ 34.0, 87.0, 543.0, 566.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 588.0, 571.0 ],
+						"rect" : [ 0.0, 26.0, 543.0, 540.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,8 +119,8 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 588.0, 571.0 ],
-						"bglocked" : 0,
+						"rect" : [ 34.0, 113.0, 543.0, 540.0 ],
+						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
 						"default_fontface" : 0,
@@ -155,8 +155,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 300.0, 467.0, 259.0, 36.0 ],
-									"text" : "Numbers are truncated to 0, 1, 2, 3 with no fractional part."
+									"patching_rect" : [ 292.5, 465.0, 214.0, 36.0 ],
+									"text" : "Numbers are truncated to 0, 1, 2, 3 with no fractional part.",
+									"textjustification" : 1
 								}
 
 							}
@@ -167,7 +168,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 495.0, 45.0, 45.0 ]
+									"patching_rect" : [ 120.0, 460.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -201,7 +202,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 376.0, 292.0, 103.0, 21.0 ],
+									"patching_rect" : [ 346.0, 292.0, 103.0, 21.0 ],
 									"text" : "Truncated frame",
 									"textjustification" : 1
 								}
@@ -213,7 +214,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 112.5, 292.0, 90.0, 21.0 ],
+									"patching_rect" : [ 97.5, 292.0, 90.0, 21.0 ],
 									"text" : "Original frame",
 									"textjustification" : 1
 								}
@@ -223,7 +224,7 @@
 								"box" : 								{
 									"candicane2" : [ 0.92549, 0.364706, 0.341176, 1.0 ],
 									"candicane3" : [ 0.952941, 0.564706, 0.098039, 1.0 ],
-									"ghostbar" : 100,
+									"ghostbar" : 20,
 									"id" : "obj-30",
 									"ignoreclick" : 1,
 									"maxclass" : "multislider",
@@ -231,10 +232,10 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 315.0, 255.0, 150.0 ],
+									"patching_rect" : [ 30.0, 315.0, 225.0, 123.0 ],
 									"setminmax" : [ 0.0, 3.0 ],
-									"size" : 100,
-									"slidercolor" : [ 0.701961, 0.415686, 0.886275, 1.0 ]
+									"size" : 50,
+									"slidercolor" : [ 1.0, 0.227450980392157, 0.92156862745098, 1.0 ]
 								}
 
 							}
@@ -242,7 +243,7 @@
 								"box" : 								{
 									"candicane2" : [ 0.92549, 0.364706, 0.341176, 1.0 ],
 									"candicane3" : [ 0.952941, 0.564706, 0.098039, 1.0 ],
-									"ghostbar" : 100,
+									"ghostbar" : 20,
 									"id" : "obj-27",
 									"ignoreclick" : 1,
 									"maxclass" : "multislider",
@@ -250,10 +251,10 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 300.0, 315.0, 255.0, 150.0 ],
+									"patching_rect" : [ 285.0, 315.0, 225.0, 123.0 ],
 									"setminmax" : [ 0.0, 3.0 ],
-									"size" : 100,
-									"slidercolor" : [ 0.701961, 0.415686, 0.886275, 1.0 ]
+									"size" : 50,
+									"slidercolor" : [ 1.0, 0.227450980392157, 0.92156862745098, 1.0 ]
 								}
 
 							}
@@ -289,7 +290,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 225.0, 55.0, 23.0 ],
+									"patching_rect" : [ 285.0, 225.0, 55.0, 23.0 ],
 									"text" : "fl.trunc~"
 								}
 
@@ -301,7 +302,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 255.0, 62.0, 23.0 ],
+									"patching_rect" : [ 285.0, 255.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -325,8 +326,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 133.5, 138.0, 23.0 ],
-									"text" : "fl.random~ /length 100"
+									"patching_rect" : [ 30.0, 133.5, 131.0, 23.0 ],
+									"text" : "fl.random~ /length 50"
 								}
 
 							}
@@ -342,7 +343,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 15.0, 435.0, 75.0 ]
+									"patching_rect" : [ 15.0, 15.0, 434.0, 60.0 ]
 								}
 
 							}
@@ -352,7 +353,7 @@
 									"background" : 1,
 									"bgcolor" : [ 0.290196, 0.309804, 0.301961, 0.0 ],
 									"border" : 2,
-									"bordercolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
+									"bordercolor" : [ 0.996078431372549, 0.0, 0.0, 1.0 ],
 									"id" : "obj-40",
 									"maxclass" : "panel",
 									"mode" : 0,
@@ -391,7 +392,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-31", 0 ],
-									"midpoints" : [ 39.5, 213.0, 309.5, 213.0 ],
+									"midpoints" : [ 39.5, 213.0, 294.5, 213.0 ],
 									"order" : 0,
 									"source" : [ "obj-19", 0 ]
 								}
@@ -468,7 +469,7 @@
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
