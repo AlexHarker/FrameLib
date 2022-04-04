@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 493.0, 489.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 493.0, 463.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 493.0, 463.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -156,29 +156,64 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 75.0, 424.0, 60.25, 15.0 ]
+									"patching_rect" : [ 85.0, 411.0, 30.0, 11.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-25",
-									"maxclass" : "comment",
+									"hidden" : 1,
+									"id" : "obj-5",
+									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 140.25, 422.0, 288.0, 21.0 ],
-									"text" : "The resulting index (indices are counted from 0)"
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 30.0, 60.0, 194.0, 23.0 ],
+									"text" : "loadmess 0.3 0.1 0.432 0.56 0.2"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-11",
+									"id" : "obj-4",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 60.0, 225.0, 75.0, 23.0 ],
+									"text" : "fl.perblock~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"candicane2" : [ 0.960784, 0.827451, 0.156863, 1.0 ],
+									"candicane3" : [ 0.317647, 0.654902, 0.976471, 1.0 ],
+									"candycane" : 3,
+									"contdata" : 1,
+									"ghostbar" : 100,
+									"id" : "obj-1",
+									"maxclass" : "multislider",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 30.0, 90.0, 255.0, 120.0 ],
+									"setminmax" : [ 0.0, 1.0 ],
+									"size" : 5,
+									"slidercolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-9",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 331.0, 388.0, 21.0 ],
-									"text" : "fl.minpos~ returns you the index of the minimum value in a frame"
+									"patching_rect" : [ 105.0, 315.0, 357.0, 21.0 ],
+									"text" : "fl.minpos~ returns the index of the minimum value in a frame",
+									"textjustification" : 1
 								}
 
 							}
@@ -191,7 +226,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 420.0, 51.0, 23.0 ]
+									"patching_rect" : [ 30.0, 405.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -202,7 +237,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 465.0, 45.0, 45.0 ]
+									"patching_rect" : [ 359.0, 135.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -213,44 +248,21 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 375.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 360.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.0, 0.533333, 0.168627, 1.0 ],
 									"id" : "obj-6",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 330.0, 68.0, 23.0 ],
+									"patching_rect" : [ 30.0, 315.0, 68.0, 23.0 ],
 									"text" : "fl.minpos~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-5",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 194.0, 23.0 ],
-									"text" : "loadmess 0.3 0.1 0.432 0.56 0.2"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-4",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 232.0, 75.0, 23.0 ],
-									"text" : "fl.perblock~"
 								}
 
 							}
@@ -261,27 +273,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 77.0, 23.0 ],
+									"patching_rect" : [ 30.0, 270.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"candicane2" : [ 0.756862745098039, 0.517647058823529, 0.517647058823529, 1.0 ],
-									"candycane" : 3,
-									"contdata" : 1,
-									"ghostbar" : 100,
-									"id" : "obj-1",
-									"maxclass" : "multislider",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 135.0, 255.0, 120.0 ],
-									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 5,
-									"slidercolor" : [ 0.203921568627451, 0.752941176470588, 0.784313725490196, 1.0 ]
 								}
 
 							}
@@ -301,6 +294,17 @@
 								}
 
 							}
+, 							{
+								"box" : 								{
+									"id" : "obj-25",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 120.0, 406.0, 284.0, 21.0 ],
+									"text" : "The resulting index (indices are counted from 0)"
+								}
+
+							}
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
@@ -312,6 +316,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
+									"midpoints" : [ 39.5, 318.5, 39.5, 318.5 ],
 									"source" : [ "obj-2", 0 ]
 								}
 
@@ -319,7 +324,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 0 ],
-									"midpoints" : [ 294.5, 270.0, 24.5, 270.0 ],
+									"midpoints" : [ 69.5, 258.5, 39.5, 258.5 ],
 									"source" : [ "obj-4", 0 ]
 								}
 
@@ -327,6 +332,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
+									"hidden" : 1,
 									"source" : [ "obj-5", 0 ]
 								}
 
@@ -393,26 +399,22 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "fl.frommax~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.minpos~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.perblock~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
