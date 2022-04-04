@@ -18,13 +18,14 @@ def main(docs: Documentation):
     host_communication = [x.stem for x in docs.source_files if x.parent.stem == "Host_Communication"]
     io = [x.stem for x in docs.source_files if x.parent.stem == "IO"]
     mapping = [x.stem for x in docs.source_files if x.parent.stem == "Mapping"]
+    routing = [x.stem for x in docs.source_files if x.parent.stem == "Routing"]
     schedulers = [x.stem for x in docs.source_files if x.parent.stem == "Schedulers"]
     spectral = [x.stem for x in docs.source_files if x.parent.stem == "Spectral"]
     streaming = [x.stem for x in docs.source_files if x.parent.stem == "Streaming"]
     timing = [x.stem for x in docs.source_files if x.parent.stem == "Timing"]
     time_smoothing = [x.stem for x in docs.source_files if x.parent.stem == "Time_Smoothing"]
 
-    auto_resize_list = unary + complex_unary + expressions + schedulers + host_communication + io + timing + streaming + spectral + mapping
+    auto_resize_list = unary + complex_unary + expressions + schedulers + host_communication + io + timing + streaming + spectral + mapping + routing
     # Now fix sizes and naming
 
     for path in templates:

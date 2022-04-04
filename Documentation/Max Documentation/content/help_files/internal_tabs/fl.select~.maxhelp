@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 539.0, 690.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 539.0, 664.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 539.0, 664.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -156,7 +156,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 218.0, 547.5, 30.0, 22.5 ]
+									"patching_rect" : [ 170.0, 577.5, 30.0, 22.5 ]
 								}
 
 							}
@@ -167,19 +167,20 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 570.0, 532.5, 45.0, 45.0 ]
+									"patching_rect" : [ 344.0, 411.0, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-19",
+									"ignoreclick" : 1,
 									"maxclass" : "button",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 495.0, 24.0, 24.0 ]
+									"patching_rect" : [ 75.0, 480.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -189,7 +190,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 435.0, 140.0, 98.0, 21.0 ],
+									"patching_rect" : [ 412.0, 124.5, 98.0, 21.0 ],
 									"text" : "Select the input"
 								}
 
@@ -201,7 +202,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 255.0, 515.5, 299.5, 79.0 ],
+									"patching_rect" : [ 205.0, 545.5, 293.0, 79.0 ],
 									"text" : "The result will be the random frame, the sine wave, or no output (the display will stop moving).\n\nNote that when the input is off no frame is received (which is different to an empty frame)."
 								}
 
@@ -213,7 +214,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 315.0, 135.0, 23.0 ],
+									"patching_rect" : [ 30.0, 287.0, 135.0, 23.0 ],
 									"text" : "fl.map~ linear 0 1 -1 1"
 								}
 
@@ -225,7 +226,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 195.0, 90.0, 64.0, 23.0 ],
+									"patching_rect" : [ 180.0, 90.0, 64.0, 23.0 ],
 									"text" : "cycle~ 40"
 								}
 
@@ -237,7 +238,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 405.0, 79.0, 23.0 ],
+									"patching_rect" : [ 30.0, 377.0, 79.0, 23.0 ],
 									"text" : "fl.times~ 0.5"
 								}
 
@@ -261,7 +262,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 195.0, 270.0, 140.0, 23.0 ],
+									"patching_rect" : [ 180.0, 242.0, 140.0, 23.0 ],
 									"text" : "fl.source~ /length 1024"
 								}
 
@@ -273,7 +274,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 360.0, 270.0, 124.0, 23.0 ],
+									"patching_rect" : [ 330.0, 242.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -285,7 +286,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 450.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 422.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -300,10 +301,10 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 75.0, 495.0, 135.0, 120.0 ],
+									"patching_rect" : [ 30.0, 525.0, 135.0, 120.0 ],
 									"signed" : 1,
 									"size" : 1024,
-									"slidercolor" : [ 0.556862745098039, 0.945098039215686, 0.996078431372549, 1.0 ]
+									"slidercolor" : [ 0.96078431372549, 0.827450980392157, 0.156862745098039, 1.0 ]
 								}
 
 							}
@@ -314,20 +315,20 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 270.0, 145.0, 23.0 ],
+									"patching_rect" : [ 30.0, 242.0, 145.0, 23.0 ],
 									"text" : "fl.random~ /length 1024"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"color" : [ 0.960784, 0.827451, 0.156863, 1.0 ],
+									"color" : [ 0.96078431372549, 0.827450980392157, 0.156862745098039, 1.0 ],
 									"id" : "obj-4",
 									"maxclass" : "newobj",
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 360.0, 349.0, 23.0 ],
+									"patching_rect" : [ 30.0, 332.0, 319.0, 23.0 ],
 									"text" : "fl.select~ 2"
 								}
 
@@ -355,7 +356,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 360.0, 223.0, 55.0, 23.0 ],
+									"patching_rect" : [ 330.0, 195.0, 55.0, 23.0 ],
 									"text" : "input $1"
 								}
 
@@ -370,7 +371,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 360.0, 90.0, 62.0, 121.0 ],
+									"patching_rect" : [ 330.0, 90.0, 73.0, 90.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 12.0, 12.0, 62.0, 121.0 ],
 									"saved_attribute_attributes" : 									{
@@ -414,7 +415,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"midpoints" : [ 204.5, 114.0, 204.5, 114.0 ],
 									"source" : [ "obj-12", 0 ]
 								}
 
@@ -458,7 +458,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
-									"midpoints" : [ 39.5, 253.0, 369.5, 253.0 ],
+									"midpoints" : [ 39.5, 229.5, 339.5, 229.5 ],
 									"order" : 0,
 									"source" : [ "obj-7", 0 ]
 								}
@@ -467,7 +467,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 1 ],
-									"midpoints" : [ 39.5, 253.0, 265.0, 253.0 ],
+									"midpoints" : [ 39.5, 229.5, 250.0, 229.5 ],
 									"order" : 1,
 									"source" : [ "obj-7", 0 ]
 								}
@@ -483,8 +483,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-19", 0 ],
-									"midpoints" : [ 39.5, 484.0, 39.5, 484.0 ],
-									"order" : 1,
+									"order" : 0,
 									"source" : [ "obj-9", 0 ]
 								}
 
@@ -492,8 +491,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 39.5, 483.5, 84.5, 483.5 ],
-									"order" : 0,
+									"order" : 1,
 									"source" : [ "obj-9", 0 ]
 								}
 
@@ -561,7 +559,7 @@
 , 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

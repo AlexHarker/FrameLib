@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            662.0,
-            787.0
+            614.0,
+            736.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            662.0,
-                            761.0
+                            614.0,
+                            710.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -108,7 +108,10 @@
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.route~",
+                                    "jsarguments": [
+                                        "fl.route~",
+                                        100
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -119,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
+                                        584.0,
                                         150.0
                                     ]
                                 }
@@ -145,10 +148,13 @@
                                     "patching_rect": [
                                         15.0,
                                         167.0,
-                                        630.0,
-                                        565.0
+                                        584.0,
+                                        528.0
                                     ],
-                                    "viewvisibility": 1
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        584.0
+                                    ]
                                 }
                             }
                         ],
@@ -179,8 +185,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -188,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            614.0,
+                            710.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -250,17 +256,17 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
-                            652.0,
-                            761.0
+                            113.0,
+                            614.0,
+                            710.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -362,7 +368,14 @@
                             },
                             {
                                 "box": {
+                                    "blinkcolor": [
+                                        0.23921568627451,
+                                        0.76078431372549,
+                                        0.207843137254902,
+                                        1.0
+                                    ],
                                     "id": "obj-21",
+                                    "ignoreclick": 1,
                                     "maxclass": "button",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -380,7 +393,14 @@
                             },
                             {
                                 "box": {
+                                    "blinkcolor": [
+                                        0.815686274509804,
+                                        0.341176470588235,
+                                        0.8,
+                                        1.0
+                                    ],
                                     "id": "obj-20",
+                                    "ignoreclick": 1,
                                     "maxclass": "button",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -398,7 +418,14 @@
                             },
                             {
                                 "box": {
+                                    "blinkcolor": [
+                                        0.952941176470588,
+                                        0.564705882352941,
+                                        0.098039215686275,
+                                        1.0
+                                    ],
                                     "id": "obj-19",
+                                    "ignoreclick": 1,
                                     "maxclass": "button",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -422,8 +449,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        541.0,
-                                        623.0,
+                                        510.0,
+                                        487.5,
                                         45.0,
                                         45.0
                                     ]
@@ -436,8 +463,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        405.0,
-                                        140.0,
+                                        420.0,
+                                        139.5,
                                         106.0,
                                         21.0
                                     ],
@@ -452,12 +479,13 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        75.0,
-                                        613.0,
+                                        45.0,
+                                        615.0,
                                         405.0,
                                         65.0
                                     ],
-                                    "text": "The random frame will go to one or none of the 3 outputs.\n\nNote that when the input is not routed to a particular output there will be no frame sent (not an empty frame)."
+                                    "text": "The random frame will go to one or none of the 3 outputs.\n\nNote that when the input is not routed to a particular output there will be no frame sent (not an empty frame).",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -500,6 +528,7 @@
                                 "box": {
                                     "ghostbar": 100,
                                     "id": "obj-13",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -518,11 +547,11 @@
                                         0.0,
                                         1.0
                                     ],
-                                    "size": 1024,
+                                    "size": 200,
                                     "slidercolor": [
-                                        0.772549019607843,
-                                        0.250980392156863,
-                                        0.588235294117647,
+                                        0.23921568627451,
+                                        0.76078431372549,
+                                        0.207843137254902,
                                         1.0
                                     ]
                                 }
@@ -531,6 +560,7 @@
                                 "box": {
                                     "ghostbar": 100,
                                     "id": "obj-12",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -549,11 +579,11 @@
                                         0.0,
                                         1.0
                                     ],
-                                    "size": 1024,
+                                    "size": 200,
                                     "slidercolor": [
-                                        0.305882352941176,
-                                        0.552941176470588,
-                                        0.298039215686275,
+                                        0.815686274509804,
+                                        0.341176470588235,
+                                        0.8,
                                         1.0
                                     ]
                                 }
@@ -614,8 +644,15 @@
                             },
                             {
                                 "box": {
+                                    "candicane2": [
+                                        0.317647058823529,
+                                        0.654901960784314,
+                                        0.976470588235294,
+                                        1.0
+                                    ],
                                     "ghostbar": 100,
                                     "id": "obj-5",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -634,7 +671,13 @@
                                         0.0,
                                         1.0
                                     ],
-                                    "size": 1024
+                                    "size": 200,
+                                    "slidercolor": [
+                                        0.952941176470588,
+                                        0.564705882352941,
+                                        0.098039215686275,
+                                        1.0
+                                    ]
                                 }
                             },
                             {
@@ -649,10 +692,10 @@
                                     "patching_rect": [
                                         30.0,
                                         270.0,
-                                        145.0,
+                                        138.0,
                                         23.0
                                     ],
-                                    "text": "fl.random~ /length 1024"
+                                    "text": "fl.random~ /length 200"
                                 }
                             },
                             {
@@ -698,7 +741,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        584.0,
                                         60.0
                                     ]
                                 }
@@ -738,8 +781,8 @@
                                     "patching_rect": [
                                         330.0,
                                         90.0,
-                                        62.0,
-                                        121.0
+                                        73.0,
+                                        120.0
                                     ],
                                     "presentation": 1,
                                     "presentation_rect": [
