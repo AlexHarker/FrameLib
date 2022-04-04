@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            662.0,
-            787.0
+            648.0,
+            454.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            662.0,
-                            761.0
+                            648.0,
+                            428.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -108,7 +108,10 @@
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.nanfilter~",
+                                    "jsarguments": [
+                                        "fl.nanfilter~",
+                                        106
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -119,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
+                                        618.0,
                                         150.0
                                     ]
                                 }
@@ -145,10 +148,13 @@
                                     "patching_rect": [
                                         15.0,
                                         167.0,
-                                        630.0,
-                                        565.0
+                                        618.0,
+                                        246.0
                                     ],
-                                    "viewvisibility": 1
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        618.0
+                                    ]
                                 }
                             }
                         ],
@@ -179,8 +185,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -188,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            648.0,
+                            428.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -250,19 +256,19 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
-                            652.0,
-                            761.0
+                            113.0,
+                            648.0,
+                            428.0
                         ],
-                        "bglocked": 0,
+                        "bglocked": 1,
                         "openinpresentation": 0,
                         "default_fontsize": 13.0,
                         "default_fontface": 0,
@@ -302,8 +308,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        450.0,
+                                        525.0,
+                                        159.0,
                                         45.0,
                                         45.0
                                     ]
@@ -316,12 +322,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        495.0,
-                                        390.0,
-                                        117.0,
+                                        525.0,
+                                        375.0,
+                                        91.0,
                                         21.0
                                     ],
-                                    "text": "without fl.nanfilter~"
+                                    "text": "no fl.nanfilter~"
                                 }
                             },
                             {
@@ -331,9 +337,9 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        307.0,
-                                        390.0,
-                                        107.0,
+                                        337.0,
+                                        375.0,
+                                        77.0,
                                         21.0
                                     ],
                                     "text": "remove nan"
@@ -342,15 +348,14 @@
                             {
                                 "box": {
                                     "id": "obj-7",
-                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        75.0,
-                                        383.5,
-                                        107.0,
-                                        36.0
+                                        88.0,
+                                        375.0,
+                                        180.0,
+                                        21.0
                                     ],
                                     "text": "replace nan with a fixed value"
                                 }
@@ -365,16 +370,17 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        165.0,
-                                        80.0,
+                                        30.0,
+                                        150.0,
+                                        91.0,
                                         23.0
                                     ],
-                                    "text": "fl.register~ 0"
+                                    "text": "fl.register~ 1 0"
                                 }
                             },
                             {
                                 "box": {
+                                    "dontreplace": 1,
                                     "id": "obj-27",
                                     "maxclass": "message",
                                     "numinlets": 2,
@@ -383,16 +389,16 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        255.0,
-                                        390.0,
+                                        285.0,
+                                        375.0,
                                         50.0,
                                         23.0
-                                    ],
-                                    "text": "bang"
+                                    ]
                                 }
                             },
                             {
                                 "box": {
+                                    "dontreplace": 1,
                                     "id": "obj-26",
                                     "maxclass": "message",
                                     "numinlets": 2,
@@ -401,12 +407,11 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        390.0,
-                                        50.0,
+                                        30.0,
+                                        375.0,
+                                        55.0,
                                         23.0
-                                    ],
-                                    "text": "3.14"
+                                    ]
                                 }
                             },
                             {
@@ -419,8 +424,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        255.0,
-                                        330.0,
+                                        285.0,
+                                        315.0,
                                         62.0,
                                         23.0
                                     ],
@@ -437,8 +442,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        330.0,
+                                        30.0,
+                                        315.0,
                                         62.0,
                                         23.0
                                     ],
@@ -447,6 +452,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.745098039215686,
+                                        0.227450980392157,
+                                        1.0,
+                                        1.0
+                                    ],
                                     "id": "obj-21",
                                     "maxclass": "newobj",
                                     "numinlets": 2,
@@ -455,8 +466,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        255.0,
                                         285.0,
+                                        270.0,
                                         159.0,
                                         23.0
                                     ],
@@ -470,16 +481,22 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        120.0,
-                                        187.5,
-                                        353.0,
+                                        150.0,
+                                        171.0,
+                                        328.0,
                                         21.0
                                     ],
-                                    "text": "Let's divide zero by zero on purpose to produce some nans!"
+                                    "text": "Let's divide zero by zero on purpose to produce a nans!"
                                 }
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.745098039215686,
+                                        0.227450980392157,
+                                        1.0,
+                                        1.0
+                                    ],
                                     "id": "obj-17",
                                     "maxclass": "newobj",
                                     "numinlets": 2,
@@ -488,8 +505,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        285.0,
+                                        30.0,
+                                        270.0,
                                         226.0,
                                         23.0
                                     ],
@@ -498,6 +515,7 @@
                             },
                             {
                                 "box": {
+                                    "dontreplace": 1,
                                     "id": "obj-16",
                                     "maxclass": "message",
                                     "numinlets": 2,
@@ -506,12 +524,11 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        435.0,
-                                        390.0,
-                                        50.0,
+                                        465.0,
+                                        375.0,
+                                        52.0,
                                         23.0
-                                    ],
-                                    "text": "nan"
+                                    ]
                                 }
                             },
                             {
@@ -524,8 +541,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        435.0,
-                                        285.0,
+                                        465.0,
+                                        315.0,
                                         62.0,
                                         23.0
                                     ],
@@ -542,8 +559,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        105.0,
+                                        30.0,
+                                        90.0,
                                         122.0,
                                         23.0
                                     ],
@@ -560,12 +577,12 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        210.0,
-                                        71.0,
+                                        30.0,
+                                        195.0,
+                                        82.0,
                                         23.0
                                     ],
-                                    "text": "fl.divide~ 0"
+                                    "text": "fl.divide~ 5 0"
                                 }
                             },
                             {
@@ -585,7 +602,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        618.0,
                                         75.0
                                     ]
                                 }
@@ -602,9 +619,9 @@
                                     ],
                                     "border": 2,
                                     "bordercolor": [
-                                        0.952941,
-                                        0.564706,
-                                        0.098039,
+                                        0.207843137254902,
+                                        0.76078431372549,
+                                        0.749019607843137,
                                         1.0
                                     ],
                                     "id": "obj-20",
@@ -613,12 +630,13 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        5.0,
-                                        153.0,
-                                        100.0,
-                                        90.0
+                                        20.0,
+                                        138.0,
+                                        115.0,
+                                        87.0
                                     ],
-                                    "proportion": 0.5
+                                    "proportion": 0.5,
+                                    "rounded": 16
                                 }
                             }
                         ],
@@ -642,10 +660,10 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        444.5,
-                                        348.5,
-                                        475.5,
-                                        348.5
+                                        474.5,
+                                        356.0,
+                                        507.5,
+                                        356.0
                                     ],
                                     "source": [
                                         "obj-14",
@@ -672,10 +690,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        258.5,
-                                        444.5,
-                                        258.5
+                                        39.5,
+                                        243.5,
+                                        474.5,
+                                        243.5
                                     ],
                                     "order": 0,
                                     "source": [
@@ -691,10 +709,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        258.5,
-                                        24.5,
-                                        258.5
+                                        39.5,
+                                        243.5,
+                                        39.5,
+                                        243.5
                                     ],
                                     "order": 2,
                                     "source": [
@@ -710,10 +728,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        258.5,
-                                        264.5,
-                                        258.5
+                                        39.5,
+                                        243.5,
+                                        294.5,
+                                        243.5
                                     ],
                                     "order": 1,
                                     "source": [
@@ -741,10 +759,10 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        371.0,
-                                        55.5,
-                                        371.0
+                                        39.5,
+                                        356.0,
+                                        75.5,
+                                        356.0
                                     ],
                                     "source": [
                                         "obj-24",
@@ -759,10 +777,10 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        264.5,
-                                        371.0,
-                                        295.5,
-                                        371.0
+                                        294.5,
+                                        356.0,
+                                        325.5,
+                                        356.0
                                     ],
                                     "source": [
                                         "obj-25",
