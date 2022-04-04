@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            594.0,
-            406.0
+            620.0,
+            417.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            594.0,
-                            380.0
+                            620.0,
+                            391.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.perblock~",
-                                        97
+                                        101
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        564.0,
+                                        590.0,
                                         150.0
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         167.0,
-                                        564.0,
-                                        198.0
+                                        590.0,
+                                        209.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        564.0
+                                        590.0
                                     ]
                                 }
                             }
@@ -194,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            594.0,
-                            380.0
+                            620.0,
+                            391.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -265,8 +265,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            594.0,
-                            380.0
+                            620.0,
+                            391.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -302,12 +302,28 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "id": "obj-10",
+                                    "linecount": 2,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        120.0,
+                                        233.5,
+                                        240.0,
+                                        36.0
+                                    ],
+                                    "text": "The time difference will match the signal vector size set in Max"
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-8",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        75.0,
+                                        90.0,
                                         327.0,
                                         377.0,
                                         21.0
@@ -323,7 +339,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         315.0,
                                         45.0,
                                         45.0
@@ -333,17 +349,17 @@
                             {
                                 "box": {
                                     "id": "obj-14",
-                                    "linecount": 8,
+                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        96.5,
-                                        145.0,
-                                        243.0,
-                                        123.0
+                                        120.0,
+                                        143.5,
+                                        255.0,
+                                        36.0
                                     ],
-                                    "text": "Calculate the difference in time between scheduled frames of fl.perblock~. \n\n\n\n\nThe time difference will match the signal vector size set in the host."
+                                    "text": "Calculate the difference in time between scheduled frames of fl.perblock~"
                                 }
                             },
                             {
@@ -354,7 +370,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        450.0,
+                                        465.0,
                                         233.5,
                                         128.0,
                                         36.0
@@ -376,7 +392,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        390.6666666666667,
+                                        405.6666666666667,
                                         240.0,
                                         50.0,
                                         23.0
@@ -396,7 +412,7 @@
                                         "int"
                                     ],
                                     "patching_rect": [
-                                        360.0,
+                                        375.0,
                                         150.0,
                                         65.0,
                                         23.0
@@ -417,7 +433,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         240.0,
                                         50.0,
                                         23.0
@@ -434,7 +450,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         195.0,
                                         62.0,
                                         23.0
@@ -452,7 +468,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         150.0,
                                         79.0,
                                         23.0
@@ -476,7 +492,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         105.0,
                                         75.0,
                                         23.0
@@ -501,7 +517,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        564.0,
+                                        590.0,
                                         75.0
                                     ]
                                 }

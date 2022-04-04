@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 556.0, 409.0 ],
+		"rect" : [ 34.0, 87.0, 576.0, 427.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 556.0, 383.0 ],
+						"rect" : [ 0.0, 26.0, 576.0, 401.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 556.0, 383.0 ],
+						"rect" : [ 34.0, 113.0, 576.0, 401.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -154,7 +154,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 345.0, 352.0, 21.0 ],
+									"patching_rect" : [ 30.0, 345.0, 352.0, 21.0 ],
 									"text" : "fl.once~ schedules a single frame whenever DSP is started."
 								}
 
@@ -224,13 +224,16 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 54.0, 23.0 ],
+									"patching_rect" : [ 30.0, 105.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"candicane2" : [ 0.658823529411765, 0.392156862745098, 0.066666666666667, 1.0 ],
+									"candicane3" : [ 1.0, 0.686274509803922, 0.313725490196078, 1.0 ],
+									"candycane" : 3,
 									"ghostbar" : 90,
 									"id" : "obj-13",
 									"ignoreclick" : 1,
@@ -239,9 +242,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 246.0, 215.0, 69.0 ],
+									"patching_rect" : [ 30.0, 246.0, 215.0, 69.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 512
+									"setstyle" : 1,
+									"size" : 76,
+									"slidercolor" : [ 0.952941176470588, 0.564705882352941, 0.098039215686275, 1.0 ]
 								}
 
 							}
@@ -252,7 +257,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 195.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -264,8 +269,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 138.0, 23.0 ],
-									"text" : "fl.random~ /length 512"
+									"patching_rect" : [ 30.0, 150.0, 131.0, 23.0 ],
+									"text" : "fl.random~ /length 76"
 								}
 
 							}

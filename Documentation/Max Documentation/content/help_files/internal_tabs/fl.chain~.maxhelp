@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 633.0, 713.0 ],
+		"rect" : [ 34.0, 87.0, 655.0, 712.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 633.0, 687.0 ],
+						"rect" : [ 0.0, 26.0, 655.0, 686.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -423,7 +423,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 633.0, 687.0 ],
+						"rect" : [ 0.0, 26.0, 655.0, 686.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -485,7 +485,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 633.0, 687.0 ],
+						"rect" : [ 34.0, 113.0, 655.0, 686.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -521,7 +521,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 278.0, 227.0, 338.0, 36.0 ],
+									"patching_rect" : [ 293.0, 210.0, 338.0, 36.0 ],
 									"text" : "You will need to restart DSP for absolute mode as those times are measured from when DSP goes on."
 								}
 
@@ -533,7 +533,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 85.5, 555.0, 510.0, 108.0 ],
+									"patching_rect" : [ 100.5, 538.0, 510.0, 108.0 ],
 									"text" : "fl.chain~ allows you to schedule in the future in a fixed pattern of timings. \n\nUnits can be set to samples milliseconds or seconds and there are three different time modes. \n\nFinally there are three modes that deal with how new values interact with previously scheduled"
 								}
 
@@ -545,7 +545,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 278.0, 182.0, 338.0, 36.0 ],
+									"patching_rect" : [ 293.0, 165.0, 338.0, 36.0 ],
 									"text" : "Note that when you choose relative the list gets sorted in order, as it is interpreted as a set of timings from now."
 								}
 
@@ -557,7 +557,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 583.0, 43.0, 23.0 ],
+									"patching_rect" : [ 30.0, 566.0, 43.0, 23.0 ],
 									"text" : "*~ 0.2"
 								}
 
@@ -569,7 +569,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 628.0, 45.0, 45.0 ]
+									"patching_rect" : [ 30.0, 611.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -580,7 +580,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 538.0, 41.0, 23.0 ],
+									"patching_rect" : [ 30.0, 521.0, 41.0, 23.0 ],
 									"text" : "click~"
 								}
 
@@ -592,7 +592,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 337.0, 480.5, 284.0, 36.0 ],
+									"patching_rect" : [ 352.0, 463.5, 284.0, 36.0 ],
 									"text" : "timing between the first trigger frame (made by you) and successive fl.chain~ outputs."
 								}
 
@@ -604,7 +604,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 142.0, 480.5, 100.0, 36.0 ],
+									"patching_rect" : [ 157.0, 463.5, 100.0, 36.0 ],
 									"text" : "timing between frames"
 								}
 
@@ -616,7 +616,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 450.0, 62.0, 23.0 ],
+									"patching_rect" : [ 300.0, 433.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -629,7 +629,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 285.0, 487.0, 50.0, 23.0 ]
+									"patching_rect" : [ 300.0, 470.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -640,7 +640,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 405.0, 111.0, 23.0 ],
+									"patching_rect" : [ 300.0, 388.0, 111.0, 23.0 ],
 									"text" : "fl.timer~ /units ms"
 								}
 
@@ -651,7 +651,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.5, 152.0, 140.0, 21.0 ],
+									"patching_rect" : [ 195.5, 135.0, 140.0, 21.0 ],
 									"text" : "Choose the time mode"
 								}
 
@@ -663,7 +663,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 90.0, 450.0, 62.0, 23.0 ],
+									"patching_rect" : [ 105.0, 433.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -676,19 +676,22 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 90.0, 487.0, 50.0, 23.0 ]
+									"patching_rect" : [ 105.0, 470.0, 50.0, 23.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"blinkcolor" : [ 0.807843137254902, 0.898039215686275, 0.909803921568627, 1.0 ],
+									"blinktime" : 50,
 									"id" : "obj-60",
+									"ignoreclick" : 1,
 									"maxclass" : "button",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 450.0, 60.0, 60.0 ]
+									"patching_rect" : [ 30.0, 433.0, 60.0, 60.0 ]
 								}
 
 							}
@@ -699,7 +702,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 405.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 388.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -711,7 +714,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 90.0, 405.0, 135.0, 23.0 ],
+									"patching_rect" : [ 105.0, 388.0, 135.0, 23.0 ],
 									"text" : "fl.timedelta~ /units ms"
 								}
 
@@ -723,7 +726,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 225.0, 272.0, 51.0, 23.0 ],
+									"patching_rect" : [ 240.0, 255.0, 51.0, 23.0 ],
 									"text" : "time $1"
 								}
 
@@ -738,7 +741,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 195.0, 182.0, 79.0, 75.0 ],
+									"patching_rect" : [ 210.0, 165.0, 79.0, 75.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_enum" : [ "interval", "relative", "absolute" ],
@@ -764,7 +767,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 109.0, 332.0, 124.0, 23.0 ],
+									"patching_rect" : [ 124.0, 315.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -776,7 +779,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 272.0, 171.0, 23.0 ],
+									"patching_rect" : [ 30.0, 255.0, 171.0, 23.0 ],
 									"text" : "fl.register~ 0 1000 500 2000"
 								}
 
@@ -789,7 +792,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 15.0, 360.0, 113.0, 23.0 ],
+									"patching_rect" : [ 30.0, 343.0, 113.0, 23.0 ],
 									"text" : "fl.chain~ /units ms"
 								}
 
@@ -800,7 +803,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 111.5, 107.0, 21.0 ],
+									"patching_rect" : [ 105.0, 94.5, 107.0, 21.0 ],
 									"text" : "Click to schedule"
 								}
 
@@ -813,7 +816,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 92.0, 60.0, 60.0 ]
+									"patching_rect" : [ 30.0, 75.0, 60.0, 60.0 ]
 								}
 
 							}
@@ -824,7 +827,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 182.0, 41.0, 23.0 ],
+									"patching_rect" : [ 30.0, 165.0, 41.0, 23.0 ],
 									"text" : "click~"
 								}
 
@@ -836,7 +839,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 227.0, 95.0, 23.0 ],
+									"patching_rect" : [ 30.0, 210.0, 95.0, 23.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -889,7 +892,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-56", 0 ],
-									"midpoints" : [ 24.5, 393.5, 99.5, 393.5 ],
+									"midpoints" : [ 39.5, 376.5, 114.5, 376.5 ],
 									"order" : 1,
 									"source" : [ "obj-47", 0 ]
 								}
@@ -906,7 +909,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-65", 1 ],
-									"midpoints" : [ 24.5, 393.5, 386.5, 393.5 ],
+									"midpoints" : [ 39.5, 376.5, 401.5, 376.5 ],
 									"order" : 0,
 									"source" : [ "obj-47", 0 ]
 								}
@@ -925,7 +928,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-50", 0 ],
-									"midpoints" : [ 24.5, 317.0, 118.5, 317.0 ],
+									"midpoints" : [ 39.5, 300.0, 133.5, 300.0 ],
 									"order" : 1,
 									"source" : [ "obj-48", 0 ]
 								}
@@ -935,7 +938,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-65", 0 ],
-									"midpoints" : [ 24.5, 317.0, 294.5, 317.0 ],
+									"midpoints" : [ 39.5, 300.0, 309.5, 300.0 ],
 									"order" : 0,
 									"source" : [ "obj-48", 0 ]
 								}
@@ -974,7 +977,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-50", 0 ],
-									"midpoints" : [ 234.5, 317.0, 118.5, 317.0 ],
+									"midpoints" : [ 249.5, 300.0, 133.5, 300.0 ],
 									"source" : [ "obj-55", 0 ]
 								}
 

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 594.0, 406.0 ],
+		"rect" : [ 34.0, 87.0, 620.0, 417.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 594.0, 380.0 ],
+						"rect" : [ 0.0, 26.0, 620.0, 391.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 594.0, 380.0 ],
+						"rect" : [ 34.0, 113.0, 620.0, 391.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -150,11 +150,23 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-10",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 120.0, 233.5, 240.0, 36.0 ],
+									"text" : "The time difference will match the signal vector size set in Max"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-8",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 75.0, 327.0, 377.0, 21.0 ],
+									"patching_rect" : [ 90.0, 327.0, 377.0, 21.0 ],
 									"text" : "fl.perblock~ schedules a frame once per signal vector (or block)."
 								}
 
@@ -166,19 +178,19 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 315.0, 45.0, 45.0 ]
+									"patching_rect" : [ 30.0, 315.0, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-14",
-									"linecount" : 8,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 96.5, 145.0, 243.0, 123.0 ],
-									"text" : "Calculate the difference in time between scheduled frames of fl.perblock~. \n\n\n\n\nThe time difference will match the signal vector size set in the host."
+									"patching_rect" : [ 120.0, 143.5, 255.0, 36.0 ],
+									"text" : "Calculate the difference in time between scheduled frames of fl.perblock~"
 								}
 
 							}
@@ -189,7 +201,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 450.0, 233.5, 128.0, 36.0 ],
+									"patching_rect" : [ 465.0, 233.5, 128.0, 36.0 ],
 									"text" : "Signal vector size in Max audio settings"
 								}
 
@@ -204,7 +216,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 390.666666666666686, 240.0, 50.0, 23.0 ]
+									"patching_rect" : [ 405.666666666666686, 240.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -215,7 +227,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 4,
 									"outlettype" : [ "int", "float", "int", "int" ],
-									"patching_rect" : [ 360.0, 150.0, 65.0, 23.0 ],
+									"patching_rect" : [ 375.0, 150.0, 65.0, 23.0 ],
 									"text" : "dspstate~"
 								}
 
@@ -229,7 +241,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 240.0, 50.0, 23.0 ]
+									"patching_rect" : [ 30.0, 240.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -240,7 +252,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 195.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -252,7 +264,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 79.0, 23.0 ],
+									"patching_rect" : [ 30.0, 150.0, 79.0, 23.0 ],
 									"text" : "fl.timedelta~"
 								}
 
@@ -265,7 +277,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 75.0, 23.0 ],
+									"patching_rect" : [ 30.0, 105.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 

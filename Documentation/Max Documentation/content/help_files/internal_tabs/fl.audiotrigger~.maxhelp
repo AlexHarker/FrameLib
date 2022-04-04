@@ -150,6 +150,18 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-2",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 360.0, 136.5, 92.0, 21.0 ],
+									"text" : "Click to trigger",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-4",
 									"linecount" : 3,
 									"maxclass" : "comment",
@@ -179,7 +191,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 90.0, 165.0, 36.0 ],
-									"text" : "Triggering using noise and logic for random triggers"
+									"text" : "Triggering using noise and logic for random triggers",
+									"textjustification" : 1
 								}
 
 							}
@@ -190,8 +203,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 90.0, 174.0, 36.0 ],
-									"text" : "A simple way of translating max bang into trigger frames"
+									"patching_rect" : [ 255.0, 90.0, 174.0, 36.0 ],
+									"text" : "A simple way of translating max bang into trigger frames",
+									"textjustification" : 1
 								}
 
 							}
@@ -245,7 +259,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 330.0, 360.0, 215.0, 69.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 512
+									"size" : 51
 								}
 
 							}
@@ -268,8 +282,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 330.0, 270.0, 138.0, 23.0 ],
-									"text" : "fl.random~ /length 512"
+									"patching_rect" : [ 330.0, 270.0, 131.0, 23.0 ],
+									"text" : "fl.random~ /length 51"
 								}
 
 							}
@@ -323,7 +337,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 30.0, 360.0, 215.0, 69.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 512
+									"size" : 51
 								}
 
 							}
@@ -346,8 +360,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 270.0, 138.0, 23.0 ],
-									"text" : "fl.random~ /length 512"
+									"patching_rect" : [ 30.0, 270.0, 131.0, 23.0 ],
+									"text" : "fl.random~ /length 51"
 								}
 
 							}
