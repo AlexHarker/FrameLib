@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 581.0, 544.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 581.0, 518.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 581.0, 518.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,7 +155,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 495.0, 375.0, 45.0, 45.0 ]
+									"patching_rect" : [ 492.0, 362.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -166,8 +166,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 450.0, 426.5, 50.0 ],
-									"text" : "The subframe here is segmenting a  hann window, composed of 2048 discrete points. The different modes are demonstrated, selecting out different sections of the whole window frame, either by indices or ratios."
+									"patching_rect" : [ 30.0, 437.0, 426.5, 50.0 ],
+									"text" : "The subframe here is segmenting a  hann window, composed of 2048 discrete points. The different modes are demonstrated, selecting out different sections of the whole window frame, either by indices or ratios.",
+									"textjustification" : 1
 								}
 
 							}
@@ -178,7 +179,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 54.0, 23.0 ],
+									"patching_rect" : [ 30.0, 92.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -191,9 +192,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 306.5, 361.0, 135.0, 71.0 ],
+									"patching_rect" : [ 321.5, 348.0, 135.0, 71.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 341
+									"setstyle" : 1,
+									"size" : 341,
+									"slidercolor" : [ 0.996078431372549, 0.0, 0.0, 1.0 ]
 								}
 
 							}
@@ -205,9 +208,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 158.0, 361.0, 135.0, 71.0 ],
+									"patching_rect" : [ 173.0, 348.0, 135.0, 71.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 512
+									"setstyle" : 1,
+									"size" : 512,
+									"slidercolor" : [ 0.996078431372549, 0.0, 0.0, 1.0 ]
 								}
 
 							}
@@ -219,9 +224,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 361.0, 135.0, 71.0 ],
+									"patching_rect" : [ 30.0, 348.0, 135.0, 71.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 512
+									"setstyle" : 1,
+									"size" : 512,
+									"slidercolor" : [ 0.996078431372549, 0.0, 0.0, 1.0 ]
 								}
 
 							}
@@ -232,7 +239,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 306.5, 315.0, 62.0, 23.0 ],
+									"patching_rect" : [ 321.5, 302.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -244,7 +251,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 158.0, 315.0, 62.0, 23.0 ],
+									"patching_rect" : [ 173.0, 302.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -256,31 +263,33 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 315.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 302.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.996078431372549, 0.0, 0.0, 1.0 ],
 									"id" : "obj-14",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 306.5, 262.875, 223.0, 23.0 ],
+									"patching_rect" : [ 321.5, 249.875, 223.0, 23.0 ],
 									"text" : "fl.subframe~ 0.333 0.666 /units ratios"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.996078431372549, 0.0, 0.0, 1.0 ],
 									"id" : "obj-13",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 158.0, 262.875, 138.0, 23.0 ],
+									"patching_rect" : [ 173.0, 249.875, 138.0, 23.0 ],
 									"text" : "fl.subframe~ 512 1024"
 								}
 
@@ -292,7 +301,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 102.0, 23.0 ],
+									"patching_rect" : [ 30.0, 182.0, 102.0, 23.0 ],
 									"text" : "fl.window~ hann"
 								}
 
@@ -304,19 +313,20 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 156.0, 23.0 ],
+									"patching_rect" : [ 30.0, 137.0, 156.0, 23.0 ],
 									"text" : "fl.uniform~ 1 /length 1024"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.996078431372549, 0.0, 0.0, 1.0 ],
 									"id" : "obj-9",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 262.875, 117.0, 23.0 ],
+									"patching_rect" : [ 30.0, 249.875, 117.0, 23.0 ],
 									"text" : "fl.subframe~ 0 512"
 								}
 
@@ -348,7 +358,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
-									"midpoints" : [ 24.5, 247.0, 167.5, 247.0 ],
+									"midpoints" : [ 39.5, 234.0, 182.5, 234.0 ],
 									"order" : 1,
 									"source" : [ "obj-12", 0 ]
 								}
@@ -357,7 +367,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
-									"midpoints" : [ 24.5, 247.0, 316.0, 247.0 ],
+									"midpoints" : [ 39.5, 234.0, 331.0, 234.0 ],
 									"order" : 0,
 									"source" : [ "obj-12", 0 ]
 								}
@@ -366,7 +376,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-9", 0 ],
-									"midpoints" : [ 24.5, 217.0, 24.5, 217.0 ],
+									"midpoints" : [ 39.5, 204.0, 39.5, 204.0 ],
 									"order" : 2,
 									"source" : [ "obj-12", 0 ]
 								}
@@ -470,13 +480,21 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
+				"name" : "fl.once~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.subframe~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.tomax~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -485,18 +503,6 @@
 			}
 , 			{
 				"name" : "fl.window~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.once~.mxo",
 				"type" : "iLaX"
 			}
  ],

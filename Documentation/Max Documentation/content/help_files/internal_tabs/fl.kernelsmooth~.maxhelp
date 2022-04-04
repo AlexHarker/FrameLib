@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 661.0, 772.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 661.0, 746.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 661.0, 746.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,9 +155,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 84.000030517578125, 630.0, 530.0, 108.0 ],
-									"presentation_linecount" : 6,
-									"text" : "fl.kernelsmooth~ can apply smoothing equally across a frame on in an interpolated manner with different smoothing amounts set at the start and end (this can be set in samples or as a ratio of the incoming frame length).\n\nThe /edges parameter sets the way that smoothing happens at the edges of the frame. For spectral prcoessing applications, this should typically be set to fold.\n"
+									"patching_rect" : [ 99.000030517578125, 615.0, 534.0, 94.0 ],
+									"text" : "fl.kernelsmooth~ can apply smoothing equally across a frame on in an interpolated manner with different smoothing amounts set at the start and end (this can be set in samples or as a ratio of the incoming frame length).\n\nThe /edges parameter sets the way that smoothing happens at the edges of the frame. For spectral prcoessing applications, this should typically be set to fold."
 								}
 
 							}
@@ -169,7 +168,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 325.0, 559.0, 35.0, 13.0 ]
+									"patching_rect" : [ 340.0, 544.0, 35.0, 13.0 ]
 								}
 
 							}
@@ -181,7 +180,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 325.0, 151.0, 35.0, 13.0 ]
+									"patching_rect" : [ 340.0, 136.0, 35.0, 13.0 ]
 								}
 
 							}
@@ -191,7 +190,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 525.0, 204.0, 100.0, 21.0 ],
+									"patching_rect" : [ 540.0, 189.0, 100.0, 21.0 ],
 									"text" : "Edge behaviour"
 								}
 
@@ -203,7 +202,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 645.0, 45.0, 45.0 ]
+									"patching_rect" : [ 31.0, 645.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -215,7 +214,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 390.0, 179.0, 82.0, 23.0 ],
+									"patching_rect" : [ 405.0, 164.0, 82.0, 23.0 ],
 									"text" : "loadmess 30"
 								}
 
@@ -226,7 +225,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 361.0, 204.0, 147.0, 21.0 ],
+									"patching_rect" : [ 376.0, 189.0, 147.0, 21.0 ],
 									"text" : "Smoothing (either end)"
 								}
 
@@ -240,7 +239,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 525.0, 237.0, 73.00006103515625, 23.0 ]
+									"patching_rect" : [ 540.0, 222.0, 73.00006103515625, 23.0 ]
 								}
 
 							}
@@ -250,7 +249,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 367.0, 147.0, 235.0, 21.0 ],
+									"patching_rect" : [ 382.0, 132.0, 235.0, 21.0 ],
 									"text" : "Drag the multislider to change the input"
 								}
 
@@ -261,7 +260,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 367.0, 555.0, 108.0, 21.0 ],
+									"patching_rect" : [ 382.0, 540.0, 108.0, 21.0 ],
 									"text" : "Smoothed Result"
 								}
 
@@ -273,7 +272,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 552.000030517578125, 330.0, 62.0, 23.0 ],
+									"patching_rect" : [ 567.000030517578125, 315.0, 62.0, 23.0 ],
 									"text" : "edges $1"
 								}
 
@@ -288,7 +287,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 450.0, 237.0, 50.0, 23.0 ]
+									"patching_rect" : [ 465.0, 222.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -302,7 +301,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 390.0, 237.0, 50.0, 23.0 ]
+									"patching_rect" : [ 405.0, 222.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -313,7 +312,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 390.0, 327.0, 87.0, 23.0 ],
+									"patching_rect" : [ 405.0, 312.0, 87.0, 23.0 ],
 									"text" : "smooth $1 $2"
 								}
 
@@ -325,7 +324,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 390.0, 282.0, 79.0, 23.0 ],
+									"patching_rect" : [ 405.0, 267.0, 79.0, 23.0 ],
 									"text" : "pak 0. 0."
 								}
 
@@ -337,7 +336,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 360.0, 375.0, 124.0, 23.0 ],
+									"patching_rect" : [ 375.0, 360.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -345,12 +344,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-4",
-									"linecount" : 3,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 102.5, 270.0, 249.5, 50.0 ],
-									"text" : "Create a kernel using a hann window (right-hand side only for the default symmetric mode"
+									"patching_rect" : [ 117.5, 255.0, 257.5, 36.0 ],
+									"text" : "Creates a hann window kernel (right-hand side only for the default symmetric mode"
 								}
 
 							}
@@ -366,8 +365,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 1,
-											"revision" : 8,
+											"minor" : 3,
+											"revision" : 0,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -408,7 +407,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 1,
 													"outlettype" : [ "bang" ],
-													"patching_rect" : [ 25.0, 22.0, 63.0, 22.0 ],
+													"patching_rect" : [ 25.0, 22.0, 58.0, 22.0 ],
 													"text" : "loadbang"
 												}
 
@@ -520,7 +519,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 15.0, 75.0, 66.0, 23.0 ],
+									"patching_rect" : [ 30.0, 60.0, 66.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -539,7 +538,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 75.0, 375.0, 138.0, 23.0 ],
+									"patching_rect" : [ 90.0, 360.0, 138.0, 23.0 ],
 									"text" : "fl.subframe~ 512 1025"
 								}
 
@@ -552,7 +551,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 75.0, 330.0, 268.0, 38.0 ],
+									"patching_rect" : [ 90.0, 315.0, 268.0, 38.0 ],
 									"text" : "fl.makewindow~ /length 1025 /window hann /endpoints both"
 								}
 
@@ -564,7 +563,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 46.0, 225.0, 107.0, 23.0 ],
+									"patching_rect" : [ 61.0, 210.0, 107.0, 23.0 ],
 									"text" : "fl.interval~ 50 ms"
 								}
 
@@ -579,15 +578,16 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 105.0, 300.0, 105.0 ],
+									"patching_rect" : [ 30.0, 90.0, 300.0, 105.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 300,
-									"slidercolor" : [ 0.431372549019608, 0.643137254901961, 0.450980392156863, 1.0 ]
+									"slidercolor" : [ 0.23921568627451, 0.76078431372549, 0.207843137254902, 1.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"ghostbar" : 20,
 									"id" : "obj-9",
 									"ignoreclick" : 1,
 									"maxclass" : "multislider",
@@ -595,9 +595,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 16.0, 510.0, 300.0, 105.0 ],
+									"patching_rect" : [ 31.0, 495.0, 300.0, 105.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 300
+									"setstyle" : 1,
+									"size" : 300,
+									"slidercolor" : [ 0.23921568627451, 0.76078431372549, 0.207843137254902, 1.0 ]
 								}
 
 							}
@@ -608,7 +610,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 16.0, 465.0, 62.0, 23.0 ],
+									"patching_rect" : [ 31.0, 450.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -620,19 +622,20 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 16.0, 270.0, 77.0, 23.0 ],
+									"patching_rect" : [ 31.0, 255.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.23921568627451, 0.76078431372549, 0.207843137254902, 1.0 ],
 									"id" : "obj-2",
 									"maxclass" : "newobj",
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 16.0, 420.0, 137.0, 23.0 ],
+									"patching_rect" : [ 31.0, 405.0, 137.0, 23.0 ],
 									"text" : "fl.kernelsmooth~"
 								}
 
@@ -657,7 +660,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"midpoints" : [ 24.5, 264.0, 25.5, 264.0 ],
+									"midpoints" : [ 39.5, 249.0, 40.5, 249.0 ],
 									"source" : [ "obj-10", 0 ]
 								}
 
@@ -665,7 +668,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 55.5, 257.5, 369.5, 257.5 ],
+									"midpoints" : [ 70.5, 242.5, 384.5, 242.5 ],
 									"order" : 0,
 									"source" : [ "obj-11", 0 ]
 								}
@@ -674,7 +677,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"midpoints" : [ 55.5, 258.5, 25.5, 258.5 ],
+									"midpoints" : [ 70.5, 243.5, 40.5, 243.5 ],
 									"order" : 1,
 									"source" : [ "obj-11", 0 ]
 								}
@@ -704,7 +707,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 399.5, 362.0, 369.5, 362.0 ],
+									"midpoints" : [ 414.5, 347.0, 384.5, 347.0 ],
 									"source" : [ "obj-19", 0 ]
 								}
 
@@ -733,7 +736,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 561.500030517578125, 362.0, 369.5, 362.0 ],
+									"midpoints" : [ 576.500030517578125, 347.0, 384.5, 347.0 ],
 									"source" : [ "obj-25", 0 ]
 								}
 
@@ -767,7 +770,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 2 ],
-									"midpoints" : [ 369.5, 408.5, 143.5, 408.5 ],
+									"midpoints" : [ 384.5, 393.5, 158.5, 393.5 ],
 									"source" : [ "obj-5", 0 ]
 								}
 
@@ -775,7 +778,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-12", 0 ],
-									"midpoints" : [ 25.5, 311.0, 84.5, 311.0 ],
+									"midpoints" : [ 40.5, 296.0, 99.5, 296.0 ],
 									"order" : 0,
 									"source" : [ "obj-6", 0 ]
 								}
@@ -784,7 +787,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 0 ],
-									"midpoints" : [ 25.5, 294.0, 25.5, 294.0 ],
+									"midpoints" : [ 40.5, 279.0, 40.5, 279.0 ],
 									"order" : 1,
 									"source" : [ "obj-6", 0 ]
 								}
@@ -852,30 +855,22 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.kernelsmooth~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.frommax~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.interval~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
+				"name" : "fl.kernelsmooth~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -884,6 +879,10 @@
 			}
 , 			{
 				"name" : "fl.subframe~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.tomax~.mxo",
 				"type" : "iLaX"
 			}
  ],
