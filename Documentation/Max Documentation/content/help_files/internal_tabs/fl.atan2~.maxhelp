@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 664.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 664.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -93,7 +93,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 570.0, 585.0, 65.0 ],
+									"patching_rect" : [ 30.0, 570.0, 587.0, 65.0 ],
 									"text" : "The phase of an FFT bin is calculated using atan2 on the real and imaginary components.\n\nThis may use less CPU than using fl.cartopol~ when you don't require the magnitude, but remember to cross the inputs in relation to the output from fl.fft~!"
 								}
 
@@ -111,7 +111,7 @@
 							}
 , 							{
 								"box" : 								{
-									"color" : [ 0.701961, 0.415686, 0.886275, 1.0 ],
+									"color" : [ 1.0, 0.576470588235294, 0.0, 1.0 ],
 									"id" : "obj-1",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
@@ -169,7 +169,8 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 109.0, 437.0, 280.0, 106.0 ],
 									"setminmax" : [ -3.200000047683716, 3.200000047683716 ],
-									"size" : 513
+									"size" : 513,
+									"slidercolor" : [ 1.0, 0.576470588235294, 0.0, 1.0 ]
 								}
 
 							}
@@ -464,7 +465,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 664.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 664.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -501,7 +502,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 465.0, 218.5, 165.0, 36.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Drag in the box to alter the cartesian coordinates"
 								}
 
