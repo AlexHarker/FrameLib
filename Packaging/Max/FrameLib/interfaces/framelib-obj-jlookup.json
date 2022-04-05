@@ -50,7 +50,7 @@
         },
         "3": {
             "name": "/delay [double]",
-            "description": "Sets the outpu delay in the units specified by the units parameter.\n\n(default: 0)"
+            "description": "Sets the output delay in the units specified by the units parameter.\n\n(default: 0)"
         },
         "4": {
             "name": "/interp [enum]",
