@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 600.0, 707.0 ],
+						"rect" : [ 0.0, 26.0, 600.0, 707.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -287,7 +287,8 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 45.0, 489.0, 270.0, 96.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 100
+									"size" : 100,
+									"slidercolor" : [ 0.635294117647059, 0.870588235294118, 0.498039215686275, 1.0 ]
 								}
 
 							}
@@ -491,7 +492,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 600.0, 707.0 ],
+						"rect" : [ 34.0, 113.0, 600.0, 707.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -855,7 +856,8 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 105.0, 539.0, 299.0, 106.0 ],
 									"setminmax" : [ 0.0, 40.0 ],
-									"size" : 257
+									"size" : 257,
+									"slidercolor" : [ 0.635294117647059, 0.870588235294118, 0.498039215686275, 1.0 ]
 								}
 
 							}
@@ -898,7 +900,7 @@
 							}
 , 							{
 								"box" : 								{
-									"args" : [ 2 ],
+									"args" : [ 2, "@vol", -10 ],
 									"bgmode" : 0,
 									"border" : 0,
 									"clickthrough" : 0,

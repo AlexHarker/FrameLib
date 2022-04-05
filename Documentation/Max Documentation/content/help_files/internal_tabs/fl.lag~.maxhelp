@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 671.0, 570.0 ],
+						"rect" : [ 0.0, 26.0, 671.0, 570.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -93,7 +93,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 300.0, 486.0, 339.0, 65.0 ],
+									"patching_rect" : [ 300.0, 486.0, 343.0, 65.0 ],
 									"text" : "pad - pads the output with values from the reset frame (or the /pad parameter)\n\nshorten -  uses the oldest frame received so far"
 								}
 
@@ -287,7 +287,8 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 15.0, 448.0, 270.0, 103.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 100
+									"size" : 100,
+									"slidercolor" : [ 1.0, 0.772549019607843, 0.494117647058824, 1.0 ]
 								}
 
 							}
@@ -553,7 +554,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 671.0, 570.0 ],
+						"rect" : [ 34.0, 113.0, 671.0, 570.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -662,7 +663,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 255.0, 360.0, 45.0, 140.0 ],
 									"setminmax" : [ 0.0, 10.0 ],
-									"slidercolor" : [ 0.062745098039216, 0.643137254901961, 0.717647058823529, 1.0 ]
+									"slidercolor" : [ 0.207843137254902, 0.76078431372549, 0.749019607843137, 1.0 ]
 								}
 
 							}
@@ -678,7 +679,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 30.0, 360.0, 45.0, 140.0 ],
 									"setminmax" : [ 0.0, 10.0 ],
-									"slidercolor" : [ 0.062745098039216, 0.643137254901961, 0.717647058823529, 1.0 ]
+									"slidercolor" : [ 0.207843137254902, 0.76078431372549, 0.749019607843137, 1.0 ]
 								}
 
 							}
