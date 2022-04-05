@@ -605,7 +605,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 465.0, 218.5, 165.0, 36.0 ],
-									"text" : "Drag in the box to alter the cartesian coordinates"
+									"text" : "Drag in the box to alter the cartesian coordinates",
+									"textjustification" : 1
 								}
 
 							}
@@ -2547,22 +2548,6 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.chop~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.convert~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.fft~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
 				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
@@ -2570,23 +2555,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.hypot~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
+				"name" : "framelib_max.mxo",
 				"type" : "iLaX"
 			}
 , 			{

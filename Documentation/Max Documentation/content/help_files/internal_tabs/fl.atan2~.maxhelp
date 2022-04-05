@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 664.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 664.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -465,7 +465,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 664.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 664.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -502,7 +502,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 465.0, 218.5, 165.0, 36.0 ],
-									"text" : "Drag in the box to alter the cartesian coordinates"
+									"text" : "Drag in the box to alter the cartesian coordinates",
+									"textjustification" : 1
 								}
 
 							}
@@ -2539,22 +2540,6 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.atan2~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.chop~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.fft~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
 				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
@@ -2562,19 +2547,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
+				"name" : "framelib_max.mxo",
 				"type" : "iLaX"
 			}
 , 			{

@@ -192,8 +192,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            113.0,
+                            0.0,
+                            26.0,
                             655.0,
                             664.0
                         ],
@@ -787,8 +787,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            113.0,
                             655.0,
                             664.0
                         ],
@@ -837,7 +837,8 @@
                                         165.0,
                                         36.0
                                     ],
-                                    "text": "Drag in the box to alter the cartesian coordinates"
+                                    "text": "Drag in the box to alter the cartesian coordinates",
+                                    "textjustification": 1
                                 }
                             },
                             {

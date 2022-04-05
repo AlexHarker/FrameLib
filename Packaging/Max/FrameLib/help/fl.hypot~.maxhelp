@@ -984,7 +984,8 @@
                                         165.0,
                                         36.0
                                     ],
-                                    "text": "Drag in the box to alter the cartesian coordinates"
+                                    "text": "Drag in the box to alter the cartesian coordinates",
+                                    "textjustification": 1
                                 }
                             },
                             {
