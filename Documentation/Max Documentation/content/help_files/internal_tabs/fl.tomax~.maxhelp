@@ -218,7 +218,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 60.0, 285.0, 90.0, 23.0 ],
-									"text" : "foo 0.738753"
+									"text" : "foo 0.985348"
 								}
 
 							}
@@ -478,7 +478,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 225.0, 195.0, 352.0, 36.0 ],
-									"text" : "fl.tomax can unpack a multi-stream output and deliver each stream to its own outlet automatically"
+									"text" : "fl.tomax can unpack a multi-stream output and deliver each stream to its own outlet "
 								}
 
 							}
@@ -502,7 +502,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 393.0, 315.0, 160.0, 60.0 ],
-									"size" : 1024,
+									"size" : 512,
 									"slidercolor" : [ 1.0, 0.752941176470588, 0.992156862745098, 1.0 ]
 								}
 
@@ -516,7 +516,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 219.0, 315.0, 160.0, 60.0 ],
-									"size" : 1024,
+									"size" : 512,
 									"slidercolor" : [ 1.0, 0.752941176470588, 0.992156862745098, 1.0 ]
 								}
 
@@ -563,8 +563,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 45.0, 90.0, 75.0, 23.0 ],
-									"text" : "fl.perblock~"
+									"patching_rect" : [ 45.0, 90.0, 142.0, 23.0 ],
+									"text" : "fl.interval~ 0.1 seconds"
 								}
 
 							}
@@ -575,8 +575,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 45.0, 135.0, 164.0, 23.0 ],
-									"text" : "fl.random~ =3 /length 1024"
+									"patching_rect" : [ 45.0, 135.0, 157.0, 23.0 ],
+									"text" : "fl.random~ =3 /length 512"
 								}
 
 							}
@@ -602,7 +602,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 45.0, 315.0, 160.0, 58.0 ],
-									"size" : 1024,
+									"size" : 512,
 									"slidercolor" : [ 1.0, 0.752941176470588, 0.992156862745098, 1.0 ]
 								}
 

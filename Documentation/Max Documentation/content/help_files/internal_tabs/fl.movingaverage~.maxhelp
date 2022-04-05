@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 629.0, 702.0 ],
+						"rect" : [ 34.0, 113.0, 629.0, 702.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -92,7 +92,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 435.0, 174.0, 21.0 ],
+									"patching_rect" : [ 30.0, 420.0, 174.0, 21.0 ],
 									"text" : "Use arguments to set alphas"
 								}
 
@@ -103,7 +103,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 397.25, 234.0, 139.0, 21.0 ],
+									"patching_rect" : [ 397.25, 219.0, 139.0, 21.0 ],
 									"text" : "Click to reset deviation",
 									"textjustification" : 1
 								}
@@ -117,7 +117,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 454.75, 264.5, 24.0, 24.0 ]
+									"patching_rect" : [ 454.75, 249.5, 24.0, 24.0 ]
 								}
 
 							}
@@ -128,7 +128,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 454.75, 309.5, 41.0, 23.0 ],
+									"patching_rect" : [ 454.75, 294.5, 41.0, 23.0 ],
 									"text" : "click~"
 								}
 
@@ -140,7 +140,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 454.75, 354.5, 95.0, 23.0 ],
+									"patching_rect" : [ 454.75, 339.5, 95.0, 23.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -151,7 +151,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 263.0, 234.0, 120.0, 21.0 ],
+									"patching_rect" : [ 263.0, 219.0, 120.0, 21.0 ],
 									"text" : "Click to reset mean",
 									"textjustification" : 1
 								}
@@ -165,7 +165,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 311.0, 264.5, 24.0, 24.0 ]
+									"patching_rect" : [ 311.0, 249.5, 24.0, 24.0 ]
 								}
 
 							}
@@ -176,7 +176,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 311.0, 309.5, 41.0, 23.0 ],
+									"patching_rect" : [ 311.0, 294.5, 41.0, 23.0 ],
 									"text" : "click~"
 								}
 
@@ -188,7 +188,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 311.0, 354.5, 95.0, 23.0 ],
+									"patching_rect" : [ 311.0, 339.5, 95.0, 23.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -200,7 +200,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 392.5, 567.5, 45.0, 45.0 ]
+									"patching_rect" : [ 392.5, 552.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -211,7 +211,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 41.0, 270.0, 227.5, 123.0 ],
+									"patching_rect" : [ 41.0, 255.0, 227.5, 123.0 ],
 									"text" : "The mean and deviation can be reset separately. \n\nIf frames are send to the reset inputs these are used as the reset values. \n\nIf not then the value of the padding parameters is used instead."
 								}
 
@@ -222,7 +222,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 180.0, 153.0, 21.0 ],
+									"patching_rect" : [ 315.0, 165.0, 153.0, 21.0 ],
 									"text" : "Generate gaussian noise"
 								}
 
@@ -236,7 +236,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 473.5, 633.0, 78.0, 17.0 ],
+									"patching_rect" : [ 473.5, 618.0, 78.0, 17.0 ],
 									"text" : "Moving Deviation",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -249,7 +249,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 532.5, 480.0, 62.0, 23.0 ],
+									"patching_rect" : [ 532.5, 465.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -263,7 +263,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 222.0, 633.0, 73.0, 17.0 ],
+									"patching_rect" : [ 222.0, 618.0, 73.0, 17.0 ],
 									"text" : "Moving Average",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -278,7 +278,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 635.0, 72.0, 17.0 ],
+									"patching_rect" : [ 15.0, 620.0, 72.0, 17.0 ],
 									"text" : "Gaussian Noise",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -292,7 +292,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 221.5, 525.0, 135.0, 130.0 ],
+									"patching_rect" : [ 221.5, 510.0, 135.0, 130.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 1000
 								}
@@ -306,7 +306,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 525.0, 165.0, 130.0 ],
+									"patching_rect" : [ 15.0, 510.0, 165.0, 130.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 1000
 								}
@@ -319,7 +319,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 480.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 465.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -331,7 +331,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 221.5, 480.0, 62.0, 23.0 ],
+									"patching_rect" : [ 221.5, 465.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -343,7 +343,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 135.0, 101.0, 23.0 ],
+									"patching_rect" : [ 15.0, 120.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 1000"
 								}
 
@@ -355,7 +355,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 180.0, 296.0, 23.0 ],
+									"patching_rect" : [ 15.0, 165.0, 296.0, 23.0 ],
 									"text" : "fl.gaussian~ /length 1000 /mean 0.5 /deviation 0.3"
 								}
 
@@ -368,7 +368,7 @@
 									"numinlets" : 5,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 221.5, 435.0, 330.0, 23.0 ],
+									"patching_rect" : [ 221.5, 420.0, 330.0, 23.0 ],
 									"text" : "fl.movingaverage~ 0.05 0.05 /average 0.9 /deviation 0.9"
 								}
 
@@ -397,7 +397,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 473.5, 525.0, 135.0, 130.0 ],
+									"patching_rect" : [ 473.5, 510.0, 135.0, 130.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 1000
 								}
@@ -435,7 +435,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 2 ],
-									"midpoints" : [ 320.5, 405.75, 386.5, 405.75 ],
+									"midpoints" : [ 320.5, 390.75, 386.5, 390.75 ],
 									"source" : [ "obj-14", 0 ]
 								}
 
@@ -464,7 +464,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-22", 0 ],
-									"midpoints" : [ 542.0, 513.5, 483.0, 513.5 ],
+									"midpoints" : [ 542.0, 498.5, 483.0, 498.5 ],
 									"source" : [ "obj-23", 0 ]
 								}
 
@@ -472,7 +472,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
-									"midpoints" : [ 24.5, 417.0, 231.0, 417.0 ],
+									"midpoints" : [ 24.5, 402.0, 231.0, 402.0 ],
 									"order" : 0,
 									"source" : [ "obj-5", 0 ]
 								}
@@ -1218,7 +1218,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 629.0, 702.0 ],
+						"rect" : [ 0.0, 26.0, 629.0, 702.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,

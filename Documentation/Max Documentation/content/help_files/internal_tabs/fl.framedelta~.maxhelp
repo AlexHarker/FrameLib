@@ -533,7 +533,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 326.0, 552.0, 188.0, 36.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Observe the changes between frames (note the jumps)"
 								}
 
@@ -575,7 +574,7 @@
 									"patching_rect" : [ 30.0, 510.0, 250.0, 120.0 ],
 									"signed" : 1,
 									"size" : 256,
-									"slidercolor" : [ 0.501960784313725, 0.976470588235294, 0.470588235294118, 1.0 ]
+									"slidercolor" : [ 0.43921568627451, 0.749019607843137, 0.254901960784314, 1.0 ]
 								}
 
 							}
@@ -605,7 +604,7 @@
 									"patching_rect" : [ 30.0, 135.0, 250.0, 120.0 ],
 									"signed" : 1,
 									"size" : 256,
-									"slidercolor" : [ 0.466666666666667, 0.964705882352941, 0.972549019607843, 1.0 ]
+									"slidercolor" : [ 0.266666666666667, 0.643137254901961, 1.0, 1.0 ]
 								}
 
 							}
@@ -635,6 +634,7 @@
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.996078431372549, 0.0, 0.0, 1.0 ],
 									"id" : "obj-13",
 									"maxclass" : "newobj",
 									"numinlets" : 1,

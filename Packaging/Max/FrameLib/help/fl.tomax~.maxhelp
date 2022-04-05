@@ -433,7 +433,7 @@
                                         90.0,
                                         23.0
                                     ],
-                                    "text": "foo 0.738753"
+                                    "text": "foo 0.985348"
                                 }
                             },
                             {
@@ -841,7 +841,7 @@
                                         352.0,
                                         36.0
                                     ],
-                                    "text": "fl.tomax can unpack a multi-stream output and deliver each stream to its own outlet automatically"
+                                    "text": "fl.tomax can unpack a multi-stream output and deliver each stream to its own outlet "
                                 }
                             },
                             {
@@ -876,7 +876,7 @@
                                         160.0,
                                         60.0
                                     ],
-                                    "size": 1024,
+                                    "size": 512,
                                     "slidercolor": [
                                         1.0,
                                         0.752941176470588,
@@ -902,7 +902,7 @@
                                         160.0,
                                         60.0
                                     ],
-                                    "size": 1024,
+                                    "size": 512,
                                     "slidercolor": [
                                         1.0,
                                         0.752941176470588,
@@ -974,10 +974,10 @@
                                     "patching_rect": [
                                         45.0,
                                         90.0,
-                                        75.0,
+                                        142.0,
                                         23.0
                                     ],
-                                    "text": "fl.perblock~"
+                                    "text": "fl.interval~ 0.1 seconds"
                                 }
                             },
                             {
@@ -992,10 +992,10 @@
                                     "patching_rect": [
                                         45.0,
                                         135.0,
-                                        164.0,
+                                        157.0,
                                         23.0
                                     ],
-                                    "text": "fl.random~ =3 /length 1024"
+                                    "text": "fl.random~ =3 /length 512"
                                 }
                             },
                             {
@@ -1041,7 +1041,7 @@
                                         160.0,
                                         58.0
                                     ],
-                                    "size": 1024,
+                                    "size": 512,
                                     "slidercolor": [
                                         1.0,
                                         0.752941176470588,
