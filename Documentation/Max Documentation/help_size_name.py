@@ -17,6 +17,7 @@ def main(docs: Documentation):
     expressions = [x.stem for x in docs.source_files if x.parent.stem == "Expressions"]
     generators = [x.stem for x in docs.source_files if x.parent.stem == "Generators"]
     host_communication = [x.stem for x in docs.source_files if x.parent.stem == "Host_Communication"]
+    filters = [x.stem for x in docs.source_files if x.parent.stem == "Filters"]
     io = [x.stem for x in docs.source_files if x.parent.stem == "IO"]
     mapping = [x.stem for x in docs.source_files if x.parent.stem == "Mapping"]
     routing = [x.stem for x in docs.source_files if x.parent.stem == "Routing"]
@@ -29,7 +30,7 @@ def main(docs: Documentation):
 
     vector = [ "fl.sum~", "fl.product~", "fl.minpos~", "fl.maxpos~", "fl.framemin~", "fl.framemax~", "fl.length~", "fl.stddev~", "fl.crest~", "fl.rms~", "fl.chop~", "fl.pad~", "fl.split~", "fl.join~", "fl.chop~", "fl.reverse~", "fl.accumpos~", "fl.percentile~", "fl.nonzero~", "fl.nanfilter~", "fl.shift~", "fl.subframe~", "fl.sort~", "fl.kernelsmooth~", "fl.pattern~", "fl.mean~" ]
 
-    auto_resize_list = unary + complex_unary + expressions + schedulers + host_communication + io + timing + streaming + spectral + mapping + routing + vector + storage
+    auto_resize_list = unary + complex_unary + expressions + schedulers + host_communication + io + timing + streaming + spectral + mapping + routing + vector + storage + filters
 
     # Now fix sizes and naming
 
