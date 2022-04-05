@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 667.0, 491.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 667.0, 465.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 667.0, 465.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,7 +155,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 510.0, 45.0, 45.0 ]
+									"patching_rect" : [ 412.5, 379.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -166,9 +166,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 465.0, 615.0, 36.0 ],
-									"presentation_linecount" : 2,
-									"text" : "fl.untag~ is a utility object to help manage tagged frames, allowing you to retrieve vectors that have been given specfic tags."
+									"patching_rect" : [ 240.0, 317.0, 392.0, 36.0 ],
+									"text" : "fl.untag~ is a utility object to help manage tagged frames, allowing you to retrieve vectors that have been given specfic tags.",
+									"textjustification" : 1
 								}
 
 							}
@@ -181,8 +181,12 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 115.0, 386.5, 170.0, 60.0 ],
-									"size" : 10
+									"patching_rect" : [ 130.0, 371.5, 170.0, 60.0 ],
+									"setminmax" : [ 0.0, 1.0 ],
+									"setstyle" : 1,
+									"size" : 10,
+									"slidercolor" : [ 0.996078431372549, 0.0, 0.0, 1.0 ],
+									"spacing" : 2
 								}
 
 							}
@@ -193,7 +197,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 156.0, 23.0 ],
+									"patching_rect" : [ 30.0, 180.0, 156.0, 23.0 ],
 									"text" : "fl.map~ exp 0 1 900 9000"
 								}
 
@@ -205,7 +209,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 195.0, 150.0, 131.0, 23.0 ],
+									"patching_rect" : [ 195.0, 135.0, 131.0, 23.0 ],
 									"text" : "fl.random~ /length 10"
 								}
 
@@ -217,7 +221,7 @@
 									"numinlets" : 4,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 240.0, 559.0, 23.0 ],
+									"patching_rect" : [ 30.0, 225.0, 514.0, 23.0 ],
 									"text" : "fl.tag~ freq noise"
 								}
 
@@ -229,7 +233,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 114.0, 23.0 ],
+									"patching_rect" : [ 30.0, 90.0, 114.0, 23.0 ],
 									"text" : "fl.interval~ 100 ms"
 								}
 
@@ -241,7 +245,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 70.0, 23.0 ],
+									"patching_rect" : [ 30.0, 135.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -253,7 +257,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 115.0, 345.0, 62.0, 23.0 ],
+									"patching_rect" : [ 130.0, 323.5, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -267,7 +271,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 405.0, 50.0, 23.0 ]
+									"patching_rect" : [ 30.0, 390.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -278,20 +282,20 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 345.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 323.5, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"color" : [ 0.92549, 0.364706, 0.341176, 1.0 ],
+									"color" : [ 0.996078431372549, 0.0, 0.0, 1.0 ],
 									"id" : "obj-96",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 15.0, 292.0, 119.0, 23.0 ],
+									"patching_rect" : [ 30.0, 277.0, 119.0, 23.0 ],
 									"text" : "fl.untag~ freq noise"
 								}
 
@@ -304,7 +308,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 138.75, 297.0, 50.25, 11.0 ]
+									"patching_rect" : [ 153.75, 282.0, 50.25, 11.0 ]
 								}
 
 							}
@@ -314,7 +318,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 292.0, 413.0, 21.0 ],
+									"patching_rect" : [ 210.0, 277.0, 413.0, 21.0 ],
 									"text" : "fl.untag~ outputs two vectors - one for each of the named tags frames."
 								}
 
@@ -361,7 +365,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 24.5, 138.5, 204.5, 138.5 ],
+									"midpoints" : [ 39.5, 123.5, 204.5, 123.5 ],
 									"order" : 0,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -458,17 +462,17 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.untag~.mxo",
+				"name" : "fl.interval~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.tomax~.mxo",
+				"name" : "fl.map~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -476,19 +480,15 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.tag~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.map~.mxo",
+				"name" : "fl.tomax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.untag~.mxo",
 				"type" : "iLaX"
 			}
  ],

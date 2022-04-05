@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 721.0, 627.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 721.0, 601.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 721.0, 601.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -150,13 +150,26 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-8",
+									"linecount" : 4,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 306.0, 450.0, 375.0, 65.0 ],
+									"text" : "Here fl.tag~ is initialised with 3 strings - freq, res and mode. The inputs that are created when the object is instantiated map to these strings. Each input is then tagged with the appropriate string and sent to the 'parameter update' inlet of fl.svf~.",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"arrows" : 1,
 									"border" : 4.0,
 									"id" : "obj-16",
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 106.25, 473.75, 38.75, 18.5 ]
+									"patching_rect" : [ 121.25, 458.75, 38.75, 18.5 ]
 								}
 
 							}
@@ -167,7 +180,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 151.0, 465.0, 102.0, 36.0 ],
+									"patching_rect" : [ 166.0, 450.0, 102.0, 36.0 ],
 									"text" : "Turn up to hear the result!"
 								}
 
@@ -179,7 +192,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 375.0, 127.0, 23.0 ],
+									"patching_rect" : [ 30.0, 360.0, 127.0, 23.0 ],
 									"text" : "fl.window~ trapezoid"
 								}
 
@@ -200,7 +213,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 466.25, 101.0, 45.0 ],
+									"patching_rect" : [ 30.0, 451.25, 101.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -212,7 +225,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 112.0, 23.0 ],
+									"patching_rect" : [ 30.0, 180.0, 112.0, 23.0 ],
 									"text" : "fl.onepole~ 12000"
 								}
 
@@ -224,7 +237,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 541.25, 45.0, 45.0 ]
+									"patching_rect" : [ 30.0, 526.25, 45.0, 45.0 ]
 								}
 
 							}
@@ -236,7 +249,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 348.0, 420.0, 50.0, 23.0 ]
+									"patching_rect" : [ 438.0, 405.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -247,7 +260,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 348.0, 375.0, 62.0, 23.0 ],
+									"patching_rect" : [ 438.0, 360.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -261,7 +274,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 279.0, 420.0, 50.0, 23.0 ]
+									"patching_rect" : [ 369.0, 405.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -272,7 +285,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 279.0, 375.0, 62.0, 23.0 ],
+									"patching_rect" : [ 369.0, 360.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -286,7 +299,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 210.0, 420.0, 50.0, 23.0 ]
+									"patching_rect" : [ 300.0, 405.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -297,7 +310,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 210.0, 375.0, 62.0, 23.0 ],
+									"patching_rect" : [ 300.0, 360.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -309,7 +322,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 210.0, 330.0, 157.0, 23.0 ],
+									"patching_rect" : [ 300.0, 315.0, 157.0, 23.0 ],
 									"text" : "fl.untag~ freq res mode"
 								}
 
@@ -317,12 +330,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-92",
-									"linecount" : 8,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 465.0, 363.5, 123.0 ],
-									"text" : "fl.tag~ is initialised with 3 strings - freq, res and mode. The inputs that are created when the object is instantiated map to these names. Each input is then tagged with the appropriate name and is sent to the 'parameter update' inlet of fl.svf~.\n\nThe first parameter controls the frequency of the filter.\nThe second parameter controls the resonance of the filter.\nThe third parameter changes the mode of the filter. "
+									"patching_rect" : [ 300.0, 526.0, 345.0, 50.0 ],
+									"text" : "The first parameter controls the frequency of the filter.\nThe second parameter controls the resonance of the filter.\nThe third parameter changes the mode of the filter. "
 								}
 
 							}
@@ -333,7 +346,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 420.0, 49.0, 23.0 ],
+									"patching_rect" : [ 30.0, 405.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -345,7 +358,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 394.0, 240.0, 55.0, 23.0 ],
+									"patching_rect" : [ 484.0, 225.0, 55.0, 23.0 ],
 									"text" : "fl.trunc~"
 								}
 
@@ -357,7 +370,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 394.0, 195.0, 68.0, 23.0 ],
+									"patching_rect" : [ 484.0, 180.0, 68.0, 23.0 ],
 									"text" : "fl.times~ 3"
 								}
 
@@ -369,7 +382,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 394.0, 150.0, 70.0, 23.0 ],
+									"patching_rect" : [ 484.0, 135.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -381,7 +394,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 302.0, 150.0, 70.0, 23.0 ],
+									"patching_rect" : [ 392.0, 135.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -393,7 +406,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 210.0, 240.0, 75.0, 23.0 ],
+									"patching_rect" : [ 300.0, 225.0, 75.0, 23.0 ],
 									"text" : "fl.plus~ 100"
 								}
 
@@ -405,7 +418,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 210.0, 195.0, 90.0, 23.0 ],
+									"patching_rect" : [ 300.0, 180.0, 90.0, 23.0 ],
 									"text" : "fl.times~ 6000"
 								}
 
@@ -417,7 +430,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 210.0, 150.0, 70.0, 23.0 ],
+									"patching_rect" : [ 300.0, 135.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -429,7 +442,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 101.0, 23.0 ],
+									"patching_rect" : [ 30.0, 90.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 1024"
 								}
 
@@ -441,7 +454,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 145.0, 23.0 ],
+									"patching_rect" : [ 30.0, 135.0, 145.0, 23.0 ],
 									"text" : "fl.random~ /length 2048"
 								}
 
@@ -453,7 +466,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 330.0, 43.0, 23.0 ],
+									"patching_rect" : [ 30.0, 315.0, 43.0, 23.0 ],
 									"text" : "fl.svf~"
 								}
 
@@ -466,7 +479,7 @@
 									"numinlets" : 5,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 210.0, 285.0, 387.0, 23.0 ],
+									"patching_rect" : [ 300.0, 270.0, 387.0, 23.0 ],
 									"text" : "fl.tag~ freq res mode"
 								}
 
@@ -519,7 +532,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
-									"midpoints" : [ 24.5, 129.0, 24.5, 129.0 ],
+									"midpoints" : [ 39.5, 114.0, 39.5, 114.0 ],
 									"order" : 3,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -528,7 +541,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-19", 0 ],
-									"midpoints" : [ 24.5, 138.5, 219.5, 138.5 ],
+									"midpoints" : [ 39.5, 123.5, 309.5, 123.5 ],
 									"order" : 2,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -537,7 +550,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-38", 0 ],
-									"midpoints" : [ 24.5, 138.5, 311.5, 138.5 ],
+									"midpoints" : [ 39.5, 123.5, 401.5, 123.5 ],
 									"order" : 1,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -546,7 +559,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-39", 0 ],
-									"midpoints" : [ 24.5, 138.5, 403.5, 138.5 ],
+									"midpoints" : [ 39.5, 123.5, 493.5, 123.5 ],
 									"order" : 0,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -597,7 +610,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 1 ],
-									"midpoints" : [ 24.5, 525.75, 50.5, 525.75 ],
+									"midpoints" : [ 39.5, 510.75, 65.5, 510.75 ],
 									"order" : 0,
 									"source" : [ "obj-4", 0 ]
 								}
@@ -606,7 +619,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
-									"midpoints" : [ 24.5, 525.75, 24.5, 525.75 ],
+									"midpoints" : [ 39.5, 510.75, 39.5, 510.75 ],
 									"order" : 1,
 									"source" : [ "obj-4", 0 ]
 								}
@@ -629,7 +642,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
-									"midpoints" : [ 24.5, 468.5, 24.5, 468.5 ],
+									"midpoints" : [ 39.5, 453.5, 39.5, 453.5 ],
 									"source" : [ "obj-44", 0 ]
 								}
 
@@ -644,7 +657,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-12", 1 ],
-									"midpoints" : [ 219.5, 318.0, 48.5, 318.0 ],
+									"midpoints" : [ 309.5, 303.0, 63.5, 303.0 ],
 									"order" : 1,
 									"source" : [ "obj-7", 0 ]
 								}
@@ -745,14 +758,14 @@
 		"dependency_cache" : [ 			{
 				"name" : "fl-mono-h.maxpat",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

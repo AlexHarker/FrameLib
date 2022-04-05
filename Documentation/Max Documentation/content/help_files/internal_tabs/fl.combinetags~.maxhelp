@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 642.0, 748.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 642.0, 722.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 642.0, 722.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -154,7 +154,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 106.5, 69.0, 21.0 ],
+									"patching_rect" : [ 60.0, 91.5, 69.0, 21.0 ],
 									"text" : "Play audio"
 								}
 
@@ -167,7 +167,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 111.0, 608.0, 30.0, 11.0 ]
+									"patching_rect" : [ 126.0, 593.0, 30.0, 11.0 ]
 								}
 
 							}
@@ -177,7 +177,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 603.0, 168.0, 21.0 ],
+									"patching_rect" : [ 165.0, 588.0, 168.0, 21.0 ],
 									"text" : "Turn up to hear the filtering!"
 								}
 
@@ -191,13 +191,14 @@
 									"enablevscroll" : 0,
 									"id" : "obj-20",
 									"lockeddragscroll" : 0,
+									"lockedsize" : 0,
 									"maxclass" : "bpatcher",
 									"name" : "fl-mono-h.maxpat",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 600.0, 90.0, 45.0 ],
+									"patching_rect" : [ 30.0, 585.0, 90.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -208,7 +209,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 465.0, 269.0, 21.0 ],
+									"patching_rect" : [ 135.0, 450.0, 269.0, 21.0 ],
 									"text" : "Set the argument higher to create more inlets"
 								}
 
@@ -220,7 +221,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 75.0, 664.5, 505.0, 36.0 ],
+									"patching_rect" : [ 90.0, 649.5, 505.0, 36.0 ],
 									"text" : "fl.combinetags~ allows you to set several parameters from separate frames given that FrameLib objects have only one parameter update inlet."
 								}
 
@@ -232,7 +233,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 268.0, 330.0, 159.0, 23.0 ],
+									"patching_rect" : [ 283.0, 315.0, 159.0, 23.0 ],
 									"text" : "fl.map~ linear 0 1 0.7 0.99"
 								}
 
@@ -244,7 +245,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 510.0, 70.0, 23.0 ],
+									"patching_rect" : [ 30.0, 495.0, 70.0, 23.0 ],
 									"text" : "fl.window~"
 								}
 
@@ -257,7 +258,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 105.0, 24.0, 24.0 ]
+									"patching_rect" : [ 30.0, 90.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -268,19 +269,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "bang" ],
-									"patching_rect" : [ 15.0, 150.0, 221.0, 23.0 ],
-									"saved_object_attributes" : 									{
-										"basictuning" : 440,
-										"followglobaltempo" : 0,
-										"formantcorrection" : 0,
-										"mode" : "basic",
-										"originallength" : [ 2708.876190476190459, "ticks" ],
-										"originaltempo" : 120.0,
-										"pitchcorrection" : 0,
-										"quality" : "basic",
-										"timestretch" : [ 0 ]
-									}
-,
+									"patching_rect" : [ 30.0, 135.0, 221.0, 23.0 ],
 									"text" : "sfplay~ @audiofile jongly.aif @loop 1"
 								}
 
@@ -291,7 +280,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 292.0, 420.0, 304.0, 21.0 ],
+									"patching_rect" : [ 307.0, 405.0, 304.0, 21.0 ],
 									"text" : "Combine the tagged frames ready to send to fl.svf~"
 								}
 
@@ -303,7 +292,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 268.0, 285.0, 70.0, 23.0 ],
+									"patching_rect" : [ 283.0, 270.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -315,7 +304,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 86.0, 330.0, 156.0, 23.0 ],
+									"patching_rect" : [ 101.0, 315.0, 156.0, 23.0 ],
 									"text" : "fl.map~ exp 0 1 150 7500"
 								}
 
@@ -327,7 +316,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 660.0, 45.0, 45.0 ]
+									"patching_rect" : [ 30.0, 645.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -338,7 +327,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 268.0, 375.0, 66.0, 23.0 ],
+									"patching_rect" : [ 283.0, 360.0, 66.0, 23.0 ],
 									"text" : "fl.tag~ res"
 								}
 
@@ -350,7 +339,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 86.0, 375.0, 70.0, 23.0 ],
+									"patching_rect" : [ 101.0, 360.0, 70.0, 23.0 ],
 									"text" : "fl.tag~ freq"
 								}
 
@@ -363,7 +352,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 86.0, 420.0, 201.0, 23.0 ],
+									"patching_rect" : [ 101.0, 405.0, 201.0, 23.0 ],
 									"text" : "fl.combinetags~ 2"
 								}
 
@@ -375,7 +364,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 86.0, 285.0, 70.0, 23.0 ],
+									"patching_rect" : [ 101.0, 270.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -387,7 +376,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 555.0, 49.0, 23.0 ],
+									"patching_rect" : [ 30.0, 540.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -400,7 +389,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 240.0, 60.0, 23.0 ],
+									"patching_rect" : [ 30.0, 225.0, 60.0, 23.0 ],
 									"text" : "fl.*~ 0.25"
 								}
 
@@ -413,7 +402,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 465.0, 90.0, 23.0 ],
+									"patching_rect" : [ 30.0, 450.0, 90.0, 23.0 ],
 									"text" : "fl.svf~ 500 0.5"
 								}
 
@@ -426,7 +415,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 150.0, 101.0, 23.0 ],
+									"patching_rect" : [ 300.0, 135.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 1024"
 								}
 
@@ -439,7 +428,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 559.0, 23.0 ],
+									"patching_rect" : [ 30.0, 180.0, 559.0, 23.0 ],
 									"text" : "fl.source~ /length 4096"
 								}
 
@@ -564,7 +553,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
-									"midpoints" : [ 24.5, 264.0, 24.5, 264.0 ],
+									"midpoints" : [ 39.5, 249.0, 39.5, 249.0 ],
 									"order" : 2,
 									"source" : [ "obj-50", 0 ]
 								}
@@ -573,7 +562,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-21", 0 ],
-									"midpoints" : [ 24.5, 279.0, 277.5, 279.0 ],
+									"midpoints" : [ 39.5, 264.0, 292.5, 264.0 ],
 									"order" : 0,
 									"source" : [ "obj-50", 0 ]
 								}
@@ -582,7 +571,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-9", 0 ],
-									"midpoints" : [ 24.5, 279.0, 95.5, 279.0 ],
+									"midpoints" : [ 39.5, 264.0, 110.5, 264.0 ],
 									"order" : 1,
 									"source" : [ "obj-50", 0 ]
 								}
@@ -659,49 +648,29 @@
 		}
 ,
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.source~.mxo",
+				"name" : "fl.combinetags~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.interval~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.svf~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
+				"name" : "fl.map~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -709,7 +678,15 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.combinetags~.mxo",
+				"name" : "fl.sink~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.source~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.svf~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -717,7 +694,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.map~.mxo",
+				"name" : "fl.times~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

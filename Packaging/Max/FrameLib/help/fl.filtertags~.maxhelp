@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            662.0,
-            787.0
+            647.0,
+            688.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            662.0,
-                            761.0
+                            647.0,
+                            662.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -108,7 +108,10 @@
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.filtertags~",
+                                    "jsarguments": [
+                                        "fl.filtertags~",
+                                        106
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -119,8 +122,8 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
-                                        150.0
+                                        617.0,
+                                        140
                                     ]
                                 }
                             },
@@ -144,11 +147,14 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        167.0,
-                                        630.0,
-                                        565.0
+                                        172,
+                                        617.0,
+                                        475.0
                                     ],
-                                    "viewvisibility": 1
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        617.0
+                                    ]
                                 }
                             }
                         ],
@@ -179,8 +185,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -188,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            647.0,
+                            662.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -250,17 +256,17 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
-                            652.0,
-                            761.0
+                            113.0,
+                            647.0,
+                            662.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -500,7 +506,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        92.0,
+                                        75.0,
                                         570.0,
                                         50.0
                                     ],
@@ -579,7 +585,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        452.0,
+                                        420.0,
                                         237.0,
                                         150.0,
                                         36.0
@@ -596,7 +602,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        413.0,
+                                        381.0,
                                         247.375,
                                         37.0,
                                         15.25
@@ -855,7 +861,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        617.0,
                                         75.0
                                     ]
                                 }
@@ -872,9 +878,9 @@
                                     ],
                                     "border": 2,
                                     "bordercolor": [
-                                        0.92549,
-                                        0.364706,
-                                        0.341176,
+                                        1.0,
+                                        0.011764705882353,
+                                        0.011764705882353,
                                         1.0
                                     ],
                                     "id": "obj-32",
@@ -885,10 +891,11 @@
                                     "patching_rect": [
                                         15.0,
                                         195.0,
-                                        390.0,
+                                        345.0,
                                         120.0
                                     ],
-                                    "proportion": 0.5
+                                    "proportion": 0.5,
+                                    "rounded": 16
                                 }
                             }
                         ],

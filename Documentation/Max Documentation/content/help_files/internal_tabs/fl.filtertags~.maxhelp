@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 647.0, 688.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 647.0, 662.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 647.0, 662.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -286,7 +286,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 92.0, 570.0, 50.0 ],
+									"patching_rect" : [ 15.0, 75.0, 570.0, 50.0 ],
 									"text" : "fl.filtertags~ can be used to extract frames tagged with specific names. This allows you to route a subset of tagged frames from a combined tagge input. A case where this might be particularly relevant is to avoid duplicate fl.tags~ everywhere in order to re-use the same values."
 								}
 
@@ -346,7 +346,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 452.0, 237.0, 150.0, 36.0 ],
+									"patching_rect" : [ 420.0, 237.0, 150.0, 36.0 ],
 									"text" : "Create three different frames with tas"
 								}
 
@@ -359,7 +359,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 413.0, 247.375, 37.0, 15.25 ]
+									"patching_rect" : [ 381.0, 247.375, 37.0, 15.25 ]
 								}
 
 							}
@@ -540,14 +540,15 @@
 									"background" : 1,
 									"bgcolor" : [ 0.07843137254902, 0.07843137254902, 0.07843137254902, 0.0 ],
 									"border" : 2,
-									"bordercolor" : [ 0.92549, 0.364706, 0.341176, 1.0 ],
+									"bordercolor" : [ 1.0, 0.011764705882353, 0.011764705882353, 1.0 ],
 									"id" : "obj-32",
 									"maxclass" : "panel",
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 195.0, 390.0, 120.0 ],
-									"proportion" : 0.5
+									"patching_rect" : [ 15.0, 195.0, 345.0, 120.0 ],
+									"proportion" : 0.5,
+									"rounded" : 16
 								}
 
 							}
@@ -766,23 +767,19 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
+				"name" : "fl.combinetags~.mxo",
+				"type" : "iLaX"
 			}
 , 			{
 				"name" : "fl.filtertags~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.tag~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.interval~.mxo",
@@ -793,11 +790,11 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.tomax~.mxo",
+				"name" : "fl.tag~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.combinetags~.mxo",
+				"name" : "fl.tomax~.mxo",
 				"type" : "iLaX"
 			}
  ],

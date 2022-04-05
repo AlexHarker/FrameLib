@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            662.0,
-            787.0
+            721.0,
+            627.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            662.0,
-                            761.0
+                            721.0,
+                            601.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -108,7 +108,10 @@
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.tag~",
+                                    "jsarguments": [
+                                        "fl.tag~",
+                                        119
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -119,8 +122,8 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
-                                        150.0
+                                        691.0,
+                                        125
                                     ]
                                 }
                             },
@@ -144,11 +147,14 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        167.0,
-                                        630.0,
-                                        565.0
+                                        157,
+                                        691.0,
+                                        429.0
                                     ],
-                                    "viewvisibility": 1
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        691.0
+                                    ]
                                 }
                             }
                         ],
@@ -188,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            721.0,
+                            601.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -259,8 +265,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            652.0,
-                            761.0
+                            721.0,
+                            601.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -296,6 +302,23 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "id": "obj-8",
+                                    "linecount": 4,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        306.0,
+                                        450.0,
+                                        375.0,
+                                        65.0
+                                    ],
+                                    "text": "Here fl.tag~ is initialised with 3 strings - freq, res and mode. The inputs that are created when the object is instantiated map to these strings. Each input is then tagged with the appropriate string and sent to the 'parameter update' inlet of fl.svf~.",
+                                    "textjustification": 1
+                                }
+                            },
+                            {
+                                "box": {
                                     "arrows": 1,
                                     "border": 4.0,
                                     "id": "obj-16",
@@ -303,8 +326,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        106.25,
-                                        473.75,
+                                        121.25,
+                                        458.75,
                                         38.75,
                                         18.5
                                     ]
@@ -318,8 +341,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        151.0,
-                                        465.0,
+                                        166.0,
+                                        450.0,
                                         102.0,
                                         36.0
                                     ],
@@ -336,8 +359,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        375.0,
+                                        30.0,
+                                        360.0,
                                         127.0,
                                         23.0
                                     ],
@@ -366,8 +389,8 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        466.25,
+                                        30.0,
+                                        451.25,
                                         101.0,
                                         45.0
                                     ],
@@ -384,8 +407,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        195.0,
+                                        30.0,
+                                        180.0,
                                         112.0,
                                         23.0
                                     ],
@@ -400,8 +423,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        541.25,
+                                        30.0,
+                                        526.25,
                                         45.0,
                                         45.0
                                     ]
@@ -419,8 +442,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        348.0,
-                                        420.0,
+                                        438.0,
+                                        405.0,
                                         50.0,
                                         23.0
                                     ]
@@ -436,8 +459,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        348.0,
-                                        375.0,
+                                        438.0,
+                                        360.0,
                                         62.0,
                                         23.0
                                     ],
@@ -457,8 +480,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        279.0,
-                                        420.0,
+                                        369.0,
+                                        405.0,
                                         50.0,
                                         23.0
                                     ]
@@ -474,8 +497,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        279.0,
-                                        375.0,
+                                        369.0,
+                                        360.0,
                                         62.0,
                                         23.0
                                     ],
@@ -495,8 +518,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        210.0,
-                                        420.0,
+                                        300.0,
+                                        405.0,
                                         50.0,
                                         23.0
                                     ]
@@ -512,8 +535,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        210.0,
-                                        375.0,
+                                        300.0,
+                                        360.0,
                                         62.0,
                                         23.0
                                     ],
@@ -532,8 +555,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        210.0,
-                                        330.0,
+                                        300.0,
+                                        315.0,
                                         157.0,
                                         23.0
                                     ],
@@ -543,17 +566,17 @@
                             {
                                 "box": {
                                     "id": "obj-92",
-                                    "linecount": 8,
+                                    "linecount": 3,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        270.0,
-                                        465.0,
-                                        363.5,
-                                        123.0
+                                        300.0,
+                                        526.0,
+                                        345.0,
+                                        50.0
                                     ],
-                                    "text": "fl.tag~ is initialised with 3 strings - freq, res and mode. The inputs that are created when the object is instantiated map to these names. Each input is then tagged with the appropriate name and is sent to the 'parameter update' inlet of fl.svf~.\n\nThe first parameter controls the frequency of the filter.\nThe second parameter controls the resonance of the filter.\nThe third parameter changes the mode of the filter. "
+                                    "text": "The first parameter controls the frequency of the filter.\nThe second parameter controls the resonance of the filter.\nThe third parameter changes the mode of the filter. "
                                 }
                             },
                             {
@@ -566,8 +589,8 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        420.0,
+                                        30.0,
+                                        405.0,
                                         49.0,
                                         23.0
                                     ],
@@ -584,8 +607,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        394.0,
-                                        240.0,
+                                        484.0,
+                                        225.0,
                                         55.0,
                                         23.0
                                     ],
@@ -602,8 +625,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        394.0,
-                                        195.0,
+                                        484.0,
+                                        180.0,
                                         68.0,
                                         23.0
                                     ],
@@ -620,8 +643,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        394.0,
-                                        150.0,
+                                        484.0,
+                                        135.0,
                                         70.0,
                                         23.0
                                     ],
@@ -638,8 +661,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        302.0,
-                                        150.0,
+                                        392.0,
+                                        135.0,
                                         70.0,
                                         23.0
                                     ],
@@ -656,8 +679,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        210.0,
-                                        240.0,
+                                        300.0,
+                                        225.0,
                                         75.0,
                                         23.0
                                     ],
@@ -674,8 +697,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        210.0,
-                                        195.0,
+                                        300.0,
+                                        180.0,
                                         90.0,
                                         23.0
                                     ],
@@ -692,8 +715,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        210.0,
-                                        150.0,
+                                        300.0,
+                                        135.0,
                                         70.0,
                                         23.0
                                     ],
@@ -710,8 +733,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        105.0,
+                                        30.0,
+                                        90.0,
                                         101.0,
                                         23.0
                                     ],
@@ -728,8 +751,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        150.0,
+                                        30.0,
+                                        135.0,
                                         145.0,
                                         23.0
                                     ],
@@ -746,8 +769,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        330.0,
+                                        30.0,
+                                        315.0,
                                         43.0,
                                         23.0
                                     ],
@@ -770,8 +793,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        210.0,
-                                        285.0,
+                                        300.0,
+                                        270.0,
                                         387.0,
                                         23.0
                                     ],
@@ -795,7 +818,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        691.0,
                                         75.0
                                     ]
                                 }
@@ -857,10 +880,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        129.0,
-                                        24.5,
-                                        129.0
+                                        39.5,
+                                        114.0,
+                                        39.5,
+                                        114.0
                                     ],
                                     "order": 3,
                                     "source": [
@@ -876,10 +899,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        138.5,
-                                        219.5,
-                                        138.5
+                                        39.5,
+                                        123.5,
+                                        309.5,
+                                        123.5
                                     ],
                                     "order": 2,
                                     "source": [
@@ -895,10 +918,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        138.5,
-                                        311.5,
-                                        138.5
+                                        39.5,
+                                        123.5,
+                                        401.5,
+                                        123.5
                                     ],
                                     "order": 1,
                                     "source": [
@@ -914,10 +937,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        138.5,
-                                        403.5,
-                                        138.5
+                                        39.5,
+                                        123.5,
+                                        493.5,
+                                        123.5
                                     ],
                                     "order": 0,
                                     "source": [
@@ -1005,10 +1028,10 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        525.75,
-                                        50.5,
-                                        525.75
+                                        39.5,
+                                        510.75,
+                                        65.5,
+                                        510.75
                                     ],
                                     "order": 0,
                                     "source": [
@@ -1024,10 +1047,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        525.75,
-                                        24.5,
-                                        525.75
+                                        39.5,
+                                        510.75,
+                                        39.5,
+                                        510.75
                                     ],
                                     "order": 1,
                                     "source": [
@@ -1067,10 +1090,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        468.5,
-                                        24.5,
-                                        468.5
+                                        39.5,
+                                        453.5,
+                                        39.5,
+                                        453.5
                                     ],
                                     "source": [
                                         "obj-44",
@@ -1097,10 +1120,10 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        219.5,
-                                        318.0,
-                                        48.5,
-                                        318.0
+                                        309.5,
+                                        303.0,
+                                        63.5,
+                                        303.0
                                     ],
                                     "order": 1,
                                     "source": [

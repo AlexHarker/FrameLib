@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 667.0, 755.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 667.0, 729.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -88,11 +88,26 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"fontname" : "Arial",
+									"id" : "obj-4",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 136.5, 540.0, 390.0, 36.0 ],
+									"presentation_linecount" : 2,
+									"text" : "Although the input to the first inlet is running faster the output here only updates when the second input fires",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-35",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 390.0, 255.0, 110.0, 21.0 ],
+									"patching_rect" : [ 405.0, 300.0, 110.0, 21.0 ],
 									"text" : "Set the first string"
 								}
 
@@ -104,8 +119,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 135.0, 293.5, 406.0, 36.0 ],
-									"text" : "Note that we set the padding (number of digits padding with leading zeros) differently for each input, as well as which inputs trigger output"
+									"patching_rect" : [ 135.0, 338.5, 406.0, 36.0 ],
+									"text" : "Note that we set the padding (number of digits padding with leading zeros) differently for each input, as well as which inputs trigger output",
+									"textjustification" : 1
 								}
 
 							}
@@ -116,7 +132,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 49.0, 23.0 ],
+									"patching_rect" : [ 30.0, 239.999999999999972, 49.0, 23.0 ],
 									"text" : "fl.*~ 20"
 								}
 
@@ -129,7 +145,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 184.5, 150.0, 70.0, 23.0 ],
+									"patching_rect" : [ 199.5, 194.999999999999972, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -141,7 +157,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 184.5, 195.0, 57.0, 23.0 ],
+									"patching_rect" : [ 199.5, 239.999999999999972, 57.0, 23.0 ],
 									"text" : "fl.*~ 200"
 								}
 
@@ -153,7 +169,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.000000000000028, 149.0, 23.0 ],
+									"patching_rect" : [ 30.0, 150.0, 149.0, 23.0 ],
 									"text" : "fl.interval~ 0.02 seconds"
 								}
 
@@ -166,7 +182,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 70.0, 23.0 ],
+									"patching_rect" : [ 30.0, 194.999999999999972, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -179,7 +195,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 157.0, 379.0, 30.0, 11.0 ]
+									"patching_rect" : [ 172.0, 424.0, 30.0, 11.0 ]
 								}
 
 							}
@@ -189,7 +205,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 376.0, 92.0, 21.0 ],
+									"patching_rect" : [ 210.0, 421.0, 92.0, 21.0 ],
 									"text" : "Current output"
 								}
 
@@ -202,7 +218,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 375.0, 134.0, 23.0 ],
+									"patching_rect" : [ 30.0, 420.0, 134.0, 23.0 ],
 									"text" : "buffer bat.0000.175"
 								}
 
@@ -214,7 +230,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 287.5, 105.000000000000028, 142.0, 23.0 ],
+									"patching_rect" : [ 302.5, 150.0, 142.0, 23.0 ],
 									"text" : "fl.interval~ 0.2 seconds"
 								}
 
@@ -227,7 +243,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 306.5, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 351.5, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -240,7 +256,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 287.5, 150.0, 70.0, 23.0 ],
+									"patching_rect" : [ 302.5, 194.999999999999972, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -254,7 +270,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 255.0, 358.0, 23.0 ],
+									"patching_rect" : [ 30.0, 300.0, 358.0, 23.0 ],
 									"text" : "fl.makestring~ buffer _ . in1 . in2 /padding 4 2 /trigger_ins 0 1"
 								}
 
@@ -267,7 +283,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 287.5, 195.0, 317.0, 23.0 ],
+									"patching_rect" : [ 302.5, 239.999999999999972, 317.0, 23.0 ],
 									"text" : "fl.lookupstring~ item_01 foo bar bat /scale normalised"
 								}
 
@@ -284,7 +300,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 15.0, 435.0, 75.0 ]
+									"patching_rect" : [ 15.0, 15.0, 630.0, 75.0 ]
 								}
 
 							}
@@ -292,12 +308,13 @@
 								"box" : 								{
 									"fontname" : "Arial",
 									"id" : "obj-28",
-									"linecount" : 5,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 420.0, 600.0, 79.0 ],
-									"text" : "The above demo shows some details of fl.makestring~, including dynamically altering strings via parameters, padding numbers and setting the inputs that will trigger output.\n\nAlthough the input to the first inlet is running faster the output here only updates when the second input fires"
+									"patching_rect" : [ 30.0, 495.0, 603.0, 36.0 ],
+									"text" : "The above demo shows some details of fl.makestring~, including dynamically altering strings via parameters, padding numbers and setting the inputs that will trigger output.",
+									"textjustification" : 1
 								}
 
 							}
@@ -308,7 +325,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 525.0, 45.0, 45.0 ]
+									"patching_rect" : [ 309.0, 621.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -358,7 +375,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 1 ],
-									"midpoints" : [ 24.5, 351.75, 139.5, 351.75 ],
+									"midpoints" : [ 39.5, 396.75, 154.5, 396.75 ],
 									"source" : [ "obj-5", 0 ]
 								}
 
@@ -374,7 +391,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-30", 0 ],
-									"midpoints" : [ 297.0, 141.000000000000028, 194.0, 141.000000000000028 ],
+									"midpoints" : [ 312.0, 186.0, 209.0, 186.0 ],
 									"order" : 1,
 									"source" : [ "obj-6", 0 ]
 								}
@@ -390,7 +407,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-7", 2 ],
-									"midpoints" : [ 297.0, 236.0, 363.5, 236.0 ],
+									"midpoints" : [ 312.0, 281.0, 378.5, 281.0 ],
 									"source" : [ "obj-8", 0 ]
 								}
 
@@ -457,7 +474,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 667.0, 729.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -519,7 +536,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 667.0, 729.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -554,7 +571,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 337.0, 211.0, 189.0, 21.0 ],
+									"patching_rect" : [ 352.0, 198.0, 189.0, 21.0 ],
 									"text" : "Add one to go between 1 and 5"
 								}
 
@@ -566,7 +583,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 210.0, 45.0, 23.0 ],
+									"patching_rect" : [ 300.0, 197.0, 45.0, 23.0 ],
 									"text" : "fl.+~ 1"
 								}
 
@@ -579,7 +596,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 294.0, 696.0, 30.0, 11.0 ]
+									"patching_rect" : [ 309.0, 672.0, 30.0, 11.0 ]
 								}
 
 							}
@@ -589,7 +606,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 691.0, 230.0, 21.0 ],
+									"patching_rect" : [ 345.0, 667.0, 230.0, 21.0 ],
 									"text" : "Look inside to see the samples loaded"
 								}
 
@@ -600,7 +617,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 71.5, 329.5, 132.0, 21.0 ],
+									"patching_rect" : [ 86.5, 316.5, 132.0, 21.0 ],
 									"text" : "Sets the buffer to use"
 								}
 
@@ -612,7 +629,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 324.0, 323.0, 301.0, 36.0 ],
+									"patching_rect" : [ 339.0, 310.0, 298.0, 36.0 ],
 									"text" : "- use in1, in2 - inx for input numbers\n- string inputs will be concatenated with no spaces"
 								}
 
@@ -624,7 +641,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 61.5, 495.0, 495.0, 79.0 ],
+									"patching_rect" : [ 76.5, 482.0, 495.0, 79.0 ],
 									"text" : "The simplest operation is just to change one numeric part of a string, perhaps to determine which element of a polybuffer~ to access (as in this example).\n\nHowever, strings can be combined from multiple elements with control of numerical padding"
 								}
 
@@ -635,7 +652,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 312.0, 300.0, 257.0, 21.0 ],
+									"patching_rect" : [ 327.0, 287.0, 257.0, 21.0 ],
 									"text" : "Arguments set the output tag and elements"
 								}
 
@@ -648,7 +665,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 312.0, 448.0, 30.0, 11.0 ]
+									"patching_rect" : [ 327.0, 435.0, 30.0, 11.0 ]
 								}
 
 							}
@@ -658,7 +675,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 350.0, 445.0, 232.0, 21.0 ],
+									"patching_rect" : [ 365.0, 432.0, 232.0, 21.0 ],
 									"text" : "Cycles through the polybuffer~"
 								}
 
@@ -671,8 +688,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 145.0, 443.0, 159.0, 23.0 ],
-									"text" : "buffer fl-help-ms-polybuf.1"
+									"patching_rect" : [ 160.0, 430.0, 159.0, 23.0 ],
+									"text" : "buffer fl-help-ms-polybuf.5"
 								}
 
 							}
@@ -684,7 +701,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 383.0, 62.0, 23.0 ],
+									"patching_rect" : [ 300.0, 370.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -697,7 +714,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 443.0, 49.0, 23.0 ],
+									"patching_rect" : [ 30.0, 430.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -710,7 +727,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 383.0, 229.0, 23.0 ],
+									"patching_rect" : [ 30.0, 370.0, 229.0, 23.0 ],
 									"text" : "fl.window~ trapezoid /parameters 2 80"
 								}
 
@@ -723,7 +740,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 165.0, 245.0, 23.0 ],
+									"patching_rect" : [ 30.0, 152.0, 245.0, 23.0 ],
 									"text" : "fl.ramp~ /length 2000 /scale ms /units ms"
 								}
 
@@ -736,7 +753,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 122.0, 23.0 ],
+									"patching_rect" : [ 30.0, 92.0, 122.0, 23.0 ],
 									"text" : "fl.interval~ 1400 ms"
 								}
 
@@ -749,7 +766,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 165.0, 149.0, 23.0 ],
+									"patching_rect" : [ 300.0, 152.0, 149.0, 23.0 ],
 									"text" : "fl.ticks~ 5 up /mode loop"
 								}
 
@@ -762,7 +779,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 329.5, 52.0, 23.0 ],
+									"patching_rect" : [ 30.0, 316.5, 52.0, 23.0 ],
 									"text" : "fl.read~"
 								}
 
@@ -776,7 +793,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 255.0, 258.0, 23.0 ],
+									"patching_rect" : [ 300.0, 242.0, 258.0, 23.0 ],
 									"text" : "fl.makestring~ buffer fl-help-ms-polybuf. in1"
 								}
 
@@ -789,7 +806,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 111.0, 601.0, 30.0, 11.0 ]
+									"patching_rect" : [ 126.0, 588.0, 30.0, 11.0 ]
 								}
 
 							}
@@ -799,7 +816,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 596.0, 221.0, 21.0 ],
+									"patching_rect" : [ 165.0, 583.0, 221.0, 21.0 ],
 									"text" : "Turn up to hear the different samples"
 								}
 
@@ -820,7 +837,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 593.0, 90.0, 45.0 ],
+									"patching_rect" : [ 30.0, 580.0, 90.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -832,7 +849,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 668.0, 45.0, 45.0 ]
+									"patching_rect" : [ 30.0, 655.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -851,7 +868,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
-									"patching_rect" : [ 105.0, 690.0, 180.0, 23.0 ],
+									"patching_rect" : [ 120.0, 666.0, 180.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"embed" : 1
 									}
@@ -911,7 +928,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
-									"midpoints" : [ 24.5, 149.5, 294.5, 149.5 ],
+									"midpoints" : [ 39.5, 136.5, 309.5, 136.5 ],
 									"order" : 0,
 									"source" : [ "obj-24", 0 ]
 								}
@@ -927,7 +944,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-26", 1 ],
-									"midpoints" : [ 294.5, 285.0, 57.5, 285.0 ],
+									"midpoints" : [ 309.5, 272.0, 72.5, 272.0 ],
 									"order" : 1,
 									"source" : [ "obj-27", 0 ]
 								}
