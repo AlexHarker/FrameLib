@@ -37,7 +37,7 @@ def detail_lines(docs: Documentation, name: str, width: int) -> int:
     tree = et.parse(docs.refpages_dir / "framelib-ref" / (name + ".maxref.xml"))  # parse the xml file
     root = tree.getroot()
 
-    description = root.find("description").text.strip()
+    description = "".join(root.find("description").itertext()).strip()
 
     pattern = r".{1," + str(width) + r"}(\s|$)|\S+?(\s|$)";
 
@@ -89,7 +89,6 @@ def resize_help(docs: Documentation, path: str, width: float, height: float, det
     for item in outer_boxes:
         inner_patch = item["box"]["patcher"]
         resize_patch(inner_patch, width, height - height_reduce, pad, num_characters, lines, True)
-
 
     # Resize parameter detail bpatchers
 
