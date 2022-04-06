@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 656.0, 546.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 656.0, 520.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 656.0, 520.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -150,60 +150,171 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-35",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 92.875, 485.0, 31.25, 17.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-34",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 129.0, 483.0, 55.0, 21.0 ],
-									"presentation_linecount" : 2,
-									"text" : "Kurtosis"
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"hidden" : 1,
 									"id" : "obj-5",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 68.0, 549.0, 569.0, 21.0 ],
-									"presentation_linecount" : 2,
-									"text" : "fl.kurtosis~ can be applied to the magnitudes of an FFT to look at the spectral kurtosis of a sound."
-								}
+									"maxclass" : "newobj",
+									"numinlets" : 0,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patcher" : 									{
+										"fileversion" : 1,
+										"appversion" : 										{
+											"major" : 8,
+											"minor" : 3,
+											"revision" : 0,
+											"architecture" : "x64",
+											"modernui" : 1
+										}
+,
+										"classnamespace" : "box",
+										"rect" : [ 59.0, 106.0, 280.0, 281.0 ],
+										"bglocked" : 0,
+										"openinpresentation" : 0,
+										"default_fontsize" : 12.0,
+										"default_fontface" : 0,
+										"default_fontname" : "Arial",
+										"gridonopen" : 1,
+										"gridsize" : [ 15.0, 15.0 ],
+										"gridsnaponopen" : 1,
+										"objectsnaponopen" : 1,
+										"statusbarvisible" : 2,
+										"toolbarvisible" : 1,
+										"lefttoolbarpinned" : 0,
+										"toptoolbarpinned" : 0,
+										"righttoolbarpinned" : 0,
+										"bottomtoolbarpinned" : 0,
+										"toolbars_unpinned_last_save" : 0,
+										"tallnewobj" : 0,
+										"boxanimatetime" : 200,
+										"enablehscroll" : 1,
+										"enablevscroll" : 1,
+										"devicewidth" : 0.0,
+										"description" : "",
+										"digest" : "",
+										"tags" : "",
+										"style" : "",
+										"subpatcher_template" : "",
+										"assistshowspatchername" : 0,
+										"boxes" : [ 											{
+												"box" : 												{
+													"id" : "obj-6",
+													"maxclass" : "newobj",
+													"numinlets" : 2,
+													"numoutlets" : 3,
+													"outlettype" : [ "bang", "bang", "int" ],
+													"patching_rect" : [ 62.0, 107.799999999999997, 41.0, 22.0 ],
+													"text" : "uzi 16"
+												}
 
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-1",
-									"local" : 1,
-									"maxclass" : "ezdac~",
-									"numinlets" : 2,
-									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 525.0, 45.0, 45.0 ]
-								}
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-5",
+													"maxclass" : "newobj",
+													"numinlets" : 1,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 62.0, 69.400000000000006, 54.0, 22.0 ],
+													"text" : "deferlow"
+												}
 
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-24",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 347.875, 37.0, 15.25 ]
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-4",
+													"maxclass" : "newobj",
+													"numinlets" : 1,
+													"numoutlets" : 1,
+													"outlettype" : [ "bang" ],
+													"patching_rect" : [ 62.0, 31.0, 58.0, 22.0 ],
+													"text" : "loadbang"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-3",
+													"maxclass" : "newobj",
+													"numinlets" : 2,
+													"numoutlets" : 2,
+													"outlettype" : [ "", "" ],
+													"patching_rect" : [ 62.0, 184.599999999999994, 68.0, 22.0 ],
+													"text" : "zl group 16"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-2",
+													"maxclass" : "newobj",
+													"numinlets" : 1,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 62.0, 146.199999999999989, 177.0, 22.0 ],
+													"text" : "expr random(0\\, 10000) / 10000."
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"comment" : "List",
+													"id" : "obj-1",
+													"index" : 1,
+													"maxclass" : "outlet",
+													"numinlets" : 1,
+													"numoutlets" : 0,
+													"patching_rect" : [ 62.0, 223.0, 30.0, 30.0 ]
+												}
+
+											}
+ ],
+										"lines" : [ 											{
+												"patchline" : 												{
+													"destination" : [ "obj-3", 0 ],
+													"source" : [ "obj-2", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-1", 0 ],
+													"source" : [ "obj-3", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-5", 0 ],
+													"source" : [ "obj-4", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-6", 0 ],
+													"source" : [ "obj-5", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-2", 0 ],
+													"source" : [ "obj-6", 0 ]
+												}
+
+											}
+ ]
+									}
+,
+									"patching_rect" : [ 30.0, 60.0, 87.0, 23.0 ],
+									"saved_object_attributes" : 									{
+										"description" : "",
+										"digest" : "",
+										"globalpatchername" : "",
+										"tags" : ""
+									}
+,
+									"text" : "p random_list"
 								}
 
 							}
@@ -215,7 +326,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 165.0, 37.0, 15.25 ]
+									"patching_rect" : [ 270.0, 142.375, 37.0, 15.25 ]
 								}
 
 							}
@@ -226,15 +337,64 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 310.0, 154.625, 217.0, 36.0 ],
-									"presentation_linecount" : 2,
+									"patching_rect" : [ 310.0, 132.0, 217.0, 36.0 ],
 									"text" : "Create your own frame. Experiment with different shapes!"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"candycane" : 8,
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-35",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 107.875, 460.0, 31.25, 17.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-34",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 144.0, 458.0, 55.0, 21.0 ],
+									"text" : "Kurtosis"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 405.0, 446.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-24",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 105.0, 332.875, 37.0, 15.25 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"candicane2" : [ 0.952941176470588, 0.564705882352941, 0.098039215686275, 1.0 ],
+									"candicane3" : [ 0.0, 0.588235294117647, 1.0, 1.0 ],
+									"candicane4" : [ 0.96078431372549, 0.827450980392157, 0.156862745098039, 1.0 ],
+									"candicane6" : [ 0.317647058823529, 0.654901960784314, 0.976470588235294, 1.0 ],
+									"candycane" : 4,
 									"contdata" : 1,
 									"ghostbar" : 45,
 									"id" : "obj-20",
@@ -243,9 +403,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 105.0, 240.0, 120.0 ],
+									"patching_rect" : [ 30.0, 90.0, 225.0, 120.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 32,
+									"setstyle" : 1,
+									"size" : 16,
+									"slidercolor" : [ 0.635294117647059, 0.870588235294118, 0.498039215686275, 1.0 ],
 									"spacing" : 2,
 									"thickness" : 1
 								}
@@ -258,7 +420,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 240.0, 75.0, 23.0 ],
+									"patching_rect" : [ 75.0, 225.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -270,7 +432,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 77.0, 23.0 ],
+									"patching_rect" : [ 30.0, 270.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -284,7 +446,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 480.0, 75.0, 23.0 ]
+									"patching_rect" : [ 30.0, 455.0, 75.0, 23.0 ]
 								}
 
 							}
@@ -295,20 +457,20 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 416.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 390.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"color" : [ 0.960784, 0.827451, 0.156863, 1.0 ],
+									"color" : [ 0.952941176470588, 0.564705882352941, 0.098039215686275, 1.0 ],
 									"id" : "obj-4",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 345.0, 71.0, 23.0 ],
+									"patching_rect" : [ 30.0, 330.0, 71.0, 23.0 ],
 									"text" : "fl.kurtosis~"
 								}
 
@@ -316,12 +478,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-2",
-									"linecount" : 13,
+									"linecount" : 12,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 140.0, 258.0, 497.0, 195.0 ],
-									"text" : "Kurtosis is a statistical measure of the shape of a distritbuion used to describe the degree to which scores cluster in the tails of a distribution. \n\nThe peak is the tallest part of the distribution, and the tails are the ends of the distribution. When the kurtosis is close to a value of 3 it means the distribution of the data is 'mesokurtic'. This is a way of saying that the data is the same as the normal distribution. \n\nValues less than this indicate that the data has thin tails (platykurtic), and is perhaps flat-topped in shape (lacks outliers). \n\nHigher values indicate that more of the values are located in the tails of the distribution (leptokurtic)."
+									"patching_rect" : [ 165.0, 240.0, 460.0, 181.0 ],
+									"text" : "Kurtosis is a statistical measure of the shape of a distritbuion used to describe the degree to which scores cluster in the tails of a distribution. \n\nThe peak is the tallest part of the distribution, and the tails are the ends of the distribution. When the kurtosis is close to a value of 3 it means the distribution of the data is 'mesokurtic' (has the kutosis of the normal distribution.)\n\nValues less than this indicate that the data has thin tails (platykurtic), and is perhaps flat-topped in shape (lacks outliers). \n\nHigher values indicate that more of the values are located in the tails of the distribution (leptokurtic).",
+									"textjustification" : 1
 								}
 
 							}
@@ -352,7 +515,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-17", 0 ],
-									"midpoints" : [ 69.5, 273.5, 24.5, 273.5 ],
+									"midpoints" : [ 84.5, 258.5, 39.5, 258.5 ],
 									"source" : [ "obj-19", 0 ]
 								}
 
@@ -368,6 +531,14 @@
 								"patchline" : 								{
 									"destination" : [ "obj-7", 0 ],
 									"source" : [ "obj-4", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-20", 0 ],
+									"hidden" : 1,
+									"source" : [ "obj-5", 0 ]
 								}
 
 							}
@@ -426,9 +597,13 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
+				"name" : "fl.frommax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
@@ -437,19 +612,11 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "fl.perblock~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
 				"type" : "iLaX"
 			}
  ],

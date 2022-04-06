@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 654.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 685.0, 588.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 654.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 685.0, 562.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -93,7 +93,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 105.0, 151.0, 36.0 ],
+									"patching_rect" : [ 49.0, 90.0, 151.0, 36.0 ],
 									"text" : "Autocorrelate the output of the tri~ oscillator"
 								}
 
@@ -101,12 +101,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-28",
-									"linecount" : 3,
+									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 525.0, 600.0, 50.0 ],
-									"text" : "By passing the same input to both sides we can look at the autocorrelation of the signal. Here the autocorrelation clearly shows the repetitive nature of the waveform, and this could form the basis for a pitch detection system, or similar."
+									"patching_rect" : [ 45.0, 465.0, 600.0, 65.0 ],
+									"text" : "By passing the same input to both sides we can look at the autocorrelation of the signal. \n\nHere the autocorrelation clearly shows the repetitive nature of the waveform which might form the basis for a pitch detection system, or similar.",
+									"textjustification" : 1
 								}
 
 							}
@@ -116,7 +117,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 496.0, 437.0, 96.0, 21.0 ],
+									"patching_rect" : [ 525.0, 394.5, 96.0, 21.0 ],
 									"text" : "Autocorrelation"
 								}
 
@@ -127,7 +128,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 495.0, 285.0, 89.0, 21.0 ],
+									"patching_rect" : [ 525.0, 259.5, 89.0, 21.0 ],
 									"text" : "Triangle wave"
 								}
 
@@ -141,8 +142,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 176.0, 240.0, 300.0, 115.0 ],
-									"size" : 400
+									"patching_rect" : [ 210.0, 225.0, 300.0, 90.0 ],
+									"setstyle" : 1,
+									"signed" : 1,
+									"size" : 400,
+									"slidercolor" : [ 0.701960784313725, 0.415686274509804, 0.886274509803922, 1.0 ]
 								}
 
 							}
@@ -153,7 +157,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 175.0, 195.0, 62.0, 23.0 ],
+									"patching_rect" : [ 209.0, 180.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -165,7 +169,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 300.0, 30.0, 23.0 ],
+									"patching_rect" : [ 49.0, 270.0, 64.0, 23.0 ],
 									"text" : "fl./~"
 								}
 
@@ -177,7 +181,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 255.0, 84.0, 23.0 ],
+									"patching_rect" : [ 94.0, 225.0, 84.0, 23.0 ],
 									"text" : "fl.framemax~"
 								}
 
@@ -189,7 +193,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 175.0, 105.0, 52.0, 23.0 ],
+									"patching_rect" : [ 209.0, 90.0, 52.0, 23.0 ],
 									"text" : "tri~ 400"
 								}
 
@@ -201,7 +205,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 175.0, 150.0, 199.0, 23.0 ],
+									"patching_rect" : [ 209.0, 135.0, 199.0, 23.0 ],
 									"text" : "fl.source~ /length 400"
 								}
 
@@ -229,7 +233,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 460.0, 45.0, 45.0 ]
+									"patching_rect" : [ 60.0, 382.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -242,8 +246,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 176.0, 390.0, 300.0, 115.0 ],
-									"size" : 799
+									"patching_rect" : [ 210.0, 360.0, 300.0, 90.0 ],
+									"setstyle" : 1,
+									"signed" : 1,
+									"size" : 799,
+									"slidercolor" : [ 0.701960784313725, 0.415686274509804, 0.886274509803922, 1.0 ]
 								}
 
 							}
@@ -254,7 +261,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 345.0, 62.0, 23.0 ],
+									"patching_rect" : [ 49.0, 315.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -268,7 +275,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 265.0, 105.0, 122.0, 23.0 ],
+									"patching_rect" : [ 299.0, 90.0, 122.0, 23.0 ],
 									"text" : "fl.interval~ 1000 ms"
 								}
 
@@ -283,7 +290,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 210.0, 77.0, 23.0 ],
+									"patching_rect" : [ 49.0, 180.0, 77.0, 23.0 ],
 									"text" : "fl.correlate~"
 								}
 
@@ -292,7 +299,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"midpoints" : [ 24.5, 378.5, 185.5, 378.5 ],
+									"midpoints" : [ 58.5, 348.5, 219.5, 348.5 ],
 									"source" : [ "obj-2", 0 ]
 								}
 
@@ -314,7 +321,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-7", 0 ],
-									"midpoints" : [ 24.5, 243.5, 69.5, 243.5 ],
+									"midpoints" : [ 58.5, 213.5, 103.5, 213.5 ],
 									"order" : 0,
 									"source" : [ "obj-31", 0 ]
 								}
@@ -339,7 +346,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-31", 1 ],
-									"midpoints" : [ 184.5, 185.0, 82.5, 185.0 ],
+									"midpoints" : [ 218.5, 168.5, 116.5, 168.5 ],
 									"order" : 1,
 									"source" : [ "obj-4", 0 ]
 								}
@@ -348,7 +355,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-31", 0 ],
-									"midpoints" : [ 184.5, 184.0, 24.5, 184.0 ],
+									"midpoints" : [ 218.5, 168.5, 58.5, 168.5 ],
 									"order" : 2,
 									"source" : [ "obj-4", 0 ]
 								}
@@ -364,7 +371,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 1 ],
-									"midpoints" : [ 69.5, 288.5, 35.5, 288.5 ],
 									"source" : [ "obj-7", 0 ]
 								}
 
@@ -501,7 +507,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 654.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 685.0, 562.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -542,7 +548,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 15.0, 435.0, 75.0 ]
+									"patching_rect" : [ 15.0, 15.0, 645.0, 75.0 ]
 								}
 
 							}
@@ -553,7 +559,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 540.0, 45.0, 45.0 ]
+									"patching_rect" : [ 585.0, 405.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -564,8 +570,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 465.0, 564.0, 50.0 ],
-									"text" : "There are several edge behaviours for the correlation process. Here we view linear, wrap and circular. Note that the output of linear is longer than the other two, and that wrap and circular are rotations of one another. Full details can be found by sending the info messages to fl.correlate~."
+									"patching_rect" : [ 55.5, 480.0, 564.0, 50.0 ],
+									"text" : "There are several edge behaviours for the correlation process. Here we view linear, wrap and circular. Note that the output of linear is longer than the other two, and that wrap and circular are rotations of one another. Full details can be found by sending the info messages to fl.correlate~.",
+									"textjustification" : 1
 								}
 
 							}
@@ -578,9 +585,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 345.0, 375.0, 156.0, 75.0 ],
+									"patching_rect" : [ 390.0, 390.0, 156.0, 75.0 ],
 									"setminmax" : [ 0.0, 20.0 ],
-									"size" : 100
+									"setstyle" : 1,
+									"size" : 100,
+									"slidercolor" : [ 0.701960784313725, 0.415686274509804, 0.886274509803922, 1.0 ]
 								}
 
 							}
@@ -591,7 +600,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 345.0, 330.0, 62.0, 23.0 ],
+									"patching_rect" : [ 390.0, 345.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -605,9 +614,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 180.0, 375.0, 156.0, 75.0 ],
+									"patching_rect" : [ 225.0, 390.0, 156.0, 75.0 ],
 									"setminmax" : [ 0.0, 20.0 ],
-									"size" : 100
+									"setstyle" : 1,
+									"size" : 100,
+									"slidercolor" : [ 0.701960784313725, 0.415686274509804, 0.886274509803922, 1.0 ]
 								}
 
 							}
@@ -618,7 +629,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 180.0, 330.0, 62.0, 23.0 ],
+									"patching_rect" : [ 225.0, 345.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -633,7 +644,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 345.0, 285.0, 165.0, 23.0 ],
+									"patching_rect" : [ 390.0, 300.0, 165.0, 23.0 ],
 									"text" : "fl.correlate~ /edges circular"
 								}
 
@@ -648,7 +659,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 180.0, 285.0, 151.0, 23.0 ],
+									"patching_rect" : [ 225.0, 300.0, 151.0, 23.0 ],
 									"text" : "fl.correlate~ /edges wrap"
 								}
 
@@ -662,9 +673,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 375.0, 156.0, 75.0 ],
+									"patching_rect" : [ 60.0, 390.0, 156.0, 75.0 ],
 									"setminmax" : [ 0.0, 20.0 ],
-									"size" : 131
+									"setstyle" : 1,
+									"size" : 131,
+									"slidercolor" : [ 0.701960784313725, 0.415686274509804, 0.886274509803922, 1.0 ]
 								}
 
 							}
@@ -675,7 +688,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 330.0, 62.0, 23.0 ],
+									"patching_rect" : [ 60.0, 345.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -687,7 +700,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 255.0, 165.0, 131.0, 23.0 ],
+									"patching_rect" : [ 300.0, 180.0, 131.0, 23.0 ],
 									"text" : "fl.random~ /length 20"
 								}
 
@@ -699,7 +712,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 405.0, 165.0, 162.0, 23.0 ],
+									"patching_rect" : [ 450.0, 180.0, 162.0, 23.0 ],
 									"text" : "fl.makewindow~ /length 32"
 								}
 
@@ -711,7 +724,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 165.0, 229.0, 23.0 ],
+									"patching_rect" : [ 60.0, 180.0, 229.0, 23.0 ],
 									"text" : "fl.ramp~ /length 100 /scale normalised"
 								}
 
@@ -726,7 +739,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 210.0, 169.0, 23.0 ],
+									"patching_rect" : [ 60.0, 225.0, 169.0, 23.0 ],
 									"text" : "fl.lookup~ /scale normalised"
 								}
 
@@ -740,7 +753,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 114.0, 23.0 ],
+									"patching_rect" : [ 60.0, 120.0, 114.0, 23.0 ],
 									"text" : "fl.interval~ 500 ms"
 								}
 
@@ -755,7 +768,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 155.0, 23.0 ],
+									"patching_rect" : [ 60.0, 300.0, 155.0, 23.0 ],
 									"text" : "fl.correlate~ /edges linear"
 								}
 
@@ -764,7 +777,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 1 ],
-									"midpoints" : [ 264.5, 198.5, 99.5, 198.5 ],
+									"midpoints" : [ 309.5, 213.5, 144.5, 213.5 ],
 									"source" : [ "obj-1", 0 ]
 								}
 
@@ -787,7 +800,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-10", 0 ],
-									"midpoints" : [ 24.5, 274.5, 189.5, 274.5 ],
+									"midpoints" : [ 69.5, 289.5, 234.5, 289.5 ],
 									"order" : 1,
 									"source" : [ "obj-13", 0 ]
 								}
@@ -797,7 +810,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-11", 0 ],
-									"midpoints" : [ 24.5, 273.5, 354.5, 273.5 ],
+									"midpoints" : [ 69.5, 288.5, 399.5, 288.5 ],
 									"order" : 0,
 									"source" : [ "obj-13", 0 ]
 								}
@@ -836,7 +849,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
-									"midpoints" : [ 24.5, 146.0, 264.5, 146.0 ],
+									"midpoints" : [ 69.5, 161.0, 309.5, 161.0 ],
 									"order" : 1,
 									"source" : [ "obj-24", 0 ]
 								}
@@ -853,7 +866,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-51", 0 ],
-									"midpoints" : [ 24.5, 146.0, 414.5, 146.0 ],
+									"midpoints" : [ 69.5, 161.0, 459.5, 161.0 ],
 									"order" : 0,
 									"source" : [ "obj-24", 0 ]
 								}
@@ -876,7 +889,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-10", 1 ],
-									"midpoints" : [ 414.5, 251.0, 321.5, 251.0 ],
+									"midpoints" : [ 459.5, 266.0, 366.5, 266.0 ],
 									"order" : 1,
 									"source" : [ "obj-51", 0 ]
 								}
@@ -885,7 +898,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-11", 1 ],
-									"midpoints" : [ 414.5, 251.0, 500.5, 251.0 ],
+									"midpoints" : [ 459.5, 266.0, 545.5, 266.0 ],
 									"order" : 0,
 									"source" : [ "obj-51", 0 ]
 								}
@@ -894,7 +907,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-31", 1 ],
-									"midpoints" : [ 414.5, 251.0, 160.5, 251.0 ],
+									"midpoints" : [ 459.5, 266.0, 205.5, 266.0 ],
 									"order" : 2,
 									"source" : [ "obj-51", 0 ]
 								}
@@ -1025,7 +1038,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 654.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 685.0, 562.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1087,7 +1100,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 654.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 685.0, 562.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1118,13 +1131,25 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-19",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 315.0, 480.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-18",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 390.0, 618.0, 50.0 ],
-									"text" : "fl.correlate~ can convolve real or complex input signals (internally it uses FFT processing).\nA variety of edge behaviours is available. Here we correlate a ramp with its self as well as two random vectors. Neither correlates highly after the initial peak."
+									"patching_rect" : [ 90.0, 405.0, 495.0, 50.0 ],
+									"text" : "fl.correlate~ can convolve real or complex input signals.\nHere we correlate a ramp with its self as well as correlating two random vectors. \nNeither correlates highly after the initial peak.",
+									"textjustification" : 1
 								}
 
 							}
@@ -1135,7 +1160,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 229.0, 23.0 ],
+									"patching_rect" : [ 30.0, 150.0, 229.0, 23.0 ],
 									"text" : "fl.ramp~ /length 100 /scale normalised"
 								}
 
@@ -1149,9 +1174,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 297.0, 240.0, 75.0 ],
+									"patching_rect" : [ 30.0, 300.0, 270.0, 90.0 ],
 									"setminmax" : [ 0.0, 50.0 ],
-									"size" : 199
+									"setstyle" : 1,
+									"size" : 199,
+									"slidercolor" : [ 0.701960784313725, 0.415686274509804, 0.886274509803922, 1.0 ]
 								}
 
 							}
@@ -1162,7 +1189,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 252.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 255.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -1174,7 +1201,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 101.0, 23.0 ],
+									"patching_rect" : [ 30.0, 105.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 1024"
 								}
 
@@ -1187,7 +1214,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 207.0, 198.5, 23.0 ],
+									"patching_rect" : [ 30.0, 207.0, 198.5, 23.0 ],
 									"text" : "fl.correlate~"
 								}
 
@@ -1199,7 +1226,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 495.0, 165.0, 138.0, 23.0 ],
+									"patching_rect" : [ 510.0, 165.0, 138.0, 23.0 ],
 									"text" : "fl.random~ /length 100"
 								}
 
@@ -1211,7 +1238,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 315.0, 165.0, 138.0, 23.0 ],
+									"patching_rect" : [ 330.0, 165.0, 138.0, 23.0 ],
 									"text" : "fl.random~ /length 100"
 								}
 
@@ -1225,9 +1252,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 315.5, 300.0, 240.0, 75.0 ],
+									"patching_rect" : [ 330.5, 300.0, 270.0, 90.0 ],
 									"setminmax" : [ 0.0, 50.0 ],
-									"size" : 199
+									"setstyle" : 1,
+									"size" : 199,
+									"slidercolor" : [ 0.701960784313725, 0.415686274509804, 0.886274509803922, 1.0 ]
 								}
 
 							}
@@ -1238,7 +1267,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 315.5, 255.0, 62.0, 23.0 ],
+									"patching_rect" : [ 330.5, 255.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -1250,7 +1279,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 315.0, 105.0, 101.0, 23.0 ],
+									"patching_rect" : [ 330.0, 105.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 1024"
 								}
 
@@ -1263,7 +1292,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 315.5, 207.0, 198.5, 23.0 ],
+									"patching_rect" : [ 330.0, 207.0, 198.5, 23.0 ],
 									"text" : "fl.correlate~"
 								}
 
@@ -1280,7 +1309,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 15.0, 435.0, 75.0 ]
+									"patching_rect" : [ 15.0, 15.0, 645.0, 73.0 ]
 								}
 
 							}
@@ -1295,7 +1324,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-17", 1 ],
-									"midpoints" : [ 24.5, 193.0, 204.0, 193.0 ],
+									"midpoints" : [ 39.5, 193.0, 219.0, 193.0 ],
 									"order" : 0,
 									"source" : [ "obj-13", 0 ]
 								}
@@ -1355,7 +1384,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 0 ],
-									"midpoints" : [ 324.5, 146.0, 504.5, 146.0 ],
+									"midpoints" : [ 339.5, 146.0, 519.5, 146.0 ],
 									"order" : 0,
 									"source" : [ "obj-7", 0 ]
 								}

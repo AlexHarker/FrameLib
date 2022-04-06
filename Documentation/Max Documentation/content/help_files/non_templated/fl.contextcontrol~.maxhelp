@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 680.0, 707.0 ],
+		"rect" : [ 34.0, 87.0, 680.0, 717.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 680.0, 681.0 ],
+						"rect" : [ 34.0, 113.0, 680.0, 691.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -93,8 +93,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 461.5, 238.0, 21.0 ],
-									"text" : "https://github.com/AlexHarker/FrameLib"
+									"patching_rect" : [ 76.0, 519.0, 238.0, 21.0 ],
+									"text" : "https://github.com/AlexHarker/FrameLib",
+									"textjustification" : 1
 								}
 
 							}
@@ -106,7 +107,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 112.0, 510.0, 151.0, 33.5 ],
+									"patching_rect" : [ 119.5, 465.0, 151.0, 33.5 ],
 									"text" : "Open GitHub Repo"
 								}
 
@@ -120,7 +121,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 10.5, 555.0, 354.0, 38.0 ],
+									"patching_rect" : [ 18.0, 540.0, 354.0, 38.0 ],
 									"text" : ";\rmax launchbrowser https://github.com/AlexHarker/FrameLib"
 								}
 
@@ -148,7 +149,7 @@
 							}
 , 							{
 								"box" : 								{
-									"color" : [ 0.298039215686275, 1.0, 0.031372549019608, 1.0 ],
+									"color" : [ 0.815686274509804, 0.341176470588235, 0.8, 1.0 ],
 									"id" : "obj-15",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -165,7 +166,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 364.0, 360.0, 79.0 ],
+									"patching_rect" : [ 30.0, 362.0, 360.0, 79.0 ],
 									"text" : "The export message takes a class name / folder to output to.\n\nThe class name is also used to name the files.\n\nFiles need to be compiled against the FrameLib source code:"
 								}
 
@@ -177,7 +178,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 105.0, 263.0, 36.0 ],
+									"patching_rect" : [ 33.0, 105.0, 263.0, 36.0 ],
 									"text" : "Save the network to the right as C++ code (a .cpp and .h file)",
 									"textjustification" : 1
 								}
@@ -193,7 +194,7 @@
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 112.0, 165.0, 105.0, 35.0 ],
-									"text" : "Save",
+									"text" : "Export",
 									"textoncolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
 
@@ -478,7 +479,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 539.0, 197.0, 70.0, 23.0 ],
+									"patching_rect" : [ 540.0, 330.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -490,7 +491,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 99.5, 603.25, 188.0, 23.0 ],
+									"patching_rect" : [ 101.0, 593.0, 188.0, 23.0 ],
 									"text" : "buffer~ fl-help-cc-2 sho0630.aif"
 								}
 
@@ -553,7 +554,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-17", 1 ],
-									"midpoints" : [ 548.5, 372.0, 506.0, 372.0 ],
+									"midpoints" : [ 549.5, 371.0, 506.0, 371.0 ],
 									"source" : [ "obj-19", 0 ]
 								}
 
@@ -568,7 +569,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-17", 0 ],
-									"midpoints" : [ 414.5, 373.5, 468.0, 373.5 ],
+									"midpoints" : [ 414.5, 371.0, 468.0, 371.0 ],
 									"source" : [ "obj-21", 0 ]
 								}
 
@@ -590,7 +591,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-19", 0 ],
-									"midpoints" : [ 414.5, 185.25, 548.5, 185.25 ],
+									"midpoints" : [ 414.5, 185.25, 549.5, 185.25 ],
 									"order" : 0,
 									"source" : [ "obj-23", 0 ]
 								}
@@ -647,7 +648,6 @@
 								"patchline" : 								{
 									"destination" : [ "obj-36", 0 ],
 									"hidden" : 1,
-									"midpoints" : [ 121.5, 548.75, 20.0, 548.75 ],
 									"source" : [ "obj-37", 0 ]
 								}
 
@@ -798,7 +798,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 680.0, 681.0 ],
+						"rect" : [ 0.0, 26.0, 680.0, 691.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -860,7 +860,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 680.0, 681.0 ],
+						"rect" : [ 0.0, 26.0, 680.0, 691.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -896,7 +896,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 517.0, 270.0, 65.0 ],
+									"patching_rect" : [ 30.0, 517.0, 270.0, 65.0 ],
 									"text" : "See the change to the CPU usage\n\nNote that in some scenarios FrameLib may run slower when multithreaded."
 								}
 
@@ -910,7 +910,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 67.0, 474.0, 140.0, 24.0 ],
+									"patching_rect" : [ 82.0, 474.0, 140.0, 24.0 ],
 									"text" : "Median CPU: 20",
 									"textcolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
 								}
@@ -1092,7 +1092,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 75.0, 474.0, 87.0, 23.0 ],
+									"patching_rect" : [ 90.0, 474.0, 87.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1122,7 +1122,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 412.666666666666742, 255.0, 36.0 ],
+									"patching_rect" : [ 30.0, 412.666666666666742, 255.0, 36.0 ],
 									"text" : "Use @id and @rt as with other FrameLib objects to set the context to control"
 								}
 
@@ -1143,7 +1143,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 330.0, 540.0, 90.0, 45.0 ],
+									"patching_rect" : [ 345.0, 540.0, 90.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -1335,7 +1335,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 330.0, 326.333333333333371, 102.0, 23.0 ],
+									"patching_rect" : [ 345.0, 326.333333333333371, 102.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1486,7 +1486,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 528.0, 283.166666666666686, 96.0, 23.0 ],
+									"patching_rect" : [ 543.0, 283.166666666666686, 96.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1505,7 +1505,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 330.0, 283.166666666666686, 190.0, 23.0 ],
+									"patching_rect" : [ 345.0, 283.166666666666686, 190.0, 23.0 ],
 									"text" : "fl.ramp~ /length 1024 /scale ms"
 								}
 
@@ -1517,7 +1517,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 240.0, 75.0, 23.0 ],
+									"patching_rect" : [ 45.0, 240.0, 75.0, 23.0 ],
 									"text" : "loadmess 0"
 								}
 
@@ -1532,7 +1532,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 30.0, 282.666666666666686, 150.0, 30.0 ],
+									"patching_rect" : [ 45.0, 282.666666666666686, 150.0, 30.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 220.630142000000006, 27.0, 18.0, 18.0 ],
 									"saved_attribute_attributes" : 									{
@@ -1559,7 +1559,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 332.333333333333371, 91.0, 23.0 ],
+									"patching_rect" : [ 45.0, 332.333333333333371, 91.0, 23.0 ],
 									"text" : "multithread $1"
 								}
 
@@ -1571,7 +1571,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 330.0, 455.833333333333428, 217.0, 23.0 ],
+									"patching_rect" : [ 345.0, 455.833333333333428, 217.0, 23.0 ],
 									"text" : "fl.*~"
 								}
 
@@ -1583,7 +1583,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 615.0, 45.0, 45.0 ]
+									"patching_rect" : [ 345.0, 615.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -1594,7 +1594,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 330.0, 499.000000000000114, 49.0, 23.0 ],
+									"patching_rect" : [ 345.0, 499.000000000000114, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -1606,7 +1606,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 330.0, 412.666666666666742, 102.0, 23.0 ],
+									"patching_rect" : [ 345.0, 412.666666666666742, 102.0, 23.0 ],
 									"text" : "fl.window~ hann"
 								}
 
@@ -1618,7 +1618,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 330.0, 369.500000000000057, 120.0, 23.0 ],
+									"patching_rect" : [ 345.0, 369.500000000000057, 120.0, 23.0 ],
 									"text" : "fl.read~ fl-help-cc-1"
 								}
 
@@ -1630,7 +1630,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 15.0, 637.0, 173.0, 23.0 ],
+									"patching_rect" : [ 30.0, 637.0, 173.0, 23.0 ],
 									"text" : "buffer~ fl-help-cc-1 duduk.aif"
 								}
 
@@ -1642,19 +1642,19 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 330.0, 240.0, 247.0, 23.0 ],
+									"patching_rect" : [ 345.0, 240.0, 247.0, 23.0 ],
 									"text" : "fl.interval~ =100 512 @id threading @rt 1"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"color" : [ 0.298039215686275, 1.0, 0.031372549019608, 1.0 ],
+									"color" : [ 0.745098039215686, 0.227450980392157, 1.0, 1.0 ],
 									"id" : "obj-3",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 375.000000000000057, 192.0, 23.0 ],
+									"patching_rect" : [ 45.0, 375.000000000000057, 192.0, 23.0 ],
 									"text" : "fl.contextcontrol~ @id threading"
 								}
 
@@ -1765,7 +1765,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-19", 0 ],
-									"midpoints" : [ 339.5, 272.583333333333371, 537.5, 272.583333333333371 ],
+									"midpoints" : [ 354.5, 272.583333333333371, 552.5, 272.583333333333371 ],
 									"order" : 0,
 									"source" : [ "obj-6", 0 ]
 								}
@@ -1783,7 +1783,7 @@
 								"patchline" : 								{
 									"destination" : [ "obj-40", 0 ],
 									"hidden" : 1,
-									"midpoints" : [ 84.5, 498.0, 72.0, 498.0, 72.0, 471.0, 76.5, 471.0 ],
+									"midpoints" : [ 99.5, 498.0, 87.0, 498.0, 87.0, 471.0, 91.5, 471.0 ],
 									"source" : [ "obj-67", 0 ]
 								}
 
