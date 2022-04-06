@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 721.0, 637.0 ],
+		"rect" : [ 34.0, 87.0, 818.0, 637.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 721.0, 611.0 ],
+						"rect" : [ 0.0, 26.0, 818.0, 611.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 721.0, 611.0 ],
+						"rect" : [ 34.0, 113.0, 818.0, 611.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,7 +155,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 615.0, 387.0, 45.0, 45.0 ]
+									"patching_rect" : [ 696.5, 387.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -198,12 +198,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-72",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 202.5, 147.5, 172.5, 36.0 ],
+									"patching_rect" : [ 202.5, 147.5, 172.5, 40.0 ],
 									"text" : "Drag in the box to alter the cartesian coordinates",
 									"textjustification" : 1
 								}
@@ -211,11 +212,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-65",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 577.0, 555.0, 120.0, 21.0 ],
+									"patching_rect" : [ 652.0, 555.0, 134.0, 25.0 ],
 									"text" : "angle (in degrees!)"
 								}
 
@@ -229,7 +231,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 525.0, 555.0, 50.0, 23.0 ]
+									"patching_rect" : [ 600.0, 555.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -240,7 +242,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 525.0, 510.0, 62.0, 23.0 ],
+									"patching_rect" : [ 600.0, 510.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -252,29 +254,31 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 375.0, 398.0, 169.0, 23.0 ],
+									"patching_rect" : [ 450.0, 398.0, 169.0, 23.0 ],
 									"text" : "fl.cartopol~ /angles degrees"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-55",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 185.0, 556.0, 82.0, 21.0 ],
+									"patching_rect" : [ 217.0, 556.0, 99.0, 25.0 ],
 									"text" : "y / imaginary"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-56",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 82.0, 556.0, 48.0, 21.0 ],
+									"patching_rect" : [ 82.0, 556.0, 65.0, 25.0 ],
 									"text" : "x / real"
 								}
 
@@ -288,7 +292,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 133.0, 555.0, 50.0, 23.0 ]
+									"patching_rect" : [ 165.0, 555.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -299,7 +303,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 133.0, 510.0, 62.0, 23.0 ],
+									"patching_rect" : [ 165.0, 510.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -331,22 +335,24 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-49",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 456.5, 556.0, 40.0, 21.0 ],
+									"patching_rect" : [ 532.0, 556.0, 57.0, 25.0 ],
 									"text" : "angle"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-48",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 337.0, 556.0, 68.0, 21.0 ],
+									"patching_rect" : [ 380.0, 556.0, 82.0, 25.0 ],
 									"text" : "amplitude"
 								}
 
@@ -372,7 +378,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 404.5, 555.0, 50.0, 23.0 ]
+									"patching_rect" : [ 480.0, 555.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -383,7 +389,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 404.5, 510.0, 62.0, 23.0 ],
+									"patching_rect" : [ 480.0, 510.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -1855,7 +1861,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 285.0, 556.0, 50.0, 23.0 ]
+									"patching_rect" : [ 328.0, 556.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -1866,7 +1872,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 510.0, 62.0, 23.0 ],
+									"patching_rect" : [ 328.0, 510.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -1959,7 +1965,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-33", 0 ],
-									"midpoints" : [ 39.5, 448.0, 294.5, 448.0 ],
+									"midpoints" : [ 39.5, 448.0, 337.5, 448.0 ],
 									"order" : 0,
 									"source" : [ "obj-1", 0 ]
 								}
@@ -1969,7 +1975,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-45", 0 ],
-									"midpoints" : [ 97.5, 433.0, 414.0, 433.0 ],
+									"midpoints" : [ 97.5, 433.0, 489.5, 433.0 ],
 									"order" : 0,
 									"source" : [ "obj-1", 1 ]
 								}
@@ -1978,7 +1984,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-58", 0 ],
-									"midpoints" : [ 97.5, 495.0, 142.5, 495.0 ],
+									"midpoints" : [ 97.5, 495.0, 174.5, 495.0 ],
 									"source" : [ "obj-17", 1 ]
 								}
 
@@ -2048,7 +2054,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-63", 1 ],
-									"midpoints" : [ 97.5, 366.0, 534.5, 366.0 ],
+									"midpoints" : [ 97.5, 366.0, 609.5, 366.0 ],
 									"order" : 0,
 									"source" : [ "obj-46", 1 ]
 								}
@@ -2057,7 +2063,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-63", 0 ],
-									"midpoints" : [ 39.5, 386.0, 384.5, 386.0 ],
+									"midpoints" : [ 39.5, 386.0, 459.5, 386.0 ],
 									"order" : 0,
 									"source" : [ "obj-46", 0 ]
 								}
@@ -2139,6 +2145,18 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
+				"name" : "fl.cartopol~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.chop~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.frommax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
 				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
@@ -2146,7 +2164,15 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.perblock~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.poltocar~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.tomax~.mxo",
 				"type" : "iLaX"
 			}
  ],

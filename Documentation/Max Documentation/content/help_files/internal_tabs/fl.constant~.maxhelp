@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 655.0, 464.0 ],
+		"rect" : [ 34.0, 87.0, 656.0, 464.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 655.0, 438.0 ],
+						"rect" : [ 0.0, 26.0, 656.0, 438.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 655.0, 438.0 ],
+						"rect" : [ 34.0, 113.0, 656.0, 438.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -255,7 +255,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 519.875, 289.0, 45.0, 45.0 ]
+									"patching_rect" : [ 499.0, 289.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -269,18 +269,6 @@
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 30.0, 390.0, 75.0, 23.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-38",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 424.625, 107.5, 33.25, 16.0 ]
 								}
 
 							}
@@ -311,36 +299,26 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-24",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 111.0, 394.0, 60.25, 15.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-25",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 390.0, 251.0, 21.0 ],
+									"patching_rect" : [ 111.0, 390.0, 268.0, 25.0 ],
 									"text" : "On load should show 2 * pi once dsp is on"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-23",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 459.875, 98.5, 165.0, 36.0 ],
-									"text" : "Parameters for fl.constant~\n(constant and multiplier)"
+									"patching_rect" : [ 419.0, 96.5, 205.0, 40.0 ],
+									"text" : "Set parameters for fl.constant~\n(constant and multiplier)"
 								}
 
 							}
