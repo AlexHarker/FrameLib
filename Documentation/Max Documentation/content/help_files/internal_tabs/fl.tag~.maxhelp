@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 3,
-			"revision" : 0,
+			"minor" : 2,
+			"revision" : 2,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -112,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -150,12 +150,15 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.26,
+									"bubbleside" : 0,
 									"id" : "obj-8",
 									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 306.0, 450.0, 375.0, 65.0 ],
+									"patching_rect" : [ 300.0, 431.75, 375.0, 84.0 ],
 									"text" : "Here fl.tag~ is initialised with 3 strings - freq, res and mode. The inputs that are created when the object is instantiated map to these strings. Each input is then tagged with the appropriate string and sent to the 'parameter update' inlet of fl.svf~.",
 									"textjustification" : 1
 								}
@@ -163,24 +166,13 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-16",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 121.25, 458.75, 38.75, 18.5 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-25",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 166.0, 450.0, 102.0, 36.0 ],
+									"patching_rect" : [ 118.0, 446.0, 119.0, 40.0 ],
 									"text" : "Turn up to hear the result!"
 								}
 
@@ -757,15 +749,15 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/docs/tutorial-patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
