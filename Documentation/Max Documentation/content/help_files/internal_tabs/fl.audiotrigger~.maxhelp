@@ -191,7 +191,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 90.0, 165.0, 36.0 ],
+									"patching_rect" : [ 15.0, 81.0, 165.0, 36.0 ],
 									"text" : "Triggering using noise and logic for random triggers",
 									"textjustification" : 1
 								}
@@ -204,8 +204,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 255.0, 90.0, 174.0, 36.0 ],
-									"text" : "A simple way of translating max bang into trigger frames",
+									"patching_rect" : [ 315.0, 81.0, 174.0, 36.0 ],
+									"text" : "A simple way of translating \nbangs into trigger frames",
 									"textjustification" : 1
 								}
 

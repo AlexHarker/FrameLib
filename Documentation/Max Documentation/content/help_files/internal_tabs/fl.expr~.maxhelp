@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -443,8 +443,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -568,8 +568,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 465.0, 292.0, 135.0, 54.0 ],
-									"text" : "Or for doing some warm distortion with tanh~"
+									"patching_rect" : [ 469.0, 292.0, 135.0, 54.0 ],
+									"text" : "Or for doing some warm distortion with tanh~",
+									"textjustification" : 1
 								}
 
 							}
@@ -605,7 +606,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 315.0, 225.0, 23.0 ]
+									"patching_rect" : [ 15.0, 315.0, 225.0, 23.0 ],
+									"text" : "0.283185 -0.283185 -1.483185 3.1"
 								}
 
 							}
@@ -653,8 +655,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 165.0, 202.0, 139.0, 69.0 ],
-									"text" : "Useful for doing phase wrapping in a frequency domain process!"
+									"patching_rect" : [ 168.0, 202.0, 139.0, 69.0 ],
+									"text" : "Useful for doing phase wrapping in a frequency domain process!",
+									"textjustification" : 1
 								}
 
 							}
@@ -905,8 +908,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1331,8 +1334,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1393,8 +1396,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1437,7 +1440,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 59.5, 473.5, 471.0, 40.0 ],
+									"patching_rect" : [ 63.5, 473.5, 471.0, 40.0 ],
 									"text" : "Inputs are referred to by in1, in2, in3 etc. As many as needed will be made once you've entered the expression."
 								}
 
@@ -1473,7 +1476,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 113.0, 239.0, 390.0, 25.0 ],
+									"patching_rect" : [ 116.0, 239.0, 390.0, 25.0 ],
 									"text" : "Multiply the input frame by -1 to invert the range to -1.0 <-> 0.0."
 								}
 
@@ -1485,7 +1488,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 165.0, 194.0, 338.0, 25.0 ],
+									"patching_rect" : [ 169.0, 194.0, 338.0, 25.0 ],
 									"text" : "Generate some random numbers between 0.0 and 1.0"
 								}
 
@@ -1786,8 +1789,8 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
@@ -1797,8 +1800,8 @@
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

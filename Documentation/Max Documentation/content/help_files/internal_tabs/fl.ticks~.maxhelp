@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -112,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -162,11 +162,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-13",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 452.0, 135.0, 112.0, 21.0 ],
+									"patching_rect" : [ 450.0, 123.0, 114.0, 40.0 ],
 									"text" : "Set the count limit"
 								}
 
@@ -181,7 +183,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 482.0, 165.0, 50.0, 23.0 ]
+									"patching_rect" : [ 482.0, 167.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -223,11 +225,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-39",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 289.0, 134.0, 150.0, 21.0 ],
+									"patching_rect" : [ 285.0, 123.0, 150.0, 40.0 ],
 									"text" : "Control the progression"
 								}
 
@@ -241,7 +245,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 276.25, 165.0, 70.5, 23.0 ]
+									"patching_rect" : [ 276.25, 167.0, 70.5, 23.0 ]
 								}
 
 							}
@@ -266,7 +270,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 372.25, 165.0, 65.5, 23.0 ]
+									"patching_rect" : [ 372.25, 167.0, 65.5, 23.0 ]
 								}
 
 							}
@@ -308,22 +312,24 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-24",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 81.0, 170.0, 42.0, 21.0 ],
+									"patching_rect" : [ 120.0, 197.0, 59.0, 25.0 ],
 									"text" : "Reset"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-15",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 90.0, 191.0, 21.0 ],
+									"patching_rect" : [ 150.0, 90.0, 208.0, 25.0 ],
 									"text" : "Schedule regular trigger frames"
 								}
 
@@ -592,8 +598,8 @@
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
