@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 8,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 646.0, 592.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 646.0, 566.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 8,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 646.0, 566.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -151,12 +151,11 @@
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-6",
-									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 66.0, 552.5, 555.0, 50.0 ],
-									"text" : "The skewness is a measure of direction and amount of skew in the frame.\n\nThis could be applied to the magnitudes of an FFT to look at the spectral skewness of a sound."
+									"patching_rect" : [ 116.0, 420.0, 433.0, 21.0 ],
+									"text" : "The skewness is a measure of direction and amount of skew in the frame."
 								}
 
 							}
@@ -170,6 +169,7 @@
 									"enablevscroll" : 0,
 									"id" : "obj-18",
 									"lockeddragscroll" : 0,
+									"lockedsize" : 0,
 									"maxclass" : "bpatcher",
 									"numinlets" : 0,
 									"numoutlets" : 1,
@@ -179,8 +179,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 1,
-											"revision" : 8,
+											"minor" : 3,
+											"revision" : 0,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -222,7 +222,7 @@
 													"maxclass" : "outlet",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 15.0, 290.466796999999985, 30.0, 30.0 ]
+													"patching_rect" : [ 15.0, 285.0, 30.0, 30.0 ]
 												}
 
 											}
@@ -266,6 +266,8 @@
 													"presentation" : 1,
 													"presentation_rect" : [ 15.0, 15.0, 181.0, 34.0 ],
 													"setminmax" : [ 0.0, 4.0 ],
+													"setstyle" : 1,
+													"slidercolor" : [ 0.952941176470588, 0.564705882352941, 0.098039215686275, 1.0 ],
 													"thickness" : 4
 												}
 
@@ -444,7 +446,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 555.0, 45.0, 45.0 ]
+									"patching_rect" : [ 345.0, 465.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -485,7 +487,7 @@
 							}
 , 							{
 								"box" : 								{
-									"color" : [ 0.701961, 0.415686, 0.886275, 1.0 ],
+									"color" : [ 0.952941176470588, 0.564705882352941, 0.098039215686275, 1.0 ],
 									"id" : "obj-29",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -528,9 +530,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 78.0, 209.466796875, 267.0, 108.0 ],
+									"patching_rect" : [ 75.0, 195.0, 255.0, 120.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 256
+									"setstyle" : 1,
+									"size" : 256,
+									"slidercolor" : [ 0.952941176470588, 0.564705882352941, 0.098039215686275, 1.0 ]
 								}
 
 							}
@@ -551,12 +555,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-52",
-									"linecount" : 11,
+									"linecount" : 9,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 360.0, 209.466796875, 234.0, 166.0 ],
-									"text" : "In this example some perlin noise types frames are generated and are passed to the fl.skewness~ object via fl.frommax~. \n\nPositive values indicate that the frame is skewed in favour of lower indexes whereas negative values indicate that the higher indexes are more prominent. A value close to 0 indicates relative symmetry."
+									"patching_rect" : [ 345.0, 195.0, 270.0, 137.0 ],
+									"text" : "In this example some simplex noise frames are generated and are passed to the fl.skewness~ object via fl.frommax~. \n\nPositive values indicate that the frame is skewed in favour of lower indexes whereas negative values indicate that the higher indexes are more prominent. A value close to zero indicates relative symmetry.",
+									"textjustification" : 1
 								}
 
 							}
@@ -572,7 +577,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 15.0, 435.0, 75.0 ]
+									"patching_rect" : [ 15.0, 15.0, 615.0, 75.0 ]
 								}
 
 							}
@@ -580,7 +585,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-19", 0 ],
-									"midpoints" : [ 24.5, 195.0, 87.5, 195.0 ],
+									"midpoints" : [ 24.5, 179.5, 84.5, 179.5 ],
 									"order" : 0,
 									"source" : [ "obj-18", 0 ]
 								}
@@ -672,19 +677,15 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "fl.frommax~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.helpname.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.perblock~.mxo",

@@ -418,7 +418,7 @@
 , 							{
 								"box" : 								{
 									"fontname" : "Ableton Sans Bold",
-									"fontsize" : 11.0,
+									"fontsize" : 10.5,
 									"id" : "obj-24",
 									"maxclass" : "live.tab",
 									"num_lines_patching" : 2,
@@ -447,7 +447,7 @@
 , 							{
 								"box" : 								{
 									"fontname" : "Ableton Sans Bold",
-									"fontsize" : 11.0,
+									"fontsize" : 10.5,
 									"id" : "obj-25",
 									"maxclass" : "live.tab",
 									"num_lines_patching" : 3,

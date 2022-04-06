@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            662.0,
-            787.0
+            650.0,
+            470.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            662.0,
-                            761.0
+                            650.0,
+                            444.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -108,7 +108,10 @@
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.info~",
+                                    "jsarguments": [
+                                        "fl.info~",
+                                        106
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -119,8 +122,8 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
-                                        150.0
+                                        620.0,
+                                        110
                                     ]
                                 }
                             },
@@ -144,11 +147,14 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        167.0,
-                                        630.0,
-                                        565.0
+                                        142,
+                                        620.0,
+                                        287.0
                                     ],
-                                    "viewvisibility": 1
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        620.0
+                                    ]
                                 }
                             }
                         ],
@@ -614,7 +620,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        620.0,
                                         60.0
                                     ]
                                 }
@@ -692,7 +698,7 @@
                             {
                                 "box": {
                                     "fontname": "Ableton Sans Bold",
-                                    "fontsize": 11.0,
+                                    "fontsize": 10.5,
                                     "id": "obj-24",
                                     "maxclass": "live.tab",
                                     "num_lines_patching": 2,
@@ -730,7 +736,7 @@
                             {
                                 "box": {
                                     "fontname": "Ableton Sans Bold",
-                                    "fontsize": 11.0,
+                                    "fontsize": 10.5,
                                     "id": "obj-25",
                                     "maxclass": "live.tab",
                                     "num_lines_patching": 3,
