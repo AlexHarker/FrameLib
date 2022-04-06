@@ -150,11 +150,12 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-2",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 360.0, 136.5, 92.0, 21.0 ],
+									"patching_rect" : [ 360.0, 134.5, 109.0, 25.0 ],
 									"text" : "Click to trigger",
 									"textjustification" : 1
 								}

@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 655.0, 686.0 ],
+						"rect" : [ 34.0, 113.0, 655.0, 686.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -100,6 +100,7 @@
 							}
 , 							{
 								"box" : 								{
+									"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
 									"id" : "obj-18",
 									"linecount" : 7,
 									"maxclass" : "comment",
@@ -136,12 +137,14 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-46",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 135.0, 154.5, 107.0, 21.0 ],
-									"text" : "Click to schedule"
+									"patching_rect" : [ 126.0, 152.5, 124.0, 25.0 ],
+									"text" : "Click to schedule",
+									"textjustification" : 1
 								}
 
 							}
@@ -196,11 +199,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-37",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 390.0, 271.5, 182.0, 21.0 ],
+									"patching_rect" : [ 390.0, 271.5, 199.0, 25.0 ],
 									"text" : "Sets the mode for new frames"
 								}
 
@@ -485,7 +489,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 655.0, 686.0 ],
+						"rect" : [ 0.0, 26.0, 655.0, 686.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -587,25 +591,28 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-70",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 352.0, 463.5, 284.0, 36.0 ],
+									"patching_rect" : [ 358.0, 461.5, 284.0, 40.0 ],
 									"text" : "timing between the first trigger frame (made by you) and successive fl.chain~ outputs."
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-69",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 157.0, 463.5, 100.0, 36.0 ],
-									"text" : "timing between frames"
+									"patching_rect" : [ 160.0, 463.5, 118.0, 40.0 ],
+									"text" : "timing between frames",
+									"textjustification" : 1
 								}
 
 							}
@@ -647,12 +654,17 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.1,
+									"bubbleside" : 2,
 									"id" : "obj-64",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 195.5, 135.0, 140.0, 21.0 ],
-									"text" : "Choose the time mode"
+									"patching_rect" : [ 242.0, 105.0, 120.0, 55.0 ],
+									"text" : "Choose the time mode",
+									"textjustification" : 1
 								}
 
 							}
@@ -799,11 +811,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-46",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 105.0, 94.5, 107.0, 21.0 ],
+									"patching_rect" : [ 105.0, 92.5, 124.0, 25.0 ],
 									"text" : "Click to schedule"
 								}
 

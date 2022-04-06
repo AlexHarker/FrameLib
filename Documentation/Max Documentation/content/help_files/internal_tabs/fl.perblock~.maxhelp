@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 620.0, 417.0 ],
+		"rect" : [ 34.0, 87.0, 672.0, 417.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 620.0, 391.0 ],
+						"rect" : [ 0.0, 26.0, 672.0, 391.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 620.0, 391.0 ],
+						"rect" : [ 34.0, 113.0, 672.0, 391.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -150,13 +150,15 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-10",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 233.5, 240.0, 36.0 ],
-									"text" : "The time difference will match the signal vector size set in Max"
+									"patching_rect" : [ 90.0, 231.5, 240.0, 40.0 ],
+									"text" : "The time difference will match the signal vector size set in Max",
+									"textjustification" : 1
 								}
 
 							}
@@ -184,25 +186,29 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-14",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 143.5, 255.0, 36.0 ],
-									"text" : "Calculate the difference in time between scheduled frames of fl.perblock~"
+									"patching_rect" : [ 117.0, 141.5, 261.0, 40.0 ],
+									"text" : "Calculate the difference in time between scheduled frames of fl.perblock~",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-13",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 465.0, 233.5, 128.0, 36.0 ],
-									"text" : "Signal vector size in Max audio settings"
+									"patching_rect" : [ 492.0, 231.5, 150.0, 40.0 ],
+									"text" : "Signal vector size in Max audio settings",
+									"textjustification" : 1
 								}
 
 							}
@@ -216,7 +222,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 405.666666666666686, 240.0, 50.0, 23.0 ]
+									"patching_rect" : [ 432.666666666666686, 240.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -227,7 +233,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 4,
 									"outlettype" : [ "int", "float", "int", "int" ],
-									"patching_rect" : [ 375.0, 150.0, 65.0, 23.0 ],
+									"patching_rect" : [ 402.0, 150.0, 65.0, 23.0 ],
 									"text" : "dspstate~"
 								}
 
