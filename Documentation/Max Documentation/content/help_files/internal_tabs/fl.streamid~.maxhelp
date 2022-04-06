@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 680.0, 675.0 ],
+		"rect" : [ 34.0, 87.0, 691.0, 675.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 680.0, 649.0 ],
+						"rect" : [ 0.0, 26.0, 691.0, 649.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 680.0, 649.0 ],
+						"rect" : [ 34.0, 113.0, 691.0, 649.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -180,7 +180,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 339.0, 285.0, 300.0, 156.0 ],
+									"patching_rect" : [ 337.5, 277.5, 303.0, 156.0 ],
 									"text" : "Using the result of the calculation set the intervals for the fl.interval~ object separately in the two streams (one every 512 and one every 1024).\n\nWe also divide those values by 2 and use these values to set the length for each stream. \n\nThus, each stream has frames that are half the length of the interval between frames."
 								}
 
@@ -216,11 +216,11 @@
 									"bubble" : 1,
 									"fontsize" : 13.0,
 									"id" : "obj-72",
-									"linecount" : 3,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 124.5, 298.5, 54.0 ],
+									"patching_rect" : [ 330.0, 131.5, 330.0, 40.0 ],
 									"text" : "Output stream IDs. (Instantiated with two streams using '=2' and hence there will be two ids - 0 and 1)."
 								}
 
@@ -654,8 +654,8 @@
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

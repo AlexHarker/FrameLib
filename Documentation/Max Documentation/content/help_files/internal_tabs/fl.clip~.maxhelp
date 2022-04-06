@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -112,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -229,8 +229,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 138.8125, 290.5, 366.375, 54.0 ],
-									"text" : "Clip the audio at the values -0.1 and 0.1. This will abruptly square off the audio if it raises above or below these values, resulting in a distorted sound effect."
+									"patching_rect" : [ 138.8125, 290.5, 381.375, 54.0 ],
+									"text" : "Clip the audio at the values -0.1 and 0.1. This will abruptly square off the audio if it raises above or below these values, resulting in a distorted sound effect.",
+									"textjustification" : 1
 								}
 
 							}
@@ -239,11 +240,10 @@
 									"bubble" : 1,
 									"bubblepoint" : 0.4,
 									"id" : "obj-23",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 300.0, 210.0, 291.0, 40.0 ],
+									"patching_rect" : [ 290.0, 199.75, 315.0, 25.0 ],
 									"text" : "Convert some audio playback stream into frames"
 								}
 
@@ -256,8 +256,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 73.75, 88.0, 451.0, 40.0 ],
-									"text" : "Start the audio. Careful! We are clipping some audio on purpose to create a distorted effect. Make sure your volume is at an appropriate level."
+									"patching_rect" : [ 73.75, 88.0, 453.0, 40.0 ],
+									"text" : "Start the audio. Careful! We are clipping some audio on purpose to create a distorted effect. Make sure your volume is at an appropriate level.",
+									"textjustification" : 1
 								}
 
 							}
@@ -600,8 +601,8 @@
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
