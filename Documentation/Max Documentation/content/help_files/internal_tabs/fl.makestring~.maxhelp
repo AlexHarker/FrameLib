@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 667.0, 755.0 ],
+		"rect" : [ 34.0, 87.0, 674.0, 755.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 667.0, 729.0 ],
+						"rect" : [ 0.0, 26.0, 674.0, 729.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -107,8 +107,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 390.0, 300.0, 127.0, 25.0 ],
-									"text" : "Set the first string"
+									"patching_rect" : [ 393.0, 300.0, 177.0, 25.0 ],
+									"text" : "Set the string components"
 								}
 
 							}
@@ -194,7 +194,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 173.5, 420.0, 109.0, 25.0 ],
+									"patching_rect" : [ 171.5, 420.0, 109.0, 25.0 ],
 									"text" : "Current output"
 								}
 
@@ -301,7 +301,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 495.0, 603.0, 36.0 ],
+									"patching_rect" : [ 61.5, 495.0, 540.0, 36.0 ],
 									"text" : "The above demo shows some details of fl.makestring~, including dynamically altering strings via parameters, padding numbers and setting the inputs that will trigger output.",
 									"textjustification" : 1
 								}
@@ -456,14 +456,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 667.0, 729.0 ],
+						"rect" : [ 0.0, 26.0, 674.0, 729.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -518,14 +518,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 667.0, 729.0 ],
+						"rect" : [ 34.0, 113.0, 674.0, 729.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -609,7 +609,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 339.0, 310.0, 298.0, 36.0 ],
+									"patching_rect" : [ 345.0, 305.5, 298.0, 36.0 ],
 									"text" : "- use in1, in2 - inx for input numbers\n- string inputs will be concatenated with no spaces"
 								}
 
@@ -617,22 +617,24 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-10",
-									"linecount" : 5,
+									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 76.5, 482.0, 495.0, 79.0 ],
+									"patching_rect" : [ 75.0, 488.0, 538.5, 65.0 ],
 									"text" : "The simplest operation is just to change one numeric part of a string, perhaps to determine which element of a polybuffer~ to access (as in this example).\n\nHowever, strings can be combined from multiple elements with control of numerical padding"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.0,
 									"id" : "obj-8",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 327.0, 287.0, 257.0, 21.0 ],
+									"patching_rect" : [ 327.0, 277.0, 274.0, 25.0 ],
 									"text" : "Arguments set the output tag and elements"
 								}
 
@@ -1009,15 +1011,15 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

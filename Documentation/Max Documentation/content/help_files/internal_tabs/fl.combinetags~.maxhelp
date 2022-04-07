@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 416.0, 117.0, 642.0, 748.0 ],
+		"rect" : [ 34.0, 87.0, 627.0, 748.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 642.0, 722.0 ],
+						"rect" : [ 0.0, 26.0, 627.0, 722.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 416.0, 143.0, 642.0, 722.0 ],
+						"rect" : [ 34.0, 113.0, 627.0, 722.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -273,8 +273,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 396.5, 203.0, 40.0 ],
-									"text" : "Combine the tagged frames ready to send to fl.svf~"
+									"patching_rect" : [ 315.0, 396.5, 189.0, 40.0 ],
+									"text" : "Combine the tagged frames ready to send to fl.svf~",
+									"textjustification" : 1
 								}
 
 							}
@@ -642,8 +643,8 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
@@ -653,8 +654,8 @@
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

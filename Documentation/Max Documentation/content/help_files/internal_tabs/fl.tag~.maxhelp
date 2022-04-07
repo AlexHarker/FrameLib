@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -112,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -158,7 +158,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 300.0, 431.75, 375.0, 84.0 ],
+									"patching_rect" : [ 300.0, 431.75, 376.0, 84.0 ],
 									"text" : "Here fl.tag~ is initialised with 3 strings - freq, res and mode. The inputs that are created when the object is instantiated map to these strings. Each input is then tagged with the appropriate string and sent to the 'parameter update' inlet of fl.svf~.",
 									"textjustification" : 1
 								}
@@ -173,7 +173,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 118.0, 446.0, 119.0, 40.0 ],
-									"text" : "Turn up to hear the result!"
+									"text" : "Turn up to hear the result!",
+									"textjustification" : 1
 								}
 
 							}
@@ -749,15 +750,15 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
