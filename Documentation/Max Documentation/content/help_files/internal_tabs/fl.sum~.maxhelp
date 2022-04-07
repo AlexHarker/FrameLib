@@ -150,13 +150,45 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.2,
+									"bubbleside" : 0,
+									"id" : "obj-20",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 345.0, 343.0, 214.0, 40.0 ],
+									"presentation_linecount" : 2,
+									"text" : "Sum of a ramp counting from 0 to 9",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.2,
+									"bubbleside" : 0,
+									"id" : "obj-19",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 27.5, 343.0, 291.0, 40.0 ],
+									"text" : "Sum of a random frame of 100 values (eacn 0-1)",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"dontreplace" : 1,
 									"id" : "obj-16",
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 420.0, 255.0, 149.0, 23.0 ]
+									"patching_rect" : [ 420.0, 270.0, 149.0, 23.0 ],
+									"text" : "0. 1. 2. 3. 4. 5. 6. 7. 8. 9."
 								}
 
 							}
@@ -167,7 +199,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 420.0, 210.0, 62.0, 23.0 ],
+									"patching_rect" : [ 420.0, 225.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -179,7 +211,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 345.0, 255.0, 62.0, 23.0 ],
+									"patching_rect" : [ 345.0, 270.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -193,7 +225,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 345.0, 300.0, 90.0, 23.0 ]
+									"patching_rect" : [ 345.0, 315.0, 54.0, 23.0 ]
 								}
 
 							}
@@ -205,7 +237,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 345.0, 210.0, 51.0, 23.0 ],
+									"patching_rect" : [ 345.0, 225.0, 51.0, 23.0 ],
 									"text" : "fl.sum~"
 								}
 
@@ -217,7 +249,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 345.0, 165.0, 117.0, 23.0 ],
+									"patching_rect" : [ 345.0, 180.0, 117.0, 23.0 ],
 									"text" : "fl.ramp~ /length 10"
 								}
 
@@ -229,7 +261,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 345.0, 120.0, 54.0, 23.0 ],
+									"patching_rect" : [ 345.0, 135.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -237,11 +269,10 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-5",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 201.5, 227.0, 36.0 ],
+									"patching_rect" : [ 15.0, 75.0, 382.0, 21.0 ],
 									"text" : "fl.sum~ adds all the values in a frame together, returning the sum",
 									"textjustification" : 1
 								}
@@ -254,7 +285,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 210.0, 285.0, 45.0, 45.0 ]
+									"patching_rect" : [ 195.0, 259.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -265,7 +296,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 255.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 270.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -279,7 +310,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 300.0, 90.0, 23.0 ]
+									"patching_rect" : [ 30.0, 315.0, 60.0, 23.0 ]
 								}
 
 							}
@@ -290,7 +321,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 165.0, 138.0, 23.0 ],
+									"patching_rect" : [ 30.0, 180.0, 138.0, 23.0 ],
 									"text" : "fl.random~ /length 100"
 								}
 
@@ -302,7 +333,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 120.0, 114.0, 23.0 ],
+									"patching_rect" : [ 30.0, 135.0, 114.0, 23.0 ],
 									"text" : "fl.interval~ 100 ms"
 								}
 
@@ -315,7 +346,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 210.0, 51.0, 23.0 ],
+									"patching_rect" : [ 30.0, 225.0, 51.0, 23.0 ],
 									"text" : "fl.sum~"
 								}
 
@@ -361,7 +392,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-16", 1 ],
-									"midpoints" : [ 429.5, 243.5, 559.5, 243.5 ],
+									"midpoints" : [ 429.5, 258.5, 559.5, 258.5 ],
 									"source" : [ "obj-14", 0 ]
 								}
 
@@ -398,7 +429,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
-									"midpoints" : [ 354.5, 198.5, 429.5, 198.5 ],
+									"midpoints" : [ 354.5, 213.5, 429.5, 213.5 ],
 									"order" : 0,
 									"source" : [ "obj-7", 0 ]
 								}

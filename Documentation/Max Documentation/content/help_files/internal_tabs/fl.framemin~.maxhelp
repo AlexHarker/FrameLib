@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 570.0, 531.0 ],
+		"rect" : [ 34.0, 87.0, 546.0, 531.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 570.0, 505.0 ],
+						"rect" : [ 0.0, 26.0, 546.0, 505.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 570.0, 505.0 ],
+						"rect" : [ 34.0, 113.0, 546.0, 505.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -150,23 +150,12 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-12",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 85.0, 454.0, 30.0, 11.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-25",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 451.0, 122.0, 21.0 ],
+									"patching_rect" : [ 90.0, 449.0, 143.0, 25.0 ],
 									"text" : "The minimum value"
 								}
 
@@ -212,7 +201,8 @@
 									"patching_rect" : [ 30.0, 90.0, 255.0, 120.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 5,
-									"slidercolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ]
+									"slidercolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ],
+									"spacing" : 2
 								}
 
 							}
@@ -225,7 +215,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 303.5, 450.0, 50.0, 23.0 ]
+									"patching_rect" : [ 270.0, 450.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -236,20 +226,21 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 303.5, 405.0, 62.0, 23.0 ],
+									"patching_rect" : [ 270.0, 405.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-15",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 390.0, 345.0, 151.0, 50.0 ],
-									"text" : "We can use fl.minpos~ to also determine where the largest value is.",
+									"patching_rect" : [ 351.5, 343.0, 165.0, 54.0 ],
+									"text" : "We can use fl.minpos~ to determine where the smallest value is.",
 									"textjustification" : 1
 								}
 
@@ -261,20 +252,21 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 303.5, 360.0, 68.0, 23.0 ],
+									"patching_rect" : [ 270.0, 360.0, 68.0, 23.0 ],
 									"text" : "fl.minpos~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-9",
-									"linecount" : 3,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 112.0, 345.0, 178.0, 50.0 ],
-									"text" : "fl.framemin~ returns the largest value in the frame, regardless of its position.",
+									"patching_rect" : [ 112.0, 345.0, 144.0, 40.0 ],
+									"text" : "Returns the smallest value in the frame",
 									"textjustification" : 1
 								}
 
@@ -300,7 +292,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 405.0, 127.5, 45.0, 45.0 ]
+									"patching_rect" : [ 396.0, 127.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -324,8 +316,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 360.0, 80.0, 23.0 ],
-									"text" : "fl.framemin~"
+									"patching_rect" : [ 30.0, 360.0, 84.0, 23.0 ],
+									"text" : "fl.framemax~"
 								}
 
 							}
@@ -382,7 +374,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
-									"midpoints" : [ 39.5, 333.5, 313.0, 333.5 ],
+									"midpoints" : [ 39.5, 333.5, 279.5, 333.5 ],
 									"order" : 0,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -475,7 +467,7 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "fl.framemin~.mxo",
+				"name" : "fl.framemax~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
