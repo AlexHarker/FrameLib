@@ -501,22 +501,24 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-18",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 304.5, 585.0, 205.0, 21.0 ],
+									"patching_rect" : [ 304.5, 580.0, 222.0, 25.0 ],
 									"text" : "The output is the max of each pair"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-17",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 481.5, 364.5, 127.0, 21.0 ],
+									"patching_rect" : [ 473.0, 362.5, 144.0, 25.0 ],
 									"text" : "Set two input frames"
 								}
 
@@ -647,25 +649,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-6",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 261.0, 256.0, 325.0, 21.0 ],
+									"patching_rect" : [ 204.0, 255.0, 333.0, 25.0 ],
 									"text" : "Values are the largest of each pair in the input frames"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-110",
-									"justification" : 1,
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 210.0, 254.125, 48.0, 24.75 ]
 								}
 
 							}

@@ -196,26 +196,15 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-110",
-									"justification" : 1,
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 265.0, 209.125, 48.0, 24.75 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-21",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 322.0, 203.5, 268.0, 36.0 ],
-									"text" : "Wiggle this number box to modify the 'width' of the random numbers between 0.0 and 1.0."
+									"patching_rect" : [ 268.0, 201.5, 302.0, 40.0 ],
+									"text" : "Wiggle this number box to modify the 'width' of the random numbers between 0.0 and 1.0",
+									"textjustification" : 1
 								}
 
 							}

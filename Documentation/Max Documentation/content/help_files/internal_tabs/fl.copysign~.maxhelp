@@ -150,45 +150,36 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-6",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 210.0, 439.0, 60.25, 15.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-25",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 275.25, 437.0, 167.0, 21.0 ],
+									"patching_rect" : [ 212.0, 434.0, 184.0, 25.0 ],
 									"text" : "All values are now negative"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-5",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 345.0, 285.0, 246.0, 21.0 ],
+									"patching_rect" : [ 343.0, 284.0, 263.0, 25.0 ],
 									"text" : "A list of the same length of the number -1"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-4",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 259.0, 225.0, 185.0, 21.0 ],
+									"patching_rect" : [ 258.25, 224.0, 202.0, 25.0 ],
 									"text" : "A list of numbers (+ve and -ve)"
 								}
 
@@ -249,8 +240,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 75.0, 435.0, 131.0, 23.0 ],
-									"text" : "-100. -4.4 -4.5 -948.3",
-									"textjustification" : 0
+									"text" : "-100. -4.4 -4.5 -948.3"
 								}
 
 							}

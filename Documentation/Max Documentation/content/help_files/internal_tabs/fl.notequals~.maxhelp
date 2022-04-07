@@ -174,11 +174,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-5",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 182.0, 377.0, 157.0, 21.0 ],
+									"patching_rect" : [ 165.0, 374.0, 174.0, 25.0 ],
 									"text" : "Compares the two frames"
 								}
 
@@ -196,49 +197,26 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-26",
-									"justification" : 1,
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 300.5, 520.125, 48.0, 24.75 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-7",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 350.5, 514.5, 252.0, 36.0 ],
-									"text" : "When the don't sliders match, the toggle will light up with the corresponding colour"
+									"patching_rect" : [ 300.0, 512.5, 264.5, 40.0 ],
+									"text" : "When the don't sliders match the toggle will light up with the corresponding colour",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-110",
-									"justification" : 1,
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 435.0, 224.5, 28.0, 25.75 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-23",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 470.0, 224.5, 144.0, 21.0 ],
+									"patching_rect" : [ 433.0, 222.5, 161.0, 25.0 ],
 									"text" : "Modify the slider values"
 								}
 

@@ -150,13 +150,41 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.4,
+									"bubbleside" : 0,
+									"id" : "obj-23",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 30.0, 375.0, 247.0, 40.0 ],
+									"text" : "Change the input values to see the result"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-5",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 405.0, 165.0, 113.0, 23.0 ],
+									"text" : "fl.register~ 1 2 3 4"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 0,
 									"id" : "obj-21",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 356.0, 390.0, 244.0, 36.0 ],
-									"text" : "You can also calculate one vector to the power of another.",
+									"patching_rect" : [ 351.5, 390.0, 184.0, 55.0 ],
+									"text" : "You can also calculate one vector to the power of another",
 									"textjustification" : 1
 								}
 
@@ -169,17 +197,6 @@
 									"numinlets" : 2,
 									"numoutlets" : 0,
 									"patching_rect" : [ 300.0, 510.0, 45.0, 45.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-23",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 390.0, 248.0, 21.0 ],
-									"text" : "Change the input values to see the result."
 								}
 
 							}
@@ -311,18 +328,6 @@
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-42",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 465.0, 150.0, 108.0, 23.0 ],
-									"text" : "loadmess 1 2 3 4"
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-40",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -352,7 +357,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 405.0, 150.0, 54.0, 23.0 ],
+									"patching_rect" : [ 405.0, 120.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -423,7 +428,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-40", 0 ],
+									"destination" : [ "obj-5", 0 ],
 									"source" : [ "obj-12", 0 ]
 								}
 
@@ -505,8 +510,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-40", 0 ],
-									"midpoints" : [ 474.5, 191.0, 414.5, 191.0 ],
-									"source" : [ "obj-42", 0 ]
+									"source" : [ "obj-5", 0 ]
 								}
 
 							}
@@ -592,6 +596,10 @@
 			}
 , 			{
 				"name" : "fl.pow~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.register~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

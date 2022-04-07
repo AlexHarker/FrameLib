@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 664.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 664.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -100,11 +100,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-4",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 346.0, 290.0, 21.0 ],
+									"patching_rect" : [ 172.5, 344.0, 307.0, 25.0 ],
 									"text" : "Calculate phases from real and imaginary values"
 								}
 
@@ -124,23 +125,12 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-30",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 400.5, 483.5, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-39",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 440.0, 479.5, 175.0, 21.0 ],
+									"patching_rect" : [ 398.0, 477.5, 192.0, 25.0 ],
 									"text" : "Observe the phase spectrum"
 								}
 
@@ -465,7 +455,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 664.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 664.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -496,12 +486,37 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-15",
+									"bubble" : 1,
+									"id" : "obj-23",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 89.0, 416.25, 62.0, 25.0 ],
+									"text" : "Result"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-1",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 340.0, 558.0, 127.0, 25.0 ],
+									"text" : "Angle (in radians)"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-72",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 465.0, 218.5, 165.0, 36.0 ],
+									"patching_rect" : [ 454.0, 216.5, 171.0, 40.0 ],
 									"text" : "Drag in the box to alter the cartesian coordinates",
 									"textjustification" : 1
 								}
@@ -520,13 +535,15 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-13",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 375.0, 438.0, 195.0, 36.0 ],
-									"text" : "Note that the first input is the y value, and the second the x!"
+									"patching_rect" : [ 364.0, 438.0, 204.0, 40.0 ],
+									"text" : "Note that the first input is the y value, and the second the x!",
+									"textjustification" : 1
 								}
 
 							}
@@ -539,52 +556,6 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 75.0, 604.0, 50.0 ],
 									"text" : "fl.atan2~ calculates the angle of the incoming vector (with y as the first input and x as the second input).\n\nThis might be useful for calculating the phases of a spectral frame when the magnitude is not required."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-9",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 88.0, 421.25, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-2",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 345.0, 564.0, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-23",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 129.0, 417.25, 45.0, 21.0 ],
-									"text" : "Result"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-48",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 390.0, 560.0, 110.0, 21.0 ],
-									"text" : "Angle (in radians)"
 								}
 
 							}
@@ -2540,6 +2511,22 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "fl.atan2~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.chop~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.fft~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.frommax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
 				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
@@ -2547,7 +2534,19 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.perblock~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.source~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.tomax~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

@@ -150,6 +150,20 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.4,
+									"bubbleside" : 0,
+									"id" : "obj-23",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 30.0, 375.0, 247.0, 40.0 ],
+									"text" : "Change the input values to see the result"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-2",
 									"maxclass" : "message",
 									"numinlets" : 2,
@@ -162,13 +176,15 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 0,
 									"id" : "obj-21",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 345.0, 390.0, 278.0, 36.0 ],
-									"text" : "You can also add a scalar value to a vector, or add one vector to another.",
+									"patching_rect" : [ 343.5, 390.0, 227.0, 55.0 ],
+									"text" : "You can also add a scalar value to a vector, or add one vector to another",
 									"textjustification" : 1
 								}
 
@@ -187,11 +203,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-53",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 443.5, 172.0, 123.0, 21.0 ],
+									"patching_rect" : [ 442.5, 165.0, 125.0, 40.0 ],
 									"text" : "Non-symbolic name",
 									"textjustification" : 1
 								}
@@ -205,30 +223,6 @@
 									"numinlets" : 2,
 									"numoutlets" : 0,
 									"patching_rect" : [ 300.0, 510.0, 45.0, 45.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 2,
-									"border" : 4.0,
-									"id" : "obj-55",
-									"justification" : 1,
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 495.375, 195.0, 19.25, 28.166671752929688 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-23",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 390.0, 248.0, 21.0 ],
-									"text" : "Change the input values to see the result."
 								}
 
 							}

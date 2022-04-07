@@ -100,11 +100,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-4",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 328.0, 315.0, 21.0 ],
+									"patching_rect" : [ 175.0, 326.0, 332.0, 25.0 ],
 									"text" : "Calculate magnitudes from real and imaginary values"
 								}
 
@@ -124,25 +125,15 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-30",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 416.5, 497.5, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-39",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 456.5, 484.5, 149.5, 36.0 ],
-									"text" : "Observe the magnitude spectrum (in dB) here"
+									"patching_rect" : [ 415.0, 483.0, 173.5, 40.0 ],
+									"text" : "Observe the magnitude spectrum (in dB) here",
+									"textjustification" : 1
 								}
 
 							}
@@ -528,46 +519,25 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-9",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 88.0, 421.25, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-2",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 345.0, 564.0, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-23",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 129.0, 417.25, 45.0, 21.0 ],
+									"patching_rect" : [ 89.0, 416.25, 62.0, 25.0 ],
 									"text" : "Result"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-48",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 390.0, 560.0, 182.0, 21.0 ],
+									"patching_rect" : [ 340.0, 558.0, 199.0, 25.0 ],
+									"presentation_linecount" : 2,
 									"text" : "Hypotenuse / Length of vector"
 								}
 
@@ -599,12 +569,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-72",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 465.0, 218.5, 165.0, 36.0 ],
+									"patching_rect" : [ 454.0, 216.5, 171.0, 40.0 ],
 									"text" : "Drag in the box to alter the cartesian coordinates",
 									"textjustification" : 1
 								}
@@ -2548,6 +2519,22 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "fl.chop~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.convert~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.fft~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.frommax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
 				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
@@ -2555,7 +2542,23 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.hypot~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.perblock~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.source~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.tomax~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

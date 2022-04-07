@@ -501,23 +501,26 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-18",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 304.5, 574.5, 162.0, 36.0 ],
-									"text" : "The output is the absolute difference between pairs"
+									"patching_rect" : [ 304.5, 572.5, 179.0, 40.0 ],
+									"text" : "The output is the absolute difference between pairs",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-17",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 481.5, 364.5, 127.0, 21.0 ],
+									"patching_rect" : [ 473.0, 362.5, 144.0, 25.0 ],
 									"text" : "Set two input frames"
 								}
 
@@ -648,25 +651,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-19",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 269.0, 256.0, 325.0, 21.0 ],
+									"patching_rect" : [ 219.0, 254.125, 341.0, 25.0 ],
 									"text" : "The absolute differences between the two input frames"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-110",
-									"justification" : 1,
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 218.0, 254.125, 48.0, 24.75 ]
 								}
 
 							}
