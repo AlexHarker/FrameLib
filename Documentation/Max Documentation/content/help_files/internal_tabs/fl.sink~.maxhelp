@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 3,
-			"revision" : 0,
+			"minor" : 2,
+			"revision" : 2,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 626.0, 551.0 ],
+						"rect" : [ 34.0, 113.0, 626.0, 551.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -111,12 +111,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-11",
-									"linecount" : 3,
+									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 336.0, 433.0, 150.0, 50.0 ],
+									"patching_rect" : [ 318.0, 423.5, 150.0, 69.0 ],
 									"text" : "Note the aliasing that occurs, which is worst without interpolation."
 								}
 
@@ -147,23 +148,12 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-35",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 265.875, 198.0, 31.25, 17.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-24",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 305.0, 195.0, 181.0, 21.0 ],
+									"patching_rect" : [ 270.0, 195.0, 198.0, 25.0 ],
 									"text" : "See the effect of interpolation!"
 								}
 
@@ -397,8 +387,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -435,6 +425,7 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
 									"fontname" : "Arial",
 									"fontsize" : 13.0,
 									"id" : "obj-6",
@@ -442,7 +433,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 338.0, 281.0, 181.0 ],
+									"patching_rect" : [ 300.0, 336.0, 300.0, 185.0 ],
 									"text" : "If we take the difference of the input signal and the output of the network and correctly compensate with delay at the output the signal will be null summed.\n\nIn this case, the input signal is passed through a delay of 3000 samples. The fl.interval~ scheduler rate of 1000 samples which means that it will be 2000 samples out of alignment with the delayed copy of the source. By adding 2000 samples of delay with the /delay parameter they become correctly aligned."
 								}
 
@@ -681,8 +672,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -766,26 +757,15 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"fontsize" : 13.0,
 									"id" : "obj-62",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 225.0, 263.5, 318.0, 50.0 ],
+									"patching_rect" : [ 195.0, 261.5, 330.0, 54.0 ],
 									"text" : "fl.sink~ accepts multistream inputs and automatically distributes streams across outputs when the multistream operator (=) is denoted in the object"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-63",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 185.0, 281.0, 28.25, 15.0 ]
 								}
 
 							}
@@ -857,26 +837,15 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"fontsize" : 13.0,
 									"id" : "obj-9",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 341.5, 194.0, 255.0, 50.0 ],
+									"patching_rect" : [ 315.0, 190.5, 267.0, 54.0 ],
 									"text" : "fl.source~ =2 instantiates the object with 2 separate inputs. These are packed into 2 'streams' driven by a single fl.interval~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-10",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 311.25, 210.0, 28.25, 15.0 ]
 								}
 
 							}
@@ -948,8 +917,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1010,14 +979,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 626.0, 551.0 ],
+						"rect" : [ 0.0, 26.0, 626.0, 551.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1048,12 +1017,13 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-1",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 165.0, 447.5, 381.0, 50.0 ],
+									"patching_rect" : [ 135.0, 445.5, 405.0, 54.0 ],
 									"text" : "All frames arriving are pasted into an internal overlap-add buffer.\n\nYou can make that buffer bigger if required with an argument."
 								}
 
@@ -1081,12 +1051,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-5",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 278.5, 294.0, 36.0 ],
+									"patching_rect" : [ 150.0, 276.5, 315.0, 40.0 ],
 									"text" : "fl.sink~ in it's most basic form is connected to the end of a network. The output is an MSP signal."
 								}
 
@@ -1262,8 +1233,8 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/docs/tutorial-patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
@@ -1273,8 +1244,8 @@
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

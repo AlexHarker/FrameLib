@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 3,
-			"revision" : 0,
+			"minor" : 2,
+			"revision" : 2,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -112,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -150,12 +150,14 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 0,
 									"id" : "obj-18",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 477.5, 538.0, 146.75, 36.0 ],
+									"patching_rect" : [ 474.125, 525.0, 146.75, 55.0 ],
 									"text" : "Values are 'traced' or continued at the output."
 								}
 
@@ -241,7 +243,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 75.0, 616.0, 65.0 ],
-									"presentation_linecount" : 4,
 									"text" : "The fl.trace~ object gives you  more fine grained control over which parts of a frame you want to convert to an MSP signal. This might be more suitable than using fl.sink~ for making audio rate control signals for example, or fl.tomax~'s output to control data is not what you want. Using the /position  parameter, you can specify different indices of a frame to be output or alternatively the whole frame can be output."
 								}
 
@@ -275,60 +276,58 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.14,
+									"bubbleside" : 0,
 									"id" : "obj-9",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 225.0, 546.5, 183.5, 50.0 ],
+									"patching_rect" : [ 241.5, 530.0, 183.5, 69.0 ],
 									"text" : "You can specify a position by its absolute position in the whole frame"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.3,
+									"bubbleside" : 0,
 									"id" : "obj-8",
-									"linecount" : 3,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 225.0, 388.5, 196.0, 50.0 ],
+									"patching_rect" : [ 207.5, 382.0, 217.5, 55.0 ],
 									"text" : "You can specify a position by its relative position to the whole frame"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.34,
+									"bubbleside" : 0,
 									"id" : "obj-4",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 42.5, 388.5, 131.5, 50.0 ],
+									"patching_rect" : [ 45.0, 379.0, 131.5, 69.0 ],
 									"text" : "fl.trace~ with default parameters outputs the full frame."
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-36",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 165.0, 212.0, 60.25, 15.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-35",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 233.625, 201.5, 170.75, 36.0 ],
+									"patching_rect" : [ 150.0, 199.5, 187.375, 40.0 ],
 									"text" : "Generate a frame contaning the numbers 0 - 63"
 								}
 
@@ -662,8 +661,8 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
