@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 510.0, 478.0 ],
+		"rect" : [ 34.0, 87.0, 510.0, 447.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 510.0, 452.0 ],
+						"rect" : [ 0.0, 26.0, 510.0, 421.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 510.0, 452.0 ],
+						"rect" : [ 34.0, 113.0, 510.0, 421.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,18 +155,21 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 435.0, 369.0, 45.0, 45.0 ]
+									"patching_rect" : [ 435.0, 337.0, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.3,
+									"bubbleside" : 2,
 									"id" : "obj-56",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 182.0, 173.0, 36.0 ],
+									"patching_rect" : [ 53.0, 165.0, 173.0, 55.0 ],
 									"text" : "Using samples to determine padding amounts",
 									"textjustification" : 1
 								}
@@ -174,25 +177,14 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 2,
-									"border" : 4.0,
-									"id" : "obj-57",
-									"justification" : 1,
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 93.520797729492188, 220.0, 35.958343505859375, 36.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-55",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 240.0, 182.0, 157.0, 36.0 ],
+									"patching_rect" : [ 253.0, 165.0, 157.0, 55.0 ],
 									"text" : "Using ratios to determine the padding amounts.",
 									"textjustification" : 1
 								}
@@ -206,7 +198,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 240.0, 360.0, 163.0, 63.0 ],
+									"patching_rect" : [ 240.0, 328.0, 163.0, 63.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 1622,
 									"slidercolor" : [ 0.670588235294118, 0.866666666666667, 1.0, 1.0 ]
@@ -220,7 +212,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 315.0, 62.0, 23.0 ],
+									"patching_rect" : [ 240.0, 283.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -233,7 +225,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 272.0, 183.0, 23.0 ],
+									"patching_rect" : [ 240.0, 240.0, 183.0, 23.0 ],
 									"text" : "fl.pad~ 0.5 0.5 0.9 /units ratios"
 								}
 
@@ -246,7 +238,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 360.0, 163.0, 63.0 ],
+									"patching_rect" : [ 30.0, 328.0, 163.0, 63.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 1250,
 									"slidercolor" : [ 0.670588235294118, 0.866666666666667, 1.0, 1.0 ]
@@ -260,7 +252,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 315.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 283.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -285,7 +277,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 272.0, 120.0, 23.0 ],
+									"patching_rect" : [ 30.0, 240.0, 120.0, 23.0 ],
 									"text" : "fl.pad~ 0.5 174 400"
 								}
 
@@ -299,19 +291,6 @@
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 30.0, 127.0, 138.0, 23.0 ],
 									"text" : "fl.random~ /length 676"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 2,
-									"border" : 4.0,
-									"id" : "obj-15",
-									"justification" : 1,
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 300.520828247070312, 220.0, 35.958343505859375, 36.0 ]
 								}
 
 							}
@@ -343,7 +322,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-50", 0 ],
-									"midpoints" : [ 39.5, 265.0, 249.5, 265.0 ],
+									"midpoints" : [ 39.5, 231.0, 249.5, 231.0 ],
 									"order" : 0,
 									"source" : [ "obj-40", 0 ]
 								}

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 481.0, 438.0 ],
+		"rect" : [ 34.0, 87.0, 440.0, 438.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 481.0, 412.0 ],
+						"rect" : [ 0.0, 26.0, 440.0, 412.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 481.0, 412.0 ],
+						"rect" : [ 34.0, 113.0, 440.0, 412.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -150,12 +150,13 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-4",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 102.041664123535156, 330.0, 352.0, 21.0 ],
-									"text" : "fl.product~ returns the product of all the values in the frame."
+									"patching_rect" : [ 97.0, 329.0, 309.0, 25.0 ],
+									"text" : "Returns the product of all the values in the frame."
 								}
 
 							}
@@ -166,29 +167,18 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 345.0, 253.0, 45.0, 45.0 ]
+									"patching_rect" : [ 284.0, 255.0, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-20",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 143.0, 154.5, 32.958335876464844, 14.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-21",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 179.958335876464844, 150.0, 165.0, 21.0 ],
+									"patching_rect" : [ 147.0, 149.0, 182.0, 25.0 ],
 									"text" : "Count from 0 to (length - 1)"
 								}
 
@@ -231,18 +221,6 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-31",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 79.0, 199.0, 32.958335876464844, 14.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"color" : [ 0.43921568627451, 0.749019607843137, 0.254901960784314, 1.0 ],
 									"id" : "obj-19",
 									"maxclass" : "newobj",
@@ -256,34 +234,24 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-46",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 105.041664123535156, 244.0, 32.958335876464844, 14.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-45",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 147.020835876464844, 241.5, 74.0, 21.0 ],
+									"patching_rect" : [ 107.041664123535156, 239.0, 91.0, 25.0 ],
 									"text" : "1 * 2 * 3 * 4"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-44",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 116.958335876464844, 195.0, 207.0, 21.0 ],
+									"patching_rect" : [ 80.520835876464844, 194.0, 224.0, 25.0 ],
 									"text" : "Adds 1 making the frame: [1 2 3 4]"
 								}
 

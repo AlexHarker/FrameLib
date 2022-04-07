@@ -150,13 +150,26 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-12",
-									"maxclass" : "live.line",
+									"bubble" : 1,
+									"id" : "obj-9",
+									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 85.0, 411.0, 30.0, 11.0 ]
+									"patching_rect" : [ 108.0, 315.0, 315.0, 25.0 ],
+									"text" : "returns the index of the maximum value in a frame",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-25",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 86.0, 404.0, 301.0, 25.0 ],
+									"text" : "The resulting index (indices are counted from 0)"
 								}
 
 							}
@@ -203,18 +216,6 @@
 									"size" : 5,
 									"slidercolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ],
 									"spacing" : 2
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-9",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 105.0, 317.0, 364.0, 21.0 ],
-									"text" : "fl.maxpos~ returns the index of the maximum value in a frame",
-									"textjustification" : 1
 								}
 
 							}
@@ -292,17 +293,6 @@
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 15.0, 15.0, 435.0, 75.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-25",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 406.0, 284.0, 21.0 ],
-									"text" : "The resulting index (indices are counted from 0)"
 								}
 
 							}

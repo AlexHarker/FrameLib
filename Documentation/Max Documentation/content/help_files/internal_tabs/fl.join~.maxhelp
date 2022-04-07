@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 607.0, 613.0 ],
+		"rect" : [ 34.0, 87.0, 582.0, 613.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 607.0, 587.0 ],
+						"rect" : [ 0.0, 26.0, 582.0, 587.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 607.0, 587.0 ],
+						"rect" : [ 34.0, 113.0, 582.0, 587.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,31 +155,20 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 98.0, 492.5, 481.0, 50.0 ],
+									"patching_rect" : [ 98.0, 492.5, 451.0, 50.0 ],
 									"text" : "Note that all inputs trigger output, so although the inputs arrive at different times a new frame is created whenver any input is received. this can be changed with the /trigger_ins parameter."
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-18",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 375.0, 400.5, 40.0, 19.5 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-1",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 420.0, 390.0, 159.0, 36.0 ],
+									"patching_rect" : [ 375.0, 388.0, 174.0, 40.0 ],
 									"text" : "The three frames are joined into a single frame.",
 									"textjustification" : 1
 								}
@@ -278,6 +267,8 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 30.0, 360.0, 336.0, 96.0 ],
+									"setminmax" : [ 0.0, 1.0 ],
+									"setstyle" : 1,
 									"size" : 300,
 									"slidercolor" : [ 0.670588235294118, 0.866666666666667, 1.0, 1.0 ]
 								}

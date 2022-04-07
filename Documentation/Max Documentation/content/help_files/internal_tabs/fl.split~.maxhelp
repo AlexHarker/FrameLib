@@ -150,18 +150,6 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-4",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 95.0, 93.974998474121094, 34.0, 17.050003051757812 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-1",
 									"local" : 1,
 									"maxclass" : "ezdac~",
@@ -259,18 +247,6 @@
 									"outlettype" : [ "", "" ],
 									"patching_rect" : [ 30.0, 531.0, 39.0, 23.0 ],
 									"text" : "zl len"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-37",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 264.0, 147.924995422363281, 34.0, 17.050003051757812 ]
 								}
 
 							}
@@ -446,22 +422,24 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-18",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 300.0, 145.949996948242188, 268.0, 21.0 ],
+									"patching_rect" : [ 266.0, 142.0, 285.0, 25.0 ],
 									"text" : "Generate a ramp from 0-1, 256 samples long"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-17",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 135.0, 92.0, 262.0, 21.0 ],
+									"patching_rect" : [ 93.0, 92.0, 276.0, 25.0 ],
 									"text" : "Schedule a trigger frame at the start of time"
 								}
 

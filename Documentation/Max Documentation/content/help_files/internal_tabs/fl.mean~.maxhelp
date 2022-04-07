@@ -198,38 +198,15 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-18",
-									"justification" : 1,
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 585.375, 394.0, 19.25, 28.166671752929688 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-38",
-									"justification" : 1,
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 266.875, 394.0, 19.25, 28.166671752929688 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 0,
 									"id" : "obj-17",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 554.0, 427.0, 94.0, 21.0 ],
-									"text" : "Mean of vector"
+									"patching_rect" : [ 547.0, 395.5, 96.0, 40.0 ],
+									"text" : "Mean of vector",
+									"textjustification" : 1
 								}
 
 							}
@@ -349,35 +326,28 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-9",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 319.0, 77.5, 144.0, 21.0 ],
-									"text" : "Click to test new values"
+									"patching_rect" : [ 285.0, 74.5, 161.0, 25.0 ],
+									"text" : "Click to test new values",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-10",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 283.0, 79.5, 32.0, 18.5 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 0,
 									"id" : "obj-39",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 239.0, 427.0, 94.0, 21.0 ],
-									"text" : "Mean of vector"
+									"patching_rect" : [ 232.0, 395.5, 96.0, 40.0 ],
+									"text" : "Mean of vector",
+									"textjustification" : 1
 								}
 
 							}
