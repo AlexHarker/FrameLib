@@ -150,23 +150,12 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-38",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 420.0, 108.5, 28.25, 18.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-23",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 449.25, 105.5, 135.0, 21.0 ],
+									"patching_rect" : [ 423.0, 104.0, 152.0, 25.0 ],
 									"text" : "Set the desired phase"
 								}
 
@@ -177,7 +166,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 413.5, 465.0, 58.0, 21.0 ],
+									"patching_rect" : [ 413.5, 461.0, 58.0, 21.0 ],
 									"text" : "Modified",
 									"textjustification" : 1
 								}
@@ -189,7 +178,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 131.0, 465.0, 53.0, 21.0 ],
+									"patching_rect" : [ 131.0, 461.0, 53.0, 21.0 ],
 									"text" : "Original",
 									"textjustification" : 1
 								}
@@ -209,11 +198,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-27",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 150.0, 152.0, 21.0 ],
+									"patching_rect" : [ 116.0, 149.0, 169.0, 25.0 ],
 									"text" : "Generates a random FIR"
 								}
 

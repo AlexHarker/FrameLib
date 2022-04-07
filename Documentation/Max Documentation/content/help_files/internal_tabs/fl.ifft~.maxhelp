@@ -172,7 +172,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.5, 597.5, 516.0, 50.0 ],
+									"patching_rect" : [ 105.0, 597.5, 516.0, 50.0 ],
 									"text" : "In this patch we build a simple EQ with the FFT.\n\nNote that the gains for windows and overlap are correctly compensated at each stage."
 								}
 
@@ -191,12 +191,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-4",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 135.0, 377.0, 151.0, 21.0 ],
-									"text" : "Multiply by the EQ frame"
+									"patching_rect" : [ 128.0, 377.0, 178.0, 25.0 ],
+									"text" : "Multiplies by the EQ frame"
 								}
 
 							}
@@ -214,23 +215,12 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-30",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 486.0, 128.0, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-39",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 525.0, 124.0, 126.0, 21.0 ],
+									"patching_rect" : [ 487.0, 122.0, 143.0, 25.0 ],
 									"text" : "Draw your EQ curve"
 								}
 
@@ -704,6 +694,19 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 3,
+									"id" : "obj-5",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 331.0, 495.0, 143.0, 25.0 ],
+									"text" : "... the delayed input!"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-38",
 									"local" : 1,
 									"maxclass" : "ezdac~",
@@ -715,47 +718,25 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-15",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 330.0, 224.0, 21.0 ],
-									"text" : "(Compensate for overlapping frames)"
+									"patching_rect" : [ 143.0, 330.0, 247.0, 25.0 ],
+									"text" : "(Compensates for overlapping frames)"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 2,
-									"border" : 4.0,
-									"id" : "obj-11",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 435.0, 474.5, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-10",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 210.0, 474.5, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-8",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 255.0, 470.5, 175.0, 21.0 ],
-									"text" : "See that the output matches!"
+									"patching_rect" : [ 210.0, 450.0, 199.0, 25.0 ],
+									"text" : "See that the output matches..."
 								}
 
 							}
@@ -778,8 +759,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 219.0, 270.0, 79.0 ],
-									"text" : "The ifft~ converts information in the frequency domain into the time domain.\n\nIt's the inverse of the FFT, so taking an iFFT after the FFT should return the original input"
+									"patching_rect" : [ 180.0, 214.0, 270.0, 79.0 ],
+									"text" : "The iFFT converts information in the frequency domain into the time domain.\n\nIt is the inverse of the FFT, so taking an iFFT after the FFT should return the original input",
+									"textjustification" : 1
 								}
 
 							}
@@ -1130,7 +1112,7 @@
 , 			{
 				"name" : "fl.helpname.js",
 				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
