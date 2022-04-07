@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 629.0, 728.0 ],
+		"rect" : [ 34.0, 87.0, 653.0, 728.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 629.0, 702.0 ],
+						"rect" : [ 34.0, 113.0, 653.0, 702.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -88,22 +88,26 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 3,
 									"id" : "obj-27",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 420.0, 174.0, 21.0 ],
+									"patching_rect" : [ 40.5, 420.0, 191.0, 25.0 ],
 									"text" : "Use arguments to set alphas"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-15",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 397.25, 219.0, 139.0, 21.0 ],
+									"patching_rect" : [ 409.75, 205.0, 141.0, 40.0 ],
 									"text" : "Click to reset deviation",
 									"textjustification" : 1
 								}
@@ -117,7 +121,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 454.75, 249.5, 24.0, 24.0 ]
+									"patching_rect" : [ 468.25, 249.5, 24.0, 24.0 ]
 								}
 
 							}
@@ -128,7 +132,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 454.75, 294.5, 41.0, 23.0 ],
+									"patching_rect" : [ 468.25, 294.5, 41.0, 23.0 ],
 									"text" : "click~"
 								}
 
@@ -140,18 +144,20 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 454.75, 339.5, 95.0, 23.0 ],
+									"patching_rect" : [ 468.25, 339.5, 95.0, 23.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-34",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 263.0, 219.0, 120.0, 21.0 ],
+									"patching_rect" : [ 275.5, 205.0, 122.0, 40.0 ],
 									"text" : "Click to reset mean",
 									"textjustification" : 1
 								}
@@ -165,7 +171,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 311.0, 249.5, 24.0, 24.0 ]
+									"patching_rect" : [ 324.5, 249.5, 24.0, 24.0 ]
 								}
 
 							}
@@ -176,7 +182,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 311.0, 294.5, 41.0, 23.0 ],
+									"patching_rect" : [ 324.5, 294.5, 41.0, 23.0 ],
 									"text" : "click~"
 								}
 
@@ -188,7 +194,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 311.0, 339.5, 95.0, 23.0 ],
+									"patching_rect" : [ 324.5, 339.5, 95.0, 23.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -200,7 +206,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 392.5, 552.5, 45.0, 45.0 ]
+									"patching_rect" : [ 406.0, 552.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -211,19 +217,20 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 41.0, 255.0, 227.5, 123.0 ],
+									"patching_rect" : [ 54.5, 255.0, 227.5, 123.0 ],
 									"text" : "The mean and deviation can be reset separately. \n\nIf frames are send to the reset inputs these are used as the reset values. \n\nIf not then the value of the padding parameters is used instead."
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-33",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 165.0, 153.0, 21.0 ],
-									"text" : "Generate gaussian noise"
+									"patching_rect" : [ 315.0, 164.0, 177.0, 25.0 ],
+									"text" : "Generates gaussian noise"
 								}
 
 							}
@@ -236,7 +243,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 473.5, 618.0, 78.0, 17.0 ],
+									"patching_rect" : [ 487.0, 618.0, 78.0, 17.0 ],
 									"text" : "Moving Deviation",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -249,7 +256,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 532.5, 465.0, 62.0, 23.0 ],
+									"patching_rect" : [ 546.0, 465.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -263,7 +270,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 222.0, 618.0, 73.0, 17.0 ],
+									"patching_rect" : [ 235.5, 618.0, 73.0, 17.0 ],
 									"text" : "Moving Average",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -292,7 +299,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 221.5, 510.0, 135.0, 130.0 ],
+									"patching_rect" : [ 235.0, 510.0, 135.0, 130.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 1000,
 									"slidercolor" : [ 1.0, 0.549019607843137, 0.549019607843137, 1.0 ]
@@ -333,7 +340,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 221.5, 465.0, 62.0, 23.0 ],
+									"patching_rect" : [ 235.0, 465.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -370,7 +377,7 @@
 									"numinlets" : 5,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 221.5, 420.0, 330.0, 23.0 ],
+									"patching_rect" : [ 235.0, 420.0, 330.0, 23.0 ],
 									"text" : "fl.movingaverage~ 0.05 0.05 /average 0.9 /deviation 0.9"
 								}
 
@@ -399,7 +406,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 473.5, 510.0, 135.0, 130.0 ],
+									"patching_rect" : [ 487.0, 510.0, 135.0, 130.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 1000,
 									"slidercolor" : [ 1.0, 0.549019607843137, 0.549019607843137, 1.0 ]
@@ -438,7 +445,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 2 ],
-									"midpoints" : [ 320.5, 390.75, 386.5, 390.75 ],
+									"midpoints" : [ 334.0, 390.75, 400.0, 390.75 ],
 									"source" : [ "obj-14", 0 ]
 								}
 
@@ -467,7 +474,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-22", 0 ],
-									"midpoints" : [ 542.0, 498.5, 483.0, 498.5 ],
+									"midpoints" : [ 555.5, 498.5, 496.5, 498.5 ],
 									"source" : [ "obj-23", 0 ]
 								}
 
@@ -475,7 +482,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
-									"midpoints" : [ 24.5, 402.0, 231.0, 402.0 ],
+									"midpoints" : [ 24.5, 402.0, 244.5, 402.0 ],
 									"order" : 0,
 									"source" : [ "obj-5", 0 ]
 								}
@@ -572,7 +579,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 629.0, 702.0 ],
+						"rect" : [ 0.0, 26.0, 653.0, 702.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -603,24 +610,13 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-17",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 337.0, 402.0, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-14",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 377.0, 398.0, 209.0, 21.0 ],
-									"text" : "Set the alphas per sample by input"
+									"patching_rect" : [ 338.0, 398.0, 232.0, 25.0 ],
+									"text" : "Sets the alphas per sample by input"
 								}
 
 							}
@@ -650,18 +646,6 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-39",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 278.0, 103.0, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-38",
 									"local" : 1,
 									"maxclass" : "ezdac~",
@@ -684,23 +668,25 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-35",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 99.0, 261.0, 21.0 ],
+									"patching_rect" : [ 276.25, 140.0, 278.0, 25.0 ],
 									"text" : "Wiggle the mean and deviation of the noise!"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-33",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 173.5, 317.0, 153.0, 21.0 ],
-									"text" : "Generate gaussian noise"
+									"patching_rect" : [ 175.5, 315.0, 177.0, 25.0 ],
+									"text" : "Generates gaussian noise"
 								}
 
 							}
@@ -1162,7 +1148,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 629.0, 702.0 ],
+						"rect" : [ 0.0, 26.0, 653.0, 702.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1224,7 +1210,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 629.0, 702.0 ],
+						"rect" : [ 0.0, 26.0, 653.0, 702.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1255,18 +1241,6 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-39",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 278.0, 103.0, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-38",
 									"local" : 1,
 									"maxclass" : "ezdac~",
@@ -1289,33 +1263,37 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-35",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 99.0, 241.0, 21.0 ],
+									"patching_rect" : [ 278.0, 98.0, 258.0, 25.0 ],
 									"text" : "Set the mean and deviation of the noise!"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-33",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 173.5, 319.0, 153.0, 21.0 ],
-									"text" : "Generate gaussian noise"
+									"patching_rect" : [ 175.0, 315.0, 177.0, 25.0 ],
+									"text" : "Generates gaussian noise"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-32",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 347.0, 155.5, 262.0, 21.0 ],
+									"patching_rect" : [ 326.0, 152.0, 264.0, 40.0 ],
 									"text" : "Set how fast the average moves up or down"
 								}
 

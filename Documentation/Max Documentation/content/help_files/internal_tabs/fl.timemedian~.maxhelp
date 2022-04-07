@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 600.0, 757.0 ],
+		"rect" : [ 34.0, 87.0, 608.0, 757.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 600.0, 731.0 ],
+						"rect" : [ 0.0, 26.0, 608.0, 731.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -88,6 +88,52 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
+									"id" : "obj-34",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 200.5, 142.0, 63.0, 55.0 ],
+									"presentation_linecount" : 2,
+									"text" : "Click to reset",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
+									"id" : "obj-32",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 294.25, 208.5, 220.5, 55.0 ],
+									"presentation_linecount" : 2,
+									"text" : "Select the behaviour when reseting or changing frame siz:",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.35,
+									"bubbleside" : 0,
+									"id" : "obj-42",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 330.0, 517.0, 243.5, 40.0 ],
+									"text" : "Indicates underflow in the internal buffer"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-16",
 									"local" : 1,
 									"maxclass" : "ezdac~",
@@ -106,42 +152,6 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 105.0, 615.0, 457.0, 50.0 ],
 									"text" : "pad - pads the output with values from the reset frame (or the /pad parameter)\n\nshorten -  uses the oldest frame received so far"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-42",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 526.5, 239.0, 21.0 ],
-									"text" : "Indicates underflow in the internal buffer"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-34",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 190.0, 165.0, 84.0, 21.0 ],
-									"text" : "Click to reset",
-									"textjustification" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-22",
-									"linecount" : 2,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 294.25, 218.0, 220.5, 36.0 ],
-									"text" : "Select the behaviour when reseting or changing frame size:",
-									"textjustification" : 1
 								}
 
 							}
@@ -272,8 +282,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 26.0, 105.0, 483.0, 21.0 ],
-									"text" : "fl.timemedian~ offers control over resetting and behaviour when the buffer is filling."
+									"patching_rect" : [ 26.0, 105.0, 551.0, 21.0 ],
+									"text" : "fl.timemedian~ offers control over resetting and the behaviour when the internal buffer is filling."
 								}
 
 							}
@@ -492,7 +502,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 600.0, 731.0 ],
+						"rect" : [ 0.0, 26.0, 608.0, 731.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -523,23 +533,36 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-7",
-									"maxclass" : "live.line",
+									"bubble" : 1,
+									"id" : "obj-19",
+									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 251.0, 158.0, 35.0, 13.0 ]
+									"patching_rect" : [ 233.0, 465.0, 335.0, 25.0 ],
+									"text" : "Here the input is the FFT magnitude frame in decibels"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-20",
+									"bubble" : 1,
+									"id" : "obj-14",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 292.0, 154.0, 108.0, 21.0 ],
+									"patching_rect" : [ 409.0, 594.5, 132.0, 25.0 ],
+									"text" : "Observe the result"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-7",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 251.0, 152.0, 125.0, 25.0 ],
 									"text" : "Play some sound"
 								}
 
@@ -559,11 +582,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-24",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 478.0, 328.0, 88.0, 21.0 ],
+									"patching_rect" : [ 476.0, 328.0, 105.0, 25.0 ],
 									"text" : "Set percentile"
 								}
 
@@ -607,69 +631,12 @@
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-19",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 240.0, 464.0, 318.0, 21.0 ],
-									"text" : "Here the input is the FFT magnitude frame in decibels"
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-16",
 									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
 									"patching_rect" : [ 30.0, 615.0, 45.0, 45.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-13",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 408.0, 600.5, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-14",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 450.0, 596.5, 115.0, 21.0 ],
-									"text" : "Observe the result"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-5",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 379.0, 289.0, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-11",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 421.0, 285.0, 155.0, 21.0 ],
-									"text" : "Set the number of frames"
 								}
 
 							}
@@ -1021,6 +988,18 @@
 								}
 
 							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-11",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 369.0, 284.0, 172.0, 25.0 ],
+									"text" : "Set the number of frames"
+								}
+
+							}
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
@@ -1230,7 +1209,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 600.0, 731.0 ],
+						"rect" : [ 0.0, 26.0, 608.0, 731.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1292,7 +1271,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 600.0, 731.0 ],
+						"rect" : [ 34.0, 113.0, 608.0, 731.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1323,6 +1302,80 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.0,
+									"id" : "obj-1",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 217.0, 516.0, 362.0, 25.0 ],
+									"text" : "Arguments set /max_frames and /num_frames parameters"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-10",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 385.0, 148.0, 153.0, 25.0 ],
+									"text" : "Wiggle the multislider!"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-8",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 295.0, 347.0, 261.0, 25.0 ],
+									"text" : "Number of  frames on which to calculate "
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-6",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 323.0, 601.5, 214.0, 40.0 ],
+									"text" : "Observe an indication of the rate of changes you make above"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-38",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 265.0, 482.0, 237.0, 25.0 ],
+									"text" : "Take the median of the last N frames"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-36",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 188.0, 279.5, 344.0, 25.0 ],
+									"text" : "Sample the the multislider's output every 4096 samples"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-14",
 									"local" : 1,
 									"maxclass" : "ezdac~",
@@ -1334,60 +1387,14 @@
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-15",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 424.0, 148.0, 136.0, 21.0 ],
-									"text" : "Wiggle the multislider!"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-17",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 319.0, 615.0, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-18",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 382.0, 152.0, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"hidden" : 1,
 									"id" : "obj-19",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 309.0, 82.0, 23.0 ],
+									"patching_rect" : [ 240.0, 314.0, 82.0, 23.0 ],
 									"text" : "loadmess 10"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-20",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 295.0, 348.0, 240.0, 21.0 ],
-									"text" : "Number of frames on which to calculate "
 								}
 
 							}
@@ -1426,40 +1433,6 @@
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 240.0, 437.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-24",
-									"linecount" : 2,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 359.0, 602.0, 214.0, 36.0 ],
-									"text" : "Observe a median-filtered version of the changes you make above"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-25",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 483.0, 220.0, 21.0 ],
-									"text" : "Take the median of the last N frames"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-27",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 272.0, 327.0, 21.0 ],
-									"text" : "Sample the the multislider's output every 4096 samples"
 								}
 
 							}
@@ -1551,17 +1524,6 @@
 									"outlettype" : [ "", "" ],
 									"patching_rect" : [ 30.0, 482.0, 229.0, 23.0 ],
 									"text" : "fl.timemedian~ 100 10"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-10",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 145.0, 524.0, 345.0, 21.0 ],
-									"text" : "Arguments set /max_frames and /num_frames parameters"
 								}
 
 							}

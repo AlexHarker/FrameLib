@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 632.0, 748.0 ],
+		"rect" : [ 34.0, 87.0, 629.0, 748.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 632.0, 722.0 ],
+						"rect" : [ 0.0, 26.0, 629.0, 722.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -93,7 +93,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 210.0, 639.0, 342.0, 36.0 ],
+									"patching_rect" : [ 210.0, 639.0, 345.0, 36.0 ],
 									"text" : "The difference between fold and mirror will be subtle (for mirror edge values are repeated, but for fold they are not)."
 								}
 
@@ -118,8 +118,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 480.0, 318.0, 36.0 ],
-									"text" : "The /edge parameter also affects interpolation, so we need bound off to be able to read outside the table."
+									"patching_rect" : [ 265.0, 484.0, 318.0, 36.0 ],
+									"text" : "The /edge parameter also affects interpolation, so we need bound off to be able to read outside the table.",
+									"textjustification" : 1
 								}
 
 							}
@@ -150,45 +151,37 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-37",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 210.0, 600.0, 29.75, 14.5 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-38",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 243.75, 596.75, 45.0, 21.0 ],
+									"patching_rect" : [ 201.5, 595.0, 62.0, 25.0 ],
 									"text" : "Result"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-18",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 450.0, 279.0, 21.0 ],
+									"patching_rect" : [ 276.0, 449.0, 296.0, 25.0 ],
 									"text" : "Note that bound is set off so we see the results"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-14",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 198.0, 345.0, 119.0, 21.0 ],
+									"patching_rect" : [ 197.0, 343.0, 121.0, 40.0 ],
 									"text" : "Our table is a ramp"
 								}
 
@@ -349,11 +342,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-15",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 185.0, 226.5, 162.0, 21.0 ],
+									"patching_rect" : [ 189.0, 222.5, 179.0, 25.0 ],
 									"text" : "Create a ramp from -1 to 2"
 								}
 
@@ -541,7 +535,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 632.0, 722.0 ],
+						"rect" : [ 0.0, 26.0, 629.0, 722.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -572,11 +566,13 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 3,
 									"id" : "obj-8",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 165.0, 135.0, 67.0, 21.0 ],
+									"patching_rect" : [ 145.0, 135.0, 84.0, 25.0 ],
 									"text" : "Set length"
 								}
 
@@ -601,7 +597,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 266.0, 511.0, 285.0, 21.0 ],
+									"patching_rect" : [ 266.0, 526.0, 285.0, 21.0 ],
 									"text" : "Note that scale is set to normalised for this input"
 								}
 
@@ -627,7 +623,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 394.5, 330.0, 75.0, 23.0 ],
+									"patching_rect" : [ 474.0, 375.5, 75.0, 23.0 ],
 									"text" : "loadmess 0"
 								}
 
@@ -640,7 +636,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 197.75, 331.0, 75.0, 23.0 ],
+									"patching_rect" : [ 291.25, 375.5, 75.0, 23.0 ],
 									"text" : "loadmess 1"
 								}
 
@@ -688,7 +684,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 435.0, 398.0, 62.0, 23.0 ],
+									"patching_rect" : [ 412.5, 413.0, 62.0, 23.0 ],
 									"text" : "edges $1"
 								}
 
@@ -700,19 +696,21 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 234.0, 398.0, 59.0, 23.0 ],
+									"patching_rect" : [ 234.0, 413.0, 59.0, 23.0 ],
 									"text" : "interp $1"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-10",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 498.0, 360.5, 100.0, 21.0 ],
-									"text" : "Edge behaviour"
+									"patching_rect" : [ 360.5, 330.0, 123.0, 40.0 ],
+									"text" : "Set edge behaviour"
 								}
 
 							}
@@ -725,18 +723,20 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 394.5, 360.5, 100.0, 23.0 ]
+									"patching_rect" : [ 372.0, 375.5, 100.0, 23.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-9",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 294.25, 360.5, 80.0, 21.0 ],
-									"text" : "Interpolation"
+									"patching_rect" : [ 191.0, 330.0, 105.0, 40.0 ],
+									"text" : "Set interpolation"
 								}
 
 							}
@@ -749,7 +749,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 197.75, 360.5, 91.5, 23.0 ]
+									"patching_rect" : [ 197.75, 375.5, 91.5, 23.0 ]
 								}
 
 							}
@@ -760,7 +760,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 234.0, 465.0, 124.0, 23.0 ],
+									"patching_rect" : [ 234.0, 480.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -772,7 +772,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 412.0, 605.0, 45.0, 45.0 ]
+									"patching_rect" : [ 432.5, 620.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -819,7 +819,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 132.0, 465.0, 77.0, 23.0 ],
+									"patching_rect" : [ 132.0, 480.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -855,7 +855,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 547.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 562.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -871,7 +871,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 585.0, 236.0, 85.0 ],
+									"patching_rect" : [ 30.0, 600.0, 236.0, 85.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 31,
 									"slidercolor" : [ 0.925490196078431, 0.364705882352941, 0.341176470588235, 1.0 ]
@@ -886,7 +886,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 510.0, 223.0, 23.0 ],
+									"patching_rect" : [ 30.0, 525.0, 223.0, 23.0 ],
 									"text" : "fl.lookup~ /scale normalised /bound 0"
 								}
 
@@ -932,7 +932,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
-									"midpoints" : [ 444.5, 442.5, 243.5, 442.5 ],
+									"midpoints" : [ 422.0, 457.5, 243.5, 457.5 ],
 									"source" : [ "obj-15", 0 ]
 								}
 
@@ -1134,7 +1134,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 632.0, 722.0 ],
+						"rect" : [ 0.0, 26.0, 629.0, 722.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1196,7 +1196,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 632.0, 722.0 ],
+						"rect" : [ 34.0, 113.0, 629.0, 722.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1244,19 +1244,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 540.0, 627.5, 45.0, 45.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-1",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 269.07049560546875, 182.625, 55.25, 17.75 ]
+									"patching_rect" : [ 540.0, 622.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -1267,7 +1255,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 625.0, 250.0, 50.0 ],
+									"patching_rect" : [ 276.0, 620.0, 240.0, 50.0 ],
 									"text" : "fl.lookup~ also has three scale modes. The lookup frame can be mapped to samples, normalised and bipolar values.",
 									"textjustification" : 1
 								}
@@ -1275,106 +1263,68 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-107",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 185.0, 514.0, 52.0, 21.25 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-108",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 243.0, 505.375, 350.0, 36.0 ],
-									"text" : "Lookup the 10 values and interpolate 4096 points between them. Interpolation types can be changed with /interp."
+									"patching_rect" : [ 185.0, 501.5, 364.0, 40.0 ],
+									"text" : "Lookup the 10 values and interpolate 4096 points between them. Interpolation types can be changed with /interp",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-105",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 453.5, 75.0, 19.5 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-106",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 167.0, 451.5, 352.0, 21.0 ],
-									"text" : "Multiply the 0 - 1 values by one less than the lookup length."
+									"patching_rect" : [ 90.0, 450.0, 367.0, 25.0 ],
+									"text" : "Multiply the 0 - 1 values by one less than the lookup length",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-103",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 305.875, 273.25, 55.25, 17.75 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-104",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 363.125, 268.625, 117.0, 21.0 ],
-									"text" : "Generate a table"
+									"patching_rect" : [ 315.0, 271.5, 122.0, 25.0 ],
+									"text" : "Generate a table",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-96",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 129.875, 409.0, 40.25, 18.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-95",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 173.125, 407.0, 273.0, 21.0 ],
-									"text" : "Subtract 1 from the length of the lookup frame"
+									"patching_rect" : [ 120.0, 405.0, 271.0, 25.0 ],
+									"text" : "Get the length of the lookup frame minus 1",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-94",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 326.32049560546875, 173.5, 266.0, 36.0 ],
-									"text" : "Generate a frame containing ramped values from 0 - 1 with 4096 discrete points."
+									"patching_rect" : [ 281.625, 171.5, 285.0, 40.0 ],
+									"text" : "Generate a frame containing ramped values from 0 - 1 with 4096 discrete points",
+									"textjustification" : 1
 								}
 
 							}
@@ -1445,7 +1395,7 @@
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 59.0, 103.0, 640.0, 480.0 ],
+										"rect" : [ 59.0, 103.0, 123.0, 178.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -1480,7 +1430,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 12.0, 82.333336000000003, 71.0, 22.0 ],
+													"patching_rect" : [ 26.0, 86.333336000000003, 71.0, 22.0 ],
 													"text" : "fl.minus~ 1"
 												}
 
@@ -1492,33 +1442,33 @@
 													"numinlets" : 1,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 12.0, 47.333336000000003, 62.0, 22.0 ],
+													"patching_rect" : [ 26.0, 51.333336000000003, 62.0, 22.0 ],
 													"text" : "fl.length~"
 												}
 
 											}
 , 											{
 												"box" : 												{
-													"comment" : "",
+													"comment" : "Frame In",
 													"id" : "obj-42",
 													"index" : 1,
 													"maxclass" : "inlet",
 													"numinlets" : 0,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 12.0, 12.0, 30.0, 30.0 ]
+													"patching_rect" : [ 26.0, 11.0, 30.0, 30.0 ]
 												}
 
 											}
 , 											{
 												"box" : 												{
-													"comment" : "",
+													"comment" : "Length - 1",
 													"id" : "obj-43",
 													"index" : 1,
 													"maxclass" : "outlet",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 12.0, 117.333327999999995, 30.0, 30.0 ]
+													"patching_rect" : [ 26.0, 121.333327999999995, 30.0, 30.0 ]
 												}
 
 											}
@@ -1547,7 +1497,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 68.0, 405.0, 59.0, 23.0 ],
+									"patching_rect" : [ 68.0, 405.0, 48.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1713,7 +1663,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-37", 1 ],
-									"midpoints" : [ 77.5, 391.0, 528.0, 391.0, 528.0, 490.0, 104.5, 490.0 ],
+									"midpoints" : [ 77.5, 391.0, 466.0, 391.0, 466.0, 490.0, 104.5, 490.0 ],
 									"order" : 0,
 									"source" : [ "obj-85", 0 ]
 								}

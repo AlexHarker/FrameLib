@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 671.0, 596.0 ],
+		"rect" : [ 34.0, 87.0, 692.0, 596.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 671.0, 570.0 ],
+						"rect" : [ 0.0, 26.0, 692.0, 570.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -492,7 +492,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 671.0, 570.0 ],
+						"rect" : [ 0.0, 26.0, 692.0, 570.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -554,7 +554,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 671.0, 570.0 ],
+						"rect" : [ 34.0, 113.0, 692.0, 570.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -585,24 +585,27 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-2",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 465.0, 135.0, 141.0, 21.0 ],
+									"patching_rect" : [ 476.0, 135.0, 158.0, 25.0 ],
 									"text" : "Set the delay in frames"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-10",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 435.0, 263.5, 200.0, 36.0 ],
-									"text" : "Arguments set /max_frames and /num_frames parameters"
+									"patching_rect" : [ 450.0, 261.5, 210.0, 40.0 ],
+									"text" : "Arguments set /max_frames and /num_frames parameters",
+									"textjustification" : 1
 								}
 
 							}
@@ -635,18 +638,20 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 345.0, 315.0, 166.0 ],
-									"text" : "fl.lag~ is set to be two frames behind fl.ticks~ by default in this patch. \n\nSee how the multislider here is always trailing the one to the left? Increase the lag amount to increase how far behind it follows.\n\nBecause fl.ticks~ produces a looping ramp pattern, if the lag is higher than the length of the loop the two outputs appear to be much closer than they are actually are in terms of time."
+									"patching_rect" : [ 354.0, 345.0, 285.0, 166.0 ],
+									"text" : "fl.lag~ is set to be two frames behind fl.ticks~ by default in this patch. \n\nSee how the multislider here is always trailing the one to the left? Increase the lag amount to increase how far behind it follows.\n\nBecause fl.ticks~ produces a looping ramp pattern, if the lag is higher than the length of the loop the two outputs appear to be much closer than they are actually are in terms of time.",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-40",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 172.5, 135.0, 210.0, 21.0 ],
+									"patching_rect" : [ 171.5, 135.0, 227.0, 25.0 ],
 									"text" : "fl.ticks~ is like a FrameLib 'counter'"
 								}
 
@@ -691,7 +696,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 405.0, 90.0, 75.0, 23.0 ],
+									"patching_rect" : [ 420.0, 90.0, 75.0, 23.0 ],
 									"text" : "loadmess 2"
 								}
 
@@ -706,7 +711,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 405.0, 135.0, 50.0, 23.0 ]
+									"patching_rect" : [ 420.0, 135.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -717,7 +722,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 405.0, 180.0, 99.0, 23.0 ],
+									"patching_rect" : [ 420.0, 180.0, 99.0, 23.0 ],
 									"text" : "num_frames $1"
 								}
 
@@ -729,7 +734,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 405.0, 225.0, 124.0, 23.0 ],
+									"patching_rect" : [ 420.0, 225.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -778,7 +783,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 255.0, 270.0, 169.0, 23.0 ],
+									"patching_rect" : [ 255.0, 270.0, 184.0, 23.0 ],
 									"text" : "fl.lag~ 30 2"
 								}
 
@@ -882,7 +887,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-27", 0 ],
-									"midpoints" : [ 39.5, 219.0, 414.5, 219.0 ],
+									"midpoints" : [ 39.5, 219.0, 429.5, 219.0 ],
 									"order" : 0,
 									"source" : [ "obj-6", 0 ]
 								}

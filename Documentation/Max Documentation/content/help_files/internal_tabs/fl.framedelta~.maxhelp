@@ -161,37 +161,15 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-7",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 563.5, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-2",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 287.0, 187.0, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-6",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 175.5, 165.0, 36.0 ],
-									"text" : "This moving smooth noise will jump every so often"
+									"patching_rect" : [ 289.0, 175.0, 180.0, 40.0 ],
+									"text" : "This moving smooth noise will jump every so often",
+									"textjustification" : 1
 								}
 
 							}
@@ -527,36 +505,42 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-39",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 326.0, 552.0, 188.0, 36.0 ],
-									"text" : "Observe the changes between frames (note the jumps)"
+									"patching_rect" : [ 289.0, 550.0, 214.0, 40.0 ],
+									"text" : "Observe the changes between frames (note the jumps)",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-38",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 420.0, 284.0, 21.0 ],
-									"text" : "Take the difference between successive frames"
+									"patching_rect" : [ 124.0, 420.0, 298.0, 25.0 ],
+									"text" : "Take the difference between successive frames",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-36",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 218.0, 315.0, 136.0, 36.0 ],
-									"text" : "Sample the incoming frame every 300 ms"
+									"patching_rect" : [ 212.0, 313.0, 157.0, 40.0 ],
+									"text" : "Sample the incoming frame every 300 ms",
+									"textjustification" : 1
 								}
 
 							}
