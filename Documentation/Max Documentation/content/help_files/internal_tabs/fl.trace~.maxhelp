@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -112,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -157,7 +157,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 474.125, 525.0, 146.75, 55.0 ],
+									"patching_rect" : [ 474.125, 517.0, 146.75, 55.0 ],
 									"text" : "Values are 'traced' or continued at the output."
 								}
 
@@ -284,8 +284,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 241.5, 530.0, 183.5, 69.0 ],
-									"text" : "You can specify a position by its absolute position in the whole frame"
+									"patching_rect" : [ 246.5, 530.0, 178.5, 69.0 ],
+									"text" : "You can specify a position by its absolute position in the whole frame",
+									"textjustification" : 1
 								}
 
 							}
@@ -299,8 +300,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 207.5, 382.0, 217.5, 55.0 ],
-									"text" : "You can specify a position by its relative position to the whole frame"
+									"patching_rect" : [ 220.5, 382.0, 205.5, 55.0 ],
+									"text" : "You can specify a position relative position to the whole frame",
+									"textjustification" : 1
 								}
 
 							}
@@ -314,8 +316,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 379.0, 131.5, 69.0 ],
-									"text" : "fl.trace~ with default parameters outputs the full frame."
+									"patching_rect" : [ 45.0, 375.0, 127.5, 69.0 ],
+									"text" : "fl.trace~ with default parameters outputs the full frame.",
+									"textjustification" : 1
 								}
 
 							}
@@ -327,8 +330,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 199.5, 187.375, 40.0 ],
-									"text" : "Generate a frame contaning the numbers 0 - 63"
+									"patching_rect" : [ 150.0, 199.5, 189.0, 40.0 ],
+									"text" : "Generate a frame contaning the numbers 0 - 63",
+									"textjustification" : 1
 								}
 
 							}
@@ -661,8 +665,8 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

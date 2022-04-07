@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -455,8 +455,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -500,8 +500,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 165.0, 279.5, 368.0, 141.0 ],
-									"text" : "In the example to the left, a pink noise generator entering fl.source~ is converted to frames of 1024 samples in length every 1024 samples. The original source is delayed by 1024 samples and then subtracted from the output of fl.sink~. \n\nBecause we have accounted for the delay in converting to frames with fl.source~ subtracting the two audio streams results in null summing."
+									"patching_rect" : [ 165.0, 279.5, 330.0, 141.0 ],
+									"text" : "In the example to the left, a pink noise generator entering fl.source~ is converted to frames of 1024 samples in length every 1024 samples. The original source is delayed by 1024 samples and then subtracted from the output of fl.sink~. \n\nBecause we have accounted for the delay in converting to frames with fl.source~ subtracting the two audio streams results in null summing.",
+									"textjustification" : 1
 								}
 
 							}
@@ -512,7 +513,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 570.0, 327.5, 45.0, 45.0 ]
+									"patching_rect" : [ 564.0, 327.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -597,8 +598,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 278.0, 601.0, 360.0, 156.0 ],
-									"text" : "You can also manually set the delay of the fl.source~ object in order to compensate for other delays that might be incurred elsewhere in a FrameLib network or to add delay (e.g. for a live granular process). \n\nNote, this cannot magically warp your fl.source~ object through time! and this value only has an effect when it is greater than the /length parameter. Experiment by changing the delay amount above and observing how well the signals null sum."
+									"patching_rect" : [ 278.0, 601.0, 337.0, 156.0 ],
+									"text" : "You can also manually set the delay of the fl.source~ object in order to compensate for other delays that might be incurred elsewhere in a FrameLib network or to add delay (e.g. for a live granular process). \n\nNote, this cannot magically warp your fl.source~ object through time! and this value only has an effect when it is greater than the /length parameter. Experiment by changing the delay amount above and observing how well the signals null sum.",
+									"textjustification" : 1
 								}
 
 							}
@@ -744,8 +746,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 105.0, 316.0, 141.0 ],
-									"text" : "Because fl.source~ needs to collect the last N samples it has to wait for at least the number of samples specified by the /length parameter before it can output. \n\nThis means it is always delayed in relation to the input, and you may have to deal with this delay if you need tight synchronisation between FrameLib and other audio streams."
+									"patching_rect" : [ 315.0, 99.0, 300.0, 141.0 ],
+									"text" : "Because fl.source~ needs to collect the last N samples it has to wait for at least the number of samples specified by the /length parameter before it can output. \n\nThis means it is always delayed in relation to the input, and you may have to deal with this delay if you need tight synchronisation between FrameLib and other audio streams.",
+									"textjustification" : 1
 								}
 
 							}
@@ -949,8 +952,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1011,8 +1014,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1080,8 +1083,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 337.5, 552.0, 180.0, 170.0 ],
-									"text" : "Here, fl.interval~ replaces fl.audiotrigger~ and sends a trigger frame every 1024 frames rather than everytime we send a click. In effect, fl.source~ is outputting the last 1024 samples from the audio stream every 1024 samples in time, resulting in an interrupted stream"
+									"patching_rect" : [ 337.5, 552.0, 179.0, 170.0 ],
+									"text" : "Here, fl.interval~ replaces fl.audiotrigger~ and sends a trigger frame every 1024 samples.\n\nAs a result, fl.source~ will output the last 1024 samples from the audio stream every 1024 samples in time, resulting in an uninterrupted stream",
+									"textjustification" : 1
 								}
 
 							}
@@ -1157,8 +1161,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 360.0, 240.0, 121.0, 83.0 ],
-									"text" : "Hit the bang object to output the last 1024 frames from fl.source~."
+									"patching_rect" : [ 360.0, 240.0, 120.0, 83.0 ],
+									"text" : "Hit the bang object to output the last 1024 samples from fl.source~.",
+									"textjustification" : 1
 								}
 
 							}
@@ -1428,8 +1433,8 @@
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
