@@ -165,7 +165,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 335.0, 356.0, 101.0, 21.0 ],
+									"patching_rect" : [ 335.0, 357.0, 101.0, 21.0 ],
 									"text" : "Reversed frame",
 									"textjustification" : 1
 								}
@@ -177,7 +177,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 85.5, 356.0, 112.0, 21.0 ],
+									"patching_rect" : [ 85.5, 357.0, 112.0, 21.0 ],
 									"text" : "Unchanged frame",
 									"textjustification" : 1
 								}

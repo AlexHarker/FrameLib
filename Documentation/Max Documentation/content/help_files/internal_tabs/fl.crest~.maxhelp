@@ -150,12 +150,14 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-14",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 544.5, 218.5, 169.0, 36.0 ],
+									"patching_rect" : [ 542.5, 209.0, 169.0, 55.0 ],
 									"text" : "Here we calculate the crest factor of frames of noise.",
 									"textjustification" : 1
 								}

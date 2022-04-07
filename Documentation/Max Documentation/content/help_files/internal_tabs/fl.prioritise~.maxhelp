@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 611.0, 612.0 ],
+		"rect" : [ 34.0, 87.0, 611.0, 620.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 611.0, 586.0 ],
+						"rect" : [ 34.0, 113.0, 611.0, 594.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -88,11 +88,12 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-11",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 210.0, 96.25, 153.0, 21.0 ],
+									"patching_rect" : [ 201.0, 94.25, 170.0, 25.0 ],
 									"text" : "Switch the schedulers on"
 								}
 
@@ -453,7 +454,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 611.0, 586.0 ],
+						"rect" : [ 0.0, 26.0, 611.0, 594.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -515,7 +516,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 611.0, 586.0 ],
+						"rect" : [ 0.0, 26.0, 611.0, 594.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -546,22 +547,24 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-26",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 459.0, 93.0, 103.0, 21.0 ],
+									"patching_rect" : [ 453.0, 91.0, 120.0, 25.0 ],
 									"text" : "Scheduler on/off"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-14",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 130.5, 93.0, 103.0, 21.0 ],
+									"patching_rect" : [ 123.0, 91.0, 120.0, 25.0 ],
 									"text" : "Scheduler on/off"
 								}
 
@@ -631,12 +634,15 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.15,
+									"bubbleside" : 0,
 									"id" : "obj-13",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 360.0, 510.0, 167.0, 50.0 ],
+									"patching_rect" : [ 360.0, 495.0, 167.0, 69.0 ],
 									"text" : "Here the two inputs always arrive together but the lower input is prioritised",
 									"textjustification" : 1
 								}
@@ -644,12 +650,15 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.15,
+									"bubbleside" : 0,
 									"id" : "obj-10",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 510.0, 167.0, 50.0 ],
+									"patching_rect" : [ 30.0, 495.0, 167.0, 69.0 ],
 									"text" : "Here the two inputs always arrive together but the higher input is prioritised",
 									"textjustification" : 1
 								}
@@ -1152,14 +1161,6 @@
 			}
  ],
 		"lines" : [  ],
-		"parameters" : 		{
-			"parameterbanks" : 			{
-
-			}
-,
-			"inherited_shortname" : 1
-		}
-,
 		"dependency_cache" : [ 			{
 				"name" : "fl.frommax~.mxo",
 				"type" : "iLaX"

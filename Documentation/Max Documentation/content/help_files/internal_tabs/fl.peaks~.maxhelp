@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 666.0, 684.0 ],
+		"rect" : [ 34.0, 87.0, 686.0, 684.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 666.0, 658.0 ],
+						"rect" : [ 34.0, 113.0, 686.0, 658.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -88,12 +88,13 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-43",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 390.0, 315.0, 240.0, 36.0 ],
+									"patching_rect" : [ 390.0, 315.0, 255.0, 40.0 ],
 									"text" : "Retrieve ampllitudes for each bin as the value of the peak to which it belongs."
 								}
 
@@ -173,22 +174,24 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-19",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 165.0, 480.0, 235.0, 21.0 ],
+									"patching_rect" : [ 165.0, 480.0, 252.0, 25.0 ],
 									"text" : "Input is real and imaginary components"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-18",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 165.0, 208.0, 239.0, 21.0 ],
+									"patching_rect" : [ 165.0, 208.0, 256.0, 25.0 ],
 									"text" : "Outputs real and imaginary components"
 								}
 
@@ -429,23 +432,12 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-16",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 140.0, 533.0, 30.0, 11.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-25",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 179.0, 528.0, 151.0, 21.0 ],
+									"patching_rect" : [ 135.0, 528.0, 168.0, 25.0 ],
 									"text" : "Turn up to hear the gate!"
 								}
 
@@ -700,7 +692,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 101.0, 594.0, 529.0, 36.0 ],
+									"patching_rect" : [ 101.0, 589.5, 529.0, 36.0 ],
 									"text" : "One use of fl.peaks~ is for FFT analysis or processing based on the idea that peaks in the specturm might represent sinusoidal content."
 								}
 
@@ -712,8 +704,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 102.0, 367.0, 65.0 ],
-									"text" : "Here we make a simple spectral gate and instead of thresholding based on the value of each bin we use fl.peaks~ along with fl.lookup~ to retrieve the value of the peak to which each bin belongs, so all values in a peak are treated together."
+									"patching_rect" : [ 270.0, 102.0, 390.0, 65.0 ],
+									"text" : "Here we make a simple spectral gate and instead of thresholding based on the value of each bin we use fl.peaks~ along with fl.lookup~ to retrieve the value of the peak to which each bin belongs, so all values in a peak are treated together.",
+									"textjustification" : 1
 								}
 
 							}
@@ -958,7 +951,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 666.0, 658.0 ],
+						"rect" : [ 0.0, 26.0, 686.0, 658.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -988,6 +981,20 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-21",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 278.0, 130.0, 197.0, 40.0 ],
+									"text" : "Create your own frame. Make different peaks in the frame.",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"hidden" : 1,
 									"id" : "obj-11",
@@ -1165,30 +1172,19 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 294.875, 177.625, 75.0, 23.0 ],
+									"patching_rect" : [ 294.875, 192.625, 75.0, 23.0 ],
 									"text" : "loadmess 1"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-15",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 415.0, 213.875, 37.0, 15.25 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-12",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 460.0, 210.0, 162.0, 21.0 ],
+									"patching_rect" : [ 407.125, 225.0, 179.0, 25.0 ],
 									"text" : "Set the refinement method"
 								}
 
@@ -1200,7 +1196,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 338.0, 255.0, 59.0, 23.0 ],
+									"patching_rect" : [ 338.0, 270.0, 59.0, 23.0 ],
 									"text" : "refine $1"
 								}
 
@@ -1214,7 +1210,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 294.875, 210.0, 105.25, 23.0 ]
+									"patching_rect" : [ 294.875, 225.0, 105.25, 23.0 ]
 								}
 
 							}
@@ -1225,7 +1221,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 338.0, 300.0, 124.0, 23.0 ],
+									"patching_rect" : [ 338.0, 315.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -1236,40 +1232,43 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 517.0, 563.0, 21.0 ],
+									"patching_rect" : [ 30.0, 532.0, 563.0, 21.0 ],
 									"text" : "We can retrieve peak positions and values using interpolation (refinement) to better locate peaks"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-23",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 407.0, 345.0, 72.0, 21.0 ],
+									"patching_rect" : [ 366.0, 360.0, 89.0, 25.0 ],
 									"text" : "Find peaks"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-22",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 372.0, 479.0, 264.0, 21.0 ],
+									"patching_rect" : [ 372.0, 494.0, 281.0, 25.0 ],
 									"text" : "What are the peak values (with refinement)?"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-18",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 372.0, 434.0, 240.0, 21.0 ],
+									"patching_rect" : [ 372.0, 449.0, 254.0, 25.0 ],
 									"text" : "Where are the peaks (with refinement)?"
 								}
 
@@ -1282,8 +1281,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 480.0, 327.0, 23.0 ],
-									"text" : "0.847312 1.25544 0.974009"
+									"patching_rect" : [ 30.0, 495.0, 327.0, 23.0 ]
 								}
 
 							}
@@ -1295,8 +1293,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 435.0, 285.0, 23.0 ],
-									"text" : "0.972739 5.433 12.224084"
+									"patching_rect" : [ 30.0, 450.0, 285.0, 23.0 ]
 								}
 
 							}
@@ -1307,7 +1304,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 338.0, 390.0, 62.0, 23.0 ],
+									"patching_rect" : [ 338.0, 405.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -1319,7 +1316,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 184.0, 390.0, 62.0, 23.0 ],
+									"patching_rect" : [ 184.0, 405.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -1331,43 +1328,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 570.0, 45.0, 45.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-24",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 372.0, 348.875, 37.0, 15.25 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-46",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 150.0, 37.0, 15.25 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-21",
-									"linecount" : 2,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 325.0, 139.625, 217.0, 36.0 ],
-									"text" : "Create your own frame. Make different peaks in the shape"
+									"patching_rect" : [ 315.0, 585.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -1402,7 +1363,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 171.0, 240.0, 75.0, 23.0 ],
+									"patching_rect" : [ 171.0, 255.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -1414,7 +1375,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 300.0, 77.0, 23.0 ],
+									"patching_rect" : [ 30.0, 315.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -1427,7 +1388,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 30.0, 345.0, 327.0, 23.0 ],
+									"patching_rect" : [ 30.0, 360.0, 327.0, 23.0 ],
 									"text" : "fl.peaks~ 2 /refine off"
 								}
 
@@ -1474,7 +1435,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
-									"midpoints" : [ 180.5, 288.5, 347.5, 288.5 ],
+									"midpoints" : [ 180.5, 303.5, 347.5, 303.5 ],
 									"order" : 0,
 									"source" : [ "obj-19", 0 ]
 								}
@@ -1483,7 +1444,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"midpoints" : [ 180.5, 288.5, 39.5, 288.5 ],
+									"midpoints" : [ 180.5, 303.5, 39.5, 303.5 ],
 									"order" : 1,
 									"source" : [ "obj-19", 0 ]
 								}
@@ -1514,7 +1475,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 0 ],
-									"midpoints" : [ 39.5, 341.0, 39.5, 341.0 ],
+									"midpoints" : [ 39.5, 356.0, 39.5, 356.0 ],
 									"source" : [ "obj-6", 0 ]
 								}
 
@@ -1543,7 +1504,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 1 ],
-									"midpoints" : [ 193.5, 423.5, 305.5, 423.5 ],
+									"midpoints" : [ 193.5, 438.5, 305.5, 438.5 ],
 									"source" : [ "obj-9", 0 ]
 								}
 
@@ -1610,7 +1571,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 666.0, 658.0 ],
+						"rect" : [ 0.0, 26.0, 686.0, 658.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1672,7 +1633,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 666.0, 658.0 ],
+						"rect" : [ 0.0, 26.0, 686.0, 658.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1702,6 +1663,17 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 67.0, 427.0, 21.0 ],
+									"text" : "fl.peaks~ find peaks in an incoming frame as defined by the parameters. "
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"hidden" : 1,
 									"id" : "obj-5",
@@ -1859,7 +1831,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 30.0, 60.0, 87.0, 23.0 ],
+									"patching_rect" : [ 30.0, 75.0, 87.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1875,55 +1847,60 @@
 								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-25",
-									"linecount" : 4,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 562.0, 606.0, 65.0 ],
-									"text" : "fl.peaks~ find peaks in an incoming frame as defined by the parameters. \n\nIn this example a peak is any value greater than the two neighbours to the right and two neighbours to the left. The first argument sets the number of neighbours, and we could also set an absolute threshold."
+									"patching_rect" : [ 30.0, 585.0, 630.0, 36.0 ],
+									"text" : "In this example a peak is any value greater than the two neighbours to the right and two neighbours to the left. The first argument sets the number of neighbours, and we could also set an absolute threshold.",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-23",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 420.0, 315.0, 164.0, 21.0 ],
+									"patching_rect" : [ 365.0, 330.0, 181.0, 25.0 ],
 									"text" : "Find peaks (no refinement)"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-22",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 372.0, 524.0, 270.0, 21.0 ],
+									"patching_rect" : [ 365.0, 539.0, 286.0, 25.0 ],
 									"text" : "What are the peak values (non-interpolated)?"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-18",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 372.0, 479.0, 250.0, 21.0 ],
+									"patching_rect" : [ 365.0, 495.0, 260.0, 25.0 ],
 									"text" : "Where are the peaks (non-interpolated)?"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-16",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 372.0, 435.0, 250.0, 21.0 ],
+									"patching_rect" : [ 365.0, 450.0, 267.0, 25.0 ],
 									"text" : "Which peak does each sample belong to?"
 								}
 
@@ -1936,7 +1913,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 525.0, 327.0, 23.0 ]
+									"patching_rect" : [ 30.0, 540.0, 327.0, 23.0 ]
 								}
 
 							}
@@ -1948,7 +1925,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 480.0, 285.0, 23.0 ]
+									"patching_rect" : [ 30.0, 495.0, 285.0, 23.0 ]
 								}
 
 							}
@@ -1959,7 +1936,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 338.0, 360.0, 62.0, 23.0 ],
+									"patching_rect" : [ 338.0, 375.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -1971,7 +1948,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 184.0, 360.0, 62.0, 23.0 ],
+									"patching_rect" : [ 184.0, 375.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -1983,43 +1960,20 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 555.0, 135.125, 45.0, 45.0 ]
+									"patching_rect" : [ 555.0, 142.5, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-24",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 385.0, 318.875, 37.0, 15.25 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-46",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 150.0, 37.0, 15.25 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-21",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 324.0, 139.625, 187.0, 36.0 ],
-									"text" : "Create your own frame. Make different peaks in the frame",
+									"patching_rect" : [ 278.0, 145.0, 197.0, 40.0 ],
+									"text" : "Create your own frame. Make different peaks in the frame.",
 									"textjustification" : 1
 								}
 
@@ -2038,7 +1992,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 90.0, 240.0, 120.0 ],
+									"patching_rect" : [ 30.0, 105.0, 240.0, 120.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"setstyle" : 1,
 									"size" : 16,
@@ -2055,7 +2009,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 75.0, 225.0, 75.0, 23.0 ],
+									"patching_rect" : [ 75.0, 240.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -2067,7 +2021,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 270.0, 77.0, 23.0 ],
+									"patching_rect" : [ 30.0, 285.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -2079,7 +2033,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 360.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 375.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -2092,7 +2046,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 30.0, 315.0, 327.0, 23.0 ],
+									"patching_rect" : [ 30.0, 330.0, 327.0, 23.0 ],
 									"text" : "fl.peaks~ 2 /refine off"
 								}
 
@@ -2105,7 +2059,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 435.0, 255.0, 23.0 ]
+									"patching_rect" : [ 30.0, 450.0, 255.0, 23.0 ]
 								}
 
 							}
@@ -2136,7 +2090,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"midpoints" : [ 84.5, 258.5, 39.5, 258.5 ],
+									"midpoints" : [ 84.5, 273.5, 39.5, 273.5 ],
 									"source" : [ "obj-19", 0 ]
 								}
 
@@ -2159,7 +2113,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 0 ],
-									"midpoints" : [ 39.5, 311.0, 39.5, 311.0 ],
+									"midpoints" : [ 39.5, 326.0, 39.5, 326.0 ],
 									"source" : [ "obj-6", 0 ]
 								}
 
@@ -2167,7 +2121,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-30", 1 ],
-									"midpoints" : [ 39.5, 421.5, 275.5, 421.5 ],
+									"midpoints" : [ 39.5, 436.5, 275.5, 436.5 ],
 									"source" : [ "obj-7", 0 ]
 								}
 
@@ -2196,7 +2150,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 1 ],
-									"midpoints" : [ 193.5, 407.0, 305.5, 407.0 ],
+									"midpoints" : [ 193.5, 422.0, 305.5, 422.0 ],
 									"source" : [ "obj-9", 0 ]
 								}
 

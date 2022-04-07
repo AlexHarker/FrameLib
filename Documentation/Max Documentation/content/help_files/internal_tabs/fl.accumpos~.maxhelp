@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 669.0, 530.0 ],
+		"rect" : [ 34.0, 87.0, 656.0, 530.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 669.0, 504.0 ],
+						"rect" : [ 0.0, 26.0, 656.0, 504.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 669.0, 504.0 ],
+						"rect" : [ 34.0, 113.0, 656.0, 504.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,7 +155,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 585.0, 349.0, 45.0, 45.0 ]
+									"patching_rect" : [ 570.0, 349.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -178,7 +178,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 515.0, 121.0, 115.0, 25.0 ],
+									"patching_rect" : [ 509.0, 121.0, 115.0, 25.0 ],
 									"text" : "Set Percentage"
 								}
 
@@ -225,11 +225,14 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.2,
+									"bubbleside" : 0,
 									"id" : "obj-1",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 450.0, 154.0, 21.0 ],
+									"patching_rect" : [ 30.0, 440.5, 154.0, 40.0 ],
 									"text" : "The interpolated position"
 								}
 
@@ -253,7 +256,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 297.5, 120.0, 88.0, 25.0 ],
+									"patching_rect" : [ 291.0, 120.0, 88.0, 25.0 ],
 									"text" : "Set Length"
 								}
 
@@ -299,12 +302,15 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 0,
 									"id" : "obj-21",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 470.125, 450.0, 59.0, 21.0 ],
-									"text" : "The sum"
+									"patching_rect" : [ 464.625, 440.5, 61.0, 40.0 ],
+									"text" : "The sum",
+									"textjustification" : 1
 								}
 
 							}
@@ -371,12 +377,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-14",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 255.0, 255.0, 173.0, 21.0 ],
-									"text" : "Generate a ramp from 0 to 1"
+									"patching_rect" : [ 254.0, 254.0, 196.0, 25.0 ],
+									"text" : "Generates a ramp from 0 to 1"
 								}
 
 							}
@@ -653,8 +660,8 @@
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

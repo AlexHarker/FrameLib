@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 557.0, 492.0 ],
+		"rect" : [ 34.0, 87.0, 523.0, 492.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 557.0, 466.0 ],
+						"rect" : [ 0.0, 26.0, 523.0, 466.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 557.0, 466.0 ],
+						"rect" : [ 34.0, 113.0, 523.0, 466.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -150,12 +150,13 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-9",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 111.0, 268.0, 172.0, 21.0 ],
-									"text" : "Generate a sine wave frame"
+									"patching_rect" : [ 84.0, 267.0, 276.0, 25.0 ],
+									"text" : "Generates a frame containing a sine wave"
 								}
 
 							}
@@ -166,7 +167,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 427.5, 315.0, 45.0, 45.0 ]
+									"patching_rect" : [ 386.0, 315.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -201,24 +202,13 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-46",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 411.5, 32.958335876464844, 14.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-45",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 375.0, 400.5, 150.0, 36.0 ],
+									"patching_rect" : [ 326.0, 398.5, 165.0, 40.0 ],
 									"text" : "RMS of the sine wave (1/sqrt(2) = 0.707107...)",
 									"textjustification" : 1
 								}

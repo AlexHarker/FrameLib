@@ -168,18 +168,20 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 92.0, 577.67567567567562, 510.0, 36.0 ],
+									"patching_rect" : [ 105.0, 577.67567567567562, 510.0, 36.0 ],
 									"text" : "fl.pattern~ is a way to step through sequences of numbers in FrameLib (with or without looping) to control other FrameLib objects. Progression can be forwards or backwards."
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-39",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 438.75, 314.0, 144.0, 21.0 ],
+									"patching_rect" : [ 426.0, 303.17567567567562, 146.0, 40.0 ],
 									"text" : "Control the progression"
 								}
 
@@ -211,11 +213,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-35",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 220.0, 195.0, 100.0, 21.0 ],
+									"patching_rect" : [ 214.0, 195.0, 117.0, 25.0 ],
 									"text" : "Sets the pattern"
 								}
 
@@ -271,46 +274,51 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-24",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 411.0, 108.17567567567562, 42.0, 21.0 ],
+									"patching_rect" : [ 410.0, 92.0, 44.0, 40.0 ],
 									"text" : "Reset"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-22",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 109.0, 439.17567567567562, 154.0, 21.0 ],
-									"text" : "Envelopes to avoid clicks"
+									"patching_rect" : [ 112.0, 438.17567567567562, 198.0, 25.0 ],
+									"text" : "Applies envelip to avoid clicks"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-18",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 137.0, 386.67567567567562, 170.0, 36.0 ],
-									"presentation_linecount" : 2,
-									"text" : "Filters a noise burst with the frequency from the pattern"
+									"patching_rect" : [ 138.5, 384.67567567567562, 191.5, 40.0 ],
+									"text" : "Filters a noise burst with the frequency from the pattern",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-15",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 205.0, 138.17567567567562, 137.0, 21.0 ],
+									"patching_rect" : [ 194.0, 138.17567567567562, 154.0, 25.0 ],
 									"text" : "Create a cross-rhythm"
 								}
 
@@ -950,7 +958,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-21", 3 ],
-									"midpoints" : [ 461.5, 472.17567567567562, 339.0, 472.17567567567562, 339.0, 292.17567567567562, 240.5, 292.17567567567562 ],
+									"midpoints" : [ 461.5, 472.17567567567562, 347.0, 472.17567567567562, 347.0, 292.17567567567562, 240.5, 292.17567567567562 ],
 									"source" : [ "obj-25", 0 ]
 								}
 
