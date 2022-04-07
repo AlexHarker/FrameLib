@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 678.0, 800.0 ],
+		"rect" : [ 34.0, 87.0, 689.0, 824.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 678.0, 774.0 ],
+						"rect" : [ 34.0, 113.0, 689.0, 798.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -88,13 +88,28 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 1.0,
+									"id" : "obj-16",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 109.0, 228.0, 135.0, 40.0 ],
+									"text" : "Play a short grain from the buffer",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"color" : [ 0.996078431372549, 0.0, 0.0, 1.0 ],
 									"id" : "obj-15",
 									"maxclass" : "newobj",
 									"numinlets" : 5,
 									"numoutlets" : 5,
 									"outlettype" : [ "", "", "", "", "" ],
-									"patching_rect" : [ 120.166666666666671, 386.0, 379.666666666666629, 23.0 ],
+									"patching_rect" : [ 120.166666666666671, 399.0, 379.666666666666629, 23.0 ],
 									"text" : "fl.biquadcoeff~ /coefficients dynamic /mode bandpass /qs 10.5"
 								}
 
@@ -103,12 +118,13 @@
 								"box" : 								{
 									"fontname" : "Arial",
 									"id" : "obj-28",
-									"linecount" : 3,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 105.0, 632.0, 485.0, 50.0 ],
-									"text" : "In dynamic mode filters provides an input per parameter of the filter, so these can be modulated over the period of a frame. You can use a mix of parameters and inputs to set values."
+									"patching_rect" : [ 88.0, 649.5, 570.0, 36.0 ],
+									"text" : "In dynamic mode filters provides an input per parameter of the filter, so these can be modulated over the period of a frame. You can use a mix of parameters and inputs to set values.",
+									"textjustification" : 1
 								}
 
 							}
@@ -119,7 +135,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 123.0, 560.0, 256.0, 25.0 ],
+									"patching_rect" : [ 116.0, 573.0, 256.0, 25.0 ],
 									"text" : "Turn up tfor granular filter sweeping fun!"
 								}
 
@@ -131,20 +147,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 318.0, 470.0, 218.0, 25.0 ],
+									"patching_rect" : [ 322.0, 483.0, 218.0, 25.0 ],
 									"text" : "Apply the sweep to the frequency"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bubble" : 1,
-									"id" : "obj-23",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 260.0, 227.0, 215.0, 25.0 ],
-									"text" : "Play a short grain from the buffer"
 								}
 
 							}
@@ -155,7 +159,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 80.0, 92.0, 174.0, 25.0 ],
+									"patching_rect" : [ 80.0, 105.0, 174.0, 25.0 ],
 									"text" : "Generate random triggers"
 								}
 
@@ -167,7 +171,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 405.0, 345.0, 255.0, 25.0 ],
+									"patching_rect" : [ 403.0, 358.0, 255.0, 25.0 ],
 									"text" : "Generate an exponential upward sweep"
 								}
 
@@ -179,7 +183,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 470.0, 286.0, 23.0 ],
+									"patching_rect" : [ 30.0, 483.0, 286.0, 23.0 ],
 									"text" : "fl.window~ /window trapezoid /parameters 25 99"
 								}
 
@@ -191,7 +195,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 218.0, 70.0, 23.0 ],
+									"patching_rect" : [ 30.0, 231.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -203,7 +207,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 260.0, 166.0, 23.0 ],
+									"patching_rect" : [ 30.0, 273.0, 166.0, 23.0 ],
 									"text" : "fl.map~ linear 0 1 200 4000"
 								}
 
@@ -215,7 +219,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 344.0, 156.0, 23.0 ],
+									"patching_rect" : [ 240.0, 357.0, 156.0, 23.0 ],
 									"text" : "fl.map~ exp 0 1 20 12000"
 								}
 
@@ -227,7 +231,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 512.0, 49.0, 23.0 ],
+									"patching_rect" : [ 30.0, 525.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -239,7 +243,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 134.0, 67.0, 23.0 ],
+									"patching_rect" : [ 30.0, 147.0, 67.0, 23.0 ],
 									"text" : ">~ 0.9994"
 								}
 
@@ -251,7 +255,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 176.0, 95.0, 23.0 ],
+									"patching_rect" : [ 30.0, 189.0, 95.0, 23.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -263,7 +267,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 92.0, 47.0, 23.0 ],
+									"patching_rect" : [ 30.0, 105.0, 47.0, 23.0 ],
 									"text" : "noise~"
 								}
 
@@ -275,7 +279,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 302.0, 34.0, 23.0 ],
+									"patching_rect" : [ 30.0, 315.0, 34.0, 23.0 ],
 									"text" : "fl.+~"
 								}
 
@@ -287,7 +291,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 30.0, 707.0, 211.0, 23.0 ],
+									"patching_rect" : [ 30.0, 720.0, 211.0, 23.0 ],
 									"text" : "buffer~ fl.biquadc.help cherokee.aif"
 								}
 
@@ -299,7 +303,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 344.0, 195.0, 23.0 ],
+									"patching_rect" : [ 30.0, 357.0, 195.0, 23.0 ],
 									"text" : "fl.read~ fl.biquadc.help /units ms"
 								}
 
@@ -311,7 +315,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 260.0, 238.0, 23.0 ],
+									"patching_rect" : [ 240.0, 273.0, 238.0, 23.0 ],
 									"text" : "fl.ramp~ /length 700 /units ms /scale ms"
 								}
 
@@ -323,7 +327,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 302.0, 232.0, 23.0 ],
+									"patching_rect" : [ 240.0, 315.0, 232.0, 23.0 ],
 									"text" : "fl.ramp~ /mode input /scale normalised"
 								}
 
@@ -336,7 +340,7 @@
 									"numinlets" : 7,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 428.0, 560.0, 23.0 ],
+									"patching_rect" : [ 30.0, 441.0, 560.0, 23.0 ],
 									"text" : "fl.biquad~ /dynamic 1"
 								}
 
@@ -357,7 +361,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 557.0, 90.0, 45.0 ],
+									"patching_rect" : [ 30.0, 570.0, 90.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -369,7 +373,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 632.0, 45.0, 45.0 ]
+									"patching_rect" : [ 30.0, 645.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -400,7 +404,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 1 ],
-									"midpoints" : [ 249.5, 376.0, 219.833333333333314, 376.0 ],
+									"midpoints" : [ 249.5, 389.0, 219.833333333333314, 389.0 ],
 									"order" : 0,
 									"source" : [ "obj-11", 0 ]
 								}
@@ -409,7 +413,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
-									"midpoints" : [ 249.5, 376.0, 129.666666666666686, 376.0 ],
+									"midpoints" : [ 249.5, 389.0, 129.666666666666686, 389.0 ],
 									"order" : 1,
 									"source" : [ "obj-11", 0 ]
 								}
@@ -418,7 +422,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"midpoints" : [ 39.5, 279.0, 39.5, 279.0 ],
+									"midpoints" : [ 39.5, 292.0, 39.5, 292.0 ],
 									"source" : [ "obj-12", 0 ]
 								}
 
@@ -475,7 +479,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-18", 0 ],
-									"midpoints" : [ 249.5, 279.0, 249.5, 279.0 ],
+									"midpoints" : [ 249.5, 292.0, 249.5, 292.0 ],
 									"order" : 0,
 									"source" : [ "obj-17", 0 ]
 								}
@@ -484,7 +488,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 1 ],
-									"midpoints" : [ 249.5, 292.0, 54.5, 292.0 ],
+									"midpoints" : [ 249.5, 305.0, 54.5, 305.0 ],
 									"order" : 1,
 									"source" : [ "obj-17", 0 ]
 								}
@@ -544,7 +548,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
-									"midpoints" : [ 39.5, 215.5, 39.5, 215.5 ],
+									"midpoints" : [ 39.5, 228.5, 39.5, 228.5 ],
 									"order" : 1,
 									"source" : [ "obj-8", 0 ]
 								}
@@ -553,7 +557,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-17", 0 ],
-									"midpoints" : [ 39.5, 209.5, 249.5, 209.5 ],
+									"midpoints" : [ 39.5, 222.5, 249.5, 222.5 ],
 									"order" : 0,
 									"source" : [ "obj-8", 0 ]
 								}
@@ -621,14 +625,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 678.0, 774.0 ],
+						"rect" : [ 0.0, 26.0, 689.0, 798.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -663,7 +667,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 40.814814814814824, 495.0, 603.0, 21.0 ],
+									"patching_rect" : [ 40.814814814814824, 510.0, 603.0, 21.0 ],
 									"text" : "3. static - set filter parameters with parameters but output individual coefficients as single-value frames"
 								}
 
@@ -674,7 +678,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 41.194444444444457, 360.0, 603.0, 21.0 ],
+									"patching_rect" : [ 41.194444444444457, 375.0, 603.0, 21.0 ],
 									"text" : "2. dynamic - set filter parameters with inputs or parameters and output individual coefficients as frames"
 								}
 
@@ -685,7 +689,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 225.0, 482.0, 21.0 ],
+									"patching_rect" : [ 45.0, 240.0, 482.0, 21.0 ],
 									"text" : "1. tagged - set filter parameters with parameters and output a single tagged frame"
 								}
 
@@ -698,7 +702,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 5,
 									"outlettype" : [ "", "", "", "", "" ],
-									"patching_rect" : [ 162.254629629629648, 540.0, 358.314814814814781, 23.0 ],
+									"patching_rect" : [ 162.254629629629648, 555.0, 358.314814814814781, 23.0 ],
 									"text" : "fl.biquadcoeff~ 440 2 0.5 /mode bandpass /coefficients static"
 								}
 
@@ -710,7 +714,7 @@
 									"numinlets" : 7,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 77.425925925925966, 585.0, 527.972222222222172, 23.0 ],
+									"patching_rect" : [ 77.425925925925966, 600.0, 527.972222222222172, 23.0 ],
 									"text" : "fl.biquad~ /dynamic 1"
 								}
 
@@ -723,7 +727,7 @@
 									"numinlets" : 5,
 									"numoutlets" : 5,
 									"outlettype" : [ "", "", "", "", "" ],
-									"patching_rect" : [ 152.805555555555543, 405.0, 317.0, 23.0 ],
+									"patching_rect" : [ 152.805555555555543, 420.0, 317.0, 23.0 ],
 									"text" : "fl.biquadcoeff~ /mode bandpass /coefficients dynamic"
 								}
 
@@ -735,7 +739,7 @@
 									"numinlets" : 7,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 77.42592592592591, 450.0, 467.055555555555543, 23.0 ],
+									"patching_rect" : [ 77.42592592592591, 465.0, 467.055555555555543, 23.0 ],
 									"text" : "fl.biquad~ /dynamic 1"
 								}
 
@@ -760,7 +764,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 150.0, 270.0, 366.0, 23.0 ],
+									"patching_rect" : [ 150.0, 285.0, 366.0, 23.0 ],
 									"text" : "fl.biquadcoeff~ 440 2 0.5 /mode bandpass /coefficients tagged"
 								}
 
@@ -772,7 +776,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 104.0, 315.0, 65.0, 23.0 ],
+									"patching_rect" : [ 104.0, 330.0, 65.0, 23.0 ],
 									"text" : "fl.biquad~"
 								}
 
@@ -926,14 +930,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 678.0, 774.0 ],
+						"rect" : [ 0.0, 26.0, 689.0, 798.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -988,14 +992,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 678.0, 774.0 ],
+						"rect" : [ 0.0, 26.0, 689.0, 798.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1033,8 +1037,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 215.75, 105.0, 40.0 ],
-									"text" : "Set the filter parameters"
+									"patching_rect" : [ 311.0, 215.75, 105.0, 40.0 ],
+									"text" : "Set the filter parameters",
+									"textjustification" : 1
 								}
 
 							}
@@ -1125,7 +1130,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 450.0, 465.0, 170.0, 25.0 ],
+									"patching_rect" : [ 445.250000000000114, 465.0, 170.0, 25.0 ],
 									"text" : "Output to Max for display"
 								}
 
@@ -1139,8 +1144,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 407.500000000000114, 675.0, 209.000000000000114, 84.0 ],
-									"text" : "The filter response.\n\nNote that Max and FrameLib switch a and b nomenclature!",
+									"patching_rect" : [ 407.500000000000114, 681.0, 209.000000000000114, 84.0 ],
+									"text" : "The filter response:\n\nNote that Max and FrameLib switch a and b nomenclature!",
 									"textjustification" : 1
 								}
 
@@ -1278,8 +1283,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 2,
-											"revision" : 2,
+											"minor" : 3,
+											"revision" : 0,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1843,8 +1848,8 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
@@ -1866,8 +1871,8 @@
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 676.0, 744.0 ],
+		"rect" : [ 34.0, 87.0, 700.0, 744.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 676.0, 718.0 ],
+						"rect" : [ 0.0, 26.0, 700.0, 718.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -184,7 +184,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 371.5, 490.0, 208.0, 40.0 ],
+									"patching_rect" : [ 369.0, 485.0, 208.0, 40.0 ],
 									"text" : "Switch the two filter types on/off\n(lowpass / highpass)",
 									"textjustification" : 1
 								}
@@ -223,7 +223,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 3,
 									"numoutlets" : 2,
-									"outlettype" : [ "signal", "list" ],
+									"outlettype" : [ "signal", "" ],
 									"patching_rect" : [ 120.0, 542.0, 159.0, 23.0 ],
 									"text" : "matrix~ 3 1 1. @ramp 100"
 								}
@@ -628,14 +628,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 676.0, 718.0 ],
+						"rect" : [ 34.0, 113.0, 700.0, 718.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -666,6 +666,21 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 1.0,
+									"id" : "obj-23",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 105.0, 213.0, 135.0, 40.0 ],
+									"text" : "Play a short grain from the buffer",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"border" : 0,
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
@@ -684,11 +699,11 @@
 								"box" : 								{
 									"fontname" : "Arial",
 									"id" : "obj-28",
-									"linecount" : 3,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 588.333333333333371, 375.0, 50.0 ],
+									"patching_rect" : [ 90.0, 592.833333333333371, 570.0, 36.0 ],
 									"text" : "In dynamic mode filters provides an input per parameter of the filter, so these can be modulated over the period of a frame. You can use a mix of parameters and inputs to set values.",
 									"textjustification" : 1
 								}
@@ -701,7 +716,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 122.0, 513.333333333333371, 256.0, 25.0 ],
+									"patching_rect" : [ 122.0, 516.333333333333371, 256.0, 25.0 ],
 									"text" : "Turn up tfor granular filter sweeping fun!"
 								}
 
@@ -721,23 +736,11 @@
 , 							{
 								"box" : 								{
 									"bubble" : 1,
-									"id" : "obj-23",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 257.0, 228.333333333333343, 215.0, 25.0 ],
-									"text" : "Play a short grain from the buffer"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bubble" : 1,
 									"id" : "obj-22",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 93.333333333333343, 174.0, 25.0 ],
+									"patching_rect" : [ 84.0, 93.333333333333343, 174.0, 25.0 ],
 									"text" : "Generate random triggers"
 								}
 
@@ -749,7 +752,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 390.0, 344.333333333333485, 272.0, 25.0 ],
+									"patching_rect" : [ 395.0, 344.333333333333485, 272.0, 25.0 ],
 									"text" : "Generate an exponential downward sweep"
 								}
 
@@ -1074,7 +1077,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-17", 0 ],
-									"midpoints" : [ 39.5, 210.833333333333371, 249.5, 210.833333333333371 ],
+									"midpoints" : [ 39.5, 208.833333333333371, 249.5, 208.833333333333371 ],
 									"order" : 0,
 									"source" : [ "obj-8", 0 ]
 								}
@@ -1142,14 +1145,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 676.0, 718.0 ],
+						"rect" : [ 0.0, 26.0, 700.0, 718.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1204,14 +1207,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 676.0, 718.0 ],
+						"rect" : [ 0.0, 26.0, 700.0, 718.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1271,7 +1274,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 480.0, 235.0, 164.0, 25.0 ],
+									"patching_rect" : [ 472.0, 235.0, 164.0, 25.0 ],
 									"text" : "Set the filter parameters"
 								}
 
@@ -1330,8 +1333,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 2,
-											"revision" : 2,
+											"minor" : 3,
+											"revision" : 0,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1437,7 +1440,8 @@
 													"maxclass" : "outlet",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 55.5, 379.0, 30.0, 30.0 ]
+													"patching_rect" : [ 55.5, 379.0, 30.0, 30.0 ],
+													"varname" : "u152011104"
 												}
 
 											}
@@ -1817,8 +1821,8 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
@@ -1832,8 +1836,8 @@
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
