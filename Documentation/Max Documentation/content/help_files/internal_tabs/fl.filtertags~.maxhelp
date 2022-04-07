@@ -264,7 +264,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 289.5, 591.5, 294.0, 40.0 ],
-									"text" : "Observe where each parameter goes to in the Max console (see also the buttons above)."
+									"text" : "Observe where each parameter goes to in the Max console (see also the buttons above).",
+									"textjustification" : 1
 								}
 
 							}
@@ -289,7 +290,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 225.0, 411.5, 285.0, 40.0 ],
-									"text" : "We set the tags we want to filter out in the argments of fl.filtertags~ (or via parameters)"
+									"text" : "We set the tags we want to filter out in the argments of fl.filtertags~ (or via parameters)",
+									"textjustification" : 1
 								}
 
 							}
@@ -302,7 +304,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 289.5, 336.5, 183.0, 40.0 ],
-									"text" : "Combine the three tagged frames into a single frame"
+									"text" : "Combine the three tagged frames into a single frame",
+									"textjustification" : 1
 								}
 
 							}
@@ -315,7 +318,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 369.0, 235.0, 155.0, 40.0 ],
-									"text" : "Create three different frames with tas"
+									"text" : "Create three different frames with tags",
+									"textjustification" : 1
 								}
 
 							}
