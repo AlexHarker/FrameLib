@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 642.0, 479.0 ],
+		"rect" : [ 34.0, 87.0, 596.0, 479.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 642.0, 453.0 ],
+						"rect" : [ 0.0, 26.0, 596.0, 453.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 642.0, 453.0 ],
+						"rect" : [ 34.0, 113.0, 596.0, 453.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -167,55 +167,35 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 435.0, 270.0, 45.0, 45.0 ]
+									"patching_rect" : [ 415.0, 274.0, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-29",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 186.25, 43.25, 14.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-30",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 316.25, 177.75, 222.0, 36.0 ],
-									"text" : "Generate some random numbers and then set some of them to zero."
+									"patching_rect" : [ 263.0, 173.25, 238.75, 40.0 ],
+									"text" : "Generate some random numbers and then set some of them to zero.",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-14",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 311.75, 385.5, 43.25, 14.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-28",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 360.0, 368.0, 255.0, 50.0 ],
-									"text" : "Output is a frame consisting of the indices which are non-zero. Note that indices are counted starting at zero."
+									"patching_rect" : [ 310.0, 366.5, 255.0, 54.0 ],
+									"text" : "Output is a frame consisting of the indices which are non-zero. Note that indices are counted starting at zero.",
+									"textjustification" : 1
 								}
 
 							}

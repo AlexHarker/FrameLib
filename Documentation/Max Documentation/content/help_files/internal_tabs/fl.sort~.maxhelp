@@ -150,24 +150,13 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-10",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 192.0, 458.333343505859375, 296.0, 21.0 ],
+									"patching_rect" : [ 162.0, 456.333343505859375, 313.0, 25.0 ],
 									"text" : "Ascending, but returns the indices sorted by value"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-11",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 161.75, 461.333343505859375, 25.25, 14.0 ]
 								}
 
 							}
@@ -245,35 +234,25 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-61",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 397.25, 173.333343505859375, 77.0, 21.0 ],
+									"patching_rect" : [ 377.0, 171.333343505859375, 94.0, 25.0 ],
 									"text" : "Descending"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-60",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 125.25, 173.333343505859375, 69.0, 21.0 ],
+									"patching_rect" : [ 105.0, 171.333343505859375, 86.0, 25.0 ],
 									"text" : "Ascending"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-58",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 370.0, 176.333343505859375, 25.25, 14.0 ]
 								}
 
 							}
@@ -398,18 +377,6 @@
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 30.0, 210.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-21",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 98.0, 176.333343505859375, 25.25, 14.0 ]
 								}
 
 							}

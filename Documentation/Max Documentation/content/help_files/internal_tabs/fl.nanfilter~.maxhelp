@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 648.0, 454.0 ],
+		"rect" : [ 34.0, 87.0, 681.0, 454.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 648.0, 428.0 ],
+						"rect" : [ 0.0, 26.0, 681.0, 428.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 648.0, 428.0 ],
+						"rect" : [ 34.0, 113.0, 681.0, 428.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,39 +155,42 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 525.0, 159.0, 45.0, 45.0 ]
+									"patching_rect" : [ 560.0, 159.0, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-9",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 525.0, 375.0, 91.0, 21.0 ],
+									"patching_rect" : [ 540.0, 375.0, 108.0, 25.0 ],
 									"text" : "no fl.nanfilter~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-8",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 337.0, 375.0, 77.0, 21.0 ],
+									"patching_rect" : [ 354.0, 375.0, 94.0, 25.0 ],
 									"text" : "remove nan"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-7",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 88.0, 375.0, 180.0, 21.0 ],
+									"patching_rect" : [ 90.0, 375.0, 197.0, 25.0 ],
 									"text" : "replace nan with a fixed value"
 								}
 
@@ -212,7 +215,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 375.0, 50.0, 23.0 ]
+									"patching_rect" : [ 300.0, 375.0, 50.0, 23.0 ],
+									"text" : "0.2"
 								}
 
 							}
@@ -224,7 +228,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 375.0, 55.0, 23.0 ]
+									"patching_rect" : [ 30.0, 375.0, 55.0, 23.0 ],
+									"text" : "0.2 3.14"
 								}
 
 							}
@@ -235,7 +240,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 315.0, 62.0, 23.0 ],
+									"patching_rect" : [ 300.0, 315.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -260,18 +265,19 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 270.0, 159.0, 23.0 ],
+									"patching_rect" : [ 300.0, 270.0, 159.0, 23.0 ],
 									"text" : "fl.nanfilter~ /mode remove"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-19",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 171.0, 328.0, 21.0 ],
+									"patching_rect" : [ 143.5, 169.0, 345.0, 25.0 ],
 									"text" : "Let's divide zero by zero on purpose to produce a nans!"
 								}
 
@@ -297,7 +303,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 465.0, 375.0, 52.0, 23.0 ]
+									"patching_rect" : [ 480.0, 375.0, 52.0, 23.0 ],
+									"text" : "0.2 nan"
 								}
 
 							}
@@ -308,7 +315,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 465.0, 315.0, 62.0, 23.0 ],
+									"patching_rect" : [ 480.0, 315.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -382,7 +389,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-16", 1 ],
-									"midpoints" : [ 474.5, 356.0, 507.5, 356.0 ],
+									"midpoints" : [ 489.5, 356.0, 522.5, 356.0 ],
 									"source" : [ "obj-14", 0 ]
 								}
 
@@ -397,7 +404,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
-									"midpoints" : [ 39.5, 243.5, 474.5, 243.5 ],
+									"midpoints" : [ 39.5, 243.5, 489.5, 243.5 ],
 									"order" : 0,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -415,7 +422,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-21", 0 ],
-									"midpoints" : [ 39.5, 243.5, 294.5, 243.5 ],
+									"midpoints" : [ 39.5, 243.5, 309.5, 243.5 ],
 									"order" : 1,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -439,7 +446,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-27", 1 ],
-									"midpoints" : [ 294.5, 356.0, 325.5, 356.0 ],
+									"midpoints" : [ 309.5, 356.0, 340.5, 356.0 ],
 									"source" : [ "obj-25", 0 ]
 								}
 
