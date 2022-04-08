@@ -698,7 +698,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 75.0, 379.0, 21.0 ],
-									"text" : "Some windows take parmeters (full details via the info message)"
+									"text" : "Some windows take parmeters (full details on the info tab)"
 								}
 
 							}

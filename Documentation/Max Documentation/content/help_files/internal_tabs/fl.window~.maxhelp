@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 634.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 634.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -465,7 +465,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 634.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 634.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -723,7 +723,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 75.0, 386.0, 21.0 ],
-									"text" : "Some windows take parameters (full details via the info message)"
+									"text" : "Some windows take parameters (full details on the info tab)"
 								}
 
 							}
@@ -1297,7 +1297,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 75.0, 620.0, 65.0 ],
-									"text" : "fl.window~ applies a specified window to incoming frames.\n\nGain compensation can be applied via the /compensate parameter (see Tutorial 7 - FFT With FrameLib)\nYou can also raise the window to an exponent (if desired)."
+									"text" : "fl.window~ applies a specified window to incoming frames.\n\nGain compensation can be applied via the /compensate parameter (see Tutorial 7 - FFT With FrameLib)\nYou can also raise the window to the power of a specified an exponent if desired."
 								}
 
 							}
