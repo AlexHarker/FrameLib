@@ -151,14 +151,13 @@
 						"boxes" : [ 							{
 								"box" : 								{
 									"bubble" : 1,
-									"bubblepoint" : 0.2,
+									"bubblepoint" : 0.1,
 									"bubbleside" : 0,
 									"id" : "obj-20",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 345.0, 343.0, 214.0, 40.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Sum of a ramp counting from 0 to 9",
 									"textjustification" : 1
 								}
@@ -167,7 +166,7 @@
 , 							{
 								"box" : 								{
 									"bubble" : 1,
-									"bubblepoint" : 0.2,
+									"bubblepoint" : 0.1,
 									"bubbleside" : 0,
 									"id" : "obj-19",
 									"maxclass" : "comment",
@@ -187,8 +186,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 420.0, 270.0, 149.0, 23.0 ],
-									"text" : "0. 1. 2. 3. 4. 5. 6. 7. 8. 9."
+									"patching_rect" : [ 420.0, 270.0, 149.0, 23.0 ]
 								}
 
 							}
