@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 3,
-			"revision" : 0,
+			"minor" : 2,
+			"revision" : 2,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -112,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -150,11 +150,13 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-19",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 366.0, 183.0, 189.0, 21.0 ],
+									"patching_rect" : [ 375.0, 173.5, 149.0, 40.0 ],
 									"text" : "Also has a non-symbolic name!"
 								}
 
@@ -234,24 +236,13 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-24",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 132.0, 287.0, 60.25, 15.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-25",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 200.25, 278.0, 183.0, 36.0 ],
+									"patching_rect" : [ 135.0, 274.5, 189.75, 40.0 ],
 									"text" : "Output is 0 for non-zero values and 1 for zero values"
 								}
 
@@ -270,11 +261,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-23",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 247.0, 138.0, 308.0, 21.0 ],
+									"patching_rect" : [ 247.0, 128.5, 203.0, 40.0 ],
 									"text" : "Frame containing a mix of zero and non-zero values"
 								}
 
@@ -449,8 +442,8 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

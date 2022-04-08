@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 3,
-			"revision" : 0,
+			"minor" : 2,
+			"revision" : 2,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -112,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -200,18 +200,6 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-38",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 114.0, 154.0, 60.25, 15.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"color" : [ 1.0, 0.227450980392157, 0.92156862745098, 1.0 ],
 									"id" : "obj-31",
 									"maxclass" : "newobj",
@@ -261,34 +249,24 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-24",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 289.0, 60.25, 15.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-25",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 158.0, 285.0, 84.0, 21.0 ],
+									"patching_rect" : [ 90.0, 285.0, 101.0, 25.0 ],
 									"text" : "Floor of input"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-23",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 182.25, 151.0, 227.0, 21.0 ],
+									"patching_rect" : [ 109.0, 151.0, 244.0, 25.0 ],
 									"text" : "Frame containing value for calculation"
 								}
 
@@ -411,8 +389,8 @@
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../Packaging/Max/FrameLib/misc",
+				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 3,
-			"revision" : 0,
+			"minor" : 2,
+			"revision" : 2,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -112,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -185,46 +185,24 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-24",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 86.0, 199.0, 60.25, 15.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-25",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 152.25, 195.0, 225.0, 21.0 ],
+									"patching_rect" : [ 80.0, 195.0, 231.0, 25.0 ],
 									"text" : "Calculate the cube root of 8 and 27."
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-14",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 137.0, 154.0, 60.25, 15.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-23",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 202.25, 150.0, 230.0, 21.0 ],
+									"patching_rect" : [ 136.25, 150.0, 247.0, 25.0 ],
 									"text" : "Frame containing some cube numbers"
 								}
 
@@ -365,8 +343,8 @@
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../Packaging/Max/FrameLib/misc",
+				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

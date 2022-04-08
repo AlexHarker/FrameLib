@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 3,
-			"revision" : 0,
+			"minor" : 2,
+			"revision" : 2,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -112,8 +112,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 3,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -150,25 +150,13 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-110",
-									"justification" : 1,
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 190.125, 48.0, 24.75 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-25",
 									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 335.0, 163.0, 223.0, 79.0 ],
+									"patching_rect" : [ 300.0, 161.0, 235.0, 83.0 ],
 									"text" : "Modify the volume. The slider can output values above 1 and the patch demonstrates the 'soft clipping' that occurs when the scaled signal is passed through fl.tanh~"
 								}
 
@@ -597,8 +585,8 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/docs/tutorial-patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
@@ -608,8 +596,8 @@
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
