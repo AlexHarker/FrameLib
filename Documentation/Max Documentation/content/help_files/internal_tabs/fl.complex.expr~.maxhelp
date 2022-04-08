@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 629.0, 588.0 ],
+		"rect" : [ 34.0, 87.0, 655.0, 601.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 629.0, 562.0 ],
+						"rect" : [ 0.0, 26.0, 655.0, 575.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -88,14 +88,24 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-5",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 305.0, 465.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"dontreplace" : 1,
 									"id" : "obj-2",
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 324.0, 345.0, 191.0, 23.0 ],
-									"text" : "-0.80768 -0.500645 -18.334721"
+									"patching_rect" : [ 339.0, 375.0, 191.0, 23.0 ]
 								}
 
 							}
@@ -106,7 +116,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 324.0, 300.0, 62.0, 23.0 ],
+									"patching_rect" : [ 339.0, 330.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -118,7 +128,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 324.0, 210.0, 106.0, 23.0 ],
+									"patching_rect" : [ 339.0, 240.0, 106.0, 23.0 ],
 									"text" : "fl.register~ -6 6 4"
 								}
 
@@ -127,12 +137,11 @@
 								"box" : 								{
 									"fontname" : "Arial",
 									"id" : "obj-6",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 90.0, 604.0, 36.0 ],
-									"text" : "Several functions are supported. A full list of available functions and operators can be retrieved with the info message."
+									"patching_rect" : [ 15.0, 90.0, 554.0, 21.0 ],
+									"text" : "Several functions are supported. See the info tab for a full list of available functions / operators."
 								}
 
 							}
@@ -144,8 +153,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 120.0, 345.0, 183.0, 23.0 ],
-									"text" : "2.643328 0.438905 -3.473516"
+									"patching_rect" : [ 135.0, 375.0, 183.0, 23.0 ]
 								}
 
 							}
@@ -156,7 +164,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 120.0, 300.0, 62.0, 23.0 ],
+									"patching_rect" : [ 135.0, 330.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -168,7 +176,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 120.0, 165.0, 54.0, 23.0 ],
+									"patching_rect" : [ 135.0, 195.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -180,7 +188,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 120.0, 210.0, 102.0, 23.0 ],
+									"patching_rect" : [ 135.0, 240.0, 102.0, 23.0 ],
 									"text" : "fl.register~ 1 0 3"
 								}
 
@@ -193,7 +201,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 120.0, 255.0, 223.0, 23.0 ],
+									"patching_rect" : [ 135.0, 285.0, 223.0, 23.0 ],
 									"text" : "fl.complex.expr~ sinh(in1) * log(in1)"
 								}
 
@@ -210,7 +218,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 15.0, 435.0, 75.0 ]
+									"patching_rect" : [ 15.0, 15.0, 625.0, 74.0 ]
 								}
 
 							}
@@ -225,7 +233,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 1 ],
-									"midpoints" : [ 333.5, 333.5, 505.5, 333.5 ],
+									"midpoints" : [ 348.5, 363.5, 520.5, 363.5 ],
 									"source" : [ "obj-4", 0 ]
 								}
 
@@ -254,7 +262,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
-									"midpoints" : [ 129.5, 198.5, 333.5, 198.5 ],
+									"midpoints" : [ 144.5, 228.5, 348.5, 228.5 ],
 									"order" : 0,
 									"source" : [ "obj-63", 0 ]
 								}
@@ -271,7 +279,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-67", 1 ],
-									"midpoints" : [ 129.5, 333.5, 293.5, 333.5 ],
+									"midpoints" : [ 144.5, 363.5, 308.5, 363.5 ],
 									"source" : [ "obj-64", 0 ]
 								}
 
@@ -401,7 +409,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 629.0, 562.0 ],
+						"rect" : [ 0.0, 26.0, 655.0, 575.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -432,12 +440,23 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-5",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 305.0, 465.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-7",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 465.0, 552.0, 36.0 ],
+									"patching_rect" : [ 46.5, 390.0, 552.0, 36.0 ],
 									"text" : "Note that where subexpressions evaluate as constant fl.complex.expr~ will pre-calculate them (for example, above the whole expression is constant)."
 								}
 
@@ -449,7 +468,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 319.0, 240.0, 191.0, 25.0 ],
+									"patching_rect" : [ 349.0, 240.0, 191.0, 25.0 ],
 									"text" : "Remember Euler's theorem?"
 								}
 
@@ -463,7 +482,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 295.0, 330.0, 50.0, 23.0 ]
+									"patching_rect" : [ 325.0, 330.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -474,19 +493,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 295.0, 285.0, 75.0, 23.0 ],
+									"patching_rect" : [ 325.0, 285.0, 75.0, 23.0 ],
 									"text" : "fl.tomax~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-1",
-									"local" : 1,
-									"maxclass" : "ezdac~",
-									"numinlets" : 2,
-									"numoutlets" : 0,
-									"patching_rect" : [ 135.0, 390.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -497,7 +505,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 195.0, 80.0, 23.0 ],
+									"patching_rect" : [ 165.0, 195.0, 80.0, 23.0 ],
 									"text" : "fl.register~ 1"
 								}
 
@@ -511,7 +519,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 135.0, 330.0, 50.0, 23.0 ]
+									"patching_rect" : [ 165.0, 330.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -522,7 +530,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 285.0, 75.0, 23.0 ],
+									"patching_rect" : [ 165.0, 285.0, 75.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -534,7 +542,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 150.0, 54.0, 23.0 ],
+									"patching_rect" : [ 165.0, 150.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -547,7 +555,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 135.0, 240.0, 179.0, 23.0 ],
+									"patching_rect" : [ 165.0, 240.0, 179.0, 23.0 ],
 									"text" : "fl.complex.expr~ pow(e\\, i * pi)"
 								}
 
@@ -748,7 +756,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 629.0, 562.0 ],
+						"rect" : [ 0.0, 26.0, 655.0, 575.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -810,7 +818,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 629.0, 562.0 ],
+						"rect" : [ 34.0, 113.0, 655.0, 575.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -856,7 +864,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 525.0, 282.0, 21.0 ],
+									"patching_rect" : [ 30.0, 525.0, 282.0, 21.0 ],
 									"text" : "Inputs are in pairs or real and imaginary values."
 								}
 
@@ -868,7 +876,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 480.0, 471.0, 36.0 ],
+									"patching_rect" : [ 30.0, 480.0, 471.0, 36.0 ],
 									"text" : "Inputs are referred to by in1, in2, in3 etc. As many as needed will be made once you've entered the expression."
 								}
 
@@ -880,7 +888,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 435.0, 548.0, 36.0 ],
+									"patching_rect" : [ 30.0, 435.0, 548.0, 36.0 ],
 									"text" : "You can enter the expression directly and use (a + bi) notation to represent complex numbers as part of the expression (as above)."
 								}
 
@@ -891,7 +899,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 592.75, 407.0, 20.0, 21.0 ],
+									"patching_rect" : [ 607.75, 407.0, 20.0, 21.0 ],
 									"text" : "-1"
 								}
 
@@ -902,7 +910,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 592.75, 357.0, 19.0, 21.0 ],
+									"patching_rect" : [ 607.75, 357.0, 19.0, 21.0 ],
 									"text" : "0"
 								}
 
@@ -913,7 +921,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 592.75, 307.0, 19.0, 21.0 ],
+									"patching_rect" : [ 607.75, 307.0, 19.0, 21.0 ],
 									"text" : "1"
 								}
 
@@ -925,7 +933,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 579.75, 415.0, 11.0, 5.0 ]
+									"patching_rect" : [ 594.75, 415.0, 11.0, 5.0 ]
 								}
 
 							}
@@ -936,7 +944,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 579.75, 315.0, 11.0, 5.0 ]
+									"patching_rect" : [ 594.75, 315.0, 11.0, 5.0 ]
 								}
 
 							}
@@ -947,7 +955,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 579.75, 365.0, 11.0, 5.0 ]
+									"patching_rect" : [ 594.75, 365.0, 11.0, 5.0 ]
 								}
 
 							}
@@ -960,7 +968,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 322.75, 315.0, 255.0, 105.0 ],
+									"patching_rect" : [ 337.75, 315.0, 255.0, 105.0 ],
 									"setstyle" : 1,
 									"size" : 200,
 									"slidercolor" : [ 0.964705882352941, 0.701960784313725, 0.03921568627451, 1.0 ]
@@ -974,7 +982,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 322.75, 270.0, 62.0, 23.0 ],
+									"patching_rect" : [ 337.75, 270.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -999,7 +1007,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 221.0, 222.0, 190.0, 25.0 ],
+									"patching_rect" : [ 236.0, 222.0, 190.0, 25.0 ],
 									"text" : "Rotate the input by 0.5 * 0.2i"
 								}
 
@@ -1012,7 +1020,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 251.0, 171.5, 225.0, 40.0 ],
+									"patching_rect" : [ 266.0, 171.5, 225.0, 40.0 ],
 									"text" : "Generate a ramp that sets both real and imaginary inputs"
 								}
 
@@ -1023,7 +1031,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 407.0, 20.0, 21.0 ],
+									"patching_rect" : [ 300.0, 407.0, 20.0, 21.0 ],
 									"text" : "-1"
 								}
 
@@ -1034,7 +1042,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 357.0, 19.0, 21.0 ],
+									"patching_rect" : [ 300.0, 357.0, 19.0, 21.0 ],
 									"text" : "0"
 								}
 
@@ -1045,7 +1053,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 307.0, 19.0, 21.0 ],
+									"patching_rect" : [ 300.0, 307.0, 19.0, 21.0 ],
 									"text" : "1"
 								}
 
@@ -1057,7 +1065,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 272.0, 415.0, 11.0, 5.0 ]
+									"patching_rect" : [ 287.0, 415.0, 11.0, 5.0 ]
 								}
 
 							}
@@ -1068,7 +1076,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 272.0, 315.0, 11.0, 5.0 ]
+									"patching_rect" : [ 287.0, 315.0, 11.0, 5.0 ]
 								}
 
 							}
@@ -1079,7 +1087,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 272.0, 365.0, 11.0, 5.0 ]
+									"patching_rect" : [ 287.0, 365.0, 11.0, 5.0 ]
 								}
 
 							}
@@ -1092,7 +1100,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 315.0, 255.0, 105.0 ],
+									"patching_rect" : [ 30.0, 315.0, 255.0, 105.0 ],
 									"setstyle" : 1,
 									"size" : 200,
 									"slidercolor" : [ 0.964705882352941, 0.701960784313725, 0.03921568627451, 1.0 ]
@@ -1106,7 +1114,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 270.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 270.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -1118,7 +1126,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 180.0, 229.0, 23.0 ],
+									"patching_rect" : [ 30.0, 180.0, 229.0, 23.0 ],
 									"text" : "fl.ramp~ /length 200 /scale normalised"
 								}
 
@@ -1130,7 +1138,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 135.0, 54.0, 23.0 ],
+									"patching_rect" : [ 30.0, 135.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -1143,7 +1151,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 15.0, 222.0, 199.0, 23.0 ],
+									"patching_rect" : [ 30.0, 222.0, 199.0, 23.0 ],
 									"text" : "fl.complex.expr~ in1 * (0.5 + 0.2i)"
 								}
 
@@ -1175,7 +1183,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-10", 0 ],
-									"midpoints" : [ 204.5, 258.5, 332.25, 258.5 ],
+									"midpoints" : [ 219.5, 258.5, 347.25, 258.5 ],
 									"source" : [ "obj-13", 1 ]
 								}
 
@@ -1197,7 +1205,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 1 ],
-									"midpoints" : [ 24.5, 212.0, 204.5, 212.0 ],
+									"midpoints" : [ 39.5, 212.0, 219.5, 212.0 ],
 									"order" : 0,
 									"source" : [ "obj-18", 0 ]
 								}

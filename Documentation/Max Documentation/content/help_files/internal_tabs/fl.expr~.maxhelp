@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 634.0, 583.0 ],
+		"rect" : [ 34.0, 87.0, 667.0, 583.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 634.0, 557.0 ],
+						"rect" : [ 0.0, 26.0, 667.0, 557.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -92,7 +92,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 465.0, 599.0, 21.0 ],
+									"patching_rect" : [ 30.0, 465.0, 599.0, 21.0 ],
 									"text" : "Note that subexpressions which evaluate to constant will be pre-calculated by fl.expr~ to save on CPU."
 								}
 
@@ -103,7 +103,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 345.0, 150.0, 21.0 ],
+									"patching_rect" : [ 300.0, 345.0, 150.0, 21.0 ],
 									"text" : "blackman-harris",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -118,7 +118,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 285.0, 345.0, 255.0, 105.0 ],
+									"patching_rect" : [ 300.0, 345.0, 255.0, 105.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"setstyle" : 1,
 									"size" : 512,
@@ -133,7 +133,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 300.0, 62.0, 23.0 ],
+									"patching_rect" : [ 300.0, 300.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -148,7 +148,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 225.0, 335.0, 38.0 ],
+									"patching_rect" : [ 300.0, 225.0, 335.0, 38.0 ],
 									"text" : "fl.expr~ 0.35875 - 0.48829 * cos(2 * pi * in1) + 0.14128 * cos(4 * pi * in1) - 0.01168 * cos(6 * pi * in1)"
 								}
 
@@ -159,7 +159,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 345.0, 150.0, 21.0 ],
+									"patching_rect" : [ 30.0, 345.0, 150.0, 21.0 ],
 									"text" : "hann",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
@@ -172,7 +172,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.5, 495.0, 45.0, 45.0 ]
+									"patching_rect" : [ 584.0, 375.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -184,8 +184,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 90.0, 617.0, 36.0 ],
-									"text" : "The power of fl.expr~ is greater when you chain together multiple operators and constants. A full list of available functions and operators can be retrieved with the info message."
+									"patching_rect" : [ 15.0, 75.0, 630.0, 36.0 ],
+									"text" : "The real power of fl.expr~ comes from chaining together multiple operators, functions and constants. See the info tab for a full list of available functions / operators."
 								}
 
 							}
@@ -198,7 +198,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 345.0, 255.0, 105.0 ],
+									"patching_rect" : [ 30.0, 345.0, 255.0, 105.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"setstyle" : 1,
 									"size" : 512,
@@ -213,7 +213,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 300.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 300.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -225,7 +225,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 180.0, 229.0, 23.0 ],
+									"patching_rect" : [ 30.0, 180.0, 229.0, 23.0 ],
 									"text" : "fl.ramp~ /length 512 /scale normalised"
 								}
 
@@ -237,7 +237,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 135.0, 54.0, 23.0 ],
+									"patching_rect" : [ 30.0, 135.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -250,7 +250,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 225.0, 213.0, 23.0 ],
+									"patching_rect" : [ 30.0, 225.0, 213.0, 23.0 ],
 									"text" : "fl.expr~ 0.5 * ( 1 - (cos(2 * pi * in1)))"
 								}
 
@@ -289,7 +289,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
-									"midpoints" : [ 24.5, 204.0, 24.5, 204.0 ],
+									"midpoints" : [ 39.5, 204.0, 39.5, 204.0 ],
 									"order" : 1,
 									"source" : [ "obj-18", 0 ]
 								}
@@ -298,7 +298,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-33", 0 ],
-									"midpoints" : [ 24.5, 213.5, 294.5, 213.5 ],
+									"midpoints" : [ 39.5, 213.5, 309.5, 213.5 ],
 									"order" : 0,
 									"source" : [ "obj-18", 0 ]
 								}
@@ -450,7 +450,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 634.0, 557.0 ],
+						"rect" : [ 0.0, 26.0, 667.0, 557.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -495,7 +495,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 330.0, 396.5, 90.0, 45.0 ],
+									"patching_rect" : [ 345.0, 396.5, 90.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -507,7 +507,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 330.0, 351.5, 49.0, 23.0 ],
+									"patching_rect" : [ 345.0, 351.5, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -520,7 +520,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 330.0, 135.0, 24.0, 24.0 ]
+									"patching_rect" : [ 345.0, 135.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -531,7 +531,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "bang" ],
-									"patching_rect" : [ 330.0, 171.5, 224.0, 23.0 ],
+									"patching_rect" : [ 345.0, 171.5, 224.0, 23.0 ],
 									"text" : "sfplay~ @audiofile duduk.aif @loop 1"
 								}
 
@@ -543,7 +543,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 387.0, 216.5, 93.0, 23.0 ],
+									"patching_rect" : [ 402.0, 216.5, 93.0, 23.0 ],
 									"text" : "fl.interval~ 512"
 								}
 
@@ -555,7 +555,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 330.0, 261.5, 133.0, 23.0 ],
+									"patching_rect" : [ 345.0, 261.5, 133.0, 23.0 ],
 									"text" : "fl.source~ /length 512"
 								}
 
@@ -568,7 +568,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 469.0, 292.0, 135.0, 54.0 ],
+									"patching_rect" : [ 484.0, 292.0, 133.0, 54.0 ],
 									"text" : "Or for doing some warm distortion with tanh~",
 									"textjustification" : 1
 								}
@@ -582,7 +582,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 330.0, 307.5, 133.0, 23.0 ],
+									"patching_rect" : [ 345.0, 307.5, 133.0, 23.0 ],
 									"text" : "fl.expr~ tanh(in1 * 10)"
 								}
 
@@ -594,7 +594,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 471.5, 45.0, 45.0 ]
+									"patching_rect" : [ 345.0, 471.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -606,8 +606,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 315.0, 225.0, 23.0 ],
-									"text" : "0.283185 -0.283185 -1.483185 3.1"
+									"patching_rect" : [ 30.0, 315.0, 225.0, 23.0 ]
 								}
 
 							}
@@ -618,7 +617,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 270.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 270.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -630,7 +629,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 135.0, 54.0, 23.0 ],
+									"patching_rect" : [ 30.0, 135.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -642,7 +641,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 180.0, 139.0, 23.0 ],
+									"patching_rect" : [ 30.0, 180.0, 139.0, 23.0 ],
 									"text" : "fl.register~ -6 6 4.8 3.1"
 								}
 
@@ -655,7 +654,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 168.0, 202.0, 139.0, 69.0 ],
+									"patching_rect" : [ 183.0, 202.0, 139.0, 69.0 ],
 									"text" : "Useful for doing phase wrapping in a frequency domain process!",
 									"textjustification" : 1
 								}
@@ -669,7 +668,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 225.0, 148.0, 23.0 ],
+									"patching_rect" : [ 30.0, 225.0, 148.0, 23.0 ],
 									"text" : "fl.expr~ wrap(in1\\, -pi\\, pi)"
 								}
 
@@ -680,8 +679,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 90.0, 468.0, 21.0 ],
-									"text" : "You can also use other FrameLib operators! (fully detailed via the info message)"
+									"patching_rect" : [ 15.0, 75.0, 431.0, 21.0 ],
+									"text" : "You can also use other FrameLib operators! (fully detailed on the info tab)"
 								}
 
 							}
@@ -740,7 +739,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 1 ],
-									"midpoints" : [ 339.5, 462.5, 365.5, 462.5 ],
+									"midpoints" : [ 354.5, 462.5, 380.5, 462.5 ],
 									"order" : 0,
 									"source" : [ "obj-19", 0 ]
 								}
@@ -778,7 +777,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-67", 1 ],
-									"midpoints" : [ 24.5, 304.0, 230.5, 304.0 ],
+									"midpoints" : [ 39.5, 304.0, 245.5, 304.0 ],
 									"source" : [ "obj-64", 0 ]
 								}
 
@@ -915,7 +914,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 634.0, 557.0 ],
+						"rect" : [ 0.0, 26.0, 667.0, 557.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -953,7 +952,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 375.0, 345.0, 50.0, 23.0 ]
+									"patching_rect" : [ 405.0, 360.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -964,7 +963,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 375.0, 300.0, 75.0, 23.0 ],
+									"patching_rect" : [ 405.0, 315.0, 75.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -977,7 +976,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 375.0, 255.0, 69.0, 23.0 ],
+									"patching_rect" : [ 405.0, 270.0, 69.0, 23.0 ],
 									"text" : "fl.expr~ inf"
 								}
 
@@ -989,7 +988,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 510.0, 315.0, 45.0, 45.0 ]
+									"patching_rect" : [ 540.0, 330.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -1000,7 +999,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 180.0, 210.0, 80.0, 23.0 ],
+									"patching_rect" : [ 210.0, 225.0, 80.0, 23.0 ],
 									"text" : "fl.register~ 2"
 								}
 
@@ -1014,7 +1013,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 180.0, 345.0, 50.0, 23.0 ]
+									"patching_rect" : [ 210.0, 360.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -1025,7 +1024,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 180.0, 300.0, 75.0, 23.0 ],
+									"patching_rect" : [ 210.0, 315.0, 75.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -1038,7 +1037,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 180.0, 255.0, 153.0, 23.0 ],
+									"patching_rect" : [ 210.0, 270.0, 153.0, 23.0 ],
 									"text" : "fl.expr~ pow(in1\\, epsilon)"
 								}
 
@@ -1050,7 +1049,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 45.0, 210.0, 80.0, 23.0 ],
+									"patching_rect" : [ 75.0, 225.0, 80.0, 23.0 ],
 									"text" : "fl.register~ 2"
 								}
 
@@ -1064,7 +1063,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 45.0, 345.0, 50.0, 23.0 ]
+									"patching_rect" : [ 75.0, 360.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -1075,7 +1074,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 45.0, 300.0, 75.0, 23.0 ],
+									"patching_rect" : [ 75.0, 315.0, 75.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -1087,7 +1086,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 45.0, 165.0, 54.0, 23.0 ],
+									"patching_rect" : [ 75.0, 180.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -1100,7 +1099,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 45.0, 255.0, 95.0, 23.0 ],
+									"patching_rect" : [ 75.0, 270.0, 95.0, 23.0 ],
 									"text" : "fl.expr~ in1 * pi"
 								}
 
@@ -1112,7 +1111,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 90.0, 483.0, 21.0 ],
+									"patching_rect" : [ 15.0, 75.0, 483.0, 21.0 ],
 									"text" : "You can refer to constants in fl.expr~. Available constants are e, pi, epsilon and inf."
 								}
 
@@ -1152,7 +1151,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-44", 0 ],
-									"midpoints" : [ 54.5, 199.0, 189.5, 199.0 ],
+									"midpoints" : [ 84.5, 214.0, 219.5, 214.0 ],
 									"order" : 1,
 									"source" : [ "obj-36", 0 ]
 								}
@@ -1161,7 +1160,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-9", 0 ],
-									"midpoints" : [ 54.5, 199.0, 384.5, 199.0 ],
+									"midpoints" : [ 84.5, 214.0, 414.5, 214.0 ],
 									"order" : 0,
 									"source" : [ "obj-36", 0 ]
 								}
@@ -1341,7 +1340,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 634.0, 557.0 ],
+						"rect" : [ 0.0, 26.0, 667.0, 557.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1403,7 +1402,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 634.0, 557.0 ],
+						"rect" : [ 34.0, 113.0, 667.0, 557.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1434,14 +1433,13 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"bubble" : 1,
 									"id" : "obj-5",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 63.5, 473.5, 471.0, 40.0 ],
-									"text" : "Inputs are referred to by in1, in2, in3 etc. As many as needed will be made once you've entered the expression."
+									"patching_rect" : [ 120.0, 475.5, 431.5, 36.0 ],
+									"text" : "Inputs are referred to as in1, in2, in3 ... etc. \nAs many as needed will be made once you've entered the expression."
 								}
 
 							}
@@ -1452,7 +1450,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 471.0, 45.0, 45.0 ]
+									"patching_rect" : [ 60.0, 471.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -1464,7 +1462,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 90.0, 616.0, 36.0 ],
+									"patching_rect" : [ 15.0, 90.0, 615.0, 36.0 ],
 									"text" : "fl.expr~ allows you to create custom expressions in a single object contaning inputs, unary/binary/ternary operators and constants."
 								}
 
@@ -1476,7 +1474,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 116.0, 239.0, 390.0, 25.0 ],
+									"patching_rect" : [ 161.0, 239.0, 390.0, 25.0 ],
 									"text" : "Multiply the input frame by -1 to invert the range to -1.0 <-> 0.0."
 								}
 
@@ -1488,7 +1486,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 169.0, 194.0, 338.0, 25.0 ],
+									"patching_rect" : [ 214.0, 194.0, 338.0, 25.0 ],
 									"text" : "Generate some random numbers between 0.0 and 1.0"
 								}
 
@@ -1499,7 +1497,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 422.0, 20.0, 21.0 ],
+									"patching_rect" : [ 330.0, 422.0, 20.0, 21.0 ],
 									"text" : "-1"
 								}
 
@@ -1510,7 +1508,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 372.0, 19.0, 21.0 ],
+									"patching_rect" : [ 330.0, 372.0, 19.0, 21.0 ],
 									"text" : "0"
 								}
 
@@ -1521,7 +1519,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 322.0, 19.0, 21.0 ],
+									"patching_rect" : [ 330.0, 322.0, 19.0, 21.0 ],
 									"text" : "1"
 								}
 
@@ -1533,7 +1531,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 272.0, 430.0, 11.0, 5.0 ]
+									"patching_rect" : [ 317.0, 430.0, 11.0, 5.0 ]
 								}
 
 							}
@@ -1544,7 +1542,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 272.0, 330.0, 11.0, 5.0 ]
+									"patching_rect" : [ 317.0, 330.0, 11.0, 5.0 ]
 								}
 
 							}
@@ -1555,7 +1553,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 272.0, 380.0, 11.0, 5.0 ]
+									"patching_rect" : [ 317.0, 380.0, 11.0, 5.0 ]
 								}
 
 							}
@@ -1568,7 +1566,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 330.0, 255.0, 105.0 ],
+									"patching_rect" : [ 60.0, 330.0, 255.0, 105.0 ],
 									"size" : 4096,
 									"slidercolor" : [ 0.847058823529412, 0.819607843137255, 0.0, 1.0 ]
 								}
@@ -1581,7 +1579,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 62.0, 23.0 ],
+									"patching_rect" : [ 60.0, 285.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -1593,7 +1591,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 145.0, 23.0 ],
+									"patching_rect" : [ 60.0, 195.0, 145.0, 23.0 ],
 									"text" : "fl.random~ /length 4096"
 								}
 
@@ -1605,7 +1603,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 54.0, 23.0 ],
+									"patching_rect" : [ 60.0, 150.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -1618,7 +1616,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 240.0, 96.0, 23.0 ],
+									"patching_rect" : [ 60.0, 240.0, 96.0, 23.0 ],
 									"text" : "fl.expr~ in1 * -1"
 								}
 
