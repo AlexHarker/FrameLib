@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 614.0, 736.0 ],
+		"rect" : [ 34.0, 87.0, 571.0, 720.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 614.0, 710.0 ],
+						"rect" : [ 0.0, 26.0, 571.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 614.0, 710.0 ],
+						"rect" : [ 34.0, 113.0, 571.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -150,14 +150,46 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"border" : 0,
+									"filename" : "fl.bubblepoint.js",
+									"id" : "obj-26",
+									"ignoreclick" : 1,
+									"maxclass" : "jsui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 345.0, 578.0, 19.007189542551032, 17.187598475170148 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"border" : 0,
+									"filename" : "fl.bubblepoint.js",
+									"id" : "obj-23",
+									"ignoreclick" : 1,
+									"jsarguments" : [ 1 ],
+									"maxclass" : "jsui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 135.0, 578.0, 19.007189542551032, 17.187598475170148 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"bubble" : 1,
 									"id" : "obj-2",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 360.0, 306.5, 135.0, 40.0 ],
-									"text" : "Argument sets the number of outputs."
+									"patching_rect" : [ 354.0, 306.5, 135.0, 40.0 ],
+									"text" : "Argument sets the number of outputs.",
+									"textjustification" : 1
 								}
 
 							}
@@ -210,7 +242,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 510.0, 487.5, 45.0, 45.0 ]
+									"patching_rect" : [ 495.0, 487.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -221,23 +253,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 420.0, 139.5, 123.0, 25.0 ],
+									"patching_rect" : [ 411.0, 137.5, 123.0, 25.0 ],
 									"text" : "Select the output"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bubble" : 1,
-									"bubbleside" : 0,
-									"id" : "obj-16",
-									"linecount" : 4,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 578.0, 405.0, 84.0 ],
-									"text" : "The random frame will go to one or none of the 3 outputs.\n\nNote that when the input is not routed to a particular output there will be no frame sent (not an empty frame).",
-									"textjustification" : 1
 								}
 
 							}
@@ -346,7 +363,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 450.0, 135.0, 120.0 ],
+									"patching_rect" : [ 30.0, 450.0, 138.0, 120.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 200,
 									"slidercolor" : [ 0.952941176470588, 0.564705882352941, 0.098039215686275, 1.0 ]
@@ -438,32 +455,13 @@
 , 							{
 								"box" : 								{
 									"bubble" : 1,
-									"bubblepoint" : 0.2,
 									"bubbleside" : 0,
-									"id" : "obj-18",
+									"id" : "obj-16",
 									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 578.0, 405.0, 84.0 ],
-									"presentation_linecount" : 4,
-									"text" : "The random frame will go to one or none of the 3 outputs.\n\nNote that when the input is not routed to a particular output there will be no frame sent (not an empty frame).",
-									"textjustification" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bubble" : 1,
-									"bubblepoint" : 0.8,
-									"bubbleside" : 0,
-									"id" : "obj-8",
-									"linecount" : 4,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 578.0, 405.0, 84.0 ],
-									"presentation_linecount" : 4,
+									"patching_rect" : [ 45.0, 578.0, 407.0, 84.0 ],
 									"text" : "The random frame will go to one or none of the 3 outputs.\n\nNote that when the input is not routed to a particular output there will be no frame sent (not an empty frame).",
 									"textjustification" : 1
 								}
@@ -641,13 +639,20 @@
 		}
 ,
 		"dependency_cache" : [ 			{
+				"name" : "fl.bubblepoint.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "fl.frommax~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

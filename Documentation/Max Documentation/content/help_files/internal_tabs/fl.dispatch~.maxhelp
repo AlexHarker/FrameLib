@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 679.0, 722.0 ],
+		"rect" : [ 34.0, 87.0, 656.0, 702.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -26,7 +26,7 @@
 		"toptoolbarpinned" : 0,
 		"righttoolbarpinned" : 0,
 		"bottomtoolbarpinned" : 0,
-		"toolbars_unpinned_last_save" : 0,
+		"toolbars_unpinned_last_save" : 1,
 		"tallnewobj" : 0,
 		"boxanimatetime" : 200,
 		"enablehscroll" : 1,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 679.0, 696.0 ],
+						"rect" : [ 0.0, 26.0, 656.0, 676.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 679.0, 696.0 ],
+						"rect" : [ 34.0, 113.0, 656.0, 676.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -150,15 +150,45 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"border" : 0,
+									"filename" : "fl.bubblepoint.js",
+									"id" : "obj-26",
+									"ignoreclick" : 1,
+									"maxclass" : "jsui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 345.0, 562.0, 19.007189542551032, 17.187598475170148 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"border" : 0,
+									"filename" : "fl.bubblepoint.js",
+									"id" : "obj-23",
+									"ignoreclick" : 1,
+									"jsarguments" : [ 1 ],
+									"maxclass" : "jsui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 135.0, 562.0, 19.007189542551032, 17.187598475170148 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"bubble" : 1,
-									"bubbleside" : 0,
-									"id" : "obj-24",
-									"linecount" : 4,
+									"bubbleside" : 3,
+									"id" : "obj-5",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 77.0, 562.0, 344.0, 84.0 ],
-									"text" : "Each output receives the specified input.\n\nNote that when the input for a given output is set to off no frame is received (which is different to an empty frame).",
+									"patching_rect" : [ 228.0, 171.5, 95.0, 25.0 ],
+									"text" : "Set routings",
 									"textjustification" : 1
 								}
 
@@ -186,7 +216,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 330.0, 480.0, 138.0, 75.0 ],
+									"patching_rect" : [ 330.0, 480.0, 135.0, 80.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 100,
 									"slidercolor" : [ 1.0, 0.933333333333333, 0.0, 1.0 ]
@@ -228,7 +258,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 180.0, 480.0, 138.0, 75.0 ],
+									"patching_rect" : [ 179.5, 480.0, 135.0, 80.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 100,
 									"slidercolor" : [ 1.0, 0.227450980392157, 0.92156862745098, 1.0 ]
@@ -294,8 +324,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 360.5, 351.5, 195.0, 40.0 ],
-									"text" : "Arguments set the number of inputs and outputs"
+									"patching_rect" : [ 355.5, 351.5, 197.0, 40.0 ],
+									"text" : "Arguments set the number of inputs and outputs",
+									"textjustification" : 1
 								}
 
 							}
@@ -345,7 +376,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 480.0, 138.0, 75.0 ],
+									"patching_rect" : [ 30.0, 480.0, 139.0, 80.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 100,
 									"slidercolor" : [ 0.207843137254902, 0.76078431372549, 0.749019607843137, 1.0 ]
@@ -360,7 +391,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 75.0, 630.0, 50.0 ],
+									"patching_rect" : [ 15.0, 75.0, 609.0, 50.0 ],
 									"text" : "fl.dispatch~ will help you for routing various inputs to different outputs. Each output can only receive one input however, and inputs cannot be summed or mixed. In this example below you can choose for each output the input. Observe the differences when switching the routing below."
 								}
 
@@ -523,32 +554,13 @@
 , 							{
 								"box" : 								{
 									"bubble" : 1,
-									"bubblepoint" : 0.8,
 									"bubbleside" : 0,
-									"id" : "obj-1",
+									"id" : "obj-24",
 									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 77.0, 562.0, 344.0, 84.0 ],
-									"presentation_linecount" : 4,
-									"text" : "Each output receives the specified input.\n\nNote that when the input for a given output is set to off no frame is received (which is different to an empty frame).",
-									"textjustification" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bubble" : 1,
-									"bubblepoint" : 0.2,
-									"bubbleside" : 0,
-									"id" : "obj-2",
-									"linecount" : 4,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 77.0, 562.0, 344.0, 84.0 ],
-									"presentation_linecount" : 4,
+									"patching_rect" : [ 75.0, 562.0, 344.0, 84.0 ],
 									"text" : "Each output receives the specified input.\n\nNote that when the input for a given output is set to off no frame is received (which is different to an empty frame).",
 									"textjustification" : 1
 								}
@@ -582,7 +594,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
-									"midpoints" : [ 189.5, 438.5, 189.5, 438.5 ],
+									"midpoints" : [ 189.5, 438.5, 189.0, 438.5 ],
 									"order" : 1,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -783,6 +795,13 @@
 		}
 ,
 		"dependency_cache" : [ 			{
+				"name" : "fl.bubblepoint.js",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "fl.dispatch~.mxo",
 				"type" : "iLaX"
 			}
@@ -792,8 +811,8 @@
 			}
 , 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
+				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
+				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
