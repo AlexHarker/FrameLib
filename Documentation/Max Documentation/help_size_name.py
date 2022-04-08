@@ -13,7 +13,8 @@ def main(docs: Documentation):
     ternary = [x.stem for x in docs.source_files if x.parent.stem == "Ternary"]
     complex_binary = [x.stem for x in docs.source_files if x.parent.stem == "Complex_Binary"]
     time_smoothing = [x.stem for x in docs.source_files if x.parent.stem == "Time_Smoothing"]
-    
+    generators = [x.stem for x in docs.source_files if x.parent.stem == "Generators"]
+
     # Now fix sizes and naming
 
     for path in templates:
@@ -31,6 +32,8 @@ def main(docs: Documentation):
             details_factor = 5.75
         elif path.stem in time_smoothing:
             details_factor = 5.76
+        elif path.stem in generators:
+            details_factor = 5.9
 
         # Resize
 

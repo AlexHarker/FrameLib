@@ -10,6 +10,32 @@ def append_tabs(patch, source, find_object, replace_object):
     for tab in converted["patcher"]["boxes"]:
         source["patcher"]["boxes"].append(tab)
 
+def highlight_input_tab(patch, source, object, find_object):
+    """First find the highlight colour and then apply it to the input tab"""
+    json_patch = json.loads(patch)
+
+    boxes = source["patcher"]["boxes"]
+    for item in boxes:
+        if item["box"]["text"] == "p basic":
+            tab_boxes = item["box"]["patcher"]["boxes"]
+            for child in tab_boxes:
+                box = child["box"]
+                if box["maxclass"] == "newobj" and box["text"].startswith(object):
+                    colour = box["color"];
+
+    boxes = json_patch["patcher"]["boxes"]
+    for item in boxes:
+        tab_boxes = item["box"]["patcher"]["boxes"]
+        for child in tab_boxes:
+            box = child["box"]
+            if box["maxclass"] == "newobj" and box["text"].startswith(find_object):
+                box["color"] = colour;
+            if box["maxclass"] == "multislider":
+                box["slidercolor"] = colour;
+
+    return json.JSONEncoder().encode(json_patch)
+
+
 def lookup_input_string(object) -> str:
 
     dict = {    "fl.ramp~": "/scale normalised",
@@ -68,7 +94,8 @@ def main(docs: Documentation):
 
         if path.stem in generators:
             template = read_json(path)
-            append_tabs(in_mode, template, "fl.random~", lookup_input_string(name))
+            patch = highlight_input_tab(in_mode, template, name, "fl.random~")
+            append_tabs(patch, template, "fl.random~", lookup_input_string(name))
             write_json(path, template)
 
 if __name__ == "__main__":
