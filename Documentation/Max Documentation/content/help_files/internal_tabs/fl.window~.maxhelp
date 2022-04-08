@@ -93,7 +93,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 555.0, 45.0, 45.0 ]
+									"patching_rect" : [ 305.0, 555.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -496,12 +496,25 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-2",
+									"id" : "obj-26",
 									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 555.0, 45.0, 45.0 ]
+									"patching_rect" : [ 305.0, 555.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 3,
+									"id" : "obj-14",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 349.0, 149.0, 140.0, 25.0 ],
+									"text" : "Set trapezoid points"
 								}
 
 							}
@@ -583,19 +596,6 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 391.0, 500.0, 116.0, 21.0 ],
 									"text" : "Trapezoid Window"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bubble" : 1,
-									"bubbleside" : 3,
-									"id" : "obj-14",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 336.0, 150.0, 152.0, 25.0 ],
-									"text" : "Sets Trapezoid Points"
 								}
 
 							}
@@ -718,19 +718,6 @@
 							}
 , 							{
 								"box" : 								{
-									"bubble" : 1,
-									"bubbleside" : 3,
-									"id" : "obj-32",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 42.0, 150.0, 146.0, 25.0 ],
-									"text" : "Sets Beta Parameter"
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-30",
 									"maxclass" : "comment",
 									"numinlets" : 1,
@@ -843,6 +830,19 @@
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 195.0, 210.0, 92.0, 23.0 ],
 									"text" : "parameters $1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 3,
+									"id" : "obj-12",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 43.0, 149.0, 143.0, 25.0 ],
+									"text" : "Sets beta parameter"
 								}
 
 							}
@@ -1230,12 +1230,12 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-2",
+									"id" : "obj-6",
 									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 555.0, 45.0, 45.0 ]
+									"patching_rect" : [ 305.0, 555.0, 45.0, 45.0 ]
 								}
 
 							}
