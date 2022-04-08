@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 87.0, 652.0, 672.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 646.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -92,8 +92,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 363.0, 526.0, 84.0, 21.0 ],
-									"text" : "Check length"
+									"patching_rect" : [ 363.0, 406.0, 139.0, 21.0 ],
+									"text" : "Retrieves frame length"
 								}
 
 							}
@@ -103,7 +103,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 393.0, 615.0, 225.0, 21.0 ],
+									"patching_rect" : [ 393.0, 495.0, 225.0, 21.0 ],
 									"text" : "Length should match the value above"
 								}
 
@@ -116,7 +116,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 348.0, 619.125, 39.0, 14.75 ]
+									"patching_rect" : [ 348.0, 499.125, 39.0, 14.75 ]
 								}
 
 							}
@@ -128,7 +128,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 288.0, 615.0, 50.0, 23.0 ]
+									"patching_rect" : [ 288.0, 495.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -139,7 +139,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 288.0, 525.0, 62.0, 23.0 ],
+									"patching_rect" : [ 288.0, 405.0, 62.0, 23.0 ],
 									"text" : "fl.length~"
 								}
 
@@ -151,7 +151,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 288.0, 570.0, 62.0, 23.0 ],
+									"patching_rect" : [ 288.0, 450.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -162,7 +162,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 342.0, 225.0, 209.0, 21.0 ],
+									"patching_rect" : [ 342.0, 180.0, 209.0, 21.0 ],
 									"text" : "Change the size of the initial frame"
 								}
 
@@ -175,7 +175,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 297.0, 229.125, 39.0, 14.75 ]
+									"patching_rect" : [ 297.0, 184.125, 39.0, 14.75 ]
 								}
 
 							}
@@ -185,7 +185,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 229.0, 561.0, 19.0, 21.0 ],
+									"patching_rect" : [ 229.0, 441.0, 19.0, 21.0 ],
 									"text" : "1"
 								}
 
@@ -196,7 +196,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 229.0, 645.0, 20.0, 21.0 ],
+									"patching_rect" : [ 229.0, 525.0, 20.0, 21.0 ],
 									"text" : "-1"
 								}
 
@@ -208,7 +208,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 105.0, 694.5, 501.5, 36.0 ],
+									"patching_rect" : [ 105.0, 574.5, 501.5, 36.0 ],
 									"text" : "In 'input' mode frames have the same length as the input.\nThe default 'requested' mode makes use of the length parameter to set output length."
 								}
 
@@ -220,7 +220,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 690.0, 45.0, 45.0 ]
+									"patching_rect" : [ 30.0, 570.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -232,8 +232,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 570.0, 195.0, 90.0 ],
-									"size" : 81
+									"patching_rect" : [ 30.0, 450.0, 195.0, 90.0 ],
+									"setstyle" : 1,
+									"signed" : 1,
+									"size" : 11,
+									"spacing" : 2
 								}
 
 							}
@@ -244,19 +247,20 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 525.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 405.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"hidden" : 1,
 									"id" : "obj-16",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 180.0, 81.0, 23.0 ],
+									"patching_rect" : [ 240.0, 150.0, 81.0, 23.0 ],
 									"text" : "loadmess 11"
 								}
 
@@ -271,7 +275,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 240.0, 225.0, 50.0, 23.0 ]
+									"patching_rect" : [ 240.0, 180.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -282,7 +286,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 270.0, 62.0, 23.0 ],
+									"patching_rect" : [ 240.0, 225.0, 62.0, 23.0 ],
 									"text" : "length $1"
 								}
 
@@ -294,7 +298,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 240.0, 330.0, 124.0, 23.0 ],
+									"patching_rect" : [ 240.0, 270.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -305,8 +309,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 375.0, 331.0, 21.0 ],
-									"text" : "Generate an initial frame of 100 values using fl.ramp~"
+									"patching_rect" : [ 270.0, 316.0, 324.0, 21.0 ],
+									"text" : "Generates an initial frame of 100 values using fl.ramp~"
 								}
 
 							}
@@ -317,7 +321,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 435.0, 142.0, 23.0 ],
+									"patching_rect" : [ 30.0, 360.0, 142.0, 23.0 ],
 									"text" : "fl.random~ /mode input"
 								}
 
@@ -329,7 +333,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 375.0, 229.0, 23.0 ],
+									"patching_rect" : [ 30.0, 315.0, 229.0, 23.0 ],
 									"text" : "fl.ramp~ /length 100 /scale normalised"
 								}
 
@@ -342,7 +346,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 77.0, 610.0, 79.0 ],
+									"patching_rect" : [ 15.0, 75.0, 610.0, 79.0 ],
 									"text" : "FrameLib generator objects can adapt to the size of the input frames they receive. \n\nThis is useful if you need the size of new downstream frames to match their inputs without the need to explicitly set the length parameter at instantiation in order to match sizes (or for dynamic changes to use a combination of fl.length~ and fl.tag~ to do the same thing on-the-fly)."
 								}
 
@@ -400,6 +404,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
+									"hidden" : 1,
 									"source" : [ "obj-16", 0 ]
 								}
 
@@ -428,7 +433,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-11", 0 ],
-									"midpoints" : [ 39.5, 315.0, 249.5, 315.0 ],
+									"midpoints" : [ 39.5, 260.0, 249.5, 260.0 ],
 									"order" : 0,
 									"source" : [ "obj-4", 0 ]
 								}
@@ -437,7 +442,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 39.5, 204.0, 39.5, 204.0 ],
 									"order" : 1,
 									"source" : [ "obj-4", 0 ]
 								}
@@ -446,7 +450,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"midpoints" : [ 39.5, 399.0, 39.5, 399.0 ],
+									"midpoints" : [ 39.5, 354.0, 39.5, 354.0 ],
 									"source" : [ "obj-5", 0 ]
 								}
 
@@ -462,7 +466,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-25", 0 ],
-									"midpoints" : [ 39.5, 509.0, 297.5, 509.0 ],
+									"midpoints" : [ 39.5, 393.5, 297.5, 393.5 ],
 									"order" : 0,
 									"source" : [ "obj-6", 0 ]
 								}
