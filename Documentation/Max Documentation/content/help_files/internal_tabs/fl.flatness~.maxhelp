@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 765.0, 523.0 ],
+		"rect" : [ 34.0, 87.0, 765.0, 566.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 765.0, 497.0 ],
+						"rect" : [ 0.0, 26.0, 765.0, 540.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 765.0, 497.0 ],
+						"rect" : [ 34.0, 113.0, 765.0, 540.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -150,11 +150,55 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.15,
+									"bubbleside" : 0,
+									"id" : "obj-23",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 540.0, 393.0, 169.0, 40.0 ],
+									"text" : "Flatness of a random frame"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.15,
+									"bubbleside" : 0,
+									"id" : "obj-22",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 300.0, 393.0, 169.0, 40.0 ],
+									"presentation_linecount" : 2,
+									"text" : "Flatness of a uniform frame"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.15,
+									"bubbleside" : 0,
+									"id" : "obj-15",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 30.0, 393.0, 129.0, 40.0 ],
+									"text" : "Flatness of the ramp"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-16",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 420.0, 432.0, 282.0, 21.0 ],
+									"patching_rect" : [ 415.5, 475.0, 299.0, 25.0 ],
 									"text" : "Restart audio to generate a new random frame."
 								}
 
@@ -257,7 +301,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 353.5, 420.0, 45.0, 45.0 ]
+									"patching_rect" : [ 357.0, 465.0, 45.0, 45.0 ]
 								}
 
 							}

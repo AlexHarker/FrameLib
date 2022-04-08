@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 646.0, 592.0 ],
+		"rect" : [ 34.0, 87.0, 511.0, 592.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 646.0, 566.0 ],
+						"rect" : [ 0.0, 26.0, 511.0, 566.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 646.0, 566.0 ],
+						"rect" : [ 34.0, 113.0, 511.0, 566.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -151,11 +151,13 @@
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-6",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 116.0, 420.0, 433.0, 21.0 ],
-									"text" : "The skewness is a measure of direction and amount of skew in the frame."
+									"patching_rect" : [ 195.0, 487.0, 255.0, 36.0 ],
+									"text" : "The skewness is a measure of direction and amount of skew in the frame.",
+									"textjustification" : 1
 								}
 
 							}
@@ -240,20 +242,6 @@
 											}
 , 											{
 												"box" : 												{
-													"arrows" : 1,
-													"border" : 4.0,
-													"id" : "obj-14",
-													"maxclass" : "live.line",
-													"numinlets" : 1,
-													"numoutlets" : 0,
-													"patching_rect" : [ 196.49993896484375, 54.5, 31.25, 17.0 ],
-													"presentation" : 1,
-													"presentation_rect" : [ 199.49993896484375, 23.5, 31.25, 17.0 ]
-												}
-
-											}
-, 											{
-												"box" : 												{
 													"contdata" : 1,
 													"id" : "obj-27",
 													"maxclass" : "multislider",
@@ -274,13 +262,15 @@
 											}
 , 											{
 												"box" : 												{
+													"bubble" : 1,
 													"id" : "obj-32",
+													"linecount" : 2,
 													"maxclass" : "comment",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 229.74993896484375, 54.5, 74.0, 20.0 ],
+													"patching_rect" : [ 229.74993896484375, 54.5, 74.0, 37.0 ],
 													"presentation" : 1,
-													"presentation_rect" : [ 232.74993896484375, 22.0, 69.0, 20.0 ],
+													"presentation_rect" : [ 203.0, 20.0, 86.0, 24.0 ],
 													"text" : "Wiggle me!"
 												}
 
@@ -434,7 +424,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 15.0, 105.0, 315.0, 60.0 ],
+									"patching_rect" : [ 15.0, 105.0, 300.0, 60.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -446,29 +436,18 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 345.0, 465.0, 45.0, 45.0 ]
+									"patching_rect" : [ 375.0, 225.0, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-35",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 81.0, 513.0, 31.25, 17.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-34",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 116.0, 509.5, 71.0, 21.0 ],
+									"patching_rect" : [ 83.0, 492.5, 85.0, 25.0 ],
 									"text" : "Skewness"
 								}
 
@@ -480,7 +459,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 465.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 450.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -493,7 +472,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 420.0, 83.0, 23.0 ],
+									"patching_rect" : [ 15.0, 405.0, 83.0, 23.0 ],
 									"text" : "fl.skewness~"
 								}
 
@@ -505,7 +484,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 78.0, 333.0, 75.0, 23.0 ],
+									"patching_rect" : [ 78.0, 318.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -517,7 +496,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 375.0, 77.0, 23.0 ],
+									"patching_rect" : [ 15.0, 360.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -530,7 +509,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 75.0, 195.0, 255.0, 120.0 ],
+									"patching_rect" : [ 75.0, 195.0, 210.0, 105.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"setstyle" : 1,
 									"size" : 256,
@@ -548,19 +527,20 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 507.5, 61.0, 24.0 ]
+									"patching_rect" : [ 15.0, 492.5, 61.0, 24.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-52",
-									"linecount" : 9,
+									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 345.0, 195.0, 270.0, 137.0 ],
-									"text" : "In this example some simplex noise frames are generated and are passed to the fl.skewness~ object via fl.frommax~. \n\nPositive values indicate that the frame is skewed in favour of lower indexes whereas negative values indicate that the higher indexes are more prominent. A value close to zero indicates relative symmetry.",
+									"patching_rect" : [ 108.0, 360.5, 372.0, 112.0 ],
+									"text" : "In this example some simplex noise frames are generated and are passed to the fl.skewness~ object via fl.frommax~. \n\nPositive values indicate that the frame is skewed to the left (towards kiwer indicies) whereas negative values indicate a skew to the right (towards higher indices. A value close to zero indicates relative symmetry.",
 									"textjustification" : 1
 								}
 
@@ -610,7 +590,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-23", 0 ],
-									"midpoints" : [ 87.5, 365.0, 24.5, 365.0 ],
+									"midpoints" : [ 87.5, 350.0, 24.5, 350.0 ],
 									"source" : [ "obj-28", 0 ]
 								}
 

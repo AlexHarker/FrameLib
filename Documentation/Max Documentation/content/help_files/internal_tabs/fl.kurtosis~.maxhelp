@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 656.0, 546.0 ],
+		"rect" : [ 34.0, 87.0, 583.0, 546.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 656.0, 520.0 ],
+						"rect" : [ 0.0, 26.0, 583.0, 520.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 656.0, 520.0 ],
+						"rect" : [ 34.0, 113.0, 583.0, 520.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -320,48 +320,28 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-46",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 142.375, 37.0, 15.25 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-21",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 310.0, 132.0, 217.0, 36.0 ],
-									"text" : "Create your own frame. Experiment with different shapes!"
+									"patching_rect" : [ 265.0, 130.0, 230.0, 40.0 ],
+									"text" : "Create your own frame. Experiment with different shapes!",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-35",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 107.875, 460.0, 31.25, 17.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-34",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 144.0, 458.0, 55.0, 21.0 ],
-									"text" : "Kurtosis"
+									"patching_rect" : [ 113.0, 455.0, 72.0, 25.0 ],
+									"text" : "Kurtosis",
+									"textjustification" : 1
 								}
 
 							}
@@ -372,19 +352,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 405.0, 446.0, 45.0, 45.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-24",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 105.0, 332.875, 37.0, 15.25 ]
+									"patching_rect" : [ 357.5, 195.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -478,12 +446,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-2",
-									"linecount" : 12,
+									"linecount" : 14,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 165.0, 240.0, 460.0, 181.0 ],
-									"text" : "Kurtosis is a statistical measure of the shape of a distritbuion used to describe the degree to which scores cluster in the tails of a distribution. \n\nThe peak is the tallest part of the distribution, and the tails are the ends of the distribution. When the kurtosis is close to a value of 3 it means the distribution of the data is 'mesokurtic' (has the kutosis of the normal distribution.)\n\nValues less than this indicate that the data has thin tails (platykurtic), and is perhaps flat-topped in shape (lacks outliers). \n\nHigher values indicate that more of the values are located in the tails of the distribution (leptokurtic).",
+									"patching_rect" : [ 210.875, 270.0, 338.25, 210.0 ],
+									"text" : "Kurtosis is a statistical measure of the shape of a distritbuion used to describe the degree to which scores cluster in the tails of a distribution. \n\nThe peak is the tallest part of the distribution, and the tails are the ends of the distribution. When the kurtosis is close to a value of 3 it means the distribution of the data is 'mesokurtic' (has the kutosis of the normal distribution.)\n\nValues less than 3 indicate that the data has thin tails (platykurtic). \n\nValues above 3 indicate  that more of the values are located in the tails of the distribution (leptokurtic).",
 									"textjustification" : 1
 								}
 

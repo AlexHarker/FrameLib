@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 597.0, 559.0 ],
+		"rect" : [ 34.0, 87.0, 525.0, 568.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 597.0, 533.0 ],
+						"rect" : [ 0.0, 26.0, 525.0, 542.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 597.0, 533.0 ],
+						"rect" : [ 34.0, 113.0, 525.0, 542.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -151,11 +151,13 @@
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-6",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 319.5, 480.0, 21.0 ],
-									"text" : "The centroid is the point at which the 'centre of mass' in the frame is accumulated."
+									"patching_rect" : [ 198.5, 275.0, 278.0, 36.0 ],
+									"text" : "The centroid is the point at which the 'centre of mass' in the frame is accumulated.",
+									"textjustification" : 1
 								}
 
 							}
@@ -166,7 +168,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 360.0, 210.0, 45.0, 45.0 ]
+									"patching_rect" : [ 315.0, 184.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -185,23 +187,12 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-16",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 350.375, 111.5, 31.25, 17.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-17",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 383.625, 108.5, 106.0, 21.0 ],
+									"patching_rect" : [ 356.0, 107.5, 123.0, 25.0 ],
 									"text" : "Shift the centroid"
 								}
 
@@ -244,7 +235,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 392.13336181640625, 270.0, 114.0 ],
+									"patching_rect" : [ 225.0, 392.13336181640625, 270.0, 120.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"setstyle" : 1,
 									"size" : 1024,
@@ -259,7 +250,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 360.0, 62.0, 23.0 ],
+									"patching_rect" : [ 225.0, 360.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -326,24 +317,15 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-35",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 383.625, 485.63336181640625, 31.25, 17.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-34",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 415.875, 482.63336181640625, 161.0, 21.0 ],
-									"text" : "Centroid (in frame indices)"
+									"patching_rect" : [ 84.0, 472.0, 126.0, 40.0 ],
+									"text" : "Centroid           (in frame indices)",
+									"textjustification" : 1
 								}
 
 							}
@@ -354,7 +336,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 315.0, 435.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 432.86663818359375, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -367,7 +349,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 315.0, 392.13336181640625, 72.0, 23.0 ],
+									"patching_rect" : [ 15.0, 390.0, 72.0, 23.0 ],
 									"text" : "fl.centroid~"
 								}
 
@@ -382,7 +364,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 315.0, 482.13336181640625, 61.0, 24.0 ]
+									"patching_rect" : [ 15.0, 480.0, 61.0, 24.0 ]
 								}
 
 							}
@@ -450,8 +432,8 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-29", 0 ],
-									"midpoints" : [ 24.5, 352.0, 324.5, 352.0 ],
-									"order" : 0,
+									"midpoints" : [ 24.5, 352.0, 24.5, 352.0 ],
+									"order" : 1,
 									"source" : [ "obj-37", 0 ]
 								}
 
@@ -459,7 +441,8 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-62", 0 ],
-									"order" : 1,
+									"midpoints" : [ 24.5, 350.75, 234.5, 350.75 ],
+									"order" : 0,
 									"source" : [ "obj-37", 0 ]
 								}
 
