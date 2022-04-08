@@ -88,11 +88,12 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-20",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 465.0, 376.0, 129.0, 21.0 ],
+									"patching_rect" : [ 462.0, 374.0, 146.0, 25.0 ],
 									"text" : "See inside for details"
 								}
 
@@ -136,11 +137,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-14",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 527.0, 346.0, 21.0 ],
+									"patching_rect" : [ 270.0, 527.0, 352.0, 25.0 ],
 									"text" : "Switch the gate~ on to hear the triggers as a set of clicks"
 								}
 
@@ -153,7 +155,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 218.0, 482.0, 24.0, 24.0 ]
+									"patching_rect" : [ 210.0, 482.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -164,7 +166,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 218.0, 527.0, 56.0, 23.0 ],
+									"patching_rect" : [ 210.0, 527.0, 56.0, 23.0 ],
 									"text" : "gate~"
 								}
 
@@ -176,7 +178,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 218.0, 572.0, 45.0, 45.0 ]
+									"patching_rect" : [ 210.0, 572.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -187,7 +189,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 255.0, 482.0, 49.0, 23.0 ],
+									"patching_rect" : [ 247.0, 482.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -199,7 +201,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 255.0, 437.0, 91.0, 23.0 ],
+									"patching_rect" : [ 247.0, 437.0, 91.0, 23.0 ],
 									"text" : "fl.register~ 0.1"
 								}
 
@@ -213,7 +215,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 45.0, 482.0, 105.0, 23.0 ]
+									"patching_rect" : [ 45.0, 482.0, 60.0, 23.0 ]
 								}
 
 							}
@@ -842,7 +844,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"midpoints" : [ 54.5, 417.0, 264.5, 417.0 ],
+									"midpoints" : [ 54.5, 417.0, 256.5, 417.0 ],
 									"order" : 0,
 									"source" : [ "obj-28", 0 ]
 								}

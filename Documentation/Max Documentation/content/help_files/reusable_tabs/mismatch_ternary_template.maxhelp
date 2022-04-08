@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 644.0, 670.0 ],
+		"rect" : [ 34.0, 87.0, 667.0, 663.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 644.0, 644.0 ],
+						"rect" : [ 34.0, 113.0, 667.0, 637.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -88,11 +88,27 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.1,
+									"bubbleside" : 2,
+									"id" : "obj-9",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 150.0, 210.0, 210.0, 40.0 ],
+									"text" : "Note the mismatch in input lengths",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-6",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 489.0, 345.0, 129.0, 21.0 ],
+									"patching_rect" : [ 490.0, 343.0, 146.0, 25.0 ],
 									"text" : "See inside for details"
 								}
 
@@ -104,7 +120,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 540.0, 541.0, 79.0 ],
+									"patching_rect" : [ 30.0, 525.0, 541.0, 79.0 ],
 									"text" : "The options are:\n\nwrap -  reads shorter imputs in a wrapped manner (the output is as long as the longest input)\nshrink - the output is as long as the shortest input, other values are discarded\nextend - extends shorter inputs by padding them with their final value"
 								}
 
@@ -476,29 +492,18 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 510.0, 443.0, 45.0, 45.0 ]
+									"patching_rect" : [ 510.0, 394.0, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-37",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 154.0, 469.899993896484375, 53.04998779296875, 13.20001220703125 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-18",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 210.0, 466.899993896484375, 207.0, 21.0 ],
+									"patching_rect" : [ 157.0, 465.0, 224.0, 25.0 ],
 									"text" : "Observe the changes in the output"
 								}
 
@@ -777,7 +782,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 225.0, 101.0, 23.0 ],
+									"patching_rect" : [ 30.0, 210.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 1024"
 								}
 
@@ -845,7 +850,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-12", 0 ],
-									"midpoints" : [ 39.5, 266.0, 329.5, 266.0 ],
+									"midpoints" : [ 39.5, 258.5, 329.5, 258.5 ],
 									"order" : 0,
 									"source" : [ "obj-4", 0 ]
 								}
@@ -862,7 +867,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-30", 0 ],
-									"midpoints" : [ 39.5, 266.0, 184.5, 266.0 ],
+									"midpoints" : [ 39.5, 258.5, 184.5, 258.5 ],
 									"order" : 1,
 									"source" : [ "obj-4", 0 ]
 								}

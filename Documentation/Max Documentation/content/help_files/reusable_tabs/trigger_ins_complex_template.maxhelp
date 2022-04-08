@@ -101,11 +101,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-20",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 465.0, 392.0, 129.0, 21.0 ],
+									"patching_rect" : [ 460.0, 390.0, 146.0, 25.0 ],
 									"text" : "See inside for details"
 								}
 
@@ -175,11 +176,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-14",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 540.0, 335.0, 21.0 ],
+									"patching_rect" : [ 270.0, 540.0, 352.0, 25.0 ],
 									"text" : "Switch the gate~ on to hear the triggers as a set of clicks"
 								}
 
@@ -192,7 +194,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 218.0, 495.0, 24.0, 24.0 ]
+									"patching_rect" : [ 210.0, 495.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -203,7 +205,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 218.0, 540.0, 56.0, 23.0 ],
+									"patching_rect" : [ 210.0, 540.0, 56.0, 23.0 ],
 									"text" : "gate~"
 								}
 
@@ -215,7 +217,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 218.0, 585.0, 45.0, 45.0 ]
+									"patching_rect" : [ 210.0, 585.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -226,7 +228,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 255.0, 495.0, 49.0, 23.0 ],
+									"patching_rect" : [ 247.0, 495.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -238,7 +240,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 255.0, 450.0, 98.0, 23.0 ],
+									"patching_rect" : [ 247.0, 450.0, 98.0, 23.0 ],
 									"text" : "fl.register~ 0.05"
 								}
 
@@ -1085,7 +1087,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
-									"midpoints" : [ 54.5, 431.0, 264.5, 431.0 ],
+									"midpoints" : [ 54.5, 431.0, 256.5, 431.0 ],
 									"order" : 0,
 									"source" : [ "obj-28", 0 ]
 								}

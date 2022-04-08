@@ -88,6 +88,21 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.1,
+									"bubbleside" : 2,
+									"id" : "obj-8",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 150.0, 195.0, 240.0, 40.0 ],
+									"text" : "Note the mismatch in input pair lengths",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-11",
 									"linecount" : 6,
 									"maxclass" : "comment",
@@ -111,11 +126,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-6",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 489.0, 347.0, 129.0, 21.0 ],
+									"patching_rect" : [ 469.5, 345.0, 146.0, 25.0 ],
 									"text" : "See inside for details"
 								}
 
@@ -128,17 +144,6 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 60.0, 243.0, 320.0, 21.0 ],
 									"text" : "(use the same values for the real and imaginary parts)"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-12",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 135.0, 195.0, 258.0, 21.0 ],
-									"text" : "Generate pairs of inputs of different lengths"
 								}
 
 							}
@@ -161,29 +166,18 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 525.0, 394.0, 45.0, 45.0 ]
+									"patching_rect" : [ 491.0, 394.0, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-37",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 429.0, 468.899993896484375, 46.04998779296875, 12.100006103515625 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-18",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 480.0, 465.0, 150.0, 21.0 ],
+									"patching_rect" : [ 426.0, 464.0, 167.0, 25.0 ],
 									"text" : "Observe output changes"
 								}
 
@@ -402,7 +396,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 465.0, 183.0, 135.0, 151.0 ],
+									"patching_rect" : [ 446.0, 180.0, 135.0, 151.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -438,7 +432,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 247.5, 285.0, 102.0, 23.0 ],
+									"patching_rect" : [ 238.0, 285.0, 102.0, 23.0 ],
 									"text" : "fl.register~ 3 0.1"
 								}
 
@@ -984,7 +978,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 30.0, 345.0, 454.0, 23.0 ],
+									"patching_rect" : [ 30.0, 345.0, 435.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1055,7 +1049,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 1 ],
-									"midpoints" : [ 39.5, 326.0, 148.25, 326.0 ],
+									"midpoints" : [ 39.5, 326.0, 143.5, 326.0 ],
 									"order" : 0,
 									"source" : [ "obj-29", 0 ]
 								}
@@ -1072,7 +1066,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 3 ],
-									"midpoints" : [ 257.0, 326.0, 365.75, 326.0 ],
+									"midpoints" : [ 247.5, 326.0, 351.5, 326.0 ],
 									"order" : 0,
 									"source" : [ "obj-30", 0 ]
 								}
@@ -1113,7 +1107,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-30", 0 ],
-									"midpoints" : [ 39.5, 276.0, 257.0, 276.0 ],
+									"midpoints" : [ 39.5, 276.0, 247.5, 276.0 ],
 									"order" : 0,
 									"source" : [ "obj-4", 0 ]
 								}
