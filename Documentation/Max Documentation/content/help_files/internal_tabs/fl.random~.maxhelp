@@ -166,29 +166,33 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 550.0, 493.0, 45.0, 45.0 ]
+									"patching_rect" : [ 550.0, 510.0, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.1,
+									"bubbleside" : 2,
 									"id" : "obj-15",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 50.0, 163.0, 205.0, 21.0 ],
-									"text" : "Generate ten random values (0-1)"
+									"patching_rect" : [ 50.0, 163.0, 218.0, 40.0 ],
+									"text" : "Generate 10 random values (0-1)"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-13",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 420.0, 359.5, 190.0, 50.0 ],
+									"patching_rect" : [ 419.0, 374.5, 203.0, 54.0 ],
 									"text" : "When the /mode parameter is set to input the output matches the length of the input",
 									"textjustification" : 1
 								}
@@ -196,12 +200,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-12",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 405.0, 276.5, 150.0, 36.0 ],
+									"patching_rect" : [ 396.0, 291.5, 165.0, 40.0 ],
 									"text" : "Maps incoming value to set the ramp length",
 									"textjustification" : 1
 								}
@@ -209,11 +214,14 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.1,
+									"bubbleside" : 2,
 									"id" : "obj-11",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 163.0, 225.0, 21.0 ],
+									"patching_rect" : [ 330.0, 163.0, 242.0, 40.0 ],
 									"text" : "Generate a single random value (0-1)"
 								}
 
@@ -225,7 +233,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 307.0, 238.0, 137.0, 23.0 ],
+									"patching_rect" : [ 307.0, 255.0, 137.0, 23.0 ],
 									"text" : "fl.map~ linear 0 1 1 20"
 								}
 
@@ -237,7 +245,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 307.0, 283.0, 83.0, 23.0 ],
+									"patching_rect" : [ 307.0, 300.0, 83.0, 23.0 ],
 									"text" : "fl.tag~ length"
 								}
 
@@ -250,7 +258,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 307.0, 193.0, 70.0, 23.0 ],
+									"patching_rect" : [ 307.0, 210.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -262,7 +270,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 270.0, 328.0, 56.0, 23.0 ],
+									"patching_rect" : [ 270.0, 345.0, 56.0, 23.0 ],
 									"text" : "fl.ramp~"
 								}
 
@@ -283,7 +291,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 270.0, 463.0, 210.0, 105.0 ],
+									"patching_rect" : [ 270.0, 480.0, 210.0, 105.0 ],
 									"size" : 20,
 									"slidercolor" : [ 0.207843137254902, 0.76078431372549, 0.749019607843137, 1.0 ],
 									"spacing" : 2
@@ -297,7 +305,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 270.0, 418.0, 62.0, 23.0 ],
+									"patching_rect" : [ 270.0, 435.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -310,7 +318,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 270.0, 373.0, 142.0, 23.0 ],
+									"patching_rect" : [ 270.0, 390.0, 142.0, 23.0 ],
 									"text" : "fl.random~ /mode input"
 								}
 
@@ -331,7 +339,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 463.0, 210.0, 105.0 ],
+									"patching_rect" : [ 30.0, 480.0, 210.0, 105.0 ],
 									"size" : 10,
 									"slidercolor" : [ 0.207843137254902, 0.76078431372549, 0.749019607843137, 1.0 ],
 									"spacing" : 2
@@ -345,7 +353,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 418.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 435.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -370,7 +378,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 193.0, 131.0, 23.0 ],
+									"patching_rect" : [ 30.0, 210.0, 131.0, 23.0 ],
 									"text" : "fl.random~ /length 10"
 								}
 

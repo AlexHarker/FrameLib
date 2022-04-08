@@ -88,35 +88,25 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-32",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 363.0, 406.0, 139.0, 21.0 ],
+									"patching_rect" : [ 357.0, 404.0, 156.0, 25.0 ],
 									"text" : "Retrieves frame length"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-29",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 393.0, 495.0, 225.0, 21.0 ],
+									"patching_rect" : [ 346.0, 494.0, 242.0, 25.0 ],
 									"text" : "Length should match the value above"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-30",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 348.0, 499.125, 39.0, 14.75 ]
 								}
 
 							}
@@ -158,24 +148,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-21",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 342.0, 180.0, 209.0, 21.0 ],
+									"patching_rect" : [ 297.0, 179.0, 226.0, 25.0 ],
 									"text" : "Change the size of the initial frame"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-20",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 297.0, 184.125, 39.0, 14.75 ]
 								}
 
 							}
@@ -305,11 +284,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-10",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 316.0, 324.0, 21.0 ],
+									"patching_rect" : [ 265.0, 315.0, 341.0, 25.0 ],
 									"text" : "Generates an initial frame of 100 values using fl.ramp~"
 								}
 

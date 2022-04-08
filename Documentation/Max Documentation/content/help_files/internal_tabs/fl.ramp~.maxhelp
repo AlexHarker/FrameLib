@@ -93,18 +93,21 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 210.0, 124.0, 45.0, 45.0 ]
+									"patching_rect" : [ 210.0, 109.0, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.3,
+									"bubbleside" : 0,
 									"id" : "obj-35",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 374.5, 579.0, 226.0, 36.0 ],
+									"patching_rect" : [ 374.5, 555.0, 226.0, 55.0 ],
 									"text" : "Here, we ask for 4 samples in length, converted to millisecond values.",
 									"textjustification" : 1
 								}
@@ -118,7 +121,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 360.0, 540.0, 196.0, 23.0 ]
+									"patching_rect" : [ 360.0, 525.0, 196.0, 23.0 ],
+									"text" : "0. 0.022676 0.045351 0.068027"
 								}
 
 							}
@@ -129,7 +133,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 360.0, 495.0, 62.0, 23.0 ],
+									"patching_rect" : [ 360.0, 480.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -141,7 +145,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 360.0, 405.0, 54.0, 23.0 ],
+									"patching_rect" : [ 360.0, 390.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -154,19 +158,22 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 360.0, 450.0, 255.0, 23.0 ],
+									"patching_rect" : [ 360.0, 435.0, 255.0, 23.0 ],
 									"text" : "fl.ramp~ /length 4 /units samples /scale ms"
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.3,
+									"bubbleside" : 0,
 									"id" : "obj-29",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 579.0, 270.0, 36.0 ],
+									"patching_rect" : [ 45.0, 555.0, 270.0, 55.0 ],
 									"text" : "In this example we ask for a ramp that is 1 millisecond long, with the output as a count. ",
 									"textjustification" : 1
 								}
@@ -176,11 +183,13 @@
 								"box" : 								{
 									"dontreplace" : 1,
 									"id" : "obj-27",
+									"linecount" : 3,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 495.0, 300.0, 23.0 ]
+									"patching_rect" : [ 30.0, 495.0, 310.0, 52.0 ],
+									"text" : "0. 1. 2. 3. 4. 5. 6. 7. 8. 9. 10. 11. 12. 13. 14. 15. 16. 17. 18. 19. 20. 21. 22. 23. 24. 25. 26. 27. 28. 29. 30. 31. 32. 33. 34. 35. 36. 37. 38. 39. 40. 41. 42. 43."
 								}
 
 							}
@@ -203,7 +212,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 360.0, 54.0, 23.0 ],
+									"patching_rect" : [ 30.0, 359.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -223,13 +232,17 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.3,
+									"bubbleside" : 0,
 									"id" : "obj-11",
-									"linecount" : 8,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 312.5, 261.0, 314.0, 123.0 ],
-									"text" : "By default, fl.ramp~ interprets the length you provide it as a length in samples. This is set with /units parameter.  The /scale parameter sets the output scaling independently of the /units parameters. \n\nFor example, you might specify a ramp frame's length in samples, but then convert the output to normalised values (0 to 1).",
+									"patching_rect" : [ 310.5, 255.0, 314.0, 98.0 ],
+									"presentation_linecount" : 5,
+									"text" : "Whilst the units for the length can be set with the /units parameter,  the /scale parameter sets the output scaling. For example, you might specify a ramp frame's length in samples, but then convert the output to normalised values (0 to 1).",
 									"textjustification" : 1
 								}
 
@@ -242,7 +255,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 317.0, 225.0, 258.0, 23.0 ]
+									"patching_rect" : [ 317.0, 225.0, 258.0, 23.0 ],
+									"text" : "0. 0.125 0.25 0.375 0.5 0.625 0.75 0.875 1."
 								}
 
 							}
@@ -285,12 +299,15 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.3,
+									"bubbleside" : 0,
 									"id" : "obj-10",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 261.0, 259.0, 50.0 ],
+									"patching_rect" : [ 30.0, 255.0, 259.0, 69.0 ],
 									"text" : "The /length parameter dictates what length the output frame will be, and thus here the maximum value that is counted up to.",
 									"textjustification" : 1
 								}
@@ -304,7 +321,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 225.0, 150.0, 23.0 ]
+									"patching_rect" : [ 30.0, 225.0, 150.0, 23.0 ],
+									"text" : "0. 1. 2. 3. 4. 5. 6. 7. 8. 9."
 								}
 
 							}
@@ -408,7 +426,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-27", 1 ],
-									"midpoints" : [ 39.5, 483.5, 320.5, 483.5 ],
+									"midpoints" : [ 39.5, 483.5, 330.5, 483.5 ],
 									"source" : [ "obj-28", 0 ]
 								}
 
@@ -416,7 +434,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-34", 1 ],
-									"midpoints" : [ 369.5, 528.5, 546.5, 528.5 ],
+									"midpoints" : [ 369.5, 513.5, 546.5, 513.5 ],
 									"source" : [ "obj-31", 0 ]
 								}
 
@@ -616,24 +634,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-17",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 408.25, 348.0, 152.0, 21.0 ],
+									"patching_rect" : [ 382.0, 347.5, 169.0, 25.0 ],
 									"text" : "Observe the output ramp"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-16",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 383.0, 351.0, 22.0, 18.0 ]
 								}
 
 							}

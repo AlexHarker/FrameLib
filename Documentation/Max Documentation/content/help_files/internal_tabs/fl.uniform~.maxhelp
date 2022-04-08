@@ -161,11 +161,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 0,
 									"id" : "obj-18",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 172.5, 405.0, 35.0, 21.0 ],
+									"patching_rect" : [ 171.5, 405.0, 37.0, 40.0 ],
 									"text" : "Sum",
 									"textjustification" : 1
 								}
@@ -173,11 +175,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 0,
 									"id" : "obj-13",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 67.0, 405.0, 48.0, 21.0 ],
+									"patching_rect" : [ 66.0, 405.0, 50.0, 40.0 ],
 									"text" : "Length",
 									"textjustification" : 1
 								}
@@ -209,35 +213,24 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-24",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 209.0, 228.5, 31.0, 19.5 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-15",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 60.0, 435.0, 424.0, 21.0 ],
+									"patching_rect" : [ 60.0, 458.0, 424.0, 21.0 ],
 									"text" : "Observe that the length, sum and visual representation are as expected."
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-14",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 242.0, 225.0, 323.0, 21.0 ],
-									"text" : "Generates a frame of 50 values all set to the number 2"
+									"patching_rect" : [ 208.0, 224.0, 340.0, 25.0 ],
+									"text" : "Generates a frame of 25 values all set to the number 2"
 								}
 
 							}
@@ -264,8 +257,9 @@
 									"patching_rect" : [ 270.0, 330.0, 180.0, 75.0 ],
 									"setminmax" : [ 0.0, 10.0 ],
 									"setstyle" : 1,
-									"size" : 50,
-									"slidercolor" : [ 0.925490196078431, 0.364705882352941, 0.341176470588235, 1.0 ]
+									"size" : 25,
+									"slidercolor" : [ 0.925490196078431, 0.364705882352941, 0.341176470588235, 1.0 ],
+									"spacing" : 1
 								}
 
 							}
@@ -362,7 +356,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 60.0, 225.0, 141.0, 23.0 ],
-									"text" : "fl.uniform~ 2 /length 50"
+									"text" : "fl.uniform~ 2 /length 25"
 								}
 
 							}
