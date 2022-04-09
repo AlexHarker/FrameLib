@@ -1359,6 +1359,7 @@
         "frequency domain"
       ],
       "seealso": [
+        "07_fl_fft",
         "fl.multitaper~",
         "fl.convolve~",
         "fl.ifft~",
@@ -1477,6 +1478,7 @@
         "conversion"
       ],
       "seealso": [
+        "04_fl_conversion",
         "fl.tomax~"
       ]
     },
@@ -1615,6 +1617,7 @@
         "frequency domain"
       ],
       "seealso": [
+        "07_fl_fft",
         "fl.fft~",
         "fl.multitaper~",
         "fl.convolve~",
@@ -2165,6 +2168,7 @@
         "frequency domain"
       ],
       "seealso": [
+        "07_fl_fft",
         "fl.fft~",
         "fl.convolve~",
         "fl.ifft~",
@@ -3486,6 +3490,7 @@
         "conversion"
       ],
       "seealso": [
+        "04_fl_conversion",
         "fl.frommax~"
       ]
     },
@@ -3648,6 +3653,7 @@
         "frequency domain"
       ],
       "seealso": [
+        "07_fl_fft",
         "fl.fft~",
         "fl.multitaper~",
         "fl.convolve~",
@@ -3670,7 +3676,11 @@
         "filters"
       ],
       "seealso": [
-        "fl.biquad~"
+        "fl.biquad~",
+        "fl.biquadcoeff~",
+        "fl.svf~",
+        "fl.onepole~",
+        "fl.onepolezero~"
       ]
     },
     "fl.biquad~": {
