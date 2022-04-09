@@ -377,12 +377,14 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-26",
-									"linecount" : 2,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 495.0, 146.0, 154.0, 36.0 ],
+									"patching_rect" : [ 512.75, 125.0, 119.5, 69.0 ],
 									"text" : "Restarting the audio engine also restarts time.",
 									"textjustification" : 1
 								}
