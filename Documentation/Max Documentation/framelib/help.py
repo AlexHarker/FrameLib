@@ -38,7 +38,7 @@ def detail_lines(docs: Documentation, name: str, width: int) -> int:
     root = tree.getroot()
 
     description = "".join(root.find("description").itertext()).strip()
-
+    description = re.sub(r"More info.+Tutorial.+\.", " ", description);
     pattern = r".{1," + str(width) + r"}(\s|$)|\S+?(\s|$)";
 
     matches = re.finditer(pattern, description);
