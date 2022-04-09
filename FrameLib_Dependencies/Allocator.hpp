@@ -12,7 +12,7 @@ namespace impl
     typedef void (*free_function)(void *);
 };
 
-// Atemplate for wrapping functions as an allocator
+// A template for wrapping functions as an allocator
 
 template<impl::allocate_function alloc, impl::free_function dealloc>
 struct function_allocator
