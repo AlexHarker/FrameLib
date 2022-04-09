@@ -100,6 +100,7 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_iFFT>::makeClass("fl.ifft~");
     FrameLib_MaxClass_Expand<FrameLib_Correlate>::makeClass("fl.correlate~");
     FrameLib_MaxClass_Expand<FrameLib_Convolve>::makeClass("fl.convolve~");
+    FrameLib_MaxClass_Expand<FrameLib_FIRPhase>::makeClass("fl.firphase~");
     FrameLib_MaxClass_Expand<FrameLib_Multitaper>::makeClass("fl.multitaper~");
     FrameLib_MaxClass_Expand<FrameLib_Window>::makeClass("fl.window~");
     
@@ -136,6 +137,7 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_AccumPos>::makeClass("fl.accumpos~");
     FrameLib_MaxClass_Expand<FrameLib_Chop>::makeClass("fl.chop~");
     FrameLib_MaxClass_Expand<FrameLib_Join>::makeClass("fl.join~");
+    FrameLib_MaxClass_Expand<FrameLib_KernelSmooth>::makeClass("fl.kernelsmooth~");
     FrameLib_MaxClass_Expand<FrameLib_MedianFilter>::makeClass("fl.medianfilter~");
     FrameLib_MaxClass_Expand<FrameLib_NonZero>::makeClass("fl.nonzero~");
     FrameLib_MaxClass_Expand<FrameLib_Pad>::makeClass("fl.pad~");
