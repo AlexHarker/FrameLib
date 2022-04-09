@@ -88,6 +88,32 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-20",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 280.0, 499.0, 323.0, 36.0 ],
+									"presentation_linecount" : 2,
+									"text" : "The /edge parameter also affects interpolation and we need bound off to be able to read outside the table.",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-38",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 191.0, 632.75, 62.0, 25.0 ],
+									"text" : "Result"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"hidden" : 1,
 									"id" : "obj-22",
 									"maxclass" : "newobj",
@@ -156,46 +182,27 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-37",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 615.0, 29.75, 14.5 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-38",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 228.75, 611.75, 45.0, 21.0 ],
-									"text" : "Result"
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-18",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 345.0, 465.0, 279.0, 21.0 ],
-									"text" : "Note that bound is set off so we see the results",
+									"patching_rect" : [ 345.0, 464.0, 170.0, 25.0 ],
+									"text" : "Note that bound is set off",
 									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.1,
+									"bubbleside" : 2,
 									"id" : "obj-14",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 297.0, 536.0, 226.0, 21.0 ],
+									"patching_rect" : [ 296.0, 553.0, 228.0, 40.0 ],
 									"text" : "Make with a linear ramp in the buffer~",
 									"textjustification" : 1
 								}
@@ -220,7 +227,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
-									"patching_rect" : [ 300.0, 577.0, 62.0, 23.0 ],
+									"patching_rect" : [ 300.0, 600.0, 62.0, 23.0 ],
 									"text" : "loadbang"
 								}
 
@@ -232,7 +239,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 622.0, 141.0, 23.0 ],
+									"patching_rect" : [ 300.0, 645.0, 141.0, 23.0 ],
 									"text" : "fill 1, apply triangle half"
 								}
 
@@ -240,12 +247,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-11",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 555.0, 150.0, 135.0 ],
+									"patching_rect" : [ 30.0, 577.75, 150.0, 135.0 ],
 									"setminmax" : [ -2.0, 2.0 ],
 									"setstyle" : 1,
 									"size" : 512,
@@ -272,7 +280,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 300.0, 667.0, 220.0, 23.0 ],
+									"patching_rect" : [ 300.0, 690.0, 220.0, 23.0 ],
 									"text" : "buffer~ fl-help-readtable @samps 32"
 								}
 
@@ -345,17 +353,18 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 544.0, 599.75, 45.0, 45.0 ]
+									"patching_rect" : [ 544.0, 622.75, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-15",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 238.5, 162.0, 21.0 ],
+									"patching_rect" : [ 175.0, 237.5, 179.0, 25.0 ],
 									"text" : "Create a ramp from -1 to 2"
 								}
 
@@ -571,11 +580,12 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-35",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 207.0, 590.999999999999886, 286.0, 21.0 ],
+									"patching_rect" : [ 165.0, 590.0, 303.0, 25.0 ],
 									"text" : "Turn up to hear the random spluttering machine."
 								}
 
@@ -626,23 +636,12 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-14",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 181.0, 94.0, 60.25, 15.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-15",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 243.25, 91.5, 274.0, 21.0 ],
+									"patching_rect" : [ 182.0, 89.0, 287.0, 25.0 ],
 									"text" : "Scheduls a trigger frame every 4000 samples"
 								}
 
@@ -834,24 +833,14 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-24",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 161.875, 594.999999999999886, 37.25, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 3,
 									"id" : "obj-26",
-									"linecount" : 3,
+									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 180.0, 120.75, 50.0 ],
+									"patching_rect" : [ 96.5, 180.0, 120.0, 69.0 ],
 									"text" : "Creates random ramp lengths speed and offset.",
 									"textjustification" : 1
 								}
@@ -1273,25 +1262,14 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-16",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 154.0, 424.0, 161.0, 21.0 ],
+									"patching_rect" : [ 117.0, 423.0, 178.0, 25.0 ],
 									"text" : "Turn it up to hear the loop.",
 									"textjustification" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-14",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 117.0, 428.0, 35.0, 13.0 ]
 								}
 
 							}
@@ -1310,23 +1288,12 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-11",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 81.0, 365.0, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-12",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 117.0, 361.0, 309.0, 21.0 ],
+									"patching_rect" : [ 86.0, 359.0, 323.0, 25.0 ],
 									"text" : "fl.sink~ converts the incoming frames to MSP signal",
 									"textjustification" : 1
 								}
@@ -1334,38 +1301,15 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-6",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 292.0, 215.0, 35.0, 13.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-8",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 329.0, 196.5, 305.0, 50.0 ],
+									"patching_rect" : [ 297.0, 194.5, 305.0, 54.0 ],
 									"text" : "Creates a frame of 2000 ms length that counts in samples. At 44.1khz this would be a frame of 88200 values counting from 0 to 88200",
 									"textjustification" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-4",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 154.0, 140.0, 35.0, 13.0 ]
 								}
 
 							}
@@ -1403,25 +1347,13 @@
 							}
 , 							{
 								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-27",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 248.0, 290.0, 20.0, 10.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-18",
 									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 270.0, 264.0, 349.0, 65.0 ],
-									"presentation_linecount" : 6,
+									"patching_rect" : [ 248.0, 262.0, 375.0, 69.0 ],
 									"text" : "fl.read~ is pointed to the buffer \"fl-help-read\". This will output a frame of the first two seconds from this buffer.\n\nNote that the units are set to samples (matching the input).",
 									"textjustification" : 1
 								}
@@ -1429,11 +1361,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-15",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 191.0, 137.0, 314.0, 21.0 ],
+									"patching_rect" : [ 161.0, 134.0, 317.0, 25.0 ],
 									"text" : "Schedules a trigger frame every 2000 milliseconds",
 									"textjustification" : 1
 								}

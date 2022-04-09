@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 629.0, 722.0 ],
+						"rect" : [ 34.0, 113.0, 629.0, 722.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -118,8 +118,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 265.0, 484.0, 318.0, 36.0 ],
-									"text" : "The /edge parameter also affects interpolation, so we need bound off to be able to read outside the table.",
+									"patching_rect" : [ 265.0, 484.0, 320.0, 36.0 ],
+									"text" : "The /edge parameter also affects interpolation and we need bound off to be able to read outside the table.",
 									"textjustification" : 1
 								}
 
@@ -168,8 +168,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 276.0, 449.0, 296.0, 25.0 ],
-									"text" : "Note that bound is set off so we see the results"
+									"patching_rect" : [ 276.0, 449.0, 173.0, 25.0 ],
+									"text" : "Note that bound is set off "
 								}
 
 							}
@@ -201,6 +201,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-11",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
@@ -873,7 +874,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 30.0, 600.0, 236.0, 85.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 31,
+									"size" : 20,
 									"slidercolor" : [ 0.925490196078431, 0.364705882352941, 0.341176470588235, 1.0 ]
 								}
 
@@ -1196,7 +1197,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 629.0, 722.0 ],
+						"rect" : [ 0.0, 26.0, 629.0, 722.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1232,7 +1233,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 75.0, 585.0, 36.0 ],
+									"patching_rect" : [ 15.0, 75.0, 586.0, 36.0 ],
 									"text" : "In this example, fl.lookup~ is used to 'up-sample' an input frame. This is done by using a fixed frame of 4096 samples on a table of 10 values. Interpolation is handled inside the fl.lookup~ object."
 								}
 
@@ -1269,7 +1270,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 185.0, 501.5, 364.0, 40.0 ],
+									"patching_rect" : [ 185.0, 501.5, 366.0, 40.0 ],
 									"text" : "Lookup the 10 values and interpolate 4096 points between them. Interpolation types can be changed with /interp",
 									"textjustification" : 1
 								}
