@@ -18,6 +18,7 @@ function init()
     if (typeof(dict) == "object") {
         shortDesc = dict.get("digest");
         longDesc = dict.get("description");
+		longDesc = longDesc.replace(/More info.+Tutorial.+\./, " ");
         dict.freepeer();
     }
 }

@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as et
 import re
+import json
 from shutil import copyfile
 from framelib.utils import write_json, read_json
 from framelib.classes import Documentation
@@ -10,6 +11,38 @@ def is_details(box: dict) -> bool:
 
 def is_jshelp(box: dict) -> bool:
     return "jsarguments" in box and (is_details(box) or box["filename"] == "fl.helpname.js")
+
+def append_tabs(patch, source, find_object, replace_object):
+    """Take a string of the raw patch file, append the tabs to the source"""
+    modified_patch = patch.replace(find_object, replace_object)
+    converted = json.loads(modified_patch)
+    for tab in converted["patcher"]["boxes"]:
+        source["patcher"]["boxes"].append(tab)
+
+def highlight_reusable_tabs(patch, source, object, find_object):
+    """First find the highlight colour and then apply it to the input tab"""
+    json_patch = json.loads(patch)
+
+    boxes = source["patcher"]["boxes"]
+    for item in boxes:
+        if item["box"]["text"] == "p basic":
+            tab_boxes = item["box"]["patcher"]["boxes"]
+            for child in tab_boxes:
+                box = child["box"]
+                if box["maxclass"] == "newobj" and box["text"].startswith(object):
+                    colour = box["color"];
+
+    boxes = json_patch["patcher"]["boxes"]
+    for item in boxes:
+        tab_boxes = item["box"]["patcher"]["boxes"]
+        for child in tab_boxes:
+            box = child["box"]
+            if box["maxclass"] == "newobj" and box["text"].startswith(find_object):
+                box["color"] = colour;
+            if box["maxclass"] == "multislider":
+                box["slidercolor"] = colour;
+
+    return json.JSONEncoder().encode(json_patch)
 
 def rename_help(docs: Documentation, path: str, obj_name: str) -> None:
     """Takes a path to a Max patch and does a find and replace on object names"""
@@ -38,7 +71,7 @@ def detail_lines(docs: Documentation, name: str, width: int) -> int:
     root = tree.getroot()
 
     description = "".join(root.find("description").itertext()).strip()
-
+    description = re.sub(r"More info.+Tutorial.+\.", " ", description);
     pattern = r".{1," + str(width) + r"}(\s|$)|\S+?(\s|$)";
 
     matches = re.finditer(pattern, description);

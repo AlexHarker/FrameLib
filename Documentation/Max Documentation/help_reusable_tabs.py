@@ -1,39 +1,7 @@
 import json
 from framelib.utils import read_json, write_json
 from framelib.classes import Documentation
-
-
-def append_tabs(patch, source, find_object, replace_object):
-    """Take a string of the raw patch file, append the tabs to the source"""
-    modified_patch = patch.replace(find_object, replace_object)
-    converted = json.loads(modified_patch)
-    for tab in converted["patcher"]["boxes"]:
-        source["patcher"]["boxes"].append(tab)
-
-def highlight_input_tab(patch, source, object, find_object):
-    """First find the highlight colour and then apply it to the input tab"""
-    json_patch = json.loads(patch)
-
-    boxes = source["patcher"]["boxes"]
-    for item in boxes:
-        if item["box"]["text"] == "p basic":
-            tab_boxes = item["box"]["patcher"]["boxes"]
-            for child in tab_boxes:
-                box = child["box"]
-                if box["maxclass"] == "newobj" and box["text"].startswith(object):
-                    colour = box["color"];
-
-    boxes = json_patch["patcher"]["boxes"]
-    for item in boxes:
-        tab_boxes = item["box"]["patcher"]["boxes"]
-        for child in tab_boxes:
-            box = child["box"]
-            if box["maxclass"] == "newobj" and box["text"].startswith(find_object):
-                box["color"] = colour;
-            if box["maxclass"] == "multislider":
-                box["slidercolor"] = colour;
-
-    return json.JSONEncoder().encode(json_patch)
+from framelib.help import append_tabs, highlight_reusable_tabs
 
 
 def lookup_input_string(object) -> str:
@@ -43,7 +11,7 @@ def lookup_input_string(object) -> str:
                 "fl.gaussian~": "/deviation 0.1",
                 "fl.makewindow~": "/window kaiser",
                 "fl.random~": ""     }
-                
+
     return object + " " + dict[object]
 
 def fix_mapping(patch, name):
@@ -71,9 +39,9 @@ def main(docs: Documentation):
 
     # Now insert the necessary tabs
     for path in templates:
-    
+
         name = docs.refpage_name(path.stem)
-                    
+
         if path.stem in ternary:
             template = read_json(path)
             append_tabs(mismatch_ternary, template, "fl.fold~", name)
@@ -94,7 +62,7 @@ def main(docs: Documentation):
 
         if path.stem in generators:
             template = read_json(path)
-            patch = highlight_input_tab(in_mode, template, name, "fl.random~")
+            patch = highlight_reusable_tabs(in_mode, template, name, "fl.random~")
             append_tabs(patch, template, "fl.random~", lookup_input_string(name))
             write_json(path, template)
 
