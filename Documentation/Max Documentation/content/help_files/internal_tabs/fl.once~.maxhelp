@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 576.0, 400.0 ],
+		"rect" : [ 34.0, 87.0, 569.0, 417.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 576.0, 374.0 ],
+						"rect" : [ 0.0, 26.0, 569.0, 391.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 576.0, 374.0 ],
+						"rect" : [ 34.0, 113.0, 569.0, 391.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -150,12 +150,13 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-4",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 75.0, 352.0, 21.0 ],
-									"text" : "fl.once~ schedules a single frame whenever DSP is started."
+									"id" : "obj-5",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 360.0, 242.333333333333343, 44.0, 23.0 ],
+									"text" : "set $1"
 								}
 
 							}
@@ -166,7 +167,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 4,
 									"outlettype" : [ "int", "float", "int", "int" ],
-									"patching_rect" : [ 360.0, 219.0, 65.0, 23.0 ],
+									"patching_rect" : [ 360.0, 210.0, 65.0, 23.0 ],
 									"text" : "dspstate~"
 								}
 
@@ -183,7 +184,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 360.0, 254.0, 81.0, 31.0 ],
+									"patching_rect" : [ 360.0, 274.666666666666686, 81.0, 31.0 ],
 									"text" : "Off",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
 									"texton" : "On",
@@ -201,7 +202,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 247.5, 127.0, 290.0, 84.0 ],
+									"patching_rect" : [ 247.5, 119.5, 290.0, 84.0 ],
+									"presentation_linecount" : 4,
 									"text" : "Restarting the audio engine also restarts time. \n\nIn this example it triggers the generation of new random values.",
 									"textjustification" : 1
 								}
@@ -214,7 +216,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 360.0, 294.0, 45.0, 45.0 ]
+									"patching_rect" : [ 360.0, 315.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -226,7 +228,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 129.0, 54.0, 23.0 ],
+									"patching_rect" : [ 30.0, 150.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -244,7 +246,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 270.0, 215.0, 69.0 ],
+									"patching_rect" : [ 30.0, 291.0, 215.0, 69.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"setstyle" : 1,
 									"size" : 76,
@@ -259,7 +261,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 219.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 240.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -271,8 +273,19 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 174.0, 131.0, 23.0 ],
+									"patching_rect" : [ 30.0, 195.0, 131.0, 23.0 ],
 									"text" : "fl.random~ /length 76"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 75.0, 352.0, 21.0 ],
+									"text" : "fl.once~ schedules a single frame whenever DSP is started."
 								}
 
 							}
@@ -295,7 +308,7 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
-									"destination" : [ "obj-18", 0 ],
+									"destination" : [ "obj-5", 0 ],
 									"source" : [ "obj-1", 0 ]
 								}
 
@@ -325,6 +338,13 @@
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
 									"source" : [ "obj-18", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-18", 0 ],
+									"source" : [ "obj-5", 0 ]
 								}
 
 							}
@@ -383,15 +403,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
+				"name" : "framelib_max.mxo",
 				"type" : "iLaX"
 			}
  ],

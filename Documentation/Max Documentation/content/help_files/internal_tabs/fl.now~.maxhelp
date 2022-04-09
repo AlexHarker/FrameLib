@@ -150,6 +150,62 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-8",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 540.0, 232.333333333333343, 44.0, 23.0 ],
+									"text" : "set $1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 4,
+									"outlettype" : [ "int", "float", "int", "int" ],
+									"patching_rect" : [ 540.0, 200.0, 65.0, 23.0 ],
+									"text" : "dspstate~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
+									"bgoncolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ],
+									"fontsize" : 14.0,
+									"id" : "obj-10",
+									"maxclass" : "textbutton",
+									"mode" : 1,
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 540.0, 264.666666666666686, 81.0, 31.0 ],
+									"text" : "Off",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"texton" : "On",
+									"textoncolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"usebgoncolor" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-15",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 540.0, 305.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-7",
 									"maxclass" : "comment",
 									"numinlets" : 1,
@@ -190,29 +246,6 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 85.0, 180.0, 189.0, 25.0 ],
 									"text" : "Return the time (in samples)"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-2",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 4,
-									"outlettype" : [ "int", "float", "int", "int" ],
-									"patching_rect" : [ 540.0, 193.0, 65.0, 23.0 ],
-									"text" : "dspstate~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-1",
-									"local" : 1,
-									"maxclass" : "ezdac~",
-									"numinlets" : 2,
-									"numoutlets" : 0,
-									"patching_rect" : [ 540.0, 296.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -344,27 +377,6 @@
 							}
 , 							{
 								"box" : 								{
-									"bgcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
-									"bgoncolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ],
-									"fontsize" : 14.0,
-									"id" : "obj-25",
-									"maxclass" : "textbutton",
-									"mode" : 1,
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 540.0, 238.0, 81.0, 31.0 ],
-									"text" : "Off",
-									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
-									"texton" : "On",
-									"textoncolor" : [ 1.0, 1.0, 1.0, 1.0 ],
-									"usebgoncolor" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-26",
 									"linecount" : 2,
 									"maxclass" : "comment",
@@ -420,6 +432,13 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
+									"destination" : [ "obj-15", 0 ],
+									"source" : [ "obj-10", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-33", 0 ],
 									"midpoints" : [ 39.5, 220.0, 145.0, 220.0 ],
 									"order" : 1,
@@ -448,20 +467,6 @@
 								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
 									"source" : [ "obj-18", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-25", 0 ],
-									"source" : [ "obj-2", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-1", 0 ],
-									"source" : [ "obj-25", 0 ]
 								}
 
 							}
@@ -498,6 +503,20 @@
 								"patchline" : 								{
 									"destination" : [ "obj-27", 0 ],
 									"source" : [ "obj-43", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-10", 0 ],
+									"source" : [ "obj-8", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-8", 0 ],
+									"source" : [ "obj-9", 0 ]
 								}
 
 							}
@@ -556,19 +575,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.now~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.samplerate~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
+				"name" : "framelib_max.mxo",
 				"type" : "iLaX"
 			}
  ],
