@@ -11,6 +11,7 @@ var name = jsarguments[1];
 var dict;
 var shortDesc = "";
 var longDesc = "";
+var testOverlow = false;
 
 function init()
 {
@@ -59,14 +60,29 @@ function wordwrap(str, width, brk, cut)
 {
     brk = brk || '\\cr';
     width = jsarguments[2] || width;
-    cut = cut || false;
+	var boxWidth = box.rect[2] - box.rect[0];
     if (!str) { return str; }
-    var regex = '.{1,' +width+ '}(\\s|$)' + (cut ? '|.{' +width+ '}|.+$' : '|\\S+?(\\s|$)');
+    var regex = '.{1,' +width+ '}(\\s|$)' + '|\\S+?(\\s|$)';
     var v=str.match( RegExp(regex, 'g') );
-    for(i=0;i<=v.length;i++)
+	var overflow = false;
+	
+    for(i=0;i<v.length;i++)
     {   
+		var text = v[i].trim();
+		
+		if (testOverlow)
+		{
+			lineOverflow = (mgraphics.text_measure(text)[0] > (boxWidth - 4));
+			overflow = overflow || lineOverflow;
+
+		}
+			
 		mgraphics.show_text(v[i], 1);
         mgraphics.move_to(4, 105+15*i);
     }
+
+	if (overflow)
+		post(name, " text overflow\n");
+		
     return;
 }

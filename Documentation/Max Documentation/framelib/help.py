@@ -80,8 +80,8 @@ def detail_lines(docs: Documentation, name: str, width: int) -> int:
     for m in matches:
         lines = lines + 1
 
-    if lines > 4:
-        print("details issue: " + name + " lines " + str(lines))
+    if lines > 5:
+        print("long details warning: " + name + " lines " + str(lines))
 
     return lines
 
