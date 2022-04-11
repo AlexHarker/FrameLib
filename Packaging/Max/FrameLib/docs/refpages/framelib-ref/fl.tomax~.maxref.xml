@@ -78,6 +78,7 @@
     </attribute>
   </attributelist>
   <seealsolist>
+    <seealso name="04_fl_conversion" type="tutorial" module="FrameLib" />
     <seealso name="fl.frommax~" />
   </seealsolist>
   <misc name="Output">

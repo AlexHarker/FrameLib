@@ -113,6 +113,7 @@
     </attribute>
   </attributelist>
   <seealsolist>
+    <seealso name="07_fl_fft" type="tutorial" module="FrameLib" />
     <seealso name="fl.convolve~" />
     <seealso name="fl.correlate~" />
     <seealso name="fl.ifft~" />

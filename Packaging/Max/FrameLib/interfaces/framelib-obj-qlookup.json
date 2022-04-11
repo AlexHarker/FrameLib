@@ -831,7 +831,11 @@
             "filters"
         ],
         "seealso": [
-            "fl.biquad~"
+            "fl.biquadcoeff~",
+            "fl.biquad~",
+            "fl.onepolezero~",
+            "fl.onepole~",
+            "fl.svf~"
         ]
     },
     "fl.asinh~": {
