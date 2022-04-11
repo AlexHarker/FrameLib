@@ -353,6 +353,7 @@
 											}
 , 											{
 												"box" : 												{
+													"fontsize" : 12.0,
 													"id" : "obj-4",
 													"maxclass" : "live.tab",
 													"multiline" : 0,
@@ -4110,6 +4111,7 @@
 											}
 , 											{
 												"box" : 												{
+													"fontsize" : 12.0,
 													"id" : "obj-4",
 													"maxclass" : "live.tab",
 													"multiline" : 0,

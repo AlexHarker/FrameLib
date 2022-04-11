@@ -1149,14 +1149,6 @@
 
 			}
  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.getname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : ".",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
- ],
 		"autosave" : 0
 	}
 

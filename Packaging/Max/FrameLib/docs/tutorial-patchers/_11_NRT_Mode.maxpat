@@ -461,6 +461,7 @@
 , 							{
 								"box" : 								{
 									"button" : 1,
+									"fontsize" : 12.0,
 									"id" : "obj-6",
 									"maxclass" : "live.tab",
 									"num_lines_patching" : 3,

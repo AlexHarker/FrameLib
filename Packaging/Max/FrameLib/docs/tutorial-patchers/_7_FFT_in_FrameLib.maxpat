@@ -3410,6 +3410,7 @@
 							}
 , 							{
 								"box" : 								{
+									"fontsize" : 12.0,
 									"id" : "obj-20",
 									"maxclass" : "live.tab",
 									"num_lines_patching" : 3,
