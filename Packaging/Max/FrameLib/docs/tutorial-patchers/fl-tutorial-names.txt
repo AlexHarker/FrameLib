@@ -3,7 +3,7 @@
 2, _3_Key_Concepts;
 3, _4_Converting_between_FrameLib_and_Max;
 4, _5_Generators;
-5, _6_Building_a_granulator;
+5, _6_Building_a_Granulator;
 6, _7_FFT_in_FrameLib;
 7, _8_Multistream;
 8, _9_Multi-resolution_FFT;
