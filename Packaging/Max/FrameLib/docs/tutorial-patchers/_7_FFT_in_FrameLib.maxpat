@@ -2077,6 +2077,7 @@
 						"subpatcher_template" : "default",
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
+						"title" : "FFT in FrameLib",
 						"boxes" : [ 							{
 								"box" : 								{
 									"args" : [ 7 ],

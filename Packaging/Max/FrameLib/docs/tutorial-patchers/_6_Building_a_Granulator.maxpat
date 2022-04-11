@@ -11905,7 +11905,7 @@
 						"subpatcher_template" : "default",
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
-						"title" : "Tutorial 6",
+						"title" : "Granular Synthesis",
 						"boxes" : [ 							{
 								"box" : 								{
 									"args" : [ 6 ],
@@ -12092,7 +12092,7 @@
 						"tags" : ""
 					}
 ,
-					"text" : "p Generators"
+					"text" : "p Granular Synthesis"
 				}
 
 			}
