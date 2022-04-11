@@ -481,7 +481,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 330.0, 524.0, 379.0, 123.0 ],
-									"text" : "Multithreading in this scenario is extremely effective at reducing the overall CPU load of this network. Because this network is comprised of 100 parallel streams, with multithreading enabled this workload is easily parallelised across multiple threads. This is one kind of use case in which enabling multithreading may be significantly beneficial. Other use cases may not be beneficial though, or you may see no gains. This is the reason that multithreading is disabled by default."
+									"text" : "Multithreading in this scenario is extremely effective at reducing the overall CPU load of this network. Because this network is comprised of 100 parallel streams, with multithreading enabled this workload is easily parallelised across multiple threads. This is one kind of use case in which enabling multithreading may be significantly beneficial. Other use cases may not be beneficial though, or you may see no gains. This is the reason that multithreading is disabled by default.",
+									"textjustification" : 1
 								}
 
 							}
@@ -495,7 +496,9 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 328.5, 270.0, 377.0, 94.0 ],
-									"text" : "This network belongs to the context named 'workhorse', which is specified at the top-most fl.interval~ scheduler. We can manage the multithreading properties of this context with the fl.context~ object, by pointing it to the same context name. Experiment by switching multithreading on and off with the toggle box and observing the amount of CPU usage consumed."
+									"presentation_linecount" : 6,
+									"text" : "This network belongs to the context named 'workhorse', which is specified at the top-most fl.interval~ scheduler. We can manage the multithreading properties of this context with the fl.context~ object, by pointing it to the same context name. Experiment by switching multithreading on and off with the toggle and observing the amount of CPU usage consumed.",
+									"textjustification" : 1
 								}
 
 							}
@@ -534,7 +537,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 330.0, 135.0, 378.0, 65.0 ],
-									"text" : "To the left is a fairly hefty granular network that is generate 100, 1024 sample grains every 512 samples. Depending on the processing power of the computer you are using, the CPU usage below should report something relatively significant."
+									"text" : "To the left is a fairly hefty granular network that is generate 100, 1024 sample grains every 512 samples. Depending on the processing power of the computer you are using, the CPU usage below should report something relatively significant.",
+									"textjustification" : 1
 								}
 
 							}
