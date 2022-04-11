@@ -328,7 +328,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 214.0, 420.0, 159.0, 20.0 ],
+									"patching_rect" : [ 388.0, 420.0, 159.0, 20.0 ],
 									"text" : "Set the threshold of the gate"
 								}
 
@@ -336,12 +336,12 @@
 , 							{
 								"box" : 								{
 									"arrows" : 1,
-									"border" : 4.0,
+									"border" : 3.0,
 									"id" : "obj-2",
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 422.5, 60.25, 15.0 ]
+									"patching_rect" : [ 324.0, 422.5, 60.25, 15.0 ]
 								}
 
 							}
@@ -355,7 +355,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 93.0, 418.5, 50.0, 23.0 ]
+									"patching_rect" : [ 267.0, 418.5, 50.0, 23.0 ]
 								}
 
 							}
@@ -366,7 +366,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 93.0, 375.0, 72.0, 22.0 ],
+									"patching_rect" : [ 267.0, 375.0, 72.0, 22.0 ],
 									"text" : "loadmess 1"
 								}
 
@@ -378,7 +378,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 116.0, 473.0, 302.0, 33.0 ],
+									"patching_rect" : [ 290.0, 473.0, 302.0, 33.0 ],
 									"text" : "Take a peak inside! This is the actual code responsible for processing the spectral data and gating"
 								}
 
@@ -1179,7 +1179,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 15.0, 478.5, 97.0, 22.0 ],
+									"patching_rect" : [ 189.0, 478.5, 97.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1240,7 +1240,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 613.5, 94.0, 40.0 ],
+									"patching_rect" : [ 189.0, 613.5, 94.0, 40.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -1262,7 +1262,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 210.0, 225.0, 95.0 ],
+									"patching_rect" : [ 189.0, 210.0, 225.0, 95.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -1273,7 +1273,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 219.0, 341.5, 140.0, 20.0 ],
+									"patching_rect" : [ 393.0, 341.5, 140.0, 20.0 ],
 									"text" : "Window all four streams"
 								}
 
@@ -1284,7 +1284,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 78.0, 523.5, 150.0, 20.0 ],
+									"patching_rect" : [ 252.0, 523.5, 150.0, 20.0 ],
 									"text" : "Window and scale frames"
 								}
 
@@ -1409,7 +1409,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 15.0, 523.5, 61.0, 22.0 ],
+									"patching_rect" : [ 189.0, 523.5, 61.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1427,7 +1427,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 103.0, 308.5, 298.0, 20.0 ],
+									"patching_rect" : [ 277.0, 308.5, 298.0, 20.0 ],
 									"text" : "Concatenate different streams (multistream packing)"
 								}
 
@@ -1754,7 +1754,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 15.0, 308.5, 83.0, 22.0 ],
+									"patching_rect" : [ 189.0, 308.5, 83.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -2084,7 +2084,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 15.0, 568.5, 91.0, 22.0 ],
+									"patching_rect" : [ 189.0, 568.5, 91.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -2103,7 +2103,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 341.5, 202.0, 22.0 ],
+									"patching_rect" : [ 189.0, 341.5, 202.0, 22.0 ],
 									"text" : "fl.window~ hann /compensate linear"
 								}
 
@@ -2114,7 +2114,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 675.0, 45.0, 45.0 ]
+									"patching_rect" : [ 189.0, 675.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -2139,7 +2139,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 109.0, 563.0, 161.0, 33.0 ],
+									"patching_rect" : [ 283.0, 563.0, 161.0, 33.0 ],
 									"text" : "Split streams and filter (look inside to turn bands on/off)"
 								}
 
@@ -2158,7 +2158,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 274.0, 568.5, 20.0, 20.0 ],
+									"patching_rect" : [ 448.0, 568.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "5",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -2179,7 +2179,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 416.0, 478.5, 20.0, 20.0 ],
+									"patching_rect" : [ 590.0, 478.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -2200,7 +2200,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 230.0, 523.5, 20.0, 20.0 ],
+									"patching_rect" : [ 404.0, 523.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "4",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -2242,7 +2242,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 366.0, 341.5, 20.0, 20.0 ],
+									"patching_rect" : [ 540.0, 341.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -2263,7 +2263,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 405.0, 309.5, 20.0, 20.0 ],
+									"patching_rect" : [ 579.0, 309.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]

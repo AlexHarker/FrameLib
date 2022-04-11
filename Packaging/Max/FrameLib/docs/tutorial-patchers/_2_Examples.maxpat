@@ -1018,7 +1018,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 180.0, 238.0, 135.0, 90.0 ],
+									"patching_rect" : [ 255.0, 253.0, 135.0, 90.0 ],
 									"tabs" : [ "FrameLib", "poly~" ]
 								}
 
@@ -1039,7 +1039,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 180.0, 450.0, 90.0, 45.0 ],
+									"patching_rect" : [ 255.0, 465.0, 90.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -1072,7 +1072,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
-									"patching_rect" : [ 180.0, 345.0, 29.5, 22.0 ],
+									"patching_rect" : [ 255.0, 360.0, 29.5, 22.0 ],
 									"text" : "+ 1"
 								}
 
@@ -1084,7 +1084,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 180.0, 392.999969000000021, 165.0, 22.0 ],
+									"patching_rect" : [ 255.0, 407.999969000000021, 165.0, 22.0 ],
 									"text" : "selector~ 2"
 								}
 
@@ -1188,7 +1188,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 434.0, 563.0, 89.0, 22.0 ],
+									"patching_rect" : [ 509.0, 578.0, 89.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1202,12 +1202,13 @@
 							}
 , 							{
 								"box" : 								{
+									"hidden" : 1,
 									"id" : "obj-13",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 180.0, 210.0, 72.0, 22.0 ],
+									"patching_rect" : [ 255.0, 225.0, 72.0, 22.0 ],
 									"text" : "loadmess 0"
 								}
 
@@ -1219,7 +1220,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 540.0, 45.0, 45.0 ]
+									"patching_rect" : [ 255.0, 555.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -1230,7 +1231,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 253.0, 345.0, 95.0, 22.0 ],
+									"patching_rect" : [ 328.0, 360.0, 95.0, 22.0 ],
 									"text" : "fl-granular-basic"
 								}
 
@@ -1242,7 +1243,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 373.0, 306.0, 81.0, 22.0 ],
+									"patching_rect" : [ 448.0, 321.0, 81.0, 22.0 ],
 									"text" : "prepend note"
 								}
 
@@ -1254,7 +1255,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
-									"patching_rect" : [ 373.0, 272.0, 115.0, 22.0 ],
+									"patching_rect" : [ 448.0, 287.0, 115.0, 22.0 ],
 									"text" : "metro 75 @active 1"
 								}
 
@@ -1266,7 +1267,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 373.0, 345.0, 170.0, 22.0 ],
+									"patching_rect" : [ 448.0, 360.0, 170.0, 22.0 ],
 									"text" : "poly~ fl-granular-basic-poly 16"
 								}
 
@@ -1278,7 +1279,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 253.0, 563.0, 169.0, 22.0 ],
+									"patching_rect" : [ 328.0, 578.0, 169.0, 22.0 ],
 									"text" : "buffer~ fl.tut.2.rain rainstick.aif"
 								}
 
@@ -1334,6 +1335,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 0 ],
+									"hidden" : 1,
 									"source" : [ "obj-13", 0 ]
 								}
 
@@ -1357,7 +1359,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 2 ],
-									"midpoints" : [ 382.5, 379.499984499999982, 335.5, 379.499984499999982 ],
+									"midpoints" : [ 457.5, 394.499984499999982, 410.5, 394.499984499999982 ],
 									"source" : [ "obj-20", 0 ]
 								}
 
@@ -1895,7 +1897,7 @@
 , 							{
 								"box" : 								{
 									"arrows" : 1,
-									"border" : 4.0,
+									"border" : 3.0,
 									"id" : "obj-42",
 									"justification" : 1,
 									"maxclass" : "live.line",
@@ -1930,7 +1932,7 @@
 , 							{
 								"box" : 								{
 									"arrows" : 1,
-									"border" : 4.0,
+									"border" : 3.0,
 									"id" : "obj-40",
 									"justification" : 1,
 									"maxclass" : "live.line",
@@ -2295,7 +2297,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 538.5, 441.0, 153.0, 100.0 ],
+									"patching_rect" : [ 538.5, 426.0, 153.0, 100.0 ],
 									"text" : "The modulation parameter determines the magnitude of the randomness added each inteval. At 1.0 The values that can be added to the original frame is between 0. and 1.",
 									"textjustification" : 1
 								}
@@ -2311,7 +2313,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 581.0, 300.0, 79.0, 80.0 ],
+									"patching_rect" : [ 581.0, 285.0, 79.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_longname" : "live.dial[8]",
@@ -2337,7 +2339,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 480.75, 300.0, 90.0, 80.0 ],
+									"patching_rect" : [ 480.75, 285.0, 90.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_longname" : "live.dial[7]",
@@ -2364,7 +2366,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 280.25, 300.0, 90.0, 80.0 ],
+									"patching_rect" : [ 280.25, 285.0, 90.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_longname" : "live.dial[6]",
@@ -2391,7 +2393,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 380.5, 300.0, 90.0, 80.0 ],
+									"patching_rect" : [ 380.5, 285.0, 90.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_longname" : "live.dial[5]",
@@ -2410,12 +2412,13 @@
 							}
 , 							{
 								"box" : 								{
+									"hidden" : 1,
 									"id" : "obj-6",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 180.0, 150.0, 70.0, 22.0 ],
+									"patching_rect" : [ 369.3125, 150.0, 70.0, 22.0 ],
 									"text" : "loadmess 1"
 								}
 
@@ -2452,7 +2455,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 180.0, 180.0, 179.0, 61.0 ],
+									"patching_rect" : [ 180.0, 165.0, 179.0, 61.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_enum" : [ "1", "2", "3", "4", "5", "6" ],
@@ -2475,7 +2478,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 581.0, 411.0, 68.0, 22.0 ],
+									"patching_rect" : [ 581.0, 396.0, 68.0, 22.0 ],
 									"text" : "s mod_amt"
 								}
 
@@ -2486,7 +2489,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 480.75, 411.0, 64.0, 22.0 ],
+									"patching_rect" : [ 480.75, 396.0, 64.0, 22.0 ],
 									"text" : "s 2_length"
 								}
 
@@ -2497,7 +2500,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 380.5, 411.0, 70.0, 22.0 ],
+									"patching_rect" : [ 380.5, 396.0, 70.0, 22.0 ],
 									"text" : "s 2_interval"
 								}
 
@@ -2508,7 +2511,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 280.25, 411.0, 64.0, 22.0 ],
+									"patching_rect" : [ 280.25, 396.0, 64.0, 22.0 ],
 									"text" : "s 1_length"
 								}
 
@@ -2519,7 +2522,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 411.0, 70.0, 22.0 ],
+									"patching_rect" : [ 180.0, 396.0, 70.0, 22.0 ],
 									"text" : "s 1_interval"
 								}
 
@@ -2802,7 +2805,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 180.0, 255.0, 420.0, 22.0 ],
+									"patching_rect" : [ 180.0, 240.0, 420.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -2824,7 +2827,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 180.0, 300.0, 90.0, 80.0 ],
+									"patching_rect" : [ 180.0, 285.0, 90.0, 80.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_longname" : "live.dial",
@@ -2859,7 +2862,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 600.0, 249.5, 105.0, 33.0 ],
+									"patching_rect" : [ 600.0, 234.5, 105.0, 33.0 ],
 									"text" : "Experiment with the parameters"
 								}
 
@@ -2870,7 +2873,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 359.0, 200.5, 90.625, 20.0 ],
+									"patching_rect" : [ 359.0, 185.5, 90.625, 20.0 ],
 									"text" : "Select a preset"
 								}
 
@@ -2984,7 +2987,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 451.625, 200.5, 20.0, 20.0 ],
+									"patching_rect" : [ 451.625, 185.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -3084,6 +3087,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-69", 0 ],
+									"hidden" : 1,
 									"source" : [ "obj-6", 0 ]
 								}
 
@@ -3367,7 +3371,7 @@
 , 							{
 								"box" : 								{
 									"arrows" : 1,
-									"border" : 2.0,
+									"border" : 3.0,
 									"id" : "obj-6",
 									"justification" : 1,
 									"maxclass" : "live.line",
@@ -3379,26 +3383,27 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-3",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 436.5, 496.0, 127.0, 21.0 ],
-									"text" : "Replace the source!"
+									"patching_rect" : [ 438.5, 496.0, 118.0, 20.0 ],
+									"text" : "Replace the source!",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"arrows" : 1,
-									"border" : 4.0,
+									"border" : 3.0,
 									"id" : "obj-4",
 									"justification" : 1,
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 395.375, 499.0, 40.25, 13.0 ]
+									"patching_rect" : [ 399.375, 499.0, 40.25, 13.0 ]
 								}
 
 							}
@@ -3417,21 +3422,22 @@
 , 							{
 								"box" : 								{
 									"fontface" : 0,
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-109",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 484.5, 202.0, 162.5, 50.0 ],
-									"text" : "Click and drag to change what portion of the buffer is used."
+									"patching_rect" : [ 484.5, 205.75, 163.0, 47.0 ],
+									"text" : "Click and drag to change what portion of the buffer is used.",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"arrows" : 1,
-									"border" : 4.0,
+									"border" : 3.0,
 									"id" : "obj-110",
 									"justification" : 1,
 									"maxclass" : "live.line",
@@ -3589,8 +3595,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 325.5, 315.0, 326.0, 152.0 ],
-									"text" : "Change the interval at which new frames are generated.\n\nThe interval here is specified in samples. If our sampling rate was at 44100 (44.1khz), and our interval parameter here was set to 44100 we would trigger a new grain every second.\n\nThis is a good chance to experiment with how this works."
+									"patching_rect" : [ 325.5, 315.0, 300.0, 152.0 ],
+									"text" : "Change the interval at which new frames are generated.\n\nThe interval here is specified in samples. If our sampling rate was at 44100 (44.1khz), and our interval parameter here was set to 44100 we would trigger a new grain every second.\n\nThis is a good chance to experiment with how this works.",
+									"textjustification" : 1
 								}
 
 							}
@@ -3629,7 +3636,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 650.125, 375.0, 20.0, 20.0 ],
+									"patching_rect" : [ 645.0, 381.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
