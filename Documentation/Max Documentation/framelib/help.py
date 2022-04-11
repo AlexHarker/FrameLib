@@ -19,6 +19,52 @@ def append_tabs(patch, source, find_object, replace_object):
     for tab in converted["patcher"]["boxes"]:
         source["patcher"]["boxes"].append(tab)
 
+def live_tab_format_patch(patch: dict, size: float, font: str) -> bool:
+    boxes = patch["patcher"]["boxes"]
+    local_found = False
+    for item in boxes:
+        box = item["box"]
+        if box["maxclass"] == "live.tab":
+            box["fontsize"] = size
+            box["fontname"] = font
+            local_found = True
+        if "patcher" in box:
+            recurse = live_tab_format_patch(box, size, font)
+            local_found = local_found or recurse
+    return local_found
+
+def live_tab_format(path: str, size: float, font: str):
+    """Apply formatting to all live.tabs"""
+    d = read_json(path)
+
+    found = live_tab_format_patch(d, size, font)
+
+    if found:
+        write_json(path, d)
+
+def comment_format_patch(patch: dict, depth: int) -> bool:
+    boxes = patch["patcher"]["boxes"]
+    local_found = False
+    for item in boxes:
+        box = item["box"]
+        if box["maxclass"] == "comment" and ("bubble" not in box or box["bubble"] == 0) and ("fontname" not in box or box["fontname"] == "Arial"):
+            box["textcolor"] = [0.5, 0.5, 0.5, 1.0]
+            local_found = True
+        if "patcher" in box:
+            if depth < 1:
+                recurse = comment_format_patch(box, depth + 1)
+                local_found = local_found or recurse
+    return local_found
+
+def comment_format(path: str):
+    """Apply formatting to all comments"""
+    d = read_json(path)
+
+    found = comment_format_patch(d, 0)
+
+    if found:
+        write_json(path, d)
+
 def highlight_reusable_tabs(patch, source, object, find_object):
     """First find the highlight colour and then apply it to the input tab"""
     json_patch = json.loads(patch)
@@ -30,7 +76,7 @@ def highlight_reusable_tabs(patch, source, object, find_object):
             for child in tab_boxes:
                 box = child["box"]
                 if box["maxclass"] == "newobj" and box["text"].startswith(object):
-                    colour = box["color"];
+                    colour = box["color"]
 
     boxes = json_patch["patcher"]["boxes"]
     for item in boxes:
@@ -38,9 +84,9 @@ def highlight_reusable_tabs(patch, source, object, find_object):
         for child in tab_boxes:
             box = child["box"]
             if box["maxclass"] == "newobj" and box["text"].startswith(find_object):
-                box["color"] = colour;
+                box["color"] = colour
             if box["maxclass"] == "multislider":
-                box["slidercolor"] = colour;
+                box["slidercolor"] = colour
 
     return json.JSONEncoder().encode(json_patch)
 
