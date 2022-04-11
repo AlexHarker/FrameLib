@@ -40,6 +40,7 @@
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
 		"assistshowspatchername" : 0,
+		"title" : "Tutorial 8: Multistream Networks",
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-11",
@@ -2808,7 +2809,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 511.5, 358.25, 298.5, 269.75 ],
+									"patching_rect" : [ 511.5, 358.25, 298.5, 275.75 ],
 									"proportion" : 0.39,
 									"rounded" : 16
 								}
@@ -4493,7 +4494,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 826.0, 708.0 ],
+						"rect" : [ 34.0, 113.0, 826.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
