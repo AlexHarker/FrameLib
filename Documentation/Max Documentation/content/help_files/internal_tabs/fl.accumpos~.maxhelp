@@ -358,7 +358,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 315.0, 300.0, 108.0 ],
+									"patching_rect" : [ 150.0, 315.0, 303.0, 108.0 ],
 									"text" : "The argument sets fl.accumpos~ to find the index within the frame at which 50% (or the requested percentage) of the sum is accumulated. \n\nIn this case the default setting % equates to a sum of 2.5 which will be found somewhere between the 7th and 8th value in the original frame.",
 									"textjustification" : 1
 								}

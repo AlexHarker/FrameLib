@@ -157,7 +157,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 390.0, 412.0, 202.625, 40.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Adjust the real and imaginary input values to see the result",
 									"textjustification" : 1
 								}
@@ -172,7 +171,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 464.0, 298.5, 143.0, 40.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Also has a non-symbolic name!",
 									"textjustification" : 1
 								}

@@ -95,7 +95,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 109.0, 228.0, 135.0, 40.0 ],
+									"patching_rect" : [ 109.0, 228.0, 137.0, 40.0 ],
 									"text" : "Plays a short grain from the buffer",
 									"textjustification" : 1
 								}
@@ -632,7 +632,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 689.0, 798.0 ],
+						"rect" : [ 0.0, 26.0, 689.0, 798.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -999,7 +999,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 689.0, 798.0 ],
+						"rect" : [ 34.0, 113.0, 689.0, 798.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,

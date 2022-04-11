@@ -157,7 +157,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 453.625, 298.5, 143.0, 40.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Also has a non-symbolic name!",
 									"textjustification" : 1
 								}

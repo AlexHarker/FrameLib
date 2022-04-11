@@ -158,7 +158,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 166.5, 330.0, 171.0, 55.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Here we calculate the crest of the sine wave",
 									"textjustification" : 1
 								}

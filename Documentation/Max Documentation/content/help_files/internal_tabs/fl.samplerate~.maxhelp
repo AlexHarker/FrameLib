@@ -232,7 +232,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 75.0, 615.0, 36.0 ],
+									"patching_rect" : [ 15.0, 75.0, 619.0, 36.0 ],
 									"text" : "fl.samplerate~ allows you to convert between a number of typical units related to time and frequency. This can be useful for example, for converting a set of values in samples to seconds, milliseconds or hertz."
 								}
 

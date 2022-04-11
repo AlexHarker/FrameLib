@@ -303,7 +303,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 289.5, 336.5, 183.0, 40.0 ],
+									"patching_rect" : [ 289.5, 336.5, 186.0, 40.0 ],
 									"text" : "Combines the three tagged frames into a single frame",
 									"textjustification" : 1
 								}
@@ -317,7 +317,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 369.0, 235.0, 155.0, 40.0 ],
+									"patching_rect" : [ 369.0, 235.0, 158.0, 40.0 ],
 									"text" : "Creates three different frames with tags",
 									"textjustification" : 1
 								}
