@@ -727,7 +727,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 365.0, 285.0, 120.0, 47.0 ],
+									"patching_rect" : [ 375.0, 287.0, 123.0, 47.0 ],
 									"text" : "Two different frames created with different timings",
 									"textjustification" : 1
 								}
@@ -1004,8 +1004,9 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 60.0, 255.0, 295.0, 105.0 ],
-									"proportion" : 0.39
+									"patching_rect" : [ 54.0, 255.0, 312.0, 111.0 ],
+									"proportion" : 0.39,
+									"rounded" : 16
 								}
 
 							}
@@ -2547,66 +2548,72 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-37",
 									"linecount" : 8,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 104.625, 379.0, 375.0, 123.0 ],
-									"text" : "In the left inlet there are 4 streams and in the right there are 2 streams. This means that there will be a mismatch between the streams coming into fl.*~. When there is a mismatch in the number of streams between inputs the smallest number of streams is wrapped around the larger multistream input. In this situation then, streams 1 and 3 in the left input are processed with the first stream of the right input and streams 2 4 in the left are processed by the second stream of the right."
+									"patching_rect" : [ 105.0, 383.0, 366.0, 114.0 ],
+									"text" : "In the left inlet there are 4 streams and in the right there are 2 streams. This means that there will be a mismatch between the streams coming into fl.*~. When there is a mismatch in the number of streams between inputs the smallest number of streams is wrapped around the larger multistream input. In this situation then, streams 1 and 3 in the left input are processed with the first stream of the right input and streams 2 4 in the left are processed by the second stream of the right.",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-34",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 140.0, 322.5, 375.0, 36.0 ],
-									"text" : "Round each value in each stream to the nearest integer value. In this case, it means the output of fl.random~ is either 0 or 1."
+									"patching_rect" : [ 132.25, 323.5, 350.0, 33.0 ],
+									"text" : "Round each value in each stream to the nearest integer value. In this case, it means the output of fl.random~ is either 0 or 1.",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-31",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 221.25, 265.5, 265.0, 36.0 ],
-									"text" : "Generate two streams of frames containing  1 random number between 0. and 1."
+									"patching_rect" : [ 210.0, 266.5, 249.375, 33.0 ],
+									"presentation_linecount" : 2,
+									"text" : "Generate two streams of frames containing  one random number between 0. and 1.",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-28",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 181.5, 197.5, 270.0, 36.0 ],
-									"text" : "Generate four streams of frames contaning 4096 random numbers between 0. and 1."
+									"patching_rect" : [ 170.25, 196.5, 245.0, 33.0 ],
+									"text" : "Generate four streams of frames contaning 4096 random numbers between 0. and 1.",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-29",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 131.0, 139.5, 125.0, 36.0 ],
-									"text" : "trigger frame every 500 milliseconds"
+									"patching_rect" : [ 120.0, 140.5, 117.0, 33.0 ],
+									"text" : "trigger frame every 500 milliseconds",
+									"textjustification" : 1
 								}
 
 							}
@@ -2829,7 +2836,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 517.0, 329.0, 20.0, 20.0 ],
+									"patching_rect" : [ 483.5, 330.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "4",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -2871,7 +2878,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 258.0, 146.0, 20.0, 20.0 ],
+									"patching_rect" : [ 247.0, 146.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -2892,7 +2899,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 488.25, 272.5, 20.0, 20.0 ],
+									"patching_rect" : [ 465.0, 273.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -2913,7 +2920,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 453.5, 205.5, 20.0, 20.0 ],
+									"patching_rect" : [ 420.0, 204.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -2961,7 +2968,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-23", 0 ],
-									"midpoints" : [ 24.5, 189.0, 486.25, 189.0, 486.25, 258.0, 83.75, 258.0 ],
+									"midpoints" : [ 24.5, 189.0, 453.25, 189.0, 453.25, 258.0, 83.75, 258.0 ],
 									"order" : 0,
 									"source" : [ "obj-4", 0 ]
 								}
@@ -3151,6 +3158,7 @@
 						"title" : "Using fl.streamid~",
 						"boxes" : [ 							{
 								"box" : 								{
+									"fontface" : 0,
 									"fontsize" : 12.0,
 									"id" : "obj-75",
 									"linecount" : 9,
@@ -3158,7 +3166,9 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 360.0, 341.5, 347.0, 127.0 ],
-									"text" : "Using the four input streams, create four 'interval' streams every 512, 1024, 2048 and 4096 samples.\n\nDivide those values by 2 and use these values to set the length for each stream. \n\nAs a result, each stream has a length of half the rate and each stream is configured to have increasingly larger intervals and lengths"
+									"text" : "Using the four input streams, create four 'interval' streams every 512, 1024, 2048 and 4096 samples.\n\nDivide those values by 2 and use these values to set the length for each stream. \n\nAs a result, each stream has a length of half the rate and each stream is configured to have increasingly larger intervals and lengths",
+									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"textjustification" : 1
 								}
 
 							}
@@ -3170,7 +3180,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 105.0, 301.0, 223.0, 20.0 ],
-									"text" : "Multiply by 512 (512, 1024, 2048, 4096)"
+									"text" : "Multiply by 512 (512, 1024, 2048, 4096)",
+									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 								}
 
 							}
@@ -3182,7 +3193,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 107.5, 246.0, 262.0, 20.0 ],
-									"text" : "Calculate consecutive powers of two (1, 2, 4, 8)"
+									"text" : "Calculate consecutive powers of two (1, 2, 4, 8)",
+									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 								}
 
 							}
@@ -3195,7 +3207,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 187.666666666666657, 167.5, 528.0, 47.0 ],
-									"text" : "Output four stream ids when audio is started. The output of streamid is a number which can be used to identify the stream or to progrmatically calculate consecutive values  based on each stream (as is the case below)."
+									"text" : "Output four stream ids when audio is started. The output of streamid is a number which can be used to identify the stream or to progrmatically calculate consecutive values  based on each stream (as is the case below).",
+									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 								}
 
 							}
@@ -3207,7 +3220,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 149.5, 120.0, 229.0, 20.0 ],
-									"text" : "Output a trigger frame at the start of time"
+									"text" : "Output a trigger frame at the start of time",
+									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 								}
 
 							}

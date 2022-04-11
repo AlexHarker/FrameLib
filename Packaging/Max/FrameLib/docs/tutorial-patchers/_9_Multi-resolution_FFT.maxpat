@@ -378,8 +378,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 290.0, 473.0, 302.0, 33.0 ],
-									"text" : "Take a peak inside! This is the actual code responsible for processing the spectral data and gating"
+									"patching_rect" : [ 290.0, 473.0, 298.0, 33.0 ],
+									"text" : "Take a peak inside! This is the actual code responsible for processing the spectral data and gating",
+									"textjustification" : 1
 								}
 
 							}
@@ -2140,7 +2141,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 283.0, 563.0, 161.0, 33.0 ],
-									"text" : "Split streams and filter (look inside to turn bands on/off)"
+									"text" : "Split streams and filter (look inside to turn bands on/off)",
+									"textjustification" : 1
 								}
 
 							}

@@ -93,7 +93,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 369.0, 437.0, 195.0, 20.0 ],
+									"patching_rect" : [ 369.0, 437.0, 186.0, 20.0 ],
 									"text" : "audition the contents of the buffer"
 								}
 
