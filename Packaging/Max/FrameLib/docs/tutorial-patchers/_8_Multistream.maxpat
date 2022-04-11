@@ -693,7 +693,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 203.0, 478.0, 141.0, 20.0 ],
+									"patching_rect" : [ 236.0, 478.0, 141.0, 20.0 ],
 									"text" : "Unpack the multistream"
 								}
 
@@ -752,7 +752,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 182.0, 523.0, 60.0, 22.0 ],
+									"patching_rect" : [ 212.0, 523.0, 60.0, 22.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -776,7 +776,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 68.0, 478.0, 133.0, 22.0 ],
+									"patching_rect" : [ 68.0, 478.0, 163.0, 22.0 ],
 									"text" : "fl.unpack~ 2"
 								}
 
@@ -800,7 +800,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 68.0, 630.0, 45.0, 45.0 ]
+									"patching_rect" : [ 385.5, 592.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -813,9 +813,11 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 182.0, 555.0, 110.0, 52.0 ],
+									"patching_rect" : [ 212.0, 555.0, 133.0, 120.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 1024
+									"setstyle" : 1,
+									"size" : 1024,
+									"slidercolor" : [ 0.745098039215686, 0.227450980392157, 1.0, 1.0 ]
 								}
 
 							}
@@ -840,9 +842,12 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 68.0, 555.0, 110.0, 52.0 ],
+									"patching_rect" : [ 68.0, 555.0, 127.0, 120.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 5
+									"setstyle" : 1,
+									"size" : 5,
+									"slidercolor" : [ 0.207843137254902, 0.76078431372549, 0.749019607843137, 1.0 ],
+									"spacing" : 2
 								}
 
 							}
@@ -943,7 +948,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 346.0, 478.0, 20.0, 20.0 ],
+									"patching_rect" : [ 379.0, 478.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1207,7 +1212,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 826.0, 708.0 ],
+						"rect" : [ 34.0, 113.0, 826.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2583,7 +2588,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 210.0, 266.5, 249.375, 33.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Generate two streams of frames containing  one random number between 0. and 1.",
 									"textjustification" : 1
 								}
@@ -4508,7 +4512,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 826.0, 708.0 ],
+						"rect" : [ 0.0, 26.0, 826.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,

@@ -250,13 +250,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-6",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "" ],
-									"patching_rect" : [ 330.0, 375.0, 91.0, 23.0 ],
+									"patching_rect" : [ 330.0, 375.0, 90.0, 22.0 ],
 									"text" : "fl-freeze-stoch"
 								}
 
@@ -697,13 +697,13 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-6",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "" ],
-									"patching_rect" : [ 330.0, 345.0, 97.0, 23.0 ],
+									"patching_rect" : [ 330.0, 345.0, 97.0, 22.0 ],
 									"text" : "fl-freeze-simple"
 								}
 

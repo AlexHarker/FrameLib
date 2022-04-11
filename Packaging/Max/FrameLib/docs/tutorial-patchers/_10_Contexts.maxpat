@@ -99,7 +99,8 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 75.0, 450.0, 120.0, 30.0 ],
-									"setminmax" : [ 0.0, 1.0 ]
+									"setminmax" : [ 0.0, 1.0 ],
+									"slidercolor" : [ 0.952941, 0.564706, 0.098039, 1.0 ]
 								}
 
 							}
@@ -168,7 +169,8 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 435.0, 450.0, 120.0, 30.0 ],
-									"setminmax" : [ 0.0, 1.0 ]
+									"setminmax" : [ 0.0, 1.0 ],
+									"slidercolor" : [ 0.701961, 0.415686, 0.886275, 1.0 ]
 								}
 
 							}

@@ -10956,7 +10956,6 @@
 							}
 , 							{
 								"box" : 								{
-									"candycane" : 3,
 									"ghostbar" : 30,
 									"id" : "obj-43",
 									"maxclass" : "multislider",
@@ -10966,7 +10965,8 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 180.0, 599.0, 314.0, 92.0 ],
 									"setminmax" : [ 0.0, 8820.0 ],
-									"size" : 8820
+									"size" : 8820,
+									"slidercolor" : [ 1.0, 0.011764705882353, 0.011764705882353, 1.0 ]
 								}
 
 							}
@@ -12084,7 +12084,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 21.0, 582.0, 75.0, 21.0 ],
+					"patching_rect" : [ 21.0, 582.0, 111.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
