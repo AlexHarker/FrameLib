@@ -58,7 +58,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 720.0, 735.0 ],
+						"rect" : [ 0.0, 26.0, 720.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -93,7 +93,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 363.0, 437.0, 195.0, 20.0 ],
+									"patching_rect" : [ 369.0, 437.0, 195.0, 20.0 ],
 									"text" : "audition the contents of the buffer"
 								}
 
@@ -149,7 +149,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 311.0, 250.0, 195.0, 20.0 ],
+									"patching_rect" : [ 314.0, 250.0, 195.0, 20.0 ],
 									"text" : "reset time to 0 and clear the buffer"
 								}
 
@@ -196,7 +196,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 255.0, 150.0, 20.0 ],
+									"patching_rect" : [ 135.0, 255.0, 134.0, 20.0 ],
 									"text" : "0.2 seconds @ 44.1khz"
 								}
 
@@ -207,7 +207,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 207.5, 150.0, 20.0 ],
+									"patching_rect" : [ 135.0, 207.5, 83.0, 20.0 ],
 									"text" : "1024 samples"
 								}
 
@@ -218,7 +218,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 165.0, 150.0, 20.0 ],
+									"patching_rect" : [ 135.0, 165.0, 118.0, 20.0 ],
 									"text" : "1 second @ 44.1khz"
 								}
 
@@ -520,7 +520,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 525.0, 80.0, 22.0 ],
+									"patching_rect" : [ 15.0, 525.0, 56.0, 22.0 ],
 									"text" : "fl.*~ 0.25"
 								}
 
@@ -711,13 +711,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -784,13 +784,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -830,7 +830,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 720.0, 735.0 ],
+						"rect" : [ 0.0, 26.0, 720.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -867,7 +867,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 450.0, 585.0, 138.0, 22.0 ],
+									"patching_rect" : [ 450.0, 615.0, 138.0, 22.0 ],
 									"text" : "buffer~ fl.tut.11.2.4 2000"
 								}
 
@@ -880,7 +880,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 305.0, 585.0, 138.0, 22.0 ],
+									"patching_rect" : [ 305.0, 615.0, 138.0, 22.0 ],
 									"text" : "buffer~ fl.tut.11.2.3 2000"
 								}
 
@@ -893,7 +893,7 @@
 									"numinlets" : 5,
 									"numoutlets" : 6,
 									"outlettype" : [ "float", "float", "float", "float", "list", "" ],
-									"patching_rect" : [ 544.0, 406.0, 129.0, 44.0 ],
+									"patching_rect" : [ 544.0, 436.0, 129.0, 44.0 ],
 									"waveformcolor" : [ 0.705882352941177, 0.486274509803922, 0.901960784313726, 1.0 ]
 								}
 
@@ -906,7 +906,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 544.0, 375.0, 154.0, 22.0 ],
+									"patching_rect" : [ 544.0, 405.0, 154.0, 22.0 ],
 									"text" : "fl.sink~ @buffer fl.tut.11.2.4"
 								}
 
@@ -918,7 +918,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 544.0, 285.0, 54.0, 22.0 ],
+									"patching_rect" : [ 544.0, 315.0, 41.0, 22.0 ],
 									"text" : "fl.*~"
 								}
 
@@ -930,7 +930,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 544.0, 330.0, 65.0, 22.0 ],
+									"patching_rect" : [ 544.0, 360.0, 65.0, 22.0 ],
 									"text" : "fl.window~"
 								}
 
@@ -942,7 +942,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 544.0, 120.0, 121.0, 22.0 ],
+									"patching_rect" : [ 544.0, 150.0, 121.0, 22.0 ],
 									"text" : "reset, process 88200"
 								}
 
@@ -954,7 +954,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 544.0, 165.0, 161.0, 22.0 ],
+									"patching_rect" : [ 544.0, 195.0, 161.0, 22.0 ],
 									"text" : "fl.interval~ 1024 @rt 0 @id d"
 								}
 
@@ -967,7 +967,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 544.0, 225.0, 138.0, 35.0 ],
+									"patching_rect" : [ 544.0, 255.0, 138.0, 35.0 ],
 									"text" : "fl.source~ /length 4096 @buffer fl.tut.11.src"
 								}
 
@@ -980,7 +980,7 @@
 									"numinlets" : 5,
 									"numoutlets" : 6,
 									"outlettype" : [ "float", "float", "float", "float", "list", "" ],
-									"patching_rect" : [ 371.5, 406.0, 129.0, 44.0 ],
+									"patching_rect" : [ 371.5, 436.0, 129.0, 44.0 ],
 									"waveformcolor" : [ 0.431372549019608, 0.643137254901961, 0.450980392156863, 1.0 ]
 								}
 
@@ -993,7 +993,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 371.5, 375.0, 154.0, 22.0 ],
+									"patching_rect" : [ 371.5, 405.0, 154.0, 22.0 ],
 									"text" : "fl.sink~ @buffer fl.tut.11.2.3"
 								}
 
@@ -1005,7 +1005,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 371.5, 285.0, 57.0, 22.0 ],
+									"patching_rect" : [ 371.5, 315.0, 42.0, 22.0 ],
 									"text" : "fl.+~ 1"
 								}
 
@@ -1017,7 +1017,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 371.5, 330.0, 65.0, 22.0 ],
+									"patching_rect" : [ 371.5, 360.0, 65.0, 22.0 ],
 									"text" : "fl.window~"
 								}
 
@@ -1029,7 +1029,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 371.5, 120.0, 121.0, 22.0 ],
+									"patching_rect" : [ 371.5, 150.0, 121.0, 22.0 ],
 									"text" : "reset, process 88200"
 								}
 
@@ -1041,7 +1041,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 371.5, 165.0, 161.0, 22.0 ],
+									"patching_rect" : [ 371.5, 195.0, 161.0, 22.0 ],
 									"text" : "fl.interval~ 1024 @rt 0 @id c"
 								}
 
@@ -1054,7 +1054,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 371.5, 225.0, 138.0, 35.0 ],
+									"patching_rect" : [ 371.5, 255.0, 138.0, 35.0 ],
 									"text" : "fl.source~ /length 4096 @buffer fl.tut.11.src"
 								}
 
@@ -1067,7 +1067,7 @@
 									"numinlets" : 5,
 									"numoutlets" : 6,
 									"outlettype" : [ "float", "float", "float", "float", "list", "" ],
-									"patching_rect" : [ 195.0, 406.0, 129.0, 44.0 ],
+									"patching_rect" : [ 195.0, 436.0, 129.0, 44.0 ],
 									"waveformcolor" : [ 0.756862745098039, 0.517647058823529, 0.517647058823529, 1.0 ]
 								}
 
@@ -1080,7 +1080,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 195.0, 375.0, 154.0, 22.0 ],
+									"patching_rect" : [ 195.0, 405.0, 154.0, 22.0 ],
 									"text" : "fl.sink~ @buffer fl.tut.11.2.2"
 								}
 
@@ -1092,7 +1092,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 195.0, 285.0, 65.0, 22.0 ],
+									"patching_rect" : [ 195.0, 315.0, 65.0, 22.0 ],
 									"text" : "fl.reverse~"
 								}
 
@@ -1104,7 +1104,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 195.0, 330.0, 65.0, 22.0 ],
+									"patching_rect" : [ 195.0, 360.0, 65.0, 22.0 ],
 									"text" : "fl.window~"
 								}
 
@@ -1116,7 +1116,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 195.0, 120.0, 121.0, 22.0 ],
+									"patching_rect" : [ 195.0, 150.0, 121.0, 22.0 ],
 									"text" : "reset, process 88200"
 								}
 
@@ -1128,7 +1128,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 195.0, 165.0, 161.0, 22.0 ],
+									"patching_rect" : [ 195.0, 195.0, 161.0, 22.0 ],
 									"text" : "fl.interval~ 1024 @rt 0 @id b"
 								}
 
@@ -1141,7 +1141,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 195.0, 225.0, 138.0, 35.0 ],
+									"patching_rect" : [ 195.0, 255.0, 138.0, 35.0 ],
 									"text" : "fl.source~ /length 4096 @buffer fl.tut.11.src"
 								}
 
@@ -1152,7 +1152,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 56.0, 529.0, 285.0, 20.0 ],
+									"patching_rect" : [ 56.0, 559.0, 285.0, 20.0 ],
 									"text" : "<- Wipe the buffers that each network is writing to"
 								}
 
@@ -1165,7 +1165,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 525.0, 39.0, 24.0 ],
+									"patching_rect" : [ 15.0, 555.0, 39.0, 24.0 ],
 									"text" : "clear"
 								}
 
@@ -1178,7 +1178,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 160.0, 585.0, 138.0, 22.0 ],
+									"patching_rect" : [ 160.0, 615.0, 138.0, 22.0 ],
 									"text" : "buffer~ fl.tut.11.2.2 2000"
 								}
 
@@ -1191,7 +1191,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 15.0, 585.0, 138.0, 22.0 ],
+									"patching_rect" : [ 15.0, 615.0, 138.0, 22.0 ],
 									"text" : "buffer~ fl.tut.11.2.1 2000"
 								}
 
@@ -1218,7 +1218,7 @@
 									"numinlets" : 5,
 									"numoutlets" : 6,
 									"outlettype" : [ "float", "float", "float", "float", "list", "" ],
-									"patching_rect" : [ 15.0, 406.0, 129.0, 44.0 ],
+									"patching_rect" : [ 15.0, 436.0, 129.0, 44.0 ],
 									"waveformcolor" : [ 0.203921568627451, 0.752941176470588, 0.784313725490196, 1.0 ]
 								}
 
@@ -1231,7 +1231,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 375.0, 154.0, 22.0 ],
+									"patching_rect" : [ 15.0, 405.0, 154.0, 22.0 ],
 									"text" : "fl.sink~ @buffer fl.tut.11.2.1"
 								}
 
@@ -1243,7 +1243,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 80.0, 22.0 ],
+									"patching_rect" : [ 15.0, 285.0, 56.0, 22.0 ],
 									"text" : "fl.*~ 0.25"
 								}
 
@@ -1267,7 +1267,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 120.0, 121.0, 22.0 ],
+									"patching_rect" : [ 15.0, 150.0, 121.0, 22.0 ],
 									"text" : "reset, process 88200"
 								}
 
@@ -1279,7 +1279,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 165.0, 161.0, 22.0 ],
+									"patching_rect" : [ 15.0, 195.0, 161.0, 22.0 ],
 									"text" : "fl.interval~ 1024 @rt 0 @id a"
 								}
 
@@ -1292,7 +1292,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 225.0, 138.0, 35.0 ],
+									"patching_rect" : [ 15.0, 255.0, 138.0, 35.0 ],
 									"text" : "fl.source~ /length 4096 @buffer fl.tut.11.src"
 								}
 
@@ -1376,7 +1376,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-39", 1 ],
-									"midpoints" : [ 204.5, 210.0, 264.0, 210.0 ],
+									"midpoints" : [ 204.5, 240.0, 264.0, 240.0 ],
 									"source" : [ "obj-38", 0 ]
 								}
 
@@ -1412,7 +1412,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-47", 1 ],
-									"midpoints" : [ 381.0, 210.0, 440.5, 210.0 ],
+									"midpoints" : [ 381.0, 240.0, 440.5, 240.0 ],
 									"source" : [ "obj-46", 0 ]
 								}
 
@@ -1448,7 +1448,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-55", 1 ],
-									"midpoints" : [ 553.5, 210.0, 613.0, 210.0 ],
+									"midpoints" : [ 553.5, 240.0, 613.0, 240.0 ],
 									"source" : [ "obj-54", 0 ]
 								}
 
@@ -1472,7 +1472,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-3", 1 ],
-									"midpoints" : [ 24.5, 210.0, 84.0, 210.0 ],
+									"midpoints" : [ 24.5, 240.0, 84.0, 240.0 ],
 									"source" : [ "obj-7", 0 ]
 								}
 
@@ -1487,7 +1487,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-56", 0 ],
-									"midpoints" : [ 24.5, 567.0, 459.5, 567.0 ],
+									"midpoints" : [ 24.5, 597.0, 459.5, 597.0 ],
 									"order" : 0,
 									"source" : [ "obj-90", 0 ]
 								}
@@ -1496,7 +1496,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-57", 0 ],
-									"midpoints" : [ 24.5, 567.0, 314.5, 567.0 ],
+									"midpoints" : [ 24.5, 597.0, 314.5, 597.0 ],
 									"order" : 1,
 									"source" : [ "obj-90", 0 ]
 								}
@@ -1505,7 +1505,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-84", 0 ],
-									"midpoints" : [ 24.5, 567.0, 169.5, 567.0 ],
+									"midpoints" : [ 24.5, 597.0, 169.5, 597.0 ],
 									"order" : 2,
 									"source" : [ "obj-90", 0 ]
 								}
@@ -1514,7 +1514,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-85", 0 ],
-									"midpoints" : [ 24.5, 567.0, 24.5, 567.0 ],
+									"midpoints" : [ 24.5, 597.0, 24.5, 597.0 ],
 									"order" : 3,
 									"source" : [ "obj-90", 0 ]
 								}
@@ -1525,13 +1525,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -1598,13 +1598,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -1644,7 +1644,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 139.0, 720.0, 735.0 ],
+						"rect" : [ 0.0, 26.0, 720.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1680,7 +1680,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 660.0, 705.0, 45.0, 45.0 ]
+									"patching_rect" : [ 337.5, 660.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -1738,7 +1738,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 90.0, 600.0, 179.0, 22.0 ],
+									"patching_rect" : [ 90.0, 585.0, 179.0, 22.0 ],
 									"text" : "buffer~ fl.tut.11.0 @samps 1024"
 								}
 
@@ -1919,14 +1919,15 @@
 									"background" : 1,
 									"bgcolor" : [ 0.2, 0.2, 0.2, 0.0 ],
 									"border" : 2,
-									"bordercolor" : [ 0.431372549019608, 0.643137254901961, 0.450980392156863, 1.0 ],
+									"bordercolor" : [ 0.23921568627451, 0.76078431372549, 0.207843137254902, 1.0 ],
 									"id" : "obj-82",
 									"maxclass" : "panel",
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 270.0, 240.0, 314.0 ],
-									"proportion" : 0.5
+									"patching_rect" : [ 90.0, 270.0, 240.0, 300.0 ],
+									"proportion" : 0.5,
+									"rounded" : 16
 								}
 
 							}
@@ -1936,14 +1937,15 @@
 									"background" : 1,
 									"bgcolor" : [ 0.2, 0.2, 0.2, 0.0 ],
 									"border" : 2,
-									"bordercolor" : [ 0.431372549019608, 0.643137254901961, 0.450980392156863, 1.0 ],
+									"bordercolor" : [ 0.23921568627451, 0.76078431372549, 0.207843137254902, 1.0 ],
 									"id" : "obj-16",
 									"maxclass" : "panel",
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 345.0, 270.0, 240.0, 315.0 ],
-									"proportion" : 0.5
+									"patching_rect" : [ 345.0, 270.0, 240.0, 300.0 ],
+									"proportion" : 0.5,
+									"rounded" : 16
 								}
 
 							}
@@ -2009,13 +2011,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -2082,13 +2084,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -2128,7 +2130,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 720.0, 735.0 ],
+						"rect" : [ 0.0, 26.0, 720.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2498,7 +2500,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 485.0, 120.0, 238.0, 490.0 ],
+									"patching_rect" : [ 485.0, 120.0, 230.0, 490.0 ],
 									"text" : "The first thing to notice is that the @rt attribute is set to 0 or non-realtime at the top most scheduler of each network.\n\nIn non-realtime mode the 'reset' message resets time back to 0 and the 'process' message progresses time forward by the amount of time given in samples.\n\nIn the left network the composite message \"reset, process 88200\" resets time and immediately asks for FrameLib to process 88200 samples of time (2 seconds at 44.1khz).\n\nIf you push the left \"reset, process 88200\" message button both networks process audio and push it to their respective output buffers. Why? Because both these networks belong to the same context! In non-realtime mode, context becomes important to how FrameLib networks run and triggering any scheduler belonging to the same context will make every network run.\n\nMove on to the next tab to see the solution to this problem."
 								}
 
@@ -2612,7 +2614,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 270.0, 80.0, 22.0 ],
+									"patching_rect" : [ 15.0, 270.0, 56.0, 22.0 ],
 									"text" : "fl.*~ 0.25"
 								}
 
@@ -2858,13 +2860,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -2931,13 +2933,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -2977,7 +2979,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 720.0, 735.0 ],
+						"rect" : [ 34.0, 113.0, 720.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3094,13 +3096,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -3167,13 +3169,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -3208,80 +3210,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl-tutorial-names.txt",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : ".",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.expr~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.info~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.plus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.read~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.reverse~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../misc",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.window~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0,
 		"toolbaradditions" : [ "lessonbrowser" ],
 		"bgfillcolor_type" : "gradient",
