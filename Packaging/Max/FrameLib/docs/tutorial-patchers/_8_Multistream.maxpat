@@ -94,7 +94,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 765.0, 645.0, 45.0, 45.0 ]
+									"patching_rect" : [ 382.5, 630.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -105,8 +105,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 240.0, 373.0, 210.0, 87.0 ],
-									"text" : "Observe how outputs 1 and 4 (representing rand~ 1 and rand~ 5) move at the same rate, because the stream has been processed by the same stream of the multi-stream input, and hence the same scheduler."
+									"patching_rect" : [ 345.0, 416.5, 210.0, 87.0 ],
+									"text" : "Observe how outputs 1 and 4 (representing rand~ 1 and rand~ 5) update at the same fast rate, because the stream has been processed by the same stream of the multistream input, and hence the same scheduler.",
+									"textjustification" : 1
 								}
 
 							}
@@ -118,7 +119,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 193.5, 510.0, 24.0, 24.0 ]
+									"patching_rect" : [ 298.5, 540.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -130,7 +131,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 133.5, 510.0, 24.0, 24.0 ]
+									"patching_rect" : [ 238.5, 540.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -142,19 +143,19 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 13.5, 510.0, 24.0, 24.0 ]
+									"patching_rect" : [ 118.5, 540.0, 24.0, 24.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"color" : [ 0.705882352941177, 0.486274509803922, 0.901960784313726, 1.0 ],
+									"color" : [ 0.815686274509804, 0.341176470588235, 0.8, 1.0 ],
 									"id" : "obj-45",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 495.0, 120.0, 100.0, 22.0 ],
+									"patching_rect" : [ 600.0, 150.0, 100.0, 22.0 ],
 									"text" : "fl.interval~ 22050"
 								}
 
@@ -167,7 +168,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 73.5, 510.0, 24.0, 24.0 ]
+									"patching_rect" : [ 178.5, 540.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -178,7 +179,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 270.0, 95.0, 22.0 ],
+									"patching_rect" : [ 120.0, 300.0, 95.0, 22.0 ],
 									"text" : "fl.subframe~ 0 1"
 								}
 
@@ -192,8 +193,8 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 195.0, 360.0, 20.0, 140.0 ],
-									"slidercolor" : [ 0.756862745098039, 0.517647058823529, 0.517647058823529, 1.0 ]
+									"patching_rect" : [ 300.0, 390.0, 20.0, 140.0 ],
+									"slidercolor" : [ 0.996078431372549, 0.0, 0.0, 1.0 ]
 								}
 
 							}
@@ -206,8 +207,8 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 135.0, 360.0, 20.0, 140.0 ],
-									"slidercolor" : [ 0.705882352941177, 0.486274509803922, 0.901960784313726, 1.0 ]
+									"patching_rect" : [ 240.0, 390.0, 20.0, 140.0 ],
+									"slidercolor" : [ 0.815686274509804, 0.341176470588235, 0.8, 1.0 ]
 								}
 
 							}
@@ -220,8 +221,8 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 75.0, 360.0, 20.0, 140.0 ],
-									"slidercolor" : [ 0.431372549019608, 0.643137254901961, 0.450980392156863, 1.0 ]
+									"patching_rect" : [ 180.0, 390.0, 20.0, 140.0 ],
+									"slidercolor" : [ 0.23921568627451, 0.76078431372549, 0.207843137254902, 1.0 ]
 								}
 
 							}
@@ -234,8 +235,8 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 360.0, 20.0, 140.0 ],
-									"slidercolor" : [ 0.756862745098039, 0.517647058823529, 0.517647058823529, 1.0 ]
+									"patching_rect" : [ 120.0, 390.0, 20.0, 140.0 ],
+									"slidercolor" : [ 0.996078431372549, 0.0, 0.0, 1.0 ]
 								}
 
 							}
@@ -246,20 +247,20 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 255.0, 165.0, 259.0, 22.0 ],
+									"patching_rect" : [ 360.0, 195.0, 259.0, 22.0 ],
 									"text" : "fl.pack~ 3"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"color" : [ 0.756862745098039, 0.517647058823529, 0.517647058823529, 1.0 ],
+									"color" : [ 0.996078431372549, 0.0, 0.0, 1.0 ],
 									"id" : "obj-27",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 120.0, 50.0, 22.0 ],
+									"patching_rect" : [ 120.0, 150.0, 50.0, 22.0 ],
 									"text" : "rand~ 1"
 								}
 
@@ -271,72 +272,72 @@
 									"numinlets" : 1,
 									"numoutlets" : 4,
 									"outlettype" : [ "", "", "", "" ],
-									"patching_rect" : [ 15.0, 315.0, 199.000000000000028, 22.0 ],
+									"patching_rect" : [ 120.0, 345.0, 199.000000000000028, 22.0 ],
 									"text" : "fl.tomax~ =4"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"color" : [ 0.431372549019608, 0.643137254901961, 0.450980392156863, 1.0 ],
+									"color" : [ 0.23921568627451, 0.76078431372549, 0.207843137254902, 1.0 ],
 									"id" : "obj-24",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 375.0, 120.0, 113.0, 22.0 ],
+									"patching_rect" : [ 480.0, 150.0, 113.0, 22.0 ],
 									"text" : "fl.interval~ 2000 ms"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"color" : [ 0.756862745098039, 0.517647058823529, 0.517647058823529, 1.0 ],
+									"color" : [ 0.996078431372549, 0.0, 0.0, 1.0 ],
 									"id" : "obj-9",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 255.0, 120.0, 89.0, 22.0 ],
+									"patching_rect" : [ 360.0, 150.0, 89.0, 22.0 ],
 									"text" : "fl.interval~ 100"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"color" : [ 0.756862745098039, 0.517647058823529, 0.517647058823529, 1.0 ],
+									"color" : [ 0.996078431372549, 0.0, 0.0, 1.0 ],
 									"id" : "obj-8",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 195.0, 120.0, 50.0, 22.0 ],
+									"patching_rect" : [ 300.0, 150.0, 50.0, 22.0 ],
 									"text" : "rand~ 5"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"color" : [ 0.705882352941177, 0.486274509803922, 0.901960784313726, 1.0 ],
+									"color" : [ 0.815686274509804, 0.341176470588235, 0.8, 1.0 ],
 									"id" : "obj-6",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 135.0, 120.0, 50.0, 22.0 ],
+									"patching_rect" : [ 240.0, 150.0, 50.0, 22.0 ],
 									"text" : "rand~ 4"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"color" : [ 0.431372549019608, 0.643137254901961, 0.450980392156863, 1.0 ],
+									"color" : [ 0.23921568627451, 0.76078431372549, 0.207843137254902, 1.0 ],
 									"id" : "obj-5",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 75.0, 120.0, 50.0, 22.0 ],
+									"patching_rect" : [ 180.0, 150.0, 50.0, 22.0 ],
 									"text" : "rand~ 2"
 								}
 
@@ -348,7 +349,7 @@
 									"numinlets" : 6,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 225.0, 319.0, 22.0 ],
+									"patching_rect" : [ 120.0, 255.0, 319.0, 22.0 ],
 									"text" : "fl.source~ =4 /length 100"
 								}
 
@@ -363,7 +364,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 56.0, 780.0, 38.0 ],
-									"text" : "Here is another example of how the wrapping behaviour works. Below, four audio inputs are triggered by a multi-stream scheduler with three streams. This means that the wrap around doesn't provide a full repeat of the shorter number of streams."
+									"text" : "Here is another example of how the wrapping behaviour works. Below, four audio inputs are triggered by a multistream input from some schedulers with three streams. This means that the wrap around doesn't provide a full repeat of the shorter number of streams."
 								}
 
 							}
@@ -502,7 +503,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 1 ],
-									"midpoints" : [ 84.5, 144.0, 84.5, 144.0 ],
+									"midpoints" : [ 189.5, 174.0, 189.5, 174.0 ],
 									"source" : [ "obj-5", 0 ]
 								}
 
@@ -510,7 +511,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 2 ],
-									"midpoints" : [ 144.5, 144.0, 144.5, 144.0 ],
+									"midpoints" : [ 249.5, 174.0, 249.5, 174.0 ],
 									"source" : [ "obj-6", 0 ]
 								}
 
@@ -518,7 +519,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 3 ],
-									"midpoints" : [ 204.5, 144.0, 204.5, 144.0 ],
+									"midpoints" : [ 309.5, 174.0, 309.5, 174.0 ],
 									"source" : [ "obj-8", 0 ]
 								}
 
@@ -620,18 +621,19 @@
 						"subpatcher_template" : "default",
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
-						"title" : "Multi-stream Basics",
+						"title" : "Multistream Basics",
 						"boxes" : [ 							{
 								"box" : 								{
-									"fontname" : "Lato",
+									"fontname" : "Arial",
 									"fontsize" : 13.0,
 									"id" : "obj-24",
 									"linecount" : 8,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 480.0, 240.0, 228.0, 131.0 ],
-									"text" : "On the left is the most basic example of a multi-stream network where two independent frames are combined with fl.pack~. In this scenario we are taking already generated frames and combining these two streams, but it is also possible to generate multiple streams from a signle object."
+									"patching_rect" : [ 525.0, 255.0, 231.0, 123.0 ],
+									"text" : "On the left is the most basic example of a multistream network where two independent frames are combined with fl.pack~. In this scenario we are taking already generated frames and combining these two streams, but it is also possible to generate multiple streams from a signle object.",
+									"textjustification" : 1
 								}
 
 							}
@@ -641,8 +643,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 158.0, 463.0, 141.0, 20.0 ],
-									"text" : "Unpack the multi-stream"
+									"patching_rect" : [ 203.0, 478.0, 141.0, 20.0 ],
+									"text" : "Unpack the multistream"
 								}
 
 							}
@@ -652,7 +654,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 87.0, 418.0, 294.0, 20.0 ],
+									"patching_rect" : [ 132.0, 433.0, 294.0, 20.0 ],
 									"text" : "Calculates each value in all streams to the power of 5"
 								}
 
@@ -663,8 +665,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 87.0, 373.0, 223.0, 20.0 ],
-									"text" : "\tPack the two frames into a multi-stream"
+									"patching_rect" : [ 132.0, 388.0, 223.0, 20.0 ],
+									"text" : "\tPack the two frames into a multistream"
 								}
 
 							}
@@ -675,8 +677,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 312.0, 275.0, 159.0, 47.0 ],
-									"text" : "Two different frames created with different timings"
+									"patching_rect" : [ 365.0, 285.0, 120.0, 47.0 ],
+									"text" : "Two different frames created with different timings",
+									"textjustification" : 1
 								}
 
 							}
@@ -687,7 +690,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 167.0, 253.0, 108.0, 22.0 ],
+									"patching_rect" : [ 212.0, 268.0, 108.0, 22.0 ],
 									"text" : "fl.interval~ 327 ms"
 								}
 
@@ -699,7 +702,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 137.0, 508.0, 60.0, 22.0 ],
+									"patching_rect" : [ 182.0, 523.0, 60.0, 22.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -711,7 +714,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 23.0, 508.0, 60.0, 22.0 ],
+									"patching_rect" : [ 68.0, 523.0, 60.0, 22.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -723,7 +726,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 23.0, 463.0, 133.0, 22.0 ],
+									"patching_rect" : [ 68.0, 478.0, 133.0, 22.0 ],
 									"text" : "fl.unpack~ 2"
 								}
 
@@ -735,7 +738,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 23.0, 418.0, 59.0, 22.0 ],
+									"patching_rect" : [ 68.0, 433.0, 59.0, 22.0 ],
 									"text" : "fl.pow~ 5"
 								}
 
@@ -747,7 +750,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 615.0, 45.0, 45.0 ]
+									"patching_rect" : [ 68.0, 630.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -760,7 +763,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 137.0, 540.0, 110.0, 52.0 ],
+									"patching_rect" : [ 182.0, 555.0, 110.0, 52.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 1024
 								}
@@ -773,7 +776,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 23.0, 253.0, 115.0, 22.0 ],
+									"patching_rect" : [ 68.0, 268.0, 115.0, 22.0 ],
 									"text" : "fl.interval~ 1000 ms"
 								}
 
@@ -787,7 +790,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 23.0, 540.0, 110.0, 52.0 ],
+									"patching_rect" : [ 68.0, 555.0, 110.0, 52.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 5
 								}
@@ -800,7 +803,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 167.0, 313.0, 137.0, 22.0 ],
+									"patching_rect" : [ 212.0, 328.0, 137.0, 22.0 ],
 									"text" : "fl.random~ /length 1024"
 								}
 
@@ -812,7 +815,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 23.0, 313.0, 117.0, 22.0 ],
+									"patching_rect" : [ 68.0, 328.0, 117.0, 22.0 ],
 									"text" : "fl.random~ /length 5"
 								}
 
@@ -824,7 +827,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 23.0, 373.0, 62.0, 22.0 ],
+									"patching_rect" : [ 68.0, 388.0, 62.0, 22.0 ],
 									"text" : "fl.pack~ 2"
 								}
 
@@ -834,12 +837,12 @@
 									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-3",
-									"linecount" : 11,
+									"linecount" : 10,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 690.0, 178.0 ],
-									"text" : "So far, we have actually always been operating on single stream connections. However, FrameLib also allows you to perform multi-stream processing, where any number of streams can be processed by one object simultaneously. Streams can be seperated, or combined at any point in a FrameLib network so they are completely flexible according to your your needs. There are a number of benefits to working in this way as it can reduce the amount of patching you need to do for processes that require the same processing across several streams of frames. Also, it makes it feasible to program more complicated processes like multi-rate FFT's (we will see some of this later).\n\nUsing the fl.pack~ object, two or more frames cabe ve combined into a single multi-stream frame. The example below demonstrates how these two different streams of random numbers can be independent of each other in timing and frame size. The two timing sources do not interfere with each other and can be thought of as entirely isolated processes that are programatically piped through a single fl.pow~ 5 object."
+									"patching_rect" : [ 15.0, 53.0, 782.0, 162.0 ],
+									"text" : "So far, we have actually always been operating on single stream connections. However, FrameLib also allows you to perform multistream processing, where any number of streams can be processed by one object simultaneously. Streams can be seperated, or combined at any point in a FrameLib network so they are completely flexible according to your your needs. There are a number of benefits to working in this way as it can reduce the amount of patching you need to do for processes that require the same processing across several streams of frames. Also, it makes it feasible to program more complicated processes like multi-rate FFT's (we will see some of this later).\n\nUsing the fl.pack~ object, two or more frames cabe ve combined into a single multistream frame. The example below demonstrates how these two different streams of random numbers can be independent of each other in timing and frame size. The two timing sources do not interfere with each other and can be thought of as entirely isolated processes that are programatically piped through a single fl.pow~ 5 object."
 								}
 
 							}
@@ -853,7 +856,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 15.0, 423.0, 30.0 ],
-									"text" : "Multi-stream basics"
+									"text" : "Multistream basics"
 								}
 
 							}
@@ -890,7 +893,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 301.0, 463.0, 20.0, 20.0 ],
+									"patching_rect" : [ 346.0, 478.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -911,7 +914,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 383.0, 418.0, 20.0, 20.0 ],
+									"patching_rect" : [ 428.0, 433.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -932,7 +935,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 312.0, 374.0, 20.0, 20.0 ],
+									"patching_rect" : [ 357.0, 389.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -951,7 +954,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 240.0, 295.0, 103.0 ],
+									"patching_rect" : [ 60.0, 255.0, 295.0, 105.0 ],
 									"proportion" : 0.39
 								}
 
@@ -995,7 +998,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 0 ],
-									"midpoints" : [ 32.5, 337.0, 32.5, 337.0 ],
+									"midpoints" : [ 77.5, 352.0, 77.5, 352.0 ],
 									"source" : [ "obj-4", 0 ]
 								}
 
@@ -1003,7 +1006,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 1 ],
-									"midpoints" : [ 176.5, 358.0, 75.5, 358.0 ],
+									"midpoints" : [ 221.5, 373.0, 120.5, 373.0 ],
 									"source" : [ "obj-5", 0 ]
 								}
 
@@ -1034,13 +1037,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -1107,13 +1110,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -1124,7 +1127,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 148.758445945945937, 225.0, 121.0, 21.0 ],
+					"patching_rect" : [ 148.758445945945937, 225.0, 118.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1132,7 +1135,7 @@
 						"tags" : ""
 					}
 ,
-					"text" : "p \"Multi-stream Basics\""
+					"text" : "p \"Multistream Basics\""
 				}
 
 			}
@@ -1212,8 +1215,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 457.0, 405.0, 315.0, 210.0 ],
-									"text" : "fl.read~ takes the fl.ramp and interprets these values as millisecond positions (due to /units ms). To reiterate once more, fl.read~ is now outputting four streams of frames containing what will eventually be translated into MSP audio.\n\nEach stream is windowed and scaled to compensate by the increase in gain by having four overlapping streams of audio.\n\nWith fl.sink~ =2 the object will wrap the outputs of our granulator so that streams 1 and 3 go to outlet 1 and streams 2 and 4 go to outlet 2. This provides a quick and dirty stereo routing with hard panning!"
+									"patching_rect" : [ 442.0, 405.0, 315.0, 210.0 ],
+									"text" : "fl.read~ takes the fl.ramp and interprets these values as millisecond positions (due to /units ms). To reiterate once more, fl.read~ is now outputting four streams of frames containing what will eventually be translated into MSP audio.\n\nEach stream is windowed and scaled to compensate by the increase in gain by having four overlapping streams of audio.\n\nWith fl.sink~ =2 the object will wrap the outputs of our granulator so that streams 1 and 3 go to outlet 1 and streams 2 and 4 go to outlet 2. This provides a quick and dirty stereo routing with hard panning!",
+									"textjustification" : 1
 								}
 
 							}
@@ -1225,8 +1229,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 457.0, 123.0, 319.0, 210.0 ],
-									"text" : "This kind of network should be familiar by now. There are really two simple components at play here. The blue objects are dealing with an offset value for each grain while the red modify the size of the grain. Some extra work is done to ensure that given the length of the grain and the offset do not try to request samples outside the boundaries of the source buffer. \n\nAs there are four streams generated at the very start of our network, the down stream objects will also be 'expanded' to generate four streams of individual values. This allows for each grain to be individually shaped and parameterised within the random numbers produced by fl.random~."
+									"patching_rect" : [ 442.0, 123.0, 319.0, 210.0 ],
+									"text" : "This kind of network should be familiar by now. There are really two simple components at play here. The blue objects are dealing with an offset value for each grain while the red modify the size of the grain. Some extra work is done to ensure that given the length of the grain and the offset do not try to request samples outside the boundaries of the source buffer. \n\nAs there are four streams generated at the very start of our network, the down stream objects will also be 'expanded' to generate four streams of individual values. This allows for each grain to be individually shaped and parameterised within the random numbers produced by fl.random~.",
+									"textjustification" : 1
 								}
 
 							}
@@ -1250,13 +1255,13 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 156.0, 61.0, 301.0, 21.0 ],
-									"text" : "Look inside for how the multi-stream interval works"
+									"text" : "Look inside for how the multistream interval works"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-47",
 									"maxclass" : "newobj",
 									"numinlets" : 0,
@@ -1322,7 +1327,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 0,
 													"patching_rect" : [ 141.0, 240.0, 295.0, 65.0 ],
-													"text" : "The result is four schedulers working within a single multi-stream network. The interval parameters are de-correlated from each other to create a less robotic timing mechanism"
+													"text" : "The result is four schedulers working within a single multistream network. The interval parameters are de-correlated from each other to create a less robotic timing mechanism"
 												}
 
 											}
@@ -1500,13 +1505,13 @@
 												"name" : "AudioStatus_Menu",
 												"default" : 												{
 													"bgfillcolor" : 													{
-														"type" : "color",
+														"angle" : 270.0,
+														"autogradient" : 0,
 														"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 														"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 														"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-														"angle" : 270.0,
 														"proportion" : 0.39,
-														"autogradient" : 0
+														"type" : "color"
 													}
 
 												}
@@ -1573,13 +1578,13 @@
 												"name" : "panelViolet",
 												"default" : 												{
 													"bgfillcolor" : 													{
-														"type" : "color",
+														"angle" : 270.0,
+														"autogradient" : 0,
 														"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 														"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 														"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-														"angle" : 270.0,
 														"proportion" : 0.39,
-														"autogradient" : 0
+														"type" : "color"
 													}
 
 												}
@@ -1590,7 +1595,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 20.0, 61.0, 137.0, 23.0 ],
+									"patching_rect" : [ 20.0, 61.0, 123.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1598,19 +1603,19 @@
 										"tags" : ""
 									}
 ,
-									"text" : "p multi-stream-interval"
+									"text" : "p multistream-interval"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-35",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 20.0, 330.0, 139.0, 23.0 ],
+									"patching_rect" : [ 20.0, 330.0, 129.0, 22.0 ],
 									"text" : "fl.+~ /trigger_ins left"
 								}
 
@@ -1631,13 +1636,13 @@
 , 							{
 								"box" : 								{
 									"color" : [ 0.996078431372549, 0.313725490196078, 0.313725490196078, 1.0 ],
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-23",
 									"maxclass" : "newobj",
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 254.0, 194.5, 83.0, 23.0 ],
+									"patching_rect" : [ 254.0, 194.5, 78.0, 22.0 ],
 									"text" : "fl.tag~ length"
 								}
 
@@ -1660,7 +1665,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 630.0, 646.0, 48.0, 22.0 ],
+									"patching_rect" : [ 442.0, 646.0, 48.0, 22.0 ],
 									"text" : "replace"
 								}
 
@@ -1668,26 +1673,26 @@
 , 							{
 								"box" : 								{
 									"color" : [ 0.345098039215686, 0.772549019607843, 0.764705882352941, 1.0 ],
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-13",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 20.0, 240.0, 130.0, 23.0 ],
+									"patching_rect" : [ 20.0, 240.0, 130.0, 22.0 ],
 									"text" : "fl.map~ linear 0 1 0 1"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-12",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 20.0, 285.0, 253.0, 23.0 ],
+									"patching_rect" : [ 20.0, 285.0, 253.0, 22.0 ],
 									"text" : "fl.ramp~ /units ms /scale ms"
 								}
 
@@ -1695,13 +1700,13 @@
 , 							{
 								"box" : 								{
 									"color" : [ 0.996078431372549, 0.313725490196078, 0.313725490196078, 1.0 ],
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-11",
 									"maxclass" : "newobj",
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 131.0, 194.5, 80.0, 23.0 ],
+									"patching_rect" : [ 131.0, 194.5, 75.0, 22.0 ],
 									"text" : "fl.tag~ out_2"
 								}
 
@@ -1709,13 +1714,13 @@
 , 							{
 								"box" : 								{
 									"color" : [ 0.996078431372549, 0.313725490196078, 0.313725490196078, 1.0 ],
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-10",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 254.0, 155.0, 152.0, 23.0 ],
+									"patching_rect" : [ 254.0, 155.0, 141.0, 22.0 ],
 									"text" : "fl.map~ linear 0 1 50 100"
 								}
 
@@ -1723,13 +1728,13 @@
 , 							{
 								"box" : 								{
 									"color" : [ 0.996078431372549, 0.313725490196078, 0.313725490196078, 1.0 ],
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-9",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 131.0, 106.0, 70.0, 23.0 ],
+									"patching_rect" : [ 131.0, 106.0, 66.0, 22.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -1737,13 +1742,13 @@
 , 							{
 								"box" : 								{
 									"color" : [ 0.345098039215686, 0.772549019607843, 0.764705882352941, 1.0 ],
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-8",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 20.0, 105.0, 70.0, 23.0 ],
+									"patching_rect" : [ 20.0, 105.0, 66.0, 22.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -1751,26 +1756,26 @@
 , 							{
 								"box" : 								{
 									"color" : [ 0.996078431372549, 0.313725490196078, 0.313725490196078, 1.0 ],
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-7",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 131.0, 155.0, 117.0, 23.0 ],
+									"patching_rect" : [ 131.0, 155.0, 109.0, 22.0 ],
 									"text" : "fl.info~ fl.tut8.mvgs"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-6",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 20.0, 405.0, 256.0, 23.0 ],
+									"patching_rect" : [ 20.0, 405.0, 237.0, 22.0 ],
 									"text" : "fl.read~ fl.tut.8.mvgs /units ms /edges wrap"
 								}
 
@@ -1782,7 +1787,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 630.0, 676.0, 179.0, 22.0 ],
+									"patching_rect" : [ 442.0, 676.0, 179.0, 22.0 ],
 									"text" : "buffer~ fl.tut.8.mvgs sho0630.aif"
 								}
 
@@ -1797,7 +1802,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 15.0, 421.0, 30.0 ],
-									"text" : "Multi-stream granular synthesis"
+									"text" : "Multistream granular synthesis"
 								}
 
 							}
@@ -1856,7 +1861,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 780.0, 495.0, 20.0, 20.0 ],
+									"patching_rect" : [ 765.0, 495.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "4",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
@@ -1878,7 +1883,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 780.0, 225.0, 20.0, 20.0 ],
+									"patching_rect" : [ 765.0, 225.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
@@ -1920,8 +1925,9 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 9.0, 93.0, 441.0, 282.0 ],
-									"proportion" : 0.5
+									"patching_rect" : [ 9.0, 93.0, 411.0, 282.0 ],
+									"proportion" : 0.5,
+									"rounded" : 16
 								}
 
 							}
@@ -1932,7 +1938,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 20.0, 495.0, 80.0, 22.0 ],
+									"patching_rect" : [ 20.0, 495.0, 56.0, 22.0 ],
 									"text" : "fl.*~ 0.25"
 								}
 
@@ -1961,8 +1967,9 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 9.0, 391.0, 441.0, 307.0 ],
-									"proportion" : 0.5
+									"patching_rect" : [ 9.0, 391.0, 411.0, 307.0 ],
+									"proportion" : 0.5,
+									"rounded" : 16
 								}
 
 							}
@@ -2002,7 +2009,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.742007493972778, 0.0, 1.0 ],
 									"destination" : [ "obj-35", 1 ],
-									"midpoints" : [ 29.5, 274.0, 284.0, 274.0, 284.0, 319.0, 149.5, 319.0 ],
+									"midpoints" : [ 29.5, 274.0, 284.0, 274.0, 284.0, 319.0, 139.5, 319.0 ],
 									"order" : 0,
 									"source" : [ "obj-13", 0 ]
 								}
@@ -2132,13 +2139,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -2205,13 +2212,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -2290,7 +2297,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 600.0, 379.0, 139.0, 35.0 ],
+									"patching_rect" : [ 600.0, 364.0, 139.0, 35.0 ],
 									"text" : "Visual representation of the wrapping process"
 								}
 
@@ -2303,7 +2310,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 643.0, 498.0, 15.5, 5.0 ]
+									"patching_rect" : [ 643.0, 483.0, 15.5, 5.0 ]
 								}
 
 							}
@@ -2314,7 +2321,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 643.0, 539.0, 15.5, 5.0 ]
+									"patching_rect" : [ 643.0, 524.0, 15.5, 5.0 ]
 								}
 
 							}
@@ -2325,7 +2332,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 656.5, 501.75, 5.0, 39.0 ]
+									"patching_rect" : [ 656.5, 486.75, 5.0, 39.0 ]
 								}
 
 							}
@@ -2338,7 +2345,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 621.0, 549.0, 19.75, 62.0 ]
+									"patching_rect" : [ 621.0, 534.0, 19.75, 62.0 ]
 								}
 
 							}
@@ -2351,7 +2358,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 538.25, 549.0, 19.75, 62.0 ]
+									"patching_rect" : [ 538.25, 534.0, 19.75, 62.0 ]
 								}
 
 							}
@@ -2363,7 +2370,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 538.25, 613.0, 103.0, 23.0 ],
+									"patching_rect" : [ 538.25, 598.0, 103.0, 23.0 ],
 									"text" : "fl.*~"
 								}
 
@@ -2377,7 +2384,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 488.25, 478.25, 43.0, 18.0 ]
+									"patching_rect" : [ 488.25, 463.25, 43.0, 18.0 ]
 								}
 
 							}
@@ -2389,7 +2396,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 664.749999105930328, 484.25, 145.250000894069672, 87.0 ],
+									"patching_rect" : [ 664.749999105930328, 469.25, 145.250000894069672, 87.0 ],
 									"text" : "Streams 1 and 2 are repeated here as they are 'wrapped' around to match the number of streams in the greater input."
 								}
 
@@ -2403,7 +2410,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 621.0, 431.0, 20.0, 116.0 ],
+									"patching_rect" : [ 621.0, 416.0, 20.0, 116.0 ],
 									"text" : "1\n\n2\n\n1\n\n2"
 								}
 
@@ -2416,7 +2423,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 559.0, 527.75, 61.0, 16.0 ]
+									"patching_rect" : [ 559.0, 512.75, 61.0, 16.0 ]
 								}
 
 							}
@@ -2428,7 +2435,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 559.0, 497.0, 61.0, 16.0 ]
+									"patching_rect" : [ 559.0, 482.0, 61.0, 16.0 ]
 								}
 
 							}
@@ -2440,7 +2447,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 559.0, 466.0, 61.0, 16.0 ]
+									"patching_rect" : [ 559.0, 451.0, 61.0, 16.0 ]
 								}
 
 							}
@@ -2452,7 +2459,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 559.0, 434.0, 61.0, 16.0 ]
+									"patching_rect" : [ 559.0, 419.0, 61.0, 16.0 ]
 								}
 
 							}
@@ -2482,7 +2489,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 538.0, 431.0, 20.0, 116.0 ],
+									"patching_rect" : [ 538.0, 416.0, 20.0, 116.0 ],
 									"text" : "1\n\n2\n\n3\n\n4",
 									"textjustification" : 2
 								}
@@ -2497,7 +2504,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 104.625, 379.0, 375.0, 123.0 ],
-									"text" : "In the left inlet there are 4 streams and in the right there are 2 streams. This means that there will be a mismatch between the streams coming into fl.*~. When there is a mismatch in the number of streams between inputs the smallest number of streams is wrapped around the larger multi-streamed input. In this situation then, streams 1 and 3 in the left input are processed with the first stream of the right input and streams 2 4 in the left are processed by the second stream of the right."
+									"text" : "In the left inlet there are 4 streams and in the right there are 2 streams. This means that there will be a mismatch between the streams coming into fl.*~. When there is a mismatch in the number of streams between inputs the smallest number of streams is wrapped around the larger multistream input. In this situation then, streams 1 and 3 in the left input are processed with the first stream of the right input and streams 2 4 in the left are processed by the second stream of the right."
 								}
 
 							}
@@ -2555,39 +2562,39 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-24",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 77.25, 329.0, 59.0, 23.0 ],
+									"patching_rect" : [ 74.25, 329.0, 56.0, 22.0 ],
 									"text" : "fl.round~"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-23",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 77.25, 272.0, 142.0, 23.0 ],
+									"patching_rect" : [ 74.25, 272.0, 132.0, 22.0 ],
 									"text" : "fl.random~ =2 /length 1"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-22",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.25, 429.0, 80.0, 23.0 ],
+									"patching_rect" : [ 15.25, 429.0, 78.0, 22.0 ],
 									"text" : "fl.*~"
 								}
 
@@ -2599,7 +2606,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 765.0, 645.0, 45.0, 45.0 ]
+									"patching_rect" : [ 628.25, 645.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -2656,39 +2663,39 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-6",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 4,
 									"outlettype" : [ "", "", "", "" ],
-									"patching_rect" : [ 15.25, 589.333331704139709, 333.249999999999943, 23.0 ],
+									"patching_rect" : [ 15.25, 589.333331704139709, 333.249999999999943, 22.0 ],
 									"text" : "fl.tomax~ =4"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-4",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 146.0, 114.0, 23.0 ],
+									"patching_rect" : [ 15.0, 146.0, 106.0, 22.0 ],
 									"text" : "fl.interval~ 500 ms"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-2",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.25, 204.0, 164.0, 23.0 ],
+									"patching_rect" : [ 15.25, 204.0, 152.0, 22.0 ],
 									"text" : "fl.random~ =4 /length 4096"
 								}
 
@@ -2702,8 +2709,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 56.0, 696.25, 84.0 ],
-									"text" : "In the previous example we triggered the conversion of 4 unique audio inputs with fl.source~ using 1 scheduler. In that configuration, there is a mismatch between the different streams and this needs to be resolved. To do this, FrameLib wraps the smaller multi-stream around the larger multi-stream. This means that the single stream (actually still a multi-stream of just 1) is applied to all 4 of the other streams. In more complex mismatches this behaviour could have significant effect on the process you are trying to imlpement and so its important to understand how this works."
+									"patching_rect" : [ 15.0, 56.0, 780.0, 84.0 ],
+									"text" : "In the previous example we triggered the conversion of 4 unique audio inputs with fl.source~ using 1 scheduler. In that configuration, there is a mismatch between the different streams and this needs to be resolved. To do this, FrameLib wraps the smaller multistream around the larger multistream. This means that the single stream (actually still a multistream with just 1 stream) is applied to all 4 of the other streams. In more complex mismatches this behaviour could have significant effect on the process you are trying to implement and so its important to understand how this works."
 								}
 
 							}
@@ -2752,8 +2759,9 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 511.5, 373.25, 298.5, 269.75 ],
-									"proportion" : 0.39
+									"patching_rect" : [ 511.5, 358.25, 298.5, 269.75 ],
+									"proportion" : 0.39,
+									"rounded" : 16
 								}
 
 							}
@@ -2792,7 +2800,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 466.25, 429.0, 20.0, 20.0 ],
+									"patching_rect" : [ 480.0, 429.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "5",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -2903,7 +2911,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-23", 0 ],
-									"midpoints" : [ 24.5, 189.0, 486.25, 189.0, 486.25, 258.0, 86.75, 258.0 ],
+									"midpoints" : [ 24.5, 189.0, 486.25, 189.0, 486.25, 258.0, 83.75, 258.0 ],
 									"order" : 0,
 									"source" : [ "obj-4", 0 ]
 								}
@@ -2942,13 +2950,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -3015,13 +3023,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -3093,62 +3101,62 @@
 						"title" : "Using fl.streamid~",
 						"boxes" : [ 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-75",
 									"linecount" : 9,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 344.0, 394.0, 137.0 ],
+									"patching_rect" : [ 360.0, 341.5, 347.0, 127.0 ],
 									"text" : "Using the four input streams, create four 'interval' streams every 512, 1024, 2048 and 4096 samples.\n\nDivide those values by 2 and use these values to set the length for each stream. \n\nAs a result, each stream has a length of half the rate and each stream is configured to have increasingly larger intervals and lengths"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-74",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 104.0, 301.0, 241.0, 21.0 ],
+									"patching_rect" : [ 105.0, 301.0, 223.0, 20.0 ],
 									"text" : "Multiply by 512 (512, 1024, 2048, 4096)"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-73",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 77.5, 246.0, 283.0, 21.0 ],
+									"patching_rect" : [ 107.5, 246.0, 262.0, 20.0 ],
 									"text" : "Calculate consecutive powers of two (1, 2, 4, 8)"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-72",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 159.0, 159.0, 528.0, 50.0 ],
+									"patching_rect" : [ 187.666666666666657, 167.5, 528.0, 47.0 ],
 									"text" : "Output four stream ids when audio is started. The output of streamid is a number which can be used to identify the stream or to progrmatically calculate consecutive values  based on each stream (as is the case below)."
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-71",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 119.5, 120.0, 247.0, 21.0 ],
+									"patching_rect" : [ 149.5, 120.0, 229.0, 20.0 ],
 									"text" : "Output a trigger frame at the start of time"
 								}
 
@@ -3161,7 +3169,7 @@
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 443.0, 555.0, 130.0, 130.0 ],
+									"patching_rect" : [ 473.0, 555.0, 130.0, 130.0 ],
 									"range" : [ -3.0, 3.0 ]
 								}
 
@@ -3174,7 +3182,7 @@
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 300.333333333333314, 555.0, 130.0, 130.0 ],
+									"patching_rect" : [ 330.333333333333314, 555.0, 130.0, 130.0 ],
 									"range" : [ -3.0, 3.0 ]
 								}
 
@@ -3187,7 +3195,7 @@
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 157.666666666666657, 555.0, 130.0, 130.0 ],
+									"patching_rect" : [ 187.666666666666657, 555.0, 130.0, 130.0 ],
 									"range" : [ -3.0, 3.0 ]
 								}
 
@@ -3200,98 +3208,98 @@
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 555.0, 130.0, 130.0 ],
+									"patching_rect" : [ 45.0, 555.0, 130.0, 130.0 ],
 									"range" : [ -3.0, 3.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-58",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 218.0, 383.0, 74.0, 23.0 ],
+									"patching_rect" : [ 248.0, 383.0, 69.0, 22.0 ],
 									"text" : "fl./~ 2"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-57",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 16.0, 378.0, 57.0, 23.0 ],
+									"patching_rect" : [ 46.0, 378.0, 53.0, 22.0 ],
 									"text" : "cycle~ 8"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-56",
 									"maxclass" : "newobj",
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 218.0, 417.0, 86.0, 23.0 ],
+									"patching_rect" : [ 248.0, 417.0, 81.0, 22.0 ],
 									"text" : "fl.tag~ length"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-55",
 									"maxclass" : "newobj",
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 466.0, 223.0, 23.0 ],
+									"patching_rect" : [ 45.0, 466.0, 222.0, 22.0 ],
 									"text" : "fl.source~ 44100 100"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-50",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 4,
 									"outlettype" : [ "signal", "signal", "signal", "signal" ],
-									"patching_rect" : [ 15.0, 508.0, 447.0, 23.0 ],
+									"patching_rect" : [ 45.0, 508.0, 447.0, 22.0 ],
 									"text" : "fl.sink~ =4"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-28",
 									"maxclass" : "newobj",
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 117.0, 383.0, 93.0, 23.0 ],
+									"patching_rect" : [ 147.0, 383.0, 87.0, 22.0 ],
 									"text" : "fl.tag~ interval"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-27",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 117.0, 417.0, 71.0, 23.0 ],
+									"patching_rect" : [ 147.0, 417.0, 67.0, 22.0 ],
 									"text" : "fl.interval~"
 								}
 
@@ -3299,52 +3307,52 @@
 , 							{
 								"box" : 								{
 									"color" : [ 0.996078431372549, 0.019607843137255, 0.019607843137255, 1.0 ],
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-24",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 180.0, 97.0, 23.0 ],
+									"patching_rect" : [ 86.0, 180.0, 91.0, 22.0 ],
 									"text" : "fl.streamid~ =4"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-21",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 300.0, 86.0, 23.0 ],
+									"patching_rect" : [ 45.0, 300.0, 53.0, 22.0 ],
 									"text" : "fl.*~ 512"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-20",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 120.0, 57.0, 23.0 ],
+									"patching_rect" : [ 86.0, 120.0, 54.0, 22.0 ],
 									"text" : "fl.once~"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 13.0,
+									"fontsize" : 12.0,
 									"id" : "obj-7",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 245.0, 64.0, 23.0 ],
+									"patching_rect" : [ 45.0, 245.0, 60.0, 22.0 ],
 									"text" : "fl.pow~ 2"
 								}
 
@@ -3432,7 +3440,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 708.0, 402.5, 20.0, 20.0 ],
+									"patching_rect" : [ 715.0, 395.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "6",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -3453,7 +3461,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 344.333333333333258, 301.0, 20.0, 20.0 ],
+									"patching_rect" : [ 335.0, 301.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "5",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -3474,7 +3482,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 359.0, 247.0, 20.0, 20.0 ],
+									"patching_rect" : [ 379.0, 247.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "4",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -3495,7 +3503,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 685.0, 183.0, 20.0, 20.0 ],
+									"patching_rect" : [ 715.0, 183.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -3516,7 +3524,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 363.5, 120.0, 20.0, 20.0 ],
+									"patching_rect" : [ 393.5, 120.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -3556,8 +3564,9 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 111.5, 378.0, 198.5, 69.0 ],
-									"proportion" : 0.39
+									"patching_rect" : [ 135.0, 370.0, 210.0, 80.0 ],
+									"proportion" : 0.39,
+									"rounded" : 16
 								}
 
 							}
@@ -3572,7 +3581,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 0 ],
-									"midpoints" : [ 24.5, 363.0, 126.5, 363.0 ],
+									"midpoints" : [ 54.5, 352.0, 156.5, 352.0 ],
 									"order" : 1,
 									"source" : [ "obj-21", 0 ]
 								}
@@ -3581,7 +3590,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-58", 0 ],
-									"midpoints" : [ 24.5, 363.0, 227.5, 363.0 ],
+									"midpoints" : [ 54.5, 352.0, 257.5, 352.0 ],
 									"order" : 0,
 									"source" : [ "obj-21", 0 ]
 								}
@@ -3646,7 +3655,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-55", 2 ],
-									"midpoints" : [ 227.5, 448.0, 228.5, 448.0 ],
 									"source" : [ "obj-56", 0 ]
 								}
 
@@ -3677,13 +3685,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -3750,13 +3758,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -3832,7 +3840,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 62.0, 177.5, 88.0, 20.0 ],
+									"patching_rect" : [ 62.0, 177.5, 82.0, 20.0 ],
 									"text" : "Turn audio on"
 								}
 
@@ -3878,7 +3886,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 82.0, 422.0, 159.0, 33.0 ],
-									"text" : "fl.sink~ splits the 4 streams apart into separate streams "
+									"text" : "fl.sink~ splits the 4 streams apart into separate streams ",
+									"textjustification" : 1
 								}
 
 							}
@@ -3890,7 +3899,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 82.0, 364.5, 129.0, 33.0 ],
-									"text" : "some arbitrary process on all streams"
+									"text" : "some arbitrary process on all streams",
+									"textjustification" : 1
 								}
 
 							}
@@ -3912,7 +3922,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 307.600006000000008, 264.0, 189.0, 20.0 ],
+									"patching_rect" : [ 307.600006000000008, 264.0, 184.0, 20.0 ],
 									"text" : "Trigger frame every 100 samples"
 								}
 
@@ -3923,7 +3933,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 229.25, 226.0, 173.0, 20.0 ],
+									"patching_rect" : [ 229.25, 226.0, 158.0, 20.0 ],
 									"text" : "Four different audio sources"
 								}
 
@@ -4085,7 +4095,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 56.0, 696.25, 100.0 ],
-									"text" : "In FrameLib, the \"=\" symbol can be used to initialise objects in a multi-stream configuration. The resulting behaviour is dependent on the specific object but this is generally predictable according to what the object does. In the example below, fl.source~ is configured to accept 4 audio inputs instead of the default 1 and each one of these Max audio inputs forms a stream once it is converted into frames. Notice how we don't need to use multiple schedulers and each stream is here being triggered by a single fl.interval~. At the output fl.sink~ the \"=\" notation can be used again to split the streams directly into audio outputs."
+									"text" : "In FrameLib, the \"=\" symbol can be used to initialise objects in a multistream configuration. The resulting behaviour is dependent on the specific object but this is generally predictable according to what the object does. In the example below, fl.source~ is configured to accept 4 audio inputs instead of the default 1 and each one of these Max audio inputs forms a stream once it is converted into frames. Notice how we don't need to use multiple schedulers and each stream is here being triggered by a single fl.interval~. At the output fl.sink~ the \"=\" notation can be used again to split the streams directly into audio outputs."
 								}
 
 							}
@@ -4098,8 +4108,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 15.0, 422.0, 30.0 ],
-									"text" : "Using = notation in multi-stream processes"
+									"patching_rect" : [ 15.0, 15.0, 380.0, 30.0 ],
+									"text" : "Using = notation in multistream processes"
 								}
 
 							}
@@ -4262,7 +4272,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 404.25, 226.0, 20.0, 20.0 ],
+									"patching_rect" : [ 392.25, 226.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -4434,7 +4444,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 826.0, 708.0 ],
+						"rect" : [ 0.0, 26.0, 826.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4502,12 +4512,12 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 13.0,
 									"id" : "obj-2",
-									"linecount" : 8,
+									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 120.0, 525.0, 131.0 ],
-									"text" : "Multi-stream networks are a powerful feature of FrameLib that allows you to generate and process multiple streams of frame-based inputs within a single set of objects. Given the strongly timed nature of FrameLib, you can of course process each stream with its own scheduler opening up the possibility of incredibly detailed granular synthesis or multi-rate FFT processing. It can also help to simplify patches that would otherwise be complex without this capability, such as in multichannel scenarios.\n\nLet's look at how this works."
+									"patching_rect" : [ 180.0, 120.0, 616.0, 116.0 ],
+									"text" : "Multistream networks are a powerful feature of FrameLib that allows you to generate and process multiple streams of frame-based inputs within a single set of objects. Given the strongly timed nature of FrameLib, you can of course process each stream with its own scheduler opening up the possibility of incredibly detailed granular synthesis or multi-rate FFT processing. It can also help to simplify patches that would otherwise be complex without this capability, such as in multichannel scenarios.\n\nLet's look at how this works."
 								}
 
 							}
@@ -4540,7 +4550,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 75.0, 399.0, 30.0 ],
-									"text" : "Multi-Stream Networks"
+									"text" : "Multistream Networks"
 								}
 
 							}
@@ -4550,13 +4560,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -4623,13 +4633,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -4663,116 +4673,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "fl-stereo-h.maxpat",
-				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl-tutorial-names.txt",
-				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : ".",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.divide~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.info~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.map~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.pack~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.plus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.pow~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.read~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.reverse~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.round~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.streamid~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.subframe~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tag~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/dev/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../misc",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.unpack~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.window~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0,
 		"bgfillcolor_type" : "gradient",
 		"bgfillcolor_color1" : [ 0.376471, 0.384314, 0.4, 1.0 ],
