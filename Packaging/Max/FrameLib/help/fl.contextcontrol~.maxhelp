@@ -1330,7 +1330,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         31.5,
-                                        540.0,
+                                        525.0,
                                         249.0,
                                         65.0
                                     ],
@@ -1354,7 +1354,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         86.0,
-                                        495.0,
+                                        480.0,
                                         140.0,
                                         24.0
                                     ],
@@ -1631,7 +1631,7 @@
                                     },
                                     "patching_rect": [
                                         94.0,
-                                        495.0,
+                                        480.0,
                                         87.0,
                                         23.0
                                     ],
@@ -1670,7 +1670,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         34.0,
-                                        403.0,
+                                        373.0,
                                         244.0,
                                         69.0
                                     ],
@@ -2227,24 +2227,6 @@
                             },
                             {
                                 "box": {
-                                    "id": "obj-55",
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        ""
-                                    ],
-                                    "patching_rect": [
-                                        60.0,
-                                        240.0,
-                                        75.0,
-                                        23.0
-                                    ],
-                                    "text": "loadmess 0"
-                                }
-                            },
-                            {
-                                "box": {
                                     "automation": "Multithreading Off",
                                     "fontsize": 14.0,
                                     "id": "obj-2",
@@ -2258,16 +2240,9 @@
                                     "parameter_enable": 1,
                                     "patching_rect": [
                                         60.0,
-                                        282.6666666666667,
+                                        252.66666666666669,
                                         150.0,
                                         30.0
-                                    ],
-                                    "presentation": 1,
-                                    "presentation_rect": [
-                                        220.630142,
-                                        27.0,
-                                        18.0,
-                                        18.0
                                     ],
                                     "saved_attribute_attributes": {
                                         "valueof": {
@@ -2275,6 +2250,10 @@
                                                 "Multithreading Off",
                                                 "val2"
                                             ],
+                                            "parameter_initial": [
+                                                0.0
+                                            ],
+                                            "parameter_initial_enable": 1,
                                             "parameter_longname": "live.text[7]",
                                             "parameter_mmax": 1,
                                             "parameter_shortname": "live.text[2]",
@@ -2297,7 +2276,7 @@
                                     ],
                                     "patching_rect": [
                                         60.0,
-                                        332.33333333333337,
+                                        302.33333333333337,
                                         91.0,
                                         23.0
                                     ],
@@ -2442,7 +2421,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         60.0,
-                                        375.00000000000006,
+                                        345.00000000000006,
                                         192.0,
                                         23.0
                                     ],
@@ -2613,18 +2592,6 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-2",
-                                        0
-                                    ],
-                                    "source": [
-                                        "obj-55",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
                                         "obj-19",
                                         0
                                     ],
@@ -2663,13 +2630,13 @@
                                     "hidden": 1,
                                     "midpoints": [
                                         103.5,
-                                        519.0,
+                                        504.0,
                                         91.0,
-                                        519.0,
+                                        504.0,
                                         91.0,
-                                        492.0,
+                                        477.0,
                                         95.5,
-                                        492.0
+                                        477.0
                                     ],
                                     "source": [
                                         "obj-67",

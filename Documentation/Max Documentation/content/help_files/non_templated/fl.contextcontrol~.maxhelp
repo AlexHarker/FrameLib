@@ -899,7 +899,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 31.5, 540.0, 249.0, 65.0 ],
+									"patching_rect" : [ 31.5, 525.0, 249.0, 65.0 ],
 									"text" : "See the change to the CPU usage\n\nNote that in some scenarios FrameLib may run slower when multithreaded.",
 									"textjustification" : 1
 								}
@@ -914,7 +914,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 86.0, 495.0, 140.0, 24.0 ],
+									"patching_rect" : [ 86.0, 480.0, 140.0, 24.0 ],
 									"text" : "Median CPU: 20",
 									"textcolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
 								}
@@ -1096,7 +1096,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 94.0, 495.0, 87.0, 23.0 ],
+									"patching_rect" : [ 94.0, 480.0, 87.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1128,7 +1128,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 34.0, 403.0, 244.0, 69.0 ],
+									"patching_rect" : [ 34.0, 373.0, 244.0, 69.0 ],
 									"text" : "Use @id and @rt as with other FrameLib objects to set the context to control",
 									"textjustification" : 1
 								}
@@ -1519,18 +1519,6 @@
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-55",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 240.0, 75.0, 23.0 ],
-									"text" : "loadmess 0"
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"automation" : "Multithreading Off",
 									"fontsize" : 14.0,
 									"id" : "obj-2",
@@ -1539,12 +1527,12 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 60.0, 282.666666666666686, 150.0, 30.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 220.630142000000006, 27.0, 18.0, 18.0 ],
+									"patching_rect" : [ 60.0, 252.666666666666686, 150.0, 30.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_enum" : [ "Multithreading Off", "val2" ],
+											"parameter_initial" : [ 0.0 ],
+											"parameter_initial_enable" : 1,
 											"parameter_longname" : "live.text[7]",
 											"parameter_mmax" : 1,
 											"parameter_shortname" : "live.text[2]",
@@ -1566,7 +1554,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 332.333333333333371, 91.0, 23.0 ],
+									"patching_rect" : [ 60.0, 302.333333333333371, 91.0, 23.0 ],
 									"text" : "multithread $1"
 								}
 
@@ -1661,7 +1649,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 60.0, 375.000000000000057, 192.0, 23.0 ],
+									"patching_rect" : [ 60.0, 345.000000000000057, 192.0, 23.0 ],
 									"text" : "fl.contextcontrol~ @id threading"
 								}
 
@@ -1764,13 +1752,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-2", 0 ],
-									"source" : [ "obj-55", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-19", 0 ],
 									"midpoints" : [ 354.5, 272.583333333333371, 552.5, 272.583333333333371 ],
 									"order" : 0,
@@ -1790,7 +1771,7 @@
 								"patchline" : 								{
 									"destination" : [ "obj-40", 0 ],
 									"hidden" : 1,
-									"midpoints" : [ 103.5, 519.0, 91.0, 519.0, 91.0, 492.0, 95.5, 492.0 ],
+									"midpoints" : [ 103.5, 504.0, 91.0, 504.0, 91.0, 477.0, 95.5, 477.0 ],
 									"source" : [ "obj-67", 0 ]
 								}
 
