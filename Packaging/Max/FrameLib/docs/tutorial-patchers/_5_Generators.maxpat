@@ -181,6 +181,8 @@
 									"format" : 6,
 									"id" : "obj-11",
 									"maxclass" : "flonum",
+									"maximum" : 1.0,
+									"minimum" : 0.0,
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
@@ -1272,7 +1274,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 567.75, 329.0, 257.75, 84.0 ],
-									"presentation_linecount" : 5,
 									"text" : "In 'requested' mode, the object uses its stored /length parameter as the output length. The 'input' mode sets it to use the length of the trigger frame, and configure the length of the output frame to match.",
 									"textjustification" : 1
 								}
