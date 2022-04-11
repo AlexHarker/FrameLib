@@ -203,7 +203,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 247.5, 119.5, 290.0, 84.0 ],
-									"presentation_linecount" : 4,
 									"text" : "Restarting the audio engine also restarts time. \n\nIn this example it triggers the generation of new random values.",
 									"textjustification" : 1
 								}
@@ -395,18 +394,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "framelib_max.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

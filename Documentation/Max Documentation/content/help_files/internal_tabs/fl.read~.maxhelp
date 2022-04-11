@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 751.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 751.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -94,7 +94,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 280.0, 499.0, 323.0, 36.0 ],
-									"presentation_linecount" : 2,
 									"text" : "The /edge parameter also affects interpolation and we need bound off to be able to read outside the table.",
 									"textjustification" : 1
 								}
@@ -141,6 +140,7 @@
 							}
 , 							{
 								"box" : 								{
+									"fontsize" : 12.0,
 									"id" : "obj-6",
 									"maxclass" : "live.tab",
 									"num_lines_patching" : 6,
@@ -364,8 +364,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 175.0, 237.5, 179.0, 25.0 ],
-									"text" : "Create a ramp from -1 to 2"
+									"patching_rect" : [ 175.0, 237.5, 185.0, 25.0 ],
+									"text" : "Creates a ramp from -1 to 2"
 								}
 
 							}
@@ -641,8 +641,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 182.0, 89.0, 287.0, 25.0 ],
-									"text" : "Scheduls a trigger frame every 4000 samples"
+									"patching_rect" : [ 182.0, 89.0, 294.0, 25.0 ],
+									"text" : "Schedules a trigger frame every 4000 samples"
 								}
 
 							}
@@ -840,7 +840,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 96.5, 180.0, 120.0, 69.0 ],
+									"patching_rect" : [ 96.5, 180.0, 122.0, 69.0 ],
 									"text" : "Creates random ramp lengths speed and offset.",
 									"textjustification" : 1
 								}
@@ -1231,7 +1231,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 751.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 751.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1353,7 +1353,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 248.0, 262.0, 375.0, 69.0 ],
+									"patching_rect" : [ 248.0, 262.0, 376.0, 69.0 ],
 									"text" : "fl.read~ is pointed to the buffer \"fl-help-read\". This will output a frame of the first two seconds from this buffer.\n\nNote that the units are set to samples (matching the input).",
 									"textjustification" : 1
 								}
@@ -1580,73 +1580,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.info~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.map~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.plus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.read~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tag~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.window~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 646.0 ],
+						"rect" : [ 34.0, 113.0, 652.0, 646.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -107,7 +107,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 374.5, 555.0, 226.0, 55.0 ],
+									"patching_rect" : [ 374.5, 555.0, 228.0, 55.0 ],
 									"text" : "Here, we ask for 4 samples in length, converted to millisecond values.",
 									"textjustification" : 1
 								}
@@ -121,8 +121,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 360.0, 525.0, 196.0, 23.0 ],
-									"text" : "0. 0.022676 0.045351 0.068027"
+									"patching_rect" : [ 360.0, 525.0, 196.0, 23.0 ]
 								}
 
 							}
@@ -183,13 +182,11 @@
 								"box" : 								{
 									"dontreplace" : 1,
 									"id" : "obj-27",
-									"linecount" : 3,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 495.0, 310.0, 52.0 ],
-									"text" : "0. 1. 2. 3. 4. 5. 6. 7. 8. 9. 10. 11. 12. 13. 14. 15. 16. 17. 18. 19. 20. 21. 22. 23. 24. 25. 26. 27. 28. 29. 30. 31. 32. 33. 34. 35. 36. 37. 38. 39. 40. 41. 42. 43."
+									"patching_rect" : [ 30.0, 495.0, 310.0, 23.0 ]
 								}
 
 							}
@@ -240,8 +237,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 310.5, 255.0, 314.0, 98.0 ],
-									"presentation_linecount" : 5,
+									"patching_rect" : [ 310.5, 255.0, 316.0, 98.0 ],
 									"text" : "Whilst the units for the length can be set with the /units parameter,  the /scale parameter sets the output scaling. For example, you might specify a ramp frame's length in samples, but then convert the output to normalised values (0 to 1).",
 									"textjustification" : 1
 								}
@@ -255,8 +251,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 317.0, 225.0, 258.0, 23.0 ],
-									"text" : "0. 0.125 0.25 0.375 0.5 0.625 0.75 0.875 1."
+									"patching_rect" : [ 317.0, 225.0, 258.0, 23.0 ]
 								}
 
 							}
@@ -307,7 +302,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 255.0, 259.0, 69.0 ],
+									"patching_rect" : [ 30.0, 255.0, 261.0, 69.0 ],
 									"text" : "The /length parameter dictates what length the output frame will be, and thus here the maximum value that is counted up to.",
 									"textjustification" : 1
 								}
@@ -321,8 +316,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 225.0, 150.0, 23.0 ],
-									"text" : "0. 1. 2. 3. 4. 5. 6. 7. 8. 9."
+									"patching_rect" : [ 30.0, 225.0, 150.0, 23.0 ]
 								}
 
 							}
@@ -592,7 +586,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 652.0, 646.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 646.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -792,30 +786,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

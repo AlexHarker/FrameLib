@@ -151,13 +151,41 @@
 						"boxes" : [ 							{
 								"box" : 								{
 									"bubble" : 1,
-									"bubblepoint" : 0.4,
+									"bubbleside" : 2,
+									"id" : "obj-18",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 135.0, 150.0, 50.0, 40.0 ],
+									"text" : "Input 2",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
+									"id" : "obj-2",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 51.0, 150.0, 50.0, 40.0 ],
+									"text" : "Input 1",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.1,
 									"bubbleside" : 0,
 									"id" : "obj-23",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 375.0, 247.0, 40.0 ],
+									"patching_rect" : [ 45.0, 420.0, 247.0, 40.0 ],
 									"text" : "Change the input values to see the result"
 								}
 
@@ -170,7 +198,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 447.5, 165.0, 125.0, 40.0 ],
+									"patching_rect" : [ 462.5, 210.0, 125.0, 40.0 ],
 									"text" : "Non-symbolic name",
 									"textjustification" : 1
 								}
@@ -183,7 +211,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 300.0, 510.0, 45.0, 45.0 ]
+									"patching_rect" : [ 300.0, 540.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -196,7 +224,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 345.0, 390.0, 240.0, 55.0 ],
+									"patching_rect" : [ 360.0, 420.0, 240.0, 55.0 ],
 									"text" : "You can also divide vectors by a scalar value, or divide one vector from another",
 									"textjustification" : 1
 								}
@@ -209,7 +237,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 480.0, 345.0, 88.0, 23.0 ],
+									"patching_rect" : [ 495.0, 390.0, 88.0, 23.0 ],
 									"text" : "nan 1. 1. 1. 1."
 								}
 
@@ -221,7 +249,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 480.0, 300.0, 62.0, 23.0 ],
+									"patching_rect" : [ 495.0, 345.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -234,7 +262,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 480.0, 255.0, 60.0, 23.0 ],
+									"patching_rect" : [ 495.0, 300.0, 60.0, 23.0 ],
 									"text" : "fl.divide~"
 								}
 
@@ -246,7 +274,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 360.0, 345.0, 113.0, 23.0 ],
+									"patching_rect" : [ 375.0, 390.0, 113.0, 23.0 ],
 									"text" : "0. 0.25 0.5 0.75 1."
 								}
 
@@ -258,7 +286,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 360.0, 150.0, 54.0, 23.0 ],
+									"patching_rect" : [ 375.0, 210.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -270,7 +298,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 360.0, 300.0, 62.0, 23.0 ],
+									"patching_rect" : [ 375.0, 345.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -282,7 +310,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 360.0, 210.0, 109.0, 23.0 ],
+									"patching_rect" : [ 375.0, 255.0, 109.0, 23.0 ],
 									"text" : "fl.ramp~ /length 5"
 								}
 
@@ -295,7 +323,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 360.0, 255.0, 71.0, 23.0 ],
+									"patching_rect" : [ 375.0, 300.0, 71.0, 23.0 ],
 									"text" : "fl.divide~ 4"
 								}
 
@@ -308,7 +336,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 120.0, 105.0, 75.0, 23.0 ],
+									"patching_rect" : [ 135.0, 120.0, 75.0, 23.0 ],
 									"text" : "loadmess 2"
 								}
 
@@ -321,7 +349,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 105.0, 75.0, 23.0 ],
+									"patching_rect" : [ 45.0, 120.0, 75.0, 23.0 ],
 									"text" : "loadmess 4"
 								}
 
@@ -335,7 +363,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 120.0, 150.0, 50.0, 23.0 ]
+									"patching_rect" : [ 135.0, 195.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -348,7 +376,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 150.0, 50.0, 23.0 ]
+									"patching_rect" : [ 45.0, 195.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -359,7 +387,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 195.0, 150.0, 75.0, 23.0 ],
+									"patching_rect" : [ 210.0, 195.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -371,7 +399,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 120.0, 210.0, 77.0, 23.0 ],
+									"patching_rect" : [ 135.0, 255.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -383,7 +411,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 210.0, 77.0, 23.0 ],
+									"patching_rect" : [ 45.0, 255.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -397,7 +425,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 345.0, 50.0, 23.0 ]
+									"patching_rect" : [ 45.0, 390.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -408,7 +436,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 300.0, 62.0, 23.0 ],
+									"patching_rect" : [ 45.0, 345.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -421,7 +449,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 255.0, 109.0, 23.0 ],
+									"patching_rect" : [ 45.0, 300.0, 109.0, 23.0 ],
 									"text" : "fl./~"
 								}
 
@@ -461,7 +489,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-11", 0 ],
-									"midpoints" : [ 204.5, 191.0, 39.5, 191.0 ],
+									"midpoints" : [ 219.5, 236.0, 54.5, 236.0 ],
 									"order" : 1,
 									"source" : [ "obj-13", 0 ]
 								}
@@ -471,7 +499,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-12", 0 ],
-									"midpoints" : [ 204.5, 191.0, 129.5, 191.0 ],
+									"midpoints" : [ 219.5, 236.0, 144.5, 236.0 ],
 									"order" : 0,
 									"source" : [ "obj-13", 0 ]
 								}
@@ -480,7 +508,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 1 ],
-									"midpoints" : [ 489.5, 333.5, 558.5, 333.5 ],
+									"midpoints" : [ 504.5, 378.5, 573.5, 378.5 ],
 									"source" : [ "obj-14", 0 ]
 								}
 
@@ -532,7 +560,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-22", 1 ],
-									"midpoints" : [ 369.5, 333.5, 463.5, 333.5 ],
+									"midpoints" : [ 384.5, 378.5, 478.5, 378.5 ],
 									"source" : [ "obj-5", 0 ]
 								}
 
@@ -548,7 +576,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-9", 1 ],
-									"midpoints" : [ 369.5, 243.5, 530.5, 243.5 ],
+									"midpoints" : [ 384.5, 288.5, 545.5, 288.5 ],
 									"order" : 0,
 									"source" : [ "obj-6", 0 ]
 								}
@@ -557,7 +585,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-9", 0 ],
-									"midpoints" : [ 369.5, 243.5, 489.5, 243.5 ],
+									"midpoints" : [ 384.5, 288.5, 504.5, 288.5 ],
 									"order" : 1,
 									"source" : [ "obj-6", 0 ]
 								}
@@ -631,38 +659,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.divide~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "newobjBlue-1",

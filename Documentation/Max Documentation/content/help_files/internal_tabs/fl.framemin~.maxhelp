@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 546.0, 531.0 ],
+		"rect" : [ 34.0, 87.0, 556.0, 531.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 546.0, 505.0 ],
+						"rect" : [ 0.0, 26.0, 556.0, 505.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 546.0, 505.0 ],
+						"rect" : [ 34.0, 113.0, 556.0, 505.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -215,7 +215,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 270.0, 450.0, 50.0, 23.0 ]
+									"patching_rect" : [ 285.0, 450.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -226,7 +226,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 270.0, 405.0, 62.0, 23.0 ],
+									"patching_rect" : [ 285.0, 405.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -239,7 +239,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 351.5, 343.0, 165.0, 54.0 ],
+									"patching_rect" : [ 360.0, 344.5, 165.0, 54.0 ],
 									"text" : "We can use fl.minpos~ to determine where the smallest value is.",
 									"textjustification" : 1
 								}
@@ -252,7 +252,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 270.0, 360.0, 68.0, 23.0 ],
+									"patching_rect" : [ 285.0, 360.0, 68.0, 23.0 ],
 									"text" : "fl.minpos~"
 								}
 
@@ -265,7 +265,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 112.0, 345.0, 144.0, 40.0 ],
+									"patching_rect" : [ 120.0, 351.5, 148.0, 40.0 ],
 									"text" : "Returns the smallest value in the frame",
 									"textjustification" : 1
 								}
@@ -292,7 +292,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 396.0, 127.5, 45.0, 45.0 ]
+									"patching_rect" : [ 405.0, 127.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -374,7 +374,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
-									"midpoints" : [ 39.5, 333.5, 279.5, 333.5 ],
+									"midpoints" : [ 39.5, 333.5, 294.5, 333.5 ],
 									"order" : 0,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -466,34 +466,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.framemax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.minpos~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

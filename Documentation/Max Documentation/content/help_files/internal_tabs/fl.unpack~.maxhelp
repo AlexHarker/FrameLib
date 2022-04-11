@@ -168,7 +168,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 432.0, 194.5, 195.0, 54.0 ],
-									"text" : "Pack 3 streams of different length frames at different intervals into a multi-stream",
+									"text" : "Packs 3 streams of different length frames at different intervals into a multi-stream",
 									"textjustification" : 1
 								}
 
@@ -180,8 +180,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 367.0, 390.0, 249.0, 25.0 ],
-									"text" : "Unpack each stream into its own outlet"
+									"patching_rect" : [ 367.0, 390.0, 255.0, 25.0 ],
+									"text" : "Unpacks each stream into its own outlet"
 								}
 
 							}
@@ -222,8 +222,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 102.0, 270.0, 286.0, 25.0 ],
-									"text" : "Scale the range of the  frames beyond -1 to 1"
+									"patching_rect" : [ 102.0, 270.0, 293.0, 25.0 ],
+									"text" : "Scales the range of the  frames beyond -1 to 1"
 								}
 
 							}
@@ -295,8 +295,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 144.5, 330.0, 354.0, 25.0 ],
-									"text" : "Apply a hard clip on all streams of the multi-stream frame"
+									"patching_rect" : [ 144.5, 330.0, 364.0, 25.0 ],
+									"text" : "Applies a hard clip on all streams of the multi-stream frame"
 								}
 
 							}
@@ -594,42 +594,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.clip~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.pack~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.trace~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.unpack~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

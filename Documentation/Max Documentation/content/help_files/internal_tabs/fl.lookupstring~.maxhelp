@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 654.0, 589.0 ],
+						"rect" : [ 34.0, 113.0, 654.0, 589.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -255,7 +255,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 225.0, 342.0, 105.0, 25.0 ],
+									"patching_rect" : [ 230.0, 342.0, 105.0, 25.0 ],
 									"text" : "Current mode"
 								}
 
@@ -284,7 +284,8 @@
 									"patching_rect" : [ 45.0, 382.0, 242.0, 145.0 ],
 									"setminmax" : [ 0.0, 10.0 ],
 									"settype" : 0,
-									"size" : 50
+									"size" : 50,
+									"slidercolor" : [ 0.0, 0.701960784313725, 0.262745098039216, 1.0 ]
 								}
 
 							}
@@ -297,7 +298,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 143.0, 342.0, 81.0, 23.0 ],
-									"text" : "mode run"
+									"text" : "mode loop"
 								}
 
 							}
@@ -418,7 +419,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 300.0, 407.5, 345.0, 94.0 ],
-									"text" : "Here the object is set to scale input from 0-1 across the list  of possibllities. This can be used to easily randomise parameters from a fixed number of options. \n\nAs a results the mode of fl.ticks~ is randomised between the run, loop and pause modes.",
+									"text" : "Here the object is set to scale input from 0-1 across the list of avilable strings. This can be used to easily randomise parameters from a fixed number of options. \n\nAs a results the mode of fl.ticks~ is randomised between the run, loop and pause modes.",
 									"textjustification" : 1
 								}
 
@@ -633,7 +634,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 654.0, 589.0 ],
+						"rect" : [ 0.0, 26.0, 654.0, 589.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -669,8 +670,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 135.0, 270.0, 109.0, 25.0 ],
-									"text" : "Set filter mode"
+									"patching_rect" : [ 135.0, 270.0, 168.0, 25.0 ],
+									"text" : "Input sets the filter mode"
 								}
 
 							}
@@ -681,20 +682,21 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 360.0, 495.0, 50.0 ],
-									"text" : "The default mode treats the input as an index into the set of available strings. Thus, the input can used to select a specific string output, in this case tagged ready to set the mode parameter of the svf filter."
+									"patching_rect" : [ 117.0, 355.0, 495.0, 50.0 ],
+									"text" : "The default mode treats the input as an index into the set of available strings. Thus, the input can used to select a specific string output, in this case tagged ready to set the mode parameter of the svf filter.",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"bubble" : 1,
-									"bubblepoint" : 0.0,
+									"bubblepoint" : 1.0,
 									"id" : "obj-8",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 250.0, 187.0, 310.0, 25.0 ],
+									"patching_rect" : [ 270.0, 192.0, 310.0, 25.0 ],
 									"text" : "Arguments set the output tag and possible values"
 								}
 
@@ -720,7 +722,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 270.0, 314.0, 98.0, 23.0 ],
-									"text" : "mode highpass"
+									"text" : "mode lowpass"
 								}
 
 							}
@@ -1071,61 +1073,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.lookupstring~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.read~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.svf~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ticks~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.window~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

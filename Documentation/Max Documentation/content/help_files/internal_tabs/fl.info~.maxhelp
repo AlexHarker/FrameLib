@@ -432,8 +432,7 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Ableton Sans Bold",
-									"fontsize" : 10.5,
+									"fontsize" : 12.0,
 									"id" : "obj-24",
 									"maxclass" : "live.tab",
 									"num_lines_patching" : 2,
@@ -461,8 +460,7 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Ableton Sans Bold",
-									"fontsize" : 10.5,
+									"fontsize" : 12.0,
 									"id" : "obj-25",
 									"maxclass" : "live.tab",
 									"num_lines_patching" : 3,
@@ -612,30 +610,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.info~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

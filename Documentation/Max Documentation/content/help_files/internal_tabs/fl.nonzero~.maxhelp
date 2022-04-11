@@ -180,7 +180,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 263.0, 173.25, 238.75, 40.0 ],
-									"text" : "Generate some random numbers and then set some of them to zero.",
+									"text" : "Generates some random numbers and then set some of them to zero.",
 									"textjustification" : 1
 								}
 
@@ -194,7 +194,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 310.0, 366.5, 255.0, 54.0 ],
-									"text" : "Output is a frame consisting of the indices which are non-zero. Note that indices are counted starting at zero.",
+									"text" : "The output is a frame consisting of the indices which are non-zero. Note that indices are counted starting at zero.",
 									"textjustification" : 1
 								}
 
@@ -458,38 +458,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.greaterthan~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.nonzero~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

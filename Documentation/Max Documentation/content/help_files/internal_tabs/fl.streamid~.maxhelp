@@ -166,8 +166,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 188.0, 446.0, 223.0, 25.0 ],
-									"text" : "Output the two streams separately"
+									"patching_rect" : [ 192.0, 444.0, 230.0, 25.0 ],
+									"text" : "Outputs the two streams separately"
 								}
 
 							}
@@ -181,7 +181,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 337.5, 277.5, 303.0, 156.0 ],
-									"text" : "Using the result of the calculation set the intervals for the fl.interval~ object separately in the two streams (one every 512 and one every 1024).\n\nWe also divide those values by 2 and use these values to set the length for each stream. \n\nThus, each stream has frames that are half the length of the interval between frames."
+									"text" : "Using the result of the calculation sets the intervals for the fl.interval~ object separately in the two streams (one every 512 and one every 1024).\n\nWe also divide those values by 2 and use these values to set the length for each stream. \n\nThus, each stream has frames that are half the length of the interval between frames."
 								}
 
 							}
@@ -193,8 +193,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 274.5, 240.0, 182.0, 25.0 ],
-									"text" : "Multiply by 512 (512, 1024)"
+									"patching_rect" : [ 274.5, 240.0, 192.0, 25.0 ],
+									"text" : "Multiplies by 512 (512, 1024)"
 								}
 
 							}
@@ -206,8 +206,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 251.5, 186.0, 270.0, 25.0 ],
-									"text" : "Calculate consecutive powers of two (1, 2)"
+									"patching_rect" : [ 251.5, 186.0, 276.0, 25.0 ],
+									"text" : "Calculates consecutive powers of two (1, 2)"
 								}
 
 							}
@@ -221,7 +221,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 330.0, 131.5, 330.0, 40.0 ],
-									"text" : "Output stream IDs. (Instantiated with two streams using '=2' and hence there will be two ids - 0 and 1)."
+									"text" : "Outputs stream IDs. (Instantiated with two streams using '=2' and hence there will be two ids - 0 and 1)."
 								}
 
 							}
@@ -233,8 +233,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 286.5, 96.0, 260.0, 25.0 ],
-									"text" : "Output a trigger frame at the start of time"
+									"patching_rect" : [ 289.0, 94.0, 267.0, 25.0 ],
+									"text" : "Outputs a trigger frame at the start of time"
 								}
 
 							}
@@ -543,13 +543,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -616,13 +616,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -648,50 +648,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.divide~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.pow~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.streamid~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tag~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

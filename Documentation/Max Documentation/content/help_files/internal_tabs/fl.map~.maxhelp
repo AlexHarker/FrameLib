@@ -877,7 +877,7 @@
 									"maxclass" : "live.comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 352.375, 310.0, 65.0, 40.0 ],
+									"patching_rect" : [ 352.375, 312.0, 65.0, 40.0 ],
 									"text" : "Exponent",
 									"textjustification" : 0
 								}
@@ -893,7 +893,7 @@
 									"maxclass" : "live.comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 215.875, 310.0, 69.0, 40.0 ],
+									"patching_rect" : [ 214.875, 297.0, 69.0, 40.0 ],
 									"text" : "Clip on/off",
 									"textjustification" : 0
 								}
@@ -921,7 +921,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 359.875, 354.5, 50.0, 23.0 ],
+									"patching_rect" : [ 359.875, 358.5, 50.0, 23.0 ],
 									"varname" : "live.numbox[4]"
 								}
 
@@ -936,7 +936,7 @@
 									"maxclass" : "live.comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 558.0, 150.0, 43.0, 40.0 ],
+									"patching_rect" : [ 557.875, 120.0, 43.0, 40.0 ],
 									"text" : "Mode",
 									"textjustification" : 0
 								}
@@ -1188,6 +1188,7 @@
 							}
 , 							{
 								"box" : 								{
+									"fontsize" : 12.0,
 									"id" : "obj-33",
 									"maxclass" : "live.tab",
 									"num_lines_patching" : 2,
@@ -1196,9 +1197,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 209.875, 354.5, 79.0, 45.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 186.0, 123.0, 84.0, 48.0 ],
+									"patching_rect" : [ 209.875, 345.0, 79.0, 50.0 ],
 									"saved_attribute_attributes" : 									{
 										"activebgoncolor" : 										{
 											"expression" : "themecolor.live_lcd_control_fg"
@@ -1235,7 +1234,7 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 10.5,
+									"fontsize" : 12.0,
 									"id" : "obj-29",
 									"maxclass" : "live.tab",
 									"num_lines_patching" : 9,
@@ -1244,9 +1243,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 523.75, 195.0, 111.25, 202.5 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 12.0, 15.0, 110.0, 156.0 ],
+									"patching_rect" : [ 518.75, 165.0, 121.25, 219.5 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_enum" : [ "linear", "log", "exp", "pow", "db", "transpose", "inverse_pow", "inverse_db", "inverse_transpose" ],
@@ -1666,38 +1663,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.map~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

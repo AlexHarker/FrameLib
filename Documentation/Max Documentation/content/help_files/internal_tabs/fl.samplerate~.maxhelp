@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 710.0, 693.0 ],
+		"rect" : [ 34.0, 87.0, 645.0, 693.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 710.0, 667.0 ],
+						"rect" : [ 0.0, 26.0, 645.0, 667.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 710.0, 667.0 ],
+						"rect" : [ 34.0, 113.0, 645.0, 667.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -167,7 +167,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 422.0, 240.0, 255.0, 50.0 ],
+									"patching_rect" : [ 371.25, 241.0, 247.5, 50.0 ],
 									"text" : "The /normalisation parameter controls whether the sample rate or the nyquist is referenced to 1 for normalised frequency.",
 									"textjustification" : 1
 								}
@@ -232,7 +232,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 75.0, 662.0, 36.0 ],
+									"patching_rect" : [ 15.0, 75.0, 615.0, 36.0 ],
 									"text" : "fl.samplerate~ allows you to convert between a number of typical units related to time and frequency. This can be useful for example, for converting a set of values in samples to seconds, milliseconds or hertz."
 								}
 
@@ -244,7 +244,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 527.0, 559.0, 45.0, 45.0 ]
+									"patching_rect" : [ 472.5, 559.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -291,7 +291,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 308.75, 480.0, 124.0, 23.0 ],
+									"patching_rect" : [ 278.75, 480.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -304,7 +304,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 525.0, 297.75, 23.0 ],
+									"patching_rect" : [ 30.0, 525.0, 267.75, 23.0 ],
 									"text" : "fl.samplerate~"
 								}
 
@@ -335,7 +335,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 262.25, 120.0, 112.0, 40.0 ],
+									"patching_rect" : [ 232.25, 120.0, 112.0, 40.0 ],
 									"text" : "Conversion Mode",
 									"textjustification" : 1
 								}
@@ -352,7 +352,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 255.0, 165.0, 126.5, 239.0 ],
+									"patching_rect" : [ 225.0, 165.0, 126.5, 239.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_enum" : [ "rate", "nyquist", "samples->ms", "samples->seconds", "ms->samples", "seconds->samples", "normalised->hz", "hz->normalised" ],
@@ -376,7 +376,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 308.75, 420.0, 59.0, 23.0 ],
+									"patching_rect" : [ 278.75, 420.0, 59.0, 23.0 ],
 									"text" : "mode $1"
 								}
 
@@ -391,7 +391,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 504.5, 300.0, 90.0, 40.0 ],
+									"patching_rect" : [ 450.0, 300.0, 90.0, 40.0 ],
 									"text" : "Normalisation",
 									"textjustification" : 1
 								}
@@ -408,7 +408,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 489.5, 344.0, 120.0, 60.0 ],
+									"patching_rect" : [ 435.0, 344.0, 120.0, 60.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_enum" : [ "full", "nyquist" ],
@@ -432,7 +432,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 540.0, 420.0, 104.0, 23.0 ],
+									"patching_rect" : [ 485.5, 420.0, 104.0, 23.0 ],
 									"text" : "normalisation $1"
 								}
 
@@ -462,7 +462,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 549.5, 461.0, 318.25, 461.0 ],
+									"midpoints" : [ 495.0, 461.0, 288.25, 461.0 ],
 									"source" : [ "obj-14", 0 ]
 								}
 
@@ -488,7 +488,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 141.25, 461.0, 318.25, 461.0 ],
+									"midpoints" : [ 141.25, 461.0, 288.25, 461.0 ],
 									"order" : 0,
 									"source" : [ "obj-17", 0 ]
 								}
@@ -587,30 +587,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.samplerate~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

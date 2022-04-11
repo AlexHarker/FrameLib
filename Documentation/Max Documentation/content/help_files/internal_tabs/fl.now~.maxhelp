@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 690.0, 462.0 ],
+		"rect" : [ 34.0, 87.0, 690.0, 416.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 690.0, 436.0 ],
+						"rect" : [ 0.0, 26.0, 690.0, 390.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 690.0, 436.0 ],
+						"rect" : [ 34.0, 113.0, 690.0, 390.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -232,7 +232,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 373.0, 493.0, 21.0 ],
+									"patching_rect" : [ 15.0, 75.0, 493.0, 21.0 ],
 									"text" : "fl.now~ returns the time since DSP was started, in samples milliseconds or seconds."
 								}
 
@@ -244,8 +244,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 85.0, 180.0, 189.0, 25.0 ],
-									"text" : "Return the time (in samples)"
+									"patching_rect" : [ 87.0, 179.0, 195.0, 25.0 ],
+									"text" : "Returns the time (in samples)"
 								}
 
 							}
@@ -256,8 +256,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 168.0, 135.0, 145.0, 25.0 ],
-									"text" : "Output every second"
+									"patching_rect" : [ 168.0, 135.0, 152.0, 25.0 ],
+									"text" : "Outputs every second"
 								}
 
 							}
@@ -569,18 +569,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "framelib_max.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

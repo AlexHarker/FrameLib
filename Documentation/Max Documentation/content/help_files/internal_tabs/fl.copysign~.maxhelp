@@ -155,7 +155,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 212.0, 434.0, 184.0, 25.0 ],
+									"patching_rect" : [ 227.0, 449.0, 184.0, 25.0 ],
 									"text" : "All values are now negative"
 								}
 
@@ -164,11 +164,13 @@
 								"box" : 								{
 									"bubble" : 1,
 									"id" : "obj-5",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 343.0, 284.0, 263.0, 25.0 ],
-									"text" : "A list of the same length of the number -1"
+									"patching_rect" : [ 358.0, 291.5, 182.0, 40.0 ],
+									"text" : "Creates a list (of the same length) of the number -1",
+									"textjustification" : 1
 								}
 
 							}
@@ -179,7 +181,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 258.25, 224.0, 202.0, 25.0 ],
+									"patching_rect" : [ 273.25, 239.0, 202.0, 25.0 ],
 									"text" : "A list of numbers (+ve and -ve)"
 								}
 
@@ -191,7 +193,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 480.0, 360.0, 45.0, 45.0 ]
+									"patching_rect" : [ 495.0, 375.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -202,7 +204,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 75.0, 180.0, 54.0, 23.0 ],
+									"patching_rect" : [ 90.0, 195.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -214,7 +216,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 180.0, 285.0, 156.0, 23.0 ],
+									"patching_rect" : [ 195.0, 300.0, 156.0, 23.0 ],
 									"text" : "fl.uniform~ -1 /mode input"
 								}
 
@@ -226,7 +228,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 75.0, 225.0, 179.0, 23.0 ],
+									"patching_rect" : [ 90.0, 240.0, 179.0, 23.0 ],
 									"text" : "fl.register~ 100 -4.4 4.5 948.3"
 								}
 
@@ -239,8 +241,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 75.0, 435.0, 131.0, 23.0 ],
-									"text" : "-100. -4.4 -4.5 -948.3"
+									"patching_rect" : [ 90.0, 450.0, 131.0, 23.0 ]
 								}
 
 							}
@@ -251,7 +252,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 75.0, 375.0, 62.0, 23.0 ],
+									"patching_rect" : [ 90.0, 390.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -264,7 +265,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 75.0, 330.0, 124.0, 23.0 ],
+									"patching_rect" : [ 90.0, 345.0, 124.0, 23.0 ],
 									"text" : "fl.copysign~"
 								}
 
@@ -289,7 +290,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-22", 1 ],
-									"midpoints" : [ 84.5, 416.0, 196.5, 416.0 ],
+									"midpoints" : [ 99.5, 431.0, 211.5, 431.0 ],
 									"source" : [ "obj-16", 0 ]
 								}
 
@@ -297,7 +298,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-37", 0 ],
-									"midpoints" : [ 84.5, 266.0, 189.5, 266.0 ],
+									"midpoints" : [ 99.5, 281.0, 204.5, 281.0 ],
 									"order" : 0,
 									"source" : [ "obj-36", 0 ]
 								}
@@ -379,34 +380,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.copysign~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.register~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.uniform~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "newobjBlue-1",

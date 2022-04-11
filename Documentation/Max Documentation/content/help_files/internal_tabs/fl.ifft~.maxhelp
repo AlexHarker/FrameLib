@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 684.0, 674.0 ],
+						"rect" : [ 34.0, 113.0, 684.0, 674.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -94,7 +94,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 60.0, 92.0, 23.0 ],
+									"patching_rect" : [ 300.0, 60.0, 92.0, 23.0 ],
 									"text" : "loadmess max"
 								}
 
@@ -106,7 +106,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 555.0, 49.0, 23.0 ],
+									"patching_rect" : [ 45.0, 555.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -121,7 +121,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 285.0, 90.0, 195.0, 89.0 ],
+									"patching_rect" : [ 300.0, 90.0, 195.0, 89.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"setstyle" : 1,
 									"size" : 513,
@@ -136,7 +136,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 285.0, 77.0, 23.0 ],
+									"patching_rect" : [ 300.0, 285.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -148,7 +148,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 88.0, 377.0, 31.0, 23.0 ],
+									"patching_rect" : [ 103.0, 377.0, 31.0, 23.0 ],
 									"text" : "fl.*~"
 								}
 
@@ -160,7 +160,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 510.0, 60.0, 23.0 ],
+									"patching_rect" : [ 45.0, 510.0, 60.0, 23.0 ],
 									"text" : "fl.*~ 0.25"
 								}
 
@@ -172,7 +172,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 105.0, 597.5, 516.0, 50.0 ],
+									"patching_rect" : [ 120.0, 597.5, 516.0, 50.0 ],
 									"text" : "In this patch we build a simple EQ with the FFT.\n\nNote that the gains for windows and overlap are correctly compensated at each stage."
 								}
 
@@ -184,7 +184,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 285.0, 183.0, 23.0 ],
+									"patching_rect" : [ 45.0, 285.0, 183.0, 23.0 ],
 									"text" : "fl.window~ /compensate linear"
 								}
 
@@ -196,7 +196,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 128.0, 377.0, 178.0, 25.0 ],
+									"patching_rect" : [ 143.0, 377.0, 178.0, 25.0 ],
 									"text" : "Multiplies by the EQ frame"
 								}
 
@@ -208,7 +208,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 375.0, 31.0, 23.0 ],
+									"patching_rect" : [ 45.0, 375.0, 31.0, 23.0 ],
 									"text" : "fl.*~"
 								}
 
@@ -220,7 +220,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 487.0, 122.0, 143.0, 25.0 ],
+									"patching_rect" : [ 502.0, 122.0, 143.0, 25.0 ],
 									"text" : "Draw your EQ curve"
 								}
 
@@ -233,7 +233,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 420.0, 77.0, 23.0 ],
+									"patching_rect" : [ 45.0, 420.0, 77.0, 23.0 ],
 									"text" : "fl.ifft~"
 								}
 
@@ -245,7 +245,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 465.0, 216.0, 23.0 ],
+									"patching_rect" : [ 45.0, 465.0, 216.0, 23.0 ],
 									"text" : "fl.window~ /compensate reconstruct"
 								}
 
@@ -257,7 +257,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 600.0, 45.0, 45.0 ]
+									"patching_rect" : [ 45.0, 600.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -278,7 +278,7 @@
 									"numoutlets" : 1,
 									"offset" : [ -4.0, -3.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 90.0, 219.0, 89.0 ],
+									"patching_rect" : [ 45.0, 90.0, 219.0, 89.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -291,7 +291,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 30.0, 330.0, 77.0, 23.0 ],
+									"patching_rect" : [ 45.0, 330.0, 77.0, 23.0 ],
 									"text" : "fl.fft~"
 								}
 
@@ -303,7 +303,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 90.5, 195.0, 93.0, 23.0 ],
+									"patching_rect" : [ 105.5, 195.0, 93.0, 23.0 ],
 									"text" : "fl.interval~ 256"
 								}
 
@@ -315,7 +315,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 240.0, 140.0, 23.0 ],
+									"patching_rect" : [ 45.0, 240.0, 140.0, 23.0 ],
 									"text" : "fl.source~ /length 1024"
 								}
 
@@ -348,7 +348,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-1", 1 ],
-									"midpoints" : [ 294.5, 363.5, 51.5, 363.5 ],
+									"midpoints" : [ 309.5, 363.5, 66.5, 363.5 ],
 									"order" : 1,
 									"source" : [ "obj-10", 0 ]
 								}
@@ -358,7 +358,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-9", 1 ],
-									"midpoints" : [ 294.5, 364.5, 109.5, 364.5 ],
+									"midpoints" : [ 309.5, 364.5, 124.5, 364.5 ],
 									"order" : 0,
 									"source" : [ "obj-10", 0 ]
 								}
@@ -374,7 +374,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-38", 1 ],
-									"midpoints" : [ 39.5, 588.5, 65.5, 588.5 ],
+									"midpoints" : [ 54.5, 588.5, 80.5, 588.5 ],
 									"order" : 0,
 									"source" : [ "obj-13", 0 ]
 								}
@@ -427,7 +427,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-10", 0 ],
-									"midpoints" : [ 39.5, 273.5, 294.5, 273.5 ],
+									"midpoints" : [ 54.5, 273.5, 309.5, 273.5 ],
 									"order" : 0,
 									"source" : [ "obj-5", 0 ]
 								}
@@ -481,13 +481,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -554,13 +554,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -663,7 +663,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 684.0, 674.0 ],
+						"rect" : [ 0.0, 26.0, 684.0, 674.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -980,13 +980,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -1053,13 +1053,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -1095,82 +1095,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "demosound.maxpat",
-				"bootpath" : "C74:/help/msp",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.fft~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.ifft~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.window~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "interfacecolor.js",
-				"bootpath" : "C74:/interfaces",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "random.svg",
-				"bootpath" : "C74:/media/max/picts/m4l-picts",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "saw.svg",
-				"bootpath" : "C74:/media/max/picts/m4l-picts",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "sine.svg",
-				"bootpath" : "C74:/media/max/picts/m4l-picts",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "square.svg",
-				"bootpath" : "C74:/media/max/picts/m4l-picts",
-				"type" : "svg",
-				"implicit" : 1
-			}
- ],
 		"autosave" : 0
 	}
 

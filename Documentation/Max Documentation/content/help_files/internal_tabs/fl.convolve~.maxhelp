@@ -99,13 +99,14 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 0,
 									"id" : "obj-22",
 									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 67.25, 480.0, 484.5, 108.0 ],
-									"presentation_linecount" : 7,
+									"patching_rect" : [ 67.25, 465.0, 484.5, 127.0 ],
 									"text" : "There are several edge behaviours for the convolution process. \nHere we view linear, wrap and circular. \n\nNote that the output of linear is longer than the other two, and that wrap and circular are rotations of one another.\n\nFull details can be found on the info tab.",
 									"textjustification" : 1
 								}
@@ -235,7 +236,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 270.0, 165.0, 131.0, 23.0 ],
+									"patching_rect" : [ 270.0, 180.0, 131.0, 23.0 ],
 									"text" : "fl.random~ /length 20"
 								}
 
@@ -247,7 +248,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 405.0, 165.0, 162.0, 23.0 ],
+									"patching_rect" : [ 405.0, 180.0, 162.0, 23.0 ],
 									"text" : "fl.makewindow~ /length 32"
 								}
 
@@ -259,7 +260,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 165.0, 229.0, 23.0 ],
+									"patching_rect" : [ 30.0, 180.0, 229.0, 23.0 ],
 									"text" : "fl.ramp~ /length 100 /scale normalised"
 								}
 
@@ -274,7 +275,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 210.0, 169.0, 23.0 ],
+									"patching_rect" : [ 30.0, 225.0, 169.0, 23.0 ],
 									"text" : "fl.lookup~ /scale normalised"
 								}
 
@@ -288,7 +289,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 105.0, 114.0, 23.0 ],
+									"patching_rect" : [ 30.0, 135.0, 114.0, 23.0 ],
 									"text" : "fl.interval~ 500 ms"
 								}
 
@@ -328,7 +329,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 1 ],
-									"midpoints" : [ 279.5, 198.5, 114.5, 198.5 ],
+									"midpoints" : [ 279.5, 213.5, 114.5, 213.5 ],
 									"source" : [ "obj-1", 0 ]
 								}
 
@@ -400,7 +401,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
-									"midpoints" : [ 39.5, 146.0, 279.5, 146.0 ],
+									"midpoints" : [ 39.5, 168.5, 279.5, 168.5 ],
 									"order" : 1,
 									"source" : [ "obj-24", 0 ]
 								}
@@ -417,7 +418,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-51", 0 ],
-									"midpoints" : [ 39.5, 146.0, 414.5, 146.0 ],
+									"midpoints" : [ 39.5, 168.5, 414.5, 168.5 ],
 									"order" : 0,
 									"source" : [ "obj-24", 0 ]
 								}
@@ -440,7 +441,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-10", 1 ],
-									"midpoints" : [ 414.5, 251.0, 374.0, 251.0 ],
+									"midpoints" : [ 414.5, 256.0, 374.0, 256.0 ],
 									"order" : 1,
 									"source" : [ "obj-51", 0 ]
 								}
@@ -449,7 +450,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-11", 1 ],
-									"midpoints" : [ 414.5, 251.0, 576.5, 251.0 ],
+									"midpoints" : [ 414.5, 256.0, 576.5, 256.0 ],
 									"order" : 0,
 									"source" : [ "obj-51", 0 ]
 								}
@@ -458,7 +459,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-31", 1 ],
-									"midpoints" : [ 414.5, 251.0, 176.5, 251.0 ],
+									"midpoints" : [ 414.5, 256.0, 176.5, 256.0 ],
 									"order" : 2,
 									"source" : [ "obj-51", 0 ]
 								}
@@ -469,13 +470,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -542,13 +543,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -698,8 +699,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 105.0, 642.0, 325.0, 21.0 ],
-									"text" : "fl.convolve~ can convolve real or complex input signals"
+									"patching_rect" : [ 105.0, 642.0, 393.0, 21.0 ],
+									"text" : "fl.convolve~ can be used to convolve real or complex input signals.",
+									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 								}
 
 							}
@@ -794,8 +796,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 208.25, 419.0, 319.0, 25.0 ],
-									"text" : "Convolve the output of each fl.read~ grain together"
+									"patching_rect" : [ 208.25, 419.0, 325.0, 25.0 ],
+									"text" : "Convolves the output of each fl.read~ grain together"
 								}
 
 							}
@@ -1152,13 +1154,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -1225,13 +1227,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -1266,73 +1268,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.convolve~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.lookup~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.makewindow~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.plus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.read~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.unpack~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.window~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

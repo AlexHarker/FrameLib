@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 700.0, 718.0 ],
+						"rect" : [ 34.0, 113.0, 700.0, 718.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -105,8 +105,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 356.0, 407.0, 239.0, 25.0 ],
-									"text" : "Pack both filter types into one stream"
+									"patching_rect" : [ 356.0, 407.0, 246.0, 25.0 ],
+									"text" : "Packs both filter types into one stream"
 								}
 
 							}
@@ -635,7 +635,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 700.0, 718.0 ],
+						"rect" : [ 0.0, 26.0, 700.0, 718.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -674,7 +674,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 105.0, 213.0, 135.0, 40.0 ],
-									"text" : "Play a short grain from the buffer",
+									"text" : "Plays a short grain from the buffer",
 									"textjustification" : 1
 								}
 
@@ -728,8 +728,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 385.000000000000114, 345.0, 25.0 ],
-									"text" : "Apply the sweep to the frequency parameter of the filter"
+									"patching_rect" : [ 180.0, 385.000000000000114, 355.0, 25.0 ],
+									"text" : "Applies the sweep to the frequency parameter of the filter"
 								}
 
 							}
@@ -740,8 +740,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 84.0, 93.333333333333343, 174.0, 25.0 ],
-									"text" : "Generate random triggers"
+									"patching_rect" : [ 84.0, 93.333333333333343, 181.0, 25.0 ],
+									"text" : "Generates random triggers"
 								}
 
 							}
@@ -752,8 +752,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 395.0, 344.333333333333485, 272.0, 25.0 ],
-									"text" : "Generate an exponential downward sweep"
+									"patching_rect" : [ 395.0, 344.333333333333485, 278.0, 25.0 ],
+									"text" : "Generates an exponential downward sweep"
 								}
 
 							}
@@ -1250,7 +1250,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 72.0, 150.0, 86.0, 25.0 ],
+									"patching_rect" : [ 87.0, 150.0, 86.0, 25.0 ],
 									"text" : "Play audio"
 								}
 
@@ -1262,7 +1262,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 131.0, 558.0, 167.0, 25.0 ],
+									"patching_rect" : [ 146.0, 558.0, 167.0, 25.0 ],
 									"text" : "Turn up to hear the filter!"
 								}
 
@@ -1274,7 +1274,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 472.0, 235.0, 164.0, 25.0 ],
+									"patching_rect" : [ 487.0, 235.0, 164.0, 25.0 ],
 									"text" : "Set the filter parameters"
 								}
 
@@ -1286,7 +1286,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 45.0, 465.0, 70.0, 23.0 ],
+									"patching_rect" : [ 60.0, 465.0, 70.0, 23.0 ],
 									"text" : "fl.window~"
 								}
 
@@ -1307,7 +1307,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 45.0, 555.0, 86.5, 45.0 ],
+									"patching_rect" : [ 60.0, 555.0, 86.5, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -1459,6 +1459,7 @@
 											}
 , 											{
 												"box" : 												{
+													"fontsize" : 12.0,
 													"id" : "obj-1",
 													"maxclass" : "live.tab",
 													"num_lines_patching" : 2,
@@ -1539,7 +1540,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 285.0, 150.0, 180.0, 195.0 ],
+									"patching_rect" : [ 300.0, 150.0, 180.0, 195.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -1551,7 +1552,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 105.5, 255.0, 101.0, 23.0 ],
+									"patching_rect" : [ 120.5, 255.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 2048"
 								}
 
@@ -1564,7 +1565,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 45.0, 150.0, 24.0, 24.0 ]
+									"patching_rect" : [ 60.0, 150.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -1575,7 +1576,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "bang" ],
-									"patching_rect" : [ 45.0, 210.0, 221.0, 23.0 ],
+									"patching_rect" : [ 60.0, 210.0, 221.0, 23.0 ],
 									"text" : "sfplay~ @audiofile jongly.aif @loop 1"
 								}
 
@@ -1587,7 +1588,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 630.0, 45.0, 45.0 ]
+									"patching_rect" : [ 60.0, 630.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -1598,7 +1599,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 45.0, 300.0, 140.0, 23.0 ],
+									"patching_rect" : [ 60.0, 300.0, 140.0, 23.0 ],
 									"text" : "fl.source~ /length 4096"
 								}
 
@@ -1610,7 +1611,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 285.0, 375.0, 124.0, 23.0 ],
+									"patching_rect" : [ 300.0, 375.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -1622,7 +1623,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 45.0, 510.0, 49.0, 23.0 ],
+									"patching_rect" : [ 60.0, 510.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -1635,7 +1636,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 45.0, 420.0, 193.0, 23.0 ],
+									"patching_rect" : [ 60.0, 420.0, 193.0, 23.0 ],
 									"text" : "fl.onepole~ 800 /mode highpass"
 								}
 
@@ -1668,7 +1669,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-62", 0 ],
-									"midpoints" : [ 54.5, 360.0, 294.5, 360.0 ],
+									"midpoints" : [ 69.5, 360.0, 309.5, 360.0 ],
 									"order" : 0,
 									"source" : [ "obj-10", 0 ]
 								}
@@ -1735,7 +1736,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 1 ],
-									"midpoints" : [ 294.5, 414.0, 228.5, 414.0 ],
+									"midpoints" : [ 309.5, 414.0, 243.5, 414.0 ],
 									"source" : [ "obj-62", 0 ]
 								}
 
@@ -1819,77 +1820,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.audiotrigger~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.map~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.onepole~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.pack~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.plus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.read~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.window~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

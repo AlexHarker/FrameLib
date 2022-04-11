@@ -204,7 +204,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 202.5, 147.5, 172.5, 40.0 ],
+									"patching_rect" : [ 202.5, 162.5, 172.5, 40.0 ],
 									"text" : "Drag in the box to alter the cartesian coordinates",
 									"textjustification" : 1
 								}
@@ -1847,7 +1847,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 30.0, 98.0, 165.0, 135.0 ],
+									"patching_rect" : [ 30.0, 113.0, 165.0, 135.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -1884,7 +1884,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 217.5, 203.0, 75.0, 23.0 ],
+									"patching_rect" : [ 217.5, 218.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -2144,38 +2144,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.cartopol~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.chop~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.poltocar~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

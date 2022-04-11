@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 626.0, 577.0 ],
+		"rect" : [ 34.0, 87.0, 626.0, 591.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 626.0, 551.0 ],
+						"rect" : [ 0.0, 26.0, 626.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -87,6 +87,20 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-4",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 285.0, 201.5, 203.0, 40.0 ],
+									"text" : "Set to see the effects of different kinds of interpolation!",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-13",
 									"maxclass" : "newobj",
@@ -142,20 +156,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 285.0, 80.0, 23.0 ],
+									"patching_rect" : [ 30.0, 300.0, 80.0, 23.0 ],
 									"text" : "fl.register~ 1"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bubble" : 1,
-									"id" : "obj-24",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 285.0, 195.0, 198.0, 25.0 ],
-									"text" : "See the effect of interpolation!"
 								}
 
 							}
@@ -165,8 +167,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 165.0, 516.0, 21.0 ],
-									"text" : "Here we paste single sample pulses at regular intervals that do not line up with samples."
+									"patching_rect" : [ 15.0, 165.0, 578.0, 21.0 ],
+									"text" : "Here we paste single sample pulses at regular intervals that do not line up with sample boundaries."
 								}
 
 							}
@@ -179,7 +181,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 174.5, 195.0, 100.0, 23.0 ]
+									"patching_rect" : [ 174.5, 210.0, 100.0, 23.0 ]
 								}
 
 							}
@@ -190,7 +192,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 215.0, 237.0, 59.0, 23.0 ],
+									"patching_rect" : [ 215.0, 252.0, 59.0, 23.0 ],
 									"text" : "interp $1"
 								}
 
@@ -202,7 +204,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 125.0, 285.0, 124.0, 23.0 ],
+									"patching_rect" : [ 125.0, 300.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -225,7 +227,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 195.0, 119.0, 23.0 ],
+									"patching_rect" : [ 30.0, 210.0, 119.0, 23.0 ],
 									"text" : "fl.interval~ 52.3245"
 								}
 
@@ -238,7 +240,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 330.0, 114.0, 23.0 ],
+									"patching_rect" : [ 30.0, 338.0, 114.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -298,7 +300,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 39.5, 274.5, 134.5, 274.5 ],
+									"midpoints" : [ 39.5, 289.5, 134.5, 289.5 ],
 									"order" : 0,
 									"source" : [ "obj-39", 0 ]
 								}
@@ -321,7 +323,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 224.5, 273.5, 134.5, 273.5 ],
+									"midpoints" : [ 224.5, 288.5, 134.5, 288.5 ],
 									"source" : [ "obj-7", 0 ]
 								}
 
@@ -395,7 +397,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 626.0, 551.0 ],
+						"rect" : [ 0.0, 26.0, 626.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -434,7 +436,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 300.0, 336.0, 300.0, 185.0 ],
+									"patching_rect" : [ 295.0, 327.5, 300.0, 185.0 ],
 									"text" : "If we take the difference of the input signal and the output of the network and correctly compensate with delay at the output the signal will be null summed.\n\nIn this case, the input signal is passed through a delay of 3000 samples. The fl.interval~ scheduler rate of 1000 samples which means that it will be 2000 samples out of alignment with the delayed copy of the source. By adding 2000 samples of delay with the /delay parameter they become correctly aligned.",
 									"textjustification" : 1
 								}
@@ -447,7 +449,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 495.0, 45.0, 45.0 ]
+									"patching_rect" : [ 135.0, 491.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -469,7 +471,7 @@
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 383.5, 255.0, 90.0 ]
+									"patching_rect" : [ 30.0, 375.0, 255.0, 90.0 ]
 								}
 
 							}
@@ -681,7 +683,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 626.0, 551.0 ],
+						"rect" : [ 0.0, 26.0, 626.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -766,8 +768,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 261.5, 330.0, 54.0 ],
-									"text" : "fl.sink~ accepts multistream inputs and automatically distributes streams across outputs when the multistream operator (=) is denoted in the object",
+									"patching_rect" : [ 195.0, 261.5, 332.0, 54.0 ],
+									"text" : "fl.sink~ accepts multistream inputs and automatically distributes streams across outputs when the multistream operator (=) is used as an argument",
 									"textjustification" : 1
 								}
 
@@ -928,7 +930,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 626.0, 551.0 ],
+						"rect" : [ 0.0, 26.0, 626.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -990,7 +992,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 626.0, 551.0 ],
+						"rect" : [ 34.0, 113.0, 626.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1026,7 +1028,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 450.0, 437.0, 50.0 ],
+									"patching_rect" : [ 150.0, 465.0, 437.0, 50.0 ],
 									"text" : "All frames arriving at fl.sink~ are pasted into an internal overlap-add buffer.\n\nYou can make that buffer bigger if required with an argument."
 								}
 
@@ -1047,7 +1049,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 90.0, 360.0, 90.0, 45.0 ],
+									"patching_rect" : [ 90.0, 375.0, 90.0, 45.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -1060,7 +1062,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 146.0, 276.5, 315.0, 40.0 ],
+									"patching_rect" : [ 146.0, 291.5, 315.0, 40.0 ],
 									"text" : "fl.sink~ in it's most basic form is connected to the end of a network. The output is an MSP signal."
 								}
 
@@ -1072,7 +1074,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 450.0, 45.0, 45.0 ]
+									"patching_rect" : [ 90.0, 465.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -1083,7 +1085,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 90.0, 225.0, 53.0, 23.0 ],
+									"patching_rect" : [ 90.0, 240.0, 53.0, 23.0 ],
 									"text" : "fl.*~ 0.5"
 								}
 
@@ -1095,7 +1097,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 165.0, 105.0, 93.0, 23.0 ],
+									"patching_rect" : [ 165.0, 120.0, 93.0, 23.0 ],
 									"text" : "fl.interval~ 512"
 								}
 
@@ -1107,7 +1109,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 90.0, 105.0, 71.0, 23.0 ],
+									"patching_rect" : [ 90.0, 120.0, 71.0, 23.0 ],
 									"text" : "cycle~ 220"
 								}
 
@@ -1119,7 +1121,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 90.0, 165.0, 169.0, 23.0 ],
+									"patching_rect" : [ 90.0, 180.0, 169.0, 23.0 ],
 									"text" : "fl.source~ /length 1024"
 								}
 
@@ -1132,7 +1134,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 90.0, 285.0, 49.0, 23.0 ],
+									"patching_rect" : [ 90.0, 300.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -1192,7 +1194,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-11", 1 ],
-									"midpoints" : [ 99.5, 427.0, 125.5, 427.0 ],
+									"midpoints" : [ 99.5, 442.0, 125.5, 442.0 ],
 									"order" : 0,
 									"source" : [ "obj-7", 0 ]
 								}
@@ -1201,7 +1203,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-11", 0 ],
-									"midpoints" : [ 99.5, 427.0, 99.5, 427.0 ],
+									"midpoints" : [ 99.5, 442.0, 99.5, 442.0 ],
 									"order" : 1,
 									"source" : [ "obj-7", 0 ]
 								}
@@ -1234,45 +1236,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.register~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

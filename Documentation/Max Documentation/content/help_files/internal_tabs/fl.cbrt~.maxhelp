@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 463.0, 446.0 ],
+		"rect" : [ 34.0, 87.0, 407.0, 431.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 463.0, 420.0 ],
+						"rect" : [ 0.0, 26.0, 407.0, 405.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 463.0, 420.0 ],
+						"rect" : [ 34.0, 113.0, 407.0, 405.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -150,12 +150,24 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-25",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 105.0, 269.0, 246.0, 25.0 ],
+									"text" : "Cube root of each value in input frame"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-2",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 150.0, 98.0, 23.0 ],
+									"patching_rect" : [ 60.0, 135.0, 98.0, 23.0 ],
 									"text" : "fl.register~ 8 27"
 								}
 
@@ -167,7 +179,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 345.0, 45.0, 45.0 ]
+									"patching_rect" : [ 180.0, 330.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -179,19 +191,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 285.0, 34.0, 23.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bubble" : 1,
-									"id" : "obj-25",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 80.0, 195.0, 231.0, 25.0 ],
-									"text" : "Calculate the cube root of 8 and 27."
+									"patching_rect" : [ 60.0, 270.0, 34.0, 23.0 ],
+									"text" : "2. 3."
 								}
 
 							}
@@ -202,8 +203,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 136.25, 150.0, 247.0, 25.0 ],
-									"text" : "Frame containing some cube numbers"
+									"patching_rect" : [ 166.25, 135.0, 184.0, 25.0 ],
+									"text" : "Outputs values to cube root"
 								}
 
 							}
@@ -214,7 +215,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 105.0, 54.0, 23.0 ],
+									"patching_rect" : [ 60.0, 90.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -226,7 +227,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 240.0, 62.0, 23.0 ],
+									"patching_rect" : [ 60.0, 225.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -239,7 +240,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 195.0, 48.0, 23.0 ],
+									"patching_rect" : [ 60.0, 180.0, 48.0, 23.0 ],
 									"text" : "fl.cbrt~"
 								}
 
@@ -256,7 +257,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 15.0, 434.0, 75.0 ]
+									"patching_rect" : [ 15.0, 15.0, 375.0, 75.0 ]
 								}
 
 							}
@@ -285,7 +286,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-17", 1 ],
-									"midpoints" : [ 39.5, 273.5, 54.5, 273.5 ],
+									"midpoints" : [ 69.5, 258.5, 84.5, 258.5 ],
 									"source" : [ "obj-34", 0 ]
 								}
 
@@ -337,30 +338,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.cbrt~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.register~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,8 +50,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -93,7 +93,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 280.0, 359.5, 338.0, 25.0 ],
+									"patching_rect" : [ 248.0, 374.0, 338.0, 25.0 ],
 									"text" : "Returns the time interval between consecutive frames."
 								}
 
@@ -105,7 +105,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 338.0, 45.0, 45.0 ]
+									"patching_rect" : [ 45.0, 213.276450511945427, 45.0, 45.0 ]
 								}
 
 							}
@@ -116,8 +116,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 280.0, 270.460750853242303, 246.0, 25.0 ],
-									"text" : "Measure the interval programmatically"
+									"patching_rect" : [ 280.0, 285.460750853242303, 252.0, 25.0 ],
+									"text" : "Measures the interval programmatically"
 								}
 
 							}
@@ -128,8 +128,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 210.0, 126.092150170648438, 284.0, 25.0 ],
-									"text" : "Generate random numbers to set the interval"
+									"patching_rect" : [ 210.0, 141.092150170648438, 291.0, 25.0 ],
+									"text" : "Generates random numbers to set the interval"
 								}
 
 							}
@@ -141,7 +141,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 249.0, 360.0, 24.0, 24.0 ]
+									"patching_rect" : [ 135.0, 375.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -152,7 +152,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 198.276450511945427, 90.0, 23.0 ],
+									"patching_rect" : [ 135.0, 213.276450511945427, 90.0, 23.0 ],
 									"text" : "fl.tag~ interval"
 								}
 
@@ -166,7 +166,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 135.0, 360.0, 90.0, 23.0 ]
+									"patching_rect" : [ 168.0, 375.0, 72.0, 23.0 ]
 								}
 
 							}
@@ -177,7 +177,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 306.552901023890854, 62.0, 23.0 ],
+									"patching_rect" : [ 135.0, 321.552901023890854, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -190,7 +190,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 270.460750853242303, 135.0, 23.0 ],
+									"patching_rect" : [ 135.0, 285.460750853242303, 135.0, 23.0 ],
 									"text" : "fl.timedelta~ /units ms"
 								}
 
@@ -202,7 +202,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 234.368600682593865, 124.0, 23.0 ],
+									"patching_rect" : [ 135.0, 249.368600682593865, 124.0, 23.0 ],
 									"text" : "fl.interval~ /units ms"
 								}
 
@@ -214,7 +214,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 162.184300341296932, 156.0, 23.0 ],
+									"patching_rect" : [ 135.0, 177.184300341296932, 156.0, 23.0 ],
 									"text" : "fl.map~ exp 0 1 100 2000"
 								}
 
@@ -226,7 +226,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 126.092150170648438, 70.0, 23.0 ],
+									"patching_rect" : [ 135.0, 141.092150170648438, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -238,7 +238,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 90.0, 75.0, 23.0 ],
+									"patching_rect" : [ 135.0, 105.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -284,7 +284,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
-									"order" : 1,
+									"order" : 0,
 									"source" : [ "obj-15", 0 ]
 								}
 
@@ -292,8 +292,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-22", 0 ],
-									"midpoints" : [ 144.5, 344.276450511945427, 258.5, 344.276450511945427 ],
-									"order" : 0,
+									"order" : 1,
 									"source" : [ "obj-15", 0 ]
 								}
 
@@ -374,8 +373,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -436,8 +435,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -501,8 +500,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 105.0, 192.0, 25.0 ],
-									"text" : "Set a fixed interval scheduler"
+									"patching_rect" : [ 150.0, 105.0, 289.0, 25.0 ],
+									"text" : "Schedules frames at a fixed interval of 250ms"
 								}
 
 							}
@@ -764,42 +763,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.map~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tag~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.timedelta~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

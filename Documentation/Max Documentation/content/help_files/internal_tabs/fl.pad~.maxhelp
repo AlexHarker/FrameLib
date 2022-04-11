@@ -169,8 +169,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 53.0, 165.0, 173.0, 55.0 ],
-									"text" : "Using samples to determine padding amounts",
+									"patching_rect" : [ 53.0, 165.0, 172.0, 55.0 ],
+									"text" : "Uses samples to determine padding amounts",
 									"textjustification" : 1
 								}
 
@@ -184,8 +184,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 253.0, 165.0, 157.0, 55.0 ],
-									"text" : "Using ratios to determine the padding amounts.",
+									"patching_rect" : [ 255.5, 165.0, 152.0, 55.0 ],
+									"text" : "Uses ratios to determine the padding amounts.",
 									"textjustification" : 1
 								}
 
@@ -410,30 +410,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.pad~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

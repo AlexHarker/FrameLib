@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 2,
-			"revision" : 2,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 644.0, 670.0 ],
+		"rect" : [ 34.0, 87.0, 670.0, 670.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 644.0, 644.0 ],
+						"rect" : [ 0.0, 26.0, 670.0, 644.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -112,14 +112,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 2,
-							"revision" : 2,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 644.0, 644.0 ],
+						"rect" : [ 34.0, 113.0, 670.0, 644.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,7 +155,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 225.0, 112.0, 23.0 ],
+									"patching_rect" : [ 45.0, 225.0, 112.0, 23.0 ],
 									"text" : "delay~ 1024 1024"
 								}
 
@@ -178,7 +178,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 390.0, 400.0, 214.0, 25.0 ],
+									"patching_rect" : [ 405.0, 400.0, 214.0, 25.0 ],
 									"text" : "The signal is wrapped -0.1 to 0.1"
 								}
 
@@ -190,7 +190,7 @@
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 29.5, 360.0, 165.0, 105.0 ]
+									"patching_rect" : [ 44.5, 360.0, 165.0, 105.0 ]
 								}
 
 							}
@@ -201,7 +201,7 @@
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 209.5, 360.0, 165.0, 105.0 ]
+									"patching_rect" : [ 224.5, 360.0, 165.0, 105.0 ]
 								}
 
 							}
@@ -212,7 +212,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 209.5, 315.0, 49.0, 23.0 ],
+									"patching_rect" : [ 224.5, 315.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -225,7 +225,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 209.5, 270.0, 102.0, 23.0 ],
+									"patching_rect" : [ 224.5, 270.0, 102.0, 23.0 ],
 									"text" : "fl.wrap~ -0.1 0.1"
 								}
 
@@ -237,7 +237,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 270.0, 180.0, 101.0, 23.0 ],
+									"patching_rect" : [ 285.0, 180.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 1024"
 								}
 
@@ -249,7 +249,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 209.5, 225.0, 140.0, 23.0 ],
+									"patching_rect" : [ 224.5, 225.0, 140.0, 23.0 ],
 									"text" : "fl.source~ /length 1024"
 								}
 
@@ -261,7 +261,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 150.0, 67.0, 23.0 ],
+									"patching_rect" : [ 45.0, 150.0, 67.0, 23.0 ],
 									"text" : "cycle~ 0.1"
 								}
 
@@ -286,7 +286,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 39.5, 198.5, 219.0, 198.5 ],
+									"midpoints" : [ 54.5, 198.5, 234.0, 198.5 ],
 									"order" : 0,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -303,7 +303,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-7", 0 ],
-									"midpoints" : [ 219.0, 243.5, 219.0, 243.5 ],
+									"midpoints" : [ 234.0, 243.5, 234.0, 243.5 ],
 									"source" : [ "obj-5", 0 ]
 								}
 
@@ -383,30 +383,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Sync/Files/Max/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../../../Files/Max/Packages/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.wrap~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

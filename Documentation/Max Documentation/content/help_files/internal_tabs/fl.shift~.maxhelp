@@ -245,7 +245,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 410.999969482421875, 186.5, 160.0, 40.0 ],
+									"patching_rect" : [ 409.999969482421875, 186.5, 152.0, 40.0 ],
 									"text" : "In pad mode, pad frames with this value",
 									"textjustification" : 1
 								}
@@ -272,8 +272,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 248.0, 103.0, 295.0, 25.0 ],
-									"text" : "Shift amount. +ve for shift right, -ve for shift left",
+									"patching_rect" : [ 247.0, 103.0, 316.0, 25.0 ],
+									"text" : "Set shift amount. +ve for shift right, -ve for shift left",
 									"textjustification" : 1
 								}
 
@@ -605,30 +605,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.shift~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

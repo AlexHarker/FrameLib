@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 692.0, 570.0 ],
+						"rect" : [ 34.0, 113.0, 692.0, 570.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -100,11 +100,12 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-42",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 401.0, 448.0, 239.0, 21.0 ],
+									"patching_rect" : [ 401.0, 448.0, 256.0, 25.0 ],
 									"text" : "Indicates underflow in the internal buffer"
 								}
 
@@ -135,23 +136,29 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-34",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 156.5, 150.0, 84.0, 21.0 ],
-									"text" : "Click to reset"
+									"patching_rect" : [ 159.0, 117.0, 62.0, 55.0 ],
+									"text" : "Click to reset",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-32",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 258.0, 180.0, 192.0, 36.0 ],
+									"patching_rect" : [ 254.5, 161.0, 192.0, 55.0 ],
 									"text" : "Select the behaviour when reseting / changing frame size",
 									"textjustification" : 1
 								}
@@ -236,7 +243,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 92.0, 433.0, 21.0 ],
+									"patching_rect" : [ 15.0, 75.0, 433.0, 21.0 ],
 									"text" : "fl.lag~ offers control over resetting and behaviour when the buffer is filling."
 								}
 
@@ -554,7 +561,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 692.0, 570.0 ],
+						"rect" : [ 0.0, 26.0, 692.0, 570.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -638,7 +645,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 354.0, 345.0, 285.0, 166.0 ],
+									"patching_rect" : [ 354.0, 345.0, 288.0, 166.0 ],
 									"text" : "fl.lag~ is set to be two frames behind fl.ticks~ by default in this patch. \n\nSee how the multislider here is always trailing the one to the left? Increase the lag amount to increase how far behind it follows.\n\nBecause fl.ticks~ produces a looping ramp pattern, if the lag is higher than the length of the loop the two outputs appear to be much closer than they are actually are in terms of time.",
 									"textjustification" : 1
 								}
@@ -947,42 +954,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.audiotrigger~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.lag~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ticks~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

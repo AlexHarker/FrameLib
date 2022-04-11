@@ -391,13 +391,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -464,13 +464,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -563,18 +563,20 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 585.0, 390.0, 45.0, 45.0 ]
+									"patching_rect" : [ 585.0, 360.0, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 0,
 									"id" : "obj-22",
 									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 55.5, 465.0, 564.0, 108.0 ],
+									"patching_rect" : [ 57.75, 435.0, 490.5, 127.0 ],
 									"text" : "There are several edge behaviours for the correlation process. \nHere we view linear, wrap and circular. \n\nNote that the output of linear is longer than the other two, and that wrap and circular are rotations of one another. \n\nFull details can be found on the info tab.",
 									"textjustification" : 1
 								}
@@ -589,7 +591,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 390.0, 375.0, 156.0, 75.0 ],
+									"patching_rect" : [ 390.0, 345.0, 156.0, 75.0 ],
 									"setminmax" : [ 0.0, 20.0 ],
 									"setstyle" : 1,
 									"size" : 100,
@@ -604,7 +606,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 390.0, 330.0, 62.0, 23.0 ],
+									"patching_rect" : [ 390.0, 300.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -618,7 +620,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 225.0, 375.0, 156.0, 75.0 ],
+									"patching_rect" : [ 225.0, 345.0, 156.0, 75.0 ],
 									"setminmax" : [ 0.0, 20.0 ],
 									"setstyle" : 1,
 									"size" : 100,
@@ -633,7 +635,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 225.0, 330.0, 62.0, 23.0 ],
+									"patching_rect" : [ 225.0, 300.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -648,7 +650,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 390.0, 285.0, 165.0, 23.0 ],
+									"patching_rect" : [ 390.0, 255.0, 165.0, 23.0 ],
 									"text" : "fl.correlate~ /edges circular"
 								}
 
@@ -663,7 +665,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 225.0, 285.0, 151.0, 23.0 ],
+									"patching_rect" : [ 225.0, 255.0, 151.0, 23.0 ],
 									"text" : "fl.correlate~ /edges wrap"
 								}
 
@@ -677,7 +679,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 60.0, 375.0, 156.0, 75.0 ],
+									"patching_rect" : [ 60.0, 345.0, 156.0, 75.0 ],
 									"setminmax" : [ 0.0, 20.0 ],
 									"setstyle" : 1,
 									"size" : 131,
@@ -692,7 +694,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 330.0, 62.0, 23.0 ],
+									"patching_rect" : [ 60.0, 300.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -704,7 +706,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 165.0, 131.0, 23.0 ],
+									"patching_rect" : [ 300.0, 150.0, 131.0, 23.0 ],
 									"text" : "fl.random~ /length 20"
 								}
 
@@ -716,7 +718,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 450.0, 165.0, 162.0, 23.0 ],
+									"patching_rect" : [ 450.0, 150.0, 162.0, 23.0 ],
 									"text" : "fl.makewindow~ /length 32"
 								}
 
@@ -728,7 +730,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 165.0, 229.0, 23.0 ],
+									"patching_rect" : [ 60.0, 150.0, 229.0, 23.0 ],
 									"text" : "fl.ramp~ /length 100 /scale normalised"
 								}
 
@@ -743,7 +745,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 210.0, 169.0, 23.0 ],
+									"patching_rect" : [ 60.0, 195.0, 169.0, 23.0 ],
 									"text" : "fl.lookup~ /scale normalised"
 								}
 
@@ -772,7 +774,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 285.0, 155.0, 23.0 ],
+									"patching_rect" : [ 60.0, 255.0, 155.0, 23.0 ],
 									"text" : "fl.correlate~ /edges linear"
 								}
 
@@ -781,7 +783,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 1 ],
-									"midpoints" : [ 309.5, 198.5, 144.5, 198.5 ],
+									"midpoints" : [ 309.5, 183.5, 144.5, 183.5 ],
 									"source" : [ "obj-1", 0 ]
 								}
 
@@ -804,7 +806,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-10", 0 ],
-									"midpoints" : [ 69.5, 274.5, 234.5, 274.5 ],
+									"midpoints" : [ 69.5, 243.5, 234.5, 243.5 ],
 									"order" : 1,
 									"source" : [ "obj-13", 0 ]
 								}
@@ -814,7 +816,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-11", 0 ],
-									"midpoints" : [ 69.5, 273.5, 399.5, 273.5 ],
+									"midpoints" : [ 69.5, 243.5, 399.5, 243.5 ],
 									"order" : 0,
 									"source" : [ "obj-13", 0 ]
 								}
@@ -853,7 +855,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
-									"midpoints" : [ 69.5, 146.0, 309.5, 146.0 ],
+									"midpoints" : [ 69.5, 138.5, 309.5, 138.5 ],
 									"order" : 1,
 									"source" : [ "obj-24", 0 ]
 								}
@@ -870,7 +872,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-51", 0 ],
-									"midpoints" : [ 69.5, 146.0, 459.5, 146.0 ],
+									"midpoints" : [ 69.5, 138.5, 459.5, 138.5 ],
 									"order" : 0,
 									"source" : [ "obj-24", 0 ]
 								}
@@ -893,7 +895,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-10", 1 ],
-									"midpoints" : [ 459.5, 251.0, 366.5, 251.0 ],
+									"midpoints" : [ 459.5, 228.5, 366.5, 228.5 ],
 									"order" : 1,
 									"source" : [ "obj-51", 0 ]
 								}
@@ -902,7 +904,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-11", 1 ],
-									"midpoints" : [ 459.5, 251.0, 545.5, 251.0 ],
+									"midpoints" : [ 459.5, 228.5, 545.5, 228.5 ],
 									"order" : 0,
 									"source" : [ "obj-51", 0 ]
 								}
@@ -911,7 +913,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-31", 1 ],
-									"midpoints" : [ 459.5, 251.0, 205.5, 251.0 ],
+									"midpoints" : [ 459.5, 228.5, 205.5, 228.5 ],
 									"order" : 2,
 									"source" : [ "obj-51", 0 ]
 								}
@@ -922,13 +924,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -995,13 +997,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -1146,13 +1148,15 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 0,
 									"id" : "obj-18",
 									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 405.0, 495.0, 79.0 ],
-									"text" : "fl.correlate~ can convolve real or complex input signals.\n\nHere we correlate a ramp with its self as well as correlating two random vectors. \n\nNeither correlates highly after the initial peak.",
+									"patching_rect" : [ 69.0, 390.0, 495.0, 98.0 ],
+									"text" : "fl.correlate~ can be used to convolve either real or complex input signals.\n\nHere we correlate a ramp with its self as well as correlating two random vectors. \n\nNeither correlates highly after the initial peak.",
 									"textjustification" : 1
 								}
 
@@ -1406,13 +1410,13 @@
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -1479,13 +1483,13 @@
 								"name" : "panelViolet",
 								"default" : 								{
 									"bgfillcolor" : 									{
-										"type" : "color",
+										"angle" : 270.0,
+										"autogradient" : 0,
 										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
 										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
 										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
 										"proportion" : 0.39,
-										"autogradient" : 0
+										"type" : "color"
 									}
 
 								}
@@ -1511,54 +1515,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.correlate~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.divide~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.framemax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.lookup~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.makewindow~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

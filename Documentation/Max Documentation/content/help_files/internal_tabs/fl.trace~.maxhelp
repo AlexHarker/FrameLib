@@ -157,7 +157,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 474.125, 517.0, 146.75, 55.0 ],
+									"patching_rect" : [ 474.125, 516.5, 146.75, 55.0 ],
 									"text" : "Values are 'traced' or continued at the output."
 								}
 
@@ -284,7 +284,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 246.5, 530.0, 178.5, 69.0 ],
+									"patching_rect" : [ 246.5, 530.0, 181.0, 69.0 ],
 									"text" : "You can specify a position by its absolute position in the whole frame",
 									"textjustification" : 1
 								}
@@ -293,14 +293,14 @@
 , 							{
 								"box" : 								{
 									"bubble" : 1,
-									"bubblepoint" : 0.3,
+									"bubblepoint" : 0.2,
 									"bubbleside" : 0,
 									"id" : "obj-8",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 220.5, 382.0, 205.5, 55.0 ],
+									"patching_rect" : [ 220.5, 380.0, 209.0, 55.0 ],
 									"text" : "You can specify a position relative position to the whole frame",
 									"textjustification" : 1
 								}
@@ -316,7 +316,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 375.0, 127.5, 69.0 ],
+									"patching_rect" : [ 45.0, 380.0, 130.0, 69.0 ],
 									"text" : "fl.trace~ with default parameters outputs the full frame.",
 									"textjustification" : 1
 								}
@@ -330,7 +330,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 199.5, 189.0, 40.0 ],
+									"patching_rect" : [ 150.0, 199.5, 191.0, 40.0 ],
 									"text" : "Generate a frame contaning the numbers 0 - 63",
 									"textjustification" : 1
 								}
@@ -663,34 +663,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.plus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.trace~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

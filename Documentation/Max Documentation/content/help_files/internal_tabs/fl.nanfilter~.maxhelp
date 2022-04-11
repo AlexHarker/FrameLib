@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 681.0, 454.0 ],
+		"rect" : [ 34.0, 87.0, 682.0, 454.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 681.0, 428.0 ],
+						"rect" : [ 0.0, 26.0, 682.0, 428.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 681.0, 428.0 ],
+						"rect" : [ 34.0, 113.0, 682.0, 428.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,7 +155,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 560.0, 159.0, 45.0, 45.0 ]
+									"patching_rect" : [ 555.0, 159.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -166,8 +166,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 540.0, 375.0, 108.0, 25.0 ],
-									"text" : "no fl.nanfilter~"
+									"patching_rect" : [ 540.0, 375.0, 110.0, 25.0 ],
+									"text" : "No fl.nanfilter~"
 								}
 
 							}
@@ -178,8 +178,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 354.0, 375.0, 94.0, 25.0 ],
-									"text" : "remove nan"
+									"patching_rect" : [ 352.0, 375.0, 112.0, 25.0 ],
+									"text" : "NaNs removed"
 								}
 
 							}
@@ -190,8 +190,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 375.0, 197.0, 25.0 ],
-									"text" : "replace nan with a fixed value"
+									"patching_rect" : [ 90.0, 375.0, 215.0, 25.0 ],
+									"text" : "NaNs replaced with a fixed value"
 								}
 
 							}
@@ -215,7 +215,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 375.0, 50.0, 23.0 ],
+									"patching_rect" : [ 315.0, 375.0, 29.5, 23.0 ],
 									"text" : "0.2"
 								}
 
@@ -240,7 +240,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 315.0, 62.0, 23.0 ],
+									"patching_rect" : [ 315.0, 315.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -265,7 +265,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 270.0, 159.0, 23.0 ],
+									"patching_rect" : [ 315.0, 270.0, 159.0, 23.0 ],
 									"text" : "fl.nanfilter~ /mode remove"
 								}
 
@@ -278,7 +278,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 143.5, 169.0, 345.0, 25.0 ],
-									"text" : "Let's divide zero by zero on purpose to produce a nans!"
+									"text" : "Let's divide zero by zero on purpose to produce a NaN!"
 								}
 
 							}
@@ -422,7 +422,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-21", 0 ],
-									"midpoints" : [ 39.5, 243.5, 309.5, 243.5 ],
+									"midpoints" : [ 39.5, 243.5, 324.5, 243.5 ],
 									"order" : 1,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -446,7 +446,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-27", 1 ],
-									"midpoints" : [ 309.5, 356.0, 340.5, 356.0 ],
+									"midpoints" : [ 324.5, 356.0, 335.0, 356.0 ],
 									"source" : [ "obj-25", 0 ]
 								}
 
@@ -505,34 +505,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.divide~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.nanfilter~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.register~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

@@ -267,7 +267,7 @@
 									"id" : "obj-23",
 									"maxclass" : "number",
 									"maximum" : 300,
-									"minimum" : 0,
+									"minimum" : 1,
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
@@ -281,7 +281,7 @@
 									"id" : "obj-21",
 									"maxclass" : "number",
 									"maximum" : 300,
-									"minimum" : 0,
+									"minimum" : 1,
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
@@ -841,38 +841,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.kernelsmooth~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.makewindow~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.subframe~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

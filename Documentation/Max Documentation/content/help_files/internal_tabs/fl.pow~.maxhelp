@@ -151,13 +151,41 @@
 						"boxes" : [ 							{
 								"box" : 								{
 									"bubble" : 1,
-									"bubblepoint" : 0.4,
+									"bubbleside" : 2,
+									"id" : "obj-18",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 135.0, 150.0, 50.0, 40.0 ],
+									"text" : "Input 2",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
+									"id" : "obj-6",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 51.0, 150.0, 50.0, 40.0 ],
+									"text" : "Input 1",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 0.1,
 									"bubbleside" : 0,
 									"id" : "obj-23",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 375.0, 247.0, 40.0 ],
+									"patching_rect" : [ 45.0, 420.0, 247.0, 40.0 ],
 									"text" : "Change the input values to see the result"
 								}
 
@@ -169,7 +197,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 405.0, 165.0, 113.0, 23.0 ],
+									"patching_rect" : [ 435.0, 210.0, 113.0, 23.0 ],
 									"text" : "fl.register~ 1 2 3 4"
 								}
 
@@ -179,12 +207,12 @@
 									"bubble" : 1,
 									"bubbleside" : 0,
 									"id" : "obj-21",
-									"linecount" : 2,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 351.5, 390.0, 184.0, 55.0 ],
-									"text" : "You can also calculate one vector to the power of another",
+									"patching_rect" : [ 386.5, 420.0, 173.5, 69.0 ],
+									"text" : "You can also calculate the values in one vector to the power of those in another",
 									"textjustification" : 1
 								}
 
@@ -196,7 +224,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 300.0, 510.0, 45.0, 45.0 ]
+									"patching_rect" : [ 300.0, 540.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -208,7 +236,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 120.0, 105.0, 75.0, 23.0 ],
+									"patching_rect" : [ 135.0, 120.0, 75.0, 23.0 ],
 									"text" : "loadmess 3"
 								}
 
@@ -221,7 +249,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 105.0, 75.0, 23.0 ],
+									"patching_rect" : [ 45.0, 120.0, 75.0, 23.0 ],
 									"text" : "loadmess 3"
 								}
 
@@ -235,7 +263,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 120.0, 150.0, 50.0, 23.0 ]
+									"patching_rect" : [ 135.0, 195.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -248,7 +276,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 150.0, 50.0, 23.0 ]
+									"patching_rect" : [ 45.0, 195.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -259,7 +287,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 195.0, 150.0, 75.0, 23.0 ],
+									"patching_rect" : [ 210.0, 195.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -271,7 +299,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 120.0, 210.0, 77.0, 23.0 ],
+									"patching_rect" : [ 135.0, 255.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -283,7 +311,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 210.0, 77.0, 23.0 ],
+									"patching_rect" : [ 45.0, 255.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -297,7 +325,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 345.0, 50.0, 23.0 ]
+									"patching_rect" : [ 45.0, 390.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -308,7 +336,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 300.0, 62.0, 23.0 ],
+									"patching_rect" : [ 45.0, 345.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -321,7 +349,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 255.0, 109.0, 23.0 ],
+									"patching_rect" : [ 45.0, 300.0, 109.0, 23.0 ],
 									"text" : "fl.pow~"
 								}
 
@@ -333,7 +361,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 405.0, 210.0, 77.0, 23.0 ],
+									"patching_rect" : [ 435.0, 255.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -345,7 +373,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 405.0, 345.0, 84.0, 23.0 ],
+									"patching_rect" : [ 435.0, 390.0, 84.0, 23.0 ],
 									"text" : "1. 4. 27. 256."
 								}
 
@@ -357,7 +385,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 405.0, 120.0, 54.0, 23.0 ],
+									"patching_rect" : [ 435.0, 165.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -369,7 +397,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 405.0, 293.0, 62.0, 23.0 ],
+									"patching_rect" : [ 435.0, 338.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -382,7 +410,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 405.0, 255.0, 50.0, 23.0 ],
+									"patching_rect" : [ 435.0, 300.0, 50.0, 23.0 ],
 									"text" : "fl.pow~"
 								}
 
@@ -414,7 +442,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-22", 1 ],
-									"midpoints" : [ 414.5, 330.0, 479.5, 330.0 ],
+									"midpoints" : [ 444.5, 375.0, 509.5, 375.0 ],
 									"source" : [ "obj-10", 0 ]
 								}
 
@@ -437,7 +465,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-11", 0 ],
-									"midpoints" : [ 204.5, 191.0, 39.5, 191.0 ],
+									"midpoints" : [ 219.5, 236.0, 54.5, 236.0 ],
 									"order" : 1,
 									"source" : [ "obj-13", 0 ]
 								}
@@ -447,7 +475,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-2", 0 ],
-									"midpoints" : [ 204.5, 191.0, 129.5, 191.0 ],
+									"midpoints" : [ 219.5, 236.0, 144.5, 236.0 ],
 									"order" : 0,
 									"source" : [ "obj-13", 0 ]
 								}
@@ -493,7 +521,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-16", 1 ],
-									"midpoints" : [ 414.5, 243.5, 445.5, 243.5 ],
+									"midpoints" : [ 444.5, 288.5, 475.5, 288.5 ],
 									"order" : 0,
 									"source" : [ "obj-40", 0 ]
 								}
@@ -575,38 +603,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.pow~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.register~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

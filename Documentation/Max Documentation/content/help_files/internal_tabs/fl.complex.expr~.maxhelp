@@ -93,7 +93,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 305.0, 465.0, 45.0, 45.0 ]
+									"patching_rect" : [ 305.0, 450.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -105,7 +105,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 339.0, 375.0, 191.0, 23.0 ]
+									"patching_rect" : [ 339.0, 360.0, 191.0, 23.0 ]
 								}
 
 							}
@@ -116,7 +116,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 339.0, 330.0, 62.0, 23.0 ],
+									"patching_rect" : [ 339.0, 315.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -128,7 +128,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 339.0, 240.0, 106.0, 23.0 ],
+									"patching_rect" : [ 339.0, 225.0, 106.0, 23.0 ],
 									"text" : "fl.register~ -6 6 4"
 								}
 
@@ -140,7 +140,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 90.0, 554.0, 21.0 ],
+									"patching_rect" : [ 15.0, 75.0, 554.0, 21.0 ],
 									"text" : "Several functions are supported. See the info tab for a full list of available functions / operators."
 								}
 
@@ -153,7 +153,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 375.0, 183.0, 23.0 ]
+									"patching_rect" : [ 135.0, 360.0, 183.0, 23.0 ]
 								}
 
 							}
@@ -164,7 +164,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 330.0, 62.0, 23.0 ],
+									"patching_rect" : [ 135.0, 315.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -176,7 +176,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 195.0, 54.0, 23.0 ],
+									"patching_rect" : [ 135.0, 180.0, 54.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -188,7 +188,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 135.0, 240.0, 102.0, 23.0 ],
+									"patching_rect" : [ 135.0, 225.0, 102.0, 23.0 ],
 									"text" : "fl.register~ 1 0 3"
 								}
 
@@ -201,7 +201,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 135.0, 285.0, 223.0, 23.0 ],
+									"patching_rect" : [ 135.0, 270.0, 223.0, 23.0 ],
 									"text" : "fl.complex.expr~ sinh(in1) * log(in1)"
 								}
 
@@ -233,7 +233,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 1 ],
-									"midpoints" : [ 348.5, 363.5, 520.5, 363.5 ],
+									"midpoints" : [ 348.5, 348.5, 520.5, 348.5 ],
 									"source" : [ "obj-4", 0 ]
 								}
 
@@ -262,7 +262,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
-									"midpoints" : [ 144.5, 228.5, 348.5, 228.5 ],
+									"midpoints" : [ 144.5, 213.5, 348.5, 213.5 ],
 									"order" : 0,
 									"source" : [ "obj-63", 0 ]
 								}
@@ -279,7 +279,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-67", 1 ],
-									"midpoints" : [ 144.5, 363.5, 308.5, 363.5 ],
+									"midpoints" : [ 144.5, 348.5, 308.5, 348.5 ],
 									"source" : [ "obj-64", 0 ]
 								}
 
@@ -567,7 +567,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 90.0, 545.0, 21.0 ],
+									"patching_rect" : [ 15.0, 75.0, 545.0, 21.0 ],
 									"text" : "You can refer to constants in fl.complex expr~. Available constants are i, e, pi, epsilon and inf."
 								}
 
@@ -995,8 +995,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 90.0, 536.0, 36.0 ],
-									"text" : "fl.coplex.expr~ allows you to create custom expressions in a single object contaning inputs, unary/binary/ternary operators and constants that operate on complex numbers."
+									"patching_rect" : [ 15.0, 75.0, 536.0, 36.0 ],
+									"text" : "fl.complex.expr~ allows you to create custom expressions in a single object contaning inputs, unary/binary/ternary operators and constants that operate on complex numbers."
 								}
 
 							}
@@ -1007,8 +1007,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 236.0, 222.0, 190.0, 25.0 ],
-									"text" : "Rotate the input by 0.5 * 0.2i"
+									"patching_rect" : [ 236.0, 222.0, 196.0, 25.0 ],
+									"text" : "Rotates the input by 0.5 * 0.2i"
 								}
 
 							}
@@ -1021,7 +1021,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 266.0, 171.5, 225.0, 40.0 ],
-									"text" : "Generate a ramp that sets both real and imaginary inputs"
+									"text" : "Generates a ramp that sets both real and imaginary inputs",
+									"textjustification" : 1
 								}
 
 							}

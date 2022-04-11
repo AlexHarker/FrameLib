@@ -524,8 +524,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 124.0, 420.0, 298.0, 25.0 ],
-									"text" : "Take the difference between successive frames",
+									"patching_rect" : [ 124.0, 420.0, 305.0, 25.0 ],
+									"text" : "Takes the difference between successive frames",
 									"textjustification" : 1
 								}
 
@@ -539,7 +539,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 212.0, 313.0, 157.0, 40.0 ],
-									"text" : "Sample the incoming frame every 300 ms",
+									"text" : "Samples the incoming frame every 300 ms",
 									"textjustification" : 1
 								}
 
@@ -754,30 +754,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.framedelta~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

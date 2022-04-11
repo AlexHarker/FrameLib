@@ -155,8 +155,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 162.0, 456.333343505859375, 313.0, 25.0 ],
-									"text" : "Ascending, but returns the indices sorted by value"
+									"patching_rect" : [ 162.0, 456.333343505859375, 339.0, 25.0 ],
+									"text" : "Sort ascending, but returns the indices sorted by value"
 								}
 
 							}
@@ -239,8 +239,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 377.0, 171.333343505859375, 94.0, 25.0 ],
-									"text" : "Descending"
+									"patching_rect" : [ 377.0, 171.333343505859375, 119.0, 25.0 ],
+									"text" : "Sort descending"
 								}
 
 							}
@@ -251,8 +251,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 105.0, 171.333343505859375, 86.0, 25.0 ],
-									"text" : "Ascending"
+									"patching_rect" : [ 105.0, 171.333343505859375, 112.0, 25.0 ],
+									"text" : "Sort ascending"
 								}
 
 							}
@@ -532,30 +532,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sort~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

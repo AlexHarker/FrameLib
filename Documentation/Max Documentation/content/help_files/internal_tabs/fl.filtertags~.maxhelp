@@ -304,7 +304,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 289.5, 336.5, 183.0, 40.0 ],
-									"text" : "Combine the three tagged frames into a single frame",
+									"text" : "Combines the three tagged frames into a single frame",
 									"textjustification" : 1
 								}
 
@@ -318,7 +318,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 369.0, 235.0, 155.0, 40.0 ],
-									"text" : "Create three different frames with tags",
+									"text" : "Creates three different frames with tags",
 									"textjustification" : 1
 								}
 
@@ -726,38 +726,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.combinetags~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.filtertags~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.register~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tag~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

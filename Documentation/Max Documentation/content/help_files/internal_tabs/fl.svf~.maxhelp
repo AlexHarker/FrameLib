@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 700.0, 721.0 ],
+						"rect" : [ 34.0, 113.0, 700.0, 721.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -157,8 +157,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 405.0, 260.0, 25.0 ],
-									"text" : "Pack all three filter types into one stream"
+									"patching_rect" : [ 330.0, 405.0, 267.0, 25.0 ],
+									"text" : "Packs all three filter types into one stream"
 								}
 
 							}
@@ -693,7 +693,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 700.0, 721.0 ],
+						"rect" : [ 0.0, 26.0, 700.0, 721.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -755,8 +755,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 202.0, 381.666666666666799, 345.0, 25.0 ],
-									"text" : "Apply the sweep to the frequency parameter of the filter"
+									"patching_rect" : [ 202.0, 381.666666666666799, 355.0, 25.0 ],
+									"text" : "Applies the sweep to the frequency parameter of the filter"
 								}
 
 							}
@@ -770,7 +770,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 105.0, 213.0, 135.0, 40.0 ],
-									"text" : "Play a short grain from the buffer",
+									"presentation_linecount" : 2,
+									"text" : "Plays a short grain from the buffer",
 									"textjustification" : 1
 								}
 
@@ -782,8 +783,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 82.0, 90.0, 174.0, 25.0 ],
-									"text" : "Generate random triggers"
+									"patching_rect" : [ 82.0, 90.0, 184.0, 25.0 ],
+									"text" : "Generatesj random triggers"
 								}
 
 							}
@@ -794,8 +795,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 398.0, 340.000000000000114, 272.0, 25.0 ],
-									"text" : "Generate an exponential downward sweep"
+									"patching_rect" : [ 398.0, 340.000000000000114, 278.0, 25.0 ],
+									"text" : "Generates an exponential downward sweep"
 								}
 
 							}
@@ -1544,6 +1545,7 @@
 											}
 , 											{
 												"box" : 												{
+													"fontsize" : 12.0,
 													"id" : "obj-1",
 													"maxclass" : "live.tab",
 													"num_lines_patching" : 3,
@@ -1967,77 +1969,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.audiotrigger~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.map~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.pack~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.plus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.read~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.svf~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.window~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

@@ -118,7 +118,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 265.0, 484.0, 320.0, 36.0 ],
+									"patching_rect" : [ 265.0, 484.0, 323.0, 36.0 ],
 									"text" : "The /edge parameter also affects interpolation and we need bound off to be able to read outside the table.",
 									"textjustification" : 1
 								}
@@ -303,6 +303,7 @@
 							}
 , 							{
 								"box" : 								{
+									"fontsize" : 12.0,
 									"id" : "obj-6",
 									"maxclass" : "live.tab",
 									"num_lines_patching" : 6,
@@ -348,8 +349,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 189.0, 222.5, 179.0, 25.0 ],
-									"text" : "Create a ramp from -1 to 2"
+									"patching_rect" : [ 186.0, 222.5, 185.0, 25.0 ],
+									"text" : "Creates a ramp from -1 to 2"
 								}
 
 							}
@@ -1266,12 +1267,11 @@
 								"box" : 								{
 									"bubble" : 1,
 									"id" : "obj-108",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 185.0, 501.5, 366.0, 40.0 ],
-									"text" : "Lookup the 10 values and interpolate 4096 points between them. Interpolation types can be changed with /interp",
+									"patching_rect" : [ 184.5, 509.0, 367.0, 25.0 ],
+									"text" : "Looks up the 4096 point ramp input using the 10 point table",
 									"textjustification" : 1
 								}
 
@@ -1283,8 +1283,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 450.0, 367.0, 25.0 ],
-									"text" : "Multiply the 0 - 1 values by one less than the lookup length",
+									"patching_rect" : [ 90.0, 450.0, 373.0, 25.0 ],
+									"text" : "Multiplies the 0 - 1 values by one less than the lookup length",
 									"textjustification" : 1
 								}
 
@@ -1296,8 +1296,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 271.5, 122.0, 25.0 ],
-									"text" : "Generate a table",
+									"patching_rect" : [ 315.0, 271.5, 106.0, 25.0 ],
+									"text" : "Alter the table",
 									"textjustification" : 1
 								}
 
@@ -1309,8 +1309,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 405.0, 271.0, 25.0 ],
-									"text" : "Get the length of the lookup frame minus 1",
+									"patching_rect" : [ 120.0, 405.0, 278.0, 25.0 ],
+									"text" : "Gets the length of the lookup frame minus 1",
 									"textjustification" : 1
 								}
 
@@ -1324,7 +1324,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 281.625, 171.5, 285.0, 40.0 ],
-									"text" : "Generate a frame containing ramped values from 0 - 1 with 4096 discrete points",
+									"text" : "Generates a frame containing ramped values from 0 - 1 with 4096 discrete points",
 									"textjustification" : 1
 								}
 
@@ -1750,54 +1750,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.length~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.lookup~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.map~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.minus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

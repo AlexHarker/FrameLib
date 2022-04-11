@@ -96,7 +96,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 107.0, 215.0, 135.0, 40.0 ],
-									"text" : "Play a short grain from the buffer",
+									"text" : "Plays a short grain from the buffer",
 									"textjustification" : 1
 								}
 
@@ -162,8 +162,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 323.0, 470.0, 218.0, 25.0 ],
-									"text" : "Apply the sweep to the frequency"
+									"patching_rect" : [ 323.0, 470.0, 228.0, 25.0 ],
+									"text" : "Applies the sweep to the frequency"
 								}
 
 							}
@@ -174,8 +174,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 80.0, 92.0, 174.0, 25.0 ],
-									"text" : "Generate random triggers"
+									"patching_rect" : [ 80.0, 92.0, 181.0, 25.0 ],
+									"text" : "Generates random triggers"
 								}
 
 							}
@@ -186,8 +186,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 405.0, 344.0, 255.0, 25.0 ],
-									"text" : "Generate an exponential upward sweep"
+									"patching_rect" : [ 405.0, 344.0, 262.0, 25.0 ],
+									"text" : "Generates an exponential upward sweep"
 								}
 
 							}
@@ -813,8 +813,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 445.250000000000114, 390.0, 148.0, 25.0 ],
-									"text" : "Calculate coefficients"
+									"patching_rect" : [ 445.250000000000114, 390.0, 155.0, 25.0 ],
+									"text" : "Calculates coefficients"
 								}
 
 							}
@@ -825,8 +825,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 445.250000000000114, 435.0, 170.0, 25.0 ],
-									"text" : "Output to Max for display"
+									"patching_rect" : [ 445.250000000000114, 435.0, 177.0, 25.0 ],
+									"text" : "Outputs to Max for display"
 								}
 
 							}
@@ -1164,6 +1164,7 @@
 											}
 , 											{
 												"box" : 												{
+													"fontsize" : 12.0,
 													"id" : "obj-2",
 													"maxclass" : "live.tab",
 													"num_lines_patching" : 8,
@@ -1529,77 +1530,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "fl-mono-h.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.audiotrigger~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.biquadcoeff~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.biquad~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.map~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.plus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.read~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.window~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

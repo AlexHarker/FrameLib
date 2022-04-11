@@ -180,8 +180,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 385.5, 165.0, 166.0, 69.0 ],
-									"text" : "Chopping the input frame into 2 equal parts of half the input frame each.",
+									"patching_rect" : [ 387.75, 165.0, 161.5, 69.0 ],
+									"text" : "Chops the input frame into 2 equal parts of half the input frame each.",
 									"textjustification" : 1
 								}
 
@@ -195,8 +195,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 86.0, 165.0, 147.0, 69.0 ],
-									"text" : "Chopping the input frame into 4 parts, 256 samples long",
+									"patching_rect" : [ 97.5, 165.0, 124.0, 69.0 ],
+									"text" : "Chops the input frame into 4 parts, 256 samples long",
 									"textjustification" : 1
 								}
 
@@ -681,34 +681,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.chop~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.length~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

@@ -100,7 +100,6 @@
 							}
 , 							{
 								"box" : 								{
-									"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
 									"id" : "obj-18",
 									"linecount" : 7,
 									"maxclass" : "comment",
@@ -525,7 +524,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 293.0, 210.0, 338.0, 36.0 ],
+									"patching_rect" : [ 288.0, 203.5, 338.0, 36.0 ],
 									"text" : "You will need to restart DSP for absolute mode as those times are measured from when DSP goes on."
 								}
 
@@ -549,7 +548,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 293.0, 165.0, 338.0, 36.0 ],
+									"patching_rect" : [ 288.0, 158.5, 338.0, 36.0 ],
 									"text" : "Note that when you choose relative the list gets sorted in order, as it is interpreted as a set of timings from now."
 								}
 
@@ -597,8 +596,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 358.0, 461.5, 284.0, 40.0 ],
-									"text" : "timing between the first trigger frame (made by you) and successive fl.chain~ outputs."
+									"patching_rect" : [ 344.0, 461.5, 277.0, 40.0 ],
+									"text" : "Time between the first trigger frame (made by you) and successive fl.chain~ outputs.",
+									"textjustification" : 1
 								}
 
 							}
@@ -610,8 +610,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 160.0, 463.5, 118.0, 40.0 ],
-									"text" : "timing between frames",
+									"patching_rect" : [ 160.0, 463.5, 110.0, 40.0 ],
+									"text" : "Time between frames",
 									"textjustification" : 1
 								}
 
@@ -623,7 +623,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 433.0, 62.0, 23.0 ],
+									"patching_rect" : [ 288.0, 433.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -636,7 +636,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 300.0, 470.0, 50.0, 23.0 ]
+									"patching_rect" : [ 288.0, 470.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -647,7 +647,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 388.0, 111.0, 23.0 ],
+									"patching_rect" : [ 288.0, 388.0, 111.0, 23.0 ],
 									"text" : "fl.timer~ /units ms"
 								}
 
@@ -662,7 +662,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 242.0, 105.0, 120.0, 55.0 ],
+									"patching_rect" : [ 240.0, 96.0, 120.0, 55.0 ],
 									"text" : "Choose the time mode",
 									"textjustification" : 1
 								}
@@ -745,6 +745,7 @@
 							}
 , 							{
 								"box" : 								{
+									"fontsize" : 12.0,
 									"id" : "obj-51",
 									"maxclass" : "live.tab",
 									"num_lines_patching" : 3,
@@ -753,7 +754,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 210.0, 165.0, 79.0, 75.0 ],
+									"patching_rect" : [ 215.0, 152.0, 69.0, 90.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_enum" : [ "interval", "relative", "absolute" ],
@@ -922,7 +923,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-65", 1 ],
-									"midpoints" : [ 39.5, 376.5, 401.5, 376.5 ],
+									"midpoints" : [ 39.5, 376.5, 389.5, 376.5 ],
 									"order" : 0,
 									"source" : [ "obj-47", 0 ]
 								}
@@ -951,7 +952,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-65", 0 ],
-									"midpoints" : [ 39.5, 300.0, 309.5, 300.0 ],
+									"midpoints" : [ 39.5, 300.0, 297.5, 300.0 ],
 									"order" : 0,
 									"source" : [ "obj-48", 0 ]
 								}
@@ -1093,46 +1094,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "fl.audiotrigger~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.chain~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.register~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.timedelta~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.timer~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

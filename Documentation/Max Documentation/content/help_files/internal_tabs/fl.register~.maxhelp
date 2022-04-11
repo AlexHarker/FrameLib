@@ -161,12 +161,14 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 0,
 									"id" : "obj-18",
 									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 365.75, 315.0, 278.5, 79.0 ],
+									"patching_rect" : [ 370.0, 302.0, 282.0, 98.0 ],
 									"text" : "If the /mode parameter is set to pass then frames in the right inlet are immediately output.\n\nOtherwise, output only occurs when a trigger is received in the left inlet.",
 									"textjustification" : 1
 								}
@@ -236,12 +238,14 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 0,
 									"id" : "obj-13",
 									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 405.0, 300.0, 94.0 ],
+									"patching_rect" : [ 30.0, 392.0, 285.0, 113.0 ],
 									"text" : "fl.register~ is similar to zl.reg.\n\nThis example that demonstrates sampling a  rapid stream of data by storing the output of a fast fl.random~ in the right inlet of fl.register~ and only outputting its contents every 1000 ms.",
 									"textjustification" : 1
 								}
@@ -273,7 +277,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 225.0, 272.0, 60.0, 118.0 ],
+									"patching_rect" : [ 240.0, 272.0, 60.0, 118.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"slidercolor" : [ 0.847058823529412, 0.819607843137255, 0.0, 1.0 ]
 								}
@@ -286,7 +290,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 225.0, 182.0, 62.0, 23.0 ],
+									"patching_rect" : [ 240.0, 182.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -402,7 +406,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-9", 0 ],
-									"midpoints" : [ 189.5, 170.5, 234.5, 170.5 ],
+									"midpoints" : [ 189.5, 170.5, 249.5, 170.5 ],
 									"order" : 0,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -497,34 +501,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.register~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

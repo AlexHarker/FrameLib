@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 656.0, 464.0 ],
+		"rect" : [ 34.0, 87.0, 586.0, 486.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 656.0, 438.0 ],
+						"rect" : [ 0.0, 26.0, 586.0, 460.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 656.0, 438.0 ],
+						"rect" : [ 34.0, 113.0, 586.0, 460.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -149,6 +149,18 @@
 						"showontab" : 1,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
+								"box" : 								{
+									"bubble" : 1,
+									"id" : "obj-7",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 266.0, 105.0, 98.0, 25.0 ],
+									"text" : "Set constant"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-4",
 									"maxclass" : "newobj",
@@ -181,7 +193,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 354.0, 73.0, 79.0, 23.0 ],
+									"patching_rect" : [ 390.0, 73.0, 79.0, 23.0 ],
 									"text" : "loadmess 2."
 								}
 
@@ -195,7 +207,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 354.0, 105.0, 60.0, 23.0 ]
+									"patching_rect" : [ 390.0, 105.0, 60.0, 23.0 ]
 								}
 
 							}
@@ -219,7 +231,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 354.0, 210.0, 77.0, 23.0 ],
+									"patching_rect" : [ 390.0, 210.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -255,7 +267,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 499.0, 289.0, 45.0, 45.0 ]
+									"patching_rect" : [ 406.0, 380.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -304,8 +316,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 111.0, 390.0, 268.0, 25.0 ],
-									"text" : "On load should show 2 * pi once dsp is on"
+									"patching_rect" : [ 111.0, 390.0, 224.0, 25.0 ],
+									"text" : "Observe the output (2 * pi on load)"
 								}
 
 							}
@@ -313,12 +325,11 @@
 								"box" : 								{
 									"bubble" : 1,
 									"id" : "obj-23",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 419.0, 96.5, 205.0, 40.0 ],
-									"text" : "Set parameters for fl.constant~\n(constant and multiplier)"
+									"patching_rect" : [ 456.0, 105.0, 101.0, 25.0 ],
+									"text" : "Set multiplier"
 								}
 
 							}
@@ -354,7 +365,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-12", 0 ],
-									"midpoints" : [ 363.5, 243.5, 95.5, 243.5 ],
+									"midpoints" : [ 399.5, 243.5, 95.5, 243.5 ],
 									"source" : [ "obj-10", 0 ]
 								}
 
@@ -377,7 +388,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.871366560459137, 0.0, 1.0 ],
 									"destination" : [ "obj-10", 0 ],
-									"midpoints" : [ 39.5, 198.5, 363.5, 198.5 ],
+									"midpoints" : [ 39.5, 198.5, 399.5, 198.5 ],
 									"order" : 0,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -500,34 +511,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.constant~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tag~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

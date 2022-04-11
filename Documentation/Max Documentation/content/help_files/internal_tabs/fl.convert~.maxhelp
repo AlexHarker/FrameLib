@@ -168,7 +168,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 349.0, 251.0, 119.0, 25.0 ],
+									"patching_rect" : [ 361.0, 249.0, 119.0, 25.0 ],
 									"text" : "Conversion type"
 								}
 
@@ -212,6 +212,7 @@
 							}
 , 							{
 								"box" : 								{
+									"fontsize" : 12.0,
 									"id" : "obj-32",
 									"maxclass" : "live.tab",
 									"num_lines_patching" : 8,
@@ -220,9 +221,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 240.0, 151.0, 100.25, 225.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 15.0, 15.0, 105.0, 255.0 ],
+									"patching_rect" : [ 226.125, 149.0, 129.25, 225.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_enum" : [ "db->amp", "amp->db", "midi->freq", "freq->midi", "semitones->ratios", "ratios->semitones", "degrees->radians", "radians->degrees" ],
@@ -505,30 +504,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "fl.convert~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

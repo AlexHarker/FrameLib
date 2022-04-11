@@ -427,8 +427,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 266.0, 142.0, 285.0, 25.0 ],
-									"text" : "Generate a ramp from 0-1, 256 samples long"
+									"patching_rect" : [ 266.0, 142.0, 291.0, 25.0 ],
+									"text" : "Generates a ramp from 0-1, 256 samples long"
 								}
 
 							}
@@ -439,7 +439,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 93.0, 92.0, 276.0, 25.0 ],
+									"patching_rect" : [ 90.0, 92.0, 276.0, 25.0 ],
 									"text" : "Schedule a trigger frame at the start of time"
 								}
 
@@ -711,30 +711,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.once~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.split~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

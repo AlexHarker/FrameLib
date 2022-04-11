@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 679.0, 775.0 ],
+						"rect" : [ 34.0, 113.0, 679.0, 775.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -90,11 +90,13 @@
 								"box" : 								{
 									"bubble" : 1,
 									"id" : "obj-24",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 346.5, 330.0, 198.0, 25.0 ],
-									"text" : "See the effect of interpolation!"
+									"patching_rect" : [ 352.5, 321.5, 203.0, 40.0 ],
+									"text" : "Set to see the effects of different kinds of interpolation!",
+									"textjustification" : 1
 								}
 
 							}
@@ -105,8 +107,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 135.0, 285.0, 231.0, 25.0 ],
-									"text" : "Our interval lines up with the cosine"
+									"patching_rect" : [ 139.0, 285.0, 286.0, 25.0 ],
+									"text" : "Note that our interval lines up with the cosine"
 								}
 
 							}
@@ -117,8 +119,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 165.0, 240.0, 398.0, 25.0 ],
-									"text" : "Synthesize a cosine that doesn't line up with the samples exaclty"
+									"patching_rect" : [ 165.0, 240.0, 444.0, 25.0 ],
+									"text" : "Synthesizes a cosine that doesn't line up exaclty with sample boundaries"
 								}
 
 							}
@@ -598,7 +600,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 278.0, 601.0, 337.0, 156.0 ],
+									"patching_rect" : [ 278.0, 601.0, 344.0, 156.0 ],
 									"text" : "You can also manually set the delay of the fl.source~ object in order to compensate for other delays that might be incurred elsewhere in a FrameLib network or to add delay (e.g. for a live granular process). \n\nNote, this cannot magically warp your fl.source~ object through time! and this value only has an effect when it is greater than the /length parameter. Experiment by changing the delay amount above and observing how well the signals null sum.",
 									"textjustification" : 1
 								}
@@ -746,7 +748,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 99.0, 300.0, 141.0 ],
+									"patching_rect" : [ 315.0, 99.0, 302.0, 141.0 ],
 									"text" : "Because fl.source~ needs to collect the last N samples it has to wait for at least the number of samples specified by the /length parameter before it can output. \n\nThis means it is always delayed in relation to the input, and you may have to deal with this delay if you need tight synchronisation between FrameLib and other audio streams.",
 									"textjustification" : 1
 								}
@@ -1021,7 +1023,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 679.0, 775.0 ],
+						"rect" : [ 0.0, 26.0, 679.0, 775.0 ],
 						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1083,7 +1085,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 337.5, 552.0, 179.0, 170.0 ],
+									"patching_rect" : [ 337.5, 552.0, 182.0, 170.0 ],
 									"text" : "Here, fl.interval~ replaces fl.audiotrigger~ and sends a trigger frame every 1024 samples.\n\nAs a result, fl.source~ will output the last 1024 samples from the audio stream every 1024 samples in time, resulting in an uninterrupted stream",
 									"textjustification" : 1
 								}
@@ -1161,7 +1163,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 360.0, 240.0, 120.0, 83.0 ],
+									"patching_rect" : [ 350.0, 240.0, 120.0, 83.0 ],
 									"text" : "Hit the bang object to output the last 1024 samples from fl.source~.",
 									"textjustification" : 1
 								}
@@ -1423,38 +1425,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.audiotrigger~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

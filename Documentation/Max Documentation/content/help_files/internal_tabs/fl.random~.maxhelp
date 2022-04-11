@@ -179,8 +179,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 50.0, 163.0, 218.0, 40.0 ],
-									"text" : "Generate 10 random values (0-1)"
+									"patching_rect" : [ 50.0, 163.0, 209.0, 40.0 ],
+									"text" : "Generates 10 random values (0-1)"
 								}
 
 							}
@@ -192,7 +192,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 419.0, 374.5, 203.0, 54.0 ],
+									"patching_rect" : [ 419.0, 374.5, 207.0, 54.0 ],
 									"text" : "When the /mode parameter is set to input the output matches the length of the input",
 									"textjustification" : 1
 								}
@@ -206,7 +206,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 396.0, 291.5, 165.0, 40.0 ],
+									"patching_rect" : [ 396.0, 291.5, 166.0, 40.0 ],
 									"text" : "Maps incoming value to set the ramp length",
 									"textjustification" : 1
 								}
@@ -221,8 +221,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 163.0, 242.0, 40.0 ],
-									"text" : "Generate a single random value (0-1)"
+									"patching_rect" : [ 330.0, 163.0, 233.0, 40.0 ],
+									"text" : "Generates a single random value (0-1)"
 								}
 
 							}
@@ -292,7 +292,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 270.0, 480.0, 210.0, 105.0 ],
-									"size" : 20,
+									"size" : 13,
 									"slidercolor" : [ 0.207843137254902, 0.76078431372549, 0.749019607843137, 1.0 ],
 									"spacing" : 2
 								}
@@ -529,38 +529,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.map~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tag~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 

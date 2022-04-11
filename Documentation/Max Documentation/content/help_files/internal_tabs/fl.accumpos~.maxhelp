@@ -359,7 +359,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 150.0, 315.0, 300.0, 108.0 ],
-									"text" : "The argument asks fl.accumpos~ to find the index within the frame at which 50% (or the requested percentage) of the sum is accumulated. \n\nFor the default setting this % equates to a sum of 2.5 which will be found somewhere between the 7th and 8th value in the original frame."
+									"text" : "The argument sets fl.accumpos~ to find the index within the frame at which 50% (or the requested percentage) of the sum is accumulated. \n\nIn this case the default setting % equates to a sum of 2.5 which will be found somewhere between the 7th and 8th value in the original frame.",
+									"textjustification" : 1
 								}
 
 							}
@@ -650,38 +651,6 @@
 			}
  ],
 		"lines" : [  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.accumpos~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.helpname.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-				"patcherrelativepath" : "../../../../../Packaging/Max/FrameLib/misc",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sum~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
- ],
 		"autosave" : 0
 	}
 
