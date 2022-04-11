@@ -314,7 +314,6 @@
                                         143.0,
                                         40.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "Also has a non-symbolic name!",
                                     "textjustification": 1
                                 }

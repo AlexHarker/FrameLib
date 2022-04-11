@@ -345,9 +345,9 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        255.5,
+                                        254.0,
                                         165.0,
-                                        152.0,
+                                        155.0,
                                         55.0
                                     ],
                                     "text": "Uses ratios to determine the padding amounts.",

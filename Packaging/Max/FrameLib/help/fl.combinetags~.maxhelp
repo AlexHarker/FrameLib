@@ -463,7 +463,7 @@
                                     "patching_rect": [
                                         309.0,
                                         396.5,
-                                        195.0,
+                                        196.0,
                                         83.0
                                     ],
                                     "text": "Combines the tagged frames ready to send to fl.svf~.\n\nSet the argument higher to create more inlets.",

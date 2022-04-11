@@ -314,7 +314,6 @@
                                         202.625,
                                         40.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "Adjust the real and imaginary input values to see the result",
                                     "textjustification": 1
                                 }
@@ -333,7 +332,6 @@
                                         143.0,
                                         40.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "Also has a non-symbolic name!",
                                     "textjustification": 1
                                 }

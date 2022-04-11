@@ -327,7 +327,7 @@
                                     "patching_rect": [
                                         370.0,
                                         302.0,
-                                        282.0,
+                                        284.0,
                                         98.0
                                     ],
                                     "text": "If the /mode parameter is set to pass then frames in the right inlet are immediately output.\n\nOtherwise, output only occurs when a trigger is received in the left inlet.",

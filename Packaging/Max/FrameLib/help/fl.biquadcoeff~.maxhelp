@@ -241,7 +241,7 @@
                                     "patching_rect": [
                                         109.0,
                                         228.0,
-                                        135.0,
+                                        137.0,
                                         40.0
                                     ],
                                     "text": "Plays a short grain from the buffer",
@@ -1091,8 +1091,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            113.0,
+                            0.0,
+                            26.0,
                             689.0,
                             798.0
                         ],
@@ -1629,8 +1629,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            113.0,
                             689.0,
                             798.0
                         ],

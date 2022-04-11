@@ -528,7 +528,7 @@
                                     "patching_rect": [
                                         289.5,
                                         336.5,
-                                        183.0,
+                                        186.0,
                                         40.0
                                     ],
                                     "text": "Combines the three tagged frames into a single frame",
@@ -546,7 +546,7 @@
                                     "patching_rect": [
                                         369.0,
                                         235.0,
-                                        155.0,
+                                        158.0,
                                         40.0
                                     ],
                                     "text": "Creates three different frames with tags",

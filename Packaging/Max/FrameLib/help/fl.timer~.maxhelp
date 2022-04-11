@@ -582,7 +582,7 @@
                                     "patching_rect": [
                                         178.0,
                                         167.5,
-                                        183.0,
+                                        185.0,
                                         40.0
                                     ],
                                     "text": "Generates trigger frame 50 samples after fl.interval~",
