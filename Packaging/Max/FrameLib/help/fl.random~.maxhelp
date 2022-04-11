@@ -324,7 +324,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         550.0,
-                                        493.0,
+                                        510.0,
                                         45.0,
                                         45.0
                                     ]
@@ -332,6 +332,9 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.1,
+                                    "bubbleside": 2,
                                     "id": "obj-15",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -339,24 +342,25 @@
                                     "patching_rect": [
                                         50.0,
                                         163.0,
-                                        205.0,
-                                        21.0
+                                        209.0,
+                                        40.0
                                     ],
-                                    "text": "Generate ten random values (0-1)"
+                                    "text": "Generates 10 random values (0-1)"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-13",
                                     "linecount": 3,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        420.0,
-                                        359.5,
-                                        190.0,
-                                        50.0
+                                        419.0,
+                                        374.5,
+                                        207.0,
+                                        54.0
                                     ],
                                     "text": "When the /mode parameter is set to input the output matches the length of the input",
                                     "textjustification": 1
@@ -364,16 +368,17 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-12",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        405.0,
-                                        276.5,
-                                        150.0,
-                                        36.0
+                                        396.0,
+                                        291.5,
+                                        166.0,
+                                        40.0
                                     ],
                                     "text": "Maps incoming value to set the ramp length",
                                     "textjustification": 1
@@ -381,6 +386,9 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.1,
+                                    "bubbleside": 2,
                                     "id": "obj-11",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -388,10 +396,10 @@
                                     "patching_rect": [
                                         330.0,
                                         163.0,
-                                        225.0,
-                                        21.0
+                                        233.0,
+                                        40.0
                                     ],
-                                    "text": "Generate a single random value (0-1)"
+                                    "text": "Generates a single random value (0-1)"
                                 }
                             },
                             {
@@ -405,7 +413,7 @@
                                     ],
                                     "patching_rect": [
                                         307.0,
-                                        238.0,
+                                        255.0,
                                         137.0,
                                         23.0
                                     ],
@@ -423,7 +431,7 @@
                                     ],
                                     "patching_rect": [
                                         307.0,
-                                        283.0,
+                                        300.0,
                                         83.0,
                                         23.0
                                     ],
@@ -447,7 +455,7 @@
                                     ],
                                     "patching_rect": [
                                         307.0,
-                                        193.0,
+                                        210.0,
                                         70.0,
                                         23.0
                                     ],
@@ -465,7 +473,7 @@
                                     ],
                                     "patching_rect": [
                                         270.0,
-                                        328.0,
+                                        345.0,
                                         56.0,
                                         23.0
                                     ],
@@ -518,11 +526,11 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         270.0,
-                                        463.0,
+                                        480.0,
                                         210.0,
                                         105.0
                                     ],
-                                    "size": 20,
+                                    "size": 13,
                                     "slidercolor": [
                                         0.207843137254902,
                                         0.76078431372549,
@@ -543,7 +551,7 @@
                                     ],
                                     "patching_rect": [
                                         270.0,
-                                        418.0,
+                                        435.0,
                                         62.0,
                                         23.0
                                     ],
@@ -567,7 +575,7 @@
                                     ],
                                     "patching_rect": [
                                         270.0,
-                                        373.0,
+                                        390.0,
                                         142.0,
                                         23.0
                                     ],
@@ -620,7 +628,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         30.0,
-                                        463.0,
+                                        480.0,
                                         210.0,
                                         105.0
                                     ],
@@ -645,7 +653,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        418.0,
+                                        435.0,
                                         62.0,
                                         23.0
                                     ],
@@ -687,7 +695,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        193.0,
+                                        210.0,
                                         131.0,
                                         23.0
                                     ],
@@ -983,48 +991,34 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-32",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        363.0,
-                                        406.0,
-                                        139.0,
-                                        21.0
+                                        357.0,
+                                        404.0,
+                                        156.0,
+                                        25.0
                                     ],
                                     "text": "Retrieves frame length"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-29",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        393.0,
-                                        495.0,
-                                        225.0,
-                                        21.0
+                                        346.0,
+                                        494.0,
+                                        242.0,
+                                        25.0
                                     ],
                                     "text": "Length should match the value above"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-30",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        348.0,
-                                        499.125,
-                                        39.0,
-                                        14.75
-                                    ]
                                 }
                             },
                             {
@@ -1084,33 +1078,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-21",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        342.0,
-                                        180.0,
-                                        209.0,
-                                        21.0
+                                        297.0,
+                                        179.0,
+                                        226.0,
+                                        25.0
                                     ],
                                     "text": "Change the size of the initial frame"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-20",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        297.0,
-                                        184.125,
-                                        39.0,
-                                        14.75
-                                    ]
                                 }
                             },
                             {
@@ -1299,15 +1278,16 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-10",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        270.0,
-                                        316.0,
-                                        324.0,
-                                        21.0
+                                        265.0,
+                                        315.0,
+                                        341.0,
+                                        25.0
                                     ],
                                     "text": "Generates an initial frame of 100 values using fl.ramp~"
                                 }
@@ -1644,29 +1624,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

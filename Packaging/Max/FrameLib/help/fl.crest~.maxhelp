@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.crest~",
-                                        122
+                                        124
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -302,18 +302,40 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
+                                    "id": "obj-13",
+                                    "linecount": 2,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        166.5,
+                                        330.0,
+                                        171.0,
+                                        55.0
+                                    ],
+                                    "presentation_linecount": 2,
+                                    "text": "Here we calculate the crest of the sine wave",
+                                    "textjustification": 1
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-14",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        544.5,
-                                        218.5,
-                                        169.0,
-                                        36.0
+                                        542.5,
+                                        209.0,
+                                        171.0,
+                                        55.0
                                     ],
-                                    "text": "Here we calculate the crest factor of frames of noise.",
+                                    "text": "Here we calculate the crest factor of frames of noise",
                                     "textjustification": 1
                                 }
                             },
@@ -1232,29 +1254,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

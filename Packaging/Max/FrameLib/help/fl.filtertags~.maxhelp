@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.filtertags~",
-                                        106
+                                        107
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -467,34 +467,20 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-42",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        330.5,
-                                        593.5,
-                                        284.5,
-                                        36.0
-                                    ],
-                                    "text": "Observe where each parameter goes to in the Max console (see also the buttons above)."
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-43",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
                                         289.5,
-                                        603.875,
-                                        37.0,
-                                        15.25
-                                    ]
+                                        591.5,
+                                        294.0,
+                                        40.0
+                                    ],
+                                    "text": "Observe where each parameter goes to in the Max console (see also the buttons above).",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -515,98 +501,56 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-38",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        262.0,
-                                        413.5,
-                                        267.0,
-                                        36.0
+                                        225.0,
+                                        411.5,
+                                        285.0,
+                                        40.0
                                     ],
-                                    "text": "We set the tags we want to filter out in the argments of fl.filtertags~ (or via parameters)"
+                                    "text": "We set the tags we want to filter out in the argments of fl.filtertags~ (or via parameters)",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-39",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        222.0,
-                                        423.875,
-                                        37.0,
-                                        15.25
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-36",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        322.5,
-                                        338.5,
-                                        169.0,
-                                        36.0
+                                        289.5,
+                                        336.5,
+                                        183.0,
+                                        40.0
                                     ],
-                                    "text": "Combine the three tagged frames into a single frame"
+                                    "text": "Combines the three tagged frames into a single frame",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-37",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        283.5,
-                                        348.875,
-                                        37.0,
-                                        15.25
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-35",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        420.0,
-                                        237.0,
-                                        150.0,
-                                        36.0
+                                        369.0,
+                                        235.0,
+                                        155.0,
+                                        40.0
                                     ],
-                                    "text": "Create three different frames with tas"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-33",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        381.0,
-                                        247.375,
-                                        37.0,
-                                        15.25
-                                    ]
+                                    "text": "Creates three different frames with tags",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1265,29 +1209,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

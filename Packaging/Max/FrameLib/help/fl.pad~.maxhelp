@@ -13,7 +13,7 @@
             34.0,
             87.0,
             510.0,
-            478.0
+            447.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -68,7 +68,7 @@
                             34.0,
                             113.0,
                             510.0,
-                            452.0
+                            421.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.pad~",
-                                        82
+                                        83
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -149,7 +149,7 @@
                                         15.0,
                                         157,
                                         480.0,
-                                        280.0
+                                        249.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
@@ -195,7 +195,7 @@
                             0.0,
                             26.0,
                             510.0,
-                            452.0
+                            421.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -266,7 +266,7 @@
                             34.0,
                             113.0,
                             510.0,
-                            452.0
+                            421.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -309,7 +309,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         435.0,
-                                        369.0,
+                                        337.0,
                                         45.0,
                                         45.0
                                     ]
@@ -317,52 +317,40 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.3,
+                                    "bubbleside": 2,
                                     "id": "obj-56",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        45.0,
-                                        182.0,
-                                        173.0,
-                                        36.0
+                                        53.0,
+                                        165.0,
+                                        172.0,
+                                        55.0
                                     ],
-                                    "text": "Using samples to determine padding amounts",
+                                    "text": "Uses samples to determine padding amounts",
                                     "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 2,
-                                    "border": 4.0,
-                                    "id": "obj-57",
-                                    "justification": 1,
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        93.52079772949219,
-                                        220.0,
-                                        35.958343505859375,
-                                        36.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-55",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        240.0,
-                                        182.0,
-                                        157.0,
-                                        36.0
+                                        255.5,
+                                        165.0,
+                                        152.0,
+                                        55.0
                                     ],
-                                    "text": "Using ratios to determine the padding amounts.",
+                                    "text": "Uses ratios to determine the padding amounts.",
                                     "textjustification": 1
                                 }
                             },
@@ -379,7 +367,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         240.0,
-                                        360.0,
+                                        328.0,
                                         163.0,
                                         63.0
                                     ],
@@ -407,7 +395,7 @@
                                     ],
                                     "patching_rect": [
                                         240.0,
-                                        315.0,
+                                        283.0,
                                         62.0,
                                         23.0
                                     ],
@@ -431,7 +419,7 @@
                                     ],
                                     "patching_rect": [
                                         240.0,
-                                        272.0,
+                                        240.0,
                                         183.0,
                                         23.0
                                     ],
@@ -451,7 +439,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         30.0,
-                                        360.0,
+                                        328.0,
                                         163.0,
                                         63.0
                                     ],
@@ -479,7 +467,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        315.0,
+                                        283.0,
                                         62.0,
                                         23.0
                                     ],
@@ -521,7 +509,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        272.0,
+                                        240.0,
                                         120.0,
                                         23.0
                                     ],
@@ -544,23 +532,6 @@
                                         23.0
                                     ],
                                     "text": "fl.random~ /length 676"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 2,
-                                    "border": 4.0,
-                                    "id": "obj-15",
-                                    "justification": 1,
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        300.5208282470703,
-                                        220.0,
-                                        35.958343505859375,
-                                        36.0
-                                    ]
                                 }
                             },
                             {
@@ -608,9 +579,9 @@
                                     ],
                                     "midpoints": [
                                         39.5,
-                                        265.0,
+                                        231.0,
                                         249.5,
-                                        265.0
+                                        231.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -743,29 +714,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

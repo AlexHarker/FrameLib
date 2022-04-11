@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.pattern~",
-                                        107
+                                        108
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -327,7 +327,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        92.0,
+                                        105.0,
                                         577.6756756756756,
                                         510.0,
                                         36.0
@@ -337,15 +337,17 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-39",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        438.75,
-                                        314.0,
-                                        144.0,
-                                        21.0
+                                        428.0,
+                                        303.1756756756756,
+                                        146.0,
+                                        40.0
                                     ],
                                     "text": "Control the progression"
                                 }
@@ -399,15 +401,16 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-35",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        220.0,
+                                        214.0,
                                         195.0,
-                                        100.0,
-                                        21.0
+                                        117.0,
+                                        25.0
                                     ],
                                     "text": "Sets the pattern"
                                 }
@@ -493,64 +496,69 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-24",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        411.0,
-                                        108.17567567567562,
-                                        42.0,
-                                        21.0
+                                        410.0,
+                                        92.0,
+                                        44.0,
+                                        40.0
                                     ],
                                     "text": "Reset"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-22",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        109.0,
-                                        439.1756756756756,
-                                        154.0,
-                                        21.0
+                                        112.0,
+                                        438.1756756756756,
+                                        198.0,
+                                        25.0
                                     ],
-                                    "text": "Envelopes to avoid clicks"
+                                    "text": "Applies envelip to avoid clicks"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-18",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        137.0,
-                                        386.6756756756756,
-                                        170.0,
-                                        36.0
+                                        138.5,
+                                        384.6756756756756,
+                                        191.5,
+                                        40.0
                                     ],
-                                    "presentation_linecount": 2,
-                                    "text": "Filters a noise burst with the frequency from the pattern"
+                                    "text": "Filters a noise burst with the frequency from the pattern",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-15",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        205.0,
+                                        194.0,
                                         138.17567567567562,
-                                        137.0,
-                                        21.0
+                                        161.0,
+                                        25.0
                                     ],
-                                    "text": "Create a cross-rhythm"
+                                    "text": "Creates a cross-rhythm"
                                 }
                             },
                             {
@@ -1508,9 +1516,9 @@
                                     "midpoints": [
                                         461.5,
                                         472.1756756756756,
-                                        339.0,
+                                        347.0,
                                         472.1756756756756,
-                                        339.0,
+                                        347.0,
                                         292.1756756756756,
                                         240.5,
                                         292.1756756756756
@@ -1718,29 +1726,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

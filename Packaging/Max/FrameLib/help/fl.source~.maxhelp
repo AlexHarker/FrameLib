@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.source~",
-                                        111
+                                        112
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -192,8 +192,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            113.0,
                             679.0,
                             775.0
                         ],
@@ -231,52 +231,41 @@
                         "boxes": [
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-35",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        350.875,
-                                        333.0,
-                                        31.25,
-                                        17.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-24",
+                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        390.0,
-                                        330.0,
-                                        181.0,
-                                        21.0
+                                        352.5,
+                                        321.5,
+                                        203.0,
+                                        40.0
                                     ],
-                                    "text": "See the effect of interpolation!"
+                                    "text": "Set to see the effects of different kinds of interpolation!",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-23",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        165.0,
+                                        139.0,
                                         285.0,
-                                        214.0,
-                                        21.0
+                                        286.0,
+                                        25.0
                                     ],
-                                    "text": "Our interval lines up with the cosine"
+                                    "text": "Note that our interval lines up with the cosine"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-20",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -284,10 +273,10 @@
                                     "patching_rect": [
                                         165.0,
                                         240.0,
-                                        388.0,
-                                        21.0
+                                        444.0,
+                                        25.0
                                     ],
-                                    "text": "Synthesize a cosine that doesn't line up with the samples exaclty"
+                                    "text": "Synthesizes a cosine that doesn't line up exaclty with sample boundaries"
                                 }
                             },
                             {
@@ -867,19 +856,21 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "fontname": "Arial",
                                     "id": "obj-2",
-                                    "linecount": 8,
+                                    "linecount": 9,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        180.0,
-                                        281.5,
-                                        368.0,
-                                        123.0
+                                        165.0,
+                                        279.5,
+                                        330.0,
+                                        141.0
                                     ],
-                                    "text": "In the example to the left, a pink noise generator entering fl.source~ is converted to frames of 1024 samples in length every 1024 samples. The original source is delayed by 1024 samples and then subtracted from the output of fl.sink~. \n\nBecause we have accounted for the delay in converting to frames with fl.source~ subtracting the two audio streams results in null summing."
+                                    "text": "In the example to the left, a pink noise generator entering fl.source~ is converted to frames of 1024 samples in length every 1024 samples. The original source is delayed by 1024 samples and then subtracted from the output of fl.sink~. \n\nBecause we have accounted for the delay in converting to frames with fl.source~ subtracting the two audio streams results in null summing.",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -890,7 +881,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        570.0,
+                                        564.0,
                                         327.5,
                                         45.0,
                                         45.0
@@ -1009,6 +1000,8 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.63,
                                     "fontname": "Arial",
                                     "id": "obj-20",
                                     "linecount": 10,
@@ -1016,12 +1009,13 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        285.0,
-                                        615.0,
-                                        360.0,
-                                        152.0
+                                        278.0,
+                                        601.0,
+                                        344.0,
+                                        156.0
                                     ],
-                                    "text": "You can also manually set the delay of the fl.source~ object in order to compensate for other delays that might be incurred elsewhere in a FrameLib network or to add delay (e.g. for a live granular process). \n\nNote, this cannot magically warp your fl.source~ object through time! and this value only has an effect when it is greater than the /length parameter. Experiment by changing the delay amount above and observing how well the signals null sum."
+                                    "text": "You can also manually set the delay of the fl.source~ object in order to compensate for other delays that might be incurred elsewhere in a FrameLib network or to add delay (e.g. for a live granular process). \n\nNote, this cannot magically warp your fl.source~ object through time! and this value only has an effect when it is greater than the /length parameter. Experiment by changing the delay amount above and observing how well the signals null sum.",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1232,6 +1226,8 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.41,
                                     "fontname": "Arial",
                                     "id": "obj-21",
                                     "linecount": 9,
@@ -1239,12 +1235,13 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        330.0,
-                                        105.0,
-                                        316.0,
-                                        137.0
+                                        315.0,
+                                        99.0,
+                                        302.0,
+                                        141.0
                                     ],
-                                    "text": "Because fl.source~ needs to collect the last N samples it has to wait for at least the number of samples specified by the /length parameter before it can output. \n\nThis means it is always delayed in relation to the input, and you may have to deal with this delay if you need tight synchronisation between FrameLib and other audio streams."
+                                    "text": "Because fl.source~ needs to collect the last N samples it has to wait for at least the number of samples specified by the /length parameter before it can output. \n\nThis means it is always delayed in relation to the input, and you may have to deal with this delay if you need tight synchronisation between FrameLib and other audio streams.",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1659,8 +1656,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            113.0,
+                            0.0,
+                            26.0,
                             679.0,
                             775.0
                         ],
@@ -1730,18 +1727,21 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.47,
                                     "id": "obj-33",
                                     "linecount": 11,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        346.5,
-                                        557.0,
-                                        165.0,
-                                        166.0
+                                        337.5,
+                                        552.0,
+                                        182.0,
+                                        170.0
                                     ],
-                                    "text": "Here, fl.interval~ replaces fl.audiotrigger~ and sends a trigger frame every 1024 frames rather than everytime we send a click. In effect, fl.source~ is outputting the last 1024 samples from the audio stream every 1024 samples in time, resulting in an interrupted stream"
+                                    "text": "Here, fl.interval~ replaces fl.audiotrigger~ and sends a trigger frame every 1024 samples.\n\nAs a result, fl.source~ will output the last 1024 samples from the audio stream every 1024 samples in time, resulting in an uninterrupted stream",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1845,18 +1845,21 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.21,
                                     "id": "obj-32",
-                                    "linecount": 4,
+                                    "linecount": 5,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        360.75,
-                                        242.0,
-                                        121.0,
-                                        65.0
+                                        350.0,
+                                        240.0,
+                                        120.0,
+                                        83.0
                                     ],
-                                    "text": "Hit the bang object to output the last 1024 frames from fl.source~."
+                                    "text": "Hit the bang object to output the last 1024 samples from fl.source~.",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -2265,29 +2268,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

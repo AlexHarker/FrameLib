@@ -12,7 +12,7 @@
         "rect": [
             34.0,
             87.0,
-            526.0,
+            496.0,
             520.0
         ],
         "bglocked": 0,
@@ -67,7 +67,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            526.0,
+                            496.0,
                             494.0
                         ],
                         "bglocked": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.sin~",
-                                        85
+                                        81
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        496.0,
+                                        466.0,
                                         95
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         127,
-                                        496.0,
+                                        466.0,
                                         352.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        496.0
+                                        466.0
                                     ]
                                 }
                             }
@@ -194,7 +194,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            526.0,
+                            496.0,
                             494.0
                         ],
                         "bglocked": 0,
@@ -265,7 +265,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            526.0,
+                            496.0,
                             494.0
                         ],
                         "bglocked": 1,
@@ -302,14 +302,14 @@
                         "boxes": [
                             {
                                 "box": {
-                                    "id": "obj-1",
+                                    "id": "obj-4",
                                     "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        448.0,
-                                        420.0,
+                                        347.25,
+                                        349.0,
                                         45.0,
                                         45.0
                                     ]
@@ -317,33 +317,52 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-13",
-                                    "maxclass": "live.line",
+                                    "bubble": 1,
+                                    "id": "obj-2",
+                                    "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        285.0,
-                                        232.5,
-                                        60.25,
-                                        15.0
-                                    ]
+                                        82.0,
+                                        314.0,
+                                        182.0,
+                                        25.0
+                                    ],
+                                    "text": "Takes the sine of the frame"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-12",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        345.0,
-                                        229.5,
-                                        148.0,
-                                        21.0
+                                        282.25,
+                                        227.5,
+                                        175.0,
+                                        25.0
                                     ],
-                                    "text": "Multiply the frame by 2\u03c0"
+                                    "text": "Multiplies the frame by 2\u03c0"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
+                                    "id": "obj-23",
+                                    "linecount": 2,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        277.25,
+                                        141.5,
+                                        187.75,
+                                        40.0
+                                    ],
+                                    "text": "Creates a ramp from 0 to 1 with 4096 discrete points",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -491,65 +510,18 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-38",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        280.0,
-                                        154.0,
-                                        60.25,
-                                        15.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-24",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        207.0,
-                                        427.5,
-                                        60.25,
-                                        15.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-25",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        277.25,
-                                        424.5,
-                                        93.0,
-                                        21.0
+                                        208.0,
+                                        422.5,
+                                        110.0,
+                                        25.0
                                     ],
                                     "text": "A sine function"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-23",
-                                    "linecount": 2,
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        345.0,
-                                        143.5,
-                                        153.0,
-                                        36.0
-                                    ],
-                                    "text": "A ramp from 0. to 1. with 4096 discrete points"
                                 }
                             },
                             {
@@ -569,7 +541,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        496.0,
+                                        466.0,
                                         75.0
                                     ]
                                 }
@@ -764,29 +736,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

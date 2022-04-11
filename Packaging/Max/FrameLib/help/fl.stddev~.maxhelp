@@ -12,7 +12,7 @@
         "rect": [
             34.0,
             87.0,
-            527.0,
+            498.0,
             437.0
         ],
         "bglocked": 0,
@@ -67,7 +67,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            527.0,
+                            498.0,
                             411.0
                         ],
                         "bglocked": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.stddev~",
-                                        85
+                                        81
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        497.0,
+                                        468.0,
                                         110
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         142,
-                                        497.0,
+                                        468.0,
                                         254.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        497.0
+                                        468.0
                                     ]
                                 }
                             }
@@ -194,7 +194,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            527.0,
+                            498.0,
                             411.0
                         ],
                         "bglocked": 0,
@@ -265,7 +265,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            527.0,
+                            498.0,
                             411.0
                         ],
                         "bglocked": 0,
@@ -308,8 +308,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        392.0,
-                                        288.0,
+                                        360.0,
+                                        333.0,
                                         45.0,
                                         45.0
                                     ]
@@ -336,50 +336,38 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-46",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        84.02082824707031,
-                                        347.5,
-                                        35.97917175292969,
-                                        12.5
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-45",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        120.0,
-                                        336.5,
-                                        197.0,
-                                        36.0
+                                        88.0,
+                                        335.5,
+                                        204.0,
+                                        40.0
                                     ],
-                                    "text": "Should be reasonably close to your input standard deviation!"
+                                    "text": "Should be reasonably close to your input standard deviation!",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-44",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        292.0,
-                                        100.75,
-                                        204.0,
-                                        36.0
+                                        240.0,
+                                        96.5,
+                                        225.0,
+                                        40.0
                                     ],
-                                    "text": "Change the standard deviation of the gaussian distributed numbers"
+                                    "text": "Change the standard deviation of the gaussian distributed numbers",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -520,22 +508,6 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-15",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        240.0,
-                                        109.5,
-                                        40.5,
-                                        18.5
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
                                     "border": 0,
                                     "filename": "fl.helpname.js",
                                     "id": "obj-3",
@@ -551,7 +523,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        497.0,
+                                        468.0,
                                         75.0
                                     ]
                                 }
@@ -727,29 +699,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

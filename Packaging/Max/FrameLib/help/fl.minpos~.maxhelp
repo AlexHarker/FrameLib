@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.minpos~",
-                                        79
+                                        80
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -302,22 +302,6 @@
                         "boxes": [
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-12",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        85.0,
-                                        411.0,
-                                        30.0,
-                                        11.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
                                     "hidden": 1,
                                     "id": "obj-5",
                                     "maxclass": "newobj",
@@ -401,6 +385,7 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-9",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -408,10 +393,10 @@
                                     "patching_rect": [
                                         105.0,
                                         315.0,
-                                        357.0,
-                                        21.0
+                                        316.0,
+                                        25.0
                                     ],
-                                    "text": "fl.minpos~ returns the index of the minimum value in a frame",
+                                    "text": "Returns the index of the minimum value in a frame",
                                     "textjustification": 1
                                 }
                             },
@@ -534,15 +519,16 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-25",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        120.0,
-                                        406.0,
-                                        284.0,
-                                        21.0
+                                        86.0,
+                                        404.0,
+                                        301.0,
+                                        25.0
                                     ],
                                     "text": "The resulting index (indices are counted from 0)"
                                 }
@@ -698,29 +684,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

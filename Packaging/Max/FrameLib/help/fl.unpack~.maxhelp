@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.unpack~",
-                                        111
+                                        112
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -317,33 +317,36 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-30",
                                     "linecount": 3,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        435.0,
-                                        196.5,
-                                        210.0,
-                                        50.0
+                                        432.0,
+                                        194.5,
+                                        195.0,
+                                        54.0
                                     ],
-                                    "text": "Pack 3 streams of different length frames at different intervals into a multi-stream"
+                                    "text": "Packs 3 streams of different length frames at different intervals into a multi-stream",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-29",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        373.0,
-                                        391.0,
-                                        232.0,
-                                        21.0
+                                        367.0,
+                                        390.0,
+                                        255.0,
+                                        25.0
                                     ],
-                                    "text": "Unpack each stream into its own outlet"
+                                    "text": "Unpacks each stream into its own outlet"
                                 }
                             },
                             {
@@ -390,17 +393,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-25",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        104.0,
-                                        271.0,
-                                        269.0,
-                                        21.0
+                                        102.0,
+                                        270.0,
+                                        293.0,
+                                        25.0
                                     ],
-                                    "text": "Scale the range of the  frames beyond -1 to 1"
+                                    "text": "Scales the range of the  frames beyond -1 to 1"
                                 }
                             },
                             {
@@ -503,17 +507,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-16",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        142.0,
+                                        144.5,
                                         330.0,
-                                        337.0,
-                                        21.0
+                                        364.0,
+                                        25.0
                                     ],
-                                    "text": "Apply a hard clip on all streams of the multi-stream frame"
+                                    "text": "Applies a hard clip on all streams of the multi-stream frame"
                                 }
                             },
                             {
@@ -980,29 +985,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

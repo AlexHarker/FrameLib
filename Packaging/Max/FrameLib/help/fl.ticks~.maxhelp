@@ -302,47 +302,33 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-16",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        135.0,
-                                        406.0,
-                                        131.0,
-                                        21.0
+                                        90.0,
+                                        405.0,
+                                        148.0,
+                                        25.0
                                     ],
                                     "text": "Current count or 'tick'"
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-55",
-                                    "justification": 1,
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        90.0,
-                                        408.5,
-                                        35.625,
-                                        16.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-13",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        452.0,
-                                        135.0,
-                                        112.0,
-                                        21.0
+                                        450.0,
+                                        123.0,
+                                        114.0,
+                                        40.0
                                     ],
                                     "text": "Set the count limit"
                                 }
@@ -362,7 +348,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         482.0,
-                                        165.0,
+                                        167.0,
                                         50.0,
                                         23.0
                                     ]
@@ -425,15 +411,17 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-39",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        289.0,
-                                        134.0,
+                                        284.0,
+                                        123.0,
                                         150.0,
-                                        21.0
+                                        40.0
                                     ],
                                     "text": "Control the progression"
                                 }
@@ -461,7 +449,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         276.25,
-                                        165.0,
+                                        167.0,
                                         70.5,
                                         23.0
                                     ]
@@ -504,7 +492,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         372.25,
-                                        165.0,
+                                        167.0,
                                         65.5,
                                         23.0
                                     ]
@@ -566,21 +554,23 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-24",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        81.0,
-                                        170.0,
-                                        42.0,
-                                        21.0
+                                        120.0,
+                                        197.0,
+                                        59.0,
+                                        25.0
                                     ],
                                     "text": "Reset"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-15",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -588,10 +578,10 @@
                                     "patching_rect": [
                                         150.0,
                                         90.0,
-                                        191.0,
-                                        21.0
+                                        219.0,
+                                        25.0
                                     ],
-                                    "text": "Schedule regular trigger frames"
+                                    "text": "Schedules regular trigger frames"
                                 }
                             },
                             {
@@ -1005,29 +995,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

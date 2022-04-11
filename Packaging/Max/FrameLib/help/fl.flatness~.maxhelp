@@ -13,7 +13,7 @@
             34.0,
             87.0,
             765.0,
-            523.0
+            566.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -68,7 +68,7 @@
                             34.0,
                             113.0,
                             765.0,
-                            497.0
+                            540.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.flatness~",
-                                        126
+                                        127
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -149,7 +149,7 @@
                                         15.0,
                                         127,
                                         735.0,
-                                        355.0
+                                        398.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
@@ -195,7 +195,7 @@
                             0.0,
                             26.0,
                             765.0,
-                            497.0
+                            540.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -266,7 +266,7 @@
                             34.0,
                             113.0,
                             765.0,
-                            497.0
+                            540.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -302,15 +302,70 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.15,
+                                    "bubbleside": 0,
+                                    "id": "obj-23",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        540.0,
+                                        393.0,
+                                        169.0,
+                                        40.0
+                                    ],
+                                    "text": "Flatness of a random frame"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.15,
+                                    "bubbleside": 0,
+                                    "id": "obj-22",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        300.0,
+                                        393.0,
+                                        169.0,
+                                        40.0
+                                    ],
+                                    "text": "Flatness of a uniform frame"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.15,
+                                    "bubbleside": 0,
+                                    "id": "obj-15",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        30.0,
+                                        393.0,
+                                        129.0,
+                                        40.0
+                                    ],
+                                    "text": "Flatness of the ramp"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-16",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        420.0,
-                                        432.0,
-                                        282.0,
-                                        21.0
+                                        415.5,
+                                        475.0,
+                                        299.0,
+                                        25.0
                                     ],
                                     "text": "Restart audio to generate a new random frame."
                                 }
@@ -469,8 +524,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        353.5,
-                                        420.0,
+                                        357.0,
+                                        465.0,
                                         45.0,
                                         45.0
                                     ]
@@ -1121,29 +1176,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

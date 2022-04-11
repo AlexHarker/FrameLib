@@ -111,7 +111,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         76.0,
-                                        519.0,
+                                        534.0,
                                         238.0,
                                         21.0
                                     ],
@@ -133,7 +133,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         119.5,
-                                        465.0,
+                                        480.0,
                                         151.0,
                                         33.5
                                     ],
@@ -153,7 +153,7 @@
                                     ],
                                     "patching_rect": [
                                         18.0,
-                                        540.0,
+                                        555.0,
                                         354.0,
                                         38.0
                                     ],
@@ -184,7 +184,7 @@
                                     ],
                                     "patching_rect": [
                                         458.5,
-                                        480.0,
+                                        495.0,
                                         90.0,
                                         60.0
                                     ],
@@ -194,9 +194,9 @@
                             {
                                 "box": {
                                     "color": [
-                                        0.815686274509804,
-                                        0.341176470588235,
-                                        0.8,
+                                        0.745098039215686,
+                                        0.227450980392157,
+                                        1.0,
                                         1.0
                                     ],
                                     "id": "obj-15",
@@ -205,7 +205,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         112.0,
-                                        315.0,
+                                        330.0,
                                         166.0,
                                         23.0
                                     ],
@@ -221,7 +221,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         30.0,
-                                        362.0,
+                                        377.0,
                                         360.0,
                                         79.0
                                     ],
@@ -230,6 +230,8 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-6",
                                     "linecount": 2,
                                     "maxclass": "comment",
@@ -237,9 +239,9 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         33.0,
-                                        105.0,
+                                        120.0,
                                         263.0,
-                                        36.0
+                                        55.0
                                     ],
                                     "text": "Save the network to the right as C++ code (a .cpp and .h file)",
                                     "textjustification": 1
@@ -260,7 +262,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         112.0,
-                                        165.0,
+                                        180.0,
                                         105.0,
                                         35.0
                                     ],
@@ -286,7 +288,7 @@
                                     ],
                                     "patching_rect": [
                                         112.0,
-                                        223.0,
+                                        238.0,
                                         95.0,
                                         23.0
                                     ],
@@ -304,7 +306,7 @@
                                     ],
                                     "patching_rect": [
                                         112.0,
-                                        269.0,
+                                        284.0,
                                         125.0,
                                         23.0
                                     ],
@@ -319,8 +321,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        458.5,
-                                        578.0,
+                                        481.0,
+                                        594.0,
                                         45.0,
                                         45.0
                                     ]
@@ -568,7 +570,7 @@
                                     },
                                     "patching_rect": [
                                         428.0,
-                                        197.0,
+                                        212.0,
                                         102.0,
                                         23.0
                                     ],
@@ -592,7 +594,7 @@
                                     ],
                                     "patching_rect": [
                                         458.5,
-                                        390.0,
+                                        405.0,
                                         57.0,
                                         23.0
                                     ],
@@ -610,7 +612,7 @@
                                     ],
                                     "patching_rect": [
                                         405.0,
-                                        240.0,
+                                        255.0,
                                         42.0,
                                         23.0
                                     ],
@@ -629,7 +631,7 @@
                                     ],
                                     "patching_rect": [
                                         458.5,
-                                        435.0,
+                                        450.0,
                                         90.0,
                                         23.0
                                     ],
@@ -647,7 +649,7 @@
                                     ],
                                     "patching_rect": [
                                         405.0,
-                                        330.0,
+                                        345.0,
                                         70.0,
                                         23.0
                                     ],
@@ -665,7 +667,7 @@
                                     ],
                                     "patching_rect": [
                                         405.0,
-                                        285.0,
+                                        300.0,
                                         120.0,
                                         23.0
                                     ],
@@ -683,7 +685,7 @@
                                     ],
                                     "patching_rect": [
                                         540.0,
-                                        330.0,
+                                        345.0,
                                         70.0,
                                         23.0
                                     ],
@@ -702,7 +704,7 @@
                                     ],
                                     "patching_rect": [
                                         101.0,
-                                        593.0,
+                                        608.0,
                                         188.0,
                                         23.0
                                     ],
@@ -720,7 +722,7 @@
                                     ],
                                     "patching_rect": [
                                         405.0,
-                                        150.0,
+                                        165.0,
                                         241.0,
                                         23.0
                                     ],
@@ -738,7 +740,7 @@
                                     ],
                                     "patching_rect": [
                                         405.0,
-                                        105.0,
+                                        120.0,
                                         184.0,
                                         23.0
                                     ],
@@ -801,9 +803,9 @@
                                     ],
                                     "midpoints": [
                                         549.5,
-                                        371.0,
+                                        386.0,
                                         506.0,
-                                        371.0
+                                        386.0
                                     ],
                                     "source": [
                                         "obj-19",
@@ -831,9 +833,9 @@
                                     ],
                                     "midpoints": [
                                         414.5,
-                                        371.0,
+                                        386.0,
                                         468.0,
-                                        371.0
+                                        386.0
                                     ],
                                     "source": [
                                         "obj-21",
@@ -873,9 +875,9 @@
                                     ],
                                     "midpoints": [
                                         414.5,
-                                        185.25,
+                                        200.25,
                                         549.5,
-                                        185.25
+                                        200.25
                                     ],
                                     "order": 0,
                                     "source": [
@@ -905,9 +907,9 @@
                                     ],
                                     "midpoints": [
                                         414.5,
-                                        185.25,
+                                        200.25,
                                         437.5,
-                                        185.25
+                                        200.25
                                     ],
                                     "order": 1,
                                     "source": [
@@ -936,9 +938,9 @@
                                     ],
                                     "midpoints": [
                                         414.5,
-                                        134.0,
+                                        149.0,
                                         414.5,
-                                        134.0
+                                        149.0
                                     ],
                                     "source": [
                                         "obj-26",
@@ -954,9 +956,9 @@
                                     ],
                                     "midpoints": [
                                         539.0,
-                                        547.0,
-                                        494.0,
-                                        547.0
+                                        574.0,
+                                        516.5,
+                                        574.0
                                     ],
                                     "source": [
                                         "obj-32",
@@ -969,6 +971,12 @@
                                     "destination": [
                                         "obj-75",
                                         0
+                                    ],
+                                    "midpoints": [
+                                        468.0,
+                                        574.0,
+                                        490.5,
+                                        574.0
                                     ],
                                     "source": [
                                         "obj-32",
@@ -1031,7 +1039,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -1050,9 +1059,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1143,7 +1151,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -1162,9 +1171,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1321,12 +1329,13 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        30.0,
-                                        517.0,
-                                        270.0,
+                                        31.5,
+                                        540.0,
+                                        249.0,
                                         65.0
                                     ],
-                                    "text": "See the change to the CPU usage\n\nNote that in some scenarios FrameLib may run slower when multithreaded."
+                                    "text": "See the change to the CPU usage\n\nNote that in some scenarios FrameLib may run slower when multithreaded.",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1344,8 +1353,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        82.0,
-                                        474.0,
+                                        86.0,
+                                        495.0,
                                         140.0,
                                         24.0
                                     ],
@@ -1621,8 +1630,8 @@
                                         ]
                                     },
                                     "patching_rect": [
-                                        90.0,
-                                        474.0,
+                                        94.0,
+                                        495.0,
                                         87.0,
                                         23.0
                                     ],
@@ -1652,18 +1661,21 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 0,
                                     "id": "obj-7",
-                                    "linecount": 2,
+                                    "linecount": 3,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        30.0,
-                                        412.66666666666674,
-                                        255.0,
-                                        36.0
+                                        34.0,
+                                        403.0,
+                                        244.0,
+                                        69.0
                                     ],
-                                    "text": "Use @id and @rt as with other FrameLib objects to set the context to control"
+                                    "text": "Use @id and @rt as with other FrameLib objects to set the context to control",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -2223,7 +2235,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        45.0,
+                                        60.0,
                                         240.0,
                                         75.0,
                                         23.0
@@ -2245,7 +2257,7 @@
                                     ],
                                     "parameter_enable": 1,
                                     "patching_rect": [
-                                        45.0,
+                                        60.0,
                                         282.6666666666667,
                                         150.0,
                                         30.0
@@ -2284,7 +2296,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        45.0,
+                                        60.0,
                                         332.33333333333337,
                                         91.0,
                                         23.0
@@ -2390,8 +2402,8 @@
                                         "bang"
                                     ],
                                     "patching_rect": [
-                                        30.0,
-                                        637.0,
+                                        69.5,
+                                        626.0,
                                         173.0,
                                         23.0
                                     ],
@@ -2429,7 +2441,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        45.0,
+                                        60.0,
                                         375.00000000000006,
                                         192.0,
                                         23.0
@@ -2445,7 +2457,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.contextcontrol~",
-                                        112
+                                        113
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -2650,14 +2662,14 @@
                                     ],
                                     "hidden": 1,
                                     "midpoints": [
-                                        99.5,
-                                        498.0,
-                                        87.0,
-                                        498.0,
-                                        87.0,
-                                        471.0,
-                                        91.5,
-                                        471.0
+                                        103.5,
+                                        519.0,
+                                        91.0,
+                                        519.0,
+                                        91.0,
+                                        492.0,
+                                        95.5,
+                                        492.0
                                     ],
                                     "source": [
                                         "obj-67",
@@ -2671,7 +2683,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -2690,9 +2703,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -2783,7 +2795,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -2802,9 +2815,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -2854,80 +2866,6 @@
             },
             "inherited_shortname": 1
         },
-        "dependency_cache": [
-            {
-                "name": "fl-mono-h.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl-stereo-h.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/docs/tutorial-patchers",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.contextcontrol~.mxo",
-                "type": "iLaX"
-            },
-            {
-                "name": "fl.convert~.mxo",
-                "type": "iLaX"
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.info~.mxo",
-                "type": "iLaX"
-            },
-            {
-                "name": "fl.interval~.mxo",
-                "type": "iLaX"
-            },
-            {
-                "name": "fl.plus~.mxo",
-                "type": "iLaX"
-            },
-            {
-                "name": "fl.ramp~.mxo",
-                "type": "iLaX"
-            },
-            {
-                "name": "fl.random~.mxo",
-                "type": "iLaX"
-            },
-            {
-                "name": "fl.read~.mxo",
-                "type": "iLaX"
-            },
-            {
-                "name": "fl.sink~.mxo",
-                "type": "iLaX"
-            },
-            {
-                "name": "fl.times~.mxo",
-                "type": "iLaX"
-            },
-            {
-                "name": "fl.window~.mxo",
-                "type": "iLaX"
-            }
-        ],
         "autosave": 0
     }
 }

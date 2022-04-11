@@ -13,7 +13,7 @@
             34.0,
             87.0,
             543.0,
-            566.0
+            576.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -68,7 +68,7 @@
                             34.0,
                             113.0,
                             543.0,
-                            540.0
+                            550.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.trunc~",
-                                        88
+                                        89
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -149,7 +149,7 @@
                                         15.0,
                                         127,
                                         513.0,
-                                        398.0
+                                        408.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
@@ -195,7 +195,7 @@
                             0.0,
                             26.0,
                             543.0,
-                            540.0
+                            550.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -266,9 +266,9 @@
                             34.0,
                             113.0,
                             543.0,
-                            540.0
+                            550.0
                         ],
-                        "bglocked": 1,
+                        "bglocked": 0,
                         "openinpresentation": 0,
                         "default_fontsize": 13.0,
                         "default_fontface": 0,
@@ -302,16 +302,18 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 0,
                                     "id": "obj-5",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        292.5,
-                                        465.0,
-                                        214.0,
-                                        36.0
+                                        289.5,
+                                        463.5,
+                                        216.0,
+                                        55.0
                                     ],
                                     "text": "Numbers are truncated to 0, 1, 2, 3 with no fractional part.",
                                     "textjustification": 1
@@ -326,7 +328,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         120.0,
-                                        460.5,
+                                        475.5,
                                         45.0,
                                         45.0
                                     ]
@@ -334,34 +336,20 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-36",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        189.24993515014648,
-                                        137.5,
-                                        60.25,
-                                        15.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-35",
-                                    "linecount": 2,
+                                    "linecount": 3,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        251.49993515014648,
+                                        188.0,
+                                        121.0,
                                         127.0,
-                                        136.0,
-                                        36.0
+                                        54.0
                                     ],
-                                    "text": "100 random numbers between 0. and 3."
+                                    "text": "Generates 100 random numbers between 0 and 3",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -372,7 +360,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         346.0,
-                                        292.0,
+                                        307.0,
                                         103.0,
                                         21.0
                                     ],
@@ -388,7 +376,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         97.5,
-                                        292.0,
+                                        307.0,
                                         90.0,
                                         21.0
                                     ],
@@ -423,7 +411,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         30.0,
-                                        315.0,
+                                        330.0,
                                         225.0,
                                         123.0
                                     ],
@@ -467,7 +455,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         285.0,
-                                        315.0,
+                                        330.0,
                                         225.0,
                                         123.0
                                     ],
@@ -495,7 +483,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        255.0,
+                                        270.0,
                                         62.0,
                                         23.0
                                     ],
@@ -513,7 +501,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        161.49998474121094,
+                                        165.0,
                                         68.0,
                                         23.0
                                     ],
@@ -537,7 +525,7 @@
                                     ],
                                     "patching_rect": [
                                         285.0,
-                                        225.0,
+                                        233.0,
                                         55.0,
                                         23.0
                                     ],
@@ -555,7 +543,7 @@
                                     ],
                                     "patching_rect": [
                                         285.0,
-                                        255.0,
+                                        270.0,
                                         62.0,
                                         23.0
                                     ],
@@ -591,7 +579,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        133.5,
+                                        136.49998474121094,
                                         131.0,
                                         23.0
                                     ],
@@ -645,8 +633,8 @@
                                     "patching_rect": [
                                         15.0,
                                         90.0,
-                                        166.99999618530273,
-                                        105.0
+                                        164.0,
+                                        116.0
                                     ],
                                     "proportion": 0.39,
                                     "rounded": 16
@@ -705,9 +693,9 @@
                                     ],
                                     "midpoints": [
                                         39.5,
-                                        213.0,
+                                        220.0,
                                         294.5,
-                                        213.0
+                                        220.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -816,29 +804,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

@@ -12,7 +12,7 @@
         "rect": [
             34.0,
             87.0,
-            620.0,
+            672.0,
             417.0
         ],
         "bglocked": 0,
@@ -67,7 +67,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            620.0,
+                            672.0,
                             391.0
                         ],
                         "bglocked": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.perblock~",
-                                        101
+                                        111
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        590.0,
+                                        642.0,
                                         95
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         127,
-                                        590.0,
+                                        642.0,
                                         249.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        590.0
+                                        642.0
                                     ]
                                 }
                             }
@@ -194,7 +194,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            620.0,
+                            672.0,
                             391.0
                         ],
                         "bglocked": 0,
@@ -265,7 +265,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            620.0,
+                            672.0,
                             391.0
                         ],
                         "bglocked": 0,
@@ -302,18 +302,20 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-10",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        120.0,
-                                        233.5,
+                                        90.0,
+                                        231.5,
                                         240.0,
-                                        36.0
+                                        40.0
                                     ],
-                                    "text": "The time difference will match the signal vector size set in Max"
+                                    "text": "The time difference will match the signal vector size set in Max",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -348,34 +350,38 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-14",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        120.0,
-                                        143.5,
-                                        255.0,
-                                        36.0
+                                        117.0,
+                                        141.5,
+                                        218.0,
+                                        40.0
                                     ],
-                                    "text": "Calculate the difference in time between scheduled frames of fl.perblock~"
+                                    "text": "Calculates the interval between scheduled frames of fl.perblock~",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-13",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        465.0,
-                                        233.5,
-                                        128.0,
-                                        36.0
+                                        472.0,
+                                        231.5,
+                                        162.0,
+                                        40.0
                                     ],
-                                    "text": "Signal vector size in Max audio settings"
+                                    "text": "Signal vector size from Max audio settings",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -392,7 +398,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        405.6666666666667,
+                                        415.6666666666667,
                                         240.0,
                                         50.0,
                                         23.0
@@ -412,7 +418,7 @@
                                         "int"
                                     ],
                                     "patching_rect": [
-                                        375.0,
+                                        385.0,
                                         150.0,
                                         65.0,
                                         23.0
@@ -517,7 +523,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        590.0,
+                                        642.0,
                                         75.0
                                     ]
                                 }
@@ -578,7 +584,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -597,9 +604,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -690,7 +696,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -709,9 +716,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -737,29 +743,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

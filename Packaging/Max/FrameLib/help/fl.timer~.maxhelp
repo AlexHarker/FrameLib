@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.timer~",
-                                        107
+                                        108
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -351,30 +351,34 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-24",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        396.0,
-                                        97.5,
-                                        42.0,
-                                        21.0
+                                        395.0,
+                                        89.5,
+                                        44.0,
+                                        40.0
                                     ],
                                     "text": "Reset"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-23",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        480.0,
-                                        97.5,
-                                        124.0,
-                                        21.0
+                                        477.0,
+                                        89.5,
+                                        126.0,
+                                        40.0
                                     ],
                                     "text": "Get time since reset"
                                 }
@@ -551,34 +555,38 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-18",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        131.0,
-                                        338.5,
-                                        210.0,
-                                        36.0
+                                        124.0,
+                                        336.5,
+                                        221.0,
+                                        40.0
                                     ],
-                                    "text": "fl.timer~ outputs the difference between the reset and the trigger"
+                                    "text": "fl.timer~ outputs the difference between the reset and the trigger",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-15",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        185.0,
-                                        169.5,
-                                        162.0,
-                                        36.0
+                                        178.0,
+                                        167.5,
+                                        183.0,
+                                        40.0
                                     ],
-                                    "text": "Generate trigger frame 50 samples after fl.interval~"
+                                    "text": "Generates trigger frame 50 samples after fl.interval~",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1014,29 +1022,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

@@ -13,7 +13,7 @@
             34.0,
             87.0,
             685.0,
-            588.0
+            626.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -68,7 +68,7 @@
                             34.0,
                             113.0,
                             685.0,
-                            562.0
+                            600.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.correlate~",
-                                        112
+                                        113
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -149,7 +149,7 @@
                                         15.0,
                                         172,
                                         655.0,
-                                        375.0
+                                        413.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
@@ -195,7 +195,7 @@
                             0.0,
                             26.0,
                             685.0,
-                            562.0
+                            600.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -231,18 +231,22 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.35,
+                                    "bubbleside": 2,
                                     "id": "obj-29",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        49.0,
-                                        90.0,
-                                        151.0,
-                                        36.0
+                                        30.0,
+                                        118.0,
+                                        165.0,
+                                        55.0
                                     ],
-                                    "text": "Autocorrelate the output of the tri~ oscillator"
+                                    "text": "Autocorrelates the output of the tri~ oscillator",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -254,7 +258,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         45.0,
-                                        465.0,
+                                        480.0,
                                         600.0,
                                         65.0
                                     ],
@@ -270,7 +274,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         525.0,
-                                        394.5,
+                                        409.5,
                                         96.0,
                                         21.0
                                     ],
@@ -285,7 +289,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         525.0,
-                                        259.5,
+                                        274.5,
                                         89.0,
                                         21.0
                                     ],
@@ -306,7 +310,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         210.0,
-                                        225.0,
+                                        240.0,
                                         300.0,
                                         90.0
                                     ],
@@ -332,7 +336,7 @@
                                     ],
                                     "patching_rect": [
                                         209.0,
-                                        180.0,
+                                        195.0,
                                         62.0,
                                         23.0
                                     ],
@@ -350,7 +354,7 @@
                                     ],
                                     "patching_rect": [
                                         49.0,
-                                        270.0,
+                                        285.0,
                                         64.0,
                                         23.0
                                     ],
@@ -368,7 +372,7 @@
                                     ],
                                     "patching_rect": [
                                         94.0,
-                                        225.0,
+                                        240.0,
                                         84.0,
                                         23.0
                                     ],
@@ -386,7 +390,7 @@
                                     ],
                                     "patching_rect": [
                                         209.0,
-                                        90.0,
+                                        105.0,
                                         52.0,
                                         23.0
                                     ],
@@ -404,7 +408,7 @@
                                     ],
                                     "patching_rect": [
                                         209.0,
-                                        135.0,
+                                        150.0,
                                         199.0,
                                         23.0
                                     ],
@@ -442,7 +446,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         60.0,
-                                        382.5,
+                                        397.5,
                                         45.0,
                                         45.0
                                     ]
@@ -462,7 +466,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         210.0,
-                                        360.0,
+                                        375.0,
                                         300.0,
                                         90.0
                                     ],
@@ -488,7 +492,7 @@
                                     ],
                                     "patching_rect": [
                                         49.0,
-                                        315.0,
+                                        330.0,
                                         62.0,
                                         23.0
                                     ],
@@ -508,7 +512,7 @@
                                     ],
                                     "patching_rect": [
                                         299.0,
-                                        90.0,
+                                        105.0,
                                         122.0,
                                         23.0
                                     ],
@@ -534,7 +538,7 @@
                                     ],
                                     "patching_rect": [
                                         49.0,
-                                        180.0,
+                                        195.0,
                                         77.0,
                                         23.0
                                     ],
@@ -551,9 +555,9 @@
                                     ],
                                     "midpoints": [
                                         58.5,
-                                        348.5,
+                                        363.5,
                                         219.5,
-                                        348.5
+                                        363.5
                                     ],
                                     "source": [
                                         "obj-2",
@@ -593,9 +597,9 @@
                                     ],
                                     "midpoints": [
                                         58.5,
-                                        213.5,
+                                        228.5,
                                         103.5,
-                                        213.5
+                                        228.5
                                     ],
                                     "order": 0,
                                     "source": [
@@ -638,9 +642,9 @@
                                     ],
                                     "midpoints": [
                                         218.5,
-                                        168.5,
+                                        183.5,
                                         116.5,
-                                        168.5
+                                        183.5
                                     ],
                                     "order": 1,
                                     "source": [
@@ -657,9 +661,9 @@
                                     ],
                                     "midpoints": [
                                         218.5,
-                                        168.5,
+                                        183.5,
                                         58.5,
-                                        168.5
+                                        183.5
                                     ],
                                     "order": 2,
                                     "source": [
@@ -710,7 +714,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -729,9 +734,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -822,7 +826,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -841,9 +846,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -884,10 +888,10 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            113.0,
                             685.0,
-                            562.0
+                            600.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -952,7 +956,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         585.0,
-                                        405.0,
+                                        360.0,
                                         45.0,
                                         45.0
                                     ]
@@ -960,18 +964,20 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 0,
                                     "id": "obj-22",
-                                    "linecount": 3,
+                                    "linecount": 7,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        55.5,
-                                        480.0,
-                                        564.0,
-                                        50.0
+                                        57.75,
+                                        435.0,
+                                        490.5,
+                                        127.0
                                     ],
-                                    "text": "There are several edge behaviours for the correlation process. Here we view linear, wrap and circular. Note that the output of linear is longer than the other two, and that wrap and circular are rotations of one another. Full details can be found by sending the info messages to fl.correlate~.",
+                                    "text": "There are several edge behaviours for the correlation process. \nHere we view linear, wrap and circular. \n\nNote that the output of linear is longer than the other two, and that wrap and circular are rotations of one another. \n\nFull details can be found on the info tab.",
                                     "textjustification": 1
                                 }
                             },
@@ -989,7 +995,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         390.0,
-                                        390.0,
+                                        345.0,
                                         156.0,
                                         75.0
                                     ],
@@ -1018,7 +1024,7 @@
                                     ],
                                     "patching_rect": [
                                         390.0,
-                                        345.0,
+                                        300.0,
                                         62.0,
                                         23.0
                                     ],
@@ -1039,7 +1045,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         225.0,
-                                        390.0,
+                                        345.0,
                                         156.0,
                                         75.0
                                     ],
@@ -1068,7 +1074,7 @@
                                     ],
                                     "patching_rect": [
                                         225.0,
-                                        345.0,
+                                        300.0,
                                         62.0,
                                         23.0
                                     ],
@@ -1094,7 +1100,7 @@
                                     ],
                                     "patching_rect": [
                                         390.0,
-                                        300.0,
+                                        255.0,
                                         165.0,
                                         23.0
                                     ],
@@ -1120,7 +1126,7 @@
                                     ],
                                     "patching_rect": [
                                         225.0,
-                                        300.0,
+                                        255.0,
                                         151.0,
                                         23.0
                                     ],
@@ -1141,7 +1147,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         60.0,
-                                        390.0,
+                                        345.0,
                                         156.0,
                                         75.0
                                     ],
@@ -1170,7 +1176,7 @@
                                     ],
                                     "patching_rect": [
                                         60.0,
-                                        345.0,
+                                        300.0,
                                         62.0,
                                         23.0
                                     ],
@@ -1188,7 +1194,7 @@
                                     ],
                                     "patching_rect": [
                                         300.0,
-                                        180.0,
+                                        150.0,
                                         131.0,
                                         23.0
                                     ],
@@ -1206,7 +1212,7 @@
                                     ],
                                     "patching_rect": [
                                         450.0,
-                                        180.0,
+                                        150.0,
                                         162.0,
                                         23.0
                                     ],
@@ -1224,7 +1230,7 @@
                                     ],
                                     "patching_rect": [
                                         60.0,
-                                        180.0,
+                                        150.0,
                                         229.0,
                                         23.0
                                     ],
@@ -1245,7 +1251,7 @@
                                     ],
                                     "patching_rect": [
                                         60.0,
-                                        225.0,
+                                        195.0,
                                         169.0,
                                         23.0
                                     ],
@@ -1265,11 +1271,11 @@
                                     ],
                                     "patching_rect": [
                                         60.0,
-                                        120.0,
-                                        114.0,
+                                        105.0,
+                                        122.0,
                                         23.0
                                     ],
-                                    "text": "fl.interval~ 500 ms"
+                                    "text": "fl.interval~ 2000 ms"
                                 }
                             },
                             {
@@ -1291,7 +1297,7 @@
                                     ],
                                     "patching_rect": [
                                         60.0,
-                                        300.0,
+                                        255.0,
                                         155.0,
                                         23.0
                                     ],
@@ -1308,9 +1314,9 @@
                                     ],
                                     "midpoints": [
                                         309.5,
-                                        213.5,
+                                        183.5,
                                         144.5,
-                                        213.5
+                                        183.5
                                     ],
                                     "source": [
                                         "obj-1",
@@ -1356,9 +1362,9 @@
                                     ],
                                     "midpoints": [
                                         69.5,
-                                        289.5,
+                                        243.5,
                                         234.5,
-                                        289.5
+                                        243.5
                                     ],
                                     "order": 1,
                                     "source": [
@@ -1381,9 +1387,9 @@
                                     ],
                                     "midpoints": [
                                         69.5,
-                                        288.5,
+                                        243.5,
                                         399.5,
-                                        288.5
+                                        243.5
                                     ],
                                     "order": 0,
                                     "source": [
@@ -1455,9 +1461,9 @@
                                     ],
                                     "midpoints": [
                                         69.5,
-                                        161.0,
+                                        138.5,
                                         309.5,
-                                        161.0
+                                        138.5
                                     ],
                                     "order": 1,
                                     "source": [
@@ -1487,9 +1493,9 @@
                                     ],
                                     "midpoints": [
                                         69.5,
-                                        161.0,
+                                        138.5,
                                         459.5,
-                                        161.0
+                                        138.5
                                     ],
                                     "order": 0,
                                     "source": [
@@ -1530,9 +1536,9 @@
                                     ],
                                     "midpoints": [
                                         459.5,
-                                        266.0,
+                                        228.5,
                                         366.5,
-                                        266.0
+                                        228.5
                                     ],
                                     "order": 1,
                                     "source": [
@@ -1549,9 +1555,9 @@
                                     ],
                                     "midpoints": [
                                         459.5,
-                                        266.0,
+                                        228.5,
                                         545.5,
-                                        266.0
+                                        228.5
                                     ],
                                     "order": 0,
                                     "source": [
@@ -1568,9 +1574,9 @@
                                     ],
                                     "midpoints": [
                                         459.5,
-                                        266.0,
+                                        228.5,
                                         205.5,
-                                        266.0
+                                        228.5
                                     ],
                                     "order": 2,
                                     "source": [
@@ -1585,7 +1591,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -1604,9 +1611,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1697,7 +1703,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -1716,9 +1723,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1762,7 +1768,7 @@
                             0.0,
                             26.0,
                             685.0,
-                            562.0
+                            600.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1830,10 +1836,10 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            113.0,
+                            0.0,
+                            26.0,
                             685.0,
-                            562.0
+                            600.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1876,7 +1882,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         315.0,
-                                        480.0,
+                                        510.0,
                                         45.0,
                                         45.0
                                     ]
@@ -1884,18 +1890,20 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 0,
                                     "id": "obj-18",
-                                    "linecount": 3,
+                                    "linecount": 5,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        90.0,
-                                        405.0,
+                                        69.0,
+                                        390.0,
                                         495.0,
-                                        50.0
+                                        98.0
                                     ],
-                                    "text": "fl.correlate~ can convolve real or complex input signals.\nHere we correlate a ramp with its self as well as correlating two random vectors. \nNeither correlates highly after the initial peak.",
+                                    "text": "fl.correlate~ can be used to convolve either real or complex input signals.\n\nHere we correlate a ramp with its self as well as correlating two random vectors. \n\nNeither correlates highly after the initial peak.",
                                     "textjustification": 1
                                 }
                             },
@@ -1910,7 +1918,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        150.0,
+                                        135.0,
                                         229.0,
                                         23.0
                                     ],
@@ -1931,7 +1939,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         30.0,
-                                        300.0,
+                                        285.0,
                                         270.0,
                                         90.0
                                     ],
@@ -1960,7 +1968,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        255.0,
+                                        225.0,
                                         62.0,
                                         23.0
                                     ],
@@ -1978,7 +1986,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        105.0,
+                                        90.0,
                                         101.0,
                                         23.0
                                     ],
@@ -2002,7 +2010,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        207.0,
+                                        192.0,
                                         198.5,
                                         23.0
                                     ],
@@ -2020,7 +2028,7 @@
                                     ],
                                     "patching_rect": [
                                         510.0,
-                                        165.0,
+                                        150.0,
                                         138.0,
                                         23.0
                                     ],
@@ -2038,7 +2046,7 @@
                                     ],
                                     "patching_rect": [
                                         330.0,
-                                        165.0,
+                                        150.0,
                                         138.0,
                                         23.0
                                     ],
@@ -2059,7 +2067,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         330.5,
-                                        300.0,
+                                        285.0,
                                         270.0,
                                         90.0
                                     ],
@@ -2088,7 +2096,7 @@
                                     ],
                                     "patching_rect": [
                                         330.5,
-                                        255.0,
+                                        240.0,
                                         62.0,
                                         23.0
                                     ],
@@ -2106,7 +2114,7 @@
                                     ],
                                     "patching_rect": [
                                         330.0,
-                                        105.0,
+                                        90.0,
                                         101.0,
                                         23.0
                                     ],
@@ -2130,7 +2138,7 @@
                                     ],
                                     "patching_rect": [
                                         330.0,
-                                        207.0,
+                                        192.0,
                                         198.5,
                                         23.0
                                     ],
@@ -2181,9 +2189,9 @@
                                     ],
                                     "midpoints": [
                                         39.5,
-                                        193.0,
+                                        178.0,
                                         219.0,
-                                        193.0
+                                        178.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -2286,9 +2294,9 @@
                                     ],
                                     "midpoints": [
                                         339.5,
-                                        146.0,
+                                        131.0,
                                         519.5,
-                                        146.0
+                                        131.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -2315,7 +2323,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -2334,9 +2343,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -2427,7 +2435,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -2446,9 +2455,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -2474,29 +2482,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

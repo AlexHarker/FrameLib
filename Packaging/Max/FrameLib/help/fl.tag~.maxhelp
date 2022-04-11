@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.tag~",
-                                        119
+                                        120
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -302,16 +302,19 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.26,
+                                    "bubbleside": 0,
                                     "id": "obj-8",
                                     "linecount": 4,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        306.0,
-                                        450.0,
-                                        375.0,
-                                        65.0
+                                        300.0,
+                                        431.75,
+                                        376.0,
+                                        84.0
                                     ],
                                     "text": "Here fl.tag~ is initialised with 3 strings - freq, res and mode. The inputs that are created when the object is instantiated map to these strings. Each input is then tagged with the appropriate string and sent to the 'parameter update' inlet of fl.svf~.",
                                     "textjustification": 1
@@ -319,34 +322,20 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-16",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        121.25,
-                                        458.75,
-                                        38.75,
-                                        18.5
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-25",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        166.0,
-                                        450.0,
-                                        102.0,
-                                        36.0
+                                        118.0,
+                                        446.0,
+                                        119.0,
+                                        40.0
                                     ],
-                                    "text": "Turn up to hear the result!"
+                                    "text": "Turn up to hear the result!",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1257,29 +1246,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

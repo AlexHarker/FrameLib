@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.ramp~",
-                                        105
+                                        108
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -192,8 +192,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            113.0,
                             652.0,
                             646.0
                         ],
@@ -238,7 +238,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         210.0,
-                                        124.0,
+                                        109.0,
                                         45.0,
                                         45.0
                                     ]
@@ -246,6 +246,9 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.3,
+                                    "bubbleside": 0,
                                     "id": "obj-35",
                                     "linecount": 2,
                                     "maxclass": "comment",
@@ -253,9 +256,9 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         374.5,
-                                        579.0,
-                                        226.0,
-                                        36.0
+                                        555.0,
+                                        228.0,
+                                        55.0
                                     ],
                                     "text": "Here, we ask for 4 samples in length, converted to millisecond values.",
                                     "textjustification": 1
@@ -273,7 +276,7 @@
                                     ],
                                     "patching_rect": [
                                         360.0,
-                                        540.0,
+                                        525.0,
                                         196.0,
                                         23.0
                                     ]
@@ -290,7 +293,7 @@
                                     ],
                                     "patching_rect": [
                                         360.0,
-                                        495.0,
+                                        480.0,
                                         62.0,
                                         23.0
                                     ],
@@ -308,7 +311,7 @@
                                     ],
                                     "patching_rect": [
                                         360.0,
-                                        405.0,
+                                        390.0,
                                         54.0,
                                         23.0
                                     ],
@@ -332,7 +335,7 @@
                                     ],
                                     "patching_rect": [
                                         360.0,
-                                        450.0,
+                                        435.0,
                                         255.0,
                                         23.0
                                     ],
@@ -341,6 +344,9 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.3,
+                                    "bubbleside": 0,
                                     "id": "obj-29",
                                     "linecount": 2,
                                     "maxclass": "comment",
@@ -348,9 +354,9 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         45.0,
-                                        579.0,
+                                        555.0,
                                         270.0,
-                                        36.0
+                                        55.0
                                     ],
                                     "text": "In this example we ask for a ramp that is 1 millisecond long, with the output as a count. ",
                                     "textjustification": 1
@@ -369,7 +375,7 @@
                                     "patching_rect": [
                                         30.0,
                                         495.0,
-                                        300.0,
+                                        310.0,
                                         23.0
                                     ]
                                 }
@@ -403,7 +409,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        360.0,
+                                        359.0,
                                         54.0,
                                         23.0
                                     ],
@@ -436,18 +442,21 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.3,
+                                    "bubbleside": 0,
                                     "id": "obj-11",
-                                    "linecount": 8,
+                                    "linecount": 5,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        312.5,
-                                        261.0,
-                                        314.0,
-                                        123.0
+                                        310.5,
+                                        255.0,
+                                        316.0,
+                                        98.0
                                     ],
-                                    "text": "By default, fl.ramp~ interprets the length you provide it as a length in samples. This is set with /units parameter.  The /scale parameter sets the output scaling independently of the /units parameters. \n\nFor example, you might specify a ramp frame's length in samples, but then convert the output to normalised values (0 to 1).",
+                                    "text": "Whilst the units for the length can be set with the /units parameter,  the /scale parameter sets the output scaling. For example, you might specify a ramp frame's length in samples, but then convert the output to normalised values (0 to 1).",
                                     "textjustification": 1
                                 }
                             },
@@ -531,6 +540,9 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.3,
+                                    "bubbleside": 0,
                                     "id": "obj-10",
                                     "linecount": 3,
                                     "maxclass": "comment",
@@ -538,9 +550,9 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         30.0,
+                                        255.0,
                                         261.0,
-                                        259.0,
-                                        50.0
+                                        69.0
                                     ],
                                     "text": "The /length parameter dictates what length the output frame will be, and thus here the maximum value that is counted up to.",
                                     "textjustification": 1
@@ -735,7 +747,7 @@
                                     "midpoints": [
                                         39.5,
                                         483.5,
-                                        320.5,
+                                        330.5,
                                         483.5
                                     ],
                                     "source": [
@@ -752,9 +764,9 @@
                                     ],
                                     "midpoints": [
                                         369.5,
-                                        528.5,
+                                        513.5,
                                         546.5,
-                                        528.5
+                                        513.5
                                     ],
                                     "source": [
                                         "obj-31",
@@ -966,8 +978,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            113.0,
+                            0.0,
+                            26.0,
                             652.0,
                             646.0
                         ],
@@ -1020,33 +1032,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-17",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        408.25,
-                                        348.0,
-                                        152.0,
-                                        21.0
+                                        382.0,
+                                        347.5,
+                                        169.0,
+                                        25.0
                                     ],
                                     "text": "Observe the output ramp"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-16",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        383.0,
-                                        351.0,
-                                        22.0,
-                                        18.0
-                                    ]
                                 }
                             },
                             {
@@ -1332,48 +1329,34 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-32",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        363.0,
-                                        406.0,
-                                        139.0,
-                                        21.0
+                                        357.0,
+                                        404.0,
+                                        156.0,
+                                        25.0
                                     ],
                                     "text": "Retrieves frame length"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-29",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        393.0,
-                                        495.0,
-                                        225.0,
-                                        21.0
+                                        346.0,
+                                        494.0,
+                                        242.0,
+                                        25.0
                                     ],
                                     "text": "Length should match the value above"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-30",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        348.0,
-                                        499.125,
-                                        39.0,
-                                        14.75
-                                    ]
                                 }
                             },
                             {
@@ -1433,33 +1416,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-21",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        342.0,
-                                        180.0,
-                                        209.0,
-                                        21.0
+                                        297.0,
+                                        179.0,
+                                        226.0,
+                                        25.0
                                     ],
                                     "text": "Change the size of the initial frame"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-20",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        297.0,
-                                        184.125,
-                                        39.0,
-                                        14.75
-                                    ]
                                 }
                             },
                             {
@@ -1648,15 +1616,16 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-10",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        270.0,
-                                        316.0,
-                                        324.0,
-                                        21.0
+                                        265.0,
+                                        315.0,
+                                        341.0,
+                                        25.0
                                     ],
                                     "text": "Generates an initial frame of 100 values using fl.ramp~"
                                 }
@@ -1993,29 +1962,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

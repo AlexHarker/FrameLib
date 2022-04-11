@@ -12,7 +12,7 @@
         "rect": [
             34.0,
             87.0,
-            677.0,
+            654.0,
             615.0
         ],
         "bglocked": 0,
@@ -67,7 +67,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            677.0,
+                            654.0,
                             589.0
                         ],
                         "bglocked": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.lookupstring~",
-                                        111
+                                        108
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        647.0,
+                                        624.0,
                                         125
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         157,
-                                        647.0,
+                                        624.0,
                                         417.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        647.0
+                                        624.0
                                     ]
                                 }
                             }
@@ -192,9 +192,9 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
-                            677.0,
+                            34.0,
+                            113.0,
+                            654.0,
                             589.0
                         ],
                         "bglocked": 0,
@@ -460,31 +460,16 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-9",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        232.0,
-                                        347.0,
-                                        30.0,
-                                        11.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-10",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        270.0,
-                                        344.0,
-                                        88.0,
-                                        21.0
+                                        230.0,
+                                        342.0,
+                                        105.0,
+                                        25.0
                                     ],
                                     "text": "Current mode"
                                 }
@@ -531,7 +516,13 @@
                                         10.0
                                     ],
                                     "settype": 0,
-                                    "size": 50
+                                    "size": 50,
+                                    "slidercolor": [
+                                        0.0,
+                                        0.701960784313725,
+                                        0.262745098039216,
+                                        1.0
+                                    ]
                                 }
                             },
                             {
@@ -550,7 +541,7 @@
                                         81.0,
                                         23.0
                                     ],
-                                    "text": "mode run"
+                                    "text": "mode loop"
                                 }
                             },
                             {
@@ -709,7 +700,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        647.0,
+                                        624.0,
                                         75.0
                                     ]
                                 }
@@ -728,7 +719,7 @@
                                         345.0,
                                         94.0
                                     ],
-                                    "text": "Here the object is set to scale input from 0-1 across the list  of possibllities. This can be used to easily randomise parameters from a fixed number of options. \n\nAs a results the mode of fl.ticks~ is randomised between the run, loop and pause modes.",
+                                    "text": "Here the object is set to scale input from 0-1 across the list of avilable strings. This can be used to easily randomise parameters from a fixed number of options. \n\nAs a results the mode of fl.ticks~ is randomised between the run, loop and pause modes.",
                                     "textjustification": 1
                                 }
                             },
@@ -959,7 +950,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            677.0,
+                            654.0,
                             589.0
                         ],
                         "bglocked": 0,
@@ -1028,9 +1019,9 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            113.0,
-                            677.0,
+                            0.0,
+                            26.0,
+                            654.0,
                             589.0
                         ],
                         "bglocked": 0,
@@ -1067,17 +1058,18 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-11",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         135.0,
-                                        272.0,
-                                        92.0,
-                                        21.0
+                                        270.0,
+                                        168.0,
+                                        25.0
                                     ],
-                                    "text": "Set filter mode"
+                                    "text": "Input sets the filter mode"
                                 }
                             },
                             {
@@ -1088,56 +1080,44 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        120.0,
-                                        360.0,
+                                        117.0,
+                                        355.0,
                                         495.0,
                                         50.0
                                     ],
-                                    "text": "The default mode treats the input as an index into the set of available strings. Thus, the input can used to select a specific string output, in this case tagged ready to set the mode parameter of the svf filter."
+                                    "text": "The default mode treats the input as an index into the set of available strings. Thus, the input can used to select a specific string output, in this case tagged ready to set the mode parameter of the svf filter.",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 1.0,
                                     "id": "obj-8",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        250.0,
-                                        187.0,
-                                        294.0,
-                                        21.0
+                                        270.0,
+                                        192.0,
+                                        310.0,
+                                        25.0
                                     ],
                                     "text": "Arguments set the output tag and possible values"
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-5",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        376.0,
-                                        319.0,
-                                        30.0,
-                                        11.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-6",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        414.0,
-                                        316.0,
-                                        232.0,
-                                        21.0
+                                        375.0,
+                                        314.0,
+                                        249.0,
+                                        25.0
                                     ],
                                     "text": "Cycles between lowpass and highpass"
                                 }
@@ -1158,7 +1138,7 @@
                                         98.0,
                                         23.0
                                     ],
-                                    "text": "mode highpass"
+                                    "text": "mode lowpass"
                                 }
                             },
                             {
@@ -1340,31 +1320,16 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-16",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        126.0,
-                                        443.0,
-                                        30.0,
-                                        11.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-25",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        165.0,
-                                        438.0,
-                                        164.0,
-                                        21.0
+                                        117.0,
+                                        437.0,
+                                        181.0,
+                                        25.0
                                     ],
                                     "text": "Turn up to hear the filtering"
                                 }
@@ -1450,7 +1415,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        647.0,
+                                        624.0,
                                         75.0
                                     ]
                                 }
@@ -1701,29 +1666,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

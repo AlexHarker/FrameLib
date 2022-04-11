@@ -302,6 +302,94 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
+                                    "id": "obj-24",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        260.0,
+                                        138.0,
+                                        50.0,
+                                        40.0
+                                    ],
+                                    "text": "Input 2"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
+                                    "id": "obj-23",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        97.0,
+                                        138.0,
+                                        50.0,
+                                        40.0
+                                    ],
+                                    "text": "Input 1"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "fontface": 2,
+                                    "fontname": "Times New Roman",
+                                    "fontsize": 16.0,
+                                    "id": "obj-22",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        373.0,
+                                        420.0,
+                                        22.0,
+                                        24.0
+                                    ],
+                                    "text": "i"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "fontface": 2,
+                                    "fontname": "Times New Roman",
+                                    "fontsize": 16.0,
+                                    "id": "obj-20",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        348.0,
+                                        180.0,
+                                        22.0,
+                                        24.0
+                                    ],
+                                    "text": "i"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "fontface": 2,
+                                    "fontname": "Times New Roman",
+                                    "fontsize": 16.0,
+                                    "id": "obj-18",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        190.0,
+                                        180.0,
+                                        22.0,
+                                        24.0
+                                    ],
+                                    "text": "i"
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-19",
                                     "local": 1,
                                     "maxclass": "ezdac~",
@@ -317,49 +405,38 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-18",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        356.375,
-                                        424.0,
-                                        60.25,
-                                        15.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-13",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        422.375,
-                                        413.5,
-                                        180.0,
-                                        36.0
+                                        390.0,
+                                        412.0,
+                                        202.625,
+                                        40.0
                                     ],
-                                    "text": "Adjust the real and imaginary input values to see the result"
+                                    "text": "Adjust the real and imaginary input values to see the result",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-17",
+                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        436.0,
-                                        307.0,
-                                        189.0,
-                                        21.0
+                                        458.625,
+                                        298.5,
+                                        149.0,
+                                        40.0
                                     ],
-                                    "text": "Also has a non-symbolic name!"
+                                    "text": "Also has a non-symbolic name!",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -379,7 +456,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        315.0,
+                                        345.0,
                                         307.0,
                                         109.0,
                                         23.0
@@ -398,8 +475,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        188.0,
-                                        135.0,
+                                        218.0,
+                                        105.0,
                                         79.0,
                                         23.0
                                     ],
@@ -419,7 +496,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        267.0,
+                                        297.0,
                                         180.0,
                                         50.0,
                                         23.0
@@ -439,7 +516,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        188.0,
+                                        218.0,
                                         180.0,
                                         50.0,
                                         23.0
@@ -462,7 +539,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        267.0,
+                                        297.0,
                                         255.0,
                                         77.0,
                                         23.0
@@ -486,7 +563,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        188.0,
+                                        218.0,
                                         255.0,
                                         77.0,
                                         23.0
@@ -505,8 +582,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
-                                        135.0,
+                                        60.0,
+                                        105.0,
                                         79.0,
                                         23.0
                                     ],
@@ -526,7 +603,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        267.0,
+                                        297.0,
                                         420.0,
                                         75.0,
                                         23.0
@@ -543,7 +620,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        267.0,
+                                        297.0,
                                         360.0,
                                         62.0,
                                         23.0
@@ -564,7 +641,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        30.0,
+                                        60.0,
                                         420.0,
                                         75.0,
                                         23.0
@@ -584,7 +661,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        109.0,
+                                        139.0,
                                         180.0,
                                         50.0,
                                         23.0
@@ -604,7 +681,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        30.0,
+                                        60.0,
                                         180.0,
                                         50.0,
                                         23.0
@@ -621,7 +698,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        330.0,
+                                        390.0,
                                         180.0,
                                         75.0,
                                         23.0
@@ -645,7 +722,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        109.0,
+                                        139.0,
                                         255.0,
                                         77.0,
                                         23.0
@@ -669,7 +746,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
+                                        60.0,
                                         255.0,
                                         77.0,
                                         23.0
@@ -687,7 +764,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
+                                        60.0,
                                         360.0,
                                         62.0,
                                         23.0
@@ -712,7 +789,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
+                                        60.0,
                                         307.0,
                                         256.0,
                                         23.0
@@ -764,9 +841,9 @@
                                     ],
                                     "hidden": 1,
                                     "midpoints": [
-                                        197.5,
+                                        227.5,
                                         168.5,
-                                        276.5,
+                                        306.5,
                                         168.5
                                     ],
                                     "order": 0,
@@ -784,9 +861,9 @@
                                     ],
                                     "hidden": 1,
                                     "midpoints": [
-                                        197.5,
+                                        227.5,
                                         168.5,
-                                        197.5,
+                                        227.5,
                                         168.5
                                     ],
                                     "order": 1,
@@ -833,9 +910,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        339.5,
+                                        399.5,
                                         240.0,
-                                        39.5,
+                                        69.5,
                                         240.0
                                     ],
                                     "order": 3,
@@ -858,9 +935,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        339.5,
+                                        399.5,
                                         240.0,
-                                        118.5,
+                                        148.5,
                                         240.0
                                     ],
                                     "order": 2,
@@ -883,9 +960,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        339.5,
+                                        399.5,
                                         240.0,
-                                        276.5,
+                                        306.5,
                                         240.0
                                     ],
                                     "order": 0,
@@ -908,9 +985,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        339.5,
+                                        399.5,
                                         240.0,
-                                        197.5,
+                                        227.5,
                                         240.0
                                     ],
                                     "order": 1,
@@ -928,9 +1005,9 @@
                                     ],
                                     "hidden": 1,
                                     "midpoints": [
-                                        39.5,
+                                        69.5,
                                         168.5,
-                                        39.5,
+                                        69.5,
                                         168.5
                                     ],
                                     "order": 1,
@@ -948,9 +1025,9 @@
                                     ],
                                     "hidden": 1,
                                     "midpoints": [
-                                        39.5,
+                                        69.5,
                                         168.5,
-                                        118.5,
+                                        148.5,
                                         168.5
                                     ],
                                     "order": 0,
@@ -967,9 +1044,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        39.5,
+                                        69.5,
                                         204.0,
-                                        39.5,
+                                        69.5,
                                         204.0
                                     ],
                                     "source": [
@@ -985,9 +1062,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        118.5,
+                                        148.5,
                                         204.0,
-                                        118.5,
+                                        148.5,
                                         204.0
                                     ],
                                     "source": [
@@ -1015,9 +1092,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        276.5,
+                                        306.5,
                                         204.0,
-                                        276.5,
+                                        306.5,
                                         204.0
                                     ],
                                     "source": [
@@ -1033,9 +1110,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        197.5,
+                                        227.5,
                                         204.0,
-                                        197.5,
+                                        227.5,
                                         204.0
                                     ],
                                     "source": [
@@ -1098,7 +1175,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -1117,9 +1195,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1210,7 +1287,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -1229,9 +1307,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1328,15 +1405,16 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-20",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        465.0,
-                                        392.0,
-                                        129.0,
-                                        21.0
+                                        460.0,
+                                        390.0,
+                                        146.0,
+                                        25.0
                                     ],
                                     "text": "See inside for details"
                                 }
@@ -1439,15 +1517,16 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-14",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        285.0,
+                                        270.0,
                                         540.0,
-                                        335.0,
-                                        21.0
+                                        352.0,
+                                        25.0
                                     ],
                                     "text": "Switch the gate~ on to hear the triggers as a set of clicks"
                                 }
@@ -1463,7 +1542,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        218.0,
+                                        210.0,
                                         495.0,
                                         24.0,
                                         24.0
@@ -1480,7 +1559,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        218.0,
+                                        210.0,
                                         540.0,
                                         56.0,
                                         23.0
@@ -1496,7 +1575,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        218.0,
+                                        210.0,
                                         585.0,
                                         45.0,
                                         45.0
@@ -1513,7 +1592,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        255.0,
+                                        247.0,
                                         495.0,
                                         49.0,
                                         23.0
@@ -1531,7 +1610,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        255.0,
+                                        247.0,
                                         450.0,
                                         98.0,
                                         23.0
@@ -2919,7 +2998,7 @@
                                     "midpoints": [
                                         54.5,
                                         431.0,
-                                        264.5,
+                                        256.5,
                                         431.0
                                     ],
                                     "order": 0,
@@ -3099,6 +3178,25 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.1,
+                                    "bubbleside": 2,
+                                    "id": "obj-8",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        150.0,
+                                        195.0,
+                                        240.0,
+                                        40.0
+                                    ],
+                                    "text": "Note the mismatch in input pair lengths",
+                                    "textjustification": 1
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-11",
                                     "linecount": 6,
                                     "maxclass": "comment",
@@ -3130,15 +3228,16 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-6",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        489.0,
-                                        347.0,
-                                        129.0,
-                                        21.0
+                                        469.5,
+                                        345.0,
+                                        146.0,
+                                        25.0
                                     ],
                                     "text": "See inside for details"
                                 }
@@ -3156,21 +3255,6 @@
                                         21.0
                                     ],
                                     "text": "(use the same values for the real and imaginary parts)"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-12",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        135.0,
-                                        195.0,
-                                        258.0,
-                                        21.0
-                                    ],
-                                    "text": "Generate pairs of inputs of different lengths"
                                 }
                             },
                             {
@@ -3199,7 +3283,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        525.0,
+                                        491.0,
                                         394.0,
                                         45.0,
                                         45.0
@@ -3208,31 +3292,16 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-37",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        429.0,
-                                        468.8999938964844,
-                                        46.04998779296875,
-                                        12.100006103515625
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-18",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        480.0,
-                                        465.0,
-                                        150.0,
-                                        21.0
+                                        426.0,
+                                        464.0,
+                                        167.0,
+                                        25.0
                                     ],
                                     "text": "Observe output changes"
                                 }
@@ -3554,8 +3623,8 @@
                                         ]
                                     },
                                     "patching_rect": [
-                                        465.0,
-                                        183.0,
+                                        446.0,
+                                        180.0,
                                         135.0,
                                         151.0
                                     ],
@@ -3609,7 +3678,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        247.5,
+                                        238.0,
                                         285.0,
                                         102.0,
                                         23.0
@@ -4589,7 +4658,7 @@
                                     "patching_rect": [
                                         30.0,
                                         345.0,
-                                        454.0,
+                                        435.0,
                                         23.0
                                     ],
                                     "saved_object_attributes": {
@@ -4693,7 +4762,7 @@
                                     "midpoints": [
                                         39.5,
                                         326.0,
-                                        148.25,
+                                        143.5,
                                         326.0
                                     ],
                                     "order": 0,
@@ -4723,9 +4792,9 @@
                                         3
                                     ],
                                     "midpoints": [
-                                        257.0,
+                                        247.5,
                                         326.0,
-                                        365.75,
+                                        351.5,
                                         326.0
                                     ],
                                     "order": 0,
@@ -4806,7 +4875,7 @@
                                     "midpoints": [
                                         39.5,
                                         276.0,
-                                        257.0,
+                                        247.5,
                                         276.0
                                     ],
                                     "order": 0,
@@ -4880,29 +4949,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

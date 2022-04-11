@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.audiotrigger~",
-                                        93
+                                        94
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -302,15 +302,16 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-2",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         360.0,
-                                        136.5,
-                                        92.0,
-                                        21.0
+                                        134.5,
+                                        109.0,
+                                        25.0
                                     ],
                                     "text": "Click to trigger",
                                     "textjustification": 1
@@ -356,7 +357,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        90.0,
+                                        81.0,
                                         165.0,
                                         36.0
                                     ],
@@ -372,12 +373,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        255.0,
-                                        90.0,
+                                        315.0,
+                                        81.0,
                                         174.0,
                                         36.0
                                     ],
-                                    "text": "A simple way of translating max bang into trigger frames",
+                                    "text": "A simple way of translating \nbangs into trigger frames",
                                     "textjustification": 1
                                 }
                             },
@@ -835,29 +836,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

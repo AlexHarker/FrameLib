@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            614.0,
-            736.0
+            571.0,
+            720.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            614.0,
-                            710.0
+                            571.0,
+                            694.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.route~",
-                                        100
+                                        94
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        584.0,
+                                        541.0,
                                         95
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         127,
-                                        584.0,
-                                        568.0
+                                        541.0,
+                                        552.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        584.0
+                                        541.0
                                     ]
                                 }
                             }
@@ -194,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            614.0,
-                            710.0
+                            571.0,
+                            694.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -265,8 +265,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            614.0,
-                            710.0
+                            571.0,
+                            694.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -302,68 +302,65 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "border": 0,
+                                    "filename": "fl.bubblepoint.js",
+                                    "id": "obj-26",
+                                    "ignoreclick": 1,
+                                    "maxclass": "jsui",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [
+                                        345.0,
+                                        578.0,
+                                        19.007189542551032,
+                                        17.187598475170148
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "border": 0,
+                                    "filename": "fl.bubblepoint.js",
+                                    "id": "obj-23",
+                                    "ignoreclick": 1,
+                                    "jsarguments": [
+                                        1
+                                    ],
+                                    "maxclass": "jsui",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [
+                                        135.0,
+                                        578.0,
+                                        19.007189542551032,
+                                        17.187598475170148
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-2",
+                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        360.0,
-                                        317.0,
-                                        226.0,
-                                        21.0
+                                        354.0,
+                                        306.5,
+                                        135.0,
+                                        40.0
                                     ],
-                                    "text": "Argument sets the number of outputs."
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-23",
-                                    "justification": 1,
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        387.875,
-                                        580.0,
-                                        19.25,
-                                        28.166671752929688
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-22",
-                                    "justification": 1,
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        237.875,
-                                        580.0,
-                                        19.25,
-                                        28.166671752929688
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-38",
-                                    "justification": 1,
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        87.875,
-                                        580.0,
-                                        19.25,
-                                        28.166671752929688
-                                    ]
+                                    "text": "Argument sets the number of outputs.",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -449,7 +446,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        510.0,
+                                        495.0,
                                         487.5,
                                         45.0,
                                         45.0
@@ -458,34 +455,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-17",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        420.0,
-                                        139.5,
-                                        106.0,
-                                        21.0
+                                        411.0,
+                                        137.5,
+                                        123.0,
+                                        25.0
                                     ],
                                     "text": "Select the output"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-16",
-                                    "linecount": 4,
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        45.0,
-                                        615.0,
-                                        405.0,
-                                        65.0
-                                    ],
-                                    "text": "The random frame will go to one or none of the 3 outputs.\n\nNote that when the input is not routed to a particular output there will be no frame sent (not an empty frame).",
-                                    "textjustification": 1
                                 }
                             },
                             {
@@ -664,7 +645,7 @@
                                     "patching_rect": [
                                         30.0,
                                         450.0,
-                                        135.0,
+                                        138.0,
                                         120.0
                                     ],
                                     "setminmax": [
@@ -741,7 +722,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        584.0,
+                                        541.0,
                                         60.0
                                     ]
                                 }
@@ -766,6 +747,7 @@
                             },
                             {
                                 "box": {
+                                    "fontsize": 12.0,
                                     "id": "obj-7",
                                     "maxclass": "live.tab",
                                     "num_lines_patching": 4,
@@ -807,6 +789,25 @@
                                         }
                                     },
                                     "varname": "live.tab"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 0,
+                                    "id": "obj-16",
+                                    "linecount": 4,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        45.0,
+                                        578.0,
+                                        407.0,
+                                        84.0
+                                    ],
+                                    "text": "The random frame will go to one or none of the 3 outputs.\n\nNote that when the input is not routed to a particular output there will be no frame sent (not an empty frame).",
+                                    "textjustification": 1
                                 }
                             }
                         ],
@@ -1069,29 +1070,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

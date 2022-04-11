@@ -12,7 +12,7 @@
         "rect": [
             34.0,
             87.0,
-            667.0,
+            674.0,
             755.0
         ],
         "bglocked": 0,
@@ -67,7 +67,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            667.0,
+                            674.0,
                             729.0
                         ],
                         "bglocked": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.makestring~",
-                                        109
+                                        112
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,8 +122,8 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        637.0,
-                                        155
+                                        644.0,
+                                        140
                                     ]
                                 }
                             },
@@ -147,13 +147,13 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        187,
-                                        637.0,
-                                        527.0
+                                        172,
+                                        644.0,
+                                        542.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        637.0
+                                        644.0
                                     ]
                                 }
                             }
@@ -194,7 +194,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            667.0,
+                            674.0,
                             729.0
                         ],
                         "bglocked": 0,
@@ -240,27 +240,27 @@
                                     "patching_rect": [
                                         136.5,
                                         540.0,
-                                        390.0,
+                                        392.0,
                                         36.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "Although the input to the first inlet is running faster the output here only updates when the second input fires",
                                     "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-35",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        405.0,
+                                        393.0,
                                         300.0,
-                                        110.0,
-                                        21.0
+                                        241.0,
+                                        25.0
                                     ],
-                                    "text": "Set the first string"
+                                    "text": "Arguments set the string components"
                                 }
                             },
                             {
@@ -374,31 +374,16 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-9",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        172.0,
-                                        424.0,
-                                        30.0,
-                                        11.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-10",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        210.0,
-                                        421.0,
-                                        92.0,
-                                        21.0
+                                        171.5,
+                                        420.0,
+                                        109.0,
+                                        25.0
                                     ],
                                     "text": "Current output"
                                 }
@@ -419,7 +404,7 @@
                                         134.0,
                                         23.0
                                     ],
-                                    "text": "buffer bat.0000.175"
+                                    "text": "buffer bat.0019.08"
                                 }
                             },
                             {
@@ -539,7 +524,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        637.0,
+                                        644.0,
                                         75.0
                                     ]
                                 }
@@ -553,9 +538,9 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        30.0,
+                                        61.5,
                                         495.0,
-                                        603.0,
+                                        540.0,
                                         36.0
                                     ],
                                     "text": "The above demo shows some details of fl.makestring~, including dynamically altering strings via parameters, padding numbers and setting the inputs that will trigger output.",
@@ -812,7 +797,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            667.0,
+                            674.0,
                             729.0
                         ],
                         "bglocked": 0,
@@ -883,7 +868,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            667.0,
+                            674.0,
                             729.0
                         ],
                         "bglocked": 0,
@@ -920,17 +905,18 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-20",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        352.0,
-                                        198.0,
-                                        189.0,
-                                        21.0
+                                        352.5,
+                                        197.0,
+                                        274.0,
+                                        25.0
                                     ],
-                                    "text": "Add one to go between 1 and 5"
+                                    "text": "Adds one to set the range between 1 and 5"
                                 }
                             },
                             {
@@ -953,37 +939,23 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-17",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        309.0,
-                                        672.0,
-                                        30.0,
-                                        11.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-18",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        345.0,
-                                        667.0,
-                                        230.0,
-                                        21.0
+                                        304.5,
+                                        666.0,
+                                        247.0,
+                                        25.0
                                     ],
                                     "text": "Look inside to see the samples loaded"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-15",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -991,8 +963,8 @@
                                     "patching_rect": [
                                         86.5,
                                         316.5,
-                                        132.0,
-                                        21.0
+                                        149.0,
+                                        25.0
                                     ],
                                     "text": "Sets the buffer to use"
                                 }
@@ -1005,8 +977,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        339.0,
-                                        310.0,
+                                        345.0,
+                                        305.5,
                                         298.0,
                                         36.0
                                     ],
@@ -1016,61 +988,48 @@
                             {
                                 "box": {
                                     "id": "obj-10",
-                                    "linecount": 5,
+                                    "linecount": 4,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        76.5,
-                                        482.0,
-                                        495.0,
-                                        79.0
+                                        75.0,
+                                        488.0,
+                                        538.5,
+                                        65.0
                                     ],
                                     "text": "The simplest operation is just to change one numeric part of a string, perhaps to determine which element of a polybuffer~ to access (as in this example).\n\nHowever, strings can be combined from multiple elements with control of numerical padding"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.0,
                                     "id": "obj-8",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         327.0,
-                                        287.0,
-                                        257.0,
-                                        21.0
+                                        277.0,
+                                        274.0,
+                                        25.0
                                     ],
                                     "text": "Arguments set the output tag and elements"
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-5",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        327.0,
-                                        435.0,
-                                        30.0,
-                                        11.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-6",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        365.0,
-                                        432.0,
-                                        232.0,
-                                        21.0
+                                        327.0,
+                                        430.0,
+                                        202.0,
+                                        25.0
                                     ],
                                     "text": "Cycles through the polybuffer~"
                                 }
@@ -1091,7 +1050,7 @@
                                         159.0,
                                         23.0
                                     ],
-                                    "text": "buffer fl-help-ms-polybuf.5"
+                                    "text": "buffer fl-help-ms-polybuf.3"
                                 }
                             },
                             {
@@ -1254,31 +1213,16 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-16",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        126.0,
-                                        588.0,
-                                        30.0,
-                                        11.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-25",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        165.0,
-                                        583.0,
-                                        221.0,
-                                        21.0
+                                        116.0,
+                                        582.0,
+                                        238.0,
+                                        25.0
                                     ],
                                     "text": "Turn up to hear the different samples"
                                 }
@@ -1374,7 +1318,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        637.0,
+                                        644.0,
                                         75.0
                                     ]
                                 }
@@ -1619,29 +1563,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

@@ -13,7 +13,7 @@
             34.0,
             87.0,
             452.0,
-            478.0
+            448.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -68,7 +68,7 @@
                             34.0,
                             113.0,
                             452.0,
-                            452.0
+                            422.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.complex.sinh~",
-                                        72
+                                        73
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -149,7 +149,7 @@
                                         15.0,
                                         157,
                                         422.0,
-                                        280.0
+                                        250.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
@@ -195,7 +195,7 @@
                             0.0,
                             26.0,
                             452.0,
-                            452.0
+                            422.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -266,7 +266,7 @@
                             34.0,
                             113.0,
                             452.0,
-                            452.0
+                            422.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -302,8 +302,76 @@
                         "boxes": [
                             {
                                 "box": {
-                                    "hidden": 1,
+                                    "fontface": 2,
+                                    "fontname": "Times New Roman",
+                                    "fontsize": 16.0,
                                     "id": "obj-5",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        192.0,
+                                        360.0,
+                                        22.0,
+                                        24.0
+                                    ],
+                                    "text": "i"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "fontface": 2,
+                                    "fontname": "Times New Roman",
+                                    "fontsize": 16.0,
+                                    "id": "obj-18",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        167.0,
+                                        120.0,
+                                        22.0,
+                                        24.0
+                                    ],
+                                    "text": "i"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
+                                    "id": "obj-23",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        77.0,
+                                        78.0,
+                                        39.0,
+                                        40.0
+                                    ],
+                                    "text": "Input"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-9",
+                                    "local": 1,
+                                    "maxclass": "ezdac~",
+                                    "numinlets": 2,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        293.5,
+                                        236.0,
+                                        45.0,
+                                        45.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "hidden": 1,
+                                    "id": "obj-1",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -311,8 +379,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        113.0,
-                                        60.0,
+                                        115.0,
+                                        86.5,
                                         79.0,
                                         23.0
                                     ],
@@ -321,22 +389,7 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-8",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        144.0,
-                                        221.0,
-                                        60.25,
-                                        15.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-6",
                                     "linecount": 2,
                                     "maxclass": "comment",
@@ -344,11 +397,12 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         210.0,
-                                        210.5,
+                                        351.5,
                                         212.0,
-                                        36.0
+                                        40.0
                                     ],
-                                    "text": "Adjust the real and imaginary input values to see the result"
+                                    "text": "Adjust the real and imaginary input values to see the result",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -363,7 +417,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        60.0,
+                                        86.5,
                                         75.0,
                                         23.0
                                     ],
@@ -383,8 +437,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        113.0,
-                                        330.0,
+                                        115.0,
+                                        360.0,
                                         75.0,
                                         23.0
                                     ]
@@ -400,8 +454,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        113.0,
-                                        270.0,
+                                        115.0,
+                                        300.0,
                                         62.0,
                                         23.0
                                     ],
@@ -422,7 +476,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         30.0,
-                                        330.0,
+                                        360.0,
                                         75.0,
                                         23.0
                                     ]
@@ -441,8 +495,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        113.0,
-                                        90.0,
+                                        115.0,
+                                        120.0,
                                         50.0,
                                         23.0
                                     ]
@@ -462,7 +516,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         30.0,
-                                        90.0,
+                                        120.0,
                                         50.0,
                                         23.0
                                     ]
@@ -479,7 +533,7 @@
                                     ],
                                     "patching_rect": [
                                         199.0,
-                                        90.0,
+                                        120.0,
                                         75.0,
                                         23.0
                                     ],
@@ -496,8 +550,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        113.0,
-                                        165.0,
+                                        115.0,
+                                        195.0,
                                         77.0,
                                         23.0
                                     ],
@@ -515,7 +569,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        165.0,
+                                        195.0,
                                         77.0,
                                         23.0
                                     ],
@@ -533,7 +587,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        270.0,
+                                        300.0,
                                         62.0,
                                         23.0
                                     ],
@@ -558,26 +612,11 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        217.0,
-                                        102.0,
+                                        247.0,
+                                        104.0,
                                         23.0
                                     ],
                                     "text": "fl.complex.sinh~"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-1",
-                                    "local": 1,
-                                    "maxclass": "ezdac~",
-                                    "numinlets": 2,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        30.0,
-                                        390.0,
-                                        45.0,
-                                        45.0
-                                    ]
                                 }
                             },
                             {
@@ -598,12 +637,25 @@
                                         15.0,
                                         15.0,
                                         422.0,
-                                        60.0
+                                        61.0
                                     ]
                                 }
                             }
                         ],
                         "lines": [
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-27",
+                                        0
+                                    ],
+                                    "hidden": 1,
+                                    "source": [
+                                        "obj-1",
+                                        0
+                                    ]
+                                }
+                            },
                             {
                                 "patchline": {
                                     "destination": [
@@ -654,9 +706,9 @@
                                     ],
                                     "midpoints": [
                                         208.5,
-                                        150.0,
+                                        180.0,
                                         39.5,
-                                        150.0
+                                        180.0
                                     ],
                                     "order": 1,
                                     "source": [
@@ -679,9 +731,9 @@
                                     ],
                                     "midpoints": [
                                         208.5,
-                                        150.0,
-                                        122.5,
-                                        150.0
+                                        180.0,
+                                        124.5,
+                                        180.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -735,19 +787,6 @@
                                     ],
                                     "source": [
                                         "obj-31",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-27",
-                                        0
-                                    ],
-                                    "hidden": 1,
-                                    "source": [
-                                        "obj-5",
                                         0
                                     ]
                                 }
@@ -840,29 +879,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

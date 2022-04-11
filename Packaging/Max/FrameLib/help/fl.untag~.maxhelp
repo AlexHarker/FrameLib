@@ -12,7 +12,7 @@
         "rect": [
             34.0,
             87.0,
-            667.0,
+            585.0,
             491.0
         ],
         "bglocked": 0,
@@ -67,7 +67,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            667.0,
+                            585.0,
                             465.0
                         ],
                         "bglocked": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.untag~",
-                                        109
+                                        96
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,8 +122,8 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        637.0,
-                                        125
+                                        555.0,
+                                        140
                                     ]
                                 }
                             },
@@ -147,13 +147,13 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        157,
-                                        637.0,
-                                        293.0
+                                        172,
+                                        555.0,
+                                        278.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        637.0
+                                        555.0
                                     ]
                                 }
                             }
@@ -194,7 +194,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            667.0,
+                            585.0,
                             465.0
                         ],
                         "bglocked": 0,
@@ -265,7 +265,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            667.0,
+                            585.0,
                             465.0
                         ],
                         "bglocked": 0,
@@ -313,23 +313,6 @@
                                         45.0,
                                         45.0
                                     ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-10",
-                                    "linecount": 2,
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        240.0,
-                                        317.0,
-                                        392.0,
-                                        36.0
-                                    ],
-                                    "text": "fl.untag~ is a utility object to help manage tagged frames, allowing you to retrieve vectors that have been given specfic tags.",
-                                    "textjustification": 1
                                 }
                             },
                             {
@@ -538,33 +521,18 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-14",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        153.75,
-                                        282.0,
-                                        50.25,
-                                        11.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-92",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        210.0,
+                                        154.0,
                                         277.0,
-                                        413.0,
-                                        21.0
+                                        386.0,
+                                        25.0
                                     ],
-                                    "text": "fl.untag~ outputs two vectors - one for each of the named tags frames."
+                                    "text": "fl.untag~ outputs two vectors - one for each of the named tags."
                                 }
                             },
                             {
@@ -584,7 +552,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        637.0,
+                                        555.0,
                                         75.0
                                     ]
                                 }
@@ -783,29 +751,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

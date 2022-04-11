@@ -12,7 +12,7 @@
         "rect": [
             34.0,
             87.0,
-            680.0,
+            691.0,
             675.0
         ],
         "bglocked": 0,
@@ -67,7 +67,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            680.0,
+                            691.0,
                             649.0
                         ],
                         "bglocked": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.streamid~",
-                                        112
+                                        114
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        650.0,
+                                        661.0,
                                         95
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         127,
-                                        650.0,
+                                        661.0,
                                         507.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        650.0
+                                        661.0
                                     ]
                                 }
                             }
@@ -194,7 +194,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            680.0,
+                            691.0,
                             649.0
                         ],
                         "bglocked": 0,
@@ -265,7 +265,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            680.0,
+                            691.0,
                             649.0
                         ],
                         "bglocked": 1,
@@ -317,38 +317,41 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-2",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        188.0,
-                                        446.0,
-                                        206.0,
-                                        21.0
+                                        192.0,
+                                        444.0,
+                                        230.0,
+                                        25.0
                                     ],
-                                    "text": "Output the two streams separately"
+                                    "text": "Outputs the two streams separately"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "fontsize": 13.0,
                                     "id": "obj-75",
-                                    "linecount": 9,
+                                    "linecount": 10,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        345.0,
-                                        289.0,
-                                        300.0,
-                                        137.0
+                                        337.5,
+                                        277.5,
+                                        303.0,
+                                        156.0
                                     ],
-                                    "text": "Using the result of the calculation set the intervals for the fl.interval~ object separately in the two streams (one every 512 and one every 1024).\n\nWe also divide those values by 2 and use these values to set the length for each stream. \n\nThus, each stream has frames that are half the length of the interval between frames."
+                                    "text": "Using the result of the calculation sets the intervals for the fl.interval~ object separately in the two streams (one every 512 and one every 1024).\n\nWe also divide those values by 2 and use these values to set the length for each stream. \n\nThus, each stream has frames that are half the length of the interval between frames."
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "fontsize": 13.0,
                                     "id": "obj-74",
                                     "maxclass": "comment",
@@ -357,14 +360,15 @@
                                     "patching_rect": [
                                         274.5,
                                         240.0,
-                                        165.0,
-                                        21.0
+                                        192.0,
+                                        25.0
                                     ],
-                                    "text": "Multiply by 512 (512, 1024)"
+                                    "text": "Multiplies by 512 (512, 1024)"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "fontsize": 13.0,
                                     "id": "obj-73",
                                     "maxclass": "comment",
@@ -373,14 +377,15 @@
                                     "patching_rect": [
                                         251.5,
                                         186.0,
-                                        255.0,
-                                        21.0
+                                        276.0,
+                                        25.0
                                     ],
-                                    "text": "Calculate consecutive powers of two (1, 2)"
+                                    "text": "Calculates consecutive powers of two (1, 2)"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "fontsize": 13.0,
                                     "id": "obj-72",
                                     "linecount": 2,
@@ -388,28 +393,29 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        331.5,
-                                        133.5,
-                                        315.0,
-                                        36.0
+                                        330.0,
+                                        131.5,
+                                        330.0,
+                                        40.0
                                     ],
-                                    "text": "Output stream IDs. (Instantiated with two streams using '=2' and hence there will be two ids - 0 and 1)."
+                                    "text": "Outputs stream IDs. (Instantiated with two streams using '=2' and hence there will be two ids - 0 and 1)."
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "fontsize": 13.0,
                                     "id": "obj-71",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        286.5,
-                                        96.0,
-                                        247.0,
-                                        21.0
+                                        289.0,
+                                        94.0,
+                                        267.0,
+                                        25.0
                                     ],
-                                    "text": "Output a trigger frame at the start of time"
+                                    "text": "Outputs a trigger frame at the start of time"
                                 }
                             },
                             {
@@ -685,7 +691,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        650.0,
+                                        661.0,
                                         75.0
                                     ]
                                 }
@@ -900,7 +906,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -919,9 +926,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1012,7 +1018,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -1031,9 +1038,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1059,29 +1065,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

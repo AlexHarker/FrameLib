@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.convert~",
-                                        83
+                                        84
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -321,62 +321,32 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-39",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        347.875,
-                                        255.0,
-                                        29.75,
-                                        16.5
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-40",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        377.625,
-                                        251.75,
-                                        103.0,
-                                        21.0
+                                        361.0,
+                                        249.0,
+                                        119.0,
+                                        25.0
                                     ],
                                     "text": "Conversion type"
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-37",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        84.0,
-                                        154.25,
-                                        29.75,
-                                        14.5
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-38",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        117.75,
-                                        151.0,
-                                        103.0,
-                                        21.0
+                                        86.0,
+                                        149.0,
+                                        118.0,
+                                        25.0
                                     ],
                                     "text": "Value to convert"
                                 }
@@ -421,6 +391,7 @@
                             },
                             {
                                 "box": {
+                                    "fontsize": 12.0,
                                     "id": "obj-32",
                                     "maxclass": "live.tab",
                                     "num_lines_patching": 8,
@@ -434,17 +405,10 @@
                                     ],
                                     "parameter_enable": 1,
                                     "patching_rect": [
-                                        240.0,
-                                        151.0,
-                                        100.25,
+                                        226.125,
+                                        149.0,
+                                        129.25,
                                         225.0
-                                    ],
-                                    "presentation": 1,
-                                    "presentation_rect": [
-                                        15.0,
-                                        15.0,
-                                        105.0,
-                                        255.0
                                     ],
                                     "saved_attribute_attributes": {
                                         "valueof": {
@@ -623,31 +587,16 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-24",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        141.0,
-                                        589.5,
-                                        49.75,
-                                        12.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-25",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        194.75,
-                                        587.0,
-                                        103.0,
-                                        21.0
+                                        144.0,
+                                        584.0,
+                                        120.0,
+                                        25.0
                                     ],
                                     "text": "Converted value"
                                 }
@@ -905,29 +854,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

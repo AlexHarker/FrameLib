@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            652,
-            672
+            652.0,
+            672.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            652,
-                            646
+                            652.0,
+                            646.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        622,
+                                        622.0,
                                         125
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         157,
-                                        622,
-                                        474
+                                        622.0,
+                                        474.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        622
+                                        622.0
                                     ]
                                 }
                             }
@@ -194,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652,
-                            646
+                            652.0,
+                            646.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -246,7 +246,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        622,
+                                        622.0,
                                         75.0
                                     ]
                                 }
@@ -576,7 +576,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -595,9 +596,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -688,7 +688,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -707,9 +708,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -752,8 +752,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652,
-                            646
+                            652.0,
+                            646.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -819,7 +819,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        622,
+                                        622.0,
                                         75.0
                                     ]
                                 }
@@ -860,7 +860,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         555.0,
-                                        149.0,
+                                        150.0,
                                         50.0,
                                         23.0
                                     ]
@@ -928,22 +928,6 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 2,
-                                    "border": 4.0,
-                                    "id": "obj-12",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        445.0,
-                                        154.0,
-                                        37.0,
-                                        15.25
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
                                     "id": "obj-13",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -959,17 +943,19 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 3,
                                     "id": "obj-14",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        330.0,
-                                        150.0,
-                                        106.0,
-                                        21.0
+                                        345.0,
+                                        149.0,
+                                        140.0,
+                                        25.0
                                     ],
-                                    "text": "Trapezoid Points"
+                                    "text": "Set trapezoid points"
                                 }
                             },
                             {
@@ -1125,22 +1111,6 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 2,
-                                    "border": 4.0,
-                                    "id": "obj-46",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        135.0,
-                                        154.0,
-                                        37.0,
-                                        15.25
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
                                     "id": "obj-34",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -1156,17 +1126,19 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 3,
                                     "id": "obj-32",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        27.0,
-                                        150.0,
-                                        100.0,
-                                        21.0
+                                        31.0,
+                                        149.0,
+                                        143.0,
+                                        25.0
                                     ],
-                                    "text": "Beta Parameter"
+                                    "text": "Sets beta parameter"
                                 }
                             },
                             {
@@ -1181,7 +1153,7 @@
                                         379.0,
                                         21.0
                                     ],
-                                    "text": "Some windows take parmeters (full details via the info message)"
+                                    "text": "Some windows take parmeters (full details on the info tab)"
                                 }
                             },
                             {
@@ -1609,7 +1581,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -1628,9 +1601,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1721,7 +1693,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -1740,9 +1713,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1785,8 +1757,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            652,
-                            646
+                            652.0,
+                            646.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1852,7 +1824,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        622,
+                                        622.0,
                                         75.0
                                     ]
                                 }
@@ -1878,22 +1850,6 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 2,
-                                    "border": 4.0,
-                                    "id": "obj-46",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        315.0,
-                                        199.0,
-                                        37.0,
-                                        15.25
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
                                     "id": "obj-34",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -1909,15 +1865,17 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 3,
                                     "id": "obj-32",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        225.0,
-                                        195.0,
-                                        91.0,
-                                        21.0
+                                        242.5,
+                                        194.0,
+                                        108.0,
+                                        25.0
                                     ],
                                     "text": "Pick a window"
                                 }
@@ -1935,7 +1893,7 @@
                                         620.0,
                                         65.0
                                     ],
-                                    "text": "fl.makewindow~ generates a specified window.\n\nGain compensation can be applied via the /compensate parameter (see Tutorial 7 - FFT With FrameLib)\nYou can also raise the window to the power of a specified an exponent if desired."
+                                    "text": "fl.makewindow~ generates a specified window.\n\nGain compensation can be applied via the /compensate parameter.\nYou can also raise the window to the power of a specified an exponent if desired."
                                 }
                             },
                             {
@@ -2236,7 +2194,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -2255,9 +2214,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -2348,7 +2306,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -2367,9 +2326,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -2412,8 +2370,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652,
-                            646
+                            652.0,
+                            646.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -2483,8 +2441,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            652,
-                            646
+                            652.0,
+                            646.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -2520,48 +2478,34 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-32",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        363.0,
-                                        406.0,
-                                        139.0,
-                                        21.0
+                                        357.0,
+                                        404.0,
+                                        156.0,
+                                        25.0
                                     ],
                                     "text": "Retrieves frame length"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-29",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        393.0,
-                                        495.0,
-                                        225.0,
-                                        21.0
+                                        346.0,
+                                        494.0,
+                                        242.0,
+                                        25.0
                                     ],
                                     "text": "Length should match the value above"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-30",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        348.0,
-                                        499.125,
-                                        39.0,
-                                        14.75
-                                    ]
                                 }
                             },
                             {
@@ -2621,33 +2565,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-21",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        342.0,
-                                        180.0,
-                                        209.0,
-                                        21.0
+                                        297.0,
+                                        179.0,
+                                        226.0,
+                                        25.0
                                     ],
                                     "text": "Change the size of the initial frame"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-20",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        297.0,
-                                        184.125,
-                                        39.0,
-                                        14.75
-                                    ]
                                 }
                             },
                             {
@@ -2836,15 +2765,16 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-10",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        270.0,
-                                        316.0,
-                                        324.0,
-                                        21.0
+                                        265.0,
+                                        315.0,
+                                        341.0,
+                                        25.0
                                     ],
                                     "text": "Generates an initial frame of 100 values using fl.ramp~"
                                 }
@@ -2943,7 +2873,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        622,
+                                        622.0,
                                         60.0
                                     ]
                                 }
@@ -3181,29 +3111,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

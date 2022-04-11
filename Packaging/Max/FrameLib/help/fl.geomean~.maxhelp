@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.geomean~",
-                                        103
+                                        104
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -302,122 +302,96 @@
                         "boxes": [
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-17",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        235.0,
-                                        419.875,
-                                        37.0,
-                                        15.25
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-18",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        274.0,
-                                        417.0,
-                                        238.0,
-                                        21.0
+                                        232.0,
+                                        415.0,
+                                        262.0,
+                                        25.0
                                     ],
-                                    "text": "Divide the geometric mean by the mean"
+                                    "text": "Divides the geometric mean by the mean"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-16",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        96.0,
-                                        335.0,
-                                        215.0,
-                                        21.0
+                                        100.0,
+                                        333.0,
+                                        265.0,
+                                        25.0
                                     ],
-                                    "text": "Take the magnitude of the spectrum"
+                                    "text": "Calculates the magnitude of the spectrum"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-13",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        96.0,
-                                        286.0,
-                                        287.0,
-                                        21.0
+                                        100.0,
+                                        284.0,
+                                        311.0,
+                                        25.0
                                     ],
-                                    "text": "Convert the input frame to the frequency domain"
+                                    "text": "Converts the input frame to the frequency domain"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-10",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        255.0,
-                                        238.0,
-                                        276.0,
-                                        21.0
+                                        257.0,
+                                        236.0,
+                                        296.0,
+                                        25.0
                                     ],
-                                    "text": "Window the input frame using a hann function"
+                                    "text": "Windows the input frame using a hann function"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-8",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         180.0,
-                                        193.0,
-                                        215.0,
-                                        21.0
+                                        192.0,
+                                        291.0,
+                                        25.0
                                     ],
-                                    "text": "4096 randomly distributed samples"
+                                    "text": "Generates 4096 randomly distributed samples"
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-46",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        136.0,
-                                        153.875,
-                                        28.0,
-                                        18.125
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-2",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        168.0,
-                                        151.0,
-                                        215.0,
-                                        21.0
+                                        138.0,
+                                        149.0,
+                                        223.0,
+                                        25.0
                                     ],
                                     "text": "Trigger frame every 4096 samples"
                                 }
@@ -430,8 +404,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        525.0,
-                                        510.0,
+                                        540.0,
+                                        511.0,
                                         45.0,
                                         45.0
                                     ]
@@ -457,15 +431,16 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-32",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        96.0,
-                                        533.0,
-                                        379.0,
-                                        21.0
+                                        90.0,
+                                        531.0,
+                                        396.0,
+                                        25.0
                                     ],
                                     "text": "Spectral flatness measure. Noisy spectra are flatter (closer to 1)."
                                 }
@@ -918,29 +893,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

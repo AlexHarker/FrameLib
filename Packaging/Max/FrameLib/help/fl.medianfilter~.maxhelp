@@ -302,46 +302,51 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-8",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        523.7500305175781,
-                                        96.0,
-                                        66.0,
-                                        21.0
+                                        522.7500305175781,
+                                        74.0,
+                                        68.0,
+                                        40.0
                                     ],
-                                    "presentation_linecount": 2,
                                     "text": "Percentile"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-5",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        426.25006103515625,
-                                        96.0,
-                                        42.0,
-                                        21.0
+                                        425.25006103515625,
+                                        74.0,
+                                        44.0,
+                                        40.0
                                     ],
                                     "text": "Width"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-4",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        309.0000305175781,
-                                        96.0,
-                                        45.0,
-                                        21.0
+                                        307.7500305175781,
+                                        74.0,
+                                        47.0,
+                                        40.0
                                     ],
                                     "text": "Edges"
                                 }
@@ -581,17 +586,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-106",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        495.00006103515625,
-                                        306.0,
-                                        97.0,
-                                        21.0
+                                        449.00006103515625,
+                                        303.0,
+                                        161.0,
+                                        25.0
                                     ],
-                                    "text": "Median filtering"
+                                    "text": "Calculates median filter"
                                 }
                             },
                             {
@@ -602,7 +608,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         241.5,
-                                        475.0,
+                                        473.0,
                                         252.0,
                                         21.0
                                     ],
@@ -618,28 +624,12 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         75.5,
-                                        475.0,
+                                        473.0,
                                         104.0,
                                         21.0
                                     ],
                                     "text": "Unfiltered noise",
                                     "textjustification": 1
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-102",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        186.0,
-                                        245.0,
-                                        35.0,
-                                        13.0
-                                    ]
                                 }
                             },
                             {
@@ -804,34 +794,20 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-27",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        458.00006103515625,
-                                        309.0,
-                                        35.0,
-                                        13.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-18",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        229.5,
-                                        233.5,
-                                        143.0,
-                                        36.0
+                                        182.5,
+                                        231.5,
+                                        162.0,
+                                        40.0
                                     ],
-                                    "text": "Generate a frame of 2048 random variables"
+                                    "text": "Generates a frame of 2048 random variables",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1157,29 +1133,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

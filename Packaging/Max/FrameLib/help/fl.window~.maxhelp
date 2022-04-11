@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.window~",
-                                        107
+                                        108
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -237,7 +237,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        30.0,
+                                        305.0,
                                         555.0,
                                         45.0,
                                         45.0
@@ -288,7 +288,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         426.0,
-                                        465.0,
+                                        460.0,
                                         138.0,
                                         21.0
                                     ],
@@ -396,7 +396,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         53.0,
-                                        465.0,
+                                        460.0,
                                         194.0,
                                         21.0
                                     ],
@@ -650,7 +650,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -669,9 +670,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -762,7 +762,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -781,9 +782,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -824,8 +824,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            113.0,
+                            0.0,
+                            26.0,
                             652.0,
                             634.0
                         ],
@@ -863,17 +863,34 @@
                         "boxes": [
                             {
                                 "box": {
-                                    "id": "obj-2",
+                                    "id": "obj-26",
                                     "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        30.0,
+                                        305.0,
                                         555.0,
                                         45.0,
                                         45.0
                                     ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 3,
+                                    "id": "obj-14",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        349.0,
+                                        149.0,
+                                        140.0,
+                                        25.0
+                                    ],
+                                    "text": "Set trapezoid points"
                                 }
                             },
                             {
@@ -980,22 +997,6 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 2,
-                                    "border": 4.0,
-                                    "id": "obj-12",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        445.0,
-                                        154.0,
-                                        37.0,
-                                        15.25
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
                                     "id": "obj-13",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -1007,21 +1008,6 @@
                                         21.0
                                     ],
                                     "text": "Trapezoid Window"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-14",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        330.0,
-                                        150.0,
-                                        106.0,
-                                        21.0
-                                    ],
-                                    "text": "Trapezoid Points"
                                 }
                             },
                             {
@@ -1195,22 +1181,6 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 2,
-                                    "border": 4.0,
-                                    "id": "obj-46",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        150.0,
-                                        154.0,
-                                        37.0,
-                                        15.25
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
                                     "id": "obj-34",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -1226,21 +1196,6 @@
                             },
                             {
                                 "box": {
-                                    "id": "obj-32",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        42.0,
-                                        150.0,
-                                        100.0,
-                                        21.0
-                                    ],
-                                    "text": "Beta Parameter"
-                                }
-                            },
-                            {
-                                "box": {
                                     "id": "obj-30",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -1251,7 +1206,7 @@
                                         386.0,
                                         21.0
                                     ],
-                                    "text": "Some windows take parameters (full details via the info message)"
+                                    "text": "Some windows take parameters (full details on the info tab)"
                                 }
                             },
                             {
@@ -1420,6 +1375,23 @@
                                         23.0
                                     ],
                                     "text": "parameters $1"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 3,
+                                    "id": "obj-12",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        43.0,
+                                        149.0,
+                                        143.0,
+                                        25.0
+                                    ],
+                                    "text": "Sets beta parameter"
                                 }
                             }
                         ],
@@ -1755,7 +1727,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -1774,9 +1747,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1867,7 +1839,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -1886,9 +1859,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -2000,8 +1972,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            113.0,
                             652.0,
                             634.0
                         ],
@@ -2039,13 +2011,13 @@
                         "boxes": [
                             {
                                 "box": {
-                                    "id": "obj-2",
+                                    "id": "obj-6",
                                     "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        30.0,
+                                        305.0,
                                         555.0,
                                         45.0,
                                         45.0
@@ -2069,22 +2041,6 @@
                                         23.0
                                     ],
                                     "text": "loadmess 1"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 2,
-                                    "border": 4.0,
-                                    "id": "obj-46",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        360.0,
-                                        174.0,
-                                        37.0,
-                                        15.25
-                                    ]
                                 }
                             },
                             {
@@ -2121,15 +2077,17 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 3,
                                     "id": "obj-32",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        266.0,
+                                        289.0,
                                         170.0,
-                                        91.0,
-                                        21.0
+                                        108.0,
+                                        25.0
                                     ],
                                     "text": "Pick a window"
                                 }
@@ -2147,7 +2105,7 @@
                                         620.0,
                                         65.0
                                     ],
-                                    "text": "fl.window~ applies a specified window to incoming frames.\n\nGain compensation can be applied via the /compensate parameter (see Tutorial 7 - FFT With FrameLib)\nYou can also raise the window to an exponent (if desired)."
+                                    "text": "fl.window~ applies a specified window to incoming frames.\n\nGain compensation can be applied via the /compensate parameter.\nYou can also raise the window to the power of a specified an exponent if desired."
                                 }
                             },
                             {
@@ -2691,7 +2649,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -2710,9 +2669,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -2803,7 +2761,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -2822,9 +2781,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -2850,29 +2808,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

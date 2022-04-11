@@ -13,7 +13,7 @@
             34.0,
             87.0,
             646.0,
-            764.0
+            705.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -68,7 +68,7 @@
                             34.0,
                             113.0,
                             646.0,
-                            738.0
+                            679.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.frommax~",
-                                        106
+                                        107
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -149,7 +149,7 @@
                                         15.0,
                                         157,
                                         616.0,
-                                        566.0
+                                        507.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
@@ -195,7 +195,7 @@
                             0.0,
                             26.0,
                             646.0,
-                            738.0
+                            679.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -231,15 +231,17 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-9",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        270.0,
-                                        108.0,
-                                        214.0,
-                                        21.0
+                                        269.0,
+                                        79.0,
+                                        216.0,
+                                        40.0
                                     ],
                                     "text": "Change the values in the multislider"
                                 }
@@ -476,7 +478,7 @@
                                     },
                                     "patching_rect": [
                                         225.0,
-                                        75.0,
+                                        54.0,
                                         87.0,
                                         23.0
                                     ],
@@ -500,7 +502,7 @@
                                     ],
                                     "patching_rect": [
                                         138.5,
-                                        390.0,
+                                        383.0,
                                         53.0,
                                         23.0
                                     ],
@@ -524,7 +526,7 @@
                                     ],
                                     "patching_rect": [
                                         138.5,
-                                        345.0,
+                                        338.0,
                                         142.0,
                                         23.0
                                     ],
@@ -565,9 +567,9 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         225.0,
-                                        135.0,
-                                        304.0,
-                                        120.0
+                                        122.0,
+                                        285.0,
+                                        135.0
                                     ],
                                     "setminmax": [
                                         0.0,
@@ -595,7 +597,7 @@
                                     ],
                                     "patching_rect": [
                                         105.0,
-                                        285.0,
+                                        278.0,
                                         77.0,
                                         23.0
                                     ],
@@ -611,7 +613,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         495.0,
-                                        638.0,
+                                        559.0,
                                         45.0,
                                         45.0
                                     ]
@@ -628,7 +630,7 @@
                                     ],
                                     "patching_rect": [
                                         105.0,
-                                        476.0,
+                                        469.0,
                                         62.0,
                                         23.0
                                     ],
@@ -669,9 +671,9 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         105.0,
-                                        540.0,
-                                        270.0,
-                                        143.0
+                                        514.0,
+                                        285.0,
+                                        135.0
                                     ],
                                     "setminmax": [
                                         0.0,
@@ -699,7 +701,7 @@
                                     ],
                                     "patching_rect": [
                                         105.0,
-                                        135.0,
+                                        225.0,
                                         75.0,
                                         23.0
                                     ],
@@ -708,6 +710,7 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "fontsize": 13.0,
                                     "id": "obj-16",
                                     "linecount": 2,
@@ -715,12 +718,13 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        225.0,
-                                        285.0,
+                                        195.0,
+                                        269.5,
                                         315.0,
-                                        36.0
+                                        40.0
                                     ],
-                                    "text": "The fl.frommax~ object accepts multiple values. This can be useful for converting lists into frames."
+                                    "text": "The fl.frommax~ object accepts multiple values. This can be useful for converting lists into frames.",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -734,7 +738,7 @@
                                     ],
                                     "patching_rect": [
                                         105.0,
-                                        431.0,
+                                        424.0,
                                         52.5,
                                         23.0
                                     ],
@@ -785,9 +789,9 @@
                                     ],
                                     "midpoints": [
                                         114.5,
-                                        309.0,
+                                        302.0,
                                         114.5,
-                                        309.0
+                                        302.0
                                     ],
                                     "order": 1,
                                     "source": [
@@ -804,9 +808,9 @@
                                     ],
                                     "midpoints": [
                                         114.5,
-                                        330.0,
+                                        323.0,
                                         148.0,
-                                        330.0
+                                        323.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -820,12 +824,6 @@
                                     "destination": [
                                         "obj-2",
                                         0
-                                    ],
-                                    "midpoints": [
-                                        114.5,
-                                        159.0,
-                                        114.5,
-                                        159.0
                                     ],
                                     "source": [
                                         "obj-20",
@@ -853,9 +851,9 @@
                                     ],
                                     "midpoints": [
                                         234.5,
-                                        270.0,
+                                        263.0,
                                         114.5,
-                                        270.0
+                                        263.0
                                     ],
                                     "source": [
                                         "obj-4",
@@ -982,7 +980,7 @@
                             0.0,
                             26.0,
                             646.0,
-                            738.0
+                            679.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1053,7 +1051,7 @@
                             34.0,
                             113.0,
                             646.0,
-                            738.0
+                            679.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1089,6 +1087,57 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "id": "obj-10",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        198.0,
+                                        269.0,
+                                        91.0,
+                                        25.0
+                                    ],
+                                    "text": "Set Length"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-11",
+                                    "maxclass": "number",
+                                    "numinlets": 1,
+                                    "numoutlets": 2,
+                                    "outlettype": [
+                                        "",
+                                        "bang"
+                                    ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [
+                                        150.0,
+                                        270.0,
+                                        42.0,
+                                        23.0
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
+                                    "id": "obj-4",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        528.0,
+                                        269.0,
+                                        91.0,
+                                        25.0
+                                    ],
+                                    "text": "Set Length"
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-9",
                                     "linecount": 3,
                                     "maxclass": "comment",
@@ -1100,7 +1149,8 @@
                                         255.0,
                                         50.0
                                     ],
-                                    "text": "In params mode each message from Max is sent only once (on the first trigger frame after it is received)."
+                                    "text": "In params mode each message from Max is sent only once (on the first trigger frame after it is received).",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1116,7 +1166,8 @@
                                         255.0,
                                         50.0
                                     ],
-                                    "text": "Note that in values mode the frame will be repeated each time the object is triggered until a new input is received."
+                                    "text": "Note that in values mode the frame will be repeated each time the object is triggered until a new input is received.",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1128,11 +1179,12 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         450.0,
-                                        450.0,
+                                        411.0,
                                         150.0,
                                         36.0
                                     ],
-                                    "text": "Here we convert directy into a tagged frame."
+                                    "text": "Here we convert directy into a tagged frame.",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1144,11 +1196,12 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         120.0,
-                                        450.0,
+                                        411.0,
                                         165.0,
                                         36.0
                                     ],
-                                    "text": "Here we add a tag once we already have a frame."
+                                    "text": "Here we add a tag once we already have a frame.",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1159,10 +1212,10 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        300.0,
-                                        178.0,
-                                        5.0,
-                                        405.0
+                                        320.0,
+                                        163.0,
+                                        10.0,
+                                        407.0
                                     ]
                                 }
                             },
@@ -1174,43 +1227,11 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        30.0,
-                                        675.0,
+                                        300.0,
+                                        600.0,
                                         45.0,
                                         45.0
                                     ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-40",
-                                    "linecount": 4,
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        360.0,
-                                        203.0,
-                                        221.0,
-                                        65.0
-                                    ],
-                                    "text": "In params mode fl.frommax~ the input syntax changes. The incoming max message can be prepended with the desired tag."
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-39",
-                                    "linecount": 3,
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        30.0,
-                                        203.0,
-                                        213.0,
-                                        50.0
-                                    ],
-                                    "text": "In values mode fl.frommax~ does nothing but pass the raw value into an untagged frame."
                                 }
                             },
                             {
@@ -1224,7 +1245,7 @@
                                     ],
                                     "patching_rect": [
                                         480.0,
-                                        349.0,
+                                        310.0,
                                         62.0,
                                         23.0
                                     ],
@@ -1233,6 +1254,7 @@
                             },
                             {
                                 "box": {
+                                    "hidden": 1,
                                     "id": "obj-27",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -1241,8 +1263,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        480.0,
-                                        274.0,
+                                        543.5,
+                                        310.0,
                                         75.0,
                                         23.0
                                     ],
@@ -1260,7 +1282,7 @@
                                     ],
                                     "patching_rect": [
                                         360.0,
-                                        480.0,
+                                        441.0,
                                         62.0,
                                         23.0
                                     ],
@@ -1301,16 +1323,16 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         360.0,
-                                        525.0,
-                                        209.0,
-                                        58.0
+                                        486.0,
+                                        255.0,
+                                        99.0
                                     ],
                                     "setminmax": [
                                         0.0,
                                         1.0
                                     ],
                                     "setstyle": 1,
-                                    "size": 5,
+                                    "size": 2,
                                     "slidercolor": [
                                         0.815686274509804,
                                         0.341176470588235,
@@ -1333,8 +1355,8 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         480.0,
-                                        309.0,
-                                        50.0,
+                                        270.0,
+                                        42.0,
                                         23.0
                                     ]
                                 }
@@ -1350,7 +1372,7 @@
                                     ],
                                     "patching_rect": [
                                         360.0,
-                                        274.0,
+                                        270.0,
                                         114.0,
                                         23.0
                                     ],
@@ -1374,7 +1396,7 @@
                                     ],
                                     "patching_rect": [
                                         411.0,
-                                        394.0,
+                                        355.0,
                                         163.0,
                                         23.0
                                     ],
@@ -1392,7 +1414,7 @@
                                     ],
                                     "patching_rect": [
                                         360.0,
-                                        439.0,
+                                        400.0,
                                         70.0,
                                         23.0
                                     ],
@@ -1401,6 +1423,7 @@
                             },
                             {
                                 "box": {
+                                    "hidden": 1,
                                     "id": "obj-26",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -1409,8 +1432,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        150.0,
-                                        274.0,
+                                        173.0,
+                                        300.0,
                                         75.0,
                                         23.0
                                     ],
@@ -1428,7 +1451,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        480.0,
+                                        441.0,
                                         62.0,
                                         23.0
                                     ],
@@ -1469,16 +1492,16 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         30.0,
-                                        525.0,
-                                        209.0,
-                                        58.0
+                                        486.0,
+                                        255.0,
+                                        99.0
                                     ],
                                     "setminmax": [
                                         0.0,
                                         1.0
                                     ],
                                     "setstyle": 1,
-                                    "size": 5,
+                                    "size": 17,
                                     "slidercolor": [
                                         0.815686274509804,
                                         0.341176470588235,
@@ -1499,30 +1522,11 @@
                                     ],
                                     "patching_rect": [
                                         81.0,
-                                        394.0,
+                                        355.0,
                                         83.0,
                                         23.0
                                     ],
                                     "text": "fl.tag~ length"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-22",
-                                    "maxclass": "number",
-                                    "numinlets": 1,
-                                    "numoutlets": 2,
-                                    "outlettype": [
-                                        "",
-                                        "bang"
-                                    ],
-                                    "parameter_enable": 0,
-                                    "patching_rect": [
-                                        150.0,
-                                        309.0,
-                                        50.0,
-                                        23.0
-                                    ]
                                 }
                             },
                             {
@@ -1536,7 +1540,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        274.0,
+                                        270.0,
                                         114.0,
                                         23.0
                                     ],
@@ -1560,7 +1564,7 @@
                                     ],
                                     "patching_rect": [
                                         81.0,
-                                        360.0,
+                                        321.0,
                                         77.0,
                                         23.0
                                     ],
@@ -1576,7 +1580,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         424.0,
-                                        178.0,
+                                        163.0,
                                         93.0,
                                         21.0
                                     ],
@@ -1594,8 +1598,8 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        90.0,
-                                        540.0,
+                                        75.0,
+                                        609.0,
                                         79.0
                                     ],
                                     "text": "The fl.frommax~ object acts as an interface between Max control rate messages and FrameLib. It can operate in two modes (value and params). \n\nA scheduler or trigger frame is required for fl.frommax~ to send out any received messages from the Max domain."
@@ -1609,8 +1613,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        93.0,
-                                        178.0,
+                                        114.0,
+                                        163.0,
                                         87.0,
                                         21.0
                                     ],
@@ -1629,7 +1633,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        439.0,
+                                        400.0,
                                         70.0,
                                         23.0
                                     ],
@@ -1657,9 +1661,65 @@
                                         60.0
                                     ]
                                 }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
+                                    "id": "obj-40",
+                                    "linecount": 3,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        356.5,
+                                        189.0,
+                                        262.0,
+                                        69.0
+                                    ],
+                                    "text": "In params mode fl.frommax~ the input syntax changes. The incoming message is prepended with the desired tag.",
+                                    "textjustification": 1
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
+                                    "id": "obj-39",
+                                    "linecount": 3,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        67.0,
+                                        189.0,
+                                        181.0,
+                                        69.0
+                                    ],
+                                    "text": "In values mode fl.frommax~ passes the raw value(s) into a vector frame.",
+                                    "textjustification": 1
+                                }
                             }
                         ],
                         "lines": [
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-18",
+                                        0
+                                    ],
+                                    "midpoints": [
+                                        159.5,
+                                        306.5,
+                                        90.5,
+                                        306.5
+                                    ],
+                                    "source": [
+                                        "obj-11",
+                                        0
+                                    ]
+                                }
+                            },
                             {
                                 "patchline": {
                                     "destination": [
@@ -1692,9 +1752,9 @@
                                     ],
                                     "midpoints": [
                                         39.5,
-                                        367.5,
+                                        328.5,
                                         39.5,
-                                        367.5
+                                        328.5
                                     ],
                                     "order": 1,
                                     "source": [
@@ -1711,31 +1771,13 @@
                                     ],
                                     "midpoints": [
                                         39.5,
-                                        345.5,
+                                        306.5,
                                         90.5,
-                                        345.5
+                                        306.5
                                     ],
                                     "order": 0,
                                     "source": [
                                         "obj-20",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-18",
-                                        0
-                                    ],
-                                    "midpoints": [
-                                        159.5,
-                                        345.5,
-                                        90.5,
-                                        345.5
-                                    ],
-                                    "source": [
-                                        "obj-22",
                                         0
                                     ]
                                 }
@@ -1767,9 +1809,10 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-22",
+                                        "obj-11",
                                         0
                                     ],
+                                    "hidden": 1,
                                     "source": [
                                         "obj-26",
                                         0
@@ -1782,6 +1825,7 @@
                                         "obj-31",
                                         0
                                     ],
+                                    "hidden": 1,
                                     "source": [
                                         "obj-27",
                                         0
@@ -1820,9 +1864,9 @@
                                     ],
                                     "midpoints": [
                                         369.5,
-                                        380.0,
+                                        341.0,
                                         420.5,
-                                        380.0
+                                        341.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -1836,12 +1880,6 @@
                                     "destination": [
                                         "obj-34",
                                         0
-                                    ],
-                                    "midpoints": [
-                                        369.5,
-                                        299.0,
-                                        369.5,
-                                        299.0
                                     ],
                                     "order": 1,
                                     "source": [
@@ -1882,9 +1920,9 @@
                                     ],
                                     "midpoints": [
                                         489.5,
-                                        382.5,
+                                        343.5,
                                         420.5,
-                                        382.5
+                                        343.5
                                     ],
                                     "source": [
                                         "obj-37",
@@ -1956,29 +1994,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

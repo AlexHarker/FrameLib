@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.uniform~",
-                                        105
+                                        108
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -317,15 +317,17 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 0,
                                     "id": "obj-18",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        172.5,
+                                        171.5,
                                         405.0,
-                                        35.0,
-                                        21.0
+                                        37.0,
+                                        40.0
                                     ],
                                     "text": "Sum",
                                     "textjustification": 1
@@ -333,15 +335,17 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 0,
                                     "id": "obj-13",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        67.0,
+                                        66.0,
                                         405.0,
-                                        48.0,
-                                        21.0
+                                        50.0,
+                                        40.0
                                     ],
                                     "text": "Length",
                                     "textjustification": 1
@@ -381,29 +385,13 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-24",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        209.0,
-                                        228.5,
-                                        31.0,
-                                        19.5
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
                                     "id": "obj-15",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         60.0,
-                                        435.0,
+                                        458.0,
                                         424.0,
                                         21.0
                                     ],
@@ -412,17 +400,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-14",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        242.0,
-                                        225.0,
-                                        323.0,
-                                        21.0
+                                        208.0,
+                                        224.0,
+                                        340.0,
+                                        25.0
                                     ],
-                                    "text": "Generates a frame of 50 values all set to the number 2"
+                                    "text": "Generates a frame of 25 values all set to the number 2"
                                 }
                             },
                             {
@@ -463,13 +452,14 @@
                                         10.0
                                     ],
                                     "setstyle": 1,
-                                    "size": 50,
+                                    "size": 25,
                                     "slidercolor": [
                                         0.925490196078431,
                                         0.364705882352941,
                                         0.341176470588235,
                                         1.0
-                                    ]
+                                    ],
+                                    "spacing": 1
                                 }
                             },
                             {
@@ -621,7 +611,7 @@
                                         141.0,
                                         23.0
                                     ],
-                                    "text": "fl.uniform~ 2 /length 50"
+                                    "text": "fl.uniform~ 2 /length 25"
                                 }
                             },
                             {
@@ -913,48 +903,34 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-32",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        363.0,
-                                        406.0,
-                                        139.0,
-                                        21.0
+                                        357.0,
+                                        404.0,
+                                        156.0,
+                                        25.0
                                     ],
                                     "text": "Retrieves frame length"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-29",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        393.0,
-                                        495.0,
-                                        225.0,
-                                        21.0
+                                        346.0,
+                                        494.0,
+                                        242.0,
+                                        25.0
                                     ],
                                     "text": "Length should match the value above"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-30",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        348.0,
-                                        499.125,
-                                        39.0,
-                                        14.75
-                                    ]
                                 }
                             },
                             {
@@ -1014,33 +990,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-21",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        342.0,
-                                        180.0,
-                                        209.0,
-                                        21.0
+                                        297.0,
+                                        179.0,
+                                        226.0,
+                                        25.0
                                     ],
                                     "text": "Change the size of the initial frame"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-20",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        297.0,
-                                        184.125,
-                                        39.0,
-                                        14.75
-                                    ]
                                 }
                             },
                             {
@@ -1229,15 +1190,16 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-10",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        270.0,
-                                        316.0,
-                                        324.0,
-                                        21.0
+                                        265.0,
+                                        315.0,
+                                        341.0,
+                                        25.0
                                     ],
                                     "text": "Generates an initial frame of 100 values using fl.ramp~"
                                 }
@@ -1574,29 +1536,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

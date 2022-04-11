@@ -192,8 +192,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            113.0,
                             655.0,
                             686.0
                         ],
@@ -301,17 +301,19 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-46",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        135.0,
-                                        154.5,
-                                        107.0,
-                                        21.0
+                                        126.0,
+                                        152.5,
+                                        124.0,
+                                        25.0
                                     ],
-                                    "text": "Click to schedule"
+                                    "text": "Click to schedule",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -397,6 +399,7 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-37",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -404,8 +407,8 @@
                                     "patching_rect": [
                                         390.0,
                                         271.5,
-                                        182.0,
-                                        21.0
+                                        199.0,
+                                        25.0
                                     ],
                                     "text": "Sets the mode for new frames"
                                 }
@@ -831,8 +834,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            113.0,
+                            0.0,
+                            26.0,
                             655.0,
                             686.0
                         ],
@@ -876,8 +879,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        293.0,
-                                        210.0,
+                                        288.0,
+                                        203.5,
                                         338.0,
                                         36.0
                                     ],
@@ -908,8 +911,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        293.0,
-                                        165.0,
+                                        288.0,
+                                        158.5,
                                         338.0,
                                         36.0
                                     ],
@@ -969,34 +972,38 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-70",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        352.0,
-                                        463.5,
-                                        284.0,
-                                        36.0
+                                        344.0,
+                                        461.5,
+                                        277.0,
+                                        40.0
                                     ],
-                                    "text": "timing between the first trigger frame (made by you) and successive fl.chain~ outputs."
+                                    "text": "Time between the first trigger frame (made by you) and successive fl.chain~ outputs.",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-69",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        157.0,
+                                        160.0,
                                         463.5,
-                                        100.0,
-                                        36.0
+                                        110.0,
+                                        40.0
                                     ],
-                                    "text": "timing between frames"
+                                    "text": "Time between frames",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1009,7 +1016,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        300.0,
+                                        288.0,
                                         433.0,
                                         62.0,
                                         23.0
@@ -1029,7 +1036,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        300.0,
+                                        288.0,
                                         470.0,
                                         50.0,
                                         23.0
@@ -1046,7 +1053,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        300.0,
+                                        288.0,
                                         388.0,
                                         111.0,
                                         23.0
@@ -1056,17 +1063,22 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.1,
+                                    "bubbleside": 2,
                                     "id": "obj-64",
+                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        195.5,
-                                        135.0,
-                                        140.0,
-                                        21.0
+                                        240.0,
+                                        96.0,
+                                        120.0,
+                                        55.0
                                     ],
-                                    "text": "Choose the time mode"
+                                    "text": "Choose the time mode",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1188,6 +1200,7 @@
                             },
                             {
                                 "box": {
+                                    "fontsize": 12.0,
                                     "id": "obj-51",
                                     "maxclass": "live.tab",
                                     "num_lines_patching": 3,
@@ -1201,10 +1214,10 @@
                                     ],
                                     "parameter_enable": 1,
                                     "patching_rect": [
-                                        210.0,
-                                        165.0,
-                                        79.0,
-                                        75.0
+                                        215.0,
+                                        152.0,
+                                        69.0,
+                                        90.0
                                     ],
                                     "saved_attribute_attributes": {
                                         "valueof": {
@@ -1290,15 +1303,16 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-46",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         105.0,
-                                        94.5,
-                                        107.0,
-                                        21.0
+                                        92.5,
+                                        124.0,
+                                        25.0
                                     ],
                                     "text": "Click to schedule"
                                 }
@@ -1470,7 +1484,7 @@
                                     "midpoints": [
                                         39.5,
                                         376.5,
-                                        401.5,
+                                        389.5,
                                         376.5
                                     ],
                                     "order": 0,
@@ -1539,7 +1553,7 @@
                                     "midpoints": [
                                         39.5,
                                         300.0,
-                                        309.5,
+                                        297.5,
                                         300.0
                                     ],
                                     "order": 0,
@@ -1753,29 +1767,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

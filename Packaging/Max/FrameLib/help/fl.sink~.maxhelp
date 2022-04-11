@@ -13,7 +13,7 @@
             34.0,
             87.0,
             626.0,
-            577.0
+            591.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -68,7 +68,7 @@
                             34.0,
                             113.0,
                             626.0,
-                            551.0
+                            565.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -149,7 +149,7 @@
                                         15.0,
                                         157,
                                         596.0,
-                                        379.0
+                                        393.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
@@ -195,7 +195,7 @@
                             0.0,
                             26.0,
                             626.0,
-                            551.0
+                            565.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -231,6 +231,24 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "id": "obj-4",
+                                    "linecount": 2,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        285.0,
+                                        201.5,
+                                        203.0,
+                                        40.0
+                                    ],
+                                    "text": "Set to see the effects of different kinds of interpolation!",
+                                    "textjustification": 1
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-13",
                                     "maxclass": "newobj",
                                     "numinlets": 2,
@@ -239,7 +257,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         376.0,
                                         42.0,
                                         23.0
@@ -254,7 +272,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        95.0,
+                                        110.0,
                                         513.0,
                                         150.0,
                                         21.0
@@ -264,18 +282,20 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-11",
                                     "linecount": 3,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        336.0,
-                                        433.0,
-                                        150.0,
-                                        50.0
+                                        335.0,
+                                        431.0,
+                                        158.0,
+                                        54.0
                                     ],
-                                    "text": "Note the aliasing that occurs, which is worst without interpolation."
+                                    "text": "Note the aliasing that occurs, which is worst without interpolation.",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -294,7 +314,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
+                                        30.0,
                                         408.0,
                                         300.0,
                                         100.0
@@ -311,43 +331,12 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        285.0,
+                                        30.0,
+                                        300.0,
                                         80.0,
                                         23.0
                                     ],
                                     "text": "fl.register~ 1"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-35",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        265.875,
-                                        198.0,
-                                        31.25,
-                                        17.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-24",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        305.0,
-                                        195.0,
-                                        181.0,
-                                        21.0
-                                    ],
-                                    "text": "See the effect of interpolation!"
                                 }
                             },
                             {
@@ -359,10 +348,10 @@
                                     "patching_rect": [
                                         15.0,
                                         165.0,
-                                        516.0,
+                                        578.0,
                                         21.0
                                     ],
-                                    "text": "Here we paste single sample pulses at regular intervals that do not line up with samples."
+                                    "text": "Here we paste single sample pulses at regular intervals that do not line up with sample boundaries."
                                 }
                             },
                             {
@@ -389,8 +378,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        159.5,
-                                        195.0,
+                                        174.5,
+                                        210.0,
                                         100.0,
                                         23.0
                                     ]
@@ -406,8 +395,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        200.0,
-                                        237.0,
+                                        215.0,
+                                        252.0,
                                         59.0,
                                         23.0
                                     ],
@@ -424,8 +413,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        110.0,
-                                        285.0,
+                                        125.0,
+                                        300.0,
                                         124.0,
                                         23.0
                                     ],
@@ -457,8 +446,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        195.0,
+                                        30.0,
+                                        210.0,
                                         119.0,
                                         23.0
                                     ],
@@ -481,8 +470,8 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        330.0,
+                                        30.0,
+                                        338.0,
                                         114.0,
                                         23.0
                                     ],
@@ -574,10 +563,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        274.5,
-                                        119.5,
-                                        274.5
+                                        39.5,
+                                        289.5,
+                                        134.5,
+                                        289.5
                                     ],
                                     "order": 0,
                                     "source": [
@@ -617,10 +606,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        209.5,
-                                        273.5,
-                                        119.5,
-                                        273.5
+                                        224.5,
+                                        288.5,
+                                        134.5,
+                                        288.5
                                     ],
                                     "source": [
                                         "obj-7",
@@ -722,7 +711,7 @@
                             0.0,
                             26.0,
                             626.0,
-                            551.0
+                            565.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -758,6 +747,7 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "fontname": "Arial",
                                     "fontsize": 13.0,
                                     "id": "obj-6",
@@ -766,12 +756,13 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        315.0,
-                                        338.0,
-                                        281.0,
-                                        181.0
+                                        295.0,
+                                        327.5,
+                                        300.0,
+                                        185.0
                                     ],
-                                    "text": "If we take the difference of the input signal and the output of the network and correctly compensate with delay at the output the signal will be null summed.\n\nIn this case, the input signal is passed through a delay of 3000 samples. The fl.interval~ scheduler rate of 1000 samples which means that it will be 2000 samples out of alignment with the delayed copy of the source. By adding 2000 samples of delay with the /delay parameter they become correctly aligned."
+                                    "text": "If we take the difference of the input signal and the output of the network and correctly compensate with delay at the output the signal will be null summed.\n\nIn this case, the input signal is passed through a delay of 3000 samples. The fl.interval~ scheduler rate of 1000 samples which means that it will be 2000 samples out of alignment with the delayed copy of the source. By adding 2000 samples of delay with the /delay parameter they become correctly aligned.",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -782,8 +773,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        30.0,
-                                        495.0,
+                                        135.0,
+                                        491.0,
                                         45.0,
                                         45.0
                                     ]
@@ -815,7 +806,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         30.0,
-                                        383.5,
+                                        375.0,
                                         255.0,
                                         90.0
                                     ]
@@ -1150,7 +1141,7 @@
                             0.0,
                             26.0,
                             626.0,
-                            551.0
+                            565.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1192,7 +1183,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        450.0,
+                                        435.0,
                                         380.5,
                                         45.0,
                                         45.0
@@ -1251,6 +1242,7 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "fontsize": 13.0,
                                     "id": "obj-62",
                                     "linecount": 3,
@@ -1258,28 +1250,13 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        225.0,
-                                        263.5,
-                                        318.0,
-                                        50.0
+                                        195.0,
+                                        261.5,
+                                        332.0,
+                                        54.0
                                     ],
-                                    "text": "fl.sink~ accepts multistream inputs and automatically distributes streams across outputs when the multistream operator (=) is denoted in the object"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-63",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        185.0,
-                                        281.0,
-                                        28.25,
-                                        15.0
-                                    ]
+                                    "text": "fl.sink~ accepts multistream inputs and automatically distributes streams across outputs when the multistream operator (=) is used as an argument",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1386,6 +1363,7 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "fontsize": 13.0,
                                     "id": "obj-9",
                                     "linecount": 3,
@@ -1393,28 +1371,13 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        341.5,
-                                        194.0,
-                                        255.0,
-                                        50.0
+                                        315.0,
+                                        190.5,
+                                        267.0,
+                                        54.0
                                     ],
-                                    "text": "fl.source~ =2 instantiates the object with 2 separate inputs. These are packed into 2 'streams' driven by a single fl.interval~"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-10",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        311.25,
-                                        210.0,
-                                        28.25,
-                                        15.0
-                                    ]
+                                    "text": "fl.source~ =2 instantiates the object with 2 separate inputs. These are packed into 2 'streams' driven by a single fl.interval~",
+                                    "textjustification": 1
                                 }
                             }
                         ],
@@ -1528,7 +1491,7 @@
                             0.0,
                             26.0,
                             626.0,
-                            551.0
+                            565.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1599,7 +1562,7 @@
                             34.0,
                             113.0,
                             626.0,
-                            551.0
+                            565.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1641,12 +1604,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        165.0,
-                                        447.5,
-                                        381.0,
+                                        150.0,
+                                        465.0,
+                                        437.0,
                                         50.0
                                     ],
-                                    "text": "All frames arriving are pasted into an internal overlap-add buffer.\n\nYou can make that buffer bigger if required with an argument."
+                                    "text": "All frames arriving at fl.sink~ are pasted into an internal overlap-add buffer.\n\nYou can make that buffer bigger if required with an argument."
                                 }
                             },
                             {
@@ -1672,7 +1635,7 @@
                                     ],
                                     "patching_rect": [
                                         90.0,
-                                        360.0,
+                                        375.0,
                                         90.0,
                                         45.0
                                     ],
@@ -1681,16 +1644,17 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-5",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        150.0,
-                                        278.5,
-                                        294.0,
-                                        36.0
+                                        146.0,
+                                        291.5,
+                                        315.0,
+                                        40.0
                                     ],
                                     "text": "fl.sink~ in it's most basic form is connected to the end of a network. The output is an MSP signal."
                                 }
@@ -1704,7 +1668,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         90.0,
-                                        450.0,
+                                        465.0,
                                         45.0,
                                         45.0
                                     ]
@@ -1721,7 +1685,7 @@
                                     ],
                                     "patching_rect": [
                                         90.0,
-                                        225.0,
+                                        240.0,
                                         53.0,
                                         23.0
                                     ],
@@ -1739,7 +1703,7 @@
                                     ],
                                     "patching_rect": [
                                         165.0,
-                                        105.0,
+                                        120.0,
                                         93.0,
                                         23.0
                                     ],
@@ -1757,7 +1721,7 @@
                                     ],
                                     "patching_rect": [
                                         90.0,
-                                        105.0,
+                                        120.0,
                                         71.0,
                                         23.0
                                     ],
@@ -1775,7 +1739,7 @@
                                     ],
                                     "patching_rect": [
                                         90.0,
-                                        165.0,
+                                        180.0,
                                         169.0,
                                         23.0
                                     ],
@@ -1799,7 +1763,7 @@
                                     ],
                                     "patching_rect": [
                                         90.0,
-                                        285.0,
+                                        300.0,
                                         49.0,
                                         23.0
                                     ],
@@ -1898,9 +1862,9 @@
                                     ],
                                     "midpoints": [
                                         99.5,
-                                        427.0,
+                                        442.0,
                                         125.5,
-                                        427.0
+                                        442.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -1917,9 +1881,9 @@
                                     ],
                                     "midpoints": [
                                         99.5,
-                                        427.0,
+                                        442.0,
                                         99.5,
-                                        427.0
+                                        442.0
                                     ],
                                     "order": 1,
                                     "source": [
@@ -1948,29 +1912,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

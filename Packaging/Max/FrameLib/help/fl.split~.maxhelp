@@ -302,22 +302,6 @@
                         "boxes": [
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-4",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        95.0,
-                                        93.9749984741211,
-                                        34.0,
-                                        17.050003051757812
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
                                     "id": "obj-1",
                                     "local": 1,
                                     "maxclass": "ezdac~",
@@ -473,22 +457,6 @@
                                         23.0
                                     ],
                                     "text": "zl len"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-37",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        264.0,
-                                        147.92499542236328,
-                                        34.0,
-                                        17.050003051757812
-                                    ]
                                 }
                             },
                             {
@@ -775,30 +743,32 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-18",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        300.0,
-                                        145.9499969482422,
-                                        268.0,
-                                        21.0
+                                        266.0,
+                                        142.0,
+                                        291.0,
+                                        25.0
                                     ],
-                                    "text": "Generate a ramp from 0-1, 256 samples long"
+                                    "text": "Generates a ramp from 0-1, 256 samples long"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-17",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        135.0,
+                                        90.0,
                                         92.0,
-                                        262.0,
-                                        21.0
+                                        276.0,
+                                        25.0
                                     ],
                                     "text": "Schedule a trigger frame at the start of time"
                                 }
@@ -1250,29 +1220,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

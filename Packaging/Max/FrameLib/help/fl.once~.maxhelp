@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            576.0,
-            427.0
+            569.0,
+            417.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            576.0,
-                            401.0
+                            569.0,
+                            391.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.once~",
-                                        94
+                                        93
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        546.0,
+                                        539.0,
                                         95
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         127,
-                                        546.0,
-                                        259.0
+                                        539.0,
+                                        249.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        546.0
+                                        539.0
                                     ]
                                 }
                             }
@@ -194,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            576.0,
-                            401.0
+                            569.0,
+                            391.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -265,8 +265,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            576.0,
-                            401.0
+                            569.0,
+                            391.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -302,17 +302,20 @@
                         "boxes": [
                             {
                                 "box": {
-                                    "id": "obj-4",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        30.0,
-                                        345.0,
-                                        352.0,
-                                        21.0
+                                    "id": "obj-5",
+                                    "maxclass": "message",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
                                     ],
-                                    "text": "fl.once~ schedules a single frame whenever DSP is started."
+                                    "patching_rect": [
+                                        360.0,
+                                        242.33333333333334,
+                                        44.0,
+                                        23.0
+                                    ],
+                                    "text": "set $1"
                                 }
                             },
                             {
@@ -329,7 +332,7 @@
                                     ],
                                     "patching_rect": [
                                         360.0,
-                                        195.0,
+                                        210.0,
                                         65.0,
                                         23.0
                                     ],
@@ -364,7 +367,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         360.0,
-                                        230.0,
+                                        274.6666666666667,
                                         81.0,
                                         31.0
                                     ],
@@ -387,16 +390,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-17",
                                     "linecount": 4,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        258.0,
-                                        105.0,
-                                        285.0,
-                                        65.0
+                                        247.5,
+                                        119.5,
+                                        290.0,
+                                        84.0
                                     ],
                                     "text": "Restarting the audio engine also restarts time. \n\nIn this example it triggers the generation of new random values.",
                                     "textjustification": 1
@@ -411,7 +416,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         360.0,
-                                        270.0,
+                                        315.0,
                                         45.0,
                                         45.0
                                     ]
@@ -434,7 +439,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        105.0,
+                                        150.0,
                                         54.0,
                                         23.0
                                     ],
@@ -469,7 +474,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         30.0,
-                                        246.0,
+                                        291.0,
                                         215.0,
                                         69.0
                                     ],
@@ -498,7 +503,7 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        195.0,
+                                        240.0,
                                         62.0,
                                         23.0
                                     ],
@@ -516,11 +521,26 @@
                                     ],
                                     "patching_rect": [
                                         30.0,
-                                        150.0,
+                                        195.0,
                                         131.0,
                                         23.0
                                     ],
                                     "text": "fl.random~ /length 76"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-4",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        15.0,
+                                        75.0,
+                                        352.0,
+                                        21.0
+                                    ],
+                                    "text": "fl.once~ schedules a single frame whenever DSP is started."
                                 }
                             },
                             {
@@ -540,7 +560,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        546.0,
+                                        539.0,
                                         75.0
                                     ]
                                 }
@@ -550,7 +570,7 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-18",
+                                        "obj-5",
                                         0
                                     ],
                                     "source": [
@@ -603,6 +623,18 @@
                                     ],
                                     "source": [
                                         "obj-18",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-18",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-5",
                                         0
                                     ]
                                 }
@@ -671,29 +703,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

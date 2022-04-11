@@ -12,7 +12,7 @@
         "rect": [
             34.0,
             87.0,
-            607.0,
+            582.0,
             613.0
         ],
         "bglocked": 0,
@@ -67,7 +67,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            607.0,
+                            582.0,
                             587.0
                         ],
                         "bglocked": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.join~",
-                                        99
+                                        96
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        577.0,
+                                        552.0,
                                         95
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         127,
-                                        577.0,
+                                        552.0,
                                         445.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        577.0
+                                        552.0
                                     ]
                                 }
                             }
@@ -194,7 +194,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            607.0,
+                            582.0,
                             587.0
                         ],
                         "bglocked": 0,
@@ -265,7 +265,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            607.0,
+                            582.0,
                             587.0
                         ],
                         "bglocked": 0,
@@ -310,7 +310,7 @@
                                     "patching_rect": [
                                         98.0,
                                         492.5,
-                                        481.0,
+                                        451.0,
                                         50.0
                                     ],
                                     "text": "Note that all inputs trigger output, so although the inputs arrive at different times a new frame is created whenver any input is received. this can be changed with the /trigger_ins parameter."
@@ -318,32 +318,17 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-18",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        375.0,
-                                        400.5,
-                                        40.0,
-                                        19.5
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-1",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        420.0,
-                                        390.0,
-                                        159.0,
-                                        36.0
+                                        375.0,
+                                        388.0,
+                                        174.0,
+                                        40.0
                                     ],
                                     "text": "The three frames are joined into a single frame.",
                                     "textjustification": 1
@@ -490,6 +475,11 @@
                                         336.0,
                                         96.0
                                     ],
+                                    "setminmax": [
+                                        0.0,
+                                        1.0
+                                    ],
+                                    "setstyle": 1,
                                     "size": 300,
                                     "slidercolor": [
                                         0.670588235294118,
@@ -612,7 +602,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        577.0,
+                                        552.0,
                                         75.0
                                     ]
                                 }
@@ -835,29 +825,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

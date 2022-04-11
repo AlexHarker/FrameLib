@@ -12,7 +12,7 @@
         "rect": [
             34.0,
             87.0,
-            642.0,
+            627.0,
             748.0
         ],
         "bglocked": 0,
@@ -67,7 +67,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            642.0,
+                            627.0,
                             722.0
                         ],
                         "bglocked": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.combinetags~",
-                                        105
+                                        102
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,8 +122,8 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        612.0,
-                                        110
+                                        597.0,
+                                        125
                                     ]
                                 }
                             },
@@ -147,13 +147,13 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        142,
-                                        612.0,
-                                        565.0
+                                        157,
+                                        597.0,
+                                        550.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        612.0
+                                        597.0
                                     ]
                                 }
                             }
@@ -194,7 +194,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            642.0,
+                            627.0,
                             722.0
                         ],
                         "bglocked": 0,
@@ -265,7 +265,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            642.0,
+                            627.0,
                             722.0
                         ],
                         "bglocked": 0,
@@ -302,46 +302,32 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-24",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         60.0,
-                                        91.5,
-                                        69.0,
-                                        21.0
+                                        90.0,
+                                        86.0,
+                                        25.0
                                     ],
                                     "text": "Play audio"
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-18",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        126.0,
-                                        593.0,
-                                        30.0,
-                                        11.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-25",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        165.0,
+                                        119.0,
                                         588.0,
-                                        168.0,
-                                        21.0
+                                        185.0,
+                                        25.0
                                     ],
                                     "text": "Turn up to hear the filtering!"
                                 }
@@ -374,21 +360,6 @@
                                         45.0
                                     ],
                                     "viewvisibility": 1
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-16",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        135.0,
-                                        450.0,
-                                        269.0,
-                                        21.0
-                                    ],
-                                    "text": "Set the argument higher to create more inlets"
                                 }
                             },
                             {
@@ -482,17 +453,21 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.2,
                                     "id": "obj-23",
+                                    "linecount": 5,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        307.0,
-                                        405.0,
-                                        304.0,
-                                        21.0
+                                        309.0,
+                                        396.5,
+                                        195.0,
+                                        83.0
                                     ],
-                                    "text": "Combine the tagged frames ready to send to fl.svf~"
+                                    "text": "Combines the tagged frames ready to send to fl.svf~.\n\nSet the argument higher to create more inlets.",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -735,7 +710,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        612.0,
+                                        597.0,
                                         75.0
                                     ]
                                 }
@@ -1057,29 +1032,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

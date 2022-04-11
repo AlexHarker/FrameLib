@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.sort~",
-                                        89
+                                        90
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -302,33 +302,18 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-10",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        192.0,
-                                        458.3333435058594,
-                                        296.0,
-                                        21.0
+                                        162.0,
+                                        456.3333435058594,
+                                        339.0,
+                                        25.0
                                     ],
-                                    "text": "Ascending, but returns the indices sorted by value"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-11",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        161.75,
-                                        461.3333435058594,
-                                        25.25,
-                                        14.0
-                                    ]
+                                    "text": "Sort ascending, but returns the indices sorted by value"
                                 }
                             },
                             {
@@ -444,48 +429,34 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-61",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        397.25,
-                                        173.33334350585938,
-                                        77.0,
-                                        21.0
+                                        377.0,
+                                        171.33334350585938,
+                                        119.0,
+                                        25.0
                                     ],
-                                    "text": "Descending"
+                                    "text": "Sort descending"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-60",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        125.25,
-                                        173.33334350585938,
-                                        69.0,
-                                        21.0
+                                        105.0,
+                                        171.33334350585938,
+                                        112.0,
+                                        25.0
                                     ],
-                                    "text": "Ascending"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-58",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        370.0,
-                                        176.33334350585938,
-                                        25.25,
-                                        14.0
-                                    ]
+                                    "text": "Sort ascending"
                                 }
                             },
                             {
@@ -712,22 +683,6 @@
                                         23.0
                                     ],
                                     "text": "fl.tomax~"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-21",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        98.0,
-                                        176.33334350585938,
-                                        25.25,
-                                        14.0
-                                    ]
                                 }
                             },
                             {
@@ -976,29 +931,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

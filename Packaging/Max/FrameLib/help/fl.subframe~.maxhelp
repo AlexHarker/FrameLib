@@ -325,10 +325,10 @@
                                     "patching_rect": [
                                         30.0,
                                         437.0,
-                                        426.5,
+                                        429.0,
                                         50.0
                                     ],
-                                    "text": "The subframe here is segmenting a  hann window, composed of 2048 discrete points. The different modes are demonstrated, selecting out different sections of the whole window frame, either by indices or ratios.",
+                                    "text": "The subframes here are segments of a hann window, composed of 2048 discrete points. The two different modes are demonstrated, selecting out different sections of the whole window frame, either by indices or ratios.",
                                     "textjustification": 1
                                 }
                             },
@@ -846,29 +846,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

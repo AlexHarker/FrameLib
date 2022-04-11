@@ -12,7 +12,7 @@
         "rect": [
             34.0,
             87.0,
-            570.0,
+            524.0,
             486.0
         ],
         "bglocked": 0,
@@ -67,7 +67,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            570.0,
+                            524.0,
                             460.0
                         ],
                         "bglocked": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.spread~",
-                                        93
+                                        85
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        540.0,
+                                        494.0,
                                         110
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         142,
-                                        540.0,
+                                        494.0,
                                         303.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        540.0
+                                        494.0
                                     ]
                                 }
                             }
@@ -194,7 +194,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            570.0,
+                            524.0,
                             460.0
                         ],
                         "bglocked": 0,
@@ -265,7 +265,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            570.0,
+                            524.0,
                             460.0
                         ],
                         "bglocked": 0,
@@ -547,33 +547,19 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-35",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        107.875,
-                                        410.0,
-                                        31.25,
-                                        17.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-34",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        144.0,
-                                        408.0,
-                                        50.0,
-                                        21.0
+                                        109.0,
+                                        405.0,
+                                        67.0,
+                                        25.0
                                     ],
-                                    "text": "Spread"
+                                    "text": "Spread",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -584,8 +570,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        375.0,
-                                        214.0,
+                                        348.0,
+                                        225.0,
                                         45.0,
                                         45.0
                                     ]
@@ -593,66 +579,36 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-24",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        105.0,
-                                        318.875,
-                                        37.0,
-                                        15.25
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-46",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        270.0,
-                                        142.375,
-                                        37.0,
-                                        15.25
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-21",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        310.0,
-                                        132.0,
+                                        262.0,
+                                        130.0,
                                         217.0,
-                                        36.0
+                                        40.0
                                     ],
-                                    "text": "Create your own frame. Experiment with different shapes!"
+                                    "text": "Create your own frame. Experiment with different shapes!",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
                                     "id": "obj-22",
-                                    "linecount": 3,
+                                    "linecount": 7,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        150.0,
-                                        301.5,
-                                        380.0,
-                                        50.0
+                                        243.0,
+                                        322.0,
+                                        256.0,
+                                        108.0
                                     ],
-                                    "text": "Spread is the extent to which a distribution is stretched or squeezed. If a frame has a large peak just in the centre then the spread will be small. A flat distribution will have a large spread.",
+                                    "text": "Spread is the extent to which a distribution is stretched or squeezed. \n\nIf a frame has a large peak just in the centre then the spread will be small. \n\nA flat distribution will have a large spread.",
                                     "textjustification": 1
                                 }
                             },
@@ -831,7 +787,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        540.0,
+                                        494.0,
                                         75.0
                                     ]
                                 }
@@ -987,29 +943,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

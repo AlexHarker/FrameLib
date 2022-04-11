@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.shift~",
-                                        100
+                                        101
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -399,7 +399,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        413.9999694824219,
+                                        420.0,
                                         480.0,
                                         45.0,
                                         45.0
@@ -430,66 +430,20 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-39",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        246.0,
-                                        107.0,
-                                        28.12506103515625,
-                                        19.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-37",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        406.87493896484375,
-                                        199.0,
-                                        28.12506103515625,
-                                        19.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-38",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        445.125,
-                                        191.5,
-                                        133.0,
-                                        36.0
+                                        409.9999694824219,
+                                        186.5,
+                                        152.0,
+                                        40.0
                                     ],
-                                    "text": "In pad mode, pad frames with this value"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-14",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        336.875,
-                                        154.0,
-                                        28.12506103515625,
-                                        19.0
-                                    ]
+                                    "text": "In pad mode, pad frames with this value",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -514,32 +468,36 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-18",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        281.9374694824219,
-                                        104.0,
-                                        278.0,
-                                        21.0
+                                        247.0,
+                                        103.0,
+                                        316.0,
+                                        25.0
                                     ],
-                                    "text": "Shift amount. +ve for shift right, -ve for shift left"
+                                    "text": "Set shift amount. +ve for shift right, -ve for shift left",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-17",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        375.875,
-                                        153.5,
-                                        121.0,
-                                        21.0
+                                        336.5,
+                                        150.0,
+                                        138.0,
+                                        25.0
                                     ],
-                                    "text": "Set edge behaviour"
+                                    "text": "Set edge behaviour",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1066,29 +1024,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

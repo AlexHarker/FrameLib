@@ -12,7 +12,7 @@
         "rect": [
             34.0,
             87.0,
-            648.0,
+            682.0,
             454.0
         ],
         "bglocked": 0,
@@ -67,7 +67,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            648.0,
+                            682.0,
                             428.0
                         ],
                         "bglocked": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.nanfilter~",
-                                        106
+                                        113
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        618.0,
+                                        652.0,
                                         110
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         142,
-                                        618.0,
+                                        652.0,
                                         271.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        618.0
+                                        652.0
                                     ]
                                 }
                             }
@@ -194,7 +194,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            648.0,
+                            682.0,
                             428.0
                         ],
                         "bglocked": 0,
@@ -265,7 +265,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            648.0,
+                            682.0,
                             428.0
                         ],
                         "bglocked": 1,
@@ -308,7 +308,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        525.0,
+                                        555.0,
                                         159.0,
                                         45.0,
                                         45.0
@@ -317,47 +317,50 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-9",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        525.0,
+                                        540.0,
                                         375.0,
-                                        91.0,
-                                        21.0
+                                        110.0,
+                                        25.0
                                     ],
-                                    "text": "no fl.nanfilter~"
+                                    "text": "No fl.nanfilter~"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-8",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        337.0,
+                                        352.0,
                                         375.0,
-                                        77.0,
-                                        21.0
+                                        112.0,
+                                        25.0
                                     ],
-                                    "text": "remove nan"
+                                    "text": "NaNs removed"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-7",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        88.0,
+                                        90.0,
                                         375.0,
-                                        180.0,
-                                        21.0
+                                        215.0,
+                                        25.0
                                     ],
-                                    "text": "replace nan with a fixed value"
+                                    "text": "NaNs replaced with a fixed value"
                                 }
                             },
                             {
@@ -389,11 +392,12 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        285.0,
+                                        315.0,
                                         375.0,
-                                        50.0,
+                                        29.5,
                                         23.0
-                                    ]
+                                    ],
+                                    "text": "0.2"
                                 }
                             },
                             {
@@ -411,7 +415,8 @@
                                         375.0,
                                         55.0,
                                         23.0
-                                    ]
+                                    ],
+                                    "text": "0.2 3.14"
                                 }
                             },
                             {
@@ -424,7 +429,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        285.0,
+                                        315.0,
                                         315.0,
                                         62.0,
                                         23.0
@@ -466,7 +471,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        285.0,
+                                        315.0,
                                         270.0,
                                         159.0,
                                         23.0
@@ -476,17 +481,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-19",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        150.0,
-                                        171.0,
-                                        328.0,
-                                        21.0
+                                        143.5,
+                                        169.0,
+                                        345.0,
+                                        25.0
                                     ],
-                                    "text": "Let's divide zero by zero on purpose to produce a nans!"
+                                    "text": "Let's divide zero by zero on purpose to produce a NaN!"
                                 }
                             },
                             {
@@ -524,11 +530,12 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        465.0,
+                                        480.0,
                                         375.0,
                                         52.0,
                                         23.0
-                                    ]
+                                    ],
+                                    "text": "0.2 nan"
                                 }
                             },
                             {
@@ -541,7 +548,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        465.0,
+                                        480.0,
                                         315.0,
                                         62.0,
                                         23.0
@@ -602,7 +609,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        618.0,
+                                        652.0,
                                         75.0
                                     ]
                                 }
@@ -660,9 +667,9 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        474.5,
+                                        489.5,
                                         356.0,
-                                        507.5,
+                                        522.5,
                                         356.0
                                     ],
                                     "source": [
@@ -692,7 +699,7 @@
                                     "midpoints": [
                                         39.5,
                                         243.5,
-                                        474.5,
+                                        489.5,
                                         243.5
                                     ],
                                     "order": 0,
@@ -730,7 +737,7 @@
                                     "midpoints": [
                                         39.5,
                                         243.5,
-                                        294.5,
+                                        324.5,
                                         243.5
                                     ],
                                     "order": 1,
@@ -777,9 +784,9 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        294.5,
+                                        324.5,
                                         356.0,
-                                        325.5,
+                                        335.0,
                                         356.0
                                     ],
                                     "source": [
@@ -864,29 +871,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

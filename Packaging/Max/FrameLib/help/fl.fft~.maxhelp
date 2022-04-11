@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            684,
-            700
+            684.0,
+            700.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            684,
-                            674
+                            684.0,
+                            674.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.fft~",
-                                        112
+                                        110
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        654,
+                                        654.0,
                                         140
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         172,
-                                        654,
-                                        487
+                                        654.0,
+                                        487.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        654
+                                        654.0
                                     ]
                                 }
                             }
@@ -192,10 +192,10 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
-                            684,
-                            674
+                            34.0,
+                            113.0,
+                            684.0,
+                            674.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -231,6 +231,38 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "id": "obj-4",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        143.0,
+                                        377.0,
+                                        178.0,
+                                        25.0
+                                    ],
+                                    "text": "Multiplies by the EQ frame"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
+                                    "id": "obj-39",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        502.0,
+                                        122.0,
+                                        143.0,
+                                        25.0
+                                    ],
+                                    "text": "Draw your EQ curve"
+                                }
+                            },
+                            {
+                                "box": {
                                     "hidden": 1,
                                     "id": "obj-17",
                                     "maxclass": "newobj",
@@ -240,7 +272,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        285.0,
+                                        300.0,
                                         60.0,
                                         92.0,
                                         23.0
@@ -258,7 +290,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        30.0,
+                                        45.0,
                                         555.0,
                                         49.0,
                                         23.0
@@ -280,7 +312,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        285.0,
+                                        300.0,
                                         90.0,
                                         195.0,
                                         89.0
@@ -309,7 +341,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        285.0,
+                                        300.0,
                                         285.0,
                                         77.0,
                                         23.0
@@ -327,7 +359,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        88.0,
+                                        103.0,
                                         377.0,
                                         31.0,
                                         23.0
@@ -345,7 +377,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
+                                        45.0,
                                         510.0,
                                         60.0,
                                         23.0
@@ -361,13 +393,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        90.5,
+                                        120.0,
                                         597.5,
                                         516.0,
                                         50.0
                                     ],
-                                    "text": "In this patch we build a simple EQ with the FFT.\n\nNote that the gains for windows and overlap are correctly compensated at each stage.",
-                                    "textjustification": 0
+                                    "text": "In this patch we build a simple EQ with the FFT.\n\nNote that the gains for windows and overlap are correctly compensated at each stage."
                                 }
                             },
                             {
@@ -380,27 +411,12 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
+                                        45.0,
                                         285.0,
                                         183.0,
                                         23.0
                                     ],
                                     "text": "fl.window~ /compensate linear"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-4",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        135.0,
-                                        377.0,
-                                        151.0,
-                                        21.0
-                                    ],
-                                    "text": "Multiply by the EQ frame"
                                 }
                             },
                             {
@@ -413,43 +429,12 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
+                                        45.0,
                                         375.0,
                                         31.0,
                                         23.0
                                     ],
                                     "text": "fl.*~"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-30",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        486.0,
-                                        128.0,
-                                        35.0,
-                                        13.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-39",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        525.0,
-                                        124.0,
-                                        126.0,
-                                        21.0
-                                    ],
-                                    "text": "Draw your EQ curve"
                                 }
                             },
                             {
@@ -462,7 +447,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
+                                        45.0,
                                         420.0,
                                         77.0,
                                         23.0
@@ -480,7 +465,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
+                                        45.0,
                                         465.0,
                                         216.0,
                                         23.0
@@ -496,7 +481,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        30.0,
+                                        45.0,
                                         600.0,
                                         45.0,
                                         45.0
@@ -528,7 +513,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        30.0,
+                                        45.0,
                                         90.0,
                                         219.0,
                                         89.0
@@ -553,7 +538,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
+                                        45.0,
                                         330.0,
                                         77.0,
                                         23.0
@@ -571,7 +556,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        90.5,
+                                        105.5,
                                         195.0,
                                         93.0,
                                         23.0
@@ -589,7 +574,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
+                                        45.0,
                                         240.0,
                                         140.0,
                                         23.0
@@ -614,7 +599,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        654,
+                                        654.0,
                                         75.0
                                     ]
                                 }
@@ -646,9 +631,9 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        294.5,
+                                        309.5,
                                         363.5,
-                                        51.5,
+                                        66.5,
                                         363.5
                                     ],
                                     "order": 1,
@@ -671,9 +656,9 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        294.5,
+                                        309.5,
                                         364.5,
-                                        109.5,
+                                        124.5,
                                         364.5
                                     ],
                                     "order": 0,
@@ -702,9 +687,9 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        39.5,
+                                        54.5,
                                         588.5,
-                                        65.5,
+                                        80.5,
                                         588.5
                                     ],
                                     "order": 0,
@@ -795,9 +780,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        39.5,
+                                        54.5,
                                         273.5,
-                                        294.5,
+                                        309.5,
                                         273.5
                                     ],
                                     "order": 0,
@@ -886,7 +871,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -905,9 +891,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -998,7 +983,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -1017,9 +1003,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1062,8 +1047,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            684,
-                            674
+                            684.0,
+                            674.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1131,10 +1116,10 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            113.0,
-                            684,
-                            674
+                            0.0,
+                            26.0,
+                            684.0,
+                            674.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1187,6 +1172,7 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-10",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -1194,10 +1180,10 @@
                                     "patching_rect": [
                                         267.0,
                                         359.0,
-                                        349.0,
-                                        21.0
+                                        373.0,
+                                        25.0
                                     ],
-                                    "text": "Take the FFT of the incoming window (full spectrum output)"
+                                    "text": "Takes the FFT of the incoming window (full spectrum output)"
                                 }
                             },
                             {
@@ -1220,17 +1206,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-4",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        176.0,
-                                        406.0,
-                                        315.0,
-                                        21.0
+                                        169.0,
+                                        403.0,
+                                        338.0,
+                                        25.0
                                     ],
-                                    "text": "Calculate magnitudes from real and imaginary values"
+                                    "text": "Calculates magnitudes from real and imaginary values"
                                 }
                             },
                             {
@@ -1253,34 +1240,20 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-30",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        406.0,
-                                        588.0,
-                                        35.0,
-                                        13.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-39",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        446.0,
-                                        575.0,
-                                        204.0,
-                                        36.0
+                                        410.0,
+                                        573.0,
+                                        223.0,
+                                        40.0
                                     ],
-                                    "text": "Observe the magnitude spectrum (in dB) here with reflection"
+                                    "text": "Observe the magnitude spectrum (in dB) here with reflection",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1477,7 +1450,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        654,
+                                        654.0,
                                         75.0
                                     ]
                                 }
@@ -1649,7 +1622,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -1668,9 +1642,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1761,7 +1734,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -1780,9 +1754,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1808,29 +1781,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

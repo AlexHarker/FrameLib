@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.timedelta~",
-                                        104
+                                        105
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -192,8 +192,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            113.0,
                             638.0,
                             434.0
                         ],
@@ -231,15 +231,16 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-31",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        285.0,
-                                        361.5,
-                                        321.0,
-                                        21.0
+                                        248.0,
+                                        374.0,
+                                        338.0,
+                                        25.0
                                     ],
                                     "text": "Returns the time interval between consecutive frames."
                                 }
@@ -253,7 +254,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         45.0,
-                                        338.0,
+                                        213.27645051194543,
                                         45.0,
                                         45.0
                                     ]
@@ -261,32 +262,34 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-27",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        285.0,
-                                        270.4607508532423,
-                                        229.0,
-                                        21.0
+                                        280.0,
+                                        285.4607508532423,
+                                        252.0,
+                                        25.0
                                     ],
-                                    "text": "Measure the interval programmatically"
+                                    "text": "Measures the interval programmatically"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-26",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        225.0,
-                                        126.09215017064844,
-                                        267.0,
-                                        21.0
+                                        210.0,
+                                        141.09215017064844,
+                                        291.0,
+                                        25.0
                                     ],
-                                    "text": "Generate random numbers to set the interval"
+                                    "text": "Generates random numbers to set the interval"
                                 }
                             },
                             {
@@ -300,8 +303,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        249.0,
-                                        360.0,
+                                        135.0,
+                                        375.0,
                                         24.0,
                                         24.0
                                     ]
@@ -318,7 +321,7 @@
                                     ],
                                     "patching_rect": [
                                         135.0,
-                                        198.27645051194543,
+                                        213.27645051194543,
                                         90.0,
                                         23.0
                                     ],
@@ -338,9 +341,9 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        135.0,
-                                        360.0,
-                                        90.0,
+                                        168.0,
+                                        375.0,
+                                        72.0,
                                         23.0
                                     ]
                                 }
@@ -356,7 +359,7 @@
                                     ],
                                     "patching_rect": [
                                         135.0,
-                                        306.55290102389085,
+                                        321.55290102389085,
                                         62.0,
                                         23.0
                                     ],
@@ -380,7 +383,7 @@
                                     ],
                                     "patching_rect": [
                                         135.0,
-                                        270.4607508532423,
+                                        285.4607508532423,
                                         135.0,
                                         23.0
                                     ],
@@ -398,7 +401,7 @@
                                     ],
                                     "patching_rect": [
                                         135.0,
-                                        234.36860068259386,
+                                        249.36860068259386,
                                         124.0,
                                         23.0
                                     ],
@@ -416,7 +419,7 @@
                                     ],
                                     "patching_rect": [
                                         135.0,
-                                        162.18430034129693,
+                                        177.18430034129693,
                                         156.0,
                                         23.0
                                     ],
@@ -434,7 +437,7 @@
                                     ],
                                     "patching_rect": [
                                         135.0,
-                                        126.09215017064844,
+                                        141.09215017064844,
                                         70.0,
                                         23.0
                                     ],
@@ -452,7 +455,7 @@
                                     ],
                                     "patching_rect": [
                                         135.0,
-                                        90.0,
+                                        105.0,
                                         75.0,
                                         23.0
                                     ],
@@ -525,7 +528,7 @@
                                         "obj-14",
                                         0
                                     ],
-                                    "order": 1,
+                                    "order": 0,
                                     "source": [
                                         "obj-15",
                                         0
@@ -538,13 +541,7 @@
                                         "obj-22",
                                         0
                                     ],
-                                    "midpoints": [
-                                        144.5,
-                                        344.2764505119454,
-                                        258.5,
-                                        344.2764505119454
-                                    ],
-                                    "order": 0,
+                                    "order": 1,
                                     "source": [
                                         "obj-15",
                                         0
@@ -639,7 +636,6 @@
                         63.0,
                         22.0
                     ],
-                    "presentation_linecount": 3,
                     "saved_object_attributes": {
                         "description": "",
                         "digest": "",
@@ -738,8 +734,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            113.0,
+                            0.0,
+                            26.0,
                             638.0,
                             434.0
                         ],
@@ -807,17 +803,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-28",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        163.5,
-                                        107.0,
-                                        175.0,
-                                        21.0
+                                        150.0,
+                                        105.0,
+                                        289.0,
+                                        25.0
                                     ],
-                                    "text": "Set a fixed interval scheduler"
+                                    "text": "Schedules frames at a fixed interval of 250ms"
                                 }
                             },
                             {
@@ -1235,29 +1232,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

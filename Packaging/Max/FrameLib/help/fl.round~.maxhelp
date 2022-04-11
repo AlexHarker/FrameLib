@@ -12,7 +12,7 @@
         "rect": [
             34.0,
             87.0,
-            504.0,
+            516.0,
             614.0
         ],
         "bglocked": 0,
@@ -67,7 +67,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            504.0,
+                            516.0,
                             588.0
                         ],
                         "bglocked": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.round~",
-                                        81
+                                        84
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        474.0,
+                                        486.0,
                                         95
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         127,
-                                        474.0,
+                                        486.0,
                                         446.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        474.0
+                                        486.0
                                     ]
                                 }
                             }
@@ -194,7 +194,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            504.0,
+                            516.0,
                             588.0
                         ],
                         "bglocked": 0,
@@ -265,7 +265,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            504.0,
+                            516.0,
                             588.0
                         ],
                         "bglocked": 0,
@@ -583,22 +583,6 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-38",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        265.0,
-                                        184.0,
-                                        29.25,
-                                        22.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
                                     "contdata": 1,
                                     "ghostbar": 20,
                                     "id": "obj-37",
@@ -742,49 +726,35 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-24",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        265.0,
-                                        486.0,
-                                        29.25,
-                                        18.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-25",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        300.0,
-                                        483.0,
-                                        101.0,
-                                        21.0
+                                        260.0,
+                                        482.5,
+                                        118.0,
+                                        25.0
                                     ],
                                     "text": "Rounded output"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-23",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        300.0,
-                                        173.5,
-                                        173.0,
-                                        36.0
+                                        262.0,
+                                        175.0,
+                                        216.0,
+                                        40.0
                                     ],
-                                    "text": "List containing floating point numbers between 0. and 10."
+                                    "text": "Create a list containing floating point numbers between 0 and 10"
                                 }
                             },
                             {
@@ -804,7 +774,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        474.0,
+                                        486.0,
                                         75.0
                                     ]
                                 }
@@ -953,29 +923,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

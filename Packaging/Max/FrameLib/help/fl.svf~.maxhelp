@@ -12,7 +12,7 @@
         "rect": [
             34.0,
             87.0,
-            687.0,
+            700.0,
             747.0
         ],
         "bglocked": 0,
@@ -67,7 +67,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            687.0,
+                            700.0,
                             721.0
                         ],
                         "bglocked": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.svf~",
-                                        113
+                                        116
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        657.0,
+                                        670.0,
                                         185
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         217,
-                                        657.0,
+                                        670.0,
                                         489.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        657.0
+                                        670.0
                                     ]
                                 }
                             }
@@ -192,9 +192,9 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
-                            687.0,
+                            34.0,
+                            113.0,
+                            700.0,
                             721.0
                         ],
                         "bglocked": 0,
@@ -231,47 +231,33 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-44",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        373.0,
-                                        363.0,
-                                        228.0,
-                                        21.0
+                                        330.0,
+                                        360.0,
+                                        245.0,
+                                        25.0
                                     ],
                                     "text": "All three modes output simultaneously"
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-42",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        339.0,
-                                        366.0,
-                                        30.0,
-                                        11.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-41",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        375.0,
-                                        491.5,
-                                        218.0,
-                                        36.0
+                                        366.0,
+                                        486.5,
+                                        235.0,
+                                        40.0
                                     ],
                                     "text": "Switch the different filter types on/off\n(lowpass / bandpass / highpass)"
                                 }
@@ -337,17 +323,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-34",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        346.5,
+                                        330.0,
                                         405.0,
-                                        243.0,
-                                        21.0
+                                        267.0,
+                                        25.0
                                     ],
-                                    "text": "Pack all three filter types into one stream"
+                                    "text": "Packs all three filter types into one stream"
                                 }
                             },
                             {
@@ -370,46 +357,32 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-16",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        201.0,
-                                        586.0,
-                                        30.0,
-                                        11.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-25",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        240.0,
+                                        192.0,
                                         581.0,
-                                        150.0,
-                                        21.0
+                                        167.0,
+                                        25.0
                                     ],
                                     "text": "Turn up to hear the filter!"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-6",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        435.0,
-                                        152.0,
-                                        147.0,
-                                        21.0
+                                        427.0,
+                                        150.0,
+                                        164.0,
+                                        25.0
                                     ],
                                     "text": "Set the filter parameters"
                                 }
@@ -675,7 +648,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        657.0,
+                                        670.0,
                                         75.0
                                     ]
                                 }
@@ -1183,7 +1156,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            687.0,
+                            700.0,
                             721.0
                         ],
                         "bglocked": 0,
@@ -1222,52 +1195,39 @@
                                 "box": {
                                     "fontname": "Arial",
                                     "id": "obj-28",
-                                    "linecount": 3,
+                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        105.0,
-                                        585.0,
-                                        485.0,
-                                        50.0
+                                        89.5,
+                                        589.5000000000001,
+                                        570.0,
+                                        36.0
                                     ],
-                                    "text": "In dynamic mode filters provides an input per parameter of the filter, so these can be modulated over the period of a frame. You can use a mix of parameters and inputs to set values."
+                                    "text": "In dynamic mode filters provides an input per parameter of the filter, so these can be modulated over the period of a frame. You can use a mix of parameters and inputs to set values.",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-16",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        120.0,
-                                        518.0,
-                                        30.0,
-                                        11.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-26",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        158.0,
-                                        513.0,
-                                        239.0,
-                                        21.0
+                                        118.0,
+                                        515.0,
+                                        256.0,
+                                        25.0
                                     ],
                                     "text": "Turn up tfor granular filter sweeping fun!"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-25",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -1275,29 +1235,35 @@
                                     "patching_rect": [
                                         202.0,
                                         381.6666666666668,
-                                        328.0,
-                                        21.0
+                                        355.0,
+                                        25.0
                                     ],
-                                    "text": "Apply the sweep to the frequency parameter of the filter"
+                                    "text": "Applies the sweep to the frequency parameter of the filter"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 1.0,
                                     "id": "obj-23",
+                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        267.0,
-                                        225.0,
-                                        198.0,
-                                        21.0
+                                        105.0,
+                                        213.0,
+                                        135.0,
+                                        40.0
                                     ],
-                                    "text": "Play a short grain from the buffer"
+                                    "presentation_linecount": 2,
+                                    "text": "Plays a short grain from the buffer",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-22",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -1305,14 +1271,15 @@
                                     "patching_rect": [
                                         82.0,
                                         90.0,
-                                        157.0,
-                                        21.0
+                                        184.0,
+                                        25.0
                                     ],
-                                    "text": "Generate random triggers"
+                                    "text": "Generatesj random triggers"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-21",
                                     "maxclass": "comment",
                                     "numinlets": 1,
@@ -1320,10 +1287,10 @@
                                     "patching_rect": [
                                         398.0,
                                         340.0000000000001,
-                                        255.0,
-                                        21.0
+                                        278.0,
+                                        25.0
                                     ],
-                                    "text": "Generate an exponential downward sweep"
+                                    "text": "Generates an exponential downward sweep"
                                 }
                             },
                             {
@@ -1647,7 +1614,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        657.0,
+                                        670.0,
                                         75.0
                                     ]
                                 }
@@ -1981,7 +1948,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            687.0,
+                            700.0,
                             721.0
                         ],
                         "bglocked": 0,
@@ -2050,9 +2017,9 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            113.0,
-                            687.0,
+                            0.0,
+                            26.0,
+                            700.0,
                             721.0
                         ],
                         "bglocked": 0,
@@ -2089,46 +2056,32 @@
                         "boxes": [
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-16",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        156.0,
-                                        548.0,
-                                        30.0,
-                                        11.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-25",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        195.0,
-                                        543.0,
-                                        150.0,
-                                        21.0
+                                        149.0,
+                                        542.0,
+                                        167.0,
+                                        25.0
                                     ],
                                     "text": "Turn up to hear the filter!"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-6",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        495.0,
-                                        225.0,
-                                        147.0,
-                                        21.0
+                                        484.0,
+                                        223.20831298828125,
+                                        164.0,
+                                        25.0
                                     ],
                                     "text": "Set the filter parameters"
                                 }
@@ -2441,6 +2394,7 @@
                                             },
                                             {
                                                 "box": {
+                                                    "fontsize": 12.0,
                                                     "id": "obj-1",
                                                     "maxclass": "live.tab",
                                                     "num_lines_patching": 3,
@@ -2826,7 +2780,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        657.0,
+                                        670.0,
                                         75.0
                                     ]
                                 }
@@ -3075,29 +3029,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

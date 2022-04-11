@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.percentile~",
-                                        109
+                                        110
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -321,33 +321,19 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 3,
                                     "id": "obj-22",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        376.0,
-                                        151.0,
-                                        105.0,
-                                        21.0
+                                        381.0,
+                                        149.0,
+                                        122.0,
+                                        25.0
                                     ],
                                     "text": "Select percentile"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 2,
-                                    "border": 4.0,
-                                    "id": "obj-23",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        481.5,
-                                        154.5,
-                                        25.25,
-                                        14.0
-                                    ]
                                 }
                             },
                             {
@@ -409,33 +395,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-10",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        139.25,
-                                        376.0,
-                                        45.0,
-                                        21.0
+                                        112.0,
+                                        374.5,
+                                        62.0,
+                                        25.0
                                     ],
                                     "text": "Result"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-11",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        110.0,
-                                        379.5,
-                                        25.25,
-                                        14.0
-                                    ]
                                 }
                             },
                             {
@@ -478,15 +449,16 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-4",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        470.0,
-                                        376.0,
-                                        45.0,
-                                        21.0
+                                        441.0,
+                                        374.0,
+                                        62.0,
+                                        25.0
                                     ],
                                     "text": "Result"
                                 }
@@ -513,22 +485,6 @@
                                         23.0
                                     ],
                                     "text": "fl.percentile~ 50"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-7",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        440.75,
-                                        379.5,
-                                        25.25,
-                                        14.0
-                                    ]
                                 }
                             },
                             {
@@ -582,33 +538,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-15",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        186.375,
-                                        237.0,
-                                        116.0,
-                                        21.0
+                                        159.0,
+                                        234.5,
+                                        140.0,
+                                        25.0
                                     ],
-                                    "text": "Count from 0 to 99"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-16",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        159.125,
-                                        240.0,
-                                        25.25,
-                                        14.0
-                                    ]
+                                    "text": "Counts from 0 to 99"
                                 }
                             },
                             {
@@ -625,7 +566,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         30.0,
-                                        375.0,
+                                        375.5,
                                         75.0,
                                         23.0
                                     ]
@@ -633,15 +574,16 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-60",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        164.125,
-                                        282.0,
-                                        170.0,
-                                        21.0
+                                        137.0,
+                                        279.5,
+                                        187.0,
+                                        25.0
                                     ],
                                     "text": "What is the 10th percentile?"
                                 }
@@ -722,22 +664,6 @@
                                         23.0
                                     ],
                                     "text": "fl.tomax~"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-21",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        135.875,
-                                        285.0,
-                                        25.25,
-                                        14.0
-                                    ]
                                 }
                             },
                             {
@@ -1007,29 +933,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

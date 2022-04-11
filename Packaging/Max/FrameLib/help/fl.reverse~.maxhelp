@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.reverse~",
-                                        98
+                                        99
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -302,6 +302,22 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "id": "obj-4",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        351.0,
+                                        194.0,
+                                        195.0,
+                                        25.0
+                                    ],
+                                    "text": "Reverses the incoming frame"
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-1",
                                     "local": 1,
                                     "maxclass": "ezdac~",
@@ -323,7 +339,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         335.0,
-                                        356.0,
+                                        357.0,
                                         101.0,
                                         21.0
                                     ],
@@ -339,7 +355,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         85.5,
-                                        356.0,
+                                        357.0,
                                         112.0,
                                         21.0
                                     ],
@@ -675,29 +691,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

@@ -12,7 +12,7 @@
         "rect": [
             34.0,
             87.0,
-            646.0,
+            511.0,
             592.0
         ],
         "bglocked": 0,
@@ -67,7 +67,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            646.0,
+                            511.0,
                             566.0
                         ],
                         "bglocked": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.skewness~",
-                                        106
+                                        83
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        616.0,
+                                        481.0,
                                         110
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         142,
-                                        616.0,
+                                        481.0,
                                         409.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        616.0
+                                        481.0
                                     ]
                                 }
                             }
@@ -194,7 +194,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            646.0,
+                            511.0,
                             566.0
                         ],
                         "bglocked": 0,
@@ -265,7 +265,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            646.0,
+                            511.0,
                             566.0
                         ],
                         "bglocked": 0,
@@ -303,16 +303,18 @@
                             {
                                 "box": {
                                     "id": "obj-6",
+                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        116.0,
-                                        420.0,
-                                        433.0,
-                                        21.0
+                                        195.0,
+                                        487.0,
+                                        255.0,
+                                        36.0
                                     ],
-                                    "text": "The skewness is a measure of direction and amount of skew in the frame."
+                                    "text": "The skewness is a measure of direction and amount of skew in the frame.",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -419,29 +421,6 @@
                                             },
                                             {
                                                 "box": {
-                                                    "arrows": 1,
-                                                    "border": 4.0,
-                                                    "id": "obj-14",
-                                                    "maxclass": "live.line",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 0,
-                                                    "patching_rect": [
-                                                        196.49993896484375,
-                                                        54.5,
-                                                        31.25,
-                                                        17.0
-                                                    ],
-                                                    "presentation": 1,
-                                                    "presentation_rect": [
-                                                        199.49993896484375,
-                                                        23.5,
-                                                        31.25,
-                                                        17.0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "box": {
                                                     "contdata": 1,
                                                     "id": "obj-27",
                                                     "maxclass": "multislider",
@@ -482,7 +461,9 @@
                                             },
                                             {
                                                 "box": {
+                                                    "bubble": 1,
                                                     "id": "obj-32",
+                                                    "linecount": 2,
                                                     "maxclass": "comment",
                                                     "numinlets": 1,
                                                     "numoutlets": 0,
@@ -490,14 +471,14 @@
                                                         229.74993896484375,
                                                         54.5,
                                                         74.0,
-                                                        20.0
+                                                        37.0
                                                     ],
                                                     "presentation": 1,
                                                     "presentation_rect": [
-                                                        232.74993896484375,
-                                                        22.0,
-                                                        69.0,
-                                                        20.0
+                                                        203.0,
+                                                        20.0,
+                                                        86.0,
+                                                        24.0
                                                     ],
                                                     "text": "Wiggle me!"
                                                 }
@@ -743,7 +724,7 @@
                                     "patching_rect": [
                                         15.0,
                                         105.0,
-                                        315.0,
+                                        300.0,
                                         60.0
                                     ],
                                     "viewvisibility": 1
@@ -757,8 +738,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        345.0,
-                                        465.0,
+                                        375.0,
+                                        225.0,
                                         45.0,
                                         45.0
                                     ]
@@ -766,31 +747,16 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-35",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        81.0,
-                                        513.0,
-                                        31.25,
-                                        17.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-34",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        116.0,
-                                        509.5,
-                                        71.0,
-                                        21.0
+                                        83.0,
+                                        492.5,
+                                        85.0,
+                                        25.0
                                     ],
                                     "text": "Skewness"
                                 }
@@ -806,7 +772,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        465.0,
+                                        450.0,
                                         62.0,
                                         23.0
                                     ],
@@ -830,7 +796,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        420.0,
+                                        405.0,
                                         83.0,
                                         23.0
                                     ],
@@ -848,7 +814,7 @@
                                     ],
                                     "patching_rect": [
                                         78.0,
-                                        333.0,
+                                        318.0,
                                         75.0,
                                         23.0
                                     ],
@@ -866,7 +832,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        375.0,
+                                        360.0,
                                         77.0,
                                         23.0
                                     ],
@@ -887,8 +853,8 @@
                                     "patching_rect": [
                                         75.0,
                                         195.0,
-                                        255.0,
-                                        120.0
+                                        210.0,
+                                        105.0
                                     ],
                                     "setminmax": [
                                         0.0,
@@ -919,7 +885,7 @@
                                     "parameter_enable": 0,
                                     "patching_rect": [
                                         15.0,
-                                        507.5,
+                                        492.5,
                                         61.0,
                                         24.0
                                     ]
@@ -927,18 +893,19 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-52",
-                                    "linecount": 9,
+                                    "linecount": 7,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        345.0,
-                                        195.0,
-                                        270.0,
-                                        137.0
+                                        108.0,
+                                        360.5,
+                                        372.0,
+                                        112.0
                                     ],
-                                    "text": "In this example some simplex noise frames are generated and are passed to the fl.skewness~ object via fl.frommax~. \n\nPositive values indicate that the frame is skewed in favour of lower indexes whereas negative values indicate that the higher indexes are more prominent. A value close to zero indicates relative symmetry.",
+                                    "text": "In this example some simplex noise frames are generated and are passed to the fl.skewness~ object via fl.frommax~. \n\nPositive values indicate that the frame is skewed to the left (towards kiwer indicies) whereas negative values indicate a skew to the right (towards higher indices. A value close to zero indicates relative symmetry.",
                                     "textjustification": 1
                                 }
                             },
@@ -959,7 +926,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        616.0,
+                                        481.0,
                                         75.0
                                     ]
                                 }
@@ -1024,9 +991,9 @@
                                     ],
                                     "midpoints": [
                                         87.5,
-                                        365.0,
+                                        350.0,
                                         24.5,
-                                        365.0
+                                        350.0
                                     ],
                                     "source": [
                                         "obj-28",
@@ -1122,29 +1089,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

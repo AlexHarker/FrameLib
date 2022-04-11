@@ -12,7 +12,7 @@
         "rect": [
             34.0,
             87.0,
-            570.0,
+            556.0,
             531.0
         ],
         "bglocked": 0,
@@ -67,7 +67,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            570.0,
+                            556.0,
                             505.0
                         ],
                         "bglocked": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.framemin~",
-                                        93
+                                        90
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        540.0,
+                                        526.0,
                                         110
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         142,
-                                        540.0,
+                                        526.0,
                                         348.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        540.0
+                                        526.0
                                     ]
                                 }
                             }
@@ -194,7 +194,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            570.0,
+                            556.0,
                             505.0
                         ],
                         "bglocked": 0,
@@ -265,7 +265,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            570.0,
+                            556.0,
                             505.0
                         ],
                         "bglocked": 0,
@@ -302,31 +302,16 @@
                         "boxes": [
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-12",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        85.0,
-                                        454.0,
-                                        30.0,
-                                        11.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-25",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        120.0,
-                                        451.0,
-                                        122.0,
-                                        21.0
+                                        90.0,
+                                        449.0,
+                                        143.0,
+                                        25.0
                                     ],
                                     "text": "The minimum value"
                                 }
@@ -410,7 +395,8 @@
                                         0.74902,
                                         0.254902,
                                         1.0
-                                    ]
+                                    ],
+                                    "spacing": 2
                                 }
                             },
                             {
@@ -426,7 +412,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        303.5,
+                                        285.0,
                                         450.0,
                                         50.0,
                                         23.0
@@ -443,7 +429,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        303.5,
+                                        285.0,
                                         405.0,
                                         62.0,
                                         23.0
@@ -453,18 +439,19 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-15",
                                     "linecount": 3,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        390.0,
-                                        345.0,
-                                        151.0,
-                                        50.0
+                                        360.0,
+                                        344.5,
+                                        165.0,
+                                        54.0
                                     ],
-                                    "text": "We can use fl.minpos~ to also determine where the largest value is.",
+                                    "text": "We can use fl.minpos~ to determine where the smallest value is.",
                                     "textjustification": 1
                                 }
                             },
@@ -478,7 +465,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        303.5,
+                                        285.0,
                                         360.0,
                                         68.0,
                                         23.0
@@ -488,18 +475,19 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-9",
-                                    "linecount": 3,
+                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        112.0,
-                                        345.0,
-                                        178.0,
-                                        50.0
+                                        120.0,
+                                        351.5,
+                                        148.0,
+                                        40.0
                                     ],
-                                    "text": "fl.framemin~ returns the largest value in the frame, regardless of its position.",
+                                    "text": "Returns the smallest value in the frame",
                                     "textjustification": 1
                                 }
                             },
@@ -575,10 +563,10 @@
                                     "patching_rect": [
                                         30.0,
                                         360.0,
-                                        80.0,
+                                        84.0,
                                         23.0
                                     ],
-                                    "text": "fl.framemin~"
+                                    "text": "fl.framemax~"
                                 }
                             },
                             {
@@ -616,7 +604,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        540.0,
+                                        526.0,
                                         75.0
                                     ]
                                 }
@@ -668,7 +656,7 @@
                                     "midpoints": [
                                         39.5,
                                         333.5,
-                                        313.0,
+                                        294.5,
                                         333.5
                                     ],
                                     "order": 0,
@@ -816,29 +804,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

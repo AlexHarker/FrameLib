@@ -807,30 +807,32 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-18",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         304.5,
-                                        585.0,
-                                        205.0,
-                                        21.0
+                                        580.0,
+                                        222.0,
+                                        25.0
                                     ],
                                     "text": "The output is the max of each pair"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-17",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        481.5,
-                                        364.5,
-                                        127.0,
-                                        21.0
+                                        473.0,
+                                        362.5,
+                                        144.0,
+                                        25.0
                                     ],
                                     "text": "Set two input frames"
                                 }
@@ -1066,34 +1068,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-6",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        261.0,
-                                        256.0,
-                                        325.0,
-                                        21.0
+                                        204.0,
+                                        255.0,
+                                        333.0,
+                                        25.0
                                     ],
                                     "text": "Values are the largest of each pair in the input frames"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-110",
-                                    "justification": 1,
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        210.0,
-                                        254.125,
-                                        48.0,
-                                        24.75
-                                    ]
                                 }
                             },
                             {
@@ -1474,7 +1460,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -1493,9 +1480,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1586,7 +1572,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -1605,9 +1592,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1687,15 +1673,16 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-20",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        465.0,
-                                        376.0,
-                                        129.0,
-                                        21.0
+                                        462.0,
+                                        374.0,
+                                        146.0,
+                                        25.0
                                     ],
                                     "text": "See inside for details"
                                 }
@@ -1757,15 +1744,16 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-14",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        285.0,
+                                        270.0,
                                         527.0,
-                                        346.0,
-                                        21.0
+                                        352.0,
+                                        25.0
                                     ],
                                     "text": "Switch the gate~ on to hear the triggers as a set of clicks"
                                 }
@@ -1781,7 +1769,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        218.0,
+                                        210.0,
                                         482.0,
                                         24.0,
                                         24.0
@@ -1798,7 +1786,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        218.0,
+                                        210.0,
                                         527.0,
                                         56.0,
                                         23.0
@@ -1814,7 +1802,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        218.0,
+                                        210.0,
                                         572.0,
                                         45.0,
                                         45.0
@@ -1831,7 +1819,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        255.0,
+                                        247.0,
                                         482.0,
                                         49.0,
                                         23.0
@@ -1849,7 +1837,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        255.0,
+                                        247.0,
                                         437.0,
                                         91.0,
                                         23.0
@@ -1872,7 +1860,7 @@
                                     "patching_rect": [
                                         45.0,
                                         482.0,
-                                        105.0,
+                                        60.0,
                                         23.0
                                     ]
                                 }
@@ -2850,7 +2838,7 @@
                                     "midpoints": [
                                         54.5,
                                         417.0,
-                                        264.5,
+                                        256.5,
                                         417.0
                                     ],
                                     "order": 0,
@@ -3030,6 +3018,25 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubblepoint": 0.1,
+                                    "bubbleside": 2,
+                                    "id": "obj-6",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        162.0,
+                                        195.0,
+                                        210.0,
+                                        40.0
+                                    ],
+                                    "text": "Note the mismatch in input lengths",
+                                    "textjustification": 1
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-13",
                                     "linecount": 6,
                                     "maxclass": "comment",
@@ -3046,15 +3053,16 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-11",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        411.0,
-                                        330.0,
-                                        129.0,
-                                        21.0
+                                        418.0,
+                                        329.0,
+                                        146.0,
+                                        25.0
                                     ],
                                     "text": "See inside for details"
                                 }
@@ -3083,7 +3091,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        520.5499877929688,
+                                        472.0,
                                         375.0,
                                         45.0,
                                         45.0
@@ -3407,7 +3415,7 @@
                                         ]
                                     },
                                     "patching_rect": [
-                                        375.0,
+                                        386.0,
                                         165.0,
                                         135.0,
                                         151.0
@@ -3443,7 +3451,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        210.0,
+                                        215.5,
                                         270.0,
                                         114.0,
                                         23.0
@@ -3986,7 +3994,7 @@
                                     "patching_rect": [
                                         45.0,
                                         330.0,
-                                        349.0,
+                                        360.0,
                                         23.0
                                     ],
                                     "saved_object_attributes": {
@@ -4057,31 +4065,16 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-7",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        411.0,
-                                        453.8999938964844,
-                                        53.04998779296875,
-                                        13.20001220703125
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-8",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        468.04998779296875,
-                                        450.0,
-                                        150.0,
-                                        21.0
+                                        411.0,
+                                        449.0,
+                                        167.0,
+                                        25.0
                                     ],
                                     "text": "Observe output changes"
                                 }
@@ -4194,7 +4187,7 @@
                                     "midpoints": [
                                         54.5,
                                         243.5,
-                                        219.5,
+                                        225.0,
                                         243.5
                                     ],
                                     "order": 0,
@@ -4268,29 +4261,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

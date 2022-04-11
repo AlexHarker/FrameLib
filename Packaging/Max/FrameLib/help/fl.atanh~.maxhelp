@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             87.0,
-            446.0,
-            448.0
+            452,
+            384
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -67,8 +67,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            446.0,
-                            422.0
+                            452,
+                            358
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.atanh~",
-                                        71
+                                        73
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        416.0,
+                                        422,
                                         95
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         127,
-                                        416.0,
-                                        280.0
+                                        422,
+                                        216
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        416.0
+                                        422
                                     ]
                                 }
                             }
@@ -194,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            446.0,
-                            422.0
+                            452,
+                            358
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -265,8 +265,8 @@
                         "rect": [
                             34.0,
                             113.0,
-                            446.0,
-                            422.0
+                            452,
+                            358
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -302,14 +302,31 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 3,
+                                    "id": "obj-2",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        49.0,
+                                        104.0,
+                                        78.0,
+                                        25.0
+                                    ],
+                                    "text": "Set Input"
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-11",
                                     "local": 1,
                                     "maxclass": "ezdac~",
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        30.0,
-                                        345.0,
+                                        271.0,
+                                        180.0,
                                         45.0,
                                         45.0
                                     ]
@@ -328,7 +345,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        30.0,
+                                        135.0,
                                         285.0,
                                         50.0,
                                         23.0
@@ -348,7 +365,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        30.0,
+                                        135.0,
                                         105.0,
                                         50.0,
                                         23.0
@@ -366,28 +383,12 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
+                                        135.0,
                                         75.0,
                                         86.0,
                                         23.0
                                     ],
                                     "text": "loadmess 0.8"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-38",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        112.5,
-                                        154.0,
-                                        60.25,
-                                        15.0
-                                    ]
                                 }
                             },
                             {
@@ -406,7 +407,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
+                                        135.0,
                                         195.0,
                                         59.0,
                                         23.0
@@ -424,7 +425,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
+                                        135.0,
                                         240.0,
                                         62.0,
                                         23.0
@@ -442,7 +443,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        90.0,
+                                        195.0,
                                         105.0,
                                         75.0,
                                         23.0
@@ -460,7 +461,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        30.0,
+                                        135.0,
                                         150.0,
                                         77.0,
                                         23.0
@@ -470,48 +471,18 @@
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-24",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        83.5,
-                                        289.0,
-                                        60.25,
-                                        15.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-25",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        150.75,
-                                        286.0,
-                                        268.0,
-                                        21.0
+                                        195.0,
+                                        284.0,
+                                        198.0,
+                                        25.0
                                     ],
-                                    "text": "Hyperbolic arctangent of input frame's values"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-23",
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        182.75,
-                                        151.0,
-                                        234.0,
-                                        21.0
-                                    ],
-                                    "text": "Frame containing values for calculation"
+                                    "text": "Hyperbolic arctangent of input"
                                 }
                             },
                             {
@@ -531,7 +502,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        416.0,
+                                        422,
                                         75.0
                                     ]
                                 }
@@ -557,9 +528,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        99.5,
+                                        204.5,
                                         139.0,
-                                        39.5,
+                                        144.5,
                                         139.0
                                     ],
                                     "source": [
@@ -681,29 +652,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fl.docs.getparams.maxpat",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/misc",
-                "patcherrelativepath": "../../../../../Packaging/Max/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }
