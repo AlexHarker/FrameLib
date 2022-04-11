@@ -10524,13 +10524,14 @@
 							}
 , 							{
 								"box" : 								{
+									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-22",
 									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 518.0, 279.5, 404.0, 94.0 ],
+									"patching_rect" : [ 514.0, 276.5, 404.0, 100.0 ],
 									"text" : "The fl.frommax~ object is in 'params' mode, so when sending the 'interval N' message from outside the network it is converted into a tagged frame. Remember fl.frommax~ only passes the data in to FrameLib if it receives a trigger frame. Thats why we have an fl.perblock~ at the top of the chain, because otherwise there would be nothing to trigger the frame within the network.",
 									"textjustification" : 1
 								}

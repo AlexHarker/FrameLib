@@ -361,13 +361,14 @@
 							}
 , 							{
 								"box" : 								{
+									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-11",
 									"linecount" : 10,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 465.0, 337.0, 359.0, 152.0 ],
+									"patching_rect" : [ 465.0, 332.75, 358.0, 162.0 ],
 									"text" : "The fl.source~ object above is always 256 samples 'behind' the original audio stream as it is waiting to collect 256 samples, every 256 samples of time.\n\nBy delaying the original signal by this amount the FrameLib process and the original signal are aligned in a sample accurate manner.\n\nWe can verify this by subtracting the two audio streams from each other which should sum to zero.",
 									"textjustification" : 1
 								}
@@ -943,13 +944,14 @@
 							}
 , 							{
 								"box" : 								{
+									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-13",
 									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 491.0, 282.5, 285.0, 108.0 ],
+									"patching_rect" : [ 495.0, 278.5, 283.0, 116.0 ],
 									"text" : "fl.sink~ is an overlap-add buffer. Every time fl.source~ outputs a frame, they are essentially pasted into this object. If a new frame arrives before the old one has finished happening in time it is simply added to the buffer creating an OVERLAP by ADDING the two frames together.\nThe next tab contains a detailed explanation.",
 									"textjustification" : 1
 								}
@@ -1896,7 +1898,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 645.0, 510.0, 191.0, 152.0 ],
+									"patching_rect" : [ 645.0, 516.5, 191.0, 152.0 ],
 									"text" : "These parameters adjust the window type and the internal calculation size for the window. If the size parameter is set to 0 it matches the length of the incoming frame. Observe the quality of the windowed output with different size parameters. A small size demonstrates the difference best.",
 									"textjustification" : 1
 								}
@@ -2350,7 +2352,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 835.0, 581.5, 20.0, 20.0 ],
+									"patching_rect" : [ 835.0, 588.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "!",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]

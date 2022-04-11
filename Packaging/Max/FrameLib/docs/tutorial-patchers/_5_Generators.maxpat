@@ -258,14 +258,14 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Arial",
+									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-29",
 									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 525.0, 219.625, 288.0, 79.0 ],
+									"patching_rect" : [ 522.0, 217.125, 291.0, 84.0 ],
 									"text" : "fl.uniform~ outputs a uniform value which can be changed through the value parameter. The incoming trigger frame of the first fl.uniform~ is 14 samples long, and the second fl.uniform~ matches this length in input mode.",
 									"textjustification" : 1
 								}
@@ -825,13 +825,14 @@
 							}
 , 							{
 								"box" : 								{
+									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-29",
 									"linecount" : 8,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 600.0, 197.0, 223.0, 123.0 ],
+									"patching_rect" : [ 598.0, 195.5, 227.0, 131.0 ],
 									"text" : "fl.ramp~ has a scale parameter. By default it outputs samples counting up to the length parameter minus one. In this example, \"/scale normalised\" causes fl.ramp~ to normalise its output between 0 and 1. Change between the modes to get a feeling for what's going on here.",
 									"textjustification" : 1
 								}
@@ -1265,6 +1266,22 @@
 								"box" : 								{
 									"fontname" : "Lato",
 									"fontsize" : 13.0,
+									"id" : "obj-5",
+									"linecount" : 5,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 567.75, 329.0, 257.75, 84.0 ],
+									"presentation_linecount" : 5,
+									"text" : "In 'requested' mode, the object uses its stored /length parameter as the output length. The 'input' mode sets it to use the length of the trigger frame, and configure the length of the output frame to match.",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "Lato",
+									"fontsize" : 13.0,
 									"id" : "obj-8",
 									"linecount" : 2,
 									"maxclass" : "comment",
@@ -1292,12 +1309,12 @@
 								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-29",
-									"linecount" : 8,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 567.25, 249.0, 259.0, 123.0 ],
-									"text" : "Change the mode between 'requested' and 'input' of the right most fl.random~ object.\n\nIn requested mode, the object uses its stored /length parameter as the output length. Input mode allows it to spy on the length of the trigger frame, and configure the length of the output frame to match this.",
+									"patching_rect" : [ 567.75, 271.0, 260.0, 36.0 ],
+									"text" : "Change the mode between 'requested' and 'input' of the right most fl.random~ object.",
 									"textjustification" : 1
 								}
 

@@ -58,7 +58,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 719.0, 692.0 ],
+						"rect" : [ 34.0, 113.0, 719.0, 692.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -473,14 +473,14 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Arial",
+									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-77",
 									"linecount" : 8,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 524.0, 379.0, 123.0 ],
+									"patching_rect" : [ 330.0, 524.0, 376.0, 131.0 ],
 									"text" : "Multithreading in this scenario is extremely effective at reducing the overall CPU load of this network. Because this network is comprised of 100 parallel streams, with multithreading enabled this workload is easily parallelised across multiple threads. This is one kind of use case in which enabling multithreading may be significantly beneficial. Other use cases may not be beneficial though, or you may see no gains. This is the reason that multithreading is disabled by default.",
 									"textjustification" : 1
 								}
@@ -488,15 +488,14 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Arial",
+									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-76",
 									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 328.5, 270.0, 377.0, 94.0 ],
-									"presentation_linecount" : 6,
+									"patching_rect" : [ 328.5, 270.0, 378.0, 100.0 ],
 									"text" : "This network belongs to the context named 'workhorse', which is specified at the top-most fl.interval~ scheduler. We can manage the multithreading properties of this context with the fl.context~ object, by pointing it to the same context name. Experiment by switching multithreading on and off with the toggle and observing the amount of CPU usage consumed.",
 									"textjustification" : 1
 								}
@@ -529,14 +528,14 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Arial",
+									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-71",
 									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 135.0, 378.0, 65.0 ],
+									"patching_rect" : [ 330.0, 135.0, 378.0, 69.0 ],
 									"text" : "To the left is a fairly hefty granular network that is generate 100, 1024 sample grains every 512 samples. Depending on the processing power of the computer you are using, the CPU usage below should report something relatively significant.",
 									"textjustification" : 1
 								}
@@ -744,12 +743,13 @@
 							}
 , 							{
 								"box" : 								{
+									"hidden" : 1,
 									"id" : "obj-55",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 445.75, 375.0, 70.0, 22.0 ],
+									"patching_rect" : [ 445.75, 360.0, 70.0, 22.0 ],
 									"text" : "loadmess 0"
 								}
 
@@ -764,7 +764,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 445.75, 405.0, 150.0, 30.0 ],
+									"patching_rect" : [ 445.75, 390.0, 150.0, 30.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 220.630142000000006, 27.0, 18.0, 18.0 ],
 									"saved_attribute_attributes" : 									{
@@ -791,7 +791,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 445.75, 450.0, 85.0, 22.0 ],
+									"patching_rect" : [ 445.75, 435.0, 85.0, 22.0 ],
 									"text" : "multithread $1"
 								}
 
@@ -885,7 +885,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 445.75, 480.0, 183.0, 22.0 ],
+									"patching_rect" : [ 445.75, 465.0, 183.0, 22.0 ],
 									"text" : "fl.contextcontrol~ @id workhorse"
 								}
 
@@ -1020,6 +1020,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
+									"hidden" : 1,
 									"source" : [ "obj-55", 0 ]
 								}
 
@@ -1181,7 +1182,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 719.0, 692.0 ],
+						"rect" : [ 0.0, 26.0, 719.0, 692.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,

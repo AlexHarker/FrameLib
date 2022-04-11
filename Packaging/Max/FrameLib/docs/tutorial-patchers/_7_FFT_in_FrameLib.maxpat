@@ -1744,13 +1744,14 @@
 							}
 , 							{
 								"box" : 								{
+									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-10",
-									"linecount" : 13,
+									"linecount" : 12,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 540.0, 449.0, 216.0, 195.0 ],
+									"patching_rect" : [ 540.0, 449.0, 225.0, 194.0 ],
 									"text" : "The red squared off part of the patch is hopefully very familiar to you now. This is the basic mechanism for converting audio into frames with windowing. \n\nActually, for pfft~ this process happens at the fftin~ object in order to do the same conversion but it internally derives similar parameters as those on the left  from the ones you give to the pfft~ object.",
 									"textjustification" : 1
 								}
@@ -5895,13 +5896,14 @@
 							}
 , 							{
 								"box" : 								{
+									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-7",
 									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 405.0, 375.0, 325.0, 108.0 ],
+									"patching_rect" : [ 405.0, 377.0, 330.0, 116.0 ],
 									"text" : "The fl.fft~ takes in a frame as an analysis window and outputs two frames containg the FFT analysis. The left output of fl.fft~ contains the real components and the right frame contains the imaginary. This is similar to the structure of the native fft~ or fftin~ objects although there is no third frame produced containing the bin index information. ",
 									"textjustification" : 1
 								}

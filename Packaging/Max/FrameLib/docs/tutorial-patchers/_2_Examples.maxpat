@@ -3271,6 +3271,21 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"fontname" : "Arial",
+									"fontsize" : 13.0,
+									"id" : "obj-9",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 315.0, 342.0, 334.5, 21.0 ],
+									"presentation_linecount" : 2,
+									"text" : "Change the interval at which new frames are generated.",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"bgmode" : 0,
 									"border" : 0,
 									"clickthrough" : 0,
@@ -3425,11 +3440,11 @@
 									"fontface" : 0,
 									"fontsize" : 12.0,
 									"id" : "obj-109",
-									"linecount" : 3,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 484.5, 205.75, 163.0, 47.0 ],
+									"patching_rect" : [ 489.5, 210.5, 171.0, 33.0 ],
 									"text" : "Click and drag to change what portion of the buffer is used.",
 									"textjustification" : 1
 								}
@@ -3590,14 +3605,15 @@
 							}
 , 							{
 								"box" : 								{
+									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-5",
-									"linecount" : 10,
+									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 325.5, 315.0, 300.0, 152.0 ],
-									"text" : "Change the interval at which new frames are generated.\n\nThe interval here is specified in samples. If our sampling rate was at 44100 (44.1khz), and our interval parameter here was set to 44100 we would trigger a new grain every second.\n\nThis is a good chance to experiment with how this works.",
+									"patching_rect" : [ 333.75, 369.0, 297.0, 69.0 ],
+									"text" : "The interval here is specified in samples. If our sampling rate was at 44100 (44.1khz), and our interval parameter here was set to 44100 we would trigger a new grain every second.",
 									"textjustification" : 1
 								}
 
@@ -3658,7 +3674,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 650.125, 217.0, 20.0, 20.0 ],
+									"patching_rect" : [ 662.5, 217.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]

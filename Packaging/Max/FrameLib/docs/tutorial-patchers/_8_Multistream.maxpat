@@ -674,15 +674,15 @@
 						"title" : "Multistream Basics",
 						"boxes" : [ 							{
 								"box" : 								{
-									"fontname" : "Arial",
+									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-24",
 									"linecount" : 8,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 525.0, 255.0, 231.0, 123.0 ],
-									"text" : "On the left is the most basic example of a multistream network where two independent frames are combined with fl.pack~. In this scenario we are taking already generated frames and combining these two streams, but it is also possible to generate multiple streams from a signle object.",
+									"patching_rect" : [ 525.0, 378.5, 241.0, 131.0 ],
+									"text" : "On the left is the most basic example of a multistream network where two independent frames are combined with fl.pack~. In this scenario we are taking already generated frames and combining these two streams, but it is also possible to generate multiple streams from a single object.",
 									"textjustification" : 1
 								}
 
@@ -1212,7 +1212,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 826.0, 708.0 ],
+						"rect" : [ 0.0, 26.0, 826.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1265,13 +1265,14 @@
 							}
 , 							{
 								"box" : 								{
+									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-55",
 									"linecount" : 14,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 442.0, 405.0, 315.0, 210.0 ],
+									"patching_rect" : [ 442.0, 405.0, 310.0, 225.0 ],
 									"text" : "fl.read~ takes the fl.ramp and interprets these values as millisecond positions (due to /units ms). To reiterate once more, fl.read~ is now outputting four streams of frames containing what will eventually be translated into MSP audio.\n\nEach stream is windowed and scaled to compensate by the increase in gain by having four overlapping streams of audio.\n\nWith fl.sink~ =2 the object will wrap the outputs of our granulator so that streams 1 and 3 go to outlet 1 and streams 2 and 4 go to outlet 2. This provides a quick and dirty stereo routing with hard panning!",
 									"textjustification" : 1
 								}
@@ -1279,13 +1280,14 @@
 							}
 , 							{
 								"box" : 								{
+									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-51",
-									"linecount" : 14,
+									"linecount" : 15,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 442.0, 123.0, 319.0, 210.0 ],
+									"patching_rect" : [ 442.0, 123.0, 310.0, 240.0 ],
 									"text" : "This kind of network should be familiar by now. There are really two simple components at play here. The blue objects are dealing with an offset value for each grain while the red modify the size of the grain. Some extra work is done to ensure that given the length of the grain and the offset do not try to request samples outside the boundaries of the source buffer. \n\nAs there are four streams generated at the very start of our network, the down stream objects will also be 'expanded' to generate four streams of individual values. This allows for each grain to be individually shaped and parameterised within the random numbers produced by fl.random~.",
 									"textjustification" : 1
 								}
@@ -1334,7 +1336,7 @@
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 570.0, 322.0, 510.0, 348.0 ],
+										"rect" : [ 195.0, 184.0, 510.0, 348.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -1382,8 +1384,9 @@
 													"maxclass" : "comment",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 141.0, 240.0, 295.0, 65.0 ],
-													"text" : "The result is four schedulers working within a single multistream network. The interval parameters are de-correlated from each other to create a less robotic timing mechanism"
+													"patching_rect" : [ 150.0, 234.0, 285.0, 65.0 ],
+													"text" : "The result is four schedulers working within a single multistream network. The interval parameters are de-correlated from each other to create a less robotic timing mechanism",
+													"textjustification" : 1
 												}
 
 											}
@@ -1496,7 +1499,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 15.0, 240.0, 124.0, 23.0 ],
+													"patching_rect" : [ 15.0, 255.0, 124.0, 23.0 ],
 													"text" : "fl.interval~ /units ms"
 												}
 
@@ -1721,7 +1724,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 442.0, 646.0, 48.0, 22.0 ],
+									"patching_rect" : [ 195.0, 570.0, 48.0, 22.0 ],
 									"text" : "replace"
 								}
 
@@ -1843,7 +1846,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 442.0, 676.0, 179.0, 22.0 ],
+									"patching_rect" : [ 195.0, 600.0, 179.0, 22.0 ],
 									"text" : "buffer~ fl.tut.8.mvgs sho0630.aif"
 								}
 
@@ -2081,6 +2084,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-22", 1 ],
+									"midpoints" : [ 110.5, 636.0, 55.5, 636.0 ],
 									"source" : [ "obj-2", 1 ]
 								}
 
@@ -4512,7 +4516,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 826.0, 708.0 ],
+						"rect" : [ 34.0, 113.0, 826.0, 708.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
