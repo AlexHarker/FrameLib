@@ -131,7 +131,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 120.0, 544.0, 178.0 ],
-									"text" : "This is a short tutorial to demonstrate how FrameLib's features might help you solve more complex issues. Now that you've seen how multi-streaming works, let's look at a use case that helps to solve some of problems in the way FFT processing normally occurs. Multi-resolution FFT processing is a way of running the same spectral process in parallel at various frequency resolutions and intervals (or hops). As such, different frequency ranges can be processed with different FFT sizes, which can result in fast timing in the high end and more precise frequency resolution in the low end without having to trade one off for the other over the entire spectrum.\n\nLuckily, in FrameLib, using multi-stream connections we can do exactly this in a single network of objects."
+									"text" : "This is a short tutorial to demonstrate how FrameLib's features might help you solve more complex issues. Now that you've seen how multistream networks work, let's look at a use case that helps to solve some of problems in the way FFT processing normally occurs. Multi-resolution FFT processing is a way of running the same spectral process in parallel at various frequency resolutions and intervals (or hops). As such, different frequency ranges can be processed with different FFT sizes, which can result in fast timing in the high end and more precise frequency resolution in the low end without having to trade one off for the other over the entire spectrum.\n\nLuckily, in FrameLib, using multistream connections we can do exactly this in a single network of objects."
 								}
 
 							}
@@ -1428,7 +1428,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 103.0, 308.5, 298.0, 20.0 ],
-									"text" : "Concatenate different streams (multi-stream packing)"
+									"text" : "Concatenate different streams (multistream packing)"
 								}
 
 							}
@@ -1486,7 +1486,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 0,
 													"patching_rect" : [ 30.0, 232.0, 601.0, 47.0 ],
-													"text" : "This sub patch holds a group of objects which combine four independent frames into a single multi-stream container. Notice that each fl.source~ object has a different length parameter (decreasing in powers of 2). An overlap of 4 is maintained for each process. These frames are concatenated in a multi-stream by fl.pack~."
+													"text" : "This sub patch holds a group of objects which combine four independent frames into a single multistream container. Notice that each fl.source~ object has a different length parameter (decreasing in powers of 2). An overlap of 4 is maintained for each process. These frames are concatenated in a multistream by fl.pack~."
 												}
 
 											}

@@ -46,7 +46,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 8.0, 520.0, 80.0, 22.0 ],
+					"patching_rect" : [ 8.0, 520.0, 56.0, 22.0 ],
 					"text" : "fl.*~ 0.35"
 				}
 
@@ -144,7 +144,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 79.0, 457.0, 747.0 ],
+						"rect" : [ 34.0, 87.0, 457.0, 747.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -985,7 +985,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 103.0, 315.5, 146.0, 33.0 ],
-									"text" : "pack the two values into a multi-stream frame"
+									"text" : "pack the two values into a multistream output"
 								}
 
 							}
@@ -1280,7 +1280,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 50.0, 33.0, 73.0, 22.0 ],
+					"patching_rect" : [ 50.0, 33.0, 70.0, 22.0 ],
 					"text" : "fl.perblock~"
 				}
 
@@ -1293,7 +1293,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 8.0, 79.0, 156.0, 22.0 ],
+					"patching_rect" : [ 8.0, 79.0, 152.0, 22.0 ],
 					"text" : "fl.frommax~ /mode params"
 				}
 

@@ -157,7 +157,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 432.0, 194.5, 195.0, 54.0 ],
-									"text" : "Packs 3 streams of different length frames at different intervals into a multi-stream",
+									"text" : "Packs 3 streams of different length frames at different intervals into a multistream",
 									"textjustification" : 1
 								}
 
@@ -194,7 +194,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 144.5, 330.0, 364.0, 25.0 ],
-									"text" : "Applies a hard clip on all streams of the multi-stream frame"
+									"text" : "Applies a hard clip on all streams of the multistream frame"
 								}
 
 							}

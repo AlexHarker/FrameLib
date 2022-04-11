@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 
-<chapter name="FrameLib Tutorial 8: Multi-Stream Processing">
-  <openfile name="Multi-Stream Processing" patch="_8_Multi-stream.maxpat"/>
-  <header>FrameLib Tutorial 8: Multi-Stream Processing</header>
-  <subhead>Similar to 'mc' objects, multi-streaming allows you to manipulate multiple streams with a single set of processors.</subhead>
-  <body>This tutorial will show you multi-streaming and how straightforward it is to create parallel processing streams in a single network of FrameLib objects.</body>
+<chapter name="FrameLib Tutorial 8: Multistream Processing">
+  <openfile name="Multistream Processing" patch="_8_Multistream.maxpat"/>
+  <header>FrameLib Tutorial 8: Multistream Processing</header>
+  <subhead>Similar to 'mc' objects, multistream networks allows you to manipulate multiple streams with a single set of processors.</subhead>
+  <body>This tutorial will show you multistream networks can be made and how straightforward it is to create parallel processing streams in a single network of FrameLib objects.</body>
   <body><openpatchlink>Open the tutorial</openpatchlink>.</body>
-  
+
   <previous name="07_fl_fft">FFT (Fast Fourier Transform)</previous>
   <next name="09_fl_multiresfft">Multi-Resolution FFT</next>
   <parent name="00_fl_index">FrameLib Tutorials</parent>
-  
+
   <seealsolist>
     <seealso name="fl.streamid~" />
   </seealsolist>
 </chapter>
-
-

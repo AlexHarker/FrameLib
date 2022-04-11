@@ -314,7 +314,7 @@
                                         195.0,
                                         54.0
                                     ],
-                                    "text": "Packs 3 streams of different length frames at different intervals into a multi-stream",
+                                    "text": "Packs 3 streams of different length frames at different intervals into a multistream",
                                     "textjustification": 1
                                 }
                             },
@@ -363,7 +363,7 @@
                                         364.0,
                                         25.0
                                     ],
-                                    "text": "Applies a hard clip on all streams of the multi-stream frame"
+                                    "text": "Applies a hard clip on all streams of the multistream frame"
                                 }
                             },
                             {

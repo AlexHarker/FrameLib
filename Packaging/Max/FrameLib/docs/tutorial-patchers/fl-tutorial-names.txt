@@ -5,7 +5,7 @@
 4, _5_Generators;
 5, _6_Building_a_granulator;
 6, _7_FFT_in_FrameLib;
-7, _8_Multi-stream;
+7, _8_Multistream;
 8, _9_Multi-resolution_FFT;
 9, _10_Contexts;
 10, _11_NRT_Mode;

@@ -9,7 +9,7 @@
     },
     "Intermediate": {
         "Tutorial 7: FFT (Fast Fourier Transform)": "The Basics of FFT/STFT processing in FrameLib",
-        "Tutorial 8: Multi-Stream Networks": "Similar to 'mc' objects, multi-streaming allows you to manipulate multiple streams with a single set of processors."
+        "Tutorial 8: Multistream Networks": "Similar to 'mc' objects, multistream networks allows you to manipulate multiple streams with a single set of processors."
     },
     "Advanced": {
         "Tutorial 9: Multi-Resolution Processing": "Constructing multi-resolution FFT processes in FrameLib.",

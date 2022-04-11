@@ -1176,7 +1176,7 @@
                                         300.0,
                                         36.0
                                     ],
-                                    "text": "fl.tomax can unpack a multi-stream output and deliver each stream to its own outlet ",
+                                    "text": "fl.tomax can unpack a multistream output and deliver each stream to its own outlet ",
                                     "textjustification": 1
                                 }
                             },
@@ -1532,7 +1532,7 @@
                     "patching_rect": [
                         435.0,
                         230.0,
-                        85.0,
+                        81.0,
                         22.0
                     ],
                     "saved_object_attributes": {
@@ -1542,7 +1542,7 @@
                         "globalpatchername": "",
                         "tags": ""
                     },
-                    "text": "p multi-stream"
+                    "text": "p multistream"
                 }
             },
             {
