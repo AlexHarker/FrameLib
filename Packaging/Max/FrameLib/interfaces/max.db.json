@@ -86,6 +86,7 @@
             "fl.helpname.js",
             "fl.spectral_hpf.maxpat",
             "fl.spectral_lpf.maxpat",
+            "fl.spectrumplot~.maxpat",
             "fl.tutnav.maxpat"
         ]
     }
