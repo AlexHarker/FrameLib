@@ -237,7 +237,7 @@
         "digest": "Outputs the deltas between consecutive frames"
     },
     "fl.spatial~": {
-        "digest": "Generates multiplication factors for a number of speakers from an input coordinate triple"
+        "digest": "Generates multiplication factors for a set of speakers positioned in 3D"
     },
     "fl.constant~": {
         "digest": "Outputs a specified constant"

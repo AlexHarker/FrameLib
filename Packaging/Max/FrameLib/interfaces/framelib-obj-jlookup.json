@@ -890,36 +890,44 @@
     },
     "fl.spatial~": {
         "1": {
-            "name": "/inputmode [enum]",
-            "description": "Sets the input coordinate mode.\n\nParameter Options:\n[0] - polar\n[1] - cartesian\n\n(default: polar)"
+            "name": "/angles [enum]",
+            "description": "Sets the units used for angles.\n\nParameter Options:\n[0] - radians\n[1] - degrees\n\n(default: degrees)"
         },
         "2": {
-            "name": "/speakers [variable length double array]",
-            "description": "Sets the speaker positions in polar triples (one triple per speaker).\n\n(default: 0)"
+            "name": "/input_coords [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the coordinate system used for input.\n\nParameter Options:\n[0] - polar\n[1] - cartesian\n\n(default: polar)"
         },
         "3": {
-            "name": "/weights [variable length double array]",
-            "description": "Sets the speaker weightings (one value per speaker).\n\n(default: 1)"
+            "name": "/speaker_coords [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the coordinate system used for speaker positions.\n\nParameter Options:\n[0] - polar\n[1] - cartesian\n\n(default: polar)"
         },
         "4": {
-            "name": "/rolloff [double]",
-            "description": "Sets the rolloff in dB.\n\n(default: 6)"
+            "name": "/constrain [enum]",
+            "description": "Sets the method for constraining positions outside of the speaker array:\n\nParameter Options:\n[0] - none - suitable when the input is already within the speaker array (most efficient).\n[1] - hemisphere - restrict to the upper hemisphere of the sphere described below.\n[2] - sphere - restrict to the smallest sphere centred at the origin containing all speakers.\n[3] - hull - restrict to the convex hull of the speaker array (least efficient / always correct.\n\n(default: hull)"
         },
         "5": {
-            "name": "/blur [double]",
-            "description": "Sets the blur factor.\n\n(default: 0.4)"
+            "name": "/speakers [variable length double array]",
+            "description": "INSTANTIATION ONLY\n\nSets the speaker positions in triples (one triple per speaker). For cartesian coordinates the values are [x, z, y]. For polar coordinates the values are [radius, azimuth, elevation].\n\n(default: 0)"
         },
         "6": {
-            "name": "/maxspeakers [int]",
-            "description": "Sets the maximum number of speakers to be used (the nearest N speakers will be used only). If zero all speakers are used.\n\n(default: 0)"
+            "name": "/weights [variable length double array]",
+            "description": "Sets the speaker weightings (one value per speaker). By default all speakers are weighted equally. Using weighting values allows the emphasis or exclusion of specific speakers.\n\n(default: 1)"
         },
         "7": {
-            "name": "/points [double]",
-            "description": "Interpolate to point source panning (0 is modified DBAP - 1 is point source).\n\n(default: 0)"
+            "name": "/rolloff [double]",
+            "description": "Sets the rolloff in positive dB for a doubling of distance between source and speakers. The default (6dB) equates to the inverse distance law for sound propagating in a free field. Lower values may be suitable for simulating more closed environments.\n\n(default: 6)"
         },
         "8": {
-            "name": "/constrain [enum]",
-            "description": "Sets the method for constraining positions outside of the speaker array.\n\nParameter Options:\n[0] - none\n[1] - hemisphere\n[2] - sphere\n[3] - hull\n\n(default: hull)"
+            "name": "/blur [double]",
+            "description": "Sets the blur factor. This should be set in relation to the dimensions of the speaker array. Larger numbers result in more blurring of the spatial image.\n\n(default: 0.001)"
+        },
+        "9": {
+            "name": "/max_speakers [int]",
+            "description": "Sets the number of speakers that can be non-zero (only the nearest N speakers are used). If this is set to zero then all speakers are used. Reducing the number of speakers used can improve localisation.\n\n(default: 0)"
+        },
+        "10": {
+            "name": "/point_factor [double]",
+            "description": "Interpolation factor between DBAP (at 0) and point source panning (at 1).\n\n(default: 0)"
         }
     },
     "fl.constant~": {

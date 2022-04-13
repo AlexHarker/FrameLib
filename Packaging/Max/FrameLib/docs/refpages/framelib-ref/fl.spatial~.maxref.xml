@@ -2,50 +2,60 @@
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
 <c74object name="fl.spatial~" module="FrameLib" category="FrameLib Spatial">
   <digest>
-    Generates multiplication factors for a number of speakers from an input coordinate triple
+    Generates multiplication factors for a set of speakers positioned in 3D
   </digest>
   <description>
-    The algorithm used is a modified version of DBAP, with extra features. Input may be in cartesian coordinates (x, y, z) or polar ones (azimuth, elevation, radius. Missing values at the input are assumed zero. Extra values are ignored. The output size is equal to the number of loudspeakers.
+    The core underlying algorithm is DBAP (distance-based amplitude panning). Input may use cartesian [x, y, z] or polar [radius, azimuth, elevation] coordinates. 2D operation can be achieved by setting all z or elevation values to zero. Angles may be set using degrees or radians. Missing values at any input are assumed to be zero. The output size is equal to that of the largest input.
   </description>
   <misc name="Parameters">
-    <entry name="/inputmode [enum]">
+    <entry name="/angles [enum]">
       <description>
-        Sets the input coordinate mode.<p /><bullet>[0] - <m>polar</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>polar</m>)</i>
+        Sets the units used for angles.<p /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet><p /><i>(default: <m>degrees</m>)</i>
       </description>
     </entry>
-    <entry name="/speakers [variable length double array]">
+    <entry name="/input_coords [enum]">
       <description>
-        Sets the speaker positions in polar triples (one triple per speaker).<p /><i>(default: 0)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the coordinate system used for input.<p /><bullet>[0] - <m>polar</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>polar</m>)</i>
       </description>
     </entry>
-    <entry name="/weights [variable length double array]">
+    <entry name="/speaker_coords [enum]">
       <description>
-        Sets the speaker weightings (one value per speaker).<p /><i>(default: 1)</i>
-      </description>
-    </entry>
-    <entry name="/rolloff [double]">
-      <description>
-        Sets the rolloff in dB.<p /><i>(default: 6)</i>
-      </description>
-    </entry>
-    <entry name="/blur [double]">
-      <description>
-        Sets the blur factor.<p /><i>(default: 0.4)</i>
-      </description>
-    </entry>
-    <entry name="/maxspeakers [int]">
-      <description>
-        Sets the maximum number of speakers to be used (the nearest N speakers will be used only). If zero all speakers are used.<p /><i>(default: 0)</i>
-      </description>
-    </entry>
-    <entry name="/points [double]">
-      <description>
-        Interpolate to point source panning (0 is modified DBAP - 1 is point source).<p /><i>(default: 0)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the coordinate system used for speaker positions.<p /><bullet>[0] - <m>polar</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>polar</m>)</i>
       </description>
     </entry>
     <entry name="/constrain [enum]">
       <description>
-        Sets the method for constraining positions outside of the speaker array.<p /><bullet>[0] - <m>none</m></bullet><bullet>[1] - <m>hemisphere</m></bullet><bullet>[2] - <m>sphere</m></bullet><bullet>[3] - <m>hull</m></bullet><p /><i>(default: <m>hull</m>)</i>
+        Sets the method for constraining positions outside of the speaker array:<p /><bullet>[0] - <m>none</m> - suitable when the input is already within the speaker array (most efficient).</bullet><bullet>[1] - <m>hemisphere</m> - restrict to the upper hemisphere of the sphere described below.</bullet><bullet>[2] - <m>sphere</m> - restrict to the smallest sphere centred at the origin containing all speakers.</bullet><bullet>[3] - <m>hull</m> - restrict to the convex hull of the speaker array (least efficient / always correct.</bullet><p /><i>(default: <m>hull</m>)</i>
+      </description>
+    </entry>
+    <entry name="/speakers [variable length double array]">
+      <description>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the speaker positions in triples (one triple per speaker). For cartesian coordinates the values are [x, z, y]. For polar coordinates the values are [radius, azimuth, elevation].<p /><i>(default: 0)</i>
+      </description>
+    </entry>
+    <entry name="/weights [variable length double array]">
+      <description>
+        Sets the speaker weightings (one value per speaker). By default all speakers are weighted equally. Using weighting values allows the emphasis or exclusion of specific speakers.<p /><i>(default: 1)</i>
+      </description>
+    </entry>
+    <entry name="/rolloff [double]">
+      <description>
+        Sets the rolloff in positive dB for a doubling of distance between source and speakers. The default (6dB) equates to the inverse distance law for sound propagating in a free field. Lower values may be suitable for simulating more closed environments.<p /><i>(default: 6)</i>
+      </description>
+    </entry>
+    <entry name="/blur [double]">
+      <description>
+        Sets the blur factor. This should be set in relation to the dimensions of the speaker array. Larger numbers result in more blurring of the spatial image.<p /><i>(default: 0.001)</i>
+      </description>
+    </entry>
+    <entry name="/max_speakers [int]">
+      <description>
+        Sets the number of speakers that can be non-zero (only the nearest N speakers are used). If this is set to zero then all speakers are used. Reducing the number of speakers used can improve localisation.<p /><i>(default: 0)</i>
+      </description>
+    </entry>
+    <entry name="/point_factor [double]">
+      <description>
+        Interpolation factor between DBAP (at 0) and point source panning (at 1).<p /><i>(default: 0)</i>
       </description>
     </entry>
   </misc>
@@ -54,7 +64,40 @@
     <metadata name="tag">FrameLib</metadata>
     <metadata name="tag">FrameLib Spatial</metadata>
   </metadatalist>
-  <objarglist />
+  <objarglist>
+    <objarg name="angles" optional="1" type="symbol">
+      <digest>
+        Sets the units used for angles
+      </digest>
+      <description>
+        This argument sets the angles parameter:<p /><p />Sets the units used for angles.<p /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet><p /><i>(default: <m>degrees</m>)</i>
+      </description>
+    </objarg>
+    <objarg name="input_coords" optional="1" type="symbol">
+      <digest>
+        Sets the coordinate system used for input
+      </digest>
+      <description>
+        This argument sets the input_coords parameter:<p /><p />Sets the coordinate system used for input.<p /><bullet>[0] - <m>polar</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>polar</m>)</i>
+      </description>
+    </objarg>
+    <objarg name="speaker_coords" optional="1" type="symbol">
+      <digest>
+        Sets the coordinate system used for speaker positions
+      </digest>
+      <description>
+        This argument sets the speaker_coords parameter:<p /><p />Sets the coordinate system used for speaker positions.<p /><bullet>[0] - <m>polar</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>polar</m>)</i>
+      </description>
+    </objarg>
+    <objarg name="constrain" optional="1" type="symbol">
+      <digest>
+        Sets the method for constraining positions outside of the speaker array
+      </digest>
+      <description>
+        This argument sets the constrain parameter:<p /><p />Sets the method for constraining positions outside of the speaker array:<p /><bullet>[0] - <m>none</m> - suitable when the input is already within the speaker array (most efficient).</bullet><bullet>[1] - <m>hemisphere</m> - restrict to the upper hemisphere of the sphere described below.</bullet><bullet>[2] - <m>sphere</m> - restrict to the smallest sphere centred at the origin containing all speakers.</bullet><bullet>[3] - <m>hull</m> - restrict to the convex hull of the speaker array (least efficient / always correct.</bullet><p /><i>(default: <m>hull</m>)</i>
+      </description>
+    </objarg>
+  </objarglist>
   <methodlist>
     <method name="info">
       <arglist>

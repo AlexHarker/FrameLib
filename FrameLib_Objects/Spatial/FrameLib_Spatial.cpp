@@ -92,33 +92,31 @@ FrameLib_Spatial::Vec3& FrameLib_Spatial::Vec3::normalise()
 
 FrameLib_Spatial::Vec3 operator * (const FrameLib_Spatial::Vec3& a, double b)
 {
-    return { a.x * b, a.y * b,  a.z * b };
+    return { a.x() * b, a.y() * b,  a.z() * b };
 }
 
 FrameLib_Spatial::Vec3 operator - (const FrameLib_Spatial::Vec3& a, const FrameLib_Spatial::Vec3& b)
 {
-    return { a.x - b.x, a.y - b.y, a.z - b.z };
+    return { a.x() - b.x(), a.y() - b.y(), a.z() - b.z() };
 }
 
 FrameLib_Spatial::Vec3 operator + (const FrameLib_Spatial::Vec3& a, const FrameLib_Spatial::Vec3& b)
 {
-    return { a.x + b.x, a.y + b.y, a.z + b.z };
+    return { a.x() + b.x(), a.y() + b.y(), a.z() + b.z() };
 }
     
 double dot(const FrameLib_Spatial::Vec3& a, const FrameLib_Spatial::Vec3& b)
 {
-    return a.x * b.x + a.y * b.y + a.z * b.z;
+    return a.x() * b.x() + a.y() * b.y() + a.z() * b.z();
 }
 
 FrameLib_Spatial::Vec3 cross(const FrameLib_Spatial::Vec3& v1, const FrameLib_Spatial::Vec3& v2)
 {
-    FrameLib_Spatial::Vec3 c;
+    const double x = v1.y() * v2.z() - v1.z() * v2.y();
+    const double y = v1.z() * v2.x() - v1.x() * v2.z();
+    const double z = v1.x() * v2.y() - v1.y() * v2.x();
     
-    c.x = v1.y * v2.z - v1.z * v2.y;
-    c.y = v1.z * v2.x - v1.x * v2.z;
-    c.z = v1.x * v2.y - v1.y * v2.x;
-    
-    return c;
+    return FrameLib_Spatial::Vec3(x, y, z);
 }
 
 // Comparisons with epsilon
@@ -218,7 +216,7 @@ std::pair<FrameLib_Spatial::Vec3, double> FrameLib_Spatial::HullFace::closestPoi
 
 // Spatial Constraints
 
-FrameLib_Spatial::Cartesian FrameLib_Spatial::constrain(Cartesian point)
+FrameLib_Spatial::Vec3 FrameLib_Spatial::constrain(Vec3 point)
 {
     ConstrainModes mode = mParameters.getEnum<ConstrainModes>(kConstrain);
     
@@ -232,7 +230,7 @@ FrameLib_Spatial::Cartesian FrameLib_Spatial::constrain(Cartesian point)
     if (mode == kHemisphere || mode == kSphere)
     {
         if (mode == kHemisphere)
-            point.z = std::max(point.z, 0.0);
+            point = Vec3(point.x(), point.y(), std::max(point.z(), 0.0));
                 
         if (point.mag() <= mRadius)
             return point;
@@ -298,9 +296,9 @@ void FrameLib_Spatial::calculateBounds()
         auto vertices = allocAutoArray<ch_vertex>(numVertices);
 
         for (size_t i = 0; i < mSpeakers.size(); i++)
-            vertices[i] = vertex(mSpeakers[i].x, mSpeakers[i].y, mSpeakers[i].z);
+            vertices[i] = vertex(mSpeakers[i].x(), mSpeakers[i].y(), mSpeakers[i].z());
         
-        // If we have less than 4 speaers then add synthetic vertices to ensure we can build the hull
+        // If we have less than 4 speakers then add synthetic vertices to ensure we can build the hull
         
         if (numSpeakers == 2)
         {
@@ -309,8 +307,8 @@ void FrameLib_Spatial::calculateBounds()
             Vec3 p1 = mSpeakers[0] * (2.0/3.0) + mSpeakers[1] * (1.0/3.0);
             Vec3 p2 = mSpeakers[1] * (2.0/3.0) + mSpeakers[0] * (1.0/3.0);
 
-            vertices[2] = vertex(p1.x, p1.y, p1.z);
-            vertices[3] = vertex(p2.x, p2.y, p2.z);
+            vertices[2] = vertex(p1.x(), p1.y(), p1.z());
+            vertices[3] = vertex(p2.x(), p2.y(), p2.z());
         }
         else if (numSpeakers == 3)
         {
@@ -321,7 +319,7 @@ void FrameLib_Spatial::calculateBounds()
             for (size_t i = 0; i < mSpeakers.size(); i++)
                 centroid = centroid + (mSpeakers[i] * (1.0/3.0));
             
-            vertices[3] = vertex(centroid.x, centroid.y, centroid.z);
+            vertices[3] = vertex(centroid.x(), centroid.y(), centroid.z());
         }
         
         // Build the hull and keep a copy with calculated / stored normals
@@ -357,71 +355,117 @@ void FrameLib_Spatial::calculateBounds()
 // Constructor
 
 FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+: FrameLib_Processor(context, proxy, &sParamInfo, 3, 0)
 {
-    mParameters.addEnum(kInputMode, "inputmode");
+    mParameters.addEnum(kAngleUnits, "angles", 0);
+    mParameters.addEnumItem(kRadians, "radians");
+    mParameters.addEnumItem(kDegrees, "degrees", true);
+    
+    mParameters.addEnum(kInputCoords, "input_coords", 1);
     mParameters.addEnumItem(kPolar, "polar");
     mParameters.addEnumItem(kCartesian, "cartesian");
-    
-    mParameters.addVariableDoubleArray(kSpeakers, "speakers", 0.0, 360, 0);
-    mParameters.addVariableDoubleArray(kWeights, "weights", 1.0, 360, 0);
-    
-    mParameters.addDouble(kRolloff, "rolloff", 6.0);
-    mParameters.setMin(0.0);
-    mParameters.addDouble(kBlur, "blur", 0.4);
-    mParameters.setMin(0.0000001);
-    mParameters.addInt(kMaxSpeakers, "maxspeakers", 0);
-    mParameters.setMin(0);
-    mParameters.addDouble(kPoints, "points", 0.0);
-    mParameters.setClip(0.0, 1.0);
-        
-    mParameters.addEnum(kConstrain, "constrain");
+    mParameters.setInstantiation();
+
+    mParameters.addEnum(kSpeakerCoords, "speaker_coords", 2);
+    mParameters.addEnumItem(kPolar, "polar");
+    mParameters.addEnumItem(kCartesian, "cartesian");
+    mParameters.setInstantiation();
+
+    mParameters.addEnum(kConstrain, "constrain", 3);
     mParameters.addEnumItem(kNone, "none");
     mParameters.addEnumItem(kHemisphere, "hemisphere");
     mParameters.addEnumItem(kSphere, "sphere");
     mParameters.addEnumItem(kConvexHull, "hull", true);
     
+    mParameters.addVariableDoubleArray(kSpeakers, "speakers", 0.0, 360, 0);
+    mParameters.setInstantiation();
+    
+    mParameters.addVariableDoubleArray(kWeights, "weights", 1.0, 360, 0);
+    mParameters.setMin(0.0);
+
+    mParameters.addDouble(kRolloff, "rolloff", 6.0);
+    mParameters.setMin(0.0000001);
+    mParameters.addDouble(kBlur, "blur", 0.001);
+    mParameters.setMin(0.0000001);
+    mParameters.addInt(kMaxSpeakers, "max_speakers", 0);
+    mParameters.setMin(0);
+    mParameters.addDouble(kPointFactor, "point_factor", 0.0);
+    mParameters.setClip(0.0, 1.0);
+    
     mParameters.set(serialisedParameters);
     
     unsigned long speakerSize;
     const double *speakers = mParameters.getArray(kSpeakers, &speakerSize);
-    unsigned long numSpeakers = (speakerSize + 2) / 3;
+    unsigned long numSpeakers = std::max(2UL, (speakerSize + 2) / 3);
     
-    mSpeakers = allocAutoArray<Cartesian>(numSpeakers);
+    mSpeakers = allocAutoArray<Vec3>(numSpeakers);
     
-    for (unsigned long i = 0; i < numSpeakers; i++)
+    if (mParameters.getEnum<CoordinateTypes>(kSpeakerCoords) == kPolar)
     {
-        double azimuth = speakerSize > (i * 3 + 0) ? speakers[i * 3 + 0] : 0.0;
-        double elevation = speakerSize > (i * 3 + 1) ? speakers[i * 3 + 1] : 0.0;
-        double radius = speakerSize > (i * 3 + 2) ? speakers[i * 3 + 2] : 1.0;
+        PolToCar convertor(mParameters.getEnum<AngleUnits>(kAngleUnits) == kDegrees);
+
+        for (unsigned long i = 0; i < numSpeakers; i++)
+        {
+            double r = speakerSize > (i * 3 + 0) ? speakers[i * 3 + 0] : 0.0;
+            double a = speakerSize > (i * 3 + 1) ? speakers[i * 3 + 1] : 0.0;
+            double e = speakerSize > (i * 3 + 2) ? speakers[i * 3 + 2] : 0.0;
         
-        mSpeakers[i] = convertToCartesian(Polar(azimuth, elevation, radius));
+            
+            mSpeakers[i] = convertor( { r, a, e } );
+        }
+    }
+    else
+    {
+        for (unsigned long i = 0; i < numSpeakers; i++)
+        {
+            double x = speakerSize > (i * 3 + 0) ? speakers[i * 3 + 0] : 0.0;
+            double y = speakerSize > (i * 3 + 1) ? speakers[i * 3 + 1] : 0.0;
+            double z = speakerSize > (i * 3 + 2) ? speakers[i * 3 + 2] : 0.0;
+            
+            mSpeakers[i] = { x, y, z };
+        }
     }
 
     calculateBounds();
+    
+    setIO(3, mSpeakers.size());
+    
+    mInputCoords = mParameters.getEnum<CoordinateTypes>(kInputCoords);
+    
+    addParameterInput();
 }
 
 // Info
 
 std::string FrameLib_Spatial::objectInfo(bool verbose)
 {
-    return formatInfo("Generates multiplication factors for a number of speakers from an input coordinate triple: "
-                   "The algorithm used is a modified version of DBAP, with extra features. "
-                   "Input may be in cartesian coordinates (x, y, z) or polar ones (azimuth, elevation, radius. "
-                   "Missing values at the input are assumed zero. Extra values are ignored. "
-                   "The output size is equal to the number of loudspeakers.",
-                   "Generates multiplication factors for a number of speakers from an input coordinate triple.", verbose);
+    return formatInfo("Generates multiplication factors for a set of speakers positioned in 3D: "
+                   "The core underlying algorithm is DBAP (distance-based amplitude panning). "
+                   "Input may use cartesian [x, y, z] or polar [radius, azimuth, elevation] coordinates. "
+                   "2D operation can be achieved by setting all z or elevation values to zero. "
+                   "Angles may be set using degrees or radians. "
+                   "Missing values at any input are assumed to be zero. "
+                   "The output size is equal to that of the largest input.",
+                   "Generates multiplication factors for a set of speakers positioned in 3D.", verbose);
 }
 
 std::string FrameLib_Spatial::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Input Triple - cartesian or polar values for which to generate factors.", "Input Triple", verbose);
-
+    bool cartesian = mInputCoords == kCartesian;
+    
+    switch (idx)
+    {
+        case 0:     return cartesian ? "X Values" : "Radius Values";
+        case 1:     return cartesian ? "Y Values" : "Azimuth Values";
+        case 2:     return cartesian ? "Z Values" : "Elevation Values";
+    }
+        
+    return parameterInputInfo(verbose);
 }
 
 std::string FrameLib_Spatial::outputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Multiplication Factors - one per loudspeaker.", "Multiplication Factors", verbose);
+    return formatInfo("Speaker # Coefficients - multiplication factor.", "Speaker # Coefficients", idx, verbose);
 }
 
 // Parameter Info
@@ -430,126 +474,162 @@ FrameLib_Spatial::ParameterInfo FrameLib_Spatial::sParamInfo;
 
 FrameLib_Spatial::ParameterInfo::ParameterInfo()
 {
-    add("Sets the input coordinate mode.");
-    add("Sets the speaker positions in polar triples (one triple per speaker).");
-    add("Sets the speaker weightings (one value per speaker).");
-    add("Sets the rolloff in dB.");
-    add("Sets the blur factor.");
-    add("Sets the maximum number of speakers to be used (the nearest N speakers will be used only). "
-        "If zero all speakers are used.");
-    add("Interpolate to point source panning (0 is modified DBAP - 1 is point source).");
-    add("Sets the method for constraining positions outside of the speaker array.");
-}
-
-// Conversion Helper
-
-FrameLib_Spatial::Cartesian FrameLib_Spatial::convertToCartesian(Polar position)
-{
-    double theta = (M_PI / 180.0) * (90 - position.elevation);
-    double psi = (M_PI / 180.0) * position.azimuth;
+    add("Sets the units used for angles.");
+    add("Sets the coordinate system used for input.");
+    add("Sets the coordinate system used for speaker positions.");
+    add("Sets the method for constraining positions outside of the speaker array: "
+        "none - suitable when the input is already within the speaker array (most efficient). "
+        "hemisphere - restrict to the upper hemisphere of the sphere described below. "
+        "sphere - restrict to the smallest sphere centred at the origin containing all speakers. "
+        "hull - restrict to the convex hull of the speaker array (least efficient / always correct.");
+    add("Sets the speaker positions in triples (one triple per speaker). "
+        "For cartesian coordinates the values are [x, z, y]. "
+        "For polar coordinates the values are [radius, azimuth, elevation].");
+    add("Sets the speaker weightings (one value per speaker). "
+        "By default all speakers are weighted equally. "
+        "Using weighting values allows the emphasis or exclusion of specific speakers.");
+    add("Sets the rolloff in positive dB for a doubling of distance between source and speakers. "
+        "The default (6dB) equates to the inverse distance law for sound propagating in a free field. "
+        "Lower values may be suitable for simulating more closed environments.");
+    add("Sets the blur factor. "
+        "This should be set in relation to the dimensions of the speaker array. "
+        "Larger numbers result in more blurring of the spatial image.");
+    add("Sets the number of speakers that can be non-zero (only the nearest N speakers are used). "
+        "If this is set to zero then all speakers are used. "
+        "Reducing the number of speakers used can improve localisation.");
+    add("Interpolation factor between DBAP (at 0) and point source panning (at 1).");
     
-    return Cartesian(position.radius * sin(theta) * sin(psi), position.radius * sin(theta) * cos(psi), position.radius * cos(theta));
 }
 
 // Process
 
 void FrameLib_Spatial::process()
 {
-    unsigned long sizeIn, weightsSize;
-    const double *input = getInput(0, &sizeIn);
+    unsigned long sizeIn1, sizeIn2, sizeIn3, sizeOut, weightsSize;
     
     const double *weights = mParameters.getArray(kWeights, &weightsSize);
     unsigned long numSpeakers = static_cast<unsigned long>(mSpeakers.size());
     unsigned long maxSpeakers = mParameters.getInt(kMaxSpeakers);
     
-    double blur = mParameters.getValue(kBlur);
-    double rolloff = mParameters.getValue(kRolloff);
-    double pointFactor = mParameters.getValue(kPoints);
+    const double blur = mParameters.getValue(kBlur);
+    const double rolloff = mParameters.getValue(kRolloff);
+    const double pointFactor = mParameters.getValue(kPointFactor);
     
-    double rolloffFactor =  rolloff / (20 * log10(2.0));
-    double blur2 = blur * blur;
+    const double rolloffFactor =  rolloff / (20 * log10(2.0));
+    const double blur2 = blur * blur;
+    
     maxSpeakers = maxSpeakers == 0 ? numSpeakers : maxSpeakers;
+
+    const double *input1 = getInput(0, &sizeIn1);
+    const double *input2 = getInput(1, &sizeIn2);
+    const double *input3 = getInput(2, &sizeIn3);
     
-    requestOutputSize(0, numSpeakers);
-    allocateOutputs();
+    unsigned long sizeIn = std::max(sizeIn1, std::max(sizeIn2, sizeIn3));
     
-    double *output = getOutput(0, &numSpeakers);
+    // Take max of input lengths
     
-    double norm = 0.0;
-    double minDistance = 0.0;
-    unsigned long nearestIdx = 0;
+    for (unsigned long i = 0; i < numSpeakers; i++)
+        requestOutputSize(i, sizeIn);
     
-    Cartesian panPosition;
+    if (!allocateOutputs())
+        return;
     
-    if (mParameters.getEnum<InputModes>(kInputMode) == kPolar)
+    // Allocate temporary vector of size
+    
+    auto speakerCoeffs = allocAutoArray<double>(numSpeakers);
+    
+    auto spatialise = [&](double *coefficients, Vec3 position)
     {
-        double azimuth = sizeIn > 0 ? input[0] : 0.0;
-        double elevation = sizeIn > 1 ? input[1] : 0.0;
-        double radius = sizeIn > 2 ? input[2] : 1.0;
+        double minDistance = 0.0;
+        double norm = 0.0;
         
-        panPosition = convertToCartesian(Polar(azimuth, elevation, radius));
+        unsigned long nearestIdx = 0;
+        
+        // Constrain Position
+        
+        position = constrain(position);
+        
+        for (unsigned long i = 0; i < numSpeakers; i++)
+        {
+            double xDelta = position.x() - mSpeakers[i].x();
+            double yDelta = position.y() - mSpeakers[i].y();
+            double zDelta = position.z() - mSpeakers[i].z();
+            
+            double sqDistance = xDelta * xDelta + yDelta * yDelta + zDelta * zDelta;
+            double weight = i < weightsSize ? weights[i] : 1.0;
+            
+            coefficients[i] = weight / pow(sqDistance + blur2, 0.5 * rolloffFactor);
+            
+            if (i == 0 || (sqDistance < minDistance))
+            {
+                nearestIdx = i;
+                minDistance = sqDistance;
+            }
+        }
+        
+        // Reduce number of speakers
+        
+        if (maxSpeakers < numSpeakers)
+        {
+            auto indices = allocAutoArray<unsigned long>(numSpeakers);
+            sortIndicesDescending(indices, coefficients, numSpeakers);
+            
+            for (unsigned long i = maxSpeakers; i < numSpeakers; i++)
+                coefficients[indices[i]] = 0.0;
+        }
+        
+        // Interpolate to points
+        
+        if (pointFactor > 0.0)
+        {
+            for (unsigned long i = 0; i < numSpeakers; i++)
+            {
+                if (i == nearestIdx)
+                    coefficients[i] += pointFactor * (1.0 - coefficients[i]);
+                else
+                    coefficients[i] -= pointFactor * coefficients[i];
+            }
+        }
+        
+        // Normalise
+        
+        for (unsigned long i = 0; i < numSpeakers; i++)
+            norm += coefficients[i] * coefficients[i];
+        
+        norm = sqrt(1.0 / norm);
+        
+        for (unsigned long i = 0; i < numSpeakers; i++)
+            coefficients[i] *= norm;
+    };
+            
+    if (mInputCoords == kPolar)
+    {
+        PolToCar convertor(mParameters.getEnum<AngleUnits>(kAngleUnits) == kDegrees);
+
+        for (unsigned long i = 0; i < sizeIn; i++)
+        {
+            double r = sizeIn1 > i ? input1[i] : 0.0;
+            double a = sizeIn2 > i ? input2[i] : 0.0;
+            double e = sizeIn3 > i ? input3[i] : 0.0;
+        
+            spatialise(speakerCoeffs, convertor( { r, a, e } ));
+            
+            for (unsigned long j = 0; j < numSpeakers; j++)
+                getOutput(j, &sizeOut)[i] = speakerCoeffs[j];
+        }
     }
     else
     {
-        double x = sizeIn > 0 ? input[0] : 0.0;
-        double y = sizeIn > 1 ? input[1] : 0.0;
-        double z = sizeIn > 2 ? input[2] : 0.0;
-        
-        panPosition = Cartesian(x, y, z);
-    }
-    
-    // Constrain Position
-    
-    panPosition = constrain(panPosition);
-    
-    for (unsigned long i = 0; i < numSpeakers; i++)
-    {
-        double xDelta = panPosition.x - mSpeakers[i].x;
-        double yDelta = panPosition.y - mSpeakers[i].y;
-        double zDelta = panPosition.z - mSpeakers[i].z;
-        
-        double sqDistance = xDelta * xDelta + yDelta * yDelta + zDelta * zDelta;
-        double weight = i < weightsSize ? weights[i] : 1.0;
-        output[i] = weight / pow(sqDistance + blur2, 0.5 * rolloffFactor);
-        
-        if (i == 0 || (sqDistance < minDistance))
+        for (unsigned long i = 0; i < sizeIn; i++)
         {
-            nearestIdx = i;
-            minDistance = sqDistance;
+            double x = sizeIn1 > i ? input1[i] : 0.0;
+            double y = sizeIn2 > i ? input2[i] : 0.0;
+            double z = sizeIn3 > i ? input3[i] : 0.0;
+        
+            spatialise(speakerCoeffs, Vec3(x, y, z));
+            
+            for (unsigned long j = 0; j < numSpeakers; j++)
+                getOutput(j, &sizeOut)[i] = speakerCoeffs[j];
         }
     }
-    
-    // Reduce number of speakers
-    
-    if (maxSpeakers < numSpeakers)
-    {
-        auto indices = allocAutoArray<unsigned long>(numSpeakers);
-        sortIndicesDescending(indices, output, numSpeakers);
-        
-        for (unsigned long i = maxSpeakers; i < numSpeakers; i++)
-            output[indices[i]] = 0.0;
-    }
-    
-    // Interpolate to points
-    
-    if (pointFactor > 0.0)
-    {
-        for (unsigned long i = 0; i < numSpeakers; i++)
-        {
-            if (i == nearestIdx)
-                output[i] += pointFactor * (1.0 - output[i]);
-            else
-                output[i] -= pointFactor * output[i];
-        }
-    }
-    
-    // Normalise
-    
-    for (unsigned long i = 0; i < numSpeakers; i++)
-        norm += output[i] * output[i];
-    
-    norm = sqrt(1.0 / norm);
-    
-    for (unsigned long i = 0; i < numSpeakers; i++)
-        output[i] *= norm;
 }
