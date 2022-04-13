@@ -7,8 +7,8 @@
 
 template <typename T, typename U>
 unsigned long delta(T a, U b)
-{ 
-	return static_cast<unsigned long>(std::distance(a, b)); 
+{
+    return static_cast<unsigned long>(std::distance(a, b)); 
 }
 
 // Constructor
@@ -97,7 +97,7 @@ FrameLib_Peaks::ParameterInfo::ParameterInfo()
         "minimum - boundaries are set at the minimum value between consecutive peaks. "
         "midpoint - boundaries are set to the indices halfway between consecutive peaks.");
     add("If set on at least one peak will be detected even if no values match the peak criteria. "
-        "Note that when set off the outputs will be empty if no peak is detected.");
+        "If set off then the outputs will be empty if no peak is detected.");
 }
 
 // Edges
@@ -197,7 +197,7 @@ void FrameLib_Peaks::process()
     
     bool alwaysDetect = mParameters.getBool(kAlwaysDetect);
     
-    const static int padding = 4;
+    static constexpr int padding = 4;
     
     // Get Input
     
@@ -278,7 +278,7 @@ void FrameLib_Peaks::process()
 
     switch (refine)
     {
-        case kOff:             refinePeaks<refineNone>(output2, output3, data, indices, nPeaks);           break;
+        case kOff:              refinePeaks<refineNone>(output2, output3, data, indices, nPeaks);           break;
         case kParabolic:        refinePeaks<refineParabolic>(output2, output3, data, indices, nPeaks);      break;
         case kParabolicLog:     refinePeaks<refineParabolicLog>(output2, output3, data, indices, nPeaks);   break;
     }

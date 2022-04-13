@@ -16,8 +16,8 @@ FrameLib_Store::FrameLib_Store(FrameLib_Context context, const FrameLib_Paramete
     mName = mParameters.getString(kName);
     mStorage = registerStorage(mName.c_str());
     
-    setInputMode(0, false, true, false, kFrameAny);
-    setOutputType(0, kFrameAny);
+    setInputMode(0, false, true, false, FrameType::Any);
+    setOutputType(0, FrameType::Any);
 }
 
 // Info
@@ -80,12 +80,12 @@ void FrameLib_Store::process()
     FrameType type = getInputCurrentType(0);
     unsigned long size;
     
-    if (type == kFrameTagged)
+    if (type == FrameType::Tagged)
         size = getInput(0)->size();
     else
         getInput(0, &size);
     
-    access.resize(type == kFrameTagged, size);
+    access.resize(type == FrameType::Tagged, size);
     
     // Prepare and allocate outputs
     
@@ -94,7 +94,7 @@ void FrameLib_Store::process()
     
     // Copy to storage
     
-    if (type == kFrameNormal)
+    if (type == FrameType::Vector)
     {
         const double *input = getInput(0, &size);
         double *storage = access.getVector();

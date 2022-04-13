@@ -134,7 +134,7 @@ FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, const FrameLib_Pa
     
     mMode = mParameters.getEnum<Modes>(kMode);
     
-    setOutputType(0, mMode == kValues ? kFrameNormal : kFrameTagged);
+    setOutputType(0, mMode == kValues ? FrameType::Vector : FrameType::Tagged);
     
     if (mProxy)
         mProxy->registerObject(this, mStreamOwner, mStream);
@@ -202,7 +202,7 @@ void FrameLib_FromHost::process()
 {
     unsigned long size = 0;
     
-    FrameLib_SpinLockHolder lock(&mLock);
+    FrameLib_LockHolder lock(&mLock);
     
     if (mMode == kValues)
     {
@@ -234,7 +234,7 @@ void FrameLib_FromHost::process()
 
 FrameLib_FromHost::OwnedFrame FrameLib_FromHost::swapVectorFrame(OwnedFrame& swapVector)
 {
-    FrameLib_SpinLockHolder lock(&mLock);
+    FrameLib_LockHolder lock(&mLock);
     std::swap(mVectorFrame, swapVector);
     return std::move(swapVector);
 }
@@ -243,7 +243,7 @@ FrameLib_FromHost::OwnedFrame FrameLib_FromHost::swapVectorFrame(OwnedFrame& swa
 
 void FrameLib_FromHost::updateSerialFrame(SerialQueue &freeQueue, SerialItem *addSerial)
 {
-    FrameLib_SpinLockHolder lock(&mLock);
+    FrameLib_LockHolder lock(&mLock);
     mSerialFrame.push(addSerial);
     freeQueue.transfer(mSerialFreeFrame);
 }

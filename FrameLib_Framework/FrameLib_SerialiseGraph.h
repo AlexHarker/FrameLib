@@ -10,7 +10,7 @@
  
  */
 
-enum ExportError { kExportSuccess, kExportPathError, kExportWriteError };
+enum class ExportError { Success, PathError, WriteError };
 
 /**
  
@@ -78,16 +78,36 @@ struct FrameLib_ObjectDescription
 
 /**
  
+ @struct FrameLib_StringReplace
+ 
+ @ingroup Serialisation
+ 
+ @brief a representation of a string replacement for resolving templates to their aliases.
+ 
+ */
+
+struct FrameLib_StringReplace
+{
+    std::string mReplace;
+    std::string mFind;
+};
+
+using ObjectListRef = std::vector<FrameLib_ObjectDescription>&;
+using ReplacePtr = const std::vector<FrameLib_StringReplace>*;
+
+/**
+ 
  @ingroup Serialisation
 
  @brief serialised a graph as a std::vector of FrameLib_ObjectDescription structs from a pointer to any object in the graph.
  
  @param objects a reference to a std::vector<FrameLib_ObjectDescription> in which to return the serialised description.
  @param requestObject a pointer to any pointer to a FrameLib_Multistream object within a graph.
-
+ @param replace a pointer to a std::vector of FrameLib_StringReplace objects to assist in resolving template types.
+ 
  */
 
-void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_Multistream *requestObject);
+void serialiseGraph(ObjectListRef objects, FrameLib_Multistream *requestObject, ReplacePtr replace = nullptr);
 
 /**
  
@@ -98,10 +118,11 @@ void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_M
  @param requestObject a pointer to any pointer to a FrameLib_Multistream object within a graph.
  @param path a C-string containing the path in which to write the output files.
  @param className a C-string containing the name of the class to be created in the exported code.
+ @param replace a pointer to a std::vector of FrameLib_StringReplace objects to assist in resolving template types.
  @return an ExportError indicating if any errors have occured.
  
  */
 
-ExportError exportGraph(FrameLib_Multistream *requestObject, const char *path,  const char *className);
+ExportError exportGraph(FrameLib_Multistream *requestObject, const char *path, const char *className, ReplacePtr replace = nullptr);
 
 #endif

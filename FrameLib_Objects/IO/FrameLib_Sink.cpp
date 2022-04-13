@@ -68,7 +68,7 @@ FrameLib_Sink::ParameterInfo::ParameterInfo()
 {
     add("Sets the internal buffer size in the units specified by the units parameter.");
     add("Sets the time units used to determine the buffer size and delay.");
-    add("Sets the outpu delay in the units specified by the units parameter.");
+    add("Sets the output delay in the units specified by the units parameter.");
     add("Sets the interpolation mode: "
         "none - no interpolation. "
         "linear - linear interpolation. "
@@ -88,9 +88,9 @@ double FrameLib_Sink::convertTimeToSamples(double time)
         case kSeconds:  return secondsToSamples(time);
     }
 
-	assert("This code should never run");
-
-	return time;
+    assert("This code should never run");
+    
+    return time;
 }
 
 unsigned long FrameLib_Sink::convertTimeToIntSamples(double time)
@@ -153,9 +153,9 @@ void FrameLib_Sink::blockProcess(const double * const *ins, double **outs, unsig
 
 void FrameLib_Sink::process()
 {
-    auto interpIsCubic = [](InterpType type) { return type != kInterpNone && type != kInterpLinear; };
+    auto interpIsCubic = [](InterpType type) { return type != InterpType::None && type != InterpType::Linear; };
     
-    InterpType interpType = kInterpNone;
+    InterpType interpType = InterpType::None;
     
     unsigned long sizeIn, sizeFrame, offset;
     
@@ -169,10 +169,10 @@ void FrameLib_Sink::process()
         switch (mParameters.getEnum<Interpolation>(kInterpolation))
         {
             case kNone:         break;
-            case kLinear:       interpType = kInterpLinear;             break;
-            case kHermite:      interpType = kInterpCubicHermite;       break;
-            case kBSpline:      interpType = kInterpCubicBSpline;       break;
-            case kLagrange:     interpType = kInterpCubicLagrange;      break;
+            case kLinear:       interpType = InterpType::Linear;            break;
+            case kHermite:      interpType = InterpType::CubicHermite;      break;
+            case kBSpline:      interpType = InterpType::CubicBSpline;      break;
+            case kLagrange:     interpType = InterpType::CubicLagrange;     break;
         }
     }
     
@@ -196,7 +196,7 @@ void FrameLib_Sink::process()
         if (interpIsCubic(interpType) && !delayTime.intVal())
             timeOffset += FrameLib_TimeFormat(1, 0);
         
-        interpType = kInterpNone;
+        interpType = InterpType::None;
     }
     
     // If interpolation is cubic reduce latency if not required (delay is 1 or greater)
@@ -206,12 +206,12 @@ void FrameLib_Sink::process()
     if (cubic && delayTime.intVal())
         timeOffset -= FrameLib_TimeFormat(1, 0);
         
-    unsigned long interpSize = interpType != kInterpNone ? (cubic ? 3 : 1) : 0;
+    unsigned long interpSize = interpType != InterpType::None ? (cubic ? 3 : 1) : 0;
     auto interpolated = allocAutoArray<double>(sizeIn + interpSize);
 
     // Calculate time offset and interpolate if needed
 
-    if (interpType == kInterpNone)
+    if (interpType == InterpType::None)
     {
         offset = roundToUInt(timeOffset);
         sizeFrame = sizeIn;
@@ -220,12 +220,12 @@ void FrameLib_Sink::process()
     {
         offset = static_cast<unsigned long>(timeOffset.intVal());
         sizeFrame = sizeIn + interpSize;
-        frame = interpolated.get();
+        frame = interpolated.data();
 
         uint64_t interpOffset = cubic ? 1 : 0;
         double position = -static_cast<double>(FrameLib_TimeFormat(interpOffset, timeOffset.fracVal()));
         
-        interpolate_zeropad(Fetcher(input, sizeIn), interpolated.get(), sizeFrame, position, interpType);
+        interpolate_zeropad(Fetcher(input, sizeIn), interpolated.data(), sizeFrame, position, interpType);
     }
     
     // Calculate actual offset into buffer

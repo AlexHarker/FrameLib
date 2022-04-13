@@ -31,15 +31,15 @@ void FrameLib_Thread::start(const Priorities& priorities)
     // Set detach state and policy
     
     pthread_attr_setdetachstate(&threadAttributes, PTHREAD_CREATE_JOINABLE);
-    pthread_attr_setschedpolicy(&threadAttributes, (mPriority == kLowPriority) ? SCHED_OTHER : priorities.mRTPolicy);
+    pthread_attr_setschedpolicy(&threadAttributes, (mPriority == PriorityLevel::Low) ? SCHED_OTHER : priorities.mRTPolicy);
     
     // Set the priority of the thread before we create it
     
     switch (mPriority)
     {
-        case kAudioPriority:    schedulingParameters.sched_priority = priorities.mAudio;      break;
-        case kHighPriority:     schedulingParameters.sched_priority = priorities.mHigh;       break;
-        case kLowPriority:      schedulingParameters.sched_priority = priorities.mLow;        break;
+        case PriorityLevel::Audio:      schedulingParameters.sched_priority = priorities.mAudio;      break;
+        case PriorityLevel::High:       schedulingParameters.sched_priority = priorities.mHigh;       break;
+        case PriorityLevel::Low:        schedulingParameters.sched_priority = priorities.mLow;        break;
     }
     
     // Set the scheduling attributes and create the thread
@@ -142,15 +142,15 @@ void FrameLib_Thread::start(const Priorities& priorities)
     // Set detach state and policy
     
     pthread_attr_setdetachstate(&threadAttributes, PTHREAD_CREATE_JOINABLE);
-    pthread_attr_setschedpolicy(&threadAttributes, (mPriority == kLowPriority) ? SCHED_OTHER : priorities.mRTPolicy);
+    pthread_attr_setschedpolicy(&threadAttributes, (mPriority == PriorityLevel::Low) ? SCHED_OTHER : priorities.mRTPolicy);
     
     // Set the priority of the thread before we create it
     
     switch (mPriority)
     {
-        case kAudioPriority:    schedulingParameters.sched_priority = priorities.mAudio;      break;
-        case kHighPriority:     schedulingParameters.sched_priority = priorities.mHigh;       break;
-        case kLowPriority:      schedulingParameters.sched_priority = priorities.mLow;        break;
+        case PriorityLevel::Audio:      schedulingParameters.sched_priority = priorities.mAudio;      break;
+        case PriorityLevel::High:       schedulingParameters.sched_priority = priorities.mHigh;       break;
+        case PriorityLevel::Low:        schedulingParameters.sched_priority = priorities.mLow;        break;
     }
     
     // Set the scheduling attributes and create the thread
@@ -241,9 +241,9 @@ void FrameLib_Thread::start(const Priorities& priorities)
     
     switch (mPriority)
     {
-        case kAudioPriority:        SetThreadPriority(mInternal, priorities.mAudio);        break;
-        case kHighPriority:         SetThreadPriority(mInternal, priorities.mHigh);         break;
-        case kLowPriority:          SetThreadPriority(mInternal, priorities.mLow);          break;
+        case PriorityLevel::Audio:      SetThreadPriority(mInternal, priorities.mAudio);        break;
+        case PriorityLevel::High:       SetThreadPriority(mInternal, priorities.mHigh);         break;
+        case PriorityLevel::Low:        SetThreadPriority(mInternal, priorities.mLow);          break;
     }
 }
 
@@ -253,7 +253,7 @@ void FrameLib_Thread::join()
     {
         mValid = false;
         std::atomic_thread_fence(std::memory_order_seq_cst);
-
+        
         // Wait for thread to join before we allow the program to continue
         
         WaitForSingleObject(mInternal, INFINITE);
@@ -288,14 +288,14 @@ void FrameLib_Semaphore::close()
     {
         mValid = false;
         std::atomic_thread_fence(std::memory_order_seq_cst);
-
+        
         // Signal maximum count to ensure all threads are released, and check for completion
         
-		for (long n = mInternal.mMaxCount; n > 0; n--)
-		{
-			if (ReleaseSemaphore(mInternal.mHandle, n, nullptr))
-				break;
-		}
+        for (long n = mInternal.mMaxCount; n > 0; n--)
+        {
+            if (ReleaseSemaphore(mInternal.mHandle, n, nullptr))
+                break;
+        }
     }
 }
 
@@ -303,7 +303,7 @@ void FrameLib_Semaphore::signal(long n)
 {
     // N.B. - signalling is unsafe after the semaphore has been closed
     
-	std::atomic_thread_fence(std::memory_order_seq_cst);
+    std::atomic_thread_fence(std::memory_order_seq_cst);
     ReleaseSemaphore(mInternal.mHandle, n, nullptr);
 }
 
@@ -311,7 +311,7 @@ bool FrameLib_Semaphore::wait()
 {
     if (mValid)
         WaitForSingleObject(mInternal.mHandle, INFINITE);
-
+    
     return mValid;
 }
 

@@ -3,7 +3,7 @@
         "fileversion": 1,
         "appversion": {
             "major": 8,
-            "minor": 1,
+            "minor": 3,
             "revision": 0,
             "architecture": "x64",
             "modernui": 1
@@ -11,9 +11,9 @@
         "classnamespace": "box",
         "rect": [
             34.0,
-            79.0,
-            662.0,
-            787.0
+            87.0,
+            587.0,
+            619.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -46,6 +46,7 @@
         "subpatcher_template": "nobars",
         "showrootpatcherontab": 0,
         "showontab": 0,
+        "assistshowspatchername": 0,
         "boxes": [
             {
                 "box": {
@@ -57,7 +58,7 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
+                            "minor": 3,
                             "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
@@ -65,9 +66,9 @@
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
-                            662.0,
-                            761.0
+                            113.0,
+                            587.0,
+                            593.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -99,34 +100,18 @@
                         "style": "",
                         "subpatcher_template": "nobars",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
-                            {
-                                "box": {
-                                    "hidden": 1,
-                                    "id": "obj-1",
-                                    "linecount": 7,
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        "bang"
-                                    ],
-                                    "patching_rect": [
-                                        626.0,
-                                        63.0,
-                                        19.0,
-                                        102.0
-                                    ],
-                                    "text": "loadbang"
-                                }
-                            },
                             {
                                 "box": {
                                     "border": 0,
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.tanh~",
+                                    "jsarguments": [
+                                        "fl.tanh~",
+                                        96
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -137,8 +122,8 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
-                                        150.0
+                                        557.0,
+                                        95
                                     ]
                                 }
                             },
@@ -151,9 +136,10 @@
                                     "enablevscroll": 0,
                                     "id": "obj-128",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
-                                    "name": "fldocs.getparams.maxpat",
-                                    "numinlets": 1,
+                                    "name": "fl.docs.getparams.maxpat",
+                                    "numinlets": 0,
                                     "numoutlets": 0,
                                     "offset": [
                                         0.0,
@@ -161,39 +147,18 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        167.0,
-                                        630.0,
-                                        565.0
+                                        127,
+                                        557.0,
+                                        451.0
                                     ],
-                                    "viewvisibility": 1
-                                }
-                            }
-                        ],
-                        "lines": [
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-128",
-                                        0
-                                    ],
-                                    "hidden": 1,
-                                    "midpoints": [
-                                        635.5,
-                                        168.0,
-                                        657.0,
-                                        168.0,
-                                        657.0,
-                                        166.0,
-                                        24.5,
-                                        166.0
-                                    ],
-                                    "source": [
-                                        "obj-1",
-                                        0
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        557.0
                                     ]
                                 }
                             }
-                        ]
+                        ],
+                        "lines": []
                     },
                     "patching_rect": [
                         2.0,
@@ -220,8 +185,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -229,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            587.0,
+                            593.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -291,17 +256,17 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
-                            652.0,
-                            761.0
+                            113.0,
+                            587.0,
+                            593.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -337,39 +302,25 @@
                         "boxes": [
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-110",
-                                    "justification": 1,
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        285.0,
-                                        190.125,
-                                        48.0,
-                                        24.75
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-25",
-                                    "linecount": 7,
+                                    "linecount": 5,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        335.0,
-                                        155.5,
-                                        170.0,
-                                        108.0
+                                        300.0,
+                                        161.0,
+                                        239.0,
+                                        83.0
                                     ],
-                                    "text": "Modify the volume. The slider can output values above 1 and the patch demonstrates the 'soft clipping' that occurs when the scaled signal is passed through fl.tanh~"
+                                    "text": "Modify the volume. The slider can output values above 1 and the patch demonstrates the 'soft clipping' that occurs when the scaled signal is passed through fl.tanh~",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
+                                    "hidden": 1,
                                     "id": "obj-24",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -438,6 +389,7 @@
                                     "enablevscroll": 0,
                                     "id": "obj-17",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
                                     "name": "fl-mono-h.maxpat",
                                     "numinlets": 1,
@@ -467,9 +419,9 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        510.0,
-                                        50.0,
-                                        50.0
+                                        533.0,
+                                        45.0,
+                                        45.0
                                     ]
                                 }
                             },
@@ -493,6 +445,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.952941176470588,
+                                        0.564705882352941,
+                                        0.098039215686275,
+                                        1.0
+                                    ],
                                     "id": "obj-13",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -525,7 +483,7 @@
                                     "patching_rect": [
                                         225.0,
                                         150.0,
-                                        56.5,
+                                        57.0,
                                         105.0
                                     ],
                                     "setminmax": [
@@ -533,9 +491,9 @@
                                         4.0
                                     ],
                                     "slidercolor": [
-                                        0.756862745098039,
-                                        0.517647058823529,
-                                        0.517647058823529,
+                                        0.952941176470588,
+                                        0.564705882352941,
+                                        0.098039215686275,
                                         1.0
                                     ]
                                 }
@@ -636,9 +594,7 @@
                                     "filename": "fl.helpname.js",
                                     "id": "obj-3",
                                     "ignoreclick": 1,
-                                    "jsarguments": [
-                                        "fl.tanh~"
-                                    ],
+                                    "jsarguments": "fl.tanh~",
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -649,47 +605,8 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        557.0,
                                         75.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "background": 1,
-                                    "bgcolor": [
-                                        0.720698,
-                                        0.16723,
-                                        0.080014,
-                                        1.0
-                                    ],
-                                    "fontface": 1,
-                                    "hint": "",
-                                    "id": "obj-30",
-                                    "ignoreclick": 1,
-                                    "legacytextcolor": 1,
-                                    "maxclass": "textbutton",
-                                    "numinlets": 1,
-                                    "numoutlets": 3,
-                                    "outlettype": [
-                                        "",
-                                        "",
-                                        "int"
-                                    ],
-                                    "parameter_enable": 0,
-                                    "patching_rect": [
-                                        510.0,
-                                        192.5,
-                                        20.0,
-                                        20.0
-                                    ],
-                                    "rounded": 60.0,
-                                    "text": "1",
-                                    "textcolor": [
-                                        1.0,
-                                        1.0,
-                                        1.0,
-                                        1.0
                                     ]
                                 }
                             }
@@ -803,9 +720,9 @@
                                     ],
                                     "midpoints": [
                                         24.5,
-                                        502.0,
-                                        55.5,
-                                        502.0
+                                        513.5,
+                                        50.5,
+                                        513.5
                                     ],
                                     "order": 0,
                                     "source": [
@@ -833,6 +750,7 @@
                                         "obj-12",
                                         0
                                     ],
+                                    "hidden": 1,
                                     "source": [
                                         "obj-24",
                                         0
@@ -901,7 +819,8 @@
                                 "name": "AudioStatus_Menu",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.294118,
                                             0.313726,
@@ -920,9 +839,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1013,7 +931,8 @@
                                 "name": "panelViolet",
                                 "default": {
                                     "bgfillcolor": {
-                                        "type": "color",
+                                        "angle": 270.0,
+                                        "autogradient": 0,
                                         "color": [
                                             0.372549,
                                             0.196078,
@@ -1032,9 +951,8 @@
                                             0.301961,
                                             1.0
                                         ],
-                                        "angle": 270.0,
                                         "proportion": 0.39,
-                                        "autogradient": 0
+                                        "type": "color"
                                     }
                                 },
                                 "parentstyle": "",
@@ -1060,29 +978,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fldocs.getparams.maxpat",
-                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
-                "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
-                "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
-                "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

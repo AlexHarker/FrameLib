@@ -3,7 +3,8 @@
 #define FRAMELIB_GAUSSIAN_H
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_RandGen.h"
+
+#include "../../FrameLib_Dependencies/RandomGenerator.hpp"
 
 class FrameLib_Gaussian final : public FrameLib_Processor
 {
@@ -40,7 +41,7 @@ private:
 
     // Data
     
-    FrameLib_RandGen mRandom;
+    random_generator<> mRandom;
     
     static ParameterInfo sParamInfo;
 };

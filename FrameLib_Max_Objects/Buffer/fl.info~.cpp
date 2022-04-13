@@ -7,9 +7,12 @@
 
 class FrameLib_MaxClass_Info : public FrameLib_MaxClass_Expand<FrameLib_Info>
 {
-    struct ReadProxy : public FrameLib_Info::Proxy, public FrameLib_MaxProxy
+    struct InfoProxy : public FrameLib_Info::Proxy, public FrameLib_MaxProxy
     {
-        ReadProxy() : mBuffer(nullptr) {}
+        InfoProxy(t_object *x)
+        : FrameLib_MaxProxy(x)
+        , mBuffer(nullptr)
+        {}
         
         void update(const char *name) override
         {
@@ -31,7 +34,7 @@ class FrameLib_MaxClass_Info : public FrameLib_MaxClass_Expand<FrameLib_Info>
         
         FrameLib_Info::Proxy *clone() const override
         {
-            ReadProxy *proxy = new ReadProxy();
+            InfoProxy *proxy = new InfoProxy(getOwner<t_object>());
             proxy->mBufferName = mBufferName;
             
             return proxy;
@@ -48,7 +51,7 @@ public:
     // Constructor
     
     FrameLib_MaxClass_Info(t_object *x, t_symbol *s, long argc, t_atom *argv)
-    : FrameLib_MaxClass(x, s, argc, argv, new ReadProxy()) {}
+    : FrameLib_MaxClass(x, s, argc, argv, new InfoProxy(x)) {}
 };
 
 // Max Object

@@ -25,17 +25,17 @@ namespace FrameLib_Filters
         
         // Description / Parameters / Modes
         
-        constexpr static Description sDescription
+        static constexpr Description sDescription
         {
             "Applies  a one-pole 6dB/octave filter to the input"
         };
         
-        constexpr static ParamType sParameters
+        static constexpr ParamType sParameters
         {
             Param("freq", "Frequency Values", "Sets the filter cutoff frequency.", 500.0, Min(0.0))
         };
         
-        constexpr static ModeType sModes
+        static constexpr ModeType sModes
         {
             Mode("lowpass", "Low Pass Output", "low pass", &OnePole::lpf),
             Mode("highpass", "High Pass Output", "high pass", &OnePole::hpf)

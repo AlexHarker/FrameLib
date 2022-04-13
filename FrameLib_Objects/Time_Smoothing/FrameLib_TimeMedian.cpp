@@ -73,7 +73,7 @@ unsigned long find(double input, double *channel, unsigned long numFrames)
 
 double *FrameLib_TimeMedian::getChannel(unsigned long idx)
 {
-    return mOrdered.get() + (idx * getMaxFrames());
+    return mOrdered.data() + (idx * getMaxFrames());
 }
 
 void FrameLib_TimeMedian::exchange(const double *newFrame, const double *oldFrame, unsigned long size)

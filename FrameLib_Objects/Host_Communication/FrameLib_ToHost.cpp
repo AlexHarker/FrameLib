@@ -14,7 +14,7 @@ FrameLib_ToHost::FrameLib_ToHost(FrameLib_Context context, const FrameLib_Parame
 {
     mParameters.set(serialisedParameters);
     
-    setInputMode(0, false, true, false, kFrameAny);
+    setInputMode(0, false, true, false, FrameType::Any);
 
     if (mProxy)
         mID = mProxy->registerObject(this, mStreamOwner, mStream);
@@ -66,7 +66,7 @@ void FrameLib_ToHost::process()
 {
     if (mProxy)
     {
-        if (getInputCurrentType(0) == kFrameNormal)
+        if (getInputCurrentType(0) == FrameType::Vector)
         {
             unsigned long sizeIn;
             const double *input = getInput(0, &sizeIn);

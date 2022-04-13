@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
+<c74object name="fl.uniform~" module="FrameLib" category="FrameLib Generators">
+  <digest>
+    Generates frames in which all values are identical
+  </digest>
+  <description>
+    The output value is set with a parameter. The length of the output is dependent on the mode parameter. Output length may be set by parameter or based on that of the trigger input.
+  </description>
+  <misc name="Parameters">
+    <entry name="/value [double]">
+      <description>
+        Sets the value to output.<p /><i>(default: 0)</i>
+      </description>
+    </entry>
+    <entry name="/mode [enum]">
+      <description>
+        Controls how the output length is determined:<p /><bullet>[0] - <m>requested</m> - the output length is set by the length parameter.</bullet><bullet>[1] - <m>input</m> - the output length follows the length of the trigger input.</bullet><p /><i>(default: <m>requested</m>)</i>
+      </description>
+    </entry>
+    <entry name="/length [int]">
+      <description>
+        Sets the requested output length in the units specified by the units parameter.<p /><i>(default: 1)</i>
+      </description>
+    </entry>
+    <entry name="/units [enum]">
+      <description>
+        Sets the units used for the length parameter.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><p /><i>(default: <m>samples</m>)</i>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Generators</metadata>
+  </metadatalist>
+  <objarglist>
+    <objarg name="value" optional="1" type="number">
+      <digest>
+        Sets the value to output
+      </digest>
+      <description>
+        This argument sets the value parameter:<p /><p />Sets the value to output.<p /><i>(default: 0)</i>
+      </description>
+    </objarg>
+    <objarg name="mode" optional="1" type="symbol">
+      <digest>
+        Controls how the output length is determined
+      </digest>
+      <description>
+        This argument sets the mode parameter:<p /><p />Controls how the output length is determined:<p /><bullet>[0] - <m>requested</m> - the output length is set by the length parameter.</bullet><bullet>[1] - <m>input</m> - the output length follows the length of the trigger input.</bullet><p /><i>(default: <m>requested</m>)</i>
+      </description>
+    </objarg>
+    <objarg name="length" optional="1" type="int">
+      <digest>
+        Sets the requested output length in the units specified by the units parameter
+      </digest>
+      <description>
+        This argument sets the length parameter:<p /><p />Sets the requested output length in the units specified by the units parameter.<p /><i>(default: 1)</i>
+      </description>
+    </objarg>
+    <objarg name="units" optional="1" type="symbol">
+      <digest>
+        Sets the units used for the length parameter
+      </digest>
+      <description>
+        This argument sets the units parameter:<p /><p />Sets the units used for the length parameter.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><p /><i>(default: <m>samples</m>)</i>
+      </description>
+    </objarg>
+  </objarglist>
+  <methodlist>
+    <method name="info">
+      <arglist>
+        <arg name="items" optional="1" type="list" />
+      </arglist>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        Print info about <o>fl.uniform~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+      </description>
+    </method>
+    <method name="frame">
+      <arglist />
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+    <method name="sync">
+      <arglist />
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+  </methodlist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for <o>fl.uniform~</o>. When set to <m>0</m> <o>fl.uniform~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for <o>fl.uniform~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
+  <seealsolist>
+    <seealso name="fl.gaussian~" />
+    <seealso name="fl.ramp~" />
+    <seealso name="fl.random~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>generators</description>
+    </entry>
+  </misc>
+</c74object>

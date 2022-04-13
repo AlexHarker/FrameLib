@@ -23,17 +23,17 @@ void FrameLib_Global::release(FrameLib_Global **global)
 
 void FrameLib_Global::increment()
 {
-    FrameLib_SpinLockHolder lock(&mLock);
+    FrameLib_LockHolder lock(&mLock);
     ++mCount;
 }
 
 FrameLib_Global *FrameLib_Global::decrement()
 {
-    FrameLib_SpinLockHolder lock(&mLock);
+    FrameLib_LockHolder lock(&mLock);
     
     if (--mCount < 1)
     {
-        // N.B. - The spinlock will attempt to lock itself in its deconstructor, so we can't hold the lock
+        // N.B. - The lock will attempt to lock itself in its deconstructor, so we can't hold the lock
         
         lock.destroy();
         delete this;

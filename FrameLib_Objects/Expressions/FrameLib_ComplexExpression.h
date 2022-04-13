@@ -9,7 +9,7 @@
 
 class FrameLib_ComplexExpression : public FrameLib_Block
 {
-    const static int kMaxIns = 32;
+    static constexpr int maxNumIns = 32;
     
     // Parameter Enums and Info
     
@@ -68,7 +68,7 @@ class FrameLib_ComplexExpression : public FrameLib_Block
     
 public:
     
-    static constexpr ObjectType sType = kProcessor;
+    static constexpr ObjectType sType = ObjectType::Processor;
     static constexpr bool sHandlesAudio = false;
     
     // Constructor
@@ -83,8 +83,8 @@ public:
     
     // Connection Types
     
-    FrameType inputType(unsigned long idx) const override   { return kFrameNormal; }
-    FrameType outputType(unsigned long idx) const override  { return kFrameNormal; }
+    FrameType inputType(unsigned long idx) const override   { return FrameType::Vector; }
+    FrameType outputType(unsigned long idx) const override  { return FrameType::Vector; }
     
     // Fixed inputs are dealt with either by the input processor or by the constant object
     
@@ -102,7 +102,7 @@ public:
     
     // Ordering Connections
     
-    void autoOrderingConnections() override {};
+    void makeAutoOrderingConnections() override {};
     void clearAutoOrderingConnections() override {};
     
 private:

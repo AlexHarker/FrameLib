@@ -47,7 +47,7 @@ std::string FrameLib_Pattern::inputInfo(unsigned long idx, bool verbose)
 {
     switch (idx)
     {
-        case 0: return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);;
+        case 0: return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
         case 1: return formatInfo("Pattern Input - set the pattern without output", "Pattern Input", verbose);
         case 2: return formatInfo("Reset Input - resets without output", "Reset Input", verbose);
         default: return parameterInputInfo(verbose);

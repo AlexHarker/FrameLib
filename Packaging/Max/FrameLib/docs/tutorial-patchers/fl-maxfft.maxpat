@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 5,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -133,7 +133,6 @@
 
 			}
  ],
-		"dependency_cache" : [  ],
 		"autosave" : 0
 	}
 

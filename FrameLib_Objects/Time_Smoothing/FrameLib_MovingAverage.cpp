@@ -68,13 +68,13 @@ FrameLib_MovingAverage::ParameterInfo FrameLib_MovingAverage::sParamInfo;
 FrameLib_MovingAverage::ParameterInfo::ParameterInfo()
 {
     add("Sets the alpha value when the average is increasing. "
-        "Note this is only used if a sufficiently long alpha frame is not present.");
+        "This value is only used if a sufficiently long alpha frame is not present.");
     add("Sets the alpha value when the average is increasing. "
-        "Note this is only used if a sufficiently long alpha frame is not present.");
+        "This value is only used if a sufficiently long alpha frame is not present.");
     add("Sets the padding value for averages. "
-        "Note this is only used if a sufficiently long average reset frame is not present.");
+        "This value is only used if a sufficiently long average reset frame is not present.");
     add("Sets the padding value for deviations. "
-        "Note this is only used if a sufficiently long deviation reset frame is not present.");
+        "This value is only used if a sufficiently long deviation reset frame is not present.");
 }
 
 // Object Reset

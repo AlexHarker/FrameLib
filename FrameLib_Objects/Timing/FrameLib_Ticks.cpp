@@ -37,7 +37,7 @@ std::string FrameLib_Ticks::objectInfo(bool verbose)
     return formatInfo("Counts incoming frames: "
                       "Counting is between zero and one less than the limit parameter. "
                       "Counting can be either up or down. "
-                      "Couting can be run (once), looped, paused or stopped. "
+                      "Counting can be run (once), looped, paused or stopped. "
                       "Triggers at the reset input set the count to the value of the reset parameter.",
                       "Counts incoming frames.", verbose);
 }
@@ -73,7 +73,7 @@ FrameLib_Ticks::ParameterInfo::ParameterInfo()
         "This results in reset to 0 when counting up and (limit - 1) when counting down.");
     add("Sets the mode: "
          "run - the count continues until it hits the limit or zero. "
-         "loop - the count loops between zeor and the limit minus one. "
+         "loop - the count loops between zero and the limit minus one. "
          "pause - the count is paused until the mode is changed. "
          "stop - the count returns to the reset value until the mode is changed.");
     add("Sets the idle output (the output when stopped, paused or out of bounds): "

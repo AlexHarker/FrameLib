@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
+<c74object name="fl.movingaverage~" module="FrameLib" category="FrameLib Time_Smoothing">
+  <digest>
+    Calculates per sample moving averages and standard deviations
+  </digest>
+  <description>
+    The moving average and standard deviations are exponentially weighted. An alpha value [0-1] controls the rate of update from static to immediate. Alphas may be set per sample using the corresponding input or by parameters. Parameters allow different alphas when the average increases or decreases. Frames are expected to be of a uniform length. The output is the same length as the input. If the input length changes then the average and standard deviations are reset. These can also be individually reset using the corresponding reset inputs. Frames at the reset inputs set the starting values for calculation. When these are too short they are padded with values provided by parameter.
+  </description>
+  <misc name="Parameters">
+    <entry name="/alpha_up [double]">
+      <description>
+        Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.<p /><i>(default: 0.5)</i>
+      </description>
+    </entry>
+    <entry name="/alpha_down [double]">
+      <description>
+        Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.<p /><i>(default: 0.5)</i>
+      </description>
+    </entry>
+    <entry name="/average [double]">
+      <description>
+        Sets the padding value for averages. This value is only used if a sufficiently long average reset frame is not present.<p /><i>(default: 0)</i>
+      </description>
+    </entry>
+    <entry name="/deviation [double]">
+      <description>
+        Sets the padding value for deviations. This value is only used if a sufficiently long deviation reset frame is not present.<p /><i>(default: 0)</i>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Time_Smoothing</metadata>
+  </metadatalist>
+  <objarglist>
+    <objarg name="alpha_up" optional="1" type="number">
+      <digest>
+        Sets the alpha value when the average is increasing
+      </digest>
+      <description>
+        This argument sets the alpha_up parameter:<p /><p />Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.<p /><i>(default: 0.5)</i>
+      </description>
+    </objarg>
+    <objarg name="alpha_down" optional="1" type="number">
+      <digest>
+        Sets the alpha value when the average is increasing
+      </digest>
+      <description>
+        This argument sets the alpha_down parameter:<p /><p />Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.<p /><i>(default: 0.5)</i>
+      </description>
+    </objarg>
+    <objarg name="average" optional="1" type="number">
+      <digest>
+        Sets the padding value for averages
+      </digest>
+      <description>
+        This argument sets the average parameter:<p /><p />Sets the padding value for averages. This value is only used if a sufficiently long average reset frame is not present.<p /><i>(default: 0)</i>
+      </description>
+    </objarg>
+    <objarg name="deviation" optional="1" type="number">
+      <digest>
+        Sets the padding value for deviations
+      </digest>
+      <description>
+        This argument sets the deviation parameter:<p /><p />Sets the padding value for deviations. This value is only used if a sufficiently long deviation reset frame is not present.<p /><i>(default: 0)</i>
+      </description>
+    </objarg>
+  </objarglist>
+  <methodlist>
+    <method name="info">
+      <arglist>
+        <arg name="items" optional="1" type="list" />
+      </arglist>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        Print info about <o>fl.movingaverage~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+      </description>
+    </method>
+    <method name="frame">
+      <arglist />
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+    <method name="sync">
+      <arglist />
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+  </methodlist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for <o>fl.movingaverage~</o>. When set to <m>0</m> <o>fl.movingaverage~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for <o>fl.movingaverage~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
+  <seealsolist>
+    <seealso name="fl.framedelta~" />
+    <seealso name="fl.timemean~" />
+    <seealso name="fl.timemedian~" />
+    <seealso name="fl.timestddev~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>time smoothing, statistics</description>
+    </entry>
+  </misc>
+</c74object>

@@ -1,7 +1,11 @@
 
+// Deployment Target
+
+MACOSX_DEPLOYMENT_TARGET = 10.11
+
 // Paths
 
-C74SUPPORT = $(SRCROOT)/FrameLib_Max_Objects/_MaxSDK_/c74support
+C74SUPPORT = $(SRCROOT)/../max-sdk-base/c74support
 HEADER_SEARCH_PATHS = "$(C74SUPPORT)/max-includes" "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes" "$(PROJECT_DIR)/FrameLib_Dependencies"
 FRAMEWORK_SEARCH_PATHS = "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes"
 
@@ -29,7 +33,8 @@ GCC_PREPROCESSOR_DEFINITIONS = $GCC_PREPROCESSOR_DEFINITIONS "DENORM_WANT_FIX = 
 
 C74_SYM_LINKER_FLAGS = @$(C74SUPPORT)/max-includes/c74_linker_flags.txt
 
-OTHER_LDFLAGS = $(C74_SYM_LINKER_FLAGS)
+OTHER_CPLUSPLUSFLAGS = $(OTHER_CPLUSPLUSFLAGS) -Wno-invalid-offsetof
+OTHER_LDFLAGS =  $(OTHER_LDFLAGS) $(C74_SYM_LINKER_FLAGS) -framework MaxAudioAPI
 
-// all symbols hidden by default
+// all symbols hidden by default from global config
 // mark a function to be exported with the C74_EXPORT macro -- most likely this will only apply to the main() function

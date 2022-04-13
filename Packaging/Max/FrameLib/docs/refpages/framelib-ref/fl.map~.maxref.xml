@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
+<c74object name="fl.map~" module="FrameLib" category="FrameLib Mapping">
+  <digest>
+    Maps values from input to output via a specified scaling
+  </digest>
+  <description>
+    The output length matches the input length. Scaling maps the specified range of input values to a corresponding specified output range. Different shapes and types of scaling are available. Values may be optionally constrained within the specified output range. The values specfying the ranges may be in either order for both input and output.
+  </description>
+  <misc name="Parameters">
+    <entry name="/mode [enum]">
+      <description>
+        Sets the type of output scaling:<p /><bullet>[0] - <m>linear</m> - linear scaling.</bullet><bullet>[1] - <m>log</m> - logarithmic scaling.</bullet><bullet>[2] - <m>exp</m> - exponential scaling.</bullet><bullet>[3] - <m>pow</m> - input range scaled [0-1], raised to an exponent and then scaled to the output range.</bullet><bullet>[4] - <m>db</m> - output range set in dB with mapping to corresponding linear gain values.</bullet><bullet>[5] - <m>transpose</m> - output range set in semitones with mapping to corresponding ratios.</bullet><bullet>[6] - <m>inverse_pow</m> - the inverse mapping of the pow mode.</bullet><bullet>[7] - <m>inverse_db</m> - the inverse mapping of the db mode.</bullet><bullet>[8] - <m>inverse_transpose</m> - the inverse mapping of the inverse_transpose mode.</bullet><p /><i>(default: <m>linear</m>)</i>
+      </description>
+    </entry>
+    <entry name="/in_1 [double]">
+      <description>
+        Sets the first bound of the input range.<p /><i>(default: 0)</i>
+      </description>
+    </entry>
+    <entry name="/in_2 [double]">
+      <description>
+        Sets the second bound of the input range.<p /><i>(default: 1)</i>
+      </description>
+    </entry>
+    <entry name="/out_1 [double]">
+      <description>
+        Sets the first bound of the output range.<p /><i>(default: 0)</i>
+      </description>
+    </entry>
+    <entry name="/out_2 [double]">
+      <description>
+        Sets the second bound of the output range.<p /><i>(default: 1)</i>
+      </description>
+    </entry>
+    <entry name="/clip [bool]">
+      <description>
+        If set on then the output is constrained between the two output values. Note that scaling will otherwise continue outside of the specified ranges.<p /><i>(default: true)</i>
+      </description>
+    </entry>
+    <entry name="/exponent [double]">
+      <description>
+        Sets the exponent for the pow and inverse_pow modes.<p /><i>(default: 1)</i>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Mapping</metadata>
+  </metadatalist>
+  <objarglist>
+    <objarg name="mode" optional="1" type="symbol">
+      <digest>
+        Sets the type of output scaling
+      </digest>
+      <description>
+        This argument sets the mode parameter:<p /><p />Sets the type of output scaling:<p /><bullet>[0] - <m>linear</m> - linear scaling.</bullet><bullet>[1] - <m>log</m> - logarithmic scaling.</bullet><bullet>[2] - <m>exp</m> - exponential scaling.</bullet><bullet>[3] - <m>pow</m> - input range scaled [0-1], raised to an exponent and then scaled to the output range.</bullet><bullet>[4] - <m>db</m> - output range set in dB with mapping to corresponding linear gain values.</bullet><bullet>[5] - <m>transpose</m> - output range set in semitones with mapping to corresponding ratios.</bullet><bullet>[6] - <m>inverse_pow</m> - the inverse mapping of the pow mode.</bullet><bullet>[7] - <m>inverse_db</m> - the inverse mapping of the db mode.</bullet><bullet>[8] - <m>inverse_transpose</m> - the inverse mapping of the inverse_transpose mode.</bullet><p /><i>(default: <m>linear</m>)</i>
+      </description>
+    </objarg>
+    <objarg name="in_1" optional="1" type="number">
+      <digest>
+        Sets the first bound of the input range
+      </digest>
+      <description>
+        This argument sets the in_1 parameter:<p /><p />Sets the first bound of the input range.<p /><i>(default: 0)</i>
+      </description>
+    </objarg>
+    <objarg name="in_2" optional="1" type="number">
+      <digest>
+        Sets the second bound of the input range
+      </digest>
+      <description>
+        This argument sets the in_2 parameter:<p /><p />Sets the second bound of the input range.<p /><i>(default: 1)</i>
+      </description>
+    </objarg>
+    <objarg name="out_1" optional="1" type="number">
+      <digest>
+        Sets the first bound of the output range
+      </digest>
+      <description>
+        This argument sets the out_1 parameter:<p /><p />Sets the first bound of the output range.<p /><i>(default: 0)</i>
+      </description>
+    </objarg>
+    <objarg name="out_2" optional="1" type="number">
+      <digest>
+        Sets the second bound of the output range
+      </digest>
+      <description>
+        This argument sets the out_2 parameter:<p /><p />Sets the second bound of the output range.<p /><i>(default: 1)</i>
+      </description>
+    </objarg>
+    <objarg name="clip" optional="1" type="number">
+      <digest>
+        If set on then the output is constrained between the two output values
+      </digest>
+      <description>
+        This argument sets the clip parameter:<p /><p />If set on then the output is constrained between the two output values. Note that scaling will otherwise continue outside of the specified ranges.<p /><i>(default: true)</i>
+      </description>
+    </objarg>
+  </objarglist>
+  <methodlist>
+    <method name="info">
+      <arglist>
+        <arg name="items" optional="1" type="list" />
+      </arglist>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        Print info about <o>fl.map~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+      </description>
+    </method>
+    <method name="frame">
+      <arglist />
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+    <method name="sync">
+      <arglist />
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+  </methodlist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for <o>fl.map~</o>. When set to <m>0</m> <o>fl.map~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for <o>fl.map~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
+  <seealsolist>
+    <seealso name="fl.constant~" />
+    <seealso name="fl.convert~" />
+    <seealso name="fl.lookup~" />
+    <seealso name="fl.samplerate~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>scaling, mapping</description>
+    </entry>
+  </misc>
+</c74object>

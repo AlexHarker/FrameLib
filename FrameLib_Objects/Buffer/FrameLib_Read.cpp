@@ -26,12 +26,12 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters
     mParameters.addEnumItem(kLagrange, "lagrange");
     
     mParameters.addEnum(kEdges, "edges", 4);
-    mParameters.addEnumItem(kZeroPad, "zero");
-    mParameters.addEnumItem(kExtend, "extend");
-    mParameters.addEnumItem(kWrap, "wrap");
-    mParameters.addEnumItem(kFold, "fold");
-    mParameters.addEnumItem(kMirror, "mirror");
-    mParameters.addEnumItem(kExtrapolate, "extrapolate");
+    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::ZeroPad), "zero");
+    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Extend), "extend");
+    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Wrap), "wrap");
+    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Fold), "fold");
+    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Mirror), "mirror");
+    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Extrapolate), "extrapolate");
 
     mParameters.addBool(kBound, "bound", true, 5);
     
@@ -107,9 +107,9 @@ void FrameLib_Read::update()
 
 void FrameLib_Read::process()
 {
-    EdgeType edges = mParameters.getEnum<EdgeType>(kEdges);
+    EdgeMode edges = mParameters.getEnum<EdgeMode>(kEdges);
     Interpolation interpolation = mParameters.getEnum<Interpolation>(kInterpolation);
-    InterpType interpType = kInterpNone;
+    InterpType interpType = InterpType::None;
 
     unsigned long size;
     long chan = mParameters.getInt(kChannel) - 1;
@@ -135,7 +135,7 @@ void FrameLib_Read::process()
     
     if (positions)
     {
-        bool adjustScaling = edges == kWrap || edges == kMirror;
+        bool adjustScaling = edges == EdgeMode::Wrap || edges == EdgeMode::Mirror;
         
         double scale = 1.0;
         double lengthM1 = length - 1.0;
@@ -160,15 +160,15 @@ void FrameLib_Read::process()
             doInterpolation |= ((positions[i] - ((int32_t) positions[i])) != 0.0);
         }
 
-        if (doInterpolation || interpolation == kBSpline || edges == kExtrapolate)
+        if (doInterpolation || interpolation == kBSpline || edges == EdgeMode::Extrapolate)
         {
             switch (interpolation)
             {
                 case kNone:         break;
-                case kLinear:       interpType = kInterpLinear;             break;
-                case kHermite:      interpType = kInterpCubicHermite;       break;
-                case kBSpline:      interpType = kInterpCubicBSpline;       break;
-                case kLagrange:     interpType = kInterpCubicLagrange;      break;
+                case kLinear:       interpType = InterpType::Linear;            break;
+                case kHermite:      interpType = InterpType::CubicHermite;      break;
+                case kBSpline:      interpType = InterpType::CubicBSpline;      break;
+                case kLagrange:     interpType = InterpType::CubicLagrange;     break;
             }
         }
                 

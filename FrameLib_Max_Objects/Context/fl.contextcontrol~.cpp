@@ -1,5 +1,6 @@
 
 #include "FrameLib_MaxClass.h"
+#include "../FrameLib_Exports/FrameLib_TypeAliases.h"
 
 // A max class to communicate with the current context
 
@@ -14,7 +15,7 @@ public:
         addMethod<FrameLib_MaxClass_ContextControl, &FrameLib_MaxClass_ContextControl::multithread>(c, "multithread");
         addMethod<FrameLib_MaxClass_ContextControl, &FrameLib_MaxClass_ContextControl::assist>(c, "assist");
         
-        class_addmethod(c, (method) &timeOut, "timeout", A_DEFFLOAT, A_DEFFLOAT, 0);
+        class_addmethod(c, (method) &extTimeOut, "timeout", A_DEFFLOAT, A_DEFFLOAT, 0);
         class_addmethod(c, (method) &extCodeExport, "export", A_SYM, A_SYM, 0);
         
         CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, FrameLib_MaxClass_ContextControl, mMaxContext.mName);
@@ -25,8 +26,9 @@ public:
     }
     
     FrameLib_MaxClass_ContextControl(t_object *x, t_symbol *sym, long argc, t_atom *argv)
-    : mMaxContext{ true, FrameLib_MaxClass<void>::contextPatcher(gensym("#P")->s_thing), gensym("") }
+    : mMaxContext{ true, FrameLib_MaxClass<void>::contextPatch(x, true), gensym("") }
     , mContext(mGlobal->makeContext(mMaxContext))
+    , mContextPatchConfirmed(false)
     {
         attr_args_process(this, static_cast<short>(argc), argv);
     }
@@ -37,12 +39,6 @@ public:
     }
     
     // Attributes
-    
-    void updateContext()
-    {
-        mGlobal->releaseContext(mContext);
-        mContext = mGlobal->makeContext(mMaxContext);
-    }
     
     // id attribute
     
@@ -58,27 +54,130 @@ public:
     
     static t_max_err rtSet(FrameLib_MaxClass_ContextControl *x, t_object *attr, long argc, t_atom *argv)
     {
-        x->mMaxContext.mRealtime = argv ? static_cast<long>(atom_getlong(argv)) : 0;
+        x->mMaxContext.mRealtime = argv ? (atom_getlong(argv) ? 1 : 0) : 0;
         x->updateContext();
         
         return MAX_ERR_NONE;
     }
     
+    // Time out
+    
+    static void extTimeOut(FrameLib_MaxClass_ContextControl *x, double relative, double absolute)
+    {
+        x->timeOut(relative, absolute);
+    }
+    
+    // Export
+
+    static void extCodeExport(FrameLib_MaxClass_ContextControl *x, t_symbol *className, t_symbol *path)
+    {
+        t_atom argv[2];
+        
+        atom_setsym(argv + 0, className);
+        atom_setsym(argv + 1, path);
+        
+        defer_low(x, (method) deferredCodeExport, nullptr, 2, argv);
+    }
+
+    // Assist
+    
+    void assist(void *b, long m, long a, char *s)
+    {
+        sprintf(s,"(messages) Commands In" );
+    }
+    
+private:
+    
+    // Multithreading
+    
+    void multithread(t_atom_long on)
+    {
+        checkContextPatch();
+        FrameLib_Context::ProcessingQueue processingQueue(mContext);
+        processingQueue->setMultithreading(on);
+    }
+    
+    // Time out
+
+    void timeOut(double relative, double absolute)
+    {
+        checkContextPatch();
+        FrameLib_Context::ProcessingQueue processingQueue(mContext);
+        processingQueue->setTimeOuts(relative / 100.0, absolute / 1000.0);
+    }
+    
+    // Export
+    
+    static void deferredCodeExport(FrameLib_MaxClass_ContextControl *x, t_symbol *s, short argc, t_atom *argv)
+    {
+        t_symbol *className = atom_getsym(argv + 0);
+        t_symbol *path = atom_getsym(argv + 1);
+        
+        x->codeExport(className, path);
+    }
+    
+    void codeExport(t_symbol *className, t_symbol *path)
+    {
+        char conformedPath[MAX_PATH_CHARS];
+        
+        checkContextPatch();
+        
+        // Get the first object and its underlying framelib object
+        
+        t_object *object = searchPatch(mMaxContext.mPatch, getAssociation(mMaxContext.mPatch));
+        FrameLib_Multistream *flObject = toFLObject(object);
+        
+        if (!object || !flObject)
+        {
+            object_error(*this, "couldn't find any framelib objects in the current context");
+            return;
+        }
+        
+        objectMethod(object, FrameLib_MaxPrivate::messageResolveContext());
+        
+        auto replace = FrameLib_TypeAliases::makeReplaceStrings();
+        
+        path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
+        ExportError error = exportGraph(flObject, conformedPath, className->s_name, &replace);
+        
+        if (error == ExportError::PathError)
+            object_error(*this, "couldn't write to or find specified path");
+        else if (error == ExportError::WriteError)
+            object_error(*this, "couldn't write file");
+    }
+    
+    // Context
+    
+    void checkContextPatch()
+    {
+        if (mContextPatchConfirmed)
+            return;
+
+        t_object *patch = FrameLib_MaxClass<void>::contextPatch(*this, false);
+        
+        if (patch && patch != mMaxContext.mPatch)
+        {
+            mMaxContext.mPatch = patch;
+            updateContext();
+        }
+        
+        mContextPatchConfirmed = true;
+    }
+    
+    void updateContext()
+    {
+        mGlobal->releaseContext(mContext);
+        mContext = mGlobal->makeContext(mMaxContext);
+    }
+    
     // Convert an object to an FLObject
     
-    FrameLib_Multistream *toFLObject(t_object *object)
+    FrameLib_Multistream *toFLObject(t_object *x)
     {
-        return objectMethod<FrameLib_Multistream *>(object, gensym("__fl.get_framelib_object"));
+        return FrameLib_MaxPrivate::toFrameLibObject(x);
     }
     
-    // Get the association of a patch
-    
-    static t_object *getAssociation(t_object *patch)
-    {
-        t_object *assoc = 0;
-        objectMethod(patch, gensym("getassoc"), &assoc);
-        return assoc;
-    }
+    // Search a patch
     
     t_object *searchPatch(t_patcher *p, t_object *contextAssoc)
     {
@@ -87,7 +186,7 @@ public:
         
         // Avoid recursion into a poly / pfft / etc. - If the subpatcher is a wrapper we do need to deal with it
         
-        if (assoc != contextAssoc && !objectMethod(assoc, gensym("__fl.wrapper_is_wrapper")))
+        if (assoc != contextAssoc && !objectMethod(assoc, FrameLib_MaxPrivate::messageIsWrapper()))
             return nullptr;
         
         // Search for subpatchers, or framelib objects
@@ -110,71 +209,13 @@ public:
         return nullptr;
     }
     
-    // Time out
-    
-    static void timeOut(FrameLib_MaxClass_ContextControl *x, double relative, double absolute)
-    {
-        FrameLib_Context::ProcessingQueue processingQueue(x->mContext);
-
-        processingQueue->setTimeOuts(relative / 100.0, absolute / 1000.0);
-    }
-    
-    // Export
-
-    static void extCodeExport(FrameLib_MaxClass_ContextControl *x, t_symbol *className, t_symbol *path)
-    {
-        x->codeExport(className, path);
-    }
-
-    void codeExport(t_symbol *className, t_symbol *path)
-    {
-        char conformedPath[MAX_PATH_CHARS];
-        
-        // Get the first object and it's underlying framelib object
-        
-        t_object *object = searchPatch(mMaxContext.mPatch, getAssociation(mMaxContext.mPatch));
-        FrameLib_Multistream *flObject = toFLObject(object);
-        
-        if (!object || !flObject)
-        {
-            object_error(*this, "couldn't find any framelib objects in the current context");
-            return;
-        }
-        
-        objectMethod(object, gensym("__fl.resolve_context"));
-        flObject = objectMethod<FrameLib_Multistream *>(object, gensym("__fl.get_framelib_object"));
-        
-        path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
-        ExportError error = exportGraph(flObject, conformedPath, className->s_name);
-        
-        if (error == kExportPathError)
-            object_error(*this, "couldn't write to or find specified path");
-        else if (error == kExportWriteError)
-            object_error(*this, "couldn't write file");
-    }
-    
-    // Multithreading
-    
-    void multithread(t_atom_long on)
-    {
-        FrameLib_Context::ProcessingQueue processingQueue(mContext);
-        processingQueue->setMultithreading(on);
-    }
-    
-    // Assist
-    
-    void assist(void *b, long m, long a, char *s)
-    {
-        sprintf(s,"(messages) Commands In" );
-    }
-    
-private:
-    
     // Members
         
     FrameLib_MaxGlobals::ManagedPointer mGlobal;
     FrameLib_MaxContext mMaxContext;
     FrameLib_Context mContext;
+    
+    bool mContextPatchConfirmed;
 };
 
 // Main

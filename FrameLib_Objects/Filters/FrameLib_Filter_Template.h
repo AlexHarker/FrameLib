@@ -318,7 +318,8 @@ class FrameLib_Filter final : public FrameLib_Processor
             
             // Get Input
             
-            unsigned long sizeIn, sizeOut;
+            unsigned long sizeIn;
+            unsigned long sizeOut = 0;
             unsigned long numOuts = obj.getNumOuts();
             const double *input = obj.getInput(0, &sizeIn);
             
@@ -403,7 +404,7 @@ class FrameLib_Filter final : public FrameLib_Processor
             // Get Input
             
             unsigned long sizeIn = 1;
-            unsigned long sizeOut;
+            unsigned long sizeOut = 0;
             unsigned long numOuts = obj.getNumOuts();
             
             // Read in the parameter inputs and check if they change
@@ -487,7 +488,7 @@ class FrameLib_Filter final : public FrameLib_Processor
             
             if (DoesCoefficients)
             {
-                add("Sets the coefficients input and output modes. "
+                add("Sets the coefficients input and output modes: "
                     "static - settings are made via parameters with single value outputs. "
                     "dynamic - settings are made via inputs or parameters with output as vectors. "
                     "tagged - settings are made via parameters with output as a tagged frame.");
@@ -565,7 +566,7 @@ public:
         }
         
         if (isTagged())
-            setOutputType(0, kFrameTagged);
+            setOutputType(0, FrameType::Tagged);
         
         addParameterInput();
         

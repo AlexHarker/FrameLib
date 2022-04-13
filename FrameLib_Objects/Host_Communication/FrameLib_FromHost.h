@@ -125,7 +125,7 @@ private:
 
 // Data
     
-    FrameLib_SpinLock mLock;
+    FrameLib_Lock mLock;
     OwnedFrame mVectorFrame;
     SerialQueue mSerialFrame;
     SerialQueue mSerialFreeFrame;

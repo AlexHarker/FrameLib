@@ -11,6 +11,7 @@ var name = jsarguments[1];
 var dict;
 var shortDesc = "";
 var longDesc = "";
+var testOverlow = false;
 
 function init()
 {
@@ -18,6 +19,7 @@ function init()
     if (typeof(dict) == "object") {
         shortDesc = dict.get("digest");
         longDesc = dict.get("description");
+		longDesc = longDesc.replace(/More info.+Tutorial.+\./, " ");
         dict.freepeer();
     }
 }
@@ -47,7 +49,7 @@ function paint()
             set_source_rgba(detailstextcolor);
             if(longDesc!=null)
             {
-                wordwrap(longDesc, 110);
+                wordwrap(longDesc, 105);
             }
             fill();
         }
@@ -56,17 +58,31 @@ function paint()
 
 function wordwrap(str, width, brk, cut) 
 {
-    if(jsarguments[2]==null){jsarguments[2]=95};
     brk = brk || '\\cr';
-    width = width || jsarguments[2];
-    cut = cut || false;
+    width = jsarguments[2] || width;
+	var boxWidth = box.rect[2] - box.rect[0];
     if (!str) { return str; }
-    var regex = '.{1,' +width+ '}(\\s|$)' + (cut ? '|.{' +width+ '}|.+$' : '|\\S+?(\\s|$)');
+    var regex = '.{1,' +width+ '}(\\s|$)' + '|\\S+?(\\s|$)';
     var v=str.match( RegExp(regex, 'g') );
-    for(i=0;i<=v.length;i++)
-        {   
-            mgraphics.show_text(v[i], 1);
-            mgraphics.move_to(4, 105+15*i);
-        }
+	var overflow = false;
+	
+    for(i=0;i<v.length;i++)
+    {   
+		var text = v[i].trim();
+		
+		if (testOverlow)
+		{
+			lineOverflow = (mgraphics.text_measure(text)[0] > (boxWidth - 4));
+			overflow = overflow || lineOverflow;
+
+		}
+			
+		mgraphics.show_text(v[i], 1);
+        mgraphics.move_to(4, 105+15*i);
+    }
+
+	if (overflow)
+		post(name, " text overflow\n");
+		
     return;
 }

@@ -15,11 +15,11 @@ FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, const FrameLib_
     mParameters.setInstantiation();
     
     mParameters.addEnum(kEdges, "edges", 2);
-    mParameters.addEnumItem(Edges::kEdgeLinear, "linear");
-    mParameters.addEnumItem(Edges::kEdgeWrap, "circular");
-    mParameters.addEnumItem(Edges::kEdgeWrapCentre, "wrap");
-    mParameters.addEnumItem(Edges::kEdgeFold, "fold");
-    mParameters.addEnumItem(Edges::kEdgeFoldRepeat, "mirror");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::Linear), "linear");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::Wrap), "circular");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::WrapCentre), "wrap");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::Fold), "fold");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::FoldRepeat), "mirror");
     mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
@@ -82,10 +82,10 @@ FrameLib_Correlate::ParameterInfo::ParameterInfo()
     add("Sets the maximum processing length. "
         "The processing length is M + N - 1 where M and N are the lengths of the two inputs.");
     add("Sets the type of input and output.");
-    add("Sets the edge behaviour of the correlation process: "
+    add("Sets the edge behaviour of the correlation process. "
         "The basic operation is a linear one with output of the processing length. "
         "For modes other than linear the output length is reduced to the maximum of M and N. "
-        "Excess from the linear operation is added back into the available length as specified. "
+        "Excess from the linear operation is added back into the available length as specified: "
         "linear - the output is the full processing length with no further processing. "
         "circular - excess at the end is added back to the beginning of the output. "
         "wrap - as circular mode but rotated such that wrapping occurs equally at both ends. "
@@ -113,7 +113,7 @@ void FrameLib_Correlate::process()
         unsigned long sizeOut = static_cast<unsigned long>(mProcessor.correlated_size(sizeIn1, sizeIn2, edges));
         
         if (sizeOut == 0 && sizeIn1 && sizeIn2)
-            getReporter()(kErrorObject, getProxy(), "correlation processing size is larger than maximum processing size (#)", mProcessor.max_fft_size());
+            getReporter()(ErrorSource::Object, getProxy(), "correlation processing size is larger than maximum processing size (#)", mProcessor.max_fft_size());
         
         // Get Output
         
@@ -138,7 +138,7 @@ void FrameLib_Correlate::process()
         unsigned long sizeOut = static_cast<unsigned long>(mProcessor.correlated_size(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edges));
 
         if (sizeOut == 0 && std::max(sizeR1, sizeI1) && std::max(sizeR2, sizeI2))
-            getReporter()(kErrorObject, getProxy(), "correlation processing size is larger than maximum processing size (#)", mProcessor.max_fft_size());
+            getReporter()(ErrorSource::Object, getProxy(), "correlation processing size is larger than maximum processing size (#)", mProcessor.max_fft_size());
         
         // Get Output
         

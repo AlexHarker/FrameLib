@@ -30,16 +30,16 @@
 class FrameLib_Parameters
 {
     
-    enum SetError { kSetSucceeded, kUnknownArgument, kUnknownParameter, kParameterNotSetByNumber, kParameterNotSetByString, kEnumUnknownIndex, kEnumUnknownString };
+    enum class Error { None, UnknownArgument, UnknownParameter, NotSetByNumber, NotSetByString, EnumUnknownIndex, EnumUnknownString };
     
 public:
     
-    enum NumericType { kNumericBool, kNumericInteger, kNumericDouble, kNumericNone };
-    enum Type { kValue, kEnum, kString, kArray, kVariableArray };
-    enum ClipMode { kNone, kMin, kMax, kClip };
+    enum class NumericType { Bool, Integer, Double, None };
+    enum class Type { Value, Enum, String, Array, VariableArray };
+    enum class ClipMode { None, Min, Max, Clip };
     
-public:
-    
+    static constexpr size_t maxStrLen = 128;
+
     /**
      
      @class Serial
@@ -54,7 +54,7 @@ public:
         
         // N.B. the assumption is that double is the largest type in use
         
-        static const size_t alignment = sizeof(double);
+        static constexpr size_t alignment = sizeof(double);
         
         /**
          
@@ -145,7 +145,7 @@ public:
         Serial(BytePointer ptr, unsigned long size);
         Serial();
         
-        // Non-copyable but movable
+        // Non-copyable but moveable
         
         Serial(const Serial&) = delete;
         Serial& operator=(const Serial&) = delete;
@@ -188,7 +188,7 @@ public:
         
         unsigned long numTags() const       { return mNumTags; };
         unsigned long size() const          { return mSize; }
-        void clear()                        { mSize = 0; }
+        void clear()                        { mSize = mNumTags = 0; }
         
         static unsigned long alignSize(size_t size)
         {
@@ -263,7 +263,7 @@ public:
     
     class AutoSerial : public Serial
     {
-        static const unsigned long minGrowSize = 512;
+        static constexpr unsigned long minGrowSize = 512;
         
     public:
         
@@ -345,9 +345,9 @@ private:
         void setMax(double max);
         void setClip(double min, double max);
         
-        virtual SetError set(const char *str) { return kParameterNotSetByString; }
-        virtual SetError set(double value) { return kParameterNotSetByNumber; }
-        virtual SetError set(double *values, unsigned long N);
+        virtual Error set(const char *str) { return Error::NotSetByString; }
+        virtual Error set(double value) { return Error::NotSetByNumber; }
+        virtual Error set(double *values, unsigned long N);
         
         virtual void clear() = 0;
         
@@ -414,13 +414,13 @@ private:
         
         void addEnumItem(unsigned long idx, const char *str, bool setAsDefault) override;
         
-        SetError set(double value) override;
-        SetError set(double *values, unsigned long N) override;
-        SetError set(const char *str) override;
+        Error set(double value) override;
+        Error set(double *values, unsigned long N) override;
+        Error set(const char *str) override;
         
-        void clear() override { Enum::set(0.0); }
+        void clear() override { Enum::set(mDefault); }
         
-        Type type() override { return kEnum; }
+        Type type() override { return Type::Enum; }
         
         // Getters
         
@@ -451,14 +451,14 @@ private:
         
         // Setters
         
-        SetError set(double value) override;
-        SetError set(double *values, unsigned long N) override;
+        Error set(double value) override;
+        Error set(double *values, unsigned long N) override;
         
         void clear() override { Value::set(mDefault); };
         
         // Getters
         
-        Type type() override { return kValue; }
+        Type type() override { return Type::Value; }
         
         double getValue() const override { return mValue; }
         
@@ -477,27 +477,25 @@ private:
     
     class String final : public Parameter
     {
-        const static size_t maxLen = 128;
-        
     public:
-        
+     
         String(const char *name, long argumentIdx);
         
         // Setters
         
-        SetError set(const char *str) override;
+        Error set(const char *str) override;
         
         void clear() override { String::set(nullptr); };
         
         // Getters
         
-        Type type() override { return kString; }
+        Type type() override { return Type::String; }
         
         const char *getString() const override   { return mCString; }
         
     private:
         
-        char mCString[maxLen + 1];
+        char mCString[maxStrLen + 1];
     };
     
     /**
@@ -519,13 +517,13 @@ private:
         
         // Setters
         
-        SetError set(double *values, unsigned long N) override;
+        Error set(double *values, unsigned long N) override;
         
         void clear() override { Array::set(nullptr, 0); };
         
         // Getters
         
-        Type type() override { return mVariableSize ? kVariableArray : kArray; }
+        Type type() override { return mVariableSize ? Type::VariableArray : Type::Array; }
         
         unsigned long getArraySize() const override         { return mSize; }
         unsigned long getArrayMaxSize() const override      { return static_cast<unsigned long>(mItems.size()); }
@@ -573,9 +571,9 @@ public:
                     return i;
         
         if (argumentIdx >= 0)
-            handleError(kUnknownArgument, argumentIdx, argumentIdx);
+            handleError(Error::UnknownArgument, argumentIdx, argumentIdx);
         else
-            handleError(kUnknownParameter, -1, name);
+            handleError(Error::UnknownParameter, -1, name);
         
         return -1;
     }
@@ -798,29 +796,31 @@ private:
     // Error handling
     
     template <typename T>
-    void handleError(SetError error, long idx, T arg) const
+    void handleError(Error error, long idx, T arg) const
     {
-        if (error && mReportErrors)
+        constexpr ErrorSource source = ErrorSource::Parameter;
+        
+        if (error != Error::None && mReportErrors)
         {
             switch (error)
             {
-                case kUnknownArgument:
-                    mErrorReporter(kErrorParameter, mProxy, "argument # out of range", idx + 1);
+                case Error::UnknownArgument:
+                    mErrorReporter(source, mProxy, "argument # out of range", idx + 1);
                     break;
-                case kUnknownParameter:
-                    mErrorReporter(kErrorParameter, mProxy, "no parameter named '#'", arg);
+                case Error::UnknownParameter:
+                    mErrorReporter(source, mProxy, "no parameter named '#'", arg);
                     break;
-                case kParameterNotSetByNumber:
-                    mErrorReporter(kErrorParameter, mProxy, "parameter '#' cannot be set by a number", mParameters[idx]->name());
+                case Error::NotSetByNumber:
+                    mErrorReporter(source, mProxy, "parameter '#' cannot be set by a number", mParameters[idx]->name());
                     break;
-                case kParameterNotSetByString:
-                    mErrorReporter(kErrorParameter, mProxy, "parameter '#' cannot be set by a string", mParameters[idx]->name());
+                case Error::NotSetByString:
+                    mErrorReporter(source, mProxy, "parameter '#' cannot be set by a string", mParameters[idx]->name());
                     break;
-                case kEnumUnknownIndex:
-                    mErrorReporter(kErrorParameter, mProxy, "enum parameter '#' does not contain an item numbered #", mParameters[idx]->name(), arg);
+                case Error::EnumUnknownIndex:
+                    mErrorReporter(source, mProxy, "enum parameter '#' does not contain an item numbered #", mParameters[idx]->name(), arg);
                     break;
-                case kEnumUnknownString:
-                    mErrorReporter(kErrorParameter, mProxy, "enum parameter '#' does not contain an item named '#'", mParameters[idx]->name(), arg);
+                case Error::EnumUnknownString:
+                    mErrorReporter(source, mProxy, "enum parameter '#' does not contain an item named '#'", mParameters[idx]->name(), arg);
                     break;
                 default:
                     break;

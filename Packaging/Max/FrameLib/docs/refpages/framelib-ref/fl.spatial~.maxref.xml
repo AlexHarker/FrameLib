@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
+<c74object name="fl.spatial~" module="FrameLib" category="FrameLib Spatial">
+  <digest>
+    Generates multiplication factors for a set of speakers positioned in 3D
+  </digest>
+  <description>
+    The core underlying algorithm is DBAP (distance-based amplitude panning). Input may use cartesian [x, y, z] or polar [radius, azimuth, elevation] coordinates. 2D operation can be achieved by setting all z or elevation values to zero. Angles may be set using degrees or radians. Missing values at any input are assumed to be zero. The output size is equal to that of the largest input.
+  </description>
+  <misc name="Parameters">
+    <entry name="/angles [enum]">
+      <description>
+        Sets the units used for angles.<p /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet><p /><i>(default: <m>degrees</m>)</i>
+      </description>
+    </entry>
+    <entry name="/input_coords [enum]">
+      <description>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the coordinate system used for input.<p /><bullet>[0] - <m>polar</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>polar</m>)</i>
+      </description>
+    </entry>
+    <entry name="/speaker_coords [enum]">
+      <description>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the coordinate system used for speaker positions.<p /><bullet>[0] - <m>polar</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>polar</m>)</i>
+      </description>
+    </entry>
+    <entry name="/constrain [enum]">
+      <description>
+        Sets the method for constraining positions outside of the speaker array:<p /><bullet>[0] - <m>none</m> - suitable when the input is already within the speaker array (most efficient).</bullet><bullet>[1] - <m>hemisphere</m> - restrict to the upper hemisphere of the sphere described below.</bullet><bullet>[2] - <m>sphere</m> - restrict to the smallest sphere centred at the origin containing all speakers.</bullet><bullet>[3] - <m>hull</m> - restrict to the convex hull of the speaker array (least efficient / always correct.</bullet><p /><i>(default: <m>hull</m>)</i>
+      </description>
+    </entry>
+    <entry name="/speakers [variable length double array]">
+      <description>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the speaker positions in triples (one triple per speaker). For cartesian coordinates the values are [x, z, y]. For polar coordinates the values are [radius, azimuth, elevation].<p /><i>(default: 0)</i>
+      </description>
+    </entry>
+    <entry name="/weights [variable length double array]">
+      <description>
+        Sets the speaker weightings (one value per speaker). By default all speakers are weighted equally. Using weighting values allows the emphasis or exclusion of specific speakers.<p /><i>(default: 1)</i>
+      </description>
+    </entry>
+    <entry name="/rolloff [double]">
+      <description>
+        Sets the rolloff in positive dB for a doubling of distance between source and speakers. The default (6dB) equates to the inverse distance law for sound propagating in a free field. Lower values may be suitable for simulating more closed environments.<p /><i>(default: 6)</i>
+      </description>
+    </entry>
+    <entry name="/blur [double]">
+      <description>
+        Sets the blur factor. This should be set in relation to the dimensions of the speaker array. Larger numbers result in more blurring of the spatial image.<p /><i>(default: 0.001)</i>
+      </description>
+    </entry>
+    <entry name="/max_speakers [int]">
+      <description>
+        Sets the number of speakers that can be non-zero (only the nearest N speakers are used). If this is set to zero then all speakers are used. Reducing the number of speakers used can improve localisation.<p /><i>(default: 0)</i>
+      </description>
+    </entry>
+    <entry name="/point_factor [double]">
+      <description>
+        Interpolation factor between DBAP (at 0) and point source panning (at 1).<p /><i>(default: 0)</i>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Spatial</metadata>
+  </metadatalist>
+  <objarglist>
+    <objarg name="angles" optional="1" type="symbol">
+      <digest>
+        Sets the units used for angles
+      </digest>
+      <description>
+        This argument sets the angles parameter:<p /><p />Sets the units used for angles.<p /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet><p /><i>(default: <m>degrees</m>)</i>
+      </description>
+    </objarg>
+    <objarg name="input_coords" optional="1" type="symbol">
+      <digest>
+        Sets the coordinate system used for input
+      </digest>
+      <description>
+        This argument sets the input_coords parameter:<p /><p />Sets the coordinate system used for input.<p /><bullet>[0] - <m>polar</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>polar</m>)</i>
+      </description>
+    </objarg>
+    <objarg name="speaker_coords" optional="1" type="symbol">
+      <digest>
+        Sets the coordinate system used for speaker positions
+      </digest>
+      <description>
+        This argument sets the speaker_coords parameter:<p /><p />Sets the coordinate system used for speaker positions.<p /><bullet>[0] - <m>polar</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>polar</m>)</i>
+      </description>
+    </objarg>
+    <objarg name="constrain" optional="1" type="symbol">
+      <digest>
+        Sets the method for constraining positions outside of the speaker array
+      </digest>
+      <description>
+        This argument sets the constrain parameter:<p /><p />Sets the method for constraining positions outside of the speaker array:<p /><bullet>[0] - <m>none</m> - suitable when the input is already within the speaker array (most efficient).</bullet><bullet>[1] - <m>hemisphere</m> - restrict to the upper hemisphere of the sphere described below.</bullet><bullet>[2] - <m>sphere</m> - restrict to the smallest sphere centred at the origin containing all speakers.</bullet><bullet>[3] - <m>hull</m> - restrict to the convex hull of the speaker array (least efficient / always correct.</bullet><p /><i>(default: <m>hull</m>)</i>
+      </description>
+    </objarg>
+  </objarglist>
+  <methodlist>
+    <method name="info">
+      <arglist>
+        <arg name="items" optional="1" type="list" />
+      </arglist>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        Print info about <o>fl.spatial~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+      </description>
+    </method>
+    <method name="frame">
+      <arglist />
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+    <method name="sync">
+      <arglist />
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+  </methodlist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for <o>fl.spatial~</o>. When set to <m>0</m> <o>fl.spatial~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for <o>fl.spatial~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
+  <seealsolist>
+    <seealso name="fl.cartopol~" />
+    <seealso name="fl.poltocar~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>spatial, spatialisation</description>
+    </entry>
+  </misc>
+</c74object>

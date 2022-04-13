@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
+<c74object name="fl.audiotrigger~" module="FrameLib" category="FrameLib Schedulers">
+  <digest>
+    Schedules frames based on non-zero audio input
+  </digest>
+  <description>
+    The output is an empty trigger frame. Non-zero input samples trigger frames.
+  </description>
+  <misc name="Parameters">
+    <entry>
+      <description>
+        <o>fl.audiotrigger~</o> has no parameters.
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Schedulers</metadata>
+  </metadatalist>
+  <objarglist />
+  <methodlist>
+    <method name="info">
+      <arglist>
+        <arg name="items" optional="1" type="list" />
+      </arglist>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        Print info about <o>fl.audiotrigger~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+      </description>
+    </method>
+    <method name="process">
+      <arglist>
+        <arg name="length" optional="0" type="int" />
+      </arglist>
+      <digest>
+        Process a network in non-realtime
+      </digest>
+      <description>
+        Processes a non-realtime network, advancing time by the number of samples specified by the required <m>length</m> argument. <br /><br />This will only take effect if the object has its <m>rt</m> attribute set to <m>0</m> More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+    </method>
+    <method name="reset">
+      <arglist>
+        <arg name="samplerate" optional="1" type="number" />
+      </arglist>
+      <digest>
+        Reset a non-realtime network
+      </digest>
+      <description>
+        Resets a non-realtime network to the start of time ready for processing, optionally setting the sample rate. If the <m>samplerate</m> argument is omitted the network will be set to the global sample rate.<br /><br />This will only take effect if <o>fl.audiotrigger~</o> has its <m>rt</m> attribute set to <m>0</m>. More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+    </method>
+    <method name="signal">
+      <arglist />
+      <digest>
+        Synchronise with audio or accept signal IO
+      </digest>
+      <description>
+        Audio Inputs are as follows:<br /><br /><bullet>Audio Input - non-zero values trigger frames [N].</bullet><br />There are N audio inputs, as set by the number of explicitly set streams.
+      </description>
+    </method>
+    <method name="frame">
+      <arglist />
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+    <method name="sync">
+      <arglist />
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+  </methodlist>
+  <attributelist>
+    <attribute name="buffer" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Non-realtime Buffer
+      </digest>
+      <description>
+        Sets the non-realtime <o>buffer~</o> for <o>fl.audiotrigger~</o>. This is the <o>buffer~</o> used for IO in a non-realtime setting.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Buffer" />
+      </attributelist>
+    </attribute>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for <o>fl.audiotrigger~</o>. When set to <m>0</m> <o>fl.audiotrigger~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for <o>fl.audiotrigger~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
+  <seealsolist>
+    <seealso name="fl.chain~" />
+    <seealso name="fl.interval~" />
+    <seealso name="fl.once~" />
+    <seealso name="fl.perblock~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>timing, schedulers, triggers</description>
+    </entry>
+  </misc>
+</c74object>

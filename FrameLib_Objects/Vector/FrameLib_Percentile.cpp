@@ -1,6 +1,6 @@
 
 #include "FrameLib_Percentile.h"
-#include "FrameLib_Sort_Functions.h"
+#include "FrameLib_Sorting_Functions.h"
 
 // Constructor
 
@@ -50,7 +50,7 @@ double FrameLib_Percentile::compute(const double *input, size_t size)
     {
         double position = (mParameters.getValue(kPercentile) * (size - 1) / 100.0);
         
-        sortAscending(temp.get(), input, static_cast<unsigned long>(size));
+        sortAscending(temp.data(), input, static_cast<unsigned long>(size));
         
         // Copy last value
         

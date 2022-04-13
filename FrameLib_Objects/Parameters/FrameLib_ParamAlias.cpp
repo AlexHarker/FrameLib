@@ -8,10 +8,10 @@ FrameLib_ParamAlias::FrameLib_ParamAlias(FrameLib_Context context, unsigned long
 {
     setIO(0, numOuts);
     addParameterInput();
-    setInputMode(0, true, true, false, kFrameTagged);
+    setInputMode(0, true, true, false, FrameType::Tagged);
     
     for (unsigned long i = 0; i < numOuts; i++)
-        setOutputType(i, kFrameTagged);
+        setOutputType(i, FrameType::Tagged);
 }
 
 void FrameLib_ParamAlias::addAlias(unsigned long idx, const char* inTag, const char* outTag, long argumentIdx)
@@ -74,62 +74,62 @@ void FrameLib_ParamAlias::initialise()
 
                 switch(params->getType(paramIdx))
                 {
-                    case kValue:
+                    case Type::Value:
                         
                         switch (params->getNumericType(paramIdx))
                         {
-                            case kNumericBool:      mParameters.addBool(idx, tag, static_cast<bool>(value));    break;
-                            case kNumericInteger:   mParameters.addInt(idx, tag, static_cast<long>(value));     break;
-                            default:                mParameters.addDouble(idx, tag, value);                     break;
+                            case NumericType::Bool:         mParameters.addBool(idx, tag, static_cast<bool>(value));    break;
+                            case NumericType::Integer:      mParameters.addInt(idx, tag, static_cast<long>(value));     break;
+                            default:                        mParameters.addDouble(idx, tag, value);                     break;
                         }
                         break;
 
-                    case kEnum:
+                    case Type::Enum:
                         mParameters.addEnum(idx, tag);
                         for (long i = 0; i <= params->getMax(paramIdx); i++)
                             mParameters.addEnumItem(idx, params->getItemString(paramIdx, i));
                         break;
                         
-                    case kString:
+                    case Type::String:
                         mParameters.addString(idx, tag);
                         break;
                         
-                    case kArray:
+                    case Type::Array:
                     {
                         auto size = params->getArraySize(paramIdx);
                         
                         switch (params->getNumericType(paramIdx))
                         {
-                            case kNumericBool:      mParameters.addBoolArray(idx, tag, static_cast<bool>(value), size);     break;
-                            case kNumericInteger:   mParameters.addIntArray(idx, tag, static_cast<long>(value), size);      break;
-                            default:                mParameters.addDoubleArray(idx, tag, value, size);
+                            case NumericType::Bool:         mParameters.addBoolArray(idx, tag, static_cast<bool>(value), size);     break;
+                            case NumericType::Integer:      mParameters.addIntArray(idx, tag, static_cast<long>(value), size);      break;
+                            default:                        mParameters.addDoubleArray(idx, tag, value, size);
                         }
                         break;
                     }
                         
-                    case kVariableArray:
+                    case Type::VariableArray:
                     {
                         auto size = params->getArraySize(paramIdx);
                         auto maxSize = params->getArrayMaxSize(paramIdx);
 
                         switch (params->getNumericType(paramIdx))
                         {
-                            case kNumericBool:      mParameters.addVariableBoolArray(idx, tag, static_cast<bool>(value), maxSize, size);    break;
-                            case kNumericInteger:   mParameters.addVariableIntArray(idx, tag, static_cast<long>(value), maxSize, size);     break;
-                            default:                mParameters.addVariableDoubleArray(idx, tag, value, maxSize, size);      break;
+                            case NumericType::Bool:         mParameters.addVariableBoolArray(idx, tag, static_cast<bool>(value), maxSize, size);    break;
+                            case NumericType::Integer:      mParameters.addVariableIntArray(idx, tag, static_cast<long>(value), maxSize, size);     break;
+                            default:                        mParameters.addVariableDoubleArray(idx, tag, value, maxSize, size);      break;
                         }
                         break;
                     }
                 }
                 
-                if (params->getNumericType(paramIdx) == kNumericInteger || params->getNumericType(paramIdx) == kNumericDouble)
+                if (params->getNumericType(paramIdx) == NumericType::Integer || params->getNumericType(paramIdx) == NumericType::Double)
                 {
                     switch (params->getClipMode(paramIdx))
                     {
-                        case kNone: break;
-                        case kMin:  mParameters.setMin(params->getMin(paramIdx));      break;
-                        case kMax:  mParameters.setMax(params->getMax(paramIdx));      break;
-                        case kClip: mParameters.setClip(params->getMin(paramIdx), params->getMax(paramIdx));    break;
+                        case ClipMode::None: break;
+                        case ClipMode::Min:  mParameters.setMin(params->getMin(paramIdx));      break;
+                        case ClipMode::Max:  mParameters.setMax(params->getMax(paramIdx));      break;
+                        case ClipMode::Clip: mParameters.setClip(params->getMin(paramIdx), params->getMax(paramIdx));    break;
                     }
                 }
                 
@@ -184,7 +184,7 @@ void FrameLib_ParamAlias::process()
                 if (!strcmp(jt->mInTag.c_str(), it.getTag()))
                 {
                     matches[it.getIndex()] = &(*jt);
-                    unsigned long size = it.getType() == kVector ? Serial::calcSize(jt->mOutTag.c_str(), it.getVectorSize()) :  Serial::calcSize(jt->mOutTag.c_str(), it.getString());
+                    unsigned long size = it.getType() == DataType::Vector ? Serial::calcSize(jt->mOutTag.c_str(), it.getVectorSize()) :  Serial::calcSize(jt->mOutTag.c_str(), it.getString());
                     requestAddedOutputSize(jt->mIndex, size);
                     break;
                 }

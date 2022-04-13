@@ -39,8 +39,8 @@ std::string FrameLib_Gaussian::objectInfo(bool verbose)
                       "Mean and standard deviation can be set per sample or by parameter. "
                       "Per-sample mean and standard deviations are passed in by input. "
                       "The length of the output is dependent on the mode parameter. "
-                      "Output length may be set by parameter or based on that of the trigger input.",
-                      "When input and output lengths are mismatched the result depends on the mismatch parameter. ",
+                      "Output length may be set by parameter or based on that of the trigger input. "
+                      "When input and output lengths are mismatched the result depends on the mismatch parameter.",
                       "Generates frames of gaussian distributed random values.", verbose);
 }
 
@@ -100,20 +100,20 @@ double get(double value, unsigned long i)           { return value; }
 double get(const double* values, unsigned long i)   { return values[i]; }
 
 template<typename T, typename U, typename V>
-void generate(FrameLib_RandGen& gen, double *output, T mean, U stddev, V& i, V loop)
+void generate(random_generator<>& gen, double *output, T mean, U stddev, V& i, V loop)
 {
     for ( ; (i + 1) < loop; i += 2)
     {
         double x, y;
         
-        gen.randGaussians(x, y);
+        gen.rand_gaussians(x, y);
         
         output[i + 0] = x * get(stddev, i + 0) + get(mean, i + 0);
         output[i + 1] = y * get(stddev, i + 1) + get(mean, i + 1);
     }
     
     for ( ; i < loop; i++)
-        output[i] = gen.randGaussian(get(mean, i), get(stddev, i));
+        output[i] = gen.rand_gaussian(get(mean, i), get(stddev, i));
 }
 
 // Process

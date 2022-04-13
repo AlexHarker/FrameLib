@@ -29,7 +29,7 @@ class FrameLib_PDClass_Read : public FrameLib_PDClass_Expand<FrameLib_Read>
             mBuffer = pd_buffer();
         };
         
-        void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeType edges, bool bound) override
+        void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeMode edges, bool bound) override
         {
             mBuffer.read(output, positions, size, 1.0, interp, edges, bound);
         }
@@ -219,6 +219,8 @@ extern "C" void framelib_pd_setup(void)
     
     FrameLib_PDClass_Expand<FrameLib_CombineTags>::makeClass("fl.combinetags~");
     FrameLib_PDClass_Expand<FrameLib_FilterTags>::makeClass("fl.filtertags~");
+    FrameLib_PDClass_Expand<FrameLib_LookupString>::makeClass("fl.lookupstring~");
+    FrameLib_PDClass_Expand<FrameLib_MakeString>::makeClass("fl.makestring~");
     FrameLib_PDClass_Expand<FrameLib_Tag>::makeClass("fl.tag~");
     FrameLib_PDClass_Expand<FrameLib_Untag>::makeClass("fl.untag~");
     
@@ -248,6 +250,7 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_iFFT>::makeClass("fl.ifft~");
     FrameLib_PDClass_Expand<FrameLib_Correlate>::makeClass("fl.correlate~");
     FrameLib_PDClass_Expand<FrameLib_Convolve>::makeClass("fl.convolve~");
+    FrameLib_PDClass_Expand<FrameLib_FIRPhase>::makeClass("fl.firphase~");
     FrameLib_PDClass_Expand<FrameLib_Multitaper>::makeClass("fl.multitaper~");
     FrameLib_PDClass_Expand<FrameLib_Window>::makeClass("fl.window~");
     
@@ -282,6 +285,7 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_AccumPos>::makeClass("fl.accumpos~");
     FrameLib_PDClass_Expand<FrameLib_Chop>::makeClass("fl.chop~");
     FrameLib_PDClass_Expand<FrameLib_Join>::makeClass("fl.join~");
+    FrameLib_PDClass_Expand<FrameLib_KernelSmooth>::makeClass("fl.kernelsmooth~");
     FrameLib_PDClass_Expand<FrameLib_MedianFilter>::makeClass("fl.medianfilter~");
     FrameLib_PDClass_Expand<FrameLib_NonZero>::makeClass("fl.nonzero~");
     FrameLib_PDClass_Expand<FrameLib_Pad>::makeClass("fl.pad~");

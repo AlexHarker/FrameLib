@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<chapter name="FrameLib Tutorial 9: Multi-Resolution FFT">
+  <openfile name="Multi-Resolution FFT" patch="_9_Multi-resolution_FFT.maxpat"/>
+  <header>FrameLib Tutorial 9: Multi-Resolution FFT</header>
+  <subhead>Constructing multi-resolution FFT processes in FrameLib.</subhead>
+  <body>Multi-resolution FFT can help to mitigate issues of time and frequency resolution inherent to FFT-based spectral processing. This tutorial will show you how to work with such processes in FrameLib.</body>
+  <body><openpatchlink>Open the tutorial</openpatchlink>.</body>
+
+  <previous name="08_fl_multistream">Multistream Processing</previous>
+  <next name="10_fl_contexts">Contexts</next>
+  <parent name="00_fl_index">FrameLib Tutorials</parent>
+
+  <seealsolist>
+    <seealso name="fl.fft~" />
+    <seealso name="fl.window~" />
+    <seealso name="fl.ifft~" />
+  </seealsolist>
+</chapter>

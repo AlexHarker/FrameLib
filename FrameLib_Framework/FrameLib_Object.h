@@ -36,7 +36,7 @@ template <class T, typename U>
 struct FrameLib_Connection
 {
     FrameLib_Connection() : mObject(nullptr), mIndex(0) {}
-    FrameLib_Connection(T *object, unsigned long index) : mObject(object), mIndex(index) {}
+    FrameLib_Connection(T *object, U index) : mObject(object), mIndex(index) {}
     
     friend bool operator == (const FrameLib_Connection& a, const FrameLib_Connection& b)
     {
@@ -115,8 +115,8 @@ public:
         operator U*()                       { return mMemory; }
         operator const U*() const           { return mMemory; }
         
-        U* get()                            { return mMemory; }
-        const U* get() const                { return mMemory; }
+        U* data()                           { return mMemory; }
+        const U* data() const               { return mMemory; }
         
         unsigned long size() const          { return mSize; }
         
@@ -151,10 +151,10 @@ public:
         void deallocate(U *& ptr)           { mObject.dealloc(ptr); }
         
         template <class U>
-        AutoArray<U> allocAutoArray(unsigned long N)  
-		{ 
-			return mObject.allocAutoArray<U>(N); 
-		}
+        AutoArray<U> allocAutoArray(unsigned long N)
+        {
+            return mObject.allocAutoArray<U>(N);
+        }
         
     private:
         
@@ -231,7 +231,7 @@ public:
     template <class U>
     U *castProxy(FrameLib_Proxy *proxy)
     {
-        return proxy ? dynamic_cast<U *>(proxy) : nullptr;
+        return dynamic_cast<U *>(proxy);
     }
     
     template <class U>
@@ -245,8 +245,8 @@ public:
     
     unsigned long getNumIns() const             { return static_cast<unsigned long>(mInputConnections.size()); }
     unsigned long getNumOuts() const            { return static_cast<unsigned long>(mOutputConnections.size()); }
-    unsigned long getNumAudioIns() const        { return getType() != kOutput ? mNumAudioChans : 0; }
-    unsigned long getNumAudioOuts() const       { return getType() == kOutput ? mNumAudioChans : 0; }
+    unsigned long getNumAudioIns() const        { return getType() != ObjectType::Output ? mNumAudioChans : 0; }
+    unsigned long getNumAudioOuts() const       { return getType() == ObjectType::Output ? mNumAudioChans : 0; }
     unsigned long getNumAudioChans() const      { return mNumAudioChans; }
     
     // Set / Get Fixed Inputs
@@ -265,7 +265,7 @@ public:
     
     // Return to host to request to be passed audio
     
-    bool handlesAudio() const  { return mType == kScheduler || getNumAudioChans(); }
+    bool handlesAudio() const  { return mType == ObjectType::Scheduler || getNumAudioChans(); }
     
     // Info
 
@@ -286,7 +286,7 @@ public:
     ConnectionResult addConnection(Connection connection, unsigned long inIdx)
     {
         ConnectionResult result = connectionCheck(connection, false);
-        return (result == kConnectSuccess) ? changeConnection(connection, inIdx, true) : result;
+        return (result == ConnectionResult::Success) ? changeConnection(connection, inIdx, true) : result;
     }
     
     void deleteConnection(unsigned long inIdx)
@@ -298,7 +298,7 @@ public:
     {
         ConnectionResult result = connectionCheck(connection, true);
 
-        if (result == kConnectSuccess)
+        if (result == ConnectionResult::Success)
             return addOrderingConnection(connection, true);
 
         return result;
@@ -325,7 +325,7 @@ public:
     {
         ConnectionResult result = connectionCheck(alias, false);
         
-        if (result == kConnectSuccess)
+        if (result == ConnectionResult::Success)
         {
             changeConnection(Connection(), inIdx, false);
             changeAlias(&FrameLib_Object::getInputConnector, alias, inIdx, true);
@@ -338,7 +338,7 @@ public:
     {
         ConnectionResult result = connectionCheck(Connection(alias, 0), true);
 
-        if (result == kConnectSuccess)
+        if (result == ConnectionResult::Success)
         {
             clearOrderingConnections(false);
             changeOrderingAlias(alias, true);
@@ -351,7 +351,7 @@ public:
     {
         ConnectionResult result = alias.mObject->connectionCheck(thisConnection(outIdx), false);
 
-        if (result == kConnectSuccess)
+        if (result == ConnectionResult::Success)
         {
             clearOutput(outIdx);
             if (alias.mObject)
@@ -376,7 +376,7 @@ public:
     
     // Automatic Dependency Connections
     
-    virtual void autoOrderingConnections() = 0;
+    virtual void makeAutoOrderingConnections() = 0;
     virtual void clearAutoOrderingConnections() = 0;
     
     // Connection Update
@@ -423,7 +423,7 @@ protected:
     {
         mNumAudioChans = nAudioChans;
         
-        mInputConnections.resize((getType() == kScheduler || nIns) ? nIns : 1);
+        mInputConnections.resize((getType() == ObjectType::Scheduler || nIns) ? nIns : 1);
         mOutputConnections.resize(nOuts);
     }
     
@@ -453,8 +453,12 @@ protected:
     template <class U>
     void dealloc(U *& ptr)
     {
-        FrameLib_LocalAllocator *allocator = mLocalAllocator;
+        dealloc(mLocalAllocator, ptr);
+    }
 
+    template <class U>
+    void dealloc(FrameLib_LocalAllocator *allocator, U *& ptr)
+    {
         if (allocator)
             allocator->dealloc(ptr);
         else
@@ -463,9 +467,15 @@ protected:
         ptr = nullptr;
     }
     
+    template <class U>
+    size_t memorySize(U* ptr)
+    {
+        return mAllocator->memorySize(ptr) / sizeof(U);
+    }
+    
+    FrameLib_LocalAllocator *getLocalAllocator()                    { return mLocalAllocator; }
     void setLocalAllocator(FrameLib_LocalAllocator *allocator)      { mLocalAllocator = allocator; }
     void removeLocalAllocator()                                     { mLocalAllocator = nullptr; }
-    void pruneAllocator()                                           { mAllocator->prune(); }
     
     FrameLib_ContextAllocator::StoragePtr registerStorage(const char *name)
     {
@@ -628,18 +638,18 @@ private:
     ConnectionResult connectionCheck(Connection connection, bool ordering)
     {
         if (ordering && !supportsOrderingConnections())
-            return kConnectNoOrderingSupport;
+            return ConnectionResult::NoOrderingSupport;
     
         if (connection.mObject == this)
-            return kConnectSelfConnection;
+            return ConnectionResult::SelfConnection;
     
         if (connection.mObject->mContext != mContext)
-            return kConnectWrongContext;
+            return ConnectionResult::WrongContext;
     
         if (detectFeedback(connection.mObject))
-            return kConnectFeedbackDetected;
+            return ConnectionResult::FeedbackDetected;
         
-        return kConnectSuccess;
+        return ConnectionResult::Success;
     }
     
     // Notifications
@@ -649,7 +659,7 @@ private:
         if (notify)
         {
             if (queue)
-                queue->add(dynamic_cast<T *>(const_cast<FrameLib_Object *>(this)));
+                queue->add(static_cast<T *>(const_cast<FrameLib_Object *>(this)));
             else
                 callConnectionUpdate();
         }
@@ -691,10 +701,10 @@ private:
     ConnectionResult changeConnection(Connection connection, unsigned long inIdx, bool notify, Queue *queue = nullptr)
     {
         if (mInputConnections[inIdx].mIn == connection)
-            return kConnectSuccess;
+            return ConnectionResult::Success;
      
         if (mInputConnections[inIdx].mInternal || (connection.mObject && connection.mObject->mOutputConnections[connection.mIndex].mInternal))
-            return kConnectAliased;
+            return ConnectionResult::Aliased;
         
         // Update all values (note the swap)
             
@@ -708,7 +718,7 @@ private:
         notifyConnectionsChanged(mInputConnections[inIdx].mIn, queue);
         notifySelf(notify, queue);
         
-        return kConnectSuccess;
+        return ConnectionResult::Success;
     }
     
     // Change Ordering Connection
@@ -719,15 +729,15 @@ private:
     ConnectionResult changeOrderingConnection(Connection connection, ListMethod listUpdate, AlterMethod alterConnector, bool notify, Queue *queue)
     {
         if (!supportsOrderingConnections())
-            return kConnectNoOrderingSupport;
+            return ConnectionResult::NoOrderingSupport;
         
         if (mOrderingConnector.mInternal || connection.mObject->mOutputConnections[connection.mIndex].mInternal)
-            return kConnectAliased;
+            return ConnectionResult::Aliased;
         
         // Add / Delete and update all values
         
         if (!listUpdate(mOrderingConnections, connection))
-            return kConnectSuccess;
+            return ConnectionResult::Success;
         
         (this->*alterConnector)(&FrameLib_Object::getOutputConnector, connection, kOrdering, false);
         
@@ -736,7 +746,7 @@ private:
         notifyConnectionsChanged(connection, queue);
         notifySelf(notify, queue);
         
-        return kConnectSuccess;
+        return ConnectionResult::Success;
     }
     
     ConnectionResult addOrderingConnection(Connection connection, bool notify, Queue *queue = nullptr)
@@ -837,13 +847,13 @@ private:
         
     void addDependency(Queue *queue) const
     {
-        queue->add(dynamic_cast<T *>(const_cast<FrameLib_Object *>(this)));
+        queue->add(static_cast<T *>(const_cast<FrameLib_Object *>(this)));
     }
     
     template <class U>
     void addDependency(std::vector<U *>& dependencies) const
     {
-        U *object = dynamic_cast<U *>(const_cast<FrameLib_Object *>(this));
+        U *object = static_cast<U *>(const_cast<FrameLib_Object *>(this));
 
         if (object)
             addUniqueItem(dependencies, object);

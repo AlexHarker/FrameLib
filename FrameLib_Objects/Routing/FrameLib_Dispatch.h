@@ -53,7 +53,7 @@ class FrameLib_Dispatch : public FrameLib_Block
     
 public:
     
-    static constexpr ObjectType sType = kProcessor;
+    static constexpr ObjectType sType = ObjectType::Processor;
     static constexpr bool sHandlesAudio = false;
     
     // Constructor
@@ -68,8 +68,8 @@ public:
     
     // Connection Types
     
-    FrameType inputType(unsigned long idx) const override       { return idx == getNumIns() - 1 ? kFrameTagged : kFrameAny; }
-    FrameType outputType(unsigned long idx) const override      { return kFrameAny; }
+    FrameType inputType(unsigned long idx) const override       { return idx == getNumIns() - 1 ? FrameType::Tagged : FrameType::Any; }
+    FrameType outputType(unsigned long idx) const override      { return FrameType::Any; }
     
     // N.B. - Nothing can be acheived by setting a fixed input, so ignore this
     
@@ -87,7 +87,7 @@ public:
 
     // Ordering Connections
     
-    void autoOrderingConnections() override {};
+    void makeAutoOrderingConnections() override {};
     void clearAutoOrderingConnections() override {};
     
 private:

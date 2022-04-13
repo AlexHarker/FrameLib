@@ -1,6 +1,6 @@
 
 #include "FrameLib_MedianFilter.h"
-#include "FrameLib_Sort_Functions.h"
+#include "FrameLib_Sorting_Functions.h"
 #include "FrameLib_Edges.h"
 #include <algorithm>
 
@@ -175,7 +175,7 @@ void FrameLib_MedianFilter::process()
         if (sizeOut && (!data || !indices))
         {
             zeroVector(output, sizeOut);
-            getReporter()(kErrorObject, getProxy(), "couldn't allocate temporary memory");
+            getReporter()(ErrorSource::Object, getProxy(), "couldn't allocate temporary memory");
         }
     }
 }

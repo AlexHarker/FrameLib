@@ -8,7 +8,7 @@
 #include <limits>
 #include <vector>
 
-// Coefficients (and the basis for naming) can larged be found in:
+// Coefficients (and the basis for naming) can largely be found in:
 //
 // Nuttall, A. (1981). Some windows with very good sidelobe behavior.
 // IEEE Transactions on Acoustics, Speech, and Signal Processing, 29(1), 84-91.
@@ -655,7 +655,7 @@ namespace window_functions
             return generators[type](window, N, begin, end, p);
         }
         
-        window_generator<T> *get(size_t type) {return generators[type]; }
+        window_generator<T> *get(size_t type) { return generators[type]; }
         
         window_generator<T> *generators[sizeof...(gens)] = { gens... };
     };

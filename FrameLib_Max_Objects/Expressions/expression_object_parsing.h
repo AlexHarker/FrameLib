@@ -76,11 +76,6 @@ private:
         if (FrameLib_MaxClass<void>::isInputTag(sym))
             return true;
         
-        // Context Tag
-        
-        if (FrameLib_MaxClass<void>::isContextTag(sym))
-            return true;
-        
         // Basic parameter tag test
         
         if (!FrameLib_MaxClass<void>::isParameterTag(sym))
@@ -134,7 +129,7 @@ template <class T>
 struct FrameLib_MaxClass_ExprParsed : public FrameLib_MaxClass_Expand<T>
 {
     FrameLib_MaxClass_ExprParsed(t_object *x, const ExprArgumentParser &parsed) :
-    FrameLib_MaxClass_Expand<T>(x, parsed.symbol(), parsed.count(), parsed.args(), new FrameLib_MaxProxy()) {}
+    FrameLib_MaxClass_Expand<T>(x, parsed.symbol(), parsed.count(), parsed.args()) {}
 };
 
 #endif /* EXPRESSION_OBJECT_PARSING_H */

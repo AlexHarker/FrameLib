@@ -3,7 +3,7 @@
         "fileversion": 1,
         "appversion": {
             "major": 8,
-            "minor": 1,
+            "minor": 3,
             "revision": 0,
             "architecture": "x64",
             "modernui": 1
@@ -11,9 +11,9 @@
         "classnamespace": "box",
         "rect": [
             34.0,
-            79.0,
-            662.0,
-            787.0
+            87.0,
+            571.0,
+            720.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -46,6 +46,7 @@
         "subpatcher_template": "nobars",
         "showrootpatcherontab": 0,
         "showontab": 0,
+        "assistshowspatchername": 0,
         "boxes": [
             {
                 "box": {
@@ -57,7 +58,7 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
+                            "minor": 3,
                             "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
@@ -65,9 +66,9 @@
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
-                            662.0,
-                            761.0
+                            113.0,
+                            571.0,
+                            694.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -99,34 +100,18 @@
                         "style": "",
                         "subpatcher_template": "nobars",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
-                            {
-                                "box": {
-                                    "hidden": 1,
-                                    "id": "obj-1",
-                                    "linecount": 7,
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        "bang"
-                                    ],
-                                    "patching_rect": [
-                                        626.0,
-                                        63.0,
-                                        19.0,
-                                        102.0
-                                    ],
-                                    "text": "loadbang"
-                                }
-                            },
                             {
                                 "box": {
                                     "border": 0,
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.route~",
+                                    "jsarguments": [
+                                        "fl.route~",
+                                        94
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -137,8 +122,8 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
-                                        150.0
+                                        541.0,
+                                        95
                                     ]
                                 }
                             },
@@ -151,9 +136,10 @@
                                     "enablevscroll": 0,
                                     "id": "obj-128",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
-                                    "name": "fldocs.getparams.maxpat",
-                                    "numinlets": 1,
+                                    "name": "fl.docs.getparams.maxpat",
+                                    "numinlets": 0,
                                     "numoutlets": 0,
                                     "offset": [
                                         0.0,
@@ -161,39 +147,18 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        167.0,
-                                        630.0,
-                                        565.0
+                                        127,
+                                        541.0,
+                                        552.0
                                     ],
-                                    "viewvisibility": 1
-                                }
-                            }
-                        ],
-                        "lines": [
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-128",
-                                        0
-                                    ],
-                                    "hidden": 1,
-                                    "midpoints": [
-                                        635.5,
-                                        168.0,
-                                        657.0,
-                                        168.0,
-                                        657.0,
-                                        166.0,
-                                        24.5,
-                                        166.0
-                                    ],
-                                    "source": [
-                                        "obj-1",
-                                        0
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        541.0
                                     ]
                                 }
                             }
-                        ]
+                        ],
+                        "lines": []
                     },
                     "patching_rect": [
                         2.0,
@@ -220,8 +185,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -229,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            571.0,
+                            694.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -291,17 +256,17 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
-                            652.0,
-                            761.0
+                            113.0,
+                            571.0,
+                            694.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -337,73 +302,77 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "border": 0,
+                                    "filename": "fl.bubblepoint.js",
+                                    "id": "obj-26",
+                                    "ignoreclick": 1,
+                                    "maxclass": "jsui",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [
+                                        345.0,
+                                        578.0,
+                                        19.007189542551032,
+                                        17.187598475170148
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "border": 0,
+                                    "filename": "fl.bubblepoint.js",
+                                    "id": "obj-23",
+                                    "ignoreclick": 1,
+                                    "jsarguments": [
+                                        1
+                                    ],
+                                    "maxclass": "jsui",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [
+                                        135.0,
+                                        578.0,
+                                        19.007189542551032,
+                                        17.187598475170148
+                                    ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-2",
+                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        360.0,
-                                        317.0,
-                                        226.0,
-                                        21.0
+                                        354.0,
+                                        306.5,
+                                        135.0,
+                                        40.0
                                     ],
-                                    "text": "Argument sets the number of outputs."
+                                    "text": "Argument sets the number of outputs.",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-23",
-                                    "justification": 1,
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        387.875,
-                                        580.0,
-                                        19.25,
-                                        28.166671752929688
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-22",
-                                    "justification": 1,
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        237.875,
-                                        580.0,
-                                        19.25,
-                                        28.166671752929688
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-38",
-                                    "justification": 1,
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        87.875,
-                                        580.0,
-                                        19.25,
-                                        28.166671752929688
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "blinkcolor": [
+                                        0.23921568627451,
+                                        0.76078431372549,
+                                        0.207843137254902,
+                                        1.0
+                                    ],
                                     "id": "obj-21",
+                                    "ignoreclick": 1,
                                     "maxclass": "button",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -421,7 +390,14 @@
                             },
                             {
                                 "box": {
+                                    "blinkcolor": [
+                                        0.815686274509804,
+                                        0.341176470588235,
+                                        0.8,
+                                        1.0
+                                    ],
                                     "id": "obj-20",
+                                    "ignoreclick": 1,
                                     "maxclass": "button",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -439,7 +415,14 @@
                             },
                             {
                                 "box": {
+                                    "blinkcolor": [
+                                        0.952941176470588,
+                                        0.564705882352941,
+                                        0.098039215686275,
+                                        1.0
+                                    ],
                                     "id": "obj-19",
+                                    "ignoreclick": 1,
                                     "maxclass": "button",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -463,8 +446,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        541.0,
-                                        623.0,
+                                        495.0,
+                                        487.5,
                                         45.0,
                                         45.0
                                     ]
@@ -472,33 +455,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-17",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        405.0,
-                                        140.0,
-                                        106.0,
-                                        21.0
+                                        411.0,
+                                        137.5,
+                                        123.0,
+                                        25.0
                                     ],
                                     "text": "Select the output"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-16",
-                                    "linecount": 4,
-                                    "maxclass": "comment",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        75.0,
-                                        613.0,
-                                        405.0,
-                                        65.0
-                                    ],
-                                    "text": "The random frame will go to one or none of the 3 outputs.\n\nNote that when the input is not routed to a particular output there will be no frame sent (not an empty frame)."
                                 }
                             },
                             {
@@ -541,6 +509,7 @@
                                 "box": {
                                     "ghostbar": 100,
                                     "id": "obj-13",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -559,11 +528,11 @@
                                         0.0,
                                         1.0
                                     ],
-                                    "size": 1024,
+                                    "size": 200,
                                     "slidercolor": [
-                                        0.772549019607843,
-                                        0.250980392156863,
-                                        0.588235294117647,
+                                        0.23921568627451,
+                                        0.76078431372549,
+                                        0.207843137254902,
                                         1.0
                                     ]
                                 }
@@ -572,6 +541,7 @@
                                 "box": {
                                     "ghostbar": 100,
                                     "id": "obj-12",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -590,11 +560,11 @@
                                         0.0,
                                         1.0
                                     ],
-                                    "size": 1024,
+                                    "size": 200,
                                     "slidercolor": [
-                                        0.305882352941176,
-                                        0.552941176470588,
-                                        0.298039215686275,
+                                        0.815686274509804,
+                                        0.341176470588235,
+                                        0.8,
                                         1.0
                                     ]
                                 }
@@ -655,8 +625,15 @@
                             },
                             {
                                 "box": {
+                                    "candicane2": [
+                                        0.317647058823529,
+                                        0.654901960784314,
+                                        0.976470588235294,
+                                        1.0
+                                    ],
                                     "ghostbar": 100,
                                     "id": "obj-5",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -668,14 +645,20 @@
                                     "patching_rect": [
                                         30.0,
                                         450.0,
-                                        135.0,
+                                        138.0,
                                         120.0
                                     ],
                                     "setminmax": [
                                         0.0,
                                         1.0
                                     ],
-                                    "size": 1024
+                                    "size": 200,
+                                    "slidercolor": [
+                                        0.952941176470588,
+                                        0.564705882352941,
+                                        0.098039215686275,
+                                        1.0
+                                    ]
                                 }
                             },
                             {
@@ -690,10 +673,10 @@
                                     "patching_rect": [
                                         30.0,
                                         270.0,
-                                        145.0,
+                                        138.0,
                                         23.0
                                     ],
-                                    "text": "fl.random~ /length 1024"
+                                    "text": "fl.random~ /length 200"
                                 }
                             },
                             {
@@ -728,9 +711,7 @@
                                     "filename": "fl.helpname.js",
                                     "id": "obj-3",
                                     "ignoreclick": 1,
-                                    "jsarguments": [
-                                        "fl.route~"
-                                    ],
+                                    "jsarguments": "fl.route~",
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -741,7 +722,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        541.0,
                                         60.0
                                     ]
                                 }
@@ -766,6 +747,7 @@
                             },
                             {
                                 "box": {
+                                    "fontsize": 12.0,
                                     "id": "obj-7",
                                     "maxclass": "live.tab",
                                     "num_lines_patching": 4,
@@ -781,8 +763,8 @@
                                     "patching_rect": [
                                         330.0,
                                         90.0,
-                                        62.0,
-                                        121.0
+                                        73.0,
+                                        120.0
                                     ],
                                     "presentation": 1,
                                     "presentation_rect": [
@@ -807,6 +789,25 @@
                                         }
                                     },
                                     "varname": "live.tab"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 0,
+                                    "id": "obj-16",
+                                    "linecount": 4,
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        45.0,
+                                        578.0,
+                                        407.0,
+                                        84.0
+                                    ],
+                                    "text": "The random frame will go to one or none of the 3 outputs.\n\nNote that when the input is not routed to a particular output there will be no frame sent (not an empty frame).",
+                                    "textjustification": 1
                                 }
                             }
                         ],
@@ -1069,29 +1070,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fldocs.getparams.maxpat",
-                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
-                "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
-                "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
-                "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

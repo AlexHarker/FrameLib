@@ -18,9 +18,15 @@ namespace detail
 }
 
 template<typename T>
-struct FrameLib_ObjectName
+struct FrameLib_ObjectInfo
 {
     const char *name() { return "unknown"; }
+    
+    template <typename U, size_t Idx>
+    static U option()
+    {
+        return U();
+    }
 };
 
 using FrameLib_ObjectList = detail::FrameLib_Typelist<
@@ -58,6 +64,8 @@ FrameLib_SampleRate,
 
 FrameLib_CombineTags,
 FrameLib_FilterTags,
+FrameLib_LookupString,
+FrameLib_MakeString,
 FrameLib_Tag,
 FrameLib_Untag,
 
@@ -208,7 +216,7 @@ FrameLib_LogicalOr,
 FrameLib_Pow,
 FrameLib_Atan2,
 FrameLib_Hypot,
-FrameLib_CopySign, 
+FrameLib_CopySign,
 FrameLib_Min,
 FrameLib_Max,
 FrameLib_Diff,
@@ -256,3 +264,4 @@ FrameLib_Read
 >;
 
 #endif /* FRAMELIB_TYPELIST_H */
+

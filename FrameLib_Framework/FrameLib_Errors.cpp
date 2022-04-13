@@ -59,7 +59,7 @@ std::unique_ptr<FrameLib_ErrorReporter::ErrorList> FrameLib_ErrorReporter::getEr
 {
     std::unique_ptr<ErrorList> reports(new ErrorList());
     
-    FrameLib_SpinLockHolder lockHolder(&mLock);
+    FrameLib_LockHolder lockHolder(&mLock);
     std::swap(mReports, reports);
     mNotified = false;
     return reports;

@@ -75,7 +75,7 @@ class FrameLib_GlobalAllocator
         public:
             
             NewThread(CoreAllocator& allocator)
-            : FrameLib_DelegateThread(FrameLib_Thread::kHighPriority)
+            : FrameLib_DelegateThread(FrameLib_Thread::PriorityLevel::High)
             , mAllocator(allocator)
             {}
             
@@ -99,7 +99,7 @@ class FrameLib_GlobalAllocator
         public:
             
             FreeThread(CoreAllocator& allocator)
-            : FrameLib_TriggerableThread(FrameLib_Thread::kLowPriority)
+            : FrameLib_TriggerableThread(FrameLib_Thread::PriorityLevel::Low)
             , mAllocator(allocator)
             {}
             
@@ -224,7 +224,7 @@ private:
    
     // Member Variables
     
-    FrameLib_SpinLock mLock;
+    FrameLib_Lock mLock;
     CoreAllocator mAllocator;
 };
 
@@ -241,7 +241,7 @@ private:
 
 class FrameLib_LocalAllocator
 {
-    static const int numLocalFreeBlocks = 16;
+    static constexpr int numLocalFreeBlocks = 16;
     
     friend class FrameLib_LocalAllocatorSet;
     
@@ -410,10 +410,10 @@ public:
         // Getters
         
         FrameType getType() const               { return mType; }
-        double *getVector() const               { return mType == kFrameNormal ? static_cast<double *>(mData) : nullptr; }
-        unsigned long getVectorSize() const     { return mType == kFrameNormal ? static_cast<unsigned long>(mSize) : 0; }
-        unsigned long getTaggedSize() const     { return mType == kFrameTagged ? static_cast<unsigned long>(mSize) : 0; }
-        Serial *getTagged() const               { return mType == kFrameTagged ? static_cast<Serial *>(mData) : nullptr; }
+        double *getVector() const               { return mType == FrameType::Vector ? static_cast<double *>(mData) : nullptr; }
+        unsigned long getVectorSize() const     { return mType == FrameType::Vector ? static_cast<unsigned long>(mSize) : 0; }
+        unsigned long getTaggedSize() const     { return mType == FrameType::Tagged ? static_cast<unsigned long>(mSize) : 0; }
+        Serial *getTagged() const               { return mType == FrameType::Tagged ? static_cast<Serial *>(mData) : nullptr; }
         
         // Resize the storage
         
@@ -445,7 +445,7 @@ public:
         size_t mMaxSize;
         unsigned long mCount;
         
-        FrameLib_SpinLock mLock;
+        FrameLib_Lock mLock;
         FrameLib_ContextAllocator& mAllocator;
     };
     
@@ -516,6 +516,7 @@ public:
 
     void *alloc(size_t size);
     void dealloc(void *ptr);
+    size_t memorySize(void *ptr);
 
     // Prune global allocator
     

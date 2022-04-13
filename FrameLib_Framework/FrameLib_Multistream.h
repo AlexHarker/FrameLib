@@ -262,10 +262,10 @@ public:
 
     // Ordering Connections
     
-    void autoOrderingConnections() override
+    void makeAutoOrderingConnections() override
     {
         for (auto it = mBlocks.begin(); it != mBlocks.end(); it++)
-            (*it)->autoOrderingConnections();
+            (*it)->makeAutoOrderingConnections();
     }
 
     void clearAutoOrderingConnections() override

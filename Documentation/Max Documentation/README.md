@@ -1,48 +1,53 @@
-# FrameLib Documentation
+# FrameLib Max Documentation
+
+create_temp.py
+generate_max_object_list
+validate_object_relationships
+create_category_database
+edit_raw_xml
+lookup_dlookup
+lookup_qlookup
+lookup_tlookup
+lookup_jlookup
+create_tutorial_coll
+help_base
+help_merge
+help_reusable_tabs
+help_size_name
+create_max_db
+cleanup
 
 ## Welcome
-You are able to build the documentation for FrameLib yourself, except for certain resources such as:
+You are able to build the documentation for the Max FrameLib yourself, except for certain resources such as:
 
 1. Max help files
 2. Max tutorials
 
-Some elements of the above resources are automatically generated though, like `.json` files and `.txt` files that are automatically loaded into dictionaries in colls. For example, the landing page of the FrameLib tutorials contains `umenu` objects which are automatically populated with all the objects that exist in the source code. This means that if you fork FrameLib and create your own objects using the Framework, the documentation builder can be run in order to automatically create a number of things for you.
+Some elements of the above resources are automatically generated though `.json` files and `.txt` files that are automatically loaded into dictionaries in colls. For example, the landing page of the FrameLib tutorials contains `umenu` objects which are automatically populated with all the objects that exist in the source code. This means that if you fork FrameLib and create your own objects using the Framework, the documentation builder can be run in order to automatically create a number of things for you.
 
 ## How to build
 
-### Installing Xcode 9.4.1
+### Installing Xcode
 
-You will need to download Xcode. Building has been tested on version 9.4.1. The most recent version as 23/08/19 is Version 10.3. To download an old version you will need to look beyond the app store and follow these tops.
-
-1. Go to https://developer.apple.com/download/more/
-2. Follow the prompts
-
-Note you may need an account to get the older versions of xcode.
+You will need to download Xcode from the App Store. 
 
 ### Installing Dependencies
 
 A large part of the project uses Python to generate and parse XML files as well as form `.json` and `.txt` references. MacOS version 10.14 and lower come preinstalled with Python 2 but this project is written using Python 3. As such, you will need to install a new version of Python **that is greater than or equal to Python 3.5**. 
 
-THe easiest way to do this is to use a package manager like `brew` or `macports` which not only manage the install and updates but will create all the useful symlinks and aliases for the python executables and pip.
+The easiest way to do this is to use a package manager like `brew` or `macports` which not only manage the install and updates but will create all the useful symlinks and aliases for the python executables and pip.
 
 The website and guide on installing brew can be found here: 
 
 https://brew.sh
 
-If you don't want to install `brew` to manage your python install, or you already have it managed another way then you will need to make sure that python version 3 can be called by invoking the command `python3` from your terminal. As a last resort you can modify the build settings for the xcode project scheme 'Documentation'. You will want to modify the pre and post shell commands and the syntax that is used for calling on Python.
-
-Once you have Python configured you will need to install the FrameLibDocs package using `pip`. Usually, `pip` for your Python 3 installation is aliased to the command `pip3` so the following commands refer to that usage.
-
-`cd` into FrameLib/Documentation/Max Documentation
-`pip3 install -e FrameLibDocs`
-
-This installs the FrameLibDocs in an editable mode, meaning you can make edits to the package for your own purpose without having to reinstall it everytime a change is mode. If you aren't interested in making changes then you can simply run the command and forget about it.
+If you don't want to install `brew` to manage your python install, or you already have it managed another way then you will need to make sure that python version 3 can be called by invoking the command `python3` from your terminal.
 
 ### Building
 
-Once you have a working version of Xcode 9.4.1 and Python 3 there are a few options to build.
+Once you have a working version of Xcode and Python 3 there are a few options to build.
 
-The easiest way is to open the `framelib~-documentation.xcodeproj` and run (Cmd + R) the 'Documentation' scheme. 
+The easiest way is to open the `framelib.xcodeproj` and run (Cmd + R) the 'framelib Max Documentation' scheme. 
 
 ### Incorporating your own objects into the docs
 
@@ -52,10 +57,10 @@ Once you have created your FrameLib_YOUROBJECT.cpp, FrameLib_YOUROBJECT.h and fl
 
 You will need to make your own help files and tutorials for the object however, which is not covered in the automatic building of FrameLib documentation.
 
-Prior to building the documentation you will also need to add an entry for your object in the `object_relationships.yaml` file. This provides the build process with knowledge of objects which are related to yours as well as any keywords that you want to associate with your object, and will populate the Max documentation with this information. Follow the format used for the native FrameLib objects. 
+Prior to building the documentation you will also need to add an entry for your object in the `object_relationships.json` file. This provides the build process with knowledge of objects which are related to yours as well as any keywords that you want to associate with your object, and will populate the Max documentation with this information. Follow the format used for the native FrameLib objects. 
 
 
-## An deeper explanation
+## A deeper explanation
 
 The docs are built in a number of stages that involve creating instances of those objects and extracting the information that way. It is important to note that all information is stored in the source code itself as info strings. This means that you should make this information as concise and clear as possible. Try and follow the convention of objects that exist in the native FrameLib package. 
 
@@ -67,6 +72,6 @@ This python script creates the Max_Object_List.h header file. This is essential 
 
 This creates an instance of every FrameLib object and calls a method that will extract the output from each and format it into a .maxref.xml file.
 
-3. Call "_Build_All_files.py" to execute the other python scripts. The specific functions of each of these is tersely documented in _Build_All_Files.py as well as each file itself.
+3. Call "build_docs.py" to execute the other python scripts. The specific functions of each of these is tersely documented in build_docs.py as well as each file itself.
 
 Done!

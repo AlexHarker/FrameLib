@@ -38,37 +38,13 @@ class FrameLib_DSP;
  */
 
 class FrameLib_ProcessingQueue
-{
-    class DenormalHandling
-    {
-#if defined(__i386__) || defined(__x86_64__) || defined(_M_IX86) || defined(_M_X64)
-    public:
-
-        DenormalHandling() : mMXCSR(_mm_getcsr())
-        {
-            _mm_setcsr(mMXCSR | _MM_FLUSH_ZERO_ON);
-        }
-        
-        ~DenormalHandling()
-        {
-            _mm_setcsr(mMXCSR);
-        }
-        
-    private:
-
-        unsigned int mMXCSR;
-#endif
-    };
-    
+{    
 public:
     
     using MainQueue = FrameLib_LockFreeStack<FrameLib_DSP>;
     using PrepQueue = MainQueue::Queue;
-    using MainNode = MainQueue::Node;
-    using ThreadNode = FrameLib_Node<FrameLib_DSP, FrameLib_ProcessingQueue>;
-
-    struct Node : MainNode, ThreadNode {};
-
+    using Node = MainQueue::Node;
+    
     /**
      
      @class IntervalMicosecondsClock
@@ -92,7 +68,7 @@ public:
         std::chrono::steady_clock::time_point mStartTime;
     };
     
-    static const int sProcessPerTimeCheck = 200;
+    static constexpr int processPerTimeCheck = 200;
     
     /**
      
@@ -109,7 +85,7 @@ public:
     public:
         
         WorkerThreads(FrameLib_ProcessingQueue *queue)
-        : FrameLib_TriggerableThreadSet(FrameLib_Thread::kAudioPriority, numThreads())
+        : FrameLib_TriggerableThreadSet(FrameLib_Thread::PriorityLevel::Audio, numThreads())
         , mQueue(queue)
         {}
         
@@ -135,14 +111,13 @@ public:
     // Start and add items to the queue
     
     void start(PrepQueue &queue);
-    void add(PrepQueue &queue, FrameLib_DSP *addedBy);
 
     // Additional functionality
     
     void reset() { mTimedOut = false; }
     bool isTimedOut() { return mTimedOut; }
     void setTimeOuts(double relative = 0.0, double absolute = 0.0);
-    void setMultithreading(bool multihread) { mMultithread = multihread; }
+    void setMultithreading(bool multithread) { mMultithread = multithread; }
     
     // Timing info
     

@@ -272,7 +272,7 @@ void FrameLib_ComplexExpression::ConstantOut::process()
 // Constructor
 
 FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Block(kProcessor, context, proxy)
+: FrameLib_Block(ObjectType::Processor, context, proxy)
 , mParameters(context, proxy, &sParamInfo)
 {
     typedef FrameLib_ExprParser::Graph<std::complex<double>> Graph;
@@ -290,7 +290,7 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
     mParameters.addEnumItem(kExtend, "extend");
     mParameters.setInstantiation();
     
-    mParameters.addVariableBoolArray(kTriggers, "trigger_ins", true, kMaxIns, kMaxIns);
+    mParameters.addVariableBoolArray(kTriggers, "trigger_ins", true, maxNumIns, maxNumIns);
     mParameters.setInstantiation();
 
     mParameters.set(serialisedParameters);
@@ -304,9 +304,9 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
     Parser parser;
     ExprParseError error = parser.parse(graph, mParameters.getString(kExpression), getReporter(), proxy);
     
-    if (graph.mNumInputs > kMaxIns)
+    if (graph.mNumInputs > maxNumIns)
     {
-        getReporter()(kErrorObject, proxy, "expression has more than the maximum number of inputs (#)", kMaxIns);
+        getReporter()(ErrorSource::Object, proxy, "expression has more than the maximum number of inputs (#)", maxNumIns);
         graph = Graph();
     }
     
@@ -414,7 +414,7 @@ FrameLib_ComplexExpression::ParameterInfo::ParameterInfo()
     add("Sets the mathematical expression. "
         "Input pairs are indicated in1 to inx (where x is the number of input pairs created). "
         "Complex numbers can be expressed directly in the form (a + bi). "
-        "A range of other constants, operators and functions are available. "
+        "A range of other constants, operators and functions are available: "
         "Constants { i e pi epsilon inf }. "
         "Unary Operators { - }. "
         "Binary Operators { / * % + }. "

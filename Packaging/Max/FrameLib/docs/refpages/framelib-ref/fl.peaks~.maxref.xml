@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
+<c74object name="fl.peaks~" module="FrameLib" category="FrameLib Vector">
+  <digest>
+    Finds peaks in the input frame
+  </digest>
+  <description>
+    The input frame is searched for peaks (values greater than the surrounding values). Each input sample is assigned to a peak. Peaks positions and values are also interpolated and output. The first output is the same length as the input. Other outputs are as long as the number of detected peaks. A Peak are detected if a value exceeds its neighbours and a fixed threshold. The parameters control the details of the way in which peaks are defined and detected.
+  </description>
+  <misc name="Parameters">
+    <entry name="/neighbours [int]">
+      <description>
+        Sets the number of neighbours each side that must be exceeded in order to detect a peak.<p /><i>(default: 1)</i>
+      </description>
+    </entry>
+    <entry name="/threshold [double]">
+      <description>
+        Sets the threshold value for detecting a peak.<p /><i>(default: 0)</i>
+      </description>
+    </entry>
+    <entry name="/pad [double]">
+      <description>
+        Sets the padding value.<p /><i>(default: 0)</i>
+      </description>
+    </entry>
+    <entry name="/edges [enum]">
+      <description>
+        Sets the edge behaviour for peak detection:<p /><bullet>[0] - <m>pad</m> - values beyond the edges of the input are read as the padding value.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><p /><i>(default: <m>pad</m>)</i>
+      </description>
+    </entry>
+    <entry name="/refine [enum]">
+      <description>
+        Sets the method for refining peak values:<p /><bullet>[0] - <m>off</m> - return the peak value without refinement.</bullet><bullet>[1] - <m>parabolic</m> - apply parabolic interpolation to the three values around the peak.</bullet><bullet>[2] - <m>parabolic_log</m> - apply parabolic interpolation to the log of the three values around the peak.</bullet><p />Note that parabolic_log is suitable for interpolating linear amplitudes.<p /><i>(default: <m>parabolic</m>)</i>
+      </description>
+    </entry>
+    <entry name="/boundaries [enum]">
+      <description>
+        Sets the method for selecting the boundaries between peaks:<p /><bullet>[0] - <m>minimum</m> - boundaries are set at the minimum value between consecutive peaks.</bullet><bullet>[1] - <m>midpoint</m> - boundaries are set to the indices halfway between consecutive peaks.</bullet><p /><i>(default: <m>minimum</m>)</i>
+      </description>
+    </entry>
+    <entry name="/always_detect [bool]">
+      <description>
+        If set on at least one peak will be detected even if no values match the peak criteria. If set off then the outputs will be empty if no peak is detected.<p /><i>(default: true)</i>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Vector</metadata>
+  </metadatalist>
+  <objarglist>
+    <objarg name="neighbours" optional="1" type="int">
+      <digest>
+        Sets the number of neighbours each side that must be exceeded in order to detect a peak
+      </digest>
+      <description>
+        This argument sets the neighbours parameter:<p /><p />Sets the number of neighbours each side that must be exceeded in order to detect a peak.<p /><i>(default: 1)</i>
+      </description>
+    </objarg>
+    <objarg name="threshold" optional="1" type="number">
+      <digest>
+        Sets the threshold value for detecting a peak
+      </digest>
+      <description>
+        This argument sets the threshold parameter:<p /><p />Sets the threshold value for detecting a peak.<p /><i>(default: 0)</i>
+      </description>
+    </objarg>
+    <objarg name="pad" optional="1" type="number">
+      <digest>
+        Sets the padding value
+      </digest>
+      <description>
+        This argument sets the pad parameter:<p /><p />Sets the padding value.<p /><i>(default: 0)</i>
+      </description>
+    </objarg>
+    <objarg name="edges" optional="1" type="symbol">
+      <digest>
+        Sets the edge behaviour for peak detection
+      </digest>
+      <description>
+        This argument sets the edges parameter:<p /><p />Sets the edge behaviour for peak detection:<p /><bullet>[0] - <m>pad</m> - values beyond the edges of the input are read as the padding value.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><p /><i>(default: <m>pad</m>)</i>
+      </description>
+    </objarg>
+    <objarg name="boundaries" optional="1" type="symbol">
+      <digest>
+        Sets the method for selecting the boundaries between peaks
+      </digest>
+      <description>
+        This argument sets the boundaries parameter:<p /><p />Sets the method for selecting the boundaries between peaks:<p /><bullet>[0] - <m>minimum</m> - boundaries are set at the minimum value between consecutive peaks.</bullet><bullet>[1] - <m>midpoint</m> - boundaries are set to the indices halfway between consecutive peaks.</bullet><p /><i>(default: <m>minimum</m>)</i>
+      </description>
+    </objarg>
+    <objarg name="always_detect" optional="1" type="number">
+      <digest>
+        If set on at least one peak will be detected even if no values match the peak criteria
+      </digest>
+      <description>
+        This argument sets the always_detect parameter:<p /><p />If set on at least one peak will be detected even if no values match the peak criteria. If set off then the outputs will be empty if no peak is detected.<p /><i>(default: true)</i>
+      </description>
+    </objarg>
+  </objarglist>
+  <methodlist>
+    <method name="info">
+      <arglist>
+        <arg name="items" optional="1" type="list" />
+      </arglist>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        Print info about <o>fl.peaks~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+      </description>
+    </method>
+    <method name="frame">
+      <arglist />
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+    <method name="sync">
+      <arglist />
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+  </methodlist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for <o>fl.peaks~</o>. When set to <m>0</m> <o>fl.peaks~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for <o>fl.peaks~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
+  <seealsolist>
+    <seealso name="fl.accumpos~" />
+    <seealso name="fl.centroid~" />
+    <seealso name="fl.chop~" />
+    <seealso name="fl.crest~" />
+    <seealso name="fl.flatness~" />
+    <seealso name="fl.framemax~" />
+    <seealso name="fl.framemin~" />
+    <seealso name="fl.geomean~" />
+    <seealso name="fl.join~" />
+    <seealso name="fl.kurtosis~" />
+    <seealso name="fl.length~" />
+    <seealso name="fl.maxpos~" />
+    <seealso name="fl.mean~" />
+    <seealso name="fl.medianfilter~" />
+    <seealso name="fl.minpos~" />
+    <seealso name="fl.nanfilter~" />
+    <seealso name="fl.nonzero~" />
+    <seealso name="fl.pad~" />
+    <seealso name="fl.pattern~" />
+    <seealso name="fl.percentile~" />
+    <seealso name="fl.product~" />
+    <seealso name="fl.reverse~" />
+    <seealso name="fl.rms~" />
+    <seealso name="fl.shift~" />
+    <seealso name="fl.skewness~" />
+    <seealso name="fl.sort~" />
+    <seealso name="fl.split~" />
+    <seealso name="fl.spread~" />
+    <seealso name="fl.stddev~" />
+    <seealso name="fl.subframe~" />
+    <seealso name="fl.sum~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>vector</description>
+    </entry>
+  </misc>
+</c74object>

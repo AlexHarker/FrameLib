@@ -6,10 +6,10 @@
 
 // N.B. - alignment must be a power of two
 
-static const size_t alignment = 16;
-static size_t const initSize = 1024 * 1024 * 2;
-static size_t const growSize = 1024 * 1024 * 2;
-static const int pruneInterval = 20;
+static constexpr size_t alignment = 16;
+static size_t constexpr initSize = 1024 * 1024 * 2;
+static size_t constexpr growSize = 1024 * 1024 * 2;
+static constexpr int pruneInterval = 20;
 
 // ************************************************************************************** //
 
@@ -101,7 +101,7 @@ void *FrameLib_GlobalAllocator::CoreAllocator::alloc(size_t size)
     if (ptr)
         mAllocated += blockSize(ptr);
     else
-        mErrorReporter(kErrorMemory, nullptr, "FrameLib - couldn't allocate memory");
+        mErrorReporter(ErrorSource::Memory, nullptr, "FrameLib - couldn't allocate memory");
    
     // Check for near full
     
@@ -247,13 +247,13 @@ void FrameLib_GlobalAllocator::CoreAllocator::destroyScheduledPool()
 
 void *FrameLib_GlobalAllocator::alloc(size_t size)
 {
-    FrameLib_SpinLockHolder lock(&mLock);
+    FrameLib_LockHolder lock(&mLock);
     return mAllocator.alloc(size);
 }
 
 void FrameLib_GlobalAllocator::dealloc(void *ptr)
 {
-    FrameLib_SpinLockHolder lock(&mLock);
+    FrameLib_LockHolder lock(&mLock);
     mAllocator.dealloc(ptr);
 }
 
@@ -274,12 +274,12 @@ size_t FrameLib_GlobalAllocator::alignSize(size_t x)
 // Context Local Storage
 
 FrameLib_ContextAllocator::Storage::Storage(const char *name, FrameLib_ContextAllocator& allocator)
-:  mName(name), mType(kFrameNormal), mData(nullptr), mSize(0), mMaxSize(0), mCount(1), mAllocator(allocator)
+:  mName(name), mType(FrameType::Vector), mData(nullptr), mSize(0), mMaxSize(0), mCount(1), mAllocator(allocator)
 {}
 
 FrameLib_ContextAllocator::Storage::~Storage()
 {
-    if (mType == kFrameTagged)
+    if (mType == FrameType::Tagged)
         getTagged()->~Serial();
 
     mAllocator.dealloc(mData);
@@ -294,14 +294,14 @@ void FrameLib_ContextAllocator::Storage::resize(bool tagged, unsigned long size)
     {
         // Reallocate for tagged frames
         
-        if (mType == kFrameTagged)
+        if (mType == FrameType::Tagged)
             getTagged()->~Serial();
         if (tagged)
             Serial::newInPlace(mData, size);
         
         // Set Parameters
         
-        mType = tagged ? kFrameTagged : kFrameNormal;
+        mType = tagged ? FrameType::Tagged : FrameType::Vector;
         mSize = size;
     }
     else
@@ -312,7 +312,7 @@ void FrameLib_ContextAllocator::Storage::resize(bool tagged, unsigned long size)
         {
             // Deallocate
             
-            if (mType == kFrameTagged)
+            if (mType == FrameType::Tagged)
                 getTagged()->~Serial();
             mAllocator.dealloc(mData);
             
@@ -324,7 +324,7 @@ void FrameLib_ContextAllocator::Storage::resize(bool tagged, unsigned long size)
             
             // Set parameters
             
-            mType = tagged ? kFrameTagged : kFrameNormal;
+            mType = tagged ? FrameType::Tagged : FrameType::Vector;
             mMaxSize = maxSize;
             mSize = size;
         }
@@ -522,11 +522,16 @@ void *FrameLib_ContextAllocator::alloc(size_t size)
 }
 
 void FrameLib_ContextAllocator::dealloc(void *ptr)
-{
-    // Deallocate using free blocks if present
-    
+{    
     if (ptr)
         mAllocator.dealloc(ptr);
+}
+
+// Memory Size
+
+size_t FrameLib_ContextAllocator::memorySize(void *ptr)
+{
+    return blockSize(ptr);
 }
 
 // Prune the global allocator

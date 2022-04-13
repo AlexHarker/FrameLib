@@ -8,7 +8,9 @@ class FrameLib_MaxClass_FromMax : public FrameLib_MaxClass_Expand<FrameLib_FromH
 {
     struct FromHostProxy : public FrameLib_FromHost::Proxy, public FrameLib_MaxProxy
     {
-        FromHostProxy() : FrameLib_FromHost::Proxy(true, true) {}
+        FromHostProxy(t_object *x)
+        : FrameLib_FromHost::Proxy(true, true)
+        , FrameLib_MaxProxy(x) {}
     };
     
 public:
@@ -30,12 +32,12 @@ public:
     
 private:
     
-    FromHostProxy *mProxy;
+    FromHostProxy *mHostProxy;
 };
 
 // Max Class
 
-// Class Initisation
+// Class Initialisation
 
 void FrameLib_MaxClass_FromMax::classInit(t_class *c, t_symbol *nameSpace, const char *classname)
 {
@@ -50,9 +52,9 @@ void FrameLib_MaxClass_FromMax::classInit(t_class *c, t_symbol *nameSpace, const
 // Constructor
 
 FrameLib_MaxClass_FromMax::FrameLib_MaxClass_FromMax(t_object *x, t_symbol *s, long argc, t_atom *argv)
-: FrameLib_MaxClass(x, s, argc, argv, new FromHostProxy())
+: FrameLib_MaxClass(x, s, argc, argv, new FromHostProxy(x))
 {
-    mProxy = dynamic_cast<FromHostProxy *>(mFrameLibProxy.get());
+    mHostProxy = static_cast<FromHostProxy *>(mProxy.get());
 }
 
 // Additional handlers
@@ -64,7 +66,7 @@ void FrameLib_MaxClass_FromMax::intHandler(t_atom_long in)
 
 void FrameLib_MaxClass_FromMax::floatHandler(double in)
 {
-    mProxy->sendFromHost(0, &in, 1);
+    mHostProxy->sendFromHost(0, &in, 1);
 }
 
 void FrameLib_MaxClass_FromMax::list(t_symbol *s, long argc, t_atom *argv)
@@ -74,7 +76,7 @@ void FrameLib_MaxClass_FromMax::list(t_symbol *s, long argc, t_atom *argv)
     for (long i = 0; i < argc; i++)
         temporary[i] = atom_getfloat(argv++);
         
-    mProxy->sendFromHost(0, temporary.data(), argc);
+    mHostProxy->sendFromHost(0, temporary.data(), argc);
 }
 
 void FrameLib_MaxClass_FromMax::anything(t_symbol *s, long argc, t_atom *argv)
@@ -83,7 +85,7 @@ void FrameLib_MaxClass_FromMax::anything(t_symbol *s, long argc, t_atom *argv)
         object_error(*this, "too many arguments for string value");
     
     if (argc && atom_gettype(argv) == A_SYM)
-        mProxy->sendFromHost(0, s->s_name, atom_getsym(argv)->s_name);
+        mHostProxy->sendFromHost(0, s->s_name, atom_getsym(argv)->s_name);
     else
     {
         std::vector<double> temporary(argc);
@@ -91,7 +93,7 @@ void FrameLib_MaxClass_FromMax::anything(t_symbol *s, long argc, t_atom *argv)
         for (long i = 0; i < argc; i++)
             temporary[i] = atom_getfloat(argv++);
         
-        mProxy->sendFromHost(0, s->s_name, temporary.data(), argc);
+        mHostProxy->sendFromHost(0, s->s_name, temporary.data(), argc);
     }
 }
 

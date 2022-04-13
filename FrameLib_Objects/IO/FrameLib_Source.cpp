@@ -80,7 +80,7 @@ FrameLib_Source::ParameterInfo::ParameterInfo()
     add("Sets the internal buffer size in the units specified by the units parameter.");
     add("Sets the length of output frames in the units specified by the units parameter.");
     add("Sets the time units used to determine the buffer size and output length.");
-    add("Sets the input delay in the units specified by the units parameter: "
+    add("Sets the input delay in the units specified by the units parameter. "
         "Note that a minimum delay (or latency) is applied of the output length.");
     add("Sets the interpolation mode: "
         "none - no interpolation. "
@@ -101,9 +101,9 @@ double FrameLib_Source::convertTimeToSamples(double time)
         case kSeconds:  return secondsToSamples(time);
     }
 
-	assert("This code should never run");
-
-	return time;
+    assert("This code should never run");
+    
+    return time;
 }
 
 unsigned long FrameLib_Source::convertTimeToIntSamples(double time)
@@ -125,7 +125,7 @@ void FrameLib_Source::copy(const double *input, unsigned long offset, unsigned l
 
 void FrameLib_Source::objectReset()
 {
-	size_t size = convertTimeToIntSamples(mParameters.getValue(kBufferSize));
+    size_t size = convertTimeToIntSamples(mParameters.getValue(kBufferSize));
     
     // Limit the buffer size ensuring there are enough additional samples for interpolation and the max block size
     
@@ -161,7 +161,7 @@ void FrameLib_Source::update()
 
 void FrameLib_Source::process()
 {
-    InterpType interpType = kInterpNone;
+    InterpType interpType = InterpType::None;
 
     unsigned long sizeOut = mLength;
     
@@ -184,10 +184,10 @@ void FrameLib_Source::process()
         switch (mParameters.getEnum<Interpolation>(kInterpolation))
         {
             case kNone:         break;
-            case kLinear:       interpType = kInterpLinear;             break;
-            case kHermite:      interpType = kInterpCubicHermite;       break;
-            case kBSpline:      interpType = kInterpCubicBSpline;       break;
-            case kLagrange:     interpType = kInterpCubicLagrange;      break;
+            case kLinear:       interpType = InterpType::Linear;            break;
+            case kHermite:      interpType = InterpType::CubicHermite;      break;
+            case kBSpline:      interpType = InterpType::CubicBSpline;      break;
+            case kLagrange:     interpType = InterpType::CubicLagrange;     break;
         }
     }
     
@@ -204,7 +204,7 @@ void FrameLib_Source::process()
     
     // Choose sample or sub-sample accuracy
     
-    if (interpType == kInterpNone)
+    if (interpType == InterpType::None)
     {
         // Calculate actual offset into buffer
     

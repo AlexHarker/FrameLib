@@ -1,22 +1,22 @@
 
 #include "FrameLib_Chain.h"
-#include "FrameLib_Sort_Functions.h"
+#include "FrameLib_Sorting_Functions.h"
 
 FrameLib_Chain::FrameLib_Chain(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Scheduler(context, proxy, &sParamInfo, 2, 2)
 , mPosition(0)
 {
-    mParameters.addEnum(kUnits, "units", 1);
+    mParameters.addEnum(kUnits, "units", 0);
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
     
-    mParameters.addEnum(kTimeMode, "time", 2);
+    mParameters.addEnum(kTimeMode, "time", 1);
     mParameters.addEnumItem(kAbsolute, "absolute");
     mParameters.addEnumItem(kRelative, "relative");
     mParameters.addEnumItem(kInterval, "interval", true);
     
-    mParameters.addEnum(kMode, "mode", 3);
+    mParameters.addEnum(kMode, "mode", 2);
     mParameters.addEnumItem(kReplace, "replace");
     mParameters.addEnumItem(kAdd, "add");
     mParameters.addEnumItem(kAppend, "append");
@@ -159,7 +159,7 @@ FrameLib_Chain::SchedulerInfo FrameLib_Chain::schedule(bool newFrame, bool noAdv
         
         // Copy pending old items
         
-        std::copy_n(mTimes.get() + mPosition, remain, times.get());
+        std::copy_n(mTimes.data() + mPosition, remain, times.data());
         
         // Write new items
         
@@ -211,8 +211,8 @@ FrameLib_Chain::SchedulerInfo FrameLib_Chain::schedule(bool newFrame, bool noAdv
         if (mode == kAdd || timeMode != kInterval)
         {
             unsigned long offset = mode == kAppend ? remain : 0;
-            sortAscending(times.get() + offset, size - offset);
-            size = removeDuplicates(times.get(), size, offset ? offset - 1 : 0);
+            sortAscending(times.data() + offset, size - offset);
+            size = removeDuplicates(times.data(), size, offset ? offset - 1 : 0);
         }
         
         // Check for a trigger now

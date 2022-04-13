@@ -4,7 +4,7 @@
 // Constructor
 
 FrameLib_Unpack::FrameLib_Unpack(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
-: FrameLib_Multistream(kProcessor, context, proxy, false, 1)
+: FrameLib_Multistream(ObjectType::Processor, context, proxy, false, 1)
 , mParameters(context, proxy, &sParamInfo)
 {
     mParameters.addInt(kNumOuts, "num_outs", 2, 0);
@@ -28,7 +28,7 @@ std::string FrameLib_Unpack::objectInfo(bool verbose)
 
 std::string FrameLib_Unpack::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Multistream Input - to be unpacked into individual streams", "Multistream Input", idx, verbose);
+    return formatInfo("Multistream Input - to be unpacked into individual streams", "Multistream Input", verbose);
 }
 
 std::string FrameLib_Unpack::outputInfo(unsigned long idx, bool verbose)

@@ -6,11 +6,6 @@
 FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo)
 {
-    const int strBufSize = 10;
-    
-    char argStr[strBufSize];
-    char tagStr[strBufSize];
-    
     mParameters.addInt(kNumIns, "num_ins", 1);
     mParameters.setClip(1, maxNumIns);
     mParameters.setInstantiation();
@@ -31,9 +26,7 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
     {
         for (int i = 0; i < maxNumIns; i++)
         {
-            snprintf(argStr, strBufSize, "%d", i);
-            snprintf(tagStr, strBufSize, "tag_%02d", i + 1);
-            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(tagStr) != serialisedParameters->end())
+            if (serialisedParameters->find(FrameLib_StringMaker<>(i)) != serialisedParameters->end() || serialisedParameters->find(FrameLib_StringMaker<>("tag_", i + 1, 2)) != serialisedParameters->end())
                 mParameters.set(kNumIns, (long) (i + 1));
         }
     }
@@ -43,10 +36,7 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
     mNumIns = mParameters.getInt(kNumIns);
     
     for (unsigned long i = 0; i < mNumIns; i++)
-    {
-        snprintf(tagStr, strBufSize, "tag_%02lu", i + 1);
-        mParameters.addString(kTags + i, tagStr, i);
-    }
+        mParameters.addString(kTags + i, FrameLib_StringMaker<>("tag_", i + 1, 2), i);
     
     // Read in again to get parameter tags
     
@@ -56,8 +46,8 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
 
     setIO(mNumIns + 1, 1);
     
-    setInputMode(mNumIns, false, true, false, kFrameTagged);
-    setOutputType(0, kFrameTagged);
+    setInputMode(mNumIns, false, true, false, FrameType::Tagged);
+    setOutputType(0, FrameType::Tagged);
     
     addParameterInput();
 }

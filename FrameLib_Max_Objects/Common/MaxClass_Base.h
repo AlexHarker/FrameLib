@@ -38,7 +38,7 @@ public:
     // Unique pointers to t_objects
     
     using unique_object_ptr = std::unique_ptr<t_object, ObjectFree>;
-    unique_object_ptr toUnique(void *ptr) { return unique_object_ptr(reinterpret_cast<t_object *>(ptr)); }
+    static unique_object_ptr toUnique(void *ptr) { return unique_object_ptr(reinterpret_cast<t_object *>(ptr)); }
     
     // Qelem struct for C++-style usage
     
@@ -53,7 +53,7 @@ public:
 
     private:
         
-        t_qelem mQelem;
+        t_qelem *mQelem;
     };
     
     // Default Constructor
@@ -71,7 +71,7 @@ public:
     
     template <class T>struct Gimme { typedef void (T::*MethodGimme) (t_symbol *s, long ac, t_atom *av); };
     template <class T, typename Gimme<T>::MethodGimme F> static void call(T *x, t_symbol *s, long ac, t_atom *av) {(x->*F)(s, ac, av); };
-	template <class T, typename Gimme<T>::MethodGimme F>
+    template <class T, typename Gimme<T>::MethodGimme F>
     static void addMethod(t_class *c, const char *name) { auto f = call<T, F>;  class_addmethod(c, (method) f, name, A_GIMME, 0); }
     
     template <class T> struct Long { typedef void (T::*MethodLong)(t_atom_long v); };
@@ -126,6 +126,12 @@ public:
     // C++ style variadic call to object_method_imp
     
     template <class ReturnType = void *, typename...Args>
+    static ReturnType objectMethod(t_object *object, const char* theMethodName, Args...args)
+    {
+        return objectMethod<ReturnType>(object, gensym(theMethodName), args...);
+    }
+    
+    template <class ReturnType = void *, typename...Args>
     static ReturnType objectMethod(t_object *object, t_symbol* theMethod, Args...args)
     {
         void *pad = nullptr;
@@ -148,6 +154,15 @@ public:
                                       objectMethodArg(z));
         
         return reinterpret_cast<ReturnType>(ret);
+    }
+    
+    // Get the association of a patch
+    
+    static t_object *getAssociation(t_object *patch)
+    {
+        t_object *assoc = nullptr;
+        objectMethod(patch, "getassoc", &assoc);
+        return assoc;
     }
     
     // Static Methods for class initialisation, object creation and deletion

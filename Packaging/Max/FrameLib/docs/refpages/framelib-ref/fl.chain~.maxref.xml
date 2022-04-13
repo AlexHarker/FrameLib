@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
+<c74object name="fl.chain~" module="FrameLib" category="FrameLib Schedulers">
+  <digest>
+    Schedules frames in the future at times specified times in the input frame
+  </digest>
+  <description>
+    The output is an empty trigger frame. Inputs interact with previously scheduled frames according to time and mode parameters. The remaining count output can be used to track the number of currently scheduled frames.
+  </description>
+  <misc name="Parameters">
+    <entry name="/units [enum]">
+      <description>
+        Sets the time units used at the input.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><p /><i>(default: <m>samples</m>)</i>
+      </description>
+    </entry>
+    <entry name="/time [enum]">
+      <description>
+        Sets the way in which input values are interpreted:<p /><bullet>[0] - <m>absolute</m> - times are interpreted as absolute values since the start of time.</bullet><bullet>[1] - <m>relative</m> - times are interpreted as relative to the current reference time.</bullet><bullet>[2] - <m>interval</m> - times are interpreted as intervals (deltas) relative to the current reference time.</bullet><p />Note that the reference time depends on the mode parameter.<p /><i>(default: <m>interval</m>)</i>
+      </description>
+    </entry>
+    <entry name="/mode [enum]">
+      <description>
+        Sets the mode of operation:<p /><bullet>[0] - <m>replace</m> - cancel previously scheduled frames before scheduling those in the input frame.</bullet><bullet>[1] - <m>add</m> - add new frames to those already scheduled (even if before those already scheduled).</bullet><bullet>[2] - <m>append</m> - schedule new frames only after those currently scheduled have completed.</bullet><p />Note that in replace and add modes the reference time is the time of the incoming frame. In append mode the reference time is that of the last currently scheduled frame. In append mode absolute times prior to the end of those already scheduled are ignored.<p /><i>(default: <m>replace</m>)</i>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Schedulers</metadata>
+  </metadatalist>
+  <objarglist>
+    <objarg name="units" optional="1" type="symbol">
+      <digest>
+        Sets the time units used at the input
+      </digest>
+      <description>
+        This argument sets the units parameter:<p /><p />Sets the time units used at the input.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><p /><i>(default: <m>samples</m>)</i>
+      </description>
+    </objarg>
+    <objarg name="time" optional="1" type="symbol">
+      <digest>
+        Sets the way in which input values are interpreted
+      </digest>
+      <description>
+        This argument sets the time parameter:<p /><p />Sets the way in which input values are interpreted:<p /><bullet>[0] - <m>absolute</m> - times are interpreted as absolute values since the start of time.</bullet><bullet>[1] - <m>relative</m> - times are interpreted as relative to the current reference time.</bullet><bullet>[2] - <m>interval</m> - times are interpreted as intervals (deltas) relative to the current reference time.</bullet><p />Note that the reference time depends on the mode parameter.<p /><i>(default: <m>interval</m>)</i>
+      </description>
+    </objarg>
+    <objarg name="mode" optional="1" type="symbol">
+      <digest>
+        Sets the mode of operation
+      </digest>
+      <description>
+        This argument sets the mode parameter:<p /><p />Sets the mode of operation:<p /><bullet>[0] - <m>replace</m> - cancel previously scheduled frames before scheduling those in the input frame.</bullet><bullet>[1] - <m>add</m> - add new frames to those already scheduled (even if before those already scheduled).</bullet><bullet>[2] - <m>append</m> - schedule new frames only after those currently scheduled have completed.</bullet><p />Note that in replace and add modes the reference time is the time of the incoming frame. In append mode the reference time is that of the last currently scheduled frame. In append mode absolute times prior to the end of those already scheduled are ignored.<p /><i>(default: <m>replace</m>)</i>
+      </description>
+    </objarg>
+  </objarglist>
+  <methodlist>
+    <method name="info">
+      <arglist>
+        <arg name="items" optional="1" type="list" />
+      </arglist>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        Print info about <o>fl.chain~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+      </description>
+    </method>
+    <method name="process">
+      <arglist>
+        <arg name="length" optional="0" type="int" />
+      </arglist>
+      <digest>
+        Process a network in non-realtime
+      </digest>
+      <description>
+        Processes a non-realtime network, advancing time by the number of samples specified by the required <m>length</m> argument. <br /><br />This will only take effect if the object has its <m>rt</m> attribute set to <m>0</m> More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+    </method>
+    <method name="reset">
+      <arglist>
+        <arg name="samplerate" optional="1" type="number" />
+      </arglist>
+      <digest>
+        Reset a non-realtime network
+      </digest>
+      <description>
+        Resets a non-realtime network to the start of time ready for processing, optionally setting the sample rate. If the <m>samplerate</m> argument is omitted the network will be set to the global sample rate.<br /><br />This will only take effect if <o>fl.chain~</o> has its <m>rt</m> attribute set to <m>0</m>. More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+    </method>
+    <method name="signal">
+      <arglist />
+      <digest>
+        Synchronise with audio or accept signal IO
+      </digest>
+      <description>
+        Synchonises FrameLib objects with Max's audio processing.
+      </description>
+    </method>
+    <method name="frame">
+      <arglist />
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+    <method name="sync">
+      <arglist />
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+  </methodlist>
+  <attributelist>
+    <attribute name="buffer" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Non-realtime Buffer
+      </digest>
+      <description>
+        Sets the non-realtime <o>buffer~</o> for <o>fl.chain~</o>. This is the <o>buffer~</o> used for IO in a non-realtime setting.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Buffer" />
+      </attributelist>
+    </attribute>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for <o>fl.chain~</o>. When set to <m>0</m> <o>fl.chain~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for <o>fl.chain~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
+  <seealsolist>
+    <seealso name="fl.audiotrigger~" />
+    <seealso name="fl.interval~" />
+    <seealso name="fl.once~" />
+    <seealso name="fl.perblock~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>timing, schedulers, triggers</description>
+    </entry>
+  </misc>
+</c74object>

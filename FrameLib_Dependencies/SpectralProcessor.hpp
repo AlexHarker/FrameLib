@@ -20,7 +20,7 @@ class spectral_processor
     
 public:
     
-    enum EdgeMode { kEdgeLinear, kEdgeWrap, kEdgeWrapCentre, kEdgeFold, kEdgeFoldRepeat };
+    enum class EdgeMode { Linear, Wrap, WrapCentre, Fold, FoldRepeat };
     
     struct in_ptr
     {
@@ -34,7 +34,7 @@ public:
     
     template <typename U = Allocator, enable_if_t<std::is_default_constructible<U>::value> = 0>
     spectral_processor(uintptr_t max_fft_size = 32768)
-    :  m_max_fft_size_log2(0)
+    : m_max_fft_size_log2(0)
     , m_fft_setup(nullptr)
     {
         if (max_fft_size)
@@ -266,14 +266,14 @@ protected:
         
         EdgeMode mode() const           { return m_mode; }
         
-        bool foldMode() const           { return m_mode == kEdgeFold || m_mode == kEdgeFoldRepeat; }
+        bool foldMode() const           { return m_mode == EdgeMode::Fold || m_mode == EdgeMode::FoldRepeat; }
 
         uintptr_t size1() const         { return m_size1; }
         uintptr_t size2() const         { return m_size2; }
         uintptr_t min() const           { return std::min(m_size1, m_size2); }
         uintptr_t max() const           { return std::max(m_size1, m_size2); }
         uintptr_t linear() const        { return m_size1 + m_size2 - 1; }
-        uintptr_t fold_copy() const     { return max() + (uintptr_t(1) << (min() >> 1)); }
+        uintptr_t fold_copy() const     { return max() + ((min() >> 1) << 1); }
         uintptr_t fft() const           { return uintptr_t(1) << m_fft_size_log2; }
         uintptr_t fft_log2() const      { return m_fft_size_log2; }
         
@@ -387,20 +387,20 @@ protected:
         
         switch (sizes.mode())
         {
-            case kEdgeLinear:
+            case EdgeMode::Linear:
             {
                 copy(output, spectrum, 0, 0, sizes.linear());
                 break;
             }
                 
-            case kEdgeWrap:
+            case EdgeMode::Wrap:
             {
                 copy(output, spectrum, 0, 0, sizes.max());
                 wrap(output, spectrum, 0, sizes.linear(), min_m1);
                 break;
             }
         
-            case kEdgeWrapCentre:
+            case EdgeMode::WrapCentre:
             {
                 uintptr_t wrapped = min_m1 >> 1;
                 copy(output, spectrum, 0, wrapped, sizes.max());
@@ -409,8 +409,8 @@ protected:
                 break;
             }
                 
-            case kEdgeFold:
-            case kEdgeFoldRepeat:
+            case EdgeMode::Fold:
+            case EdgeMode::FoldRepeat:
             {
                 copy(output, spectrum, 0, min_m1, sizes.max());
                 break;
@@ -425,14 +425,14 @@ protected:
     
         switch (sizes.mode())
         {
-            case kEdgeLinear:
+            case EdgeMode::Linear:
             {
                 copy(output, spectrum, 0, 0, sizes.size1());
                 copy(output, spectrum, sizes.size1(), sizes.fft() - size2_m1, size2_m1);
                 break;
             }
                 
-            case kEdgeWrap:
+            case EdgeMode::Wrap:
             {
                 copy(output, spectrum, 0, 0, sizes.size1());
                 zero(output, sizes.size1(), sizes.size2());
@@ -440,7 +440,7 @@ protected:
                 break;
             }
                 
-            case kEdgeWrapCentre:
+            case EdgeMode::WrapCentre:
             {
                 uintptr_t wrapped1 = (sizes.min() - 1) >> 1;
                 uintptr_t wrapped2 = std::min(size2_m1, sizes.max() - wrapped1);
@@ -456,8 +456,8 @@ protected:
                 break;
             }
             
-            case kEdgeFold:
-            case kEdgeFoldRepeat:
+            case EdgeMode::Fold:
+            case EdgeMode::FoldRepeat:
             {
                 if (sizes.size1() >= sizes.size2())
                 {
@@ -491,7 +491,7 @@ protected:
         if ((sizes.fft() > max_fft_size()))
             return 0;
         
-        return mode != kEdgeLinear ? sizes.max() : sizes.linear();
+        return mode != EdgeMode::Linear ? sizes.max() : sizes.linear();
     }
     
     template<SpectralOp Op>
@@ -499,7 +499,7 @@ protected:
     {
         bool fold1 = sizes.foldMode() && sizes.size1() >= sizes.size2();
         bool fold2 = sizes.foldMode() && !fold1;
-        bool repeat = sizes.mode() == kEdgeFoldRepeat;
+        bool repeat = sizes.mode() == EdgeMode::FoldRepeat;
         uintptr_t fold_size = sizes.min() >> 1;
         
         copy_fold_zero(io, r_in1, i_in1, sizes.fft(), fold1 ? fold_size : 0, repeat);
@@ -557,7 +557,7 @@ protected:
         else
         {
             uintptr_t fold_size = sizes.min() >> 1;
-            bool repeat = sizes.mode() == kEdgeFoldRepeat;
+            bool repeat = sizes.mode() == EdgeMode::FoldRepeat;
 
             if (sizes.size1() >= sizes.size2())
             {

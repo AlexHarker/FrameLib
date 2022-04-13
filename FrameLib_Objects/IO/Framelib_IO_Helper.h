@@ -30,9 +30,9 @@ public:
     
     size_t limitBufferSize(size_t size, double samplingRate)
     {
-        if ((size / samplingRate) > 1000.0)
+        if ((size / samplingRate) > 10000.0)
         {
-            mOwner.getReporter()(kErrorObject, mOwner.getProxy(), "buffer size is limited to 10,000 seconds");
+            mOwner.getReporter()(ErrorSource::Object, mOwner.getProxy(), "buffer size is limited to 10,000 seconds");
             return static_cast<size_t>(round(10000 * samplingRate));
         }
         
@@ -70,9 +70,9 @@ public:
             case kSeconds:      return seconds;
         }
 
-		assert("this code should never run");
-
-		return samples;
+        assert("this code should never run");
+        
+        return samples;
     }
     
 private:

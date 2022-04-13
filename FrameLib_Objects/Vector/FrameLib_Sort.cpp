@@ -1,6 +1,6 @@
 
 #include "FrameLib_Sort.h"
-#include "FrameLib_Sort_Functions.h"
+#include "FrameLib_Sorting_Functions.h"
 
 // Constructor
 
@@ -91,7 +91,7 @@ void FrameLib_Sort::process()
         else
         {
             zeroVector(output, size);
-            getReporter()(kErrorObject, getProxy(), "couldn't allocate temporary memory");
+            getReporter()(ErrorSource::Object, getProxy(), "couldn't allocate temporary memory");
         }
     }
 }

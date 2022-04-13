@@ -5,14 +5,18 @@ PRODUCT_NAME = $(TARGET_NAME)
 
 // Per architecture and deployment settings
 
-ARCHS = i386 x86_64
+ARCHS = x86_64 arm64
 
-MACOSX_DEPLOYMENT_TARGET = 10.7
+MACOSX_DEPLOYMENT_TARGET = 10.9
 CLANG_CXX_LANGUAGE_STANDARD = c++11
 CLANG_CXX_LIBRARY = libc++
 CLANG_X86_VECTOR_INSTRUCTIONS = avx
 
 LLVM_LTO = Monolithic
 
+OTHER_LDFLAGS = -framework Accelerate
+
+// Hidden visibility unless explicitly set otherwise
+
 OTHER_CFLAGS = -fvisibility=hidden
-OTHER_CPLUSPLUSFLAGS = -fvisibility=hidden -Winconsistent-missing-override -Wno-missing-braces
+OTHER_CPLUSPLUSFLAGS = -fvisibility=hidden
