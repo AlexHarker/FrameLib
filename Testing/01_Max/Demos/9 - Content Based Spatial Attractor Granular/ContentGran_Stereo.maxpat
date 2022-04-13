@@ -3315,6 +3315,18 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "" ],
+									"patching_rect" : [ 31.0, 104.0, 297.0, 22.0 ],
+									"text" : "fl.chop~ 3 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-17",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -3586,25 +3598,13 @@
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-75",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 31.0, 143.0, 73.0, 22.0 ],
-									"text" : "fl.chop~ 2 1"
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-40",
 									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 31.0, 98.0, 500.0, 22.0 ],
-									"text" : "fl.spatial~ /rolloff 12. /blur 0.2 /inputmode cartesian /maxspeakers 2 /speakers -30 0 1 30 0 1"
+									"numinlets" : 4,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"patching_rect" : [ 31.0, 144.0, 436.0, 22.0 ],
+									"text" : "fl.spatial~ /rolloff 12. /blur 0.001 /input_coords cartesian /speakers 1 -30 0 1 30 0"
 								}
 
 							}
@@ -3648,14 +3648,43 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
+									"destination" : [ "obj-40", 2 ],
+									"source" : [ "obj-1", 2 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-40", 1 ],
+									"source" : [ "obj-1", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-40", 0 ],
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
 									"source" : [ "obj-17", 0 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-75", 0 ],
+									"destination" : [ "obj-44", 1 ],
+									"midpoints" : [ 457.5, 174.5, 94.5, 174.5 ],
+									"source" : [ "obj-40", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-44", 0 ],
 									"source" : [ "obj-40", 0 ]
 								}
 
@@ -3671,20 +3700,6 @@
 								"patchline" : 								{
 									"destination" : [ "obj-17", 0 ],
 									"source" : [ "obj-58", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-44", 1 ],
-									"source" : [ "obj-75", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-44", 0 ],
-									"source" : [ "obj-75", 0 ]
 								}
 
 							}
@@ -10421,195 +10436,6 @@
 					"source" : [ "obj-95", 0 ]
 				}
 
-			}
- ],
-		"dependency_cache" : [ 			{
-				"name" : "3DControl1.js",
-				"bootpath" : "~/Documents/Development/FrameLib/Testing/01_Max/Demos/9 - Content Based Spatial Attractor Granular",
-				"patcherrelativepath" : ".",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "HemisphereScale.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Testing/01_Max/Demos/9 - Content Based Spatial Attractor Granular",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "SliderControl.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Testing/01_Max/Demos/9 - Content Based Spatial Attractor Granular",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "SpatialAttractors.maxpat",
-				"bootpath" : "~/Documents/Development/FrameLib/Testing/01_Max/Demos/9 - Content Based Spatial Attractor Granular",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.abs~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.chop~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.divide~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.exp2~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.exp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.fft~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.greaterthan~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.hypot~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.join~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.length~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.log2~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.log~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.map~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.max~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.mean~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.minus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.min~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.pack~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.plus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.poltocar~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.pow~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.read~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.samplerate~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.select~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.spatial~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.split~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sqrt~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sum~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.svf~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tag~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.trace~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.unpack~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.window~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "valconvert.mxo",
-				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0
