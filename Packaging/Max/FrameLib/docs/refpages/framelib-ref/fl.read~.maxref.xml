@@ -15,7 +15,7 @@
     </entry>
     <entry name="/channel [int]">
       <description>
-        Sets the buffer channel to use.<p /><i>(default: 1)</i>
+        Sets the buffer channel to use. Channels start from zero. However, if set to minus one then the channel will match the stream id.<p /><i>(default: -1)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
@@ -58,7 +58,7 @@
         Sets the buffer channel to use
       </digest>
       <description>
-        This argument sets the channel parameter:<p /><p />Sets the buffer channel to use.<p /><i>(default: 1)</i>
+        This argument sets the channel parameter:<p /><p />Sets the buffer channel to use. Channels start from zero. However, if set to minus one then the channel will match the stream id.<p /><i>(default: -1)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
