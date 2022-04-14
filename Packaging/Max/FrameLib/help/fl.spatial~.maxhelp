@@ -3496,7 +3496,7 @@
                                         379.0,
                                         23.0
                                     ],
-                                    "text": "fl.spatial~ /speakers 1 -30 0 1 30 0"
+                                    "text": "fl.spatial~ /speakers 1 -30 0 1 30 0 /constrain off"
                                 }
                             },
                             {

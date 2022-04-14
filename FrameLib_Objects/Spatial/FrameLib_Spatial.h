@@ -18,7 +18,7 @@ class FrameLib_Spatial final : public FrameLib_Processor
     enum AngleUnits { kRadians, kDegrees };
     enum OrientationTypes { kXClockwise, kXAntiClockwise, kYClockwise, kYAntiClockwise };
     enum CoordinateTypes { kSpherical, kCartesian };
-    enum ConstrainModes { kNone, kHemisphere, kSphere, kConvexHull };
+    enum ConstrainModes { kOff, kHemisphere, kSphere, kConvexHull };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     

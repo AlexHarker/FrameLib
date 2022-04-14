@@ -222,7 +222,7 @@ FrameLib_Spatial::Vec3 FrameLib_Spatial::constrain(Vec3 point)
     
     // No Spatial Constraint
     
-    if (mode == kNone)
+    if (mode == kOff)
         return point;
         
     // Hemispherical / Spherical Constraint
@@ -378,7 +378,7 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, const FrameLib_Para
     mParameters.setInstantiation();
 
     mParameters.addEnum(kConstrain, "constrain", 4);
-    mParameters.addEnumItem(kNone, "none");
+    mParameters.addEnumItem(kOff, "off");
     mParameters.addEnumItem(kHemisphere, "hemisphere");
     mParameters.addEnumItem(kSphere, "sphere");
     mParameters.addEnumItem(kConvexHull, "hull", true);
@@ -491,7 +491,7 @@ FrameLib_Spatial::ParameterInfo::ParameterInfo()
     add("Sets the coordinate system used for input.");
     add("Sets the coordinate system used for speaker positions.");
     add("Sets the method for constraining positions outside of the speaker array: "
-        "none - suitable when the input is already within the speaker array (most efficient). "
+        "off - suitable when the input is already within the speaker array (most efficient). "
         "hemisphere - restrict to the upper hemisphere of the sphere described below. "
         "sphere - restrict to the smallest sphere centred at the origin containing all speakers. "
         "hull - restrict to the convex hull of the speaker array (least efficient / always correct.");
