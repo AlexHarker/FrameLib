@@ -7,26 +7,25 @@ FrameLib_Join::FrameLib_Join(FrameLib_Context context, const FrameLib_Parameters
 : FrameLib_Processor(context, proxy, &sParamInfo)
 {
     mParameters.addInt(kNumIns, "num_ins", 2, 0);
-    mParameters.setClip(2, 32);
+    mParameters.setClip(2, maxNumIns);
     mParameters.setInstantiation();
     
-    mParameters.setErrorReportingEnabled(false);
-    mParameters.set(serialisedParameters);
-    mParameters.setErrorReportingEnabled(true);
-
-    mParameters.addBoolArray(kTriggers, "trigger_ins", 1.0, mParameters.getInt(kNumIns));
+    mParameters.addVariableBoolArray(kTriggers, "trigger_ins", true, maxNumIns, maxNumIns);
     mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
     
-    setIO(mParameters.getInt(kNumIns), 1);
+    mNumIns = mParameters.getInt(kNumIns);
+    
+    setIO(mNumIns, 1);
     
     const double *triggers = mParameters.getArray(kTriggers);
-    
+    unsigned long triggersSize = mParameters.getArraySize(kTriggers);
+        
     // Set up triggers
     
-    for (unsigned long i = 0; i < getNumIns(); i++)
-        setInputMode(i, false, triggers[i], false);
+    for (unsigned long i = 0; i < mNumIns; i++)
+        setInputMode(i, false, (i < triggersSize) && triggers[i], false);
 }
 
 // Info
@@ -71,7 +70,7 @@ void FrameLib_Join::process()
     
     // Calculate size
     
-    for (unsigned long i = 0; i < getNumIns(); i++)
+    for (unsigned long i = 0; i < mNumIns; i++)
     {
         getInput(i, &sizeIn);
         sizeOut += sizeIn;
@@ -86,7 +85,7 @@ void FrameLib_Join::process()
     
     if (sizeOut)
     {
-        for (unsigned long i = 0; i < getNumIns(); i++)
+        for (unsigned long i = 0; i < mNumIns; i++)
         {
             const double *input = getInput(i, &sizeIn);
             copyVector(output + offset, input, sizeIn);
