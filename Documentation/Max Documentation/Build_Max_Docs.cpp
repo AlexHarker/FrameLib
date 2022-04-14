@@ -549,6 +549,13 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         file << tab2 + "</attribute>\n";
     };
     
+    auto writeArgumentsStream = [&]()
+    {
+        file << tab2 + "<objarg name='[stream-specifier]' optional='1' type='symbol'>\n";
+        writeDigestDescription(tab3, "Specifies the number of streams", "Optionally, the first argument may be used to explicitly specify the number of streams. This is done using a symbol starting with the character <m>=</m> followed by the required number of streams (without a space). For example, an argument of <m>=4</m> will set the number of streams to 4.");
+        file << tab2 + "</objarg>\n";
+    };
+    
     auto writeParamAsArgument = [&](unsigned long idx)
     {
         long paramIdx = -1;
@@ -559,10 +566,14 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         
         if (paramIdx == -1)
         {
-            if (idx)
-                file << tab1 + "</objarglist>\n\n";
-            else
-                file << tab1 + "<objarglist />\n\n";
+            if (!idx)
+            {
+                file << tab1 + "<objarglist>\n";
+                writeArgumentsStream();
+            }
+            
+            file << tab1 + "</objarglist>\n\n";
+
         
             for (unsigned long i = 0; params && i < params->size(); i++)
 
@@ -576,7 +587,10 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         }
         
         if (!idx)
+        {
             file << tab1 + "<objarglist>\n";
+            writeArgumentsStream();
+        }
         
         std::string type = "number";
         
@@ -613,6 +627,9 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         std::string description("Values typed as arguments will be used as a vector for any inputs that are not connected. Either single values or multi-valued vectors can be entered. The behaviour is similar to that for arguments to standard objects such as <o>+~</o>, or <o>*~</o>.");
         
         file << tab1 + "<objarglist>\n";
+        
+        writeArgumentsStream();
+        
         file << tab2 + "<objarg name='default-input' optional='1' type='list'>\n";
         writeDigestDescription(tab3, digest, description);
         file << tab2 + "</objarg>\n";
@@ -623,6 +640,8 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     {
         file << tab1 + "<objarglist>\n";
         
+        writeArgumentsStream();
+
         for (unsigned long i = 1; i < frameLibObject->getNumIns(); i++)
         {
             std::string argumentName = toLower(frameLibObject->inputInfo(i));
@@ -857,7 +876,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
     file << tab1 + "<attributelist>\n";
     if (frameLibObject->handlesAudio())
         writeAttribute("buffer", "symbol", "Non-realtime Buffer", bufferDescription, "Buffer");
-    writeAttribute("rt", "int", "Realtime flag", rtDescription, "Realtime");
+    writeAttribute("rt", "int", "Realtime Flag", rtDescription, "Realtime");
     writeAttribute("id", "symbol", "Context ID", idDescription, "ID");
     file << tab1 + "</attributelist>\n\n";
     
