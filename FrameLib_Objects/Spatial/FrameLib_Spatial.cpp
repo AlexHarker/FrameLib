@@ -361,17 +361,23 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, const FrameLib_Para
     mParameters.addEnumItem(kRadians, "radians");
     mParameters.addEnumItem(kDegrees, "degrees", true);
     
-    mParameters.addEnum(kInputCoords, "input_coords", 1);
-    mParameters.addEnumItem(kPolar, "polar");
+    mParameters.addEnum(kOrientation, "orientation", 1);
+    mParameters.addEnumItem(kXClockwise, "x_clockwise");
+    mParameters.addEnumItem(kXAntiClockwise, "x_anticlockwise");
+    mParameters.addEnumItem(kYClockwise, "y_clockwise", true);
+    mParameters.addEnumItem(kYAntiClockwise, "y_anticlockwise");
+    
+    mParameters.addEnum(kInputCoords, "input_coords", 2);
+    mParameters.addEnumItem(kSpherical, "spherical");
     mParameters.addEnumItem(kCartesian, "cartesian");
     mParameters.setInstantiation();
 
-    mParameters.addEnum(kSpeakerCoords, "speaker_coords", 2);
-    mParameters.addEnumItem(kPolar, "polar");
+    mParameters.addEnum(kSpeakerCoords, "speaker_coords", 3);
+    mParameters.addEnumItem(kSpherical, "spherical");
     mParameters.addEnumItem(kCartesian, "cartesian");
     mParameters.setInstantiation();
 
-    mParameters.addEnum(kConstrain, "constrain", 3);
+    mParameters.addEnum(kConstrain, "constrain", 4);
     mParameters.addEnumItem(kNone, "none");
     mParameters.addEnumItem(kHemisphere, "hemisphere");
     mParameters.addEnumItem(kSphere, "sphere");
@@ -380,13 +386,13 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, const FrameLib_Para
     mParameters.addVariableDoubleArray(kSpeakers, "speakers", 0.0, 360, 0);
     mParameters.setInstantiation();
     
-    mParameters.addVariableDoubleArray(kWeights, "weights", 1.0, 360, 0);
+    mParameters.addVariableDoubleArray(kWeights, "weights", 1.0, 120, 0);
     mParameters.setMin(0.0);
 
     mParameters.addDouble(kRolloff, "rolloff", 6.0);
     mParameters.setMin(0.0000001);
     mParameters.addDouble(kBlur, "blur", 0.001);
-    mParameters.setMin(0.0000001);
+    mParameters.setMin(0.0);
     mParameters.addInt(kMaxSpeakers, "max_speakers", 0);
     mParameters.setMin(0);
     mParameters.addDouble(kPointFactor, "point_factor", 0.0);
@@ -400,9 +406,9 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, const FrameLib_Para
     
     mSpeakers = allocAutoArray<Vec3>(numSpeakers);
     
-    if (mParameters.getEnum<CoordinateTypes>(kSpeakerCoords) == kPolar)
+    if (mParameters.getEnum<CoordinateTypes>(kSpeakerCoords) == kSpherical)
     {
-        PolToCar convertor(mParameters.getEnum<AngleUnits>(kAngleUnits) == kDegrees);
+        SphericalConversion convertor(mParameters.getEnum<OrientationTypes>(kOrientation), mParameters.getEnum<AngleUnits>(kAngleUnits));
 
         for (unsigned long i = 0; i < numSpeakers; i++)
         {
@@ -440,13 +446,14 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, const FrameLib_Para
 std::string FrameLib_Spatial::objectInfo(bool verbose)
 {
     return formatInfo("Generates multiplication factors for a set of speakers positioned in 3D: "
-                   "The core underlying algorithm is DBAP (distance-based amplitude panning). "
-                   "Input may use cartesian [x, y, z] or polar [radius, azimuth, elevation] coordinates. "
-                   "2D operation can be achieved by setting all z or elevation values to zero. "
-                   "Angles may be set using degrees or radians. "
-                   "Missing values at any input are assumed to be zero. "
-                   "The output size is equal to that of the largest input.",
-                   "Generates multiplication factors for a set of speakers positioned in 3D.", verbose);
+                      "The core underlying algorithm is DBAP (distance-based amplitude panning). "
+                      "Input may use cartesian [x, y, z] or spherical [radius, azimuth, elevation] coordinates. "
+                      "Angles may be set using degrees or radians. "
+                      "2D operation can be achieved by setting all z or elevation values to zero. "
+                      "Missing values at any input are assumed to be zero. "
+                      "Note that the orientation of the spherical coordinates can be adjusted as required. "
+                      "The output size is equal to that of the largest input.",
+                      "Generates multiplication factors for a set of speakers positioned in 3D.", verbose);
 }
 
 std::string FrameLib_Spatial::inputInfo(unsigned long idx, bool verbose)
@@ -475,6 +482,12 @@ FrameLib_Spatial::ParameterInfo FrameLib_Spatial::sParamInfo;
 FrameLib_Spatial::ParameterInfo::ParameterInfo()
 {
     add("Sets the units used for angles.");
+    add("Sets the orientation for spherical coordinates. "
+        "This determines how azimuth is interpreted: "
+        "x_clockwise - zero is the positive x axis / positive angles move clockwise. "
+        "x_anticlockwise - zero is the positive x axis / positive angles move anticlockwise. "
+        "y_clockwise - zero is the positive y axis / positive angles move clockwise. "
+        "y_anticlockwise - zero is the positive y axis / positive angles move anticlockwise.");
     add("Sets the coordinate system used for input.");
     add("Sets the coordinate system used for speaker positions.");
     add("Sets the method for constraining positions outside of the speaker array: "
@@ -484,7 +497,7 @@ FrameLib_Spatial::ParameterInfo::ParameterInfo()
         "hull - restrict to the convex hull of the speaker array (least efficient / always correct.");
     add("Sets the speaker positions in triples (one triple per speaker). "
         "For cartesian coordinates the values are [x, z, y]. "
-        "For polar coordinates the values are [radius, azimuth, elevation].");
+        "For spherical coordinates the values are [radius, azimuth, elevation].");
     add("Sets the speaker weightings (one value per speaker). "
         "By default all speakers are weighted equally. "
         "Using weighting values allows the emphasis or exclusion of specific speakers.");
@@ -515,7 +528,7 @@ void FrameLib_Spatial::process()
     const double rolloff = mParameters.getValue(kRolloff);
     const double pointFactor = mParameters.getValue(kPointFactor);
     
-    const double rolloffFactor =  rolloff / (20 * log10(2.0));
+    const double rolloffFactor = rolloff / (20 * log10(2.0));
     const double blur2 = blur * blur;
     
     maxSpeakers = maxSpeakers == 0 ? numSpeakers : maxSpeakers;
@@ -548,6 +561,8 @@ void FrameLib_Spatial::process()
         // Constrain Position
         
         position = constrain(position);
+        
+        // DBAP
         
         for (unsigned long i = 0; i < numSpeakers; i++)
         {
@@ -602,9 +617,9 @@ void FrameLib_Spatial::process()
             coefficients[i] *= norm;
     };
             
-    if (mInputCoords == kPolar)
+    if (mInputCoords == kSpherical)
     {
-        PolToCar convertor(mParameters.getEnum<AngleUnits>(kAngleUnits) == kDegrees);
+        SphericalConversion convertor(mParameters.getEnum<OrientationTypes>(kOrientation), mParameters.getEnum<AngleUnits>(kAngleUnits));
 
         for (unsigned long i = 0; i < sizeIn; i++)
         {

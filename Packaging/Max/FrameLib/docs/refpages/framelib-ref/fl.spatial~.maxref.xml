@@ -5,7 +5,7 @@
     Generates multiplication factors for a set of speakers positioned in 3D
   </digest>
   <description>
-    The core underlying algorithm is DBAP (distance-based amplitude panning). Input may use cartesian [x, y, z] or polar [radius, azimuth, elevation] coordinates. 2D operation can be achieved by setting all z or elevation values to zero. Angles may be set using degrees or radians. Missing values at any input are assumed to be zero. The output size is equal to that of the largest input.
+    The core underlying algorithm is DBAP (distance-based amplitude panning). Input may use cartesian [x, y, z] or spherical [radius, azimuth, elevation] coordinates. Angles may be set using degrees or radians. 2D operation can be achieved by setting all z or elevation values to zero. Missing values at any input are assumed to be zero. Note that the orientation of the spherical coordinates can be adjusted as required. The output size is equal to that of the largest input.
   </description>
   <misc name="Parameters">
     <entry name="/angles [enum]">
@@ -13,14 +13,19 @@
         Sets the units used for angles.<p /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet><p /><i>(default: <m>degrees</m>)</i>
       </description>
     </entry>
+    <entry name="/orientation [enum]">
+      <description>
+        Sets the orientation for spherical coordinates. This determines how azimuth is interpreted:<p /><bullet>[0] - <m>x_clockwise</m> - zero is the positive x axis / positive angles move clockwise.</bullet><bullet>[1] - <m>x_anticlockwise</m> - zero is the positive x axis / positive angles move anticlockwise.</bullet><bullet>[2] - <m>y_clockwise</m> - zero is the positive y axis / positive angles move clockwise.</bullet><bullet>[3] - <m>y_anticlockwise</m> - zero is the positive y axis / positive angles move anticlockwise.</bullet><p /><i>(default: <m>y_clockwise</m>)</i>
+      </description>
+    </entry>
     <entry name="/input_coords [enum]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the coordinate system used for input.<p /><bullet>[0] - <m>polar</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>polar</m>)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the coordinate system used for input.<p /><bullet>[0] - <m>spherical</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>spherical</m>)</i>
       </description>
     </entry>
     <entry name="/speaker_coords [enum]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the coordinate system used for speaker positions.<p /><bullet>[0] - <m>polar</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>polar</m>)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the coordinate system used for speaker positions.<p /><bullet>[0] - <m>spherical</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>spherical</m>)</i>
       </description>
     </entry>
     <entry name="/constrain [enum]">
@@ -30,12 +35,12 @@
     </entry>
     <entry name="/speakers [variable length double array]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the speaker positions in triples (one triple per speaker). For cartesian coordinates the values are [x, z, y]. For polar coordinates the values are [radius, azimuth, elevation].<p /><i>(default: 0, max size: 360)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the speaker positions in triples (one triple per speaker). For cartesian coordinates the values are [x, z, y]. For spherical coordinates the values are [radius, azimuth, elevation].<p /><i>(default: 0, max size: 360)</i>
       </description>
     </entry>
     <entry name="/weights [variable length double array]">
       <description>
-        Sets the speaker weightings (one value per speaker). By default all speakers are weighted equally. Using weighting values allows the emphasis or exclusion of specific speakers.<p /><i>(default: 1, min: 0, max size: 360)</i>
+        Sets the speaker weightings (one value per speaker). By default all speakers are weighted equally. Using weighting values allows the emphasis or exclusion of specific speakers.<p /><i>(default: 1, min: 0, max size: 120)</i>
       </description>
     </entry>
     <entry name="/rolloff [double]">
@@ -45,7 +50,7 @@
     </entry>
     <entry name="/blur [double]">
       <description>
-        Sets the blur factor. This should be set in relation to the dimensions of the speaker array. Larger numbers result in more blurring of the spatial image.<p /><i>(default: 0.001, min: 1e-07)</i>
+        Sets the blur factor. This should be set in relation to the dimensions of the speaker array. Larger numbers result in more blurring of the spatial image.<p /><i>(default: 0.001, min: 0)</i>
       </description>
     </entry>
     <entry name="/max_speakers [int]">
@@ -81,12 +86,20 @@
         This argument sets the angles parameter:<p /><p />Sets the units used for angles.<p /><bullet>[0] - <m>radians</m></bullet><bullet>[1] - <m>degrees</m></bullet><p /><i>(default: <m>degrees</m>)</i>
       </description>
     </objarg>
+    <objarg name="orientation" optional="1" type="symbol">
+      <digest>
+        Sets the orientation for spherical coordinates
+      </digest>
+      <description>
+        This argument sets the orientation parameter:<p /><p />Sets the orientation for spherical coordinates. This determines how azimuth is interpreted:<p /><bullet>[0] - <m>x_clockwise</m> - zero is the positive x axis / positive angles move clockwise.</bullet><bullet>[1] - <m>x_anticlockwise</m> - zero is the positive x axis / positive angles move anticlockwise.</bullet><bullet>[2] - <m>y_clockwise</m> - zero is the positive y axis / positive angles move clockwise.</bullet><bullet>[3] - <m>y_anticlockwise</m> - zero is the positive y axis / positive angles move anticlockwise.</bullet><p /><i>(default: <m>y_clockwise</m>)</i>
+      </description>
+    </objarg>
     <objarg name="input_coords" optional="1" type="symbol">
       <digest>
         Sets the coordinate system used for input
       </digest>
       <description>
-        This argument sets the input_coords parameter:<p /><p />Sets the coordinate system used for input.<p /><bullet>[0] - <m>polar</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>polar</m>)</i>
+        This argument sets the input_coords parameter:<p /><p />Sets the coordinate system used for input.<p /><bullet>[0] - <m>spherical</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>spherical</m>)</i>
       </description>
     </objarg>
     <objarg name="speaker_coords" optional="1" type="symbol">
@@ -94,7 +107,7 @@
         Sets the coordinate system used for speaker positions
       </digest>
       <description>
-        This argument sets the speaker_coords parameter:<p /><p />Sets the coordinate system used for speaker positions.<p /><bullet>[0] - <m>polar</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>polar</m>)</i>
+        This argument sets the speaker_coords parameter:<p /><p />Sets the coordinate system used for speaker positions.<p /><bullet>[0] - <m>spherical</m></bullet><bullet>[1] - <m>cartesian</m></bullet><p /><i>(default: <m>spherical</m>)</i>
       </description>
     </objarg>
     <objarg name="constrain" optional="1" type="symbol">
