@@ -21,16 +21,29 @@ FrameLib Online:
 
 - FrameLib can be discussed at https://framelib.discourse.group
 
-Credits
+Credits:
 ---------------------------------
-By Alex Harker
+- **FrameLib** by *Alex Harker* <br>
 CeReNeM - The University of Huddersfield
 
-Max Documentation by James Bradbury.
+- Max Documentation by *James Bradbury*.
 
-With thanks to all the beta testers.
-Special thanks to Owen Green, Francesco Cameli and James Bradbury for code for some of the objects.
+- With thanks to all the beta testers.
 
-**Contact:**
+- Special thanks and credit to *Owen Green*, *Francesco Cameli* and *James Bradbury* for code contributions for FrameLib objects.
+
+FrameLib makes use of:
+---------------------------------
+
+- **tlsf** - the two level segregated fit memory allocator by *Matt Conte*: <br>
+https://github.com/mattconte/tlsf
+
+- **convhull_3d** - by *Leo McCormack*: <br> 
+https://github.com/leomccormack/convhull_3d
+
+Copright and licenses for these portions of the software are included with this package in the License file.
+
+Contact:
+---------------------------------
 
 * ajharker@gmail.com

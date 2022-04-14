@@ -35,16 +35,29 @@ What is currently on the horizon:
 ---------------------------------
 - Full SuperCollider support (there are some key issues to address listed alongside the SC work)
 
+FrameLib makes use of:
+---------------------------------
+
+- **tlsf** - the two level segregated fit memory allocator by *Matt Conte*: <br>
+https://github.com/mattconte/tlsf
+
+- **convhull_3d** - by *Leo McCormack*: <br> 
+https://github.com/leomccormack/convhull_3d
+
+Copright and licenses for these portions of the software are included with the relevant source files.
+
 Credits
 ---------------------------------
-By Alex Harker
+**FrameLib** By *Alex Harker* <br>
 CeReNeM - The University of Huddersfield
 
-Max Documentation by James Bradbury.
+Max Documentation by *James Bradbury*.
 
 With thanks to all the beta testers.
-Special thanks to Owen Green, Francesco Cameli and James Bradbury for code for some of the objects.
 
-**Contact:**
+Special thanks and credit to *Owen Green*, *Francesco Cameli* and *James Bradbury* for code contributions for FrameLib objects.
+
+Contact:
+---------------------------------
 
 * ajharker@gmail.com
