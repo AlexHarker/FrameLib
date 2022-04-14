@@ -25249,6 +25249,7 @@
 		};
 		B8C2BB8D27CD9BB300B161F9 /* Development */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 76XBB8EK7J;
