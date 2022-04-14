@@ -2213,7 +2213,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"patching_rect" : [ 346.5, 310.0, 379.0, 23.0 ],
-									"text" : "fl.spatial~ /speakers 1 -30 0 1 30 0"
+									"text" : "fl.spatial~ /speakers 1 -30 0 1 30 0 /constrain off"
 								}
 
 							}

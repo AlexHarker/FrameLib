@@ -10,17 +10,17 @@
   <misc name="Parameters">
     <entry name="/max_length [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the input length and maximum FFT size.<p /><i>(default: 16384)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the input length and maximum FFT size.<p /><i>(default: 16384, min: 0)</i>
       </description>
     </entry>
     <entry name="/phase [double]">
       <description>
-        Sets the phase for the transformed FIR [0 to 1]. Minimum phase can be requested with a value of zero. Linear phase can be requested with value of a half. Maximum phase can be requested with a value of one.<p /><i>(default: 0)</i>
+        Sets the phase for the transformed FIR [0 to 1]. Minimum phase can be requested with a value of zero. Linear phase can be requested with value of a half. Maximum phase can be requested with a value of one.<p /><i>(default: 0, clipped: 0-1)</i>
       </description>
     </entry>
     <entry name="/time_factor [double]">
       <description>
-        Sets the factor used to determine the length for zero padding the FIR before processing. The FIR is padded to at least its original length multiplied by this factor. Note that this needs to be accounted for when setting the max_length parameter.<p /><i>(default: 1)</i>
+        Sets the factor used to determine the length for zero padding the FIR before processing. The FIR is padded to at least its original length multiplied by this factor. Note that this needs to be accounted for when setting the max_length parameter.<p /><i>(default: 1, min: 1)</i>
       </description>
     </entry>
   </misc>
@@ -30,12 +30,20 @@
     <metadata name="tag">FrameLib Spectral</metadata>
   </metadatalist>
   <objarglist>
+    <objarg name="[stream-specifier]" optional="1" type="symbol">
+      <digest>
+        Specifies the number of streams
+      </digest>
+      <description>
+        Optionally, the first argument may be used to explicitly specify the number of streams. This is done using a symbol starting with the character <m>=</m> followed by the required number of streams (without a space). For example, an argument of <m>=4</m> will set the number of streams to 4.
+      </description>
+    </objarg>
     <objarg name="max_length" optional="1" type="int">
       <digest>
         Sets the input length and maximum FFT size
       </digest>
       <description>
-        This argument sets the max_length parameter:<p /><p />Sets the input length and maximum FFT size.<p /><i>(default: 16384)</i>
+        This argument sets the max_length parameter:<p /><p />Sets the input length and maximum FFT size.<p /><i>(default: 16384, min: 0)</i>
       </description>
     </objarg>
     <objarg name="phase" optional="1" type="number">
@@ -43,7 +51,7 @@
         Sets the phase for the transformed FIR [0 to 1]
       </digest>
       <description>
-        This argument sets the phase parameter:<p /><p />Sets the phase for the transformed FIR [0 to 1]. Minimum phase can be requested with a value of zero. Linear phase can be requested with value of a half. Maximum phase can be requested with a value of one.<p /><i>(default: 0)</i>
+        This argument sets the phase parameter:<p /><p />Sets the phase for the transformed FIR [0 to 1]. Minimum phase can be requested with a value of zero. Linear phase can be requested with value of a half. Maximum phase can be requested with a value of one.<p /><i>(default: 0, clipped: 0-1)</i>
       </description>
     </objarg>
     <objarg name="time_factor" optional="1" type="number">
@@ -51,7 +59,7 @@
         Sets the factor used to determine the length for zero padding the FIR before processing
       </digest>
       <description>
-        This argument sets the time_factor parameter:<p /><p />Sets the factor used to determine the length for zero padding the FIR before processing. The FIR is padded to at least its original length multiplied by this factor. Note that this needs to be accounted for when setting the max_length parameter.<p /><i>(default: 1)</i>
+        This argument sets the time_factor parameter:<p /><p />Sets the factor used to determine the length for zero padding the FIR before processing. The FIR is padded to at least its original length multiplied by this factor. Note that this needs to be accounted for when setting the max_length parameter.<p /><i>(default: 1, min: 1)</i>
       </description>
     </objarg>
   </objarglist>
@@ -89,7 +97,7 @@
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
       <digest>
-        Realtime flag
+        Realtime Flag
       </digest>
       <description>
         Sets the realtime state for <o>fl.firphase~</o>. When set to <m>0</m> <o>fl.firphase~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.

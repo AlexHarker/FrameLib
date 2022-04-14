@@ -15,7 +15,7 @@
     </entry>
     <entry name="/buffer_size [double]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the internal buffer size in the units specified by the units parameter.<p /><i>(default: 250000)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the internal buffer size in the units specified by the units parameter.<p /><i>(default: 250000, min: 0)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
@@ -25,12 +25,12 @@
     </entry>
     <entry name="/position [double]">
       <description>
-        Sets the position of the output sample in specified or ratio mode. Note that positions out of range will be clipped tp the input frame (to the first or last position).<p /><i>(default: 0)</i>
+        Sets the position of the output sample in specified or ratio mode. Note that positions out of range will be clipped tp the input frame (to the first or last position).<p /><i>(default: 0, min: 0)</i>
       </description>
     </entry>
     <entry name="/delay [double]">
       <description>
-        Sets the output delay in the units specified by the units parameter.<p /><i>(default: 0)</i>
+        Sets the output delay in the units specified by the units parameter.<p /><i>(default: 0, min: 0)</i>
       </description>
     </entry>
   </misc>
@@ -40,6 +40,14 @@
     <metadata name="tag">FrameLib IO</metadata>
   </metadatalist>
   <objarglist>
+    <objarg name="[stream-specifier]" optional="1" type="symbol">
+      <digest>
+        Specifies the number of streams
+      </digest>
+      <description>
+        Optionally, the first argument may be used to explicitly specify the number of streams. This is done using a symbol starting with the character <m>=</m> followed by the required number of streams (without a space). For example, an argument of <m>=4</m> will set the number of streams to 4.
+      </description>
+    </objarg>
     <objarg name="mode" optional="1" type="symbol">
       <digest>
         Sets the mode used for output
@@ -53,7 +61,7 @@
         Sets the internal buffer size in the units specified by the units parameter
       </digest>
       <description>
-        This argument sets the buffer_size parameter:<p /><p />Sets the internal buffer size in the units specified by the units parameter.<p /><i>(default: 250000)</i>
+        This argument sets the buffer_size parameter:<p /><p />Sets the internal buffer size in the units specified by the units parameter.<p /><i>(default: 250000, min: 0)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
@@ -142,7 +150,7 @@
     </attribute>
     <attribute name="rt" get="1" set="1" type="int" size="1">
       <digest>
-        Realtime flag
+        Realtime Flag
       </digest>
       <description>
         Sets the realtime state for <o>fl.trace~</o>. When set to <m>0</m> <o>fl.trace~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.

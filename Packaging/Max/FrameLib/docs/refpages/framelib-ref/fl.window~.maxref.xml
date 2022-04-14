@@ -15,7 +15,7 @@
     </entry>
     <entry name="/size [double]">
       <description>
-        Sets the size of the internal window. If zero the window is matched to input length (best for frequency domain applications). Else the window is resampled by linear interpolation (best for granular applications).<p /><i>(default: 0)</i>
+        Sets the size of the internal window. If zero the window is matched to input length (best for frequency domain applications). Else the window is resampled by linear interpolation (best for granular applications).<p /><i>(default: 0, min: 0)</i>
       </description>
     </entry>
     <entry name="/exponent [double]">
@@ -30,7 +30,7 @@
     </entry>
     <entry name="/parameters [variable length double array]">
       <description>
-        An array that sets parameters specific to the window type:<p /><bullet><m>trapezoid</m> - takes either one or two parameter as percentages. If one parameter is provided it sets the first high point which is then mirrored. If two parameters are provided they set the two points of the trapezoid. The defaults are 25% and 75%.</bullet><p /><bullet><m>tukey</m> - takes a single parameter to set the cosine percentage (defaults to 50%). When set to 100% the window is the same as the Hann window. Reducing the percentage increases the central plateau.</bullet><p /><bullet><m>cosine_sum</m> - takes up to 5 parameters [a0-a4] as in the following formula. The defaults are set to the values for a Hann window:<p /><bluebox><i>w(x) = a0 - a1 * cos(2&#960;x) + a2 * cos(4&#960;x) - a3 * cos(6&#960;x) + a4 * cos(8&#960;x)</i></bluebox></bullet><p /><bullet><m>kaiser</m> - takes a single parameter to set the beta parameter. The default value is  6.24.</bullet><p /><bullet><m>sine_taper</m> - takes a single integer parameter to select the taper. The default sine taper is 1 which is equivalent to the sine window.</bullet><p />Note that other window types do not take any parameters.<p /><i>(default: 0)</i>
+        An array that sets parameters specific to the window type:<p /><bullet><m>trapezoid</m> - takes either one or two parameter as percentages. If one parameter is provided it sets the first high point which is then mirrored. If two parameters are provided they set the two points of the trapezoid. The defaults are 25% and 75%.</bullet><p /><bullet><m>tukey</m> - takes a single parameter to set the cosine percentage (defaults to 50%). When set to 100% the window is the same as the Hann window. Reducing the percentage increases the central plateau.</bullet><p /><bullet><m>cosine_sum</m> - takes up to 5 parameters [a0-a4] as in the following formula. The defaults are set to the values for a Hann window:<p /><bluebox><i>w(x) = a0 - a1 * cos(2&#960;x) + a2 * cos(4&#960;x) - a3 * cos(6&#960;x) + a4 * cos(8&#960;x)</i></bluebox></bullet><p /><bullet><m>kaiser</m> - takes a single parameter to set the beta parameter. The default value is  6.24.</bullet><p /><bullet><m>sine_taper</m> - takes a single integer parameter to select the taper. The default sine taper is 1 which is equivalent to the sine window.</bullet><p />Note that other window types do not take any parameters.<p /><i>(default: 0, max size: 5)</i>
       </description>
     </entry>
     <entry name="/endpoints [enum]">
@@ -45,6 +45,14 @@
     <metadata name="tag">FrameLib Spectral</metadata>
   </metadatalist>
   <objarglist>
+    <objarg name="[stream-specifier]" optional="1" type="symbol">
+      <digest>
+        Specifies the number of streams
+      </digest>
+      <description>
+        Optionally, the first argument may be used to explicitly specify the number of streams. This is done using a symbol starting with the character <m>=</m> followed by the required number of streams (without a space). For example, an argument of <m>=4</m> will set the number of streams to 4.
+      </description>
+    </objarg>
     <objarg name="window" optional="1" type="symbol">
       <digest>
         Sets the window type
@@ -58,7 +66,7 @@
         Sets the size of the internal window
       </digest>
       <description>
-        This argument sets the size parameter:<p /><p />Sets the size of the internal window. If zero the window is matched to input length (best for frequency domain applications). Else the window is resampled by linear interpolation (best for granular applications).<p /><i>(default: 0)</i>
+        This argument sets the size parameter:<p /><p />Sets the size of the internal window. If zero the window is matched to input length (best for frequency domain applications). Else the window is resampled by linear interpolation (best for granular applications).<p /><i>(default: 0, min: 0)</i>
       </description>
     </objarg>
     <objarg name="exponent" optional="1" type="number">
@@ -104,7 +112,7 @@
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
       <digest>
-        Realtime flag
+        Realtime Flag
       </digest>
       <description>
         Sets the realtime state for <o>fl.window~</o>. When set to <m>0</m> <o>fl.window~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.

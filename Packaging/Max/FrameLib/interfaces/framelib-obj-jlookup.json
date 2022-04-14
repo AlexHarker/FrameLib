@@ -42,7 +42,7 @@
     "fl.sink~": {
         "1": {
             "name": "/buffer_size [double]",
-            "description": "INSTANTIATION ONLY\n\nSets the internal buffer size in the units specified by the units parameter.\n\n(default: 250000)"
+            "description": "INSTANTIATION ONLY\n\nSets the internal buffer size in the units specified by the units parameter.\n\n(default: 250000, min: 0)"
         },
         "2": {
             "name": "/units [enum]",
@@ -50,7 +50,7 @@
         },
         "3": {
             "name": "/delay [double]",
-            "description": "Sets the output delay in the units specified by the units parameter.\n\n(default: 0)"
+            "description": "Sets the output delay in the units specified by the units parameter.\n\n(default: 0, min: 0)"
         },
         "4": {
             "name": "/interp [enum]",
@@ -74,7 +74,7 @@
     "fl.accumpos~": {
         "1": {
             "name": "/percentage [double]",
-            "description": "Sets the percentage of the sum used for calculation [0-100].\n\n(default: 50)"
+            "description": "Sets the percentage of the sum used for calculation [0-100].\n\n(default: 50, clipped: 0-100)"
         },
         "2": {
             "name": "/empty [enum]",
@@ -119,7 +119,7 @@
     "fl.makestring~": {
         "1": {
             "name": "/num_items [int]",
-            "description": "INSTANTIATION ONLY\n\nSets the number of items.\n\n(default: 1)"
+            "description": "INSTANTIATION ONLY\n\nSets the number of items.\n\n(default: 1, clipped: 1-10)"
         },
         "2": {
             "name": "/tag [string]",
@@ -127,11 +127,11 @@
         },
         "3": {
             "name": "/trigger_ins [variable length bool array]",
-            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output using an array of bools. By default all inputs trigger output.\n\n(default: true)"
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output using an array of bools. By default all inputs trigger output.\n\n(default: true, max size: 10)"
         },
         "4": {
             "name": "/padding [variable length int array]",
-            "description": "Sets the zero padding for each input using an array of integers. By default there is no zero padding.\n\n(default: 0)"
+            "description": "Sets the zero padding for each input using an array of integers. By default there is no zero padding.\n\n(default: 0, max size: 10)"
         },
         "5": {
             "name": "/item_01...10 [string]",
@@ -175,7 +175,7 @@
         },
         "3": {
             "name": "/pad [fixed length double array]",
-            "description": "Sets the complex value used for padding (for either pad_in or pad_out modes).\n\n(default: 0)"
+            "description": "Sets the complex value used for padding (for either pad_in or pad_out modes).\n\n(default: 0, size: 2)"
         }
     },
     "fl.or~": {
@@ -209,13 +209,13 @@
         },
         "3": {
             "name": "/pad [fixed length double array]",
-            "description": "Sets the complex value used for padding (for either pad_in or pad_out modes).\n\n(default: 0)"
+            "description": "Sets the complex value used for padding (for either pad_in or pad_out modes).\n\n(default: 0, size: 2)"
         }
     },
     "fl.convolve~": {
         "1": {
             "name": "/max_length [int]",
-            "description": "INSTANTIATION ONLY\n\nSets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs.\n\n(default: 16384)"
+            "description": "INSTANTIATION ONLY\n\nSets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs.\n\n(default: 16384, min: 0)"
         },
         "2": {
             "name": "/mode [enum]",
@@ -239,7 +239,7 @@
     "fl.medianfilter~": {
         "1": {
             "name": "/width [int]",
-            "description": "Sets the width of the filtering in samples.\n\n(default: 1)"
+            "description": "Sets the width of the filtering in samples.\n\n(default: 1, min: 1)"
         },
         "2": {
             "name": "/pad [double]",
@@ -251,7 +251,7 @@
         },
         "4": {
             "name": "/percentile [double]",
-            "description": "Sets the percentile to return.\n\n(default: 50)"
+            "description": "Sets the percentile to return.\n\n(default: 50, clipped: 0-100)"
         }
     },
     "fl.lookup~": {
@@ -287,11 +287,11 @@
     "fl.multitaper~": {
         "1": {
             "name": "/max_length [int]",
-            "description": "INSTANTIATION ONLY\n\nSets the maximum input length (and associated internal FFT size).\n\n(default: 16384)"
+            "description": "INSTANTIATION ONLY\n\nSets the maximum input length (and associated internal FFT size).\n\n(default: 16384, min: 0)"
         },
         "2": {
             "name": "/num_tapers [int]",
-            "description": "Sets the number of tapers to use.\n\n(default: 3)"
+            "description": "Sets the number of tapers to use.\n\n(default: 3, min: 1)"
         },
         "3": {
             "name": "/normalise [bool]",
@@ -323,7 +323,7 @@
     "fl.onepolezero~": {
         "1": {
             "name": "/freq [double]",
-            "description": "Sets the filter cutoff frequency.\n\n(default: 500)"
+            "description": "Sets the filter cutoff frequency.\n\n(default: 500, min: 0)"
         },
         "2": {
             "name": "/mode [enum]",
@@ -345,7 +345,7 @@
     "fl.percentile~": {
         "1": {
             "name": "/percentile [double]",
-            "description": "Sets the percentile to calculate [0-100].\n\n(default: 50)"
+            "description": "Sets the percentile to calculate [0-100].\n\n(default: 50, clipped: 0-100)"
         },
         "2": {
             "name": "/interpolate [bool]",
@@ -363,15 +363,15 @@
     "fl.firphase~": {
         "1": {
             "name": "/max_length [int]",
-            "description": "INSTANTIATION ONLY\n\nSets the input length and maximum FFT size.\n\n(default: 16384)"
+            "description": "INSTANTIATION ONLY\n\nSets the input length and maximum FFT size.\n\n(default: 16384, min: 0)"
         },
         "2": {
             "name": "/phase [double]",
-            "description": "Sets the phase for the transformed FIR [0 to 1]. Minimum phase can be requested with a value of zero. Linear phase can be requested with value of a half. Maximum phase can be requested with a value of one.\n\n(default: 0)"
+            "description": "Sets the phase for the transformed FIR [0 to 1]. Minimum phase can be requested with a value of zero. Linear phase can be requested with value of a half. Maximum phase can be requested with a value of one.\n\n(default: 0, clipped: 0-1)"
         },
         "3": {
             "name": "/time_factor [double]",
-            "description": "Sets the factor used to determine the length for zero padding the FIR before processing. The FIR is padded to at least its original length multiplied by this factor. Note that this needs to be accounted for when setting the max_length parameter.\n\n(default: 1)"
+            "description": "Sets the factor used to determine the length for zero padding the FIR before processing. The FIR is padded to at least its original length multiplied by this factor. Note that this needs to be accounted for when setting the max_length parameter.\n\n(default: 1, min: 1)"
         }
     },
     "fl.asinh~": {
@@ -461,7 +461,7 @@
     "fl.filtertags~": {
         "1": {
             "name": "/num_filters [int]",
-            "description": "INSTANTIATION ONLY\n\nSets the number of tags.\n\n(default: 1)"
+            "description": "INSTANTIATION ONLY\n\nSets the number of tags.\n\n(default: 1, clipped: 1-10)"
         },
         "2": {
             "name": "/tag_01...10 [string]",
@@ -491,7 +491,7 @@
         },
         "2": {
             "name": "/buffer_size [double]",
-            "description": "INSTANTIATION ONLY\n\nSets the internal buffer size in the units specified by the units parameter.\n\n(default: 250000)"
+            "description": "INSTANTIATION ONLY\n\nSets the internal buffer size in the units specified by the units parameter.\n\n(default: 250000, min: 0)"
         },
         "3": {
             "name": "/units [enum]",
@@ -499,11 +499,11 @@
         },
         "4": {
             "name": "/position [double]",
-            "description": "Sets the position of the output sample in specified or ratio mode. Note that positions out of range will be clipped tp the input frame (to the first or last position).\n\n(default: 0)"
+            "description": "Sets the position of the output sample in specified or ratio mode. Note that positions out of range will be clipped tp the input frame (to the first or last position).\n\n(default: 0, min: 0)"
         },
         "5": {
             "name": "/delay [double]",
-            "description": "Sets the output delay in the units specified by the units parameter.\n\n(default: 0)"
+            "description": "Sets the output delay in the units specified by the units parameter.\n\n(default: 0, min: 0)"
         }
     },
     "fl.atan2~": {
@@ -537,7 +537,7 @@
         },
         "3": {
             "name": "/pad [fixed length double array]",
-            "description": "Sets the complex value used for padding (for either pad_in or pad_out modes).\n\n(default: 0)"
+            "description": "Sets the complex value used for padding (for either pad_in or pad_out modes).\n\n(default: 0, size: 2)"
         }
     },
     "fl.complex.log~": {
@@ -579,7 +579,7 @@
         },
         "2": {
             "name": "/channel [int]",
-            "description": "Sets the buffer channel to use.\n\n(default: 1)"
+            "description": "Sets the buffer channel to use.\n\n(default: 1, min: 1)"
         },
         "3": {
             "name": "/units [enum]",
@@ -665,7 +665,7 @@
     "fl.lookupstring~": {
         "1": {
             "name": "/num_items [int]",
-            "description": "INSTANTIATION ONLY\n\nSets the number of items.\n\n(default: 1)"
+            "description": "INSTANTIATION ONLY\n\nSets the number of items.\n\n(default: 1, clipped: 1-32)"
         },
         "2": {
             "name": "/tag [string]",
@@ -723,15 +723,15 @@
     "fl.timemedian~": {
         "1": {
             "name": "/max_frames [int]",
-            "description": "Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.\n\n(default: 10)"
+            "description": "Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.\n\n(default: 10, min: 1)"
         },
         "2": {
             "name": "/num_frames [int]",
-            "description": "Sets the current number of frames for calculation as an integer.\n\n(default: 10)"
+            "description": "Sets the current number of frames for calculation as an integer.\n\n(default: 10, min: 1)"
         },
         "3": {
             "name": "/percentile [double]",
-            "description": "Sets the percentile to retrieve.\n\n(default: 50)"
+            "description": "Sets the percentile to retrieve.\n\n(default: 50, clipped: 0-100)"
         },
         "4": {
             "name": "/pad [double]",
@@ -745,7 +745,7 @@
     "fl.correlate~": {
         "1": {
             "name": "/max_length [int]",
-            "description": "INSTANTIATION ONLY\n\nSets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs.\n\n(default: 16384)"
+            "description": "INSTANTIATION ONLY\n\nSets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs.\n\n(default: 16384, min: 0)"
         },
         "2": {
             "name": "/mode [enum]",
@@ -769,7 +769,7 @@
     "fl.interval~": {
         "1": {
             "name": "/interval [double]",
-            "description": "Sets the interval between frames in the units specified by the units parameter.\n\n(default: 64)"
+            "description": "Sets the interval between frames in the units specified by the units parameter.\n\n(default: 64, min: 0)"
         },
         "2": {
             "name": "/units [enum]",
@@ -811,7 +811,7 @@
     "fl.kernelsmooth~": {
         "1": {
             "name": "/smooth [variable length double array]",
-            "description": "Sets the width of smoothing as interpreted by the scale parameter. If only one value is provided it sets the smoothing width directly. If two values are provided they set the smoothing amounts at either edge. The smoothing width is then interpolated per sample across the output.\n\n(default: 0)"
+            "description": "Sets the width of smoothing as interpreted by the scale parameter. If only one value is provided it sets the smoothing width directly. If two values are provided they set the smoothing amounts at either edge. The smoothing width is then interpolated per sample across the output.\n\n(default: 0, min: 0, max size: 2)"
         },
         "2": {
             "name": "/scale [enum]",
@@ -833,11 +833,11 @@
     "fl.join~": {
         "1": {
             "name": "/num_ins [int]",
-            "description": "INSTANTIATION ONLY\n\nSets the number of inputs.\n\n(default: 2)"
+            "description": "INSTANTIATION ONLY\n\nSets the number of inputs.\n\n(default: 2, clipped: 2-32)"
         },
         "2": {
-            "name": "/trigger_ins [fixed length bool array]",
-            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output using an array of bools. By default all inputs trigger output.\n\n(default: true)"
+            "name": "/trigger_ins [variable length bool array]",
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output using an array of bools. By default all inputs trigger output.\n\n(default: true, max size: 32)"
         }
     },
     "fl.uniform~": {
@@ -851,7 +851,7 @@
         },
         "3": {
             "name": "/length [int]",
-            "description": "Sets the requested output length in the units specified by the units parameter.\n\n(default: 1)"
+            "description": "Sets the requested output length in the units specified by the units parameter.\n\n(default: 1, min: 0)"
         },
         "4": {
             "name": "/units [enum]",
@@ -894,40 +894,44 @@
             "description": "Sets the units used for angles.\n\nParameter Options:\n[0] - radians\n[1] - degrees\n\n(default: degrees)"
         },
         "2": {
-            "name": "/input_coords [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the coordinate system used for input.\n\nParameter Options:\n[0] - polar\n[1] - cartesian\n\n(default: polar)"
+            "name": "/orientation [enum]",
+            "description": "Sets the orientation for spherical coordinates. This determines how azimuth is interpreted:\n\nParameter Options:\n[0] - x_clockwise - zero is the positive x axis / positive angles move clockwise.\n[1] - x_anticlockwise - zero is the positive x axis / positive angles move anticlockwise.\n[2] - y_clockwise - zero is the positive y axis / positive angles move clockwise.\n[3] - y_anticlockwise - zero is the positive y axis / positive angles move anticlockwise.\n\n(default: y_clockwise)"
         },
         "3": {
-            "name": "/speaker_coords [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the coordinate system used for speaker positions.\n\nParameter Options:\n[0] - polar\n[1] - cartesian\n\n(default: polar)"
+            "name": "/input_coords [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the coordinate system used for input.\n\nParameter Options:\n[0] - spherical\n[1] - cartesian\n\n(default: spherical)"
         },
         "4": {
-            "name": "/constrain [enum]",
-            "description": "Sets the method for constraining positions outside of the speaker array:\n\nParameter Options:\n[0] - none - suitable when the input is already within the speaker array (most efficient).\n[1] - hemisphere - restrict to the upper hemisphere of the sphere described below.\n[2] - sphere - restrict to the smallest sphere centred at the origin containing all speakers.\n[3] - hull - restrict to the convex hull of the speaker array (least efficient / always correct.\n\n(default: hull)"
+            "name": "/speaker_coords [enum]",
+            "description": "INSTANTIATION ONLY\n\nSets the coordinate system used for speaker positions.\n\nParameter Options:\n[0] - spherical\n[1] - cartesian\n\n(default: spherical)"
         },
         "5": {
-            "name": "/speakers [variable length double array]",
-            "description": "INSTANTIATION ONLY\n\nSets the speaker positions in triples (one triple per speaker). For cartesian coordinates the values are [x, z, y]. For polar coordinates the values are [radius, azimuth, elevation].\n\n(default: 0)"
+            "name": "/constrain [enum]",
+            "description": "Sets the method for constraining positions outside of the speaker array:\n\nParameter Options:\n[0] - off - suitable when the input is already within the speaker array (most efficient).\n[1] - hemisphere - restrict to the upper hemisphere of the sphere described below.\n[2] - sphere - restrict to the smallest sphere centred at the origin containing all speakers.\n[3] - hull - restrict to the convex hull of the speaker array (least efficient / always correct.\n\n(default: hull)"
         },
         "6": {
-            "name": "/weights [variable length double array]",
-            "description": "Sets the speaker weightings (one value per speaker). By default all speakers are weighted equally. Using weighting values allows the emphasis or exclusion of specific speakers.\n\n(default: 1)"
+            "name": "/speakers [variable length double array]",
+            "description": "INSTANTIATION ONLY\n\nSets the speaker positions in triples (one triple per speaker). For cartesian coordinates the values are [x, z, y]. For spherical coordinates the values are [radius, azimuth, elevation].\n\n(default: 0, max size: 360)"
         },
         "7": {
-            "name": "/rolloff [double]",
-            "description": "Sets the rolloff in positive dB for a doubling of distance between source and speakers. The default (6dB) equates to the inverse distance law for sound propagating in a free field. Lower values may be suitable for simulating more closed environments.\n\n(default: 6)"
+            "name": "/weights [variable length double array]",
+            "description": "Sets the speaker weightings (one value per speaker). By default all speakers are weighted equally. Using weighting values allows the emphasis or exclusion of specific speakers.\n\n(default: 1, min: 0, max size: 120)"
         },
         "8": {
-            "name": "/blur [double]",
-            "description": "Sets the blur factor. This should be set in relation to the dimensions of the speaker array. Larger numbers result in more blurring of the spatial image.\n\n(default: 0.001)"
+            "name": "/rolloff [double]",
+            "description": "Sets the rolloff in positive dB for a doubling of distance between source and speakers. The default (6dB) equates to the inverse distance law for sound propagating in a free field. Lower values may be suitable for simulating more closed environments.\n\n(default: 6, min: 1e-07)"
         },
         "9": {
-            "name": "/max_speakers [int]",
-            "description": "Sets the number of speakers that can be non-zero (only the nearest N speakers are used). If this is set to zero then all speakers are used. Reducing the number of speakers used can improve localisation.\n\n(default: 0)"
+            "name": "/blur [double]",
+            "description": "Sets the blur factor. This should be set in relation to the dimensions of the speaker array. Larger numbers result in more blurring of the spatial image.\n\n(default: 0.001, min: 0)"
         },
         "10": {
+            "name": "/max_speakers [int]",
+            "description": "Sets the number of speakers that can be non-zero (only the nearest N speakers are used). If this is set to zero then all speakers are used. Reducing the number of speakers used can improve localisation.\n\n(default: 0, min: 0)"
+        },
+        "11": {
             "name": "/point_factor [double]",
-            "description": "Interpolation factor between DBAP (at 0) and point source panning (at 1).\n\n(default: 0)"
+            "description": "Interpolation factor between DBAP (at 0) and point source panning (at 1).\n\n(default: 0, clipped: 0-1)"
         }
     },
     "fl.constant~": {
@@ -989,11 +993,11 @@
     "fl.lag~": {
         "1": {
             "name": "/max_frames [int]",
-            "description": "Sets the maximum lag value in frames. Note that the internal buffer is reset when this changes.\n\n(default: 10)"
+            "description": "Sets the maximum lag value in frames. Note that the internal buffer is reset when this changes.\n\n(default: 10, min: 1)"
         },
         "2": {
             "name": "/num_frames [int]",
-            "description": "Sets the current lag as an integer.\n\n(default: 1)"
+            "description": "Sets the current lag as an integer.\n\n(default: 1, min: 0)"
         },
         "3": {
             "name": "/pad [double]",
@@ -1069,7 +1073,7 @@
         },
         "2": {
             "name": "/length [int]",
-            "description": "Sets the requested output length in the units specified by the units parameter.\n\n(default: 1)"
+            "description": "Sets the requested output length in the units specified by the units parameter.\n\n(default: 1, min: 0)"
         },
         "3": {
             "name": "/units [enum]",
@@ -1087,7 +1091,7 @@
         },
         "3": {
             "name": "/trigger_ins [variable length bool array]",
-            "description": "INSTANTIATION ONLY\n\nSets which input pairs trigger output using an array of bools. By default all inputs trigger output.\n\n(default: true)"
+            "description": "INSTANTIATION ONLY\n\nSets which input pairs trigger output using an array of bools. By default all inputs trigger output.\n\n(default: true, max size: 32)"
         }
     },
     "fl.pack~": {
@@ -1099,11 +1103,11 @@
     "fl.dispatch~": {
         "1": {
             "name": "/num_ins [double]",
-            "description": "INSTANTIATION ONLY\n\nSets the number of inputs.\n\n(default: 2)"
+            "description": "INSTANTIATION ONLY\n\nSets the number of inputs.\n\n(default: 2, clipped: 2-32)"
         },
         "2": {
             "name": "/num_outs [double]",
-            "description": "INSTANTIATION ONLY\n\nSets the number of outputs.\n\n(default: 2)"
+            "description": "INSTANTIATION ONLY\n\nSets the number of outputs.\n\n(default: 2, clipped: 2-32)"
         },
         "3": {
             "name": "/input_01...32 [int]",
@@ -1113,15 +1117,15 @@
     "fl.biquadcoeff~": {
         "1": {
             "name": "/freq [double]",
-            "description": "Sets the filter frequency.\n\n(default: 0)"
+            "description": "Sets the filter frequency.\n\n(default: 0, min: 0)"
         },
         "2": {
             "name": "/gain [double]",
-            "description": "Sets the linear gain of the filter.\n\n(default: 1)"
+            "description": "Sets the linear gain of the filter.\n\n(default: 1, min: 0)"
         },
         "3": {
             "name": "/qs [double]",
-            "description": "Sets the q or s of the filter.\n\n(default: 0)"
+            "description": "Sets the q or s of the filter.\n\n(default: 0, min: 0)"
         },
         "4": {
             "name": "/mode [enum]",
@@ -1135,11 +1139,11 @@
     "fl.source~": {
         "1": {
             "name": "/buffer_size [double]",
-            "description": "INSTANTIATION ONLY\n\nSets the internal buffer size in the units specified by the units parameter.\n\n(default: 16384)"
+            "description": "INSTANTIATION ONLY\n\nSets the internal buffer size in the units specified by the units parameter.\n\n(default: 16384, min: 0)"
         },
         "2": {
             "name": "/length [int]",
-            "description": "Sets the length of output frames in the units specified by the units parameter.\n\n(default: 4096)"
+            "description": "Sets the length of output frames in the units specified by the units parameter.\n\n(default: 4096, min: 0)"
         },
         "3": {
             "name": "/units [enum]",
@@ -1147,7 +1151,7 @@
         },
         "4": {
             "name": "/delay [double]",
-            "description": "Sets the input delay in the units specified by the units parameter. Note that a minimum delay (or latency) is applied of the output length.\n\n(default: 0)"
+            "description": "Sets the input delay in the units specified by the units parameter. Note that a minimum delay (or latency) is applied of the output length.\n\n(default: 0, min: 0)"
         },
         "5": {
             "name": "/interp [enum]",
@@ -1175,11 +1179,11 @@
         },
         "2": {
             "name": "/start [double]",
-            "description": "Sets the amount of padding to apply to the start of the frame.\n\n(default: 0)"
+            "description": "Sets the amount of padding to apply to the start of the frame.\n\n(default: 0, min: 0)"
         },
         "3": {
             "name": "/end [double]",
-            "description": "Sets the amount of padding to apply to the end of the frame.\n\n(default: 0)"
+            "description": "Sets the amount of padding to apply to the end of the frame.\n\n(default: 0, min: 0)"
         },
         "4": {
             "name": "/units [enum]",
@@ -1189,7 +1193,7 @@
     "fl.route~": {
         "1": {
             "name": "/num_outs [double]",
-            "description": "INSTANTIATION ONLY\n\nSets the number of outputs.\n\n(default: 2)"
+            "description": "INSTANTIATION ONLY\n\nSets the number of outputs.\n\n(default: 2, clipped: 2-32)"
         },
         "2": {
             "name": "/output [int]",
@@ -1243,11 +1247,11 @@
     "fl.timemean~": {
         "1": {
             "name": "/max_frames [int]",
-            "description": "Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.\n\n(default: 10)"
+            "description": "Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.\n\n(default: 10, min: 1)"
         },
         "2": {
             "name": "/num_frames [int]",
-            "description": "Sets the current number of frames for calculation as an integer.\n\n(default: 10)"
+            "description": "Sets the current number of frames for calculation as an integer.\n\n(default: 10, min: 1)"
         },
         "3": {
             "name": "/pad [double]",
@@ -1275,7 +1279,7 @@
         },
         "3": {
             "name": "/reset [int]",
-            "description": "Sets the reset position as a sample index. A value of -1 can be used for direction independent reset. For forward direction reading this results in a reset to the first position. For backward direction reading this results in a reset to the last position.\n\n(default: -1)"
+            "description": "Sets the reset position as a sample index. A value of -1 can be used for direction independent reset. For forward direction reading this results in a reset to the first position. For backward direction reading this results in a reset to the last position.\n\n(default: -1, min: -1)"
         },
         "4": {
             "name": "/idle [enum]",
@@ -1303,7 +1307,7 @@
         },
         "2": {
             "name": "/length [int]",
-            "description": "Sets the requested output length in the units specified by the units parameter.\n\n(default: 1)"
+            "description": "Sets the requested output length in the units specified by the units parameter.\n\n(default: 1, min: 0)"
         },
         "3": {
             "name": "/units [enum]",
@@ -1371,7 +1375,7 @@
         },
         "2": {
             "name": "/length [int]",
-            "description": "Sets the requested output length in the units specified by the units parameter.\n\n(default: 512)"
+            "description": "Sets the requested output length in the units specified by the units parameter.\n\n(default: 512, min: 0)"
         },
         "3": {
             "name": "/units [enum]",
@@ -1391,7 +1395,7 @@
         },
         "7": {
             "name": "/parameters [variable length double array]",
-            "description": "An array that sets parameters specific to the window type:\n\ntrapezoid - takes either one or two parameter as percentages. If one parameter is provided it sets the first high point which is then mirrored. If two parameters are provided they set the two points of the trapezoid. The defaults are 25% and 75%.\n\ntukey - takes a single parameter to set the cosine percentage (defaults to 50%). When set to 100% the window is the same as the Hann window. Reducing the percentage increases the central plateau.\n\ncosine_sum - takes up to 5 parameters [a0-a4] as in the following formula. The defaults are set to the values for a Hann window:\n\n    w(x) = a0 - a1 * cos(2\u03c0x) + a2 * cos(4\u03c0x) - a3 * cos(6\u03c0x) + a4 * cos(8\u03c0x)\n\nkaiser - takes a single parameter to set the beta parameter. The default value is  6.24.\n\nsine_taper - takes a single integer parameter to select the taper. The default sine taper is 1 which is equivalent to the sine window.\n\nNote that other window types do not take any parameters.\n\n(default: 0)"
+            "description": "An array that sets parameters specific to the window type:\n\ntrapezoid - takes either one or two parameter as percentages. If one parameter is provided it sets the first high point which is then mirrored. If two parameters are provided they set the two points of the trapezoid. The defaults are 25% and 75%.\n\ntukey - takes a single parameter to set the cosine percentage (defaults to 50%). When set to 100% the window is the same as the Hann window. Reducing the percentage increases the central plateau.\n\ncosine_sum - takes up to 5 parameters [a0-a4] as in the following formula. The defaults are set to the values for a Hann window:\n\n    w(x) = a0 - a1 * cos(2\u03c0x) + a2 * cos(4\u03c0x) - a3 * cos(6\u03c0x) + a4 * cos(8\u03c0x)\n\nkaiser - takes a single parameter to set the beta parameter. The default value is  6.24.\n\nsine_taper - takes a single integer parameter to select the taper. The default sine taper is 1 which is equivalent to the sine window.\n\nNote that other window types do not take any parameters.\n\n(default: 0, max size: 5)"
         },
         "8": {
             "name": "/endpoints [enum]",
@@ -1401,7 +1405,7 @@
     "fl.select~": {
         "1": {
             "name": "/num_ins [double]",
-            "description": "INSTANTIATION ONLY\n\nSets the number of inputs.\n\n(default: 2)"
+            "description": "INSTANTIATION ONLY\n\nSets the number of inputs.\n\n(default: 2, clipped: 2-32)"
         },
         "2": {
             "name": "/input [int]",
@@ -1479,7 +1483,7 @@
         },
         "2": {
             "name": "/length [int]",
-            "description": "Sets the requested output length in the units specified by the units parameter.\n\n(default: 1)"
+            "description": "Sets the requested output length in the units specified by the units parameter.\n\n(default: 1, min: 0)"
         },
         "3": {
             "name": "/units [enum]",
@@ -1497,7 +1501,7 @@
     "fl.tag~": {
         "1": {
             "name": "/num_ins [int]",
-            "description": "INSTANTIATION ONLY\n\nSets the number of inputs (and hence the number of tags).\n\n(default: 1)"
+            "description": "INSTANTIATION ONLY\n\nSets the number of inputs (and hence the number of tags).\n\n(default: 1, clipped: 1-10)"
         },
         "2": {
             "name": "/empty [enum]",
@@ -1511,11 +1515,11 @@
     "fl.timestddev~": {
         "1": {
             "name": "/max_frames [int]",
-            "description": "Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.\n\n(default: 10)"
+            "description": "Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.\n\n(default: 10, min: 1)"
         },
         "2": {
             "name": "/num_frames [int]",
-            "description": "Sets the current number of frames for calculation as an integer.\n\n(default: 10)"
+            "description": "Sets the current number of frames for calculation as an integer.\n\n(default: 10, min: 1)"
         },
         "3": {
             "name": "/pad [double]",
@@ -1529,7 +1533,7 @@
     "fl.fft~": {
         "1": {
             "name": "/max_length [int]",
-            "description": "INSTANTIATION ONLY\n\nSets the maximum input length and FFT size.\n\n(default: 16384)"
+            "description": "INSTANTIATION ONLY\n\nSets the maximum input length and FFT size.\n\n(default: 16384, min: 0)"
         },
         "2": {
             "name": "/normalise [bool]",
@@ -1553,7 +1557,7 @@
     "fl.ifft~": {
         "1": {
             "name": "/max_length [int]",
-            "description": "INSTANTIATION ONLY\n\nSets the maximum output length and FFT size.\n\n(default: 16384)"
+            "description": "INSTANTIATION ONLY\n\nSets the maximum output length and FFT size.\n\n(default: 16384, min: 0)"
         },
         "2": {
             "name": "/normalise [bool]",
@@ -1573,7 +1577,7 @@
     "fl.split~": {
         "1": {
             "name": "/split [double]",
-            "description": "Sets the split point.\n\n(default: 0)"
+            "description": "Sets the split point.\n\n(default: 0, min: 0)"
         },
         "2": {
             "name": "/units [enum]",
@@ -1583,11 +1587,11 @@
     "fl.movingaverage~": {
         "1": {
             "name": "/alpha_up [double]",
-            "description": "Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.\n\n(default: 0.5)"
+            "description": "Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.\n\n(default: 0.5, clipped: 0-1)"
         },
         "2": {
             "name": "/alpha_down [double]",
-            "description": "Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.\n\n(default: 0.5)"
+            "description": "Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.\n\n(default: 0.5, clipped: 0-1)"
         },
         "3": {
             "name": "/average [double]",
@@ -1609,7 +1613,7 @@
         },
         "3": {
             "name": "/pad [fixed length double array]",
-            "description": "Sets the complex value used for padding (for either pad_in or pad_out modes).\n\n(default: 0)"
+            "description": "Sets the complex value used for padding (for either pad_in or pad_out modes).\n\n(default: 0, size: 2)"
         }
     },
     "fl.abs~": {
@@ -1621,11 +1625,11 @@
     "fl.svf~": {
         "1": {
             "name": "/freq [double]",
-            "description": "Sets the filter cutoff frequency.\n\n(default: 500)"
+            "description": "Sets the filter cutoff frequency.\n\n(default: 500, min: 0)"
         },
         "2": {
             "name": "/res [double]",
-            "description": "Sets the filter resonance.\n\n(default: 0)"
+            "description": "Sets the filter resonance.\n\n(default: 0, clipped: 0-1)"
         },
         "3": {
             "name": "/mode [enum]",
@@ -1647,11 +1651,11 @@
     "fl.subframe~": {
         "1": {
             "name": "/start [double]",
-            "description": "Sets the start point of the subframe.\n\n(default: 0)"
+            "description": "Sets the start point of the subframe.\n\n(default: 0, min: 0)"
         },
         "2": {
             "name": "/end [double]",
-            "description": "Sets the end point of the subframe.\n\n(default: 0)"
+            "description": "Sets the end point of the subframe.\n\n(default: 0, min: 0)"
         },
         "3": {
             "name": "/units [enum]",
@@ -1685,7 +1689,7 @@
     "fl.onepole~": {
         "1": {
             "name": "/freq [double]",
-            "description": "Sets the filter cutoff frequency.\n\n(default: 500)"
+            "description": "Sets the filter cutoff frequency.\n\n(default: 500, min: 0)"
         },
         "2": {
             "name": "/mode [enum]",
@@ -1707,7 +1711,7 @@
     "fl.untag~": {
         "1": {
             "name": "/num_outs [int]",
-            "description": "INSTANTIATION ONLY\n\nSets the number of outputs (and hence the number of tags).\n\n(default: 1)"
+            "description": "INSTANTIATION ONLY\n\nSets the number of outputs (and hence the number of tags).\n\n(default: 1, clipped: 1-10)"
         },
         "2": {
             "name": "/tag_01...10 [string]",
@@ -1737,11 +1741,11 @@
     "fl.chop~": {
         "1": {
             "name": "/num_outs [int]",
-            "description": "INSTANTIATION ONLY\n\nSets the number of outputs.\n\n(default: 1)"
+            "description": "INSTANTIATION ONLY\n\nSets the number of outputs.\n\n(default: 1, clipped: 2-32)"
         },
         "2": {
             "name": "/size [double]",
-            "description": "Sets the size of the output frames.\n\n(default: 1)"
+            "description": "Sets the size of the output frames.\n\n(default: 1, min: 0)"
         },
         "3": {
             "name": "/units [enum]",
@@ -1785,13 +1789,13 @@
         },
         "3": {
             "name": "/trigger_ins [variable length bool array]",
-            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output using an array of bools. By default all inputs trigger output.\n\n(default: true)"
+            "description": "INSTANTIATION ONLY\n\nSets which inputs trigger output using an array of bools. By default all inputs trigger output.\n\n(default: true, max size: 32)"
         }
     },
     "fl.peaks~": {
         "1": {
             "name": "/neighbours [int]",
-            "description": "Sets the number of neighbours each side that must be exceeded in order to detect a peak.\n\n(default: 1)"
+            "description": "Sets the number of neighbours each side that must be exceeded in order to detect a peak.\n\n(default: 1, clipped: 1-4)"
         },
         "2": {
             "name": "/threshold [double]",
@@ -1835,7 +1839,7 @@
         },
         "3": {
             "name": "/pad [fixed length double array]",
-            "description": "Sets the complex value used for padding (for either pad_in or pad_out modes).\n\n(default: 0)"
+            "description": "Sets the complex value used for padding (for either pad_in or pad_out modes).\n\n(default: 0, size: 2)"
         }
     },
     "fl.complex.sqrt~": {
@@ -1847,7 +1851,7 @@
     "fl.ticks~": {
         "1": {
             "name": "/limit [int]",
-            "description": "Sets the count limit.\n\n(default: 10)"
+            "description": "Sets the count limit.\n\n(default: 10, min: 0)"
         },
         "2": {
             "name": "/direction [enum]",
@@ -1855,7 +1859,7 @@
         },
         "3": {
             "name": "/reset [int]",
-            "description": "Sets the reset value. A value of -1 can be used for direction independent reset. This results in reset to 0 when counting up and (limit - 1) when counting down.\n\n(default: -1)"
+            "description": "Sets the reset value. A value of -1 can be used for direction independent reset. This results in reset to 0 when counting up and (limit - 1) when counting down.\n\n(default: -1, min: -1)"
         },
         "4": {
             "name": "/mode [enum]",
@@ -1879,7 +1883,7 @@
     "fl.prioritise~": {
         "1": {
             "name": "/num_ins [int]",
-            "description": "INSTANTIATION ONLY\n\nSets the number of inputs.\n\n(default: 2)"
+            "description": "INSTANTIATION ONLY\n\nSets the number of inputs.\n\n(default: 2, clipped: 2-32)"
         },
         "2": {
             "name": "/order [enum]",
@@ -1905,7 +1909,7 @@
     "fl.combinetags~": {
         "1": {
             "name": "/num_ins [int]",
-            "description": "INSTANTIATION ONLY\n\nSets the number of inputs.\n\n(default: 2)"
+            "description": "INSTANTIATION ONLY\n\nSets the number of inputs.\n\n(default: 2, clipped: 2-10)"
         }
     },
     "fl.ceil~": {
@@ -1951,7 +1955,7 @@
         },
         "2": {
             "name": "/size [double]",
-            "description": "Sets the size of the internal window. If zero the window is matched to input length (best for frequency domain applications). Else the window is resampled by linear interpolation (best for granular applications).\n\n(default: 0)"
+            "description": "Sets the size of the internal window. If zero the window is matched to input length (best for frequency domain applications). Else the window is resampled by linear interpolation (best for granular applications).\n\n(default: 0, min: 0)"
         },
         "3": {
             "name": "/exponent [double]",
@@ -1963,7 +1967,7 @@
         },
         "5": {
             "name": "/parameters [variable length double array]",
-            "description": "An array that sets parameters specific to the window type:\n\ntrapezoid - takes either one or two parameter as percentages. If one parameter is provided it sets the first high point which is then mirrored. If two parameters are provided they set the two points of the trapezoid. The defaults are 25% and 75%.\n\ntukey - takes a single parameter to set the cosine percentage (defaults to 50%). When set to 100% the window is the same as the Hann window. Reducing the percentage increases the central plateau.\n\ncosine_sum - takes up to 5 parameters [a0-a4] as in the following formula. The defaults are set to the values for a Hann window:\n\n    w(x) = a0 - a1 * cos(2\u03c0x) + a2 * cos(4\u03c0x) - a3 * cos(6\u03c0x) + a4 * cos(8\u03c0x)\n\nkaiser - takes a single parameter to set the beta parameter. The default value is  6.24.\n\nsine_taper - takes a single integer parameter to select the taper. The default sine taper is 1 which is equivalent to the sine window.\n\nNote that other window types do not take any parameters.\n\n(default: 0)"
+            "description": "An array that sets parameters specific to the window type:\n\ntrapezoid - takes either one or two parameter as percentages. If one parameter is provided it sets the first high point which is then mirrored. If two parameters are provided they set the two points of the trapezoid. The defaults are 25% and 75%.\n\ntukey - takes a single parameter to set the cosine percentage (defaults to 50%). When set to 100% the window is the same as the Hann window. Reducing the percentage increases the central plateau.\n\ncosine_sum - takes up to 5 parameters [a0-a4] as in the following formula. The defaults are set to the values for a Hann window:\n\n    w(x) = a0 - a1 * cos(2\u03c0x) + a2 * cos(4\u03c0x) - a3 * cos(6\u03c0x) + a4 * cos(8\u03c0x)\n\nkaiser - takes a single parameter to set the beta parameter. The default value is  6.24.\n\nsine_taper - takes a single integer parameter to select the taper. The default sine taper is 1 which is equivalent to the sine window.\n\nNote that other window types do not take any parameters.\n\n(default: 0, max size: 5)"
         },
         "6": {
             "name": "/endpoints [enum]",

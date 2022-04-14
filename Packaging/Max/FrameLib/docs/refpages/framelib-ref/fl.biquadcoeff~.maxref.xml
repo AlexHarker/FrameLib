@@ -10,17 +10,17 @@
   <misc name="Parameters">
     <entry name="/freq [double]">
       <description>
-        Sets the filter frequency.<p /><i>(default: 0)</i>
+        Sets the filter frequency.<p /><i>(default: 0, min: 0)</i>
       </description>
     </entry>
     <entry name="/gain [double]">
       <description>
-        Sets the linear gain of the filter.<p /><i>(default: 1)</i>
+        Sets the linear gain of the filter.<p /><i>(default: 1, min: 0)</i>
       </description>
     </entry>
     <entry name="/qs [double]">
       <description>
-        Sets the q or s of the filter.<p /><i>(default: 0)</i>
+        Sets the q or s of the filter.<p /><i>(default: 0, min: 0)</i>
       </description>
     </entry>
     <entry name="/mode [enum]">
@@ -40,12 +40,20 @@
     <metadata name="tag">FrameLib Filters</metadata>
   </metadatalist>
   <objarglist>
+    <objarg name="[stream-specifier]" optional="1" type="symbol">
+      <digest>
+        Specifies the number of streams
+      </digest>
+      <description>
+        Optionally, the first argument may be used to explicitly specify the number of streams. This is done using a symbol starting with the character <m>=</m> followed by the required number of streams (without a space). For example, an argument of <m>=4</m> will set the number of streams to 4.
+      </description>
+    </objarg>
     <objarg name="freq" optional="1" type="number">
       <digest>
         Sets the filter frequency
       </digest>
       <description>
-        This argument sets the freq parameter:<p /><p />Sets the filter frequency.<p /><i>(default: 0)</i>
+        This argument sets the freq parameter:<p /><p />Sets the filter frequency.<p /><i>(default: 0, min: 0)</i>
       </description>
     </objarg>
     <objarg name="gain" optional="1" type="number">
@@ -53,7 +61,7 @@
         Sets the linear gain of the filter
       </digest>
       <description>
-        This argument sets the gain parameter:<p /><p />Sets the linear gain of the filter.<p /><i>(default: 1)</i>
+        This argument sets the gain parameter:<p /><p />Sets the linear gain of the filter.<p /><i>(default: 1, min: 0)</i>
       </description>
     </objarg>
     <objarg name="qs" optional="1" type="number">
@@ -61,7 +69,7 @@
         Sets the q or s of the filter
       </digest>
       <description>
-        This argument sets the qs parameter:<p /><p />Sets the q or s of the filter.<p /><i>(default: 0)</i>
+        This argument sets the qs parameter:<p /><p />Sets the q or s of the filter.<p /><i>(default: 0, min: 0)</i>
       </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">
@@ -107,7 +115,7 @@
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
       <digest>
-        Realtime flag
+        Realtime Flag
       </digest>
       <description>
         Sets the realtime state for <o>fl.biquadcoeff~</o>. When set to <m>0</m> <o>fl.biquadcoeff~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.

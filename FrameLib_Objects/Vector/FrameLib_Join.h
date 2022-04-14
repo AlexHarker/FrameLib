@@ -6,6 +6,8 @@
 
 class FrameLib_Join final : public FrameLib_Processor
 {
+    static constexpr int maxNumIns = 32;
+
     // Parameter Enums and Info
 
     enum ParameterList { kNumIns, kTriggers };
@@ -33,6 +35,8 @@ private:
     // Data
     
     static ParameterInfo sParamInfo;
+    
+    unsigned long mNumIns;
 };
 
 #endif

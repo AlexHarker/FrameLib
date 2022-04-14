@@ -20,7 +20,7 @@
     </entry>
     <entry name="/reset [int]">
       <description>
-        Sets the reset position as a sample index. A value of -1 can be used for direction independent reset. For forward direction reading this results in a reset to the first position. For backward direction reading this results in a reset to the last position.<p /><i>(default: -1)</i>
+        Sets the reset position as a sample index. A value of -1 can be used for direction independent reset. For forward direction reading this results in a reset to the first position. For backward direction reading this results in a reset to the last position.<p /><i>(default: -1, min: -1)</i>
       </description>
     </entry>
     <entry name="/idle [enum]">
@@ -35,6 +35,14 @@
     <metadata name="tag">FrameLib Vector</metadata>
   </metadatalist>
   <objarglist>
+    <objarg name="[stream-specifier]" optional="1" type="symbol">
+      <digest>
+        Specifies the number of streams
+      </digest>
+      <description>
+        Optionally, the first argument may be used to explicitly specify the number of streams. This is done using a symbol starting with the character <m>=</m> followed by the required number of streams (without a space). For example, an argument of <m>=4</m> will set the number of streams to 4.
+      </description>
+    </objarg>
     <objarg name="mode" optional="1" type="symbol">
       <digest>
         Sets the mode
@@ -56,7 +64,7 @@
         Sets the reset position as a sample index
       </digest>
       <description>
-        This argument sets the reset parameter:<p /><p />Sets the reset position as a sample index. A value of -1 can be used for direction independent reset. For forward direction reading this results in a reset to the first position. For backward direction reading this results in a reset to the last position.<p /><i>(default: -1)</i>
+        This argument sets the reset parameter:<p /><p />Sets the reset position as a sample index. A value of -1 can be used for direction independent reset. For forward direction reading this results in a reset to the first position. For backward direction reading this results in a reset to the last position.<p /><i>(default: -1, min: -1)</i>
       </description>
     </objarg>
     <objarg name="idle" optional="1" type="symbol">
@@ -102,7 +110,7 @@
   <attributelist>
     <attribute name="rt" get="1" set="1" type="int" size="1">
       <digest>
-        Realtime flag
+        Realtime Flag
       </digest>
       <description>
         Sets the realtime state for <o>fl.pattern~</o>. When set to <m>0</m> <o>fl.pattern~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
