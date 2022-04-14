@@ -31,7 +31,7 @@ public:
     
 private:
     
-    SinkProxy *mProxy;
+    SinkProxy *mSinkProxy;
 };
 
 // Wrapper Class
@@ -71,14 +71,14 @@ void FrameLib_MaxClass_Sink::classInit(t_class *c, t_symbol *nameSpace, const ch
 FrameLib_MaxClass_Sink::FrameLib_MaxClass_Sink(t_object *x, t_symbol *s, long argc, t_atom *argv)
 : FrameLib_MaxClass(x, s, argc, argv, new SinkProxy(x))
 {
-    mProxy = static_cast<SinkProxy *>(mFrameLibProxy.get());
+    mSinkProxy = static_cast<SinkProxy *>(mProxy.get());
 }
 
 // Additional handlers
 
 void FrameLib_MaxClass_Sink::clear()
 {
-    mProxy->clear();
+    mSinkProxy->clear();
 }
 
 // Main
