@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/interval [double]">
       <description>
-        Sets the interval between frames in the units specified by the units parameter.<p /><i>(default: 64)</i>
+        Sets the interval between frames in the units specified by the units parameter.<p /><i>(default: 64, min: 0)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
@@ -40,7 +40,7 @@
         Sets the interval between frames in the units specified by the units parameter
       </digest>
       <description>
-        This argument sets the interval parameter:<p /><p />Sets the interval between frames in the units specified by the units parameter.<p /><i>(default: 64)</i>
+        This argument sets the interval parameter:<p /><p />Sets the interval between frames in the units specified by the units parameter.<p /><i>(default: 64, min: 0)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">

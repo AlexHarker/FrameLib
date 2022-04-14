@@ -10,12 +10,12 @@
   <misc name="Parameters">
     <entry name="/start [double]">
       <description>
-        Sets the start point of the subframe.<p /><i>(default: 0)</i>
+        Sets the start point of the subframe.<p /><i>(default: 0, min: 0)</i>
       </description>
     </entry>
     <entry name="/end [double]">
       <description>
-        Sets the end point of the subframe.<p /><i>(default: 0)</i>
+        Sets the end point of the subframe.<p /><i>(default: 0, min: 0)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
@@ -35,7 +35,7 @@
         Sets the start point of the subframe
       </digest>
       <description>
-        This argument sets the start parameter:<p /><p />Sets the start point of the subframe.<p /><i>(default: 0)</i>
+        This argument sets the start parameter:<p /><p />Sets the start point of the subframe.<p /><i>(default: 0, min: 0)</i>
       </description>
     </objarg>
     <objarg name="end" optional="1" type="number">
@@ -43,7 +43,7 @@
         Sets the end point of the subframe
       </digest>
       <description>
-        This argument sets the end parameter:<p /><p />Sets the end point of the subframe.<p /><i>(default: 0)</i>
+        This argument sets the end parameter:<p /><p />Sets the end point of the subframe.<p /><i>(default: 0, min: 0)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">

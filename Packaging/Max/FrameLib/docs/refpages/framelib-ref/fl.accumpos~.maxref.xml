@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/percentage [double]">
       <description>
-        Sets the percentage of the sum used for calculation [0-100].<p /><i>(default: 50)</i>
+        Sets the percentage of the sum used for calculation [0-100].<p /><i>(default: 50, clipped: 0-100)</i>
       </description>
     </entry>
     <entry name="/empty [enum]">
@@ -35,7 +35,7 @@
         Sets the percentage of the sum used for calculation [0-100]
       </digest>
       <description>
-        This argument sets the percentage parameter:<p /><p />Sets the percentage of the sum used for calculation [0-100].<p /><i>(default: 50)</i>
+        This argument sets the percentage parameter:<p /><p />Sets the percentage of the sum used for calculation [0-100].<p /><i>(default: 50, clipped: 0-100)</i>
       </description>
     </objarg>
     <objarg name="empty" optional="1" type="symbol">

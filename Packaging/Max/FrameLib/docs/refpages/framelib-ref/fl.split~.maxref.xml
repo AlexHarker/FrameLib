@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/split [double]">
       <description>
-        Sets the split point.<p /><i>(default: 0)</i>
+        Sets the split point.<p /><i>(default: 0, min: 0)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
@@ -30,7 +30,7 @@
         Sets the split point
       </digest>
       <description>
-        This argument sets the split parameter:<p /><p />Sets the split point.<p /><i>(default: 0)</i>
+        This argument sets the split parameter:<p /><p />Sets the split point.<p /><i>(default: 0, min: 0)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">

@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/num_items [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of items.<p /><i>(default: 1)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of items.<p /><i>(default: 1, clipped: 1-10)</i>
       </description>
     </entry>
     <entry name="/tag [string]">
@@ -20,12 +20,12 @@
     </entry>
     <entry name="/trigger_ins [variable length bool array]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets which inputs trigger output using an array of bools. By default all inputs trigger output.<p /><i>(default: true)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets which inputs trigger output using an array of bools. By default all inputs trigger output.<p /><i>(default: true, max size: 10)</i>
       </description>
     </entry>
     <entry name="/padding [variable length int array]">
       <description>
-        Sets the zero padding for each input using an array of integers. By default there is no zero padding.<p /><i>(default: 0)</i>
+        Sets the zero padding for each input using an array of integers. By default there is no zero padding.<p /><i>(default: 0, max size: 10)</i>
       </description>
     </entry>
     <entry name="/item_01...10 [string]">

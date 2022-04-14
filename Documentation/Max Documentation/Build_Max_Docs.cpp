@@ -4,6 +4,7 @@
 #include "FrameLib_Global.h"
 #include "FrameLib_Context.h"
 #include "FrameLib_Multistream.h"
+#include "FrameLib_Strings.h"
 
 #include <string>
 #include <vector>
@@ -195,7 +196,11 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
     std::string info = escapeXML(params->getInfo(idx));
     std::string lineEnd = ". ";
 
-    bool isEnum = params->getType(idx) == FrameLib_Parameters::Type::Enum;
+    auto type = params->getType(idx);
+    auto numericType = params->getNumericType(idx);
+
+    bool isEnum = type == FrameLib_Parameters::Type::Enum;
+    
     unsigned long numEnumItems = 0;
     unsigned long bulletCount = 0;
     
@@ -367,17 +372,49 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
     
     findReplace(info, ": ", ":<p />");
     
-    // Finally, denote the default
+    // Finally, denote the default, ranges etc.
     
     auto defaultString = params->getDefaultString(idx);
     
+    std::string valueString = "";
+    
+    auto addToValueString = [&](std::string str)
+    {
+        if (valueString.length())
+            valueString += ", " + str;
+        else
+            valueString = str;
+    };
+
     if (defaultString.length())
     {
         if (isEnum)
-            info += "<p /><i>(default: <m>" + defaultString + "</m>)</i>";
+            addToValueString("default: <m>" + defaultString + "</m>");
         else
-            info += "<p /><i>(default: " + defaultString + ")</i>";
+            addToValueString("default: " + defaultString);
     }
+    
+    if (numericType == FrameLib_Parameters::NumericType::Integer || numericType == FrameLib_Parameters::NumericType::Double)
+    {
+        std::string min(FrameLib_StringMaker<32>(params->getMin(idx), true));
+        std::string max(FrameLib_StringMaker<32>(params->getMax(idx), true));
+
+        switch (params->getClipMode(idx))
+        {
+            case FrameLib_Parameters::ClipMode::None:   break;
+            case FrameLib_Parameters::ClipMode::Min:    addToValueString(std::string("min: ") + min);       break;
+            case FrameLib_Parameters::ClipMode::Max:    addToValueString(std::string("max: ") + max);       break;
+            case FrameLib_Parameters::ClipMode::Clip:   addToValueString("clipped: " + min + "-" + max);    break;
+        }
+    }
+    
+    if (type == FrameLib_Parameters::Type::Array)
+        addToValueString(std::string("size: ") + std::to_string(params->getArraySize(idx)));
+    else if (type == FrameLib_Parameters::Type::VariableArray)
+        addToValueString(std::string("max size: ") + std::to_string(params->getArrayMaxSize(idx)));
+    
+    if (valueString.length())
+        info += "<p /><i>(" + valueString + ")</i>";
     
     return info;
 }

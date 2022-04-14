@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/freq [double]">
       <description>
-        Sets the filter cutoff frequency.<p /><i>(default: 500)</i>
+        Sets the filter cutoff frequency.<p /><i>(default: 500, min: 0)</i>
       </description>
     </entry>
     <entry name="/mode [enum]">
@@ -45,7 +45,7 @@
         Sets the filter cutoff frequency
       </digest>
       <description>
-        This argument sets the freq parameter:<p /><p />Sets the filter cutoff frequency.<p /><i>(default: 500)</i>
+        This argument sets the freq parameter:<p /><p />Sets the filter cutoff frequency.<p /><i>(default: 500, min: 0)</i>
       </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">

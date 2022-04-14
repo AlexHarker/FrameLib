@@ -10,12 +10,12 @@
   <misc name="Parameters">
     <entry name="/max_length [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the maximum input length (and associated internal FFT size).<p /><i>(default: 16384)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the maximum input length (and associated internal FFT size).<p /><i>(default: 16384, min: 0)</i>
       </description>
     </entry>
     <entry name="/num_tapers [int]">
       <description>
-        Sets the number of tapers to use.<p /><i>(default: 3)</i>
+        Sets the number of tapers to use.<p /><i>(default: 3, min: 1)</i>
       </description>
     </entry>
     <entry name="/normalise [bool]">
@@ -45,7 +45,7 @@
         Sets the maximum input length (and associated internal FFT size)
       </digest>
       <description>
-        This argument sets the max_length parameter:<p /><p />Sets the maximum input length (and associated internal FFT size).<p /><i>(default: 16384)</i>
+        This argument sets the max_length parameter:<p /><p />Sets the maximum input length (and associated internal FFT size).<p /><i>(default: 16384, min: 0)</i>
       </description>
     </objarg>
     <objarg name="num_tapers" optional="1" type="int">
@@ -53,7 +53,7 @@
         Sets the number of tapers to use
       </digest>
       <description>
-        This argument sets the num_tapers parameter:<p /><p />Sets the number of tapers to use.<p /><i>(default: 3)</i>
+        This argument sets the num_tapers parameter:<p /><p />Sets the number of tapers to use.<p /><i>(default: 3, min: 1)</i>
       </description>
     </objarg>
     <objarg name="normalise" optional="1" type="number">

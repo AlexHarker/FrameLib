@@ -20,7 +20,7 @@
     </entry>
     <entry name="/trigger_ins [variable length bool array]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets which inputs trigger output using an array of bools. By default all inputs trigger output.<p /><i>(default: true)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets which inputs trigger output using an array of bools. By default all inputs trigger output.<p /><i>(default: true, max size: 32)</i>
       </description>
     </entry>
   </misc>

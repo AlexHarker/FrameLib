@@ -10,17 +10,17 @@
   <misc name="Parameters">
     <entry name="/max_length [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the input length and maximum FFT size.<p /><i>(default: 16384)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the input length and maximum FFT size.<p /><i>(default: 16384, min: 0)</i>
       </description>
     </entry>
     <entry name="/phase [double]">
       <description>
-        Sets the phase for the transformed FIR [0 to 1]. Minimum phase can be requested with a value of zero. Linear phase can be requested with value of a half. Maximum phase can be requested with a value of one.<p /><i>(default: 0)</i>
+        Sets the phase for the transformed FIR [0 to 1]. Minimum phase can be requested with a value of zero. Linear phase can be requested with value of a half. Maximum phase can be requested with a value of one.<p /><i>(default: 0, clipped: 0-1)</i>
       </description>
     </entry>
     <entry name="/time_factor [double]">
       <description>
-        Sets the factor used to determine the length for zero padding the FIR before processing. The FIR is padded to at least its original length multiplied by this factor. Note that this needs to be accounted for when setting the max_length parameter.<p /><i>(default: 1)</i>
+        Sets the factor used to determine the length for zero padding the FIR before processing. The FIR is padded to at least its original length multiplied by this factor. Note that this needs to be accounted for when setting the max_length parameter.<p /><i>(default: 1, min: 1)</i>
       </description>
     </entry>
   </misc>
@@ -35,7 +35,7 @@
         Sets the input length and maximum FFT size
       </digest>
       <description>
-        This argument sets the max_length parameter:<p /><p />Sets the input length and maximum FFT size.<p /><i>(default: 16384)</i>
+        This argument sets the max_length parameter:<p /><p />Sets the input length and maximum FFT size.<p /><i>(default: 16384, min: 0)</i>
       </description>
     </objarg>
     <objarg name="phase" optional="1" type="number">
@@ -43,7 +43,7 @@
         Sets the phase for the transformed FIR [0 to 1]
       </digest>
       <description>
-        This argument sets the phase parameter:<p /><p />Sets the phase for the transformed FIR [0 to 1]. Minimum phase can be requested with a value of zero. Linear phase can be requested with value of a half. Maximum phase can be requested with a value of one.<p /><i>(default: 0)</i>
+        This argument sets the phase parameter:<p /><p />Sets the phase for the transformed FIR [0 to 1]. Minimum phase can be requested with a value of zero. Linear phase can be requested with value of a half. Maximum phase can be requested with a value of one.<p /><i>(default: 0, clipped: 0-1)</i>
       </description>
     </objarg>
     <objarg name="time_factor" optional="1" type="number">
@@ -51,7 +51,7 @@
         Sets the factor used to determine the length for zero padding the FIR before processing
       </digest>
       <description>
-        This argument sets the time_factor parameter:<p /><p />Sets the factor used to determine the length for zero padding the FIR before processing. The FIR is padded to at least its original length multiplied by this factor. Note that this needs to be accounted for when setting the max_length parameter.<p /><i>(default: 1)</i>
+        This argument sets the time_factor parameter:<p /><p />Sets the factor used to determine the length for zero padding the FIR before processing. The FIR is padded to at least its original length multiplied by this factor. Note that this needs to be accounted for when setting the max_length parameter.<p /><i>(default: 1, min: 1)</i>
       </description>
     </objarg>
   </objarglist>

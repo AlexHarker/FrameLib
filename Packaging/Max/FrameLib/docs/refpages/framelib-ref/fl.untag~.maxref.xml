@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/num_outs [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of outputs (and hence the number of tags).<p /><i>(default: 1)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of outputs (and hence the number of tags).<p /><i>(default: 1, clipped: 1-10)</i>
       </description>
     </entry>
     <entry name="/tag_01...10 [string]">

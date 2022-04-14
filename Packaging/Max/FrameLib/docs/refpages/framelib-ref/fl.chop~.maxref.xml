@@ -10,12 +10,12 @@
   <misc name="Parameters">
     <entry name="/num_outs [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of outputs.<p /><i>(default: 1)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of outputs.<p /><i>(default: 1, clipped: 2-32)</i>
       </description>
     </entry>
     <entry name="/size [double]">
       <description>
-        Sets the size of the output frames.<p /><i>(default: 1)</i>
+        Sets the size of the output frames.<p /><i>(default: 1, min: 0)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
@@ -35,7 +35,7 @@
         Sets the number of outputs
       </digest>
       <description>
-        This argument sets the num_outs parameter:<p /><p />Sets the number of outputs.<p /><i>(default: 1)</i>
+        This argument sets the num_outs parameter:<p /><p />Sets the number of outputs.<p /><i>(default: 1, clipped: 2-32)</i>
       </description>
     </objarg>
     <objarg name="size" optional="1" type="number">
@@ -43,7 +43,7 @@
         Sets the size of the output frames
       </digest>
       <description>
-        This argument sets the size parameter:<p /><p />Sets the size of the output frames.<p /><i>(default: 1)</i>
+        This argument sets the size parameter:<p /><p />Sets the size of the output frames.<p /><i>(default: 1, min: 0)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">

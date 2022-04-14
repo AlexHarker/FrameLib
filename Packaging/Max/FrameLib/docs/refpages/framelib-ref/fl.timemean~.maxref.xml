@@ -10,12 +10,12 @@
   <misc name="Parameters">
     <entry name="/max_frames [int]">
       <description>
-        Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.<p /><i>(default: 10)</i>
+        Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.<p /><i>(default: 10, min: 1)</i>
       </description>
     </entry>
     <entry name="/num_frames [int]">
       <description>
-        Sets the current number of frames for calculation as an integer.<p /><i>(default: 10)</i>
+        Sets the current number of frames for calculation as an integer.<p /><i>(default: 10, min: 1)</i>
       </description>
     </entry>
     <entry name="/pad [double]">
@@ -40,7 +40,7 @@
         Sets the maximum number of frames for calculation
       </digest>
       <description>
-        This argument sets the max_frames parameter:<p /><p />Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.<p /><i>(default: 10)</i>
+        This argument sets the max_frames parameter:<p /><p />Sets the maximum number of frames for calculation. Note that the internal buffer is reset when this changes.<p /><i>(default: 10, min: 1)</i>
       </description>
     </objarg>
     <objarg name="num_frames" optional="1" type="int">
@@ -48,7 +48,7 @@
         Sets the current number of frames for calculation as an integer
       </digest>
       <description>
-        This argument sets the num_frames parameter:<p /><p />Sets the current number of frames for calculation as an integer.<p /><i>(default: 10)</i>
+        This argument sets the num_frames parameter:<p /><p />Sets the current number of frames for calculation as an integer.<p /><i>(default: 10, min: 1)</i>
       </description>
     </objarg>
     <objarg name="pad" optional="1" type="number">

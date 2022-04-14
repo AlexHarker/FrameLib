@@ -20,7 +20,7 @@
     </entry>
     <entry name="/reset [int]">
       <description>
-        Sets the reset position as a sample index. A value of -1 can be used for direction independent reset. For forward direction reading this results in a reset to the first position. For backward direction reading this results in a reset to the last position.<p /><i>(default: -1)</i>
+        Sets the reset position as a sample index. A value of -1 can be used for direction independent reset. For forward direction reading this results in a reset to the first position. For backward direction reading this results in a reset to the last position.<p /><i>(default: -1, min: -1)</i>
       </description>
     </entry>
     <entry name="/idle [enum]">
@@ -56,7 +56,7 @@
         Sets the reset position as a sample index
       </digest>
       <description>
-        This argument sets the reset parameter:<p /><p />Sets the reset position as a sample index. A value of -1 can be used for direction independent reset. For forward direction reading this results in a reset to the first position. For backward direction reading this results in a reset to the last position.<p /><i>(default: -1)</i>
+        This argument sets the reset parameter:<p /><p />Sets the reset position as a sample index. A value of -1 can be used for direction independent reset. For forward direction reading this results in a reset to the first position. For backward direction reading this results in a reset to the last position.<p /><i>(default: -1, min: -1)</i>
       </description>
     </objarg>
     <objarg name="idle" optional="1" type="symbol">

@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/limit [int]">
       <description>
-        Sets the count limit.<p /><i>(default: 10)</i>
+        Sets the count limit.<p /><i>(default: 10, min: 0)</i>
       </description>
     </entry>
     <entry name="/direction [enum]">
@@ -20,7 +20,7 @@
     </entry>
     <entry name="/reset [int]">
       <description>
-        Sets the reset value. A value of -1 can be used for direction independent reset. This results in reset to 0 when counting up and (limit - 1) when counting down.<p /><i>(default: -1)</i>
+        Sets the reset value. A value of -1 can be used for direction independent reset. This results in reset to 0 when counting up and (limit - 1) when counting down.<p /><i>(default: -1, min: -1)</i>
       </description>
     </entry>
     <entry name="/mode [enum]">
@@ -45,7 +45,7 @@
         Sets the count limit
       </digest>
       <description>
-        This argument sets the limit parameter:<p /><p />Sets the count limit.<p /><i>(default: 10)</i>
+        This argument sets the limit parameter:<p /><p />Sets the count limit.<p /><i>(default: 10, min: 0)</i>
       </description>
     </objarg>
     <objarg name="direction" optional="1" type="symbol">
@@ -61,7 +61,7 @@
         Sets the reset value
       </digest>
       <description>
-        This argument sets the reset parameter:<p /><p />Sets the reset value. A value of -1 can be used for direction independent reset. This results in reset to 0 when counting up and (limit - 1) when counting down.<p /><i>(default: -1)</i>
+        This argument sets the reset parameter:<p /><p />Sets the reset value. A value of -1 can be used for direction independent reset. This results in reset to 0 when counting up and (limit - 1) when counting down.<p /><i>(default: -1, min: -1)</i>
       </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">
