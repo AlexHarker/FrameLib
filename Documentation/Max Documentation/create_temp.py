@@ -11,14 +11,18 @@ def main(docs: Documentation, clean: bool=True):
 
     if clean:
         # Interfaces
-        for files in docs.interfaces_dir.iterdir():
-            files.unlink()
+        for file in docs.interfaces_dir.iterdir():
+            file.unlink()
+
+        for file in docs.temporary_dir.iterdir():
+            if not file.is_dir():
+                file.unlink()
 
             # Refpages
-            for files in docs.refpages_dir.iterdir():
-                if files.is_dir():
+            for file in docs.refpages_dir.iterdir():
+                if file.is_dir():
                     try:
-                        rmtree(files.resolve())
+                        rmtree(file.resolve())
                     except OSError:
                         print("Error cleaning out existing docs directories")
 
