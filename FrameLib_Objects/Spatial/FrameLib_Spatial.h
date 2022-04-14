@@ -14,9 +14,10 @@ class FrameLib_Spatial final : public FrameLib_Processor
     
     // Parameter Enums and Info
 
-    enum ParameterList { kAngleUnits, kInputCoords, kSpeakerCoords, kConstrain, kSpeakers, kWeights, kRolloff, kBlur, kMaxSpeakers, kPointFactor };
+    enum ParameterList { kAngleUnits, kOrientation, kInputCoords, kSpeakerCoords, kConstrain, kSpeakers, kWeights, kRolloff, kBlur, kMaxSpeakers, kPointFactor };
     enum AngleUnits { kRadians, kDegrees };
-    enum CoordinateTypes { kPolar, kCartesian };
+    enum OrientationTypes { kXClockwise, kXAntiClockwise, kYClockwise, kYAntiClockwise };
+    enum CoordinateTypes { kSpherical, kCartesian };
     enum ConstrainModes { kNone, kHemisphere, kSphere, kConvexHull };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
@@ -37,17 +38,27 @@ class FrameLib_Spatial final : public FrameLib_Processor
         const double &z() const { return std::get<2>(*this); }
     };
         
-    struct PolToCar
+    struct SphericalConversion
     {
-        PolToCar(bool degrees) : mConvertor(degrees) {}
+        SphericalConversion(OrientationTypes orientation, AngleUnits units)
+        : mOrientation(orientation)
+        , mConvertor(units == kDegrees)
+        {}
         
-        Vec3 operator()(const Value3D& polar)
+        Vec3 operator()(const Value3D& spherical)
         {
-            Vec3 cartesian = mConvertor(polar);
+            Vec3 cartesian = mConvertor(spherical);
             
-            return Vec3(cartesian.y(), cartesian.x(), cartesian.z());
+            switch (mOrientation)
+            {
+                case kXClockwise:           return Vec3(cartesian.x(), -cartesian.y(), cartesian.z());
+                case kYClockwise:           return Vec3(cartesian.y(), cartesian.x(), cartesian.z());
+                case kYAntiClockwise:       return Vec3(-cartesian.y(), cartesian.x(), cartesian.z());
+                default:                    return cartesian;
+            }
         }
         
+        OrientationTypes mOrientation;
         FrameLib_Spatial_Ops::PolToCar mConvertor;
     };
     
