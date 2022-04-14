@@ -655,7 +655,7 @@ namespace window_functions
             return generators[type](window, N, begin, end, p);
         }
         
-        window_generator<T> *get(size_t type) {return generators[type]; }
+        window_generator<T> *get(size_t type) { return generators[type]; }
         
         window_generator<T> *generators[sizeof...(gens)] = { gens... };
     };

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<chapter name="FrameLib Tutorial 13: Code Export">
+  <openfile name="Code Export" patch="_13_Export.maxpat"/>
+  <header>FrameLib Tutorial 13: Code Export</header>
+  <subhead>Exporting your FrameLib networks from Max to C++ to be used in other environments and applications.</subhead>
+  <body>This tutorial will show you how to export a FrameLib network made in Max to C++ source code that can be used in another application or project.</body>
+  <body><openpatchlink>Open the tutorial</openpatchlink>.</body>
+  
+  <previous name="12_fl_threading">Multithreading</previous>
+  <parent name="00_fl_index">FrameLib Tutorials</parent>
+  
+  <seealsolist>
+    <seealso name="fl.contextcontrol~" />
+  </seealsolist>
+</chapter>
+
+
+

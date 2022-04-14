@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 5,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 528.0, 590.0 ],
+		"rect" : [ 34.0, 87.0, 528.0, 590.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -45,7 +45,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
-					"patching_rect" : [ 9.0, 141.0, 22.0, 22.0 ],
+					"patching_rect" : [ 9.0, 134.666666666666657, 22.0, 22.0 ],
 					"text" : "t 1"
 				}
 
@@ -57,7 +57,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 9.0, 109.0, 34.0, 22.0 ],
+					"patching_rect" : [ 9.0, 102.333333333333329, 34.0, 22.0 ],
 					"text" : "sel 1"
 				}
 
@@ -85,8 +85,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 5,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -283,7 +283,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 9.0, 172.0, 97.0, 22.0 ],
+					"patching_rect" : [ 9.0, 167.0, 97.0, 22.0 ],
 					"text" : "v #0.flap.state"
 				}
 
@@ -626,7 +626,6 @@
 
 			}
  ],
-		"dependency_cache" : [  ],
 		"autosave" : 0
 	}
 

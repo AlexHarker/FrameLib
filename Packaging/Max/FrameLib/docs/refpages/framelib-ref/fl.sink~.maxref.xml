@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
+<c74object name="fl.sink~" module="FrameLib" category="FrameLib IO">
+  <digest>
+    Outputs frames to the host environment as audio by overlap-adding into an output buffer
+  </digest>
+  <description>
+    The length of the internal buffer determines the maximum frame length. Output suffers no latency but an optional delay may be added if desired. If a delay is applied then the maximum frame length will be reduced by the delay time.
+  </description>
+  <misc name="Parameters">
+    <entry name="/buffer_size [double]">
+      <description>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the internal buffer size in the units specified by the units parameter.<p /><i>(default: 250000)</i>
+      </description>
+    </entry>
+    <entry name="/units [enum]">
+      <description>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the time units used to determine the buffer size and delay.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><p /><i>(default: <m>samples</m>)</i>
+      </description>
+    </entry>
+    <entry name="/delay [double]">
+      <description>
+        Sets the output delay in the units specified by the units parameter.<p /><i>(default: 0)</i>
+      </description>
+    </entry>
+    <entry name="/interp [enum]">
+      <description>
+        Sets the interpolation mode:<p /><bullet>[0] - <m>none</m> - no interpolation.</bullet><bullet>[1] - <m>linear</m> - linear interpolation.</bullet><bullet>[2] - <m>hermite</m> - cubic hermite interpolation (incurs a minimum delay or latency of one sample).</bullet><bullet>[3] - <m>bspline</m> - cubic bspline interpolation (incurs a minimum delay or latency of one sample).</bullet><bullet>[4] - <m>lagrange</m> - cubic lagrange interpolation (incurs a minimum delay or latency of one sample).</bullet><p /><i>(default: <m>none</m>)</i>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib IO</metadata>
+  </metadatalist>
+  <objarglist>
+    <objarg name="buffer_size" optional="1" type="number">
+      <digest>
+        Sets the internal buffer size in the units specified by the units parameter
+      </digest>
+      <description>
+        This argument sets the buffer_size parameter:<p /><p />Sets the internal buffer size in the units specified by the units parameter.<p /><i>(default: 250000)</i>
+      </description>
+    </objarg>
+    <objarg name="units" optional="1" type="symbol">
+      <digest>
+        Sets the time units used to determine the buffer size and delay
+      </digest>
+      <description>
+        This argument sets the units parameter:<p /><p />Sets the time units used to determine the buffer size and delay.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><p /><i>(default: <m>samples</m>)</i>
+      </description>
+    </objarg>
+  </objarglist>
+  <methodlist>
+    <method name="info">
+      <arglist>
+        <arg name="items" optional="1" type="list" />
+      </arglist>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        Print info about <o>fl.sink~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+      </description>
+    </method>
+    <method name="process">
+      <arglist>
+        <arg name="length" optional="0" type="int" />
+      </arglist>
+      <digest>
+        Process a network in non-realtime
+      </digest>
+      <description>
+        Processes a non-realtime network, advancing time by the number of samples specified by the required <m>length</m> argument. <br /><br />This will only take effect if the object has its <m>rt</m> attribute set to <m>0</m> More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+    </method>
+    <method name="reset">
+      <arglist>
+        <arg name="samplerate" optional="1" type="number" />
+      </arglist>
+      <digest>
+        Reset a non-realtime network
+      </digest>
+      <description>
+        Resets a non-realtime network to the start of time ready for processing, optionally setting the sample rate. If the <m>samplerate</m> argument is omitted the network will be set to the global sample rate.<br /><br />This will only take effect if <o>fl.sink~</o> has its <m>rt</m> attribute set to <m>0</m>. More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+    </method>
+    <method name="signal">
+      <arglist />
+      <digest>
+        Synchronise with audio or accept signal IO
+      </digest>
+      <description>
+        Audio Outputs are as follows:<br /><br /><bullet>Audio Output [N].</bullet><br />There are N audio outputs, as set by the number of explicitly set streams.
+      </description>
+    </method>
+    <method name="frame">
+      <arglist />
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+    <method name="sync">
+      <arglist />
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+  </methodlist>
+  <attributelist>
+    <attribute name="buffer" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Non-realtime Buffer
+      </digest>
+      <description>
+        Sets the non-realtime <o>buffer~</o> for <o>fl.sink~</o>. This is the <o>buffer~</o> used for IO in a non-realtime setting.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Buffer" />
+      </attributelist>
+    </attribute>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for <o>fl.sink~</o>. When set to <m>0</m> <o>fl.sink~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for <o>fl.sink~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
+  <seealsolist>
+    <seealso name="fl.source~" />
+    <seealso name="fl.trace~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>conversion</description>
+    </entry>
+  </misc>
+</c74object>

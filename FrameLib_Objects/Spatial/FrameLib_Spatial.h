@@ -3,41 +3,52 @@
 #define FRAMELIB_SPATIAL_H
 
 #include "FrameLib_DSP.h"
+#include "FrameLib_Poltocar.h"
 
 #include <utility>
 #include <vector>
 
 class FrameLib_Spatial final : public FrameLib_Processor
 {
+    using Value3D = FrameLib_Spatial_Ops::Value3D;
+    
     // Parameter Enums and Info
 
-    enum ParameterList { kInputMode, kSpeakers, kWeights, kRolloff, kBlur, kMaxSpeakers, kPoints, kConstrain };
-    enum InputModes { kPolar, kCartesian };
+    enum ParameterList { kAngleUnits, kInputCoords, kSpeakerCoords, kConstrain, kSpeakers, kWeights, kRolloff, kBlur, kMaxSpeakers, kPointFactor };
+    enum AngleUnits { kRadians, kDegrees };
+    enum CoordinateTypes { kPolar, kCartesian };
     enum ConstrainModes { kNone, kHemisphere, kSphere, kConvexHull };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     
     // Spatial Types
     
-    struct Vec3
+    struct Vec3 : Value3D
     {
-        Vec3() : x(0.0), y(0.0), z(0.0) {}
-        Vec3(double X, double Y, double Z) : x(X), y(Y), z(Z) {}
+        Vec3(const Value3D &a) : Value3D(a) {}
+        Vec3() : Value3D(0.0, 0.0, 0.0) {}
+        Vec3(double X, double Y, double Z) : Value3D(X, Y, Z) {}
         
         double mag() const;
         Vec3& normalise();
 
-        double x, y, z;
+        const double &x() const { return std::get<0>(*this); }
+        const double &y() const { return std::get<1>(*this); }
+        const double &z() const { return std::get<2>(*this); }
     };
-    
-    using Cartesian = Vec3;
-    
-    struct Polar
-    {
-        Polar() {}
-        Polar(double a, double e, double r) : azimuth(a), elevation(e), radius(r) {}
         
-        double azimuth, elevation, radius;
+    struct PolToCar
+    {
+        PolToCar(bool degrees) : mConvertor(degrees) {}
+        
+        Vec3 operator()(const Value3D& polar)
+        {
+            Vec3 cartesian = mConvertor(polar);
+            
+            return Vec3(cartesian.y(), cartesian.x(), cartesian.z());
+        }
+        
+        FrameLib_Spatial_Ops::PolToCar mConvertor;
     };
     
     struct HullFace
@@ -92,13 +103,9 @@ public:
     
 private:
 
-    // Conversion Helper
-    
-    Cartesian convertToCartesian(Polar position);
-    
     // Constraints
     
-    Cartesian constrain(Cartesian point);
+    Vec3 constrain(Vec3 point);
     void calculateBounds();
    
     // Process
@@ -107,7 +114,8 @@ private:
     
     // Data
     
-    AutoArray<Cartesian> mSpeakers;
+    CoordinateTypes mInputCoords;
+    AutoArray<Vec3> mSpeakers;
 
     static ParameterInfo sParamInfo;
     

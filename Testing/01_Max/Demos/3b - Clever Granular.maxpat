@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 7,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -57,7 +57,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 549.0, 395.0, 71.0, 22.0 ],
+					"patching_rect" : [ 549.0, 401.999999999999943, 71.0, 22.0 ],
 					"text" : "fl.pack~"
 				}
 
@@ -69,7 +69,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 601.0, 358.0, 42.0, 22.0 ],
+					"patching_rect" : [ 601.0, 368.799999999999955, 42.0, 22.0 ],
 					"text" : "fl.sin~"
 				}
 
@@ -81,7 +81,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 549.0, 358.0, 46.0, 22.0 ],
+					"patching_rect" : [ 549.0, 368.799999999999955, 46.0, 22.0 ],
 					"text" : "fl.cos~"
 				}
 
@@ -90,10 +90,10 @@
 				"box" : 				{
 					"id" : "obj-38",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 549.0, 261.0, 40.0, 22.0 ],
+					"patching_rect" : [ 549.0, 269.199999999999989, 40.0, 22.0 ],
 					"text" : "fl./~ 2"
 				}
 
@@ -102,10 +102,10 @@
 				"box" : 				{
 					"id" : "obj-37",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
+					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 549.0, 290.0, 95.0, 22.0 ],
+					"patching_rect" : [ 549.0, 302.399999999999977, 95.0, 22.0 ],
 					"text" : "fl.tag~ multiplier"
 				}
 
@@ -117,7 +117,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 549.0, 321.0, 85.0, 22.0 ],
+					"patching_rect" : [ 549.0, 335.599999999999966, 85.0, 22.0 ],
 					"text" : "fl.constant~ pi"
 				}
 
@@ -129,7 +129,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 549.0, 231.0, 161.0, 22.0 ],
+					"patching_rect" : [ 549.0, 236.0, 161.0, 22.0 ],
 					"text" : "fl.random~ /mode requested"
 				}
 
@@ -150,7 +150,7 @@
 				"box" : 				{
 					"id" : "obj-32",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
+					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 347.0, 134.0, 80.0, 22.0 ],
@@ -210,7 +210,7 @@
 				"box" : 				{
 					"id" : "obj-24",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
+					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 161.0, 431.0, 68.0, 22.0 ],
@@ -282,10 +282,10 @@
 				"box" : 				{
 					"id" : "obj-21",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 549.0, 168.0, 68.0, 22.0 ],
+					"patching_rect" : [ 549.0, 169.0, 68.0, 22.0 ],
 					"text" : "fl.*~ 10000"
 				}
 
@@ -297,7 +297,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 549.0, 140.0, 161.0, 22.0 ],
+					"patching_rect" : [ 549.0, 134.0, 161.0, 22.0 ],
 					"text" : "fl.random~ /mode requested"
 				}
 
@@ -333,7 +333,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 320.0, 165.0, 224.0, 22.0 ],
+					"patching_rect" : [ 320.0, 169.0, 224.0, 22.0 ],
 					"text" : "fl.ramp~ /mode requested /length 10000"
 				}
 
@@ -413,7 +413,7 @@
 				"box" : 				{
 					"id" : "obj-10",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
+					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 31.0, 283.0, 86.0, 22.0 ],
@@ -450,7 +450,7 @@
 				"box" : 				{
 					"id" : "obj-7",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 56.0, 195.0, 52.0, 22.0 ],
@@ -785,6 +785,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-40", 0 ],
+					"midpoints" : [ 558.5, 362.699999999999932, 610.5, 362.699999999999932 ],
 					"order" : 0,
 					"source" : [ "obj-36", 0 ]
 				}
@@ -793,7 +794,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-36", 1 ],
-					"midpoints" : [ 558.5, 316.5, 624.5, 316.5 ],
+					"midpoints" : [ 558.5, 329.5, 624.5, 329.5 ],
 					"order" : 0,
 					"source" : [ "obj-37", 0 ]
 				}
@@ -887,79 +888,75 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.constant~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.cos~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.divide~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.interval~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.map~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.pack~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.plus~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.ramp~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.random~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.read~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.register~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.sink~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.sin~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.source~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.svf~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.tag~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.times~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.window~.mxo",
 				"type" : "iLaX"
 			}
  ],

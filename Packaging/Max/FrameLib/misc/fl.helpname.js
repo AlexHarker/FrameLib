@@ -15,9 +15,6 @@ function paint()
 	if(name){
     	with(mgraphics) 
     	{
-			var bgcolor = this.patcher.getattr("locked_bgcolor");
-			set_source_rgba(bgcolor);
-			paint();
     		move_to(4, 40);
     		select_font_face("Lato");
  			var textcolor = this.patcher.getattr("textcolor");

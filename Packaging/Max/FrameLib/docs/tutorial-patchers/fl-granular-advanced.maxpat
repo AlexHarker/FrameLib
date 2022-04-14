@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 5,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 710.0, 675.0 ],
+		"rect" : [ 34.0, 87.0, 710.0, 675.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -46,7 +46,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 8.0, 520.0, 80.0, 22.0 ],
+					"patching_rect" : [ 8.0, 520.0, 56.0, 22.0 ],
 					"text" : "fl.*~ 0.35"
 				}
 
@@ -120,7 +120,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 182.0, 255.5, 247.0, 47.0 ],
+					"patching_rect" : [ 182.0, 255.5, 249.0, 47.0 ],
 					"text" : "Read from the jongles buffer a series of samples determined in millisecond positions. determined by the incoming frame."
 				}
 
@@ -137,14 +137,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 5,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 79.0, 457.0, 747.0 ],
+						"rect" : [ 34.0, 87.0, 457.0, 747.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -709,8 +709,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 5,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -916,8 +916,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 5,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -985,7 +985,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 103.0, 315.5, 146.0, 33.0 ],
-									"text" : "pack the two values into a multi-stream frame"
+									"text" : "pack the two values into a multistream output"
 								}
 
 							}
@@ -1280,7 +1280,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 50.0, 33.0, 73.0, 22.0 ],
+					"patching_rect" : [ 50.0, 33.0, 70.0, 22.0 ],
 					"text" : "fl.perblock~"
 				}
 
@@ -1293,7 +1293,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 8.0, 79.0, 156.0, 22.0 ],
+					"patching_rect" : [ 8.0, 79.0, 152.0, 22.0 ],
 					"text" : "fl.frommax~ /mode params"
 				}
 
@@ -1561,119 +1561,6 @@
 					"source" : [ "obj-63", 0 ]
 				}
 
-			}
- ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.read~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.window~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.svf~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.*~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.timemean~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.constant~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.cos~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sin~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.pack~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.map~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tag~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.untag~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.-~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.framemax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.framemin~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.abs~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.split~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.ramp~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.+~.mxo",
-				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0

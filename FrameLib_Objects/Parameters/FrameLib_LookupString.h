@@ -12,7 +12,8 @@ class FrameLib_LookupString final : public FrameLib_Processor
     
     // Parameter Enums and Info
 
-    enum ParameterList { kNumItems, kTag, kEmptyMode, kItems };
+    enum ParameterList { kNumItems, kTag, kScale, kEmptyMode, kItems };
+    enum Scales { kSamples, kNormalised };
     enum EmptyModes { kIgnore, kReset };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };

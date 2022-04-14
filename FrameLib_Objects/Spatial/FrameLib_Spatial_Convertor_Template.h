@@ -114,13 +114,12 @@ private:
     
     void process() override
     {
-        Op op;
+        Op op(mDegrees);
+        
         unsigned long size, sizeIn1, sizeIn2, sizeIn3;
         const double *input1 = getInput(0, &sizeIn1);
         const double *input2 = getInput(1, &sizeIn2);
-        
-        op.prepare(mDegrees);
-        
+                
         if (m2D)
         {
             size = std::max(sizeIn1, sizeIn2);

@@ -79,7 +79,7 @@ FrameLib_Sink::ParameterInfo::ParameterInfo()
 {
     add("Sets the internal buffer size in the units specified by the units parameter.");
     add("Sets the time units used to determine the buffer size and delay.");
-    add("Sets the outpu delay in the units specified by the units parameter.");
+    add("Sets the output delay in the units specified by the units parameter.");
     add("Sets the interpolation mode: "
         "none - no interpolation. "
         "linear - linear interpolation. "

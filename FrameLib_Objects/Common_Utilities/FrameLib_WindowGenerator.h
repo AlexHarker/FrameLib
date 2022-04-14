@@ -270,16 +270,15 @@ public:
                "tukey - the adjustable Tukey (or cosine-tapered) window. "
                "sine - the sine (or cosine) window. "
                "hann - the Hann window. "
-               "hamming - the Hamming window with a0 = 0.54 and a1 = 0.46. "
-               "blackman - the Blackman window with a0 = 0.42, a1 = 0.50, and a2 = 0.08. "
-               "exact_blackman - the exact Blackman window as outlined in the literature. "
-               "The coefficients are a0 = 7938/18608, a1 = 9240/18608 and a2 = 1430/18608. "
+               "hamming - the Hamming window (a0=0.54, a1=0.46). "
+               "blackman - the Blackman window (a0=0.42, a1=0.50, a2 = 0.08). "
+               "exact_blackman - the Blackman window (a0=7938/18608, a1=9240/18608, a2=1430/18608). "
                "blackman_harris - the Blackman-Harris window with 92dB rejection. "
                "nuttall_continuous - Nuttall's continuous 1st derivative window with 93dB rejection. "
                "nuttall_minimal - Nuttall's minimal sidelobe window with 98dB rejection. "
                "flat_top - Heinzel's flat-top window with 95dB rejection. "
                "cosine_sum - a sum of cosines as set by the parameters. "
-               "kaiser - an kaiser window adjustable via the beta parameter. "
+               "kaiser - a kaiser window adjustable via the beta parameter. "
                "sine_taper - one of the sine tapers selectable by parameter.";
     }
     
@@ -293,12 +292,14 @@ public:
                "tukey - takes a single parameter to set the cosine percentage (defaults to 50%). "
                "When set to 100% the window is the same as the Hann window. "
                "Reducing the percentage increases the central plateau. "
-               "cosine_sum - takes up to 5 parameters (a0-a4) as in the following formula. "
+               "cosine_sum - takes up to 5 parameters [a0-a4] as in the following formula. "
+               "The defaults are set to the values for a Hann window: "
                "w(x) = a0 - a1 * cos(2πx) + a2 * cos(4πx) - a3 * cos(6πx) + a4 * cos(8πx). "
-               "The defaults are set to the values for a Hann window. "
-               "kaiser - takes a single parameter to set beta (defaults to 6.24). "
-               "sine_taper - takes a single integer parameter to select the taper (defaults to 1). "
-               "Other window types do not taken any parameters.";
+               "kaiser - takes a single parameter to set the beta parameter. "
+               "The default value is  6.24. "
+               "sine_taper - takes a single integer parameter to select the taper. "
+               "The default sine taper is 1 which is equivalent to the sine window. "
+               "Note that other window types do not take any parameters.";
     }
     
     static const char *getExponentInfo()
@@ -309,12 +310,13 @@ public:
     static const char *getCompensationInfo()
     {
         return "Sets the gain compensation (the window is divided by the compensated gain). "
-        "off - no compensation is used. "
-        "linear - compensate the linear gain of the window. "
-        "square - compensate the gain of the window when applied twice (squared). "
-        "reconstruct - compensate the gain of the squared window divided by the linear gain. "
-        "This last mode is suited to FFT output windows used with the same input window. "
-        "Note that the gain of the window is calculated after applying any exponent.";
+               "For FFT input windowing linear compensatation is recommended. "
+               "For output windowing reconstruct correctly compensates for a matched input window: "
+               "off - no compensation is used. "
+               "linear - compensate the linear gain of the window. "
+               "square - compensate the gain of the window when applied twice (squared). "
+               "reconstruct - compensate the gain of the squared window divided by the linear gain. "
+               "Note that the gain of the window is calculated after applying any exponent.";
     }
     
     static const char *getEndpointsInfo()

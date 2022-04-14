@@ -73,7 +73,7 @@ public:
         
         uintptr_t filter_size = static_cast<uintptr_t>(std::ceil(std::max(width_lo, width_hi) * 0.5));
         uintptr_t filter_full = filter_size * 2 - 1;
-        uintptr_t max_per_filter = static_cast<uintptr_t>(width_mul ? (2.0 / width_mul) + 1.0 : length);
+        uintptr_t max_per_filter = static_cast<uintptr_t>(width_mul ? (2.0 / std::abs(width_mul)) + 1.0 : length);
         uintptr_t data_width = max_per_filter + (filter_full - 1);
         
         op_sizes sizes(data_width, filter_full, processor::EdgeMode::Linear);

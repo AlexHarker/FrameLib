@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
+<c74object name="fl.complex.expr~" module="FrameLib" category="FrameLib Expressions">
+  <digest>
+    Calculates the result of a mathematical expression involving complex numbers
+  </digest>
+  <description>
+    Inputs and output are split into pairs of real and imaginary values. If input pairs are mismatched then the shorter input is padded with zeros. The expression can use input values, operators, functions and constants. The output is a frame at least as long as the shortest input pair. If input pairs mismatch in length the result depends on the mismatch parameter. Pre-computable elements are detected and reduced to constants. Thus it is efficient to synthesize constants or represent values precisely.
+  </description>
+  <misc name="Parameters">
+    <entry name="/expression [string]">
+      <description>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the mathematical expression. Input pairs are indicated in1 to inx (where x is the number of input pairs created). Complex numbers can be expressed directly in the form (a + bi). A range of other constants, operators and functions are available:<p /><bullet>Constants { <m>i</m> <m>e</m> <m>pi</m> <m>epsilon</m> <m>inf</m> }.</bullet><bullet>Unary Operators { <m>-</m> }.</bullet><bullet>Binary Operators { <m>/</m> <m>*</m> <m>%</m> <m>+</m> }.</bullet><bullet>Trigonometric Functions { <m>sin</m> <m>cos</m> <m>tan</m> <m>asin</m> <m>acos</m> <m>atan</m> }.</bullet><bullet>Hyperbolic Functions { <m>sinh</m> <m>cosh</m> <m>tanh</m> <m>asinh</m> <m>acosh</m> <m>atanh</m> }.</bullet><bullet>Unary Functions { <m>log</m> <m>log10</m> <m>exp</m> <m>conj</m> <m>sqrt</m> }.</bullet><bullet>Binary Functions { <m>pow</m> }.</bullet>
+      </description>
+    </entry>
+    <entry name="/mismatch [enum]">
+      <description>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the mode used when dealing with mismatched input lengths:<p /><bullet>[0] - <m>wrap</m> - smaller input pairs are read modulo against the longest input pair.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the shortest input pair.</bullet><bullet>[2] - <m>extend</m> - if required input pairs are extended by repeating their final value.</bullet><p /><i>(default: <m>wrap</m>)</i>
+      </description>
+    </entry>
+    <entry name="/trigger_ins [variable length bool array]">
+      <description>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets which input pairs trigger output using an array of bools. By default all inputs trigger output.<p /><i>(default: true)</i>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Expressions</metadata>
+  </metadatalist>
+  <objarglist>
+    <objarg name="expression" optional="1" type="symbol">
+      <digest>
+        Sets the mathematical expression
+      </digest>
+      <description>
+        This argument sets the expression parameter:<p /><p />Sets the mathematical expression. Input pairs are indicated in1 to inx (where x is the number of input pairs created). Complex numbers can be expressed directly in the form (a + bi). A range of other constants, operators and functions are available:<p /><bullet>Constants { <m>i</m> <m>e</m> <m>pi</m> <m>epsilon</m> <m>inf</m> }.</bullet><bullet>Unary Operators { <m>-</m> }.</bullet><bullet>Binary Operators { <m>/</m> <m>*</m> <m>%</m> <m>+</m> }.</bullet><bullet>Trigonometric Functions { <m>sin</m> <m>cos</m> <m>tan</m> <m>asin</m> <m>acos</m> <m>atan</m> }.</bullet><bullet>Hyperbolic Functions { <m>sinh</m> <m>cosh</m> <m>tanh</m> <m>asinh</m> <m>acosh</m> <m>atanh</m> }.</bullet><bullet>Unary Functions { <m>log</m> <m>log10</m> <m>exp</m> <m>conj</m> <m>sqrt</m> }.</bullet><bullet>Binary Functions { <m>pow</m> }.</bullet>
+      </description>
+    </objarg>
+  </objarglist>
+  <methodlist>
+    <method name="info">
+      <arglist>
+        <arg name="items" optional="1" type="list" />
+      </arglist>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        Print info about <o>fl.complex.expr~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+      </description>
+    </method>
+    <method name="frame">
+      <arglist />
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+    <method name="sync">
+      <arglist />
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+  </methodlist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for <o>fl.complex.expr~</o>. When set to <m>0</m> <o>fl.complex.expr~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for <o>fl.complex.expr~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
+  <seealsolist>
+    <seealso name="fl.expr~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>expression</description>
+    </entry>
+  </misc>
+</c74object>

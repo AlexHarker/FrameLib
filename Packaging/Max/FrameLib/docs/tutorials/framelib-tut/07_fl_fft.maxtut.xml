@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<chapter name="FrameLib Tutorial 7: FFT (Fast Fourier Transform)">
+  <openfile name="FFT (Fast Fourier Transform)" patch="_7_FFT_in_FrameLib.maxpat"/>
+  <header>Framelib Tutorial 7: FFT (Fast Fourier Transform) in FrameLib</header>
+  <subhead>The Basics of FFT/STFT processing in FrameLib</subhead>
+  <body>This tutorial outlines how to construct networks for performing spectral processing in FrameLib.</body>
+  <body><openpatchlink>Open the tutorial</openpatchlink>.</body>
+
+  <previous name="06_fl_granulator">Building a Granular Synthesiser in Framelib</previous>
+  <next name="08_fl_multistream">Multistream Processing</next>
+  <parent name="00_fl_index">FrameLib Tutorials</parent>
+
+  <seealsolist>
+    <seealso name="fl.fft~" />
+    <seealso name="fl.window~" />
+    <seealso name="fl.ifft~" />
+  </seealsolist>
+
+</chapter>

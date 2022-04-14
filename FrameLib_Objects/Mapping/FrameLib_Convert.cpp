@@ -55,7 +55,7 @@ FrameLib_Convert::ParameterInfo::ParameterInfo()
         "db->amp - converts from decibels to linear amplitudes. "
         "amp->db - converts from linear amplitudes to decibels. "
         "midi->freq - converts from midi notes to frequencies. "
-        "freq->mid - converts from frequencies to midi notes. "
+        "freq->midi - converts from frequencies to midi notes. "
         "semitones->ratios - converts semitone transpositions to ratios. "
         "ratios->semitones - converts from ratios to semitone transpositions. "
         "degrees->radians - converts from degress to radians. "

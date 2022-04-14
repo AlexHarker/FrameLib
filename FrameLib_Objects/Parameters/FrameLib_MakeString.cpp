@@ -17,7 +17,6 @@ FrameLib_MakeString::FrameLib_MakeString(FrameLib_Context context, const FrameLi
     
     mParameters.addVariableIntArray(kPadding, "padding", 0, maxNumItems, 0);
     
-    
     // Read in once to get number of items needed
     
     mParameters.setErrorReportingEnabled(false);
@@ -46,7 +45,7 @@ FrameLib_MakeString::FrameLib_MakeString(FrameLib_Context context, const FrameLi
     
     mParameters.set(serialisedParameters);
 
-    // Setup the number of inputs
+    // Find the number of inputs
     
     for (unsigned long i = 0; i < mNumItems; i++)
     {
@@ -75,7 +74,7 @@ FrameLib_MakeString::FrameLib_MakeString(FrameLib_Context context, const FrameLi
 std::string FrameLib_MakeString::objectInfo(bool verbose)
 {
     return formatInfo("Creates a tagged string by concatenating strings and numbers: "
-                      "Items for concatenatation are set as parameter and can be altered dynamically. "
+                      "Items for concatenatation are set as parameters and can be altered dynamically. "
                       "Numeric inputs are indicated as in1 to inx (where x is the number of inputs created). "
                       "Only a single number is read from each input, interpreted as an integer. "
                       "Numbers can be optionally zero-padded. "

@@ -58,9 +58,9 @@ FrameLib_FIRPhase::ParameterInfo::ParameterInfo()
 {
     add("Sets the input length and maximum FFT size.");
     add("Sets the phase for the transformed FIR [0 to 1]. "
-        "minimum phase can be requested with a value of zero. "
-        "linear phase can be requested with value of a half. "
-        "maximum phase can be requested with a value of one.");
+        "Minimum phase can be requested with a value of zero. "
+        "Linear phase can be requested with value of a half. "
+        "Maximum phase can be requested with a value of one.");
     add("Sets the factor used to determine the length for zero padding the FIR before processing. "
         "The FIR is padded to at least its original length multiplied by this factor. "
         "Note that this needs to be accounted for when setting the max_length parameter.");

@@ -252,6 +252,7 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_iFFT>::makeClass("fl.ifft~");
     FrameLib_PDClass_Expand<FrameLib_Correlate>::makeClass("fl.correlate~");
     FrameLib_PDClass_Expand<FrameLib_Convolve>::makeClass("fl.convolve~");
+    FrameLib_PDClass_Expand<FrameLib_FIRPhase>::makeClass("fl.firphase~");
     FrameLib_PDClass_Expand<FrameLib_Multitaper>::makeClass("fl.multitaper~");
     FrameLib_PDClass_Expand<FrameLib_Window>::makeClass("fl.window~");
     
@@ -286,6 +287,7 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_AccumPos>::makeClass("fl.accumpos~");
     FrameLib_PDClass_Expand<FrameLib_Chop>::makeClass("fl.chop~");
     FrameLib_PDClass_Expand<FrameLib_Join>::makeClass("fl.join~");
+    FrameLib_PDClass_Expand<FrameLib_KernelSmooth>::makeClass("fl.kernelsmooth~");
     FrameLib_PDClass_Expand<FrameLib_MedianFilter>::makeClass("fl.medianfilter~");
     FrameLib_PDClass_Expand<FrameLib_NonZero>::makeClass("fl.nonzero~");
     FrameLib_PDClass_Expand<FrameLib_Pad>::makeClass("fl.pad~");

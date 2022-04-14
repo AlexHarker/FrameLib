@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<?xml-stylesheet href="./_c74_tut.xsl" type="text/xsl"?>
+
+<chapter name="FrameLib Tutorial 4: Getting In and Out of FrameLib">
+  <openfile name="Conversion" patch="_4_Converting_between_FrameLib_and_Max.maxpat"/>
+  <header>Framelib Tutorial 4: Getting In and Out of FrameLib</header>
+  <subhead>Methods for converting data between Max and FrameLib</subhead>
+  <body>FrameLib operates using a unique kind of frame-based data. Similar, to converting between signal-rate and control-rate data, FrameLib has mechanisms for moving between the FrameLib and Max domains. This tutorial will guide you through all the scenarios where you'll need to know this, and how you can perform these conversions.</body>
+  <body><openpatchlink>Open the tutorial</openpatchlink>.</body>
+  
+  <previous name="03_fl_basics">Key Concepts</previous>
+  <next name="05_fl_generators">Generators</next>
+  <parent name="00_fl_index">FrameLib Tutorials</parent>
+  
+  <seealsolist>
+    <seealso name="fl.frommax~" />
+    <seealso name="fl.tomax~" />
+    <seealso name="fl.source~" />
+    <seealso name="fl.sink~" />
+    <seealso name="fl.trace~" />
+  </seealsolist>
+</chapter>
+
+

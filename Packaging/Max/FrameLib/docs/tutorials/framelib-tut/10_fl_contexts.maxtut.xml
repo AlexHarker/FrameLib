@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<chapter name="FrameLib Tutorial 10: Contexts">
+  <openfile name="Contexts" patch="_10_Contexts.maxpat"/>
+  <header>FrameLib Tutorial 10: Contexts</header>
+  <subhead>Managing FrameLib 'contexts', a concept that is crucical to multithreading and non-realtime processing</subhead>
+  <body>The FrameLib context hasn't until now been discussed but has been operating stealthily under the hood. Contexts are the way that FrameLib differentiates between networks (both connected and unconnected). They are self-contained FrameLib 'worlds' that can be set to operate in certain ways, and which are independent of one another. Understanding contexts is essential for controlling advanced features of FrameLib such as non-realtime processing and multithreading.</body>
+  <body><openpatchlink>Open the tutorial</openpatchlink>.</body>
+  
+  <previous name="09_fl_multiresfft">Multi-Resolution FFT</previous>
+  <next name="11_fl_nrt">Non-Realtime Networks in FrameLib</next>
+  <parent name="00_fl_index">FrameLib Tutorials</parent>
+  
+  <seealsolist>
+    <seealso name="fl.contextcontrol~" />
+  </seealsolist>
+</chapter>
+
+

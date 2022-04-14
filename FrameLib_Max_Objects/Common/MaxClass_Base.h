@@ -38,7 +38,7 @@ public:
     // Unique pointers to t_objects
     
     using unique_object_ptr = std::unique_ptr<t_object, ObjectFree>;
-    unique_object_ptr toUnique(void *ptr) { return unique_object_ptr(reinterpret_cast<t_object *>(ptr)); }
+    static unique_object_ptr toUnique(void *ptr) { return unique_object_ptr(reinterpret_cast<t_object *>(ptr)); }
     
     // Qelem struct for C++-style usage
     
@@ -154,6 +154,15 @@ public:
                                       objectMethodArg(z));
         
         return reinterpret_cast<ReturnType>(ret);
+    }
+    
+    // Get the association of a patch
+    
+    static t_object *getAssociation(t_object *patch)
+    {
+        t_object *assoc = nullptr;
+        objectMethod(patch, "getassoc", &assoc);
+        return assoc;
     }
     
     // Static Methods for class initialisation, object creation and deletion

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-
-<?xml-stylesheet href="./_c74_tut.xsl" type="text/xsl"?>
-
-<chapter name="FrameLib Tutorial 8: Multi-stream processing">
-	<next name="09_fl_multiresfft">Multi-resolution FFT</next>
-	<parent name="00_fl_index">FrameLib tutorials</parent>
-</chapter>
-

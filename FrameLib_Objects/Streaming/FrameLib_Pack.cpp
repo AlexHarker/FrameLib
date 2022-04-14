@@ -34,7 +34,7 @@ std::string FrameLib_Pack::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Pack::outputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Output - packed multistream connection consisting of all input streams", "Multistream Output", idx, verbose);
+    return formatInfo("Output - packed multistream connection consisting of all input streams", "Multistream Output", verbose);
 }
 
 bool FrameLib_Pack::inputUpdate()

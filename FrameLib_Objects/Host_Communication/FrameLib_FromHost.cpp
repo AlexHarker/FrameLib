@@ -239,7 +239,7 @@ FrameLib_FromHost::OwnedFrame FrameLib_FromHost::swapVectorFrame(OwnedFrame& swa
     return std::move(swapVector);
 }
 
-// Swap vector frame
+// Swap serial frame
 
 void FrameLib_FromHost::updateSerialFrame(SerialQueue &freeQueue, SerialItem *addSerial)
 {

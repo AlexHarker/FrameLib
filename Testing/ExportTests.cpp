@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include "../FrameLib_Exports/FrameLib_TypeList.h"
+#include "../FrameLib_Exports/FrameLib_TypeAliases.h"
 #include "FrameLib_SerialiseGraph.h"
 
 // Ideally this would be generated, but for now this will work
@@ -221,7 +222,8 @@ int main(int argc, const char * argv[]) {
     
     std::vector<FrameLib_ObjectDescription> descriptions;
     
-    serialiseGraph(descriptions, objects.back().get());
+    auto aliases = FrameLib_TypeAliases::makeReplaceStrings();
+    serialiseGraph(descriptions, objects.back().get(), &aliases);
     
     std::ofstream oFile(argv[1]);
     

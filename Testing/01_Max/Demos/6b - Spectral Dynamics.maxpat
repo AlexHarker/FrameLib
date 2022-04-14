@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 7,
+			"minor" : 3,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -171,8 +171,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 7,
+							"minor" : 3,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -320,8 +320,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 1,
-											"revision" : 7,
+											"minor" : 3,
+											"revision" : 0,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -762,7 +762,7 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 38.0, 761.720824999999991, 30.0, 30.0 ]
+									"patching_rect" : [ 30.0, 761.720824999999991, 30.0, 30.0 ]
 								}
 
 							}
@@ -797,7 +797,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 38.0, 726.0, 76.0, 22.0 ],
+									"patching_rect" : [ 30.0, 726.0, 76.0, 22.0 ],
 									"text" : "fl.store~ last"
 								}
 
@@ -809,7 +809,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 38.0, 650.0, 62.0, 22.0 ],
+									"patching_rect" : [ 30.0, 650.0, 105.0, 22.0 ],
 									"text" : "fl.lookup~"
 								}
 
@@ -821,7 +821,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 81.0, 613.0, 58.0, 22.0 ],
+									"patching_rect" : [ 73.0, 613.0, 58.0, 22.0 ],
 									"text" : "fl.round~"
 								}
 
@@ -833,7 +833,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 38.0, 688.5, 62.0, 22.0 ],
+									"patching_rect" : [ 30.0, 688.5, 105.0, 22.0 ],
 									"text" : "fl.lookup~"
 								}
 
@@ -881,7 +881,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 167.5, 223.888884999999988, 62.0, 22.0 ],
+									"patching_rect" : [ 167.5, 223.888884999999988, 105.0, 22.0 ],
 									"text" : "fl.lookup~"
 								}
 
@@ -1002,6 +1002,7 @@
 , 							{
 								"box" : 								{
 									"angle" : 270.0,
+									"background" : 1,
 									"bgcolor" : [ 0.290196, 0.309804, 0.301961, 0.0 ],
 									"border" : 4,
 									"bordercolor" : [ 0.267195, 0.665694, 0.952941, 1.0 ],
@@ -1019,6 +1020,7 @@
 , 							{
 								"box" : 								{
 									"angle" : 270.0,
+									"background" : 1,
 									"bgcolor" : [ 0.290196, 0.309804, 0.301961, 0.0 ],
 									"border" : 4,
 									"bordercolor" : [ 0.267195, 0.665694, 0.952941, 1.0 ],
@@ -1027,7 +1029,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 22.5, 599.0, 125.0, 123.0 ],
+									"patching_rect" : [ 14.5, 599.0, 131.0, 123.0 ],
 									"proportion" : 0.39,
 									"rounded" : 20
 								}
@@ -1036,6 +1038,7 @@
 , 							{
 								"box" : 								{
 									"angle" : 270.0,
+									"background" : 1,
 									"bgcolor" : [ 0.290196, 0.309804, 0.301961, 0.0 ],
 									"border" : 4,
 									"bordercolor" : [ 0.267195, 0.665694, 0.952941, 1.0 ],
@@ -1053,6 +1056,7 @@
 , 							{
 								"box" : 								{
 									"angle" : 270.0,
+									"background" : 1,
 									"bgcolor" : [ 0.290196, 0.309804, 0.301961, 0.0 ],
 									"border" : 4,
 									"bordercolor" : [ 0.267195, 0.665694, 0.952941, 1.0 ],
@@ -1070,6 +1074,7 @@
 , 							{
 								"box" : 								{
 									"angle" : 270.0,
+									"background" : 1,
 									"bgcolor" : [ 0.290196, 0.309804, 0.301961, 0.0 ],
 									"border" : 4,
 									"bordercolor" : [ 0.267195, 0.665694, 0.952941, 1.0 ],
@@ -1205,7 +1210,7 @@
 								"patchline" : 								{
 									"color" : [ 0.0, 0.65, 0.107062, 1.0 ],
 									"destination" : [ "obj-57", 0 ],
-									"midpoints" : [ 198.5, 216.5, 90.5, 216.5 ],
+									"midpoints" : [ 198.5, 216.5, 82.5, 216.5 ],
 									"source" : [ "obj-39", 1 ]
 								}
 
@@ -1213,7 +1218,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-58", 0 ],
-									"midpoints" : [ 177.0, 205.5, 47.5, 205.5 ],
+									"midpoints" : [ 177.0, 205.5, 39.5, 205.5 ],
 									"order" : 1,
 									"source" : [ "obj-39", 0 ]
 								}
@@ -1279,7 +1284,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-56", 1 ],
-									"midpoints" : [ 177.0, 679.25, 69.0, 679.25 ],
+									"midpoints" : [ 177.0, 679.25, 82.5, 679.25 ],
 									"source" : [ "obj-50", 0 ]
 								}
 
@@ -1693,18 +1698,6 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "bang" ],
 					"patching_rect" : [ 212.0, 80.0, 49.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"basictuning" : 440,
-						"followglobaltempo" : 0,
-						"formantcorrection" : 0,
-						"mode" : "basic",
-						"originallength" : [ 353139.15625, "ticks" ],
-						"originaltempo" : 119.999984999999995,
-						"pitchcorrection" : 0,
-						"quality" : "basic",
-						"timestretch" : [ 0 ]
-					}
-,
 					"text" : "sfplay~"
 				}
 
@@ -2099,119 +2092,107 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.divide~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.fft~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.frommax~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.greaterthan~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.hypot~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.ifft~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.interval~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.lookup~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.map~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.max~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.minus~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.min~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.multitaper~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.peaks~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.plus~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.pow~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.ramp~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.read~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.recall~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.round~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.sink~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.source~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.sqrt~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.store~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.times~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "framelib_max.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "framelib_max.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "framelib_max.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "framelib_max.mxo",
+				"name" : "fl.window~.mxo",
 				"type" : "iLaX"
 			}
  ],

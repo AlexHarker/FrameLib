@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
+<c74object name="fl.subframe~" module="FrameLib" category="FrameLib Vector">
+  <digest>
+    Output a specified segment of an input frame
+  </digest>
+  <description>
+    The subframe is specified by a start and end point in the input frame. The start point is included in the output frame but the end point is not. Points may be specified in samples or as a ratio of the length of the input frame.
+  </description>
+  <misc name="Parameters">
+    <entry name="/start [double]">
+      <description>
+        Sets the start point of the subframe.<p /><i>(default: 0)</i>
+      </description>
+    </entry>
+    <entry name="/end [double]">
+      <description>
+        Sets the end point of the subframe.<p /><i>(default: 0)</i>
+      </description>
+    </entry>
+    <entry name="/units [enum]">
+      <description>
+        Sets the units for the start and end points (samples or ratios [0-1]).<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ratios</m></bullet><p /><i>(default: <m>samples</m>)</i>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Vector</metadata>
+  </metadatalist>
+  <objarglist>
+    <objarg name="start" optional="1" type="number">
+      <digest>
+        Sets the start point of the subframe
+      </digest>
+      <description>
+        This argument sets the start parameter:<p /><p />Sets the start point of the subframe.<p /><i>(default: 0)</i>
+      </description>
+    </objarg>
+    <objarg name="end" optional="1" type="number">
+      <digest>
+        Sets the end point of the subframe
+      </digest>
+      <description>
+        This argument sets the end parameter:<p /><p />Sets the end point of the subframe.<p /><i>(default: 0)</i>
+      </description>
+    </objarg>
+    <objarg name="units" optional="1" type="symbol">
+      <digest>
+        Sets the units for the start and end points (samples or ratios [0-1])
+      </digest>
+      <description>
+        This argument sets the units parameter:<p /><p />Sets the units for the start and end points (samples or ratios [0-1]).<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ratios</m></bullet><p /><i>(default: <m>samples</m>)</i>
+      </description>
+    </objarg>
+  </objarglist>
+  <methodlist>
+    <method name="info">
+      <arglist>
+        <arg name="items" optional="1" type="list" />
+      </arglist>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        Print info about <o>fl.subframe~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+      </description>
+    </method>
+    <method name="frame">
+      <arglist />
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+    <method name="sync">
+      <arglist />
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+  </methodlist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for <o>fl.subframe~</o>. When set to <m>0</m> <o>fl.subframe~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for <o>fl.subframe~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
+  <seealsolist>
+    <seealso name="fl.accumpos~" />
+    <seealso name="fl.centroid~" />
+    <seealso name="fl.chop~" />
+    <seealso name="fl.crest~" />
+    <seealso name="fl.flatness~" />
+    <seealso name="fl.framemax~" />
+    <seealso name="fl.framemin~" />
+    <seealso name="fl.geomean~" />
+    <seealso name="fl.join~" />
+    <seealso name="fl.kurtosis~" />
+    <seealso name="fl.length~" />
+    <seealso name="fl.maxpos~" />
+    <seealso name="fl.mean~" />
+    <seealso name="fl.medianfilter~" />
+    <seealso name="fl.minpos~" />
+    <seealso name="fl.nanfilter~" />
+    <seealso name="fl.nonzero~" />
+    <seealso name="fl.pad~" />
+    <seealso name="fl.pattern~" />
+    <seealso name="fl.peaks~" />
+    <seealso name="fl.percentile~" />
+    <seealso name="fl.product~" />
+    <seealso name="fl.reverse~" />
+    <seealso name="fl.rms~" />
+    <seealso name="fl.shift~" />
+    <seealso name="fl.skewness~" />
+    <seealso name="fl.sort~" />
+    <seealso name="fl.split~" />
+    <seealso name="fl.spread~" />
+    <seealso name="fl.stddev~" />
+    <seealso name="fl.sum~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>vector</description>
+    </entry>
+  </misc>
+</c74object>

@@ -8,6 +8,11 @@ namespace FrameLib_Spatial_Ops
 {
     struct PolToCar
     {
+        PolToCar(bool degrees)
+        : mAngleFactor(degrees ? M_PI / 180.0 : 1.0)
+        , mAngleOffset(degrees ? 90.0 : M_PI / 2.0)
+        {}
+        
         Value2D operator()(const Value2D& v)
         {
             return std::polar<double>(v.real(), v.imag() * mAngleFactor);
@@ -16,24 +21,18 @@ namespace FrameLib_Spatial_Ops
         Value3D operator()(const Value3D& v)
         {
             const double radius = std::get<0>(v);
-            const double psi = std::get<1>(v) * mAngleFactor;
-            const double theta = mAngleFactor * (mAngleOffset - std::get<2>(v));
+            const double theta = std::get<1>(v) * mAngleFactor;
+            const double psi = mAngleFactor * (mAngleOffset - std::get<2>(v));
         
-            const double x = radius * sin(theta) * sin(psi);
-            const double y = radius * sin(theta) * cos(psi);
-            const double z = radius * cos(theta);
+            const double x = radius * sin(psi) * cos(theta);
+            const double y = radius * sin(psi) * sin(theta);
+            const double z = radius * cos(psi);
             
             return Value3D(x, y, z);
         }
         
-        void prepare(bool degrees)
-        {
-            mAngleFactor = degrees ? M_PI / 180.0 : 1.0;
-            mAngleOffset = degrees ? 90.0 : M_PI / 2.0;
-        }
-        
-        double mAngleOffset = M_PI / 2.0;
-        double mAngleFactor = 1.0;
+        double mAngleFactor;
+        double mAngleOffset;
     };
 }
 

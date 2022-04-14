@@ -65,9 +65,9 @@ FrameLib_SampleRate::ParameterInfo::ParameterInfo()
         "ms->samples - convert from milliseconds to samples. "
         "seconds->samples - convert from seconds to samples. "
         "normalised->hz - convert from normalised frequency to frequency in Hz. "
-        "h->normalised - convert from frequency in Hz to normalised frequency.");
+        "hz->normalised - convert from frequency in Hz to normalised frequency.");
     add("Sets the reference point for normalised frequency: "
-        "rate - [0 - 1] is equivalent to [0 - sample rate]. "
+        "full - [0 - 1] is equivalent to [0 - sample rate]. "
         "nyquist - [0 - 1] is equivalent to [0 - nyquist].");
 }
 

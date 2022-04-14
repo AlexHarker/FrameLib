@@ -3,7 +3,7 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
+			"minor" : 3,
 			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
@@ -37,6 +37,7 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "default",
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"comment" : "",
@@ -114,10 +115,10 @@
 					"presentation_rect" : [ 0.0, 0.0, 83.0, 47.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_mmin" : -70.0,
+							"parameter_initial" : [ 0.0 ],
 							"parameter_longname" : "live.gain~[1]",
 							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ 0.0 ],
+							"parameter_mmin" : -70.0,
 							"parameter_shortname" : "Volume",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 4
@@ -171,10 +172,10 @@
 			"parameterbanks" : 			{
 
 			}
-
+,
+			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [  ],
 		"autosave" : 0
 	}
 

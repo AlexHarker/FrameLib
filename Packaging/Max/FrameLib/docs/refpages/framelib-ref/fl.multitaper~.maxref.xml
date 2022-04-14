@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
+<c74object name="fl.multitaper~" module="FrameLib" category="FrameLib Spectral">
+  <digest>
+    Calculates a multitaper power (or amplitude) spectrum from a real input
+  </digest>
+  <description>
+    The spectrum is calculated using the sine tapers. All FFTs use a power of two size, with zero-padding applied at the input if necessary. Output frames will be (N / 2) + 1 in length where N is the FFT size used. The number of tapers and their weighting are both controllable.
+  </description>
+  <misc name="Parameters">
+    <entry name="/max_length [int]">
+      <description>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the maximum input length (and associated internal FFT size).<p /><i>(default: 16384)</i>
+      </description>
+    </entry>
+    <entry name="/num_tapers [int]">
+      <description>
+        Sets the number of tapers to use.<p /><i>(default: 3)</i>
+      </description>
+    </entry>
+    <entry name="/normalise [bool]">
+      <description>
+        Sets normalisation on or off (such that the energy of a full-scale sine wave is 1).<p /><i>(default: true)</i>
+      </description>
+    </entry>
+    <entry name="/output [enum]">
+      <description>
+        Sets whether to output values in terms of power or amplitude.<p /><bullet>[0] - <m>power</m></bullet><bullet>[1] - <m>amplitude</m></bullet><p /><i>(default: <m>amplitude</m>)</i>
+      </description>
+    </entry>
+    <entry name="/weighting [enum]">
+      <description>
+        Sets the weighting of the tapers:<p /><bullet>[0] - <m>uniform</m> - all tapers are weighted equally.</bullet><bullet>[1] - <m>linear</m> - tapers are weighted linearly in a decreasing manner.</bullet><bullet>[2] - <m>parabolic</m> - tapers are weighted with a parabola in a decreasing manner.</bullet><p /><i>(default: <m>parabolic</m>)</i>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Spectral</metadata>
+  </metadatalist>
+  <objarglist>
+    <objarg name="max_length" optional="1" type="int">
+      <digest>
+        Sets the maximum input length (and associated internal FFT size)
+      </digest>
+      <description>
+        This argument sets the max_length parameter:<p /><p />Sets the maximum input length (and associated internal FFT size).<p /><i>(default: 16384)</i>
+      </description>
+    </objarg>
+    <objarg name="num_tapers" optional="1" type="int">
+      <digest>
+        Sets the number of tapers to use
+      </digest>
+      <description>
+        This argument sets the num_tapers parameter:<p /><p />Sets the number of tapers to use.<p /><i>(default: 3)</i>
+      </description>
+    </objarg>
+    <objarg name="normalise" optional="1" type="number">
+      <digest>
+        Sets normalisation on or off (such that the energy of a full-scale sine wave is 1)
+      </digest>
+      <description>
+        This argument sets the normalise parameter:<p /><p />Sets normalisation on or off (such that the energy of a full-scale sine wave is 1).<p /><i>(default: true)</i>
+      </description>
+    </objarg>
+    <objarg name="output" optional="1" type="symbol">
+      <digest>
+        Sets whether to output values in terms of power or amplitude
+      </digest>
+      <description>
+        This argument sets the output parameter:<p /><p />Sets whether to output values in terms of power or amplitude.<p /><bullet>[0] - <m>power</m></bullet><bullet>[1] - <m>amplitude</m></bullet><p /><i>(default: <m>amplitude</m>)</i>
+      </description>
+    </objarg>
+    <objarg name="weighting" optional="1" type="symbol">
+      <digest>
+        Sets the weighting of the tapers
+      </digest>
+      <description>
+        This argument sets the weighting parameter:<p /><p />Sets the weighting of the tapers:<p /><bullet>[0] - <m>uniform</m> - all tapers are weighted equally.</bullet><bullet>[1] - <m>linear</m> - tapers are weighted linearly in a decreasing manner.</bullet><bullet>[2] - <m>parabolic</m> - tapers are weighted with a parabola in a decreasing manner.</bullet><p /><i>(default: <m>parabolic</m>)</i>
+      </description>
+    </objarg>
+  </objarglist>
+  <methodlist>
+    <method name="info">
+      <arglist>
+        <arg name="items" optional="1" type="list" />
+      </arglist>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        Print info about <o>fl.multitaper~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+      </description>
+    </method>
+    <method name="frame">
+      <arglist />
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+    <method name="sync">
+      <arglist />
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+  </methodlist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for <o>fl.multitaper~</o>. When set to <m>0</m> <o>fl.multitaper~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for <o>fl.multitaper~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
+  <seealsolist>
+    <seealso name="07_fl_fft" type="tutorial" module="FrameLib" />
+    <seealso name="fl.convolve~" />
+    <seealso name="fl.correlate~" />
+    <seealso name="fl.fft~" />
+    <seealso name="fl.ifft~" />
+    <seealso name="fl.window~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>FFT, windowing, frequency domain</description>
+    </entry>
+  </misc>
+</c74object>

@@ -3,7 +3,7 @@
         "fileversion": 1,
         "appversion": {
             "major": 8,
-            "minor": 1,
+            "minor": 3,
             "revision": 0,
             "architecture": "x64",
             "modernui": 1
@@ -11,9 +11,9 @@
         "classnamespace": "box",
         "rect": [
             34.0,
-            79.0,
-            662.0,
-            787.0
+            87.0,
+            650.0,
+            504.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -46,6 +46,7 @@
         "subpatcher_template": "nobars",
         "showrootpatcherontab": 0,
         "showontab": 0,
+        "assistshowspatchername": 0,
         "boxes": [
             {
                 "box": {
@@ -57,7 +58,7 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
+                            "minor": 3,
                             "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
@@ -65,9 +66,9 @@
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
-                            662.0,
-                            761.0
+                            113.0,
+                            650.0,
+                            478.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -99,34 +100,18 @@
                         "style": "",
                         "subpatcher_template": "nobars",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
-                            {
-                                "box": {
-                                    "hidden": 1,
-                                    "id": "obj-1",
-                                    "linecount": 7,
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        "bang"
-                                    ],
-                                    "patching_rect": [
-                                        626.0,
-                                        63.0,
-                                        19.0,
-                                        102.0
-                                    ],
-                                    "text": "loadbang"
-                                }
-                            },
                             {
                                 "box": {
                                     "border": 0,
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.info~",
+                                    "jsarguments": [
+                                        "fl.info~",
+                                        107
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -137,8 +122,8 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
-                                        150.0
+                                        620.0,
+                                        110
                                     ]
                                 }
                             },
@@ -151,9 +136,10 @@
                                     "enablevscroll": 0,
                                     "id": "obj-128",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
-                                    "name": "fldocs.getparams.maxpat",
-                                    "numinlets": 1,
+                                    "name": "fl.docs.getparams.maxpat",
+                                    "numinlets": 0,
                                     "numoutlets": 0,
                                     "offset": [
                                         0.0,
@@ -161,39 +147,18 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        167.0,
-                                        630.0,
-                                        565.0
+                                        142,
+                                        620.0,
+                                        321.0
                                     ],
-                                    "viewvisibility": 1
-                                }
-                            }
-                        ],
-                        "lines": [
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-128",
-                                        0
-                                    ],
-                                    "hidden": 1,
-                                    "midpoints": [
-                                        635.5,
-                                        168.0,
-                                        657.0,
-                                        168.0,
-                                        657.0,
-                                        166.0,
-                                        24.5,
-                                        166.0
-                                    ],
-                                    "source": [
-                                        "obj-1",
-                                        0
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        620.0
                                     ]
                                 }
                             }
-                        ]
+                        ],
+                        "lines": []
                     },
                     "patching_rect": [
                         2.0,
@@ -220,8 +185,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -229,8 +194,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            650.0,
+                            478.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -291,17 +256,17 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
-                            652.0,
-                            761.0
+                            113.0,
+                            650.0,
+                            478.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -337,15 +302,17 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 3,
                                     "id": "obj-15",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        312.0,
-                                        82.0,
-                                        138.0,
-                                        21.0
+                                        107.5,
+                                        136.5,
+                                        155.0,
+                                        25.0
                                     ],
                                     "text": "Select units and buffer"
                                 }
@@ -357,58 +324,66 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        404.0,
-                                        435.0,
+                                        419.0,
+                                        405.0,
                                         172.0,
                                         21.0
                                     ],
-                                    "presentation_linecount": 3,
                                     "text": "Two buffers to get info about"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 0,
                                     "id": "obj-12",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        239.0,
-                                        435.0,
-                                        86.0,
-                                        21.0
+                                        253.0,
+                                        405.0,
+                                        76.0,
+                                        40.0
                                     ],
-                                    "text": "# Channels"
+                                    "text": "# Channels",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 0,
                                     "id": "obj-10",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        127.0,
-                                        435.0,
+                                        145.0,
+                                        405.0,
                                         86.0,
-                                        21.0
+                                        40.0
                                     ],
-                                    "text": "Sample Rate"
+                                    "text": "Sample Rate",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 0,
                                     "id": "obj-7",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        435.0,
-                                        86.0,
-                                        21.0
+                                        23.5,
+                                        405.0,
+                                        88.0,
+                                        40.0
                                     ],
-                                    "text": "Buffer Length"
+                                    "text": "Buffer Length",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -419,8 +394,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        480.0,
+                                        540.0,
+                                        126.5,
                                         45.0,
                                         45.0
                                     ]
@@ -438,8 +413,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        251.0,
-                                        405.0,
+                                        266.0,
+                                        375.0,
                                         50.0,
                                         23.0
                                     ]
@@ -458,8 +433,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        133.0,
-                                        405.0,
+                                        148.0,
+                                        375.0,
                                         80.0,
                                         23.0
                                     ]
@@ -478,8 +453,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        405.0,
+                                        30.0,
+                                        375.0,
                                         75.0,
                                         23.0
                                     ]
@@ -495,8 +470,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        251.0,
-                                        360.0,
+                                        266.0,
+                                        330.0,
                                         62.0,
                                         23.0
                                     ],
@@ -513,8 +488,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        133.0,
-                                        360.0,
+                                        148.0,
+                                        330.0,
                                         62.0,
                                         23.0
                                     ],
@@ -531,8 +506,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        360.0,
+                                        30.0,
+                                        330.0,
                                         62.0,
                                         23.0
                                     ],
@@ -549,329 +524,12 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        92.0,
+                                        30.0,
+                                        210.0,
                                         75.0,
                                         23.0
                                     ],
                                     "text": "fl.perblock~"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "bgmode": 0,
-                                    "border": 1,
-                                    "clickthrough": 0,
-                                    "embed": 1,
-                                    "enablehscroll": 0,
-                                    "enablevscroll": 0,
-                                    "id": "obj-13",
-                                    "lockeddragscroll": 0,
-                                    "maxclass": "bpatcher",
-                                    "numinlets": 0,
-                                    "numoutlets": 1,
-                                    "offset": [
-                                        0.0,
-                                        0.0
-                                    ],
-                                    "outlettype": [
-                                        ""
-                                    ],
-                                    "patcher": {
-                                        "fileversion": 1,
-                                        "appversion": {
-                                            "major": 8,
-                                            "minor": 1,
-                                            "revision": 8,
-                                            "architecture": "x64",
-                                            "modernui": 1
-                                        },
-                                        "classnamespace": "box",
-                                        "rect": [
-                                            371.0,
-                                            367.0,
-                                            640.0,
-                                            480.0
-                                        ],
-                                        "bglocked": 0,
-                                        "openinpresentation": 1,
-                                        "default_fontsize": 12.0,
-                                        "default_fontface": 0,
-                                        "default_fontname": "Arial",
-                                        "gridonopen": 1,
-                                        "gridsize": [
-                                            15.0,
-                                            15.0
-                                        ],
-                                        "gridsnaponopen": 1,
-                                        "objectsnaponopen": 1,
-                                        "statusbarvisible": 2,
-                                        "toolbarvisible": 1,
-                                        "lefttoolbarpinned": 0,
-                                        "toptoolbarpinned": 0,
-                                        "righttoolbarpinned": 0,
-                                        "bottomtoolbarpinned": 0,
-                                        "toolbars_unpinned_last_save": 0,
-                                        "tallnewobj": 0,
-                                        "boxanimatetime": 200,
-                                        "enablehscroll": 1,
-                                        "enablevscroll": 1,
-                                        "devicewidth": 0.0,
-                                        "description": "",
-                                        "digest": "",
-                                        "tags": "",
-                                        "style": "",
-                                        "subpatcher_template": "",
-                                        "assistshowspatchername": 0,
-                                        "boxes": [
-                                            {
-                                                "box": {
-                                                    "fontsize": 13.0,
-                                                    "id": "obj-14",
-                                                    "maxclass": "comment",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 0,
-                                                    "patching_rect": [
-                                                        137.5,
-                                                        13.0,
-                                                        54.0,
-                                                        21.0
-                                                    ],
-                                                    "presentation": 1,
-                                                    "presentation_rect": [
-                                                        137.5,
-                                                        13.0,
-                                                        54.0,
-                                                        21.0
-                                                    ],
-                                                    "text": "Buffer",
-                                                    "textjustification": 1
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "fontsize": 13.0,
-                                                    "id": "obj-13",
-                                                    "maxclass": "comment",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 0,
-                                                    "patching_rect": [
-                                                        26.0,
-                                                        13.0,
-                                                        54.0,
-                                                        21.0
-                                                    ],
-                                                    "presentation": 1,
-                                                    "presentation_rect": [
-                                                        26.0,
-                                                        13.0,
-                                                        54.0,
-                                                        21.0
-                                                    ],
-                                                    "text": "Units",
-                                                    "textjustification": 1
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "comment": "",
-                                                    "id": "obj-11",
-                                                    "index": 1,
-                                                    "maxclass": "outlet",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 0,
-                                                    "patching_rect": [
-                                                        11.0,
-                                                        217.0,
-                                                        30.0,
-                                                        30.0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-10",
-                                                    "maxclass": "message",
-                                                    "numinlets": 2,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [
-                                                        ""
-                                                    ],
-                                                    "patching_rect": [
-                                                        11.0,
-                                                        168.0,
-                                                        51.0,
-                                                        22.0
-                                                    ],
-                                                    "text": "units $1"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-9",
-                                                    "maxclass": "message",
-                                                    "numinlets": 2,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [
-                                                        ""
-                                                    ],
-                                                    "patching_rect": [
-                                                        155.0,
-                                                        168.0,
-                                                        56.0,
-                                                        22.0
-                                                    ],
-                                                    "text": "buffer $1"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "fontsize": 12.0,
-                                                    "id": "obj-3",
-                                                    "maxclass": "live.tab",
-                                                    "num_lines_patching": 2,
-                                                    "num_lines_presentation": 2,
-                                                    "numinlets": 1,
-                                                    "numoutlets": 3,
-                                                    "outlettype": [
-                                                        "",
-                                                        "",
-                                                        "float"
-                                                    ],
-                                                    "parameter_enable": 1,
-                                                    "patching_rect": [
-                                                        97.0,
-                                                        36.0,
-                                                        135.0,
-                                                        115.0
-                                                    ],
-                                                    "presentation": 1,
-                                                    "presentation_rect": [
-                                                        97.0,
-                                                        36.0,
-                                                        135.0,
-                                                        115.0
-                                                    ],
-                                                    "saved_attribute_attributes": {
-                                                        "valueof": {
-                                                            "parameter_enum": [
-                                                                "info_example_1",
-                                                                "info_example_2"
-                                                            ],
-                                                            "parameter_longname": "live.tab[1]",
-                                                            "parameter_mmax": 1,
-                                                            "parameter_shortname": "live.tab",
-                                                            "parameter_type": 2,
-                                                            "parameter_unitstyle": 9
-                                                        }
-                                                    },
-                                                    "varname": "live.tab[1]"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "fontsize": 12.0,
-                                                    "id": "obj-2",
-                                                    "maxclass": "live.tab",
-                                                    "num_lines_patching": 3,
-                                                    "num_lines_presentation": 3,
-                                                    "numinlets": 1,
-                                                    "numoutlets": 3,
-                                                    "outlettype": [
-                                                        "",
-                                                        "",
-                                                        "float"
-                                                    ],
-                                                    "parameter_enable": 1,
-                                                    "patching_rect": [
-                                                        11.0,
-                                                        36.0,
-                                                        84.0,
-                                                        115.0
-                                                    ],
-                                                    "presentation": 1,
-                                                    "presentation_rect": [
-                                                        11.0,
-                                                        36.0,
-                                                        84.0,
-                                                        115.0
-                                                    ],
-                                                    "saved_attribute_attributes": {
-                                                        "valueof": {
-                                                            "parameter_enum": [
-                                                                "samples",
-                                                                "ms",
-                                                                "seconds"
-                                                            ],
-                                                            "parameter_longname": "live.tab",
-                                                            "parameter_mmax": 2,
-                                                            "parameter_shortname": "live.tab",
-                                                            "parameter_type": 2,
-                                                            "parameter_unitstyle": 9
-                                                        }
-                                                    },
-                                                    "varname": "live.tab"
-                                                }
-                                            }
-                                        ],
-                                        "lines": [
-                                            {
-                                                "patchline": {
-                                                    "destination": [
-                                                        "obj-11",
-                                                        0
-                                                    ],
-                                                    "source": [
-                                                        "obj-10",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [
-                                                        "obj-10",
-                                                        0
-                                                    ],
-                                                    "source": [
-                                                        "obj-2",
-                                                        0
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [
-                                                        "obj-9",
-                                                        0
-                                                    ],
-                                                    "source": [
-                                                        "obj-3",
-                                                        1
-                                                    ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [
-                                                        "obj-11",
-                                                        0
-                                                    ],
-                                                    "source": [
-                                                        "obj-9",
-                                                        0
-                                                    ]
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    "patching_rect": [
-                                        251.0,
-                                        105.0,
-                                        242.0,
-                                        165.0
-                                    ],
-                                    "viewvisibility": 1
                                 }
                             },
                             {
@@ -884,8 +542,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        251.0,
-                                        285.0,
+                                        266.0,
+                                        255.0,
                                         124.0,
                                         23.0
                                     ],
@@ -903,8 +561,8 @@
                                         "bang"
                                     ],
                                     "patching_rect": [
-                                        390.0,
                                         405.0,
+                                        375.0,
                                         212.0,
                                         23.0
                                     ],
@@ -913,6 +571,12 @@
                             },
                             {
                                 "box": {
+                                    "color": [
+                                        0.207843137254902,
+                                        0.76078431372549,
+                                        0.749019607843137,
+                                        1.0
+                                    ],
                                     "id": "obj-4",
                                     "maxclass": "newobj",
                                     "numinlets": 2,
@@ -923,8 +587,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        315.0,
+                                        30.0,
+                                        285.0,
                                         255.0,
                                         23.0
                                     ],
@@ -942,8 +606,8 @@
                                         "bang"
                                     ],
                                     "patching_rect": [
-                                        404.0,
-                                        360.0,
+                                        419.0,
+                                        330.0,
                                         198.0,
                                         23.0
                                     ],
@@ -956,9 +620,7 @@
                                     "filename": "fl.helpname.js",
                                     "id": "obj-3",
                                     "ignoreclick": 1,
-                                    "jsarguments": [
-                                        "fl.info~"
-                                    ],
+                                    "jsarguments": "fl.info~",
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -969,25 +631,162 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        620.0,
                                         60.0
                                     ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
+                                    "fontsize": 13.0,
+                                    "id": "obj-5",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        392.5,
+                                        62.0,
+                                        54.0,
+                                        40.0
+                                    ],
+                                    "text": "Buffer",
+                                    "textjustification": 1
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
+                                    "fontsize": 13.0,
+                                    "id": "obj-13",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        276.0,
+                                        62.0,
+                                        54.0,
+                                        40.0
+                                    ],
+                                    "text": "Units",
+                                    "textjustification": 1
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-22",
+                                    "maxclass": "message",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        266.0,
+                                        210.0,
+                                        54.0,
+                                        23.0
+                                    ],
+                                    "text": "units $1"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-23",
+                                    "maxclass": "message",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        ""
+                                    ],
+                                    "patching_rect": [
+                                        410.0,
+                                        210.0,
+                                        60.0,
+                                        23.0
+                                    ],
+                                    "text": "buffer $1"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "fontsize": 12.0,
+                                    "id": "obj-24",
+                                    "maxclass": "live.tab",
+                                    "num_lines_patching": 2,
+                                    "num_lines_presentation": 2,
+                                    "numinlets": 1,
+                                    "numoutlets": 3,
+                                    "outlettype": [
+                                        "",
+                                        "",
+                                        "float"
+                                    ],
+                                    "parameter_enable": 1,
+                                    "patching_rect": [
+                                        360.5,
+                                        105.0,
+                                        118.0,
+                                        88.0
+                                    ],
+                                    "saved_attribute_attributes": {
+                                        "valueof": {
+                                            "parameter_enum": [
+                                                "info_example_1",
+                                                "info_example_2"
+                                            ],
+                                            "parameter_longname": "live.tab[1]",
+                                            "parameter_mmax": 1,
+                                            "parameter_shortname": "live.tab",
+                                            "parameter_type": 2,
+                                            "parameter_unitstyle": 9
+                                        }
+                                    },
+                                    "varname": "live.tab[1]"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "fontsize": 12.0,
+                                    "id": "obj-25",
+                                    "maxclass": "live.tab",
+                                    "num_lines_patching": 3,
+                                    "num_lines_presentation": 3,
+                                    "numinlets": 1,
+                                    "numoutlets": 3,
+                                    "outlettype": [
+                                        "",
+                                        "",
+                                        "float"
+                                    ],
+                                    "parameter_enable": 1,
+                                    "patching_rect": [
+                                        266.0,
+                                        105.0,
+                                        74.0,
+                                        88.0
+                                    ],
+                                    "saved_attribute_attributes": {
+                                        "valueof": {
+                                            "parameter_enum": [
+                                                "samples",
+                                                "ms",
+                                                "seconds"
+                                            ],
+                                            "parameter_longname": "live.tab",
+                                            "parameter_mmax": 2,
+                                            "parameter_shortname": "live.tab",
+                                            "parameter_type": 2,
+                                            "parameter_unitstyle": 9
+                                        }
+                                    },
+                                    "varname": "live.tab"
                                 }
                             }
                         ],
                         "lines": [
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-8",
-                                        0
-                                    ],
-                                    "source": [
-                                        "obj-13",
-                                        0
-                                    ]
-                                }
-                            },
                             {
                                 "patchline": {
                                     "destination": [
@@ -1008,10 +807,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        279.0,
-                                        260.5,
-                                        279.0
+                                        39.5,
+                                        243.5,
+                                        275.5,
+                                        243.5
                                     ],
                                     "order": 0,
                                     "source": [
@@ -1052,6 +851,60 @@
                                     ],
                                     "source": [
                                         "obj-21",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-8",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-22",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-8",
+                                        0
+                                    ],
+                                    "midpoints": [
+                                        419.5,
+                                        243.5,
+                                        275.5,
+                                        243.5
+                                    ],
+                                    "source": [
+                                        "obj-23",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-23",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-24",
+                                        1
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-22",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-25",
                                         0
                                     ]
                                 }
@@ -1124,29 +977,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fldocs.getparams.maxpat",
-                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
-                "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
-                "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
-                "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

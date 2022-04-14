@@ -3,7 +3,7 @@
         "fileversion": 1,
         "appversion": {
             "major": 8,
-            "minor": 1,
+            "minor": 3,
             "revision": 0,
             "architecture": "x64",
             "modernui": 1
@@ -11,9 +11,9 @@
         "classnamespace": "box",
         "rect": [
             34.0,
-            79.0,
-            662.0,
-            787.0
+            87.0,
+            629.0,
+            748.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -46,6 +46,7 @@
         "subpatcher_template": "nobars",
         "showrootpatcherontab": 0,
         "showontab": 0,
+        "assistshowspatchername": 0,
         "boxes": [
             {
                 "box": {
@@ -57,7 +58,7 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
+                            "minor": 3,
                             "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
@@ -65,9 +66,9 @@
                         "classnamespace": "box",
                         "rect": [
                             34.0,
-                            105.0,
-                            662.0,
-                            761.0
+                            113.0,
+                            629.0,
+                            722.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -99,34 +100,18 @@
                         "style": "",
                         "subpatcher_template": "nobars",
                         "showontab": 1,
+                        "assistshowspatchername": 0,
                         "boxes": [
-                            {
-                                "box": {
-                                    "hidden": 1,
-                                    "id": "obj-1",
-                                    "linecount": 7,
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [
-                                        "bang"
-                                    ],
-                                    "patching_rect": [
-                                        626.0,
-                                        63.0,
-                                        19.0,
-                                        102.0
-                                    ],
-                                    "text": "loadbang"
-                                }
-                            },
                             {
                                 "box": {
                                     "border": 0,
                                     "filename": "fl.helpdetails.js",
                                     "id": "obj-4",
                                     "ignoreclick": 1,
-                                    "jsarguments": "fl.lookup~",
+                                    "jsarguments": [
+                                        "fl.lookup~",
+                                        104
+                                    ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -137,8 +122,8 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        630.0,
-                                        150.0
+                                        599.0,
+                                        140
                                     ]
                                 }
                             },
@@ -151,9 +136,10 @@
                                     "enablevscroll": 0,
                                     "id": "obj-128",
                                     "lockeddragscroll": 0,
+                                    "lockedsize": 0,
                                     "maxclass": "bpatcher",
-                                    "name": "fldocs.getparams.maxpat",
-                                    "numinlets": 1,
+                                    "name": "fl.docs.getparams.maxpat",
+                                    "numinlets": 0,
                                     "numoutlets": 0,
                                     "offset": [
                                         0.0,
@@ -161,39 +147,18 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        167.0,
-                                        630.0,
-                                        565.0
+                                        172,
+                                        599.0,
+                                        535.0
                                     ],
-                                    "viewvisibility": 1
-                                }
-                            }
-                        ],
-                        "lines": [
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-128",
-                                        0
-                                    ],
-                                    "hidden": 1,
-                                    "midpoints": [
-                                        635.5,
-                                        168.0,
-                                        657.0,
-                                        168.0,
-                                        657.0,
-                                        166.0,
-                                        24.5,
-                                        166.0
-                                    ],
-                                    "source": [
-                                        "obj-1",
-                                        0
+                                    "viewvisibility": 1,
+                                    "args": [
+                                        599.0
                                     ]
                                 }
                             }
-                        ]
+                        ],
+                        "lines": []
                     },
                     "patching_rect": [
                         2.0,
@@ -220,17 +185,17 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            105.0,
-                            652.0,
-                            761.0
+                            0.0,
+                            26.0,
+                            629.0,
+                            722.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -272,9 +237,9 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        180.0,
-                                        624.0,
-                                        342.0,
+                                        210.0,
+                                        639.0,
+                                        345.0,
                                         36.0
                                     ],
                                     "text": "The difference between fold and mirror will be subtle (for mirror edge values are repeated, but for fold they are not)."
@@ -291,8 +256,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        375.0,
-                                        120.0,
+                                        418.3125,
+                                        105.0,
                                         75.0,
                                         23.0
                                     ],
@@ -307,13 +272,13 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        270.0,
-                                        465.0,
-                                        315.0,
+                                        265.0,
+                                        484.0,
+                                        323.0,
                                         36.0
                                     ],
-                                    "presentation_linecount": 3,
-                                    "text": "The /edge parameter also affects interpolation, so we need bound off to be able to read outside the table."
+                                    "text": "The /edge parameter also affects interpolation and we need bound off to be able to read outside the table.",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -326,7 +291,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        116.0,
+                                        147.0,
                                         390.0,
                                         221.0,
                                         23.0
@@ -342,71 +307,60 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        30.0,
-                                        285.0,
-                                        300.0,
+                                        75.0,
+                                        270.0,
+                                        287.0,
                                         50.0
                                     ],
-                                    "text": "We are going to set fl.lookup~ to interpret the input as normalised (0 to 1 across the buffer~) so we are reading well beyond on both sides."
+                                    "text": "We are going to set fl.lookup~ to interpret the input as normalised (0 to 1 across the buffer~) so we are reading well beyond on both sides.",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-37",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        180.0,
-                                        585.0,
-                                        29.75,
-                                        14.5
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-38",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        213.75,
-                                        581.75,
-                                        45.0,
-                                        21.0
+                                        201.5,
+                                        595.0,
+                                        62.0,
+                                        25.0
                                     ],
                                     "text": "Result"
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-18",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        270.0,
-                                        435.0,
-                                        279.0,
-                                        21.0
+                                        276.0,
+                                        449.0,
+                                        173.0,
+                                        25.0
                                     ],
-                                    "text": "Note that bound is set off so we see the results"
+                                    "text": "Note that bound is set off "
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-14",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        165.0,
-                                        360.0,
-                                        119.0,
-                                        21.0
+                                        197.0,
+                                        343.0,
+                                        121.0,
+                                        40.0
                                     ],
                                     "text": "Our table is a ramp"
                                 }
@@ -421,8 +375,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        438.8125,
-                                        390.0,
+                                        468.8125,
+                                        405.0,
                                         124.0,
                                         23.0
                                     ],
@@ -432,6 +386,7 @@
                             {
                                 "box": {
                                     "id": "obj-11",
+                                    "ignoreclick": 1,
                                     "maxclass": "multislider",
                                     "numinlets": 1,
                                     "numoutlets": 2,
@@ -441,8 +396,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        525.0,
+                                        45.0,
+                                        540.0,
                                         150.0,
                                         135.0
                                     ],
@@ -450,7 +405,14 @@
                                         -2.0,
                                         2.0
                                     ],
-                                    "size": 512
+                                    "setstyle": 1,
+                                    "size": 512,
+                                    "slidercolor": [
+                                        0.925490196078431,
+                                        0.364705882352941,
+                                        0.341176470588235,
+                                        1.0
+                                    ]
                                 }
                             },
                             {
@@ -463,8 +425,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        480.0,
+                                        45.0,
+                                        495.0,
                                         62.0,
                                         23.0
                                     ],
@@ -487,8 +449,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        435.0,
+                                        45.0,
+                                        450.0,
                                         223.0,
                                         23.0
                                     ],
@@ -505,8 +467,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        238.5,
+                                        45.0,
+                                        223.5,
                                         135.0,
                                         23.0
                                     ],
@@ -523,8 +485,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        193.5,
+                                        45.0,
+                                        178.5,
                                         229.0,
                                         23.0
                                     ],
@@ -539,7 +501,7 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        92.0,
+                                        75.0,
                                         607.0,
                                         21.0
                                     ],
@@ -556,8 +518,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        438.8125,
-                                        345.0,
+                                        468.8125,
+                                        360.0,
                                         62.0,
                                         23.0
                                     ],
@@ -573,8 +535,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        425.8125,
-                                        150.0,
+                                        457.5,
+                                        136.0,
                                         45.0,
                                         21.0
                                     ],
@@ -584,6 +546,7 @@
                             },
                             {
                                 "box": {
+                                    "fontsize": 12.0,
                                     "id": "obj-6",
                                     "maxclass": "live.tab",
                                     "num_lines_patching": 6,
@@ -597,10 +560,10 @@
                                     ],
                                     "parameter_enable": 1,
                                     "patching_rect": [
-                                        375.0,
-                                        171.5,
-                                        146.625,
-                                        159.5
+                                        418.3125,
+                                        165.0,
+                                        120.0,
+                                        179.5
                                     ],
                                     "presentation": 1,
                                     "presentation_rect": [
@@ -637,8 +600,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        540.0,
-                                        615.0,
+                                        421.5,
+                                        555.0,
                                         45.0,
                                         45.0
                                     ]
@@ -646,17 +609,18 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-15",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        165.0,
-                                        238.5,
-                                        162.0,
-                                        21.0
+                                        186.0,
+                                        222.5,
+                                        185.0,
+                                        25.0
                                     ],
-                                    "text": "Create a ramp from -1 to 2"
+                                    "text": "Creates a ramp from -1 to 2"
                                 }
                             },
                             {
@@ -669,8 +633,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        150.0,
+                                        45.0,
+                                        135.0,
                                         114.0,
                                         23.0
                                     ],
@@ -683,9 +647,7 @@
                                     "filename": "fl.helpname.js",
                                     "id": "obj-3",
                                     "ignoreclick": 1,
-                                    "jsarguments": [
-                                        "fl.lookup~"
-                                    ],
+                                    "jsarguments": "fl.lookup~",
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -696,7 +658,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        599.0,
                                         75.0
                                     ]
                                 }
@@ -746,10 +708,10 @@
                                         2
                                     ],
                                     "midpoints": [
-                                        448.3125,
-                                        423.5,
-                                        228.5,
-                                        423.5
+                                        478.3125,
+                                        438.5,
+                                        258.5,
+                                        438.5
                                     ],
                                     "source": [
                                         "obj-19",
@@ -790,14 +752,14 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        182.0,
-                                        355.0,
-                                        182.0,
-                                        355.0,
-                                        377.0,
-                                        448.3125,
-                                        377.0
+                                        54.5,
+                                        167.0,
+                                        385.0,
+                                        167.0,
+                                        385.0,
+                                        396.0,
+                                        478.3125,
+                                        396.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -813,10 +775,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        367.0,
-                                        125.5,
-                                        367.0
+                                        54.5,
+                                        352.0,
+                                        156.5,
+                                        352.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -946,8 +908,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -955,8 +917,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            629.0,
+                            722.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -992,52 +954,60 @@
                         "boxes": [
                             {
                                 "box": {
-                                    "id": "obj-6",
-                                    "linecount": 2,
+                                    "bubble": 1,
+                                    "bubbleside": 3,
+                                    "id": "obj-8",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        255.0,
-                                        578.5,
-                                        353.0,
-                                        36.0
+                                        145.0,
+                                        135.0,
+                                        84.0,
+                                        25.0
                                     ],
-                                    "text": "We can actually just set the scale to normalised to use the normalised ramp directly."
+                                    "text": "Set length"
                                 }
                             },
                             {
                                 "box": {
-                                    "id": "obj-25",
-                                    "maxclass": "live.dial",
+                                    "id": "obj-4",
+                                    "maxclass": "number",
+                                    "maximum": 200,
+                                    "minimum": 1,
                                     "numinlets": 1,
                                     "numoutlets": 2,
                                     "outlettype": [
                                         "",
-                                        "float"
+                                        "bang"
                                     ],
-                                    "parameter_enable": 1,
+                                    "parameter_enable": 0,
                                     "patching_rect": [
-                                        221.0,
-                                        208.0,
-                                        41.0,
-                                        48.0
-                                    ],
-                                    "saved_attribute_attributes": {
-                                        "valueof": {
-                                            "parameter_longname": "live.dial",
-                                            "parameter_mmax": 100.0,
-                                            "parameter_mmin": 2.0,
-                                            "parameter_shortname": "Length",
-                                            "parameter_type": 0,
-                                            "parameter_unitstyle": 0
-                                        }
-                                    },
-                                    "varname": "live.dial"
+                                        236.0,
+                                        135.0,
+                                        50.0,
+                                        23.0
+                                    ]
                                 }
                             },
                             {
                                 "box": {
+                                    "id": "obj-6",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        266.0,
+                                        526.0,
+                                        285.0,
+                                        21.0
+                                    ],
+                                    "text": "Note that scale is set to normalised for this input"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "hidden": 1,
                                     "id": "obj-24",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -1046,8 +1016,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        221.0,
-                                        150.0,
+                                        236.0,
+                                        105.0,
                                         82.0,
                                         23.0
                                     ],
@@ -1056,6 +1026,7 @@
                             },
                             {
                                 "box": {
+                                    "hidden": 1,
                                     "id": "obj-23",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -1064,8 +1035,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        422.0,
-                                        405.0,
+                                        474.0,
+                                        375.5,
                                         75.0,
                                         23.0
                                     ],
@@ -1074,6 +1045,7 @@
                             },
                             {
                                 "box": {
+                                    "hidden": 1,
                                     "id": "obj-22",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -1082,8 +1054,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        219.0,
-                                        405.0,
+                                        291.25,
+                                        375.5,
                                         75.0,
                                         23.0
                                     ],
@@ -1100,8 +1072,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        221.0,
-                                        270.0,
+                                        236.0,
+                                        195.0,
                                         62.0,
                                         23.0
                                     ],
@@ -1118,8 +1090,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        221.0,
-                                        315.0,
+                                        236.0,
+                                        240.0,
                                         124.0,
                                         23.0
                                     ],
@@ -1135,8 +1107,8 @@
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        92.0,
-                                        510.0,
+                                        75.0,
+                                        512.0,
                                         36.0
                                     ],
                                     "text": "You can also experiment with how interpolation and the size of the lookup table change the process."
@@ -1152,8 +1124,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        422.0,
-                                        473.0,
+                                        412.5,
+                                        413.0,
                                         62.0,
                                         23.0
                                     ],
@@ -1170,8 +1142,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        219.0,
-                                        480.0,
+                                        234.0,
+                                        413.0,
                                         59.0,
                                         23.0
                                     ],
@@ -1180,17 +1152,19 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-10",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        525.0704956054688,
-                                        441.5,
-                                        98.0,
-                                        21.0
+                                        360.5,
+                                        330.0,
+                                        123.0,
+                                        40.0
                                     ],
-                                    "text": "edge behaviour"
+                                    "text": "Set edge behaviour"
                                 }
                             },
                             {
@@ -1219,8 +1193,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        422.0,
-                                        441.5,
+                                        372.0,
+                                        375.5,
                                         100.0,
                                         23.0
                                     ]
@@ -1228,17 +1202,19 @@
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
+                                    "bubbleside": 2,
                                     "id": "obj-9",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        321.0,
-                                        441.5,
-                                        79.0,
-                                        21.0
+                                        191.0,
+                                        330.0,
+                                        105.0,
+                                        40.0
                                     ],
-                                    "text": "interpolation"
+                                    "text": "Set interpolation"
                                 }
                             },
                             {
@@ -1265,9 +1241,9 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        219.0,
-                                        441.5,
-                                        100.0,
+                                        197.75,
+                                        375.5,
+                                        91.5,
                                         23.0
                                     ]
                                 }
@@ -1282,8 +1258,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        219.0,
-                                        540.0,
+                                        234.0,
+                                        480.0,
                                         124.0,
                                         23.0
                                     ],
@@ -1298,8 +1274,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        585.0,
-                                        700.0,
+                                        432.5,
+                                        620.0,
                                         45.0,
                                         45.0
                                     ]
@@ -1318,8 +1294,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        394.1409912109375,
-                                        165.0,
+                                        372.0,
+                                        107.0,
                                         223.0,
                                         29.0
                                     ],
@@ -1329,9 +1305,15 @@
                             {
                                 "box": {
                                     "candicane2": [
-                                        0.0,
-                                        0.533333,
-                                        0.168627,
+                                        0.96078431372549,
+                                        0.827450980392157,
+                                        0.156862745098039,
+                                        1.0
+                                    ],
+                                    "candicane3": [
+                                        0.96078431372549,
+                                        0.827450980392157,
+                                        0.156862745098039,
                                         1.0
                                     ],
                                     "candycane": 2,
@@ -1347,16 +1329,23 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        394.1409912109375,
-                                        208.0,
-                                        236.0,
-                                        85.0
+                                        372.0,
+                                        135.0,
+                                        228.0,
+                                        88.0
                                     ],
                                     "setminmax": [
                                         0.0,
                                         1.0
                                     ],
-                                    "size": 10
+                                    "setstyle": 1,
+                                    "size": 10,
+                                    "slidercolor": [
+                                        0.925490196078431,
+                                        0.364705882352941,
+                                        0.341176470588235,
+                                        1.0
+                                    ]
                                 }
                             },
                             {
@@ -1369,8 +1358,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        117.0,
-                                        540.0,
+                                        132.0,
+                                        480.0,
                                         77.0,
                                         23.0
                                     ],
@@ -1387,8 +1376,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        150.0,
+                                        30.0,
+                                        135.0,
                                         75.0,
                                         23.0
                                     ],
@@ -1405,8 +1394,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        345.0,
+                                        30.0,
+                                        270.0,
                                         225.0,
                                         23.0
                                     ],
@@ -1423,8 +1412,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        622.0,
+                                        30.0,
+                                        562.0,
                                         62.0,
                                         23.0
                                     ],
@@ -1451,8 +1440,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        660.0,
+                                        30.0,
+                                        600.0,
                                         236.0,
                                         85.0
                                     ],
@@ -1460,7 +1449,13 @@
                                         0.0,
                                         1.0
                                     ],
-                                    "size": 10
+                                    "size": 20,
+                                    "slidercolor": [
+                                        0.925490196078431,
+                                        0.364705882352941,
+                                        0.341176470588235,
+                                        1.0
+                                    ]
                                 }
                             },
                             {
@@ -1479,8 +1474,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        585.0,
+                                        30.0,
+                                        525.0,
                                         223.0,
                                         23.0
                                     ],
@@ -1493,9 +1488,7 @@
                                     "filename": "fl.helpname.js",
                                     "id": "obj-3",
                                     "ignoreclick": 1,
-                                    "jsarguments": [
-                                        "fl.lookup~"
-                                    ],
+                                    "jsarguments": "fl.lookup~",
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -1506,7 +1499,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        599.0,
                                         75.0
                                     ]
                                 }
@@ -1533,7 +1526,7 @@
                                     ],
                                     "source": [
                                         "obj-11",
-                                        0
+                                        1
                                     ]
                                 }
                             },
@@ -1556,10 +1549,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        431.5,
-                                        517.5,
-                                        228.5,
-                                        517.5
+                                        422.0,
+                                        457.5,
+                                        243.5,
+                                        457.5
                                     ],
                                     "source": [
                                         "obj-15",
@@ -1574,10 +1567,10 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        230.5,
-                                        339.0,
-                                        230.5,
-                                        339.0
+                                        245.5,
+                                        264.0,
+                                        245.5,
+                                        264.0
                                     ],
                                     "source": [
                                         "obj-19",
@@ -1592,10 +1585,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        230.5,
-                                        294.0,
-                                        230.5,
-                                        294.0
+                                        245.5,
+                                        219.0,
+                                        245.5,
+                                        219.0
                                     ],
                                     "source": [
                                         "obj-21",
@@ -1609,6 +1602,7 @@
                                         "obj-5",
                                         0
                                     ],
+                                    "hidden": 1,
                                     "source": [
                                         "obj-22",
                                         0
@@ -1621,6 +1615,7 @@
                                         "obj-11",
                                         0
                                     ],
+                                    "hidden": 1,
                                     "source": [
                                         "obj-23",
                                         0
@@ -1630,29 +1625,12 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-25",
+                                        "obj-4",
                                         0
                                     ],
-                                    "midpoints": [
-                                        230.5,
-                                        174.0,
-                                        230.5,
-                                        174.0
-                                    ],
+                                    "hidden": 1,
                                     "source": [
                                         "obj-24",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
-                                        "obj-21",
-                                        0
-                                    ],
-                                    "source": [
-                                        "obj-25",
                                         0
                                     ]
                                 }
@@ -1672,12 +1650,24 @@
                             {
                                 "patchline": {
                                     "destination": [
+                                        "obj-21",
+                                        0
+                                    ],
+                                    "source": [
+                                        "obj-4",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
                                         "obj-13",
                                         0
                                     ],
                                     "source": [
                                         "obj-5",
-                                        0
+                                        1
                                     ]
                                 }
                             },
@@ -1696,10 +1686,29 @@
                             {
                                 "patchline": {
                                     "destination": [
+                                        "obj-1",
+                                        0
+                                    ],
+                                    "midpoints": [
+                                        39.5,
+                                        444.5,
+                                        243.5,
+                                        444.5
+                                    ],
+                                    "order": 0,
+                                    "source": [
+                                        "obj-66",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
                                         "obj-37",
                                         0
                                     ],
-                                    "order": 1,
+                                    "order": 2,
                                     "source": [
                                         "obj-66",
                                         0
@@ -1713,12 +1722,12 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        390.0,
-                                        126.5,
-                                        390.0
+                                        39.5,
+                                        444.0,
+                                        141.5,
+                                        444.0
                                     ],
-                                    "order": 0,
+                                    "order": 1,
                                     "source": [
                                         "obj-66",
                                         0
@@ -1732,10 +1741,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        300.0,
-                                        230.5,
-                                        300.0
+                                        39.5,
+                                        227.0,
+                                        245.5,
+                                        227.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -1749,12 +1758,6 @@
                                     "destination": [
                                         "obj-66",
                                         0
-                                    ],
-                                    "midpoints": [
-                                        24.5,
-                                        174.0,
-                                        24.5,
-                                        174.0
                                     ],
                                     "order": 1,
                                     "source": [
@@ -1777,15 +1780,21 @@
                             },
                             {
                                 "patchline": {
+                                    "color": [
+                                        0.77383816242218,
+                                        0.0,
+                                        0.0,
+                                        1.0
+                                    ],
                                     "destination": [
                                         "obj-85",
                                         0
                                     ],
                                     "midpoints": [
-                                        403.6409912109375,
-                                        390.0,
-                                        126.5,
-                                        390.0
+                                        381.5,
+                                        314.0,
+                                        141.5,
+                                        314.0
                                     ],
                                     "source": [
                                         "obj-86",
@@ -1878,8 +1887,8 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -1887,8 +1896,8 @@
                         "rect": [
                             0.0,
                             26.0,
-                            652.0,
-                            761.0
+                            629.0,
+                            722.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1949,17 +1958,17 @@
                         "fileversion": 1,
                         "appversion": {
                             "major": 8,
-                            "minor": 1,
-                            "revision": 8,
+                            "minor": 3,
+                            "revision": 0,
                             "architecture": "x64",
                             "modernui": 1
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
-                            652.0,
-                            761.0
+                            34.0,
+                            113.0,
+                            629.0,
+                            722.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -1996,15 +2005,15 @@
                             {
                                 "box": {
                                     "id": "obj-5",
-                                    "linecount": 3,
+                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
                                         15.0,
-                                        92.0,
-                                        510.0,
-                                        50.0
+                                        75.0,
+                                        586.0,
+                                        36.0
                                     ],
                                     "text": "In this example, fl.lookup~ is used to 'up-sample' an input frame. This is done by using a fixed frame of 4096 samples on a table of 10 values. Interpolation is handled inside the fl.lookup~ object."
                                 }
@@ -2017,26 +2026,10 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        585.0,
-                                        700.0,
+                                        540.0,
+                                        622.5,
                                         45.0,
                                         45.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-1",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        254.07049560546875,
-                                        212.625,
-                                        55.25,
-                                        17.75
                                     ]
                                 }
                             },
@@ -2048,153 +2041,99 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        254.07049560546875,
-                                        674.5,
-                                        250.0,
+                                        276.0,
+                                        620.0,
+                                        240.0,
                                         50.0
                                     ],
-                                    "text": "fl.lookup~ also has three scale modes. The lookup frame can be mapped to samples, normalised and bipolar values."
+                                    "text": "fl.lookup~ also has three scale modes. The lookup frame can be mapped to samples, normalised and bipolar values.",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-107",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        170.0,
-                                        574.0,
-                                        52.0,
-                                        21.25
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-108",
-                                    "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        228.0,
-                                        565.375,
-                                        350.0,
-                                        36.0
+                                        184.5,
+                                        509.0,
+                                        367.0,
+                                        25.0
                                     ],
-                                    "text": "Lookup the 10 values and interpolate 4096 points between them. Interpolation types can be changed with /interp."
+                                    "text": "Looks up the 4096 point ramp input using the 10 point table",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-105",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        75.0,
-                                        498.5,
-                                        75.0,
-                                        19.5
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-106",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        152.0,
-                                        496.5,
-                                        352.0,
-                                        21.0
+                                        90.0,
+                                        450.0,
+                                        373.0,
+                                        25.0
                                     ],
-                                    "text": "Multiply the 0 - 1 values by one less than the lookup length."
+                                    "text": "Multiplies the 0 - 1 values by one less than the lookup length",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-103",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        383.75,
-                                        309.125,
-                                        55.25,
-                                        17.75
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-104",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        441.0,
-                                        304.5,
-                                        117.0,
-                                        21.0
+                                        315.0,
+                                        271.5,
+                                        106.0,
+                                        25.0
                                     ],
-                                    "text": "Generate a table"
+                                    "text": "Alter the table",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
-                                    "arrows": 1,
-                                    "border": 4.0,
-                                    "id": "obj-96",
-                                    "maxclass": "live.line",
-                                    "numinlets": 1,
-                                    "numoutlets": 0,
-                                    "patching_rect": [
-                                        114.875,
-                                        454.0,
-                                        40.25,
-                                        18.0
-                                    ]
-                                }
-                            },
-                            {
-                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-95",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        158.125,
-                                        452.0,
-                                        273.0,
-                                        21.0
+                                        120.0,
+                                        405.0,
+                                        278.0,
+                                        25.0
                                     ],
-                                    "text": "Subtract 1 from the length of the lookup frame"
+                                    "text": "Gets the length of the lookup frame minus 1",
+                                    "textjustification": 1
                                 }
                             },
                             {
                                 "box": {
+                                    "bubble": 1,
                                     "id": "obj-94",
                                     "linecount": 2,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        311.32049560546875,
-                                        203.5,
-                                        264.0,
-                                        36.0
+                                        281.625,
+                                        171.5,
+                                        285.0,
+                                        40.0
                                     ],
-                                    "text": "Generate a frame containing ramped values from 0 - 1 with 4096 discrete points."
+                                    "text": "Generates a frame containing ramped values from 0 - 1 with 4096 discrete points",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -2210,8 +2149,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        145.875,
-                                        255.0,
+                                        68.0,
+                                        219.125,
                                         236.0,
                                         29.0
                                     ],
@@ -2221,9 +2160,15 @@
                             {
                                 "box": {
                                     "candicane2": [
-                                        0.0,
-                                        0.533333,
-                                        0.168627,
+                                        0.96078431372549,
+                                        0.827450980392157,
+                                        0.156862745098039,
+                                        1.0
+                                    ],
+                                    "candicane3": [
+                                        0.96078431372549,
+                                        0.827450980392157,
+                                        0.156862745098039,
                                         1.0
                                     ],
                                     "candycane": 2,
@@ -2239,16 +2184,23 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        145.875,
-                                        275.875,
-                                        236.0,
-                                        85.0
+                                        68.0,
+                                        240.0,
+                                        228.0,
+                                        88.0
                                     ],
                                     "setminmax": [
                                         0.0,
                                         1.0
                                     ],
-                                    "size": 10
+                                    "setstyle": 1,
+                                    "size": 10,
+                                    "slidercolor": [
+                                        0.925490196078431,
+                                        0.364705882352941,
+                                        0.341176470588235,
+                                        1.0
+                                    ]
                                 }
                             },
                             {
@@ -2261,8 +2213,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        53.0,
-                                        405.0,
+                                        68.0,
+                                        360.0,
                                         77.0,
                                         23.0
                                     ],
@@ -2283,8 +2235,8 @@
                                         "fileversion": 1,
                                         "appversion": {
                                             "major": 8,
-                                            "minor": 1,
-                                            "revision": 8,
+                                            "minor": 3,
+                                            "revision": 0,
                                             "architecture": "x64",
                                             "modernui": 1
                                         },
@@ -2292,8 +2244,8 @@
                                         "rect": [
                                             59.0,
                                             103.0,
-                                            640.0,
-                                            480.0
+                                            123.0,
+                                            178.0
                                         ],
                                         "bglocked": 0,
                                         "openinpresentation": 0,
@@ -2336,8 +2288,8 @@
                                                         ""
                                                     ],
                                                     "patching_rect": [
-                                                        12.0,
-                                                        82.333336,
+                                                        26.0,
+                                                        86.333336,
                                                         71.0,
                                                         22.0
                                                     ],
@@ -2354,8 +2306,8 @@
                                                         ""
                                                     ],
                                                     "patching_rect": [
-                                                        12.0,
-                                                        47.333336,
+                                                        26.0,
+                                                        51.333336,
                                                         62.0,
                                                         22.0
                                                     ],
@@ -2364,7 +2316,7 @@
                                             },
                                             {
                                                 "box": {
-                                                    "comment": "",
+                                                    "comment": "Frame In",
                                                     "id": "obj-42",
                                                     "index": 1,
                                                     "maxclass": "inlet",
@@ -2374,8 +2326,8 @@
                                                         ""
                                                     ],
                                                     "patching_rect": [
-                                                        12.0,
-                                                        12.0,
+                                                        26.0,
+                                                        11.0,
                                                         30.0,
                                                         30.0
                                                     ]
@@ -2383,15 +2335,15 @@
                                             },
                                             {
                                                 "box": {
-                                                    "comment": "",
+                                                    "comment": "Length - 1",
                                                     "id": "obj-43",
                                                     "index": 1,
                                                     "maxclass": "outlet",
                                                     "numinlets": 1,
                                                     "numoutlets": 0,
                                                     "patching_rect": [
-                                                        12.0,
-                                                        117.333328,
+                                                        26.0,
+                                                        121.333328,
                                                         30.0,
                                                         30.0
                                                     ]
@@ -2438,9 +2390,9 @@
                                         ]
                                     },
                                     "patching_rect": [
-                                        53.0,
-                                        450.0,
-                                        59.0,
+                                        68.0,
+                                        405.0,
+                                        48.0,
                                         23.0
                                     ],
                                     "saved_object_attributes": {
@@ -2462,8 +2414,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        495.0,
+                                        30.0,
+                                        450.0,
                                         57.0,
                                         23.0
                                     ],
@@ -2480,8 +2432,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        165.0,
+                                        30.0,
+                                        135.0,
                                         75.0,
                                         23.0
                                     ],
@@ -2498,8 +2450,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        210.0,
+                                        30.0,
+                                        180.0,
                                         236.0,
                                         23.0
                                     ],
@@ -2516,8 +2468,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        615.0,
+                                        30.0,
+                                        555.0,
                                         62.0,
                                         23.0
                                     ],
@@ -2544,16 +2496,22 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        15.0,
-                                        660.0,
+                                        30.0,
+                                        600.0,
                                         236.0,
-                                        85.0
+                                        90.0
                                     ],
                                     "setminmax": [
                                         0.0,
                                         1.0
                                     ],
-                                    "size": 4096
+                                    "size": 4096,
+                                    "slidercolor": [
+                                        0.925490196078431,
+                                        0.364705882352941,
+                                        0.341176470588235,
+                                        1.0
+                                    ]
                                 }
                             },
                             {
@@ -2572,8 +2530,8 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        15.0,
-                                        570.0,
+                                        30.0,
+                                        510.0,
                                         149.0,
                                         23.0
                                     ],
@@ -2586,9 +2544,7 @@
                                     "filename": "fl.helpname.js",
                                     "id": "obj-3",
                                     "ignoreclick": 1,
-                                    "jsarguments": [
-                                        "fl.lookup~"
-                                    ],
+                                    "jsarguments": "fl.lookup~",
                                     "maxclass": "jsui",
                                     "numinlets": 1,
                                     "numoutlets": 1,
@@ -2599,7 +2555,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        435.0,
+                                        599.0,
                                         75.0
                                     ]
                                 }
@@ -2649,10 +2605,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        234.0,
-                                        24.5,
-                                        234.0
+                                        39.5,
+                                        204.0,
+                                        39.5,
+                                        204.0
                                     ],
                                     "order": 1,
                                     "source": [
@@ -2668,10 +2624,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        378.0,
-                                        62.5,
-                                        378.0
+                                        39.5,
+                                        341.0,
+                                        77.5,
+                                        341.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -2687,10 +2643,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        189.0,
-                                        24.5,
-                                        189.0
+                                        39.5,
+                                        159.0,
+                                        39.5,
+                                        159.0
                                     ],
                                     "source": [
                                         "obj-68",
@@ -2705,10 +2661,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        24.5,
-                                        519.0,
-                                        24.5,
-                                        519.0
+                                        39.5,
+                                        474.0,
+                                        39.5,
+                                        474.0
                                     ],
                                     "source": [
                                         "obj-69",
@@ -2723,14 +2679,14 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        62.5,
-                                        436.0,
-                                        525.0,
-                                        436.0,
-                                        525.0,
-                                        555.0,
-                                        89.5,
-                                        555.0
+                                        77.5,
+                                        391.0,
+                                        466.0,
+                                        391.0,
+                                        466.0,
+                                        490.0,
+                                        104.5,
+                                        490.0
                                     ],
                                     "order": 0,
                                     "source": [
@@ -2746,10 +2702,10 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        62.5,
-                                        438.5,
-                                        62.5,
-                                        438.5
+                                        77.5,
+                                        393.5,
+                                        77.5,
+                                        393.5
                                     ],
                                     "order": 1,
                                     "source": [
@@ -2763,12 +2719,6 @@
                                     "destination": [
                                         "obj-85",
                                         0
-                                    ],
-                                    "midpoints": [
-                                        155.375,
-                                        378.0,
-                                        62.5,
-                                        378.0
                                     ],
                                     "source": [
                                         "obj-86",
@@ -2853,29 +2803,6 @@
             }
         ],
         "lines": [],
-        "dependency_cache": [
-            {
-                "name": "fldocs.getparams.maxpat",
-                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
-                "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
-                "type": "JSON",
-                "implicit": 1
-            },
-            {
-                "name": "fl.getname.js",
-                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
-                "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            },
-            {
-                "name": "fl.helpdetails.js",
-                "bootpath": "~/dev/FrameLib/Current Test Version/FrameLib/misc",
-                "patcherrelativepath": "../../../Current Test Version/FrameLib/misc",
-                "type": "TEXT",
-                "implicit": 1
-            }
-        ],
         "autosave": 0
     }
 }

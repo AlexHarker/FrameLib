@@ -82,10 +82,10 @@ FrameLib_Convolve::ParameterInfo::ParameterInfo()
     add("Sets the maximum processing length. "
         "The processing length is M + N - 1 where M and N are the lengths of the two inputs.");
     add("Sets the type of input and output.");
-    add("Sets the edge behaviour of the convolution process: "
+    add("Sets the edge behaviour of the convolution process. "
         "The basic operation is a linear one with output of the processing length. "
         "For modes other than linear the output length is reduced to the maximum of M and N. "
-        "Excess from the linear operation is added back into the available length as specified. "
+        "Excess from the linear operation is added back into the available length as specified: "
         "linear - the output is the full processing length with no further processing. "
         "circular - excess at the end is added back to the beginning of the output. "
         "wrap - as circular mode but rotated such that wrapping occurs equally at both ends. "

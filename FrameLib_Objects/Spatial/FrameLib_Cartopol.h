@@ -8,6 +8,8 @@ namespace FrameLib_Spatial_Ops
 {
     struct CarToPol
     {
+        CarToPol(bool degrees) : mAngleFactor(degrees ? 180.0 / M_PI : 1.0) {}
+        
         Value2D operator()(const Value2D& v)
         {
             return Value2D(abs(v), arg(v) * mAngleFactor);
@@ -20,18 +22,13 @@ namespace FrameLib_Spatial_Ops
             const double z = std::get<2>(v);
             
             const double radius = sqrt(x * x + y * y + z * z);
-            double azimuth = atan2(x, y) * mAngleFactor;
+            double azimuth = atan2(y, x) * mAngleFactor;
             double elevation = radius ? asin(z / radius) * mAngleFactor : 0.0;
             
             return Value3D(radius, azimuth, elevation);
         }
         
-        void prepare(bool degrees)
-        {
-            mAngleFactor = degrees ? 180.0 / M_PI : 1.0;
-        }
-        
-        double mAngleFactor = 1.0;
+        double mAngleFactor;
     };
 }
 

@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
+<c74object name="fl.unpack~" module="FrameLib" category="FrameLib Streaming">
+  <digest>
+    Unpacks multistream input into individual streams
+  </digest>
+  <description>
+    Multistream inputs are unpacked in order across the outputs.
+  </description>
+  <misc name="Parameters">
+    <entry name="/num_outs [int]">
+      <description>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of single stream outputs.<p /><i>(default: 2)</i>
+      </description>
+    </entry>
+  </misc>
+  <metadatalist>
+    <metadata name="author">Alex Harker</metadata>
+    <metadata name="tag">FrameLib</metadata>
+    <metadata name="tag">FrameLib Streaming</metadata>
+  </metadatalist>
+  <objarglist>
+    <objarg name="num_outs" optional="1" type="int">
+      <digest>
+        Sets the number of single stream outputs
+      </digest>
+      <description>
+        This argument sets the num_outs parameter:<p /><p />Sets the number of single stream outputs.<p /><i>(default: 2)</i>
+      </description>
+    </objarg>
+  </objarglist>
+  <methodlist>
+    <method name="info">
+      <arglist>
+        <arg name="items" optional="1" type="list" />
+      </arglist>
+      <digest>
+        Get Object Info
+      </digest>
+      <description>
+        Print info about <o>fl.unpack~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+      </description>
+    </method>
+    <method name="frame">
+      <arglist />
+      <digest>
+        Connect FrameLib objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+    <method name="sync">
+      <arglist />
+      <digest>
+        Synchronise FrameLib audio objects
+      </digest>
+      <description>
+        Used internally by FrameLib's connection routines. User messages have no effect.
+      </description>
+    </method>
+  </methodlist>
+  <attributelist>
+    <attribute name="rt" get="1" set="1" type="int" size="1">
+      <digest>
+        Realtime flag
+      </digest>
+      <description>
+        Sets the realtime state for <o>fl.unpack~</o>. When set to <m>0</m> <o>fl.unpack~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="Realtime" />
+      </attributelist>
+    </attribute>
+    <attribute name="id" get="1" set="1" type="symbol" size="1">
+      <digest>
+        Context ID
+      </digest>
+      <description>
+        Sets the context name for <o>fl.unpack~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+      </description>
+      <attributelist>
+        <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
+        <attribute name="label" get="1" set="1" type="symbol" size="1" value="ID" />
+      </attributelist>
+    </attribute>
+  </attributelist>
+  <seealsolist>
+    <seealso name="08_fl_multistream" type="tutorial" module="FrameLib" />
+    <seealso name="fl.pack~" />
+    <seealso name="fl.streamid~" />
+  </seealsolist>
+  <misc name="Discussion">
+    <entry name="Keywords">
+      <description>multistream, streams</description>
+    </entry>
+  </misc>
+</c74object>

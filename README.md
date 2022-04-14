@@ -1,10 +1,12 @@
 FrameLib
 ========
 
+![FrameLib Logo](logo.png)
+
 A DSP framework for arbitrary size frame processing with arbitrary sub-sample accurate timing.
 * Frame timing and length can vary freely across networks and over time.
 * Memory allocation is handled by the framework.
-* FrameLib supports multi-threaded processing in real-time or non real-time.
+* FrameLib supports multi-threaded processing in real-time or non-realtime.
 * FrameLib can be compiled and bound to any environment that processes (or can process) audio in blocks.
 * FrameLib can be easily extended.
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<chapter name="FrameLib Tutorial 2: Learn by Example">
+  <openfile name="Examples of FrameLib" patch="_2_Examples.maxpat"/>
+  <header>FrameLib Tutorial 2: Learn by Example</header>
+  <subhead>Real-world examples of FrameLib.</subhead>
+  <body>Now that we've seen some low-level concepts, we'll look at a number of ways FrameLib might be used. This includes granular synthesis and spectral processing, amongst other applications.</body>
+  <body><openpatchlink>Open the tutorial</openpatchlink>.</body>
+  
+  <previous name="01_fl_introduction">Introduction</previous>
+  <next name="03_fl_basics">FrameLib Basics</next>
+  <parent name="00_fl_index">FrameLib Tutorials</parent>
+  
+  <seealsolist>
+    <seealso name="fl.interval~" />
+    <seealso name="fl.source~" />
+  </seealsolist>
+  
+</chapter>
+
+

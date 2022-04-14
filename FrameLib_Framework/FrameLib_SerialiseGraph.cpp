@@ -175,7 +175,7 @@ static void findAndRemoveCasts(std::string& name, size_t beg, size_t end)
     }
 }
     
-static void getTypeString(std::string& name, FrameLib_Multistream *obj)
+static void getTypeString(std::string& name, FrameLib_Multistream *obj, ReplacePtr replace)
 {
     unmangleName(name, obj);
 
@@ -183,6 +183,12 @@ static void getTypeString(std::string& name, FrameLib_Multistream *obj)
     
     findAndResolveFunctions(name, 0, name.length() - 1);
     findAndRemoveCasts(name, 0, name.length() - 1);
+    
+    if (replace)
+    {
+        for (auto it = replace->cbegin(); it != replace->cend(); it++)
+            findReplace(name, it->mFind.c_str(), it->mReplace.c_str());
+    }
 }
 
 using ObjectList = std::vector<FrameLib_Multistream*>;
@@ -233,7 +239,7 @@ static void addConnection(FrameLib_ObjectDescription& description, ObjectList& s
     }
 }
 
-void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_Multistream *requestObject)
+void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_Multistream *requestObject, ReplacePtr replace)
 {
     ObjectList serial;
     unsigned long size = 0;
@@ -251,7 +257,7 @@ void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_M
         objects.push_back(FrameLib_ObjectDescription());
         FrameLib_ObjectDescription& description = objects.back();
         
-        getTypeString(description.mObjectType, object);
+        getTypeString(description.mObjectType, object, replace);
         description.mNumStreams = object->getNumStreams();
         
         // Parameters
@@ -327,12 +333,12 @@ static void serialiseVector(std::stringstream& output, size_t index, const char 
     output << " };\n";
 }
 
-static std::string serialiseGraph(FrameLib_Multistream *requestObject)
+static std::string serialiseGraph(FrameLib_Multistream *requestObject, ReplacePtr replace)
 {
     std::vector<FrameLib_ObjectDescription> objects;
     std::stringstream output;
 
-    serialiseGraph(objects, requestObject);
+    serialiseGraph(objects, requestObject, replace);
 
     output << exportIndent << "mObjects.resize(" << objects.size() <<");\n\n";
 
@@ -423,13 +429,13 @@ static ExportError exportWriteFile(std::stringstream& contents, const char *path
     return file.fail() ? ExportError::WriteError : ExportError::Success;
 }
 
-ExportError exportGraph(FrameLib_Multistream *requestObject, const char *path, const char *className)
+ExportError exportGraph(FrameLib_Multistream *requestObject, const char *path, const char *className, ReplacePtr replace)
 {
     ExportError error = ExportError::Success;
     std::stringstream header, cpp;
     
     header << exportClassName(exportHeader, className);
-    cpp << exportClassName(exportCPPOpen, className) << serialiseGraph(requestObject) << exportClassName(exportCPPClose, className);
+    cpp << exportClassName(exportCPPOpen, className) << serialiseGraph(requestObject, replace) << exportClassName(exportCPPClose, className);
 
     if ((error = exportWriteFile(header, path, className, ".h")) != ExportError::Success)
         return error;

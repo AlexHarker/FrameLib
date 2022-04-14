@@ -1367,14 +1367,6 @@
 
 			}
  ],
-		"dependency_cache" : [ 			{
-				"name" : "fl-tutorial-names.txt",
-				"bootpath" : "~/Documents/Development/FrameLib/Packaging/Max/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../docs/tutorial-patchers",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
- ],
 		"autosave" : 0
 	}
 

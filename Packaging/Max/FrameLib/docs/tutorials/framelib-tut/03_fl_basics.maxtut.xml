@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<chapter name="FrameLib Tutorial 3: Key Concepts">
+  <openfile name="FrameLib Key Concepts" patch="_3_Key_Concepts.maxpat"/>
+  <header>FrameLib Tutorial 3: Key Concepts</header>
+  <subhead>Key concepts of FrameLib</subhead>
+  <body>This tutorial walks you through some fundamental concepts when using FrameLib objects and connecting them together.</body>
+  <body><openpatchlink>Open the tutorial</openpatchlink>.</body>
+  
+  <previous name="02_fl_examples">Learn by Example</previous>
+  <next name="04_fl_conversion">Getting In and Out of FrameLib</next>
+  <parent name="00_fl_index">FrameLib Tutorials</parent>
+  
+  <seealsolist>
+    <seealso name="fl.interval~" />
+    <seealso name="fl.perblock~" />
+    <seealso name="fl.once~" />
+    <seealso name="fl.audiotrigger~" />
+    <seealso name="fl.chain~" />
+    <seealso name="fl.tag~" />
+    <seealso name="fl.combinetags~" />
+  </seealsolist>
+</chapter>
+
+
