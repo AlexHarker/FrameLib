@@ -907,7 +907,7 @@
         },
         "5": {
             "name": "/constrain [enum]",
-            "description": "Sets the method for constraining positions outside of the speaker array:\n\nParameter Options:\n[0] - none - suitable when the input is already within the speaker array (most efficient).\n[1] - hemisphere - restrict to the upper hemisphere of the sphere described below.\n[2] - sphere - restrict to the smallest sphere centred at the origin containing all speakers.\n[3] - hull - restrict to the convex hull of the speaker array (least efficient / always correct.\n\n(default: hull)"
+            "description": "Sets the method for constraining positions outside of the speaker array:\n\nParameter Options:\n[0] - off - suitable when the input is already within the speaker array (most efficient).\n[1] - hemisphere - restrict to the upper hemisphere of the sphere described below.\n[2] - sphere - restrict to the smallest sphere centred at the origin containing all speakers.\n[3] - hull - restrict to the convex hull of the speaker array (least efficient / always correct.\n\n(default: hull)"
         },
         "6": {
             "name": "/speakers [variable length double array]",
