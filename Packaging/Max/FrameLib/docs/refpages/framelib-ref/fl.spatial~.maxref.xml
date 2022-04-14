@@ -30,32 +30,32 @@
     </entry>
     <entry name="/speakers [variable length double array]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the speaker positions in triples (one triple per speaker). For cartesian coordinates the values are [x, z, y]. For polar coordinates the values are [radius, azimuth, elevation].<p /><i>(default: 0)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the speaker positions in triples (one triple per speaker). For cartesian coordinates the values are [x, z, y]. For polar coordinates the values are [radius, azimuth, elevation].<p /><i>(default: 0, max size: 360)</i>
       </description>
     </entry>
     <entry name="/weights [variable length double array]">
       <description>
-        Sets the speaker weightings (one value per speaker). By default all speakers are weighted equally. Using weighting values allows the emphasis or exclusion of specific speakers.<p /><i>(default: 1)</i>
+        Sets the speaker weightings (one value per speaker). By default all speakers are weighted equally. Using weighting values allows the emphasis or exclusion of specific speakers.<p /><i>(default: 1, min: 0, max size: 360)</i>
       </description>
     </entry>
     <entry name="/rolloff [double]">
       <description>
-        Sets the rolloff in positive dB for a doubling of distance between source and speakers. The default (6dB) equates to the inverse distance law for sound propagating in a free field. Lower values may be suitable for simulating more closed environments.<p /><i>(default: 6)</i>
+        Sets the rolloff in positive dB for a doubling of distance between source and speakers. The default (6dB) equates to the inverse distance law for sound propagating in a free field. Lower values may be suitable for simulating more closed environments.<p /><i>(default: 6, min: 1e-07)</i>
       </description>
     </entry>
     <entry name="/blur [double]">
       <description>
-        Sets the blur factor. This should be set in relation to the dimensions of the speaker array. Larger numbers result in more blurring of the spatial image.<p /><i>(default: 0.001)</i>
+        Sets the blur factor. This should be set in relation to the dimensions of the speaker array. Larger numbers result in more blurring of the spatial image.<p /><i>(default: 0.001, min: 1e-07)</i>
       </description>
     </entry>
     <entry name="/max_speakers [int]">
       <description>
-        Sets the number of speakers that can be non-zero (only the nearest N speakers are used). If this is set to zero then all speakers are used. Reducing the number of speakers used can improve localisation.<p /><i>(default: 0)</i>
+        Sets the number of speakers that can be non-zero (only the nearest N speakers are used). If this is set to zero then all speakers are used. Reducing the number of speakers used can improve localisation.<p /><i>(default: 0, min: 0)</i>
       </description>
     </entry>
     <entry name="/point_factor [double]">
       <description>
-        Interpolation factor between DBAP (at 0) and point source panning (at 1).<p /><i>(default: 0)</i>
+        Interpolation factor between DBAP (at 0) and point source panning (at 1).<p /><i>(default: 0, clipped: 0-1)</i>
       </description>
     </entry>
   </misc>

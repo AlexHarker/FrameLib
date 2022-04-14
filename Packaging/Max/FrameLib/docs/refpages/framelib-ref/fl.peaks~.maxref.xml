@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/neighbours [int]">
       <description>
-        Sets the number of neighbours each side that must be exceeded in order to detect a peak.<p /><i>(default: 1)</i>
+        Sets the number of neighbours each side that must be exceeded in order to detect a peak.<p /><i>(default: 1, clipped: 1-4)</i>
       </description>
     </entry>
     <entry name="/threshold [double]">
@@ -55,7 +55,7 @@
         Sets the number of neighbours each side that must be exceeded in order to detect a peak
       </digest>
       <description>
-        This argument sets the neighbours parameter:<p /><p />Sets the number of neighbours each side that must be exceeded in order to detect a peak.<p /><i>(default: 1)</i>
+        This argument sets the neighbours parameter:<p /><p />Sets the number of neighbours each side that must be exceeded in order to detect a peak.<p /><i>(default: 1, clipped: 1-4)</i>
       </description>
     </objarg>
     <objarg name="threshold" optional="1" type="number">

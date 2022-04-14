@@ -15,7 +15,7 @@
     </entry>
     <entry name="/length [int]">
       <description>
-        Sets the requested output length in the units specified by the units parameter.<p /><i>(default: 512)</i>
+        Sets the requested output length in the units specified by the units parameter.<p /><i>(default: 512, min: 0)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
@@ -40,7 +40,7 @@
     </entry>
     <entry name="/parameters [variable length double array]">
       <description>
-        An array that sets parameters specific to the window type:<p /><bullet><m>trapezoid</m> - takes either one or two parameter as percentages. If one parameter is provided it sets the first high point which is then mirrored. If two parameters are provided they set the two points of the trapezoid. The defaults are 25% and 75%.</bullet><p /><bullet><m>tukey</m> - takes a single parameter to set the cosine percentage (defaults to 50%). When set to 100% the window is the same as the Hann window. Reducing the percentage increases the central plateau.</bullet><p /><bullet><m>cosine_sum</m> - takes up to 5 parameters [a0-a4] as in the following formula. The defaults are set to the values for a Hann window:<p /><bluebox><i>w(x) = a0 - a1 * cos(2&#960;x) + a2 * cos(4&#960;x) - a3 * cos(6&#960;x) + a4 * cos(8&#960;x)</i></bluebox></bullet><p /><bullet><m>kaiser</m> - takes a single parameter to set the beta parameter. The default value is  6.24.</bullet><p /><bullet><m>sine_taper</m> - takes a single integer parameter to select the taper. The default sine taper is 1 which is equivalent to the sine window.</bullet><p />Note that other window types do not take any parameters.<p /><i>(default: 0)</i>
+        An array that sets parameters specific to the window type:<p /><bullet><m>trapezoid</m> - takes either one or two parameter as percentages. If one parameter is provided it sets the first high point which is then mirrored. If two parameters are provided they set the two points of the trapezoid. The defaults are 25% and 75%.</bullet><p /><bullet><m>tukey</m> - takes a single parameter to set the cosine percentage (defaults to 50%). When set to 100% the window is the same as the Hann window. Reducing the percentage increases the central plateau.</bullet><p /><bullet><m>cosine_sum</m> - takes up to 5 parameters [a0-a4] as in the following formula. The defaults are set to the values for a Hann window:<p /><bluebox><i>w(x) = a0 - a1 * cos(2&#960;x) + a2 * cos(4&#960;x) - a3 * cos(6&#960;x) + a4 * cos(8&#960;x)</i></bluebox></bullet><p /><bullet><m>kaiser</m> - takes a single parameter to set the beta parameter. The default value is  6.24.</bullet><p /><bullet><m>sine_taper</m> - takes a single integer parameter to select the taper. The default sine taper is 1 which is equivalent to the sine window.</bullet><p />Note that other window types do not take any parameters.<p /><i>(default: 0, max size: 5)</i>
       </description>
     </entry>
     <entry name="/endpoints [enum]">
@@ -68,7 +68,7 @@
         Sets the requested output length in the units specified by the units parameter
       </digest>
       <description>
-        This argument sets the length parameter:<p /><p />Sets the requested output length in the units specified by the units parameter.<p /><i>(default: 512)</i>
+        This argument sets the length parameter:<p /><p />Sets the requested output length in the units specified by the units parameter.<p /><i>(default: 512, min: 0)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">

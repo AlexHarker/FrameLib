@@ -20,7 +20,7 @@
     </entry>
     <entry name="/pad [fixed length double array]">
       <description>
-        Sets the complex value used for padding (for either pad_in or pad_out modes).<p /><i>(default: 0)</i>
+        Sets the complex value used for padding (for either pad_in or pad_out modes).<p /><i>(default: 0, size: 2)</i>
       </description>
     </entry>
   </misc>

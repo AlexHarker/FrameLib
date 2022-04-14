@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/percentile [double]">
       <description>
-        Sets the percentile to calculate [0-100].<p /><i>(default: 50)</i>
+        Sets the percentile to calculate [0-100].<p /><i>(default: 50, clipped: 0-100)</i>
       </description>
     </entry>
     <entry name="/interpolate [bool]">
@@ -40,7 +40,7 @@
         Sets the percentile to calculate [0-100]
       </digest>
       <description>
-        This argument sets the percentile parameter:<p /><p />Sets the percentile to calculate [0-100].<p /><i>(default: 50)</i>
+        This argument sets the percentile parameter:<p /><p />Sets the percentile to calculate [0-100].<p /><i>(default: 50, clipped: 0-100)</i>
       </description>
     </objarg>
     <objarg name="interpolate" optional="1" type="number">

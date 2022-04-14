@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/width [int]">
       <description>
-        Sets the width of the filtering in samples.<p /><i>(default: 1)</i>
+        Sets the width of the filtering in samples.<p /><i>(default: 1, min: 1)</i>
       </description>
     </entry>
     <entry name="/pad [double]">
@@ -25,7 +25,7 @@
     </entry>
     <entry name="/percentile [double]">
       <description>
-        Sets the percentile to return.<p /><i>(default: 50)</i>
+        Sets the percentile to return.<p /><i>(default: 50, clipped: 0-100)</i>
       </description>
     </entry>
   </misc>
@@ -40,7 +40,7 @@
         Sets the width of the filtering in samples
       </digest>
       <description>
-        This argument sets the width parameter:<p /><p />Sets the width of the filtering in samples.<p /><i>(default: 1)</i>
+        This argument sets the width parameter:<p /><p />Sets the width of the filtering in samples.<p /><i>(default: 1, min: 1)</i>
       </description>
     </objarg>
     <objarg name="pad" optional="1" type="number">
@@ -64,7 +64,7 @@
         Sets the percentile to return
       </digest>
       <description>
-        This argument sets the percentile parameter:<p /><p />Sets the percentile to return.<p /><i>(default: 50)</i>
+        This argument sets the percentile parameter:<p /><p />Sets the percentile to return.<p /><i>(default: 50, clipped: 0-100)</i>
       </description>
     </objarg>
   </objarglist>

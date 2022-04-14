@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/max_length [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs.<p /><i>(default: 16384)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs.<p /><i>(default: 16384, min: 0)</i>
       </description>
     </entry>
     <entry name="/mode [enum]">
@@ -35,7 +35,7 @@
         Sets the maximum processing length
       </digest>
       <description>
-        This argument sets the max_length parameter:<p /><p />Sets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs.<p /><i>(default: 16384)</i>
+        This argument sets the max_length parameter:<p /><p />Sets the maximum processing length. The processing length is M + N - 1 where M and N are the lengths of the two inputs.<p /><i>(default: 16384, min: 0)</i>
       </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">

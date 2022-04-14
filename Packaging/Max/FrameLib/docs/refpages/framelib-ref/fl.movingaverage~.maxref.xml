@@ -10,12 +10,12 @@
   <misc name="Parameters">
     <entry name="/alpha_up [double]">
       <description>
-        Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.<p /><i>(default: 0.5)</i>
+        Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.<p /><i>(default: 0.5, clipped: 0-1)</i>
       </description>
     </entry>
     <entry name="/alpha_down [double]">
       <description>
-        Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.<p /><i>(default: 0.5)</i>
+        Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.<p /><i>(default: 0.5, clipped: 0-1)</i>
       </description>
     </entry>
     <entry name="/average [double]">
@@ -40,7 +40,7 @@
         Sets the alpha value when the average is increasing
       </digest>
       <description>
-        This argument sets the alpha_up parameter:<p /><p />Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.<p /><i>(default: 0.5)</i>
+        This argument sets the alpha_up parameter:<p /><p />Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.<p /><i>(default: 0.5, clipped: 0-1)</i>
       </description>
     </objarg>
     <objarg name="alpha_down" optional="1" type="number">
@@ -48,7 +48,7 @@
         Sets the alpha value when the average is increasing
       </digest>
       <description>
-        This argument sets the alpha_down parameter:<p /><p />Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.<p /><i>(default: 0.5)</i>
+        This argument sets the alpha_down parameter:<p /><p />Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.<p /><i>(default: 0.5, clipped: 0-1)</i>
       </description>
     </objarg>
     <objarg name="average" optional="1" type="number">

@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/num_ins [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of inputs (and hence the number of tags).<p /><i>(default: 1)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of inputs (and hence the number of tags).<p /><i>(default: 1, clipped: 1-10)</i>
       </description>
     </entry>
     <entry name="/empty [enum]">

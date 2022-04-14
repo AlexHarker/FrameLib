@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/smooth [variable length double array]">
       <description>
-        Sets the width of smoothing as interpreted by the scale parameter. If only one value is provided it sets the smoothing width directly. If two values are provided they set the smoothing amounts at either edge. The smoothing width is then interpolated per sample across the output.<p /><i>(default: 0)</i>
+        Sets the width of smoothing as interpreted by the scale parameter. If only one value is provided it sets the smoothing width directly. If two values are provided they set the smoothing amounts at either edge. The smoothing width is then interpolated per sample across the output.<p /><i>(default: 0, min: 0, max size: 2)</i>
       </description>
     </entry>
     <entry name="/scale [enum]">
@@ -45,7 +45,7 @@
         Sets the width of smoothing as interpreted by the scale parameter
       </digest>
       <description>
-        This argument sets the smooth parameter:<p /><p />Sets the width of smoothing as interpreted by the scale parameter. If only one value is provided it sets the smoothing width directly. If two values are provided they set the smoothing amounts at either edge. The smoothing width is then interpolated per sample across the output.<p /><i>(default: 0)</i>
+        This argument sets the smooth parameter:<p /><p />Sets the width of smoothing as interpreted by the scale parameter. If only one value is provided it sets the smoothing width directly. If two values are provided they set the smoothing amounts at either edge. The smoothing width is then interpolated per sample across the output.<p /><i>(default: 0, min: 0, max size: 2)</i>
       </description>
     </objarg>
     <objarg name="scale" optional="1" type="symbol">

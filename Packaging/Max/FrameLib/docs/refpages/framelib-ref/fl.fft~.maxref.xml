@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/max_length [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the maximum input length and FFT size.<p /><i>(default: 16384)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the maximum input length and FFT size.<p /><i>(default: 16384, min: 0)</i>
       </description>
     </entry>
     <entry name="/normalise [bool]">
@@ -35,7 +35,7 @@
         Sets the maximum input length and FFT size
       </digest>
       <description>
-        This argument sets the max_length parameter:<p /><p />Sets the maximum input length and FFT size.<p /><i>(default: 16384)</i>
+        This argument sets the max_length parameter:<p /><p />Sets the maximum input length and FFT size.<p /><i>(default: 16384, min: 0)</i>
       </description>
     </objarg>
     <objarg name="normalise" optional="1" type="number">

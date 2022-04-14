@@ -10,7 +10,7 @@
   <misc name="Parameters">
     <entry name="/buffer_size [double]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the internal buffer size in the units specified by the units parameter.<p /><i>(default: 250000)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the internal buffer size in the units specified by the units parameter.<p /><i>(default: 250000, min: 0)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
@@ -20,7 +20,7 @@
     </entry>
     <entry name="/delay [double]">
       <description>
-        Sets the output delay in the units specified by the units parameter.<p /><i>(default: 0)</i>
+        Sets the output delay in the units specified by the units parameter.<p /><i>(default: 0, min: 0)</i>
       </description>
     </entry>
     <entry name="/interp [enum]">
@@ -40,7 +40,7 @@
         Sets the internal buffer size in the units specified by the units parameter
       </digest>
       <description>
-        This argument sets the buffer_size parameter:<p /><p />Sets the internal buffer size in the units specified by the units parameter.<p /><i>(default: 250000)</i>
+        This argument sets the buffer_size parameter:<p /><p />Sets the internal buffer size in the units specified by the units parameter.<p /><i>(default: 250000, min: 0)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">

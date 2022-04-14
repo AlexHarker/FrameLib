@@ -10,17 +10,17 @@
   <misc name="Parameters">
     <entry name="/freq [double]">
       <description>
-        Sets the filter frequency.<p /><i>(default: 0)</i>
+        Sets the filter frequency.<p /><i>(default: 0, min: 0)</i>
       </description>
     </entry>
     <entry name="/gain [double]">
       <description>
-        Sets the linear gain of the filter.<p /><i>(default: 1)</i>
+        Sets the linear gain of the filter.<p /><i>(default: 1, min: 0)</i>
       </description>
     </entry>
     <entry name="/qs [double]">
       <description>
-        Sets the q or s of the filter.<p /><i>(default: 0)</i>
+        Sets the q or s of the filter.<p /><i>(default: 0, min: 0)</i>
       </description>
     </entry>
     <entry name="/mode [enum]">
@@ -45,7 +45,7 @@
         Sets the filter frequency
       </digest>
       <description>
-        This argument sets the freq parameter:<p /><p />Sets the filter frequency.<p /><i>(default: 0)</i>
+        This argument sets the freq parameter:<p /><p />Sets the filter frequency.<p /><i>(default: 0, min: 0)</i>
       </description>
     </objarg>
     <objarg name="gain" optional="1" type="number">
@@ -53,7 +53,7 @@
         Sets the linear gain of the filter
       </digest>
       <description>
-        This argument sets the gain parameter:<p /><p />Sets the linear gain of the filter.<p /><i>(default: 1)</i>
+        This argument sets the gain parameter:<p /><p />Sets the linear gain of the filter.<p /><i>(default: 1, min: 0)</i>
       </description>
     </objarg>
     <objarg name="qs" optional="1" type="number">
@@ -61,7 +61,7 @@
         Sets the q or s of the filter
       </digest>
       <description>
-        This argument sets the qs parameter:<p /><p />Sets the q or s of the filter.<p /><i>(default: 0)</i>
+        This argument sets the qs parameter:<p /><p />Sets the q or s of the filter.<p /><i>(default: 0, min: 0)</i>
       </description>
     </objarg>
     <objarg name="mode" optional="1" type="symbol">

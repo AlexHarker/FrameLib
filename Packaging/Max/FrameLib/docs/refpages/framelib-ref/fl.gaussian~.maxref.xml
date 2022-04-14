@@ -15,7 +15,7 @@
     </entry>
     <entry name="/length [int]">
       <description>
-        Sets the requested output length in the units specified by the units parameter.<p /><i>(default: 1)</i>
+        Sets the requested output length in the units specified by the units parameter.<p /><i>(default: 1, min: 0)</i>
       </description>
     </entry>
     <entry name="/units [enum]">
@@ -58,7 +58,7 @@
         Sets the requested output length in the units specified by the units parameter
       </digest>
       <description>
-        This argument sets the length parameter:<p /><p />Sets the requested output length in the units specified by the units parameter.<p /><i>(default: 1)</i>
+        This argument sets the length parameter:<p /><p />Sets the requested output length in the units specified by the units parameter.<p /><i>(default: 1, min: 0)</i>
       </description>
     </objarg>
     <objarg name="units" optional="1" type="symbol">
