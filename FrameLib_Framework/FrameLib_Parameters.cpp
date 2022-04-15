@@ -591,7 +591,7 @@ FrameLib_Parameters::Error FrameLib_Parameters::Enum::set(const char *str)
 
 void FrameLib_Parameters::Enum::clear()
 {
-    mValue = mDefault;
+    mValue = static_cast<unsigned long>(mDefault);
     mChanged = true;
 }
 
