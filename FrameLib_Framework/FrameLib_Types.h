@@ -29,7 +29,7 @@
  
  */
 
-static constexpr uint32_t FrameLib_FrameworkVersion = 990;
+static constexpr uint32_t FrameLib_FrameworkVersion = 1000;
 
 // Raw Bytes
 
