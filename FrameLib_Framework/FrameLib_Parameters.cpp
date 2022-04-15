@@ -574,15 +574,6 @@ void FrameLib_Parameters::Enum::addEnumItem(unsigned long idx, const char *str, 
     mMax += 1.0;
 }
 
-FrameLib_Parameters::Error FrameLib_Parameters::Enum::set(double value)
-{
-    bool outOfRange = value >= mItems.size();
-    mValue = static_cast<unsigned long>(outOfRange ? (mItems.size() - 1) : (value < 0.0 ? 0.0 : value));
-    mChanged = true;
-    
-    return outOfRange ? Error::EnumUnknownIndex : Error::None;
-}
-
 FrameLib_Parameters::Error FrameLib_Parameters::Enum::set(const char *str)
 {
     for (unsigned long i = 0; i < mItems.size(); i++)
@@ -598,17 +589,10 @@ FrameLib_Parameters::Error FrameLib_Parameters::Enum::set(const char *str)
     return Error::EnumUnknownString;
 }
 
-FrameLib_Parameters::Error FrameLib_Parameters::Enum::set(double *values, unsigned long N)
+void FrameLib_Parameters::Enum::clear()
 {
-    if (N)
-    {
-        return Enum::set(*values);
-    }
-    else
-    {
-        Enum::clear();
-        return Error::None;
-    }
+    mValue = static_cast<unsigned long>(mDefault);
+    mChanged = true;
 }
 
 // ************************************************************************************** //

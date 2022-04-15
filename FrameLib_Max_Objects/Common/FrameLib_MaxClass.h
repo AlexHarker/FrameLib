@@ -30,7 +30,7 @@ struct FrameLib_MaxPrivate
     
     static inline constexpr uint32_t maxWrapperVersion()
     {
-        return 990;
+        return 1000;
     }
 
     // A constant representing the max wrapper and framework versions.

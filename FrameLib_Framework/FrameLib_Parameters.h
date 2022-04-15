@@ -414,12 +414,10 @@ private:
         
         void addEnumItem(unsigned long idx, const char *str, bool setAsDefault) override;
         
-        Error set(double value) override;
-        Error set(double *values, unsigned long N) override;
         Error set(const char *str) override;
         
-        void clear() override { Enum::set(mDefault); }
-        
+        void clear() override;
+
         Type type() override { return Type::Enum; }
         
         // Getters

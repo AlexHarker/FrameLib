@@ -6,11 +6,12 @@
 FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 , mProxy(cloneProxy<Proxy>(proxy))
+, mStream(0)
 {
     mParameters.addString(kBuffer, "buffer", 0);
     
-    mParameters.addInt(kChannel, "channel", 1, 1);
-    mParameters.setMin(1);
+    mParameters.addInt(kChannel, "channel", -1, 1);
+    mParameters.setMin(-1);
     
     mParameters.addEnum(kUnits, "units", 2);
     mParameters.addEnumItem(kSamples, "samples");
@@ -75,7 +76,9 @@ FrameLib_Read::ParameterInfo FrameLib_Read::sParamInfo;
 FrameLib_Read::ParameterInfo::ParameterInfo()
 {
     add("Sets the buffer to use.");
-    add("Sets the buffer channel to use.");
+    add("Sets the buffer channel to use. "
+        "Channels start from zero. "
+        "However, if set to minus one then the channel will match the stream id.");
     add("Sets the units used for interpreting the input. "
         "Note that the edge parameter is also accounted for normalised mode. "
         "This adjusts the scaling to work sensibly with cyclical modes.");
@@ -95,6 +98,13 @@ FrameLib_Read::ParameterInfo::ParameterInfo()
     add("Sets whether reading is bounded to the edges of the buffer, or can extend beyond it.");
 }
 
+// Stream
+
+void FrameLib_Read::setStream(void *streamOwner, unsigned long stream)
+{
+    mStream = stream;
+}
+
 // Update
 
 void FrameLib_Read::update()
@@ -112,7 +122,7 @@ void FrameLib_Read::process()
     InterpType interpType = InterpType::None;
 
     unsigned long size;
-    long chan = mParameters.getInt(kChannel) - 1;
+    long chan = mParameters.getInt(kChannel);
     bool bound = mParameters.getBool(kBound);
     bool doInterpolation = false;
     
@@ -135,6 +145,8 @@ void FrameLib_Read::process()
     
     if (positions)
     {
+        chan = chan < 0 ? mStream : chan;
+        
         bool adjustScaling = edges == EdgeMode::Wrap || edges == EdgeMode::Mirror;
         
         double scale = 1.0;

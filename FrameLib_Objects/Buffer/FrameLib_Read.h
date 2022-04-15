@@ -49,6 +49,10 @@ public:
     std::string inputInfo(unsigned long idx, bool verbose) override;
     std::string outputInfo(unsigned long idx, bool verbose) override;
 
+    // Stream Awareness
+    
+    void setStream(void *streamOwner, unsigned long stream) override;
+    
 private:
     
     // Process
@@ -60,6 +64,8 @@ private:
     
     std::unique_ptr<Proxy> mProxy;
 
+    unsigned long mStream;
+    
     static ParameterInfo sParamInfo;
 };
 
