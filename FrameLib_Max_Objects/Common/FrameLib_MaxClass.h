@@ -159,6 +159,7 @@ struct FrameLib_MaxNRTAudio
 {
     FrameLib_Multistream *mObject;
     t_symbol *mBuffer;
+    t_atom_long mOffset;
 };
 
 struct FrameLib_MaxContext
@@ -909,6 +910,11 @@ public:
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
+        classInitCore(c, nameSpace, classname);
+    }
+    
+    static void classInitCore(t_class *c, t_symbol *nameSpace, const char *classname)
+    {
         addMethod<Wrapper<T>, &Wrapper<T>::parentpatcher>(c, "parentpatcher");
         addMethod<Wrapper<T>, &Wrapper<T>::subpatcher>(c, "subpatcher");
         addMethod<Wrapper<T>, &Wrapper<T>::assist>(c, "assist");
@@ -946,6 +952,11 @@ public:
         CLASS_ATTR_ACCESSORS(c, "buffer", &Wrapper<T>::bufferGet, &Wrapper<T>::bufferSet);
         CLASS_ATTR_BASIC(c, "buffer", 0L);
         CLASS_ATTR_LABEL(c, "buffer", 0L, "Buffer");
+        
+        CLASS_ATTR_ATOM_LONG(c, "offset", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
+        CLASS_ATTR_ACCESSORS(c, "offset", &Wrapper<T>::offsetGet, &Wrapper<T>::offsetSet);
+        CLASS_ATTR_BASIC(c, "offset", 0L);
+        CLASS_ATTR_LABEL(c, "offset", 0L, "Offset");
         
         CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
         CLASS_ATTR_ACCESSORS(c, "id", &Wrapper<T>::idGet, &Wrapper<T>::idSet);
@@ -1156,6 +1167,22 @@ public:
         x->object()->mBuffer = argv ? atom_getsym(argv) : gensym("");
         
         return MAX_ERR_NONE;
+    }
+    
+    // Offset attribute
+    
+    static t_max_err offsetGet(Wrapper *x, t_object *attr, long *argc, t_atom **argv)
+    {
+        char alloc;
+        atom_alloc(argc, argv, &alloc);
+        atom_setlong(*argv, x->object()->mOffset);
+        
+        return MAX_ERR_NONE;
+    }
+    
+    static t_max_err offsetSet(Wrapper *x, t_object *attr, long argc, t_atom *argv)
+    {
+        return x->object()->offsetSet(x->object(), attr, argc, argv);
     }
     
     // ID attribute
@@ -1386,6 +1413,11 @@ public:
             CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mBuffer);
             CLASS_ATTR_BASIC(c, "buffer", 0L);
             CLASS_ATTR_LABEL(c, "buffer", 0L, "Buffer");
+
+            CLASS_ATTR_ATOM_LONG(c, "offset", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mOffset);
+            CLASS_ATTR_ACCESSORS(c, "offset", 0, &FrameLib_MaxClass<T>::offsetSet);
+            CLASS_ATTR_BASIC(c, "offset", 0L);
+            CLASS_ATTR_LABEL(c, "offset", 0L, "Offset");
         }
         
         CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mMaxContext.mName);
@@ -1578,6 +1610,7 @@ public:
     , mContextPatchConfirmed(false)
     , mResolved(false)
     , mBuffer(gensym(""))
+    , mOffset(0)
     , mMaxContext{ T::sType == ObjectType::Scheduler, contextPatch(x, mProxy.get()), gensym("") }
     {
         // Deal with attributes
@@ -1915,7 +1948,7 @@ public:
                     if (it->mObject->getType() == ObjectType::Output)
                         continue;
                     
-                    read(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioIns(), blockSize, time + i);
+                    read(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioIns(), blockSize, time + i + it->mOffset);
                     it->mObject->blockUpdate(ioBuffers.data(), nullptr, blockSize, queue);
                 }
             }
@@ -1928,7 +1961,7 @@ public:
                     continue;
                 
                 it->mObject->blockUpdate(nullptr, ioBuffers.data(), blockSize);
-                write(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioOuts(), blockSize, time + i);
+                write(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioOuts(), blockSize, time + i + it->mOffset);
             }
         }
         
@@ -2028,7 +2061,7 @@ public:
 
     static void extFindAudio(FrameLib_MaxClass *x, std::vector<FrameLib_MaxNRTAudio> *objects)
     {
-        objects->push_back(FrameLib_MaxNRTAudio{x->mObject.get(), x->mBuffer});
+        objects->push_back(FrameLib_MaxNRTAudio{x->mObject.get(), x->mBuffer, x->mOffset});
     }
     
     static void extResolveContext(FrameLib_MaxClass *x)
@@ -2101,6 +2134,15 @@ public:
     static void extLoadbang(FrameLib_MaxClass *x)
     {
         x->checkContextPatch();
+    }
+
+    // offset attribute
+    
+    static t_max_err offsetSet(FrameLib_MaxClass *x, t_object *attr, long argc, t_atom *argv)
+    {
+        x->mOffset = argv ? std::max((t_atom_long)0, atom_getlong(argv)) : 0;
+    
+        return MAX_ERR_NONE;
     }
     
     // id attribute
@@ -2811,6 +2853,7 @@ public:
     // Attributes
     
     t_symbol *mBuffer;
+    t_atom_long mOffset;
     FrameLib_MaxContext mMaxContext;
 };
 

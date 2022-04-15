@@ -75,6 +75,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Interval.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Once.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_PerBlock.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Recursive.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_Cartopol.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_Poltocar.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_Spatial.h" />
@@ -123,6 +124,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Reverse.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Shift.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Sort.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_SortMultiple.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Split.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Subframe.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Vector_Objects.h" />
@@ -169,6 +171,7 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Interval.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Once.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_PerBlock.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Recursive.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_Spatial.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Convolve.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Correlate.cpp" />
@@ -208,6 +211,7 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Reverse.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Shift.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Sort.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_SortMultiple.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Split.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Subframe.cpp" />
   </ItemGroup>
@@ -301,6 +305,7 @@
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile />
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Framework\;$(SolutionDir)FrameLib_Objects\Common_Utilities\;$(SolutionDir)FrameLib_Objects\Host_Communication\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -325,6 +330,7 @@
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile />
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Framework\;$(SolutionDir)FrameLib_Objects\Common_Utilities\;$(SolutionDir)FrameLib_Objects\Host_Communication\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

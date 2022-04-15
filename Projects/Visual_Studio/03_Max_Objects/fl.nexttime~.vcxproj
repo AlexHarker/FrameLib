@@ -11,11 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\FrameLib_Max_Objects\IO\fl.sink~.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Max_Objects\Schedulers\fl.nexttime~.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{27B8F081-ECE6-485F-A2B1-FB092B5CCD6A}</ProjectGuid>
+    <ProjectGuid>{10783DA7-430F-4E71-BE80-E911A4A39C65}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>framelib</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
@@ -61,7 +61,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeaderFile />
-      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Objects\IO\;$(SolutionDir)FrameLib_Objects\Host_Communication\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Objects\Schedulers\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalOptions>
@@ -72,7 +72,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeaderFile />
-      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Objects\IO\;$(SolutionDir)FrameLib_Objects\Host_Communication\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Objects\Schedulers\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link />
   </ItemDefinitionGroup>
