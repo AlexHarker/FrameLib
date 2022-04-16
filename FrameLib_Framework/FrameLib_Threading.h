@@ -80,6 +80,13 @@ bool nullSwap(std::atomic<T *>& value, T *exchange)
     return value.compare_exchange_strong(comparand, exchange);
 }
 
+inline void sleepCurrentThread(unsigned long nanoseconds)
+{
+    std::this_thread::sleep_for(std::chrono::nanoseconds(nanoseconds));
+}
+
+// Thread sleep helper
+
 /**
  
  @class FrameLib_CountedPointer
@@ -148,7 +155,6 @@ struct FrameLib_LockFreePointer : public std::atomic<FrameLib_CountedPointer<T>>
 class FrameLib_Lock
 {
     using Clock = std::chrono::high_resolution_clock;
-    using NanoSeconds = std::chrono::nanoseconds;
 
 public:
     
@@ -166,14 +172,14 @@ public:
             if (attempt())
                 return;
         
-        auto timeOut = Clock::now() + NanoSeconds(10000);
+        auto timeOut = Clock::now() + std::chrono::nanoseconds(10000);
         
         while (Clock::now() < timeOut)
             if (attempt())
                 return;
         
         while (!attempt())
-            std::this_thread::sleep_for(NanoSeconds(100));
+            sleepCurrentThread(100);
     }
     
     bool attempt() { return !mAtomicLock.test_and_set(); }
@@ -266,11 +272,6 @@ public:
         return std::max(1U, std::thread::hardware_concurrency());
     }
     
-    static void sleepCurrentThread(unsigned long nanoseconds)
-    {
-        std::this_thread::sleep_for(std::chrono::nanoseconds(nanoseconds));
-    }
-        
     // Non-copyable
     
     FrameLib_Thread(const FrameLib_Thread&) = delete;
