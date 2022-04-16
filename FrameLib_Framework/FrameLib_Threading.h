@@ -154,7 +154,7 @@ struct FrameLib_LockFreePointer : public std::atomic<FrameLib_CountedPointer<T>>
 
 class FrameLib_Lock
 {
-    using Clock = std::chrono::high_resolution_clock;
+    using Clock = std::chrono::steady_clock;
 
 public:
     
