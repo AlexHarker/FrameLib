@@ -61,7 +61,7 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
         if (mNumItems.load() == 0 || mTimedOut)
             break;
                 
-        sleepCurrentThread(100);
+        yieldOrNanosleep(100);
     }
 
     // Clear the thread local allocators

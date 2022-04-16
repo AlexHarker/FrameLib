@@ -28,6 +28,11 @@ namespace OS_Specific
     using OSThreadType = pthread_t;
     using OSSemaphoreType = sem_t;
     typedef void *OSThreadFunctionType(void *arg);
+
+    inline void yieldOrNanosleep(unsigned long nanoseconds)
+    {
+        std::this_thread::sleep_for(std::chrono::nanoseconds(nanoseconds));
+    }
 }
 
 #define DEFAULT_THREAD_PRIORITIES { 31, 52, 63, SCHED_FIFO, false }
@@ -44,6 +49,11 @@ namespace OS_Specific
     using OSThreadType = pthread_t;
     using OSSemaphoreType = semaphore_t;
     typedef void *OSThreadFunctionType(void *arg);
+
+    inline void yieldOrNanosleep(unsigned long nanoseconds)
+    {
+        std::this_thread::sleep_for(std::chrono::nanoseconds(nanoseconds));
+    }
 }
 
 #define DEFAULT_THREAD_PRIORITIES { 31, 52, 63, SCHED_FIFO, false }
@@ -59,6 +69,11 @@ namespace OS_Specific
     using OSThreadType = HANDLE;
     using OSSemaphoreType = struct WinSemaphore { HANDLE mHandle; long mMaxCount; };
     typedef DWORD WINAPI OSThreadFunctionType(LPVOID arg);
+
+    inline void yieldOrNanosleep(unsigned long nanoseconds)
+    {
+        SwitchToThread();
+    }
 }
 
 #define DEFAULT_THREAD_PRIORITIES { THREAD_PRIORITY_NORMAL, THREAD_PRIORITY_HIGHEST, THREAD_PRIORITY_TIME_CRITICAL, 0, false }
@@ -80,12 +95,12 @@ bool nullSwap(std::atomic<T *>& value, T *exchange)
     return value.compare_exchange_strong(comparand, exchange);
 }
 
-inline void sleepCurrentThread(unsigned long nanoseconds)
-{
-    std::this_thread::sleep_for(std::chrono::nanoseconds(nanoseconds));
-}
+// Thread yield / nanosleep helper (OS dependent)
 
-// Thread sleep helper
+inline void yieldOrNanosleep(unsigned long nanoseconds)
+{
+    OS_Specific::yieldOrNanosleep(nanoseconds);
+}
 
 /**
  
@@ -179,7 +194,7 @@ public:
                 return;
         
         while (!attempt())
-            sleepCurrentThread(100);
+            yieldOrNanosleep(100);
     }
     
     bool attempt() { return !mAtomicLock.test_and_set(); }
