@@ -29,7 +29,16 @@ inline size_t blockSize(void* ptr)
 
 // The Core Allocator (has no threadsafety)
 
-FrameLib_GlobalAllocator::CoreAllocator::CoreAllocator(FrameLib_Thread::Priorities priorities, FrameLib_ErrorReporter& errorReporter) : mPools(nullptr), mOSAllocated(0), mAllocated(0), mLastDisposedPoolSize(0),  mScheduledNewPool(nullptr), mScheduledDisposePool(nullptr), mAllocThread(*this), mFreeThread(*this), mErrorReporter(errorReporter)
+FrameLib_GlobalAllocator::CoreAllocator::CoreAllocator(FrameLib_Thread::Priorities priorities, FrameLib_ErrorReporter& errorReporter)
+: mPools(nullptr)
+, mOSAllocated(0)
+, mAllocated(0)
+, mLastDisposedPoolSize(0)
+, mScheduledNewPool(nullptr)
+, mScheduledDisposePool(nullptr)
+, mAllocThread(*this)
+, mFreeThread(*this)
+, mErrorReporter(errorReporter)
 {
     mTLSF = tlsf_create(malloc(tlsf_size()));
     insertPool(createPool(initSize));
