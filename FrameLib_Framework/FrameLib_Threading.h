@@ -110,7 +110,7 @@ bool nullSwap(std::atomic<T *>& value, T *exchange)
     return value.compare_exchange_strong(comparand, exchange);
 }
 
-// Thread yield / nanosleep helper (OS dependent)
+// Thread utlities for dealing with contention
 
 inline void threadReduceContention()
 {
