@@ -173,7 +173,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 27.5, 343.0, 291.0, 40.0 ],
-									"text" : "Sum of a random frame of 100 values (eacn 0-1)",
+									"text" : "Sum of a random frame of 100 values (each 0-1)",
 									"textjustification" : 1
 								}
 

@@ -243,8 +243,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 130.0, 274.5, 189.75, 40.0 ],
-									"text" : "Output is 0 for non-zero values and 1 for zero values"
+									"patching_rect" : [ 130.0, 274.5, 190.0, 40.0 ],
+									"text" : "Output is 0 for non-zero values and 1 for zero values",
+									"textjustification" : 1
 								}
 
 							}

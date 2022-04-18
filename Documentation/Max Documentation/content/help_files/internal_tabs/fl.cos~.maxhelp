@@ -280,8 +280,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 201.0, 422.5, 124.0, 25.0 ],
-									"text" : "A cosine function"
+									"patching_rect" : [ 201.0, 422.5, 138.0, 25.0 ],
+									"text" : "The cosine function"
 								}
 
 							}

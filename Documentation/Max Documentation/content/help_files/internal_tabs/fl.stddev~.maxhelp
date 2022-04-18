@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 498.0, 437.0 ],
+		"rect" : [ 34.0, 87.0, 517.0, 437.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 498.0, 411.0 ],
+						"rect" : [ 0.0, 26.0, 517.0, 411.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 498.0, 411.0 ],
+						"rect" : [ 34.0, 113.0, 517.0, 411.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,7 +155,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 360.0, 333.0, 45.0, 45.0 ]
+									"patching_rect" : [ 375.0, 333.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -194,8 +194,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 240.0, 96.5, 225.0, 40.0 ],
-									"text" : "Change the standard deviation of the gaussian distributed numbers",
+									"patching_rect" : [ 240.0, 96.5, 245.0, 40.0 ],
+									"text" : "Set the standard deviation of the gaussian distributed random numbers",
 									"textjustification" : 1
 								}
 
