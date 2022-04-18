@@ -27,7 +27,7 @@ class FrameLib_Window final : public FrameLib_Processor
         CompareWindowParams();
         CompareWindowParams(Generator& generator, unsigned long size);
         
-        bool operator == (const CompareWindowParams& a);
+        bool operator == (const CompareWindowParams& a) const;
         
         WindowType mWindowType;
         Endpoints mEndpoints;
