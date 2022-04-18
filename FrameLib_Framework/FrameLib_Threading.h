@@ -87,7 +87,14 @@ namespace OS_Specific
 
     inline void threadReduceContention()
     {
-        threadNanosleep();
+        using Clock = std::chrono::steady_clock;
+
+        auto timeOut = Clock::now() + std::chrono::nanoseconds(100);
+
+        // Busy waiting
+
+        while (Clock::now() < timeOut) 
+        {}
     }
 }
 
