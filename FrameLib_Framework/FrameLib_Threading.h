@@ -29,9 +29,14 @@ namespace OS_Specific
     using OSSemaphoreType = sem_t;
     typedef void *OSThreadFunctionType(void *arg);
 
-    inline void yieldOrNanosleep(unsigned long nanoseconds)
+    inline void threadNanosleep()
     {
-        std::this_thread::sleep_for(std::chrono::nanoseconds(nanoseconds));
+        std::this_thread::sleep_for(std::chrono::nanoseconds(100));
+    }
+
+    inline void threadReduceContention()
+    {
+        threadNanosleep();
     }
 }
 
@@ -50,9 +55,14 @@ namespace OS_Specific
     using OSSemaphoreType = semaphore_t;
     typedef void *OSThreadFunctionType(void *arg);
 
-    inline void yieldOrNanosleep(unsigned long nanoseconds)
+    inline void threadNanosleep()
     {
-        std::this_thread::sleep_for(std::chrono::nanoseconds(nanoseconds));
+        std::this_thread::sleep_for(std::chrono::nanoseconds(100));
+    }
+
+    inline void threadReduceContention()
+    {
+        threadNanosleep();
     }
 }
 
@@ -70,9 +80,14 @@ namespace OS_Specific
     using OSSemaphoreType = struct WinSemaphore { HANDLE mHandle; long mMaxCount; };
     typedef DWORD WINAPI OSThreadFunctionType(LPVOID arg);
 
-    inline void yieldOrNanosleep(unsigned long nanoseconds)
+    inline void threadNanosleep()
     {
         SwitchToThread();
+    }
+
+    inline void threadReduceContention()
+    {
+        threadNanosleep();
     }
 }
 
@@ -97,9 +112,14 @@ bool nullSwap(std::atomic<T *>& value, T *exchange)
 
 // Thread yield / nanosleep helper (OS dependent)
 
-inline void yieldOrNanosleep(unsigned long nanoseconds)
+inline void threadReduceContention()
 {
-    OS_Specific::yieldOrNanosleep(nanoseconds);
+    OS_Specific::threadReduceContention();
+}
+
+inline void threadNanosleep()
+{
+    OS_Specific::threadNanosleep();
 }
 
 /**
@@ -194,7 +214,7 @@ public:
                 return;
         
         while (!attempt())
-            yieldOrNanosleep(100);
+            threadNanosleep();
     }
     
     bool attempt() { return !mAtomicLock.test_and_set(); }
