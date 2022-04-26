@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 650.0, 504.0 ],
+		"rect" : [ 34.0, 87.0, 627.0, 504.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 650.0, 478.0 ],
+						"rect" : [ 0.0, 26.0, 627.0, 478.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 650.0, 478.0 ],
+						"rect" : [ 34.0, 113.0, 627.0, 478.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -156,7 +156,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 107.5, 136.5, 155.0, 25.0 ],
+									"patching_rect" : [ 80.0, 136.5, 155.0, 25.0 ],
 									"text" : "Select units and buffer"
 								}
 
@@ -167,7 +167,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 419.0, 405.0, 172.0, 21.0 ],
+									"patching_rect" : [ 390.0, 405.0, 172.0, 21.0 ],
 									"text" : "Two buffers to get info about"
 								}
 
@@ -221,7 +221,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 540.0, 126.5, 45.0, 45.0 ]
+									"patching_rect" : [ 517.0, 126.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -330,7 +330,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 405.0, 375.0, 212.0, 23.0 ],
+									"patching_rect" : [ 376.0, 375.0, 212.0, 23.0 ],
 									"text" : "buffer~ info_example_2 brushes.aif"
 								}
 
@@ -355,7 +355,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 419.0, 330.0, 198.0, 23.0 ],
+									"patching_rect" : [ 390.0, 330.0, 198.0, 23.0 ],
 									"text" : "buffer~ info_example_1 jongly.aif"
 								}
 
@@ -385,7 +385,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 392.5, 62.0, 54.0, 40.0 ],
+									"patching_rect" : [ 365.0, 62.0, 54.0, 40.0 ],
 									"text" : "Buffer",
 									"textjustification" : 1
 								}
@@ -400,7 +400,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 276.0, 62.0, 54.0, 40.0 ],
+									"patching_rect" : [ 248.5, 62.0, 54.0, 40.0 ],
 									"text" : "Units",
 									"textjustification" : 1
 								}
@@ -425,7 +425,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 410.0, 210.0, 60.0, 23.0 ],
+									"patching_rect" : [ 382.5, 210.0, 60.0, 23.0 ],
 									"text" : "buffer $1"
 								}
 
@@ -441,7 +441,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 360.5, 105.0, 118.0, 88.0 ],
+									"patching_rect" : [ 333.0, 105.0, 118.0, 88.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_enum" : [ "info_example_1", "info_example_2" ],
@@ -469,7 +469,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "float" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 266.0, 105.0, 74.0, 88.0 ],
+									"patching_rect" : [ 238.5, 105.0, 74.0, 88.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
 											"parameter_enum" : [ "samples", "ms", "seconds" ],
@@ -535,7 +535,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 0 ],
-									"midpoints" : [ 419.5, 243.5, 275.5, 243.5 ],
+									"midpoints" : [ 392.0, 243.5, 275.5, 243.5 ],
 									"source" : [ "obj-23", 0 ]
 								}
 
@@ -550,7 +550,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-22", 0 ],
-									"source" : [ "obj-25", 0 ]
+									"source" : [ "obj-25", 1 ]
 								}
 
 							}
