@@ -162,6 +162,7 @@
 , 							{
 								"box" : 								{
 									"bubble" : 1,
+									"bubblepoint" : 0.3,
 									"bubbleside" : 0,
 									"id" : "obj-18",
 									"linecount" : 5,
@@ -206,7 +207,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 461.0, 135.0, 70.0, 23.0 ],
+									"patching_rect" : [ 431.0, 137.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -218,7 +219,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 461.0, 90.0, 122.0, 23.0 ],
+									"patching_rect" : [ 431.0, 92.0, 122.0, 23.0 ],
 									"text" : "fl.interval~ 1000 ms"
 								}
 
@@ -246,7 +247,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 30.0, 392.0, 285.0, 113.0 ],
-									"text" : "fl.register~ is similar to zl.reg.\n\nThis example that demonstrates sampling a  rapid stream of data by storing the output of a fast fl.random~ in the right inlet of fl.register~ and only outputting its contents every 1000 ms.",
+									"text" : "fl.register~ is similar to zl.reg.\n\nThis example demonstrates sampling a rapid stream of data by storing the output of a fast fl.random~ in the right inlet of fl.register~ and only outputting the contents every 1000 ms.",
 									"textjustification" : 1
 								}
 
@@ -383,7 +384,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 1 ],
-									"midpoints" : [ 470.5, 168.5, 565.5, 168.5 ],
+									"midpoints" : [ 440.5, 169.5, 565.5, 169.5 ],
 									"source" : [ "obj-12", 0 ]
 								}
 
