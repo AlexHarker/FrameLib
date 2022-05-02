@@ -605,7 +605,7 @@
         ]
     },
     "fl.medianfilter~": {
-        "digest": "Applies a median or other specified percentiled filter to the input",
+        "digest": "Applies a median or other specified percentile filter to the input",
         "module": "FrameLib",
         "category": [
             "FrameLib",
