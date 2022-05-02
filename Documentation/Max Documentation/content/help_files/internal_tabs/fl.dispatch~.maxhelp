@@ -26,7 +26,7 @@
 		"toptoolbarpinned" : 0,
 		"righttoolbarpinned" : 0,
 		"bottomtoolbarpinned" : 0,
-		"toolbars_unpinned_last_save" : 1,
+		"toolbars_unpinned_last_save" : 0,
 		"tallnewobj" : 0,
 		"boxanimatetime" : 200,
 		"enablehscroll" : 1,
@@ -392,8 +392,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 75.0, 609.0, 50.0 ],
-									"text" : "fl.dispatch~ will help you for routing various inputs to different outputs. Each output can only receive one input however, and inputs cannot be summed or mixed. In this example below you can choose for each output the input. Observe the differences when switching the routing below."
+									"patching_rect" : [ 15.0, 75.0, 615.0, 50.0 ],
+									"text" : "fl.dispatch~ allows you to route inputs to different outputs. Each output can only receive one input however, and inputs cannot be summed or mixed. In this example below you can choose for each output the input. Observe the differences when switching the routing below."
 								}
 
 							}

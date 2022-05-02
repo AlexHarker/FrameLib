@@ -155,8 +155,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 98.0, 492.5, 451.0, 50.0 ],
-									"text" : "Note that all inputs trigger output, so although the inputs arrive at different times a new frame is created whenver any input is received. this can be changed with the /trigger_ins parameter."
+									"patching_rect" : [ 90.0, 495.0, 451.0, 50.0 ],
+									"text" : "Note that all inputs trigger output, so although the inputs arrive at different times a new frame is created whenver any input is received. this can be changed with the /trigger_ins parameter.",
+									"textjustification" : 1
 								}
 
 							}
@@ -181,7 +182,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 187.5, 175.0, 70.0, 23.0 ],
+									"patching_rect" : [ 187.5, 180.0, 70.0, 23.0 ],
 									"text" : "fl.window~"
 								}
 
@@ -216,7 +217,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 345.0, 175.0, 79.0, 23.0 ],
+									"patching_rect" : [ 345.0, 180.0, 79.0, 23.0 ],
 									"text" : "fl.tag~ value"
 								}
 
@@ -228,7 +229,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 345.0, 128.0, 70.0, 23.0 ],
+									"patching_rect" : [ 345.0, 135.0, 70.0, 23.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -240,7 +241,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 345.0, 220.0, 137.0, 23.0 ],
+									"patching_rect" : [ 345.0, 225.0, 137.0, 23.0 ],
 									"text" : "fl.uniform~ /length 100"
 								}
 
@@ -305,7 +306,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 187.5, 128.0, 138.0, 23.0 ],
+									"patching_rect" : [ 187.5, 135.0, 138.0, 23.0 ],
 									"text" : "fl.random~ /length 100"
 								}
 
@@ -317,7 +318,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 128.0, 138.0, 23.0 ],
+									"patching_rect" : [ 30.0, 135.0, 138.0, 23.0 ],
 									"text" : "fl.random~ /length 100"
 								}
 
@@ -390,7 +391,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 1 ],
-									"midpoints" : [ 354.5, 208.5, 472.5, 208.5 ],
+									"midpoints" : [ 354.5, 213.5, 472.5, 213.5 ],
 									"order" : 0,
 									"source" : [ "obj-19", 0 ]
 								}

@@ -295,8 +295,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 144.5, 330.0, 364.0, 25.0 ],
-									"text" : "Applies a hard clip on all streams of the multistream frame"
+									"patching_rect" : [ 144.5, 330.0, 355.0, 25.0 ],
+									"text" : "Applies a hard clip on all streams of the multistream input"
 								}
 
 							}

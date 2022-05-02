@@ -56,7 +56,7 @@ FrameLib_Select::ParameterInfo FrameLib_Select::sParamInfo;
 FrameLib_Select::ParameterInfo::ParameterInfo()
 {
     add("Sets the number of inputs.");
-    add("Sets the current input counting from 1 (or off if out of range).");
+    add("Sets the current input counting from 1 (off if out of range).");
 }
 
 // Update and Process

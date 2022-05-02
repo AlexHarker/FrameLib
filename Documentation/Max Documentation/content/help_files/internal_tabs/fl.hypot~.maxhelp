@@ -93,8 +93,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 570.0, 585.0, 65.0 ],
-									"text" : "The magnitude of each FFT bin is calculated using pythagoras (to give the length of vector formed by real and imaginary parts of the complex number). \n\nfl.hypot~ uses less CPU than fl.cartopol~ so can be used when you don't require the phase."
+									"patching_rect" : [ 30.0, 570.0, 587.0, 65.0 ],
+									"text" : "The magnitude of each FFT bin is calculated using Pythagoras' theorem (to give the length of vector formed by real and imaginary parts of the complex number). \n\nfl.hypot~ uses less CPU than fl.cartopol~ so can be used when you don't require the phase."
 								}
 
 							}

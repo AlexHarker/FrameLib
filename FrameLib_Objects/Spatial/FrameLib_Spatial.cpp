@@ -452,7 +452,7 @@ std::string FrameLib_Spatial::objectInfo(bool verbose)
                       "2D operation can be achieved by setting all z or elevation values to zero. "
                       "Missing values at any input are assumed to be zero. "
                       "Note that the orientation of the spherical coordinates can be adjusted as required. "
-                      "The output size is equal to that of the largest input.",
+                      "The output size is equal to that of the longest input.",
                       "Generates multiplication factors for a set of speakers positioned in 3D.", verbose);
 }
 
@@ -494,7 +494,7 @@ FrameLib_Spatial::ParameterInfo::ParameterInfo()
         "off - suitable when the input is already within the speaker array (most efficient). "
         "hemisphere - restrict to the upper hemisphere of the sphere described below. "
         "sphere - restrict to the smallest sphere centred at the origin containing all speakers. "
-        "hull - restrict to the convex hull of the speaker array (least efficient / always correct.");
+        "hull - restrict to the convex hull of the speaker array (least efficient / always correct).");
     add("Sets the speaker positions in triples (one triple per speaker). "
         "For cartesian coordinates the values are [x, z, y]. "
         "For spherical coordinates the values are [radius, azimuth, elevation].");

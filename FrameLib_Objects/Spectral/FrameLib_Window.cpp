@@ -20,7 +20,7 @@ FrameLib_Window::CompareWindowParams::CompareWindowParams(Generator& generator, 
     generator.getValidatedParameters(mParams, &mParamSize);
 }
 
-bool FrameLib_Window::CompareWindowParams::operator == (const CompareWindowParams& a)
+bool FrameLib_Window::CompareWindowParams::operator == (const CompareWindowParams& a) const
 {
     if (mParamSize != a.mParamSize)
         return false;

@@ -183,7 +183,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        458.5,
+                                        473.0,
                                         495.0,
                                         90.0,
                                         60.0
@@ -321,7 +321,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        481.0,
+                                        495.5,
                                         594.0,
                                         45.0,
                                         45.0
@@ -461,7 +461,7 @@
                                             },
                                             {
                                                 "box": {
-                                                    "comment": "",
+                                                    "comment": "(frame) Trigger",
                                                     "id": "obj-58",
                                                     "index": 1,
                                                     "maxclass": "inlet",
@@ -475,13 +475,12 @@
                                                         17.0,
                                                         30.0,
                                                         30.0
-                                                    ],
-                                                    "varname": "u612005127"
+                                                    ]
                                                 }
                                             },
                                             {
                                                 "box": {
-                                                    "comment": "",
+                                                    "comment": "(frame) Offset",
                                                     "id": "obj-59",
                                                     "index": 1,
                                                     "maxclass": "outlet",
@@ -593,7 +592,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        458.5,
+                                        473.0,
                                         405.0,
                                         57.0,
                                         23.0
@@ -630,7 +629,7 @@
                                         "signal"
                                     ],
                                     "patching_rect": [
-                                        458.5,
+                                        473.0,
                                         450.0,
                                         90.0,
                                         23.0
@@ -684,7 +683,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        540.0,
+                                        570.0,
                                         345.0,
                                         70.0,
                                         23.0
@@ -802,9 +801,9 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        549.5,
+                                        579.5,
                                         386.0,
-                                        506.0,
+                                        520.5,
                                         386.0
                                     ],
                                     "source": [
@@ -834,7 +833,7 @@
                                     "midpoints": [
                                         414.5,
                                         386.0,
-                                        468.0,
+                                        482.5,
                                         386.0
                                     ],
                                     "source": [
@@ -876,7 +875,7 @@
                                     "midpoints": [
                                         414.5,
                                         200.25,
-                                        549.5,
+                                        579.5,
                                         200.25
                                     ],
                                     "order": 0,
@@ -955,9 +954,9 @@
                                         1
                                     ],
                                     "midpoints": [
-                                        539.0,
+                                        553.5,
                                         574.0,
-                                        516.5,
+                                        531.0,
                                         574.0
                                     ],
                                     "source": [
@@ -973,9 +972,9 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        468.0,
+                                        482.5,
                                         574.0,
-                                        490.5,
+                                        505.0,
                                         574.0
                                     ],
                                     "source": [
@@ -1855,7 +1854,7 @@
                                             },
                                             {
                                                 "box": {
-                                                    "comment": "",
+                                                    "comment": "(frame) Trigger",
                                                     "id": "obj-25",
                                                     "index": 1,
                                                     "maxclass": "inlet",
@@ -1874,7 +1873,7 @@
                                             },
                                             {
                                                 "box": {
-                                                    "comment": "",
+                                                    "comment": "(Frame) Offset",
                                                     "id": "obj-29",
                                                     "index": 1,
                                                     "maxclass": "outlet",
@@ -2015,10 +2014,10 @@
                                         },
                                         "classnamespace": "box",
                                         "rect": [
-                                            0.0,
-                                            0.0,
-                                            640.0,
-                                            480.0
+                                            59.0,
+                                            106.0,
+                                            193.0,
+                                            275.0
                                         ],
                                         "bglocked": 0,
                                         "openinpresentation": 0,
@@ -2061,8 +2060,8 @@
                                                         ""
                                                     ],
                                                     "patching_rect": [
-                                                        50.0,
-                                                        180.0,
+                                                        40.0,
+                                                        164.0,
                                                         115.0,
                                                         22.0
                                                     ],
@@ -2079,8 +2078,8 @@
                                                         ""
                                                     ],
                                                     "patching_rect": [
-                                                        50.0,
-                                                        140.0,
+                                                        40.0,
+                                                        124.0,
                                                         115.0,
                                                         22.0
                                                     ],
@@ -2097,8 +2096,8 @@
                                                         ""
                                                     ],
                                                     "patching_rect": [
-                                                        50.0,
-                                                        100.0,
+                                                        40.0,
+                                                        84.0,
                                                         66.0,
                                                         22.0
                                                     ],
@@ -2107,7 +2106,7 @@
                                             },
                                             {
                                                 "box": {
-                                                    "comment": "",
+                                                    "comment": "(frame) Trigger",
                                                     "id": "obj-16",
                                                     "index": 1,
                                                     "maxclass": "inlet",
@@ -2117,8 +2116,8 @@
                                                         ""
                                                     ],
                                                     "patching_rect": [
-                                                        50.0,
                                                         40.0,
+                                                        33.0,
                                                         30.0,
                                                         30.0
                                                     ]
@@ -2126,15 +2125,15 @@
                                             },
                                             {
                                                 "box": {
-                                                    "comment": "",
+                                                    "comment": "(frame) Amplitude Out ",
                                                     "id": "obj-17",
                                                     "index": 1,
                                                     "maxclass": "outlet",
                                                     "numinlets": 1,
                                                     "numoutlets": 0,
                                                     "patching_rect": [
-                                                        50.0,
-                                                        262.0,
+                                                        40.0,
+                                                        213.0,
                                                         30.0,
                                                         30.0
                                                     ]

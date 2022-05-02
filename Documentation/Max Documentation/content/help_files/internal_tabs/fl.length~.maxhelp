@@ -165,6 +165,7 @@
 								"box" : 								{
 									"id" : "obj-10",
 									"maxclass" : "number",
+									"minimum" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],

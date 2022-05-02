@@ -56,7 +56,7 @@ std::string FrameLib_Peaks::objectInfo(bool verbose)
                       "Peaks positions and values are also interpolated and output. "
                       "The first output is the same length as the input. "
                       "Other outputs are as long as the number of detected peaks. "
-                      "A Peak are detected if a value exceeds its neighbours and a fixed threshold. "
+                      "Peaks are detected if a value exceeds its neighbours and a fixed threshold. "
                       "The parameters control the details of the way in which peaks are defined and detected.",
                       "Finds peaks in the input frame.", verbose);
 }

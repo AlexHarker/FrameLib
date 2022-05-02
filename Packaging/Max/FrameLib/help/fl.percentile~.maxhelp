@@ -515,10 +515,10 @@
                                     "patching_rect": [
                                         15.0,
                                         75.0,
-                                        585.0,
+                                        615.0,
                                         50.0
                                     ],
-                                    "text": "The fl.percentile~ object calculates a specified percentile of the input frame. This can be useful for findindg the median (which is the default percentile), finding interquartile ranges or for discarding outliers from incoming data."
+                                    "text": "The fl.percentile~ object calculates a specified percentile of the input frame. This can be useful for finding the median (which is the default percentile), for finding interquartile ranges or for discarding outliers from incoming data."
                                 }
                             },
                             {

@@ -361,7 +361,7 @@ FrameLib_Expression::ParameterInfo::ParameterInfo()
         "Binary Functions { diff hypot max min pow }. "
         "Ternary Functions { clip, wrap, fold }.");
     add("Sets the mode used when dealing with mismatched input lengths: "
-        "wrap - smaller inputs are read modulo against the longest input. "
+        "wrap - shorter inputs are read modulo against the longest input. "
         "shrink - the output length is set to that of the shortest input. "
         "extend - if required inputs are extended by repeating their final value.");
     add("Sets which inputs trigger output using an array of bools. "

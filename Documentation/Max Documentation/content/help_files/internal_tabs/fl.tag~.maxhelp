@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 749.0, 650.0 ],
+		"rect" : [ 34.0, 87.0, 749.0, 656.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 749.0, 624.0 ],
+						"rect" : [ 0.0, 26.0, 749.0, 630.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 749.0, 624.0 ],
+						"rect" : [ 34.0, 113.0, 749.0, 630.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -230,7 +230,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 536.0, 45.0, 45.0 ]
+									"patching_rect" : [ 30.0, 546.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -241,7 +241,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 300.0, 526.0, 424.0, 65.0 ],
+									"patching_rect" : [ 300.0, 536.0, 424.0, 65.0 ],
 									"text" : "The first parameter controls the frequency of the filter.\nThe second parameter controls the resonance of the filter.\nA third enum parameter controls the filter mode.\nThe is generated using lookupstring~ and is added via the tagged input. "
 								}
 
@@ -379,6 +379,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 488.0, 405.0, 65.0, 23.0 ],
+									"text" : "lowpass",
 									"textjustification" : 1
 								}
 
@@ -660,7 +661,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 1 ],
-									"midpoints" : [ 39.5, 515.625, 65.5, 515.625 ],
+									"midpoints" : [ 39.5, 520.625, 65.5, 520.625 ],
 									"order" : 0,
 									"source" : [ "obj-4", 0 ]
 								}

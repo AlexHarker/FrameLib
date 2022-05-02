@@ -689,7 +689,7 @@
                                         698.5,
                                         94.0
                                     ],
-                                    "text": "Crest factor is defined as the ratio of the peak value to the RMS value of a frame, or more simply, the peak value divided by the RMS.\n\nBelow, we generate a frame containing a single cycle of sinusoidal waveform. This frame should have an RMS value of 0.707 and its peak is 1.0. Therefore, we can verify the result of fl.crest~ by dividing the maximum value of the frame (fl.framemax~) by the RMS (fl.rms~)."
+                                    "text": "Crest factor is defined as the ratio of the peak value of a signal to its RMS value or, perhaps more simply, as the peak value divided by the RMS.\n\nBelow, we generate a frame containing a single cycle of sinusoidal waveform. This frame should have an RMS value of 0.707.. (1/sqrt(2)) and its peak is 1.0. Therefore, we can verify the result of fl.crest~ by dividing the maximum value of the frame (fl.framemax~) by the RMS (fl.rms~). The results should be equal to sqrt(2)."
                                 }
                             },
                             {

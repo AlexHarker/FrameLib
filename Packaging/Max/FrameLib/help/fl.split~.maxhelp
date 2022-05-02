@@ -378,7 +378,7 @@
                                         555.0,
                                         94.0
                                     ],
-                                    "text": "The example on the left seperates the frame into two parts. The first part output by the left most outlet is the length of the frame multipled by 0.2, so it results in the first 64 values of the frame. The rest of the frame is output from the right outlet and is 192 samples long.\n\nThe example of the right outputs the first 150 samples from the left outlet and the rest from the right outlet which should be the rest, which is 106 samples. "
+                                    "text": "The example on the left seperates the frame into two parts. The first part output by the left most outlet is the length of the frame multipled by 0.25, so it results in the first 64 values of the frame. The rest of the frame is output from the right outlet and is 192 samples long.\n\nThe example of the right outputs the first 150 samples from the left outlet and the rest from the right outlet which should be the rest, which is 106 samples. "
                                 }
                             },
                             {

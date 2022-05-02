@@ -719,7 +719,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 117.0, 516.333333333333371, 256.0, 25.0 ],
-									"text" : "Turn up tfor granular filter sweeping fun!"
+									"text" : "Turn up for granular filter sweeping fun!"
 								}
 
 							}

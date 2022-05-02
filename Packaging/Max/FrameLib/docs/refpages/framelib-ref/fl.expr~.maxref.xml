@@ -15,7 +15,7 @@
     </entry>
     <entry name="/mismatch [enum]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the mode used when dealing with mismatched input lengths:<p /><bullet>[0] - <m>wrap</m> - smaller inputs are read modulo against the longest input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the shortest input.</bullet><bullet>[2] - <m>extend</m> - if required inputs are extended by repeating their final value.</bullet><p /><i>(default: <m>wrap</m>)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the mode used when dealing with mismatched input lengths:<p /><bullet>[0] - <m>wrap</m> - shorter inputs are read modulo against the longest input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the shortest input.</bullet><bullet>[2] - <m>extend</m> - if required inputs are extended by repeating their final value.</bullet><p /><i>(default: <m>wrap</m>)</i>
       </description>
     </entry>
     <entry name="/trigger_ins [variable length bool array]">

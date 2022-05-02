@@ -156,7 +156,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 231.5, 240.0, 40.0 ],
+									"patching_rect" : [ 90.0, 231.5, 225.0, 40.0 ],
 									"text" : "The time difference will match the signal vector size set in Max",
 									"textjustification" : 1
 								}

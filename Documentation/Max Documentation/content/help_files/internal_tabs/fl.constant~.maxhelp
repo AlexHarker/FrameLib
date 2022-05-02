@@ -364,6 +364,7 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
+									"color" : [ 0.774356961250305, 0.0, 0.0, 1.0 ],
 									"destination" : [ "obj-12", 0 ],
 									"midpoints" : [ 399.5, 243.5, 95.5, 243.5 ],
 									"source" : [ "obj-10", 0 ]

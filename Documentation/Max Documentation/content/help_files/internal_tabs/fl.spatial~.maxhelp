@@ -94,7 +94,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 840.0, 156.5, 240.0, 50.0 ],
-									"text" : "This visual example allows you to see 2D multichannel panning in action and to explore some advanced features.",
+									"text" : "This visual example allows you to see 2D multichannel panning in action and to explore more advanced features.",
 									"textjustification" : 1
 								}
 

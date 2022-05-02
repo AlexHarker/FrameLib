@@ -15,7 +15,7 @@
     </entry>
     <entry name="/input [int]">
       <description>
-        Sets the current input counting from 1 (or off if out of range).<p /><i>(default: 0)</i>
+        Sets the current input counting from 1 (off if out of range).<p /><i>(default: 0)</i>
       </description>
     </entry>
   </misc>
@@ -43,10 +43,10 @@
     </objarg>
     <objarg name="input" optional="1" type="int">
       <digest>
-        Sets the current input counting from 1 (or off if out of range)
+        Sets the current input counting from 1 (off if out of range)
       </digest>
       <description>
-        This argument sets the input parameter:<p /><p />Sets the current input counting from 1 (or off if out of range).<p /><i>(default: 0)</i>
+        This argument sets the input parameter:<p /><p />Sets the current input counting from 1 (off if out of range).<p /><i>(default: 0)</i>
       </description>
     </objarg>
   </objarglist>

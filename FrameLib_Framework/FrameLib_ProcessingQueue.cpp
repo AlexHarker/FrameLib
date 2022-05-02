@@ -61,7 +61,7 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
         if (mNumItems.load() == 0 || mTimedOut)
             break;
                 
-        FrameLib_Thread::sleepCurrentThread(100);
+        threadReduceContention();
     }
 
     // Clear the thread local allocators
@@ -125,6 +125,13 @@ void FrameLib_ProcessingQueue::serviceQueue(FrameLib_LocalAllocator *allocator)
     
     while (FrameLib_DSP *object = mQueue.pop())
     {
+        // Poll
+        
+        for (int i = 0; !object && i < 10; i++)
+            object = mQueue.pop();
+        
+        // Process or exit
+        
         while (object && !mTimedOut)
         {
             PrepQueue queue;

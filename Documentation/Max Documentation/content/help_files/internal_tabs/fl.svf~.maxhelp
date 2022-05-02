@@ -107,7 +107,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 366.0, 486.5, 235.0, 40.0 ],
-									"text" : "Switch the different filter types on/off\n(lowpass / bandpass / highpass)"
+									"text" : "Switch the different filter types on/off\n(lowpass / bandpass / highpass)",
+									"textjustification" : 1
 								}
 
 							}
@@ -744,7 +745,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 118.0, 515.0, 256.0, 25.0 ],
-									"text" : "Turn up tfor granular filter sweeping fun!"
+									"text" : "Turn up for granular filter sweeping fun!"
 								}
 
 							}

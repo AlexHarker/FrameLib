@@ -132,15 +132,15 @@
 , 							{
 								"box" : 								{
 									"bubble" : 1,
-									"bubblepoint" : 0.2,
+									"bubblepoint" : 0.15,
 									"bubbleside" : 2,
 									"id" : "obj-9",
 									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 390.0, 255.0, 246.0, 84.0 ],
-									"text" : "Here we use the default channel setting  of -1, so that each of the two streams is directed to the corresponding channel in the buffer~",
+									"patching_rect" : [ 383.0, 254.5, 246.0, 84.0 ],
+									"text" : "Here we use the default /channel parameter setting  of -1, so that each of the two streams is directed to the corresponding channel in the buffer~",
 									"textjustification" : 1
 								}
 
@@ -374,8 +374,8 @@
 													"maxclass" : "comment",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 464.0, 266.0, 114.0, 20.0 ],
-													"text" : "Pack to multistream"
+													"patching_rect" : [ 458.0, 267.0, 120.0, 20.0 ],
+													"text" : "Packs to multistream"
 												}
 
 											}
@@ -408,8 +408,8 @@
 													"maxclass" : "comment",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 168.0, 163.0, 212.0, 20.0 ],
-													"text" : "Generate a vector of random numbers"
+													"patching_rect" : [ 173.0, 163.0, 218.0, 20.0 ],
+													"text" : "Generates a vector of random numbers"
 												}
 
 											}
@@ -1072,8 +1072,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 285.0, 300.0, 50.0 ],
-									"text" : "We are going to set fl.read~ to interpret the input as normalised (0 to 1 across the buffer~) so we are reading well beyond on both sides."
+									"patching_rect" : [ 52.0, 285.0, 300.0, 50.0 ],
+									"text" : "We are going to set fl.read~ to interpret the input as normalised (0 to 1 across the buffer~) so we are reading well beyond on both sides.",
+									"textjustification" : 1
 								}
 
 							}
@@ -2173,12 +2174,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-10",
-									"linecount" : 8,
+									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 106.0, 470.0, 528.0, 123.0 ],
-									"text" : "Note that you can work entirely in milliseconds if you prefer to do so by setting the /units parameter of the object and the /scale parameter of fl.ramp~.\n\nAlthough here the example is one that reads back a buffer at normal speed, changing the steepness of the ramp or making a more complex input can result in changing speed (and pitch). \n\nThe fl.read~ object can also be used to treat buffers as a lookup~ tables.",
+									"patching_rect" : [ 96.0, 477.0, 528.0, 108.0 ],
+									"presentation_linecount" : 7,
+									"text" : "Note that you can work entirely in milliseconds if you prefer to do so by setting the /units parameter of the object and the /scale parameter of fl.ramp~.\n\nAlthough here the example reads back a buffer at normal speed, changing the steepness of the ramp or making a more complex input can result in changing speed (and pitch). \n\nThe fl.read~ object can also be used to treat buffers as a lookup~ tables.",
 									"textjustification" : 1
 								}
 
@@ -2205,7 +2207,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 297.0, 194.5, 305.0, 54.0 ],
-									"text" : "Creates a frame of 2000 ms length that counts in samples. At 44.1khz this would be a frame of 88200 values counting from 0 to 88200",
+									"text" : "Creates a frame of 2000 ms length that counts in samples. At 44.1khz this would be a frame of 88200 values counting from 0 to 88199",
 									"textjustification" : 1
 								}
 

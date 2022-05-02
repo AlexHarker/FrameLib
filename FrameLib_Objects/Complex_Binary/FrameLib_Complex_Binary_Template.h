@@ -55,10 +55,10 @@ class FrameLib_Complex_BinaryOp final : public FrameLib_Processor
         ParameterInfo()
         {
             add("Sets the mode used when dealing with mismatched input lengths: "
-                "wrap - the smaller input is read modulo against the larger input. "
-                "shrink - the output length is set to that of the smaller input. "
-                "pad_in - the smaller input is padded prior to calculation to match the larger input. "
-                "pad_out - the output is padded to match the length of the larger input.");
+                "wrap - the shorter input is read modulo against the longer input. "
+                "shrink - the output length is set to that of the shorter input. "
+                "pad_in - the shorter input is padded prior to calculation to match the longer input. "
+                "pad_out - the output is padded to match the length of the longer input.");
             add("Sets which pairs of inputs trigger output.");
             add("Sets the complex value used for padding (for either pad_in or pad_out modes).");
         }

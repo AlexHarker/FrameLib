@@ -56,13 +56,13 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
 
 std::string FrameLib_Tag::objectInfo(bool verbose)
 {
-    return formatInfo("Tags vectors with tags either in order to set parameters or for routing purposes: "
-                      "Tag inputs each deal with one tag and take input vectors. "
+    return formatInfo("Adds tags to vectors either in order to set parameters or for routing purposes: "
+                      "Each tag input deals with a single specified tag and takes input vectors. "
                       "The number of tag inputs can be set explicitly by parameter. "
                       "Alternatively, it can be set implicitly by the tag parameters present at instantiation. "
-                      "A further input takes pre-tagged input to concatanated with other inputs after tagging. "
+                      "A further input takes pre-tagged frames to be concatanated to the tagged output frame. "
                       "All inputs except the parameter input trigger output.",
-                      "Tags vectors with tags either in order to set parameters or for routing purposes.", verbose);
+                      "Adds tags to vectors either in order to set parameters or for routing purposes.", verbose);
 }
 
 std::string FrameLib_Tag::inputInfo(unsigned long idx, bool verbose)

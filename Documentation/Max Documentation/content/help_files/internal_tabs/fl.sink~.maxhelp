@@ -254,7 +254,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 75.0, 600.0, 79.0 ],
-									"text" : "By default fl.sink~ pastes to the nearest samples to the present time and copies them exactly without interpolation. However, if you require subsample accuracy can switch interpolation on. \n\nThis may be more expensive on the CPU but it might make a difference for certain detailed processes requiring very precise timing."
+									"text" : "By default fl.sink~ pastes to the nearest samples to the present time and copies them exactly without interpolation. However, if you require subsample accuracy you can switch interpolation on. \n\nThis is more expensive on the CPU but it might make a difference for certain processes requiring very precise timing."
 								}
 
 							}
@@ -496,8 +496,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 75.0, 546.0, 36.0 ],
-									"text" : "Using /delay you can specify a delay time at the output of a FrameLib network. This is useful for aligning the time of two signals and accounting for any time accrued in processing."
+									"patching_rect" : [ 15.0, 75.0, 573.0, 36.0 ],
+									"text" : "Using the /delay parameter you can specify a delay time at the output of a FrameLib network. This is useful for aligning the time of two signals and accounting for any time accrued in processing."
 								}
 
 							}
@@ -769,7 +769,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 195.0, 261.5, 332.0, 54.0 ],
-									"text" : "fl.sink~ accepts multistream inputs and automatically distributes streams across outputs when the multistream operator (=) is used as an argument",
+									"text" : "fl.sink~ accepts multistream inputs and automatically distributes streams across outputs when the multistream operator (=N) is used as an argument",
 									"textjustification" : 1
 								}
 
@@ -1062,8 +1062,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 146.0, 291.5, 315.0, 40.0 ],
-									"text" : "fl.sink~ in it's most basic form is connected to the end of a network. The output is an MSP signal."
+									"patching_rect" : [ 146.0, 291.5, 334.0, 40.0 ],
+									"text" : "fl.sink~ in its most basic form is simply connected to the end of a network. The output is an MSP signal.",
+									"textjustification" : 1
 								}
 
 							}

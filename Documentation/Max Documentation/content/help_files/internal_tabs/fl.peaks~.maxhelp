@@ -107,8 +107,8 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 194.0, 345.0, 189.5, 23.0 ],
-									"text" : "fl.lookup~"
+									"patching_rect" : [ 194.0, 345.0, 192.0, 23.0 ],
+									"text" : "fl.lookup~ /interp none"
 								}
 
 							}
@@ -839,7 +839,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-26", 1 ],
-									"midpoints" : [ 376.5, 333.5, 288.75, 333.5 ],
+									"midpoints" : [ 376.5, 333.5, 290.0, 333.5 ],
 									"source" : [ "obj-21", 2 ]
 								}
 

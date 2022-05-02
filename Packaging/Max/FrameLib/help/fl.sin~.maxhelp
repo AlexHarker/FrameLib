@@ -518,10 +518,10 @@
                                     "patching_rect": [
                                         208.0,
                                         422.5,
-                                        110.0,
+                                        125.0,
                                         25.0
                                     ],
-                                    "text": "A sine function"
+                                    "text": "The sine function"
                                 }
                             },
                             {

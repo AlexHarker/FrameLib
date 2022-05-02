@@ -259,7 +259,8 @@
                                         235.0,
                                         40.0
                                     ],
-                                    "text": "Switch the different filter types on/off\n(lowpass / bandpass / highpass)"
+                                    "text": "Switch the different filter types on/off\n(lowpass / bandpass / highpass)",
+                                    "textjustification": 1
                                 }
                             },
                             {
@@ -1222,7 +1223,7 @@
                                         256.0,
                                         25.0
                                     ],
-                                    "text": "Turn up tfor granular filter sweeping fun!"
+                                    "text": "Turn up for granular filter sweeping fun!"
                                 }
                             },
                             {

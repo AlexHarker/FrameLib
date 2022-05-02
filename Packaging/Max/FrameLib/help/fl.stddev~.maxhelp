@@ -12,7 +12,7 @@
         "rect": [
             34.0,
             87.0,
-            498.0,
+            517.0,
             437.0
         ],
         "bglocked": 0,
@@ -67,7 +67,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            498.0,
+                            517.0,
                             411.0
                         ],
                         "bglocked": 0,
@@ -110,7 +110,7 @@
                                     "ignoreclick": 1,
                                     "jsarguments": [
                                         "fl.stddev~",
-                                        81
+                                        84
                                     ],
                                     "maxclass": "jsui",
                                     "numinlets": 1,
@@ -122,7 +122,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        468.0,
+                                        487.0,
                                         110
                                     ]
                                 }
@@ -148,12 +148,12 @@
                                     "patching_rect": [
                                         15.0,
                                         142,
-                                        468.0,
+                                        487.0,
                                         254.0
                                     ],
                                     "viewvisibility": 1,
                                     "args": [
-                                        468.0
+                                        487.0
                                     ]
                                 }
                             }
@@ -194,7 +194,7 @@
                         "rect": [
                             0.0,
                             26.0,
-                            498.0,
+                            517.0,
                             411.0
                         ],
                         "bglocked": 0,
@@ -265,7 +265,7 @@
                         "rect": [
                             34.0,
                             113.0,
-                            498.0,
+                            517.0,
                             411.0
                         ],
                         "bglocked": 0,
@@ -308,7 +308,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        360.0,
+                                        375.0,
                                         333.0,
                                         45.0,
                                         45.0
@@ -363,10 +363,10 @@
                                     "patching_rect": [
                                         240.0,
                                         96.5,
-                                        225.0,
+                                        245.0,
                                         40.0
                                     ],
-                                    "text": "Change the standard deviation of the gaussian distributed numbers",
+                                    "text": "Set the standard deviation of the gaussian distributed random numbers",
                                     "textjustification": 1
                                 }
                             },
@@ -523,7 +523,7 @@
                                     "patching_rect": [
                                         15.0,
                                         15.0,
-                                        468.0,
+                                        487.0,
                                         75.0
                                     ]
                                 }

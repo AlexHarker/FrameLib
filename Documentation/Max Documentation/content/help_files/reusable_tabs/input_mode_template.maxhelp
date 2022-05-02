@@ -214,7 +214,7 @@
 									"patching_rect" : [ 30.0, 450.0, 195.0, 90.0 ],
 									"setstyle" : 1,
 									"signed" : 1,
-									"size" : 11,
+									"size" : 17,
 									"spacing" : 2
 								}
 
@@ -248,7 +248,7 @@
 								"box" : 								{
 									"id" : "obj-15",
 									"maxclass" : "number",
-									"maximum" : 1000000,
+									"maximum" : 50,
 									"minimum" : 2,
 									"numinlets" : 1,
 									"numoutlets" : 2,

@@ -294,8 +294,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 210.0, 422.5, 130.0, 25.0 ],
-									"text" : "A tangent function"
+									"patching_rect" : [ 210.0, 422.5, 144.0, 25.0 ],
+									"text" : "The tangent function"
 								}
 
 							}
