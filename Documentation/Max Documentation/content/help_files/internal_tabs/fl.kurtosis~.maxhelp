@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 583.0, 546.0 ],
+		"rect" : [ 34.0, 87.0, 583.0, 552.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 583.0, 520.0 ],
+						"rect" : [ 0.0, 26.0, 583.0, 526.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -93,7 +93,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.5, 457.0, 122.0, 25.0 ],
+									"patching_rect" : [ 90.5, 472.0, 122.0, 25.0 ],
 									"text" : "Spectral kurtosis"
 								}
 
@@ -105,7 +105,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 158.5, 104.0, 296.0, 25.0 ],
+									"patching_rect" : [ 158.5, 119.0, 296.0, 25.0 ],
 									"text" : "Generates an FM waveform with a swept index"
 								}
 
@@ -117,7 +117,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 346.75, 72.0, 23.0 ],
+									"patching_rect" : [ 30.0, 361.75, 72.0, 23.0 ],
 									"text" : "fl.nanfilter~"
 								}
 
@@ -129,7 +129,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 470.5, 470.0, 19.0, 17.0 ],
+									"patching_rect" : [ 470.5, 485.0, 19.0, 17.0 ],
 									"text" : "0"
 								}
 
@@ -141,7 +141,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 468.5, 352.0, 19.0, 17.0 ],
+									"patching_rect" : [ 468.5, 367.0, 19.0, 17.0 ],
 									"text" : "10"
 								}
 
@@ -322,7 +322,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 30.0, 104.0, 115.0, 23.0 ],
+									"patching_rect" : [ 30.0, 119.0, 115.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -349,7 +349,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"offset" : [ 0.0, 0.0 ],
-									"patching_rect" : [ 210.5, 165.0, 210.0, 120.0 ],
+									"patching_rect" : [ 210.5, 180.0, 210.0, 120.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -363,7 +363,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 315.0, 360.0, 150.0, 120.0 ],
+									"patching_rect" : [ 315.0, 375.0, 150.0, 120.0 ],
 									"setminmax" : [ 0.0, 10.0 ],
 									"setstyle" : 5,
 									"slidercolor" : [ 0.952941176470588, 0.564705882352941, 0.098039215686275, 1.0 ]
@@ -377,7 +377,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 306.0, 213.0, 25.0 ],
+									"patching_rect" : [ 120.0, 321.0, 213.0, 25.0 ],
 									"text" : "Calculates kurtosis (of energy)"
 								}
 
@@ -562,7 +562,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 30.0, 260.25, 73.0, 23.0 ],
+									"patching_rect" : [ 30.0, 275.25, 73.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -583,7 +583,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 457.0, 57.0, 23.0 ]
+									"patching_rect" : [ 30.0, 472.0, 57.0, 23.0 ]
 								}
 
 							}
@@ -606,7 +606,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 303.5, 71.0, 23.0 ],
+									"patching_rect" : [ 30.0, 318.5, 71.0, 23.0 ],
 									"text" : "fl.kurtosis~"
 								}
 
@@ -618,7 +618,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 390.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 405.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -630,7 +630,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 450.5, 180.0, 45.0, 45.0 ]
+									"patching_rect" : [ 450.5, 195.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -641,7 +641,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 90.5, 172.0, 101.0, 23.0 ],
+									"patching_rect" : [ 90.5, 187.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 2048"
 								}
 
@@ -653,7 +653,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 217.0, 140.0, 23.0 ],
+									"patching_rect" : [ 30.0, 232.0, 140.0, 23.0 ],
 									"text" : "fl.source~ /length 2048"
 								}
 
@@ -670,7 +670,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 15.0, 622.0, 75.0 ]
+									"patching_rect" : [ 15.0, 15.0, 439.5, 75.0 ]
 								}
 
 							}
@@ -678,7 +678,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-24", 0 ],
-									"midpoints" : [ 39.5, 146.0, 220.0, 146.0 ],
+									"midpoints" : [ 39.5, 161.0, 220.0, 161.0 ],
 									"order" : 3,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -687,7 +687,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-38", 1 ],
-									"midpoints" : [ 39.5, 146.0, 486.0, 146.0 ],
+									"midpoints" : [ 39.5, 161.0, 486.0, 161.0 ],
 									"order" : 0,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -696,7 +696,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-38", 0 ],
-									"midpoints" : [ 39.5, 146.0, 460.0, 146.0 ],
+									"midpoints" : [ 39.5, 161.0, 460.0, 161.0 ],
 									"order" : 1,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -705,7 +705,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 39.5, 176.0, 39.5, 176.0 ],
+									"midpoints" : [ 39.5, 191.0, 39.5, 191.0 ],
 									"order" : 2,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -744,7 +744,7 @@
 								"patchline" : 								{
 									"color" : [ 0.701961, 0.701961, 0.701961, 0.5 ],
 									"destination" : [ "obj-16", 0 ],
-									"midpoints" : [ 39.5, 434.0, 182.0, 434.0, 182.0, 349.0, 324.5, 349.0 ],
+									"midpoints" : [ 39.5, 449.0, 182.0, 449.0, 182.0, 364.0, 324.5, 364.0 ],
 									"order" : 0,
 									"source" : [ "obj-23", 0 ]
 								}
@@ -826,7 +826,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 583.0, 520.0 ],
+						"rect" : [ 0.0, 26.0, 583.0, 526.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -888,7 +888,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 583.0, 520.0 ],
+						"rect" : [ 34.0, 113.0, 583.0, 526.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,

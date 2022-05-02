@@ -93,7 +93,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 502.0, 134.0, 25.0 ],
+									"patching_rect" : [ 90.0, 487.0, 134.0, 25.0 ],
 									"text" : "Spectral skewness",
 									"textjustification" : 1
 								}
@@ -106,7 +106,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 158.5, 149.0, 296.0, 25.0 ],
+									"patching_rect" : [ 158.5, 134.0, 296.0, 25.0 ],
 									"text" : "Generates an FM waveform with a swept index"
 								}
 
@@ -118,7 +118,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 468.5, 460.0, 19.0, 17.0 ],
+									"patching_rect" : [ 468.5, 445.0, 19.0, 17.0 ],
 									"text" : "  0"
 								}
 
@@ -130,7 +130,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 391.75, 72.0, 23.0 ],
+									"patching_rect" : [ 30.0, 376.75, 72.0, 23.0 ],
 									"text" : "fl.nanfilter~"
 								}
 
@@ -142,7 +142,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 470.5, 515.0, 19.0, 17.0 ],
+									"patching_rect" : [ 470.5, 500.0, 19.0, 17.0 ],
 									"text" : "-2"
 								}
 
@@ -154,7 +154,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 468.5, 397.0, 19.0, 17.0 ],
+									"patching_rect" : [ 468.5, 382.0, 19.0, 17.0 ],
 									"text" : "  2"
 								}
 
@@ -335,7 +335,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 30.0, 150.0, 115.0, 23.0 ],
+									"patching_rect" : [ 30.0, 135.0, 115.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -362,7 +362,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"offset" : [ 0.0, 0.0 ],
-									"patching_rect" : [ 210.5, 210.0, 210.0, 120.0 ],
+									"patching_rect" : [ 210.5, 195.0, 210.0, 120.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -376,7 +376,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 315.0, 405.0, 150.0, 120.0 ],
+									"patching_rect" : [ 315.0, 390.0, 150.0, 120.0 ],
 									"setminmax" : [ -2.0, 2.0 ],
 									"setstyle" : 5,
 									"slidercolor" : [ 0.952941176470588, 0.564705882352941, 0.098039215686275, 1.0 ]
@@ -390,7 +390,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 351.0, 213.0, 25.0 ],
+									"patching_rect" : [ 120.0, 336.0, 213.0, 25.0 ],
 									"text" : "Calculates skewness (of energy)"
 								}
 
@@ -575,7 +575,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 30.0, 305.25, 73.0, 23.0 ],
+									"patching_rect" : [ 30.0, 290.25, 73.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -596,7 +596,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 502.0, 57.0, 23.0 ]
+									"patching_rect" : [ 30.0, 487.0, 57.0, 23.0 ]
 								}
 
 							}
@@ -619,7 +619,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 348.5, 83.0, 23.0 ],
+									"patching_rect" : [ 30.0, 333.5, 83.0, 23.0 ],
 									"text" : "fl.skewness~"
 								}
 
@@ -631,7 +631,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 435.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 420.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -643,7 +643,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 450.5, 225.0, 45.0, 45.0 ]
+									"patching_rect" : [ 450.5, 210.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -654,7 +654,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 90.5, 217.0, 101.0, 23.0 ],
+									"patching_rect" : [ 90.5, 202.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 2048"
 								}
 
@@ -666,7 +666,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 262.0, 140.0, 23.0 ],
+									"patching_rect" : [ 30.0, 247.0, 140.0, 23.0 ],
 									"text" : "fl.source~ /length 2048"
 								}
 
@@ -683,7 +683,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 15.0, 622.0, 75.0 ]
+									"patching_rect" : [ 15.0, 15.0, 450.0, 75.0 ]
 								}
 
 							}
@@ -691,7 +691,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-24", 0 ],
-									"midpoints" : [ 39.5, 191.0, 220.0, 191.0 ],
+									"midpoints" : [ 39.5, 176.0, 220.0, 176.0 ],
 									"order" : 3,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -700,7 +700,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-38", 1 ],
-									"midpoints" : [ 39.5, 191.0, 486.0, 191.0 ],
+									"midpoints" : [ 39.5, 176.0, 486.0, 176.0 ],
 									"order" : 0,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -709,7 +709,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-38", 0 ],
-									"midpoints" : [ 39.5, 191.0, 460.0, 191.0 ],
+									"midpoints" : [ 39.5, 176.0, 460.0, 176.0 ],
 									"order" : 1,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -718,7 +718,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
-									"midpoints" : [ 39.5, 221.0, 39.5, 221.0 ],
+									"midpoints" : [ 39.5, 206.0, 39.5, 206.0 ],
 									"order" : 2,
 									"source" : [ "obj-15", 0 ]
 								}
@@ -757,7 +757,7 @@
 								"patchline" : 								{
 									"color" : [ 0.701961, 0.701961, 0.701961, 0.5 ],
 									"destination" : [ "obj-16", 0 ],
-									"midpoints" : [ 39.5, 479.0, 182.0, 479.0, 182.0, 394.0, 324.5, 394.0 ],
+									"midpoints" : [ 39.5, 464.0, 182.0, 464.0, 182.0, 379.0, 324.5, 379.0 ],
 									"order" : 0,
 									"source" : [ "obj-23", 0 ]
 								}
@@ -1322,7 +1322,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 123.0, 360.5, 372.0, 112.0 ],
-									"text" : "In this example some simplex noise frames are generated and are passed to the fl.skewness~ object via fl.frommax~. \n\nPositive values indicate that the frame is skewed to the left (towards kiwer indicies) whereas negative values indicate a skew to the right (towards higher indices. A value close to zero indicates relative symmetry.",
+									"text" : "In this example some simplex noise frames are generated and are passed to the fl.skewness~ object via fl.frommax~. \n\nPositive values indicate that the frame is skewed to the left (towards lower indices) whereas negative values indicate a skew to the right (towards higher indices). A value close to zero indicates relative symmetry.",
 									"textjustification" : 1
 								}
 
