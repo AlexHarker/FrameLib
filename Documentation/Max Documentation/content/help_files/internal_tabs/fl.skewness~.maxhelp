@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 522.0, 592.0 ],
+		"rect" : [ 34.0, 87.0, 690.0, 592.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 522.0, 566.0 ],
+						"rect" : [ 0.0, 26.0, 690.0, 566.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -89,6 +89,50 @@
 						"boxes" : [ 							{
 								"box" : 								{
 									"bubble" : 1,
+									"id" : "obj-26",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 540.0, 205.0, 122.0, 25.0 ],
+									"text" : "Turn up to listen!"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgmode" : 0,
+									"border" : 0,
+									"clickthrough" : 0,
+									"enablehscroll" : 0,
+									"enablevscroll" : 0,
+									"id" : "obj-12",
+									"lockeddragscroll" : 0,
+									"lockedsize" : 0,
+									"maxclass" : "bpatcher",
+									"name" : "fl-mono-h.maxpat",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "signal" ],
+									"patching_rect" : [ 450.5, 202.0, 90.0, 45.0 ],
+									"viewvisibility" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 450.5, 270.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
 									"id" : "obj-34",
 									"maxclass" : "comment",
 									"numinlets" : 1,
@@ -118,7 +162,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 468.5, 445.0, 19.0, 17.0 ],
+									"patching_rect" : [ 551.5, 445.0, 19.0, 17.0 ],
 									"text" : "  0"
 								}
 
@@ -142,7 +186,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 470.5, 500.0, 19.0, 17.0 ],
+									"patching_rect" : [ 553.5, 500.0, 19.0, 17.0 ],
 									"text" : "-2"
 								}
 
@@ -154,7 +198,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 468.5, 382.0, 19.0, 17.0 ],
+									"patching_rect" : [ 551.5, 382.0, 19.0, 17.0 ],
 									"text" : "  2"
 								}
 
@@ -376,7 +420,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 315.0, 390.0, 150.0, 120.0 ],
+									"patching_rect" : [ 398.0, 390.0, 150.0, 120.0 ],
 									"setminmax" : [ -2.0, 2.0 ],
 									"setstyle" : 5,
 									"slidercolor" : [ 0.952941176470588, 0.564705882352941, 0.098039215686275, 1.0 ]
@@ -638,17 +682,6 @@
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-38",
-									"local" : 1,
-									"maxclass" : "ezdac~",
-									"numinlets" : 2,
-									"numoutlets" : 0,
-									"patching_rect" : [ 450.5, 210.0, 45.0, 45.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-6",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -690,25 +723,24 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
-									"destination" : [ "obj-24", 0 ],
-									"midpoints" : [ 39.5, 176.0, 220.0, 176.0 ],
-									"order" : 3,
-									"source" : [ "obj-15", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-38", 1 ],
-									"midpoints" : [ 39.5, 176.0, 486.0, 176.0 ],
+									"destination" : [ "obj-4", 1 ],
+									"midpoints" : [ 460.0, 258.0, 486.0, 258.0 ],
 									"order" : 0,
-									"source" : [ "obj-15", 0 ]
+									"source" : [ "obj-12", 0 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-38", 0 ],
+									"destination" : [ "obj-4", 0 ],
+									"order" : 1,
+									"source" : [ "obj-12", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-12", 0 ],
 									"midpoints" : [ 39.5, 176.0, 460.0, 176.0 ],
 									"order" : 1,
 									"source" : [ "obj-15", 0 ]
@@ -717,9 +749,18 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-24", 0 ],
+									"midpoints" : [ 39.5, 176.0, 220.0, 176.0 ],
+									"order" : 2,
+									"source" : [ "obj-15", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
 									"midpoints" : [ 39.5, 206.0, 39.5, 206.0 ],
-									"order" : 2,
+									"order" : 0,
 									"source" : [ "obj-15", 0 ]
 								}
 
@@ -757,7 +798,7 @@
 								"patchline" : 								{
 									"color" : [ 0.701961, 0.701961, 0.701961, 0.5 ],
 									"destination" : [ "obj-16", 0 ],
-									"midpoints" : [ 39.5, 464.0, 182.0, 464.0, 182.0, 379.0, 324.5, 379.0 ],
+									"midpoints" : [ 39.5, 464.0, 240.0, 464.0, 240.0, 379.0, 407.5, 379.0 ],
 									"order" : 0,
 									"source" : [ "obj-23", 0 ]
 								}
@@ -839,7 +880,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 522.0, 566.0 ],
+						"rect" : [ 0.0, 26.0, 690.0, 566.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -901,7 +942,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 522.0, 566.0 ],
+						"rect" : [ 34.0, 113.0, 690.0, 566.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -937,7 +978,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 210.0, 487.0, 255.0, 36.0 ],
+									"patching_rect" : [ 295.0, 489.5, 255.0, 36.0 ],
 									"text" : "The skewness is a measure of direction and amount of skew in the frame.",
 									"textjustification" : 1
 								}
@@ -1206,7 +1247,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 30.0, 105.0, 300.0, 60.0 ],
+									"patching_rect" : [ 115.0, 107.5, 300.0, 60.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -1218,7 +1259,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 390.0, 225.0, 45.0, 45.0 ]
+									"patching_rect" : [ 475.0, 227.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -1229,7 +1270,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 98.0, 492.5, 85.0, 25.0 ],
+									"patching_rect" : [ 183.0, 495.0, 85.0, 25.0 ],
 									"text" : "Skewness"
 								}
 
@@ -1241,7 +1282,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 450.0, 62.0, 23.0 ],
+									"patching_rect" : [ 115.0, 452.5, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -1254,7 +1295,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 405.0, 83.0, 23.0 ],
+									"patching_rect" : [ 115.0, 407.5, 83.0, 23.0 ],
 									"text" : "fl.skewness~"
 								}
 
@@ -1266,7 +1307,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 93.0, 318.0, 75.0, 23.0 ],
+									"patching_rect" : [ 178.0, 320.5, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -1278,7 +1319,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 360.0, 77.0, 23.0 ],
+									"patching_rect" : [ 115.0, 362.5, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -1291,7 +1332,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 90.0, 195.0, 210.0, 105.0 ],
+									"patching_rect" : [ 175.0, 197.5, 210.0, 105.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"setstyle" : 1,
 									"size" : 256,
@@ -1309,7 +1350,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 492.5, 61.0, 24.0 ]
+									"patching_rect" : [ 115.0, 495.0, 61.0, 24.0 ]
 								}
 
 							}
@@ -1321,7 +1362,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 123.0, 360.5, 372.0, 112.0 ],
+									"patching_rect" : [ 208.0, 363.0, 372.0, 112.0 ],
 									"text" : "In this example some simplex noise frames are generated and are passed to the fl.skewness~ object via fl.frommax~. \n\nPositive values indicate that the frame is skewed to the left (towards lower indices) whereas negative values indicate a skew to the right (towards higher indices). A value close to zero indicates relative symmetry.",
 									"textjustification" : 1
 								}
@@ -1347,7 +1388,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-19", 0 ],
-									"midpoints" : [ 39.5, 179.5, 99.5, 179.5 ],
+									"midpoints" : [ 124.5, 182.0, 184.5, 182.0 ],
 									"order" : 0,
 									"source" : [ "obj-18", 0 ]
 								}
@@ -1356,7 +1397,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-23", 0 ],
-									"midpoints" : [ 39.5, 168.0, 39.5, 168.0 ],
+									"midpoints" : [ 124.5, 170.5, 124.5, 170.5 ],
 									"order" : 1,
 									"source" : [ "obj-18", 0 ]
 								}
@@ -1372,7 +1413,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-23", 0 ],
-									"midpoints" : [ 102.5, 350.0, 39.5, 350.0 ],
+									"midpoints" : [ 187.5, 352.5, 124.5, 352.5 ],
 									"source" : [ "obj-28", 0 ]
 								}
 
@@ -1438,6 +1479,20 @@
 			}
  ],
 		"lines" : [  ],
+		"parameters" : 		{
+			"obj-3::obj-12::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"parameterbanks" : 			{
+				"0" : 				{
+					"index" : 0,
+					"name" : "",
+					"parameters" : [ "-", "-", "-", "-", "-", "-", "-", "-" ]
+				}
+
+			}
+,
+			"inherited_shortname" : 1
+		}
+,
 		"autosave" : 0
 	}
 
