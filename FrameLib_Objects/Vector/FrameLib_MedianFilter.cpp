@@ -33,12 +33,12 @@ FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, const Fra
 
 std::string FrameLib_MedianFilter::objectInfo(bool verbose)
 {
-    return formatInfo("Applies a median or other specified percentiled filter to the input: "
+    return formatInfo("Applies a median or other specified percentile filter to the input: "
                       "The default percentile is 50% which returns the median. "
                       "The output is the same length as the input. "
                       "Each output value is the specified percentile of the surrouding area in the input. "
                       "The width of the filtering and the edge behaviour are both controllable.",
-                      "Applies a median or other specified percentiled filter to the input.", verbose);
+                      "Applies a median or other specified percentile filter to the input.", verbose);
 }
 
 std::string FrameLib_MedianFilter::inputInfo(unsigned long idx, bool verbose)
