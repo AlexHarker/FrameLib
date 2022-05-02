@@ -179,12 +179,13 @@
 , 							{
 								"box" : 								{
 									"bubble" : 1,
+									"bubblepoint" : 0.1,
 									"bubbleside" : 2,
 									"id" : "obj-53",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 453.0, 210.0, 125.0, 40.0 ],
+									"patching_rect" : [ 495.0, 238.0, 125.0, 40.0 ],
 									"text" : "Non-symbolic name",
 									"textjustification" : 1
 								}
@@ -213,8 +214,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 360.0, 420.0, 240.0, 55.0 ],
-									"text" : "You can also divide vectors by a scalar value, or divide one vector from another",
+									"patching_rect" : [ 353.0, 420.0, 255.0, 55.0 ],
+									"text" : "You can also multiply vectors by a scalar value, or multiply one vector from another",
 									"textjustification" : 1
 								}
 
