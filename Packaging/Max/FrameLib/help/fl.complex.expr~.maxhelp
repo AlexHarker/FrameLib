@@ -192,8 +192,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            113.0,
                             656.0,
                             575.0
                         ],
@@ -1315,8 +1315,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            113.0,
+                            0.0,
+                            26.0,
                             656.0,
                             575.0
                         ],
@@ -1392,10 +1392,10 @@
                                     "patching_rect": [
                                         30.0,
                                         480.0,
-                                        471.0,
+                                        510.0,
                                         36.0
                                     ],
-                                    "text": "Inputs are referred to by in1, in2, in3 etc. As many as needed will be made once you've entered the expression."
+                                    "text": "Input pairs are referred to as in1, in2, in3 etc. As many as needed will be made once you've entered the expression."
                                 }
                             },
                             {
@@ -1561,10 +1561,10 @@
                                     "patching_rect": [
                                         15.0,
                                         75.0,
-                                        536.0,
+                                        630.0,
                                         36.0
                                     ],
-                                    "text": "fl.complex.expr~ allows you to create custom expressions in a single object contaning inputs, unary/binary/ternary operators and constants that operate on complex numbers."
+                                    "text": "fl.complex.expr~ allows you to create custom expressions in a single object containing inputs, unary/binary/ternary operators and constants that operate on complex numbers."
                                 }
                             },
                             {

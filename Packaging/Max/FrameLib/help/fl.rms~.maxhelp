@@ -308,9 +308,9 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        84.0,
+                                        79.0,
                                         267.0,
-                                        276.0,
+                                        269.0,
                                         25.0
                                     ],
                                     "text": "Generates a frame containing a sine wave"
@@ -392,12 +392,12 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        326.0,
+                                        321.0,
                                         398.5,
-                                        165.0,
+                                        175.0,
                                         40.0
                                     ],
-                                    "text": "RMS of the sine wave (1/sqrt(2) = 0.707107...)",
+                                    "text": "  RMS of the sine wave  (1 / sqrt(2) = 0.707107...)",
                                     "textjustification": 1
                                 }
                             },

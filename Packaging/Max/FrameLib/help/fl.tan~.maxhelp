@@ -518,10 +518,10 @@
                                     "patching_rect": [
                                         210.0,
                                         422.5,
-                                        130.0,
+                                        144.0,
                                         25.0
                                     ],
-                                    "text": "A tangent function"
+                                    "text": "The tangent function"
                                 }
                             },
                             {

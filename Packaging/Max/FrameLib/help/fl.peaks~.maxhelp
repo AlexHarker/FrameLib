@@ -259,10 +259,10 @@
                                     "patching_rect": [
                                         194.0,
                                         345.0,
-                                        189.5,
+                                        192.0,
                                         23.0
                                     ],
-                                    "text": "fl.lookup~"
+                                    "text": "fl.lookup~ /interp none"
                                 }
                             },
                             {
@@ -1357,7 +1357,7 @@
                                     "midpoints": [
                                         376.5,
                                         333.5,
-                                        288.75,
+                                        290.0,
                                         333.5
                                     ],
                                     "source": [

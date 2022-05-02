@@ -239,10 +239,11 @@
                                     "patching_rect": [
                                         210.0,
                                         639.0,
-                                        345.0,
+                                        375.0,
                                         36.0
                                     ],
-                                    "text": "The difference between fold and mirror will be subtle (for mirror edge values are repeated, but for fold they are not)."
+                                    "text": "The difference between fold and mirror will be subtle (for mirror edge values are repeated, but for fold they are not).",
+                                    "textjustification": 1
                                 }
                             },
                             {

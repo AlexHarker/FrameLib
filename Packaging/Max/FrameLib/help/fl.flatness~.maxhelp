@@ -232,12 +232,58 @@
                             {
                                 "box": {
                                     "bubble": 1,
+                                    "id": "obj-26",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [
+                                        585.0,
+                                        190.0,
+                                        122.0,
+                                        25.0
+                                    ],
+                                    "text": "Turn up to listen!"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bgmode": 0,
+                                    "border": 0,
+                                    "clickthrough": 0,
+                                    "enablehscroll": 0,
+                                    "enablevscroll": 0,
+                                    "id": "obj-12",
+                                    "lockeddragscroll": 0,
+                                    "lockedsize": 0,
+                                    "maxclass": "bpatcher",
+                                    "name": "fl-mono-h.maxpat",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "offset": [
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "outlettype": [
+                                        "signal"
+                                    ],
+                                    "patching_rect": [
+                                        495.5,
+                                        187.0,
+                                        90.0,
+                                        45.0
+                                    ],
+                                    "viewvisibility": 1
+                                }
+                            },
+                            {
+                                "box": {
+                                    "bubble": 1,
                                     "id": "obj-10",
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        225.0,
+                                        165.0,
                                         486.0,
                                         122.0,
                                         25.0
@@ -253,8 +299,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        498.5,
-                                        345.0,
+                                        491.5,
+                                        346.0,
                                         117.0,
                                         25.0
                                     ],
@@ -271,8 +317,8 @@
                                         "float"
                                     ],
                                     "patching_rect": [
-                                        450.0,
-                                        345.0,
+                                        443.0,
+                                        346.0,
                                         38.0,
                                         23.0
                                     ],
@@ -287,7 +333,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        270.0,
+                                        210.0,
                                         405.0,
                                         140.0,
                                         25.0
@@ -302,7 +348,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        195.0,
+                                        135.0,
                                         488.0,
                                         24.0,
                                         21.0
@@ -320,7 +366,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        135.0,
+                                        75.0,
                                         405.0,
                                         124.0,
                                         23.0
@@ -336,7 +382,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        263.5,
+                                        203.5,
                                         119.0,
                                         346.0,
                                         25.0
@@ -354,7 +400,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        135.0,
+                                        75.0,
                                         364.0,
                                         72.0,
                                         23.0
@@ -370,8 +416,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        603.5,
-                                        501.0,
+                                        596.5,
+                                        502.0,
                                         33.0,
                                         17.0
                                     ],
@@ -386,8 +432,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        603.5,
-                                        382.0,
+                                        596.5,
+                                        383.0,
                                         30.0,
                                         17.0
                                     ],
@@ -1243,7 +1289,7 @@
                                         ]
                                     },
                                     "patching_rect": [
-                                        135.0,
+                                        75.0,
                                         120.0,
                                         121.0,
                                         23.0
@@ -1281,7 +1327,7 @@
                                         0.0
                                     ],
                                     "patching_rect": [
-                                        315.5,
+                                        255.5,
                                         180.0,
                                         210.0,
                                         120.0
@@ -1302,8 +1348,8 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        450.0,
-                                        390.0,
+                                        443.0,
+                                        391.0,
                                         150.0,
                                         120.0
                                     ],
@@ -1328,7 +1374,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        225.0,
+                                        165.0,
                                         321.0,
                                         135.0,
                                         25.0
@@ -1598,7 +1644,7 @@
                                         ]
                                     },
                                     "patching_rect": [
-                                        135.0,
+                                        75.0,
                                         277.0,
                                         73.0,
                                         23.0
@@ -1625,7 +1671,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        135.0,
+                                        75.0,
                                         487.0,
                                         57.0,
                                         23.0
@@ -1663,7 +1709,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        135.0,
+                                        75.0,
                                         322.0,
                                         71.0,
                                         23.0
@@ -1681,7 +1727,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        135.0,
+                                        75.0,
                                         445.0,
                                         62.0,
                                         23.0
@@ -1697,8 +1743,8 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        555.5,
-                                        195.0,
+                                        495.5,
+                                        255.0,
                                         45.0,
                                         45.0
                                     ]
@@ -1714,7 +1760,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        195.5,
+                                        135.5,
                                         187.0,
                                         101.0,
                                         23.0
@@ -1732,7 +1778,7 @@
                                         ""
                                     ],
                                     "patching_rect": [
-                                        135.0,
+                                        75.0,
                                         232.0,
                                         140.0,
                                         23.0
@@ -1779,37 +1825,18 @@
                             {
                                 "patchline": {
                                     "destination": [
-                                        "obj-24",
-                                        0
-                                    ],
-                                    "midpoints": [
-                                        144.5,
-                                        161.0,
-                                        325.0,
-                                        161.0
-                                    ],
-                                    "order": 3,
-                                    "source": [
-                                        "obj-15",
-                                        0
-                                    ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [
                                         "obj-38",
                                         1
                                     ],
                                     "midpoints": [
-                                        144.5,
-                                        161.0,
-                                        591.0,
-                                        161.0
+                                        505.0,
+                                        243.0,
+                                        531.0,
+                                        243.0
                                     ],
                                     "order": 0,
                                     "source": [
-                                        "obj-15",
+                                        "obj-12",
                                         0
                                     ]
                                 }
@@ -1820,13 +1847,45 @@
                                         "obj-38",
                                         0
                                     ],
+                                    "order": 1,
+                                    "source": [
+                                        "obj-12",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-12",
+                                        0
+                                    ],
                                     "midpoints": [
-                                        144.5,
+                                        84.5,
                                         161.0,
-                                        565.0,
+                                        505.0,
                                         161.0
                                     ],
                                     "order": 1,
+                                    "source": [
+                                        "obj-15",
+                                        0
+                                    ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-24",
+                                        0
+                                    ],
+                                    "midpoints": [
+                                        84.5,
+                                        161.0,
+                                        265.0,
+                                        161.0
+                                    ],
+                                    "order": 2,
                                     "source": [
                                         "obj-15",
                                         0
@@ -1840,12 +1899,12 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        144.5,
+                                        84.5,
                                         191.0,
-                                        144.5,
+                                        84.5,
                                         191.0
                                     ],
-                                    "order": 2,
+                                    "order": 0,
                                     "source": [
                                         "obj-15",
                                         0
@@ -1901,13 +1960,13 @@
                                         0
                                     ],
                                     "midpoints": [
-                                        144.5,
+                                        84.5,
                                         476.0,
-                                        426.0,
+                                        390.0,
                                         476.0,
-                                        426.0,
+                                        390.0,
                                         329.0,
-                                        459.5,
+                                        452.5,
                                         329.0
                                     ],
                                     "order": 0,

@@ -723,7 +723,7 @@
                                         315.0,
                                         40.0
                                     ],
-                                    "text": "The fl.frommax~ object accepts multiple values. This can be useful for converting lists into frames.",
+                                    "text": "The fl.frommax~ object accepts multiple values. This allows you to convert lists into frames.",
                                     "textjustification": 1
                                 }
                             },
@@ -1146,10 +1146,10 @@
                                     "patching_rect": [
                                         360.0,
                                         600.0,
-                                        255.0,
+                                        257.0,
                                         50.0
                                     ],
-                                    "text": "In params mode each message from Max is sent only once (on the first trigger frame after it is received).",
+                                    "text": "In 'params' mode each message from Max is sent only once (on the first trigger frame after it is received).",
                                     "textjustification": 1
                                 }
                             },
@@ -1166,7 +1166,7 @@
                                         255.0,
                                         50.0
                                     ],
-                                    "text": "Note that in values mode the frame will be repeated each time the object is triggered until a new input is received.",
+                                    "text": "Note that in 'values' mode the frame will be repeated each time the object is triggered until a new input is received.",
                                     "textjustification": 1
                                 }
                             },
@@ -1332,7 +1332,7 @@
                                         1.0
                                     ],
                                     "setstyle": 1,
-                                    "size": 2,
+                                    "size": 5,
                                     "slidercolor": [
                                         0.815686274509804,
                                         0.341176470588235,
@@ -1501,7 +1501,7 @@
                                         1.0
                                     ],
                                     "setstyle": 1,
-                                    "size": 17,
+                                    "size": 5,
                                     "slidercolor": [
                                         0.815686274509804,
                                         0.341176470588235,
@@ -1602,7 +1602,7 @@
                                         609.0,
                                         79.0
                                     ],
-                                    "text": "The fl.frommax~ object acts as an interface between Max control rate messages and FrameLib. It can operate in two modes (value and params). \n\nA scheduler or trigger frame is required for fl.frommax~ to send out any received messages from the Max domain."
+                                    "text": "The fl.frommax~ object acts as an interface between Max control rate messages and FrameLib. It can operate in two modes ('values' and 'params'). \n\nA scheduler or trigger frame is required for fl.frommax~ to send out any received messages from the Max domain."
                                 }
                             },
                             {
@@ -1677,7 +1677,7 @@
                                         262.0,
                                         69.0
                                     ],
-                                    "text": "In params mode fl.frommax~ the input syntax changes. The incoming message is prepended with the desired tag.",
+                                    "text": "In 'params' mode fl.frommax~ the input syntax changes. The incoming message is prepended with the desired tag.",
                                     "textjustification": 1
                                 }
                             },
@@ -1696,7 +1696,7 @@
                                         181.0,
                                         69.0
                                     ],
-                                    "text": "In values mode fl.frommax~ passes the raw value(s) into a vector frame.",
+                                    "text": "In 'values' mode fl.frommax~ passes the raw value(s) into a vector frame.",
                                     "textjustification": 1
                                 }
                             }

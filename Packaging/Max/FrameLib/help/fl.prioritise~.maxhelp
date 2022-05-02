@@ -192,8 +192,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            0.0,
-                            26.0,
+                            34.0,
+                            113.0,
                             611.0,
                             594.0
                         ],
@@ -352,7 +352,7 @@
                                         555.0,
                                         94.0
                                     ],
-                                    "text": "Two schedulers are set with one twice the speed of the other. This means that every second arrival of the fastest scheduler the slow scheduler arrives simultaneously.\n\nfl.prioritise~ is prioritising the lower (slower) input, so even though these two frame arrive simultaneously, the slower one is the output whenever it arrives and the faster one only every other trigger.",
+                                    "text": "Here two schedulers are operating with one twice the speed of the other. This means that for every second arrival of the fastest scheduler the slow scheduler arrives simultaneously.\n\nfl.prioritise~ is prioritising the lower (slower) input, so when these two frames arrive simultaneously, the slower one is always output whereas the faster one is prioritised only every other trigger.",
                                     "textjustification": 1
                                 }
                             },
@@ -861,8 +861,8 @@
                         },
                         "classnamespace": "box",
                         "rect": [
-                            34.0,
-                            113.0,
+                            0.0,
+                            26.0,
                             611.0,
                             594.0
                         ],

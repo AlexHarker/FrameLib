@@ -319,17 +319,17 @@
                             {
                                 "box": {
                                     "id": "obj-37",
-                                    "linecount": 2,
+                                    "linecount": 3,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        214.25,
-                                        333.5,
-                                        346.0,
-                                        36.0
+                                        201.25,
+                                        317.5,
+                                        385.75,
+                                        50.0
                                     ],
-                                    "text": "fl.interval~ is the most common scheduler - it's FrameLib's metro, but unlike metro it is sub-sample accurate",
+                                    "text": "fl.interval~ is the most common scheduler:\n\nIt's FrameLib's metro, but unlike metro it is sub-sample accurate!",
                                     "textjustification": 1
                                 }
                             },

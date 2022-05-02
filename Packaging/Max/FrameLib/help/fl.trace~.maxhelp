@@ -447,7 +447,7 @@
                                         616.0,
                                         65.0
                                     ],
-                                    "text": "The fl.trace~ object gives you  more fine grained control over which parts of a frame you want to convert to an MSP signal. This might be more suitable than using fl.sink~ for making audio rate control signals for example, or fl.tomax~'s output to control data is not what you want. Using the /position  parameter, you can specify different indices of a frame to be output or alternatively the whole frame can be output."
+                                    "text": "The fl.trace~ object gives you fine grained control over which parts of a frame you want to convert to an MSP signal. This might be more suitable than using fl.sink~ for making audio rate control signals (assuming fl.tomax~'s output to control data is also not what you want). Using the /position  parameter, you can specify different indices of a frame to be output or alternatively the whole frame can be output."
                                 }
                             },
                             {

@@ -323,7 +323,7 @@
                                         256.0,
                                         25.0
                                     ],
-                                    "text": "Turn up tfor granular filter sweeping fun!"
+                                    "text": "Turn up for granular filter sweeping fun!"
                                 }
                             },
                             {

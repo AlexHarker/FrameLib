@@ -439,6 +439,7 @@
                             {
                                 "box": {
                                     "fontname": "Arial",
+                                    "fontsize": 13.0,
                                     "id": "obj-8",
                                     "linecount": 3,
                                     "maxclass": "comment",
@@ -447,10 +448,10 @@
                                     "patching_rect": [
                                         15.0,
                                         75.0,
-                                        465.0,
+                                        468.0,
                                         50.0
                                     ],
-                                    "text": "fl.convert~ is the primary tool for converting between common units that don't relate to the sample rate. This includes conversion between amplitude and decibels, midi and frequency, semitones and ratios and degrees and radians."
+                                    "text": "fl.convert~ is FrameLib's go to tool for converting between common units that aren't related to the sample rate. It provides conversion between amplitude/decibels, midi note/frequency, semitones/ratios, and degrees/radians."
                                 }
                             },
                             {

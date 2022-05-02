@@ -3148,10 +3148,10 @@
                                     "patching_rect": [
                                         30.0,
                                         540.0,
-                                        555.0,
+                                        600.0,
                                         94.0
                                     ],
-                                    "text": "The available options are:\n\nwrap -  reads shorter imputs in a wrapped manner (the output is as long as the longest input)\nshrink - the output is as long as the shortest input and other values are discarded\npad_in - extends shorter inputs by padding them with the parameter padding value\npad_out - extends the output for missing values by padding it with the padding parameter value"
+                                    "text": "The available options are:\n\nwrap -  the shorter input is read modulo against the longer one (output is as long as the longest input)\nshrink - the output is as long as the shortest input and other values are discarded\npad_in - extends the shorter input by padding them with the parameter padding value\npad_out - extends the output by padding it with the padding parameter value"
                                 }
                             },
                             {
@@ -3182,7 +3182,7 @@
                                         432.0,
                                         21.0
                                     ],
-                                    "text": "Note that the padding value detaults to zero, but can be set by parameter.",
+                                    "text": "Note that the padding value defaults to zero, but can be set by parameter.",
                                     "textjustification": 1
                                 }
                             },
