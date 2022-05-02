@@ -864,7 +864,7 @@
                                     "id": "obj-5",
                                     "maxclass": "flonum",
                                     "maximum": 1.0,
-                                    "minimum": 0.0,
+                                    "minimum": -1.0,
                                     "numinlets": 1,
                                     "numoutlets": 2,
                                     "outlettype": [
@@ -1513,7 +1513,7 @@
                                     ],
                                     "setstyle": 1,
                                     "signed": 1,
-                                    "size": 11,
+                                    "size": 17,
                                     "spacing": 2,
                                     "slidercolor": [
                                         0.556862745098039,
@@ -1564,7 +1564,7 @@
                                 "box": {
                                     "id": "obj-15",
                                     "maxclass": "number",
-                                    "maximum": 1000000,
+                                    "maximum": 50,
                                     "minimum": 2,
                                     "numinlets": 1,
                                     "numoutlets": 2,

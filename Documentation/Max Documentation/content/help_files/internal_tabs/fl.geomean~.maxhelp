@@ -215,8 +215,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 138.0, 149.0, 223.0, 25.0 ],
-									"text" : "Trigger frame every 4096 samples"
+									"patching_rect" : [ 138.0, 149.0, 275.0, 25.0 ],
+									"text" : "Creates trigger frames every 4096 samples"
 								}
 
 							}

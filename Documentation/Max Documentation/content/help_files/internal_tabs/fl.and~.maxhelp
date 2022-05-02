@@ -205,8 +205,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 165.0, 395.0, 221.0, 40.0 ],
-									"text" : "When both of the inputs is non-zero the output of fl.and~ is 1",
+									"patching_rect" : [ 165.0, 395.0, 210.0, 40.0 ],
+									"text" : "When both inputs are non-zero the output of fl.and~ is 1",
 									"textjustification" : 1
 								}
 

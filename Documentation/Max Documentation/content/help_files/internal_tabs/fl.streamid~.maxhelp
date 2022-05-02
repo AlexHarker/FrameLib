@@ -176,12 +176,13 @@
 									"bubble" : 1,
 									"fontsize" : 13.0,
 									"id" : "obj-75",
-									"linecount" : 10,
+									"linecount" : 9,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 337.5, 277.5, 303.0, 156.0 ],
-									"text" : "Using the result of the calculation sets the intervals for the fl.interval~ object separately in the two streams (one every 512 and one every 1024).\n\nWe also divide those values by 2 and use these values to set the length for each stream. \n\nThus, each stream has frames that are half the length of the interval between frames."
+									"patching_rect" : [ 337.5, 279.5, 322.5, 141.0 ],
+									"text" : "Using the result of the calculation sets the intervals for the fl.interval~ object separately in the two streams (one every 512 and one every 1024).\n\nWe also divide those values by 2 and use these values to set the length for each stream. \n\nThus, each stream has frames that are half the length of the interval between frames.",
+									"textjustification" : 1
 								}
 
 							}

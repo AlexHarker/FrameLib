@@ -63,7 +63,7 @@
         "digest": "Calculates the centroid of the input frame"
     },
     "fl.medianfilter~": {
-        "digest": "Applies a median or other specified percentiled filter to the input"
+        "digest": "Applies a median or other specified percentile filter to the input"
     },
     "fl.lookup~": {
         "digest": "Lookup values from one input using a table provided at another"
@@ -378,7 +378,7 @@
         "digest": "Generates a linear ramp across each output frame"
     },
     "fl.tag~": {
-        "digest": "Tags vectors with tags either in order to set parameters or for routing purposes"
+        "digest": "Adds tags to vectors either in order to set parameters or for routing purposes"
     },
     "fl.timestddev~": {
         "digest": "Calculates the standard deviation per sample over the most recent frames"

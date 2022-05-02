@@ -58,9 +58,9 @@ class FrameLib_TernaryOp final : public FrameLib_Processor
         ParameterInfo()
         {
             add("Sets the mode used when dealing with mismatched input lengths: "
-                "wrap - smaller right inputs are read modulo against larger left input. "
-                "shrink - the output length is set to the length of the smaller input. "
-                "extend - smaller right inputs are extended by repeating their final value.");
+                "wrap - shorter right inputs are read modulo against longer left input. "
+                "shrink - the output length is set to the length of the shorter input. "
+                "extend - shorter right inputs are extended by repeating their final value.");
         }
     };
     

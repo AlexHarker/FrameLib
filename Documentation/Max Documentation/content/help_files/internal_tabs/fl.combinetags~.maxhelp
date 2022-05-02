@@ -200,8 +200,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 90.0, 649.5, 505.0, 36.0 ],
-									"text" : "fl.combinetags~ allows you to set several parameters from separate frames given that FrameLib objects have only one parameter update inlet."
+									"patching_rect" : [ 90.0, 649.5, 471.0, 36.0 ],
+									"text" : "fl.combinetags~ allows you to set several parameters of an object from separate inputs given that FrameLib objects have only one parameter update inlet.",
+									"textjustification" : 1
 								}
 
 							}

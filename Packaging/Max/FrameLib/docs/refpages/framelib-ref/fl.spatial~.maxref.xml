@@ -5,7 +5,7 @@
     Generates multiplication factors for a set of speakers positioned in 3D
   </digest>
   <description>
-    The core underlying algorithm is DBAP (distance-based amplitude panning). Input may use cartesian [x, y, z] or spherical [radius, azimuth, elevation] coordinates. Angles may be set using degrees or radians. 2D operation can be achieved by setting all z or elevation values to zero. Missing values at any input are assumed to be zero. Note that the orientation of the spherical coordinates can be adjusted as required. The output size is equal to that of the largest input.
+    The core underlying algorithm is DBAP (distance-based amplitude panning). Input may use cartesian [x, y, z] or spherical [radius, azimuth, elevation] coordinates. Angles may be set using degrees or radians. 2D operation can be achieved by setting all z or elevation values to zero. Missing values at any input are assumed to be zero. Note that the orientation of the spherical coordinates can be adjusted as required. The output size is equal to that of the longest input.
   </description>
   <misc name="Parameters">
     <entry name="/angles [enum]">
@@ -30,7 +30,7 @@
     </entry>
     <entry name="/constrain [enum]">
       <description>
-        Sets the method for constraining positions outside of the speaker array:<p /><bullet>[0] - <m>off</m> - suitable when the input is already within the speaker array (most efficient).</bullet><bullet>[1] - <m>hemisphere</m> - restrict to the upper hemisphere of the sphere described below.</bullet><bullet>[2] - <m>sphere</m> - restrict to the smallest sphere centred at the origin containing all speakers.</bullet><bullet>[3] - <m>hull</m> - restrict to the convex hull of the speaker array (least efficient / always correct.</bullet><p /><i>(default: <m>hull</m>)</i>
+        Sets the method for constraining positions outside of the speaker array:<p /><bullet>[0] - <m>off</m> - suitable when the input is already within the speaker array (most efficient).</bullet><bullet>[1] - <m>hemisphere</m> - restrict to the upper hemisphere of the sphere described below.</bullet><bullet>[2] - <m>sphere</m> - restrict to the smallest sphere centred at the origin containing all speakers.</bullet><bullet>[3] - <m>hull</m> - restrict to the convex hull of the speaker array (least efficient / always correct).</bullet><p /><i>(default: <m>hull</m>)</i>
       </description>
     </entry>
     <entry name="/speakers [variable length double array]">
@@ -115,7 +115,7 @@
         Sets the method for constraining positions outside of the speaker array
       </digest>
       <description>
-        This argument sets the constrain parameter:<p /><p />Sets the method for constraining positions outside of the speaker array:<p /><bullet>[0] - <m>off</m> - suitable when the input is already within the speaker array (most efficient).</bullet><bullet>[1] - <m>hemisphere</m> - restrict to the upper hemisphere of the sphere described below.</bullet><bullet>[2] - <m>sphere</m> - restrict to the smallest sphere centred at the origin containing all speakers.</bullet><bullet>[3] - <m>hull</m> - restrict to the convex hull of the speaker array (least efficient / always correct.</bullet><p /><i>(default: <m>hull</m>)</i>
+        This argument sets the constrain parameter:<p /><p />Sets the method for constraining positions outside of the speaker array:<p /><bullet>[0] - <m>off</m> - suitable when the input is already within the speaker array (most efficient).</bullet><bullet>[1] - <m>hemisphere</m> - restrict to the upper hemisphere of the sphere described below.</bullet><bullet>[2] - <m>sphere</m> - restrict to the smallest sphere centred at the origin containing all speakers.</bullet><bullet>[3] - <m>hull</m> - restrict to the convex hull of the speaker array (least efficient / always correct).</bullet><p /><i>(default: <m>hull</m>)</i>
       </description>
     </objarg>
   </objarglist>

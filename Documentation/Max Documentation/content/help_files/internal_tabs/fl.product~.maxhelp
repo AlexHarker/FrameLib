@@ -178,8 +178,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 147.0, 149.0, 182.0, 25.0 ],
-									"text" : "Count from 0 to (length - 1)"
+									"patching_rect" : [ 147.0, 149.0, 188.0, 25.0 ],
+									"text" : "Counts from 0 to (length - 1)"
 								}
 
 							}

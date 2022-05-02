@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 516.0, 614.0 ],
+		"rect" : [ 34.0, 87.0, 516.0, 566.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 516.0, 588.0 ],
+						"rect" : [ 0.0, 26.0, 516.0, 540.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 516.0, 588.0 ],
+						"rect" : [ 34.0, 113.0, 516.0, 540.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -155,12 +155,13 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 364.0, 339.0, 45.0, 45.0 ]
+									"patching_rect" : [ 364.0, 294.0, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"hidden" : 1,
 									"id" : "obj-47",
 									"maxclass" : "newobj",
 									"numinlets" : 0,
@@ -324,7 +325,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 30.0, 90.0, 66.0, 23.0 ],
+									"patching_rect" : [ 30.0, 60.0, 66.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -347,7 +348,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 435.0, 225.0, 120.0 ],
+									"patching_rect" : [ 30.0, 390.0, 225.0, 120.0 ],
 									"setminmax" : [ 0.0, 10.0 ],
 									"size" : 256,
 									"slidercolor" : [ 1.0, 0.227450980392157, 0.92156862745098, 1.0 ]
@@ -362,7 +363,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 350.0, 59.0, 23.0 ],
+									"patching_rect" : [ 30.0, 305.0, 59.0, 23.0 ],
 									"text" : "fl.round~"
 								}
 
@@ -374,7 +375,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 390.0, 62.0, 23.0 ],
+									"patching_rect" : [ 30.0, 345.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -389,7 +390,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 30.0, 135.0, 225.0, 120.0 ],
+									"patching_rect" : [ 30.0, 90.0, 225.0, 120.0 ],
 									"setminmax" : [ 0.0, 10.0 ],
 									"size" : 256,
 									"slidercolor" : [ 1.0, 0.227450980392157, 0.92156862745098, 1.0 ]
@@ -403,7 +404,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 270.0, 75.0, 23.0 ],
+									"patching_rect" : [ 60.0, 225.0, 75.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -415,7 +416,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 310.0, 77.0, 23.0 ],
+									"patching_rect" : [ 30.0, 265.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -427,7 +428,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 260.0, 482.5, 118.0, 25.0 ],
+									"patching_rect" : [ 260.0, 437.5, 118.0, 25.0 ],
 									"text" : "Rounded output"
 								}
 
@@ -440,7 +441,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 262.0, 175.0, 216.0, 40.0 ],
+									"patching_rect" : [ 262.0, 130.0, 216.0, 40.0 ],
 									"text" : "Create a list containing floating point numbers between 0 and 10"
 								}
 
@@ -472,7 +473,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-12", 0 ],
-									"midpoints" : [ 69.5, 303.5, 39.5, 303.5 ],
+									"midpoints" : [ 69.5, 258.5, 39.5, 258.5 ],
 									"source" : [ "obj-13", 0 ]
 								}
 
@@ -501,6 +502,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-18", 0 ],
+									"hidden" : 1,
 									"source" : [ "obj-47", 0 ]
 								}
 

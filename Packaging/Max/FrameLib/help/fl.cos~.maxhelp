@@ -500,10 +500,10 @@
                                     "patching_rect": [
                                         201.0,
                                         422.5,
-                                        124.0,
+                                        138.0,
                                         25.0
                                     ],
-                                    "text": "A cosine function"
+                                    "text": "The cosine function"
                                 }
                             },
                             {

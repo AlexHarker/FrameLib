@@ -423,7 +423,7 @@ FrameLib_ComplexExpression::ParameterInfo::ParameterInfo()
         "Unary Functions { log log10 exp conj sqrt }. "
         "Binary Functions { pow }.");
     add("Sets the mode used when dealing with mismatched input lengths: "
-        "wrap - smaller input pairs are read modulo against the longest input pair. "
+        "wrap - shorter input pairs are read modulo against the longest input pair. "
         "shrink - the output length is set to that of the shortest input pair. "
         "extend - if required input pairs are extended by repeating their final value.");
     add("Sets which input pairs trigger output using an array of bools. "

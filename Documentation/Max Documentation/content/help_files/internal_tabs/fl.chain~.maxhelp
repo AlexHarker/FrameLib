@@ -106,7 +106,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 450.5, 420.0, 108.0 ],
-									"text" : "replace - cancels and previoulsy scheduled frames.\n\nadd - any new frames to those already scheduled\n\nappend - only schedule beyond the end of the currently scheduled frames (for /time set to interval that means the new timings are relative to the end of those already scheduled."
+									"text" : "replace - cancels and previously scheduled frames.\n\nadd - any new frames to those already scheduled.\n\nappend - only schedule beyond the end of the currently scheduled frames (for /time set to interval that means the new timings are relative to the end of those already scheduled."
 								}
 
 							}
@@ -537,7 +537,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 100.5, 538.0, 510.0, 108.0 ],
-									"text" : "fl.chain~ allows you to schedule in the future in a fixed pattern of timings. \n\nUnits can be set to samples milliseconds or seconds and there are three different time modes. \n\nFinally there are three modes that deal with how new values interact with previously scheduled"
+									"text" : "fl.chain~ allows you to schedule in the future in a fixed pattern of timings. \n\nUnits can be set to samples, milliseconds, or seconds and there are three different time modes. \n\nFinally, there are three modes that deal with how new values interact with previously scheduled values."
 								}
 
 							}
@@ -549,7 +549,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 288.0, 158.5, 338.0, 36.0 ],
-									"text" : "Note that when you choose relative the list gets sorted in order, as it is interpreted as a set of timings from now."
+									"text" : "Note that when you choose 'relative' the list gets sorted in order, as it is interpreted as a set of timings from now."
 								}
 
 							}

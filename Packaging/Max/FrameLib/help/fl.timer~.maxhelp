@@ -308,7 +308,7 @@
                                     "numinlets": 2,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        30.0,
+                                        307.5,
                                         510.0,
                                         45.0,
                                         45.0

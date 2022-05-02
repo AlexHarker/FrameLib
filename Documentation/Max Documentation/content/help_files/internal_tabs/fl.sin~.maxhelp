@@ -294,8 +294,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 208.0, 422.5, 110.0, 25.0 ],
-									"text" : "A sine function"
+									"patching_rect" : [ 208.0, 422.5, 125.0, 25.0 ],
+									"text" : "The sine function"
 								}
 
 							}

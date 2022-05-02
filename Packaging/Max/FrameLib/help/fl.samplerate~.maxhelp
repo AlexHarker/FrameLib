@@ -319,17 +319,17 @@
                             {
                                 "box": {
                                     "id": "obj-6",
-                                    "linecount": 3,
+                                    "linecount": 4,
                                     "maxclass": "comment",
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        371.25,
-                                        241.0,
-                                        247.5,
-                                        50.0
+                                        381.5625,
+                                        226.0,
+                                        226.875,
+                                        65.0
                                     ],
-                                    "text": "The /normalisation parameter controls whether the sample rate or the nyquist is referenced to 1 for normalised frequency.",
+                                    "text": "The /normalisation parameter selects the reference value (equivalent to 1) for normalised frequency (the sample rate or the nyquist frequency)",
                                     "textjustification": 1
                                 }
                             },

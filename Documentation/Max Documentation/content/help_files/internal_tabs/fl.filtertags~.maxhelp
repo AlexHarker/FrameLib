@@ -277,7 +277,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 75.0, 570.0, 50.0 ],
-									"text" : "fl.filtertags~ can be used to extract frames tagged with specific names. This allows you to route a subset of tagged frames from a combined tagge input. A case where this might be particularly relevant is to avoid duplicate fl.tags~ everywhere in order to re-use the same values."
+									"presentation_linecount" : 3,
+									"text" : "fl.filtertags~ can be used to extract vectors tagged with specific names. This allows you to route a subset of the tagged vectors found within the input frame. This might be relevant if you wish to avoid untagging and retagging frames for reuse for more than one object."
 								}
 
 							}

@@ -120,7 +120,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 165.0, 240.0, 444.0, 25.0 ],
-									"text" : "Synthesizes a cosine that doesn't line up exaclty with sample boundaries"
+									"text" : "Synthesizes a cosine that doesn't line up exactly with sample boundaries"
 								}
 
 							}
@@ -293,7 +293,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 75.0, 630.0, 79.0 ],
-									"text" : "By default fl.source~ grabs the nearest samples to the ones you asked for and copies them exactly without interpolation. However, if you require subsample accuracy you can switch interpolation on. \n\nThis may be more expensive on the CPU but it might make a difference for certain detailed processes requiring very precise timing."
+									"text" : "By default fl.source~ grabs the nearest samples to the ones you asked for and copies them exactly without interpolation. However, if you require subsample accuracy you can switch interpolation on. \n\nThis is more expensive on the CPU but it might make a difference for certain processes requiring very precise timing."
 								}
 
 							}
@@ -601,7 +601,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 278.0, 601.0, 344.0, 156.0 ],
-									"text" : "You can also manually set the delay of the fl.source~ object in order to compensate for other delays that might be incurred elsewhere in a FrameLib network or to add delay (e.g. for a live granular process). \n\nNote, this cannot magically warp your fl.source~ object through time! and this value only has an effect when it is greater than the /length parameter. Experiment by changing the delay amount above and observing how well the signals null sum.",
+									"text" : "You can also manually set the delay of the fl.source~ object in order to compensate for other delays that might be incurred elsewhere in a FrameLib network or to add delay (e.g. for a live granular process). \n\nNote, this cannot magically warp your fl.source~ object through time and this value only has an effect when it is greater than the /length parameter! Experiment by changing the delay amount above and observing how well the signals null sum.",
 									"textjustification" : 1
 								}
 
@@ -1172,6 +1172,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-30",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,

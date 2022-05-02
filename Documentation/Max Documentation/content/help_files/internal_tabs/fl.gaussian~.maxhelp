@@ -541,7 +541,7 @@
 									"id" : "obj-5",
 									"maxclass" : "flonum",
 									"maximum" : 1.0,
-									"minimum" : 0.0,
+									"minimum" : -1.0,
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],

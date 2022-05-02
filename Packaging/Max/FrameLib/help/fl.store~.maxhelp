@@ -366,7 +366,8 @@
                                         355.0,
                                         214.0
                                     ],
-                                    "text": "This patch accumulates random values, reseting every 20 ticks from the fl.interval~ on the top left.\n\nIt demonstrates one way to set up feedback within FrameLib networks.\n\nThe green and red cables ensure that the ordering between different parts of the network is correct. For instance, if the initial frames are not written first (top right from fl.once~) then the recalls to the left at the top will return an empty frame and the patch won't work. \n\nNote that the patch migth work without them, but is only guaranteed to work if the connections are made.",
+                                    "presentation_linecount": 14,
+                                    "text": "This patch accumulates random values, reseting every 20 ticks from the fl.interval~ on the top left.\n\nIt demonstrates one way to set up feedback within FrameLib networks.\n\nThe green and red patchcords ensure that the ordering between different parts of the network is correct. For instance, if the initial frames are not written first (top right from fl.once~) then the recalls to the left at the top will return an empty frame and the patch won't work. \n\nThe patch may work without these patchcords, but is only guaranteed to work if the connections are made.",
                                     "textjustification": 1
                                 }
                             },

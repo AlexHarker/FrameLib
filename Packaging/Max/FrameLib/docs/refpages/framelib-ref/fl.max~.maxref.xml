@@ -5,12 +5,12 @@
     Calculates the maximums of pairs of values in the two input frames
   </digest>
   <description>
-    Calculation is performed on pairs of values in turn. The output is a frame at least as long as the smaller of the two inputs. If inputs mismatch in length the result depends on the mismatch parameter. Either or both inputs may be set to trigger output.
+    Calculation is performed on pairs of values in turn. The output is a frame at least as long as the shorter of the two inputs. If inputs mismatch in length the result depends on the mismatch parameter. Either or both inputs may be set to trigger output.
   </description>
   <misc name="Parameters">
     <entry name="/mismatch [enum]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the mode used when dealing with mismatched input lengths:<p /><bullet>[0] - <m>wrap</m> - the smaller input is read modulo against the larger input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the smaller input.</bullet><bullet>[2] - <m>pad_in</m> - the smaller input is padded prior to calculation to match the larger input.</bullet><bullet>[3] - <m>pad_out</m> - the output is padded to match the length of the larger input.</bullet><p /><i>(default: <m>wrap</m>)</i>
+        <h6><i>INSTANTIATION ONLY</i></h6>Sets the mode used when dealing with mismatched input lengths:<p /><bullet>[0] - <m>wrap</m> - the shorter input is read modulo against the longer input.</bullet><bullet>[1] - <m>shrink</m> - the output length is set to that of the shorter input.</bullet><bullet>[2] - <m>pad_in</m> - the shorter input is padded prior to calculation to match the longer input.</bullet><bullet>[3] - <m>pad_out</m> - the output is padded to match the length of the longer input.</bullet><p /><i>(default: <m>wrap</m>)</i>
       </description>
     </entry>
     <entry name="/trigger_ins [enum]">

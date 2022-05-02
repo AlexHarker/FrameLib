@@ -151,6 +151,21 @@
 						"boxes" : [ 							{
 								"box" : 								{
 									"bubble" : 1,
+									"bubblepoint" : 0.1,
+									"bubbleside" : 2,
+									"id" : "obj-53",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 495.0, 238.0, 125.0, 40.0 ],
+									"text" : "Non-symbolic name",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
 									"bubbleside" : 2,
 									"id" : "obj-18",
 									"maxclass" : "comment",
@@ -226,20 +241,6 @@
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 375.0, 390.0, 77.0, 23.0 ],
 									"text" : "5. 6. 7. 8. 9."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bubble" : 1,
-									"bubbleside" : 2,
-									"id" : "obj-53",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 457.5, 210.0, 125.0, 40.0 ],
-									"text" : "Non-symbolic name",
-									"textjustification" : 1
 								}
 
 							}

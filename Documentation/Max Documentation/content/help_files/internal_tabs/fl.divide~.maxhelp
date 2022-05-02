@@ -151,6 +151,21 @@
 						"boxes" : [ 							{
 								"box" : 								{
 									"bubble" : 1,
+									"bubblepoint" : 0.1,
+									"bubbleside" : 2,
+									"id" : "obj-53",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 495.0, 238.0, 125.0, 40.0 ],
+									"text" : "Non-symbolic name",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bubble" : 1,
 									"bubbleside" : 2,
 									"id" : "obj-18",
 									"maxclass" : "comment",
@@ -187,20 +202,6 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 45.0, 420.0, 247.0, 40.0 ],
 									"text" : "Change the input values to see the result"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bubble" : 1,
-									"bubbleside" : 2,
-									"id" : "obj-53",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 462.5, 210.0, 125.0, 40.0 ],
-									"text" : "Non-symbolic name",
-									"textjustification" : 1
 								}
 
 							}

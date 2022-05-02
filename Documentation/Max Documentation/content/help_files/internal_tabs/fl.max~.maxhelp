@@ -495,7 +495,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 522.5, 510.0, 45.0, 45.0 ]
+									"patching_rect" : [ 409.0, 499.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -506,8 +506,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 304.5, 580.0, 222.0, 25.0 ],
-									"text" : "The output is the max of each pair"
+									"patching_rect" : [ 304.5, 580.0, 254.0, 25.0 ],
+									"text" : "The output is the maximum of each pair"
 								}
 
 							}

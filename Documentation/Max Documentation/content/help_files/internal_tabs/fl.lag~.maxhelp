@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 692.0, 570.0 ],
+						"rect" : [ 34.0, 113.0, 692.0, 570.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -93,8 +93,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 300.0, 486.0, 343.0, 65.0 ],
-									"text" : "pad - pads the output with values from the reset frame (or the /pad parameter)\n\nshorten -  uses the oldest frame received so far"
+									"patching_rect" : [ 300.0, 486.0, 357.0, 65.0 ],
+									"text" : "pad - pads the output with values from the reset frame (or the /pad parameter)\n\nshorten - uses the oldest frame received so far"
 								}
 
 							}
@@ -561,7 +561,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 113.0, 692.0, 570.0 ],
+						"rect" : [ 0.0, 26.0, 692.0, 570.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -634,7 +634,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 30.0, 525.0, 516.0, 21.0 ],
-									"text" : "fl.lag~ is a frame-based delay. It might be useful for sycnronising processes with latency."
+									"text" : "fl.lag~ is a frame-based delay. It might be useful for sychronising processes with latency."
 								}
 
 							}

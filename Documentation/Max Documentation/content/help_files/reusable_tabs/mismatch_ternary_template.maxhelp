@@ -120,8 +120,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 525.0, 541.0, 79.0 ],
-									"text" : "The options are:\n\nwrap -  reads shorter imputs in a wrapped manner (the output is as long as the longest input)\nshrink - the output is as long as the shortest input, other values are discarded\nextend - extends shorter inputs by padding them with their final value"
+									"patching_rect" : [ 30.0, 525.0, 599.0, 79.0 ],
+									"text" : "The options are:\n\nwrap -  shorter inputs are read modulo against the longest one (output is as long as the longest input)\nshrink - the output is as long as the shortest input and other values are discarded\nextend - extends shorter inputs by padding them with their final value"
 								}
 
 							}
@@ -135,17 +135,6 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 75.0, 608.0, 65.0 ],
 									"text" : "FrameLib ternary operators objects have a configurable logic for dealing with scenarios where there is a mismatch between the lengths of different inputs. \n\nThis is done via the /mismatch parameter. See how these operate in practice for fl.fold~ below:"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-21",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 184.5, 345.0, 258.0, 21.0 ],
-									"text" : "See inside for details of how this is patched"
 								}
 
 							}
@@ -469,7 +458,7 @@
 										"tags" : ""
 									}
 ,
-									"text" : "p tenrary_mismatch"
+									"text" : "p ternary_mismatch"
 								}
 
 							}
