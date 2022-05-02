@@ -452,7 +452,7 @@ std::string FrameLib_Spatial::objectInfo(bool verbose)
                       "2D operation can be achieved by setting all z or elevation values to zero. "
                       "Missing values at any input are assumed to be zero. "
                       "Note that the orientation of the spherical coordinates can be adjusted as required. "
-                      "The output size is equal to that of the largest input.",
+                      "The output size is equal to that of the longest input.",
                       "Generates multiplication factors for a set of speakers positioned in 3D.", verbose);
 }
 
