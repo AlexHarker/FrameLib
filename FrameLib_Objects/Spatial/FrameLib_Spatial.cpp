@@ -494,7 +494,7 @@ FrameLib_Spatial::ParameterInfo::ParameterInfo()
         "off - suitable when the input is already within the speaker array (most efficient). "
         "hemisphere - restrict to the upper hemisphere of the sphere described below. "
         "sphere - restrict to the smallest sphere centred at the origin containing all speakers. "
-        "hull - restrict to the convex hull of the speaker array (least efficient / always correct.");
+        "hull - restrict to the convex hull of the speaker array (least efficient / always correct).");
     add("Sets the speaker positions in triples (one triple per speaker). "
         "For cartesian coordinates the values are [x, z, y]. "
         "For spherical coordinates the values are [radius, azimuth, elevation].");
