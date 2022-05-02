@@ -182,8 +182,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 109.0, 675.0, 401.0, 36.0 ],
-									"text" : "Increasing the number of tapers will result in a smoother less noisy spectrum (although the analysis is still only on a single frame)."
+									"patching_rect" : [ 109.0, 675.0, 476.0, 36.0 ],
+									"text" : "Increasing the number of tapers will result in a smoother less noisy spectrum (although the analysis is still only on a single frame).",
+									"textjustification" : 1
 								}
 
 							}

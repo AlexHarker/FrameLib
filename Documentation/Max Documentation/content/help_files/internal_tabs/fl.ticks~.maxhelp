@@ -434,7 +434,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 30.0, 450.0, 585.0, 65.0 ],
-									"text" : "fl.ticks~ is a frame counter that can be driven forwards or backwards in between 0 and the limit - 1. \n\nThe count can be reset, either to the relevant end (according to whether progression is forwards or backwards) or to a specfic value, set by the /reset parameter"
+									"text" : "fl.ticks~ is a frame counter that can be driven forwards or backwards in between 0 and the limit - 1. \n\nThe count can be reset, either to the relevant end (according to whether progression is forwards or backwards) or to a specfic value, as set by the /reset parameter."
 								}
 
 							}
