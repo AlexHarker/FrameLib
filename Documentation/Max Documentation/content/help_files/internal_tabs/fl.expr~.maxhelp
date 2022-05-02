@@ -1462,8 +1462,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 75.0, 615.0, 36.0 ],
-									"text" : "fl.expr~ allows you to create custom expressions in a single object contaning inputs, unary/binary/ternary operators and constants."
+									"patching_rect" : [ 15.0, 75.0, 617.0, 36.0 ],
+									"text" : "fl.expr~ allows you to create custom expressions in a single object containing inputs, unary/binary/ternary operators and constants."
 								}
 
 							}
