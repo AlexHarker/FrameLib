@@ -69,7 +69,7 @@ FrameLib_MovingAverage::ParameterInfo::ParameterInfo()
 {
     add("Sets the alpha value when the average is increasing. "
         "This value is only used if a sufficiently long alpha frame is not present.");
-    add("Sets the alpha value when the average is increasing. "
+    add("Sets the alpha value when the average is decreasing. "
         "This value is only used if a sufficiently long alpha frame is not present.");
     add("Sets the padding value for averages. "
         "This value is only used if a sufficiently long average reset frame is not present.");
