@@ -135,7 +135,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 105.0, 615.0, 457.0, 50.0 ],
-									"text" : "pad - pads the output with values from the reset frame (or the /pad parameter)\n\nshorten -  uses the oldest frame received so far"
+									"text" : "pad - pads the output with values from the reset frame (or the /pad parameter)\n\nshorten - uses the oldest frame received so far"
 								}
 
 							}
@@ -298,6 +298,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-10",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
@@ -533,7 +534,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 369.0, 269.0, 172.0, 25.0 ],
+									"patching_rect" : [ 369.0, 254.0, 172.0, 25.0 ],
 									"text" : "Set the number of frames"
 								}
 
@@ -544,7 +545,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 660.0, 410.0, 21.0 ],
+									"patching_rect" : [ 30.0, 645.0, 410.0, 21.0 ],
 									"text" : "One application for fl.timemean~ might be smoothing spectral signals."
 								}
 
@@ -556,7 +557,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 233.0, 450.0, 335.0, 25.0 ],
+									"patching_rect" : [ 233.0, 435.0, 335.0, 25.0 ],
 									"text" : "Here the input is the FFT magnitude frame in decibels"
 								}
 
@@ -568,7 +569,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 600.0, 45.0, 45.0 ]
+									"patching_rect" : [ 30.0, 585.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -579,7 +580,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 409.0, 579.5, 132.0, 25.0 ],
+									"patching_rect" : [ 409.0, 564.5, 132.0, 25.0 ],
 									"text" : "Observe the result"
 								}
 
@@ -591,7 +592,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 251.0, 137.0, 125.0, 25.0 ],
+									"patching_rect" : [ 251.0, 122.0, 125.0, 25.0 ],
 									"text" : "Play some sound"
 								}
 
@@ -604,7 +605,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 315.0, 224.0, 82.0, 23.0 ],
+									"patching_rect" : [ 315.0, 209.0, 82.0, 23.0 ],
 									"text" : "loadmess 10"
 								}
 
@@ -619,7 +620,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 315.0, 270.0, 50.0, 23.0 ]
+									"patching_rect" : [ 315.0, 255.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -630,7 +631,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 315.0, 314.0, 99.0, 23.0 ],
+									"patching_rect" : [ 315.0, 299.0, 99.0, 23.0 ],
 									"text" : "num_frames $1"
 								}
 
@@ -642,7 +643,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 315.0, 404.0, 124.0, 23.0 ],
+									"patching_rect" : [ 315.0, 389.0, 124.0, 23.0 ],
 									"text" : "fl.frommax~ params"
 								}
 
@@ -806,7 +807,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 105.0, 404.0, 126.0, 23.0 ],
+									"patching_rect" : [ 105.0, 389.0, 126.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -821,12 +822,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-10",
+									"ignoreclick" : 1,
 									"maxclass" : "multislider",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 105.0, 539.0, 299.0, 106.0 ],
+									"patching_rect" : [ 105.0, 524.0, 299.0, 106.0 ],
 									"setminmax" : [ -100.0, 0.0 ],
 									"size" : 257,
 									"slidercolor" : [ 1.0, 0.549019607843137, 0.549019607843137, 1.0 ]
@@ -840,7 +842,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 105.0, 494.0, 62.0, 23.0 ],
+									"patching_rect" : [ 105.0, 479.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -853,7 +855,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 105.0, 451.0, 119.0, 23.0 ],
+									"patching_rect" : [ 105.0, 436.0, 119.0, 23.0 ],
 									"text" : "fl.timemean~ 50 10"
 								}
 
@@ -865,7 +867,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 105.0, 314.0, 183.0, 23.0 ],
+									"patching_rect" : [ 105.0, 299.0, 183.0, 23.0 ],
 									"text" : "fl.window~ /compensate linear"
 								}
 
@@ -887,7 +889,7 @@
 									"numoutlets" : 1,
 									"offset" : [ -4.0, -3.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 105.0, 219.0, 89.0 ],
+									"patching_rect" : [ 30.0, 90.0, 219.0, 89.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -899,7 +901,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 162.0, 224.0, 93.0, 23.0 ],
+									"patching_rect" : [ 162.0, 209.0, 93.0, 23.0 ],
 									"text" : "fl.interval~ 256"
 								}
 
@@ -911,7 +913,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 105.0, 270.0, 133.0, 23.0 ],
+									"patching_rect" : [ 105.0, 255.0, 133.0, 23.0 ],
 									"text" : "fl.source~ /length 512"
 								}
 
@@ -923,7 +925,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 105.0, 359.0, 126.0, 23.0 ],
+									"patching_rect" : [ 105.0, 344.0, 126.0, 23.0 ],
 									"text" : "fl.fft~"
 								}
 
@@ -955,7 +957,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-16", 1 ],
-									"midpoints" : [ 39.5, 583.5, 65.5, 583.5 ],
+									"midpoints" : [ 39.5, 568.5, 65.5, 568.5 ],
 									"order" : 1,
 									"source" : [ "obj-12", 0 ]
 								}
@@ -964,7 +966,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-16", 0 ],
-									"midpoints" : [ 39.5, 396.5, 39.5, 396.5 ],
+									"midpoints" : [ 39.5, 381.5, 39.5, 381.5 ],
 									"order" : 2,
 									"source" : [ "obj-12", 0 ]
 								}
@@ -973,7 +975,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-2", 0 ],
-									"midpoints" : [ 39.5, 231.5, 114.5, 231.5 ],
+									"midpoints" : [ 39.5, 216.5, 114.5, 216.5 ],
 									"order" : 0,
 									"source" : [ "obj-12", 0 ]
 								}
@@ -989,7 +991,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 2 ],
-									"midpoints" : [ 324.5, 437.5, 214.5, 437.5 ],
+									"midpoints" : [ 324.5, 422.5, 214.5, 422.5 ],
 									"source" : [ "obj-18", 0 ]
 								}
 
@@ -1041,7 +1043,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-18", 0 ],
-									"midpoints" : [ 221.5, 392.5, 324.5, 392.5 ],
+									"midpoints" : [ 221.5, 377.5, 324.5, 377.5 ],
 									"order" : 0,
 									"source" : [ "obj-4", 1 ]
 								}
