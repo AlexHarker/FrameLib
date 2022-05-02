@@ -60,7 +60,7 @@
     "fl.copysign~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -99,7 +99,7 @@
     "fl.greaterthaneq~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -141,7 +141,7 @@
     "fl.greaterthan~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -167,7 +167,7 @@
     "fl.complex.minus~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -181,7 +181,7 @@
     "fl.or~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -201,7 +201,7 @@
     "fl.complex.times~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -275,7 +275,7 @@
     "fl.wrap~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - smaller right inputs are read modulo against larger left input.\n[1] - shrink - the output length is set to the length of the smaller input.\n[2] - extend - smaller right inputs are extended by repeating their final value.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - shorter right inputs are read modulo against longer left input.\n[1] - shrink - the output length is set to the length of the shorter input.\n[2] - extend - shorter right inputs are extended by repeating their final value.\n\n(default: wrap)"
         }
     },
     "fl.complex.exp~": {
@@ -309,7 +309,7 @@
     "fl.and~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -383,7 +383,7 @@
     "fl.times~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -407,7 +407,7 @@
     "fl.divide~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -421,7 +421,7 @@
     "fl.minus~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -441,7 +441,7 @@
     "fl.pow~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -509,7 +509,7 @@
     "fl.atan2~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -529,7 +529,7 @@
     "fl.complex.pow~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -555,7 +555,7 @@
     "fl.notequals~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -617,7 +617,7 @@
     "fl.lessthaneq~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -703,7 +703,7 @@
     "fl.max~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -1017,7 +1017,7 @@
     "fl.plus~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -1087,7 +1087,7 @@
         },
         "2": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - smaller input pairs are read modulo against the longest input pair.\n[1] - shrink - the output length is set to that of the shortest input pair.\n[2] - extend - if required input pairs are extended by repeating their final value.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - shorter input pairs are read modulo against the longest input pair.\n[1] - shrink - the output length is set to that of the shortest input pair.\n[2] - extend - if required input pairs are extended by repeating their final value.\n\n(default: wrap)"
         },
         "3": {
             "name": "/trigger_ins [variable length bool array]",
@@ -1161,7 +1161,7 @@
     "fl.modulo~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -1203,13 +1203,13 @@
     "fl.fold~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - smaller right inputs are read modulo against larger left input.\n[1] - shrink - the output length is set to the length of the smaller input.\n[2] - extend - smaller right inputs are extended by repeating their final value.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - shorter right inputs are read modulo against longer left input.\n[1] - shrink - the output length is set to the length of the shorter input.\n[2] - extend - shorter right inputs are extended by repeating their final value.\n\n(default: wrap)"
         }
     },
     "fl.lessthan~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -1289,7 +1289,7 @@
     "fl.diff~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -1409,7 +1409,7 @@
         },
         "2": {
             "name": "/input [int]",
-            "description": "Sets the current input counting from 1 (or off if out of range).\n\n(default: 0)"
+            "description": "Sets the current input counting from 1 (off if out of range).\n\n(default: 0)"
         }
     },
     "fl.tan~": {
@@ -1431,7 +1431,7 @@
     "fl.equals~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -1457,7 +1457,7 @@
     "fl.clip~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - smaller right inputs are read modulo against larger left input.\n[1] - shrink - the output length is set to the length of the smaller input.\n[2] - extend - smaller right inputs are extended by repeating their final value.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - shorter right inputs are read modulo against longer left input.\n[1] - shrink - the output length is set to the length of the shorter input.\n[2] - extend - shorter right inputs are extended by repeating their final value.\n\n(default: wrap)"
         }
     },
     "fl.tanh~": {
@@ -1591,7 +1591,7 @@
         },
         "2": {
             "name": "/alpha_down [double]",
-            "description": "Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.\n\n(default: 0.5, clipped: 0-1)"
+            "description": "Sets the alpha value when the average is decreasing. This value is only used if a sufficiently long alpha frame is not present.\n\n(default: 0.5, clipped: 0-1)"
         },
         "3": {
             "name": "/average [double]",
@@ -1605,7 +1605,7 @@
     "fl.complex.divide~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -1675,7 +1675,7 @@
     "fl.hypot~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -1761,7 +1761,7 @@
     "fl.min~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",
@@ -1785,7 +1785,7 @@
         },
         "2": {
             "name": "/mismatch [enum]",
-            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - smaller inputs are read modulo against the longest input.\n[1] - shrink - the output length is set to that of the shortest input.\n[2] - extend - if required inputs are extended by repeating their final value.\n\n(default: wrap)"
+            "description": "INSTANTIATION ONLY\n\nSets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - shorter inputs are read modulo against the longest input.\n[1] - shrink - the output length is set to that of the shortest input.\n[2] - extend - if required inputs are extended by repeating their final value.\n\n(default: wrap)"
         },
         "3": {
             "name": "/trigger_ins [variable length bool array]",
@@ -1831,7 +1831,7 @@
     "fl.complex.plus~": {
         "1": {
             "name": "/mismatch [enum]",
-            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the smaller input is read modulo against the larger input.\n[1] - shrink - the output length is set to that of the smaller input.\n[2] - pad_in - the smaller input is padded prior to calculation to match the larger input.\n[3] - pad_out - the output is padded to match the length of the larger input.\n\n(default: wrap)"
+            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - wrap - the shorter input is read modulo against the longer input.\n[1] - shrink - the output length is set to that of the shorter input.\n[2] - pad_in - the shorter input is padded prior to calculation to match the longer input.\n[3] - pad_out - the output is padded to match the length of the longer input.\n\n(default: wrap)"
         },
         "2": {
             "name": "/trigger_ins [enum]",

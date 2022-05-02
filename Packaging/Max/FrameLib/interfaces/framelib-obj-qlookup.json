@@ -3614,7 +3614,7 @@
         ]
     },
     "fl.tag~": {
-        "digest": "Tags vectors with tags either in order to set parameters or for routing purposes",
+        "digest": "Adds tags to vectors either in order to set parameters or for routing purposes",
         "module": "FrameLib",
         "category": [
             "FrameLib",

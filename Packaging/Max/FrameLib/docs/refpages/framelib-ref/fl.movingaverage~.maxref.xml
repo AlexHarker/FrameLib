@@ -15,7 +15,7 @@
     </entry>
     <entry name="/alpha_down [double]">
       <description>
-        Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.<p /><i>(default: 0.5, clipped: 0-1)</i>
+        Sets the alpha value when the average is decreasing. This value is only used if a sufficiently long alpha frame is not present.<p /><i>(default: 0.5, clipped: 0-1)</i>
       </description>
     </entry>
     <entry name="/average [double]">
@@ -53,10 +53,10 @@
     </objarg>
     <objarg name="alpha_down" optional="1" type="number">
       <digest>
-        Sets the alpha value when the average is increasing
+        Sets the alpha value when the average is decreasing
       </digest>
       <description>
-        This argument sets the alpha_down parameter:<p /><p />Sets the alpha value when the average is increasing. This value is only used if a sufficiently long alpha frame is not present.<p /><i>(default: 0.5, clipped: 0-1)</i>
+        This argument sets the alpha_down parameter:<p /><p />Sets the alpha value when the average is decreasing. This value is only used if a sufficiently long alpha frame is not present.<p /><i>(default: 0.5, clipped: 0-1)</i>
       </description>
     </objarg>
     <objarg name="average" optional="1" type="number">
