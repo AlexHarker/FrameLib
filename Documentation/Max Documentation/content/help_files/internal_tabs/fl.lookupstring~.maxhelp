@@ -239,11 +239,13 @@
 							}
 , 							{
 								"box" : 								{
+									"bubble" : 1,
+									"bubbleside" : 2,
 									"id" : "obj-13",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 375.0, 180.0, 131.0, 21.0 ],
+									"patching_rect" : [ 374.0, 167.899999999999977, 133.0, 40.0 ],
 									"text" : "N.B. scale parameter"
 								}
 
@@ -419,7 +421,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 300.0, 407.5, 345.0, 94.0 ],
-									"text" : "Here the object is set to scale input from 0-1 across the list of avilable strings. This can be used to easily randomise parameters from a fixed number of options. \n\nAs a results the mode of fl.ticks~ is randomised between the run, loop and pause modes.",
+									"text" : "Here the object is set to scale input from 0-1 across the list of available strings. This can be used to easily randomise parameters from a fixed number of options. \n\nAs a results the mode of fl.ticks~ is randomised between the run, loop and pause modes.",
 									"textjustification" : 1
 								}
 
@@ -682,8 +684,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 117.0, 355.0, 495.0, 50.0 ],
-									"text" : "The default mode treats the input as an index into the set of available strings. Thus, the input can used to select a specific string output, in this case tagged ready to set the mode parameter of the svf filter.",
+									"patching_rect" : [ 117.0, 361.5, 495.0, 50.0 ],
+									"text" : "The default mode treats the input as an index into the set of available strings. Thus, the input can used to select a specific string output - in this case tagged ready to set the mode parameter of the svf filter.",
 									"textjustification" : 1
 								}
 
@@ -747,7 +749,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 355.0, 49.0, 23.0 ],
+									"patching_rect" : [ 30.0, 375.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
