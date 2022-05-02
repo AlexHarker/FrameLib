@@ -28,6 +28,16 @@ namespace OS_Specific
     using OSThreadType = pthread_t;
     using OSSemaphoreType = sem_t;
     typedef void *OSThreadFunctionType(void *arg);
+
+    inline void threadNanosleep()
+    {
+        std::this_thread::sleep_for(std::chrono::nanoseconds(100));
+    }
+
+    inline void threadReduceContention()
+    {
+        threadNanosleep();
+    }
 }
 
 #define DEFAULT_THREAD_PRIORITIES { 31, 52, 63, SCHED_FIFO, false }
@@ -44,6 +54,16 @@ namespace OS_Specific
     using OSThreadType = pthread_t;
     using OSSemaphoreType = semaphore_t;
     typedef void *OSThreadFunctionType(void *arg);
+
+    inline void threadNanosleep()
+    {
+        std::this_thread::sleep_for(std::chrono::nanoseconds(100));
+    }
+
+    inline void threadReduceContention()
+    {
+        threadNanosleep();
+    }
 }
 
 #define DEFAULT_THREAD_PRIORITIES { 31, 52, 63, SCHED_FIFO, false }
@@ -59,6 +79,23 @@ namespace OS_Specific
     using OSThreadType = HANDLE;
     using OSSemaphoreType = struct WinSemaphore { HANDLE mHandle; long mMaxCount; };
     typedef DWORD WINAPI OSThreadFunctionType(LPVOID arg);
+
+    inline void threadNanosleep()
+    {
+        SwitchToThread();
+    }
+
+    inline void threadReduceContention()
+    {
+        using Clock = std::chrono::steady_clock;
+
+        auto timeOut = Clock::now() + std::chrono::nanoseconds(100);
+
+        // Busy waiting
+
+        while (Clock::now() < timeOut) 
+        {}
+    }
 }
 
 #define DEFAULT_THREAD_PRIORITIES { THREAD_PRIORITY_NORMAL, THREAD_PRIORITY_HIGHEST, THREAD_PRIORITY_TIME_CRITICAL, 0, false }
@@ -78,6 +115,18 @@ bool nullSwap(std::atomic<T *>& value, T *exchange)
 {
     T *comparand = nullptr;
     return value.compare_exchange_strong(comparand, exchange);
+}
+
+// Thread utlities for dealing with contention
+
+inline void threadReduceContention()
+{
+    OS_Specific::threadReduceContention();
+}
+
+inline void threadNanosleep()
+{
+    OS_Specific::threadNanosleep();
 }
 
 /**
@@ -147,8 +196,7 @@ struct FrameLib_LockFreePointer : public std::atomic<FrameLib_CountedPointer<T>>
 
 class FrameLib_Lock
 {
-    using Clock = std::chrono::high_resolution_clock;
-    using NanoSeconds = std::chrono::nanoseconds;
+    using Clock = std::chrono::steady_clock;
 
 public:
     
@@ -166,14 +214,14 @@ public:
             if (attempt())
                 return;
         
-        auto timeOut = Clock::now() + NanoSeconds(10000);
+        auto timeOut = Clock::now() + std::chrono::nanoseconds(10000);
         
         while (Clock::now() < timeOut)
             if (attempt())
                 return;
         
         while (!attempt())
-            std::this_thread::sleep_for(NanoSeconds(100));
+            threadNanosleep();
     }
     
     bool attempt() { return !mAtomicLock.test_and_set(); }
@@ -266,11 +314,6 @@ public:
         return std::max(1U, std::thread::hardware_concurrency());
     }
     
-    static void sleepCurrentThread(unsigned long nanoseconds)
-    {
-        std::this_thread::sleep_for(std::chrono::nanoseconds(nanoseconds));
-    }
-        
     // Non-copyable
     
     FrameLib_Thread(const FrameLib_Thread&) = delete;
