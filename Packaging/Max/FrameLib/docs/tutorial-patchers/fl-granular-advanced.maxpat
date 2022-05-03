@@ -71,8 +71,9 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 106.5, 191.0, 191.0, 47.0 ],
-					"text" : "Generate the frame determining  millisecond positions to read from the buffer"
+					"patching_rect" : [ 106.5, 191.0, 182.0, 47.0 ],
+					"text" : "Generate the frame determining  millisecond positions to read from the buffer",
+					"textjustification" : 1
 				}
 
 			}
@@ -121,7 +122,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 182.0, 255.5, 249.0, 47.0 ],
-					"text" : "Read from the jongles buffer a series of samples determined in millisecond positions. determined by the incoming frame."
+					"text" : "Read from the jongles buffer a series of samples determined in millisecond positions determined by the incoming frame",
+					"textjustification" : 1
 				}
 
 			}
@@ -310,7 +312,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 111.0, 381.561340904528208, 169.0, 20.0 ],
+									"patching_rect" : [ 111.0, 381.561340904528208, 168.0, 20.0 ],
 									"text" : "Multiply by the absolute range"
 								}
 
@@ -324,7 +326,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 162.0, 312.401806154581607, 156.0, 33.0 ],
-									"text" : "Generate two random numbers between 0. and 1."
+									"text" : "Generate two random numbers between 0. and 1"
 								}
 
 							}
@@ -335,7 +337,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 89.25, 257.096840499893347, 156.0, 20.0 ],
+									"patching_rect" : [ 89.25, 257.096840499893347, 141.0, 20.0 ],
 									"text" : "If negative make positive"
 								}
 
@@ -373,7 +375,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 123.5, 83.777778999999995, 150.0, 33.0 ],
-									"text" : "Take the values from the Max waveform interface."
+									"text" : "Take the values from the Max waveform interface"
 								}
 
 							}
@@ -748,12 +750,11 @@
 								"box" : 								{
 									"fontsize" : 12.0,
 									"id" : "obj-6",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 98.0, 210.25, 160.0, 33.0 ],
-									"text" : "Tag the value to change the parameters of the filter."
+									"patching_rect" : [ 98.0, 216.75, 279.0, 20.0 ],
+									"text" : "Tag the value to change the parameters of the filter"
 								}
 
 							}
@@ -787,12 +788,11 @@
 								"box" : 								{
 									"fontsize" : 12.0,
 									"id" : "obj-2",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 94.0, 78.25, 150.0, 33.0 ],
-									"text" : "Generate a random number between 0. and 1."
+									"patching_rect" : [ 94.0, 83.75, 252.0, 20.0 ],
+									"text" : "Generate a random number between 0. and 1"
 								}
 
 							}
@@ -895,12 +895,12 @@
 				"box" : 				{
 					"fontsize" : 12.0,
 					"id" : "obj-2",
-					"linecount" : 4,
+					"linecount" : 3,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 106.5, 111.5, 245.0, 60.0 ],
-					"text" : "Generate a trigger frame at the rate of the interval parameter.\n\nIn this case its 1024 samples at initialiastion"
+					"patching_rect" : [ 106.5, 111.5, 331.0, 47.0 ],
+					"text" : "Generate a trigger frame at the rate of the interval parameter\n\nIn this case it is 1024 samples at initialisation"
 				}
 
 			}
@@ -1238,7 +1238,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-28",
-					"index" : 0,
+					"index" : 3,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -1384,7 +1384,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-63",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -1397,7 +1397,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-64",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -1409,7 +1409,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-65",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -1562,8 +1562,7 @@
 				}
 
 			}
- ],
-		"autosave" : 0
+ ]
 	}
 
 }
