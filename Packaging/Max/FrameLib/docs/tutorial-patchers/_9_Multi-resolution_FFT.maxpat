@@ -130,8 +130,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 120.0, 544.0, 178.0 ],
-									"text" : "This is a short tutorial to demonstrate how FrameLib's features might help you solve more complex issues. Now that you've seen how multistream networks work, let's look at a use case that helps to solve some of problems in the way FFT processing normally occurs. Multi-resolution FFT processing is a way of running the same spectral process in parallel at various frequency resolutions and intervals (or hops). As such, different frequency ranges can be processed with different FFT sizes, which can result in fast timing in the high end and more precise frequency resolution in the low end without having to trade one off for the other over the entire spectrum.\n\nLuckily, in FrameLib, using multistream connections we can do exactly this in a single network of objects."
+									"patching_rect" : [ 180.0, 120.0, 546.0, 178.0 ],
+									"text" : "This is a short tutorial to demonstrate how FrameLib's features might help you solve more complex issues. Now that you've seen how multistream networks work, let's look at a use case that helps to solve some of problems in the way FFT processing normally occurs. Multi-resolution FFT processing is a way of running the same spectral process in parallel at various frequency resolutions and intervals (or hops). As such, different frequency ranges can be processed with different sizes of FFT, which can result in fast timing in the high end and more precise frequency resolution in the low end without having to trade one off for the other over the entire spectrum.\n\nLuckily, in FrameLib, using multistream connections we can do exactly this in a single network of objects."
 								}
 
 							}
@@ -378,7 +378,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 290.0, 473.0, 298.0, 33.0 ],
+									"patching_rect" : [ 290.0, 473.0, 302.0, 33.0 ],
 									"text" : "Take a peak inside! This is the actual code responsible for processing the spectral data and gating",
 									"textjustification" : 1
 								}
@@ -433,7 +433,7 @@
 										"assistshowspatchername" : 0,
 										"boxes" : [ 											{
 												"box" : 												{
-													"comment" : "",
+													"comment" : "(message) Threshold",
 													"id" : "obj-4",
 													"index" : 2,
 													"maxclass" : "inlet",
@@ -858,12 +858,13 @@
 , 											{
 												"box" : 												{
 													"id" : "obj-10",
-													"linecount" : 8,
+													"linecount" : 9,
 													"maxclass" : "comment",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 386.0, 113.0, 200.0, 114.0 ],
-													"text" : "Threshold the amplitudes. Calculating the hypotenuse returns the magnitude of bin as a frame equal to the fft window size. The fl.>~ performs its logical operation on each value in the frame determining if the magnitude is greater than the threshold value."
+													"patching_rect" : [ 386.0, 113.0, 180.0, 127.0 ],
+													"text" : "Threshold the amplitudes. Calculating the hypotenuse returns the magnitude of bin as a frame equal to the fft window size. The fl.>~ performs its logical operation on each value in the frame determining if the magnitude is greater than the threshold value.",
+													"textjustification" : 1
 												}
 
 											}
@@ -1016,7 +1017,7 @@
 											}
 , 											{
 												"box" : 												{
-													"comment" : "",
+													"comment" : "(frames) Multistream Input",
 													"id" : "obj-35",
 													"index" : 1,
 													"maxclass" : "inlet",
@@ -1029,7 +1030,7 @@
 											}
 , 											{
 												"box" : 												{
-													"comment" : "",
+													"comment" : "(frames) Multistream Output",
 													"id" : "obj-37",
 													"index" : 1,
 													"maxclass" : "outlet",
@@ -1343,7 +1344,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 33.0, 131.0, 56.0, 22.0 ],
+													"patching_rect" : [ 33.0, 129.333333333333343, 56.0, 22.0 ],
 													"text" : "fl.*~ 0.25"
 												}
 
@@ -1355,14 +1356,14 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 33.0, 92.0, 230.0, 22.0 ],
+													"patching_rect" : [ 33.0, 84.666666666666671, 230.0, 22.0 ],
 													"text" : "fl.window~ hann /compensate reconstruct"
 												}
 
 											}
 , 											{
 												"box" : 												{
-													"comment" : "",
+													"comment" : "(frames) Multistream Input",
 													"id" : "obj-25",
 													"index" : 1,
 													"maxclass" : "inlet",
@@ -1375,7 +1376,7 @@
 											}
 , 											{
 												"box" : 												{
-													"comment" : "",
+													"comment" : "(frames) Multistream Output",
 													"id" : "obj-29",
 													"index" : 1,
 													"maxclass" : "outlet",
@@ -1625,7 +1626,7 @@
 											}
 , 											{
 												"box" : 												{
-													"comment" : "",
+													"comment" : "(signal) Audio Input",
 													"id" : "obj-48",
 													"index" : 1,
 													"maxclass" : "inlet",
@@ -1638,7 +1639,7 @@
 											}
 , 											{
 												"box" : 												{
-													"comment" : "",
+													"comment" : "(frames) Multistream Output",
 													"id" : "obj-50",
 													"index" : 1,
 													"maxclass" : "outlet",
@@ -1880,8 +1881,8 @@
 													"maxclass" : "comment",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 429.0, 175.0, 259.0, 20.0 ],
-													"text" : "unpack before translating back to audio signals"
+													"patching_rect" : [ 429.0, 175.0, 261.0, 20.0 ],
+													"text" : "Unpack before translating back to audio signals"
 												}
 
 											}
@@ -1891,14 +1892,14 @@
 													"maxclass" : "comment",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 528.0, 225.0, 175.0, 20.0 ],
-													"text" : "compensate delays to be equal"
+													"patching_rect" : [ 528.0, 225.0, 177.0, 20.0 ],
+													"text" : "Compensate delays to be equal"
 												}
 
 											}
 , 											{
 												"box" : 												{
-													"comment" : "",
+													"comment" : "(signal) Audio Output",
 													"id" : "obj-6",
 													"index" : 1,
 													"maxclass" : "outlet",
@@ -1978,7 +1979,7 @@
 											}
 , 											{
 												"box" : 												{
-													"comment" : "",
+													"comment" : "(frames) Multistream Input",
 													"id" : "obj-39",
 													"index" : 1,
 													"maxclass" : "inlet",
@@ -2129,7 +2130,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 54.0, 711.0, 147.0 ],
-									"text" : "This example demonstrates Multi-resolution FFT processing with FrameLib. Multi-resolution FFT prcoessing deploy a single process across multiple frame/window sizes and at different rates. This is particularly useful when you want to avoid the normal direct tradeoffs between time and frequency resolution, perhpas for more complex or varied audio input.\n\nThe example below is a spectral gate that is deployed across 4 FFT sizes. The benefit of doing this is that the trade off between resolution and time in the FFT can be mitigated by processing with these different resolutions in parallel. As such, the gate can work faster on higher frequencies while retaining more fine grained bins in the low frequencies, as you should be able to hear! Although the process is carried out on the whole spectrum in each FFT, these are filtered to operate on specific frequency bands."
+									"text" : "This example demonstrates Multi-resolution FFT processing with FrameLib. Multi-resolution FFT prcoessing deploy a single process across multiple frame/window sizes and at different rates. This is particularly useful when you want to avoid the normal direct tradeoffs between time and frequency resolution, perhpas for more complex or varied audio input.\n\nThe example below is a spectral gate that is deployed across 4 FFT sizes. The benefit of doing this is that the trade off between resolution and time in the FFT can be mitigated by processing with these different resolutions in parallel. As such, the gate can work faster on higher frequencies while retaining more fine grained bins in the low frequencies, as you should be able to hear! Although the process is carried out on the whole spectrum in each case, each FFT stream is filtered to operate on specific frequency bands."
 								}
 
 							}
