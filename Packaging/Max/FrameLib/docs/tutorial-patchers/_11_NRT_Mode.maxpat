@@ -93,8 +93,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 369.0, 437.0, 186.0, 20.0 ],
-									"text" : "audition the contents of the buffer"
+									"patching_rect" : [ 369.0, 437.0, 188.0, 20.0 ],
+									"text" : "Audition the contents of the buffer"
 								}
 
 							}
@@ -149,8 +149,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 314.0, 250.0, 195.0, 20.0 ],
-									"text" : "reset time to 0 and clear the buffer"
+									"patching_rect" : [ 314.0, 250.0, 196.0, 20.0 ],
+									"text" : "Reset time to 0 and clear the buffer"
 								}
 
 							}
@@ -559,7 +559,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 60.0, 700.0, 84.0 ],
-									"text" : "Time doesn't have to be progressed through a single \"process\" message. Time can be progressed by passing repeated process messages with whatever amount of time in samples you desire. In the example below, experiment by processing different time amounts and observing how the 5 second buffer fills up. When more time is processed in a single block the buffer will fill up faster. You should note that if the network contains any fl.tomax~ objects they will only send messages after the buffer processing is complete following each call to 'process'."
+									"text" : "Time doesn't have to be progressed through a single \"process\" message. Time can be advacned by passing repeated process messages with whatever amount of time in samples you desire. In the example below, experiment by processing different time amounts and observing how the 5 second buffer fills up. When more time is processed in a single block the buffer will fill up faster. You should note that if the network contains any fl.tomax~ objects they will only send messages after the buffer processing is complete following each call to 'process'."
 								}
 
 							}
@@ -1152,8 +1152,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 56.0, 559.0, 285.0, 20.0 ],
-									"text" : "<- Wipe the buffers that each network is writing to"
+									"patching_rect" : [ 56.0, 559.0, 292.0, 20.0 ],
+									"text" : "<- Wipe all the buffers that the networks are writing to"
 								}
 
 							}
@@ -1243,7 +1243,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 56.0, 22.0 ],
+									"patching_rect" : [ 15.0, 315.0, 56.0, 22.0 ],
 									"text" : "fl.*~ 0.25"
 								}
 
@@ -1255,7 +1255,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 330.0, 65.0, 22.0 ],
+									"patching_rect" : [ 15.0, 360.0, 65.0, 22.0 ],
 									"text" : "fl.window~"
 								}
 
@@ -1645,7 +1645,7 @@
 ,
 						"classnamespace" : "box",
 						"rect" : [ 0.0, 26.0, 720.0, 761.0 ],
-						"bglocked" : 0,
+						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
@@ -2161,6 +2161,28 @@
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 294.0, 512.0, 85.0, 20.0 ],
+									"text" : "Play the result"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-2",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 46.5, 512.0, 85.0, 20.0 ],
+									"text" : "Play the result"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-35",
 									"local" : 1,
 									"maxclass" : "ezdac~",
@@ -2496,11 +2518,11 @@
 									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-83",
-									"linecount" : 32,
+									"linecount" : 31,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 490.0, 148.0, 215.0, 506.0 ],
+									"patching_rect" : [ 490.0, 148.0, 224.0, 490.0 ],
 									"text" : "The first thing to notice is that the @rt attribute is set to 0 or non-realtime at the top most scheduler of each network.\n\nIn non-realtime mode the 'reset' message resets time back to 0 and the 'process' message progresses time forward by the amount of time given in samples.\n\nIn the left network the composite message \"reset, process 88200\" resets time and immediately asks for FrameLib to process 88200 samples of time (2 seconds at 44.1khz).\n\nIf you push the left \"reset, process 88200\" message button both networks process audio and push it to their respective output buffers. Why? Because both these networks belong to the same context! In non-realtime mode, context becomes important to how FrameLib networks run and triggering any scheduler belonging to the same context will make every network run.\n\nMove on to the next tab to see the solution to this problem.",
 									"textjustification" : 1
 								}
@@ -3054,7 +3076,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 120.0, 527.0, 84.0 ],
-									"text" : "FrameLib networks can work in the default realtime mode, as well as a non-realtime (NRT) mode. In NRT mode FrameLib operates on input and output buffers instead of using audio input and output streams.  With a FrameLib context set to NRT mode you are required to manually move time forward using messages which gives you the ability to progress time for offline processing which completes as fast as possible."
+									"text" : "FrameLib networks can work in the default realtime mode, as well as a non-realtime (NRT) mode. In NRT mode FrameLib operates on input and output buffers instead of using audio input and output streams.  With a FrameLib context set to NRT mode you are required to manually move time forward using messages which gives you the ability to progress time for offline processing (which will be completed as fast as possible)."
 								}
 
 							}

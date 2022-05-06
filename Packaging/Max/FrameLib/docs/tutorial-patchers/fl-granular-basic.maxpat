@@ -91,7 +91,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 244.0, 77.699996999999996, 291.0, 33.0 ],
-					"text" : "Generate a frame of sequential millisecond positions to read from the buffer 'fl.tut.2.rain'."
+					"text" : "Generate a frame of sequential millisecond positions to read from the buffer 'fl.tut.2.rain'"
 				}
 
 			}
@@ -159,7 +159,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-27",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -203,8 +203,7 @@
 				}
 
 			}
- ],
-		"autosave" : 0
+ ]
 	}
 
 }

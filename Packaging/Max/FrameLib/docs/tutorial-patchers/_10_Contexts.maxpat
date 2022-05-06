@@ -59,7 +59,7 @@
 ,
 						"classnamespace" : "box",
 						"rect" : [ 0.0, 26.0, 723.0, 694.0 ],
-						"bglocked" : 0,
+						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
@@ -356,8 +356,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 60.0, 697.0, 53.0 ],
-									"text" : "The fl.store~ and fl.recall~ objects are two objects that are linked by their names. They are also bound to the context they belong to (in which resources are allocated). This means that an fl.recall~ and fl.store~ object pair (or group) with the same name use unique storage if they exist in different contexts."
+									"patching_rect" : [ 15.0, 60.0, 700.0, 53.0 ],
+									"text" : "The fl.store~ and fl.recall~ objects are two objects that are linked by their names. They are also bound to the context they belong to (in which resources are allocated). This means that two fl.recall~ and fl.store~ object pairs (or groups) with the same name use unique storage when they exist in different contexts."
 								}
 
 							}
@@ -740,7 +740,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 486.0, 690.0, 100.0 ],
-									"text" : "Here, the left most network belongs to the default context whereas the right most network belongs to its own context with the @id \"cycling\". Notice how the @id attribute is only defined in one place rather than for object you want to belong to a specific context.\n\nKeep an eye out for this object in the further tutorials. The fl.contextcontrol~ object lets us configure contexts through a single shared interface and has some useful functionality for advanced users."
+									"text" : "Here, the left most network belongs to the default context whereas the right most network belongs to its own context with the @id \"cycling\". Notice how the @id attribute is only defined in one place rather than for every object you want to belong to a specific context.\n\nKeep an eye out for the object below in further tutorials. The fl.contextcontrol~ object lets us configure contexts and has some useful functionality for advanced users."
 								}
 
 							}
@@ -867,7 +867,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 60.0, 696.0, 209.0 ],
-									"text" : "Up until now the concept of a FrameLib context hasn't been explained or even made explicit to you but they are fundamental to know in order to access more advanced capabilities that you're about to learn. Every FrameLib object, or set of objects that are connected, belongs to a 'context'.\n\n The simplest way to create a new context is to give a new, unique string as the @id of a top-most scheduler. This @id propogates through the network so there is no benefit to setting it for every object. However, it is worth making clear here that ALL top-most schedulers should have the context set with @id, and this propogates downwards to all connected FrameLib objects. If not all @ids are set the network will not connect correctly.\n\nBy default, there is only one context per top-level patcher. The only exception to this is if object are within a poly~ which can be thought of as an independent highest-level patcher for Framelib objects and thus a 'unique' default context. The other thing to note is that the realtime and non-realtime network with the same @id are actually two different contexts. This is covered in detail in tutorial 11."
+									"text" : "Up until now the concept of a FrameLib context hasn't been explained or even made explicit to you but they are fundamental to understand in order to access more advanced capabilities that you're about to learn. Every FrameLib object, or set of objects that are connected, belongs to a 'context'.\n\nThe simplest way to create a new context is to give a new, unique string as the @id of a top-most scheduler. This @id propogates through the network so there is no benefit to setting it for every object. However, it is worth making clear here that ALL top-most schedulers should have the context set with @id, and this propogates downwards to all connected FrameLib objects. If not all relevant @id attirbues are set the network will not connect correctly.\n\nBy default, there is only one context per top-level patcher. The only exception to this is if object are within a poly~ which can be thought of as an independent highest-level patcher for Framelib objects and thus a 'unique' default context. The other thing to note is that  realtime and non-realtime network with the same @id are actually in two different contexts. This is covered in detail in tutorial 11."
 								}
 
 							}
@@ -1181,7 +1181,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 120.0, 534.0, 100.0 ],
-									"text" : "The FrameLib context hasn't until now been discussed but has been operating stealthily under the hood. Contexts are the way that FrameLib differentiates between networks (both connected and unconnected). They are self-contained FrameLib 'worlds' that can be set to operate in certain ways, and which are independent of one another. Understanding contexts is essential for controlling advanced features of FrameLib such as non-realtime processing and multithreading."
+									"text" : "The FrameLib context hasn't been discussed until now but has been operating stealthily under the hood. Contexts are the way that FrameLib differentiates between networks (both connected and unconnected). They are self-contained FrameLib 'worlds' that can be set to operate in certain ways, and which are independent of one another. Understanding contexts is essential for controlling advanced features of FrameLib such as non-realtime processing and multithreading."
 								}
 
 							}
