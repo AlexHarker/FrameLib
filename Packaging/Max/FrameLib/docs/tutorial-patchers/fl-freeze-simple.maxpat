@@ -45,7 +45,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 8.0, 651.933288999999945, 80.0, 22.0 ],
+					"patching_rect" : [ 8.0, 651.933288999999945, 56.0, 22.0 ],
 					"text" : "fl.*~ 0.25"
 				}
 
@@ -56,7 +56,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 239.0, 257.066649999999981, 171.0, 20.0 ],
+					"patching_rect" : [ 244.0, 258.066649999999981, 171.0, 20.0 ],
 					"text" : "Cartesian to Polar coordinates"
 				}
 
@@ -68,7 +68,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 116.0, 13.0, 342.333312999999976, 60.0 ],
+					"patching_rect" : [ 149.0, 15.0, 318.333312999999976, 60.0 ],
 					"text" : "Trigger frame every 1024 samples. Creates a 4x overlap with the fl.source~ below (as frames are 4x the rate of the scheduler) and also causes stored FFT frames to be output at a constant rate. This creates the freeze effect."
 				}
 
@@ -80,8 +80,9 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 234.0, 126.166672000000005, 192.0, 33.0 ],
-					"text" : "Takes audio and converts it into frames 4096 samples long"
+					"patching_rect" : [ 244.0, 127.166672000000005, 180.0, 33.0 ],
+					"text" : "Takes audio and converts it into frames 4096 samples long",
+					"textjustification" : 1
 				}
 
 			}
@@ -91,7 +92,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 304.0, 173.666672000000005, 143.0, 20.0 ],
+					"patching_rect" : [ 309.0, 174.666672000000005, 138.0, 20.0 ],
 					"text" : "Window the audio frame"
 				}
 
@@ -102,7 +103,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 239.0, 215.666672000000005, 171.0, 20.0 ],
+					"patching_rect" : [ 244.0, 216.666672000000005, 162.0, 20.0 ],
 					"text" : "FFT of incoming audio frame"
 				}
 
@@ -114,8 +115,9 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 496.333312999999976, 161.666672000000005, 89.0, 60.0 ],
-					"text" : "A method of converting a bang to a trigger frame"
+					"patching_rect" : [ 496.333312999999976, 161.666672000000005, 83.0, 60.0 ],
+					"text" : "A method of converting a bang to a trigger frame",
+					"textjustification" : 1
 				}
 
 			}
@@ -125,7 +127,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 145.0, 527.133362000000034, 170.0, 20.0 ],
+					"patching_rect" : [ 149.0, 532.133362000000034, 170.0, 20.0 ],
 					"text" : "Polar to Cartesian coordinates"
 				}
 
@@ -136,7 +138,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 304.0, 352.799987999999985, 244.333327999999995, 20.0 ],
+					"patching_rect" : [ 309.0, 353.799987999999985, 244.333327999999995, 20.0 ],
 					"text" : "Wraps the phase values between -pi and pi"
 				}
 
@@ -148,8 +150,9 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 241.0, 389.633330999999998, 299.0, 33.0 ],
-					"text" : "Frames in the right inlet are only output when a trigger frame is sent to the left inlet (equivalent of zl reg)"
+					"patching_rect" : [ 250.0, 389.633330999999998, 299.0, 33.0 ],
+					"text" : "Frames in the right inlet are only output when a trigger frame is sent to the left inlet (equivalent of zl reg)",
+					"textjustification" : 1
 				}
 
 			}
@@ -160,8 +163,9 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 218.0, 443.966736000000026, 146.0, 33.0 ],
-					"text" : "Output the frame pushed from the register above"
+					"patching_rect" : [ 199.0, 443.966736000000026, 146.0, 33.0 ],
+					"text" : "Output the frame pushed from the register above",
+					"textjustification" : 1
 				}
 
 			}
@@ -171,7 +175,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 218.0, 492.633361999999977, 235.0, 20.0 ],
+					"patching_rect" : [ 224.0, 486.633361999999977, 235.0, 20.0 ],
 					"text" : "Running accumulation of the phase values"
 				}
 
@@ -182,7 +186,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 145.0, 564.59997599999997, 74.666663999999997, 20.0 ],
+					"patching_rect" : [ 149.0, 571.59997599999997, 74.666663999999997, 20.0 ],
 					"text" : "Inverse FFT"
 				}
 
@@ -194,7 +198,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 240.0, 599.966675000000009, 264.0, 33.0 ],
+					"patching_rect" : [ 244.0, 605.939978399999859, 264.0, 33.0 ],
 					"text" : "Window the output frames and compensate for the summing either side of the FFT"
 				}
 
@@ -206,20 +210,22 @@
 					"numinlets" : 3,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 182.0, 684.433288999999945, 113.0, 22.0 ],
+					"patching_rect" : [ 182.0, 684.433288999999945, 111.0, 22.0 ],
 					"text" : "fl.timemean~ 30 10"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"fontsize" : 12.0,
 					"id" : "obj-30",
 					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 304.0, 307.233337000000006, 236.0, 33.0 ],
-					"text" : "Output the delta between two consecutive frames. Similar to framedelta~"
+					"patching_rect" : [ 309.0, 308.233337000000006, 236.0, 33.0 ],
+					"text" : "Output the delta between two consecutive frames. Similar to framedelta~",
+					"textjustification" : 1
 				}
 
 			}
@@ -347,7 +353,7 @@
 									"maxclass" : "inlet",
 									"numinlets" : 0,
 									"numoutlets" : 1,
-									"outlettype" : [ "" ],
+									"outlettype" : [ "int" ],
 									"patching_rect" : [ 16.0, 15.0, 30.0, 30.0 ]
 								}
 
@@ -422,7 +428,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 182.0, 651.933288999999945, 72.0, 22.0 ],
+					"patching_rect" : [ 182.0, 651.933288999999945, 46.0, 22.0 ],
 					"text" : "fl.*~ 10"
 				}
 
@@ -434,7 +440,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 182.0, 716.933288999999945, 60.0, 22.0 ],
+					"patching_rect" : [ 182.0, 716.933288999999945, 58.0, 22.0 ],
 					"text" : "fl.tomax~"
 				}
 
@@ -443,7 +449,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-19",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -455,12 +461,12 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-1",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 102.0, 77.666663999999997, 30.0, 30.0 ]
+					"outlettype" : [ "signal" ],
+					"patching_rect" : [ 107.0, 30.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -483,7 +489,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 8.0, 605.466675000000009, 230.0, 22.0 ],
+					"patching_rect" : [ 8.0, 611.439978399999973, 230.0, 22.0 ],
 					"text" : "fl.window~ hann /compensate reconstruct"
 				}
 
@@ -495,7 +501,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 8.0, 563.59997599999997, 135.0, 22.0 ],
+					"patching_rect" : [ 8.0, 570.9466678, 135.0, 22.0 ],
 					"text" : "fl.ifft~"
 				}
 
@@ -507,7 +513,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 8.0, 527.133362000000034, 135.0, 22.0 ],
+					"patching_rect" : [ 8.0, 530.453357200000028, 135.0, 22.0 ],
 					"text" : "fl.poltocar~"
 				}
 
@@ -565,7 +571,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 51.0, 150.0, 123.0, 22.0 ],
+									"patching_rect" : [ 77.0, 154.0, 123.0, 22.0 ],
 									"text" : "fl.store~ frameaccum"
 								}
 
@@ -630,6 +636,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
+									"midpoints" : [ 18.5, 51.5, 227.5, 51.5 ],
 									"order" : 0,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -662,7 +669,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 124.0, 491.633361999999977, 93.0, 22.0 ],
+					"patching_rect" : [ 124.0, 489.960046599999998, 93.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -705,7 +712,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 102.0, 173.666672000000005, 200.0, 22.0 ],
+					"patching_rect" : [ 107.0, 174.666672000000005, 200.0, 22.0 ],
 					"text" : "fl.window~ hann /compensate linear"
 				}
 
@@ -717,7 +724,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 8.0, 13.0, 98.0, 22.0 ],
+					"patching_rect" : [ 8.0, 87.0, 98.0, 22.0 ],
 					"text" : "fl.interval~ 1024"
 				}
 
@@ -729,7 +736,7 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 102.0, 131.666672000000005, 130.0, 22.0 ],
+					"patching_rect" : [ 107.0, 132.666672000000005, 130.0, 22.0 ],
 					"text" : "fl.source~ /length 4096"
 				}
 
@@ -741,7 +748,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 55.0, 395.133330999999998, 66.0, 22.0 ],
+					"patching_rect" : [ 55.0, 395.133330999999998, 71.0, 22.0 ],
 					"text" : "fl.register~"
 				}
 
@@ -753,7 +760,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 171.0, 395.133330999999998, 66.0, 22.0 ],
+					"patching_rect" : [ 171.0, 395.133330999999998, 71.0, 22.0 ],
 					"text" : "fl.register~"
 				}
 
@@ -916,7 +923,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 218.0, 352.799987999999985, 84.0, 22.0 ],
+					"patching_rect" : [ 223.0, 353.799987999999985, 84.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -935,7 +942,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 218.0, 312.733337000000006, 83.0, 22.0 ],
+					"patching_rect" : [ 223.0, 313.733337000000006, 82.0, 22.0 ],
 					"text" : "fl.framedelta~"
 				}
 
@@ -947,7 +954,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 102.0, 255.06665000000001, 135.0, 22.0 ],
+					"patching_rect" : [ 107.0, 256.066649999999981, 135.0, 22.0 ],
 					"text" : "fl.cartopol~"
 				}
 
@@ -959,7 +966,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 102.0, 214.666672000000005, 135.0, 22.0 ],
+					"patching_rect" : [ 107.0, 215.666672000000005, 135.0, 22.0 ],
 					"text" : "fl.fft~"
 				}
 
@@ -968,12 +975,12 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-25",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 476.333312999999976, 45.666668000000001, 30.0, 30.0 ]
+					"outlettype" : [ "int" ],
+					"patching_rect" : [ 476.333312999999976, 30.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -981,7 +988,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-26",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -1020,9 +1027,9 @@
 			}
 , 			{
 				"patchline" : 				{
-					"color" : [ 0.0, 0.0, 0.0, 0.9 ],
+					"color" : [ 1.0, 0.0, 0.0, 1.0 ],
 					"destination" : [ "obj-11", 1 ],
-					"midpoints" : [ 17.5, 118.0, 167.0, 118.0 ],
+					"midpoints" : [ 17.5, 119.833336000000003, 172.0, 119.833336000000003 ],
 					"order" : 0,
 					"source" : [ "obj-12", 0 ]
 				}
@@ -1030,9 +1037,8 @@
 			}
 , 			{
 				"patchline" : 				{
-					"color" : [ 0.0, 0.0, 0.0, 0.9 ],
+					"color" : [ 1.0, 0.0, 0.0, 1.0 ],
 					"destination" : [ "obj-14", 0 ],
-					"midpoints" : [ 17.5, 36.0, 17.5, 36.0 ],
 					"order" : 2,
 					"source" : [ "obj-12", 0 ]
 				}
@@ -1040,7 +1046,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"color" : [ 0.0, 0.0, 0.0, 0.9 ],
+					"color" : [ 1.0, 0.0, 0.0, 1.0 ],
 					"destination" : [ "obj-15", 0 ],
 					"midpoints" : [ 17.5, 435.0, 133.5, 435.0 ],
 					"order" : 1,
@@ -1218,8 +1224,7 @@
 				}
 
 			}
- ],
-		"autosave" : 0
+ ]
 	}
 
 }
