@@ -68,8 +68,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 93.0, 388.600037000000043, 144.0, 20.0 ],
-					"text" : "Convolve the two frames."
+					"patching_rect" : [ 93.0, 388.600037000000043, 141.0, 20.0 ],
+					"text" : "Convolve the two frames"
 				}
 
 			}
@@ -79,8 +79,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 296.0, 332.0, 115.0, 20.0 ],
-					"text" : "Window the frames."
+					"patching_rect" : [ 296.0, 332.0, 111.0, 20.0 ],
+					"text" : "Window the frames"
 				}
 
 			}
@@ -92,7 +92,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 434.0, 289.5, 161.0, 33.0 ],
-					"text" : "Read sample positions from the jongles and cello buffer."
+					"text" : "Read sample positions from the jongles and cello buffer"
 				}
 
 			}
@@ -104,7 +104,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 213.5, 22.0, 98.0, 87.0 ],
-					"text" : "Convert some white noise into 1 sample frames. These will be used as an offset later."
+					"text" : "Convert some white noise into 1 sample frames. These will be used as an offset later"
 				}
 
 			}
@@ -112,7 +112,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-14",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -329,7 +329,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-32",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -510,8 +510,7 @@
 				}
 
 			}
- ],
-		"autosave" : 0
+ ]
 	}
 
 }

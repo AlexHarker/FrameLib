@@ -96,7 +96,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 215.0, 469.0, 36.0, 14.0 ]
+									"patching_rect" : [ 215.0, 484.0, 36.0, 14.0 ]
 								}
 
 							}
@@ -108,7 +108,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 273.0, 394.0, 36.0, 14.0 ]
+									"patching_rect" : [ 273.0, 409.0, 36.0, 14.0 ]
 								}
 
 							}
@@ -120,7 +120,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 194.0, 334.0, 36.0, 14.0 ]
+									"patching_rect" : [ 194.0, 349.0, 36.0, 14.0 ]
 								}
 
 							}
@@ -132,7 +132,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 133.0, 289.0, 36.0, 14.0 ]
+									"patching_rect" : [ 133.0, 304.0, 36.0, 14.0 ]
 								}
 
 							}
@@ -144,7 +144,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 172.0, 244.0, 36.0, 14.0 ]
+									"patching_rect" : [ 172.0, 259.0, 36.0, 14.0 ]
 								}
 
 							}
@@ -156,7 +156,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 255.0, 452.5, 409.0, 47.0 ],
+									"patching_rect" : [ 255.0, 467.5, 413.0, 47.0 ],
 									"text" : "fl.ramp~ takes the scalar frame from fl.map~, but it doesn't care what the contents of the frame are and interprets it as a trigger frame. Another option would be to use the output of fl.tag~ as a trigger frame too.",
 									"textjustification" : 1
 								}
@@ -170,7 +170,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 308.0, 384.5, 400.0, 33.0 ],
+									"patching_rect" : [ 308.0, 399.5, 403.0, 33.0 ],
 									"text" : "Take the value from fl.map~ (some number between 1 and 15) and create a 'tagged' frame which will modify the length parameter of fl.ramp~",
 									"textjustification" : 1
 								}
@@ -183,7 +183,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 234.0, 330.0, 181.0, 20.0 ],
+									"patching_rect" : [ 234.0, 345.0, 181.0, 20.0 ],
 									"text" : "Maps range 0 - 1 to range 1 - 15"
 								}
 
@@ -195,7 +195,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 172.0, 285.0, 214.0, 20.0 ],
+									"patching_rect" : [ 172.0, 300.0, 214.0, 20.0 ],
 									"text" : "A single value (scalar) from fl.random~"
 								}
 
@@ -211,7 +211,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 60.0, 555.0, 165.0, 90.0 ],
+									"patching_rect" : [ 60.0, 570.0, 165.0, 90.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 9,
 									"slidercolor" : [ 0.996078431372549, 0.313725490196078, 0.313725490196078, 1.0 ]
@@ -239,7 +239,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 465.0, 149.0, 22.0 ],
+									"patching_rect" : [ 60.0, 480.0, 149.0, 22.0 ],
 									"text" : "fl.ramp~ /scale normalised"
 								}
 
@@ -252,7 +252,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 190.0, 390.0, 78.0, 22.0 ],
+									"patching_rect" : [ 190.0, 405.0, 78.0, 22.0 ],
 									"text" : "fl.tag~ length"
 								}
 
@@ -265,7 +265,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 330.0, 128.0, 22.0 ],
+									"patching_rect" : [ 60.0, 345.0, 128.0, 22.0 ],
 									"text" : "fl.map~ linear 0 1 1 15"
 								}
 
@@ -277,7 +277,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 213.0, 240.0, 342.0, 20.0 ],
+									"patching_rect" : [ 213.0, 255.0, 342.0, 20.0 ],
 									"text" : "Zero length frame (trigger frame) from fl.interval~ (a scheduler)"
 								}
 
@@ -290,7 +290,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 240.0, 106.0, 22.0 ],
+									"patching_rect" : [ 60.0, 255.0, 106.0, 22.0 ],
 									"text" : "fl.interval~ 500 ms"
 								}
 
@@ -303,7 +303,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 285.0, 66.0, 22.0 ],
+									"patching_rect" : [ 60.0, 300.0, 66.0, 22.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -315,20 +315,21 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 437.0, 577.5, 45.0, 45.0 ]
+									"patching_rect" : [ 437.0, 592.5, 45.0, 45.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato Regular",
+									"fontname" : "Lato",
+									"fontsize" : 13.0,
 									"id" : "obj-26",
 									"linecount" : 10,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 60.0, 735.0, 150.0 ],
-									"text" : "The inputs and ouputs to FrameLib objects are 'frames'. There are two basic types of frames in FrameLib. \n\nThe first is the most common and consists of a vector of numeric values. The length of this vector can be any length from zero upwards, so a scalar is simply a single valued frame of length 1. A frame with no values (zero length) is used as a trigger message, and is analogous to the bang message in Max.\n\nThe second type of frame is a 'tagged' frame. This is used primarily to transfer or set parameter values in FrameLib. A single frame can contain any number of tags (or parameter names) followed by their values. This allows you set multiple parameters with a single frame. There are methods for concatenating multiple tagged frames into a single frame containing many parameters and assocated values so it is never necessary for an object to have more than one parameter update input."
+									"patching_rect" : [ 15.0, 60.0, 726.0, 162.0 ],
+									"text" : "The inputs and ouputs to FrameLib objects are 'frames'. There are two basic types of frames in FrameLib. \n\nThe first is the most common and consists of a frame (or vector) of numeric values. The length of this vector can be any length from zero upwards, so a scalar is simply a single valued frame of length 1. A frame with no values (zero length) is used as a trigger message, and is analogous to the bang message in Max.\n\nThe second type of frame is a 'tagged' frame. This is used primarily to transfer or set parameter values in FrameLib. A single frame can contain any number of tags (or parameter names) followed by their values. This allows you set multiple parameters with a single frame. It is never necessary for an object to have more than one parameter update input, since there are methods for concatenating multiple tagged frames into a single frame containing multiple parameters tags and associated values."
 								}
 
 							}
@@ -405,7 +406,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-9", 0 ],
-									"midpoints" : [ 69.5, 370.5, 199.5, 370.5 ],
+									"midpoints" : [ 69.5, 385.5, 199.5, 385.5 ],
 									"order" : 0,
 									"source" : [ "obj-8", 0 ]
 								}
@@ -1365,8 +1366,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 245.75, 312.5, 184.0, 18.0 ],
-									"text" : "Make sure no zero length frames"
+									"patching_rect" : [ 245.75, 312.5, 377.0, 18.0 ],
+									"text" : "Make sure the value is not zero (so as to have no zero length frames)"
 								}
 
 							}
@@ -2032,7 +2033,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 735.0, 53.0 ],
+									"patching_rect" : [ 15.0, 53.0, 736.0, 53.0 ],
 									"text" : "FrameLib objects only accept one connection to between frame inlets and outlets (this limitation doesn't apply to audio inlets or outlets, or inlets taking messages, such as that on fl.frommax~). There is only one 'parameter update' inlet per FrameLib object, and so tagged frames must be concatenated prior to updating the object's configuration."
 								}
 
@@ -2892,7 +2893,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 53.0, 735.0, 53.0 ],
-									"text" : "Like all Max objects there are help files that can be accessed for reference (as well as the reference pages). Each help file has an info tab with details on the object's parameters. You can also send FrameLib objects the info message which post requested information about the object to the max console. "
+									"presentation_linecount" : 3,
+									"text" : "Every Framelib object has a help file and a reference page, just like most Max objects. Each help file has an info tab with details on the object's parameters. You can also send FrameLib objects the info message which post requested information about the object to the max console. "
 								}
 
 							}
@@ -4852,7 +4854,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 405.0, 577.0, 131.0 ],
-									"text" : "FrameLib objects have variables with state known as parameters. Parameters are referred to by name and are used for values that may not vary over a single frame. However, they make take more than one value, or non-numeric values such as a string referring to a buffer name. The parameter system is used to change object behaviour without requiring an unmanageable number of inlets and to separate configuration of 'mode' type control from normal inputs. The parameter system is a lot like the attribute system in Max, but it operates in the strongly-timed way that FrameLib frames do. As parameters are unique to FrameLib, there is a specialised mechanism for dealing with them - primarily through the object fl.tag~."
+									"text" : "FrameLib objects have variables with state known as parameters. Parameters are referred to by name and are used for values that may not vary over a single frame. However, they may take more than one value, or non-numeric values such as a string referring to a buffer name. The parameter system is used to change object behaviour without requiring an unmanageable number of inlets and to separate configuration of 'mode' type control from normal inputs. The parameter system is a lot like the attribute system in Max, but it operates in the strongly-timed way that FrameLib frames do. As parameters are unique to FrameLib, there is a specialised mechanism for dealing with them - primarily through the object fl.tag~."
 								}
 
 							}
@@ -4913,7 +4915,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 134.0, 570.0, 209.0 ],
-									"text" : "The most important concepts to understand in FrameLib:\n\n1. EVERYTHING is strongly timed.\n\nTiming in FrameLib is sub-sample accurate. Frames are timed to a minute fraction of a sample, allowing very precise control over processes and their timing\n\n2. NOTHING happens without a FrameLib timing source otherwise known as a 'scheduler'.\n\nSchedulers create trigger frames - think of them like the bang of FrameLib. Under the hood, a trigger frame is just an empty or zero length frame that contains no samples. Frames containing samples can also act as trigger frames, but these won't have been produced without another scheduler triggering some sort of generator."
+									"text" : "The most important concepts to understand in FrameLib:\n\n1. EVERYTHING is strongly timed.\n\nTiming in FrameLib is sub-sample accurate. Frames are timed to a minute fraction of a sample, allowing very precise control over processes and their timing\n\n2. NOTHING happens without a FrameLib timing source otherwise known as a 'scheduler'.\n\nSchedulers create trigger frames - think of them like the bang of FrameLib. Under the hood, a trigger frame is just an empty or zero length frame that contains no samples. Frames containing samples can also act as trigger frames, but these can't be produced without a scheduler triggering them in the first instance."
 								}
 
 							}

@@ -104,8 +104,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 375.0, 225.0, 246.0, 21.0 ],
-									"text" : "The name is used to name the C++ class"
+									"patching_rect" : [ 375.0, 225.0, 279.0, 21.0 ],
+									"text" : "The name is used to name the C++ class / files"
 								}
 
 							}
@@ -163,7 +163,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 375.0, 480.0, 172.0, 22.0 ],
+									"patching_rect" : [ 375.0, 480.000000000000057, 172.0, 22.0 ],
 									"text" : "fl.contextcontrol~ @id exporter"
 								}
 
@@ -175,8 +175,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 495.0, 410.5, 214.0, 36.0 ],
-									"text" : "Format a message to export the network with the name 'granulator'"
+									"patching_rect" : [ 495.0, 417.333333333333371, 208.0, 36.0 ],
+									"text" : "Format a message to export the network with the name 'granulator'",
+									"textjustification" : 1
 								}
 
 							}
@@ -224,7 +225,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "bang" ],
-									"patching_rect" : [ 375.0, 365.0, 89.0, 22.0 ],
+									"patching_rect" : [ 375.0, 368.666666666666686, 89.0, 22.0 ],
 									"text" : "savedialog fold"
 								}
 
@@ -277,8 +278,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 375.0, 135.0, 209.0, 36.0 ],
-									"text" : "The message format to export this granulator to some C++ code is:"
+									"patching_rect" : [ 375.0, 135.0, 328.0, 36.0 ],
+									"text" : "The message format to export this granulator to C++ code is:"
 								}
 
 							}
@@ -290,7 +291,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 375.0, 417.5, 116.0, 22.0 ],
+									"patching_rect" : [ 375.0, 424.333333333333371, 116.0, 22.0 ],
 									"text" : "export granulator $1"
 								}
 

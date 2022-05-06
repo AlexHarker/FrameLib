@@ -155,7 +155,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 345.0, 416.5, 210.0, 87.0 ],
+									"patching_rect" : [ 345.0, 416.5, 213.0, 87.0 ],
 									"text" : "Observe how outputs 1 and 4 (representing rand~ 1 and rand~ 5) update at the same fast rate, because the stream has been processed by the same stream of the multistream input, and hence the same scheduler.",
 									"textjustification" : 1
 								}
@@ -681,7 +681,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 525.0, 378.5, 241.0, 131.0 ],
+									"patching_rect" : [ 525.0, 378.5, 242.0, 131.0 ],
 									"text" : "On the left is the most basic example of a multistream network where two independent frames are combined with fl.pack~. In this scenario we are taking already generated frames and combining these two streams, but it is also possible to generate multiple streams from a single object.",
 									"textjustification" : 1
 								}
@@ -704,7 +704,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 132.0, 433.0, 294.0, 20.0 ],
+									"patching_rect" : [ 131.5, 434.0, 294.0, 20.0 ],
 									"text" : "Calculates each value in all streams to the power of 5"
 								}
 
@@ -715,8 +715,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 132.0, 388.0, 223.0, 20.0 ],
-									"text" : "\tPack the two frames into a multistream"
+									"patching_rect" : [ 134.5, 390.0, 215.0, 20.0 ],
+									"text" : "Pack the two frames into a multistream"
 								}
 
 							}
@@ -896,8 +896,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 782.0, 162.0 ],
-									"text" : "So far, we have actually always been operating on single stream connections. However, FrameLib also allows you to perform multistream processing, where any number of streams can be processed by one object simultaneously. Streams can be seperated, or combined at any point in a FrameLib network so they are completely flexible according to your your needs. There are a number of benefits to working in this way as it can reduce the amount of patching you need to do for processes that require the same processing across several streams of frames. Also, it makes it feasible to program more complicated processes like multi-rate FFT's (we will see some of this later).\n\nUsing the fl.pack~ object, two or more frames cabe ve combined into a single multistream frame. The example below demonstrates how these two different streams of random numbers can be independent of each other in timing and frame size. The two timing sources do not interfere with each other and can be thought of as entirely isolated processes that are programatically piped through a single fl.pow~ 5 object."
+									"patching_rect" : [ 15.0, 53.0, 786.0, 162.0 ],
+									"text" : "So far, we have actually always been operating on single stream connections. However, FrameLib also allows you to perform multistream processing, where any number of streams can be processed by one object simultaneously. Streams can be separated, or combined at any point in a FrameLib network so they are completely flexible according to your your needs. There are a number of benefits to working in this way as it can reduce the amount of patching you need to do for processes that require the same processing across several streams of frames. Also, it makes it feasible to program more complicated processes like multi-rate FFTs (we will see some of this later).\n\nUsing the fl.pack~ object, two or more frames can be combined into a single multistream output. The example below demonstrates how these two different streams of random numbers can be independent of each other in timing and frame size. The two timing sources do not interfere with each other and can be thought of as entirely isolated processes that are programatically piped through a single fl.pow~ 5 object."
 								}
 
 							}
@@ -969,7 +969,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 428.0, 433.0, 20.0, 20.0 ],
+									"patching_rect" : [ 431.0, 433.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1287,7 +1287,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 442.0, 123.0, 310.0, 240.0 ],
+									"patching_rect" : [ 442.0, 123.0, 311.0, 240.0 ],
 									"text" : "This kind of network should be familiar by now. There are really two simple components at play here. The blue objects are dealing with an offset value for each grain while the red modify the size of the grain. Some extra work is done to ensure that given the length of the grain and the offset do not try to request samples outside the boundaries of the source buffer. \n\nAs there are four streams generated at the very start of our network, the down stream objects will also be 'expanded' to generate four streams of individual values. This allows for each grain to be individually shaped and parameterised within the random numbers produced by fl.random~.",
 									"textjustification" : 1
 								}
@@ -1336,7 +1336,7 @@
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 195.0, 184.0, 510.0, 348.0 ],
+										"rect" : [ 195.0, 184.0, 500.0, 348.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -1378,13 +1378,13 @@
 											}
 , 											{
 												"box" : 												{
-													"fontsize" : 13.0,
+													"fontsize" : 12.0,
 													"id" : "obj-8",
 													"linecount" : 4,
 													"maxclass" : "comment",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 150.0, 234.0, 285.0, 65.0 ],
+													"patching_rect" : [ 150.0, 236.0, 297.0, 60.0 ],
 													"text" : "The result is four schedulers working within a single multistream network. The interval parameters are de-correlated from each other to create a less robotic timing mechanism",
 													"textjustification" : 1
 												}
@@ -1392,121 +1392,121 @@
 											}
 , 											{
 												"box" : 												{
-													"fontsize" : 13.0,
+													"fontsize" : 12.0,
 													"id" : "obj-6",
 													"maxclass" : "comment",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 107.0, 192.25, 267.0, 21.0 ],
+													"patching_rect" : [ 107.0, 192.25, 248.0, 20.0 ],
 													"text" : "Tag each stream with the interval parameter"
 												}
 
 											}
 , 											{
 												"box" : 												{
-													"fontsize" : 13.0,
+													"fontsize" : 12.0,
 													"id" : "obj-4",
 													"maxclass" : "comment",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 162.0, 147.5, 337.0, 21.0 ],
+													"patching_rect" : [ 162.0, 147.5, 312.0, 20.0 ],
 													"text" : "Scale each stream's random number between 30 and 50"
 												}
 
 											}
 , 											{
 												"box" : 												{
-													"fontsize" : 13.0,
+													"fontsize" : 12.0,
 													"id" : "obj-1",
 													"linecount" : 2,
 													"maxclass" : "comment",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 87.0, 97.25, 218.0, 36.0 ],
+													"patching_rect" : [ 87.0, 97.25, 203.0, 33.0 ],
 													"text" : "Generate a single random number between 0. and 1. in each stream"
 												}
 
 											}
 , 											{
 												"box" : 												{
-													"fontsize" : 13.0,
+													"fontsize" : 12.0,
 													"id" : "obj-48",
 													"maxclass" : "comment",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 120.0, 60.0, 372.0, 21.0 ],
+													"patching_rect" : [ 120.0, 61.0, 344.0, 20.0 ],
 													"text" : "Generate four stream (forces expansion in subsequent objects)"
 												}
 
 											}
 , 											{
 												"box" : 												{
-													"fontsize" : 13.0,
+													"fontsize" : 12.0,
 													"id" : "obj-45",
 													"maxclass" : "newobj",
 													"numinlets" : 3,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 15.0, 191.25, 90.0, 23.0 ],
+													"patching_rect" : [ 15.0, 191.25, 84.0, 22.0 ],
 													"text" : "fl.tag~ interval"
 												}
 
 											}
 , 											{
 												"box" : 												{
-													"fontsize" : 13.0,
+													"fontsize" : 12.0,
 													"id" : "obj-44",
 													"maxclass" : "newobj",
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 15.0, 147.5, 145.0, 23.0 ],
+													"patching_rect" : [ 15.0, 147.5, 134.0, 22.0 ],
 													"text" : "fl.map~ linear 0 1 30 50"
 												}
 
 											}
 , 											{
 												"box" : 												{
-													"fontsize" : 13.0,
+													"fontsize" : 12.0,
 													"id" : "obj-43",
 													"maxclass" : "newobj",
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 15.0, 103.75, 70.0, 23.0 ],
+													"patching_rect" : [ 15.0, 103.75, 66.0, 22.0 ],
 													"text" : "fl.random~"
 												}
 
 											}
 , 											{
 												"box" : 												{
-													"fontsize" : 13.0,
+													"fontsize" : 12.0,
 													"id" : "obj-41",
 													"maxclass" : "newobj",
 													"numinlets" : 1,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 15.0, 60.0, 94.0, 23.0 ],
+													"patching_rect" : [ 15.0, 60.0, 88.0, 22.0 ],
 													"text" : "fl.streamid~ =4"
 												}
 
 											}
 , 											{
 												"box" : 												{
-													"fontsize" : 13.0,
+													"fontsize" : 12.0,
 													"id" : "obj-2",
 													"maxclass" : "newobj",
 													"numinlets" : 1,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 15.0, 255.0, 124.0, 23.0 ],
+													"patching_rect" : [ 15.0, 255.0, 115.0, 22.0 ],
 													"text" : "fl.interval~ /units ms"
 												}
 
 											}
 , 											{
 												"box" : 												{
-													"comment" : "",
+													"comment" : "(frame) Triggers",
 													"id" : "obj-46",
 													"index" : 1,
 													"maxclass" : "outlet",
@@ -4162,11 +4162,11 @@
 									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-3",
-									"linecount" : 6,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 56.0, 696.25, 100.0 ],
+									"patching_rect" : [ 15.0, 56.0, 795.0, 84.0 ],
 									"text" : "In FrameLib, the \"=\" symbol can be used to initialise objects in a multistream configuration. The resulting behaviour is dependent on the specific object but this is generally predictable according to what the object does. In the example below, fl.source~ is configured to accept 4 audio inputs instead of the default 1 and each one of these Max audio inputs forms a stream once it is converted into frames. Notice how we don't need to use multiple schedulers and each stream is here being triggered by a single fl.interval~. At the output fl.sink~ the \"=\" notation can be used again to split the streams directly into audio outputs."
 								}
 

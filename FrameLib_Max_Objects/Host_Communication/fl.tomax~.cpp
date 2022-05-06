@@ -59,6 +59,8 @@ void FrameLib_MaxClass_ToMax::ToHostProxy::sendMessage(unsigned long stream, t_s
         outlet_anything(outlets[idx], s, ac, av);
     else if (!ac)
         outlet_bang(outlets[idx]);
+    else if (ac == 1)
+        outlet_float(outlets[idx], atom_getfloat(av));
     else
         outlet_list(outlets[idx], nullptr, ac, av);
 }

@@ -266,7 +266,7 @@
 ,
 						"classnamespace" : "box",
 						"rect" : [ 0.0, 26.0, 872.0, 706.0 ],
-						"bglocked" : 0,
+						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
@@ -305,7 +305,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 53.0, 843.0, 69.0 ],
-									"text" : "There is an inherent delay incurred with fl.source~ because it has to wait to collect the number of samples specified by the length parameter. This example demonstrates how you can compensate for this delay, which is useful if you need to synchronise a FrameLib process with something else. l.source~ can also add delay by retrieving samples from further back in time if you wish by setting the delay parameter. Likewise,  fl.sink~ also has a delay parameter which creates an additional delay for the output if desired."
+									"text" : "There is an inherent delay incurred with fl.source~ because it has to wait to collect the number of samples specified by the length parameter. This example demonstrates how you can compensate for this delay, which is useful if you need to synchronise a FrameLib process with something else. fl.source~ can also add delay by retrieving samples from further back in time if you wish as controlled by the /delay parameter. Likewise,  fl.sink~ also has a /delay parameter which creates an additional delay for the output if desired."
 								}
 
 							}
@@ -1207,8 +1207,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 841.25, 53.0 ],
-									"text" : "Converting frames to audio in Max is simple. All that is required is to connect the final node of your FrameLib network to an fl.sink~ object. Frames are then overlapped at the correct time in the audio output (so frames that are longer than the next incoming frame are heard in full). In the below example, white noise is generated as frames and converted to Max audio. No delay is incurred by the conversion."
+									"patching_rect" : [ 15.0, 53.0, 843.0, 53.0 ],
+									"text" : "Converting frames to audio in Max is simple. All that is required is to connect the final node of your FrameLib network to an fl.sink~ object. Frames are then overlapped at the correct time in the audio output (so frames that are longer than the time until the next incoming frame are still heard in full). In the below example, white noise is generated as frames and converted to Max audio. No delay is incurred by the conversion."
 								}
 
 							}
@@ -1264,8 +1264,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 297.0625, 208.5, 345.0, 20.0 ],
-									"text" : "Generate a frame of 44100 random numbers between 0. and 1."
+									"patching_rect" : [ 297.0625, 208.5, 339.0, 20.0 ],
+									"text" : "Generate a frame of 44100 random numbers between 0 and 1"
 								}
 
 							}
@@ -1276,7 +1276,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 251.125, 152.0, 283.0, 20.0 ],
+									"patching_rect" : [ 251.125, 152.0, 279.0, 20.0 ],
 									"text" : "Every 44100 samples, a trigger frame is scheduled"
 								}
 
@@ -1376,7 +1376,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 647.0625, 208.5, 20.0, 20.0 ],
+									"patching_rect" : [ 644.0625, 208.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1397,7 +1397,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 544.125, 152.0, 20.0, 20.0 ],
+									"patching_rect" : [ 541.125, 152.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1614,7 +1614,7 @@
 ,
 						"classnamespace" : "box",
 						"rect" : [ 0.0, 26.0, 872.0, 706.0 ],
-						"bglocked" : 0,
+						"bglocked" : 1,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
@@ -1665,7 +1665,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 496.25, 367.0, 88.75, 60.0 ],
+									"patching_rect" : [ 496.25, 367.0, 92.0, 60.0 ],
 									"text" : "Create a frame containing 100 repetitions of the value 1",
 									"textjustification" : 1
 								}
@@ -1731,7 +1731,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 157.5, 516.5, 132.0, 47.0 ],
+									"patching_rect" : [ 157.5, 516.5, 133.0, 47.0 ],
 									"text" : "This bang matches the top most fl.interval~ (200 milliseconds)",
 									"textjustification" : 1
 								}
@@ -1899,7 +1899,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 645.0, 516.5, 191.0, 152.0 ],
-									"text" : "These parameters adjust the window type and the internal calculation size for the window. If the size parameter is set to 0 it matches the length of the incoming frame. Observe the quality of the windowed output with different size parameters. A small size demonstrates the difference best.",
+									"text" : "These parameters adjust the window type and the internal calculation size for the window. If the size parameter is set to 0 it matches the length of the incoming frame. Observe the quality of the windowed output with different size parameters. A small size demonstrates this difference best.",
 									"textjustification" : 1
 								}
 
@@ -1987,8 +1987,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 651.5, 238.5, 70.0, 22.0 ],
-									"text" : "loadmess 2"
+									"patching_rect" : [ 651.5, 238.5, 77.0, 22.0 ],
+									"text" : "loadmess 20"
 								}
 
 							}
@@ -2035,7 +2035,7 @@
 									"id" : "obj-20",
 									"maxclass" : "number",
 									"maximum" : 100,
-									"minimum" : 0,
+									"minimum" : 2,
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
@@ -2197,7 +2197,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 48.5, 845.0, 162.0 ],
-									"text" : "Convering control data from Max into FrameLib requires two steps: \n1. Connect control data to fl.frommax~. \n2. Connect a scheduler to the same fl.frommax~ to determine how often control data is converted into a frame.\n \nIn the bottom left example, fl.interval~ creates trigger frames every 200 milliseconds that drive fl.frommax~, causing the multislider output to be turned into a frame. This frame is then reversed. Take note how the we only see the ouput change at 200 milliseconds intercals.\n\nAdditionally, fl.frommax~ can form tagged frames from Max messages that arrive in the format of <parameter name> <value>. This only occurs when fl.frommax~ is in the \"params\" mode (/mode params). To modify multiple parameters, simply create more message boxes outside the network with Max objects. The right example demonstrates how this functionality can be used to modify the parameters of the fl.window~ object."
+									"text" : "Converting control data from Max into FrameLib requires two steps: \n1. Connect control data to fl.frommax~. \n2. Connect a scheduler to the same fl.frommax~ to determine how often control data is converted into a frame.\n \nIn the bottom left example, fl.interval~ creates trigger frames every 200 milliseconds that drive fl.frommax~, causing the multislider output to be turned into a frame. This frame is then reversed. Take note how the we only see the ouput change at 200 milliseconds intervals.\n\nAdditionally, fl.frommax~ can form tagged frames from Max messages that arrive in the format of <parameter name> <value(s)>. This can only occur when fl.frommax~ is in the \"params\" mode (/mode params). To modify multiple parameters, simply create more message boxes outside the network with Max objects. The right example demonstrates how this functionality can be used to modify the parameters of the fl.window~ object."
 								}
 
 							}
@@ -2875,8 +2875,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 386.125, 188.0, 86.0, 20.0 ],
-									"text" : "Source sound."
+									"patching_rect" : [ 386.125, 188.0, 83.0, 20.0 ],
+									"text" : "Source sound"
 								}
 
 							}
@@ -2887,8 +2887,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 294.125, 327.0, 371.0, 20.0 ],
-									"text" : "fl.source~ collects the most recent 256 samples from its audio input."
+									"patching_rect" : [ 294.125, 327.0, 366.0, 20.0 ],
+									"text" : "fl.source~ collects the most recent 256 samples from its audio input"
 								}
 
 							}
@@ -2899,8 +2899,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 311.125, 279.0, 295.0, 20.0 ],
-									"text" : "fl.interval~ creates a trigger frame every 256 samples."
+									"patching_rect" : [ 311.125, 279.0, 292.0, 20.0 ],
+									"text" : "fl.interval~ creates a trigger frame every 256 samples"
 								}
 
 							}
@@ -2942,7 +2942,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 53.0, 825.0, 53.0 ],
-									"text" : "The fl.source~ object is responsible for converting an MSP audio signal into frames. There are two fundamental components to this process. First, an audio signal is connected to the first inlet. Second, a trigger frame is connected to the second inlet. The fl.source~ object has a /length parameter that dictates how many samples it will convert each time it receives a trigger frame."
+									"text" : "The fl.source~ object is responsible for converting an MSP audio signal into frames. There are two fundamental components to this process. First, an audio signal is connected to the first inlet. Second, an object that outputs trigger frames is connected to the second inlet. The fl.source~ object has a /length parameter that dictates how many samples it will convert each time it receives a trigger frame."
 								}
 
 							}
@@ -3563,7 +3563,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 55.0, 840.0, 69.0 ],
-									"text" : "Converting from frames to control data is simple! A ll that is required is a fl.tomax~ object. In this example, an fl.interval~ generates five random numbers between 0 and 1 and passes the output frame as a list. FrameLib networks can run at sub-sample speeds so it is possible to overload the Max scheduler by converting frames at an unsuitable speed for control-rate messages. Experiment at your own risk by changing the '500 ms' value to something like 0.1 ms."
+									"text" : "Converting from frames to control data is simple! All that is required is a fl.tomax~ object. In this example, an fl.interval~ generates five random numbers between 0 and 1 and passes the output to fl.tomax~ which converts it to a list. FrameLib networks can run at sub-sample speeds so it is possible to overload the Max scheduler by converting frames at an unsuitably high speed for control-rate messages. Experiment at your own risk by changing the '500 ms' value to something like 0.1 ms."
 								}
 
 							}
@@ -3984,7 +3984,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 116.0, 652.0, 178.0 ],
-									"text" : "As you have become more familiar with the basics of FrameLib you might be wondering how FrameLib objects can communicate with native Max objects. If you have pulled apart the patches from previous examples you may have noticed that it is impossible to connect the inlets and oulets of FrameLib objects directly to Max objects with a few exceptions: fl.fromax~, fl.tomax~, fl.source~, fl.sink~ and fl.trace~. These are a suite of objects that manage the conversion of control data and audio into frames as well as frames into control data or audio. Most features objects these are quite simple to use and they act like 'portals' between FrameLib and Max, however, some aspects of their usage require some additional understanding about the underlying concepts of frame-based processing such as timing, overlap-add and delay compensation.\n\nThe  tabs in this tutorial will guide you through these concepts and introduce you to the set of objects that allow FrameLib to communicate and function with Max rather than alongside it."
+									"text" : "As you have become more familiar with the basics of FrameLib you might be wondering how FrameLib objects can communicate with native Max objects. If you have pulled apart the patches from previous examples you may have noticed that it is impossible to connect most of the inlets and oulets of FrameLib objects directly to Max objects with a few exceptions: fl.fromax~, fl.tomax~, fl.source~, fl.sink~ and fl.trace~. These are a suite of objects that manage the conversion of control data and audio into frames as well as frames into control data or audio. Most features these objects provide are quite simple to use and these objects act like 'portals' between FrameLib and Max. However, some aspects of their usage require some additional understanding about the underlying concepts of frame-based processing such as timing, overlap-add and delay compensation.\n\nThe tabs in this tutorial will guide you through these concepts and introduce you to the set of objects that allow FrameLib to communicate and function with Max rather than alongside it."
 								}
 
 							}

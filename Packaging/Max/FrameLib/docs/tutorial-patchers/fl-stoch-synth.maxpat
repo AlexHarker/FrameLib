@@ -265,10 +265,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 158.0, 281.0, 37.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"attr_comment" : ""
-					}
-,
 					"text" : "out 1"
 				}
 
@@ -280,10 +276,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 48.0, 281.0, 44.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"attr_comment" : ""
-					}
-,
 					"text" : "out~ 1"
 				}
 
@@ -458,7 +450,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 189.0, 309.75, 299.0, 33.0 ],
-									"text" : "Generate a list of values from 0 to 1 divided into equal points equal to the length."
+									"text" : "Generate a list of values from 0 to 1 divided into equal points equal to the length"
 								}
 
 							}
@@ -470,7 +462,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 227.0, 249.5, 246.0, 33.0 ],
-									"text" : "Generates the length parameter for fl.ramp~ from the multislider outside of this box."
+									"text" : "Generates the length parameter for fl.ramp~ from the multislider outside of this box"
 								}
 
 							}
@@ -1639,7 +1631,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 324.25, 436.0, 20.0 ],
-									"text" : "Generate a list of values from 0 to 1 divided into equal points equal to the length."
+									"text" : "Generate a list of values from 0 to 1 divided into equal points equal to the length"
 								}
 
 							}
@@ -1651,7 +1643,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 214.0, 247.5, 249.0, 33.0 ],
-									"text" : "Generates the length parameter for fl.ramp~ from the multislider outside of this box."
+									"text" : "Generates the length parameter for fl.ramp~ from the multislider outside of this box"
 								}
 
 							}
@@ -2718,7 +2710,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-1",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -2730,7 +2722,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-2",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -2818,8 +2810,7 @@
 				}
 
 			}
- ],
-		"autosave" : 0
+ ]
 	}
 
 }

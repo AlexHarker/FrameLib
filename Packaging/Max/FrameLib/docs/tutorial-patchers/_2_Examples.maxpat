@@ -1603,7 +1603,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 390.0, 530.0, 240.0 ],
-									"text" : "In most realtime audio environments, audio processing is built on the model of grouping continuous streams of samples into small consecutive blocks of equal size for the purpose of calculation. Whilst this offers an appropriate model to represent continuous analog signals, it is less suited to processing that functions on chunks, or frames, of audio in which the position of a sample in the frame is meaningful (e.g spectral representations), or in which the frame might be considered as a whole (e.g granular synthesis). \n\nFrameLib brings a wealth of processing techniques into the Max environment where rapid prototyping and experimentation is readily available to the user. Advanced multi-rate processing based on DSP graphs that operate on frames of different sizes is not currently supported natively within Max which is where a frame based tool kit like FrameLib excels. If this doesn't make sense to you now, these tutorials will introduce you to these concepts.\n\nIf you don't know where to start, navigating through the tabs above demonstrate what you might want to do with FrameLib."
+									"text" : "In most realtime audio environments, audio processing is built on the model of grouping continuous streams of samples into small consecutive blocks of equal size for the purpose of calculation. Whilst this offers an appropriate model to represent continuous analog signals, it is less suited to processing that functions on chunks, or frames, of audio in which the position of a sample in the frame is meaningful (e.g spectral representations), or in which the frame might be considered as a whole (e.g granular synthesis). \n\nFrameLib brings a wealth of processing techniques into the Max environment where rapid prototyping and experimentation is readily available to the user. Advanced multi-rate processing based on DSP graphs that operate on frames of different sizes is not currently supported natively within Max which is where a frame-based tool kit like FrameLib excels. If this doesn't make sense to you now, these tutorials will introduce you to these concepts.\n\nIf you don't know where to start, navigating through the tabs above demonstrate what you might want to do with FrameLib."
 								}
 
 							}
@@ -1650,7 +1650,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 120.0, 526.0, 209.0 ],
-									"text" : "FrameLib is a DSP system designed to allow quick modular constructions of frame-based networks. A frame is a self contained group of samples such as a grain in granular synthesis or an FFT frame. These networks can resolve time at a highly accurate subsample level and can run at multiple rates and with multiple mixed frame sizes. Both rate and frame length can also be freely varied over time\n\nWithin a single FrameLib network you are able to mix different representations (such as time and frequency-based), efficiently process them and maintain tightly-timed DSP constructs. A group of FrameLib objects resulting in a processing chain can be referred to as a 'network'.\n\nIf you don't know what these terms mean or are not sure if FrameLib could be useful for you rest assured it will make sense as the tutorials progress."
+									"text" : "FrameLib is a DSP system designed to allow quick modular constructions of frame-based networks. A frame is a self contained group of samples such as a grain in granular synthesis or an FFT frame. These networks can resolve time at a highly accurate subsample level and can run at multiple rates and with multiple mixed frame sizes. Both rate and frame length can also be freely varied over time\n\nWithin a single FrameLib network you are able to mix different representations (such as time and frequency-based), efficiently process them, and maintain tightly-timed DSP constructs. A group of FrameLib objects resulting in a processing chain can be referred to as a 'network'.\n\nIf you don't know what these terms mean or are not sure if FrameLib could be useful for you rest assured it will make sense as the tutorials progress."
 								}
 
 							}
@@ -3277,8 +3277,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 342.0, 334.5, 21.0 ],
-									"presentation_linecount" : 2,
+									"patching_rect" : [ 330.0, 327.0, 334.5, 21.0 ],
 									"text" : "Change the interval at which new frames are generated.",
 									"textjustification" : 1
 								}
@@ -3300,7 +3299,7 @@
 									"numoutlets" : 2,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal", "signal" ],
-									"patching_rect" : [ 180.999995814697286, 510.0, 75.0, 52.0 ],
+									"patching_rect" : [ 195.999995814697286, 495.0, 75.0, 52.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -3333,7 +3332,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.999995814697286, 630.0, 45.0, 45.0 ]
+									"patching_rect" : [ 195.999995814697286, 615.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -3358,7 +3357,7 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato Regular",
+									"fontname" : "Lato",
 									"fontsize" : 13.0,
 									"id" : "obj-23",
 									"linecount" : 6,
@@ -3366,7 +3365,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 60.0, 525.0, 100.0 ],
-									"text" : "This network adds some extra features to the basic granular synthesis patch and demonstrates how flexible FrameLib can be. In addition to generating random frame positions, the length of the frame is dynamically changed. Each frame (or grain) is being band pass filtered and spatialised across the stereo field according to its filter frequency. An interface is added allowing you to constrain the area of the buffer from which the FrameLib network extracts grains."
+									"text" : "This network adds some extra features to the basic granular synthesis patch and demonstrates how flexible FrameLib can be. In addition to generating random frame positions, the length of the frame is dynamically changed. Each frame (or grain) is being bandpass filtered and spatialised across the stereo field according to its filter frequency. An interface is added allowing you to constrain the area of the buffer from which the FrameLib network extracts grains."
 								}
 
 							}
@@ -3379,7 +3378,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 295.999995814697286, 554.0, 298.0, 121.0 ],
+									"patching_rect" : [ 310.999995814697286, 539.0, 298.0, 121.0 ],
 									"size" : 10878
 								}
 
@@ -3393,7 +3392,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 243.374996185302734, 379.75, 85.125003814697266, 12.5 ]
+									"patching_rect" : [ 258.374996185302734, 364.75, 85.125003814697266, 12.5 ]
 								}
 
 							}
@@ -3404,7 +3403,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 438.5, 496.0, 118.0, 20.0 ],
+									"patching_rect" : [ 453.5, 481.0, 118.0, 20.0 ],
 									"text" : "Replace the source!",
 									"textjustification" : 1
 								}
@@ -3419,12 +3418,13 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 399.375, 499.0, 40.25, 13.0 ]
+									"patching_rect" : [ 414.375, 484.0, 40.25, 13.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"hidden" : 1,
 									"id" : "obj-115",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -3444,7 +3444,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 489.5, 210.5, 171.0, 33.0 ],
+									"patching_rect" : [ 489.5, 210.5, 173.0, 33.0 ],
 									"text" : "Click and drag to change what portion of the buffer is used.",
 									"textjustification" : 1
 								}
@@ -3470,7 +3470,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 345.5, 495.0, 49.0, 22.0 ],
+									"patching_rect" : [ 360.5, 480.0, 49.0, 22.0 ],
 									"text" : "replace"
 								}
 
@@ -3484,7 +3484,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 345.5, 525.0, 160.0, 22.0 ],
+									"patching_rect" : [ 360.5, 510.0, 160.0, 22.0 ],
 									"text" : "buffer~ fl.tut.1.jongl jongly.aif"
 								}
 
@@ -3505,12 +3505,13 @@
 							}
 , 							{
 								"box" : 								{
+									"hidden" : 1,
 									"id" : "obj-73",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 180.999996185302734, 330.0, 90.0, 22.0 ],
+									"patching_rect" : [ 195.999996185302734, 315.0, 90.0, 22.0 ],
 									"text" : "loadmess 1024"
 								}
 
@@ -3522,7 +3523,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "signal", "signal", "" ],
-									"patching_rect" : [ 180.999995814697286, 465.0, 134.000004185302714, 22.0 ],
+									"patching_rect" : [ 195.999995814697286, 450.0, 134.000004185302714, 22.0 ],
 									"text" : "fl-granular-advanced"
 								}
 
@@ -3535,7 +3536,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 180.999996185302734, 420.0, 67.0, 22.0 ],
+									"patching_rect" : [ 195.999996185302734, 405.0, 67.0, 22.0 ],
 									"text" : "interval $1"
 								}
 
@@ -3550,12 +3551,13 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 180.999996185302734, 375.0, 53.0, 22.0 ]
+									"patching_rect" : [ 195.999996185302734, 360.0, 53.0, 22.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"hidden" : 1,
 									"id" : "obj-33",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -3612,7 +3614,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 333.75, 369.0, 297.0, 69.0 ],
+									"patching_rect" : [ 348.75, 354.0, 297.0, 69.0 ],
 									"text" : "The interval here is specified in samples. If our sampling rate was at 44100 (44.1khz), and our interval parameter here was set to 44100 we would trigger a new grain every second.",
 									"textjustification" : 1
 								}
@@ -3632,7 +3634,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 560.0, 496.0, 20.0, 20.0 ],
+									"patching_rect" : [ 575.0, 481.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -3653,7 +3655,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 645.0, 381.0, 20.0, 20.0 ],
+									"patching_rect" : [ 660.0, 366.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -3685,6 +3687,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-84", 2 ],
+									"hidden" : 1,
 									"source" : [ "obj-115", 0 ]
 								}
 
@@ -3692,7 +3695,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-19", 1 ],
-									"midpoints" : [ 246.499995814697286, 615.0, 216.499995814697286, 615.0 ],
+									"midpoints" : [ 261.499995814697286, 600.0, 231.499995814697286, 600.0 ],
 									"source" : [ "obj-13", 1 ]
 								}
 
@@ -3700,7 +3703,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-19", 0 ],
-									"midpoints" : [ 190.499995814697286, 564.0, 190.499995814697286, 564.0 ],
+									"midpoints" : [ 205.499995814697286, 549.0, 205.499995814697286, 549.0 ],
 									"source" : [ "obj-13", 0 ]
 								}
 
@@ -3708,6 +3711,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-84", 3 ],
+									"hidden" : 1,
 									"midpoints" : [ 405.0, 190.400001525878906, 367.25, 190.400001525878906 ],
 									"source" : [ "obj-33", 0 ]
 								}
@@ -3737,7 +3741,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
-									"midpoints" : [ 190.499995814697286, 489.0, 190.499995814697286, 489.0 ],
+									"midpoints" : [ 205.499995814697286, 474.0, 205.499995814697286, 474.0 ],
 									"source" : [ "obj-67", 0 ]
 								}
 
@@ -3752,6 +3756,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-53", 0 ],
+									"hidden" : 1,
 									"source" : [ "obj-73", 0 ]
 								}
 

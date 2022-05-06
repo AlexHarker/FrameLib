@@ -216,7 +216,7 @@
 											}
 , 											{
 												"box" : 												{
-													"comment" : "",
+													"comment" : "(frame) Trigger",
 													"id" : "obj-25",
 													"index" : 1,
 													"maxclass" : "inlet",
@@ -229,7 +229,7 @@
 											}
 , 											{
 												"box" : 												{
-													"comment" : "",
+													"comment" : "(frame) Offset",
 													"id" : "obj-29",
 													"index" : 1,
 													"maxclass" : "outlet",
@@ -392,7 +392,7 @@
 											}
 , 											{
 												"box" : 												{
-													"comment" : "",
+													"comment" : "(frame) Trigger",
 													"id" : "obj-16",
 													"index" : 1,
 													"maxclass" : "inlet",
@@ -405,7 +405,7 @@
 											}
 , 											{
 												"box" : 												{
-													"comment" : "",
+													"comment" : "(frame) Amplitude",
 													"id" : "obj-17",
 													"index" : 1,
 													"maxclass" : "outlet",
@@ -480,7 +480,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 330.0, 524.0, 376.0, 131.0 ],
+									"patching_rect" : [ 330.0, 524.0, 379.0, 131.0 ],
 									"text" : "Multithreading in this scenario is extremely effective at reducing the overall CPU load of this network. Because this network is comprised of 100 parallel streams, with multithreading enabled this workload is easily parallelised across multiple threads. This is one kind of use case in which enabling multithreading may be significantly beneficial. Other use cases may not be beneficial though, or you may see no gains. This is the reason that multithreading is disabled by default.",
 									"textjustification" : 1
 								}
@@ -495,8 +495,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 328.5, 270.0, 378.0, 100.0 ],
-									"text" : "This network belongs to the context named 'workhorse', which is specified at the top-most fl.interval~ scheduler. We can manage the multithreading properties of this context with the fl.context~ object, by pointing it to the same context name. Experiment by switching multithreading on and off with the toggle and observing the amount of CPU usage consumed.",
+									"patching_rect" : [ 328.5, 270.0, 380.0, 100.0 ],
+									"text" : "This network belongs to the context named 'workhorse', which is specified at the top-most fl.interval~ scheduler. We can manage the multithreading properties of this context with the fl.contextcontrol~ object, by pointing it to the same context name. Experiment by switching multithreading on and off with the toggle and observing the CPU usage.",
 									"textjustification" : 1
 								}
 
@@ -536,7 +536,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 330.0, 135.0, 378.0, 69.0 ],
-									"text" : "To the left is a fairly hefty granular network that is generate 100, 1024 sample grains every 512 samples. Depending on the processing power of the computer you are using, the CPU usage below should report something relatively significant.",
+									"text" : "To the left is a fairly hefty granular network that generates 100, 1024 sample grains every 512 samples. Depending on the processing power of the computer you are using, the CPU usage below should report something relatively significant.",
 									"textjustification" : 1
 								}
 
@@ -778,7 +778,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 445.75, 435.0, 85.0, 22.0 ],
+									"patching_rect" : [ 445.75, 431.5, 85.0, 22.0 ],
 									"text" : "multithread $1"
 								}
 
@@ -1235,7 +1235,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 120.0, 525.0, 225.0 ],
-									"text" : "FrameLib has the ability to switch between running each context in a single thread or across multiple threads. In a perfect world, multithreading would always give us some kind of performance gain over running inside of a single thread, but sadly this is not the case in the real world due to the overheads of thread synchronisation and need to have work that can be done simultaneously. FrameLib is able to exploit parallel aspects of a network in terms of the way objects are connected or where there are multiple streams to acheive performance gains, but multithreading is likely to be less effective when the network is mostly serial in layout. Nonetheless, the functionality is available to you as a simple on/off switch but understanding the implications ofturning it on is crucial. By default, multithreading is switched off for all FrameLib contexts but it is trivial to test and implement if you need to squeeze out maximum performance from FrameLib in a large or complex network.\n\nNote that multithreading can be used for both real-time and non-realtime contexts."
+									"text" : "FrameLib has the ability to switch between running each context in a single thread or across multiple threads. In a perfect world, multithreading would always give us some kind of performance gain over running inside of a single thread, but sadly this is not the case in the real world due to the overheads of thread synchronisation and need to have work that can be done simultaneously. FrameLib is able to exploit parallel aspects of a network in terms of the way objects are connected or where there are multiple streams to achieve performance gains, but multithreading is likely to be less effective when the network is mostly serial in layout. Nonetheless, the functionality is available to you as a simple on/off switch but understanding the implications of turning it on is crucial. By default, multithreading is switched off for all FrameLib contexts but it is trivial to test and implement if you need to squeeze out maximum performance from FrameLib in a large or complex network.\n\nNote that multithreading can be used for both real-time and non-realtime contexts."
 								}
 
 							}
