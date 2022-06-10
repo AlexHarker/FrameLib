@@ -137,8 +137,8 @@ void FrameLib_KernelSmooth::process()
         
         if (mParameters.getEnum<Scales>(kScale) == kNormalised)
         {
-            width_lo /= static_cast<double>(sizeIn1);
-            width_hi /= static_cast<double>(sizeIn1);
+            width_lo *= static_cast<double>(sizeIn1);
+            width_hi *= static_cast<double>(sizeIn1);
         }
         
         mSmoother.smooth(output, input, kernel, sizeIn1, sizeIn2, width_lo, width_hi, symmetric, edges);
