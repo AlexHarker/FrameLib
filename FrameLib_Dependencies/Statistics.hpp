@@ -162,7 +162,7 @@ double stat_sum(const T input, size_t size)
 template <class T>
 double stat_sum_abs(const T input, size_t size)
 {
-    return stat_sum(impl::modified_data<T, impl::absolute>(input), size);
+    return stat_sum(impl::modified_data<const T, impl::absolute>(input), size);
 }
 
 template <class T>
@@ -345,30 +345,30 @@ double stat_kurtosis(const T input, size_t size)
 template <class T>
 double stat_log_centroid(const T input, size_t size)
 {
-    return exp2(stat_weighted_sum(impl::log_indices(), impl::log_width<T>(input), size) / (stat_sum(impl::log_width<T>(input), size)));
+    return exp2(stat_weighted_sum(impl::log_indices(), impl::log_width<const T>(input), size) / (stat_sum(impl::log_width<const T>(input), size)));
 }
 
 template <class T>
 double stat_log_spread(const T input, size_t size)
 {
     double centroid = stat_log_centroid(input, size);
-    return sqrt(stat_weighted_sum(impl::log_indices_diff_op<impl::pow2>(log2(centroid)), impl::log_width<T>(input), size) / (stat_sum(impl::log_width<T>(input)), size));
+    return sqrt(stat_weighted_sum(impl::log_indices_diff_op<impl::pow2>(log2(centroid)), impl::log_width<const T>(input), size) / stat_sum(impl::log_width<const T>(input), size));
 }
 
 template <class T>
 double stat_log_skewness(const T input, size_t size)
 {
     double centroid = stat_log_centroid(input, size);
-    double denominator = impl::pow3()(stat_log_spread(input, size)) * statSum(impl::log_width<T>(input), size);
-    return denominator ? stat_weighted_sum(impl::log_indices_diff_op<impl::pow3>(log2(centroid)), impl::log_width<T>(input), size) / denominator : 0.0;
+    double denominator = impl::pow3()(stat_log_spread(input, size)) * stat_sum(impl::log_width<const T>(input), size);
+    return denominator ? stat_weighted_sum(impl::log_indices_diff_op<impl::pow3>(log2(centroid)), impl::log_width<const T>(input), size) / denominator : 0.0;
 }
 
 template <class T>
 double stat_log_kurtosis(const T input, size_t size)
 {
     double centroid = stat_centroid(input, size);
-    double denominator = impl::pow4()(stat_log_spread(input, size)) * stat_sum(impl::log_width<T>(input), size);
-    return denominator ? stat_weighted_sum(impl::log_indices_diff_op<impl::pow4>(log2(centroid)), impl::log_width<T>(input), size) / denominator : std::numeric_limits<double>::infinity();
+    double denominator = impl::pow4()(stat_log_spread(input, size)) * stat_sum(impl::log_width<const T>(input), size);
+    return denominator ? stat_weighted_sum(impl::log_indices_diff_op<impl::pow4>(log2(centroid)), impl::log_width<const T>(input), size) / denominator : std::numeric_limits<double>::infinity();
 }
 
 // Flatness
