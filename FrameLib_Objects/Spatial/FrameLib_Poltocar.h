@@ -15,12 +15,12 @@ namespace FrameLib_Spatial_Ops
         
         Value2D operator()(const Value2D& v)
         {
-            return std::polar<double>(v.real(), v.imag() * mAngleFactor);
+            return std::polar<double>(std::max(0.0, v.real()), v.imag() * mAngleFactor);
         }
         
         Value3D operator()(const Value3D& v)
         {
-            const double radius = std::get<0>(v);
+            const double radius = std::max(0.0, std::get<0>(v));
             const double theta = std::get<1>(v) * mAngleFactor;
             const double psi = mAngleFactor * (mAngleOffset - std::get<2>(v));
         
