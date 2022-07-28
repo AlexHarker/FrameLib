@@ -61,6 +61,35 @@ public:
             set_max_fft_size(0);
     }
     
+    // Not Copyable
+    
+    spectral_processor(const spectral_processor&) = delete;
+    spectral_processor &operator =(const spectral_processor&) = delete;
+    
+    // Moveable (subject to the allocator being moveable)
+    
+    template <typename U = Allocator, enable_if_t<std::is_move_constructible<U>::value> = 0>
+    spectral_processor(spectral_processor&& b)
+    : m_allocator(std::move(b.m_allocator))
+    , m_fft_setup(std::move(b.m_fft_setup))
+    , m_max_fft_size_log2(b.m_max_fft_size_log2)
+    {
+        b.m_fft_setup = nullptr;
+    }
+    
+    template <typename U = Allocator, enable_if_t<std::is_move_assignable<U>::value> = 0>
+    spectral_processor &operator =(spectral_processor&& b)
+    {
+        m_allocator = std::move(b.m_allocator);
+        m_fft_setup = std::move(b.m_fft_setup);
+        m_max_fft_size_log2 = b.m_max_fft_size_log2;
+        b.m_fft_setup = nullptr;
+        
+        return *this;
+    }
+    
+    // Destructor
+    
     ~spectral_processor()
     {
         if (m_max_fft_size_log2)
@@ -163,6 +192,16 @@ public:
     uintptr_t correlated_size(uintptr_t size1, uintptr_t size2, EdgeMode mode) const
     {
         return calc_conv_corr_size(size1, size2, mode);
+    }
+    
+    uintptr_t required_fft_size(uintptr_t size1, uintptr_t size2) const
+    {
+        if (!size1 || !size2)
+            return 0;
+        
+        op_sizes sizes(size1, size2, EdgeMode::Linear);
+        
+        return sizes.fft();
     }
     
     static uintptr_t calc_fft_size_log2(uintptr_t size)
