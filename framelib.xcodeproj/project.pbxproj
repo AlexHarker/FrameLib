@@ -447,7 +447,7 @@
 		B8B3F7BB27D6B5D6008886BA /* FrameLib_Recursive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B3F78227D6B50A008886BA /* FrameLib_Recursive.cpp */; };
 		B8B3F7BC27D6B5F4008886BA /* FrameLib_SortMultiple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B3F78527D6B536008886BA /* FrameLib_SortMultiple.cpp */; };
 		B8B3F7BF27D6B61E008886BA /* fl.sortmultiple~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B3F7BD27D6B61D008886BA /* fl.sortmultiple~.cpp */; };
-		B8B3F7C027D6B642008886BA /* fl.recursivescheduler~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B3F78627D6B568008886BA /* fl.recursivescheduler~.cpp */; };
+		B8B3F7C027D6B642008886BA /* fl.recursive~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B3F78627D6B568008886BA /* fl.recursive~.cpp */; };
 		B8B3F7C127D6B645008886BA /* fl.nexttime~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B3F78827D6B57C008886BA /* fl.nexttime~.cpp */; };
 		B8B401AB1FB9A8B1006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8B401BE1FB9A8BB006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
@@ -3618,9 +3618,9 @@
 		B8B3F78327D6B50A008886BA /* FrameLib_Recursive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Recursive.h; sourceTree = "<group>"; };
 		B8B3F78427D6B536008886BA /* FrameLib_SortMultiple.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_SortMultiple.h; sourceTree = "<group>"; };
 		B8B3F78527D6B536008886BA /* FrameLib_SortMultiple.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_SortMultiple.cpp; sourceTree = "<group>"; };
-		B8B3F78627D6B568008886BA /* fl.recursivescheduler~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.recursivescheduler~.cpp"; sourceTree = "<group>"; };
+		B8B3F78627D6B568008886BA /* fl.recursive~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.recursive~.cpp"; sourceTree = "<group>"; };
 		B8B3F78827D6B57C008886BA /* fl.nexttime~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.nexttime~.cpp"; sourceTree = "<group>"; };
-		B8B3F79827D6B58B008886BA /* fl.recursivescheduler~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.recursivescheduler~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B3F79827D6B58B008886BA /* fl.recursive~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.recursive~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B3F7A827D6B58E008886BA /* fl.nexttime~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.nexttime~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B3F7B827D6B591008886BA /* fl.sortmultiple~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.sortmultiple~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B3F7BD27D6B61D008886BA /* fl.sortmultiple~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.sortmultiple~.cpp"; sourceTree = "<group>"; };
@@ -5490,7 +5490,7 @@
 				B8675132272BF39300419AB7 /* fl.lookupstring~.mxo */,
 				B855955427D249D8007CA145 /* SchedulingTests */,
 				B8B3F77F27D65696008886BA /* ExportTests */,
-				B8B3F79827D6B58B008886BA /* fl.recursivescheduler~.mxo */,
+				B8B3F79827D6B58B008886BA /* fl.recursive~.mxo */,
 				B8B3F7A827D6B58E008886BA /* fl.nexttime~.mxo */,
 				B8B3F7B827D6B591008886BA /* fl.sortmultiple~.mxo */,
 				B8ED8BA62892F7F000AE30A2 /* fl.change~.mxo */,
@@ -5771,7 +5771,7 @@
 				B8EA6B8A220320C600D23A86 /* fl.chain~.cpp */,
 				B8B4C8E71F33D956008E5D31 /* fl.audiotrigger~.cpp */,
 				B87F75781F35EB71002B91E9 /* fl.perblock~.cpp */,
-				B8B3F78627D6B568008886BA /* fl.recursivescheduler~.cpp */,
+				B8B3F78627D6B568008886BA /* fl.recursive~.cpp */,
 				B8B3F78827D6B57C008886BA /* fl.nexttime~.cpp */,
 			);
 			path = Schedulers;
@@ -9880,9 +9880,9 @@
 			productReference = B8B3F77F27D65696008886BA /* ExportTests */;
 			productType = "com.apple.product-type.tool";
 		};
-		B8B3F78A27D6B58B008886BA /* fl.recursivescheduler~ */ = {
+		B8B3F78A27D6B58B008886BA /* fl.recursive~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B3F79427D6B58B008886BA /* Build configuration list for PBXNativeTarget "fl.recursivescheduler~" */;
+			buildConfigurationList = B8B3F79427D6B58B008886BA /* Build configuration list for PBXNativeTarget "fl.recursive~" */;
 			buildPhases = (
 				B8B3F78D27D6B58B008886BA /* Headers */,
 				B8B3F78E27D6B58B008886BA /* Resources */,
@@ -9894,10 +9894,10 @@
 			dependencies = (
 				B8B3F78B27D6B58B008886BA /* PBXTargetDependency */,
 			);
-			name = "fl.recursivescheduler~";
+			name = "fl.recursive~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B3F79827D6B58B008886BA /* fl.recursivescheduler~.mxo */;
+			productReference = B8B3F79827D6B58B008886BA /* fl.recursive~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B3F79A27D6B58E008886BA /* fl.nexttime~ */ = {
@@ -11438,7 +11438,7 @@
 				B85536D922FEB88100D10495 /* fl.kernelsmooth~ */,
 				B8DA052B23C5F05E00D0894F /* fl.prioritise~ */,
 				B898098524FCFA1E00FFE4E2 /* fl.makewindow~ */,
-				B8B3F78A27D6B58B008886BA /* fl.recursivescheduler~ */,
+				B8B3F78A27D6B58B008886BA /* fl.recursive~ */,
 				B8B3F79A27D6B58E008886BA /* fl.nexttime~ */,
 				B8B3F7AA27D6B591008886BA /* fl.sortmultiple~ */,
 				B8ED8B982892F7F000AE30A2 /* fl.change~ */,
@@ -13690,7 +13690,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8B3F7BA27D6B5D0008886BA /* FrameLib_Recursive.cpp in Sources */,
-				B8B3F7C027D6B642008886BA /* fl.recursivescheduler~.cpp in Sources */,
+				B8B3F7C027D6B642008886BA /* fl.recursive~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28886,7 +28886,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B3F79427D6B58B008886BA /* Build configuration list for PBXNativeTarget "fl.recursivescheduler~" */ = {
+		B8B3F79427D6B58B008886BA /* Build configuration list for PBXNativeTarget "fl.recursive~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B3F79527D6B58B008886BA /* Development */,

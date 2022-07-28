@@ -2339,8 +2339,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B3F78A27D6B58B008886BA"
-               BuildableName = "fl.recursivescheduler~.mxo"
-               BlueprintName = "fl.recursivescheduler~"
+               BuildableName = "fl.recursive~.mxo"
+               BlueprintName = "fl.recursive~"
                ReferencedContainer = "container:framelib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
