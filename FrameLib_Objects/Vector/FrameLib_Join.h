@@ -1,6 +1,6 @@
 
-#ifndef FrameLib_Join_H
-#define FrameLib_Join_H
+#ifndef FRAMELIB_JOIN_H
+#define FRAMELIB_JOIN_H
 
 #include "FrameLib_DSP.h"
 

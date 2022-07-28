@@ -1,6 +1,6 @@
 
-#ifndef FrameLib_SerialiseGraph_h
-#define FrameLib_SerialiseGraph_h
+#ifndef FRAMELIB_SERIALISEGRAPH_H
+#define FRAMELIB_SERIALISEGRAPH_H
 
 #include "FrameLib_Multistream.h"
 
