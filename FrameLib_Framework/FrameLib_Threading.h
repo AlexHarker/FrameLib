@@ -1,6 +1,6 @@
 
-#ifndef FrameLib_THREADING_H
-#define FrameLib_THREADING_H
+#ifndef FRAMELIB_THREADING_H
+#define FRAMELIB_THREADING_H
 
 #include "FrameLib_Types.h"
 

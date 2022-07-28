@@ -1,5 +1,6 @@
-#ifndef FrameLib_NanFilter_h
-#define FrameLib_NanFilter_h
+
+#ifndef FRAMELIB_NANFILTER_H
+#define FRAMELIB_NANFILTER_H
 
 #include "FrameLib_DSP.h"
 

@@ -1,6 +1,6 @@
 
-#ifndef FrameLib_TimeMean_H
-#define FrameLib_TimeMean_H
+#ifndef FRAMELIB_TIMEMEAN_H
+#define FRAMELIB_TIMEMEAN_H
 
 #include "FrameLib_TimeBuffer_Template.h"
 #include "FrameLib_NeumaierSum.h"

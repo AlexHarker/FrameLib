@@ -1,6 +1,6 @@
 
-#ifndef FrameLib_Prioritise_H
-#define FrameLib_Prioritise_H
+#ifndef FRAMELIB_PRIORITISE_H
+#define FRAMELIB_PRIORITISE_H
 
 #include "FrameLib_DSP.h"
 
