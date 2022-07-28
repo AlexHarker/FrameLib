@@ -6,13 +6,6 @@
 
 class FrameLib_Change final : public FrameLib_Processor
 {
-    // Parameter Enums and Info
-
-    enum ParameterList { kNumIns, kMode };
-    enum Modes { kLow, kHigh };
-    
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-
 public:
 
     // Constructor
@@ -27,13 +20,15 @@ public:
 
 private:
     
-    // Process
+    // Update and Process
     
+    void update() override;
     void process() override;
     
     // Data
     
-    static ParameterInfo sParamInfo;
+    AutoArray<double> mLastInput;
+    
 };
 
 #endif

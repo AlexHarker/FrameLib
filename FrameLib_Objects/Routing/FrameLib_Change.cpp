@@ -4,37 +4,26 @@
 // Constructor
 
 FrameLib_Change::FrameLib_Change(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Processor(context, proxy, &sParamInfo)
+: FrameLib_Processor(context, proxy, nullptr, 1, 1)
 {
-    mParameters.addInt(kNumIns, "num_ins", 2, 0);
-    mParameters.setClip(2, 32);
-    mParameters.setInstantiation();
-    
-    mParameters.addEnum(kMode, "order", 1);
-    mParameters.addEnumItem(kLow, "low");
-    mParameters.addEnumItem(kHigh, "high");
-    mParameters.setInstantiation();
-    
     mParameters.set(serialisedParameters);
     
-    setIO(mParameters.getInt(kNumIns), 1);
+    setInputMode(0, true, false, true);
 }
 
 // Info
 
 std::string FrameLib_Change::objectInfo(bool verbose)
 {
-    return formatInfo("Apply a fixed priority ranking to synchronous input frames: "
-                      "Frames arriving asynchronously are sent to the output. "
-                      "When frames arrive synchronously only one is sent to the output. "
-                      "The input number is used to proritise synchonous inputs. "
-                      "Either higher or lower numbered inputs can be prioritised.",
-                      "Apply a fixed priority ranking to synchronous input frames.", verbose);
+    return formatInfo("Only outputs input frames which differ from the previous input: "
+                      "Output is the same length as the input. "
+                      "This object can be used to remove repeat frames from a stream.",
+                      "Only outputs input frames which differ from the previous input.", verbose);
 }
 
 std::string FrameLib_Change::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Input #", idx);
+    return "Input";
 }
 
 std::string FrameLib_Change::outputInfo(unsigned long idx, bool verbose)
@@ -42,52 +31,36 @@ std::string FrameLib_Change::outputInfo(unsigned long idx, bool verbose)
     return "Output";
 }
 
-// Parameter Info
+// Update
 
-FrameLib_Change::ParameterInfo FrameLib_Change::sParamInfo;
-
-FrameLib_Change::ParameterInfo::ParameterInfo()
+void FrameLib_Change::update()
 {
-    add("Sets the number of inputs.");
-    add("Set whether to prioritise lower or higher numbered inputs.");
+    unsigned long sizeIn;
+    
+    const double *input = getInput(0, &sizeIn);
+    
+    bool changed = (mLastInput.size() != sizeIn);
+        
+    for (unsigned long i = 0; i < sizeIn && !changed; i++)
+        changed = !((input[i] == mLastInput[i]) || (std::isnan(input[i]) && std::isnan(input[i])));
+        
+    updateTrigger(0, changed);
 }
 
 // Process
 
 void FrameLib_Change::process()
 {
-    FrameLib_TimeFormat now = getFrameTime();
-    unsigned long input = 0;
-        
-    // Find the prioritised input
+    unsigned long sizeIn;
     
-    Modes mode = mParameters.getEnum<Modes>(kMode);
+    const double *input = getInput(0, &sizeIn);
     
-    switch (mode)
-    {
-        case kLow:
-        {
-            for ( ; input < getNumIns(); input++)
-                if (now == getInputFrameTime(input))
-                    break;
-            
-            assert(input < getNumIns() && "No current input found");
-            break;
-        }
-        
-        case kHigh:
-        {
-            for (input = getNumIns(); input > 0; input--)
-                if (now == getInputFrameTime(input - 1))
-                    break;
-            
-            assert(input > 0 && "No current input found");
-            input--;
-            break;
-        }
-    }
+    mLastInput = allocAutoArray<double>(sizeIn);
     
-    prepareCopyInputToOutput(input, 0);
+    if (mLastInput.size())
+        copyVector(mLastInput.data(), input, sizeIn);
+    
+    prepareCopyInputToOutput(0, 0);
     allocateOutputs();
-    copyInputToOutput(input, 0);
+    copyInputToOutput(0, 0);
 }
