@@ -53,6 +53,7 @@
 
 // Routing
 
+#include "../FrameLib_Objects/Routing/FrameLib_Change.h"
 #include "../FrameLib_Objects/Routing/FrameLib_Dispatch.h"
 #include "../FrameLib_Objects/Routing/FrameLib_Route.h"
 #include "../FrameLib_Objects/Routing/FrameLib_Select.h"

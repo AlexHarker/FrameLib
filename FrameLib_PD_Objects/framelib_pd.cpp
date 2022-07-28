@@ -226,6 +226,7 @@ extern "C" void framelib_pd_setup(void)
     
     // Routing
     
+    FrameLib_PDClass_Expand<FrameLib_Change>::makeClass("fl.change~");
     FrameLib_PDClass_Expand<FrameLib_Dispatch>::makeClass("fl.dispatch~");
     FrameLib_PDClass_Expand<FrameLib_Route>::makeClass("fl.route~");
     FrameLib_PDClass_Expand<FrameLib_Select>::makeClass("fl.select~");

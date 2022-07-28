@@ -76,6 +76,7 @@ extern "C" int C74_EXPORT main(void)
     
     // Routing
     
+    FrameLib_MaxClass_Expand<FrameLib_Change>::makeClass("fl.change~");
     FrameLib_MaxClass_Expand<FrameLib_Dispatch>::makeClass("fl.dispatch~");
     FrameLib_MaxClass_Expand<FrameLib_Route>::makeClass("fl.route~");
     FrameLib_MaxClass_Expand<FrameLib_Select>::makeClass("fl.select~");
