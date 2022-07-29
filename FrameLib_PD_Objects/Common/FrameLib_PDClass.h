@@ -1233,7 +1233,7 @@ private:
     
     // Parameter Parsing
     
-    unsigned long safeCount(char *str, unsigned long maxCount)
+    static unsigned long safeCount(char *str, unsigned long maxCount)
     {
         unsigned long number = std::max(1, atoi(str));
         return std::min(maxCount, number);
