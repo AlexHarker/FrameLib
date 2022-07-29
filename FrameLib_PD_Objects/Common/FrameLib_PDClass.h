@@ -1,4 +1,7 @@
 
+#ifndef FRAMELIB_PD_CLASS_H
+#define FRAMELIB_PD_CLASS_H
+
 #include "PDClass_Base.h"
 
 #include "FrameLib_Global.h"
@@ -1236,7 +1239,7 @@ private:
         return std::min(maxCount, number);
     }
     
-    long getStreamCount(t_atom *a)
+    static long getStreamCount(t_atom *a)
     {
         if (atom_gettype(a) == A_SYMBOL)
         {
@@ -1365,7 +1368,7 @@ private:
     
     // Input Parsing
     
-    unsigned long inputNumber(t_symbol *sym)
+    static unsigned long inputNumber(t_symbol *sym)
     {
         return safeCount(sym->s_name + 1, 16384) - 1;
     }
@@ -1451,3 +1454,5 @@ public:
 
 template <class T, PDObjectArgsMode argsMode = kAsParams>
 using FrameLib_PDClass_Expand = FrameLib_PDClass<FrameLib_Expand<T>, argsMode>;
+
+#endif
