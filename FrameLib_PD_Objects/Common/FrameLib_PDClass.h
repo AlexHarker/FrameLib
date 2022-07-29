@@ -541,7 +541,6 @@ public:
         addMethod(c, (t_method) &extIsOutput, "__fl.is_output");
         addMethod(c, (t_method) &extGetNumAudioIns, "__fl.get_num_audio_ins");
         addMethod(c, (t_method) &extGetNumAudioOuts, "__fl.get_num_audio_outs");
-        class_addmethod(c, (t_method) &codeexport, gensym("export"), A_SYMBOL, A_SYMBOL, 0);
 
         dspInit(c);
     }
@@ -640,23 +639,6 @@ public:
                 pd_free(*it);
       
         //object_free(mSyncIn);
-    }
-    
-    static void codeexport(FrameLib_PDClass *x, t_symbol *className, t_symbol *path)
-    {
-        char conformedPath[MAXPDSTRING];
-
-        if (strlen(path->s_name) > MAXPDSTRING)
-            conformedPath[0] = 0;
-        else
-            sys_bashfilename(path->s_name, conformedPath);
-        
-        ExportError error = exportGraph(x->mObject.get(), conformedPath, className->s_name);
-        
-        if (error == ExportError::PathError)
-            pd_error(x->mUserObject, "couldn't write to or find specified path");
-        else if (error == ExportError::WriteError)
-            pd_error(x->mUserObject, "couldn't write file");
     }
     
     void info(t_symbol *sym, long ac, t_atom *av)
