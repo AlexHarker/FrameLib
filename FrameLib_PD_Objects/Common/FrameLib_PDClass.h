@@ -533,7 +533,7 @@ public:
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::sync>(c, "sync");
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::dsp>(c);
         addMethod(c, (t_method) &extResolveConnections, "__fl.resolve_connections");
-        addMethod(c, (t_method) &extAutoOrdering, "__fl.auto_ordering_connections");
+        addMethod(c, (t_method) &extMakeAutoOrdering, "__fl.auto_ordering_connections");
         addMethod(c, (t_method) &extClearAutoOrdering, "__fl.clear_auto_ordering_connections");
         addMethod(c, (t_method) &extIsConnected, "__fl.is_connected");
         addMethod(c, (t_method) &extConnectionConfirm, "__fl.connection_confirm");
@@ -685,7 +685,7 @@ public:
         
         // FIX - user object should be used here....
         
-        post("********* %s *********", class_getname(*getClassPointer<FrameLib_PDClass>()));
+        post("------------------ %s ------------------", class_getname(*getClassPointer<FrameLib_PDClass>()));
 
         // Description
         
@@ -703,10 +703,10 @@ public:
             if (argsMode == kAllInputs)
                 post("N.B. - arguments set the fixed array values for all inputs.");
             if (argsMode == kDistribute)
-                post("N.B - arguments are distributed one per input.");
-            for (long i = 0; i < mObject->getNumAudioIns(); i++)
+                post("N.B - arguments are distributed one per input from the second input.");
+            for (long i = 0; i < static_cast<long>(mObject->getNumAudioIns()); i++)
                 post("Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
-            for (long i = 0; i < mObject->getNumIns(); i++)
+            for (long i = 0; i < getNumIns(); i++)
                 post("Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose).c_str());
             if (supportsOrderingConnections())
                 post("Ordering Input [%s]: Connect to ensure ordering", frameTypeString(FrameType::Any));
@@ -715,9 +715,9 @@ public:
         if (flags & kInfoOutputs)
         {
             post("--- Output List ---");
-            for (long i = 0; i < mObject->getNumAudioOuts(); i++)
+            for (long i = 0; i < static_cast<long>(mObject->getNumAudioOuts()); i++)
                 post("Audio Output %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
-            for (long i = 0; i < mObject->getNumOuts(); i++)
+            for (long i = 0; i < getNumOuts(); i++)
                 post("Frame Output %ld [%s]: %s", i + 1, frameTypeString(mObject->outputType(i)), mObject->outputInfo(i, verbose).c_str());
         }
         
@@ -732,7 +732,7 @@ public:
             
             // Loop over parameters
             
-            for (long i = 0; params && i < params->size(); i++)
+            for (unsigned long i = 0; params && i < params->size(); i++)
             {
                 FrameLib_Parameters::Type type = params->getType(i);
                 FrameLib_Parameters::NumericType numericType = params->getNumericType(i);
@@ -762,7 +762,7 @@ public:
                         }
                     }
                     if (type == FrameLib_Parameters::Type::Enum)
-                        for (long j = 0; j <= params->getMax(i); j++)
+                        for (unsigned long j = 0; j <= static_cast<unsigned long>(params->getMax(i)); j++)
                             post("   [%ld] - %s", j, params->getItemString(i, j));
                     else if (type == FrameLib_Parameters::Type::Array)
                         post("- Array Size: %ld", params->getArraySize(i));
@@ -943,7 +943,7 @@ public:
         x->resolveConnections();
     }
                                
-    static void extAutoOrdering(FrameLib_PDClass *x)
+    static void extMakeAutoOrdering(FrameLib_PDClass *x)
     {
         x->mObject->makeAutoOrderingConnections();
     }
