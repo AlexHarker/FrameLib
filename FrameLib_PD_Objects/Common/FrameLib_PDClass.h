@@ -546,6 +546,29 @@ public:
         dspInit(c);
     }
 
+    // Tag checks
+    
+    static bool isParameterTag(t_symbol *sym)
+    {
+        return strlen(sym->s_name) > 1 && sym->s_name[0] == '/';
+    }
+    
+    static bool isInputTag(t_symbol *sym)
+    {
+        size_t len = strlen(sym->s_name);
+        
+        if (len > 2)
+            return (sym->s_name[0] == '[' && sym->s_name[len - 1] == ']');
+        
+        return false;
+    }
+    
+    static bool isTag(t_atom *a)
+    {
+        t_symbol *sym = atom_getsymbol(a);
+        return atom_gettype(a) == A_SYMBOL && (isParameterTag(sym) || isInputTag(sym));
+    }
+    
     // Constructor and Destructor
 
     FrameLib_PDClass(t_symbol *s, long argc, t_atom *argv, FrameLib_PDProxy *proxy = new FrameLib_PDProxy())
@@ -1259,27 +1282,6 @@ private:
         }
         
         return 0;
-    }
-    
-    bool isParameterTag(t_symbol *sym)
-    {        
-        return strlen(sym->s_name) > 1 && sym->s_name[0] == '/';
-    }
-    
-    bool isInputTag(t_symbol *sym)
-    {
-        size_t len = strlen(sym->s_name);
-        
-        if (len > 2)
-            return (sym->s_name[0] == '[' && sym->s_name[len - 1] == ']');
-        
-        return false;
-    }
-    
-    bool isTag(t_atom *a)
-    {
-        t_symbol *sym = atom_getsymbol(a);
-        return atom_gettype(a) == A_SYMBOL && (isParameterTag(sym) || isInputTag(sym));
     }
     
     long parseNumericalList(std::vector<double> &values, t_atom *argv, long argc, long idx)
