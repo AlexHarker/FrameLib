@@ -751,16 +751,21 @@ public:
         }
     }
 
-    // IO Helpers
+    // Helpers (IO / context / mode / streams)
     
-    bool supportsOrderingConnections()    { return mObject->supportsOrderingConnections(); }
+    ObjectType getType() const                  { return mObject->getType(); }
     
-    bool handlesAudio()     { return T::sHandlesAudio; }
+    FrameLib_Context getContext() const         { return mObject->getContext(); }
 
-    long getNumAudioIns()   { return (long) mObject->getNumAudioIns() + (handlesAudio() ? 1 : 0); }
-    long getNumAudioOuts()  { return (long) mObject->getNumAudioOuts() + (handlesAudio() ? 1 : 0); }
-    long getNumIns()        { return (long) mObject->getNumIns(); }
-    long getNumOuts()       { return (long) mObject->getNumOuts(); }
+    bool handlesAudio() const                   { return T::sHandlesAudio; }
+    bool supportsOrderingConnections() const    { return mObject->supportsOrderingConnections(); }
+
+    long audioIOSize(long chans) const          { return chans + (handlesAudio() ? 1 : 0); }
+
+    long getNumIns() const                      { return static_cast<long>(mObject->getNumIns()); }
+    long getNumOuts() const                     { return static_cast<long>(mObject->getNumOuts()); }
+    long getNumAudioIns() const                 { return audioIOSize(mObject->getNumAudioIns()); }
+    long getNumAudioOuts() const                { return audioIOSize(mObject->getNumAudioOuts()); }
     
     // Perform and DSP
 
@@ -1211,13 +1216,16 @@ private:
     void postSplit(const char *text, const char *firstLineTag, const char *lineTag)
     {
         std::string str(text);
-        size_t oldPos, pos;
+        size_t prev = 0;
         
-        for (oldPos = 0, pos = str.find_first_of(":."); oldPos < str.size(); pos = str.find_first_of(":.", pos + 1))
+        for (size_t pos = str.find_first_of(":."); prev < str.size(); pos = str.find_first_of(":.", pos + 1))
         {
+            if ((pos != std::string::npos) && (str[pos + 1] != ' '))
+                continue;
+            
             pos = pos == std::string::npos ? str.size() : pos;
-            post("%s%s", oldPos ? lineTag : firstLineTag, str.substr(oldPos, (pos - oldPos) + 1).c_str());
-            oldPos = pos + 1;
+            post("%s%s", prev ? lineTag : firstLineTag, str.substr(prev, (pos - prev) + 1).c_str());
+            prev = pos + 1;
         }
     }
     
@@ -1225,9 +1233,10 @@ private:
     {
         switch (type)
         {
-            case FrameType::Any:    return "either";
-            case FrameType::Vector: return "vector";
-            case FrameType::Tagged: return "tagged";
+            case FrameType::Vector:     return "vector";
+            case FrameType::Tagged:     return "tagged";
+            // kFrameAny
+            default:                    return "either";
         }
     }
     
@@ -1279,15 +1288,12 @@ private:
         
         // Collect doubles
         
-        for ( ; idx < argc; idx++)
+        for ( ; idx < argc && !isTag(argv + idx); idx++)
         {
-            if (isTag(argv + idx))
-                break;
-            
-            if (atom_gettype(argv + idx) == A_SYMBOL)
-                pd_error(mUserObject, "string %s in entry list where value expected", atom_getsymbol(argv + idx)->s_name);
-            
             values.push_back(atom_getfloat(argv + idx));
+
+            if (atom_gettype(argv + idx) == A_SYMBOL && !values.back())
+                pd_error(mUserObject, "string %s in entry list where value expected", atom_getsymbol(argv + idx)->s_name);
         }
         
         return idx;
@@ -1301,25 +1307,19 @@ private:
         
         // Parse arguments
         
-        for (i = 0; i < argc; i++)
+        for (i = 0; i < argc && !isTag(argv + i); i++)
         {
-            if (isTag(argv + i))
-                break;
-            
             if (argsMode == kAsParams)
             {
-                char argNames[64];
-                sprintf(argNames, "%ld", i);
-                
                 if (atom_gettype(argv + i) == A_SYMBOL)
                 {
                     t_symbol *str = atom_getsymbol(argv + i);
-                    serialisedParameters.write(argNames, str->s_name);
+                    serialisedParameters.write(std::to_string(i).c_str(), str->s_name);
                 }
                 else
                 {
                     double value = atom_getfloat(argv + i);
-                    serialisedParameters.write(argNames, &value, 1);
+                    serialisedParameters.write(std::to_string(i).c_str(), &value, 1);
                 }
             }
         }
@@ -1383,19 +1383,20 @@ private:
         if (argsMode == kAllInputs || argsMode == kDistribute)
         {
             i = parseNumericalList(values, argv, argc, 0);
-            if(argsMode == kAllInputs)
+            
+            if (argsMode == kAllInputs)
             {
-                for (unsigned long j = 0; i && j < getNumIns(); j++)
-                    mObject->setFixedInput(j, values.data(), values.size());
+                for (long j = 0; i && j < getNumIns(); j++)
+                    mObject->setFixedInput(j, values.data(), static_cast<unsigned long>(values.size()));
             }
             else
             {
-                for (unsigned long j = 0; j < i && (j + 1) < getNumIns(); j++)
+                for (long j = 0; j < i && (j + 1) < getNumIns(); j++)
                     mObject->setFixedInput(j + 1, &values[j], 1);
             }
         }
         
-        // Parse tags
+        // Parse input tags
         
         while (i < argc)
         {
