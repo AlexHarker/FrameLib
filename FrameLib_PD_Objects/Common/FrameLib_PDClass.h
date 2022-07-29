@@ -1265,9 +1265,9 @@ private:
     
     // Parameter Parsing
     
-    static unsigned long safeCount(char *str, unsigned long maxCount)
+    static unsigned long safeCount(char *str, unsigned long minCount, unsigned long maxCount)
     {
-        unsigned long number = std::max(1, atoi(str));
+        unsigned long number = std::max(minCount, static_cast<unsigned long>(atoi(str)));
         return std::min(maxCount, number);
     }
     
@@ -1278,7 +1278,7 @@ private:
             t_symbol *sym = atom_getsymbol(a);
             
             if (strlen(sym->s_name) > 1 && sym->s_name[0] == '=')
-                return safeCount(sym->s_name + 1, 1024);
+                return safeCount(sym->s_name + 1, 1, 1024);
         }
         
         return 0;
@@ -1372,7 +1372,7 @@ private:
     
     static unsigned long inputNumber(t_symbol *sym)
     {
-        return safeCount(sym->s_name + 1, 16384) - 1;
+        return safeCount(sym->s_name + 1, 0, 16384) - 1;
     }
     
     void parseInputs(long argc, t_atom *argv)
