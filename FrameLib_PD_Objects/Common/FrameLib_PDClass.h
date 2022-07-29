@@ -233,9 +233,9 @@ public:
         addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "anything");
         addMethod<Wrapper<T>, &Wrapper<T>::sync>(c, "sync");
         addMethod<Wrapper<T>, &Wrapper<T>::dsp>(c);
-        addMethod(c, (t_method) &externalPatchLineUpdate, "patchlineupdate");
-        addMethod(c, (t_method) &externalConnectionAccept, "connectionaccept");
-        addMethod(c, (t_method) &externalWrapperInternalObject, "__fl.wrapper_internal_object");
+        addMethod(c, (t_method) &extPatchLineUpdate, "patchlineupdate");
+        addMethod(c, (t_method) &extConnectionAccept, "connectionaccept");
+        addMethod(c, (t_method) &extWrapperInternalObject, "__fl.wrapper_internal_object");
         
         // N.B. MUST add signal handling after dspInit to override the builtin responses
         
@@ -407,22 +407,22 @@ public:
     
     // External methods (A_CANT)
     
-    static t_max_err externalPatchLineUpdate(Wrapper *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
+    static t_max_err extPatchLineUpdate(Wrapper *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
     {
         if ((t_object *) x == dst)
-            return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, src, srcout, x->mObject, dstin + 1);
+            return T::extPatchLineUpdate(x->internalObject(), patchline, updatetype, src, srcout, x->mObject, dstin + 1);
         else
-            return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, x->mObject, srcout + 1, dst, dstin);
+            return T::extPatchLineUpdate(x->internalObject(), patchline, updatetype, x->mObject, srcout + 1, dst, dstin);
     }
     
-    static t_ptr_int externalConnectionAccept(Wrapper *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
+    static t_ptr_int extConnectionAccept(Wrapper *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
     {
         // Only called for sources / account for internal sync connections
 
-        return T::externalConnectionAccept(src->internalObject(), dst, srcout + 1, dstin, outlet, inlet);
+        return T::extConnectionAccept(src->internalObject(), dst, srcout + 1, dstin, outlet, inlet);
     }
     
-    static void *externalWrapperInternalObject(Wrapper *x)
+    static void *extWrapperInternalObject(Wrapper *x)
     {
         return x->mObject;
     }
@@ -532,15 +532,15 @@ public:
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::frame>(c, "frame");
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::sync>(c, "sync");
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::dsp>(c);
-        addMethod(c, (t_method) &externalResolveConnections, "__fl.resolve_connections");
-        addMethod(c, (t_method) &externalAutoOrdering, "__fl.auto_ordering_connections");
-        addMethod(c, (t_method) &externalClearAutoOrdering, "__fl.clear_auto_ordering_connections");
-        addMethod(c, (t_method) &externalIsConnected, "__fl.is_connected");
-        addMethod(c, (t_method) &externalConnectionConfirm, "__fl.connection_confirm");
-        addMethod(c, (t_method) &externalGetInternalObject, "__fl.get_internal_object");
-        addMethod(c, (t_method) &externalIsOutput, "__fl.is_output");
-        addMethod(c, (t_method) &externalGetNumAudioIns, "__fl.get_num_audio_ins");
-        addMethod(c, (t_method) &externalGetNumAudioOuts, "__fl.get_num_audio_outs");
+        addMethod(c, (t_method) &extResolveConnections, "__fl.resolve_connections");
+        addMethod(c, (t_method) &extAutoOrdering, "__fl.auto_ordering_connections");
+        addMethod(c, (t_method) &extClearAutoOrdering, "__fl.clear_auto_ordering_connections");
+        addMethod(c, (t_method) &extIsConnected, "__fl.is_connected");
+        addMethod(c, (t_method) &extConnectionConfirm, "__fl.connection_confirm");
+        addMethod(c, (t_method) &extGetInternalObject, "__fl.get_internal_object");
+        addMethod(c, (t_method) &extIsOutput, "__fl.is_output");
+        addMethod(c, (t_method) &extGetNumAudioIns, "__fl.get_num_audio_ins");
+        addMethod(c, (t_method) &extGetNumAudioOuts, "__fl.get_num_audio_outs");
         class_addmethod(c, (t_method) &codeexport, gensym("export"), A_SYMBOL, A_SYMBOL, 0);
 
         dspInit(c);
@@ -866,7 +866,7 @@ public:
     
     void sync()
     {
-        FrameLib_PDGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), externalIsOutput(this));
+        FrameLib_PDGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), extIsOutput(this));
        
         if (action != FrameLib_PDGlobals::SyncCheck::kSyncComplete && handlesAudio() && mNeedsResolve)
         {
@@ -936,47 +936,47 @@ public:
 
     // External methods (A_CANT)
     
-    static void externalResolveConnections(FrameLib_PDClass *x)
+    static void extResolveConnections(FrameLib_PDClass *x)
     {
         x->resolveConnections();
     }
                                
-    static void externalAutoOrdering(FrameLib_PDClass *x)
+    static void extAutoOrdering(FrameLib_PDClass *x)
     {
         x->mObject->makeAutoOrderingConnections();
     }
     
-    static void externalClearAutoOrdering(FrameLib_PDClass *x)
+    static void extClearAutoOrdering(FrameLib_PDClass *x)
     {
         x->mObject->clearAutoOrderingConnections();
     }
 
-    static uintptr_t externalIsConnected(FrameLib_PDClass *x, unsigned long index)
+    static uintptr_t extIsConnected(FrameLib_PDClass *x, unsigned long index)
     {
         return x->confirmConnection(index, ConnectionInfo::kConfirm);
     }
     
-    static void externalConnectionConfirm(FrameLib_PDClass *x, unsigned long index, FrameLib_PDGlobals::ConnectionInfo::Mode mode)
+    static void extConnectionConfirm(FrameLib_PDClass *x, unsigned long index, FrameLib_PDGlobals::ConnectionInfo::Mode mode)
     {
         x->makeConnection(index, mode);
     }
     
-    static FrameLib_Multistream *externalGetInternalObject(FrameLib_PDClass *x)
+    static FrameLib_Multistream *extGetInternalObject(FrameLib_PDClass *x)
     {
         return x->mObject.get();
     }
     
-    static uintptr_t externalIsOutput(FrameLib_PDClass *x)
+    static uintptr_t extIsOutput(FrameLib_PDClass *x)
     {
         return x->handlesAudio() && (x->getNumAudioOuts() > 1);
     }
     
-    static uintptr_t externalGetNumAudioIns(FrameLib_PDClass *x)
+    static uintptr_t extGetNumAudioIns(FrameLib_PDClass *x)
     {
         return x->getNumAudioIns();
     }
     
-    static uintptr_t externalGetNumAudioOuts(FrameLib_PDClass *x)
+    static uintptr_t extGetNumAudioOuts(FrameLib_PDClass *x)
     {
         return x->getNumAudioOuts();
     }
