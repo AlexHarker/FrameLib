@@ -1009,7 +1009,6 @@ private:
     
     void parseParameters(FrameLib_Parameters::AutoSerial& serialisedParameters, long argc, t_atom *argv)
     {
-        t_symbol *sym = nullptr;
         std::vector<double> values;
         long i;
         
@@ -1036,35 +1035,27 @@ private:
         
         while (i < argc)
         {
-            // Strip stray items
-            
-            for (long j = 0; i < argc; i++, j++)
-            {
-                if (isTag(argv + i))
-                {
-                    sym = atom_getsymbol(argv + i);
-                    break;
-                }
-                
-                if (j == 0)
-                    pd_error(mUserObject, "stray items after entry %s", sym->s_name);
-            }
-            
-            // Check for lack of values or end of list
-            
-            if ((++i >= argc) || isTag(argv + i))
-            {
-                if (i < (argc + 1))
-                    pd_error(mUserObject, "no values given for entry %s", sym->s_name);
-                continue;
-            }
+            t_symbol *sym = atom_getsymbol(argv + i++);
             
             if (isParameterTag(sym))
             {
-                // Do strings or values
+                // Check for missing values
                 
-                if (atom_gettype(argv + i) == A_SYMBOL && atom_getsymbol(argv + i))
+                if ((i >= argc) || isTag(argv + i))
+                {
+                    pd_error(mUserObject, "no values given for parameter %s", sym->s_name);
+                    continue;
+                }
+                
+                // Add to parameters with stray item detection
+                
+                if (atom_getsymbol(argv + i) != gensym(""))
+                {
                     serialisedParameters.write(sym->s_name + 1, atom_getsymbol(argv + i++)->s_name);
+                    
+                    if (i < argc && !isTag(argv + i))
+                        pd_error(mUserObject, "stray items after parameter %s", sym->s_name);
+                }
                 else
                 {
                     i = parseNumericalList(values, argv, argc, i);
@@ -1108,17 +1099,15 @@ private:
         
         while (i < argc)
         {
-            // Advance to next input tag
+            t_symbol *sym = atom_getsymbol(argv + i++);
             
-            for ( ; i < argc && !isInputTag(atom_getsymbol(argv + i)); i++);
-            
-            // If there are values to read then do so
-            
-            if ((i + 1) < argc && !isTag(argv + i + 1))
+            if (isInputTag(sym))
             {
-                t_symbol *sym = atom_getsymbol(argv + i);
-                i = parseNumericalList(values, argv, argc, i + 1);
-                mObject->setFixedInput(inputNumber(sym), values.data(), values.size());
+                i = parseNumericalList(values, argv, argc, i);
+                mObject->setFixedInput(inputNumber(sym), values.data(), static_cast<unsigned long>(values.size()));
+                
+                if (inputNumber(sym) >= static_cast<unsigned long>(getNumIns()))
+                    pd_error(mUserObject, "input %s out of bounds", sym->s_name);
             }
         }
     }
