@@ -2816,7 +2816,7 @@ public:
 
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_MaxClass_Expand<T>::makeClass() to create)
 
-template <class T, MaxObjectArgsMode argsSetAllInputs = kAsParams>
-using FrameLib_MaxClass_Expand = FrameLib_MaxClass<FrameLib_Expand<T>, argsSetAllInputs>;
+template <class T, MaxObjectArgsMode argsMode = kAsParams>
+using FrameLib_MaxClass_Expand = FrameLib_MaxClass<FrameLib_Expand<T>, argsMode>;
 
 #endif
