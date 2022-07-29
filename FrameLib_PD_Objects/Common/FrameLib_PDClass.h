@@ -533,8 +533,8 @@ public:
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::sync>(c, "sync");
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::dsp>(c);
         addMethod(c, (t_method) &externalResolveConnections, "__fl.resolve_connections");
-        addMethod(c, (t_method) &externalAutoOrderingConnections, "__fl.auto_ordering_connections");
-        addMethod(c, (t_method) &externalClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
+        addMethod(c, (t_method) &externalAutoOrdering, "__fl.auto_ordering_connections");
+        addMethod(c, (t_method) &externalClearAutoOrdering, "__fl.clear_auto_ordering_connections");
         addMethod(c, (t_method) &externalIsConnected, "__fl.is_connected");
         addMethod(c, (t_method) &externalConnectionConfirm, "__fl.connection_confirm");
         addMethod(c, (t_method) &externalGetInternalObject, "__fl.get_internal_object");
@@ -913,12 +913,12 @@ public:
         x->resolveConnections();
     }
                                
-    static void externalAutoOrderingConnections(FrameLib_PDClass *x)
+    static void externalAutoOrdering(FrameLib_PDClass *x)
     {
         x->mObject->makeAutoOrderingConnections();
     }
     
-    static void externalClearAutoOrderingConnections(FrameLib_PDClass *x)
+    static void externalClearAutoOrdering(FrameLib_PDClass *x)
     {
         x->mObject->clearAutoOrderingConnections();
     }
