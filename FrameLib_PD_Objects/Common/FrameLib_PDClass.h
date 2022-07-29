@@ -582,21 +582,21 @@ public:
     , mNeedsResolve(true)
     , mUserObject(*this)
     {
-        // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
-        
-        unsigned long nStreams = 1;
+        // Stream count
         
         if (argc && getStreamCount(argv))
         {
-            nStreams = getStreamCount(argv);
+            mSpecifiedStreams = getStreamCount(argv);
             argv++;
             argc--;
         }
         
+        // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
+        
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
         mFrameLibProxy->mMaxObject = *this;
-        mObject.reset(new T(FrameLib_Context(mGlobal->getGlobal(), mCanvas), &serialisedParameters, mFrameLibProxy.get(), nStreams));
+        mObject.reset(new T(FrameLib_Context(mGlobal->getGlobal(), mCanvas), &serialisedParameters, mFrameLibProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
         
         long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
@@ -790,6 +790,8 @@ public:
     long getNumAudioIns() const                 { return audioIOSize(mObject->getNumAudioIns()); }
     long getNumAudioOuts() const                { return audioIOSize(mObject->getNumAudioOuts()); }
     
+    unsigned long getSpecifiedStreams() const   { return mSpecifiedStreams; }
+
     // Perform and DSP
 
     void perform(int vec_size)
@@ -1445,6 +1447,8 @@ private:
     
     t_glist *mCanvas;
     t_object *mSyncIn;
+    
+    unsigned long mSpecifiedStreams;
     
     bool mNeedsResolve;
     
