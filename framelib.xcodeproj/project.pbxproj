@@ -383,6 +383,7 @@
 		B88B484E2729683200D33BBE /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		B88B48562729689D00D33BBE /* fl.makestring~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88B48552729689C00D33BBE /* fl.makestring~.cpp */; };
 		B88C0A3921733CA6007A65C0 /* FrameLib_SC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88C0A1E21732710007A65C0 /* FrameLib_SC.cpp */; };
+		B88EBA1028942FD40030DEC0 /* FrameLib_Change.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8ED8BA82892F83A00AE30A2 /* FrameLib_Change.cpp */; };
 		B88F5559207A58DA007774AD /* FrameLib_Reverse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88F5558207A5873007774AD /* FrameLib_Reverse.cpp */; };
 		B88F555A207A58F2007774AD /* framelib_pd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B83E029220667499005925DD /* framelib_pd.cpp */; };
 		B88F5564207A5903007774AD /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
@@ -13960,6 +13961,7 @@
 				B85211CD259F4FF5002ABDAF /* FrameLib_KernelSmooth.cpp in Sources */,
 				B844029327D6BD6C0095D416 /* FrameLib_Recursive.cpp in Sources */,
 				B844029427D6BD780095D416 /* FrameLib_SortMultiple.cpp in Sources */,
+				B88EBA1028942FD40030DEC0 /* FrameLib_Change.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
