@@ -293,7 +293,7 @@ public:
     // Constructor and Destructor
 
     FrameLib_PDClass(t_symbol *s, long argc, t_atom *argv, FrameLib_PDProxy *proxy = new FrameLib_PDProxy())
-    : mFrameLibProxy(proxy)
+    : mProxy(proxy)
     , mConfirmObject(nullptr)
     , mConfirmInIndex(-1)
     , mConfirmOutIndex(-1)
@@ -316,8 +316,8 @@ public:
         
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        mFrameLibProxy->mMaxObject = *this;
-        mObject.reset(new T(FrameLib_Context(mGlobal->getGlobal(), mCanvas), &serialisedParameters, mFrameLibProxy.get(), mSpecifiedStreams));
+        mProxy->mMaxObject = *this;
+        mObject.reset(new T(FrameLib_Context(mGlobal->getGlobal(), mCanvas), &serialisedParameters, mProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
         
         long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
@@ -1123,12 +1123,15 @@ private:
         }
     }
 
+
 protected:
     
-    std::unique_ptr<FrameLib_PDProxy> mFrameLibProxy;
+    // Proxy
+    
+    std::unique_ptr<FrameLib_PDProxy> mProxy;
     
 private:
-
+    
     // Data - N.B. - the order is crucial for safe deconstruction
     
     FrameLib_PDGlobals::ManagedPointer mGlobal;
