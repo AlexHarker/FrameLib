@@ -533,6 +533,25 @@ class FrameLib_PDClass : public PDClass_Base
     using ConnectionInfo = FrameLib_PDGlobals::ConnectionInfo;
     
     static t_atomtype atom_gettype(t_atom* a) { return a->a_type; }
+    struct ConnectionConfirmation
+    {
+        ConnectionConfirmation(PDConnection connection, long inIdx)
+        : mConfirm(false), mConnection(connection), mInIndex(inIdx) {}
+        
+        bool confirm(PDConnection connection, long inIdx)
+        {
+            bool result = inIdx == mInIndex && connection == mConnection;
+            
+            if (result)
+                mConfirm = true;
+            
+            return result;
+        }
+        
+        bool mConfirm;
+        PDConnection mConnection;
+        long mInIndex;
+    };
     
     struct PDProxy : public PDClass_Base
     {
@@ -1118,7 +1137,17 @@ private:
     {
         return object ? object->getProxy()->getOwner<t_object>() : nullptr;
     }
-
+    
+//    bool versionMismatch(t_object *object, long inIdx, bool report) const
+//    {
+//        bool mismatch = FrameLib_PDPrivate::versionMismatch(object);
+//
+//        if (mismatch && report)
+//            mInputs[inIdx].reportError(mUserObject, Input::kVersion);
+//            
+//        return mismatch;
+//    }
+    
     // Get the number of audio ins/outs safely from a generic pointer
     
     static long getNumAudioIns(t_object *x)
