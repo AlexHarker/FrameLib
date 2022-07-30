@@ -142,6 +142,24 @@ struct FrameLib_PDMessageProxy : FrameLib_PDProxy
     //void contextPatchUpdated(t_object *patch, unsigned long depth) override { mDepth = depth; }
 };
 
+struct FrameLib_PDNRTAudio
+{
+    FrameLib_Multistream *mObject;
+    t_symbol *mBuffer;
+};
+
+struct FrameLib_PDContext
+{
+    bool mRealtime;
+    t_object *mPatch;
+    t_symbol *mName;
+    
+    bool operator == (const FrameLib_PDContext& b) const
+    {
+        return mRealtime == b.mRealtime && mPatch == b.mPatch && mName == b.mName;
+    }
+};
+
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////// Messaging Classes ////////////////////////////
 //////////////////////////////////////////////////////////////////////////
