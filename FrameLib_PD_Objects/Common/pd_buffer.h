@@ -6,7 +6,6 @@
 
 class pd_buffer
 {
-
     struct fetch : public table_fetcher<double>
     {
         fetch(t_word *data, intptr_t size)
@@ -22,29 +21,29 @@ class pd_buffer
     
 public:
 
-    pd_buffer() : mArray(nullptr), mTable(nullptr), mLength(0) {}
+    pd_buffer() : m_array(nullptr), m_table(nullptr), m_length(0) {}
 
-    pd_buffer(t_symbol *name) : mTable(nullptr), mLength(0)
+    pd_buffer(t_symbol *name) : m_table(nullptr), m_length(0)
     {
-        mArray = (t_garray *) pd_findbyclass(name, garray_class);
+        m_array = (t_garray *) pd_findbyclass(name, garray_class);
 
-        if (mArray)
-            garray_getfloatwords(mArray, &mLength, &mTable);
+        if (m_array)
+            garray_getfloatwords(m_array, &m_length, &m_table);
     }
     
-    bool is_valid() const { return mTable && (mLength > 0); }
-    int get_length() const { return mLength; }
+    bool is_valid() const { return m_table && (m_length > 0); }
+    int get_length() const { return m_length; }
     
     void read(double *output, const double *positions, unsigned long size, double amp, InterpType interp, EdgeMode edges, bool bound)
     {
-        table_read_edges(fetch(mTable, mLength), output, positions, size, amp, interp, edges, bound);
+        table_read_edges(fetch(m_table, m_length), output, positions, size, amp, interp, edges, bound);
     }
     
 private:
     
-    t_garray *mArray;
-    t_word *mTable;
-    int mLength;
+    t_garray *m_array;
+    t_word *m_table;
+    int m_length;
 };
 
 #endif
