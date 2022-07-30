@@ -66,6 +66,54 @@ public:
         dsp_add(callPerform<T, F>, 2, this, sp[0]->s_vecsize);
     }
     
+    // Atom helpers
+    
+    static void atom_setfloat(t_atom *a, double v)
+    {
+        a->a_type = A_FLOAT;
+        a->a_w.w_float = v;
+    }
+    
+    static void atom_setsymbol(t_atom *a, t_symbol *sym)
+    {
+        a->a_type = A_SYMBOL;
+        a->a_w.w_symbol = sym;
+    }
+    
+    // C++ style variadic call to object methods
+    
+    template <class ReturnType = void *, typename...Args>
+    static ReturnType objectMethod(t_object *object, const char* theMethodName, Args...args)
+    {
+        return objectMethod<ReturnType>((t_pd *)object, gensym(theMethodName), args...);
+    }
+    
+    template <class ReturnType = void *, typename...Args>
+    static ReturnType objectMethod(t_pd *object, t_symbol* theMethod, Args...args)
+    {
+        void *pad = nullptr;
+        return objectMethod<ReturnType>(object, theMethod, args..., pad);
+    }
+    
+    // Specialisation to prevent infinite padding
+    
+    template <class ReturnType, class S, class T, class U, class V, class W>
+    static ReturnType objectMethod(t_pd *object, t_symbol* theMethod, S s, T t, U u, V v, W w)
+    {
+        typedef void *(*t_fn5)(void *x, void *arg1, void *arg2, void *arg3, void *arg4, void *arg5);
+
+        t_fn5 *m = (t_fn5 *) zgetfn(object, theMethod);
+        
+        void *ret = (*m)(object,
+                         objectMethodArg(s),
+                         objectMethodArg(t),
+                         objectMethodArg(u),
+                         objectMethodArg(v),
+                         objectMethodArg(w));
+        
+        return static_cast<ReturnType>(ret);
+    }
+    
     // Static Methods for class initialisation, object creation and deletion
     
     template <class T> static t_class **getClassPointer()
@@ -138,6 +186,13 @@ public:
     operator t_object* () { return (t_object *) this; }
     
 private:
+    
+    template <class T>
+    static void *objectMethodArg(T a)
+    {
+        static_assert(sizeof(T) == sizeof(void *), "Argument is not the correct size");
+        return reinterpret_cast<void *>(a);
+    }
     
     // Deleted
     
