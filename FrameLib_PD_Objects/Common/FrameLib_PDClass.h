@@ -69,9 +69,9 @@ struct FrameLib_PDPrivate
     };
     
     static inline t_symbol *FLNamespace()                   { return gensym("__fl.framelib_private"); }
-    static inline t_symbol *globalTag()                     { return gensym(VersionString("__fl.max_global_tag")); }
+    static inline t_symbol *globalTag()                     { return gensym(VersionString("__fl.pd_global_tag")); }
     
-    static inline VersionString objectGlobal()              { return "__fl.max_global_items"; }
+    static inline VersionString objectGlobal()              { return "__fl.pd_global_items"; }
     static inline VersionString objectMessageHandler()      { return "__fl.message.handler"; }
     static inline VersionString objectMutator()             { return "__fl.signal.mutator"; }
     
@@ -628,16 +628,17 @@ public:
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::frame>(c, "frame");
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::sync>(c, "sync");
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::dsp>(c);
-        addMethod(c, (t_method) &extResolveConnections, "__fl.resolve_connections");
-        addMethod(c, (t_method) &extMakeAutoOrdering, "__fl.auto_ordering_connections");
-        addMethod(c, (t_method) &extClearAutoOrdering, "__fl.clear_auto_ordering_connections");
+        
+        addMethod(c, (t_method) &extResolveConnections, FrameLib_PDPrivate::messageResolveConnections());
+        addMethod(c, (t_method) &extMakeAutoOrdering, FrameLib_PDPrivate::messageMakeAutoOrdering());
+        addMethod(c, (t_method) &extClearAutoOrdering, FrameLib_PDPrivate::messageClearAutoOrdering());
+        addMethod(c, (t_method) &extConnectionConfirm, FrameLib_PDPrivate::messageConnectionConfirm());
+        addMethod(c, (t_method) &extGetNumAudioIns, FrameLib_PDPrivate::messageGetNumAudioIns());
+        addMethod(c, (t_method) &extGetNumAudioOuts, FrameLib_PDPrivate::messageGetNumAudioOuts());
         addMethod(c, (t_method) &extIsConnected, "__fl.is_connected");
-        addMethod(c, (t_method) &extConnectionConfirm, "__fl.connection_confirm");
         addMethod(c, (t_method) &extGetInternalObject, "__fl.get_internal_object");
         addMethod(c, (t_method) &extIsOutput, "__fl.is_output");
-        addMethod(c, (t_method) &extGetNumAudioIns, "__fl.get_num_audio_ins");
-        addMethod(c, (t_method) &extGetNumAudioOuts, "__fl.get_num_audio_outs");
-
+        
         dspInit(c);
     }
 
@@ -894,7 +895,7 @@ public:
     {
         // Resolve connections (in case there are no schedulers left in the patch) and mark unresolved for next time
         
-        iterateCanvas(mCanvas, gensym("__fl.resolve_connections"));
+        iterateCanvas(mCanvas, gensym(FrameLib_PDPrivate::messageResolveConnections()));
         //resolveConnections();
         mNeedsResolve = true;
         
@@ -949,9 +950,9 @@ public:
        
         if (action != FrameLib_PDGlobals::SyncCheck::kSyncComplete && handlesAudio() && mNeedsResolve)
         {
-            iterateCanvas(mCanvas, gensym("__fl.resolve_connections"));
-            iterateCanvas(mCanvas, gensym("__fl.clear_auto_ordering_connections"));
-            iterateCanvas(mCanvas, gensym("__fl.auto_ordering_connections"));
+            iterateCanvas(mCanvas, gensym(FrameLib_PDPrivate::messageResolveConnections()));
+            iterateCanvas(mCanvas, gensym(FrameLib_PDPrivate::messageClearAutoOrdering()));
+            iterateCanvas(mCanvas, gensym(FrameLib_PDPrivate::messageMakeAutoOrdering()));
         }
         
         // FIX
