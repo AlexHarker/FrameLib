@@ -32,7 +32,7 @@ struct FrameLib_MaxPrivate
     {
         return 1000;
     }
-
+    
     // A constant representing the max wrapper and framework versions.
     // The versions are combined in a manner that they are both easily readable when viewed in decimal format
     
@@ -40,7 +40,7 @@ struct FrameLib_MaxPrivate
     {
         return static_cast<uint64_t>(FrameLib_FrameworkVersion) * 1000000000 + static_cast<uint64_t>(maxWrapperVersion());
     }
-
+    
     struct VersionString
     {
         VersionString(const char *str) : mString(str)
@@ -55,15 +55,15 @@ struct FrameLib_MaxPrivate
         VersionString& operator=(const VersionString&) = delete;
         VersionString(VersionString&&) = default;
         VersionString& operator=(VersionString&&) = default;
-                
+        
         operator const char *() { return mString.c_str(); }
         
         std::string mString;
     };
-        
+    
     static inline t_symbol *FLNamespace()                   { return gensym("__fl.framelib_private"); }
     static inline t_symbol *globalTag()                     { return gensym(VersionString("__fl.max_global_tag")); }
-                                                 
+    
     static inline VersionString objectGlobal()              { return "__fl.max_global_items"; }
     static inline VersionString objectMessageHandler()      { return "__fl.message.handler"; }
     static inline VersionString objectMutator()             { return "__fl.signal.mutator"; }
@@ -402,7 +402,7 @@ public:
     
 private:
     
-    static void output(const Message& message, t_atom *output)
+    static void output(const Message& message, t_atom *data)
     {
         FrameLib_MaxMessageProxy *proxy = message.mInfo.mProxy;
         
@@ -414,9 +414,9 @@ private:
             unsigned long N = limit(static_cast<unsigned long>(message.mVector.size()));
             
             for (unsigned long i = 0; i < N; i++)
-                atom_setfloat(output + i, message.mVector[i]);
+                atom_setfloat(data + i, message.mVector[i]);
             
-            proxy->sendMessage(message.mInfo.mStream, nullptr, static_cast<short>(N), output);
+            proxy->sendMessage(message.mInfo.mStream, nullptr, static_cast<short>(N), data);
         }
         else
         {
@@ -433,15 +433,15 @@ private:
                     size = limit(size);
                     
                     for (unsigned long i = 0; i < size; i++)
-                        atom_setfloat(output + i, vector[i]);
+                        atom_setfloat(data + i, vector[i]);
                 }
                 else
                 {
                     size = 1;
-                    atom_setsym(output, gensym(it.getString()));
+                    atom_setsym(data, gensym(it.getString()));
                 }
                 
-                proxy->sendMessage(message.mInfo.mStream, tag, static_cast<short>(size), output);
+                proxy->sendMessage(message.mInfo.mStream, tag, static_cast<short>(size), data);
             }
         }
     }
@@ -2358,7 +2358,7 @@ private:
     MaxConnection getConnection(long index)                 { return toMaxConnection(mObject->getConnection(index)); }
     MaxConnection getOrderingConnection(long index)         { return toMaxConnection(mObject->getOrderingConnection(index)); }
     
-    long getNumOrderingConnections() const                  { return  static_cast<long>(mObject->getNumOrderingConnections()); }
+    long getNumOrderingConnections() const                  { return static_cast<long>(mObject->getNumOrderingConnections()); }
     
     static MaxConnection toMaxConnection(FLConnection c)    { return MaxConnection(toMaxObject(c.mObject), c.mIndex); }
     static FLConnection toFLConnection(MaxConnection c)     { return FLConnection(toFLObject(c.mObject), c.mIndex); }
