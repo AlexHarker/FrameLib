@@ -1128,8 +1128,8 @@ private:
     
     FrameLib_PDGlobals::ManagedPointer mGlobal;
     FrameLib_PDGlobals::SyncCheck mSyncChecker;
-
-    std::unique_ptr<FL_Object> mObject;
+    
+    std::unique_ptr<FLObject> mObject;
     
     std::vector<t_pd *> mInputs;
     std::vector<t_outlet *> mOutputs;
