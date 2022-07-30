@@ -188,12 +188,15 @@ struct FrameLib_PDProxy : public virtual FrameLib_Proxy
 template <class T, PDObjectArgsMode argsMode = kAsParams>
 class FrameLib_PDClass : public PDClass_Base
 {
-    typedef FrameLib_Object<FrameLib_Multistream>::Connection FrameLibConnection;
-    typedef FrameLib_Object<t_object>::Connection PDConnection;
-    typedef FrameLib_PDGlobals::ConnectionInfo ConnectionInfo;
-
-    using ClipMode = FrameLib_Parameters::ClipMode;
+    //using ConnectionMode = FrameLib_PDGlobals::ConnectionMode;
+    using FLObject = FrameLib_Multistream;
+    using FLConnection = FrameLib_Object<FLObject>::Connection;
+    using PDConnection = FrameLib_Object<t_object>::Connection;
+    using LockHold = FrameLib_LockHolder;
     using NumericType = FrameLib_Parameters::NumericType;
+    using ClipMode = FrameLib_Parameters::ClipMode;
+    
+    using ConnectionInfo = FrameLib_PDGlobals::ConnectionInfo;
     
     static t_atomtype atom_gettype(t_atom* a) { return a->a_type; }
     
@@ -861,7 +864,7 @@ private:
     
     bool isConnected(long index) const                                      { return mObject->isConnected(index); }
     
-    PDConnection getPDConnection(const FrameLibConnection& connection) const
+    PDConnection getPDConnection(const FLConnection& connection) const
     {
         FrameLib_PDProxy *proxy = dynamic_cast<FrameLib_PDProxy *>(connection.mObject->getProxy());
         t_object *object = proxy->mMaxObject;
@@ -902,9 +905,9 @@ private:
         ConnectionResult result;
         
         if (isOrderingInput(inIdx))
-            result = mObject->addOrderingConnection(FrameLibConnection(object, outIdx));
+            result = mObject->addOrderingConnection(FLConnection(object, outIdx));
         else
-            result = mObject->addConnection(FrameLibConnection(object, outIdx), inIdx);
+            result = mObject->addConnection(FLConnection(object, outIdx), inIdx);
 
         switch (result)
         {
@@ -935,7 +938,7 @@ private:
             return;
         
         if (isOrderingInput(inIdx))
-            mObject->deleteOrderingConnection(FrameLibConnection(object, outIdx));
+            mObject->deleteOrderingConnection(FLConnection(object, outIdx));
         else
             mObject->deleteConnection(inIdx);
     }
@@ -1126,7 +1129,7 @@ private:
     FrameLib_PDGlobals::ManagedPointer mGlobal;
     FrameLib_PDGlobals::SyncCheck mSyncChecker;
 
-    std::unique_ptr<FrameLib_Multistream> mObject;
+    std::unique_ptr<FL_Object> mObject;
     
     std::vector<t_pd *> mInputs;
     std::vector<t_outlet *> mOutputs;
