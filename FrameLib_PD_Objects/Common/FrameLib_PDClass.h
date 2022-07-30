@@ -4,14 +4,14 @@
 
 #include "PDClass_Base.h"
 
+#include "g_canvas.h"
+
 #include "FrameLib_Global.h"
 #include "FrameLib_Context.h"
 #include "FrameLib_Parameters.h"
 #include "FrameLib_DSP.h"
 #include "FrameLib_Multistream.h"
 #include "FrameLib_SerialiseGraph.h"
-
-#include "g_canvas.h"
 
 #include <algorithm>
 #include <cctype>
