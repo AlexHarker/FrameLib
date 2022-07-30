@@ -550,7 +550,6 @@ class FrameLib_PDClass : public PDClass_Base
     
     using ConnectionInfo = FrameLib_PDGlobals::ConnectionInfo;
     
-    static t_atomtype atom_gettype(t_atom* a) { return a->a_type; }
     struct ConnectionConfirmation
     {
         ConnectionConfirmation(PDConnection connection, long inIdx)

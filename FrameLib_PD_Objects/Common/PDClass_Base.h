@@ -68,6 +68,11 @@ public:
     
     // Atom helpers
     
+    static t_atomtype atom_gettype(t_atom* a)
+    {
+        return a->a_type;
+    }
+
     static void atom_setfloat(t_atom *a, double v)
     {
         a->a_type = A_FLOAT;
