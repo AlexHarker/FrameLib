@@ -1121,17 +1121,17 @@ private:
 
     // Get the number of audio ins/outs safely from a generic pointer
     
-//    static long getNumAudioIns(t_object *x)
-//    {
-//        t_ptr_int numAudioIns = objectMethod<t_ptr_int>(x, FrameLib_PDPrivate::messageGetNumAudioIns());
-//        return static_cast<long>(numAudioIns);
-//    }
-//
-//    static long getNumAudioOuts(t_object *x)
-//    {
-//        t_ptr_int numAudioOuts = objectMethod<t_ptr_int>(x, FrameLib_PDPrivate::messageGetNumAudioOuts());
-//        return static_cast<long>(numAudioOuts);
-//    }
+    static long getNumAudioIns(t_object *x)
+    {
+        intptr_t numAudioIns = objectMethod<intptr_t>(x, FrameLib_PDPrivate::messageGetNumAudioIns());
+        return static_cast<long>(numAudioIns);
+    }
+
+    static long getNumAudioOuts(t_object *x)
+    {
+        intptr_t numAudioOuts = objectMethod<intptr_t>(x, FrameLib_PDPrivate::messageGetNumAudioOuts());
+        return static_cast<long>(numAudioOuts);
+    }
     
     // Helpers for connection methods
     
