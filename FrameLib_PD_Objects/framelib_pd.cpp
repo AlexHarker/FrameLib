@@ -12,6 +12,8 @@ class FrameLib_PDClass_Read : public FrameLib_PDClass_Expand<FrameLib_Read>
 {
     struct ReadProxy : public FrameLib_Read::Proxy, public FrameLib_PDProxy
     {
+        ReadProxy(t_object *x) : FrameLib_PDProxy(x) {}
+        
         void update(const char *name) override
         {
             mBufferName = gensym(name);
@@ -49,19 +51,19 @@ public:
     
     // Constructor
     
-    FrameLib_PDClass_Read(t_symbol *s, long argc, t_atom *argv)
-    : FrameLib_PDClass(s, argc, argv, new ReadProxy()) {}
+    FrameLib_PDClass_Read(t_object *x, t_symbol *s, long argc, t_atom *argv)
+    : FrameLib_PDClass(x, s, argc, argv, new ReadProxy(x)) {}
 };
 
 // PD Expression Classes
 
 // The expression objects parses arguments differently to normal, which is handled by pre-parsing the atoms into a different format
 
-class ArgumentParser
+class ExprArgumentParser
 {
 public:
     
-    ArgumentParser(t_symbol *s, long argc, t_atom *argv, bool complex) : mSymbol(s), mComplex(complex)
+    ExprArgumentParser(t_symbol *s, long argc, t_atom *argv, bool complex) : mSymbol(s), mComplex(complex)
     {
         concatenate(argc, argv);
         
@@ -149,8 +151,8 @@ private:
 
 struct FrameLib_PDClass_Expression_Parsed : public FrameLib_PDClass_Expand<FrameLib_Expression>
 {
-    FrameLib_PDClass_Expression_Parsed(const ArgumentParser &parsed) :
-    FrameLib_PDClass(parsed.symbol(), parsed.count(), parsed.args(), new FrameLib_PDProxy()) {}
+    FrameLib_PDClass_Expression_Parsed(t_object *x, const ExprArgumentParser &parsed) :
+    FrameLib_PDClass(x, parsed.symbol(), parsed.count(), parsed.args()) {}
 };
 
 // Expression PD Class (inherits from the parsed version which inherits the standard pd class)
@@ -159,16 +161,16 @@ struct FrameLib_PDClass_Expression : public FrameLib_PDClass_Expression_Parsed
 {
     // Constructor
     
-    FrameLib_PDClass_Expression(t_symbol *s, long argc, t_atom *argv) :
-    FrameLib_PDClass_Expression_Parsed(ArgumentParser(s, argc, argv, false)) {}
+    FrameLib_PDClass_Expression(t_object *x, t_symbol *s, long argc, t_atom *argv) :
+    FrameLib_PDClass_Expression_Parsed(x, ExprArgumentParser(s, argc, argv, false)) {}
 };
 
 // This complex expression class is a wrapper that allows the parsing to happen correctly
 
 struct FrameLib_PDClass_ComplexExpression_Parsed : public FrameLib_PDClass_Expand<FrameLib_ComplexExpression>
 {
-    FrameLib_PDClass_ComplexExpression_Parsed(const ArgumentParser &parsed) :
-    FrameLib_PDClass(parsed.symbol(), parsed.count(), parsed.args(), new FrameLib_PDProxy()) {}
+    FrameLib_PDClass_ComplexExpression_Parsed(t_object *x, const ExprArgumentParser &parsed) :
+    FrameLib_PDClass(x, parsed.symbol(), parsed.count(), parsed.args()) {}
 };
 
 // Complex Expression PD Class (inherits from the parsed version which inherits the standard pd class)
@@ -177,8 +179,8 @@ struct FrameLib_PDClass_ComplexExpression : public FrameLib_PDClass_ComplexExpre
 {
     // Constructor
     
-    FrameLib_PDClass_ComplexExpression(t_symbol *s, long argc, t_atom *argv) :
-    FrameLib_PDClass_ComplexExpression_Parsed(ArgumentParser(s, argc, argv, true)) {}
+    FrameLib_PDClass_ComplexExpression(t_object *x, t_symbol *s, long argc, t_atom *argv) :
+    FrameLib_PDClass_ComplexExpression_Parsed(x, ExprArgumentParser(s, argc, argv, true)) {}
 };
 
 // Main setup routine

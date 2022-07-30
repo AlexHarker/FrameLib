@@ -143,7 +143,7 @@ public:
     template <class T> static void *create(t_symbol *sym, long ac, t_atom *av)
     {
         void *x = pd_new(*getClassPointer<T>());
-        new(x) T(sym, ac, av);
+        new(x) T(reinterpret_cast<t_object *>(x), sym, ac, av);
         return x;
     }
     

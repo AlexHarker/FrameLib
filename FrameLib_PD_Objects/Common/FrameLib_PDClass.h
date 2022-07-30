@@ -13,8 +13,14 @@
 
 #include "g_canvas.h"
 
+#include <algorithm>
+#include <cctype>
+#include <deque>
+#include <queue>
 #include <string>
+#include <tuple>
 #include <vector>
+#include <unordered_map>
 
 extern "C"
 {
@@ -22,6 +28,339 @@ extern "C"
     void signal_makereusable(t_signal *sig);
 }
 
+// Deal with private strings and versioning
+
+struct FrameLib_PDPrivate
+{
+    // A constant representing the pd wrapper version.
+    // The version is stored as a decimal with major version changes as multiples of 1000
+    
+    static inline constexpr uint32_t pdWrapperVersion()
+    {
+        return 1000;
+    }
+    
+    // A constant representing the max wrapper and framework versions.
+    // The versions are combined in a manner that they are both easily readable when viewed in decimal format
+    
+    static inline constexpr uint64_t version()
+    {
+        return static_cast<uint64_t>(FrameLib_FrameworkVersion) * 1000000000 + static_cast<uint64_t>(pdWrapperVersion());
+    }
+    
+    struct VersionString
+    {
+        VersionString(const char *str) : mString(str)
+        {
+            mString.append(".v");
+            mString.append(std::to_string(version()));
+        }
+        
+        // Non-copyable but moveable
+        
+        VersionString(const VersionString&) = delete;
+        VersionString& operator=(const VersionString&) = delete;
+        VersionString(VersionString&&) = default;
+        VersionString& operator=(VersionString&&) = default;
+        
+        operator const char *() { return mString.c_str(); }
+        
+        std::string mString;
+    };
+    
+    static inline t_symbol *FLNamespace()                   { return gensym("__fl.framelib_private"); }
+    static inline t_symbol *globalTag()                     { return gensym(VersionString("__fl.max_global_tag")); }
+    
+    static inline VersionString objectGlobal()              { return "__fl.max_global_items"; }
+    static inline VersionString objectMessageHandler()      { return "__fl.message.handler"; }
+    static inline VersionString objectMutator()             { return "__fl.signal.mutator"; }
+    
+    static inline const char *messageGetUserObject()        { return "__fl.get_user_object"; }
+    static inline const char *messageUnwrap()               { return "__fl.unwrap"; }
+    static inline const char *messageIsWrapper()            { return "__fl.is_wrapper"; }
+    static inline const char *messageFindAudioObjects()     { return "__fl.find_audio_objects"; }
+    static inline const char *messageResolveContext()       { return "__fl.resolve_context"; }
+    static inline const char *messageResolveConnections()   { return "__fl.resolve_connections"; }
+    static inline const char *messageMarkUnresolved()       { return "__fl.mark_unresolved"; }
+    static inline const char *messageMakeAutoOrdering()     { return "__fl.make_auto_ordering"; }
+    static inline const char *messageClearAutoOrdering()    { return "__fl.clear_auto_ordering"; }
+    static inline const char *messageReset()                { return "__fl.reset"; }
+    static inline const char *messageIsDirectlyConnected()  { return "__fl.is_directly_connected"; }
+    static inline const char *messageConnectionConfirm()    { return "__fl.connection_confirm"; }
+    static inline const char *messageConnectionUpdate()     { return "__fl.connection_update"; }
+    static inline const char *messageGetFrameLibObject()    { return "__fl.get_framelib_object"; }
+    static inline const char *messageGetNumAudioIns()       { return "__fl.get_num_audio_ins"; }
+    static inline const char *messageGetNumAudioOuts()      { return "__fl.get_num_audio_outs"; }
+    
+    static FrameLib_Multistream *toFrameLibObject(t_object *object, uint64_t& versionCheck)
+    {
+        if (!object)
+            return nullptr;
+        
+        return PDClass_Base::objectMethod<FrameLib_Multistream *>(object, messageGetFrameLibObject(), &versionCheck);
+    }
+    
+    static FrameLib_Multistream *toFrameLibObject(t_object *object)
+    {
+        uint64_t versionCheck = 0;
+        FrameLib_Multistream *internalObject = toFrameLibObject(object, versionCheck);
+        return versionCheck == version() ? internalObject : nullptr;
+    }
+    
+    static bool versionMismatch(t_object *object)
+    {
+        uint64_t versionCheck = 0;
+        toFrameLibObject(object, versionCheck);
+        return versionCheck && versionCheck != version();
+    }
+};
+
+// Other pd-specific structures
+
+struct FrameLib_PDProxy : public virtual FrameLib_Proxy
+{
+    FrameLib_PDProxy(t_object *x)
+    {
+        setOwner(x);
+    }
+    
+    // Override for object proxies that need to know about the patch hierarchy
+    
+    //virtual void contextPatchUpdated(t_object *patch, unsigned long depth) {}
+};
+
+struct FrameLib_PDMessageProxy : FrameLib_PDProxy
+{
+    FrameLib_PDMessageProxy(t_object *x) : FrameLib_PDProxy(x) {}
+    
+    // Override for objects that require max messages to be sent from framelib
+    
+    virtual void sendMessage(unsigned long stream, t_symbol *s, short ac, t_atom *av) {}
+    
+    // Store context patch info
+    
+    //void contextPatchUpdated(t_object *patch, unsigned long depth) override { mDepth = depth; }
+};
+
+//////////////////////////////////////////////////////////////////////////
+/////////////////////////// Messaging Classes ////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+/*
+struct MessageInfo
+{
+    MessageInfo(FrameLib_PDMessageProxy* proxy, FrameLib_TimeFormat time, unsigned long stream)
+    : mProxy(proxy), mTime(time), mStream(stream) {}
+    
+    FrameLib_PDMessageProxy* mProxy;
+    FrameLib_TimeFormat mTime;
+    unsigned long mStream;
+};
+
+struct Message
+{
+    Message(const MessageInfo& info, const double *values, unsigned long N)
+    : mInfo(info), mType(FrameType::Vector), mVector(values, values + N) {}
+    
+    Message(const MessageInfo& info, const FrameLib_Parameters::Serial *serial)
+    : mInfo(info), mType(FrameType::Tagged), mSerial(*serial) {}
+    
+    Message(const Message&) = delete;
+    Message& operator=(const Message&) = delete;
+    Message(Message&&) = default;
+    Message& operator=(Message&&) = default;
+    
+    MessageInfo mInfo;
+    FrameType mType;
+    std::vector<double> mVector;
+    FrameLib_Parameters::AutoSerial mSerial;
+};
+
+class MessageHandler : public PDClass_Base
+{
+    struct MessageCompare
+    {
+        bool operator()(const Message& a, const Message& b) const
+        {
+            // FIX - ordering comparison
+            
+            // Use time
+            
+            if (a.mInfo.mTime != b.mInfo.mTime)
+                return a.mInfo.mTime > b.mInfo.mTime;
+            
+            // Use streams - N.B. Streams run in reverse order
+            
+            if (a.mInfo.mProxy == b.mInfo.mProxy)
+                return a.mInfo.mStream < b.mInfo.mStream;
+            
+            return a.mInfo.mProxy < b.mInfo.mProxy;
+        }
+    };
+    
+    struct MessageBlock
+    {
+        class Queue : public std::priority_queue<Message, std::vector<Message>, MessageCompare>
+        {
+            friend MessageBlock;
+            std::vector<Message>& container() { return c; }
+        };
+        
+        Queue mQueue;
+        unsigned long mMaxSize = 1;
+        
+        void flush(FrameLib_PDProxy *proxy)
+        {
+            for (auto it = mQueue.container().begin(); it != mQueue.container().end(); it++)
+                it->mInfo.mProxy = it->mInfo.mProxy == proxy ? nullptr : it->mInfo.mProxy;
+        }
+    };
+    
+public:
+    
+    MessageHandler(t_object *x, t_symbol *sym, long ac, t_atom *av) {}
+    
+    void add(const MessageInfo& info, const double *values, unsigned long N)
+    {
+        // Lock, get vector size and copy
+        
+        FrameLib_LockHolder lock(&mLock);
+        mData.mMaxSize = std::max(limit(N), mData.mMaxSize);
+        mData.mQueue.emplace(info, values, N);
+    }
+    
+    void add(const MessageInfo& info, const FrameLib_Parameters::Serial *serial)
+    {
+        // Lock, determine maximum vector size and copy
+        
+        FrameLib_LockHolder lock(&mLock);
+        
+        for (auto it = serial->begin(); it != serial->end(); it++)
+        {
+            if (it.getType() == DataType::Vector)
+            {
+                unsigned long size = it.getVectorSize();
+                mData.mMaxSize = std::max(limit(size), mData.mMaxSize);
+            }
+        }
+        
+        mData.mQueue.emplace(info, serial);
+    }
+    
+    void ready()
+    {
+        // Lock and copy onto the output queue
+        
+        FrameLib_LockHolder lock(&mLock);
+        
+        if (!mData.mQueue.size())
+            return;
+        
+        mOutput.emplace_back();
+        std::swap(mData, mOutput.back());
+        lock.destroy();
+    }
+    
+    void schedule()
+    {
+        ready();
+        schedule_delay(*this, (t_method) &service, 0, nullptr, 0, nullptr);
+    }
+    
+    void flush(FrameLib_PDProxy *proxy)
+    {
+        FrameLib_LockHolder flushLock(&mFlushLock);
+        FrameLib_LockHolder lock(&mLock);
+        
+        mData.flush(proxy);
+        
+        for (auto it = mOutput.begin(); it != mOutput.end(); it++)
+            it->flush(proxy);
+    }
+    
+    static void service(MessageHandler* handler, t_symbol *s, short ac, t_atom *av)
+    {
+        MessageBlock messages;
+        
+        // Swap data
+        
+        FrameLib_LockHolder flushLock(&handler->mFlushLock);
+        FrameLib_LockHolder lock(&handler->mLock);
+        
+        if (!handler->mOutput.empty())
+        {
+            std::swap(handler->mOutput.front(), messages);
+            handler->mOutput.pop_front();
+        }
+        
+        lock.destroy();
+        flushLock.destroy();
+        
+        // Allocate temporary t_atoms and output
+        
+        std::vector<t_atom> out(messages.mMaxSize);
+        
+        while (!messages.mQueue.empty())
+        {
+            output(messages.mQueue.top(), out.data());
+            messages.mQueue.pop();
+        }
+    }
+    
+private:
+    
+    static void output(const Message& message, t_atom *data)
+    {
+        FrameLib_PDMessageProxy *proxy = message.mInfo.mProxy;
+        
+        if (!proxy)
+            return;
+        
+        if (message.mType == FrameType::Vector)
+        {
+            unsigned long N = limit(static_cast<unsigned long>(message.mVector.size()));
+            
+            for (unsigned long i = 0; i < N; i++)
+                atom_setfloat(data + i, message.mVector[i]);
+            
+            proxy->sendMessage(message.mInfo.mStream, nullptr, static_cast<short>(N), data);
+        }
+        else
+        {
+            // Iterate over tags
+            
+            for (auto it = message.mSerial.begin(); it != message.mSerial.end(); it++)
+            {
+                t_symbol *tag = gensym(it.getTag());
+                unsigned long size = 0;
+                
+                if (it.getType() == DataType::Vector)
+                {
+                    const double *vector = it.getVector(&size);
+                    size = limit(size);
+                    
+                    for (unsigned long i = 0; i < size; i++)
+                        atom_setfloat(data + i, vector[i]);
+                }
+                else
+                {
+                    size = 1;
+                    atom_setsymbol(data, gensym(it.getString()));
+                }
+                
+                proxy->sendMessage(message.mInfo.mStream, tag, static_cast<short>(size), data);
+            }
+        }
+    }
+    
+    static unsigned long limit(unsigned long N) { return std::min(N, 32767UL); }
+    
+    mutable FrameLib_Lock mLock;
+    mutable FrameLib_Lock mFlushLock;
+    
+    MessageBlock mData;
+    std::deque<MessageBlock> mOutput;
+};
+*/
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////// PD Globals Class ////////////////////////////
 //////////////////////////////////////////////////////////////////////////
@@ -122,7 +461,7 @@ public:
     
     // Constructor and Destructor (public for the PD API, but use the ManagedPointer for use from outside this class)
     
-    FrameLib_PDGlobals(t_symbol *sym, long ac, t_atom *av)
+    FrameLib_PDGlobals(t_object *x, t_symbol *sym, long ac, t_atom *av)
     : mGlobal(nullptr), mConnectionInfo(nullptr), mSyncCheck(nullptr) {}
     ~FrameLib_PDGlobals() { if (mGlobal) FrameLib_Global::release(&mGlobal); }
 
@@ -180,11 +519,6 @@ private:
 
 enum PDObjectArgsMode { kAsParams, kAllInputs, kDistribute };
 
-struct FrameLib_PDProxy : public virtual FrameLib_Proxy
-{
-    t_object *mMaxObject;
-};
-
 template <class T, PDObjectArgsMode argsMode = kAsParams>
 class FrameLib_PDClass : public PDClass_Base
 {
@@ -217,7 +551,7 @@ class FrameLib_PDClass : public PDClass_Base
             addMethod<PDProxy, &PDProxy::frame>(c, "frame");
         }
         
-        PDProxy(t_symbol *sym, long ac, t_atom *av) : mOwner(nullptr), mIndex(-1) {}
+        PDProxy(t_object *x, t_symbol *sym, long ac, t_atom *av) : mOwner(nullptr), mIndex(-1) {}
         
         void frame()
         {
@@ -295,8 +629,8 @@ public:
     
     // Constructor and Destructor
 
-    FrameLib_PDClass(t_symbol *s, long argc, t_atom *argv, FrameLib_PDProxy *proxy = new FrameLib_PDProxy())
-    : mProxy(proxy)
+    FrameLib_PDClass(t_object *x, t_symbol *s, long argc, t_atom *argv, FrameLib_PDProxy *proxy = nullptr)
+    : mProxy(proxy ? proxy : new FrameLib_PDProxy(x))
     , mConfirmObject(nullptr)
     , mConfirmInIndex(-1)
     , mConfirmOutIndex(-1)
@@ -319,7 +653,6 @@ public:
         
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        mProxy->mMaxObject = *this;
         mObject.reset(new T(FrameLib_Context(mGlobal->getGlobal(), mCanvas), &serialisedParameters, mProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
         
@@ -598,11 +931,11 @@ public:
             {
                 for (unsigned long i = 0; i < getNumIns(); i++)
                     if (isConnected(i))
-                        callMethod(getConnection(i).mObject, gensym("sync"));
+                        objectMethod<void>(getConnection(i).mObject, "sync");
                 
                 if (supportsOrderingConnections())
                     for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
-                        callMethod(getOrderingConnection(i).mObject, gensym("sync"));
+                        objectMethod<void>(getOrderingConnection(i).mObject, "sync");
                 
                 mSyncChecker.restoreMode();
             }
@@ -690,53 +1023,6 @@ public:
         return x->getNumAudioOuts();
     }
     
-    static uintptr_t intMethod(t_object *object, t_symbol *methodName)
-    {
-        // FIX - look at vmess
-        
-        typedef uintptr_t (*func)(t_object *);
-
-        t_gotfn f = zgetfn(&object->ob_pd, methodName);
-        
-        if (!f)
-            return 0;
-        
-        func f2 = (func)f;
-        return f2(object);
-    }
-    
-    static void *ptrMethod(t_object *object, t_symbol *methodName)
-    {
-        // FIX - look at vmess
-
-        typedef void *(*func)(t_object *);
-        
-        t_gotfn f = zgetfn(&object->ob_pd, methodName);
-        
-        if (!f)
-            return 0;
-        
-        func f2 = (func)f;
-        return f2(object);
-    }
-    
-    static void callMethod(t_object *object, t_symbol *methodName)
-    {
-        //vmess((t_pd *) g, method, "");
-
-        // FIX - look at vmess
-        
-        typedef void (*func)(t_object *);
-        
-        t_gotfn f = zgetfn(&object->ob_pd, methodName);
-        
-        if (!f)
-            return;
-        
-        func f2 = (func)f;
-        return f2(object);
-    }
-    
     static void confirmMethod(t_object *object, t_symbol *methodName, long index, ConnectionInfo::Mode mode)
     {
         //vmess((t_pd *) g, method, "");
@@ -773,7 +1059,7 @@ private:
     
     FrameLib_Multistream *getInternalObject(t_object *x)
     {
-        return (FrameLib_Multistream *) ptrMethod(x, gensym("__fl.get_internal_object"));
+        return objectMethod<FLObject *>(x, "__fl.get_internal_object");
     }
     
     // Private connection methods
@@ -821,6 +1107,59 @@ private:
         mGlobal->setConnectionInfo();
     }
     
+    // Convert from framelib object to pd object and vice versa
+    
+    static FLObject *toFLObject(t_object *x)
+    {
+        return FrameLib_PDPrivate::toFrameLibObject(x);
+    }
+    
+    static t_object *toPDObject(FLObject *object)
+    {
+        return object ? object->getProxy()->getOwner<t_object>() : nullptr;
+    }
+
+    // Get the number of audio ins/outs safely from a generic pointer
+    
+//    static long getNumAudioIns(t_object *x)
+//    {
+//        t_ptr_int numAudioIns = objectMethod<t_ptr_int>(x, FrameLib_PDPrivate::messageGetNumAudioIns());
+//        return static_cast<long>(numAudioIns);
+//    }
+//
+//    static long getNumAudioOuts(t_object *x)
+//    {
+//        t_ptr_int numAudioOuts = objectMethod<t_ptr_int>(x, FrameLib_PDPrivate::messageGetNumAudioOuts());
+//        return static_cast<long>(numAudioOuts);
+//    }
+    
+    // Helpers for connection methods
+    
+    static bool isOrderingInput(long index, FLObject *object)
+    {
+        return object && object->supportsOrderingConnections() && index == static_cast<long>(object->getNumIns());
+    }
+    
+    bool isOrderingInput(long index) const                  { return isOrderingInput(index, mObject.get()); }
+    bool isConnected(long index) const                      { return mObject->isConnected(index); }
+    
+    static bool validIO(long index, unsigned long count)    { return index >= 0 && index < static_cast<long>(count); }
+    static bool validInput(long index, FLObject *object)    { return object && validIO(index, object->getNumIns()); }
+    static bool validOutput(long index, FLObject *object)   { return object && validIO(index, object->getNumOuts()); }
+    
+    bool validInput(long index) const                       { return validInput(index, mObject.get()); }
+    bool validOutput(long index) const                      { return validOutput(index, mObject.get()); }
+    
+    PDConnection getConnection(long index)                  { return toPDConnection(mObject->getConnection(index)); }
+    PDConnection getOrderingConnection(long index)          { return toPDConnection(mObject->getOrderingConnection(index)); }
+    
+    long getNumOrderingConnections() const                  { return static_cast<long>(mObject->getNumOrderingConnections()); }
+    
+    static PDConnection toPDConnection(FLConnection c)      { return PDConnection(toPDObject(c.mObject), c.mIndex); }
+    static FLConnection toFLConnection(PDConnection c)      { return FLConnection(toFLObject(c.mObject), c.mIndex); }
+    
+    // Private connection methods
+
     bool confirmConnection(unsigned long inIndex, ConnectionInfo::Mode mode)
     {
         if (!validInput(inIndex))
@@ -855,41 +1194,7 @@ private:
         return result;
     }
     
-    bool validInput(long index, FrameLib_Multistream *object) const         { return object && index >= 0 && index < object->getNumIns(); }
-    bool validOutput(long index, FrameLib_Multistream *object) const        { return object && index >= 0 && index < object->getNumOuts(); }
-    bool isOrderingInput(long index, FrameLib_Multistream *object) const    { return object && object->supportsOrderingConnections() && index == object->getNumIns(); }
-    bool validInput(long index) const                                       { return validInput(index, mObject.get()); }
-    bool validOutput(long index) const                                      { return validOutput(index, mObject.get()); }
-    bool isOrderingInput(long index) const                                  { return isOrderingInput(index, mObject.get()); }
-    
-    bool isConnected(long index) const                                      { return mObject->isConnected(index); }
-    
-    PDConnection getPDConnection(const FLConnection& connection) const
-    {
-        FrameLib_PDProxy *proxy = dynamic_cast<FrameLib_PDProxy *>(connection.mObject->getProxy());
-        t_object *object = proxy->mMaxObject;
-        return PDConnection(object, connection.mIndex);
-    }
-    
-    PDConnection getConnection(long index) const
-    {
-        if (isConnected(index))
-            return getPDConnection(mObject->getConnection(index));
-        else
-            return PDConnection();
-    }
-    
-    unsigned long getNumOrderingConnections() const
-    {
-        return mObject->getNumOrderingConnections();
-    }
-    
-    PDConnection getOrderingConnection(long index) const
-    {
-        return getPDConnection(mObject->getOrderingConnection(index));
-    }
-    
-    bool matchConnection(t_object *src, long outIdx, long inIdx) const
+    bool matchConnection(t_object *src, long outIdx, long inIdx)
     {
         PDConnection connection = getConnection(inIdx);
         return connection.mObject == src && connection.mIndex == outIdx;
