@@ -448,7 +448,7 @@ public:
     
     struct ConnectionInfo
     {
-        enum Mode { kConnect, kConfirm, kDoubleCheck };
+        enum class Mode : intptr_t { kConnect, kConfirm, kDoubleCheck };
 
         ConnectionInfo(t_object *object, unsigned long index, Mode mode) : mObject(object), mIndex(index), mMode(mode) {}
         
@@ -996,17 +996,17 @@ public:
         
         switch (info->mMode)
         {
-            case ConnectionInfo::kConnect:
+            case ConnectionInfo::Mode::kConnect:
                 connect(info->mObject, info->mIndex, index);
                 break;
                 
-            case ConnectionInfo::kConfirm:
-            case ConnectionInfo::kDoubleCheck:
+            case ConnectionInfo::Mode::kConfirm:
+            case ConnectionInfo::Mode::kDoubleCheck:
 
                 if (index == mConfirmInIndex && mConfirmObject == info->mObject && mConfirmOutIndex == info->mIndex)
                 {
                     mConfirm = true;
-                    if (info->mMode == ConnectionInfo::kDoubleCheck)
+                    if (info->mMode == ConnectionInfo::Mode::kDoubleCheck)
                         pd_error(mUserObject, "extra connection to input %ld", index + 1);
                 }
                 break;
@@ -1032,7 +1032,7 @@ public:
 
     static uintptr_t extIsConnected(FrameLib_PDClass *x, unsigned long index)
     {
-        return x->confirmConnection(index, ConnectionInfo::kConfirm);
+        return x->confirmConnection(index, ConnectionInfo::Mode::kConfirm);
     }
     
     static void extConnectionConfirm(FrameLib_PDClass *x, unsigned long index, FrameLib_PDGlobals::ConnectionInfo::Mode mode)
@@ -1059,24 +1059,7 @@ public:
     {
         return x->getNumAudioOuts();
     }
-    
-    static void confirmMethod(t_object *object, t_symbol *methodName, long index, ConnectionInfo::Mode mode)
-    {
-        //vmess((t_pd *) g, method, "");
-        
-        // FIX - look at vmess
-        
-        typedef void (*func)(t_object *, long, ConnectionInfo::Mode);
-        
-        t_gotfn f = zgetfn(&object->ob_pd, methodName);
-        
-        if (!f)
-            return;
-        
-        func f2 = (func)f;
-        return f2(object, index, mode);
-    }
-    
+
 private:
     
     // Unwrapping connections
@@ -1119,17 +1102,17 @@ private:
             // Confirm input connections
                     
             for (unsigned long i = 0; i < getNumIns(); i++)
-                confirmConnection(i, ConnectionInfo::kConfirm);
+                confirmConnection(i, ConnectionInfo::Mode::kConfirm);
             
             // Confirm ordering connections
             
             for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
-                confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionInfo::kConfirm);
+                confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionInfo::Mode::kConfirm);
             
             // Make output connections
             
             for (unsigned long i = getNumOuts(); i > 0; i--)
-                makeConnection(i - 1, ConnectionInfo::kConnect);
+                makeConnection(i - 1, ConnectionInfo::Mode::kConnect);
             
             mNeedsResolve = false;
         }
@@ -1228,7 +1211,7 @@ private:
         // Check for connection *only* if the internal object is connected (otherwise assume the previously connected object has been deleted)
         
         if (mConfirmObject)
-            confirmMethod(mConfirmObject, gensym("__fl.connection_confirm"), mConfirmOutIndex, mode);
+            objectMethod<void>(mConfirmObject, FrameLib_PDPrivate::messageConnectionConfirm(), mConfirmOutIndex, mode);
         
         if (mConfirmObject && !mConfirm)
             disconnect(mConfirmObject, mConfirmOutIndex, mConfirmInIndex);
@@ -1251,7 +1234,7 @@ private:
     {
         FrameLib_Multistream *object = getInternalObject(src);
         
-        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !validOutput(outIdx, object) || matchConnection(src, outIdx, inIdx) || confirmConnection(inIdx, ConnectionInfo::kDoubleCheck)))
+        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !validOutput(outIdx, object) || matchConnection(src, outIdx, inIdx) || confirmConnection(inIdx, ConnectionInfo::Mode::kDoubleCheck)))
             return;
 
         ConnectionResult result;
