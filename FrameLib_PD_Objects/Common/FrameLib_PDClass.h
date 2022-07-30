@@ -1062,19 +1062,6 @@ public:
 
 private:
     
-    // Unwrapping connections
-    
-    void unwrapConnection(t_object *& object, long& connection)
-    {
-        /*t_object *wrapped = (t_object *) object_method(object, gensym("__fl.wrapper_internal_object"));
-        
-        if (wrapped)
-        {
-            object = wrapped;
-            connection++;
-        }*/
-    }
-    
     // Get an internal object from a generic pointer safely
     
     FrameLib_Multistream *getInternalObject(t_object *x)
