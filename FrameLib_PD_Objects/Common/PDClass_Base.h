@@ -11,6 +11,15 @@
 
 class PDClass_Base
 {
+    template <class T>
+    struct DefaultArg
+    {
+        DefaultArg(T value) : mValue(value) {}
+        operator T() { return mValue; }
+        
+        T mValue;
+    };
+    
     struct ObjectFree
     {
         void operator()(t_pd *ptr) { pd_free(ptr); }
@@ -18,10 +27,31 @@ class PDClass_Base
 
 public:
     
+    // Types for defining methods with DEFLONG or DEFFLOAT arguments
+    
+    //using def_int = DefaultArg<t_atom_long>;
+    using def_double = DefaultArg<double>;
+    
+    
     // Unique pointers to t_objects
     
     using unique_pd_ptr = std::unique_ptr<t_pd, ObjectFree>;
-    static unique_pd_ptr toUnique(void *ptr) { return unique_pd_ptr(reinterpret_cast<t_object *>(ptr)); }
+    static unique_pd_ptr toUnique(t_pd *ptr) { return unique_pd_ptr(ptr); }
+    
+    // Qelem struct for C++-style usage
+    
+    struct Qelem
+    {
+        Qelem(void *x, t_method fn) {}
+        ~Qelem() { }
+        
+        void set()      { qelem_set(mQelem); }
+        void front()    { qelem_front(mQelem); }
+        
+    private:
+        
+        t_qelem *mQelem;
+    };
     
     // Default Constructor
     
