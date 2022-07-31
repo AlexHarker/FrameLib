@@ -325,7 +325,7 @@ public:
     void add(const MessageInfo& info, const FrameLib_Parameters::Serial *serial)
     {
         // Lock, determine maximum vector size and copy
-
+        
         FrameLib_LockHolder lock(&mLock);
         
         for (auto it = serial->begin(); it != serial->end(); it++)
@@ -342,7 +342,7 @@ public:
     
     void ready()
     {
-        // Lock and copy onto the output queue 
+        // Lock and copy onto the output queue
         
         FrameLib_LockHolder lock(&mLock);
         
@@ -376,7 +376,7 @@ public:
         MessageBlock messages;
         
         // Swap data
-
+        
         FrameLib_LockHolder flushLock(&handler->mFlushLock);
         FrameLib_LockHolder lock(&handler->mLock);
         
@@ -850,7 +850,7 @@ private:
     std::deque<t_object *> mQueue;
     ResolveMap mUnresolvedContexts;
     RefMap mContextRefs;
-
+    
     FrameLib_Global *mRTGlobal;
     FrameLib_Global *mNRTGlobal;
     
