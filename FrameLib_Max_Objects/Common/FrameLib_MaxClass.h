@@ -632,7 +632,13 @@ public:
     // Constructor and Destructor (public for max API, but use ManagedPointer from outside this class)
     
     FrameLib_MaxGlobals(t_object *x, t_symbol *sym, long ac, t_atom *av)
-    : mReportContextErrors(false), mRTNotifier(&mRTGlobal), mNRTNotifier(&mNRTGlobal), mRTGlobal(nullptr), mNRTGlobal(nullptr), mQelem(*this, (method) &serviceContexts), mSyncCheck(nullptr)
+    : mReportContextErrors(false)
+    , mRTNotifier(&mRTGlobal)
+    , mNRTNotifier(&mNRTGlobal)
+    , mRTGlobal(nullptr)
+    , mNRTGlobal(nullptr)
+    , mQelem(*this, (method) &serviceContexts)
+    , mSyncCheck(nullptr)
     {}
 
     // Max global item methods
@@ -2158,7 +2164,7 @@ private:
         if (mObject)
         {
             FrameLib_Context context = mGlobal->makeContext(mMaxContext);
-         
+            
             if (context != mObject->getContext())
             {
                 mGlobal->addContextToResolve(context, *this);
@@ -2166,7 +2172,7 @@ private:
             }
             
             // N.B. release because otherwise it is retained twice
-
+            
             mGlobal->releaseContext(context);
         }
     }
@@ -2178,7 +2184,7 @@ private:
         FrameLib_MaxContext maxContext = mGlobal->getMaxContext(context);
         FrameLib_Context current = getContext();
         bool mismatchedPatch = mGlobal->getMaxContext(current).mPatch != maxContext.mPatch;
-
+        
         unsigned long size = 0;
         
         if ((!force && mismatchedPatch) || current == context)
@@ -2193,7 +2199,7 @@ private:
         for (unsigned long i = 0; i < mObject->getNumIns(); i++)
             if (const double *values = mObject->getFixedInput(i, &size))
                 newObject->setFixedInput(i, values, size);
-                
+        
         if (mGlobal->isRealtime(context) || mGlobal->isRealtime(current))
             dspSetBroken();
         
@@ -2209,7 +2215,7 @@ private:
             object_attr_touch(mUserObject, gensym("rt"));
         if (idChanged)
             object_attr_touch(mUserObject, gensym("id"));
-
+        
         mObject.reset(newObject);
     }
     
@@ -2795,13 +2801,13 @@ private:
     
     long mProxyNum;
     ConnectionConfirmation *mConfirmation;
-
+    
     unique_object_ptr mSyncIn;
     
     t_object *mUserObject;
     
     unsigned long mSpecifiedStreams;
-
+    
     bool mConnectionsUpdated;
     bool mContextPatchConfirmed;
     bool mResolved;
