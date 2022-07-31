@@ -1883,7 +1883,7 @@ public:
             return;
         
         LockHold lock(mGlobal->getLock(getContext()));
-
+        
         resolveNRTGraph(0.0, false);
         
         // Retrieve all the audio objects in a list
@@ -2274,7 +2274,7 @@ private:
         traversePatch(FrameLib_MaxPrivate::messageResolveConnections(), &updated);
         traversePatch(FrameLib_MaxPrivate::messageConnectionUpdate(), t_ptr_int(false));
         mGlobal->setReportContextErrors(false);
-
+        
         // If updated then redo auto ordering connections
         
         if (updated)
