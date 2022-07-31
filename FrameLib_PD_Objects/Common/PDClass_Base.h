@@ -62,6 +62,7 @@ public:
         : mClock(this, (t_method) &call)
         , mMethod((IntMethod) fn)
         , mOwner(x)
+        , mFlag(false)
         {}
         
         void set()
