@@ -450,7 +450,7 @@ private:
     
     mutable FrameLib_Lock mLock;
     mutable FrameLib_Lock mFlushLock;
-
+    
     MessageBlock mData;
     std::deque<MessageBlock> mOutput;
 };
@@ -610,7 +610,7 @@ public:
         long mTime;
         Mode mMode;
     };
-
+    
     // Convenience Pointer for automatic deletion and RAII
     
     struct ManagedPointer
@@ -620,10 +620,10 @@ public:
         
         ManagedPointer(const ManagedPointer&) = delete;
         ManagedPointer& operator=(const ManagedPointer&) = delete;
-
+        
         FrameLib_MaxGlobals *operator->() { return mPointer; }
         const FrameLib_MaxGlobals *operator->() const { return mPointer; }
-
+        
     private:
         
         FrameLib_MaxGlobals *mPointer;
@@ -640,7 +640,7 @@ public:
     , mQelem(*this, (method) &serviceContexts)
     , mSyncCheck(nullptr)
     {}
-
+    
     // Max global item methods
     
     void clearQueue()                           { mQueue.clear(); }
@@ -655,7 +655,7 @@ public:
         
         return object;
     }
-
+    
     void addContextToResolve(FrameLib_Context context, t_object *object)
     {
         mUnresolvedContexts[context] = object;
@@ -698,7 +698,7 @@ public:
             std::get<kQueuePtr>(*item) = QueuePtr(new FrameLib_Context::ProcessingQueue(context));
             
             // Set timeouts
-
+            
             if (key.mRealtime)
                 (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(16.0, 1.0);
             else
@@ -712,15 +712,15 @@ public:
     
     void retainContext(FrameLib_Context c)      { data<kCount>(c)++; }
     void releaseContext(FrameLib_Context c)     { if (--data<kCount>(c) == 0) mContextRefs.erase(data<kKey>(c)); }
-
+    
     void flushContext(FrameLib_Context c, FrameLib_MaxProxy *proxy)
     {
         ErrorNotifier::flush(data<kKey>(c).mRealtime ? &mRTGlobal : &mNRTGlobal);
         
         getHandler(c)->flush(proxy);
-     
+        
         auto it = mUnresolvedContexts.find(c);
-
+        
         if (it != mUnresolvedContexts.end())
         {
             objectMethod(it->second, FrameLib_MaxPrivate::messageResolveContext());
@@ -732,19 +732,19 @@ public:
     {
         ErrorNotifier::flushIgnore(data<kKey>(c).mRealtime ? &mRTGlobal : &mNRTGlobal, object);
     }
-
+    
     FrameLib_MaxContext getMaxContext(FrameLib_Context c)
     {
         return data<kKey>(c);
     }
-
+    
     bool isRealtime(FrameLib_Context c) const   { return c.getGlobal() == mRTGlobal; }
     Lock *getLock(FrameLib_Context c)           { return &data<kLock>(c); }
     t_object *&finalObject(FrameLib_Context c)  { return data<kFinal>(c); }
-
+    
     void setReportContextErrors(bool report)    { mReportContextErrors = report; }
     bool getReportContextErrors() const         { return mReportContextErrors; }
-
+    
     void setConnection(MaxConnection c)         { mConnection = c; }
     void setConnectionMode(ConnectionMode m)    { mConnectionMode = m; }
     MaxConnection getConnection() const         { return mConnection; }
@@ -764,7 +764,7 @@ private:
     {
         for (auto it = x->mUnresolvedContexts.begin(); it != x->mUnresolvedContexts.end(); it++)
             objectMethod(it->second, FrameLib_MaxPrivate::messageResolveContext());
-            
+        
         x->mUnresolvedContexts.clear();
     }
     
