@@ -13,22 +13,22 @@ FL_CPP= \
 FL_OBJ_DIR=$(FL_CPP:.cpp=.o) tlsf.o
 FL_OBJ=$(notdir $(FL_OBJ_DIR))
 
-INCLUDEPATH=\
+INCLUDE_PATHS=\
 				-IPD_Specific\
         -ICommon\
 				-I$(FL_FRAMEWORK)\
 			  -I$(FL_DEPENDENCIES)\
-				-I$(OBJECTBASE)/Common_Utilities/
+				-I$(FL_OBJECTS)/Common_Utilities/
 	
 MAIN_OBJ=framelib_pd.o
 OPTIMISATION=-O3
 #OPT=-g
 
-DUMPMACHINE=$(shell cc -dumpmachine)
-MACHINETYPE=$(word 2, $(subst -, , $(DUMPMACHINE)))
+DUMP_MACHINE=$(shell cc -dumpmachine)
+MACHINE_TYPE=$(word 2, $(subst -, , $(DUMP_MACHINE)))
 
 framelib_pd.d_fat: $(MAIN_OBJ) $(FL_OBJ_DIR); 
-ifeq ($(MACHINETYPE), apple)
+ifeq ($(MACHINE_TYPE), apple)
 				cc $(OPTIMISATION) -arch x86_64 -bundle -flat_namespace -undefined suppress -o framelib_pd.d_fat $(MAIN_OBJ) \
 				$(FL_OBJ) -lstdc++ -lpthread -framework Accelerate 
 else 
@@ -37,7 +37,7 @@ else
 endif
 
 %.o : %.cpp
-				g++ $(OPTIMISATION) -arch x86_64 -std=c++11 -fPIC $(INCLUDEPATH) -c $<
+				g++ $(OPTIMISATION) -arch x86_64 -std=c++11 -fPIC $(INCLUDE_PATHS) -c $<
 
 %.o : %.c
-				cc $(OPTIMISATION) -arch x86_64 -fPIC $(INCLUDEPATH) -c $<
+				cc $(OPTIMISATION) -arch x86_64 -fPIC $(INCLUDE_PATHS) -c $<
