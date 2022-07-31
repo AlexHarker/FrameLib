@@ -38,19 +38,52 @@ public:
     using unique_pd_ptr = std::unique_ptr<t_pd, ObjectFree>;
     static unique_pd_ptr toUnique(t_pd *ptr) { return unique_pd_ptr(ptr); }
     
+    // Clock struct for C++-style usage
+    
+    struct Clock
+    {
+        Clock(void *x, t_method fn) { mClock = clock_new(x, fn); }
+        ~Clock() { clock_free(mClock); }
+        
+        void delay(double delaytime = 0.0) { clock_delay(mClock, delaytime); }
+        
+    private:
+        
+        t_clock *mClock;
+    };
+    
     // Qelem struct for C++-style usage
     
     struct Qelem
     {
-        Qelem(void *x, t_method fn) {}
-        ~Qelem() { }
+        typedef void (*IntMethod)(void *x);
+
+        Qelem(void *x, t_method fn)
+        : mClock(this, (t_method) &call)
+        , mMethod((IntMethod) fn)
+        , mOwner(x)
+        {}
         
-        void set()      { qelem_set(mQelem); }
-        void front()    { qelem_front(mQelem); }
+        void set()
+        {
+            bool expected = false;
+            
+            if (mFlag.compare_exchange_strong(expected, true))
+                mClock.delay();
+        }
+        
+        static void call(Qelem *a)
+        {
+            mFlag.store(false);
+            (*a->mMethod)(a->mOwner);
+        }
         
     private:
         
-        t_qelem *mQelem;
+        Clock mClock;
+        IntMethod mMethod;
+        void *mOwner;
+        std::atomic_bool mFlag;
     };
     
     // Default Constructor
