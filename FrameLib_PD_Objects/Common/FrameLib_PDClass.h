@@ -68,7 +68,6 @@ struct FrameLib_PDPrivate
         std::string mString;
     };
     
-    static inline t_symbol *FLNamespace()                   { return gensym("__fl.framelib_private"); }
     static inline t_symbol *globalTag()                     { return gensym(VersionString("__fl.pd_global_tag")); }
     
     static inline VersionString objectGlobal()              { return "__fl.pd_global_items"; }
@@ -151,19 +150,19 @@ struct FrameLib_PDNRTAudio
 struct FrameLib_PDContext
 {
     bool mRealtime;
-    t_object *mPatch;
+    t_glist *mCanvas;
     t_symbol *mName;
     
     bool operator == (const FrameLib_PDContext& b) const
     {
-        return mRealtime == b.mRealtime && mPatch == b.mPatch && mName == b.mName;
+        return mRealtime == b.mRealtime && mCanvas == b.mCanvas && mName == b.mName;
     }
 };
 
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////// Messaging Classes ////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-/*
+
 struct MessageInfo
 {
     MessageInfo(FrameLib_PDMessageProxy* proxy, FrameLib_TimeFormat time, unsigned long stream)
@@ -235,7 +234,8 @@ class MessageHandler : public PDClass_Base
     
 public:
     
-    MessageHandler(t_object *x, t_symbol *sym, long ac, t_atom *av) {}
+    MessageHandler(t_object *x, t_symbol *sym, long ac, t_atom *av)
+    : mClock(x, (t_method) &service) {}
     
     void add(const MessageInfo& info, const double *values, unsigned long N)
     {
@@ -281,7 +281,7 @@ public:
     void schedule()
     {
         ready();
-        schedule_delay(*this, (t_method) &service, 0, nullptr, 0, nullptr);
+        mClock.delay();
     }
     
     void flush(FrameLib_PDProxy *proxy)
@@ -377,8 +377,10 @@ private:
     
     MessageBlock mData;
     std::deque<MessageBlock> mOutput;
+    
+    Clock mClock;
 };
-*/
+
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////// PD Globals Class ////////////////////////////
 //////////////////////////////////////////////////////////////////////////
@@ -387,77 +389,94 @@ class FrameLib_PDGlobals : public PDClass_Base
 {
 public:
     
-    // Sync Check Class
+    enum ConnectionMode : intptr_t { kConnect, kConfirm, kDoubleCheck };
+
+    using PDConnection = FrameLib_Connection<t_object, long>;
+    //using ConnectAccept = FrameLib_MaxConnectAccept;
+    using Lock = FrameLib_Lock;
+
+private:
     
-    class SyncCheck
+    struct Hash
     {
-    public:
-        
-        enum Mode { kDownOnly, kDown, kAcross };
-        enum Action { kSyncComplete, kSync, kAttachAndSync };
-        
-        SyncCheck() : mGlobal(get()), mObject(nullptr), mTime(-1), mMode(kDownOnly) {}
-        ~SyncCheck() { mGlobal->release(); }
-        
-        Action operator()(void *object, bool handlesAudio, bool isOutput)
+        size_t operator()(void *a, void *b) const
         {
-            const SyncCheck *info = mGlobal->getSyncCheck();
+            size_t hash = 0;
+            hash ^= std::hash<void *>()(a) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+            hash ^= std::hash<void *>()(b) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
             
-            if (info && (info->mTime != mTime || info->mObject != mObject))
-            {
-                set(info->mObject, info->mTime, info->mMode);
-                return handlesAudio && object != mObject && (mMode != kAcross || isOutput) ? kAttachAndSync : kSync;
-            }
-            
-            if (info && mMode == kAcross && info->mMode == kDown)
-            {
-                mMode = kDown;
-                return handlesAudio && object != mObject && !isOutput ? kAttachAndSync : kSync;
-            }
-            
-            return kSyncComplete;
+            return hash;
         }
         
-        void sync(void *object = nullptr, long time = -1, Mode mode = kDownOnly)
+        size_t operator()(const FrameLib_Context& context) const
         {
-            set(object, time, mode);
-            mGlobal->setSyncCheck(object ? this : nullptr);
+            return operator()(context.getGlobal(), context.getReference());
         }
         
-        bool upwardsMode()  { return setMode(mGlobal->getSyncCheck(), kAcross); }
-        void restoreMode()  { setMode(mGlobal->getSyncCheck(), mMode); }
-        
-    private:
-        
-        void set(void *object, long time, Mode mode)
+        size_t operator()(const FrameLib_PDContext& key) const
         {
-            mObject = object;
-            mTime = time;
-            mMode = mode;
+            // N.B. Realtime state isn't used in the hash, but used during full lookup
+            
+            return operator()(key.mCanvas, key.mName);
         }
-    
-        bool setMode(SyncCheck *info, Mode mode)    { return info && info->mMode != kDownOnly && ((info->mMode = mode) == mode); }
-        
-        FrameLib_PDGlobals *mGlobal;
-        void *mObject;
-        long mTime;
-        Mode mMode;
     };
-
-    // ConnectionInfo Struct
     
-    struct ConnectionInfo
+    enum RefDataItem { kKey, kCount, kLock, kFinal, kHandler, kQueuePtr };
+
+    using QueuePtr = std::unique_ptr<FrameLib_Context::ProcessingQueue>;
+    using RefData = std::tuple<FrameLib_PDContext, int, Lock, t_object *, unique_pd_ptr, QueuePtr>;
+    using RefMap = std::unordered_map<FrameLib_PDContext, std::unique_ptr<RefData>, Hash>;
+    using ResolveMap = std::unordered_map<FrameLib_Context, t_object *, Hash>;
+    
+public:
+    
+    // Error Notification Class
+    
+    struct ErrorNotifier : public FrameLib_ErrorReporter::HostNotifier
     {
-        enum class Mode : intptr_t { kConnect, kConfirm, kDoubleCheck };
+        ErrorNotifier(FrameLib_Global **globalHandle)
+        : mQelem(globalHandle, (t_method) &flush) {}
+        
+        bool notify(const FrameLib_ErrorReporter::ErrorReport& report) override
+        {
+            mQelem.set();
+            return false;
+        }
+        
+        static void flushIgnore(FrameLib_Global **globalHandle, t_object *ignore = nullptr)
+        {
+            auto reports = (*globalHandle)->getErrors();
 
-        ConnectionInfo(t_object *object, unsigned long index, Mode mode) : mObject(object), mIndex(index), mMode(mode) {}
+            for (auto it = reports->begin(); it != reports->end(); it++)
+            {
+                std::string errorText;
+                t_object *object = it->getReporter() ? it->getReporter()->getOwner<t_object>() : nullptr;
+                t_object *userObject = object ? objectMethod<t_object *>(object, FrameLib_PDPrivate::messageGetUserObject()) : nullptr;
+                
+                it->getErrorText(errorText);
+                
+                if (userObject)
+                {
+                    if (object == ignore)
+                        continue;
+                    pd_error(userObject, "%s", errorText.c_str());
+                }
+                else
+                    error("%s", errorText.c_str());
+            }
+
+            if (reports->isFull())
+                error("*** FrameLib - too many errors - reporting only some ***");
+        }
         
-        t_object *mObject;
-        unsigned long mIndex;
-        Mode mMode;
-        
+        static void flush(FrameLib_Global **globalHandle)
+        {
+            flushIgnore(globalHandle);
+        }
+
+        Qelem mQelem;
     };
-
+    
     // Convenience Pointer for automatic deletion and RAII
     
     struct ManagedPointer
@@ -465,39 +484,172 @@ public:
         ManagedPointer() : mPointer(get()) {}
         ~ManagedPointer() { mPointer->release(); }
         
+        ManagedPointer(const ManagedPointer&) = delete;
+        ManagedPointer& operator=(const ManagedPointer&) = delete;
+        
         FrameLib_PDGlobals *operator->() { return mPointer; }
+        const FrameLib_PDGlobals *operator->() const { return mPointer; }
         
     private:
         
-        // Deleted
-        
-        ManagedPointer(const ManagedPointer&) = delete;
-        ManagedPointer& operator=(const ManagedPointer&) = delete;
-
         FrameLib_PDGlobals *mPointer;
     };
     
-    // Constructor and Destructor (public for the PD API, but use the ManagedPointer for use from outside this class)
+    // Constructor and Destructor (public for pd API, but use ManagedPointer from outside this class)
     
     FrameLib_PDGlobals(t_object *x, t_symbol *sym, long ac, t_atom *av)
-    : mGlobal(nullptr), mConnectionInfo(nullptr), mSyncCheck(nullptr) {}
-    ~FrameLib_PDGlobals() { if (mGlobal) FrameLib_Global::release(&mGlobal); }
-
-    // Getters and setters for max global items
+    : mReportContextErrors(false)
+    , mRTNotifier(&mRTGlobal)
+    , mNRTNotifier(&mNRTGlobal)
+    , mRTGlobal(nullptr)
+    , mNRTGlobal(nullptr)
+    , mQelem(*this, (t_method) &serviceContexts)
+    {}
     
-    FrameLib_Global *getGlobal() const                          { return mGlobal; }
+    // Max global item methods
     
-    const ConnectionInfo *getConnectionInfo() const             { return mConnectionInfo; }
-    void setConnectionInfo(ConnectionInfo *info = nullptr)      { mConnectionInfo = info; }
+    void clearQueue()                           { mQueue.clear(); }
+    void pushToQueue(t_object * object)         { return mQueue.push_back(object); }
     
-    SyncCheck *getSyncCheck() const                             { return mSyncCheck; }
-    void setSyncCheck(SyncCheck *check = nullptr)               { mSyncCheck = check; }
+    t_object *popFromQueue()
+    {
+        t_object *object = mQueue.empty() ? nullptr : mQueue.front();
+        
+        if (object)
+            mQueue.pop_front();
+        
+        return object;
+    }
+    
+    void addContextToResolve(FrameLib_Context context, t_object *object)
+    {
+        mUnresolvedContexts[context] = object;
+        mQelem.set();
+    }
+    
+    void contextMessages(FrameLib_Context c)
+    {
+        MessageHandler *handler = getHandler(c);
+        
+        handler->ready();
+        MessageHandler::service(handler, nullptr, 0, nullptr);
+    }
+    
+    void contextMessages(FrameLib_Context c, t_object *object)
+    {
+        if (data<kFinal>(c) == object)
+            getHandler(c)->schedule();
+    }
+    
+    MessageHandler *getHandler(FrameLib_Context c)
+    {
+        return reinterpret_cast<MessageHandler *>(data<kHandler>(c).get());
+    }
+    
+    FrameLib_Context makeContext(const FrameLib_PDContext& key)
+    {
+        std::unique_ptr<RefData>& item = mContextRefs[key];
+        
+        if (!item)
+        {
+            t_symbol *handlerSym = gensym(FrameLib_PDPrivate::objectMessageHandler());
+            item.reset(new RefData());
+            FrameLib_Context context(key.mRealtime ? mRTGlobal : mNRTGlobal, item.get());
+            
+            std::get<kKey>(*item) = key;
+            std::get<kCount>(*item) = 1;
+            std::get<kFinal>(*item) = nullptr;
+            std::get<kHandler>(*item) = unique_pd_ptr(pd_new(*FrameLib_PDGlobals::getClassPointer<MessageHandler>()));
+            std::get<kQueuePtr>(*item) = QueuePtr(new FrameLib_Context::ProcessingQueue(context));
+            
+            // Set timeouts
+            
+            if (key.mRealtime)
+                (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(16.0, 1.0);
+            else
+                (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(100.0, 30.0);
+        }
+        else
+            std::get<kCount>(*item)++;
+        
+        return FrameLib_Context(key.mRealtime ? mRTGlobal : mNRTGlobal, item.get());
+    }
+    
+    void retainContext(FrameLib_Context c)      { data<kCount>(c)++; }
+    void releaseContext(FrameLib_Context c)     { if (--data<kCount>(c) == 0) mContextRefs.erase(data<kKey>(c)); }
+    
+    void flushContext(FrameLib_Context c, FrameLib_PDProxy *proxy)
+    {
+        ErrorNotifier::flush(data<kKey>(c).mRealtime ? &mRTGlobal : &mNRTGlobal);
+        
+        getHandler(c)->flush(proxy);
+        
+        auto it = mUnresolvedContexts.find(c);
+        
+        if (it != mUnresolvedContexts.end())
+        {
+            objectMethod(it->second, FrameLib_PDPrivate::messageResolveContext());
+            mUnresolvedContexts.erase(it);
+        }
+    }
+    
+    void flushErrors(FrameLib_Context c, t_object *object)
+    {
+        ErrorNotifier::flushIgnore(data<kKey>(c).mRealtime ? &mRTGlobal : &mNRTGlobal, object);
+    }
+    
+    FrameLib_PDContext getPDContext(FrameLib_Context c)
+    {
+        return data<kKey>(c);
+    }
+    
+    bool isRealtime(FrameLib_Context c) const   { return c.getGlobal() == mRTGlobal; }
+    Lock *getLock(FrameLib_Context c)           { return &data<kLock>(c); }
+    t_object *&finalObject(FrameLib_Context c)  { return data<kFinal>(c); }
+    
+    void setReportContextErrors(bool report)    { mReportContextErrors = report; }
+    bool getReportContextErrors() const         { return mReportContextErrors; }
+    
+    void setConnection(PDConnection c)          { mConnection = c; }
+    void setConnectionMode(ConnectionMode m)    { mConnectionMode = m; }
+    PDConnection getConnection() const          { return mConnection; }
+    ConnectionMode getConnectionMode() const    { return mConnectionMode; }
+        
+//    void setConnectAccept(ConnectAccept ca)     { mConnectAccept = ca; }
+//    bool checkAccept(ConnectAccept ca) const    { return mConnectAccept == ca; }
     
 private:
     
-    void retain()                                               { FrameLib_Global::get(&mGlobal, FrameLib_Thread::defaultPriorities()); }
-    void release()                                              { FrameLib_Global::release(&mGlobal); }
-
+    // Context methods
+    
+    static void serviceContexts(FrameLib_PDGlobals *x)
+    {
+        for (auto it = x->mUnresolvedContexts.begin(); it != x->mUnresolvedContexts.end(); it++)
+            objectMethod(it->second, FrameLib_PDPrivate::messageResolveContext());
+        
+        x->mUnresolvedContexts.clear();
+    }
+    
+    template <size_t N>
+    typename std::tuple_element<N, RefData>::type& data(FrameLib_Context context)
+    {
+        return std::get<N>(*static_cast<RefData *>(context.getReference()));
+    }
+    
+    // Generate some relevant thread priorities
+    
+    static FrameLib_Thread::Priorities priorities(bool realtime)
+    {
+        if (!realtime)
+#if defined __linux__ || defined __APPLE__
+            return { 31, 31, 31, SCHED_OTHER, true };
+#else
+            return { THREAD_PRIORITY_NORMAL, THREAD_PRIORITY_HIGHEST, THREAD_PRIORITY_TIME_CRITICAL, 0, true };
+#endif
+        
+        return FrameLib_Thread::defaultPriorities();
+    }
+    
     static FrameLib_PDGlobals **getPDGlobalsPtr()
     {
         return (FrameLib_PDGlobals **) &gensym("__fl.pd_global_items")->s_thing;
@@ -507,28 +659,80 @@ private:
     
     static FrameLib_PDGlobals *get()
     {
-        // Make sure the max globals class exists
+        auto maxGlobalClass = FrameLib_PDPrivate::objectGlobal();
+        auto messageClassName = FrameLib_PDPrivate::objectMessageHandler();
+        
+        /*
+         t_symbol *globalTag = FrameLib_MaxPrivate::globalTag();
+         
+         // Make sure the pd globals and message handler classes exist
+         
+         if (!class_findbyname(CLASS_NOBOX, gensym(maxGlobalClass)))
+         makeClass<FrameLib_MaxGlobals>(CLASS_NOBOX, maxGlobalClass);
+         
+         if (!class_findbyname(CLASS_NOBOX, gensym(messageClassName)))
+         MessageHandler::makeClass<MessageHandler>(CLASS_NOBOX, messageClassName);
+         
+         // See if an object is registered (otherwise make object and register it...)
+         
+         FrameLib_MaxGlobals *x = (FrameLib_MaxGlobals *) object_findregistered(nameSpace, globalTag);
+         
+         if (!x)
+         x = (FrameLib_MaxGlobals *) object_register(nameSpace, globalTag, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClass), 0, nullptr));
+         */
+        
+        // Make sure the pd globals class exists
 
         FrameLib_PDGlobals *x = *getPDGlobalsPtr();
         
         if (!x)
         {
-            makeClass<FrameLib_PDGlobals>("__fl.pd_global_items");
+            makeClass<FrameLib_PDGlobals>(maxGlobalClass);
+            MessageHandler::makeClass<MessageHandler>(messageClassName);
             x = (FrameLib_PDGlobals *) pd_new(*FrameLib_PDGlobals::getClassPointer<FrameLib_PDGlobals>());
             *getPDGlobalsPtr() = x;
         }
-        
-        if (x)
-            x->retain();
+
+        FrameLib_Global::get(&x->mRTGlobal, priorities(true), &x->mRTNotifier);
+        FrameLib_Global::get(&x->mNRTGlobal, priorities(false), &x->mNRTNotifier);
         
         return x;
     }
     
-    // Pointers
+    void release()
+    {
+        FrameLib_Global::release(&mRTGlobal);
+        FrameLib_Global::release(&mNRTGlobal);
+        
+        if (!mRTGlobal)
+        {
+            assert(!mNRTGlobal && "Reference counting error");
+            
+            *getPDGlobalsPtr() = nullptr;
+            pd_free((t_pd *)this);
+        }
+    }
     
-    FrameLib_Global *mGlobal;
-    ConnectionInfo *mConnectionInfo;
-    SyncCheck *mSyncCheck;
+    // Connection Info
+    
+    PDConnection mConnection;
+    ConnectionMode mConnectionMode;
+    //ConnectAccept mConnectAccept;
+    bool mReportContextErrors;
+    
+    // Member Objects / Pointers
+    
+    ErrorNotifier mRTNotifier;
+    ErrorNotifier mNRTNotifier;
+    
+    std::deque<t_object *> mQueue;
+    ResolveMap mUnresolvedContexts;
+    RefMap mContextRefs;
+    
+    FrameLib_Global *mRTGlobal;
+    FrameLib_Global *mNRTGlobal;
+    
+    Qelem mQelem;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -540,15 +744,41 @@ enum PDObjectArgsMode { kAsParams, kAllInputs, kDistribute };
 template <class T, PDObjectArgsMode argsMode = kAsParams>
 class FrameLib_PDClass : public PDClass_Base
 {
-    //using ConnectionMode = FrameLib_PDGlobals::ConnectionMode;
+    using ConnectionMode = FrameLib_PDGlobals::ConnectionMode;
     using FLObject = FrameLib_Multistream;
     using FLConnection = FrameLib_Object<FLObject>::Connection;
-    using PDConnection = FrameLib_Object<t_object>::Connection;
+    using PDConnection = FrameLib_PDGlobals::PDConnection;
     using LockHold = FrameLib_LockHolder;
     using NumericType = FrameLib_Parameters::NumericType;
     using ClipMode = FrameLib_Parameters::ClipMode;
-    
-    using ConnectionInfo = FrameLib_PDGlobals::ConnectionInfo;
+        
+    struct PDProxy : public PDClass_Base
+    {
+        static t_pd *create(FrameLib_PDClass *owner, int index)
+        {
+            t_pd *proxy = pd_new(*PDProxy::getClassPointer<PDProxy>());
+            
+            ((PDProxy *)proxy)->mOwner = owner;
+            ((PDProxy *)proxy)->mIndex = index;
+            
+            return proxy;
+        }
+        
+        static void classInit(t_class *c, const char *classname)
+        {
+            addMethod<PDProxy, &PDProxy::frame>(c, "frame");
+        }
+        
+        PDProxy(t_object *x, t_symbol *sym, long ac, t_atom *av) : mOwner(nullptr), mIndex(-1) {}
+        
+        void frame()
+        {
+            mOwner->frameInlet(mIndex);
+        }
+        
+        FrameLib_PDClass *mOwner;
+        int mIndex;
+    };
     
     struct ConnectionConfirmation
     {
@@ -570,32 +800,58 @@ class FrameLib_PDClass : public PDClass_Base
         long mInIndex;
     };
     
-    struct PDProxy : public PDClass_Base
+    class Input
     {
-        static t_pd *create(FrameLib_PDClass *owner, int index)
+    public:
+        
+        enum Error { kNone = 0x00, kVersion = 0x01, kContext = 0x02, kExtra= 0x04, kFeedback = 0x08, kDirect = 0x10 };
+        
+        Input(t_pd *proxy, long index)
+        : mProxy(toUnique(proxy))
+        , mIndex(index)
+        , mErrorTime(-1)
+        , mErrorFlags(0)
+        {}
+        
+        Input() : Input(nullptr, 0) {}
+        
+        void reportError(t_object *userObject, Error error) const
         {
-            t_pd *proxy = pd_new(*PDProxy::getClassPointer<PDProxy>());
-           
-            ((PDProxy *)proxy)->mOwner = owner;
-            ((PDProxy *)proxy)->mIndex = index;
-
-            return proxy;
+            auto postError = [&](const char *str) { pd_error(userObject, "%s input %ld", str, mIndex + 1); };
+            
+            double time = clock_getlogicaltime();
+            bool validTime = mErrorTime + 500 >= time;
+            
+            if (validTime && mErrorFlags & error)
+                return;
+            
+            switch (error)
+            {
+                case kVersion:      postError("can't connect objects from different versions of framelib -");   break;
+                case kContext:      postError("can't connect objects in different patching contexts -");        break;
+                case kExtra:        postError("extra connection to");                                           break;
+                case kFeedback:     postError("feedback loop detected at");                                     break;
+                case kDirect:       postError("direct feedback loop detected at");                              break;
+                
+                default:
+                    return;
+            }
+            
+            if (validTime)
+                mErrorFlags |= error;
+            else
+            {
+                mErrorTime = time;
+                mErrorFlags = error;
+            }
         }
         
-        static void classInit(t_class *c, const char *classname)
-        {
-            addMethod<PDProxy, &PDProxy::frame>(c, "frame");
-        }
+    private:
         
-        PDProxy(t_object *x, t_symbol *sym, long ac, t_atom *av) : mOwner(nullptr), mIndex(-1) {}
-        
-        void frame()
-        {
-            mOwner->frameInlet(mIndex);
-        }
-        
-        FrameLib_PDClass *mOwner;
-        int mIndex;
+        unique_pd_ptr mProxy;
+        long mIndex;
+        mutable long mErrorTime;
+        mutable long mErrorFlags;
     };
     
 public:
@@ -625,20 +881,31 @@ public:
     {
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::info>(c, "info");
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::frame>(c, "frame");
-        addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::sync>(c, "sync");
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::dsp>(c);
         
+        if (T::sHandlesAudio)
+        {
+            addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::reset>(c, "reset");
+            addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::process>(c, "process");
+            
+            addMethod(c, (t_method) &extFindAudio, FrameLib_PDPrivate::messageFindAudioObjects());
+            
+            dspInit(c);
+        }
+        
+        addMethod(c, (t_method) &extResolveContext, FrameLib_PDPrivate::messageResolveContext());
         addMethod(c, (t_method) &extResolveConnections, FrameLib_PDPrivate::messageResolveConnections());
+        addMethod(c, (t_method) &extMarkUnresolved, FrameLib_PDPrivate::messageMarkUnresolved());
         addMethod(c, (t_method) &extMakeAutoOrdering, FrameLib_PDPrivate::messageMakeAutoOrdering());
         addMethod(c, (t_method) &extClearAutoOrdering, FrameLib_PDPrivate::messageClearAutoOrdering());
+        addMethod(c, (t_method) &extReset, FrameLib_PDPrivate::messageReset());
+        addMethod(c, (t_method) &extIsDirectlyConnected, FrameLib_PDPrivate::messageIsDirectlyConnected());
         addMethod(c, (t_method) &extConnectionConfirm, FrameLib_PDPrivate::messageConnectionConfirm());
+        addMethod(c, (t_method) &extConnectionUpdate, FrameLib_PDPrivate::messageConnectionUpdate());
+        addMethod(c, (t_method) &extGetFLObject, FrameLib_PDPrivate::messageGetFrameLibObject());
+        addMethod(c, (t_method) &extGetUserObject, FrameLib_PDPrivate::messageGetUserObject());
         addMethod(c, (t_method) &extGetNumAudioIns, FrameLib_PDPrivate::messageGetNumAudioIns());
         addMethod(c, (t_method) &extGetNumAudioOuts, FrameLib_PDPrivate::messageGetNumAudioOuts());
-        addMethod(c, (t_method) &extIsConnected, "__fl.is_connected");
-        addMethod(c, (t_method) &extGetInternalObject, "__fl.get_internal_object");
-        addMethod(c, (t_method) &extIsOutput, "__fl.is_output");
-        
-        dspInit(c);
     }
 
     // Tag checks
@@ -668,14 +935,14 @@ public:
 
     FrameLib_PDClass(t_object *x, t_symbol *s, long argc, t_atom *argv, FrameLib_PDProxy *proxy = nullptr)
     : mProxy(proxy ? proxy : new FrameLib_PDProxy(x))
-    , mConfirmObject(nullptr)
-    , mConfirmInIndex(-1)
-    , mConfirmOutIndex(-1)
-    , mConfirm(false)
     , mCanvas(canvas_getcurrent())
-    , mSyncIn(nullptr)
-    , mNeedsResolve(true)
+    , mConfirmation(nullptr)
     , mUserObject(*this)
+    , mSpecifiedStreams(1)
+    , mConnectionsUpdated(false)
+    , mContextPatchConfirmed(false)
+    , mResolved(false)
+    , mPDContext{ T::sType == ObjectType::Scheduler, mCanvas, gensym("") }
     {
         // Stream count
         
@@ -690,13 +957,15 @@ public:
         
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        mObject.reset(new T(FrameLib_Context(mGlobal->getGlobal(), mCanvas), &serialisedParameters, mProxy.get(), mSpecifiedStreams));
+        FrameLib_Context context = mGlobal->makeContext(mPDContext);
+        mObject.reset(new T(context, &serialisedParameters, mProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
         
         long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
 
         mInputs.resize(numIns);
         mOutputs.resize(getNumOuts());
+        mDirectlyConnected.resize(getNumIns(), false);
         
         dspSetup(getNumAudioIns(), getNumAudioOuts());
         
@@ -706,34 +975,27 @@ public:
         {
             if (i || handlesAudio())
             {
-                mInputs[i] = PDProxy::create(this, (int) (getNumAudioIns() + i));
-                inlet_new(*this, mInputs[i], gensym("frame"), gensym("frame"));
+                t_pd *proxy = PDProxy::create(this, (int) (getNumAudioIns() + i));
+                inlet_new(*this, proxy, gensym("frame"), gensym("frame"));
+                mInputs[i] = Input(proxy, i);
             }
             else
-                mInputs[i] = nullptr;
+                mInputs[i] = Input(nullptr, i);
         }
         
         // Create frame outlets
         
         for (unsigned long i = 0; i < getNumOuts(); i++)
             mOutputs[i] = outlet_new(*this, gensym("frame"));
-        
-        // Add a sync outlet if we need to handle audio
-        
-        if (handlesAudio())
-        {
-            //mSyncIn = (t_object *) outlet_new(nullptr, nullptr);
-            //outlet_add(mSyncIn, inlet_nth(*this, 0));
-        }
     }
 
     ~FrameLib_PDClass()
     {
-        for (auto it = mInputs.begin(); it != mInputs.end(); it++)
-            if (*it)
-                pd_free(*it);
-      
-        //object_free(mSyncIn);
+        if (isRealtime())
+            dspSetBroken();
+        
+        mGlobal->flushContext(getContext(), mProxy.get());
+        mGlobal->releaseContext(getContext());
     }
     
     void info(t_symbol *sym, long ac, t_atom *av)
@@ -818,9 +1080,9 @@ public:
                 // Name, type and default value
                 
                 if (defaultStr.size())
-                    post("Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i).c_str(), defaultStr.c_str());
+                    post("Parameter %lu: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i).c_str(), defaultStr.c_str());
                 else
-                    post("Parameter %ld: %s [%s]", i + 1, params->getName(i), params->getTypeString(i).c_str());
+                    post("Parameter %lu: %s [%s]", i + 1, params->getName(i), params->getTypeString(i).c_str());
 
                 // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
                 
@@ -857,6 +1119,7 @@ public:
     
     FrameLib_Context getContext() const         { return mObject->getContext(); }
 
+    bool isRealtime() const                     { return mGlobal->isRealtime(getContext()); }
     bool handlesAudio() const                   { return T::sHandlesAudio; }
     bool supportsOrderingConnections() const    { return mObject->supportsOrderingConnections(); }
 
@@ -889,14 +1152,16 @@ public:
             for (int j = 0; j < vec_size; j++)
                 getAudioOut(i + 1)[j] = mSigOuts[i][j];
     }
-
+    
     void dsp(t_signal **sp)
     {
+        if (!isRealtime())
+            return;
+        
         // Resolve connections (in case there are no schedulers left in the patch) and mark unresolved for next time
         
-        iterateCanvas(mCanvas, gensym(FrameLib_PDPrivate::messageResolveConnections()));
-        //resolveConnections();
-        mNeedsResolve = true;
+        resolveConnections();
+        mResolved = false;
         
         // Reset DSP
         
@@ -912,7 +1177,8 @@ public:
         if (handlesAudio())
         {
             addPerform<FrameLib_PDClass, &FrameLib_PDClass<T>::perform>(sp);
-        
+            mGlobal->finalObject(getContext()) = *this;
+
             mTemp.resize(vec_size * (getNumAudioIns() + getNumAudioOuts() -2));
             mSigIns.resize(getNumAudioIns() - 1);
             mSigOuts.resize(getNumAudioOuts() - 1);
@@ -927,56 +1193,86 @@ public:
         }
     }
 
-    // Get Audio Outputs
+    // Non-realtime processing
     
-    std::vector<double *> &getAudioOuts()
+    static unsigned long maxBlockSize() { return 16384UL; }
+    
+    void reset(def_double sampleRate = 0.0)
     {
-        return mSigOuts;
-    }
-    
-    // Type
-    
-    ObjectType getType()
-    {
-        return mObject->getType();
-    }
-    
-    // Audio Synchronisation
-    
-    void sync()
-    {
-        FrameLib_PDGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), extIsOutput(this));
-       
-        if (action != FrameLib_PDGlobals::SyncCheck::kSyncComplete && handlesAudio() && mNeedsResolve)
+        if (!isRealtime())
         {
-            iterateCanvas(mCanvas, gensym(FrameLib_PDPrivate::messageResolveConnections()));
-            iterateCanvas(mCanvas, gensym(FrameLib_PDPrivate::messageClearAutoOrdering()));
-            iterateCanvas(mCanvas, gensym(FrameLib_PDPrivate::messageMakeAutoOrdering()));
+            LockHold lock(mGlobal->getLock(getContext()));
+            resolveNRTGraph(sampleRate > 0.0 ? sampleRate.mValue : sys_getsr(), true);
         }
+    }
+    
+    void process(double length)
+    {
+        unsigned long updateLength = length > 0 ? static_cast<unsigned long>(length) : 0UL;
+        unsigned long time = static_cast<unsigned long>(mObject->getBlockTime()) - 1UL;
         
-        // FIX
+        if (!updateLength || isRealtime())
+            return;
         
-        //if (action == FrameLib_PDGlobals::SyncCheck::kAttachAndSync)
-        //    outlet_anything(mSyncIn, gensym("signal"), 0, nullptr);
+        LockHold lock(mGlobal->getLock(getContext()));
         
-        if (action != FrameLib_PDGlobals::SyncCheck::kSyncComplete)
+        resolveNRTGraph(0.0, false);
+        
+        // Retrieve all the audio objects in a list
+        
+        std::vector<FrameLib_PDNRTAudio> audioObjects;
+        traversePatch(FrameLib_PDPrivate::messageFindAudioObjects(), &audioObjects);
+        
+        // Set up buffers
+        
+        unsigned long maxAudioIO = 0;
+        
+        for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
+            maxAudioIO = std::max(maxAudioIO, it->mObject->getNumAudioChans());
+        
+        std::vector<double> audioBuffer(maxBlockSize() * maxAudioIO);
+        std::vector<double *> ioBuffers(maxAudioIO);
+        
+        for (unsigned long i = 0; i < maxAudioIO; i++)
+            ioBuffers[i] = audioBuffer.data() + i * maxBlockSize();
+        
+        // Loop to process audio
+        
+        for (unsigned long i = 0; i < updateLength; i += maxBlockSize())
         {
-            for (unsigned long i = getNumOuts(); i > 0; i--)
-                outlet_anything(mOutputs[i - 1], gensym("sync"), 0, nullptr);
+            unsigned long blockSize = std::min(maxBlockSize(), updateLength - i);
             
-            if (mSyncChecker.upwardsMode())
+            // Process inputs and schedulers (block controls object lifetime)
+            
+            if (true)
             {
-                for (unsigned long i = 0; i < getNumIns(); i++)
-                    if (isConnected(i))
-                        objectMethod<void>(getConnection(i).mObject, "sync");
+                FrameLib_AudioQueue queue;
                 
-                if (supportsOrderingConnections())
-                    for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
-                        objectMethod<void>(getOrderingConnection(i).mObject, "sync");
+                for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
+                {
+                    if (it->mObject->getType() == ObjectType::Output)
+                        continue;
+                    
+                    read(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioIns(), blockSize, time + i);
+                    it->mObject->blockUpdate(ioBuffers.data(), nullptr, blockSize, queue);
+                }
+            }
+            
+            // Process outputs
+            
+            for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
+            {
+                if (it->mObject->getType() != ObjectType::Output)
+                    continue;
                 
-                mSyncChecker.restoreMode();
+                it->mObject->blockUpdate(nullptr, ioBuffers.data(), blockSize);
+                write(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioOuts(), blockSize, time + i);
             }
         }
+        
+        // Process Messages
+        
+        mGlobal->contextMessages(getContext());
     }
     
     // Connection Routines
@@ -988,38 +1284,56 @@ public:
     
     void frameInlet(long index)
     {
-        const ConnectionInfo *info = mGlobal->getConnectionInfo();
+        const PDConnection connection = mGlobal->getConnection();
+        
         index -= getNumAudioIns();
         
-        if (!info)
+        // Make sure there's an object to connect that has the same framelib version
+        
+        if (!connection.mObject || versionMismatch(connection.mObject, index, true))
             return;
         
-        switch (info->mMode)
+        if (mGlobal->getConnectionMode() == ConnectionMode::kConnect)
         {
-            case ConnectionInfo::Mode::kConnect:
-                connect(info->mObject, info->mIndex, index);
-                break;
-                
-            case ConnectionInfo::Mode::kConfirm:
-            case ConnectionInfo::Mode::kDoubleCheck:
-
-                if (index == mConfirmInIndex && mConfirmObject == info->mObject && mConfirmOutIndex == info->mIndex)
-                {
-                    mConfirm = true;
-                    if (info->mMode == ConnectionInfo::Mode::kDoubleCheck)
-                        pd_error(mUserObject, "extra connection to input %ld", index + 1);
-                }
-                break;
+            connect(connection, index);
+        }
+        else if (mConfirmation)
+        {
+            if (mConfirmation->confirm(connection, index) && mGlobal->getConnectionMode() == ConnectionMode::kDoubleCheck)
+                mInputs[index].reportError(mUserObject, Input::kExtra);
         }
     }
-
+    
+    // Get Audio Outputs
+    
+    std::vector<double *> &getAudioOuts()
+    {
+        return mSigOuts;
+    }
+    
     // External methods (A_CANT)
     
-    static void extResolveConnections(FrameLib_PDClass *x)
+    static void extFindAudio(FrameLib_PDClass *x, std::vector<FrameLib_PDNRTAudio> *objects)
     {
-        x->resolveConnections();
+        objects->push_back(FrameLib_PDNRTAudio{x->mObject.get(), x->mBuffer});
     }
-                               
+    
+    static void extResolveContext(FrameLib_PDClass *x)
+    {
+        x->resolveContext();
+    }
+    
+    static void extResolveConnections(FrameLib_PDClass *x, intptr_t *flag)
+    {
+        bool updated = x->resolveConnections();
+        *flag = *flag || updated;
+    }
+    
+    static void extMarkUnresolved(FrameLib_PDClass *x)
+    {
+        x->mResolved = false;
+    }
+    
     static void extMakeAutoOrdering(FrameLib_PDClass *x)
     {
         x->mObject->makeAutoOrderingConnections();
@@ -1030,37 +1344,123 @@ public:
         x->mObject->clearAutoOrderingConnections();
     }
 
-    static uintptr_t extIsConnected(FrameLib_PDClass *x, unsigned long index)
+    static void extReset(FrameLib_PDClass *x, const double *samplerate, intptr_t maxvectorsize)
     {
-        return x->confirmConnection(index, ConnectionInfo::Mode::kConfirm);
+        x->mObject->reset(*samplerate, static_cast<unsigned long>(maxvectorsize));
     }
     
-    static void extConnectionConfirm(FrameLib_PDClass *x, unsigned long index, FrameLib_PDGlobals::ConnectionInfo::Mode mode)
+    static void extConnectionUpdate(FrameLib_PDClass *x, intptr_t state)
+    {
+        x->mConnectionsUpdated = state;
+    }
+    
+    static FLObject *extGetFLObject(FrameLib_PDClass *x, uint64_t *version)
+    {
+        *version = FrameLib_PDPrivate::version();
+        return x->mObject.get();
+    }
+    
+    static t_object *extGetUserObject(FrameLib_PDClass *x)
+    {
+        return x->mUserObject;
+    }
+    
+    static void extConnectionConfirm(FrameLib_PDClass *x, unsigned long index, ConnectionMode mode)
     {
         x->makeConnection(index, mode);
     }
     
-    static FrameLib_Multistream *extGetInternalObject(FrameLib_PDClass *x)
+    static intptr_t extIsDirectlyConnected(FrameLib_PDClass *x, unsigned long index)
     {
-        return x->mObject.get();
+        return (intptr_t) x->mDirectlyConnected[index];
     }
     
-    static uintptr_t extIsOutput(FrameLib_PDClass *x)
-    {
-        return x->handlesAudio() && (x->getNumAudioOuts() > 1);
-    }
-    
-    static uintptr_t extGetNumAudioIns(FrameLib_PDClass *x)
+    static intptr_t extGetNumAudioIns(FrameLib_PDClass *x)
     {
         return x->getNumAudioIns();
     }
     
-    static uintptr_t extGetNumAudioOuts(FrameLib_PDClass *x)
+    static intptr_t extGetNumAudioOuts(FrameLib_PDClass *x)
     {
         return x->getNumAudioOuts();
     }
-
+    
+    // id attribute
+    /*
+    static void idSet(FrameLib_PDClass *x, t_object *attr, long argc, t_atom *argv)
+    {
+        x->mMaxContext.mName = argv ? atom_getsym(argv) : gensym("");
+        x->updateContext();
+        
+        return MAX_ERR_NONE;
+    }
+    
+    // rt attribute
+    
+    static void rtSet(FrameLib_PDClass *x, t_object *attr, long argc, t_atom *argv)
+    {
+        x->mMaxContext.mRealtime = argv ? (atom_getlong(argv) ? 1 : 0) : 0;
+        x->updateContext();
+        
+        return MAX_ERR_NONE;
+    }
+     */
+    
 private:
+    
+    // Update the context if any of the pd context values have changed
+    
+    void updateContext()
+    {
+        if (mObject)
+        {
+            FrameLib_Context context = mGlobal->makeContext(mPDContext);
+            
+            if (context != mObject->getContext())
+            {
+                mGlobal->addContextToResolve(context, *this);
+                matchContext(context, true);
+            }
+            
+            // N.B. release because otherwise it is retained twice
+            
+            mGlobal->releaseContext(context);
+        }
+    }
+    
+    // Attempt to match the context to a specified one
+    
+    void matchContext(FrameLib_Context context, bool force)
+    {
+        FrameLib_PDContext pdContext = mGlobal->getPDContext(context);
+        FrameLib_Context current = getContext();
+        bool mismatchedPatch = mGlobal->getPDContext(current).mCanvas != pdContext.mCanvas;
+        
+        unsigned long size = 0;
+        
+        if ((!force && mismatchedPatch) || current == context)
+            return;
+        
+        mResolved = false;
+        
+        mGlobal->pushToQueue(*this);
+        
+        T *newObject = new T(context, mObject->getSerialised(), mProxy.get(), mSpecifiedStreams);
+        
+        for (unsigned long i = 0; i < mObject->getNumIns(); i++)
+            if (const double *values = mObject->getFixedInput(i, &size))
+                newObject->setFixedInput(i, values, size);
+        
+        if (mGlobal->isRealtime(context) || mGlobal->isRealtime(current))
+            dspSetBroken();
+        
+        mPDContext = pdContext;
+        mGlobal->retainContext(context);
+        mGlobal->releaseContext(current);
+        mGlobal->flushErrors(context, *this);
+        
+        mObject.reset(newObject);
+    }
     
     // Get an internal object from a generic pointer safely
     
@@ -1071,50 +1471,79 @@ private:
     
     // Private connection methods
     
-    void iterateCanvas(t_glist *gl, t_symbol *method)
+    template <typename...Args>
+    void iterateCanvas(t_glist *gl, t_symbol *method, Args...args)
     {        
-        // Search for subpatchers, and call method on objects that don't have subpatchers
+        // Call method on all objects
+        
+        // FIX - revise
         
         for (t_gobj *g = gl->gl_list; g; g = g->g_next)
-        {
-            if (zgetfn((t_pd *) g, method))
-                mess0((t_pd *) g, method);
-        }
-    }
-
-    void resolveConnections()
-    {
-        if (mNeedsResolve)
-        {
-            // Confirm input connections
-                    
-            for (unsigned long i = 0; i < getNumIns(); i++)
-                confirmConnection(i, ConnectionInfo::Mode::kConfirm);
-            
-            // Confirm ordering connections
-            
-            for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
-                confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionInfo::Mode::kConfirm);
-            
-            // Make output connections
-            
-            for (unsigned long i = getNumOuts(); i > 0; i--)
-                makeConnection(i - 1, ConnectionInfo::Mode::kConnect);
-            
-            mNeedsResolve = false;
-        }
-    }
-
-    void makeConnection(unsigned long index, ConnectionInfo::Mode mode)
-    {
-        ConnectionInfo info(*this, index, mode);
-        
-        mGlobal->setConnectionInfo(&info);
-        outlet_anything(mOutputs[index], gensym("frame"), 0, nullptr);
-        mGlobal->setConnectionInfo();
+            objectMethod<void>((t_object *) g, method, args...);
     }
     
-    // Convert from framelib object to pd object and vice versa
+    template <typename...Args>
+    void traversePatch(const char *theMethodName, Args...args)
+    {
+        t_symbol *theMethod = gensym(theMethodName);
+        
+        // Clear the queue and after traversing call objects added to the queue
+        
+        mGlobal->clearQueue();
+        
+        iterateCanvas(mCanvas, theMethod, args...);
+        
+        while (t_object *object = mGlobal->popFromQueue())
+            objectMethod<void>(object, theMethodName, args...);
+    }
+    
+    bool resolveGraph(bool markUnresolved, bool forceRealtime = false)
+    {
+        if (!forceRealtime && isRealtime() && dspIsRunning())
+            return false;
+        
+        intptr_t updated = false;
+        
+        mGlobal->setReportContextErrors(true);
+        traversePatch(FrameLib_PDPrivate::messageMarkUnresolved());
+        traversePatch(FrameLib_PDPrivate::messageResolveConnections(), &updated);
+        traversePatch(FrameLib_PDPrivate::messageConnectionUpdate(), intptr_t(false));
+        mGlobal->setReportContextErrors(false);
+        
+        // If updated then redo auto ordering connections
+        
+        if (updated)
+        {
+            traversePatch(FrameLib_PDPrivate::messageClearAutoOrdering());
+            traversePatch(FrameLib_PDPrivate::messageMakeAutoOrdering());
+        }
+        
+        if (markUnresolved)
+            traversePatch(FrameLib_PDPrivate::messageMarkUnresolved());
+        
+        return updated;
+    }
+    
+    void resolveNRTGraph(double sampleRate, bool forceReset)
+    {
+        bool updated = resolveGraph(false);
+        
+        if (updated || forceReset)
+            traversePatch(FrameLib_PDPrivate::messageReset(), &sampleRate, static_cast<intptr_t>(maxBlockSize()));
+    }
+    
+    void resolveContext()
+    {
+        if (isRealtime())
+            resolveGraph(true);
+        else
+        {
+            LockHold lock(mGlobal->getLock(getContext()));
+            resolveNRTGraph(0.0, false);
+        }
+    }
+    
+    // Convert from framelib object to max object and vice versa
     
     static FLObject *toFLObject(t_object *x)
     {
@@ -1126,15 +1555,15 @@ private:
         return object ? object->getProxy()->getOwner<t_object>() : nullptr;
     }
     
-//    bool versionMismatch(t_object *object, long inIdx, bool report) const
-//    {
-//        bool mismatch = FrameLib_PDPrivate::versionMismatch(object);
-//
-//        if (mismatch && report)
-//            mInputs[inIdx].reportError(mUserObject, Input::kVersion);
-//            
-//        return mismatch;
-//    }
+    bool versionMismatch(t_object *object, long inIdx, bool report) const
+    {
+        bool mismatch = FrameLib_PDPrivate::versionMismatch(object);
+
+        if (mismatch && report)
+            mInputs[inIdx].reportError(mUserObject, Input::kVersion);
+            
+        return mismatch;
+    }
     
     // Get the number of audio ins/outs safely from a generic pointer
     
@@ -1177,94 +1606,118 @@ private:
     
     // Private connection methods
 
-    bool confirmConnection(unsigned long inIndex, ConnectionInfo::Mode mode)
+    bool resolveConnections()
     {
-        if (!validInput(inIndex))
+        if (mResolved)
             return false;
+
+        // Confirm input connections
         
+        for (long i = 0; i < getNumIns(); i++)
+            confirmConnection(i, ConnectionMode::kConfirm);
+        
+        // Confirm ordering connections
+        
+        for (long i = 0; i < getNumOrderingConnections(); i++)
+            confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionMode::kConfirm);
+        
+        // Make output connections
+        
+        for (long i = getNumOuts(); i > 0; i--)
+            makeConnection(i - 1, ConnectionMode::kConnect);
+        
+        // Check if anything has updated since the last call to this method and make realtime resolved
+        
+        bool updated = mConnectionsUpdated;
+        mConnectionsUpdated = false;
+        mResolved = true;
+
+        return updated;
+    }
+
+    void makeConnection(unsigned long index, ConnectionMode mode)
+    {
+        mGlobal->setConnection(PDConnection(*this, index));
+        mGlobal->setConnectionMode(mode);
+        outlet_anything(mOutputs[index], gensym("frame"), 0, nullptr);
+        mGlobal->setConnection(PDConnection());
+    }
+    
+    bool confirmConnection(unsigned long inIndex, ConnectionMode mode)
+    {
         return confirmConnection(getConnection(inIndex), inIndex, mode);
     }
     
-    bool confirmConnection(PDConnection connection, unsigned long inIndex, ConnectionInfo::Mode mode)
+    bool confirmConnection(PDConnection connection, unsigned long inIndex, ConnectionMode mode)
     {
-        if (!validInput(inIndex))
+        if (!validInput(inIndex) || !connection.mObject)
             return false;
         
-        mConfirm = false;
-        mConfirmObject = connection.mObject;
-        mConfirmInIndex = inIndex;
-        mConfirmOutIndex = connection.mIndex;
-    
-        // Check for connection *only* if the internal object is connected (otherwise assume the previously connected object has been deleted)
+        ConnectionConfirmation confirmation(connection, inIndex);
+        mConfirmation = &confirmation;
+        objectMethod(connection.mObject, FrameLib_PDPrivate::messageConnectionConfirm(), intptr_t(connection.mIndex), mode);
+        mConfirmation = nullptr;
         
-        if (mConfirmObject)
-            objectMethod<void>(mConfirmObject, FrameLib_PDPrivate::messageConnectionConfirm(), mConfirmOutIndex, mode);
+        if (!confirmation.mConfirm)
+            disconnect(connection, inIndex);
         
-        if (mConfirmObject && !mConfirm)
-            disconnect(mConfirmObject, mConfirmOutIndex, mConfirmInIndex);
-        
-        bool result = mConfirm;
-        mConfirm = false;
-        mConfirmObject = nullptr;
-        mConfirmInIndex = mConfirmOutIndex = -1;
-        
-        return result;
+        return confirmation.mConfirm;
     }
     
-    bool matchConnection(t_object *src, long outIdx, long inIdx)
+    void connect(PDConnection connection, long inIdx)
     {
-        PDConnection connection = getConnection(inIdx);
-        return connection.mObject == src && connection.mIndex == outIdx;
-    }
-    
-    void connect(t_object *src, long outIdx, long inIdx)
-    {
-        FrameLib_Multistream *object = getInternalObject(src);
-        
-        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !validOutput(outIdx, object) || matchConnection(src, outIdx, inIdx) || confirmConnection(inIdx, ConnectionInfo::Mode::kDoubleCheck)))
-            return;
-
         ConnectionResult result;
+        FLConnection internalConnection = toFLConnection(connection);
         
+        if (!(validOutput(connection.mIndex, internalConnection.mObject) && (isOrderingInput(inIdx) || (validInput(inIdx) && getConnection(inIdx) != connection && !confirmConnection(inIdx, ConnectionMode::kDoubleCheck)))))
+            return;
+        
+        matchContext(internalConnection.mObject->getContext(), false);
+
         if (isOrderingInput(inIdx))
-            result = mObject->addOrderingConnection(FLConnection(object, outIdx));
+            result = mObject->addOrderingConnection(internalConnection);
         else
-            result = mObject->addConnection(FLConnection(object, outIdx), inIdx);
+            result = mObject->addConnection(internalConnection, inIdx);
 
         switch (result)
         {
+            case ConnectionResult::Success:
+                mConnectionsUpdated = true;
+                objectMethod(connection.mObject, FrameLib_PDPrivate::messageConnectionUpdate(), intptr_t(true));
+                break;
+                
             case ConnectionResult::FeedbackDetected:
-                pd_error(mUserObject, "feedback loop detected");
+                mInputs[inIdx].reportError(mUserObject, Input::kFeedback);
                 break;
                 
             case ConnectionResult::WrongContext:
-                pd_error(mUserObject, "cannot connect objects from different top-level patchers");
+                if (mGlobal->getReportContextErrors())
+                    mInputs[inIdx].reportError(mUserObject, Input::kContext);
                 break;
                 
             case ConnectionResult::SelfConnection:
-                pd_error(mUserObject, "direct feedback loop detected");
+                mInputs[inIdx].reportError(mUserObject, Input::kDirect);
                 break;
                 
-            case ConnectionResult::Success:
             case ConnectionResult::NoOrderingSupport:
             case ConnectionResult::Aliased:
                 break;
         }
     }
     
-    void disconnect(t_object *src, long outIdx, long inIdx)
+    void disconnect(PDConnection connection, long inIdx)
     {
-        FrameLib_Multistream *object = getInternalObject(src);
-
-        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !matchConnection(src, outIdx, inIdx)))
+        if (!(isOrderingInput(inIdx) || (validInput(inIdx) && getConnection(inIdx) == connection)))
             return;
         
         if (isOrderingInput(inIdx))
-            mObject->deleteOrderingConnection(FLConnection(object, outIdx));
+            mObject->deleteOrderingConnection(toFLConnection(connection));
         else
             mObject->deleteConnection(inIdx);
+        
+        mConnectionsUpdated = true;
     }
-
+    
     // Info Utilities
     
     void postSplit(const char *text, const char *firstLineTag, const char *lineTag)
@@ -1437,9 +1890,34 @@ private:
         }
     }
 
+    // Buffer access (read and write multichannel buffers)
+    
+    void read(t_symbol *buffer, double **outs, size_t numChans, size_t size, size_t offset)
+    {
+        // FIX
+        /*
+        PDBufferAccess access(*this, buffer);
+        
+        for (size_t i = 0; i < numChans; i++)
+            access.read(outs[i], size, offset, i);
+         */
+    }
+    
+    void write(t_symbol *buffer, const double * const *ins, size_t numChans, size_t size, size_t offset)
+    {
+        // FIX
+        /*
+        PDBufferAccess access(*this, buffer);
+        
+        for (size_t i = 0; i < numChans; i++)
+            access.write(ins[i], size, offset, i);
+        */
+    }
 
 protected:
     
+    MessageHandler *getHandler() { return mGlobal->getHandler(getContext()); }
+
     // Proxy
     
     std::unique_ptr<FrameLib_PDProxy> mProxy;
@@ -1449,33 +1927,32 @@ private:
     // Data - N.B. - the order is crucial for safe deconstruction
     
     FrameLib_PDGlobals::ManagedPointer mGlobal;
-    FrameLib_PDGlobals::SyncCheck mSyncChecker;
     
     std::unique_ptr<FLObject> mObject;
     
-    std::vector<t_pd *> mInputs;
+    std::vector<Input> mInputs;
     std::vector<t_outlet *> mOutputs;
     
     std::vector<double *> mSigIns;
     std::vector<double *> mSigOuts;
     std::vector<double> mTemp;
     
-    long mProxyNum;
-    t_object *mConfirmObject;
-    long mConfirmInIndex;
-    long mConfirmOutIndex;
-    bool mConfirm;
-    
     t_glist *mCanvas;
-    t_object *mSyncIn;
+    
+    std::vector<bool> mDirectlyConnected;
+    
+    ConnectionConfirmation *mConfirmation;
+    
+    t_object *mUserObject;
     
     unsigned long mSpecifiedStreams;
     
-    bool mNeedsResolve;
+    bool mConnectionsUpdated;
+    bool mContextPatchConfirmed;
+    bool mResolved;
     
-public:
-
-    t_object *mUserObject;
+    t_symbol *mBuffer;
+    FrameLib_PDContext mPDContext;
 };
 
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_PDClass_Expand<T>::makeClass() to create)
