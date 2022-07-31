@@ -1,12 +1,14 @@
 .SUFFIXES:.so
-OBJECTBASE=../FrameLib_Objects
+FL_FRAMEWORK=../FrameLib_Framework
+FL_DEPENDENCIES=../FrameLib_Dependencies
+FL_OBJECTS=../FrameLib_Objects
 
 VPATH=PD_Specific:\ ../FrameLib_Dependencies/tlsf
 
 FL_CPP= \
-				$(wildcard ../FrameLib_Framework/FrameLib_*.cpp)\
-				$(wildcard ../FrameLib_Objects/*/FrameLib_*.cpp)\
-				../FrameLib_Dependencies/HISSTools_FFT/HISSTools_FFT.cpp
+				$(wildcard $(FL_FRAMEWORK)/FrameLib_*.cpp)\
+				$(wildcard $(FL_OBJECTS)/*/FrameLib_*.cpp)\
+				$(FL_DEPENDENCIES)/HISSTools_FFT/HISSTools_FFT.cpp
 
 FL_OBJ_DIR=$(FL_CPP:.cpp=.o) tlsf.o
 FL_OBJ=$(notdir $(FL_OBJ_DIR))
@@ -14,8 +16,8 @@ FL_OBJ=$(notdir $(FL_OBJ_DIR))
 INCLUDEPATH=\
 				-IPD_Specific\
         -ICommon\
-			  -I../FrameLib_Dependencies\
-        -I../FrameLib_Framework\
+				-I$(FL_FRAMEWORK)\
+			  -I$(FL_DEPENDENCIES)\
 				-I$(OBJECTBASE)/Common_Utilities/
 	
 MAIN_OBJ=framelib_pd.o
