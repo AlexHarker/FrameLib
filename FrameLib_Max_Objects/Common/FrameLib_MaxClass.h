@@ -1304,7 +1304,7 @@ class FrameLib_MaxClass : public MaxClass_Base
         enum Error { kNone = 0x00, kVersion = 0x01, kContext = 0x02, kExtra= 0x04, kFeedback = 0x08, kDirect = 0x10 };
         
         Input(void *proxy, long index)
-        : mProxy(MaxClass_Base::toUnique(proxy))
+        : mProxy(toUnique(proxy))
         , mIndex(index)
         , mErrorTime(-1)
         , mErrorFlags(0)
