@@ -73,6 +73,11 @@ public:
     template <class T, typename Float<T>::MethodFloat F> static void call(T *x, double v) { ((x)->*F)(v); }
     template <class T, typename Float<T>::MethodFloat F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (t_method) call<T, F>, gensym(name), A_FLOAT, 0); }
     
+    template <class T> struct DefFloat { typedef void (T::*MethodDefFloat)(def_double v); };
+    template <class T, typename DefFloat<T>::MethodDefFloat F> static void call(T *x, double v) { (x->*F)(v); }
+    template <class T, typename DefFloat<T>::MethodDefFloat F>
+    static void addMethod(t_class *c, const char *name) { auto f = call<T, F>; class_addmethod(c, (t_method) f, gensym(name), A_DEFFLOAT, 0); }
+    
     template <class T> struct Sym { typedef void (T::*MethodSym)(t_symbol *s); };
     template <class T, typename Sym<T>::MethodSym F> static void call(T *x, t_symbol *s) { ((x)->*F)(s); }
     template <class T, typename Sym<T>::MethodSym F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (t_method) call<T, F>, gensym(name), A_DEFSYM, 0); }
