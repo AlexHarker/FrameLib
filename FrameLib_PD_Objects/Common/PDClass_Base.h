@@ -11,7 +11,17 @@
 
 class PDClass_Base
 {
+    struct ObjectFree
+    {
+        void operator()(t_pd *ptr) { pd_free(ptr); }
+    };
+
 public:
+    
+    // Unique pointers to t_objects
+    
+    using unique_pd_ptr = std::unique_ptr<t_pd, ObjectFree>;
+    static unique_pd_ptr toUnique(void *ptr) { return unique_pd_ptr(reinterpret_cast<t_object *>(ptr)); }
     
     // Default Constructor
     
