@@ -72,7 +72,6 @@ struct FrameLib_PDPrivate
     
     static inline VersionString objectGlobal()              { return "__fl.pd_global_items"; }
     static inline VersionString objectMessageHandler()      { return "__fl.message.handler"; }
-    static inline VersionString objectMutator()             { return "__fl.signal.mutator"; }
     
     static inline const char *messageGetUserObject()        { return "__fl.get_user_object"; }
     static inline const char *messageUnwrap()               { return "__fl.unwrap"; }
@@ -652,7 +651,7 @@ private:
     
     static FrameLib_PDGlobals **getPDGlobalsPtr()
     {
-        return (FrameLib_PDGlobals **) &gensym("__fl.pd_global_items")->s_thing;
+        return (FrameLib_PDGlobals **) &FrameLib_PDPrivate::globalTag()->s_thing;
     }
     
     // Get and release the max global items (singleton)
@@ -1460,13 +1459,6 @@ private:
         mGlobal->flushErrors(context, *this);
         
         mObject.reset(newObject);
-    }
-    
-    // Get an internal object from a generic pointer safely
-    
-    FrameLib_Multistream *getInternalObject(t_object *x)
-    {
-        return objectMethod<FLObject *>(x, "__fl.get_internal_object");
     }
     
     // Private connection methods
