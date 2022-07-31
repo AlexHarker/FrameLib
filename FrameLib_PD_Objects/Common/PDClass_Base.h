@@ -223,6 +223,20 @@ public:
             outlet_new(*this, gensym("signal"));
     }
     
+    bool dspIsRunning()
+    {
+        return canvas_dspstate;
+    }
+    
+    bool dspSetBroken()
+    {
+        if (!dspIsRunning())
+            return false;
+        
+        canvas_update_dsp();
+        return true;
+    }
+
     const t_sample *getAudioIn(unsigned long idx) { return mSigIns[idx]; }
     t_sample *getAudioOut(unsigned long idx) { return mSigOuts[idx]; }
     
