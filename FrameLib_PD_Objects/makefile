@@ -41,3 +41,6 @@ endif
 
 %.o : %.c
 				cc $(OPTIMISATION) -arch x86_64 -fPIC $(INCLUDE_PATHS) -c $<
+			
+clean:
+				rm $(MAIN_OBJ) $(FL_OBJ)
