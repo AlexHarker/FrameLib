@@ -95,7 +95,8 @@ public:
         return w + 3;
     }
     
-    template <class T, typename Perform<T>::MethodPerform F> void addPerform(t_signal **sp)
+    template <class T, typename Perform<T>::MethodPerform F>
+    void addPerform(t_signal **sp)
     {
         for (size_t i = 0; i < mSigIns.size(); i++)
             mSigIns[i] = sp[i]->s_vec;
@@ -175,7 +176,8 @@ public:
         return &str;
     }
 
-    template <class T> static void makeClass(const char *classname)
+    template <class T>
+    static void makeClass(const char *classname)
     {
         t_class **C = getClassPointer<T>();
         
@@ -185,14 +187,16 @@ public:
         class_sethelpsymbol(*C, gensym(classname));
     }
     
-    template <class T> static void *create(t_symbol *sym, long ac, t_atom *av)
+    template <class T>
+    static void *create(t_symbol *sym, long ac, t_atom *av)
     {
         void *x = pd_new(*getClassPointer<T>());
         new(x) T(reinterpret_cast<t_object *>(x), sym, ac, av);
         return x;
     }
     
-    template <class T> static void destroy(t_object * x)
+    template <class T>
+    static void destroy(t_object * x)
     {
         ((T *)x)->~T();
     }
