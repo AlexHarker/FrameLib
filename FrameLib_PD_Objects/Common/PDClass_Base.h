@@ -74,7 +74,7 @@ public:
         
         static void call(Qelem *a)
         {
-            mFlag.store(false);
+            a->mFlag.store(false);
             (*a->mMethod)(a->mOwner);
         }
         
