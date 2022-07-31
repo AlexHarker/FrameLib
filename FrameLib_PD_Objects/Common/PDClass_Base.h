@@ -130,11 +130,11 @@ public:
     template <class ReturnType = void *, typename...Args>
     static ReturnType objectMethod(t_object *object, const char* theMethodName, Args...args)
     {
-        return objectMethod<ReturnType>((t_pd *)object, gensym(theMethodName), args...);
+        return objectMethod<ReturnType>(object, gensym(theMethodName), args...);
     }
     
     template <class ReturnType = void *, typename...Args>
-    static ReturnType objectMethod(t_pd *object, t_symbol* theMethod, Args...args)
+    static ReturnType objectMethod(t_object *object, t_symbol* theMethod, Args...args)
     {
         void *pad = nullptr;
         return objectMethod<ReturnType>(object, theMethod, args..., pad);
@@ -143,11 +143,11 @@ public:
     // Specialisation to prevent infinite padding
     
     template <class ReturnType, class S, class T, class U, class V, class W>
-    static ReturnType objectMethod(t_pd *object, t_symbol* theMethod, S s, T t, U u, V v, W w)
+    static ReturnType objectMethod(t_object *object, t_symbol* theMethod, S s, T t, U u, V v, W w)
     {
         typedef void *(*t_fn5)(void *x, void *arg1, void *arg2, void *arg3, void *arg4, void *arg5);
 
-        t_fn5 *m = (t_fn5 *) zgetfn(object, theMethod);
+        t_fn5 *m = (t_fn5 *) zgetfn((t_pd *) object, theMethod);
         
         void *ret = (*m)(object,
                          objectMethodArg(s),
