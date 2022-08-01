@@ -558,7 +558,7 @@ public:
             std::get<kKey>(*item) = key;
             std::get<kCount>(*item) = 1;
             std::get<kFinal>(*item) = nullptr;
-            std::get<kHandler>(*item) = unique_pd_ptr(pd_new(*FrameLib_PDGlobals::getClassPointer<MessageHandler>()));
+            std::get<kHandler>(*item) = unique_pd_ptr((t_pd *)MessageHandler::create<MessageHandler>(nullptr, 0, nullptr));
             std::get<kQueuePtr>(*item) = QueuePtr(new FrameLib_Context::ProcessingQueue(context));
             
             // Set timeouts
@@ -688,7 +688,7 @@ private:
         {
             makeClass<FrameLib_PDGlobals>(maxGlobalClass);
             MessageHandler::makeClass<MessageHandler>(messageClassName);
-            x = (FrameLib_PDGlobals *) pd_new(*FrameLib_PDGlobals::getClassPointer<FrameLib_PDGlobals>());
+            x = (FrameLib_PDGlobals *) FrameLib_PDGlobals::create<FrameLib_PDGlobals>(nullptr, 0, nullptr);
             *getPDGlobalsPtr() = x;
         }
 
