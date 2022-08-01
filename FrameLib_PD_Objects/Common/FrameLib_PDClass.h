@@ -680,12 +680,9 @@ private:
         else
             pd_free(*y);
         
-        post("Retain global");
         FrameLib_Global::get(&x->mRTGlobal, priorities(true), &x->mRTNotifier);
         FrameLib_Global::get(&x->mNRTGlobal, priorities(false), &x->mNRTNotifier);
         
-        post("Got Global %x %x %x", x, &x->mRTNotifier, &x->mNRTNotifier);
-
         return x;
     }
     
