@@ -557,7 +557,7 @@ public:
             std::get<kKey>(*item) = key;
             std::get<kCount>(*item) = 1;
             std::get<kFinal>(*item) = nullptr;
-            std::get<kHandler>(*item) = unique_pd_ptr((t_pd *) createNamed(FrameLib_PDPrivate::objectMessageHandler()));
+            std::get<kHandler>(*item) = unique_pd_ptr(createNamed<t_pd>(FrameLib_PDPrivate::objectMessageHandler()));
             std::get<kQueuePtr>(*item) = QueuePtr(new FrameLib_Context::ProcessingQueue(context));
             
             // Set timeouts
@@ -682,7 +682,7 @@ private:
         
         if (!x)
         {
-            *getPDGlobalsPtr() = x = (FrameLib_PDGlobals *) createNamed(maxGlobalClass);
+            *getPDGlobalsPtr() = x = createNamed<FrameLib_PDGlobals>(maxGlobalClass);
             post("Made global");
         }
 

@@ -213,14 +213,15 @@ public:
 
     // Create a named object from code
 
-    static void *createNamed(const char *name)
+    template <class T>
+    static T *createNamed(const char *name)
     {
         typedef void *(*createFn)(t_symbol *, long, t_atom *);
         
         t_symbol *sym = gensym(name);
         createFn createMethod = (createFn) getfn(&pd_objectmaker, sym);
         
-        return (*createMethod)(sym, 0, nullptr);
+        return reinterpret_cast<T *>((*createMethod)(sym, 0, nullptr));
     }
     
     // Static Methods for class initialisation, object creation and deletion
