@@ -192,7 +192,10 @@ public:
     {
         typedef void *(*t_fn5)(void *x, void *arg1, void *arg2, void *arg3, void *arg4, void *arg5);
 
-        t_fn5 *m = (t_fn5 *) zgetfn((t_pd *) object, theMethod);
+        t_fn5 m = (t_fn5) zgetfn(&object->te_g.g_pd, theMethod);
+        
+        if (!m)
+            return static_cast<ReturnType>(0);
         
         void *ret = (*m)(object,
                          objectMethodArg(s),
