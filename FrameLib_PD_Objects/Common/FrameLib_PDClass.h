@@ -551,14 +551,13 @@ public:
         
         if (!item)
         {
-            t_symbol *handlerSym = gensym(FrameLib_PDPrivate::objectMessageHandler());
             item.reset(new RefData());
             FrameLib_Context context(key.mRealtime ? mRTGlobal : mNRTGlobal, item.get());
             
             std::get<kKey>(*item) = key;
             std::get<kCount>(*item) = 1;
             std::get<kFinal>(*item) = nullptr;
-            std::get<kHandler>(*item) = unique_pd_ptr((t_pd *)MessageHandler::create<MessageHandler>(nullptr, 0, nullptr));
+            std::get<kHandler>(*item) = unique_pd_ptr((t_pd *) createNamed(FrameLib_PDPrivate::objectMessageHandler()));
             std::get<kQueuePtr>(*item) = QueuePtr(new FrameLib_Context::ProcessingQueue(context));
             
             // Set timeouts
@@ -688,13 +687,16 @@ private:
         {
             makeClass<FrameLib_PDGlobals>(maxGlobalClass);
             MessageHandler::makeClass<MessageHandler>(messageClassName);
-            x = (FrameLib_PDGlobals *) FrameLib_PDGlobals::create<FrameLib_PDGlobals>(nullptr, 0, nullptr);
-            *getPDGlobalsPtr() = x;
+            *getPDGlobalsPtr() = x = (FrameLib_PDGlobals *) createNamed(maxGlobalClass);
+            post("Made global");
         }
 
+        post("Retain global");
         FrameLib_Global::get(&x->mRTGlobal, priorities(true), &x->mRTNotifier);
         FrameLib_Global::get(&x->mNRTGlobal, priorities(false), &x->mNRTNotifier);
         
+        post("Got Global %x %x %x", x, &x->mRTNotifier, &x->mNRTNotifier);
+
         return x;
     }
     

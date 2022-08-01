@@ -199,6 +199,18 @@ public:
         return static_cast<ReturnType>(ret);
     }
     
+    // Create a named object from code
+    
+    static void *createNamed(const char *name)
+    {
+        typedef void *(*createFn)(t_symbol *, long, t_atom *);
+        
+        t_symbol *sym = gensym(name);
+        createFn createMethod = (createFn) getfn(&pd_objectmaker, sym);
+        
+        return (*createMethod)(sym, 0, nullptr);
+    }
+    
     // Static Methods for class initialisation, object creation and deletion
     
     template <class T> static t_class **getClassPointer()
