@@ -923,7 +923,7 @@ public:
     
     static bool isTag(t_atom *a)
     {
-        t_symbol *sym = atom_getsymbol(a);
+        t_symbol *sym = atom_getsymbol_default(a);
         return atom_gettype(a) == A_SYMBOL && (isParameterTag(sym) || isInputTag(sym));
     }
     
@@ -1004,7 +1004,7 @@ public:
         
         while (ac--)
         {
-            t_symbol *type = atom_getsymbol(av++);
+            t_symbol *type = atom_getsymbol_default(av++);
             
             if (type == gensym("description"))          flags |= kInfoDesciption;
             else if (type == gensym("inputs"))          flags |= kInfoInputs;
@@ -1748,7 +1748,7 @@ private:
     {
         if (atom_gettype(a) == A_SYMBOL)
         {
-            t_symbol *sym = atom_getsymbol(a);
+            t_symbol *sym = atom_getsymbol_default(a);
             
             if (strlen(sym->s_name) > 1 && sym->s_name[0] == '=')
                 return safeCount(sym->s_name + 1, 1, 1024);
@@ -1768,7 +1768,7 @@ private:
             values.push_back(atom_getfloat(argv + idx));
 
             if (atom_gettype(argv + idx) == A_SYMBOL && !values.back())
-                pd_error(mUserObject, "string %s in entry list where value expected", atom_getsymbol(argv + idx)->s_name);
+                pd_error(mUserObject, "string %s in entry list where value expected", atom_getsymbol_default(argv + idx)->s_name);
         }
         
         return idx;
@@ -1787,7 +1787,7 @@ private:
             {
                 if (atom_gettype(argv + i) == A_SYMBOL)
                 {
-                    t_symbol *str = atom_getsymbol(argv + i);
+                    t_symbol *str = atom_getsymbol_default(argv + i);
                     serialisedParameters.write(std::to_string(i).c_str(), str->s_name);
                 }
                 else
@@ -1802,7 +1802,7 @@ private:
         
         while (i < argc)
         {
-            t_symbol *sym = atom_getsymbol(argv + i++);
+            t_symbol *sym = atom_getsymbol_default_default(argv + i++);
             
             if (isParameterTag(sym))
             {
@@ -1816,9 +1816,9 @@ private:
                 
                 // Add to parameters with stray item detection
                 
-                if (atom_getsymbol(argv + i) != gensym(""))
+                if (atom_gettype(argv + i) == A_SYMBOL)
                 {
-                    serialisedParameters.write(sym->s_name + 1, atom_getsymbol(argv + i++)->s_name);
+                    serialisedParameters.write(sym->s_name + 1, atom_getsymbol_default(argv + i++)->s_name);
                     
                     if (i < argc && !isTag(argv + i))
                         pd_error(mUserObject, "stray items after parameter %s", sym->s_name);
@@ -1866,7 +1866,7 @@ private:
         
         while (i < argc)
         {
-            t_symbol *sym = atom_getsymbol(argv + i++);
+            t_symbol *sym = atom_getsymbol_default(argv + i++);
             
             if (isInputTag(sym))
             {

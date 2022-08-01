@@ -148,11 +148,16 @@ public:
     
     // Atom helpers
     
-    static t_atomtype atom_gettype(t_atom* a)
+    static t_atomtype atom_gettype(t_atom *a)
     {
         return a->a_type;
     }
 
+    static t_symbol *atom_getsymbol_default(t_atom *a)
+    {
+        return atom_gettype(a) == A_SYMBOL ? atom_getsymbol(a) : gensym("");
+    }
+    
     static void atom_setfloat(t_atom *a, double v)
     {
         a->a_type = A_FLOAT;
