@@ -685,8 +685,8 @@ private:
         
         if (!x)
         {
-            makeClass<FrameLib_PDGlobals>(maxGlobalClass);
-            MessageHandler::makeClass<MessageHandler>(messageClassName);
+            makeClass<FrameLib_PDGlobals>(maxGlobalClass, CLASS_PD);
+            MessageHandler::makeClass<MessageHandler>(messageClassName, CLASS_PD);
             *getPDGlobalsPtr() = x = (FrameLib_PDGlobals *) createNamed(maxGlobalClass);
             post("Made global");
         }

@@ -228,11 +228,11 @@ public:
     }
 
     template <class T>
-    static void makeClass(const char *classname)
+    static void makeClass(const char *classname, int flags = 0)
     {
         t_class **C = getClassPointer<T>();
         
-        *C = class_new(gensym(classname), (t_newmethod)create<T>, (t_method)destroy<T>, sizeof(T), 0, A_GIMME, 0);
+        *C = class_new(gensym(classname), (t_newmethod)create<T>, (t_method)destroy<T>, sizeof(T), flags, A_GIMME, 0);
         T::classInit(*C, classname);
         *accessClassName<T>() = std::string(classname);
         class_sethelpsymbol(*C, gensym(classname));
