@@ -694,7 +694,7 @@ public:
             std::get<kKey>(*item) = key;
             std::get<kCount>(*item) = 1;
             std::get<kFinal>(*item) = nullptr;
-            std::get<kHandler>(*item) = unique_object_ptr((t_object *)object_new_typed(CLASS_NOBOX, handlerSym, 0, nullptr));
+            std::get<kHandler>(*item) = unique_object_ptr((t_object *) object_new_typed(CLASS_NOBOX, handlerSym, 0, nullptr));
             std::get<kQueuePtr>(*item) = QueuePtr(new FrameLib_Context::ProcessingQueue(context));
             
             // Set timeouts
