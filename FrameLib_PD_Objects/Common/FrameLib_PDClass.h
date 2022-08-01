@@ -1382,6 +1382,9 @@ public:
     }
     
     // id attribute
+    
+    // FIX - attributes
+    
     /*
     static void idSet(FrameLib_PDClass *x, t_object *attr, long argc, t_atom *argv)
     {
