@@ -224,6 +224,13 @@ public:
         return reinterpret_cast<T *>((*createMethod)(sym, 0, nullptr));
     }
     
+    // Get a class pointer from an object
+    
+    static t_class *objectName(t_pd *pd)
+    {
+        return *pd;
+    }
+    
     // Static Methods for class initialisation, object creation and deletion
     
     template <class T>

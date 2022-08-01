@@ -648,44 +648,38 @@ private:
         return FrameLib_Thread::defaultPriorities();
     }
     
-    static FrameLib_PDGlobals **getPDGlobalsPtr()
-    {
-        return (FrameLib_PDGlobals **) &FrameLib_PDPrivate::globalTag()->s_thing;
-    }
-    
     // Get and release the max global items (singleton)
     
     static FrameLib_PDGlobals *get()
     {
-        auto maxGlobalClass = FrameLib_PDPrivate::objectGlobal();
+        auto pdGlobalTag = FrameLib_PDPrivate::globalTag();
+        auto pdGlobalClass = FrameLib_PDPrivate::objectGlobal();
         auto messageClassName = FrameLib_PDPrivate::objectMessageHandler();
         
         // Make sure the pd globals and message handler classes exist
          
-        if (!classExists(maxGlobalClass))
-            makeClass<FrameLib_PDGlobals>(maxGlobalClass, CLASS_PD);
+        if (!classExists(pdGlobalClass))
+            makeClass<FrameLib_PDGlobals>(pdGlobalClass, CLASS_PD);
         
         if (!classExists(messageClassName))
             MessageHandler::makeClass<MessageHandler>(messageClassName, CLASS_PD);
-        /*
-         // See if an object is registered (otherwise make object and register it...)
-         
-         FrameLib_MaxGlobals *x = (FrameLib_MaxGlobals *) object_findregistered(nameSpace, globalTag);
-         
-         if (!x)
-         x = (FrameLib_MaxGlobals *) object_register(nameSpace, globalTag, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClass), 0, nullptr));
-         */
         
-        // Make sure the pd globals class exists
-
-        FrameLib_PDGlobals *x = *getPDGlobalsPtr();
+        // Create a global to get the class name
+        
+        FrameLib_PDGlobals *y = createNamed<FrameLib_PDGlobals>(pdGlobalClass);
+        
+        // See if an object is already registered (and either free the new object or bind it...)
+        
+        FrameLib_PDGlobals *x = (FrameLib_PDGlobals *) pd_findbyclass(pdGlobalTag, objectName(*y));
         
         if (!x)
         {
-            *getPDGlobalsPtr() = x = createNamed<FrameLib_PDGlobals>(maxGlobalClass);
-            post("Made global");
+            x = y;
+            pd_bind(*x, pdGlobalTag);
         }
-
+        else
+            pd_free(*y);
+        
         post("Retain global");
         FrameLib_Global::get(&x->mRTGlobal, priorities(true), &x->mRTNotifier);
         FrameLib_Global::get(&x->mNRTGlobal, priorities(false), &x->mNRTNotifier);
@@ -704,7 +698,7 @@ private:
         {
             assert(!mNRTGlobal && "Reference counting error");
             
-            *getPDGlobalsPtr() = nullptr;
+            pd_unbind(*this, FrameLib_PDPrivate::globalTag());
             pd_free(*this);
         }
     }
