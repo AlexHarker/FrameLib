@@ -1802,7 +1802,7 @@ private:
         
         while (i < argc)
         {
-            t_symbol *sym = atom_getsymbol_default_default(argv + i++);
+            t_symbol *sym = atom_getsymbol_default(argv + i++);
             
             if (isParameterTag(sym))
             {
