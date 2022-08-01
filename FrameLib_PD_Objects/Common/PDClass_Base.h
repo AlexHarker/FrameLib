@@ -199,8 +199,15 @@ public:
         return static_cast<ReturnType>(ret);
     }
     
-    // Create a named object from code
+    // Check if a class exists or not
     
+    static bool classExists(const char *name)
+    {
+        return zgetfn(&pd_objectmaker, gensym(name));
+    }
+
+    // Create a named object from code
+
     static void *createNamed(const char *name)
     {
         typedef void *(*createFn)(t_symbol *, long, t_atom *);

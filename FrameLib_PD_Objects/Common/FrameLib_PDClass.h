@@ -660,17 +660,14 @@ private:
         auto maxGlobalClass = FrameLib_PDPrivate::objectGlobal();
         auto messageClassName = FrameLib_PDPrivate::objectMessageHandler();
         
+        // Make sure the pd globals and message handler classes exist
+         
+        if (!classExists(maxGlobalClass))
+            makeClass<FrameLib_PDGlobals>(maxGlobalClass, CLASS_PD);
+        
+        if (!classExists(messageClassName))
+            MessageHandler::makeClass<MessageHandler>(messageClassName, CLASS_PD);
         /*
-         t_symbol *globalTag = FrameLib_MaxPrivate::globalTag();
-         
-         // Make sure the pd globals and message handler classes exist
-         
-         if (!class_findbyname(CLASS_NOBOX, gensym(maxGlobalClass)))
-         makeClass<FrameLib_MaxGlobals>(CLASS_NOBOX, maxGlobalClass);
-         
-         if (!class_findbyname(CLASS_NOBOX, gensym(messageClassName)))
-         MessageHandler::makeClass<MessageHandler>(CLASS_NOBOX, messageClassName);
-         
          // See if an object is registered (otherwise make object and register it...)
          
          FrameLib_MaxGlobals *x = (FrameLib_MaxGlobals *) object_findregistered(nameSpace, globalTag);
@@ -685,8 +682,6 @@ private:
         
         if (!x)
         {
-            makeClass<FrameLib_PDGlobals>(maxGlobalClass, CLASS_PD);
-            MessageHandler::makeClass<MessageHandler>(messageClassName, CLASS_PD);
             *getPDGlobalsPtr() = x = (FrameLib_PDGlobals *) createNamed(maxGlobalClass);
             post("Made global");
         }
