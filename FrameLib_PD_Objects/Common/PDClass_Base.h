@@ -310,9 +310,10 @@ public:
     
     operator t_object&() { return mObject; }
     
-    // Allows type conversion to a t_object pointer
+    // Allows type conversion to a t_object or t_pd pointer
     
-    operator t_object* () { return (t_object *) this; }
+    operator t_object* () { return reinterpret_cast<t_object *>(this); }
+    operator t_pd* () { return &this->mObject.te_g.g_pd; }
     
 private:
     

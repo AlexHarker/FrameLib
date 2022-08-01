@@ -502,7 +502,7 @@ public:
     , mNRTNotifier(&mNRTGlobal)
     , mRTGlobal(nullptr)
     , mNRTGlobal(nullptr)
-    , mQelem(*this, (t_method) &serviceContexts)
+    , mQelem(this, (t_method) &serviceContexts)
     {}
     
     // Max global item methods
@@ -705,7 +705,7 @@ private:
             assert(!mNRTGlobal && "Reference counting error");
             
             *getPDGlobalsPtr() = nullptr;
-            pd_free((t_pd *)this);
+            pd_free(*this);
         }
     }
     
