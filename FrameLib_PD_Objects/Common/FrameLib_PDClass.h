@@ -121,10 +121,6 @@ struct FrameLib_PDProxy : public virtual FrameLib_Proxy
     {
         setOwner(x);
     }
-    
-    // Override for object proxies that need to know about the patch hierarchy
-    
-    //virtual void contextPatchUpdated(t_object *patch, unsigned long depth) {}
 };
 
 struct FrameLib_PDMessageProxy : FrameLib_PDProxy
@@ -134,10 +130,6 @@ struct FrameLib_PDMessageProxy : FrameLib_PDProxy
     // Override for objects that require max messages to be sent from framelib
     
     virtual void sendMessage(unsigned long stream, t_symbol *s, short ac, t_atom *av) {}
-    
-    // Store context patch info
-    
-    //void contextPatchUpdated(t_object *patch, unsigned long depth) override { mDepth = depth; }
 };
 
 struct FrameLib_PDNRTAudio
@@ -1138,6 +1130,8 @@ public:
         for (int i = 0; i < (getNumAudioOuts() - 1); i++)
             for (int j = 0; j < vec_size; j++)
                 getAudioOut(i + 1)[j] = mSigOuts[i][j];
+        
+        mGlobal->contextMessages(getContext(), *this);
     }
     
     void dsp(t_signal **sp)
