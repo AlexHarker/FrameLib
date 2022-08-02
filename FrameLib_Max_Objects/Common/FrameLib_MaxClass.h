@@ -1379,6 +1379,8 @@ public:
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
         
+        // Audio Only
+        
         if (T::sHandlesAudio)
         {
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::reset>(c, "reset");
@@ -1389,10 +1391,14 @@ public:
 
             dspInit(c);
             
+            // Buffer attribute
+
             CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mBuffer);
             CLASS_ATTR_BASIC(c, "buffer", 0L);
             CLASS_ATTR_LABEL(c, "buffer", 0L, "Buffer");
         }
+        
+        // Attributes
         
         CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mMaxContext.mName);
         CLASS_ATTR_ACCESSORS(c, "id", 0, &FrameLib_MaxClass<T>::idSet);
@@ -1404,6 +1410,8 @@ public:
         CLASS_ATTR_BASIC(c, "rt", 0L);
         CLASS_ATTR_LABEL(c, "rt", 0L, "Realtime");
 
+        // External Methods
+        
         addMethod(c, (method) &extPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &extConnectionAccept, "connectionaccept");
         addMethod(c, (method) &extResolveContext, FrameLib_MaxPrivate::messageResolveContext());
