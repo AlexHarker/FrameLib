@@ -1,8 +1,8 @@
 
 **Status and Building**
 
-- Currently most framelib objects get built to a single library files
-- Host communication objects (fl.topad~/fl.frompd~) and the context control objects (at least) currently need to be added.
+- Currently most (161 out of 163) framelib objects get built to a single library files
+- The fl.frompd~ and fl.contextcontrol~ objects currently need to be added.
 - Realtime operation is supported, but non-realtime support is incomplete  
 - There are some key issues to note below 
 
