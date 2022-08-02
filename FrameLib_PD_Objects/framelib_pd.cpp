@@ -1,10 +1,149 @@
 
 #include "FrameLib_PDClass.h"
 #include "../FrameLib_Exports/FrameLib_Objects.h"
+#include "../FrameLib_Exports/FrameLib_TypeAliases.h"
 
 // Buffer
 
 #include "pd_buffer.h"
+
+// Context Control - A pd class to communicate with the current pd
+
+class FrameLib_PDClass_ContextControl : public PDClass_Base
+{
+    using PDClass = FrameLib_PDClass<void>;
+    
+public:
+    
+    static void classInit(t_class *c, const char *classname)
+    {
+        addMethod<FrameLib_PDClass_ContextControl, &FrameLib_PDClass_ContextControl::multithread>(c, "multithread");
+        
+        class_addmethod(c, (t_method) &extTimeOut, gensym("timeout"), A_DEFFLOAT, A_DEFFLOAT, 0);
+        class_addmethod(c, (t_method) &extCodeExport, gensym("export"), A_SYMBOL, A_SYMBOL, 0);
+    }
+    
+    FrameLib_PDClass_ContextControl(t_object *x, t_symbol *sym, long argc, t_atom *argv)
+    : mPDContext{ true, canvas_getcurrent(), gensym("") }
+    , mContext(mGlobal->makeContext(mPDContext))
+    {
+    }
+    
+    ~FrameLib_PDClass_ContextControl()
+    {
+        mGlobal->releaseContext(mContext);
+    }
+    
+    // Attributes
+    
+    // id attribute
+    /*
+    static t_max_err idSet(FrameLib_PDClass_ContextControl *x, t_object *attr, long argc, t_atom *argv)
+    {
+        x->mMaxContext.mName = argv ? atom_getsym(argv) : gensym("");
+        
+        return MAX_ERR_NONE;
+    }
+    
+    // rt attribute
+    
+    static t_max_err rtSet(FrameLib_PDClass_ContextControl *x, t_object *attr, long argc, t_atom *argv)
+    {
+        x->mMaxContext.mRealtime = argv ? (atom_getlong(argv) ? 1 : 0) : 0;
+        
+        return MAX_ERR_NONE;
+    }*/
+    
+    // Time out
+    
+    static void extTimeOut(FrameLib_PDClass_ContextControl *x, double relative, double absolute)
+    {
+        x->timeOut(relative, absolute);
+    }
+    
+    // Export
+    
+    static void extCodeExport(FrameLib_PDClass_ContextControl *x, t_symbol *className, t_symbol *path)
+    {
+        x->codeExport(className, path);
+    }
+
+private:
+    
+    // Multithreading
+    
+    void multithread(double on)
+    {
+        FrameLib_Context::ProcessingQueue processingQueue(mContext);
+        processingQueue->setMultithreading(on);
+    }
+    
+    // Time out
+    
+    void timeOut(double relative, double absolute)
+    {
+        FrameLib_Context::ProcessingQueue processingQueue(mContext);
+        processingQueue->setTimeOuts(relative / 100.0, absolute / 1000.0);
+    }
+    
+    // Export
+    
+    void codeExport(t_symbol *className, t_symbol *path)
+    {
+        // Get the first object and its underlying framelib object
+        
+        t_object *object = searchPatch(mPDContext.mCanvas);
+        FrameLib_Multistream *flObject = toFLObject(object);
+        
+        if (!object || !flObject)
+        {
+            pd_error(this, "couldn't find any framelib objects in the current context");
+            return;
+        }
+        
+        objectMethod<void>(object, FrameLib_PDPrivate::messageResolveContext());
+        
+        auto replace = FrameLib_TypeAliases::makeReplaceStrings();
+        
+        // FIX - should we deal with search paths etc.?
+        
+        ExportError error = exportGraph(flObject, path->s_name, className->s_name, &replace);
+        
+        if (error == ExportError::PathError)
+            pd_error(this, "couldn't write to or find specified path");
+        else if (error == ExportError::WriteError)
+            pd_error(this, "couldn't write file");
+    }
+    
+    // Convert an object to an FLObject
+    
+    FrameLib_Multistream *toFLObject(t_object *x)
+    {
+        return FrameLib_PDPrivate::toFrameLibObject(x);
+    }
+
+    t_object *searchPatch(t_glist *gl)
+    {
+        // Call method on all objects
+            
+        // FIX - revise
+            
+        for (t_gobj *g = gl->gl_list; g; g = g->g_next)
+        {
+            FrameLib_Multistream *flObject = toFLObject((t_object *) g);
+            if (flObject && flObject->getContext() == mContext)
+                return (t_object *) g;
+        }
+        
+        return nullptr;
+    }
+    
+    // Members
+    
+    FrameLib_PDGlobals::ManagedPointer mGlobal;
+    FrameLib_PDContext mPDContext;
+    FrameLib_Context mContext;
+};
 
 // To PD Class
 
@@ -253,6 +392,10 @@ struct FrameLib_PDClass_ComplexExpression : public FrameLib_PDClass_ComplexExpre
 
 extern "C" void framelib_pd_setup(void)
 {
+    // Context Control
+    
+    FrameLib_PDClass_ContextControl::makeClass<FrameLib_PDClass_ContextControl>("fl.contextcontrol~");
+
     // Host Communication
     
     FrameLib_PDClass_ToPD::makeClass<FrameLib_PDClass_ToPD>("fl.topd~");
