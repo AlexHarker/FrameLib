@@ -211,6 +211,78 @@ private:
     std::vector<t_outlet *> mOutlets;
 };
 
+// From PD Class
+
+class FrameLib_PDClass_FromPD : public FrameLib_PDClass_Expand<FrameLib_FromHost>
+{
+    struct FromHostProxy : public FrameLib_FromHost::Proxy, public FrameLib_PDProxy
+    {
+        FromHostProxy(t_object *x)
+        : FrameLib_FromHost::Proxy(true, true)
+        , FrameLib_PDProxy(x) {}
+    };
+    
+public:
+    
+    // Class Initialisation
+    
+    static void classInit(t_class *c, const char *classname)
+    {
+        FrameLib_PDClass::classInit(c, classname);
+        
+        addMethod<FrameLib_PDClass_FromPD, &FrameLib_PDClass_FromPD::floatHandler>(c, "float");
+        addMethod<FrameLib_PDClass_FromPD, &FrameLib_PDClass_FromPD::list>(c, "list");
+        addMethod<FrameLib_PDClass_FromPD, &FrameLib_PDClass_FromPD::anything>(c, "anything");
+    }
+
+    // Constructor
+    
+    FrameLib_PDClass_FromPD(t_object *x, t_symbol *s, long argc, t_atom *argv)
+    : FrameLib_PDClass(x, s, argc, argv, new FromHostProxy(x))
+    {
+        mHostProxy = static_cast<FromHostProxy *>(mProxy.get());
+    }
+    
+    // Additional handlers
+    
+    void floatHandler(double in)
+    {
+        mHostProxy->sendFromHost(0, &in, 1);
+    }
+    
+    void list(t_symbol *s, long argc, t_atom *argv)
+    {
+        std::vector<double> temporary(argc);
+        
+        for (long i = 0; i < argc; i++)
+            temporary[i] = atom_getfloat(argv++);
+        
+        mHostProxy->sendFromHost(0, temporary.data(), argc);
+    }
+    
+    void anything(t_symbol *s, long argc, t_atom *argv)
+    {
+        if (argc > 1 && atom_gettype(argv) == A_SYMBOL)
+            pd_error(this, "too many arguments for string value");
+        
+        if (argc && atom_gettype(argv) == A_SYMBOL)
+            mHostProxy->sendFromHost(0, s->s_name, atom_getsymbol_default(argv)->s_name);
+        else
+        {
+            std::vector<double> temporary(argc);
+            
+            for (long i = 0; i < argc; i++)
+                temporary[i] = atom_getfloat(argv++);
+            
+            mHostProxy->sendFromHost(0, s->s_name, temporary.data(), argc);
+        }
+    }
+
+private:
+    
+    FromHostProxy *mHostProxy;
+};
+
 // PD Read Class
 
 class FrameLib_PDClass_Read : public FrameLib_PDClass_Expand<FrameLib_Read>
@@ -399,6 +471,7 @@ extern "C" void framelib_pd_setup(void)
     // Host Communication
     
     FrameLib_PDClass_ToPD::makeClass<FrameLib_PDClass_ToPD>("fl.topd~");
+    FrameLib_PDClass_ToPD::makeClass<FrameLib_PDClass_FromPD>("fl.frompd~");
 
     // Filters
     
