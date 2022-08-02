@@ -18,6 +18,8 @@ public:
     static void classInit(t_class *c, const char *classname)
     {
         addMethod<FrameLib_PDClass_ContextControl, &FrameLib_PDClass_ContextControl::multithread>(c, "multithread");
+        addMethod<FrameLib_PDClass_ContextControl, &FrameLib_PDClass_ContextControl::idSet>(c, "id");
+        addMethod<FrameLib_PDClass_ContextControl, &FrameLib_PDClass_ContextControl::rtSet>(c, "rt");
         
         class_addmethod(c, (t_method) &extTimeOut, gensym("timeout"), A_DEFFLOAT, A_DEFFLOAT, 0);
         class_addmethod(c, (t_method) &extCodeExport, gensym("export"), A_SYMBOL, A_SYMBOL, 0);
@@ -37,22 +39,20 @@ public:
     // Attributes
     
     // id attribute
-    /*
-    static t_max_err idSet(FrameLib_PDClass_ContextControl *x, t_object *attr, long argc, t_atom *argv)
+    
+    void idSet(t_symbol *name)
     {
-        x->mMaxContext.mName = argv ? atom_getsym(argv) : gensym("");
-        
-        return MAX_ERR_NONE;
+        mPDContext.mName = name;
+        updateContext();
     }
     
     // rt attribute
     
-    static t_max_err rtSet(FrameLib_PDClass_ContextControl *x, t_object *attr, long argc, t_atom *argv)
+    void rtSet(t_floatarg arg)
     {
-        x->mMaxContext.mRealtime = argv ? (atom_getlong(argv) ? 1 : 0) : 0;
-        
-        return MAX_ERR_NONE;
-    }*/
+        mPDContext.mRealtime = arg;
+        updateContext();
+    }
     
     // Time out
     
@@ -113,6 +113,14 @@ private:
             pd_error(this, "couldn't write to or find specified path");
         else if (error == ExportError::WriteError)
             pd_error(this, "couldn't write file");
+    }
+    
+    // Context
+
+    void updateContext()
+    {
+        mGlobal->releaseContext(mContext);
+        mContext = mGlobal->makeContext(mPDContext);
     }
     
     // Convert an object to an FLObject

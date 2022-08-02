@@ -862,6 +862,13 @@ public:
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::frame>(c, "frame");
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::dsp>(c);
         
+        // Attributes
+        
+        addMethod<FrameLib_PDClass, &FrameLib_PDClass::idSet>(c, "id");
+        addMethod<FrameLib_PDClass, &FrameLib_PDClass::rtSet>(c, "rt");
+        
+        // Audio only
+        
         if (T::sHandlesAudio)
         {
             addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::reset>(c, "reset");
@@ -871,6 +878,8 @@ public:
             
             dspInit(c);
         }
+        
+        // External Methods
         
         addMethod(c, (t_method) &extResolveContext, FrameLib_PDPrivate::messageResolveContext());
         addMethod(c, (t_method) &extResolveConnections, FrameLib_PDPrivate::messageResolveConnections());
@@ -1367,28 +1376,27 @@ public:
     }
     
     // id attribute
-    
-    // FIX - attributes
-    
-    /*
-    static void idSet(FrameLib_PDClass *x, t_object *attr, long argc, t_atom *argv)
-    {
-        x->mMaxContext.mName = argv ? atom_getsym(argv) : gensym("");
-        x->updateContext();
         
-        return MAX_ERR_NONE;
+    void idSet(t_symbol *name)
+    {
+        mPDContext.mName = name;
+        updateContext();
     }
     
     // rt attribute
     
-    static void rtSet(FrameLib_PDClass *x, t_object *attr, long argc, t_atom *argv)
+    void rtSet(t_floatarg arg)
     {
-        x->mMaxContext.mRealtime = argv ? (atom_getlong(argv) ? 1 : 0) : 0;
-        x->updateContext();
-        
-        return MAX_ERR_NONE;
+        mPDContext.mRealtime = arg;
+        updateContext();
     }
-     */
+    
+    // buffer attribute
+    
+    void bufferSet(t_symbol *buffer)
+    {
+        mBuffer = buffer;
+    }
     
 private:
     
