@@ -1,8 +1,7 @@
 
 **Status and Building**
 
-- Currently most (162 out of 163) framelib objects get built to a single library files
-- The fl.frompd~ currently need to be added.
+- All (163 out of 163) framelib objects get built to a single library files
 - Realtime operation is supported, but non-realtime support is incomplete  
 - There are some key issues to note below 
 
