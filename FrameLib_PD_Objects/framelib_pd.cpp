@@ -39,6 +39,7 @@ public:
     // Constructor
     
     FrameLib_PDClass_ToPD(t_object *x, t_symbol *s, long argc, t_atom *argv)
+    : FrameLib_PDClass(x, s, argc, argv, new ToHostProxy(this))
     {
         unsigned long nStreams = getSpecifiedStreams();
         
