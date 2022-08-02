@@ -3,7 +3,7 @@ FL_FRAMEWORK=../FrameLib_Framework
 FL_DEPENDENCIES=../FrameLib_Dependencies
 FL_OBJECTS=../FrameLib_Objects
 
-VPATH=PD_Specific:\ ../FrameLib_Dependencies/tlsf
+VPATH=../FrameLib_Dependencies/tlsf
 
 FL_CPP= \
 				$(wildcard $(FL_FRAMEWORK)/FrameLib_*.cpp)\
@@ -14,7 +14,6 @@ FL_OBJ_DIR=$(FL_CPP:.cpp=.o) tlsf.o
 FL_OBJ=$(notdir $(FL_OBJ_DIR))
 
 INCLUDE_PATHS=\
-				-IPD_Specific\
         -ICommon\
 				-I$(FL_FRAMEWORK)\
 			  -I$(FL_DEPENDENCIES)\
