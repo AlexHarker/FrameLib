@@ -1,6 +1,14 @@
 
 #include "FrameLib_DSP.h"
 
+// N.B. define FRAMELIB_RT_DSP_CHECK to report on timing errors in realtime rather than asserting (debug) or removing the tests (release)
+
+#ifdef FRAMELIB_RT_DSP_CHECK
+#define debug_rt_check(e, str) if (!(e)) getReporter()(ErrorSource::DSP, getProxy(), str);
+#else
+#define debug_rt_check(e, str) assert(e && str);
+#endif
+
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
@@ -362,7 +370,7 @@ void FrameLib_DSP::dependencyNotify(NotificationType type, NotificationQueue& qu
     if (mProcessingQueue->isTimedOut())
         return;
     
-    assert(((mDependencyCount > 0) || (mUpdatingInputs && (mInputCount > 0))) && "Dependency count is already zero");
+    debug_rt_check(((mDependencyCount > 0) || (mUpdatingInputs && (mInputCount > 0))), "Dependency count is already zero");
     
     if (allocator && mOutputDone)
         releaseOutputMemory(allocator);
@@ -373,7 +381,7 @@ void FrameLib_DSP::dependencyNotify(NotificationType type, NotificationQueue& qu
     {
         // N.B. Avoid re-entrancy by increasing the relevant dependency counts before processing (plus matched notifications)
 
-        assert((mDependencyCount > 0) || !mUpdatingInputs && "Dependency count shouldn't be zero if updating inputs");
+        debug_rt_check((mDependencyCount > 0) || !mUpdatingInputs, "Dependency count shouldn't be zero if updating inputs");
         
         mDependencyCount++;
         mInputCount++;
@@ -381,8 +389,8 @@ void FrameLib_DSP::dependencyNotify(NotificationType type, NotificationQueue& qu
         queue.push(this);
     }
     
-    assert(mDependencyCount >= 0 && "Dependency count shouldn't be negative");
-    assert(mInputCount >= 0 && "Input count shouldn't be negative");
+    debug_rt_check(mDependencyCount >= 0, "Dependency count shouldn't be negative");
+    debug_rt_check(mInputCount >= 0, "Input count shouldn't be negative");
 }
 
 // For updating the correct input count
@@ -401,7 +409,7 @@ void FrameLib_DSP::dependenciesReady(NotificationQueue& queue, LocalAllocator *a
 {
     setLocalAllocator(allocator);
     
-#ifndef NDEBUG
+#if !(defined NDEBUG) || (defined FRAMELIB_RT_DSP_CHECK)
     const FrameLib_TimeFormat inputTime = mInputTime;
 #endif
     
@@ -585,17 +593,17 @@ void FrameLib_DSP::dependenciesReady(NotificationQueue& queue, LocalAllocator *a
         for (auto it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
             (*it)->dependencyNotify(NotificationType::Input, queue);
         
-    // Debug (before re-entering)
+    // Debug (before re-entering) - N.B. may be done as an error or an assert
     
-    assert(!needsAudioNotification() || (inputTime >= mBlockStartTime) && "Object behind host");
-    assert(!needsAudioNotification() || (inputTime < mBlockEndTime) && "Object ahead of host");
-    assert(mInputTime > inputTime && "Failed to move time forward");
-    assert(mInputTime <= mValidTime && "Input is ahead of output");
-    assert(mFrameTime <= mInputTime && "Output is ahead of input");
-    assert(mDependencyCount >= 1 && "Dependency count shouldn't be less than 1");
-    assert(mUpdatingInputs || endOfTime || mInputCount == 0 && "Input count should be 0");
-    assert(!mUpdatingInputs || mInputCount >= 1 && "Input count shouldn't be less than 1");
-
+    debug_rt_check(!needsAudioNotification() || (inputTime >= mBlockStartTime), "Object behind host");
+    debug_rt_check(!needsAudioNotification() || (inputTime < mBlockEndTime), "Object ahead of host");
+    debug_rt_check(mInputTime > inputTime, "Failed to move time forward");
+    debug_rt_check(mInputTime <= mValidTime, "Input is ahead of output");
+    debug_rt_check(mFrameTime <= mInputTime, "Output is ahead of input");
+    debug_rt_check(mDependencyCount >= 1, "Dependency count shouldn't be less than 1");
+    debug_rt_check(mUpdatingInputs || endOfTime || mInputCount == 0, "Input count should be 0");
+    debug_rt_check(!mUpdatingInputs || mInputCount >= 1, "Input count shouldn't be less than 1");
+    
     // After resolving all other dependencies do self-notifications allowing self triggering
     
     if (!endOfTime)
@@ -640,7 +648,7 @@ inline void FrameLib_DSP::freeOutputMemory(LocalAllocator *allocator)
 
 inline void FrameLib_DSP::releaseOutputMemory(LocalAllocator *allocator)
 {
-    assert(mOutputMemoryCount > 0 && "Output memory count is already zero");
+    debug_rt_check(mOutputMemoryCount > 0, "Output memory count is already zero");
     
     if (--mOutputMemoryCount == 0)
         freeOutputMemory(allocator);
