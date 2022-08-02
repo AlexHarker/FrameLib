@@ -27,7 +27,20 @@ class FrameLib_PDClass_ToPD : public FrameLib_PDClass_Expand<FrameLib_ToHost>
             mObject->getHandler()->add(MessageInfo(this, time, stream), serial);
         }
         
-        void sendMessage(unsigned long stream, t_symbol *s, short ac, t_atom *av) override;
+        void sendMessage(unsigned long stream, t_symbol *s, short ac, t_atom *av) override
+        {
+            auto& outlets = mObject->mOutlets;
+            unsigned long idx = stream % outlets.size();
+            
+            if (s)
+                outlet_anything(outlets[idx], s, ac, av);
+            else if (!ac)
+                outlet_bang(outlets[idx]);
+            else if (ac == 1)
+                outlet_float(outlets[idx], atom_getfloat(av));
+            else
+                outlet_list(outlets[idx], nullptr, ac, av);
+        }
         
     private:
         
