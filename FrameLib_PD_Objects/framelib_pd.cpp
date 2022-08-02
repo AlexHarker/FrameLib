@@ -552,6 +552,8 @@ extern "C" void framelib_pd_setup(void)
     // Streaming
     
     FrameLib_PDClass_Expand<FrameLib_StreamID>::makeClass("fl.streamid~");
+    FrameLib_PDClass<FrameLib_Pack>::makeClass("fl.pack~");
+    FrameLib_PDClass<FrameLib_Unpack>::makeClass("fl.unpack~");
     
     // Time Smoothing
     
