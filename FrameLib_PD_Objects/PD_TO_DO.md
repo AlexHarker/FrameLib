@@ -1,8 +1,8 @@
 
 **Status and Building**
 
-- Currently most (161 out of 163) framelib objects get built to a single library files
-- The fl.frompd~ and fl.contextcontrol~ objects currently need to be added.
+- Currently most (162 out of 163) framelib objects get built to a single library files
+- The fl.frompd~ currently need to be added.
 - Realtime operation is supported, but non-realtime support is incomplete  
 - There are some key issues to note below 
 
@@ -37,6 +37,15 @@ I'm not sure if there should be a VS project for windows or not.
 
 - Connection handling - Max has the facility both to notify objects when connection change and allow objects to refuse connections - this is used to make connections prior to dsp time and also to prevent multiple connections - I have left this out and not yet investigated if pd has something similar (it's non-essential but useful)
 
+**Review**
+
+- Some pd correctness needs review:
+    - PD-specific or custom objects (read/info/topd/frompd/contextcontrol/expressions)
+    - Float arguments (t_floatarg?)
+    - Messages that would take ints in Max
+    - Assist strings?
+    - resetting dsp when resolving connections
+    
 **Documentation**
 
 - Help files required (based on max help files) for each object
