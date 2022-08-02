@@ -1,7 +1,7 @@
 
 **Status and Building**
 
-- All (163 out of 163) framelib objects get built to a single library files
+- All (165 out of 165) framelib objects get built to a single library files
 - Realtime operation is supported, but non-realtime support is incomplete  
 - There are some key issues to note below 
 
@@ -12,7 +12,7 @@ I'm not sure if there should be a VS project for windows or not.
 
 **Testing**
 
-- I've started a test folder at Testing/02\_PD with at least one simple demo
+- I've started a test folder at Testing/02\_PD with a couple of simple demos
 - Note that the first outlet and inlet of unsynced objects are the sync IO
 
 **Key Issues**
@@ -38,9 +38,11 @@ I'm not sure if there should be a VS project for windows or not.
 
 **Review**
 
+- Some pd correctness has been reviewed (DONE):
+    - Float arguments (t_floatarg?)
+
 - Some pd correctness needs review:
     - PD-specific or custom objects (read/info/topd/frompd/contextcontrol/expressions)
-    - Float arguments (t_floatarg?)
     - Messages that would take ints in Max
     - Assist strings?
     - resetting dsp when resolving connections
