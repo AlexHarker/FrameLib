@@ -27,7 +27,7 @@ I'm not sure if there should be a VS project for windows or not.
 - Subpatches - my understanding is that pd processes the audio in subpatchers in one go (Max does not) which makes ordering an issue (as above)
 - At the moment you can't connect framelib objects between different subpatchers
 
-- Message ordering - If messages are send to pd then currently the message time and stream determines the order. In Max there are further considerations to do with object position in a patch so that ordering makes sense - I'm not sure what would be idomatic in pd.
+- Message ordering - If messages are sent to pd then currently the message time and stream determines the order. In Max there are further considerations to do with object position in a patch so that ordering makes sense - I'm not sure what would be idomatic in pd.
 
 - Attributes - non-realtime in Max is set by attributes. Part of the misssing support in pd is to sort these (which must be supported manually)
 - My memory is that sigmund uses an attribute-style system so I want to choose something idiomatic to pd for setting these in the box.
@@ -40,11 +40,11 @@ I'm not sure if there should be a VS project for windows or not.
 
 - Some pd correctness has been reviewed (DONE):
     - Float arguments (t_floatarg?)
+    - Assist strings? (don't exist for pd)
 
 - Some pd correctness needs review:
     - PD-specific or custom objects (read/info/topd/frompd/contextcontrol/expressions)
     - Messages that would take ints in Max
-    - Assist strings?
     - resetting dsp when resolving connections
     
 **Documentation**
