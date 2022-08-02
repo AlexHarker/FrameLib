@@ -6,6 +6,58 @@
 
 #include "pd_buffer.h"
 
+// To PD Class
+
+class FrameLib_PDClass_ToPD : public FrameLib_PDClass_Expand<FrameLib_ToHost>
+{
+    struct ToHostProxy : public FrameLib_ToHost::Proxy, public FrameLib_PDMessageProxy
+    {
+        ToHostProxy(FrameLib_PDClass_ToPD *object)
+        : FrameLib_PDMessageProxy(*object)
+        , mObject(object)
+        {}
+        
+        void sendToHost(unsigned long index, unsigned long stream, const double *values, unsigned long N, FrameLib_TimeFormat time)  override
+        {
+            mObject->getHandler()->add(MessageInfo(this, time, stream), values, N);
+        }
+        
+        void sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial, FrameLib_TimeFormat time)  override
+        {
+            mObject->getHandler()->add(MessageInfo(this, time, stream), serial);
+        }
+        
+        void sendMessage(unsigned long stream, t_symbol *s, short ac, t_atom *av) override;
+        
+    private:
+        
+        FrameLib_PDClass_ToPD *mObject;
+    };
+    
+public:
+    
+    // Constructor
+    
+    FrameLib_PDClass_ToPD(t_object *x, t_symbol *s, long argc, t_atom *argv)
+    {
+        unsigned long nStreams = getSpecifiedStreams();
+        
+        mOutlets.resize(nStreams);
+        
+        for (unsigned long i = nStreams; i > 0; i--)
+            mOutlets[i - 1] = outlet_new(*this, 0L);
+        
+        mHostProxy = static_cast<ToHostProxy *>(mProxy.get());
+    }
+    
+private:
+    
+    // Data
+    
+    ToHostProxy *mHostProxy;
+    std::vector<t_outlet *> mOutlets;
+};
+
 // PD Read Class
 
 class FrameLib_PDClass_Read : public FrameLib_PDClass_Expand<FrameLib_Read>
@@ -187,6 +239,10 @@ struct FrameLib_PDClass_ComplexExpression : public FrameLib_PDClass_ComplexExpre
 
 extern "C" void framelib_pd_setup(void)
 {
+    // Host Communication
+    
+    FrameLib_PDClass_ToPD::makeClass<FrameLib_PDClass_ToPD>("fl.topd~");
+
     // Filters
     
     FrameLib_PDClass_Expand<FrameLib_Biquad>::makeClass("fl.biquad~");
