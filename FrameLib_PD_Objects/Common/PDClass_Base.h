@@ -30,7 +30,7 @@ public:
     // Types for defining methods with DEFLONG or DEFFLOAT arguments
     
     //using def_int = DefaultArg<t_atom_long>;
-    using def_double = DefaultArg<double>;
+    using t_deffloatarg = DefaultArg<t_floatarg>;
     
     
     // Unique pointers to t_objects
@@ -103,11 +103,11 @@ public:
     template <class T, typename Gimme<T>::MethodGimme F> static void call(T *x, t_symbol *s, long ac, t_atom *av) {((x)->*F)(s, ac, av); };
     template <class T, typename Gimme<T>::MethodGimme F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (t_method) call<T, F>, gensym(name), A_GIMME, 0); }
     
-    template <class T> struct Float { typedef void (T::*MethodFloat)(double v); };
-    template <class T, typename Float<T>::MethodFloat F> static void call(T *x, double v) { ((x)->*F)(v); }
+    template <class T> struct Float { typedef void (T::*MethodFloat)(t_floatarg v); };
+    template <class T, typename Float<T>::MethodFloat F> static void call(T *x, t_floatarg v) { ((x)->*F)(v); }
     template <class T, typename Float<T>::MethodFloat F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (t_method) call<T, F>, gensym(name), A_FLOAT, 0); }
     
-    template <class T> struct DefFloat { typedef void (T::*MethodDefFloat)(def_double v); };
+    template <class T> struct DefFloat { typedef void (T::*MethodDefFloat)(t_deffloatarg v); };
     template <class T, typename DefFloat<T>::MethodDefFloat F> static void call(T *x, double v) { (x->*F)(v); }
     template <class T, typename DefFloat<T>::MethodDefFloat F>
     static void addMethod(t_class *c, const char *name) { auto f = call<T, F>; class_addmethod(c, (t_method) f, gensym(name), A_DEFFLOAT, 0); }
@@ -116,11 +116,6 @@ public:
     template <class T, typename Sym<T>::MethodSym F> static void call(T *x, t_symbol *s) { ((x)->*F)(s); }
     template <class T, typename Sym<T>::MethodSym F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (t_method) call<T, F>, gensym(name), A_DEFSYM, 0); }
     
-    // FIX - is this a meaningful thing in PD?
-    template <class T> struct Subpatch { typedef void *(T::*MethodSubPatch)(long index, void *arg); };
-    template <class T, typename Subpatch<T>::MethodSubPatch F> static void *call(T *x, long index, void *arg) { return ((x)->*F)(index, arg); }
-    template <class T, typename Subpatch<T>::MethodSubPatch F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (t_method) call<T, F>, gensym(name), A_CANT, 0); }
-
     template <class T> struct DSP { typedef void (T::*MethodDSP)(t_signal **sp); };
     template <class T, typename DSP<T>::MethodDSP F> static void call(T *x, t_signal **sp) { ((x)->*F)(sp); }
     template <class T, typename DSP<T>::MethodDSP F> static void addMethod(t_class *c) { class_addmethod(c, (t_method) call<T, F>, gensym("dsp"), A_CANT, 0); }
@@ -146,6 +141,12 @@ public:
         dsp_add(callPerform<T, F>, 2, this, sp[0]->s_vecsize);
     }
     
+    // Special helpers
+        
+    template <class T, typename Float<T>::MethodFloat F> static void addFloatMethod(t_class *c) { class_doaddfloat(c, (t_method) call<T, F>); }
+    template <class T, typename Gimme<T>::MethodGimme F> static void addListMethod(t_class *c) { class_addlist(c, (t_method) (call<T, F>)); }
+    template <class T, typename Gimme<T>::MethodGimme F> static void addAnythingMethod(t_class *c) { class_addanything(c, (t_method) (call<T, F>)); }
+
     // Atom helpers
     
     static t_atomtype atom_gettype(t_atom *a)

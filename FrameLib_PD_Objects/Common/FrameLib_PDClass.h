@@ -1184,7 +1184,7 @@ public:
     
     static unsigned long maxBlockSize() { return 16384UL; }
     
-    void reset(def_double sampleRate = 0.0)
+    void reset(t_deffloatarg sampleRate = 0.0)
     {
         if (!isRealtime())
         {
@@ -1193,7 +1193,7 @@ public:
         }
     }
     
-    void process(double length)
+    void process(t_floatarg length)
     {
         unsigned long updateLength = length > 0 ? static_cast<unsigned long>(length) : 0UL;
         unsigned long time = static_cast<unsigned long>(mObject->getBlockTime()) - 1UL;

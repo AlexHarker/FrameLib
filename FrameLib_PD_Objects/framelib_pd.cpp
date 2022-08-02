@@ -72,7 +72,7 @@ private:
     
     // Multithreading
     
-    void multithread(double on)
+    void multithread(t_floatarg on)
     {
         FrameLib_Context::ProcessingQueue processingQueue(mContext);
         processingQueue->setMultithreading(on);
@@ -80,7 +80,7 @@ private:
     
     // Time out
     
-    void timeOut(double relative, double absolute)
+    void timeOut(t_floatarg relative, t_floatarg absolute)
     {
         FrameLib_Context::ProcessingQueue processingQueue(mContext);
         processingQueue->setTimeOuts(relative / 100.0, absolute / 1000.0);
@@ -230,9 +230,9 @@ public:
     {
         FrameLib_PDClass::classInit(c, classname);
         
-        addMethod<FrameLib_PDClass_FromPD, &FrameLib_PDClass_FromPD::floatHandler>(c, "float");
-        addMethod<FrameLib_PDClass_FromPD, &FrameLib_PDClass_FromPD::list>(c, "list");
-        addMethod<FrameLib_PDClass_FromPD, &FrameLib_PDClass_FromPD::anything>(c, "anything");
+        addFloatMethod<FrameLib_PDClass_FromPD, &FrameLib_PDClass_FromPD::floatHandler>(c);
+        addListMethod<FrameLib_PDClass_FromPD, &FrameLib_PDClass_FromPD::list>(c);
+        addAnythingMethod<FrameLib_PDClass_FromPD, &FrameLib_PDClass_FromPD::anything>(c);
     }
 
     // Constructor
@@ -245,9 +245,10 @@ public:
     
     // Additional handlers
     
-    void floatHandler(double in)
+    void floatHandler(t_floatarg in)
     {
-        mHostProxy->sendFromHost(0, &in, 1);
+        double d_in = in;
+        mHostProxy->sendFromHost(0, &d_in, 1);
     }
     
     void list(t_symbol *s, long argc, t_atom *argv)
