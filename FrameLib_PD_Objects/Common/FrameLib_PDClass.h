@@ -929,9 +929,7 @@ public:
     , mConnectionsUpdated(false)
     , mContextPatchConfirmed(false)
     , mResolved(false)
-    , mPDContext{ true, mCanvas, gensym("") }
-// FIX
-    //     , mPDContext{ T::sType == ObjectType::Scheduler, mCanvas, gensym("") }
+    , mPDContext{ T::sType == ObjectType::Scheduler, mCanvas, gensym("") }
     {
         // Stream count
         
