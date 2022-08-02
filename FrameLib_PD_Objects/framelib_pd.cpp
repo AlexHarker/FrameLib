@@ -197,8 +197,8 @@ public:
         
         mOutlets.resize(nStreams);
         
-        for (unsigned long i = nStreams; i > 0; i--)
-            mOutlets[i - 1] = outlet_new(*this, 0L);
+        for (unsigned long i = 0; i < nStreams; i++)
+            mOutlets[i] = outlet_new(*this, 0L);
         
         mHostProxy = static_cast<ToHostProxy *>(mProxy.get());
     }
