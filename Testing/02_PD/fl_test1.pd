@@ -1,0 +1,12 @@
+#N canvas 280 199 486 473 12;
+#X obj 74 37 unsynced.fl.interval~ 4000;
+#X obj 155 228 unsynced.fl.sink~;
+#X obj 327 50 noise~;
+#X obj 136 314 dac~;
+#X obj 160 142 unsynced.fl.source~ /length 2000;
+#X connect 0 0 4 0;
+#X connect 0 1 4 2;
+#X connect 1 1 3 0;
+#X connect 2 0 4 1;
+#X connect 4 0 1 0;
+#X connect 4 1 1 1;
