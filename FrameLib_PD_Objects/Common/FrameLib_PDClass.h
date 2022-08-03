@@ -1377,9 +1377,10 @@ private:
             
             if (context != mObject->getContext())
             {
-                // FIX
-                //mGlobal->addContextToResolve(context, *this);
                 matchContext(context, true);
+                
+                if (!isRealtime())
+                    resolveNRTGraph(0.0, false);
             }
             
             // N.B. release because otherwise it is retained twice
