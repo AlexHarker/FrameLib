@@ -32,7 +32,7 @@ struct FrameLib_MaxPrivate
     {
         return 1000;
     }
-
+    
     // A constant representing the max wrapper and framework versions.
     // The versions are combined in a manner that they are both easily readable when viewed in decimal format
     
@@ -40,7 +40,7 @@ struct FrameLib_MaxPrivate
     {
         return static_cast<uint64_t>(FrameLib_FrameworkVersion) * 1000000000 + static_cast<uint64_t>(maxWrapperVersion());
     }
-
+    
     struct VersionString
     {
         VersionString(const char *str) : mString(str)
@@ -55,15 +55,15 @@ struct FrameLib_MaxPrivate
         VersionString& operator=(const VersionString&) = delete;
         VersionString(VersionString&&) = default;
         VersionString& operator=(VersionString&&) = default;
-                
+        
         operator const char *() { return mString.c_str(); }
         
         std::string mString;
     };
-        
+    
     static inline t_symbol *FLNamespace()                   { return gensym("__fl.framelib_private"); }
     static inline t_symbol *globalTag()                     { return gensym(VersionString("__fl.max_global_tag")); }
-                                                 
+    
     static inline VersionString objectGlobal()              { return "__fl.max_global_items"; }
     static inline VersionString objectMessageHandler()      { return "__fl.message.handler"; }
     static inline VersionString objectMutator()             { return "__fl.signal.mutator"; }
@@ -325,7 +325,7 @@ public:
     void add(const MessageInfo& info, const FrameLib_Parameters::Serial *serial)
     {
         // Lock, determine maximum vector size and copy
-
+        
         FrameLib_LockHolder lock(&mLock);
         
         for (auto it = serial->begin(); it != serial->end(); it++)
@@ -342,7 +342,7 @@ public:
     
     void ready()
     {
-        // Lock and copy onto the output queue 
+        // Lock and copy onto the output queue
         
         FrameLib_LockHolder lock(&mLock);
         
@@ -376,7 +376,7 @@ public:
         MessageBlock messages;
         
         // Swap data
-
+        
         FrameLib_LockHolder flushLock(&handler->mFlushLock);
         FrameLib_LockHolder lock(&handler->mLock);
         
@@ -402,7 +402,7 @@ public:
     
 private:
     
-    static void output(const Message& message, t_atom *output)
+    static void output(const Message& message, t_atom *data)
     {
         FrameLib_MaxMessageProxy *proxy = message.mInfo.mProxy;
         
@@ -414,9 +414,9 @@ private:
             unsigned long N = limit(static_cast<unsigned long>(message.mVector.size()));
             
             for (unsigned long i = 0; i < N; i++)
-                atom_setfloat(output + i, message.mVector[i]);
+                atom_setfloat(data + i, message.mVector[i]);
             
-            proxy->sendMessage(message.mInfo.mStream, nullptr, static_cast<short>(N), output);
+            proxy->sendMessage(message.mInfo.mStream, nullptr, static_cast<short>(N), data);
         }
         else
         {
@@ -433,15 +433,15 @@ private:
                     size = limit(size);
                     
                     for (unsigned long i = 0; i < size; i++)
-                        atom_setfloat(output + i, vector[i]);
+                        atom_setfloat(data + i, vector[i]);
                 }
                 else
                 {
                     size = 1;
-                    atom_setsym(output, gensym(it.getString()));
+                    atom_setsym(data, gensym(it.getString()));
                 }
                 
-                proxy->sendMessage(message.mInfo.mStream, tag, static_cast<short>(size), output);
+                proxy->sendMessage(message.mInfo.mStream, tag, static_cast<short>(size), data);
             }
         }
     }
@@ -450,7 +450,7 @@ private:
     
     mutable FrameLib_Lock mLock;
     mutable FrameLib_Lock mFlushLock;
-
+    
     MessageBlock mData;
     std::deque<MessageBlock> mOutput;
 };
@@ -610,7 +610,7 @@ public:
         long mTime;
         Mode mMode;
     };
-
+    
     // Convenience Pointer for automatic deletion and RAII
     
     struct ManagedPointer
@@ -620,10 +620,10 @@ public:
         
         ManagedPointer(const ManagedPointer&) = delete;
         ManagedPointer& operator=(const ManagedPointer&) = delete;
-
+        
         FrameLib_MaxGlobals *operator->() { return mPointer; }
         const FrameLib_MaxGlobals *operator->() const { return mPointer; }
-
+        
     private:
         
         FrameLib_MaxGlobals *mPointer;
@@ -632,9 +632,15 @@ public:
     // Constructor and Destructor (public for max API, but use ManagedPointer from outside this class)
     
     FrameLib_MaxGlobals(t_object *x, t_symbol *sym, long ac, t_atom *av)
-    : mReportContextErrors(false), mRTNotifier(&mRTGlobal), mNRTNotifier(&mNRTGlobal), mRTGlobal(nullptr), mNRTGlobal(nullptr), mQelem(*this, (method) &serviceContexts), mSyncCheck(nullptr)
+    : mReportContextErrors(false)
+    , mRTNotifier(&mRTGlobal)
+    , mNRTNotifier(&mNRTGlobal)
+    , mRTGlobal(nullptr)
+    , mNRTGlobal(nullptr)
+    , mQelem(*this, (method) &serviceContexts)
+    , mSyncCheck(nullptr)
     {}
-
+    
     // Max global item methods
     
     void clearQueue()                           { mQueue.clear(); }
@@ -649,10 +655,10 @@ public:
         
         return object;
     }
-
-    void addContextToResolve(FrameLib_Context context, t_object *object)
+    
+    void addContextToResolve(FrameLib_Context c, t_object *object)
     {
-        mUnresolvedContexts[context] = object;
+        mUnresolvedContexts[c] = object;
         mQelem.set();
     }
     
@@ -688,11 +694,11 @@ public:
             std::get<kKey>(*item) = key;
             std::get<kCount>(*item) = 1;
             std::get<kFinal>(*item) = nullptr;
-            std::get<kHandler>(*item) = unique_object_ptr((t_object *)object_new_typed(CLASS_NOBOX, handlerSym, 0, nullptr));
+            std::get<kHandler>(*item) = unique_object_ptr((t_object *) object_new_typed(CLASS_NOBOX, handlerSym, 0, nullptr));
             std::get<kQueuePtr>(*item) = QueuePtr(new FrameLib_Context::ProcessingQueue(context));
             
             // Set timeouts
-
+            
             if (key.mRealtime)
                 (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(16.0, 1.0);
             else
@@ -706,15 +712,15 @@ public:
     
     void retainContext(FrameLib_Context c)      { data<kCount>(c)++; }
     void releaseContext(FrameLib_Context c)     { if (--data<kCount>(c) == 0) mContextRefs.erase(data<kKey>(c)); }
-
+    
     void flushContext(FrameLib_Context c, FrameLib_MaxProxy *proxy)
     {
         ErrorNotifier::flush(data<kKey>(c).mRealtime ? &mRTGlobal : &mNRTGlobal);
         
         getHandler(c)->flush(proxy);
-     
+        
         auto it = mUnresolvedContexts.find(c);
-
+        
         if (it != mUnresolvedContexts.end())
         {
             objectMethod(it->second, FrameLib_MaxPrivate::messageResolveContext());
@@ -726,19 +732,19 @@ public:
     {
         ErrorNotifier::flushIgnore(data<kKey>(c).mRealtime ? &mRTGlobal : &mNRTGlobal, object);
     }
-
+    
     FrameLib_MaxContext getMaxContext(FrameLib_Context c)
     {
         return data<kKey>(c);
     }
-
+    
     bool isRealtime(FrameLib_Context c) const   { return c.getGlobal() == mRTGlobal; }
     Lock *getLock(FrameLib_Context c)           { return &data<kLock>(c); }
     t_object *&finalObject(FrameLib_Context c)  { return data<kFinal>(c); }
-
+    
     void setReportContextErrors(bool report)    { mReportContextErrors = report; }
     bool getReportContextErrors() const         { return mReportContextErrors; }
-
+    
     void setConnection(MaxConnection c)         { mConnection = c; }
     void setConnectionMode(ConnectionMode m)    { mConnectionMode = m; }
     MaxConnection getConnection() const         { return mConnection; }
@@ -758,7 +764,7 @@ private:
     {
         for (auto it = x->mUnresolvedContexts.begin(); it != x->mUnresolvedContexts.end(); it++)
             objectMethod(it->second, FrameLib_MaxPrivate::messageResolveContext());
-            
+        
         x->mUnresolvedContexts.clear();
     }
     
@@ -844,7 +850,7 @@ private:
     std::deque<t_object *> mQueue;
     ResolveMap mUnresolvedContexts;
     RefMap mContextRefs;
-
+    
     FrameLib_Global *mRTGlobal;
     FrameLib_Global *mNRTGlobal;
     
@@ -1298,7 +1304,7 @@ class FrameLib_MaxClass : public MaxClass_Base
         enum Error { kNone = 0x00, kVersion = 0x01, kContext = 0x02, kExtra= 0x04, kFeedback = 0x08, kDirect = 0x10 };
         
         Input(void *proxy, long index)
-        : mProxy(MaxClass_Base::toUnique(proxy))
+        : mProxy(toUnique(proxy))
         , mIndex(index)
         , mErrorTime(-1)
         , mErrorFlags(0)
@@ -1373,6 +1379,8 @@ public:
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
         
+        // Audio Only
+        
         if (T::sHandlesAudio)
         {
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::reset>(c, "reset");
@@ -1383,10 +1391,14 @@ public:
 
             dspInit(c);
             
+            // Buffer attribute
+
             CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mBuffer);
             CLASS_ATTR_BASIC(c, "buffer", 0L);
             CLASS_ATTR_LABEL(c, "buffer", 0L, "Buffer");
         }
+        
+        // Attributes
         
         CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mMaxContext.mName);
         CLASS_ATTR_ACCESSORS(c, "id", 0, &FrameLib_MaxClass<T>::idSet);
@@ -1398,6 +1410,8 @@ public:
         CLASS_ATTR_BASIC(c, "rt", 0L);
         CLASS_ATTR_LABEL(c, "rt", 0L, "Realtime");
 
+        // External Methods
+        
         addMethod(c, (method) &extPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &extConnectionAccept, "connectionaccept");
         addMethod(c, (method) &extResolveContext, FrameLib_MaxPrivate::messageResolveContext());
@@ -1877,7 +1891,7 @@ public:
             return;
         
         LockHold lock(mGlobal->getLock(getContext()));
-
+        
         resolveNRTGraph(0.0, false);
         
         // Retrieve all the audio objects in a list
@@ -2057,9 +2071,9 @@ public:
         x->mObject->clearAutoOrderingConnections();
     }
 
-    static void extReset(FrameLib_MaxClass *x, const double *samplerate, t_ptr_int maxvectorsize)
+    static void extReset(FrameLib_MaxClass *x, const double *sampleRate, t_ptr_int vecSize)
     {
-        x->mObject->reset(*samplerate, static_cast<unsigned long>(maxvectorsize));
+        x->mObject->reset(*sampleRate, static_cast<unsigned long>(vecSize));
     }
     
     static void extConnectionUpdate(FrameLib_MaxClass *x, t_ptr_int state)
@@ -2158,7 +2172,7 @@ private:
         if (mObject)
         {
             FrameLib_Context context = mGlobal->makeContext(mMaxContext);
-         
+            
             if (context != mObject->getContext())
             {
                 mGlobal->addContextToResolve(context, *this);
@@ -2166,7 +2180,7 @@ private:
             }
             
             // N.B. release because otherwise it is retained twice
-
+            
             mGlobal->releaseContext(context);
         }
     }
@@ -2178,7 +2192,7 @@ private:
         FrameLib_MaxContext maxContext = mGlobal->getMaxContext(context);
         FrameLib_Context current = getContext();
         bool mismatchedPatch = mGlobal->getMaxContext(current).mPatch != maxContext.mPatch;
-
+        
         unsigned long size = 0;
         
         if ((!force && mismatchedPatch) || current == context)
@@ -2193,7 +2207,7 @@ private:
         for (unsigned long i = 0; i < mObject->getNumIns(); i++)
             if (const double *values = mObject->getFixedInput(i, &size))
                 newObject->setFixedInput(i, values, size);
-                
+        
         if (mGlobal->isRealtime(context) || mGlobal->isRealtime(current))
             dspSetBroken();
         
@@ -2209,7 +2223,7 @@ private:
             object_attr_touch(mUserObject, gensym("rt"));
         if (idChanged)
             object_attr_touch(mUserObject, gensym("id"));
-
+        
         mObject.reset(newObject);
     }
     
@@ -2268,7 +2282,7 @@ private:
         traversePatch(FrameLib_MaxPrivate::messageResolveConnections(), &updated);
         traversePatch(FrameLib_MaxPrivate::messageConnectionUpdate(), t_ptr_int(false));
         mGlobal->setReportContextErrors(false);
-
+        
         // If updated then redo auto ordering connections
         
         if (updated)
@@ -2358,7 +2372,7 @@ private:
     MaxConnection getConnection(long index)                 { return toMaxConnection(mObject->getConnection(index)); }
     MaxConnection getOrderingConnection(long index)         { return toMaxConnection(mObject->getOrderingConnection(index)); }
     
-    long getNumOrderingConnections() const                  { return  static_cast<long>(mObject->getNumOrderingConnections()); }
+    long getNumOrderingConnections() const                  { return static_cast<long>(mObject->getNumOrderingConnections()); }
     
     static MaxConnection toMaxConnection(FLConnection c)    { return MaxConnection(toMaxObject(c.mObject), c.mIndex); }
     static FLConnection toFLConnection(MaxConnection c)     { return FLConnection(toFLObject(c.mObject), c.mIndex); }
@@ -2795,13 +2809,13 @@ private:
     
     long mProxyNum;
     ConnectionConfirmation *mConfirmation;
-
+    
     unique_object_ptr mSyncIn;
     
     t_object *mUserObject;
     
     unsigned long mSpecifiedStreams;
-
+    
     bool mConnectionsUpdated;
     bool mContextPatchConfirmed;
     bool mResolved;
@@ -2816,7 +2830,7 @@ public:
 
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_MaxClass_Expand<T>::makeClass() to create)
 
-template <class T, MaxObjectArgsMode argsSetAllInputs = kAsParams>
-using FrameLib_MaxClass_Expand = FrameLib_MaxClass<FrameLib_Expand<T>, argsSetAllInputs>;
+template <class T, MaxObjectArgsMode argsMode = kAsParams>
+using FrameLib_MaxClass_Expand = FrameLib_MaxClass<FrameLib_Expand<T>, argsMode>;
 
 #endif
