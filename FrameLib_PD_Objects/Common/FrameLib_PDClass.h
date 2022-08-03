@@ -1097,7 +1097,7 @@ public:
 
     void perform(int vec_size)
     {
-        // FIX - use alloca
+        // FIX - use alloca / revise perform and dsp
         
         // Copy Audio In
         
@@ -1379,6 +1379,8 @@ private:
             {
                 matchContext(context, true);
                 
+                // FIX - multiple issues
+                
                 if (!isRealtime())
                     resolveNRTGraph(0.0, false);
             }
@@ -1432,9 +1434,7 @@ private:
     void iterateCanvas(t_glist *gl, t_symbol *method, Args...args)
     {        
         // Call method on all objects
-        
-        // FIX - revise
-        
+                
         for (t_gobj *g = gl->gl_list; g; g = g->g_next)
         {
             if (t_object *object = pd_checkobject(&g->g_pd))
