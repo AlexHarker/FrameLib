@@ -77,7 +77,7 @@ FrameLib_MaxClass_ToMax::FrameLib_MaxClass_ToMax(t_object *x, t_symbol *s, long 
     mOutlets.resize(nStreams);
     
     for (unsigned long i = nStreams; i > 0; i--)
-        mOutlets[i - 1] = outlet_new(this, 0L);
+        mOutlets[i - 1] = outlet_new(*this, 0L);
     
     mHostProxy = static_cast<ToHostProxy *>(mProxy.get());
 }
