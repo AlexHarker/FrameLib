@@ -61,6 +61,9 @@ public:
         
         for (size_t i = 0; i < length; i++)
             writer(i + offset) = static_cast<t_sample>(input[i]);
+        
+        if (length)
+            garray_redraw(m_array);
     }
     
 private:
