@@ -915,6 +915,7 @@ public:
     , mConnectionsUpdated(false)
     , mContextPatchConfirmed(false)
     , mResolved(false)
+    , mBuffer(gensym(""))
     , mPDContext{ T::sType == ObjectType::Scheduler, mCanvas, gensym("") }
     {
         // Attributes
