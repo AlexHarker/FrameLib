@@ -2,8 +2,8 @@
 **Status and Building**
 
 - All (165 out of 165) framelib objects get built to a single library files
-- Realtime operation is supported, but non-realtime support is incomplete  
-- There are some key issues to note below 
+- Realtime operation and non-realtime operation is supported
+- There are some key issues to note below and some minor niggles to be ironed out
 
 To build you should be able to run make on this directory and then copy framelib_pd.d_fat and set it to load on startup
 
@@ -29,12 +29,13 @@ I'm not sure if there should be a VS project for windows or not.
 
 - Message ordering - If messages are sent to pd then currently the message time and stream determines the order. In Max there are further considerations to do with object position in a patch so that ordering makes sense - I'm not sure what would be idomatic in pd.
 
-- Attributes - non-realtime in Max is set by attributes. Part of the misssing support in pd is to sort these (which must be supported manually)
-- My memory is that sigmund uses an attribute-style system so I want to choose something idiomatic to pd for setting these in the box.
-
 - Multichannel buffers - my understanding is that pd buffers are mono only - buffers for framelib can be used both for reading and also for non-realtime operation, so figuring out how to support multichannel in an idomatic way would be good
 
 - Connection handling - Max has the facility both to notify objects when connection change and allow objects to refuse connections - this is used to make connections prior to dsp time and also to prevent multiple connections - I have left this out and not yet investigated if pd has something similar (it's non-essential but useful)
+
+- Attributes - non-realtime in Max is set by attributes. Part of the misssing support in pd is to sort these (which must be supported manually)
+- My memory is that sigmund uses an attribute-style system so I want to choose something idiomatic to pd for setting these in the box.
+- sigmund~ uses dashes like the command line so I've copied that for now. [REVIEW]
 
 **Review**
 
@@ -45,6 +46,7 @@ I'm not sure if there should be a VS project for windows or not.
 - Some pd correctness needs review:
     - PD-specific or custom objects (read/info/topd/frompd/contextcontrol/expressions)
     - Messages that would take ints in Max
+    - Whether garray_usedindsp should be used
     - resetting dsp when resolving connections
     
 **Documentation**
