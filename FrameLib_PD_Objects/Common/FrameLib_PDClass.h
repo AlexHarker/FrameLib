@@ -1409,6 +1409,7 @@ private:
         FrameLib_PDContext pdContext = mGlobal->getPDContext(context);
         FrameLib_Context current = getContext();
         bool mismatchedPatch = mGlobal->getPDContext(current).mCanvas != pdContext.mCanvas;
+        bool oldState = false;
         
         unsigned long size = 0;
         
@@ -1424,7 +1425,7 @@ private:
                 newObject->setFixedInput(i, values, size);
         
         if (mGlobal->isRealtime(context) || mGlobal->isRealtime(current))
-            dspSetBroken();
+            oldState = dspSuspend();
         
         mPDContext = pdContext;
         mGlobal->retainContext(context);
@@ -1434,6 +1435,8 @@ private:
         mObject.reset(newObject);
         
         mGlobal->pushToQueue(*this);
+        
+        dspResume(oldState);
     }
     
     // Private connection methods

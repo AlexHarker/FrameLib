@@ -313,6 +313,16 @@ public:
         canvas_update_dsp();
         return true;
     }
+    
+    bool dspSuspend()
+    {
+        return canvas_suspend_dsp();
+    }
+    
+    void dspResume(bool oldState)
+    {
+        canvas_resume_dsp(oldState);
+    }
 
     const t_sample *getAudioIn(unsigned long idx) { return mSigIns[idx]; }
     t_sample *getAudioOut(unsigned long idx) { return mSigOuts[idx]; }
