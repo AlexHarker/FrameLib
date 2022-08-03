@@ -2071,9 +2071,9 @@ public:
         x->mObject->clearAutoOrderingConnections();
     }
 
-    static void extReset(FrameLib_MaxClass *x, const double *samplerate, t_ptr_int maxvectorsize)
+    static void extReset(FrameLib_MaxClass *x, const double *sampleRate, t_ptr_int vecSize)
     {
-        x->mObject->reset(*samplerate, static_cast<unsigned long>(maxvectorsize));
+        x->mObject->reset(*sampleRate, static_cast<unsigned long>(vecSize));
     }
     
     static void extConnectionUpdate(FrameLib_MaxClass *x, t_ptr_int state)
