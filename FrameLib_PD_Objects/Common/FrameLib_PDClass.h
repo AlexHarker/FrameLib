@@ -73,7 +73,6 @@ struct FrameLib_PDPrivate
     static inline VersionString objectGlobal()              { return "__fl.pd_global_items"; }
     static inline VersionString objectMessageHandler()      { return "__fl.message.handler"; }
     
-    static inline const char *messageGetUserObject()        { return "__fl.get_user_object"; }
     static inline const char *messageUnwrap()               { return "__fl.unwrap"; }
     static inline const char *messageIsWrapper()            { return "__fl.is_wrapper"; }
     static inline const char *messageFindAudioObjects()     { return "__fl.find_audio_objects"; }
@@ -440,15 +439,14 @@ public:
             {
                 std::string errorText;
                 t_object *object = it->getReporter() ? it->getReporter()->getOwner<t_object>() : nullptr;
-                t_object *userObject = object ? objectMethod<t_object *>(object, FrameLib_PDPrivate::messageGetUserObject()) : nullptr;
                 
                 it->getErrorText(errorText);
                 
-                if (userObject)
+                if (object)
                 {
                     if (object == ignore)
                         continue;
-                    pd_error(userObject, "%s", errorText.c_str());
+                    pd_error(object, "%s", errorText.c_str());
                 }
                 else
                     error("%s", errorText.c_str());
@@ -773,9 +771,9 @@ class FrameLib_PDClass : public PDClass_Base
         
         Input() : Input(nullptr, 0) {}
         
-        void reportError(t_object *userObject, Error error) const
+        void reportError(t_object *object, Error error) const
         {
-            auto postError = [&](const char *str) { pd_error(userObject, "%s input %ld", str, mIndex + 1); };
+            auto postError = [&](const char *str) { pd_error(object, "%s input %ld", str, mIndex + 1); };
             
             double time = clock_getlogicaltime();
             bool validTime = mErrorTime + 500 >= time;
@@ -866,7 +864,6 @@ public:
         addMethod(c, (t_method) &extConnectionConfirm, FrameLib_PDPrivate::messageConnectionConfirm());
         addMethod(c, (t_method) &extConnectionUpdate, FrameLib_PDPrivate::messageConnectionUpdate());
         addMethod(c, (t_method) &extGetFLObject, FrameLib_PDPrivate::messageGetFrameLibObject());
-        addMethod(c, (t_method) &extGetUserObject, FrameLib_PDPrivate::messageGetUserObject());
         addMethod(c, (t_method) &extGetNumAudioIns, FrameLib_PDPrivate::messageGetNumAudioIns());
         addMethod(c, (t_method) &extGetNumAudioOuts, FrameLib_PDPrivate::messageGetNumAudioOuts());
     }
@@ -900,7 +897,6 @@ public:
     : mProxy(proxy ? proxy : new FrameLib_PDProxy(x))
     , mCanvas(canvas_getcurrent())
     , mConfirmation(nullptr)
-    , mUserObject(*this)
     , mSpecifiedStreams(1)
     , mConnectionsUpdated(false)
     , mContextPatchConfirmed(false)
@@ -1269,7 +1265,7 @@ public:
         else if (mConfirmation)
         {
             if (mConfirmation->confirm(connection, index) && mGlobal->getConnectionMode() == ConnectionMode::kDoubleCheck)
-                mInputs[index].reportError(mUserObject, Input::kExtra);
+                mInputs[index].reportError(*this, Input::kExtra);
         }
     }
     
@@ -1323,12 +1319,7 @@ public:
         *version = FrameLib_PDPrivate::version();
         return x->mObject.get();
     }
-    
-    static t_object *extGetUserObject(FrameLib_PDClass *x)
-    {
-        return x->mUserObject;
-    }
-    
+
     static void extConnectionConfirm(FrameLib_PDClass *x, unsigned long index, ConnectionMode mode)
     {
         x->makeConnection(index, mode);
@@ -1512,7 +1503,7 @@ private:
         bool mismatch = FrameLib_PDPrivate::versionMismatch(object);
 
         if (mismatch && report)
-            mInputs[inIdx].reportError(mUserObject, Input::kVersion);
+            mInputs[inIdx].reportError(*this, Input::kVersion);
             
         return mismatch;
     }
@@ -1639,16 +1630,16 @@ private:
                 break;
                 
             case ConnectionResult::FeedbackDetected:
-                mInputs[inIdx].reportError(mUserObject, Input::kFeedback);
+                mInputs[inIdx].reportError(*this, Input::kFeedback);
                 break;
                 
             case ConnectionResult::WrongContext:
                 if (mGlobal->getReportContextErrors())
-                    mInputs[inIdx].reportError(mUserObject, Input::kContext);
+                    mInputs[inIdx].reportError(*this, Input::kContext);
                 break;
                 
             case ConnectionResult::SelfConnection:
-                mInputs[inIdx].reportError(mUserObject, Input::kDirect);
+                mInputs[inIdx].reportError(*this, Input::kDirect);
                 break;
                 
             case ConnectionResult::NoOrderingSupport:
@@ -1731,7 +1722,7 @@ private:
             values.push_back(atom_getfloat(argv + idx));
 
             if (atom_gettype(argv + idx) == A_SYMBOL && !values.back())
-                pd_error(mUserObject, "string %s in entry list where value expected", atom_getsymbol_default(argv + idx)->s_name);
+                pd_error(*this, "string %s in entry list where value expected", atom_getsymbol_default(argv + idx)->s_name);
         }
         
         return idx;
@@ -1773,7 +1764,7 @@ private:
                 
                 if ((i >= argc) || isTag(argv + i))
                 {
-                    pd_error(mUserObject, "no values given for parameter %s", sym->s_name);
+                    pd_error(*this, "no values given for parameter %s", sym->s_name);
                     continue;
                 }
                 
@@ -1784,7 +1775,7 @@ private:
                     serialisedParameters.write(sym->s_name + 1, atom_getsymbol_default(argv + i++)->s_name);
                     
                     if (i < argc && !isTag(argv + i))
-                        pd_error(mUserObject, "stray items after parameter %s", sym->s_name);
+                        pd_error(*this, "stray items after parameter %s", sym->s_name);
                 }
                 else
                 {
@@ -1837,7 +1828,7 @@ private:
                 mObject->setFixedInput(inputNumber(sym), values.data(), static_cast<unsigned long>(values.size()));
                 
                 if (inputNumber(sym) >= static_cast<unsigned long>(getNumIns()))
-                    pd_error(mUserObject, "input %s out of bounds", sym->s_name);
+                    pd_error(*this, "input %s out of bounds", sym->s_name);
             }
         }
     }
@@ -1894,9 +1885,7 @@ private:
     std::vector<bool> mDirectlyConnected;
     
     ConnectionConfirmation *mConfirmation;
-    
-    t_object *mUserObject;
-    
+        
     unsigned long mSpecifiedStreams;
     
     bool mConnectionsUpdated;
