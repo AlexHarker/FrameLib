@@ -134,9 +134,7 @@ private:
     t_object *searchPatch(t_glist *gl)
     {
         // Call method on all objects
-            
-        // FIX - revise
-            
+                        
         for (t_gobj *g = gl->gl_list; g; g = g->g_next)
         {
             if (t_object *object = pd_checkobject(&g->g_pd))
