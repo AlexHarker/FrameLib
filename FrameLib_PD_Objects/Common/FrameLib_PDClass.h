@@ -77,7 +77,6 @@ struct FrameLib_PDPrivate
     static inline const char *messageUnwrap()               { return "__fl.unwrap"; }
     static inline const char *messageIsWrapper()            { return "__fl.is_wrapper"; }
     static inline const char *messageFindAudioObjects()     { return "__fl.find_audio_objects"; }
-    static inline const char *messageResolveContext()       { return "__fl.resolve_context"; }
     static inline const char *messageResolveConnections()   { return "__fl.resolve_connections"; }
     static inline const char *messageMarkUnresolved()       { return "__fl.mark_unresolved"; }
     static inline const char *messageMakeAutoOrdering()     { return "__fl.make_auto_ordering"; }
@@ -858,7 +857,6 @@ public:
         
         // External Methods
         
-        addMethod(c, (t_method) &extResolveContext, FrameLib_PDPrivate::messageResolveContext());
         addMethod(c, (t_method) &extResolveConnections, FrameLib_PDPrivate::messageResolveConnections());
         addMethod(c, (t_method) &extMarkUnresolved, FrameLib_PDPrivate::messageMarkUnresolved());
         addMethod(c, (t_method) &extMakeAutoOrdering, FrameLib_PDPrivate::messageMakeAutoOrdering());
@@ -1287,11 +1285,6 @@ public:
     static void extFindAudio(FrameLib_PDClass *x, std::vector<FrameLib_PDNRTAudio> *objects)
     {
         objects->push_back(FrameLib_PDNRTAudio{x->mObject.get(), x->mBuffer});
-    }
-    
-    static void extResolveContext(FrameLib_PDClass *x)
-    {
-        x->resolveContext();
     }
     
     static void extResolveConnections(FrameLib_PDClass *x, intptr_t *flag)
