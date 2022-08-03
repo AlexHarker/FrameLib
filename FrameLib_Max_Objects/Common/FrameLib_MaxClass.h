@@ -656,9 +656,9 @@ public:
         return object;
     }
     
-    void addContextToResolve(FrameLib_Context context, t_object *object)
+    void addContextToResolve(FrameLib_Context c, t_object *object)
     {
-        mUnresolvedContexts[context] = object;
+        mUnresolvedContexts[c] = object;
         mQelem.set();
     }
     
