@@ -982,10 +982,8 @@ public:
         flags = !flags ? (kInfoDesciption | kInfoInputs | kInfoOutputs | kInfoParameters) : flags;
         
         // Start Tag
-        
-        // FIX - user object should be used here....
-        
-        post("------------------ %s ------------------", class_getname(*getClassPointer<FrameLib_PDClass>()));
+                
+        post("------------------ %s ------------------", class_getname(*asPD()));
 
         // Description
         
