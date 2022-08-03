@@ -29,6 +29,43 @@ public:
     : mPDContext{ true, canvas_getcurrent(), gensym("") }
     , mContext(mGlobal->makeContext(mPDContext))
     {
+        long i = 0;
+        
+        // Parse attribute tags
+        
+        while (i < argc)
+        {
+            t_symbol *sym = atom_getsymbol_default(argv + i++);
+            
+            if (PDClass::isAttributeTag(sym))
+            {
+                // Check attributes are valid
+                                
+                if (!PDClass::isNamedAttributeTag(sym, "rt") && !PDClass::isNamedAttributeTag(sym, "id"))
+                {
+                    pd_error(asObject(), "unknown attribute %s", sym->s_name);
+                    continue;
+                }
+                
+                // Check for missing values
+                
+                if ((i >= argc) || PDClass::isTag(argv + i))
+                {
+                    pd_error(asObject(), "no values given for attribute %s", sym->s_name);
+                    continue;
+                }
+                
+                if (PDClass::isNamedAttributeTag(sym, "rt"))
+                    rtSet(atom_getfloat(argv + i++));
+                else if (PDClass::isNamedAttributeTag(sym, "id"))
+                    idSet(atom_getsymbol_default(argv + i++));
+               
+                if (i < argc && !PDClass::isTag(argv + i))
+                    pd_error(asObject(), "stray items after attribute %s", sym->s_name);
+            }
+            else
+                pd_error(asObject(), "additional unrecognised arguments");
+        }
     }
     
     ~FrameLib_PDClass_ContextControl()
