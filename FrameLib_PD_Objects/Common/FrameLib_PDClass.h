@@ -1434,7 +1434,10 @@ private:
         // FIX - revise
         
         for (t_gobj *g = gl->gl_list; g; g = g->g_next)
-            objectMethod<void>((t_object *) g, method, args...);
+        {
+            if (t_object *object = pd_checkobject(&g->g_pd))
+                objectMethod<void>(object, method, args...);
+        }
     }
     
     template <typename...Args>

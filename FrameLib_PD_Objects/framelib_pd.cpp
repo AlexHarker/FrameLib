@@ -139,9 +139,12 @@ private:
             
         for (t_gobj *g = gl->gl_list; g; g = g->g_next)
         {
-            FrameLib_Multistream *flObject = toFLObject((t_object *) g);
-            if (flObject && flObject->getContext() == mContext)
-                return (t_object *) g;
+            if (t_object *object = pd_checkobject(&g->g_pd))
+            {
+                FrameLib_Multistream *flObject = toFLObject(object);
+                if (flObject && flObject->getContext() == mContext)
+                    return object;
+            }
         }
         
         return nullptr;
