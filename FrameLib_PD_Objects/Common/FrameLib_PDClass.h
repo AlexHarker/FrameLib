@@ -6,6 +6,8 @@
 
 #include "g_canvas.h"
 
+#include "pd_buffer.h"
+
 #include "FrameLib_Global.h"
 #include "FrameLib_Context.h"
 #include "FrameLib_Parameters.h"
@@ -1841,24 +1843,20 @@ private:
     
     void read(t_symbol *buffer, double **outs, size_t numChans, size_t size, size_t offset)
     {
-        // FIX
-        /*
-        PDBufferAccess access(*this, buffer);
+        // FIX - multichannel for read and write?
+        
+        pd_buffer access(buffer);
         
         for (size_t i = 0; i < numChans; i++)
             access.read(outs[i], size, offset, i);
-         */
     }
     
     void write(t_symbol *buffer, const double * const *ins, size_t numChans, size_t size, size_t offset)
     {
-        // FIX
-        /*
-        PDBufferAccess access(*this, buffer);
-        
+        pd_buffer access(buffer);
+
         for (size_t i = 0; i < numChans; i++)
             access.write(ins[i], size, offset, i);
-        */
     }
 
 protected:

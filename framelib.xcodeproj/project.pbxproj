@@ -5511,9 +5511,9 @@
 			isa = PBXGroup;
 			children = (
 				B83E0296206674CD005925DD /* m_pd.h */,
+				B8D383D524B7314300E8D807 /* pd_buffer.h */,
 				B83E0297206674CD005925DD /* PDClass_Base.h */,
 				B83E0295206674CD005925DD /* FrameLib_PDClass.h */,
-				B8D383D524B7314300E8D807 /* pd_buffer.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
