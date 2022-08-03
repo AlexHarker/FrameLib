@@ -605,9 +605,6 @@ public:
     PDConnection getConnection() const          { return mConnection; }
     ConnectionMode getConnectionMode() const    { return mConnectionMode; }
         
-//    void setConnectAccept(ConnectAccept ca)     { mConnectAccept = ca; }
-//    bool checkAccept(ConnectAccept ca) const    { return mConnectAccept == ca; }
-    
 private:
     
     // Context methods
@@ -696,7 +693,6 @@ private:
     
     PDConnection mConnection;
     ConnectionMode mConnectionMode;
-    //ConnectAccept mConnectAccept;
     bool mReportContextErrors;
     
     // Member Objects / Pointers
@@ -846,10 +842,7 @@ public:
         std::string proxyClassName;
 
         if (T::sHandlesAudio)
-        {
-            //Wrapper<U>:: template makeClass<Wrapper<U>>(CLASS_BOX, className);
             internalClassName.insert(0, "unsynced.");
-        }
         
         proxyClassName.append(".proxy");
         PDClass_Base::makeClass<U>(internalClassName.c_str());
