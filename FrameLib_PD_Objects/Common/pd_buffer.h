@@ -60,7 +60,7 @@ public:
         fetch writer(m_table, m_length);
         
         for (size_t i = 0; i < length; i++)
-            writer(i) = static_cast<t_sample>(input[i]);
+            writer(i + offset) = static_cast<t_sample>(input[i]);
     }
     
 private:
