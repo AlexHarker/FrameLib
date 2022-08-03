@@ -889,10 +889,20 @@ public:
         return false;
     }
     
+    static bool isAttributeTag(t_symbol *sym)
+    {
+        return strlen(sym->s_name) > 1 && sym->s_name[0] == '-';
+    }
+    
+    static bool isNamedAttributeTag(t_symbol *sym, const char *tag)
+    {
+        return isAttributeTag(sym) && !strcmp(sym->s_name + 1, tag);
+    }
+    
     static bool isTag(t_atom *a)
     {
         t_symbol *sym = atom_getsymbol_default(a);
-        return atom_gettype(a) == A_SYMBOL && (isParameterTag(sym) || isInputTag(sym));
+        return atom_gettype(a) == A_SYMBOL && (isParameterTag(sym) || isInputTag(sym) || isAttributeTag(sym));
     }
     
     // Constructor and Destructor
@@ -907,6 +917,10 @@ public:
     , mResolved(false)
     , mPDContext{ T::sType == ObjectType::Scheduler, mCanvas, gensym("") }
     {
+        // Attributes
+        
+        parseAttributes(argc, argv);
+        
         // Stream count
         
         if (argc && getStreamCount(argv))
@@ -1839,6 +1853,52 @@ private:
         }
     }
 
+    // Attribute parsing
+    
+    void parseAttributes(long argc, t_atom *argv)
+    {
+        long i = 0;
+        
+        // Parse attribute tags
+        
+        while (i < argc)
+        {
+            t_symbol *sym = atom_getsymbol_default(argv + i++);
+        
+            if (isAttributeTag(sym))
+            {
+                // Check attributes are valid
+                
+                bool commonAttributes = isNamedAttributeTag(sym, "rt") || isNamedAttributeTag(sym, "id");
+                bool bufferAttribute = handlesAudio() && isNamedAttributeTag(sym, "buffer");
+                
+                if (!commonAttributes && !bufferAttribute)
+                {
+                    pd_error(asObject(), "unknown attribute %s", sym->s_name);
+                    continue;
+                }
+                
+                // Check for missing values
+                
+                if ((i >= argc) || isTag(argv + i))
+                {
+                    pd_error(asObject(), "no values given for attribute %s", sym->s_name);
+                    continue;
+                }
+                
+                if (isNamedAttributeTag(sym, "rt"))
+                    rtSet(atom_getfloat(argv + i++));
+                else if (isNamedAttributeTag(sym, "id"))
+                    idSet(atom_getsymbol_default(argv + i++));
+                else if (isNamedAttributeTag(sym, "buffer"))
+                    bufferSet(atom_getsymbol_default(argv + i++));
+                
+                if (i < argc && !isTag(argv + i))
+                    pd_error(asObject(), "stray items after attribute %s", sym->s_name);
+            }
+        }
+    }
+    
     // Buffer access (read and write multichannel buffers)
     
     void read(t_symbol *buffer, double **outs, size_t numChans, size_t size, size_t offset)
