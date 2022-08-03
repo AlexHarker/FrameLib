@@ -101,7 +101,8 @@ private:
             return;
         }
         
-        objectMethod<void>(object, FrameLib_PDPrivate::messageResolveContext());
+        // FIX
+        //objectMethod<void>(object, FrameLib_PDPrivate::messageResolveContext());
         
         auto replace = FrameLib_TypeAliases::makeReplaceStrings();
         

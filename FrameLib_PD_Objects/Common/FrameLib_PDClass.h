@@ -412,12 +412,11 @@ private:
         }
     };
     
-    enum RefDataItem { kKey, kCount, kLock, kFinal, kHandler, kQueuePtr };
+    enum RefDataItem { kKey, kCount, kLock, kLastResolved, kFinal, kHandler, kQueuePtr };
 
     using QueuePtr = std::unique_ptr<FrameLib_Context::ProcessingQueue>;
-    using RefData = std::tuple<FrameLib_PDContext, int, Lock, t_object *, unique_pd_ptr, QueuePtr>;
+    using RefData = std::tuple<FrameLib_PDContext, int, Lock, double, t_object *, unique_pd_ptr, QueuePtr>;
     using RefMap = std::unordered_map<FrameLib_PDContext, std::unique_ptr<RefData>, Hash>;
-    using ResolveMap = std::unordered_map<FrameLib_Context, t_object *, Hash>;
     
 public:
     
@@ -494,10 +493,9 @@ public:
     , mNRTNotifier(&mNRTGlobal)
     , mRTGlobal(nullptr)
     , mNRTGlobal(nullptr)
-    , mQelem(this, (t_method) &serviceContexts)
     {}
     
-    // Max global item methods
+    // Pd global item methods
     
     void clearQueue()                           { mQueue.clear(); }
     void pushToQueue(t_object * object)         { return mQueue.push_back(object); }
@@ -512,10 +510,14 @@ public:
         return object;
     }
     
-    void addContextToResolve(FrameLib_Context context, t_object *object)
+    bool setLastResolved(FrameLib_Context c, double time)
     {
-        mUnresolvedContexts[context] = object;
-        mQelem.set();
+        bool changed = time != data<kLastResolved>(c);
+        
+        if (changed)
+            data<kLastResolved>(c) = time;
+        
+        return changed;
     }
     
     void contextMessages(FrameLib_Context c)
@@ -548,6 +550,7 @@ public:
             
             std::get<kKey>(*item) = key;
             std::get<kCount>(*item) = 1;
+            std::get<kLastResolved>(*item) = 0;
             std::get<kFinal>(*item) = nullptr;
             std::get<kHandler>(*item) = unique_pd_ptr(createNamed<t_pd>(FrameLib_PDPrivate::objectMessageHandler()));
             std::get<kQueuePtr>(*item) = QueuePtr(new FrameLib_Context::ProcessingQueue(context));
@@ -573,14 +576,6 @@ public:
         ErrorNotifier::flush(data<kKey>(c).mRealtime ? &mRTGlobal : &mNRTGlobal);
         
         getHandler(c)->flush(proxy);
-        
-        auto it = mUnresolvedContexts.find(c);
-        
-        if (it != mUnresolvedContexts.end())
-        {
-            objectMethod(it->second, FrameLib_PDPrivate::messageResolveContext());
-            mUnresolvedContexts.erase(it);
-        }
     }
     
     void flushErrors(FrameLib_Context c, t_object *object)
@@ -608,14 +603,6 @@ public:
 private:
     
     // Context methods
-    
-    static void serviceContexts(FrameLib_PDGlobals *x)
-    {
-        for (auto it = x->mUnresolvedContexts.begin(); it != x->mUnresolvedContexts.end(); it++)
-            objectMethod(it->second, FrameLib_PDPrivate::messageResolveContext());
-        
-        x->mUnresolvedContexts.clear();
-    }
     
     template <size_t N>
     typename std::tuple_element<N, RefData>::type& data(FrameLib_Context context)
@@ -701,13 +688,10 @@ private:
     ErrorNotifier mNRTNotifier;
     
     std::deque<t_object *> mQueue;
-    ResolveMap mUnresolvedContexts;
     RefMap mContextRefs;
     
     FrameLib_Global *mRTGlobal;
     FrameLib_Global *mNRTGlobal;
-    
-    Qelem mQelem;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -1159,6 +1143,11 @@ public:
         
         if (handlesAudio())
         {
+            // Resolve this context
+            
+            if (getType() == ObjectType::Scheduler && mGlobal->setLastResolved(mObject->getContext(), clock_getlogicaltime()))
+                resolveGraph(samplingRate, vec_size, true);
+            
             addPerform<FrameLib_PDClass, &FrameLib_PDClass<T>::perform>(sp);
             mGlobal->finalObject(getContext()) = *this;
 
@@ -1198,7 +1187,6 @@ public:
             return;
         
         LockHold lock(mGlobal->getLock(getContext()));
-        
         resolveNRTGraph(0.0, false);
         
         // Retrieve all the audio objects in a list
@@ -1403,7 +1391,8 @@ private:
             
             if (context != mObject->getContext())
             {
-                mGlobal->addContextToResolve(context, *this);
+                // FIX
+                //mGlobal->addContextToResolve(context, *this);
                 matchContext(context, true);
             }
             
@@ -1427,9 +1416,7 @@ private:
             return;
         
         mResolved = false;
-        
-        mGlobal->pushToQueue(*this);
-        
+                
         T *newObject = new T(context, mObject->getSerialised(), mProxy.get(), mSpecifiedStreams);
         
         for (unsigned long i = 0; i < mObject->getNumIns(); i++)
@@ -1445,6 +1432,8 @@ private:
         mGlobal->flushErrors(context, *this);
         
         mObject.reset(newObject);
+        
+        mGlobal->pushToQueue(*this);
     }
     
     // Private connection methods
@@ -1475,10 +1464,12 @@ private:
             objectMethod<void>(object, theMethodName, args...);
     }
     
-    bool resolveGraph(bool markUnresolved, bool forceRealtime = false)
+    void resolveGraph(double sampleRate, intptr_t vecSize, bool force)
     {
-        if (!forceRealtime && isRealtime() && dspIsRunning())
-            return false;
+        //bool markUnresolved = isRealtime();
+        
+        if (!force && isRealtime() && dspIsRunning())
+            return;
         
         intptr_t updated = false;
         
@@ -1496,29 +1487,16 @@ private:
             traversePatch(FrameLib_PDPrivate::messageMakeAutoOrdering());
         }
         
-        if (markUnresolved)
-            traversePatch(FrameLib_PDPrivate::messageMarkUnresolved());
-        
-        return updated;
+        //if (markUnresolved)
+        //    traversePatch(FrameLib_PDPrivate::messageMarkUnresolved());
+                    
+        if (updated || force)
+            traversePatch(FrameLib_PDPrivate::messageReset(), &sampleRate, vecSize);
     }
     
     void resolveNRTGraph(double sampleRate, bool forceReset)
     {
-        bool updated = resolveGraph(false);
-        
-        if (updated || forceReset)
-            traversePatch(FrameLib_PDPrivate::messageReset(), &sampleRate, static_cast<intptr_t>(maxBlockSize()));
-    }
-    
-    void resolveContext()
-    {
-        if (isRealtime())
-            resolveGraph(true);
-        else
-        {
-            LockHold lock(mGlobal->getLock(getContext()));
-            resolveNRTGraph(0.0, false);
-        }
+        resolveGraph(0.0, static_cast<intptr_t>(maxBlockSize()), forceReset);
     }
     
     // Convert from framelib object to max object and vice versa
