@@ -1061,7 +1061,7 @@ public:
                     }
                     if (type == FrameLib_Parameters::Type::Enum)
                         for (unsigned long j = 0; j <= static_cast<unsigned long>(params->getMax(i)); j++)
-                            post("   [%ld] - %s", j, params->getItemString(i, j));
+                            post("  [%ld] - %s", j, params->getItemString(i, j));
                     else if (type == FrameLib_Parameters::Type::Array)
                         post("- Array Size: %ld", params->getArraySize(i));
                     else if (type == FrameLib_Parameters::Type::VariableArray)
