@@ -161,7 +161,7 @@ class FrameLib_PDClass_ToPD : public FrameLib_PDClass_Expand<FrameLib_ToHost>
     struct ToHostProxy : public FrameLib_ToHost::Proxy, public FrameLib_PDMessageProxy
     {
         ToHostProxy(FrameLib_PDClass_ToPD *object)
-        : FrameLib_PDMessageProxy(*object)
+        : FrameLib_PDMessageProxy(object->asObject())
         , mObject(object)
         {}
         
@@ -207,7 +207,7 @@ public:
         mOutlets.resize(nStreams);
         
         for (unsigned long i = 0; i < nStreams; i++)
-            mOutlets[i] = outlet_new(*this, 0L);
+            mOutlets[i] = outlet_new(asObject(), 0L);
         
         mHostProxy = static_cast<ToHostProxy *>(mProxy.get());
     }

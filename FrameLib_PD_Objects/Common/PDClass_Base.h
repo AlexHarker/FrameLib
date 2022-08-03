@@ -32,8 +32,7 @@ public:
     //using def_int = DefaultArg<t_atom_long>;
     using t_deffloatarg = DefaultArg<t_floatarg>;
     
-    
-    // Unique pointers to t_objects
+    // Unique pointers to t_pds
     
     using unique_pd_ptr = std::unique_ptr<t_pd, ObjectFree>;
     static unique_pd_ptr toUnique(t_pd *ptr) { return unique_pd_ptr(ptr); }
@@ -230,7 +229,7 @@ public:
     
     // Get a class pointer from an object
     
-    static t_class *objectName(t_pd *pd)
+    static t_class *objectClass(t_pd *pd)
     {
         return *pd;
     }
@@ -292,12 +291,12 @@ public:
         // Create signal inlets
         
         for (unsigned long i = 0; numSigIns && i < (numSigIns - 1); i++)
-            signalinlet_new(*this, 0.0);
+            signalinlet_new(asObject(), 0.0);
         
         // Create signal outlets
         
         for (unsigned long i = 0; i < numSigOuts; i++)
-            outlet_new(*this, gensym("signal"));
+            outlet_new(asObject(), gensym("signal"));
     }
     
     bool dspIsRunning()
@@ -327,14 +326,13 @@ public:
     const t_sample *getAudioIn(unsigned long idx) { return mSigIns[idx]; }
     t_sample *getAudioOut(unsigned long idx) { return mSigOuts[idx]; }
     
-    // Allows type conversion to a t_object
+    // Allow coversion to the t_object pointer
     
-    operator t_object&() { return mObject; }
+    t_object *asObject() { return &mObject; }
     
-    // Allows type conversion to a t_object or t_pd pointer
+    // Allows type conversion to a t_pd pointer
     
-    operator t_object* () { return reinterpret_cast<t_object *>(this); }
-    operator t_pd* () { return &this->mObject.te_g.g_pd; }
+    t_pd *asPD() { return &this->mObject.te_g.g_pd; }
     
 private:
     

@@ -643,15 +643,15 @@ private:
         
         // See if an object is already registered (and either free the new object or bind it...)
         
-        FrameLib_PDGlobals *x = (FrameLib_PDGlobals *) pd_findbyclass(pdGlobalTag, objectName(*y));
+        FrameLib_PDGlobals *x = (FrameLib_PDGlobals *) pd_findbyclass(pdGlobalTag, objectClass(y->asPD()));
         
         if (!x)
         {
             x = y;
-            pd_bind(*x, pdGlobalTag);
+            pd_bind(x->asPD(), pdGlobalTag);
         }
         else
-            pd_free(*y);
+            pd_free(y->asPD());
         
         FrameLib_Global::get(&x->mRTGlobal, priorities(true), &x->mRTNotifier);
         FrameLib_Global::get(&x->mNRTGlobal, priorities(false), &x->mNRTNotifier);
@@ -668,8 +668,8 @@ private:
         {
             assert(!mNRTGlobal && "Reference counting error");
             
-            pd_unbind(*this, FrameLib_PDPrivate::globalTag());
-            pd_free(*this);
+            pd_unbind(asPD(), FrameLib_PDPrivate::globalTag());
+            pd_free(asPD());
         }
     }
     
@@ -762,18 +762,19 @@ class FrameLib_PDClass : public PDClass_Base
         
         enum Error { kNone = 0x00, kVersion = 0x01, kContext = 0x02, kExtra= 0x04, kFeedback = 0x08, kDirect = 0x10 };
         
-        Input(t_pd *proxy, long index)
+        Input(t_pd *proxy, t_object *owner, long index)
         : mProxy(toUnique(proxy))
+        , mOwner(owner)
         , mIndex(index)
         , mErrorTime(-1)
         , mErrorFlags(0)
         {}
         
-        Input() : Input(nullptr, 0) {}
+        Input() : Input(nullptr, nullptr, 0) {}
         
-        void reportError(t_object *object, Error error) const
+        void reportError(Error error) const
         {
-            auto postError = [&](const char *str) { pd_error(object, "%s input %ld", str, mIndex + 1); };
+            auto postError = [&](const char *str) { pd_error(mOwner, "%s input %ld", str, mIndex + 1); };
             
             double time = clock_getlogicaltime();
             bool validTime = mErrorTime + 500 >= time;
@@ -805,6 +806,7 @@ class FrameLib_PDClass : public PDClass_Base
     private:
         
         unique_pd_ptr mProxy;
+        t_object *mOwner;
         long mIndex;
         mutable long mErrorTime;
         mutable long mErrorFlags;
@@ -935,17 +937,17 @@ public:
             if (i || handlesAudio())
             {
                 t_pd *proxy = PDProxy::create(this, (int) (getNumAudioIns() + i));
-                inlet_new(*this, proxy, gensym("frame"), gensym("frame"));
-                mInputs[i] = Input(proxy, i);
+                inlet_new(asObject(), proxy, gensym("frame"), gensym("frame"));
+                mInputs[i] = Input(proxy, asObject(), i);
             }
             else
-                mInputs[i] = Input(nullptr, i);
+                mInputs[i] = Input(nullptr, asObject(), i);
         }
         
         // Create frame outlets
         
         for (unsigned long i = 0; i < getNumOuts(); i++)
-            mOutputs[i] = outlet_new(*this, gensym("frame"));
+            mOutputs[i] = outlet_new(asObject(), gensym("frame"));
     }
 
     ~FrameLib_PDClass()
@@ -1111,7 +1113,7 @@ public:
             for (int j = 0; j < vec_size; j++)
                 getAudioOut(i + 1)[j] = mSigOuts[i][j];
         
-        mGlobal->contextMessages(getContext(), *this);
+        mGlobal->contextMessages(getContext(), asObject());
     }
     
     void dsp(t_signal **sp)
@@ -1143,7 +1145,7 @@ public:
                 resolveGraph(samplingRate, vec_size, true);
             
             addPerform<FrameLib_PDClass, &FrameLib_PDClass<T>::perform>(sp);
-            mGlobal->finalObject(getContext()) = *this;
+            mGlobal->finalObject(getContext()) = asObject();
 
             mTemp.resize(vec_size * (getNumAudioIns() + getNumAudioOuts() -2));
             mSigIns.resize(getNumAudioIns() - 1);
@@ -1265,7 +1267,7 @@ public:
         else if (mConfirmation)
         {
             if (mConfirmation->confirm(connection, index) && mGlobal->getConnectionMode() == ConnectionMode::kDoubleCheck)
-                mInputs[index].reportError(*this, Input::kExtra);
+                mInputs[index].reportError(Input::kExtra);
         }
     }
     
@@ -1414,11 +1416,11 @@ private:
         mPDContext = pdContext;
         mGlobal->retainContext(context);
         mGlobal->releaseContext(current);
-        mGlobal->flushErrors(context, *this);
+        mGlobal->flushErrors(context, asObject());
         
         mObject.reset(newObject);
         
-        mGlobal->pushToQueue(*this);
+        mGlobal->pushToQueue(asObject());
         
         dspResume(oldState);
     }
@@ -1503,7 +1505,7 @@ private:
         bool mismatch = FrameLib_PDPrivate::versionMismatch(object);
 
         if (mismatch && report)
-            mInputs[inIdx].reportError(*this, Input::kVersion);
+            mInputs[inIdx].reportError(Input::kVersion);
             
         return mismatch;
     }
@@ -1580,7 +1582,7 @@ private:
 
     void makeConnection(unsigned long index, ConnectionMode mode)
     {
-        mGlobal->setConnection(PDConnection(*this, index));
+        mGlobal->setConnection(PDConnection(asObject(), index));
         mGlobal->setConnectionMode(mode);
         outlet_anything(mOutputs[index], gensym("frame"), 0, nullptr);
         mGlobal->setConnection(PDConnection());
@@ -1630,16 +1632,16 @@ private:
                 break;
                 
             case ConnectionResult::FeedbackDetected:
-                mInputs[inIdx].reportError(*this, Input::kFeedback);
+                mInputs[inIdx].reportError(Input::kFeedback);
                 break;
                 
             case ConnectionResult::WrongContext:
                 if (mGlobal->getReportContextErrors())
-                    mInputs[inIdx].reportError(*this, Input::kContext);
+                    mInputs[inIdx].reportError(Input::kContext);
                 break;
                 
             case ConnectionResult::SelfConnection:
-                mInputs[inIdx].reportError(*this, Input::kDirect);
+                mInputs[inIdx].reportError(Input::kDirect);
                 break;
                 
             case ConnectionResult::NoOrderingSupport:
@@ -1722,7 +1724,7 @@ private:
             values.push_back(atom_getfloat(argv + idx));
 
             if (atom_gettype(argv + idx) == A_SYMBOL && !values.back())
-                pd_error(*this, "string %s in entry list where value expected", atom_getsymbol_default(argv + idx)->s_name);
+                pd_error(asObject(), "string %s in entry list where value expected", atom_getsymbol_default(argv + idx)->s_name);
         }
         
         return idx;
@@ -1764,7 +1766,7 @@ private:
                 
                 if ((i >= argc) || isTag(argv + i))
                 {
-                    pd_error(*this, "no values given for parameter %s", sym->s_name);
+                    pd_error(asObject(), "no values given for parameter %s", sym->s_name);
                     continue;
                 }
                 
@@ -1775,7 +1777,7 @@ private:
                     serialisedParameters.write(sym->s_name + 1, atom_getsymbol_default(argv + i++)->s_name);
                     
                     if (i < argc && !isTag(argv + i))
-                        pd_error(*this, "stray items after parameter %s", sym->s_name);
+                        pd_error(asObject(), "stray items after parameter %s", sym->s_name);
                 }
                 else
                 {
@@ -1828,7 +1830,7 @@ private:
                 mObject->setFixedInput(inputNumber(sym), values.data(), static_cast<unsigned long>(values.size()));
                 
                 if (inputNumber(sym) >= static_cast<unsigned long>(getNumIns()))
-                    pd_error(*this, "input %s out of bounds", sym->s_name);
+                    pd_error(asObject(), "input %s out of bounds", sym->s_name);
             }
         }
     }
