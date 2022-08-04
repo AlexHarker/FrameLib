@@ -1487,9 +1487,7 @@ private:
     }
     
     void resolveGraph(double sampleRate, intptr_t vecSize, bool force)
-    {
-        //bool markUnresolved = isRealtime();
-        
+    {        
         if (!force && isRealtime() && dspIsRunning())
             return;
         
@@ -1510,10 +1508,7 @@ private:
             traversePatch(FrameLib_PDPrivate::messageClearAutoOrdering());
             traversePatch(FrameLib_PDPrivate::messageMakeAutoOrdering());
         }
-        
-        //if (markUnresolved)
-        //    traversePatch(FrameLib_PDPrivate::messageMarkUnresolved());
-                    
+          
         if (updated || force)
             traversePatch(FrameLib_PDPrivate::messageReset(), &sampleRate, vecSize);
         
