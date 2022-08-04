@@ -854,9 +854,6 @@ public:
         std::string internalClassName = className;
         std::string proxyClassName = className;
 
-        if (T::sHandlesAudio)
-            internalClassName.insert(0, "unsynced.");
-        
         proxyClassName.append(".proxy");
         PDClass_Base::makeClass<U>(internalClassName.c_str());
         PDClass_Base::makeClass<PDProxy>(proxyClassName.c_str(), CLASS_PD);
