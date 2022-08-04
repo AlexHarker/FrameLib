@@ -78,7 +78,6 @@ struct FrameLib_PDPrivate
     static inline const char *messageMakeAutoOrdering()     { return "__fl.make_auto_ordering"; }
     static inline const char *messageClearAutoOrdering()    { return "__fl.clear_auto_ordering"; }
     static inline const char *messageReset()                { return "__fl.reset"; }
-    static inline const char *messageIsDirectlyConnected()  { return "__fl.is_directly_connected"; }
     static inline const char *messageConnectionConfirm()    { return "__fl.connection_confirm"; }
     static inline const char *messageConnectionUpdate()     { return "__fl.connection_update"; }
     static inline const char *messageGetFrameLibObject()    { return "__fl.get_framelib_object"; }
@@ -884,7 +883,6 @@ public:
         addMethod(c, (t_method) &extMakeAutoOrdering, FrameLib_PDPrivate::messageMakeAutoOrdering());
         addMethod(c, (t_method) &extClearAutoOrdering, FrameLib_PDPrivate::messageClearAutoOrdering());
         addMethod(c, (t_method) &extReset, FrameLib_PDPrivate::messageReset());
-        addMethod(c, (t_method) &extIsDirectlyConnected, FrameLib_PDPrivate::messageIsDirectlyConnected());
         addMethod(c, (t_method) &extConnectionConfirm, FrameLib_PDPrivate::messageConnectionConfirm());
         addMethod(c, (t_method) &extConnectionUpdate, FrameLib_PDPrivate::messageConnectionUpdate());
         addMethod(c, (t_method) &extGetFLObject, FrameLib_PDPrivate::messageGetFrameLibObject());
@@ -961,7 +959,6 @@ public:
 
         mInputs.resize(numIns);
         mOutputs.resize(getNumOuts());
-        mDirectlyConnected.resize(getNumIns(), false);
         
         // Create signal inlets + signal outlets
         
@@ -1371,11 +1368,6 @@ public:
     static void extConnectionConfirm(FrameLib_PDClass *x, unsigned long index, ConnectionMode mode)
     {
         x->makeConnection(index, mode);
-    }
-    
-    static intptr_t extIsDirectlyConnected(FrameLib_PDClass *x, unsigned long index)
-    {
-        return (intptr_t) x->mDirectlyConnected[index];
     }
     
     // id attribute
@@ -1956,9 +1948,7 @@ private:
     std::vector<double> mTemp;
     
     t_glist *mCanvas;
-    
-    std::vector<bool> mDirectlyConnected;
-    
+        
     ConnectionConfirmation *mConfirmation;
         
     unsigned long mSpecifiedStreams;
