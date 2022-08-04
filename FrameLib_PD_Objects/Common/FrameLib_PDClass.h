@@ -88,8 +88,6 @@ struct FrameLib_PDPrivate
     static inline const char *messageConnectionConfirm()    { return "__fl.connection_confirm"; }
     static inline const char *messageConnectionUpdate()     { return "__fl.connection_update"; }
     static inline const char *messageGetFrameLibObject()    { return "__fl.get_framelib_object"; }
-    static inline const char *messageGetNumAudioIns()       { return "__fl.get_num_audio_ins"; }
-    static inline const char *messageGetNumAudioOuts()      { return "__fl.get_num_audio_outs"; }
     
     static FrameLib_Multistream *toFrameLibObject(t_object *object, uint64_t& versionCheck)
     {
@@ -899,8 +897,6 @@ public:
         addMethod(c, (t_method) &extConnectionConfirm, FrameLib_PDPrivate::messageConnectionConfirm());
         addMethod(c, (t_method) &extConnectionUpdate, FrameLib_PDPrivate::messageConnectionUpdate());
         addMethod(c, (t_method) &extGetFLObject, FrameLib_PDPrivate::messageGetFrameLibObject());
-        addMethod(c, (t_method) &extGetNumAudioIns, FrameLib_PDPrivate::messageGetNumAudioIns());
-        addMethod(c, (t_method) &extGetNumAudioOuts, FrameLib_PDPrivate::messageGetNumAudioOuts());
     }
 
     // Tag checks
@@ -1383,16 +1379,6 @@ public:
         return (intptr_t) x->mDirectlyConnected[index];
     }
     
-    static intptr_t extGetNumAudioIns(FrameLib_PDClass *x)
-    {
-        return x->getNumAudioIns();
-    }
-    
-    static intptr_t extGetNumAudioOuts(FrameLib_PDClass *x)
-    {
-        return x->getNumAudioOuts();
-    }
-    
     // id attribute
         
     void idSet(t_symbol *name)
@@ -1568,20 +1554,6 @@ private:
             mInputs[inIdx].reportError(Input::kVersion);
             
         return mismatch;
-    }
-    
-    // Get the number of audio ins/outs safely from a generic pointer
-    
-    static long getNumAudioIns(t_object *x)
-    {
-        intptr_t numAudioIns = objectMethod<intptr_t>(x, FrameLib_PDPrivate::messageGetNumAudioIns());
-        return static_cast<long>(numAudioIns);
-    }
-
-    static long getNumAudioOuts(t_object *x)
-    {
-        intptr_t numAudioOuts = objectMethod<intptr_t>(x, FrameLib_PDPrivate::messageGetNumAudioOuts());
-        return static_cast<long>(numAudioOuts);
     }
     
     // Helpers for connection methods
