@@ -612,8 +612,6 @@ public:
         }
         else
         {
-            post("end resolve %ld", mDSPDefer == kNeedResume);
-            
             if (mDSPDefer == kNeedResume)
                 dspResume(true);
             
@@ -1434,9 +1432,7 @@ private:
                     mGlobal->dspDeferResume(true);
                 
                 matchContext(context, true);
-                
-                // FIX - multiple issues
-                
+                                
                 if (!isRealtime())
                     resolveNRTGraph(0.0, false);
             }
