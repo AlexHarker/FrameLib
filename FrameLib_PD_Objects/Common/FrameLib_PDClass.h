@@ -858,6 +858,7 @@ public:
     {
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::info>(c, "info");
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::frame>(c, "signal");
+        addMethod<FrameLib_PDClass, &FrameLib_PDClass::anything>(c, "anything");
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::dsp>(c);
         
         // Attributes
@@ -1316,6 +1317,12 @@ public:
         }
     }
 
+    void anything(t_symbol *s, long ac, t_atom *av)
+    {
+        if (s)
+            pd_error(asPD(), "%s: no method for '%s'", class_getname(*asPD()), s->s_name);
+    }
+    
     // External methods (A_CANT)
     
     static void extFindAudio(FrameLib_PDClass *x, std::vector<FrameLib_PDNRTAudio> *objects)
@@ -1487,7 +1494,7 @@ private:
     }
     
     void resolveGraph(double sampleRate, intptr_t vecSize, bool force)
-    {        
+    {
         if (!force && isRealtime() && dspIsRunning())
             return;
         
