@@ -1134,8 +1134,6 @@ public:
 
     void perform(int vec_size)
     {
-        // FIX - use alloca?
-        
         if (handlesAudio() && isRealtime())
         {
             // Copy Audio In
