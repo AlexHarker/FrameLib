@@ -412,6 +412,7 @@ private:
         }
     };
     
+    enum DSPDeferMode { kOff, kDefer, kNeedResume };
     enum RefDataItem { kKey, kCount, kLock, kLastResolved, kFinal, kHandler, kQueuePtr };
 
     using QueuePtr = std::unique_ptr<FrameLib_Context::ProcessingQueue>;
@@ -490,6 +491,7 @@ public:
     : mReportContextErrors(false)
     , mRTNotifier(&mRTGlobal)
     , mNRTNotifier(&mNRTGlobal)
+    , mDSPDefer(kOff)
     , mRTGlobal(nullptr)
     , mNRTGlobal(nullptr)
     {}
@@ -599,6 +601,34 @@ public:
     PDConnection getConnection() const          { return mConnection; }
     ConnectionMode getConnectionMode() const    { return mConnectionMode; }
         
+    // DSP Resume (allows deferal when resolving contexts)
+    
+    void dspDeferResume(bool state)
+    {
+        if (state)
+        {
+            if (mDSPDefer == kOff)
+                mDSPDefer = kDefer;
+        }
+        else
+        {
+            post("end resolve %ld", mDSPDefer == kNeedResume);
+            
+            if (mDSPDefer == kNeedResume)
+                dspResume(true);
+            
+            mDSPDefer = kOff;
+        }
+    }
+    
+    void dspResumeRequest(bool oldState)
+    {
+        if (oldState && mDSPDefer != kOff)
+            mDSPDefer = kNeedResume;
+        else
+            dspResume(oldState);
+    }
+                                                       
 private:
     
     // Context methods
@@ -688,6 +718,8 @@ private:
     
     std::deque<t_object *> mQueue;
     RefMap mContextRefs;
+    
+    DSPDeferMode mDSPDefer;
     
     FrameLib_Global *mRTGlobal;
     FrameLib_Global *mNRTGlobal;
@@ -1398,6 +1430,9 @@ private:
             
             if (context != mObject->getContext())
             {
+                if (!mGlobal->isRealtime(context))
+                    mGlobal->dspDeferResume(true);
+                
                 matchContext(context, true);
                 
                 // FIX - multiple issues
@@ -1446,7 +1481,7 @@ private:
         
         mGlobal->pushToQueue(asObject());
         
-        dspResume(oldState);
+        mGlobal->dspResumeRequest(oldState);
     }
     
     // Private connection methods
@@ -1487,6 +1522,8 @@ private:
         
         intptr_t updated = false;
         
+        mGlobal->dspDeferResume(true);
+        
         mGlobal->setReportContextErrors(true);
         traversePatch(FrameLib_PDPrivate::messageMarkUnresolved());
         traversePatch(FrameLib_PDPrivate::messageResolveConnections(), &updated);
@@ -1506,6 +1543,8 @@ private:
                     
         if (updated || force)
             traversePatch(FrameLib_PDPrivate::messageReset(), &sampleRate, vecSize);
+        
+        mGlobal->dspDeferResume(false);
     }
     
     void resolveNRTGraph(double sampleRate, bool forceReset)
