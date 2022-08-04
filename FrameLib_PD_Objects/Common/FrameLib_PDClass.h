@@ -976,7 +976,6 @@ public:
 
         for (long i = 0; i < numIns; i++)
         {
-            post("create in %ld", i);
             if (i || getNumAudioIns())
             {
                 t_pd *proxy = PDInputProxy::create(this, i);
