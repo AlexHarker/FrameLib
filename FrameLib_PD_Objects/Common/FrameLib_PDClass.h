@@ -384,7 +384,6 @@ public:
     enum ConnectionMode : intptr_t { kConnect, kConfirm, kDoubleCheck };
 
     using PDConnection = FrameLib_Connection<t_object, long>;
-    //using ConnectAccept = FrameLib_MaxConnectAccept;
     using Lock = FrameLib_Lock;
 
 private:
