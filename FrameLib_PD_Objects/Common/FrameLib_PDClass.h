@@ -861,7 +861,7 @@ public:
         
         proxyClassName.append(".proxy");
         PDClass_Base::makeClass<U>(internalClassName.c_str());
-        PDClass_Base::makeClass<PDProxy>(proxyClassName.c_str());
+        PDClass_Base::makeClass<PDProxy>(proxyClassName.c_str(), CLASS_PD);
     }
     
     static void classInit(t_class *c, const char *classname)
