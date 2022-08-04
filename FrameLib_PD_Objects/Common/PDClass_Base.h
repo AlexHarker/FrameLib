@@ -325,9 +325,10 @@ public:
     
     // Use if you need to create signal inlets external to the dspSetup method (to attach proxies etc.)
     
-    void dspInsResize(size_t numSigIns)
+    void dspResize(size_t numSigIns, size_t numSigOuts)
     {
         mSigIns.resize(std::max(numSigIns, mSigIns.size()));
+        mSigOuts.resize(std::max(numSigOuts, mSigOuts.size()));
     }
 
     const t_sample *getAudioIn(unsigned long idx) { return mSigIns[idx]; }
