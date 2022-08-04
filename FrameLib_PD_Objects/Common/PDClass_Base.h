@@ -283,19 +283,19 @@ public:
     
     static void dspInit(t_class *c) { class_addmethod(c, nullfn, gensym("signal"), A_NULL); }
     
-    void dspSetup(unsigned long numSigIns, unsigned long numSigOuts)
+    void dspSetup(size_t numSigIns, size_t numSigOuts)
     {
         mSigIns.resize(numSigIns);
         mSigOuts.resize(numSigOuts);
         
         // Create signal inlets
         
-        for (unsigned long i = 0; numSigIns && i < (numSigIns - 1); i++)
+        for (size_t i = 0; numSigIns && i < (numSigIns - 1); i++)
             signalinlet_new(asObject(), 0.0);
         
         // Create signal outlets
         
-        for (unsigned long i = 0; i < numSigOuts; i++)
+        for (size_t i = 0; i < numSigOuts; i++)
             outlet_new(asObject(), gensym("signal"));
     }
     
@@ -321,6 +321,13 @@ public:
     void dspResume(bool oldState)
     {
         canvas_resume_dsp(oldState);
+    }
+    
+    // Use if you need to create signal inlets external to the dspSetup method (to attach proxies etc.)
+    
+    void dspInsResize(size_t numSigIns)
+    {
+        mSigIns.resize(std::max(numSigIns, mSigIns.size()));
     }
 
     const t_sample *getAudioIn(unsigned long idx) { return mSigIns[idx]; }
