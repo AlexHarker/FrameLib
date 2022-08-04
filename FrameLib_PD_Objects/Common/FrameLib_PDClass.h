@@ -734,7 +734,7 @@ class FrameLib_PDClass : public PDClass_Base
         
     struct PDInputProxy : public PDClass_Base
     {
-        static t_pd *create(FrameLib_PDClass *owner, int index)
+        static t_pd *create(FrameLib_PDClass *owner, long index)
         {
             t_pd *proxy = pd_new(*PDInputProxy::getClassPointer<PDInputProxy>());
             
@@ -746,8 +746,6 @@ class FrameLib_PDClass : public PDClass_Base
         
         static void classInit(t_class *c, const char *classname)
         {
-            dspInit(c);
-            
             addMethod<PDInputProxy, &PDInputProxy::anything>(c, "anything");
         }
         
@@ -755,10 +753,8 @@ class FrameLib_PDClass : public PDClass_Base
         
         void anything(t_symbol *s, long ac, t_atom *av)
         {
-            if (!s)
-                mOwner->frameInlet(mIndex);
+            mOwner->frameInlet(mIndex);
         }
-        
         
         void frame()
         {
@@ -767,7 +763,7 @@ class FrameLib_PDClass : public PDClass_Base
         }
         
         FrameLib_PDClass *mOwner;
-        int mIndex;
+        long mIndex;
     };
     
     struct ConnectionConfirmation
@@ -980,9 +976,10 @@ public:
 
         for (long i = 0; i < numIns; i++)
         {
+            post("create in %ld", i);
             if (i || getNumAudioIns())
             {
-                t_pd *proxy = PDInputProxy::create(this, (int) (getNumAudioIns() + i));
+                t_pd *proxy = PDInputProxy::create(this, i);
                 inlet_new(asObject(), proxy, gensym("signal"), gensym("signal"));
                 mInputs[i] = Input(proxy, asObject(), i);
             }
