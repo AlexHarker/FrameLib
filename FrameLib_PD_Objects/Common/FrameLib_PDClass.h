@@ -376,7 +376,6 @@ public:
     enum ConnectionMode : intptr_t { kConnect, kConfirm, kDoubleCheck };
 
     using PDConnection = FrameLib_Connection<t_object, long>;
-    using Lock = FrameLib_Lock;
 
 private:
     
@@ -405,10 +404,10 @@ private:
     };
     
     enum DSPDeferMode { kOff, kDefer, kNeedResume };
-    enum RefDataItem { kKey, kCount, kLock, kLastResolved, kFinal, kHandler, kQueuePtr };
+    enum RefDataItem { kKey, kCount, kLastResolved, kFinal, kHandler, kQueuePtr };
 
     using QueuePtr = std::unique_ptr<FrameLib_Context::ProcessingQueue>;
-    using RefData = std::tuple<FrameLib_PDContext, int, Lock, double, t_object *, unique_pd_ptr, QueuePtr>;
+    using RefData = std::tuple<FrameLib_PDContext, int, double, t_object *, unique_pd_ptr, QueuePtr>;
     using RefMap = std::unordered_map<FrameLib_PDContext, std::unique_ptr<RefData>, Hash>;
     
 public:
@@ -582,7 +581,6 @@ public:
     }
     
     bool isRealtime(FrameLib_Context c) const   { return c.getGlobal() == mRTGlobal; }
-    Lock *getLock(FrameLib_Context c)           { return &data<kLock>(c); }
     t_object *&finalObject(FrameLib_Context c)  { return data<kFinal>(c); }
     
     void setReportContextErrors(bool report)    { mReportContextErrors = report; }
@@ -728,7 +726,6 @@ class FrameLib_PDClass : public PDClass_Base
     using FLObject = FrameLib_Multistream;
     using FLConnection = FrameLib_Object<FLObject>::Connection;
     using PDConnection = FrameLib_PDGlobals::PDConnection;
-    using LockHold = FrameLib_LockHolder;
     using NumericType = FrameLib_Parameters::NumericType;
     using ClipMode = FrameLib_Parameters::ClipMode;
         
@@ -1221,10 +1218,7 @@ public:
     void reset(t_deffloatarg sampleRate = 0.0)
     {
         if (!isRealtime())
-        {
-            LockHold lock(mGlobal->getLock(getContext()));
             resolveNRTGraph(sampleRate > 0.0 ? sampleRate.mValue : sys_getsr(), true);
-        }
     }
     
     void process(t_floatarg length)
@@ -1235,7 +1229,6 @@ public:
         if (!updateLength || isRealtime())
             return;
         
-        LockHold lock(mGlobal->getLock(getContext()));
         resolveNRTGraph(0.0, false);
         
         // Retrieve all the audio objects in a list
