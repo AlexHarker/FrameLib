@@ -755,7 +755,6 @@ class FrameLib_PDClass : public PDClass_Base
         
         void frame()
         {
-            post("frame");
             mOwner->frameInlet(mIndex);
         }
         
