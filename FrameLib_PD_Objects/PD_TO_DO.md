@@ -3,7 +3,7 @@
 
 - All (165 out of 165) framelib objects get built to a single library files
 - Realtime operation and non-realtime operation is supported
-- There are some key issues to note below and some minor niggles to be ironed out
+- There are some key issues to note below which I'm working through
 
 To build you should be able to run make on this directory and then copy framelib_pd.d_fat and set it to load on startup
 
@@ -13,7 +13,6 @@ I'm not sure if there should be a VS project for windows or not.
 **Testing**
 
 - I've started a test folder at Testing/02\_PD with a couple of simple demos
-- Note that the first outlet and inlet of unsynced objects are the sync IO (these will likely dissapear soon)
 
 **Key Issues**
 
@@ -23,7 +22,7 @@ I'm not sure if there should be a VS project for windows or not.
 - At the moment in pd you get "unsynced" objects and must make these connections manually
 - Miller suggesting making all outputs signal outputs, which would work but isn't nice and is wasteful 
 - My next step is to try to understand d_ugen.c to understand how the dsp graph is built and if there is a better way
-- Having looked at this there doesn't appear to be any way other than using signal IO for everything so I've started that [REVIEW]
+- Having looked at this there doesn't appear to be any way other than using signal IO for everything so I've implemented that [REVIEW]
 
 - Subpatches - my understanding is that pd processes the audio in subpatchers in one go (Max does not) which makes ordering an issue (as above)
 - At the moment you can't connect framelib objects between different subpatchers
