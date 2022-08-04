@@ -1152,7 +1152,7 @@ public:
         
             // Zero frame outputs
             
-            for (int i = getNumAudioOuts(); i < getNumAudioOuts() + getNumOuts(); i++)
+            for (long i = getNumAudioOuts(); i < getNumAudioOuts() + getNumOuts(); i++)
                 std::fill_n(getAudioOut(i), vec_size, t_sample(0));
             
             mGlobal->contextMessages(getContext(), asObject());
