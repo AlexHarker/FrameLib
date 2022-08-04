@@ -1147,21 +1147,26 @@ public:
         
             for (int i = 0; i < getNumAudioIns(); i++)
                 for (int j = 0; j < vec_size; j++)
-                    mSigIns[i][j] = getAudioIn(i)[j];
+                    mTempIns[i][j] = getAudioIn(i)[j];
                 
-            mObject->blockUpdate(mSigIns.data(), mSigOuts.data(), vec_size);
+            mObject->blockUpdate(mTempIns.data(), mTempOuts.data(), vec_size);
         
             for (int i = 0; i < getNumAudioOuts(); i++)
                 for (int j = 0; j < vec_size; j++)
-                    getAudioOut(i)[j] = mSigOuts[i][j];
+                    getAudioOut(i)[j] = mTempOuts[i][j];
         
+            // Zero frame outputs
+            
+            for (int i = getNumAudioOuts(); i < getNumAudioOuts() + getNumOuts(); i++)
+                std::fill_n(getAudioOut(i), vec_size, t_sample(0));
+            
             mGlobal->contextMessages(getContext(), asObject());
         }
         else
         {
             // Zero outputs
             
-            for (int i = 0; i < getNumAudioOuts(); i++)
+            for (int i = 0; i < getNumAudioOuts() + getNumOuts(); i++)
                 std::fill_n(getAudioOut(i), vec_size, t_sample(0));
         }
     }
@@ -1196,16 +1201,16 @@ public:
             mGlobal->finalObject(getContext()) = asObject();
 
             mTemp.resize(vec_size * (getNumAudioIns() + getNumAudioOuts()));
-            mSigIns.resize(getNumAudioIns());
-            mSigOuts.resize(getNumAudioOuts());
+            mTempIns.resize(getNumAudioIns());
+            mTempOuts.resize(getNumAudioOuts());
         
             double *inVecs = mTemp.data();
             double *outVecs = inVecs + (getNumAudioIns() * vec_size);
         
             for (int i = 0; i < getNumAudioIns(); i++)
-                mSigIns[i] = inVecs + (i * vec_size);
+                mTempIns[i] = inVecs + (i * vec_size);
             for (int i = 0; i < getNumAudioOuts(); i++)
-                mSigOuts[i] = outVecs + (i * vec_size);
+                mTempOuts[i] = outVecs + (i * vec_size);
         }
     }
 
@@ -1316,14 +1321,7 @@ public:
                 mInputs[index].reportError(Input::kExtra);
         }
     }
-    
-    // Get Audio Outputs
-    
-    std::vector<double *> &getAudioOuts()
-    {
-        return mSigOuts;
-    }
-    
+
     // External methods (A_CANT)
     
     static void extFindAudio(FrameLib_PDClass *x, std::vector<FrameLib_PDNRTAudio> *objects)
@@ -1956,8 +1954,8 @@ private:
     std::vector<Input> mInputs;
     std::vector<t_outlet *> mOutputs;
     
-    std::vector<double *> mSigIns;
-    std::vector<double *> mSigOuts;
+    std::vector<double *> mTempIns;
+    std::vector<double *> mTempOuts;
     std::vector<double> mTemp;
     
     t_glist *mCanvas;
