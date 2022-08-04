@@ -24,12 +24,6 @@
 #include <vector>
 #include <unordered_map>
 
-extern "C"
-{
-    t_signal *signal_newfromcontext(int borrowed);
-    void signal_makereusable(t_signal *sig);
-}
-
 // Deal with private strings and versioning
 
 struct FrameLib_PDPrivate
@@ -738,27 +732,37 @@ class FrameLib_PDClass : public PDClass_Base
     using NumericType = FrameLib_Parameters::NumericType;
     using ClipMode = FrameLib_Parameters::ClipMode;
         
-    struct PDProxy : public PDClass_Base
+    struct PDInputProxy : public PDClass_Base
     {
         static t_pd *create(FrameLib_PDClass *owner, int index)
         {
-            t_pd *proxy = pd_new(*PDProxy::getClassPointer<PDProxy>());
+            t_pd *proxy = pd_new(*PDInputProxy::getClassPointer<PDInputProxy>());
             
-            ((PDProxy *)proxy)->mOwner = owner;
-            ((PDProxy *)proxy)->mIndex = index;
+            ((PDInputProxy *)proxy)->mOwner = owner;
+            ((PDInputProxy *)proxy)->mIndex = index;
             
             return proxy;
         }
         
         static void classInit(t_class *c, const char *classname)
         {
-            addMethod<PDProxy, &PDProxy::frame>(c, "frame");
+            dspInit(c);
+            
+            addMethod<PDInputProxy, &PDInputProxy::anything>(c, "anything");
         }
         
-        PDProxy(t_object *x, t_symbol *sym, long ac, t_atom *av) : mOwner(nullptr), mIndex(-1) {}
+        PDInputProxy(t_object *x, t_symbol *sym, long ac, t_atom *av) : mOwner(nullptr), mIndex(-1) {}
+        
+        void anything(t_symbol *s, long ac, t_atom *av)
+        {
+            if (!s)
+                mOwner->frameInlet(mIndex);
+        }
+        
         
         void frame()
         {
+            post("frame");
             mOwner->frameInlet(mIndex);
         }
         
@@ -856,13 +860,13 @@ public:
 
         proxyClassName.append(".proxy");
         PDClass_Base::makeClass<U>(internalClassName.c_str());
-        PDClass_Base::makeClass<PDProxy>(proxyClassName.c_str(), CLASS_PD);
+        PDClass_Base::makeClass<PDInputProxy>(proxyClassName.c_str(), CLASS_PD);
     }
     
     static void classInit(t_class *c, const char *classname)
     {
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::info>(c, "info");
-        addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::frame>(c, "frame");
+        addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::frame>(c, "signal");
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::dsp>(c);
         
         // Attributes
@@ -878,8 +882,6 @@ public:
             addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::process>(c, "process");
             
             addMethod(c, (t_method) &extFindAudio, FrameLib_PDPrivate::messageFindAudioObjects());
-            
-            dspInit(c);
         }
         
         // External Methods
@@ -969,26 +971,33 @@ public:
         mOutputs.resize(getNumOuts());
         mDirectlyConnected.resize(getNumIns(), false);
         
+        // Create signal inlets + signal outlets
+        
         dspSetup(getNumAudioIns(), getNumAudioOuts());
         
-        // Create frame inlets - N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
+        // Create frame inlets
+        // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object has audio ins)
 
         for (long i = 0; i < numIns; i++)
         {
-            if (i || handlesAudio())
+            if (i || getNumAudioIns())
             {
-                t_pd *proxy = PDProxy::create(this, (int) (getNumAudioIns() + i));
-                inlet_new(asObject(), proxy, gensym("frame"), gensym("frame"));
+                t_pd *proxy = PDInputProxy::create(this, (int) (getNumAudioIns() + i));
+                inlet_new(asObject(), proxy, gensym("signal"), gensym("signal"));
                 mInputs[i] = Input(proxy, asObject(), i);
             }
             else
                 mInputs[i] = Input(nullptr, asObject(), i);
         }
         
-        // Create frame outlets
+        // Create frame outlets (as signals)
         
         for (unsigned long i = 0; i < getNumOuts(); i++)
-            mOutputs[i] = outlet_new(asObject(), gensym("frame"));
+            mOutputs[i] = outlet_new(asObject(), gensym("signal"));
+        
+        // Resize the signal IO
+        
+        dspResize(getNumAudioIns() + numIns, getNumAudioOuts() + getNumOuts());
     }
 
     ~FrameLib_PDClass()
@@ -1123,12 +1132,10 @@ public:
     bool handlesAudio() const                   { return T::sHandlesAudio; }
     bool supportsOrderingConnections() const    { return mObject->supportsOrderingConnections(); }
 
-    long audioIOSize(long chans) const          { return chans + (handlesAudio() ? 1 : 0); }
-
     long getNumIns() const                      { return static_cast<long>(mObject->getNumIns()); }
     long getNumOuts() const                     { return static_cast<long>(mObject->getNumOuts()); }
-    long getNumAudioIns() const                 { return audioIOSize(mObject->getNumAudioIns()); }
-    long getNumAudioOuts() const                { return audioIOSize(mObject->getNumAudioOuts()); }
+    long getNumAudioIns() const                 { return mObject->getNumAudioIns(); }
+    long getNumAudioOuts() const                { return mObject->getNumAudioOuts(); }
     
     unsigned long getSpecifiedStreams() const   { return mSpecifiedStreams; }
 
@@ -1138,21 +1145,29 @@ public:
     {
         // FIX - use alloca / revise perform and dsp
         
-        // Copy Audio In
+        if (isRealtime())
+        {
+            // Copy Audio In
         
-        for (int i = 0; i < (getNumAudioIns() - 1); i++)
-            for (int j = 0; j < vec_size; j++)
-                mSigIns[i][j] = getAudioIn(i + 1)[j];
+            for (int i = 0; i < getNumAudioIns(); i++)
+                for (int j = 0; j < vec_size; j++)
+                    mSigIns[i][j] = getAudioIn(i)[j];
+                
+            mObject->blockUpdate(mSigIns.data(), mSigOuts.data(), vec_size);
         
-        // N.B. Plus one due to sync inputs
+            for (int i = 0; i < getNumAudioOuts(); i++)
+                for (int j = 0; j < vec_size; j++)
+                    getAudioOut(i)[j] = mSigOuts[i][j];
         
-        mObject->blockUpdate(mSigIns.data(), mSigOuts.data(), vec_size);
-        
-        for (int i = 0; i < (getNumAudioOuts() - 1); i++)
-            for (int j = 0; j < vec_size; j++)
-                getAudioOut(i + 1)[j] = mSigOuts[i][j];
-        
-        mGlobal->contextMessages(getContext(), asObject());
+            mGlobal->contextMessages(getContext(), asObject());
+        }
+        else
+        {
+            // Zero outputs
+            
+            for (int i = 0; i < getNumAudioOuts(); i++)
+                std::fill_n(getAudioOut(i), vec_size, t_sample(0));
+        }
     }
     
     void dsp(t_signal **sp)
@@ -1167,10 +1182,8 @@ public:
         
         // Reset DSP
         
-        t_signal *temp = signal_newfromcontext(0);
-        double samplingRate = temp->s_sr;
-        int vec_size = temp->s_vecsize;
-        signal_makereusable(temp);
+        double samplingRate = sp[0]->s_sr;
+        int vec_size = sp[0]->s_vecsize;
         
         mObject->reset(samplingRate, vec_size);
     
@@ -1186,16 +1199,16 @@ public:
             addPerform<FrameLib_PDClass, &FrameLib_PDClass<T>::perform>(sp);
             mGlobal->finalObject(getContext()) = asObject();
 
-            mTemp.resize(vec_size * (getNumAudioIns() + getNumAudioOuts() -2));
-            mSigIns.resize(getNumAudioIns() - 1);
-            mSigOuts.resize(getNumAudioOuts() - 1);
+            mTemp.resize(vec_size * (getNumAudioIns() + getNumAudioOuts()));
+            mSigIns.resize(getNumAudioIns());
+            mSigOuts.resize(getNumAudioOuts());
         
             double *inVecs = mTemp.data();
-            double *outVecs = inVecs + ((getNumAudioIns() - 1) * vec_size);
+            double *outVecs = inVecs + (getNumAudioIns() * vec_size);
         
-            for (int i = 0; i < getNumAudioIns() - 1; i++)
+            for (int i = 0; i < getNumAudioIns(); i++)
                 mSigIns[i] = inVecs + (i * vec_size);
-            for (int i = 0; i < getNumAudioOuts() - 1; i++)
+            for (int i = 0; i < getNumAudioOuts(); i++)
                 mSigOuts[i] = outVecs + (i * vec_size);
         }
     }
@@ -1285,15 +1298,13 @@ public:
 
     void frame()
     {
-        frameInlet(0);
+        frameInlet(-getNumAudioIns());
     }
     
     void frameInlet(long index)
     {
         const PDConnection connection = mGlobal->getConnection();
-        
-        index -= getNumAudioIns();
-        
+                
         // Make sure there's an object to connect that has the same framelib version
         
         if (!connection.mObject || versionMismatch(connection.mObject, index, true))
@@ -1613,7 +1624,7 @@ private:
     {
         mGlobal->setConnection(PDConnection(asObject(), index));
         mGlobal->setConnectionMode(mode);
-        outlet_anything(mOutputs[index], gensym("frame"), 0, nullptr);
+        outlet_anything(mOutputs[index], gensym("signal"), 0, nullptr);
         mGlobal->setConnection(PDConnection());
     }
     
