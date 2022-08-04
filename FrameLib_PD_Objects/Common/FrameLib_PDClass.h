@@ -1135,9 +1135,9 @@ public:
 
     void perform(int vec_size)
     {
-        // FIX - use alloca / revise perform and dsp
+        // FIX - use alloca?
         
-        if (isRealtime())
+        if (handlesAudio() && isRealtime())
         {
             // Copy Audio In
         
@@ -1169,20 +1169,21 @@ public:
     
     void dsp(t_signal **sp)
     {
-        if (!isRealtime())
-            return;
-        
-        // Resolve connections (in case there are no schedulers left in the patch) and mark unresolved for next time
-        
-        resolveConnections();
-        mResolved = false;
-        
-        // Reset DSP
-        
+        bool realtime = isRealtime();
         double samplingRate = sp[0]->s_sr;
         int vec_size = sp[0]->s_vecsize;
         
-        mObject->reset(samplingRate, vec_size);
+        // Resolve connections (in case there are no schedulers left in the patch) and mark unresolved for next time
+        
+        if (realtime)
+        {
+            resolveConnections();
+            mResolved = false;
+        
+            // Reset DSP
+        
+            mObject->reset(samplingRate, vec_size);
+        }
     
         // Add a perform routine to the chain if the object handles audio
         
@@ -1190,23 +1191,27 @@ public:
         {
             // Resolve this context
             
-            if (getType() == ObjectType::Scheduler && mGlobal->setLastResolved(mObject->getContext(), clock_getlogicaltime()))
+            if (realtime && getType() == ObjectType::Scheduler && mGlobal->setLastResolved(mObject->getContext(), clock_getlogicaltime()))
                 resolveGraph(samplingRate, vec_size, true);
             
             addPerform<FrameLib_PDClass, &FrameLib_PDClass<T>::perform>(sp);
-            mGlobal->finalObject(getContext()) = asObject();
-
+        
+            // Prepare temporary memory
+            
             mTemp.resize(vec_size * (getNumAudioIns() + getNumAudioOuts()));
             mTempIns.resize(getNumAudioIns());
             mTempOuts.resize(getNumAudioOuts());
         
-            double *inVecs = mTemp.data();
-            double *outVecs = inVecs + (getNumAudioIns() * vec_size);
-        
             for (int i = 0; i < getNumAudioIns(); i++)
-                mTempIns[i] = inVecs + (i * vec_size);
+                mTempIns[i] = mTemp.data() + (i * vec_size);
             for (int i = 0; i < getNumAudioOuts(); i++)
-                mTempOuts[i] = outVecs + (i * vec_size);
+                mTempOuts[i] = (mTemp.data() + (getNumAudioIns() * vec_size)) + (i * vec_size);
+            
+            // If realtime set the final object
+            // FIX - this may not work if the context changes...
+            
+            if (realtime)
+                mGlobal->finalObject(getContext()) = asObject();
         }
     }
 
