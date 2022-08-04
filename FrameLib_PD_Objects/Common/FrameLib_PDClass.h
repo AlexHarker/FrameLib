@@ -854,7 +854,7 @@ public:
         // If handles audio/scheduler then make wrapper class and name the inner object differently..
         
         std::string internalClassName = className;
-        std::string proxyClassName;
+        std::string proxyClassName = className;
 
         if (T::sHandlesAudio)
             internalClassName.insert(0, "unsynced.");
