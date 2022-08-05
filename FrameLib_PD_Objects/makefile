@@ -1,4 +1,8 @@
 .SUFFIXES:.so
+	
+DUMP_MACHINE=$(shell cc -dumpmachine)
+MACHINE_TYPE=$(word 2, $(subst -, , $(DUMP_MACHINE)))
+
 FL_FRAMEWORK=../FrameLib_Framework
 FL_DEPENDENCIES=../FrameLib_Dependencies
 FL_OBJECTS=../FrameLib_Objects
@@ -22,15 +26,23 @@ INCLUDE_PATHS=\
 MAIN_OBJ=framelib_pd.o
 OPTIMISATION=-O3
 
-CFLAGS+=$(OPTIMISATION)
+ifeq ($(MACHINE_TYPE), linux)
 CXXFLAGS+=$(OPTIMISATION) -Wno-ignored-attributes -Wno-stringop-overflow
+else
+CXXFLAGS+=$(OPTIMISATION) -Wno-ignored-attributes
+endif
+
+CFLAGS+=$(OPTIMISATION)
 CPPFLAGS+=-DNDEBUG -DFRAMELIB_RT_DSP_CHECK
 
+ifeq ($(MACHINE_TYPE), apple)
+LINK_FLAGS=$(shell sed 's/-u/-U/' Common/pd_linker_flags.txt)
+else
 LINK_FLAGS=$(shell cat Common/pd_linker_flags.txt)
-#OPT=-g
+endif
+LINK_FLAGS=$(shell tr '\n' ' ' <<< $LINK_FLAGS)
 
-DUMP_MACHINE=$(shell cc -dumpmachine)
-MACHINE_TYPE=$(word 2, $(subst -, , $(DUMP_MACHINE)))
+#OPT=-g
 
 framelib_pd.d_fat: $(MAIN_OBJ) $(FL_OBJ_DIR); 
 ifeq ($(MACHINE_TYPE), apple)
