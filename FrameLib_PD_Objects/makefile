@@ -59,6 +59,10 @@ LINK_FLAGS=$(shell tr '\n' ' ' < Common/pd_linker_flags.txt) -lm -lstdc++ -lpthr
 PLATFORM_FLAGS=-static-libgcc -static-libstdc++ -shared
 endif
 
+ifeq ($(MACHINE_TYPE), w64)
+CPPFLAGS+=-DPD_LONGINTTYPE=intptr_t
+endif
+
 OUTPUT_NAME=framelib_pd.$(EXTENSION)
 #OPT=-g
 
