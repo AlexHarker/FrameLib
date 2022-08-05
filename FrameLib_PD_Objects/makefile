@@ -36,11 +36,10 @@ CFLAGS+=$(OPTIMISATION)
 CPPFLAGS+=-DNDEBUG -DFRAMELIB_RT_DSP_CHECK
 
 ifeq ($(MACHINE_TYPE), apple)
-LINK_FLAGS=$(shell sed 's/-u/-U/' Common/pd_linker_flags.txt)
+LINK_FLAGS=$(shell sed 's/-u/-U/' Common/pd_linker_flags.txt | tr '\n' ' ')
 else
 LINK_FLAGS=$(shell cat Common/pd_linker_flags.txt)
 endif
-LINK_FLAGS=$(shell tr '\n' ' ' <<< $LINK_FLAGS)
 
 #OPT=-g
 
