@@ -14,6 +14,9 @@ jobs:
              make
   pd-build-linux:
     runs-on: ubuntu-latest
+    strategy: 
+        matrix:
+            architectures: [ i686, x86_64, arm, aarch64]
     steps:
       - name: Checkout main repo
         uses: actions/checkout@v3
@@ -23,16 +26,16 @@ jobs:
         run: |
              cd framelib/FrameLib_PD_Objects/
              make
-    pd-build-win:
-      runs-on: win-latest
-      steps:
-        - name: Checkout main repo
-          uses: actions/checkout@v3
-          with:
-            path: "framelib"
-        - name: Build linux win binary
-          run: |
-               cd framelib/FrameLib_PD_Objects/
-               make
+  pd-build-win:
+    runs-on: win-latest
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v3
+        with:
+          path: "framelib"
+      - name: Build linux win binary
+        run: |
+             cd framelib/FrameLib_PD_Objects/
+             make
              
     
