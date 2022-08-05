@@ -142,7 +142,8 @@
 -Wl,-u,_class_setdrawcommand
 -Wl,-u,_class_isdrawcommand
 -Wl,-u,_class_domainsignalin
--Wl,-u,_class_set_-Wl,-u,_dir
+-Wl,-u,_class_set_
+-Wl,-u,_dir
 -Wl,-u,_class_setsavefn
 -Wl,-u,_class_getsavefn
 -Wl,-u,_obj_saveformat
