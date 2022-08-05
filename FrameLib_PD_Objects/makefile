@@ -29,7 +29,7 @@ OPTIMISATION=-O3
 ifeq ($(MACHINE_TYPE), linux)
 CXXFLAGS+=$(OPTIMISATION) -Wno-ignored-attributes -Wno-stringop-overflow
 else
-CXXFLAGS+=$(OPTIMISATION) -Wno-ignored-attributes
+CXXFLAGS+=$(OPTIMISATION)
 endif
 
 CFLAGS+=$(OPTIMISATION)
@@ -38,7 +38,7 @@ CPPFLAGS+=-DNDEBUG -DFRAMELIB_RT_DSP_CHECK
 ifeq ($(MACHINE_TYPE), apple)
 LINK_FLAGS=$(shell sed 's/-u/-U/' Common/pd_linker_flags.txt | tr '\n' ' ')
 else
-LINK_FLAGS=$(shell cat Common/pd_linker_flags.txt)
+LINK_FLAGS=$(shell tr '\n' ' ' < Common/pd_linker_flags.txt)
 endif
 
 #OPT=-g
