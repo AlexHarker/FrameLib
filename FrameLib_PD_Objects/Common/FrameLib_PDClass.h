@@ -482,9 +482,25 @@ public:
     , mRTNotifier(&mRTGlobal)
     , mNRTNotifier(&mNRTGlobal)
     , mDSPDefer(kOff)
+    , mInDSP(false)
+    , mRequireDSPRestart(false)
     , mRTGlobal(nullptr)
     , mNRTGlobal(nullptr)
-    {}
+    {
+        pd_bind(asPD(), gensym("pd-dsp-started"));
+    }
+    
+    ~FrameLib_PDGlobals()
+    {
+        pd_unbind(asPD(), gensym("pd-dsp-started"));
+    }
+    
+    //
+    
+    static void classInit(t_class *c, const char *classname)
+    {
+        addMethod<FrameLib_PDGlobals, &FrameLib_PDGlobals::dspStartNotification>(c, "bang");
+    }
     
     // Pd global item methods
     
@@ -590,7 +606,23 @@ public:
     PDConnection getConnection() const          { return mConnection; }
     ConnectionMode getConnectionMode() const    { return mConnectionMode; }
         
-    // DSP Resume (allows deferal when resolving contexts)
+    // DSP Handling / Suspending + Resume (allows deferal when resolving contexts)
+    
+    void dspStartNotification()
+    {
+        post("notification");
+        if (mRequireDSPRestart)
+        {
+            post("DSP Restart");
+            mRequireDSPRestart = false;
+            canvas_resume_dsp(canvas_suspend_dsp());
+        }
+    }
+    
+    void dspBuilding(bool state)
+    {
+        mInDSP = state;
+    }
     
     void dspDeferResume(bool state)
     {
@@ -606,6 +638,17 @@ public:
             
             mDSPDefer = kOff;
         }
+    }
+    
+    bool dspSuspendRequest()
+    {
+        if (mInDSP)
+        {
+            mRequireDSPRestart = true;
+            return false;
+        }
+        
+        return dspSuspend();
     }
     
     void dspResumeRequest(bool oldState)
@@ -707,6 +750,8 @@ private:
     RefMap mContextRefs;
     
     DSPDeferMode mDSPDefer;
+    bool mInDSP;
+    bool mRequireDSPRestart;
     
     FrameLib_Global *mRTGlobal;
     FrameLib_Global *mNRTGlobal;
@@ -1166,6 +1211,8 @@ public:
     
     void dsp(t_signal **sp)
     {
+        mGlobal->dspBuilding(true);
+        
         bool realtime = isRealtime();
         double samplingRate = sp[0]->s_sr;
         int vec_size = sp[0]->s_vecsize;
@@ -1210,6 +1257,8 @@ public:
             if (realtime)
                 mGlobal->finalObject(getContext()) = asObject();
         }
+        
+        mGlobal->dspBuilding(false);
     }
 
     // Non-realtime processing
@@ -1450,7 +1499,7 @@ private:
                 newObject->setFixedInput(i, values, size);
         
         if (mGlobal->isRealtime(context) || mGlobal->isRealtime(current))
-            oldState = dspSuspend();
+            oldState = mGlobal->dspSuspendRequest();
         
         mPDContext = pdContext;
         mGlobal->retainContext(context);
