@@ -631,10 +631,12 @@ public:
         }
         else
         {
-            if (mDSPDefer == kNeedResume)
-                dspResume(true);
-            
+            bool willResume = mDSPDefer == kNeedResume;
+        
             mDSPDefer = kOff;
+            
+            if (willResume)
+                dspResume(true);
         }
     }
     
