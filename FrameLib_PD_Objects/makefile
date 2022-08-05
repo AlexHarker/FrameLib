@@ -1,5 +1,3 @@
-.SUFFIXES:.so
-	
 DUMP_MACHINE=$(shell cc -dumpmachine)
 MACHINE_TYPE=$(word 2, $(subst -, , $(DUMP_MACHINE)))
 
@@ -36,21 +34,20 @@ CFLAGS+=$(OPTIMISATION)
 CPPFLAGS+=-DNDEBUG -DFRAMELIB_RT_DSP_CHECK
 
 ifeq ($(MACHINE_TYPE), apple)
-LINK_FLAGS=$(shell sed 's/-u/-U/' Common/pd_linker_flags.txt | tr '\n' ' ')
+EXTENSION=d_fat
+LINK_FLAGS=$(shell sed 's/-u/-U/' Common/pd_linker_flags.txt | tr '\n' ' ') -lstdc++ -lpthread -framework Accelerate 
+PLATFORM_FLAGS=-bundle -flat_namespace -fPIC
 else
-LINK_FLAGS=$(shell tr '\n' ' ' < Common/pd_linker_flags.txt)
+EXTENSION=pd_linux
+LINK_FLAGS=$(shell tr '\n' ' ' < Common/pd_linker_flags.txt) -lm -lstdc++ -lpthread
+PLATFORM_FLAGS=-no-pie -rdynamic -fPIC -shared
 endif
 
+OUTPUT_NAME=framelib_pd.$(EXTENSION)
 #OPT=-g
 
-framelib_pd.d_fat: $(MAIN_OBJ) $(FL_OBJ_DIR); 
-ifeq ($(MACHINE_TYPE), apple)
-				cc $(CPPFLAGS) $(CXXFLAGS) -bundle -flat_namespace -fPIC -o framelib_pd.d_fat $(MAIN_OBJ) \
-				$(FL_OBJ) $(LINK_FLAGS) -lstdc++ -lpthread -framework Accelerate 
-else 
-				cc $(CPPFLAGS) $(CXXFLAGS) -no-pie -rdynamic -fPIC -shared -o framelib_pd.d_fat $(MAIN_OBJ) \
-				$(FL_OBJ) $(LINK_FLAGS) -lm -lstdc++ -lpthread
-endif
+framelib_pd: $(MAIN_OBJ) $(FL_OBJ_DIR); 
+cc $(CPPFLAGS) $(CXXFLAGS) $(PLATFORM_FLAGS) -o $(OUTPUT_NAME) $(MAIN_OBJ) $(FL_OBJ) $(LINK_FLAGS)
 
 %.o : %.cpp
 				g++ $(CPPFLAGS) $(CXXFLAGS) -std=c++11 -fPIC $(INCLUDE_PATHS) -c $<
