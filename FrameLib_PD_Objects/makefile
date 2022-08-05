@@ -62,6 +62,8 @@ EXTENSION = dll
 LINK_FLAGS = $(shell (Get-Content -path Common/pd_linker_flags.txt -Raw) -replace '\n',' ')
 #tr '\n' ' ' < Common/pd_linker_flags.txt) -lm -lstdc++ -lpthread
 PLATFORM_FLAGS = -static-libgcc -static-libstdc++ -shared
+FL_OBJ_DIR = 
+FL_OBJ =
 endif
 
 ifeq ($(MACHINE_TYPE), w64)
