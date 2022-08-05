@@ -1,5 +1,5 @@
 name: pd-github
-on: [workflow_dispatch]
+on: push
 jobs:
   pd-build-mac:
     runs-on: macos-latest
