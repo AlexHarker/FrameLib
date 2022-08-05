@@ -35,15 +35,15 @@ ifeq ($(MACHINE_TYPE), apple)
 				cc $(CPPFLAGS) $(CXXFLAGS) -arch x86_64 -bundle -flat_namespace -undefined suppress -o framelib_pd.d_fat $(MAIN_OBJ) \
 				$(FL_OBJ) -lstdc++ -lpthread -framework Accelerate 
 else 
-				cc$(CPPFLAGS) $(CXXFLAGS) -arch x86_64 -bundle -flat_namespace -undefined suppress -o framelib_pd.d_fat $(MAIN_OBJ) \
+				cc$(CPPFLAGS) $(CXXFLAGS) -march x86_64 -bundle -flat_namespace -undefined suppress -o framelib_pd.d_fat $(MAIN_OBJ) \
 				$(FL_OBJ) -lstdc++ -lpthread
 endif
 
 %.o : %.cpp
-				g++ $(CPPFLAGS) $(CXXFLAGS) -arch x86_64 -std=c++11 -fPIC $(INCLUDE_PATHS) -c $<
+				g++ $(CPPFLAGS) $(CXXFLAGS) -march x86_64 -std=c++11 -fPIC $(INCLUDE_PATHS) -c $<
 
 %.o : %.c
-				cc $(CPPFLAGS) $(CFLAGS) -arch x86_64 -fPIC $(INCLUDE_PATHS) -c $<
+				cc $(CPPFLAGS) $(CFLAGS) -march x86_64 -fPIC $(INCLUDE_PATHS) -c $<
 			
 clean:
 				rm $(MAIN_OBJ) $(FL_OBJ)
