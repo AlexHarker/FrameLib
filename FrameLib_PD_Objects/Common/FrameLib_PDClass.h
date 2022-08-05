@@ -1182,17 +1182,17 @@ public:
             mObject->reset(samplingRate, vec_size);
         }
     
-        // Add a perform routine to the chain if the object handles audio
+        // Add a perform routine to the chain whether or not the object handles audio (RT or Non-RT)
         
+        addPerform<FrameLib_PDClass, &FrameLib_PDClass<T>::perform>(sp);
+
         if (handlesAudio())
         {
             // Resolve this context
             
             if (realtime && getType() == ObjectType::Scheduler && mGlobal->setLastResolved(mObject->getContext(), clock_getlogicaltime()))
                 resolveGraph(samplingRate, vec_size, true);
-            
-            addPerform<FrameLib_PDClass, &FrameLib_PDClass<T>::perform>(sp);
-        
+                    
             // Prepare temporary memory
             
             mTemp.resize(vec_size * (getNumAudioIns() + getNumAudioOuts()));
