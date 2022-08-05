@@ -1,5 +1,15 @@
 DUMP_MACHINE=$(shell cc -dumpmachine)
 MACHINE_TYPE=$(word 2, $(subst -, , $(DUMP_MACHINE)))
+PLATFORM_TYPE=$(MACHINE_TYPE)
+ 
+// Detect windows
+
+ifeq ($(MACHINE_TYPE), w64)
+PLATFORM_TYPE=win
+endif
+ifeq ($(MACHINE_TYPE), w32)
+PLATFORM_TYPE=win
+endif
 
 FL_FRAMEWORK=../FrameLib_Framework
 FL_DEPENDENCIES=../FrameLib_Dependencies
@@ -27,21 +37,21 @@ OPTIMISATION=-O3
 CFLAGS+=$(OPTIMISATION)
 CPPFLAGS+=-DNDEBUG -DFRAMELIB_RT_DSP_CHECK
 
-ifeq ($(MACHINE_TYPE), apple)
+ifeq ($(PLATFORM_TYPE), apple)
 CXXFLAGS+=$(OPTIMISATION) _USE_MATH_DEFINES
 EXTENSION=d_fat
 LINK_FLAGS=$(shell sed 's/-u/-U/' Common/pd_linker_flags.txt | tr '\n' ' ') -lstdc++ -lpthread -framework Accelerate 
 PLATFORM_FLAGS=-bundle -flat_namespace -fPIC
 endif
 
-ifeq ($(MACHINE_TYPE), linux)
+ifeq ($(PLATFORM_TYPE), linux)
 CXXFLAGS+=$(OPTIMISATION) -Wno-ignored-attributes -Wno-stringop-overflow
 EXTENSION=pd_linux
 LINK_FLAGS=$(shell tr '\n' ' ' < Common/pd_linker_flags.txt) -lm -lstdc++ -lpthread
 PLATFORM_FLAGS=-no-pie -rdynamic -fPIC -shared
 endif
 
-ifeq ($(MACHINE_TYPE), win)
+ifeq ($(PLATFORM_TYPE), win)
 CPPFLAGS+=-D_USE_MATH_DEFINES
 CXXFLAGS+=$(OPTIMISATION) -Wno-ignored-attributes
 EXTENSION=dll
