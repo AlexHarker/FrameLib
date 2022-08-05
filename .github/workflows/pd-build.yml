@@ -14,9 +14,9 @@ jobs:
              make
   pd-build-linux:
     runs-on: ubuntu-latest
-    strategy: 
-        matrix:
-            architectures: [ i686, x86_64, arm, aarch64]
+#    strategy: 
+#        matrix:
+#            architectures: [ i686, x86_64, arm, aarch64]
     steps:
       - name: Checkout main repo
         uses: actions/checkout@v3
