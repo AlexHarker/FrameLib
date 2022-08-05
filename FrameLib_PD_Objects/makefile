@@ -2,7 +2,7 @@ DUMP_MACHINE=$(shell cc -dumpmachine)
 MACHINE_TYPE=$(word 2, $(subst -, , $(DUMP_MACHINE)))
 PLATFORM_TYPE=$(MACHINE_TYPE)
  
-// Detect windows
+# Detect windows
 
 ifeq ($(MACHINE_TYPE), w64)
 PLATFORM_TYPE=win
