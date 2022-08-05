@@ -794,11 +794,8 @@ class FrameLib_PDClass : public PDClass_Base
         {
             if (!s || s == gensym("signal"))
                 mOwner->frameInlet(mIndex);
-        }
-        
-        void frame()
-        {
-            mOwner->frameInlet(mIndex);
+            else
+                pd_error(mOwner->asPD(), "%s: no method for '%s'", class_getname(*mOwner->asPD()), s->s_name);
         }
         
         FrameLib_PDClass *mOwner;
