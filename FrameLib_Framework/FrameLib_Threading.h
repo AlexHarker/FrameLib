@@ -310,7 +310,7 @@ public:
     }
 
     FrameLib_Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void *arg)
-    : mInternal(OSSpecific::nullThread()), mPriority(priority), mThreadFunction(threadFunction), mArg(arg), mValid(false)
+    : mInternal(OS_Specific::nullThread()), mPriority(priority), mThreadFunction(threadFunction), mArg(arg), mValid(false)
     {}
 
     ~FrameLib_Thread();
