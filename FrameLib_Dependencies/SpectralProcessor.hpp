@@ -165,7 +165,7 @@ public:
     
     void correlate(T *output, in_ptr in1, in_ptr in2, EdgeMode mode)
     {
-        binary_op<&ir_correlate_real, &arrange_correlate<T*>>(output, in1, in2, mode);
+        binary_op<ir_correlate_real, arrange_correlate<T*>>(output, in1, in2, mode);
     }
     
     // Phase
