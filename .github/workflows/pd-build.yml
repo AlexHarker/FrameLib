@@ -21,6 +21,7 @@ jobs:
           path: "framelib"
       - name: Build linux pd binary
         run: |
+             cc -dumpmachine
              cd framelib/FrameLib_PD_Objects/
              make
              
