@@ -34,10 +34,10 @@ MACHINE_TYPE=$(word 2, $(subst -, , $(DUMP_MACHINE)))
 
 framelib_pd.d_fat: $(MAIN_OBJ) $(FL_OBJ_DIR); 
 ifeq ($(MACHINE_TYPE), apple)
-				cc $(CPPFLAGS) $(CXXFLAGS) -bundle -flat_namespace -o framelib_pd.d_fat $(MAIN_OBJ) \
+				cc $(CPPFLAGS) $(CXXFLAGS) -bundle -flat_namespace -fPIC -o framelib_pd.d_fat $(MAIN_OBJ) \
 				$(FL_OBJ) $(LINK_FLAGS) -lstdc++ -lpthread -framework Accelerate 
 else 
-				cc $(CPPFLAGS) $(CXXFLAGS) -rdynamic -shared -o framelib_pd.d_fat $(MAIN_OBJ) \
+				cc $(CPPFLAGS) $(CXXFLAGS) -rdynamic -fPIC -shared -o framelib_pd.d_fat $(MAIN_OBJ) \
 				$(FL_OBJ) $(LINK_FLAGS) -lm -lstdc++ -lpthread
 endif
 
