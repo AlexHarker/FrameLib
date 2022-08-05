@@ -1249,7 +1249,6 @@ public:
                 mTempOuts[i] = (mTemp.data() + (getNumAudioIns() * vec_size)) + (i * vec_size);
             
             // If realtime set the final object
-            // FIX - this may not work if the context changes...
             
             if (realtime)
                 mGlobal->finalObject(getContext()) = asObject();
