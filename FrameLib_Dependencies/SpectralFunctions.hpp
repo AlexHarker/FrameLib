@@ -179,7 +179,7 @@ namespace impl
         void operator()(T& r_out, T& i_out, const T& r_in, const T& i_in, uintptr_t i)
         {
             static T min_power = std::pow(10.0, -300.0 / 10.0);
-            store(r_out, i_out, T(0.5) * log(std::max(r_in * r_in + i_in * i_in, min_power)), T(0));
+            store(r_out, i_out, T(0.5) * std::log(std::max(r_in * r_in + i_in * i_in, min_power)), T(0));
         }
     };
     
