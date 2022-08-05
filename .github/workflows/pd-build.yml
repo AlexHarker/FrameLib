@@ -9,7 +9,8 @@ jobs:
         with:
           path: "framelib"
       - name: Build mac pd binary
-        run: cd framelib/FrameLib_PD_Objects/
+        run: | 
+             cd framelib/FrameLib_PD_Objects/
              make
   pd-build-linux:
     runs-on: ubuntu-latest
@@ -19,7 +20,8 @@ jobs:
         with:
           path: "framelib"
       - name: Build linux pd binary
-        run: cd framelib/FrameLib_PD_Objects/
+        run: |
+             cd framelib/FrameLib_PD_Objects/
              make
              
     
