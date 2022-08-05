@@ -21,8 +21,18 @@ jobs:
           path: "framelib"
       - name: Build linux pd binary
         run: |
-             cc -dumpmachine
              cd framelib/FrameLib_PD_Objects/
              make
+    pd-build-win:
+      runs-on: win-latest
+      steps:
+        - name: Checkout main repo
+          uses: actions/checkout@v3
+          with:
+            path: "framelib"
+        - name: Build linux win binary
+          run: |
+               cd framelib/FrameLib_PD_Objects/
+               make
              
     

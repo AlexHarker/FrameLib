@@ -37,10 +37,18 @@ ifeq ($(MACHINE_TYPE), apple)
 EXTENSION=d_fat
 LINK_FLAGS=$(shell sed 's/-u/-U/' Common/pd_linker_flags.txt | tr '\n' ' ') -lstdc++ -lpthread -framework Accelerate 
 PLATFORM_FLAGS=-bundle -flat_namespace -fPIC
-else
+endif
+
+ifeq ($(MACHINE_TYPE), linux)
 EXTENSION=pd_linux
 LINK_FLAGS=$(shell tr '\n' ' ' < Common/pd_linker_flags.txt) -lm -lstdc++ -lpthread
 PLATFORM_FLAGS=-no-pie -rdynamic -fPIC -shared
+endif
+
+ifeq ($(MACHINE_TYPE), win)
+EXTENSION=dll
+LINK_FLAGS=$(shell tr '\n' ' ' < Common/pd_linker_flags.txt) -lm -lstdc++ -lpthread
+PLATFORM_FLAGS=-static-libgcc -static-libstdc++ -shared
 endif
 
 OUTPUT_NAME=framelib_pd.$(EXTENSION)
