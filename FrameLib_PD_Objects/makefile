@@ -37,7 +37,7 @@ ifeq ($(MACHINE_TYPE), apple)
 				cc $(CPPFLAGS) $(CXXFLAGS) -bundle -flat_namespace -fPIC -o framelib_pd.d_fat $(MAIN_OBJ) \
 				$(FL_OBJ) $(LINK_FLAGS) -lstdc++ -lpthread -framework Accelerate 
 else 
-				cc $(CPPFLAGS) $(CXXFLAGS) -rdynamic -fPIC -shared -o framelib_pd.d_fat $(MAIN_OBJ) \
+				cc $(CPPFLAGS) $(CXXFLAGS) -no-pie -rdynamic -fPIC -shared -o framelib_pd.d_fat $(MAIN_OBJ) \
 				$(FL_OBJ) $(LINK_FLAGS) -lm -lstdc++ -lpthread
 endif
 
