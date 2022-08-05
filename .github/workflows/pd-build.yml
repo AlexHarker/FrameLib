@@ -29,7 +29,7 @@ jobs:
              cd framelib/FrameLib_PD_Objects/
              make
   pd-build-win:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
       - name: Set up MinGW
         uses: egor-tensin/setup-mingw@v2
