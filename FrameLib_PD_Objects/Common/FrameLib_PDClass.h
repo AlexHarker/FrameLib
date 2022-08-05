@@ -1293,7 +1293,8 @@ public:
 
     void frame()
     {
-        frameInlet(-getNumAudioIns());
+        if (!getNumAudioIns())
+            frameInlet(0);
     }
     
     void frameInlet(long index)
