@@ -610,10 +610,8 @@ public:
     
     void dspStartNotification()
     {
-        post("notification");
         if (mRequireDSPRestart)
         {
-            post("DSP Restart");
             mRequireDSPRestart = false;
             canvas_resume_dsp(canvas_suspend_dsp());
         }
