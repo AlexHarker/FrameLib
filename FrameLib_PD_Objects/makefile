@@ -35,7 +35,7 @@ ifeq ($(MACHINE_TYPE), apple)
 				cc $(CPPFLAGS) $(CXXFLAGS) -bundle -flat_namespace -undefined suppress -o framelib_pd.d_fat $(MAIN_OBJ) \
 				$(FL_OBJ) -lstdc++ -lpthread -framework Accelerate 
 else 
-				cc$(CPPFLAGS) $(CXXFLAGS) -undefined suppress -o framelib_pd.d_fat $(MAIN_OBJ) \
+				cc $(CPPFLAGS) $(CXXFLAGS) -undefined suppress -o framelib_pd.d_fat $(MAIN_OBJ) \
 				$(FL_OBJ) -lstdc++ -lpthread
 endif
 
