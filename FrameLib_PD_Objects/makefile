@@ -23,7 +23,7 @@ MAIN_OBJ=framelib_pd.o
 OPTIMISATION=-O3
 
 CFLAGS+=$(OPTIMISATION)
-CXXFLAGS+=$(OPTIMISATION)
+CXXFLAGS+=$(OPTIMISATION) -Wno-ignored-attributes
 CPPFLAGS+=-DNDEBUG -DFRAMELIB_RT_DSP_CHECK
 
 LINK_FLAGS=$(shell cat Common/pd_linker_flags.txt)
