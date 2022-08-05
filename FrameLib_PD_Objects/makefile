@@ -42,7 +42,7 @@ CFLAGS = $(OPTIMISATION)
 CPPFLAGS = -DNDEBUG -DFRAMELIB_RT_DSP_CHECK
 
 ifeq ($(PLATFORM_TYPE), apple)
-CXXFLAGS = $(OPTIMISATION) _USE_MATH_DEFINES
+CXXFLAGS = $(OPTIMISATION)
 EXTENSION = d_fat
 LINK_FLAGS = $(shell sed 's/-u/-U/' Common/pd_linker_flags.txt | tr '\n' ' ') -lstdc++ -lpthread -framework Accelerate 
 PLATFORM_FLAGS = -bundle -flat_namespace -fPIC
