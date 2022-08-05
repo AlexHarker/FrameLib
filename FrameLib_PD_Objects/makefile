@@ -36,7 +36,7 @@ ifeq ($(MACHINE_TYPE), apple)
 				$(FL_OBJ) -lstdc++ -lpthread -framework Accelerate 
 else 
 				cc $(CPPFLAGS) $(CXXFLAGS) -o framelib_pd.d_fat $(MAIN_OBJ) \
-				$(FL_OBJ) -lm -lstdc++ -lpthread
+				$(FL_OBJ) -lstdc++ -lpthread
 endif
 
 %.o : %.cpp
