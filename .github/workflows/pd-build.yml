@@ -30,7 +30,6 @@ jobs:
              make
   pd-build-win:
     runs-on: windows-2019
-    shell: bash
     steps:
       - name: Set up MinGW
         uses: egor-tensin/setup-mingw@v2
