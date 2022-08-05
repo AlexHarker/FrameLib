@@ -40,8 +40,8 @@ jobs:
         with:
           path: "framelib"
       - name: Build win pd binary
-          shell: bash
-          run: |
+        shell: bash
+        run: |
                cd framelib/FrameLib_PD_Objects/
                make
              
