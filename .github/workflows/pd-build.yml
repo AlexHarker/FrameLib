@@ -1,0 +1,24 @@
+name: build-github
+on: [workflow_dispatch]
+  pd-build-mac:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v3
+        with:
+          path: "framelib"
+      - name: Build mac pd binary
+        run: cd framelib/FrameLib_PD_Objects/
+             make
+  pd-build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v3
+        with:
+          path: "framelib"
+      - name: Build linux pd binary
+        run: cd framelib/FrameLib_PD_Objects/
+             make
+             
+    
