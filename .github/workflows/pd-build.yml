@@ -2,6 +2,7 @@ name: pd-github
 on: push
 jobs:
   pd-build-mac:
+    if: ${{ false }}  # disable for now
     runs-on: macos-latest
     steps:
       - name: Checkout main repo
@@ -13,6 +14,7 @@ jobs:
              cd framelib/FrameLib_PD_Objects/
              make
   pd-build-linux:
+    if: ${{ false }}  # disable for now
     runs-on: ubuntu-latest
 #    strategy: 
 #        matrix:
