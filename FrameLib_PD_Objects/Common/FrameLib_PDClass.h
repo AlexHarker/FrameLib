@@ -181,8 +181,6 @@ class MessageHandler : public PDClass_Base
     {
         bool operator()(const Message& a, const Message& b) const
         {
-            // FIX - ordering comparison
-            
             // Use time
             
             if (a.mInfo.mTime != b.mInfo.mTime)
@@ -193,7 +191,17 @@ class MessageHandler : public PDClass_Base
             if (a.mInfo.mProxy == b.mInfo.mProxy)
                 return a.mInfo.mStream < b.mInfo.mStream;
             
-            return a.mInfo.mProxy < b.mInfo.mProxy;
+            // Use object positions
+            
+            const short ax = a.mInfo.mProxy->getOwner<t_object>()->te_xpix;
+            const short ay = a.mInfo.mProxy->getOwner<t_object>()->te_ypix;
+            const short bx = b.mInfo.mProxy->getOwner<t_object>()->te_xpix;
+            const short by = b.mInfo.mProxy->getOwner<t_object>()->te_ypix;
+            
+            if (ax != bx)
+                return ax < bx;
+            
+            return ay < by;
         }
     };
     
