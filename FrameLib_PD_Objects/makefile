@@ -54,7 +54,7 @@ endif
 OUTPUT_NAME=framelib_pd.$(EXTENSION)
 #OPT=-g
 
-framelib_pd: $(MAIN_OBJ) $(FL_OBJ_DIR); 
+framelib_pd: $(MAIN_OBJ) $(FL_OBJ_DIR); \
 cc $(CPPFLAGS) $(CXXFLAGS) $(PLATFORM_FLAGS) -o $(OUTPUT_NAME) $(MAIN_OBJ) $(FL_OBJ) $(LINK_FLAGS)
 
 %.o : %.cpp
