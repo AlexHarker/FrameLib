@@ -29,6 +29,8 @@ namespace OS_Specific
     using OSSemaphoreType = sem_t;
     typedef void *OSThreadFunctionType(void *arg);
 
+    inline OSThreadType nullThread() { return pthread_t(0); }
+
     inline void threadNanosleep()
     {
         std::this_thread::sleep_for(std::chrono::nanoseconds(100));
@@ -55,6 +57,8 @@ namespace OS_Specific
     using OSSemaphoreType = semaphore_t;
     typedef void *OSThreadFunctionType(void *arg);
 
+    inline OSThreadType nullThread() { return nullptr; }
+
     inline void threadNanosleep()
     {
         std::this_thread::sleep_for(std::chrono::nanoseconds(100));
@@ -79,6 +83,8 @@ namespace OS_Specific
     using OSThreadType = HANDLE;
     using OSSemaphoreType = struct WinSemaphore { HANDLE mHandle; long mMaxCount; };
     typedef DWORD WINAPI OSThreadFunctionType(LPVOID arg);
+
+    inline OSThreadType nullThread() { return nullptr; }
 
     inline void threadNanosleep()
     {
@@ -304,7 +310,7 @@ public:
     }
 
     FrameLib_Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void *arg)
-    : mInternal(nullptr), mPriority(priority), mThreadFunction(threadFunction), mArg(arg), mValid(false)
+    : mInternal(OSSpecific::nullThread()), mPriority(priority), mThreadFunction(threadFunction), mArg(arg), mValid(false)
     {}
 
     ~FrameLib_Thread();
