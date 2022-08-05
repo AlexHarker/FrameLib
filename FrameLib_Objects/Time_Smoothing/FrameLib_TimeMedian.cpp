@@ -30,12 +30,12 @@ void FrameLib_TimeMedian::resetSize(unsigned long maxFrames, unsigned long size)
 
 bool compareLess(double a, double b)
 {
-    return (a < b || (isnan(b) && !isnan(a)));
+    return (a < b || (std::isnan(b) && !std::isnan(a)));
 }
 
 bool compareMore(double a, double b)
 {
-    return (a > b || (isnan(a) && !isnan(b)));
+    return (a > b || (std::isnan(a) && !std::isnan(b)));
 }
 
 unsigned long find(double input, double *channel, unsigned long numFrames)
