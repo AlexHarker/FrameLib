@@ -24,28 +24,26 @@ INCLUDE_PATHS=\
 MAIN_OBJ=framelib_pd.o
 OPTIMISATION=-O3
 
-ifeq ($(MACHINE_TYPE), linux)
-CXXFLAGS+=$(OPTIMISATION) -Wno-ignored-attributes -Wno-stringop-overflow
-else
-CXXFLAGS+=$(OPTIMISATION)
-endif
-
 CFLAGS+=$(OPTIMISATION)
 CPPFLAGS+=-DNDEBUG -DFRAMELIB_RT_DSP_CHECK
 
 ifeq ($(MACHINE_TYPE), apple)
+CXXFLAGS+=$(OPTIMISATION) _USE_MATH_DEFINES
 EXTENSION=d_fat
 LINK_FLAGS=$(shell sed 's/-u/-U/' Common/pd_linker_flags.txt | tr '\n' ' ') -lstdc++ -lpthread -framework Accelerate 
 PLATFORM_FLAGS=-bundle -flat_namespace -fPIC
 endif
 
 ifeq ($(MACHINE_TYPE), linux)
+CXXFLAGS+=$(OPTIMISATION) -Wno-ignored-attributes -Wno-stringop-overflow
 EXTENSION=pd_linux
 LINK_FLAGS=$(shell tr '\n' ' ' < Common/pd_linker_flags.txt) -lm -lstdc++ -lpthread
 PLATFORM_FLAGS=-no-pie -rdynamic -fPIC -shared
 endif
 
 ifeq ($(MACHINE_TYPE), win)
+CPPFLAGS+=-D_USE_MATH_DEFINES
+CXXFLAGS+=$(OPTIMISATION) -Wno-ignored-attributes
 EXTENSION=dll
 LINK_FLAGS=$(shell tr '\n' ' ' < Common/pd_linker_flags.txt) -lm -lstdc++ -lpthread
 PLATFORM_FLAGS=-static-libgcc -static-libstdc++ -shared
