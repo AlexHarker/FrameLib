@@ -1,5 +1,5 @@
 
-**Status and Building**
+**Status / Building / Testing**
 
 - All (165 out of 165) framelib objects get built to a single library files
 - Realtime operation and non-realtime operation is supported
@@ -10,11 +10,16 @@ To build you should be able to run make on this directory and then copy framelib
 Building *should* work on linux (it works on apple) but I've not tested.
 I'm not sure if there should be a VS project for windows or not.
 
-**Testing**
-
 - I've started a test folder at Testing/02\_PD with a couple of simple demos
 
 **Key Issues**
+
+- Subpatches - my understanding is that pd processes the audio in subpatchers in one go (Max does not) which makes ordering an issue (as above)
+- At the moment you can't connect framelib objects between different subpatchers
+
+- Message ordering - If messages are sent to pd then currently the message time and stream determines the order. In Max there are further considerations to do with object position in a patch so that ordering makes sense - I'm not sure what would be idomatic in pd.
+
+- Multichannel buffers - my understanding is that pd buffers are mono only - buffers for framelib can be used both for reading and also for non-realtime operation, so figuring out how to support multichannel in an idomatic way would be good
 
 - *Audio synchronisation* - this is the main issue with finishing pd support and the Max approach won't work here
 - Because audio inputs and outputs are in different objects they must process audio in the correct order
@@ -24,14 +29,7 @@ I'm not sure if there should be a VS project for windows or not.
 - My next step is to try to understand d_ugen.c to understand how the dsp graph is built and if there is a better way
 - Having looked at this there doesn't appear to be any way other than using signal IO for everything so I've implemented that [REVIEW]
 
-- Subpatches - my understanding is that pd processes the audio in subpatchers in one go (Max does not) which makes ordering an issue (as above)
-- At the moment you can't connect framelib objects between different subpatchers
-
-- Message ordering - If messages are sent to pd then currently the message time and stream determines the order. In Max there are further considerations to do with object position in a patch so that ordering makes sense - I'm not sure what would be idomatic in pd.
-
-- Multichannel buffers - my understanding is that pd buffers are mono only - buffers for framelib can be used both for reading and also for non-realtime operation, so figuring out how to support multichannel in an idomatic way would be good
-
-- Connection handling - Max has the facility both to notify objects when connection change and allow objects to refuse connections - this is used to make connections prior to dsp time and also to prevent multiple connections - I have left this out and not yet investigated if pd has something similar (it's non-essential but useful). There's no mechanism for this in pd so work needs to be done to report errors correctly only [REVIEW / CODE]
+- Connection handling - Max has the facility both to notify objects when connection change and allow objects to refuse connections - this is used to make connections prior to dsp time and also to prevent multiple connections - I have left this out and not yet investigated if pd has something similar (it's non-essential but useful). There's no mechanism for this in pd so work needs to be done to make sure errors report correctly only, which appears covered by the pre-existing code [REVIEW]
 
 - Attributes - non-realtime in Max is set by attributes. Part of the misssing support in pd is to sort these (which must be supported manually)
 - My memory is that sigmund uses an attribute-style system so I want to choose something idiomatic to pd for setting these in the box.
@@ -42,12 +40,12 @@ I'm not sure if there should be a VS project for windows or not.
 - Some pd correctness has been reviewed (DONE):
     - Float arguments (t_floatarg?)
     - Assist strings? (don't exist for pd)
+    - Messages that would take ints in Max
+    - resetting dsp when resolving connections
 
 - Some pd correctness needs review:
     - PD-specific or custom objects (read/info/topd/frompd/contextcontrol/expressions)
-    - Messages that would take ints in Max
     - Whether garray_usedindsp should be used
-    - resetting dsp when resolving connections
     
 **Documentation**
 
