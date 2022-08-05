@@ -59,7 +59,7 @@ ifeq ($(PLATFORM_TYPE), win)
 CPPFLAGS = -D_USE_MATH_DEFINES
 CXXFLAGS = $(OPTIMISATION) -Wno-ignored-attributes -Wno-stringop-overflow
 EXTENSION = dll
-LINK_FLAGS = $(shell (Get-Content -path Common/pd_linker_flags.txt -Raw) -replace '\n',' '
+LINK_FLAGS = $(shell (Get-Content -path Common/pd_linker_flags.txt -Raw) -replace '\n',' ')
 #tr '\n' ' ' < Common/pd_linker_flags.txt) -lm -lstdc++ -lpthread
 PLATFORM_FLAGS = -static-libgcc -static-libstdc++ -shared
 endif
