@@ -14,7 +14,6 @@ jobs:
              cd framelib/FrameLib_PD_Objects/
              make
   pd-build-linux:
-    if: ${{ false }}  # disable for now
     runs-on: ubuntu-latest
 #    strategy: 
 #        matrix:
