@@ -24,6 +24,7 @@ jobs:
           path: "framelib"
       - name: Build linux pd binary
         run: |
+             man ld
              cd framelib/FrameLib_PD_Objects/
              make
   pd-build-win:
@@ -40,7 +41,8 @@ jobs:
       - name: Build win pd binary
         shell: bash
         run: |
-               cd framelib/FrameLib_PD_Objects/
-               make
+             man ld
+             cd framelib/FrameLib_PD_Objects/
+             make
              
     
