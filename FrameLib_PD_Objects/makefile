@@ -59,7 +59,7 @@ ifeq ($(PLATFORM_TYPE), win)
 CPPFLAGS = -D_USE_MATH_DEFINES -DMSW -DNT
 CXXFLAGS = $(OPTIMISATION) -Wno-ignored-attributes -Wno-stringop-overflow
 EXTENSION = dll
-LINK_FLAGS = $(shell sed 's/\._/-Wl,-u,__imp_/g' Common/pd_symbols.txt) -lm -lstdc++ -lpthread
+LINK_FLAGS = $(shell sed 's/\._/-Wl,ignore-unresolved-symbol,__imp_/g' Common/pd_symbols.txt) -lm -lstdc++ -lpthread
 #tr '\n' ' ' < Common/pd_linker_flags.txt) -lm -lstdc++ -lpthread
 PLATFORM_FLAGS = -static-libgcc -static-libstdc++ -shared
 endif
