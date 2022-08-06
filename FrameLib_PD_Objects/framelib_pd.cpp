@@ -11,9 +11,9 @@
 
 #if defined(_WIN32)
 // Export the symbol to the DLL interface
-#define PD_API __declspec(dllexport) extern
+#define PD_API extern "C" __declspec(dllexport)
 #else
-#define PD_API extern
+#define PD_API extern "C"
 #endif
 
 // Context Control - A pd class to communicate with the current pd
@@ -518,7 +518,7 @@ struct FrameLib_PDClass_ComplexExpression : public FrameLib_PDClass_ComplexExpre
 
 // Main setup routine
 
-PD_API "C" void framelib_pd_setup(void)
+PD_API void framelib_pd_setup(void)
 {
     // Context Control
     
