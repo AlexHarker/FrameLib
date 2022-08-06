@@ -63,7 +63,8 @@ jobs:
     steps:
       - name: Get current date / make build folder
         id: date
-        run: | echo "::set-output name=date::$(date +'%Y-%m-%d')"
+        run: | 
+             echo "::set-output name=date::$(date +'%Y-%m-%d')"
              mkdir build
       - name: Download windows builds
         uses: actions/download-artifact@v3
