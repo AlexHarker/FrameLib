@@ -75,7 +75,7 @@ jobs:
         with:
           prerelease: true
           fail_on_unmatched_files: true
-          files: build/*
+          files: build/*/*/*.*
           target_commitish: ${{ github.sha }}
           tag_name: latest-${{ steps.date.outputs.date }}
           body: This is an automated build of FrameLib for pd.
