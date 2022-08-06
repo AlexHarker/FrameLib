@@ -36,24 +36,25 @@ jobs:
         with:
           name: build-linux
           path: framelib/FrameLib_PD_Objects/framelib_pd.pd_linux
-  pd-build-win:
-    runs-on: windows-2019
+  deploy-pd:
+    runs-on: macos-latest
+    needs: [ pd-build-mac, pd-build-linux,  pd-build-win ]
     steps:
-      - name: Set up MinGW
-        uses: egor-tensin/setup-mingw@v2
+      - name: Get current date / make build folder
+        id: date
+        run: | echo "::set-output name=date::$(date +'%Y-%m-%d')"
+             mkdir build
+      - name: Download windows builds
+        uses: actions/download-artifact@v3
         with:
-          platform: x64
-      - name: Checkout main repo
-        uses: actions/checkout@v3
+          path: build/
+      - name: Make release
+        uses: "softprops/action-gh-release@v1"
         with:
-          path: "framelib"
-      - name: Build win pd binary
-        shell: bash
-        run: |
-             cd framelib/FrameLib_PD_Objects/
-             make
-        - name: Upload linux build
-          uses: actions/upload-artifact@v3
-          with:
-            name: build-win
-            path: framelib/FrameLib_PD_Objects/framelib_pd.dll
+          prerelease: true
+          fail_on_unmatched_files: true
+          files: build/
+          target_commitish: ${{ github.sha }}
+          tag_name: latest-${{ steps.date.outputs.date }}
+          body: This is an automated build of FrameLib for pd.
+          generate_release_notes: true
