@@ -2,7 +2,6 @@ name: pd-github
 on: push
 jobs:
   pd-build-mac:
-    if: ${{ false }}  # disable for now
     runs-on: macos-latest
     steps:
       - name: Checkout main repo
