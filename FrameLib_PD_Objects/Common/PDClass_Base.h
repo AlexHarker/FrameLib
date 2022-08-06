@@ -71,13 +71,16 @@ public:
         {
             bool expected = false;
             
-            if (mFlag.compare_exchange_strong(expected, true))
+            if (!mFlag)//.compare_exchange_strong(expected, true))
+            {
+                mFlag = true;
                 mClock.delay();
+            }
         }
         
         static void call(Qelem *a)
         {
-            a->mFlag.store(false);
+            a->mFlag = false;//.store(false);
             (*a->mMethod)(a->mOwner);
         }
         
@@ -86,7 +89,7 @@ public:
         Clock mClock;
         IntMethod mMethod;
         void *mOwner;
-        std::atomic_bool mFlag;
+        bool mFlag;
     };
     
     // Default Constructor
