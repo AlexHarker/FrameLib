@@ -64,8 +64,8 @@ ifeq ($(PLATFORM_TYPE), win)
 CPPFLAGS += -D_USE_MATH_DEFINES -DMSW -DNT
 CXXFLAGS += -Wno-ignored-attributes -Wno-stringop-overflow
 EXTENSION = dll
-LINK_FLAGS = $(shell sed 's/\._/-Wl,-ignore-unresolved-symbol,__imp_/g' Common/pd_symbols.txt) -lm -lstdc++ -lpthread
-PLATFORM_FLAGS = -static-libgcc -static-libstdc++ -shared
+LINK_FLAGS = $(shell sed 's/\._/-Wl,-ignore-unresolved-symbol,__imp_/g' Common/pd_symbols.txt) -lm -lstdc++ -latomic
+PLATFORM_FLAGS = -static-libgcc -static-latomic -static-libstdc++ -shared
 endif
 
 ifeq ($(MACHINE_TYPE), w64)
