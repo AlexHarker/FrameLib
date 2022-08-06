@@ -11,9 +11,9 @@
 
 #if defined(_WIN32)
 // Export the symbol to the DLL interface
-#  define PD_API extern __declspec(dllexport)
+#define PD_API __declspec(dllexport) extern
 #else
-#  define PD_API extern
+#define PD_API extern
 #endif
 
 // Context Control - A pd class to communicate with the current pd
