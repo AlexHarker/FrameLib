@@ -68,7 +68,7 @@ jobs:
       - name: Download windows builds
         uses: actions/download-artifact@v3
         with:
-          path: "build/"
+          path: build/
       - name: Make release
         uses: "softprops/action-gh-release@v1"
         with:
@@ -79,7 +79,3 @@ jobs:
           tag_name: latest-${{ steps.date.outputs.date }}
           body: This is an automated build of FrameLib for pd.
           generate_release_notes: true
-    
-
-             
-    
