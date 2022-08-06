@@ -56,7 +56,7 @@ PLATFORM_FLAGS = -no-pie -rdynamic -fPIC -shared
 endif
 
 ifeq ($(PLATFORM_TYPE), win)
-CPPFLAGS = -D_USE_MATH_DEFINES
+CPPFLAGS = -D_USE_MATH_DEFINES -DMSW -DNT
 CXXFLAGS = $(OPTIMISATION) -Wno-ignored-attributes -Wno-stringop-overflow
 EXTENSION = dll
 LINK_FLAGS = $(shell sed 's/\._/-Wl,-u,__imp_/g' Common/pd_symbols.txt) -lm -lstdc++ -lpthread
