@@ -36,31 +36,35 @@ INCLUDE_PATHS = \
 				-I$(FL_OBJECTS)/Common_Utilities/
 	
 MAIN_OBJ = framelib_pd.o
+
+# Options
+
 OPTIMISATION = -O3
 
 CFLAGS = $(OPTIMISATION)
 CPPFLAGS = -DNDEBUG -DFRAMELIB_RT_DSP_CHECK
+CXXFLAGS = $(OPTIMISATION)
+
+# Platform Options
 
 ifeq ($(PLATFORM_TYPE), apple)
-CXXFLAGS = $(OPTIMISATION)
 EXTENSION = d_fat
 LINK_FLAGS = $(shell sed 's/\./-Wl,-U,/g' Common/pd_symbols.txt) -lstdc++ -lpthread -framework Accelerate 
 PLATFORM_FLAGS = -bundle -flat_namespace -fPIC
 endif
 
 ifeq ($(PLATFORM_TYPE), linux)
-CXXFLAGS = $(OPTIMISATION) -Wno-ignored-attributes -Wno-stringop-overflow
+CXXFLAGS += -Wno-ignored-attributes -Wno-stringop-overflow
 EXTENSION = pd_linux
 LINK_FLAGS = $(shell sed 's/\./-Wl,-u,/g' Common/pd_symbols.txt) -lm -lstdc++ -lpthread
 PLATFORM_FLAGS = -no-pie -rdynamic -fPIC -shared
 endif
 
 ifeq ($(PLATFORM_TYPE), win)
-CPPFLAGS = -D_USE_MATH_DEFINES -DMSW -DNT
-CXXFLAGS = $(OPTIMISATION) -Wno-ignored-attributes -Wno-stringop-overflow
+CPPFLAGS += -D_USE_MATH_DEFINES -DMSW -DNT
+CXXFLAGS += -Wno-ignored-attributes -Wno-stringop-overflow
 EXTENSION = dll
-LINK_FLAGS = $(shell sed 's/\._/-Wl,ignore-unresolved-symbol,__imp_/g' Common/pd_symbols.txt) -lm -lstdc++ -lpthread
-#tr '\n' ' ' < Common/pd_linker_flags.txt) -lm -lstdc++ -lpthread
+LINK_FLAGS = $(shell sed 's/\._/-Wl,-ignore-unresolved-symbol,__imp_/g' Common/pd_symbols.txt) -lm -lstdc++ -lpthread
 PLATFORM_FLAGS = -static-libgcc -static-libstdc++ -shared
 endif
 
@@ -69,7 +73,8 @@ CPPFLAGS += -DPD_LONGINTTYPE=intptr_t
 endif
 
 OUTPUT_NAME = framelib_pd.$(EXTENSION)
-#OPT=-g
+
+# Targets and pattern rules
 
 framelib_pd: $(MAIN_OBJ) $(FL_OBJ_DIR);
 				cc $(CPPFLAGS) $(CXXFLAGS) $(PLATFORM_FLAGS) -o $(OUTPUT_NAME) $(MAIN_OBJ) $(FL_OBJ) $(LINK_FLAGS)

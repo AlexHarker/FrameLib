@@ -2,7 +2,6 @@ name: pd-github
 on: push
 jobs:
   pd-build-mac:
-    if: ${{ false }}  # disable for now
     runs-on: macos-latest
     steps:
       - name: Checkout main repo
@@ -15,7 +14,6 @@ jobs:
              make
   pd-build-linux:
     runs-on: ubuntu-latest
-    if: ${{ false }}  # disable for now
 #    strategy: 
 #        matrix:
 #            architectures: [ i686, x86_64, arm, aarch64]
@@ -26,7 +24,6 @@ jobs:
           path: "framelib"
       - name: Build linux pd binary
         run: |
-             man ld
              cd framelib/FrameLib_PD_Objects/
              make
   pd-build-win:
@@ -43,7 +40,6 @@ jobs:
       - name: Build win pd binary
         shell: bash
         run: |
-             ld --help 
              cd framelib/FrameLib_PD_Objects/
              make
              
