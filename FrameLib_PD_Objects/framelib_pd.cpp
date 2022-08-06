@@ -9,7 +9,7 @@
 
 // PD_API define
 
-#if defined(_MSC_VER)
+#if defined(_WIN32)
 // Export the symbol to the DLL interface
 #  define PD_API extern __declspec(dllexport)
 #else
