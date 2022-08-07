@@ -49,12 +49,14 @@ CXXFLAGS = $(OPTIMISATION)
 
 ifeq ($(PLATFORM_TYPE), apple)
 EXTENSION = d_fat
+ARCH_FLAGS = -arch arm64 -arch x86_64
 LINK_FLAGS = $(shell sed 's/\./-Wl,-U,/g' Common/pd_symbols.txt) -lstdc++ -lpthread -framework Accelerate 
 PLATFORM_FLAGS = -bundle -flat_namespace -fPIC
 endif
 
 ifeq ($(PLATFORM_TYPE), linux)
 CXXFLAGS += -Wno-ignored-attributes -Wno-stringop-overflow
+ARCH_FLAGS = 
 EXTENSION = pd_linux
 LINK_FLAGS = $(shell sed 's/\./-Wl,-u,/g' Common/pd_symbols.txt) -lm -lstdc++ -lpthread -latomic
 PLATFORM_FLAGS = -no-pie -rdynamic -fPIC -shared
@@ -63,6 +65,7 @@ endif
 ifeq ($(PLATFORM_TYPE), win)
 CPPFLAGS += -D_USE_MATH_DEFINES -DMSW -DNT
 CXXFLAGS += -Wno-ignored-attributes -Wno-stringop-overflow
+ARCH_FLAGS = 
 EXTENSION = dll
 LINK_FLAGS = $(shell sed 's/\._/-Wl,-ignore-unresolved-symbol,__imp_/g' Common/pd_symbols.txt) -lm -lstdc++ -latomic
 PLATFORM_FLAGS = -static -static-libgcc -static-libstdc++ -shared
@@ -77,13 +80,13 @@ OUTPUT_NAME = framelib_pd.$(EXTENSION)
 # Targets and pattern rules
 
 framelib_pd: $(MAIN_OBJ) $(FL_OBJ_DIR);
-				cc $(CPPFLAGS) $(CXXFLAGS) $(PLATFORM_FLAGS) -o $(OUTPUT_NAME) $(MAIN_OBJ) $(FL_OBJ) $(LINK_FLAGS)
+				cc $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -o $(OUTPUT_NAME) $(MAIN_OBJ) $(FL_OBJ) $(LINK_FLAGS)
 
 %.o : %.cpp
-				g++ $(CPPFLAGS) $(CXXFLAGS) -std=c++11 -fPIC $(INCLUDE_PATHS) -c $<
+				g++ $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) -std=c++11 -fPIC $(INCLUDE_PATHS) -c $<
 
 %.o : %.c
-				cc $(CPPFLAGS) $(CFLAGS) -fPIC $(INCLUDE_PATHS) -c $<
+				cc $(CPPFLAGS) $(CFLAGS) $(ARCH_FLAGS) -fPIC $(INCLUDE_PATHS) -c $<
 			
 clean:
 				rm $(MAIN_OBJ) $(FL_OBJ)
