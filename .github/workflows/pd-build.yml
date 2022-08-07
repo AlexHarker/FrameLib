@@ -39,6 +39,10 @@ jobs:
   pd-build-win:
     runs-on: windows-2019
     steps:
+      - name: Set up MinGW
+        uses: egor-tensin/setup-mingw@v2
+        with:
+          platform: x64
       - name: Checkout main repo
         uses: actions/checkout@v3
         with:
