@@ -69,7 +69,7 @@ ARCH_FLAGS =
 EXTENSION = dll
 #$(shell sed 's/\._/-Wl,-ignore-unresolved-symbol,__imp_/g' Common/pd_symbols.txt) 
 LINK_FLAGS = -lm -lstdc++ -latomic
-DLL = ../pd-0.52-2/bin/pd.dll
+DLL = ../../pd-0.52-2/bin/pd.dll
 PLATFORM_FLAGS = -static -static-libgcc -static-libstdc++ -Wl,--enable-auto-import "$(DLL)" -shared
 endif
 

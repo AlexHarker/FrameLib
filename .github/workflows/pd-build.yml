@@ -52,7 +52,7 @@ jobs:
         run: |
              cd framelib/FrameLib_PD_Objects/
              curl https://msp.puredata.info/Software/pd-0.52-2.msw.zip --output pdzipped.zip
-             unzip pdzipped.zip -d framelib/
+             unzip pdzipped.zip -d ../../
              make
       - name: Upload win build
         uses: actions/upload-artifact@v3
