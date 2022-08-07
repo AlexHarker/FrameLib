@@ -56,7 +56,7 @@ endif
 ifeq ($(PLATFORM_TYPE), linux)
 CXXFLAGS += -Wno-ignored-attributes -Wno-stringop-overflow
 EXTENSION = pd_linux
-LINK_FLAGS = $(shell sed 's/\./-Wl,-u,/g' Common/pd_symbols.txt) -lm -lstdc++ -lpthread
+LINK_FLAGS = $(shell sed 's/\./-Wl,-u,/g' Common/pd_symbols.txt) -lm -lstdc++ -lpthread -latomic
 PLATFORM_FLAGS = -no-pie -rdynamic -fPIC -shared
 endif
 
