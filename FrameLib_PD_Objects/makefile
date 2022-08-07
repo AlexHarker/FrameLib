@@ -68,7 +68,8 @@ CXXFLAGS += -Wno-ignored-attributes -Wno-stringop-overflow
 ARCH_FLAGS = 
 EXTENSION = dll
 LINK_FLAGS = $(shell sed 's/\._/-Wl,-ignore-unresolved-symbol,__imp_/g' Common/pd_symbols.txt) -lm -lstdc++ -latomic
-PLATFORM_FLAGS = -static -static-libgcc -static-libstdc++ -shared
+DLL = ../pd-0.52-2/bin/pd.dll
+PLATFORM_FLAGS = -static -static-libgcc -static-libstdc++ -Wl,--enable-auto-import "$(DLL)" -shared
 endif
 
 ifeq ($(MACHINE_TYPE), w64)
