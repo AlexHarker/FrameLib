@@ -1,13 +1,35 @@
 name: notarize-github
-description: 'Uses xcode command line tools to sign the binaries and notarise them'
+description: 'Uses xcode command line tools to sign the binaries and notarize them'
 inputs:
   folder:
     description: 'Folder containing the binaries'
+    type: string
     required: true
   glob:
     description: 'Glob for binaries'
+    type: string
     required: true
     default: '-e mxo'
+  apple_id:
+    description: 'Apple ID'
+    type: string
+    required: true
+  team_id:
+    description: 'Apple Team ID'
+    type: string
+    required: true
+  app_specific_pwd:
+    description: 'Apple Specific Password'
+    type: string
+    required: true
+  cert_pwd:
+    description: 'Certificate Password'
+    type: string
+    required: true
+  cert_base64:
+    description: 'Base64-encoded Certificate'
+    type: string
+    required: true
 jobs:
   notarize-mac:
     runs-on: macos-latest
@@ -15,14 +37,15 @@ jobs:
       - name: Setup keychain and identities
         shell: bash
         env:  
-          TEAM_ID: ${{ secrets.TEAM_ID }}
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APP_SPECIFIC_PWD: ${{ secrets.APP_SPECIFIC_PWD }}
-          CERT_PWD: ${{ secrets.CERT_PWD }}
-          CERT_BASE64: ${{ secrets.CERT_BASE64}}
+          TEAM_ID: ${{ inputs.team_id }}
+          APPLE_ID: ${{ inputs.apple_id }}
+          APP_SPECIFIC_PWD: ${{ inputs.app_specific_pwd }}
+          CERT_PWD: ${{ inputs.cert_pwd }}
+          CERT_BASE64: ${{ inputs.cert_base64}}
           CERTPATH: ${{ runner.temp }}/certificate.p12
           KEYCHAINPWD: temporarykeychainpassword
           KEYCHAINPATH: ${{ runner.temp }}/app-signing.keychain-db
+        using: "composite"
          # create and setup a temporary keychain, then decode the certificate and setup creditials for codesigning and notarization
         run: |
              security create-keychain -p "$KEYCHAINPWD" "$KEYCHAINPATH"
@@ -35,6 +58,7 @@ jobs:
              xcrun notarytool store-credentials "FRAMELIB-NOTARIZE" --apple-id $APPLE_ID --team-id $TEAM_ID --password $APP_SPECIFIC_PWD
       - name: Mac notarization
         shell: bash
+        using: "composite"
         # install fd /cd to package make temp folder with mxos / sign mxos / copy to folder / zip / notarize upload / deleete temps / staple
         run: |
              brew install fd
