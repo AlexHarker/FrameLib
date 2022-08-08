@@ -51,6 +51,7 @@ jobs:
         id: date
         run: | 
              echo "::set-output name=date::$(date +'%Y-%m-%d')"
+             mkdir ../build
       - name: Checkout main repo
         uses: actions/checkout@v3
         with:
@@ -77,15 +78,16 @@ jobs:
           app_specific_pwd: ${{ secrets.APP_SPECIFIC_PWD }}
           cert_pwd: ${{ secrets.CERT_PWD }}
           cert_base64: ${{ secrets.CERT_BASE64}}    
-#      - name: Zip package
-      #     run: xcodebuild -project 'framelib/framelib.xcodeproj' -scheme 'framelib Max Documentation' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
-      # - name: Make release
-      #   uses: "softprops/action-gh-release@v1"
-      #   with:
-      #     prerelease: true
-      #     fail_on_unmatched_files: true
-      #     files: build/*/*.*
-      #     target_commitish: ${{ github.sha }}
-      #     tag_name: max-latest-${{ steps.date.outputs.date }}
-      #     body: This is an automated build of FrameLib for Max.
-      #     generate_release_notes: true
+     - name: Zip package
+          run: | 
+               /usr/bin/ditto -c -k --norsrc --keepParent Packaging/Max/FrameLib/ ../build/FrameLib.zip
+      - name: Make release
+        uses: "softprops/action-gh-release@v1"
+        with:
+          prerelease: true
+          fail_on_unmatched_files: true
+          files: ../build/FrameLib.zip
+          target_commitish: ${{ github.sha }}
+          tag_name: max-latest-${{ steps.date.outputs.date }}
+          body: This is an automated build of FrameLib for Max.
+          generate_release_notes: true
