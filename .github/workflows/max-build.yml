@@ -9,16 +9,12 @@ jobs:
         with:
           path: "framelib"
       - name: Build mac max externals
-        run: | 
-             mkdir build/
-             xcodebuild -project 'framelib/framelib.xcodeproj' -scheme 'framelib Max Package' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
-             cd framelib/FrameLib/Packaging/Max/FrameLib/
-             zip ../../../../build/externals.zip externals
+        run: xcodebuild -project 'framelib/framelib.xcodeproj' -scheme 'framelib Max Package' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
       - name: Upload mac build
         uses: actions/upload-artifact@v3
         with:
           name: build-mac
-          path: build/externals.zip
+          path: framelib/Packaging/Max/FrameLib/externals
   max-build-win:
     runs-on: windows-2019
     steps:
@@ -29,17 +25,12 @@ jobs:
         with:
           path: "framelib"
       - name: Build win max externals
-        shell: bash
-        run: | 
-             mkdir build/
-             msbuild "framelib/framelib.sln" /p:configuration="Release" /p:platform=x64 /v:q /clp:ErrorsOnly /nologo /m
-             cd framelib/FrameLib/Packaging/Max/FrameLib/
-             zip ../../../../build/externals.zip externals
+        run:  msbuild "framelib/framelib.sln" /p:configuration="Release" /p:platform=x64 /v:q /clp:ErrorsOnly /nologo /m
       - name: Upload win build
         uses: actions/upload-artifact@v3
         with:
           name: build-win
-          path: build/externals.zip
+          path: framelib/Packaging/Max/FrameLib/externals
   deploy-max:
     runs-on: macos-latest
     needs: [ max-build-mac, max-build-win ]
