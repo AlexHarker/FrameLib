@@ -64,9 +64,9 @@ jobs:
           path: Packaging/Max/FrameLib/externals
       - name: Download win builds
         uses: actions/download-artifact@v3
-          with:
-            name: build-win
-            path: Packaging/Max/FrameLib/externals
+        with:
+          name: build-win
+          path: Packaging/Max/FrameLib/externals
       - name: Sign and notarize
         uses: ./.github/actions/mac-notarization
         with:
