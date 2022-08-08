@@ -59,6 +59,8 @@ runs:
       shell: bash
       # install fd /cd to package make temp folder with mxos / sign mxos / copy to folder / zip / notarize upload / deleete temps / staple
       run: |
+           ls
+           pwd
            brew install fd
            cd ${{ inputs.folder }}
            mkdir -p Notarization
