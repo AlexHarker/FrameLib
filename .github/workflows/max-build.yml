@@ -35,7 +35,7 @@ jobs:
           repository: 'Cycling74/max-sdk-base'
           path: "max-sdk-base"
       - name: Build win max externals
-        run:  msbuild "framelib/framelib.sln" /p:configuration="Release" /p:platform=x64 /v:q /clp:ErrorsOnly /nologo /m
+        run:  msbuild "framelib/framelib.sln" /p:configuration="Release" /p:platform=x64 /t:framelib_objects_max /v:q /clp:ErrorsOnly /nologo /m
       - name: Upload win build
         uses: actions/upload-artifact@v3
         with:
