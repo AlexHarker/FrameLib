@@ -59,6 +59,7 @@ runs:
       shell: bash
       # install fd /cd to package make temp folder with mxos / sign mxos / copy to folder / zip / notarize upload / deleete temps / staple
       run: |
+           cd ..
            ls
            pwd
            brew install fd
