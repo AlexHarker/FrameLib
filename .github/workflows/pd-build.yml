@@ -79,7 +79,7 @@ jobs:
         uses: ./.github/actions/mac-notarization
         with:
           glob: '-e d_fat'
-          folder: '../build/'
+          folder: ../build/
           team_id: ${{ secrets.TEAM_ID }}
           apple_id: ${{ secrets.APPLE_ID }}
           app_specific_pwd: ${{ secrets.APP_SPECIFIC_PWD }}
