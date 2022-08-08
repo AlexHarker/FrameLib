@@ -13,7 +13,7 @@ jobs:
              cd framelib/FrameLib_PD_Objects/
              make
       - name: Sign and notarize
-        uses: mac-notarization
+        uses: AlexHarker/FrameLib/mac-notarization@pd-build
         with:
           glob: '-e d_fat'
           folder: 'framelib/FrameLib_PD_Objects/'
