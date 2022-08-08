@@ -71,7 +71,7 @@ jobs:
       - name: Sign and notarize
         uses: ./.github/actions/mac-notarization
         with:
-          glob: '-e d_fat'
+          glob: '-e mxo'
           folder: Packaging/Max/FrameLib/externals
           team_id: ${{ secrets.TEAM_ID }}
           apple_id: ${{ secrets.APPLE_ID }}
