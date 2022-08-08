@@ -13,7 +13,7 @@ jobs:
              cd framelib/FrameLib_PD_Objects/
              make
       - name: Prepare local acionts
-      - uses: actions/checkout@v1
+        uses: actions/checkout@v1
       - name: Sign and notarize
         uses: ./.github/actions/mac-notarization
         with:
