@@ -30,9 +30,9 @@ inputs:
     description: 'Base64-encoded Certificate'
     type: string
     required: true
-notarize-mac:
+
+runs: macos-latest
   using: "composite"
-  runs-on: macos-latest
   steps:
     - name: Setup keychain and identities
       shell: bash
