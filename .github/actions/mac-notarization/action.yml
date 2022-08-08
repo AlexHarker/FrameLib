@@ -31,7 +31,7 @@ inputs:
     type: string
     required: true
 
-runs: macos-latest
+runs:
   using: "composite"
   steps:
     - name: Setup keychain and identities
