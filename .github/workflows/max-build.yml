@@ -79,8 +79,8 @@ jobs:
           cert_pwd: ${{ secrets.CERT_PWD }}
           cert_base64: ${{ secrets.CERT_BASE64}}    
      - name: Zip package
-        run: | 
-             /usr/bin/ditto -c -k --norsrc --keepParent Packaging/Max/FrameLib/ ../build/FrameLib.zip
+       run: | 
+            /usr/bin/ditto -c -k --norsrc --keepParent Packaging/Max/FrameLib/ ../build/FrameLib.zip
      - name: Make release
        uses: "softprops/action-gh-release@v1"
        with:
