@@ -43,7 +43,7 @@ jobs:
           path: framelib/Packaging/Max/FrameLib/externals
   deploy-max:
     runs-on: macos-latest
-#    needs: [ max-build-mac, max-build-win ]
+    needs: [ max-build-mac, max-build-win ]
     steps:
       - name: Prepare local actions
         uses: actions/checkout@v1
@@ -57,10 +57,16 @@ jobs:
           path: "framelib"
       - name: Build max documentation
         run: xcodebuild -project 'framelib/framelib.xcodeproj' -scheme 'framelib Max Documentation' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
-      - name: Download builds
+      - name: Download mac builds
         uses: actions/download-artifact@v3
         with:
+          name: build-mac
           path: Packaging/Max/FrameLib/externals
+        - name: Download win builds
+          uses: actions/download-artifact@v3
+          with:
+            name: build-win
+            path: Packaging/Max/FrameLib/externals
       - name: Sign and notarize
         uses: ./.github/actions/mac-notarization
         with:
