@@ -89,7 +89,7 @@ jobs:
       - name: Zip files
         run: |
              cd ../build/
-             find . -type f -maxdepth 1 -execdir zip '{}.zip' '{}' \;
+             find . -type f -execdir zip '{}.zip' '{}' \;
       - name: Make release
         uses: "softprops/action-gh-release@v1"
         with:
