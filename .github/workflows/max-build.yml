@@ -1,0 +1,65 @@
+name: max-github
+on: push
+jobs:
+  max-build-mac:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v3
+        with:
+          path: "framelib"
+      - name: Build mac max externals
+        run: | 
+             mkdir build/
+             run: xcodebuild -project 'framelib/framelib.xcodeproj' -scheme 'framelib Max Package' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
+             cd framelib/FrameLib/Packaging/Max/FrameLib/
+             zip ../../../../build/externals.zip externals
+      - name: Upload mac build
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-mac
+          path: build/externals.zip
+  max-build-win:
+    runs-on: windows-2019
+    steps:
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+      - name: Checkout main repo
+        uses: actions/checkout@v3
+        with:
+          path: "framelib"
+      - name: Build win max externals
+        shell: bash
+        run: | 
+             mkdir build/
+             msbuild "framelib/framelib.sln" /p:configuration="Release" /p:platform=x64 /v:q /clp:ErrorsOnly /nologo /m
+             cd framelib/FrameLib/Packaging/Max/FrameLib/
+             zip ../../../../build/externals.zip externals
+      - name: Upload win build
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-win
+          path: build/externals.zip
+  deploy-max:
+    runs-on: macos-latest
+    needs: [ max-build-mac, max-build-win ]
+    steps:
+      - name: Get current date / make build folder
+        id: date
+        run: | 
+             echo "::set-output name=date::$(date +'%Y-%m-%d')"
+             mkdir build
+      - name: Download builds
+        uses: actions/download-artifact@v3
+        with:
+          path: build/
+      - name: Make release
+        uses: "softprops/action-gh-release@v1"
+        with:
+          prerelease: true
+          fail_on_unmatched_files: true
+          files: build/*/*.*
+          target_commitish: ${{ github.sha }}
+          tag_name: max-latest-${{ steps.date.outputs.date }}
+          body: This is an automated build of FrameLib for Max.
+          generate_release_notes: true
