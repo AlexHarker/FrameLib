@@ -12,13 +12,6 @@ jobs:
         run: | 
              cd framelib/FrameLib_PD_Objects/
              make
-      - name: Prepare local acionts
-        uses: actions/checkout@v1
-      - name: Sign and notarize
-        uses: ./.github/actions/mac-notarization
-        with:
-          glob: '-e d_fat'
-          folder: 'framelib/FrameLib_PD_Objects/'
       - name: Upload mac build
         uses: actions/upload-artifact@v3
         with:
@@ -79,12 +72,21 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           path: build/
+      - name: Prepare local actions
+        uses: actions/checkout@v1
+      - name: Sign and notarize
+        uses: ./.github/actions/mac-notarization
+        with:
+          glob: '-e d_fat'
+          folder: 'build/'
+      - name: Zip files
+        run: find . -type f -maxdepth 1 -execdir zip '{}.zip' '{}' \;
       - name: Make release
         uses: "softprops/action-gh-release@v1"
         with:
           prerelease: true
           fail_on_unmatched_files: true
-          files: build/*/*.*
+          files: build/*/*.zip
           target_commitish: ${{ github.sha }}
           tag_name: pd-latest-${{ steps.date.outputs.date }}
           body: This is an automated build of FrameLib for pd.

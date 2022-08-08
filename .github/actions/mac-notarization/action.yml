@@ -1,4 +1,5 @@
 name: notarize-github
+description: 'Uses xcode command line tools to sign the binaries and notarise them'
 inputs:
   folder:
     description: 'Folder containing the binaries'
