@@ -7,10 +7,10 @@
 
 To build you should be able to run make on this directory and then copy framelib_pd.d_fat and set it to load on startup
 
-Building *should* work on linux (it works on apple) but I've not tested.
-I'm not sure if there should be a VS project for windows or not.
+Building works on apple and finishes on linux (although I've not confirmed that my settings are correct as I'm building online for that).
+I'm not sure if there should be a VS project for windows or that should also be done via make, and if the latter how to do that.
 
-- I've started a test folder at Testing/02\_PD with a couple of simple demos
+- I've started a test folder at Testing/02\_PD with a few simple demos
 
 **Key Issues**
 
@@ -55,7 +55,7 @@ I'm not sure if there should be a VS project for windows or not.
 
 **Build System and Distribution**
 
-- The makefile is very basic and currently builds 64 bit only 
-- Improve the makefile or build system to support all necessary platforms and OSes
+- The makefile is very basic and currently builds the default architecture only
+- I need to understand what file names/architectures etc. should be for different systems 
+- I need to improve the makefile or build system to support all necessary platforms and OSes
 - At the moment object files go into the main PD folder - I'd like them to go into a build directory but I don't know make well enough
-- At the moment I suppress undefined symbols at link, but that means that if there was a non-pd-related link error it wouldn't be caught, so if something nicer is possible that would be good.
