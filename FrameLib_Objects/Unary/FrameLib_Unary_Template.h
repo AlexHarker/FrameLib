@@ -23,7 +23,7 @@ public:
     
     std::string objectInfo(bool verbose) override
     {
-        return formatInfo("Calculates the # of each value in the input frame: "
+        return formatInfo("CHECK CHECK Calculates the # of each value in the input frame: "
                           "The output is a frame of the same length as the input.",
                           "Calculates the # of each value in the input frame.", getOpString(), verbose);
     }
