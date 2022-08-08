@@ -3,6 +3,9 @@
 #define __PD_BASE_H__
 
 #include <m_pd.h>
+
+#include <atomic>
+#include <memory>
 #include <string>
 #include <vector>
 
