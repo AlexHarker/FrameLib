@@ -7,8 +7,6 @@ inputs:
     description: 'Glob for binaries'
     required: true
     default: '-e mxo'
-  BASE_PATH: 
-  FILE_GLOB: -e mxo
   notarize-mac:
     runs-on: macos-latest
       - name: Setup keychain and identities
