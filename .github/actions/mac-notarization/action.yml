@@ -30,44 +30,43 @@ inputs:
     description: 'Base64-encoded Certificate'
     type: string
     required: true
-jobs:
-  notarize-mac:
-    using: "composite"
-    runs-on: macos-latest
-    steps:
-      - name: Setup keychain and identities
-        shell: bash
-        env:  
-          TEAM_ID: ${{ inputs.team_id }}
-          APPLE_ID: ${{ inputs.apple_id }}
-          APP_SPECIFIC_PWD: ${{ inputs.app_specific_pwd }}
-          CERT_PWD: ${{ inputs.cert_pwd }}
-          CERT_BASE64: ${{ inputs.cert_base64}}
-          CERTPATH: ${{ runner.temp }}/certificate.p12
-          KEYCHAINPWD: temporarykeychainpassword
-          KEYCHAINPATH: ${{ runner.temp }}/app-signing.keychain-db
-         # create and setup a temporary keychain, then decode the certificate and setup creditials for codesigning and notarization
-        run: |
-             security create-keychain -p "$KEYCHAINPWD" "$KEYCHAINPATH"
-             security list-keychain -d user -s "$KEYCHAINPATH"
-             security set-keychain-settings "$KEYCHAINPATH"
-             security unlock-keychain -p "$KEYCHAINPWD" "$KEYCHAINPATH"
-             echo -n "$CERT_BASE64" | base64 --decode --output $CERTPATH
-             security import "$CERTPATH" -P "$CERT_PWD" -A -t cert -f pkcs12 -k "$KEYCHAINPATH" -T /usr/bin/codesign
-             security set-key-partition-list -S apple-tool:,apple:, -s -k "$KEYCHAINPATH" -D "$CERT_BASE64" -t private "$KEYCHAINPATH"
-             xcrun notarytool store-credentials "FRAMELIB-NOTARIZE" --apple-id $APPLE_ID --team-id $TEAM_ID --password $APP_SPECIFIC_PWD
-      - name: Mac notarization
-        shell: bash
-        using: "composite"
-        # install fd /cd to package make temp folder with mxos / sign mxos / copy to folder / zip / notarize upload / deleete temps / staple
-        run: |
-             brew install fd
-             cd ${{ inputs.folder }}
-             mkdir -p Notarization
-             fd ${{ inputs.glob }} -E .git -I
-             fd ${{ inputs.glob }} -E .git -I -x codesign --force --timestamp --sign "Developer ID Application" {}
-             fd ${{ inputs.glob }} -E .git -I -x ditto {} Notarization/{/} 
-             /usr/bin/ditto -c -k --keepParent Notarization Notarization.zip
-             xcrun notarytool submit Notarization.zip --keychain-profile "FRAMELIB-NOTARIZE" --wait
-             rm -rf Notarization Notarization.zip
-             fd ${{ inputs.glob }} -E .git -I -x xcrun stapler staple {}  
+notarize-mac:
+  using: "composite"
+  runs-on: macos-latest
+  steps:
+    - name: Setup keychain and identities
+      shell: bash
+      env:  
+        TEAM_ID: ${{ inputs.team_id }}
+        APPLE_ID: ${{ inputs.apple_id }}
+        APP_SPECIFIC_PWD: ${{ inputs.app_specific_pwd }}
+        CERT_PWD: ${{ inputs.cert_pwd }}
+        CERT_BASE64: ${{ inputs.cert_base64}}
+        CERTPATH: ${{ runner.temp }}/certificate.p12
+        KEYCHAINPWD: temporarykeychainpassword
+        KEYCHAINPATH: ${{ runner.temp }}/app-signing.keychain-db
+       # create and setup a temporary keychain, then decode the certificate and setup creditials for codesigning and notarization
+      run: |
+           security create-keychain -p "$KEYCHAINPWD" "$KEYCHAINPATH"
+           security list-keychain -d user -s "$KEYCHAINPATH"
+           security set-keychain-settings "$KEYCHAINPATH"
+           security unlock-keychain -p "$KEYCHAINPWD" "$KEYCHAINPATH"
+           echo -n "$CERT_BASE64" | base64 --decode --output $CERTPATH
+           security import "$CERTPATH" -P "$CERT_PWD" -A -t cert -f pkcs12 -k "$KEYCHAINPATH" -T /usr/bin/codesign
+           security set-key-partition-list -S apple-tool:,apple:, -s -k "$KEYCHAINPATH" -D "$CERT_BASE64" -t private "$KEYCHAINPATH"
+           xcrun notarytool store-credentials "FRAMELIB-NOTARIZE" --apple-id $APPLE_ID --team-id $TEAM_ID --password $APP_SPECIFIC_PWD
+    - name: Mac notarization
+      shell: bash
+      using: "composite"
+      # install fd /cd to package make temp folder with mxos / sign mxos / copy to folder / zip / notarize upload / deleete temps / staple
+      run: |
+           brew install fd
+           cd ${{ inputs.folder }}
+           mkdir -p Notarization
+           fd ${{ inputs.glob }} -E .git -I
+           fd ${{ inputs.glob }} -E .git -I -x codesign --force --timestamp --sign "Developer ID Application" {}
+           fd ${{ inputs.glob }} -E .git -I -x ditto {} Notarization/{/} 
+           /usr/bin/ditto -c -k --keepParent Notarization Notarization.zip
+           xcrun notarytool submit Notarization.zip --keychain-profile "FRAMELIB-NOTARIZE" --wait
+           rm -rf Notarization Notarization.zip
+           fd ${{ inputs.glob }} -E .git -I -x xcrun stapler staple {}  

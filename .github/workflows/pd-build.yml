@@ -62,7 +62,7 @@ jobs:
           path: framelib/FrameLib_PD_Objects/framelib_pd.dll
   deploy-pd:
     runs-on: macos-latest
-    needs: [ pd-build-mac, pd-build-linux,  pd-build-win ]
+    #needs: [ pd-build-mac, pd-build-linux,  pd-build-win ]
     steps:
       - name: Get current date / make build folder
         id: date
