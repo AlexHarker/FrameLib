@@ -2423,7 +2423,7 @@ private:
     
     bool confirmConnection(MaxConnection connection, unsigned long inIndex, ConnectionMode mode)
     {
-        if (!validInput(inIndex) || !connection.mObject)
+        if ((!validInput(inIndex) && !isOrderingInput(inIndex)) || !connection.mObject)
             return false;
         
         ConnectionConfirmation confirmation(connection, inIndex);
@@ -2484,7 +2484,11 @@ private:
             return;
         
         if (isOrderingInput(inIdx))
-            mObject->deleteOrderingConnection(toFLConnection(connection));
+        {
+            auto flConnection = toFLConnection(connection);
+            if (flConnection.mObject)
+                mObject->deleteOrderingConnection(flConnection);
+        }
         else
             mObject->deleteConnection(inIdx);
         
