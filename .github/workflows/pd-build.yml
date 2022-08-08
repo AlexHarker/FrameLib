@@ -76,6 +76,7 @@ jobs:
         with:
           path: ../build/
       - name: Sign and notarize
+          if: ${{ false }}  # disable for now
         uses: ./.github/actions/mac-notarization
         with:
           glob: '-e d_fat'
