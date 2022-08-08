@@ -2484,7 +2484,11 @@ private:
             return;
         
         if (isOrderingInput(inIdx))
-            mObject->deleteOrderingConnection(toFLConnection(connection));
+        {
+            auto flConnection = toFLConnection(connection);
+            if (flConnection.mObject)
+                mObject->deleteOrderingConnection(flConnection);
+        }
         else
             mObject->deleteConnection(inIdx);
         
