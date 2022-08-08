@@ -87,13 +87,15 @@ jobs:
           cert_pwd: ${{ secrets.CERT_PWD }}
           cert_base64: ${{ secrets.CERT_BASE64}}    
       - name: Zip files
-        run: find . -type f -maxdepth 1 -execdir zip '{}.zip' '{}' \;
+        run: |
+             cd ../build/
+             find . -type f -maxdepth 1 -execdir zip '{}.zip' '{}' \;
       - name: Make release
         uses: "softprops/action-gh-release@v1"
         with:
           prerelease: true
           fail_on_unmatched_files: true
-          files: build/*/*.zip
+          files: ../build/*/*.zip
           target_commitish: ${{ github.sha }}
           tag_name: pd-latest-${{ steps.date.outputs.date }}
           body: This is an automated build of FrameLib for pd.
