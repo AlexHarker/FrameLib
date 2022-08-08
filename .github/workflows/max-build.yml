@@ -14,7 +14,7 @@ jobs:
           repository: 'Cycling74/max-sdk-base'
           path: "max-sdk-base"
       - name: Build mac max externals
-        run: xcodebuild -project 'framelib/framelib.xcodeproj' -scheme 'framelib Max (objects build))' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
+        run: xcodebuild -project 'framelib/framelib.xcodeproj' -scheme 'framelib Max (objects build)' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
       - name: Upload mac build
         uses: actions/upload-artifact@v3
         with:
