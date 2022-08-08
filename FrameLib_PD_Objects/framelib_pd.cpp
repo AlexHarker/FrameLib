@@ -7,6 +7,15 @@
 
 #include "pd_buffer.h"
 
+// PD_API define
+
+#if defined(_WIN32)
+// Export the symbol to the DLL interface
+#define PD_API extern "C" __declspec(dllexport)
+#else
+#define PD_API extern "C"
+#endif
+
 // Context Control - A pd class to communicate with the current pd
 
 class FrameLib_PDClass_ContextControl : public PDClass_Base
@@ -509,7 +518,7 @@ struct FrameLib_PDClass_ComplexExpression : public FrameLib_PDClass_ComplexExpre
 
 // Main setup routine
 
-extern "C" void framelib_pd_setup(void)
+PD_API void framelib_pd_setup(void)
 {
     // Context Control
     
@@ -752,7 +761,7 @@ extern "C" void framelib_pd_setup(void)
 
     // Buffer
     
-    // TODO - info is not correct
+    // FIX - info is not correct
     
     FrameLib_PDClass_Expand<FrameLib_Info, kAllInputs>::makeClass("fl.info~");
     FrameLib_PDClass_Read::makeClass<FrameLib_PDClass_Read>("fl.read~");
