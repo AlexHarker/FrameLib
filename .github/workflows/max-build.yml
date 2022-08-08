@@ -62,8 +62,8 @@ jobs:
         with:
           name: build-mac
           path: Packaging/Max/FrameLib/externals
-        - name: Download win builds
-          uses: actions/download-artifact@v3
+      - name: Download win builds
+        uses: actions/download-artifact@v3
           with:
             name: build-win
             path: Packaging/Max/FrameLib/externals
