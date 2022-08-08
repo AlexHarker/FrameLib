@@ -12,8 +12,10 @@ jobs:
         run: | 
              cd framelib/FrameLib_PD_Objects/
              make
+      - name: Prepare local acionts
+      - uses: actions/checkout@v1
       - name: Sign and notarize
-        uses: AlexHarker/FrameLib/mac-notarization@pd-build
+        uses: ./.github/actions/mac-notarization
         with:
           glob: '-e d_fat'
           folder: 'framelib/FrameLib_PD_Objects/'
