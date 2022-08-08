@@ -10,6 +10,7 @@ inputs:
 jobs:
   notarize-mac:
     runs-on: macos-latest
+    steps:
       - name: Setup keychain and identities
         shell: bash
         env:  
