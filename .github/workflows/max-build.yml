@@ -8,6 +8,11 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: "framelib"
+      - name: Checkout max-sdk-base
+        uses: actions/checkout@v3
+        with:
+          repository: 'Cycling74/max-sdk-base'
+          path: "max-sdk-base"
       - name: Build mac max externals
         run: xcodebuild -project 'framelib/framelib.xcodeproj' -scheme 'framelib Max Package' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
       - name: Upload mac build
@@ -24,6 +29,11 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: "framelib"
+      - name: Checkout max-sdk-base
+        uses: actions/checkout@v3
+        with:
+          repository: 'Cycling74/max-sdk-base'
+          path: "max-sdk-base"
       - name: Build win max externals
         run:  msbuild "framelib/framelib.sln" /p:configuration="Release" /p:platform=x64 /v:q /clp:ErrorsOnly /nologo /m
       - name: Upload win build
