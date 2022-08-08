@@ -43,17 +43,23 @@ jobs:
           path: framelib/Packaging/Max/FrameLib/externals
   deploy-max:
     runs-on: macos-latest
-    needs: [ max-build-mac, max-build-win ]
+#    needs: [ max-build-mac, max-build-win ]
     steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v3
+        with:
+          path: "framelib"
       - name: Get current date / make build folder
         id: date
         run: | 
              echo "::set-output name=date::$(date +'%Y-%m-%d')"
              mkdir build
+      - name: Build max documenatation
+        run: xcodebuild -project 'framelib/framelib.xcodeproj' -scheme 'framelib Max Documentation' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
       - name: Download builds
         uses: actions/download-artifact@v3
         with:
-          path: build/
+          path: build/externals
       - name: Make release
         uses: "softprops/action-gh-release@v1"
         with:
