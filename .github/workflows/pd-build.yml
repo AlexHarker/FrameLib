@@ -69,6 +69,8 @@ jobs:
         run: | 
              echo "::set-output name=date::$(date +'%Y-%m-%d')"
              mkdir build
+             pwd
+             ls
       - name: Download builds
         uses: actions/download-artifact@v3
         with:
