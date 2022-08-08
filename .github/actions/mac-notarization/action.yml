@@ -57,7 +57,6 @@ runs:
            xcrun notarytool store-credentials "FRAMELIB-NOTARIZE" --apple-id $APPLE_ID --team-id $TEAM_ID --password $APP_SPECIFIC_PWD
     - name: Mac notarization
       shell: bash
-      using: "composite"
       # install fd /cd to package make temp folder with mxos / sign mxos / copy to folder / zip / notarize upload / deleete temps / staple
       run: |
            brew install fd
