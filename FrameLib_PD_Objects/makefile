@@ -1,49 +1,94 @@
-.SUFFIXES:.so
-FL_FRAMEWORK=../FrameLib_Framework
-FL_DEPENDENCIES=../FrameLib_Dependencies
-FL_OBJECTS=../FrameLib_Objects
+SHELL = /bin/sh
 
-VPATH=../FrameLib_Dependencies/tlsf
+DUMP_MACHINE = $(shell cc -dumpmachine)
+MACHINE_TYPE = $(word 2, $(subst -, , $(DUMP_MACHINE)))
+PLATFORM_TYPE = $(MACHINE_TYPE)
+ 
+# Detect windows
 
-FL_CPP= \
+ifeq ($(MACHINE_TYPE), w64)
+PLATFORM_TYPE = win
+endif
+ifeq ($(MACHINE_TYPE), w32)
+PLATFORM_TYPE = win
+endif
+
+# Paths
+
+FL_FRAMEWORK = ../FrameLib_Framework
+FL_DEPENDENCIES = ../FrameLib_Dependencies
+FL_OBJECTS = ../FrameLib_Objects
+
+VPATH = ../FrameLib_Dependencies/tlsf
+
+FL_CPP = \
 				$(wildcard $(FL_FRAMEWORK)/FrameLib_*.cpp)\
 				$(wildcard $(FL_OBJECTS)/*/FrameLib_*.cpp)\
 				$(FL_DEPENDENCIES)/HISSTools_FFT/HISSTools_FFT.cpp
 
-FL_OBJ_DIR=$(FL_CPP:.cpp=.o) tlsf.o
-FL_OBJ=$(notdir $(FL_OBJ_DIR))
+FL_OBJ_DIR = $(FL_CPP:.cpp=.o) tlsf.o
+FL_OBJ = $(notdir $(FL_OBJ_DIR))
 
-INCLUDE_PATHS=\
+INCLUDE_PATHS = \
         -ICommon\
 				-I$(FL_FRAMEWORK)\
 			  -I$(FL_DEPENDENCIES)\
 				-I$(FL_OBJECTS)/Common_Utilities/
 	
-MAIN_OBJ=framelib_pd.o
-OPTIMISATION=-O3
+MAIN_OBJ = framelib_pd.o
 
-CFLAGS+=$(OPTIMISATION)
-CXXFLAGS+=$(OPTIMISATION)
-CPPFLAGS+=-DNDEBUG -DFRAMELIB_RT_DSP_CHECK
-#OPT=-g
+# Options
 
-DUMP_MACHINE=$(shell cc -dumpmachine)
-MACHINE_TYPE=$(word 2, $(subst -, , $(DUMP_MACHINE)))
+OPTIMISATION = -O3
 
-framelib_pd.d_fat: $(MAIN_OBJ) $(FL_OBJ_DIR); 
-ifeq ($(MACHINE_TYPE), apple)
-				cc $(CPPFLAGS) $(CXXFLAGS) -arch x86_64 -bundle -flat_namespace -undefined suppress -o framelib_pd.d_fat $(MAIN_OBJ) \
-				$(FL_OBJ) -lstdc++ -lpthread -framework Accelerate 
-else 
-				cc$(CPPFLAGS) $(CXXFLAGS) -arch x86_64 -bundle -flat_namespace -undefined suppress -o framelib_pd.d_fat $(MAIN_OBJ) \
-				$(FL_OBJ) -lstdc++ -lpthread
+CFLAGS = $(OPTIMISATION)
+CPPFLAGS = -DNDEBUG -DFRAMELIB_RT_DSP_CHECK
+CXXFLAGS = $(OPTIMISATION)
+
+# Platform Options
+
+ifeq ($(PLATFORM_TYPE), apple)
+EXTENSION = d_fat
+ARCH_FLAGS = -arch arm64 -arch x86_64
+LINK_FLAGS = $(shell sed 's/\./-Wl,-U,/g' Common/pd_symbols.txt) -lstdc++ -lpthread -framework Accelerate 
+PLATFORM_FLAGS = -bundle -flat_namespace -fPIC
 endif
 
+ifeq ($(PLATFORM_TYPE), linux)
+CXXFLAGS += -Wno-ignored-attributes -Wno-stringop-overflow
+ARCH_FLAGS = 
+EXTENSION = pd_linux
+LINK_FLAGS = $(shell sed 's/\./-Wl,-u,/g' Common/pd_symbols.txt) -lm -lstdc++ -lpthread -latomic
+PLATFORM_FLAGS = -no-pie -rdynamic -fPIC -shared
+endif
+
+ifeq ($(PLATFORM_TYPE), win)
+CPPFLAGS += -D_USE_MATH_DEFINES -DMSW -DNT
+CXXFLAGS += -Wno-ignored-attributes -Wno-stringop-overflow
+ARCH_FLAGS = 
+EXTENSION = dll
+#$(shell sed 's/\._/-Wl,-ignore-unresolved-symbol,__imp_/g' Common/pd_symbols.txt) 
+LINK_FLAGS = -lm -lstdc++ -latomic
+DLL = ../../pd-0.52-2/bin/pd.dll
+PLATFORM_FLAGS = -static -static-libgcc -static-libstdc++ -Wl,--enable-auto-import "$(DLL)" -shared
+endif
+
+ifeq ($(MACHINE_TYPE), w64)
+CPPFLAGS += -DPD_LONGINTTYPE=intptr_t
+endif
+
+OUTPUT_NAME = framelib_pd.$(EXTENSION)
+
+# Targets and pattern rules
+
+framelib_pd: $(MAIN_OBJ) $(FL_OBJ_DIR);
+				cc $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -o $(OUTPUT_NAME) $(MAIN_OBJ) $(FL_OBJ) $(LINK_FLAGS)
+
 %.o : %.cpp
-				g++ $(CPPFLAGS) $(CXXFLAGS) -arch x86_64 -std=c++11 -fPIC $(INCLUDE_PATHS) -c $<
+				g++ $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) -std=c++11 -fPIC $(INCLUDE_PATHS) -c $<
 
 %.o : %.c
-				cc $(CPPFLAGS) $(CFLAGS) -arch x86_64 -fPIC $(INCLUDE_PATHS) -c $<
+				cc $(CPPFLAGS) $(CFLAGS) $(ARCH_FLAGS) -fPIC $(INCLUDE_PATHS) -c $<
 			
 clean:
 				rm $(MAIN_OBJ) $(FL_OBJ)
