@@ -32,6 +32,7 @@ inputs:
     required: true
 jobs:
   notarize-mac:
+    using: "composite"
     runs-on: macos-latest
     steps:
       - name: Setup keychain and identities
@@ -45,7 +46,6 @@ jobs:
           CERTPATH: ${{ runner.temp }}/certificate.p12
           KEYCHAINPWD: temporarykeychainpassword
           KEYCHAINPATH: ${{ runner.temp }}/app-signing.keychain-db
-        using: "composite"
          # create and setup a temporary keychain, then decode the certificate and setup creditials for codesigning and notarization
         run: |
              security create-keychain -p "$KEYCHAINPWD" "$KEYCHAINPATH"
