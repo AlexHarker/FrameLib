@@ -144,9 +144,12 @@ void FrameLib_FFT::process()
             
             // Move Nyquist Bin
             
-            spectrum.realp[FFTSize >> 1] = spectrum.imagp[0];
-            spectrum.imagp[FFTSize >> 1] = 0.0;
-            spectrum.imagp[0] = 0.0;
+            if (FFTSizeLog2)
+            {
+                spectrum.realp[FFTSize >> 1] = spectrum.imagp[0];
+                spectrum.imagp[FFTSize >> 1] = 0.0;
+                spectrum.imagp[0] = 0.0;
+            }
             
             // Mirror Spectrum
             
@@ -162,7 +165,8 @@ void FrameLib_FFT::process()
         
         // Scale
         
-        double scale = ((mMode == kComplex) ? 1.0 : 0.5) / (mNormalise ? (double) (FFTSize >> 1) : 1.0);
+        const bool normalise = (mNormalise && FFTSize > 1);
+        const double scale = ((mMode == kComplex) ? 1.0 : 0.5) / (normalise ? static_cast<double>(FFTSize) / 2 : 1.0);
         
         mProcessor.scale_spectrum(spectrum, sizeOut, scale);
     }
