@@ -175,6 +175,14 @@ public:
         uintptr_t fft_size_log2 = calc_fft_size_log2((uintptr_t) std::round(size * time_multiplier));
         uintptr_t fft_size = uintptr_t(1) << fft_size_log2;
         
+        // Special case for a single sample input
+        
+        if (size == 1)
+        {
+            output[0] = input[0];
+            return;
+        }
+        
         temporary_buffers<1> buffer(m_allocator, fft_size >> 1);
         
         rfft(buffer.m_spectra[0], input, size, fft_size_log2);
