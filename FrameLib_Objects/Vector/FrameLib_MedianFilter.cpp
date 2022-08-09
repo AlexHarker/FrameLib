@@ -114,7 +114,7 @@ template <class T>
 void filter(T in, double *out, double *data, unsigned long* indices, long width, long size, unsigned long pos)
 {
     long o1 = width >> 1;
-    long o2 = width - o1 -1;
+    long o2 = (width - o1) - 1;
     
     // Calculate the first percentile
     
