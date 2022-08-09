@@ -150,7 +150,8 @@ void FrameLib_iFFT::process()
     
     if (spectrum.realp)
     {
-        double scale = mNormalise ? 0.5 : 1.0 / static_cast<double>(1 << FFTSizeLog2);
+        const bool normalise = (mNormalise && FFTSizeLog2);
+        const double scale = normalise ? 0.5 : 1.0 / static_cast<double>(1 << FFTSizeLog2);
         
         // Copy Spectrum
         
