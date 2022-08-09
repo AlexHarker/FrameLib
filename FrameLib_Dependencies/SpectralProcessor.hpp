@@ -116,32 +116,47 @@ public:
     
     void fft(Split& io, uintptr_t fft_size_log2)
     {
-        hisstools_fft(m_fft_setup, &io, fft_size_log2);
+        if (fft_size_log2)
+            hisstools_fft(m_fft_setup, &io, fft_size_log2);
     }
     
     void rfft(Split& io, uintptr_t fft_size_log2)
     {
-        hisstools_rfft(m_fft_setup, &io, fft_size_log2);
+        if (!fft_size_log2)
+            io[0] * T(2);
+        else
+            hisstools_rfft(m_fft_setup, &io, fft_size_log2);
     }
     
     void rfft(Split& output, const T *input, uintptr_t size, uintptr_t fft_size_log2)
     {
-        hisstools_rfft(m_fft_setup, input, &output, size, fft_size_log2);
+        if (!fft_size_log2)
+        {
+            output.realp[0] = input[0] * T(2);
+            output.imagp[0] = T(0);
+        }
+        else
+            hisstools_rfft(m_fft_setup, input, &output, size, fft_size_log2);
     }
     
     void ifft(Split& io, uintptr_t fft_size_log2)
     {
-        hisstools_ifft(m_fft_setup, &io, fft_size_log2);
+        if (fft_size_log2)
+            hisstools_ifft(m_fft_setup, &io, fft_size_log2);
     }
     
     void rifft(Split& io, uintptr_t fft_size_log2)
     {
-        hisstools_rifft(m_fft_setup, &io, fft_size_log2);
+        if (fft_size_log2)
+            hisstools_rifft(m_fft_setup, &io, fft_size_log2);
     }
     
     void rifft(T *output, Split& input, uintptr_t fft_size_log2)
     {
-        hisstools_rifft(m_fft_setup, &input, output, fft_size_log2);
+        if (!fft_size_log2)
+            output[0] = input.realp[0];
+        else
+            hisstools_rifft(m_fft_setup, &input, output, fft_size_log2);
     }
     
     // Convolution
