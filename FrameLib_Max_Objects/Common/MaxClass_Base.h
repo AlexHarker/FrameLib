@@ -198,7 +198,7 @@ public:
     static void *create(t_symbol *sym, long ac, t_atom *av)
     {
         void *x = object_alloc(*getClassPointer<T>());
-        new(x) T((t_object *)x, sym, ac, av);
+        new(x) T(reinterpret_cast<t_object *>(x), sym, ac, av);
         return x;
     }
     
@@ -249,7 +249,7 @@ public:
     
     // Allows type conversion to a t_object pointer
     
-    operator t_object* () { return (t_object *) this; }
+    operator t_object* () { return reinterpret_cast<t_object *>(this); }
     
 private:
     

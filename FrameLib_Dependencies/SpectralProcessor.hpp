@@ -116,32 +116,47 @@ public:
     
     void fft(Split& io, uintptr_t fft_size_log2)
     {
-        hisstools_fft(m_fft_setup, &io, fft_size_log2);
+        if (fft_size_log2)
+            hisstools_fft(m_fft_setup, &io, fft_size_log2);
     }
     
     void rfft(Split& io, uintptr_t fft_size_log2)
     {
-        hisstools_rfft(m_fft_setup, &io, fft_size_log2);
+        if (!fft_size_log2)
+            io[0] * T(2);
+        else
+            hisstools_rfft(m_fft_setup, &io, fft_size_log2);
     }
     
     void rfft(Split& output, const T *input, uintptr_t size, uintptr_t fft_size_log2)
     {
-        hisstools_rfft(m_fft_setup, input, &output, size, fft_size_log2);
+        if (!fft_size_log2)
+        {
+            output.realp[0] = input[0] * T(2);
+            output.imagp[0] = T(0);
+        }
+        else
+            hisstools_rfft(m_fft_setup, input, &output, size, fft_size_log2);
     }
     
     void ifft(Split& io, uintptr_t fft_size_log2)
     {
-        hisstools_ifft(m_fft_setup, &io, fft_size_log2);
+        if (fft_size_log2)
+            hisstools_ifft(m_fft_setup, &io, fft_size_log2);
     }
     
     void rifft(Split& io, uintptr_t fft_size_log2)
     {
-        hisstools_rifft(m_fft_setup, &io, fft_size_log2);
+        if (fft_size_log2)
+            hisstools_rifft(m_fft_setup, &io, fft_size_log2);
     }
     
     void rifft(T *output, Split& input, uintptr_t fft_size_log2)
     {
-        hisstools_rifft(m_fft_setup, &input, output, fft_size_log2);
+        if (!fft_size_log2)
+            output[0] = input.realp[0];
+        else
+            hisstools_rifft(m_fft_setup, &input, output, fft_size_log2);
     }
     
     // Convolution
@@ -174,6 +189,14 @@ public:
     {
         uintptr_t fft_size_log2 = calc_fft_size_log2((uintptr_t) std::round(size * time_multiplier));
         uintptr_t fft_size = uintptr_t(1) << fft_size_log2;
+        
+        // Special case for a single sample input
+        
+        if (size == 1)
+        {
+            output[0] = input[0];
+            return;
+        }
         
         temporary_buffers<1> buffer(m_allocator, fft_size >> 1);
         
@@ -555,6 +578,11 @@ protected:
     template<SpectralOp Op, ComplexArrange arrange>
     void binary_op(T *r_out, T *i_out, in_ptr r_in1, in_ptr i_in1, in_ptr r_in2, in_ptr i_in2, EdgeMode mode)
     {
+        auto get_first = [](in_ptr ptr)
+        {
+            return ptr.m_size ? ptr.m_ptr[0] : 0.0;
+        };
+        
         uintptr_t size1 = std::max(r_in1.m_size, i_in1.m_size);
         uintptr_t size2 = std::max(r_in2.m_size, i_in2.m_size);
         
@@ -565,8 +593,8 @@ protected:
 
         if (size1 == 1 && size2 == 1)
         {
-            r_out[0] = r_in1.m_ptr[0] * r_in2.m_ptr[0] + i_in1.m_ptr[0] * i_in2.m_ptr[0];
-            i_out[0] = r_in1.m_ptr[0] * i_in2.m_ptr[0] - i_in1.m_ptr[0] * i_in1.m_ptr[0];
+            r_out[0] = get_first(r_in1) * get_first(r_in2) - get_first(i_in1) * get_first(i_in2);
+            i_out[0] = get_first(r_in1) * get_first(i_in2) + get_first(i_in1) * get_first(r_in2);
             return;
         }
         
