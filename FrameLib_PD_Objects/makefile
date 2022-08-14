@@ -8,10 +8,16 @@ PLATFORM_TYPE = $(MACHINE_TYPE)
 
 ifeq ($(MACHINE_TYPE), w64)
 PLATFORM_TYPE = win
+BUILD_TYPE ?= x86_64
 endif
 ifeq ($(MACHINE_TYPE), w32)
 PLATFORM_TYPE = win
+BUILD_TYPE ?= i386
 endif
+
+BUILD_TYPE ?= 
+BUILD_DIR ?= ../build
+INTERMEDIATE_DIR ?= $(BUILD_DIR)/objects
 
 # Paths
 
@@ -26,16 +32,15 @@ FL_CPP = \
 				$(wildcard $(FL_OBJECTS)/*/FrameLib_*.cpp)\
 				$(FL_DEPENDENCIES)/HISSTools_FFT/HISSTools_FFT.cpp
 
-FL_OBJ_DIR = $(FL_CPP:.cpp=.o) tlsf.o
-FL_OBJ = $(notdir $(FL_OBJ_DIR))
+FL_OBJ = $(FL_CPP:.cpp=.o) tlsf.o
+FL_OBJ_OUT = $(addprefix $(INTERMEDIATE_DIR)/, $(notdir $(FL_OBJ)))
 
 INCLUDE_PATHS = \
-        -ICommon\
 				-I$(FL_FRAMEWORK)\
-			  -I$(FL_DEPENDENCIES)\
 				-I$(FL_OBJECTS)/Common_Utilities/
 	
 MAIN_OBJ = framelib_pd.o
+MAIN_OBJ_OUT = $(INTERMEDIATE_DIR)/$(MAIN_OBJ)
 
 # Options
 
@@ -56,39 +61,52 @@ endif
 
 ifeq ($(PLATFORM_TYPE), linux)
 CXXFLAGS += -Wno-ignored-attributes -Wno-stringop-overflow
-ARCH_FLAGS = 
 EXTENSION = pd_linux
 LINK_FLAGS = $(shell sed 's/\./-Wl,-u,/g' Common/pd_symbols.txt) -lm -lstdc++ -lpthread -latomic
 PLATFORM_FLAGS = -no-pie -rdynamic -fPIC -shared
+ARCH_FLAGS = 
+ifeq ($(BUILD_TYPE), i386)
+ARCH_FLAGS = -m32 -march=i386
+endif
 endif
 
 ifeq ($(PLATFORM_TYPE), win)
-CPPFLAGS += -D_USE_MATH_DEFINES -DMSW -DNT
+CPPFLAGS += -D_USE_MATH_DEFINES -DMSW -DNT -DPD_LONGINTTYPE=intptr_t
 CXXFLAGS += -Wno-ignored-attributes -Wno-stringop-overflow
-ARCH_FLAGS = 
 EXTENSION = dll
-#$(shell sed 's/\._/-Wl,-ignore-unresolved-symbol,__imp_/g' Common/pd_symbols.txt) 
 LINK_FLAGS = -lm -lstdc++ -latomic
 DLL = ../../pd-0.52-2/bin/pd.dll
 PLATFORM_FLAGS = -static -static-libgcc -static-libstdc++ -Wl,--enable-auto-import "$(DLL)" -shared
+ARCH_FLAGS = 
+ifeq ($(BUILD_TYPE), i386)
+DLL = ../../pd-0.52-2-i386/bin/pd.dll
+ARCH_FLAGS = -march=i386
+endif
 endif
 
-ifeq ($(MACHINE_TYPE), w64)
-CPPFLAGS += -DPD_LONGINTTYPE=intptr_t
-endif
-
-OUTPUT_NAME = framelib_pd.$(EXTENSION)
+OUTPUT_NAME = $(BUILD_DIR)/framelib_pd.$(EXTENSION)
 
 # Targets and pattern rules
 
-framelib_pd: $(MAIN_OBJ) $(FL_OBJ_DIR);
-				cc $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -o $(OUTPUT_NAME) $(MAIN_OBJ) $(FL_OBJ) $(LINK_FLAGS)
+framelib_pd: $(MAIN_OBJ) $(FL_OBJ) build_directory;
+				cc $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -o $(OUTPUT_NAME) $(MAIN_OBJ_OUT) $(FL_OBJ_OUT) $(LINK_FLAGS)
 
-%.o : %.cpp
-				g++ $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) -std=c++11 -fPIC $(INCLUDE_PATHS) -c $<
+build_directory:
+				mkdir -p $(BUILD_DIR)
+				
+intermediate_directory:
+				mkdir -p $(INTERMEDIATE_DIR)
+	
+%.o : %.cpp intermediate_directory
+				g++ $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) -std=c++11 -fPIC $(INCLUDE_PATHS) -c $< -o $(INTERMEDIATE_DIR)/$(@F)
 
-%.o : %.c
-				cc $(CPPFLAGS) $(CFLAGS) $(ARCH_FLAGS) -fPIC $(INCLUDE_PATHS) -c $<
-			
+%.o : %.c intermediate_directory
+				cc $(CPPFLAGS) $(CFLAGS) $(ARCH_FLAGS) -fPIC $(INCLUDE_PATHS) -c $< -o $(INTERMEDIATE_DIR)/$(@F)
+		
+.PHONY: clean
+		
 clean:
-				rm $(MAIN_OBJ) $(FL_OBJ)
+				rm -f -r $(INTERMEDIATE_DIR) 
+				rm -f $(OUTPUT_NAME) 
+			
+	
