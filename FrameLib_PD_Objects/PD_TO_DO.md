@@ -3,12 +3,8 @@
 
 - All (165 out of 165) framelib objects get built to a single library files
 - Realtime operation and non-realtime operation is supported
-- There are some key issues to note below which I'm working through
 
-To build you should be able to run make on this directory and then copy framelib_pd.d_fat and set it to load on startup
-
-Building works on apple and finishes on linux (although I've not confirmed that my settings are correct as I'm building online for that).
-I'm not sure if there should be a VS project for windows or that should also be done via make, and if the latter how to do that.
+To build you should be able to run make on this directory and then copy /build/framelib_pd.* and set it to load on startup
 
 - I've started a test folder at Testing/02\_PD with a few simple demos
 
@@ -33,7 +29,7 @@ I'm not sure if there should be a VS project for windows or that should also be 
 - My memory is that sigmund uses an attribute-style system so I want to choose something idiomatic to pd for setting these in the box.
 - sigmund~ uses dashes like the command line so I've copied that for now. [REVIEW]
 
-- Message ordering - If messages are sent to pd then currently the message time and stream determines the order. In Max there are further considerations to do with object position in a patch so that ordering makes sense - I'm not sure what would be idomatic in pd but logically patch position would seem to make sense, so I'm implenting that [REVIEW]
+- Message Ordering - If messages are sent to pd then currently the message time and stream determines the order. In Max there are further considerations to do with object position in a patch so that ordering makes sense - I'm not sure what would be idomatic in pd but logically patch position would seem to make sense, so I'm implenting that [REVIEW]
 
 **Review**
 
@@ -55,7 +51,5 @@ I'm not sure if there should be a VS project for windows or that should also be 
 
 **Build System and Distribution**
 
-- The makefile is very basic and currently builds the default architecture only
 - I need to understand what file names/architectures etc. should be for different systems 
-- I need to improve the makefile or build system to support all necessary platforms and OSes
-- At the moment object files go into the main PD folder - I'd like them to go into a build directory but I don't know make well enough
+- Building currently works with CI on apple (arm / x86_64), linux (i386 / x86_64) and windows (x86_64)
