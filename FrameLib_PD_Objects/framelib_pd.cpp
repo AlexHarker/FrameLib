@@ -1,11 +1,20 @@
 
-#include "FrameLib_PDClass.h"
+#include "Common/FrameLib_PDClass.h"
 #include "../FrameLib_Exports/FrameLib_Objects.h"
 #include "../FrameLib_Exports/FrameLib_TypeAliases.h"
 
 // Buffer
 
-#include "pd_buffer.h"
+#include "Common/pd_buffer.h"
+
+// PD_API define
+
+#if defined(_WIN32)
+// Export the symbol to the DLL interface
+#define PD_API extern "C" __declspec(dllexport)
+#else
+#define PD_API extern "C"
+#endif
 
 // PD_API define
 

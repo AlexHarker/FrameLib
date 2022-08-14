@@ -2,7 +2,7 @@
 #ifndef PD_BUFFER_H
 #define PD_BUFFER_H
 
-#include "TableReader.hpp"
+#include "../../FrameLib_Dependencies/TableReader.hpp"
 
 class pd_buffer
 {
