@@ -1,10 +1,343 @@
 
-#include "FrameLib_PDClass.h"
+#include "Common/FrameLib_PDClass.h"
 #include "../FrameLib_Exports/FrameLib_Objects.h"
+#include "../FrameLib_Exports/FrameLib_TypeAliases.h"
 
 // Buffer
 
-#include "pd_buffer.h"
+#include "Common/pd_buffer.h"
+
+// PD_API define
+
+#if defined(_WIN32)
+// Export the symbol to the DLL interface
+#define PD_API extern "C" __declspec(dllexport)
+#else
+#define PD_API extern "C"
+#endif
+
+// Context Control - A pd class to communicate with the current pd
+
+class FrameLib_PDClass_ContextControl : public PDClass_Base
+{
+    using PDClass = FrameLib_PDClass<void>;
+    
+public:
+    
+    static void classInit(t_class *c, const char *classname)
+    {
+        addMethod<FrameLib_PDClass_ContextControl, &FrameLib_PDClass_ContextControl::multithread>(c, "multithread");
+        addMethod<FrameLib_PDClass_ContextControl, &FrameLib_PDClass_ContextControl::idSet>(c, "id");
+        addMethod<FrameLib_PDClass_ContextControl, &FrameLib_PDClass_ContextControl::rtSet>(c, "rt");
+        
+        class_addmethod(c, (t_method) &extTimeOut, gensym("timeout"), A_DEFFLOAT, A_DEFFLOAT, 0);
+        class_addmethod(c, (t_method) &extCodeExport, gensym("export"), A_SYMBOL, A_SYMBOL, 0);
+    }
+    
+    FrameLib_PDClass_ContextControl(t_object *x, t_symbol *sym, long argc, t_atom *argv)
+    : mPDContext{ true, canvas_getcurrent(), gensym("") }
+    , mContext(mGlobal->makeContext(mPDContext))
+    {
+        long i = 0;
+        
+        // Parse attribute tags
+        
+        while (i < argc)
+        {
+            t_symbol *sym = atom_getsymbol_default(argv + i++);
+            
+            if (PDClass::isAttributeTag(sym))
+            {
+                // Check attributes are valid
+                                
+                if (!PDClass::isNamedAttributeTag(sym, "rt") && !PDClass::isNamedAttributeTag(sym, "id"))
+                {
+                    pd_error(asObject(), "unknown attribute %s", sym->s_name);
+                    continue;
+                }
+                
+                // Check for missing values
+                
+                if ((i >= argc) || PDClass::isTag(argv + i))
+                {
+                    pd_error(asObject(), "no values given for attribute %s", sym->s_name);
+                    continue;
+                }
+                
+                if (PDClass::isNamedAttributeTag(sym, "rt"))
+                    rtSet(atom_getfloat(argv + i++));
+                else if (PDClass::isNamedAttributeTag(sym, "id"))
+                    idSet(atom_getsymbol_default(argv + i++));
+               
+                if (i < argc && !PDClass::isTag(argv + i))
+                    pd_error(asObject(), "stray items after attribute %s", sym->s_name);
+            }
+            else
+                pd_error(asObject(), "additional unrecognised arguments");
+        }
+    }
+    
+    ~FrameLib_PDClass_ContextControl()
+    {
+        mGlobal->releaseContext(mContext);
+    }
+    
+    // Attributes
+    
+    // id attribute
+    
+    void idSet(t_symbol *name)
+    {
+        mPDContext.mName = name;
+        updateContext();
+    }
+    
+    // rt attribute
+    
+    void rtSet(t_floatarg arg)
+    {
+        mPDContext.mRealtime = arg;
+        updateContext();
+    }
+    
+    // Time out
+    
+    static void extTimeOut(FrameLib_PDClass_ContextControl *x, double relative, double absolute)
+    {
+        x->timeOut(relative, absolute);
+    }
+    
+    // Export
+    
+    static void extCodeExport(FrameLib_PDClass_ContextControl *x, t_symbol *className, t_symbol *path)
+    {
+        x->codeExport(className, path);
+    }
+
+private:
+    
+    // Multithreading
+    
+    void multithread(t_floatarg on)
+    {
+        FrameLib_Context::ProcessingQueue processingQueue(mContext);
+        processingQueue->setMultithreading(on);
+    }
+    
+    // Time out
+    
+    void timeOut(t_floatarg relative, t_floatarg absolute)
+    {
+        FrameLib_Context::ProcessingQueue processingQueue(mContext);
+        processingQueue->setTimeOuts(relative / 100.0, absolute / 1000.0);
+    }
+    
+    // Export
+    
+    void codeExport(t_symbol *className, t_symbol *path)
+    {
+        // Get the first object and its underlying framelib object
+        
+        t_object *object = searchPatch(mPDContext.mCanvas);
+        FrameLib_Multistream *flObject = toFLObject(object);
+        
+        if (!object || !flObject)
+        {
+            pd_error(this, "couldn't find any framelib objects in the current context");
+            return;
+        }
+        
+        objectMethod<void>(object, FrameLib_PDPrivate::messageResolveContext());
+        
+        auto replace = FrameLib_TypeAliases::makeReplaceStrings();
+        
+        // FIX - should we deal with search paths etc.?
+        
+        ExportError error = exportGraph(flObject, path->s_name, className->s_name, &replace);
+        
+        if (error == ExportError::PathError)
+            pd_error(this, "couldn't write to or find specified path");
+        else if (error == ExportError::WriteError)
+            pd_error(this, "couldn't write file");
+    }
+    
+    // Context
+
+    void updateContext()
+    {
+        mGlobal->releaseContext(mContext);
+        mContext = mGlobal->makeContext(mPDContext);
+    }
+    
+    // Convert an object to an FLObject
+    
+    FrameLib_Multistream *toFLObject(t_object *x)
+    {
+        return FrameLib_PDPrivate::toFrameLibObject(x);
+    }
+
+    t_object *searchPatch(t_glist *gl)
+    {
+        // Call method on all objects
+                        
+        for (t_gobj *g = gl->gl_list; g; g = g->g_next)
+        {
+            if (t_object *object = pd_checkobject(&g->g_pd))
+            {
+                FrameLib_Multistream *flObject = toFLObject(object);
+                if (flObject && flObject->getContext() == mContext)
+                    return object;
+            }
+        }
+        
+        return nullptr;
+    }
+    
+    // Members
+    
+    FrameLib_PDGlobals::ManagedPointer mGlobal;
+    FrameLib_PDContext mPDContext;
+    FrameLib_Context mContext;
+};
+
+// To PD Class
+
+class FrameLib_PDClass_ToPD : public FrameLib_PDClass_Expand<FrameLib_ToHost>
+{
+    struct ToHostProxy : public FrameLib_ToHost::Proxy, public FrameLib_PDMessageProxy
+    {
+        ToHostProxy(FrameLib_PDClass_ToPD *object)
+        : FrameLib_PDMessageProxy(object->asObject())
+        , mObject(object)
+        {}
+        
+        void sendToHost(unsigned long index, unsigned long stream, const double *values, unsigned long N, FrameLib_TimeFormat time)  override
+        {
+            mObject->getHandler()->add(MessageInfo(this, time, stream), values, N);
+        }
+        
+        void sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial, FrameLib_TimeFormat time)  override
+        {
+            mObject->getHandler()->add(MessageInfo(this, time, stream), serial);
+        }
+        
+        void sendMessage(unsigned long stream, t_symbol *s, short ac, t_atom *av) override
+        {
+            auto& outlets = mObject->mOutlets;
+            unsigned long idx = stream % outlets.size();
+            
+            if (s)
+                outlet_anything(outlets[idx], s, ac, av);
+            else if (!ac)
+                outlet_bang(outlets[idx]);
+            else if (ac == 1)
+                outlet_float(outlets[idx], atom_getfloat(av));
+            else
+                outlet_list(outlets[idx], nullptr, ac, av);
+        }
+        
+    private:
+        
+        FrameLib_PDClass_ToPD *mObject;
+    };
+    
+public:
+    
+    // Constructor
+    
+    FrameLib_PDClass_ToPD(t_object *x, t_symbol *s, long argc, t_atom *argv)
+    : FrameLib_PDClass(x, s, argc, argv, new ToHostProxy(this))
+    {
+        unsigned long nStreams = getSpecifiedStreams();
+        
+        mOutlets.resize(nStreams);
+        
+        for (unsigned long i = 0; i < nStreams; i++)
+            mOutlets[i] = outlet_new(asObject(), 0L);
+        
+        mHostProxy = static_cast<ToHostProxy *>(mProxy.get());
+    }
+    
+private:
+    
+    // Data
+    
+    ToHostProxy *mHostProxy;
+    std::vector<t_outlet *> mOutlets;
+};
+
+// From PD Class
+
+class FrameLib_PDClass_FromPD : public FrameLib_PDClass_Expand<FrameLib_FromHost>
+{
+    struct FromHostProxy : public FrameLib_FromHost::Proxy, public FrameLib_PDProxy
+    {
+        FromHostProxy(t_object *x)
+        : FrameLib_FromHost::Proxy(true, true)
+        , FrameLib_PDProxy(x) {}
+    };
+    
+public:
+    
+    // Class Initialisation
+    
+    static void classInit(t_class *c, const char *classname)
+    {
+        FrameLib_PDClass::classInit(c, classname);
+        
+        addFloatMethod<FrameLib_PDClass_FromPD, &FrameLib_PDClass_FromPD::floatHandler>(c);
+        addListMethod<FrameLib_PDClass_FromPD, &FrameLib_PDClass_FromPD::list>(c);
+        addAnythingMethod<FrameLib_PDClass_FromPD, &FrameLib_PDClass_FromPD::anything>(c);
+    }
+
+    // Constructor
+    
+    FrameLib_PDClass_FromPD(t_object *x, t_symbol *s, long argc, t_atom *argv)
+    : FrameLib_PDClass(x, s, argc, argv, new FromHostProxy(x))
+    {
+        mHostProxy = static_cast<FromHostProxy *>(mProxy.get());
+    }
+    
+    // Additional handlers
+    
+    void floatHandler(t_floatarg in)
+    {
+        double d_in = in;
+        mHostProxy->sendFromHost(0, &d_in, 1);
+    }
+    
+    void list(t_symbol *s, long argc, t_atom *argv)
+    {
+        std::vector<double> temporary(argc);
+        
+        for (long i = 0; i < argc; i++)
+            temporary[i] = atom_getfloat(argv++);
+        
+        mHostProxy->sendFromHost(0, temporary.data(), argc);
+    }
+    
+    void anything(t_symbol *s, long argc, t_atom *argv)
+    {
+        if (argc > 1 && atom_gettype(argv) == A_SYMBOL)
+            pd_error(this, "too many arguments for string value");
+        
+        if (argc && atom_gettype(argv) == A_SYMBOL)
+            mHostProxy->sendFromHost(0, s->s_name, atom_getsymbol_default(argv)->s_name);
+        else
+        {
+            std::vector<double> temporary(argc);
+            
+            for (long i = 0; i < argc; i++)
+                temporary[i] = atom_getfloat(argv++);
+            
+            mHostProxy->sendFromHost(0, s->s_name, temporary.data(), argc);
+        }
+    }
+
+private:
+    
+    FromHostProxy *mHostProxy;
+};
 
 // PD Read Class
 
@@ -12,6 +345,8 @@ class FrameLib_PDClass_Read : public FrameLib_PDClass_Expand<FrameLib_Read>
 {
     struct ReadProxy : public FrameLib_Read::Proxy, public FrameLib_PDProxy
     {
+        ReadProxy(t_object *x) : FrameLib_PDProxy(x) {}
+        
         void update(const char *name) override
         {
             mBufferName = gensym(name);
@@ -19,9 +354,10 @@ class FrameLib_PDClass_Read : public FrameLib_PDClass_Expand<FrameLib_Read>
         
         void acquire(unsigned long& length, double& samplingRate) override
         {
+            // Leave the sampling rate as it is (pd provides no sr for tables)
+
             mBuffer = pd_buffer(mBufferName);
-            length = mBuffer.get_length();
-            samplingRate = 0.0;
+            length = static_cast<unsigned long>(mBuffer.get_length());
         }
         
         void release() override
@@ -31,7 +367,8 @@ class FrameLib_PDClass_Read : public FrameLib_PDClass_Expand<FrameLib_Read>
         
         void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeMode edges, bool bound) override
         {
-            mBuffer.read(output, positions, size, 1.0, interp, edges, bound);
+            chan = std::max(0L, std::min(chan, static_cast<long>(mBuffer.get_num_chans() - 1)));
+            mBuffer.read(output, positions, size, 1.0, chan, interp, edges, bound);
         }
         
         FrameLib_Read::Proxy *clone() const override
@@ -49,19 +386,68 @@ public:
     
     // Constructor
     
-    FrameLib_PDClass_Read(t_symbol *s, long argc, t_atom *argv)
-    : FrameLib_PDClass(s, argc, argv, new ReadProxy()) {}
+    FrameLib_PDClass_Read(t_object *x, t_symbol *s, long argc, t_atom *argv)
+    : FrameLib_PDClass(x, s, argc, argv, new ReadProxy(x)) {}
+};
+
+// PD Info Class
+
+class FrameLib_PDClass_Info : public FrameLib_PDClass_Expand<FrameLib_Info>
+{
+    struct InfoProxy : public FrameLib_Info::Proxy, public FrameLib_PDProxy
+    {
+        InfoProxy(t_object *x)
+        : FrameLib_PDProxy(x)
+        , mBuffer(nullptr)
+        {}
+        
+        void update(const char *name) override
+        {
+            mBufferName = gensym(name);
+        }
+        
+        void acquire(unsigned long& length, double& samplingRate, unsigned long& chans) override
+        {
+            // Leave the sampling rate as it is (pd provides no sr for tables)
+
+            mBuffer = pd_buffer(mBufferName);
+            length = static_cast<unsigned long>(mBuffer.get_length());
+            chans = static_cast<unsigned long>(mBuffer.get_num_chans());
+        }
+        
+        void release() override
+        {
+            mBuffer = pd_buffer();
+        };
+        
+        FrameLib_Info::Proxy *clone() const override
+        {
+            return new InfoProxy(*this);
+        }
+        
+    private:
+        
+        pd_buffer mBuffer;
+        t_symbol *mBufferName;
+    };
+    
+public:
+    
+    // Constructor
+    
+    FrameLib_PDClass_Info(t_object *x, t_symbol *s, long argc, t_atom *argv)
+    : FrameLib_PDClass(x, s, argc, argv, new InfoProxy(x)) {}
 };
 
 // PD Expression Classes
 
 // The expression objects parses arguments differently to normal, which is handled by pre-parsing the atoms into a different format
 
-class ArgumentParser
+class ExprArgumentParser
 {
 public:
     
-    ArgumentParser(t_symbol *s, long argc, t_atom *argv, bool complex) : mSymbol(s), mComplex(complex)
+    ExprArgumentParser(t_symbol *s, long argc, t_atom *argv, bool complex) : mSymbol(s), mComplex(complex)
     {
         concatenate(argc, argv);
         
@@ -149,8 +535,8 @@ private:
 
 struct FrameLib_PDClass_Expression_Parsed : public FrameLib_PDClass_Expand<FrameLib_Expression>
 {
-    FrameLib_PDClass_Expression_Parsed(const ArgumentParser &parsed) :
-    FrameLib_PDClass(parsed.symbol(), parsed.count(), parsed.args(), new FrameLib_PDProxy()) {}
+    FrameLib_PDClass_Expression_Parsed(t_object *x, const ExprArgumentParser &parsed) :
+    FrameLib_PDClass(x, parsed.symbol(), parsed.count(), parsed.args()) {}
 };
 
 // Expression PD Class (inherits from the parsed version which inherits the standard pd class)
@@ -159,16 +545,16 @@ struct FrameLib_PDClass_Expression : public FrameLib_PDClass_Expression_Parsed
 {
     // Constructor
     
-    FrameLib_PDClass_Expression(t_symbol *s, long argc, t_atom *argv) :
-    FrameLib_PDClass_Expression_Parsed(ArgumentParser(s, argc, argv, false)) {}
+    FrameLib_PDClass_Expression(t_object *x, t_symbol *s, long argc, t_atom *argv) :
+    FrameLib_PDClass_Expression_Parsed(x, ExprArgumentParser(s, argc, argv, false)) {}
 };
 
 // This complex expression class is a wrapper that allows the parsing to happen correctly
 
 struct FrameLib_PDClass_ComplexExpression_Parsed : public FrameLib_PDClass_Expand<FrameLib_ComplexExpression>
 {
-    FrameLib_PDClass_ComplexExpression_Parsed(const ArgumentParser &parsed) :
-    FrameLib_PDClass(parsed.symbol(), parsed.count(), parsed.args(), new FrameLib_PDProxy()) {}
+    FrameLib_PDClass_ComplexExpression_Parsed(t_object *x, const ExprArgumentParser &parsed) :
+    FrameLib_PDClass(x, parsed.symbol(), parsed.count(), parsed.args()) {}
 };
 
 // Complex Expression PD Class (inherits from the parsed version which inherits the standard pd class)
@@ -177,14 +563,23 @@ struct FrameLib_PDClass_ComplexExpression : public FrameLib_PDClass_ComplexExpre
 {
     // Constructor
     
-    FrameLib_PDClass_ComplexExpression(t_symbol *s, long argc, t_atom *argv) :
-    FrameLib_PDClass_ComplexExpression_Parsed(ArgumentParser(s, argc, argv, true)) {}
+    FrameLib_PDClass_ComplexExpression(t_object *x, t_symbol *s, long argc, t_atom *argv) :
+    FrameLib_PDClass_ComplexExpression_Parsed(x, ExprArgumentParser(s, argc, argv, true)) {}
 };
 
 // Main setup routine
 
-extern "C" void framelib_pd_setup(void)
+PD_API void framelib_pd_setup(void)
 {
+    // Context Control
+    
+    FrameLib_PDClass_ContextControl::makeClass<FrameLib_PDClass_ContextControl>("fl.contextcontrol~");
+
+    // Host Communication
+    
+    FrameLib_PDClass_ToPD::makeClass<FrameLib_PDClass_ToPD>("fl.topd~");
+    FrameLib_PDClass_ToPD::makeClass<FrameLib_PDClass_FromPD>("fl.frompd~");
+
     // Filters
     
     FrameLib_PDClass_Expand<FrameLib_Biquad>::makeClass("fl.biquad~");
@@ -263,6 +658,8 @@ extern "C" void framelib_pd_setup(void)
     // Streaming
     
     FrameLib_PDClass_Expand<FrameLib_StreamID>::makeClass("fl.streamid~");
+    FrameLib_PDClass<FrameLib_Pack>::makeClass("fl.pack~");
+    FrameLib_PDClass<FrameLib_Unpack>::makeClass("fl.unpack~");
     
     // Time Smoothing
     
@@ -414,9 +811,7 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_Complex_Pow, kAllInputs>::makeClass("fl.complex.pow~");
 
     // Buffer
-    
-    // TODO - info is not correct
-    
-    FrameLib_PDClass_Expand<FrameLib_Info, kAllInputs>::makeClass("fl.info~");
+        
+    FrameLib_PDClass_Info::makeClass<FrameLib_PDClass_Info>("fl.info~");
     FrameLib_PDClass_Read::makeClass<FrameLib_PDClass_Read>("fl.read~");
 }

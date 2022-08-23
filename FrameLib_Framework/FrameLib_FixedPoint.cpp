@@ -280,7 +280,7 @@ FL_FP::FL_FP(const double& val)
     else
     {
         mInt = static_cast<uint64_t>(absVal);
-        mFrac = static_cast<uint64_t>(round((absVal - floor(absVal)) * 18446744073709551616.0));
+        mFrac = static_cast<uint64_t>(round((absVal - std::floor(absVal)) * 18446744073709551616.0));
     }
 }
 

@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <functional>
 
-#if defined(__arm__) || defined(__arm64)
+#if defined(__arm__) || defined(__arm64) || defined(__aarch64__)
 #include <arm_neon.h>
 #include <memory.h>
 #elif defined(__APPLE__) || defined(__linux__) || defined(_WIN32)
@@ -56,7 +56,7 @@ namespace hisstools_fft_impl{
     template<> struct SIMDLimits<double>    { static constexpr int max_size = 2; };
     template<> struct SIMDLimits<float>     { static constexpr int max_size = 4; };
     
-#elif defined(__arm__) || defined(__arm64__)
+#elif defined(__arm__) || defined(__arm64__) || defined(__aarch64__)
 
     template<> struct SIMDLimits<float>     { static constexpr int max_size = 4; };
 
@@ -78,7 +78,7 @@ namespace hisstools_fft_impl{
             return nullptr;
     }
 
-#elif defined(__arm__) || defined(__arm64__)
+#elif defined(__arm__) || defined(__arm64__) || defined(__aarch64__)
     
     template <class T>
     T *allocate_aligned(size_t size)
@@ -314,7 +314,7 @@ namespace hisstools_fft_impl{
     
 #endif
     
-#if defined(__arm__) || defined(__arm64__)
+#if defined(__arm__) || defined(__arm64__)  || defined(__aarch64__)
     
     template<>
     struct SIMDVector<float, 4> : public SIMDVectorBase<float, float32x4_t, 4>
@@ -594,7 +594,7 @@ namespace hisstools_fft_impl{
     
 #endif
     
-#if defined(__arm__) || defined(__arm64__)
+#if defined(__arm__) || defined(__arm64__)  || defined(__aarch64__)
     
     // Template Specialisation for an ARM Float Packed (1 SIMD Element)
     

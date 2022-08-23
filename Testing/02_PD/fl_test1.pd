@@ -1,0 +1,10 @@
+#N canvas 280 199 486 473 12;
+#X obj 193 46 noise~;
+#X obj 136 314 dac~;
+#X obj 270 41 fl.interval~ 4000;
+#X obj 160 142 fl.source~ /length 2000;
+#X obj 155 228 fl.sink~;
+#X connect 0 0 3 0;
+#X connect 2 0 3 1;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;

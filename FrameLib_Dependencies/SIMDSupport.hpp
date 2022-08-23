@@ -9,7 +9,7 @@
 #include <cstdlib>
 #include <functional>
 
-#if defined(__arm__) || defined(__arm64)
+#if defined(__arm__) || defined(__arm64) || defined(__aarch64__)
 #include <arm_neon.h>
 #include <memory.h>
 #include <fenv.h>
@@ -81,10 +81,10 @@ struct SIMDLimits<float>
     static constexpr int byte_width = 32;
 };
 
-#elif defined(__SSE__) || defined(__arm__) || defined(__arm64)
+#elif defined(__SSE__) || defined(__arm__) || defined(__arm64) || defined(__aarch64__)
 #define SIMD_COMPILER_SUPPORT_LEVEL SIMD_COMPILER_SUPPORT_VEC128
 
-#if defined (__SSE__) || defined(__arm64)
+#if defined (__SSE__) || defined(__arm64) || defined(__aarch64__)
 template<>
 struct SIMDLimits<double>
 {
@@ -170,12 +170,19 @@ struct SIMDDenormals
     
 #if (SIMD_COMPILER_SUPPORT_LEVEL >= SIMD_COMPILER_SUPPORT_VEC128)
 #if defined SIMD_COMPILER_SUPPORT_NEON
-#if defined(__arm64)
+#if defined(__arm64) || defined(__aarch64__)
+    static constexpr unsigned long long ftz()
+    {
+        // __fpcr_flush_to_zero on apple, but better to be portable
+        
+        return 0x01000000ULL;
+    }
+    
     static denormal_flags flags()
     {
         fenv_t env;
         fegetenv(&env);
-        return make_flags(false, env.__fpcr & __fpcr_flush_to_zero);
+        return make_flags(false, env.__fpcr & ftz());
     }
     
     static void set(denormal_flags flags)
@@ -184,18 +191,31 @@ struct SIMDDenormals
         fegetenv(&env);
     
         if (flags.test(1))
-            env.__fpcr |= __fpcr_flush_to_zero;
+            env.__fpcr |= ftz();
         else
-            env.__fpcr ^= __fpcr_flush_to_zero;
+            env.__fpcr ^= ftz();
 
         fesetenv(&env);
     }
 #else
+    
+    static unsigned int& get_fpscr(fenv_t& env)
+    {
+        return env.__cw;
+    }
+    
+    static constexpr unsigned int ftz()
+    {
+        // __fpscr_flush_to_zero on apple, but better to be portable
+        
+        return 0x01000000U;
+    }
+    
     static denormal_flags flags()
     {
         fenv_t env;
         fegetenv(&env);
-        return make_flags(false, env.__fpscr & __fpscr_flush_to_zero);
+        return make_flags(false, get_fpscr(env) & ftz());
     }
     
     static void set(denormal_flags flags)
@@ -204,9 +224,9 @@ struct SIMDDenormals
         fegetenv(&env);
     
         if (flags.test(1))
-            env.__fpscr |= & __fpscr_flush_to_zero;
+            get_fpscr(env) |= ftz();
         else
-            env.__fpscr |= ^ __fpscr_flush_to_zero;
+            get_fpscr(env) ^= ftz();
             
         fesetenv(&env);
     }
@@ -420,10 +440,10 @@ struct SIMDType<double, 1>
     SIMDType& operator *= (const SIMDType& b) { return (*this = *this * b); }
     SIMDType& operator /= (const SIMDType& b) { return (*this = *this / b); }
     
-    friend SIMDType sqrt(const SIMDType& a) { return sqrt(a.mVal); }
+    friend SIMDType sqrt(const SIMDType& a) { return std::sqrt(a.mVal); }
     
-    friend SIMDType round(const SIMDType& a) { return round(a.mVal); }
-    friend SIMDType trunc(const SIMDType& a) { return trunc(a.mVal); }
+    friend SIMDType round(const SIMDType& a) { return std::round(a.mVal); }
+    friend SIMDType trunc(const SIMDType& a) { return std::trunc(a.mVal); }
     
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return std::min(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return std::max(a.mVal, b.mVal); }
@@ -463,10 +483,10 @@ struct SIMDType<float, 1>
     SIMDType& operator *= (const SIMDType& b) { return (*this = *this * b); }
     SIMDType& operator /= (const SIMDType& b) { return (*this = *this / b); }
     
-    friend SIMDType sqrt(const SIMDType& a) { return sqrtf(a.mVal); }
+    friend SIMDType sqrt(const SIMDType& a) { return std::sqrt(a.mVal); }
     
-    friend SIMDType round(const SIMDType& a) { return roundf(a.mVal); }
-    friend SIMDType trunc(const SIMDType& a) { return truncf(a.mVal); }
+    friend SIMDType round(const SIMDType& a) { return std::round(a.mVal); }
+    friend SIMDType trunc(const SIMDType& a) { return std::trunc(a.mVal); }
     
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return std::min(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return std::max(a.mVal, b.mVal); }
@@ -529,21 +549,27 @@ struct SIMDType<float, 2>
 
 #ifdef SIMD_COMPILER_SUPPORT_NEON /* Neon Intrinsics */
 
-#if defined(__arm64)
+#if defined(__arm64) || defined(__aarch64__)
 template<>
 struct SIMDType<double, 2> : public SIMDVector<double, float64x2_t, 2>
 {
 private:
     
-    template <int64x2_t Op(int64x2_t, int64x2_t)>
-    static SIMDType bitwise(const SIMDType& a, const SIMDType& b)
+    template <uint64x2_t Op(float64x2_t, float64x2_t)>
+    static SIMDType compare(const SIMDType& a, const SIMDType& b)
     {
-        return vreinterpretq_s64_f64(Op(vreinterpretq_s64_f64(a.mVal), vreinterpretq_s64_f64(b.mVal)));
+        return vreinterpretq_f64_u64(Op(a.mVal, b.mVal));
     }
     
-    static float64x2_t neq(float64x2_t a, float64x2_t b)
+    template <uint64x2_t Op(uint64x2_t, uint64x2_t)>
+    static SIMDType bitwise(const SIMDType& a, const SIMDType& b)
     {
-        return vreinterpretq_s32_f64(vmvnq_s32(vreinterpretq_s32_f64(vceqq_f64(a, b))));
+        return vreinterpretq_f64_u64(Op(vreinterpretq_u64_f64(a.mVal), vreinterpretq_u64_f64(b.mVal)));
+    }
+    
+    static float64x2_t neq(const SIMDType& a, const SIMDType& b)
+    {
+        return vreinterpretq_f64_u32(vmvnq_u32(vreinterpretq_u32_u64(vceqq_f64(a.mVal, b.mVal))));
     }
     
 public:
@@ -586,17 +612,17 @@ public:
     friend SIMDType sel(const SIMDType& a, const SIMDType& b, const SIMDType& c) { return and_not(c, a) | (b & c); }
     
     // N.B. - operand swap for and_not
-    friend SIMDType and_not(const SIMDType& a, const SIMDType& b) { return bitwise<vbicq_s64>(b, a); }
-    friend SIMDType operator & (const SIMDType& a, const SIMDType& b) { return bitwise<vandq_s64>(a, b); }
-    friend SIMDType operator | (const SIMDType& a, const SIMDType& b) { return bitwise<vorrq_s64>(a, b); }
-    friend SIMDType operator ^ (const SIMDType& a, const SIMDType& b) { return bitwise<veorq_s64>(a, b); }
+    friend SIMDType and_not(const SIMDType& a, const SIMDType& b) { return bitwise<vbicq_u64>(b, a); }
+    friend SIMDType operator & (const SIMDType& a, const SIMDType& b) { return bitwise<vandq_u64>(a, b); }
+    friend SIMDType operator | (const SIMDType& a, const SIMDType& b) { return bitwise<vorrq_u64>(a, b); }
+    friend SIMDType operator ^ (const SIMDType& a, const SIMDType& b) { return bitwise<veorq_u64>(a, b); }
     
-    friend SIMDType operator == (const SIMDType& a, const SIMDType& b) { return vceqq_f64(a.mVal, b.mVal); }
-    friend SIMDType operator != (const SIMDType& a, const SIMDType& b) { return neq(a.mVal, b.mVal); }
-    friend SIMDType operator > (const SIMDType& a, const SIMDType& b) { return vcgtq_f64(a.mVal, b.mVal); }
-    friend SIMDType operator < (const SIMDType& a, const SIMDType& b) { return vcltq_f64(a.mVal, b.mVal); }
-    friend SIMDType operator >= (const SIMDType& a, const SIMDType& b) { return vcgeq_f64(a.mVal, b.mVal); }
-    friend SIMDType operator <= (const SIMDType& a, const SIMDType& b) { return vcleq_f64(a.mVal, b.mVal); }
+    friend SIMDType operator == (const SIMDType& a, const SIMDType& b) { return compare<vceqq_f64>(a, b); }
+    friend SIMDType operator != (const SIMDType& a, const SIMDType& b) { return neq(a, b); }
+    friend SIMDType operator > (const SIMDType& a, const SIMDType& b) { return compare<vcgtq_f64>(a, b); }
+    friend SIMDType operator < (const SIMDType& a, const SIMDType& b) { return compare<vcltq_f64>(a, b); }
+    friend SIMDType operator >= (const SIMDType& a, const SIMDType& b) { return compare<vcgeq_f64>(a, b); }
+    friend SIMDType operator <= (const SIMDType& a, const SIMDType& b) { return compare<vcleq_f64>(a, b); }
     /*
     template <int y, int x>
     static SIMDType shuffle(const SIMDType& a, const SIMDType& b)
@@ -613,23 +639,78 @@ public:
         return SIMDType<float, 2>(static_cast<float>(vals[0]), static_cast<float>(vals[1]));
     }
 };
-#endif /* defined (__arm64) */
+#endif /* defined (__arm64) || defined(__aarch64__) */
 
 template<>
 struct SIMDType<float, 4> : public SIMDVector<float, float32x4_t, 4>
 {
 private:
     
-    template <int32x4_t Op(int32x4_t, int32x4_t)>
-    static SIMDType bitwise(const SIMDType& a, const SIMDType& b)
+    template <uint32x4_t Op(float32x4_t, float32x4_t)>
+    static SIMDType compare(const SIMDType& a, const SIMDType& b)
     {
-        return vreinterpretq_s32_f32(Op(vreinterpretq_s32_f32(a.mVal), vreinterpretq_s32_f32(b.mVal)));
+        return vreinterpretq_f32_u32(Op(a.mVal, b.mVal));
     }
     
-    static float32x4_t neq(float32x4_t a, float32x4_t b)
+    template <uint32x4_t Op(uint32x4_t, uint32x4_t)>
+    static SIMDType bitwise(const SIMDType& a, const SIMDType& b)
     {
-        return vreinterpretq_s32_f32(vmvnq_s32(vreinterpretq_s32_f32(vceqq_f32(a, b))));
+        return vreinterpretq_f32_u32(Op(vreinterpretq_u32_f32(a.mVal), vreinterpretq_u32_f32(b.mVal)));
     }
+    
+    static float32x4_t neq(const SIMDType& a, const SIMDType& b)
+    {
+        return vreinterpretq_f32_u32(vmvnq_u32(vceqq_f32(a.mVal, b.mVal)));
+    }
+    
+#if !defined(__arm64) && !defined(__aarch64__)
+    
+    // Helpers for single value iteration
+    
+    template <typename U, U Op(float), typename V>
+    static void iterate(V out[4], float temp[4], const float32x4_t& a)
+    {
+        vst1q_f32(temp, a);
+        
+        out[0] = Op(temp[0]);
+        out[1] = Op(temp[1]);
+        out[2] = Op(temp[2]);
+        out[3] = Op(temp[3]);
+    }
+    
+    template <float Op(float)>
+    static float32x4_t unary(const float32x4_t& a)
+    {
+        float vals[4];
+
+        iterate<float, Op>(vals, vals, a);
+        
+        return vld1q_f32(vals);
+    }
+    
+    static double cast_f64_f2(float a)                      { return static_cast<double>(a); }
+    
+    // Emulate these for 32 bit
+    
+    static float32x4_t vsqrtq_f32(const float32x4_t& a)     { return unary<std::sqrt>(a); }
+    static float32x4_t vrndq_f32(const float32x4_t& a)      { return unary<std::trunc>(a); }
+    
+    static float32x4_t vdivq_f32(const float32x4_t& a, const float32x4_t& b)
+    {
+        float vals_a[4], vals_b[4];
+        
+        vst1q_f32(vals_a, a);
+        vst1q_f32(vals_b, b);
+
+        vals_a[0] /= vals_b[0];
+        vals_a[1] /= vals_b[1];
+        vals_a[2] /= vals_b[2];
+        vals_a[3] /= vals_b[3];
+        
+        return vld1q_f32(vals_a);
+    }
+    
+#endif
     
 public:
     
@@ -661,17 +742,17 @@ public:
     friend SIMDType sel(const SIMDType& a, const SIMDType& b, const SIMDType& c) { return and_not(c, a) | (b & c); }
     
     // N.B. - operand swap for and_not
-    friend SIMDType and_not(const SIMDType& a, const SIMDType& b) { return bitwise<vbicq_s32>(b, a); }
-    friend SIMDType operator & (const SIMDType& a, const SIMDType& b) { return bitwise<vandq_s32>(a, b); }
-    friend SIMDType operator | (const SIMDType& a, const SIMDType& b) { return bitwise<vorrq_s32>(a, b); }
-    friend SIMDType operator ^ (const SIMDType& a, const SIMDType& b) { return bitwise<veorq_s32>(a, b); }
+    friend SIMDType and_not(const SIMDType& a, const SIMDType& b) { return bitwise<vbicq_u32>(b, a); }
+    friend SIMDType operator & (const SIMDType& a, const SIMDType& b) { return bitwise<vandq_u32>(a, b); }
+    friend SIMDType operator | (const SIMDType& a, const SIMDType& b) { return bitwise<vorrq_u32>(a, b); }
+    friend SIMDType operator ^ (const SIMDType& a, const SIMDType& b) { return bitwise<veorq_u32>(a, b); }
     
-    friend SIMDType operator == (const SIMDType& a, const SIMDType& b) { return vceqq_f32(a.mVal, b.mVal); }
-    friend SIMDType operator != (const SIMDType& a, const SIMDType& b) { return neq(a.mVal, b.mVal); }
-    friend SIMDType operator > (const SIMDType& a, const SIMDType& b) { return vcgtq_f32(a.mVal, b.mVal); }
-    friend SIMDType operator < (const SIMDType& a, const SIMDType& b) { return vcltq_f32(a.mVal, b.mVal); }
-    friend SIMDType operator >= (const SIMDType& a, const SIMDType& b) { return vcgeq_f32(a.mVal, b.mVal); }
-    friend SIMDType operator <= (const SIMDType& a, const SIMDType& b) { return vcleq_f32(a.mVal, b.mVal); }
+    friend SIMDType operator == (const SIMDType& a, const SIMDType& b) { return compare<vceqq_f32>(a, b); }
+    friend SIMDType operator != (const SIMDType& a, const SIMDType& b) { return neq(a, b); }
+    friend SIMDType operator > (const SIMDType& a, const SIMDType& b) { return compare<vcgtq_f32>(a, b); }
+    friend SIMDType operator < (const SIMDType& a, const SIMDType& b) { return compare<vcltq_f32>(a, b); }
+    friend SIMDType operator >= (const SIMDType& a, const SIMDType& b) { return compare<vcgeq_f32>(a, b); }
+    friend SIMDType operator <= (const SIMDType& a, const SIMDType& b) { return compare<vcleq_f32>(a, b); }
     /*
     template <int z, int y, int x, int w>
     static SIMDType shuffle(const SIMDType& a, const SIMDType& b)
@@ -679,6 +760,7 @@ public:
         return _mm_shuffle_ps(a.mVal, b.mVal, ((z<<6)|(y<<4)|(x<<2)|w));
     }*/
     
+#if defined(__arm64) || defined(__aarch64__)
     operator SizedVector<double, 2, 4>() const
     {
         SizedVector<double, 2, 4> vec;
@@ -688,6 +770,17 @@ public:
         
         return vec;
     }
+#else
+    operator SizedVector<double, 1, 4>() const
+    {
+        float vals[4];
+        SizedVector<double, 1, 4> vec;
+        
+        iterate<double, cast_f64_f2>(vec.mData, vals, mVal);
+        
+        return vec;
+    }
+#endif
 };
 
 template<>
