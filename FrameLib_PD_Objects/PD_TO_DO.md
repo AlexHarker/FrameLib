@@ -14,6 +14,7 @@ To build you should be able to run make on this directory and then copy /build/f
 - At the moment you can't connect framelib objects between different subpatchers
 
 - Multichannel buffers - my understanding is that pd buffers are mono only - buffers for framelib can be used both for reading and also for non-realtime operation, so figuring out how to support multichannel in an idomatic way would be good
+- I've implemented what should be the same as flucoma but there's two decisions (order of elements in the name and 0/1 indexing) [REVIEW]
 
 - *Audio synchronisation* - this is the main issue with finishing pd support and the Max approach won't work here
 - Because audio inputs and outputs are in different objects they must process audio in the correct order
@@ -51,5 +52,6 @@ To build you should be able to run make on this directory and then copy /build/f
 
 **Build System and Distribution**
 
-- I need to understand what file names/architectures etc. should be for different systems 
-- Building currently works with CI on apple (arm / x86_64), linux (i386 / x86_64) and windows (x86_64)
+- I need to understand what file names/architectures etc. should be for different systems and compiler flags and get linux tested for arm 
+- Building currently works with CI on apple (arm / x86_64), linux (i386 / x86_64 / armv6 / armv7 / aarch64) and windows (i386 / x86_64)
+
