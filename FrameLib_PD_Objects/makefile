@@ -1,6 +1,7 @@
 SHELL = /bin/sh
 
 DUMP_MACHINE = $(shell cc -dumpmachine)
+ARCH_TYPE = $(word 1, $(subst -, , $(DUMP_MACHINE)))
 MACHINE_TYPE = $(word 2, $(subst -, , $(DUMP_MACHINE)))
 PLATFORM_TYPE = $(MACHINE_TYPE)
  
@@ -15,9 +16,10 @@ PLATFORM_TYPE = win
 BUILD_TYPE ?= i386
 endif
 
-BUILD_TYPE ?= 
+BUILD_TYPE ?= $(ARCH_TYPE)
 BUILD_DIR ?= ../build
 INTERMEDIATE_DIR ?= $(BUILD_DIR)/objects
+NAME_SUFFIX ?= $(BUILD_TYPE)
 
 # Paths
 
@@ -28,11 +30,11 @@ FL_OBJECTS = ../FrameLib_Objects
 VPATH = ../FrameLib_Dependencies/tlsf
 
 FL_CPP = \
+				$(FL_DEPENDENCIES)/HISSTools_FFT/HISSTools_FFT.cpp\
 				$(wildcard $(FL_FRAMEWORK)/FrameLib_*.cpp)\
 				$(wildcard $(FL_OBJECTS)/*/FrameLib_*.cpp)\
-				$(FL_DEPENDENCIES)/HISSTools_FFT/HISSTools_FFT.cpp
 
-FL_OBJ = $(FL_CPP:.cpp=.o) tlsf.o
+FL_OBJ = tlsf.o $(FL_CPP:.cpp=.o) 
 FL_OBJ_OUT = $(addprefix $(INTERMEDIATE_DIR)/, $(notdir $(FL_OBJ)))
 
 INCLUDE_PATHS = \
@@ -68,6 +70,9 @@ ARCH_FLAGS =
 ifeq ($(BUILD_TYPE), i386)
 ARCH_FLAGS = -m32 -march=i386
 endif
+ifeq ($(ARCH_TYPE), arm)
+ARCH_FLAGS = -mfpu=neon
+endif
 endif
 
 ifeq ($(PLATFORM_TYPE), win)
@@ -84,12 +89,12 @@ ARCH_FLAGS = -march=i386
 endif
 endif
 
-OUTPUT_NAME = $(BUILD_DIR)/framelib_pd.$(EXTENSION)
+OUTPUT_NAME = $(BUILD_DIR)/framelib_pd-$(NAME_SUFFIX).$(EXTENSION)
 
 # Targets and pattern rules
 
-framelib_pd: $(MAIN_OBJ) $(FL_OBJ) build_directory;
-				cc $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -o $(OUTPUT_NAME) $(MAIN_OBJ_OUT) $(FL_OBJ_OUT) $(LINK_FLAGS)
+framelib_pd: build_directory $(FL_OBJ) $(MAIN_OBJ);
+				cc $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -o $(OUTPUT_NAME) $(FL_OBJ_OUT) $(MAIN_OBJ_OUT) $(LINK_FLAGS)
 
 build_directory:
 				mkdir -p $(BUILD_DIR)
