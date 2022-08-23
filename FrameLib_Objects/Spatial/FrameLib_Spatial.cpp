@@ -528,7 +528,7 @@ void FrameLib_Spatial::process()
     const double rolloff = mParameters.getValue(kRolloff);
     const double pointFactor = mParameters.getValue(kPointFactor);
     
-    const double rolloffFactor = rolloff / (20 * log10(2.0));
+    const double rolloffFactor = rolloff / (20 * std::log10(2.0));
     const double blur2 = blur * blur;
     
     maxSpeakers = maxSpeakers == 0 ? numSpeakers : maxSpeakers;
@@ -573,7 +573,7 @@ void FrameLib_Spatial::process()
             double sqDistance = xDelta * xDelta + yDelta * yDelta + zDelta * zDelta;
             double weight = i < weightsSize ? weights[i] : 1.0;
             
-            coefficients[i] = weight / pow(sqDistance + blur2, 0.5 * rolloffFactor);
+            coefficients[i] = weight / std::pow(sqDistance + blur2, 0.5 * rolloffFactor);
             
             if (i == 0 || (sqDistance < minDistance))
             {

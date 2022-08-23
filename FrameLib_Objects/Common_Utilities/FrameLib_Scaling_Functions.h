@@ -8,22 +8,22 @@
 // Common Conversions
 
 template <class T>
-T dbToAmp(T x) { return pow(10.0, x / 20.0); }
+T dbToAmp(T x) { return std::pow(10.0, x / 20.0); }
 
 template <class T>
-T ampToDb(T x) { return log10(x) * 20.0; }
+T ampToDb(T x) { return std::log10(x) * 20.0; }
 
 template <class T>
-T midiToFreq(T x) { return exp2((x - 69.0) / 12.0) * 440.0; }
+T midiToFreq(T x) { return std::exp2((x - 69.0) / 12.0) * 440.0; }
 
 template <class T>
-T freqToMidi(T x) { return log2(x / 440.0) * 12.0 + 69.0; }
+T freqToMidi(T x) { return std::log2(x / 440.0) * 12.0 + 69.0; }
 
 template <class T>
-T semitonesToRatio(T x) { return exp2(x / 12.0); }
+T semitonesToRatio(T x) { return std::exp2(x / 12.0); }
 
 template <class T>
-T ratioToSemitones(T x) { return log2(x) * 12.0; }
+T ratioToSemitones(T x) { return std::log2(x) * 12.0; }
 
 // Scaling of Vectors
 
@@ -69,17 +69,17 @@ struct LinScaler : public ScaleCoefficients<T>
 template <class T>
 struct LogScaler : public ScaleCoefficients<T>
 {
-    LogScaler(T inLo, T inHi, T outLo, T outHi) : ScaleCoefficients<T>(log(inLo), log(inHi), outLo, outHi) {}
+    LogScaler(T inLo, T inHi, T outLo, T outHi) : ScaleCoefficients<T>(std::log(inLo), std::log(inHi), outLo, outHi) {}
     LogScaler(const ScaleCoefficients<T>& coeff) : ScaleCoefficients<T>(coeff) {}
     
-    template <class U> U operator()(U x) const { return log(x) * ScaleCoefficients<T>::mMul - ScaleCoefficients<T>::mSub; }
+    template <class U> U operator()(U x) const { return std::log(x) * ScaleCoefficients<T>::mMul - ScaleCoefficients<T>::mSub; }
     template <class U> void operator()(U *output, const U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
 };
 
 template <class T>
 struct ExpScaler : public ScaleCoefficients<T>
 {
-    ExpScaler(T inLo, T inHi, T outLo, T outHi) : ScaleCoefficients<T>(inLo, inHi, log(outLo), log(outHi)) {}
+    ExpScaler(T inLo, T inHi, T outLo, T outHi) : ScaleCoefficients<T>(inLo, inHi, std::log(outLo), std::log(outHi)) {}
     ExpScaler(const ScaleCoefficients<T>& coeff) : ScaleCoefficients<T>(coeff) {}
     
     template <class U> U operator()(U x) const { return exp((x * ScaleCoefficients<T>::mMul) - ScaleCoefficients<T>::mSub); }
@@ -100,7 +100,7 @@ struct PowScaler
         exponent = mExponent;
     }
     
-    template <class U> U operator()(U x) const { return mOutputScaler(pow(mInputScaler(x), mExponent)); }
+    template <class U> U operator()(U x) const { return mOutputScaler(std::pow(mInputScaler(x), mExponent)); }
     template <class U> void operator()(U *output, const U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
     
     LinScaler<T> mInputScaler;
@@ -135,14 +135,14 @@ LinClipScaler : public ClipScaler<T, LinScaler<T>>
 template <class T>
 struct LogClipScaler : public ClipScaler<T, LogScaler<T>>
 {
-    LogClipScaler(T inLo, T inHi, T outLo, T outHi) : ClipScaler<T, LogScaler<T>>(log(inLo), log(inHi), outLo, outHi) {}
+    LogClipScaler(T inLo, T inHi, T outLo, T outHi) : ClipScaler<T, LogScaler<T>>(std::log(inLo), std::log(inHi), outLo, outHi) {}
     LogClipScaler(const ScaleCoefficients<T>& coeff, T min, T max) : ClipScaler<T, LogScaler<T>>(LogScaler<T>(coeff), min, max) {}
 };
 
 template <class T>
 struct ExpClipScaler : public ClipScaler<T, ExpScaler<T>>
 {
-    ExpClipScaler(T inLo, T inHi, T outLo, T outHi) : ClipScaler<T, ExpScaler<T>>(ExpScaler<T>(inLo, inHi, log(outLo), log(outHi)), outLo, outHi) {}
+    ExpClipScaler(T inLo, T inHi, T outLo, T outHi) : ClipScaler<T, ExpScaler<T>>(ExpScaler<T>(inLo, inHi, std::log(outLo), std::log(outHi)), outLo, outHi) {}
     ExpClipScaler(const ScaleCoefficients<T>& coeff, T min, T max) : ClipScaler<T, ExpScaler<T>>(ExpScaler<T>(coeff), min, max) {}
 };
 
@@ -150,7 +150,7 @@ template <class T>
 struct PowClipScaler : public ClipScaler<T, PowScaler<T>>
 {
     PowClipScaler(T inLo, T inHi, T outLo, T outHi, T exponent)
-    : ClipScaler<T, PowScaler<T>>(PowScaler<T>(inLo, inHi, log(outLo), log(outHi)), outLo, outHi, exponent) {}
+    : ClipScaler<T, PowScaler<T>>(PowScaler<T>(inLo, inHi, std::log(outLo), std::log(outHi)), outLo, outHi, exponent) {}
     PowClipScaler(const ScaleCoefficients<T>& inCoeff, const ScaleCoefficients<T>& outCoeff, T exponent, T min, T max)
     : ClipScaler<T, PowScaler<T>>(PowScaler<T>(inCoeff, outCoeff, exponent), min, max) {}
 };

@@ -133,7 +133,9 @@ void FrameLib_Read::process()
     
     double *output = getOutput(0, &size);
     
-    double samplingRate = 0.0;
+    // Default the sampling rate to use the network rate
+
+    double samplingRate = mSamplingRate;
     unsigned long length = 0;
     
     // Get buffer
@@ -151,9 +153,6 @@ void FrameLib_Read::process()
         
         double scale = 1.0;
         double lengthM1 = length - 1.0;
-        
-        if (!samplingRate)
-            samplingRate = mSamplingRate;
         
         switch (mParameters.getEnum<Units>(kUnits))
         {

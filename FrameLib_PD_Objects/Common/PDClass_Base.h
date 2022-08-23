@@ -2,7 +2,10 @@
 #ifndef __PD_BASE_H__
 #define __PD_BASE_H__
 
-#include <m_pd.h>
+#include "m_pd.h"
+
+#include <atomic>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -11,7 +14,80 @@
 
 class PDClass_Base
 {
+    template <class T>
+    struct DefaultArg
+    {
+        DefaultArg(T value) : mValue(value) {}
+        operator T() { return mValue; }
+        
+        T mValue;
+    };
+    
+    struct ObjectFree
+    {
+        void operator()(t_pd *ptr) { pd_free(ptr); }
+    };
+
 public:
+    
+    // Types for defining methods with DEFLONG or DEFFLOAT arguments
+    
+    //using def_int = DefaultArg<t_atom_long>;
+    using t_deffloatarg = DefaultArg<t_floatarg>;
+    
+    // Unique pointers to t_pds
+    
+    using unique_pd_ptr = std::unique_ptr<t_pd, ObjectFree>;
+    static unique_pd_ptr toUnique(t_pd *ptr) { return unique_pd_ptr(ptr); }
+    
+    // Clock struct for C++-style usage
+    
+    struct Clock
+    {
+        Clock(void *x, t_method fn) { mClock = clock_new(x, fn); }
+        ~Clock() { clock_free(mClock); }
+        
+        void delay(double delaytime = 0.0) { clock_delay(mClock, delaytime); }
+        
+    private:
+        
+        t_clock *mClock;
+    };
+    
+    // Qelem struct for C++-style usage
+    
+    struct Qelem
+    {
+        typedef void (*IntMethod)(void *x);
+
+        Qelem(void *x, t_method fn)
+        : mClock(this, (t_method) &call)
+        , mMethod((IntMethod) fn)
+        , mOwner(x)
+        , mFlag(false)
+        {}
+        
+        void set()
+        {
+            bool expected = false;
+            
+            if (mFlag.compare_exchange_strong(expected, true))
+                mClock.delay();
+        }
+        
+        static void call(Qelem *a)
+        {
+            a->mFlag.store(false);
+            (*a->mMethod)(a->mOwner);
+        }
+        
+    private:
+        
+        Clock mClock;
+        IntMethod mMethod;
+        void *mOwner;
+        std::atomic_bool mFlag;
+    };
     
     // Default Constructor
     
@@ -29,19 +105,19 @@ public:
     template <class T, typename Gimme<T>::MethodGimme F> static void call(T *x, t_symbol *s, long ac, t_atom *av) {((x)->*F)(s, ac, av); };
     template <class T, typename Gimme<T>::MethodGimme F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (t_method) call<T, F>, gensym(name), A_GIMME, 0); }
     
-    template <class T> struct Float { typedef void (T::*MethodFloat)(double v); };
-    template <class T, typename Float<T>::MethodFloat F> static void call(T *x, double v) { ((x)->*F)(v); }
+    template <class T> struct Float { typedef void (T::*MethodFloat)(t_floatarg v); };
+    template <class T, typename Float<T>::MethodFloat F> static void call(T *x, t_floatarg v) { ((x)->*F)(v); }
     template <class T, typename Float<T>::MethodFloat F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (t_method) call<T, F>, gensym(name), A_FLOAT, 0); }
+    
+    template <class T> struct DefFloat { typedef void (T::*MethodDefFloat)(t_deffloatarg v); };
+    template <class T, typename DefFloat<T>::MethodDefFloat F> static void call(T *x, double v) { (x->*F)(v); }
+    template <class T, typename DefFloat<T>::MethodDefFloat F>
+    static void addMethod(t_class *c, const char *name) { auto f = call<T, F>; class_addmethod(c, (t_method) f, gensym(name), A_DEFFLOAT, 0); }
     
     template <class T> struct Sym { typedef void (T::*MethodSym)(t_symbol *s); };
     template <class T, typename Sym<T>::MethodSym F> static void call(T *x, t_symbol *s) { ((x)->*F)(s); }
     template <class T, typename Sym<T>::MethodSym F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (t_method) call<T, F>, gensym(name), A_DEFSYM, 0); }
     
-    // FIX - is this a meaningful thing in PD?
-    template <class T> struct Subpatch { typedef void *(T::*MethodSubPatch)(long index, void *arg); };
-    template <class T, typename Subpatch<T>::MethodSubPatch F> static void *call(T *x, long index, void *arg) { return ((x)->*F)(index, arg); }
-    template <class T, typename Subpatch<T>::MethodSubPatch F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (t_method) call<T, F>, gensym(name), A_CANT, 0); }
-
     template <class T> struct DSP { typedef void (T::*MethodDSP)(t_signal **sp); };
     template <class T, typename DSP<T>::MethodDSP F> static void call(T *x, t_signal **sp) { ((x)->*F)(sp); }
     template <class T, typename DSP<T>::MethodDSP F> static void addMethod(t_class *c) { class_addmethod(c, (t_method) call<T, F>, gensym("dsp"), A_CANT, 0); }
@@ -55,7 +131,8 @@ public:
         return w + 3;
     }
     
-    template <class T, typename Perform<T>::MethodPerform F> void addPerform(t_signal **sp)
+    template <class T, typename Perform<T>::MethodPerform F>
+    void addPerform(t_signal **sp)
     {
         for (size_t i = 0; i < mSigIns.size(); i++)
             mSigIns[i] = sp[i]->s_vec;
@@ -66,40 +143,139 @@ public:
         dsp_add(callPerform<T, F>, 2, this, sp[0]->s_vecsize);
     }
     
+    // Special helpers
+        
+    template <class T, typename Float<T>::MethodFloat F> static void addFloatMethod(t_class *c) { class_doaddfloat(c, (t_method) call<T, F>); }
+    template <class T, typename Gimme<T>::MethodGimme F> static void addListMethod(t_class *c) { class_addlist(c, (t_method) (call<T, F>)); }
+    template <class T, typename Gimme<T>::MethodGimme F> static void addAnythingMethod(t_class *c) { class_addanything(c, (t_method) (call<T, F>)); }
+
+    // Atom helpers
+    
+    static t_atomtype atom_gettype(t_atom *a)
+    {
+        return a->a_type;
+    }
+
+    static t_symbol *atom_getsymbol_default(t_atom *a)
+    {
+        return atom_gettype(a) == A_SYMBOL ? atom_getsymbol(a) : gensym("");
+    }
+    
+    static void atom_setfloat(t_atom *a, double v)
+    {
+        a->a_type = A_FLOAT;
+        a->a_w.w_float = v;
+    }
+    
+    static void atom_setsymbol(t_atom *a, t_symbol *sym)
+    {
+        a->a_type = A_SYMBOL;
+        a->a_w.w_symbol = sym;
+    }
+    
+    // C++ style variadic call to object methods
+    
+    template <class ReturnType = void *, typename...Args>
+    static ReturnType objectMethod(t_object *object, const char* theMethodName, Args...args)
+    {
+        return objectMethod<ReturnType>(object, gensym(theMethodName), args...);
+    }
+    
+    template <class ReturnType = void *, typename...Args>
+    static ReturnType objectMethod(t_object *object, t_symbol* theMethod, Args...args)
+    {
+        void *pad = nullptr;
+        return objectMethod<ReturnType>(object, theMethod, args..., pad);
+    }
+    
+    // Specialisation to prevent infinite padding
+    
+    template <class ReturnType, class S, class T, class U, class V, class W>
+    static ReturnType objectMethod(t_object *object, t_symbol* theMethod, S s, T t, U u, V v, W w)
+    {
+        typedef void *(*t_fn5)(void *x, void *arg1, void *arg2, void *arg3, void *arg4, void *arg5);
+
+        t_fn5 m = (t_fn5) zgetfn(&object->te_g.g_pd, theMethod);
+        
+        if (!m)
+            return static_cast<ReturnType>(0);
+        
+        void *ret = (*m)(object,
+                         objectMethodArg(s),
+                         objectMethodArg(t),
+                         objectMethodArg(u),
+                         objectMethodArg(v),
+                         objectMethodArg(w));
+        
+        return static_cast<ReturnType>(ret);
+    }
+    
+    // Check if a class exists or not
+    
+    static bool classExists(const char *name)
+    {
+        return zgetfn(&pd_objectmaker, gensym(name));
+    }
+
+    // Create a named object from code
+
+    template <class T>
+    static T *createNamed(const char *name)
+    {
+        typedef void *(*createFn)(t_symbol *, long, t_atom *);
+        
+        t_symbol *sym = gensym(name);
+        createFn createMethod = (createFn) getfn(&pd_objectmaker, sym);
+        
+        return reinterpret_cast<T *>((*createMethod)(sym, 0, nullptr));
+    }
+    
+    // Get a class pointer from an object
+    
+    static t_class *objectClass(t_pd *pd)
+    {
+        return *pd;
+    }
+    
     // Static Methods for class initialisation, object creation and deletion
     
-    template <class T> static t_class **getClassPointer()
+    template <class T>
+    static t_class **getClassPointer()
     {
         static t_class *C;
         
         return &C;
     }
     
-    template <class T> static std::string *accessClassName()
+    template <class T>
+    static std::string *accessClassName()
     {
         static std::string str;
         
         return &str;
     }
 
-    template <class T> static void makeClass(const char *classname)
+    template <class T>
+    static void makeClass(const char *classname, int flags = 0)
     {
         t_class **C = getClassPointer<T>();
         
-        *C = class_new(gensym(classname), (t_newmethod)create<T>, (t_method)destroy<T>, sizeof(T), 0, A_GIMME, 0);
+        *C = class_new(gensym(classname), (t_newmethod)create<T>, (t_method)destroy<T>, sizeof(T), flags, A_GIMME, 0);
         T::classInit(*C, classname);
         *accessClassName<T>() = std::string(classname);
         class_sethelpsymbol(*C, gensym(classname));
     }
     
-    template <class T> static void *create(t_symbol *sym, long ac, t_atom *av)
+    template <class T>
+    static void *create(t_symbol *sym, long ac, t_atom *av)
     {
         void *x = pd_new(*getClassPointer<T>());
-        new(x) T(sym, ac, av);
+        new(x) T(reinterpret_cast<t_object *>(x), sym, ac, av);
         return x;
     }
     
-    template <class T> static void destroy(t_object * x)
+    template <class T>
+    static void destroy(t_object * x)
     {
         ((T *)x)->~T();
     }
@@ -110,34 +286,73 @@ public:
     
     static void dspInit(t_class *c) { class_addmethod(c, nullfn, gensym("signal"), A_NULL); }
     
-    void dspSetup(unsigned long numSigIns, unsigned long numSigOuts)
+    void dspSetup(size_t numSigIns, size_t numSigOuts)
     {
         mSigIns.resize(numSigIns);
         mSigOuts.resize(numSigOuts);
         
         // Create signal inlets
         
-        for (unsigned long i = 0; numSigIns && i < (numSigIns - 1); i++)
-            signalinlet_new(*this, 0.0);
+        for (size_t i = 0; numSigIns && i < (numSigIns - 1); i++)
+            signalinlet_new(asObject(), 0.0);
         
         // Create signal outlets
         
-        for (unsigned long i = 0; i < numSigOuts; i++)
-            outlet_new(*this, gensym("signal"));
+        for (size_t i = 0; i < numSigOuts; i++)
+            outlet_new(asObject(), gensym("signal"));
     }
     
+    bool dspIsRunning()
+    {
+        return canvas_dspstate;
+    }
+    
+    bool dspSetBroken()
+    {
+        if (!dspIsRunning())
+            return false;
+        
+        canvas_update_dsp();
+        return true;
+    }
+    
+    bool dspSuspend()
+    {
+        return canvas_suspend_dsp();
+    }
+    
+    void dspResume(bool oldState)
+    {
+        canvas_resume_dsp(oldState);
+    }
+    
+    // Use if you need to create signal inlets external to the dspSetup method (to attach proxies etc.)
+    
+    void dspResize(size_t numSigIns, size_t numSigOuts)
+    {
+        mSigIns.resize(std::max(numSigIns, mSigIns.size()));
+        mSigOuts.resize(std::max(numSigOuts, mSigOuts.size()));
+    }
+
     const t_sample *getAudioIn(unsigned long idx) { return mSigIns[idx]; }
     t_sample *getAudioOut(unsigned long idx) { return mSigOuts[idx]; }
     
-    // Allows type conversion to a t_object
+    // Allow coversion to the t_object pointer
     
-    operator t_object&() { return mObject; }
+    t_object *asObject() { return &mObject; }
     
-    // Allows type conversion to a t_object pointer
+    // Allows type conversion to a t_pd pointer
     
-    operator t_object* () { return (t_object *) this; }
+    t_pd *asPD() { return &this->mObject.te_g.g_pd; }
     
 private:
+    
+    template <class T>
+    static void *objectMethodArg(T a)
+    {
+        static_assert(sizeof(T) == sizeof(void *), "Argument is not the correct size");
+        return reinterpret_cast<void *>(a);
+    }
     
     // Deleted
     

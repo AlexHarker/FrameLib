@@ -1,0 +1,150 @@
+name: pd-github
+on: [ workflow_dispatch ]
+jobs:
+  pd-mac:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v3
+      - name: Build mac pd binary
+        run: | 
+             cd FrameLib_PD_Objects/
+             make
+      - name: Upload mac build
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-mac
+          path: build/*.d_fat
+  pd-linux-intel:
+    runs-on: ubuntu-latest
+    strategy: 
+      matrix:
+        type: [ i386, x86_64 ]
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v3
+      - name: Install multi-libgcc
+        if: matrix.type != 'x86_64'
+        run: |
+             sudo apt-get update -y
+             sudo apt-get install -y gcc-multilib
+             sudo apt-get install -y g++-multilib
+      - name: Build linux intel pd binary
+        run: |
+             cd FrameLib_PD_Objects/
+             make BUILD_TYPE=${{ matrix.type }}
+      - name: Upload linux intel build
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ format('build-linux-intel-{0}', matrix.type) }}
+          path: build/*.pd_linux
+  pd-linux-arm:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        type: [ armv6, armv7, aarch64 ]
+        include:
+        - type: armv6
+          cpu: arm1176
+          base_image: raspios_lite:2022-01-28
+        - type: armv7
+          cpu: cortex-a7
+          base_image: raspios_lite:2022-01-28
+        - type: aarch64
+          cpu: cortex-a8
+          base_image: raspios_lite_arm64:2022-01-28
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: ARM runner
+        uses: pguyot/arm-runner-action@v2
+        with:
+          base_image: ${{ matrix.base_image }}
+          cpu: ${{ matrix.cpu }}
+          bind_mount_repository: true
+          image_additional_mb: 500
+          commands: |
+                    cd FrameLib_PD_Objects/
+                    make NAME_SUFFIX=${{ matrix.type }}
+      - name: Upload linux arm build
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ format('build-win-{0}', matrix.type) }}
+          path: build/*.pd_linux
+  pd-win:
+    runs-on: windows-2019
+    strategy: 
+      matrix:
+         type: [ i386 , x86_64 ]
+    steps:
+      - name: Set up MinGW
+        if: matrix.type == 'x86_64'
+        uses: egor-tensin/setup-mingw@v2
+        with:
+          platform: x64
+      - name: Set up MinGW 32bit
+        if: matrix.type == 'i386'
+        uses: egor-tensin/setup-mingw@v2
+        with:
+          platform: x86
+      - name: Checkout main repo
+        uses: actions/checkout@v3
+      - name: Build win pd binary
+        shell: bash
+        run: |
+             if [[ ${{ matrix.type }} == i386 ]]; then
+               PD_PACKAGE=https://msp.puredata.info/Software/pd-0.52-2-i386.msw.zip
+               MAKE_CMD=mingw32-make.exe
+             else
+               PD_PACKAGE=https://msp.puredata.info/Software/pd-0.52-2.msw.zip
+               MAKE_CMD=make
+             fi
+             cd FrameLib_PD_Objects/
+             curl $PD_PACKAGE --output pdzipped.zip
+             unzip pdzipped.zip -d ../../
+             $MAKE_CMD BUILD_TYPE=${{ matrix.type }}
+      - name: Upload win build
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ format('build-win-{0}', matrix.type) }}
+          path: build/*.dll
+  deploy-pd:
+    runs-on: macos-latest
+    needs: [ pd-mac, pd-linux-intel, pd-linux-arm, pd-win ]
+    steps:
+      - name: Prepare local actions
+        uses: actions/checkout@v1
+      - name: Get current date / make build folder
+        id: date
+        run: | 
+             echo "::set-output name=date::$(date +'%Y-%m-%d')"
+             mkdir ../build
+      - name: Download builds
+        uses: actions/download-artifact@v3
+        with:
+          path: ../build/
+      - name: Sign and notarize
+        if: ${{ false }}  # disable for now
+        uses: ./.github/actions/mac-notarization
+        with:
+          glob: '-e d_fat'
+          folder: ../build/
+          team_id: ${{ secrets.TEAM_ID }}
+          apple_id: ${{ secrets.APPLE_ID }}
+          app_specific_pwd: ${{ secrets.APP_SPECIFIC_PWD }}
+          cert_pwd: ${{ secrets.CERT_PWD }}
+          cert_base64: ${{ secrets.CERT_BASE64}}    
+      - name: Zip files
+        run: |
+             cd ../build/
+             find . -type f -execdir zip '{}.zip' '{}' \;
+      - name: Make release
+        uses: "softprops/action-gh-release@v1"
+        with:
+          prerelease: true
+          fail_on_unmatched_files: true
+          files: ../build/*/*.zip
+          target_commitish: ${{ github.sha }}
+          tag_name: pd-latest-${{ steps.date.outputs.date }}
+          body: This is an automated build of FrameLib for pd.
+          generate_release_notes: true

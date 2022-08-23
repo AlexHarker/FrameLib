@@ -173,14 +173,14 @@ void refineParabolicLog(double *positions, double *values, const double *data, u
     // N.B. we assume a max of -80dB difference between samples to prevent extreme overshoot
 
     double limit = std::max(std::max(data[idx-1], data[idx+1]) * 0.0001, std::numeric_limits<double>::min());
-    auto logLim = [&](double x) { return log(std::max(x, limit)); };
+    auto logLim = [&](double x) { return std::log(std::max(x, limit)); };
     
     double position, value;
     
     parabolicInterp(position, value, idx, logLim(data[idx-1]), logLim(data[idx]), logLim(data[idx+1]));
     
     positions[peak] = position;
-    values[peak] = exp(value);
+    values[peak] = std::exp(value);
 }
 
 // Process
@@ -302,7 +302,7 @@ void FrameLib_Peaks::process()
                 
                 case kMidpoint:
                 {
-                    peakEnd = static_cast<unsigned long>(ceil((output2[peak] + output2[peak + 1]) / 2.0));
+                    peakEnd = static_cast<unsigned long>(std::ceil((output2[peak] + output2[peak + 1]) / 2.0));
                     break;
                 }
             }

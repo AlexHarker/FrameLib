@@ -384,6 +384,7 @@
 		B88B48562729689D00D33BBE /* fl.makestring~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88B48552729689C00D33BBE /* fl.makestring~.cpp */; };
 		B88C0A3921733CA6007A65C0 /* FrameLib_SC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88C0A1E21732710007A65C0 /* FrameLib_SC.cpp */; };
 		B88EBA1028942FD40030DEC0 /* FrameLib_Change.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8ED8BA82892F83A00AE30A2 /* FrameLib_Change.cpp */; };
+		B88EBA112894681A0030DEC0 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F558E207AB15C007774AD /* Accelerate.framework */; };
 		B88F5559207A58DA007774AD /* FrameLib_Reverse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88F5558207A5873007774AD /* FrameLib_Reverse.cpp */; };
 		B88F555A207A58F2007774AD /* framelib_pd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B83E029220667499005925DD /* framelib_pd.cpp */; };
 		B88F5564207A5903007774AD /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
@@ -4273,6 +4274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B88EBA112894681A0030DEC0 /* Accelerate.framework in Frameworks */,
 				B8E6E9DF207904F7004AB73F /* libframelib_objects.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5602,9 +5604,9 @@
 			isa = PBXGroup;
 			children = (
 				B83E0296206674CD005925DD /* m_pd.h */,
+				B8D383D524B7314300E8D807 /* pd_buffer.h */,
 				B83E0297206674CD005925DD /* PDClass_Base.h */,
 				B83E0295206674CD005925DD /* FrameLib_PDClass.h */,
-				B8D383D524B7314300E8D807 /* pd_buffer.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -18574,8 +18576,6 @@
 		B83E02AC206674D4005925DD /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -18605,8 +18605,6 @@
 		B83E02AD206674D4005925DD /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -18635,8 +18633,6 @@
 		B83E02AE206674D4005925DD /* Public Testing */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;

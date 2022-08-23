@@ -72,7 +72,9 @@ void FrameLib_Info::update()
 
 void FrameLib_Info::process()
 {
-    double samplingRate = 0.0;
+    // Default the sampling rate to use the network rate
+
+    double samplingRate = mSamplingRate;
     double conversionFactor = 1.0;
     unsigned long length = 0;
     unsigned long chans = 0;
