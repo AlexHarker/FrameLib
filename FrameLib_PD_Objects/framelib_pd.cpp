@@ -16,15 +16,6 @@
 #define PD_API extern "C"
 #endif
 
-// PD_API define
-
-#if defined(_WIN32)
-// Export the symbol to the DLL interface
-#define PD_API extern "C" __declspec(dllexport)
-#else
-#define PD_API extern "C"
-#endif
-
 // Context Control - A pd class to communicate with the current pd
 
 class FrameLib_PDClass_ContextControl : public PDClass_Base
@@ -363,9 +354,10 @@ class FrameLib_PDClass_Read : public FrameLib_PDClass_Expand<FrameLib_Read>
         
         void acquire(unsigned long& length, double& samplingRate) override
         {
+            // Leave the sampling rate as it is (pd provides no sr for tables)
+
             mBuffer = pd_buffer(mBufferName);
-            length = mBuffer.get_length();
-            samplingRate = 0.0;
+            length = static_cast<unsigned long>(mBuffer.get_length());
         }
         
         void release() override
@@ -375,7 +367,8 @@ class FrameLib_PDClass_Read : public FrameLib_PDClass_Expand<FrameLib_Read>
         
         void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeMode edges, bool bound) override
         {
-            mBuffer.read(output, positions, size, 1.0, interp, edges, bound);
+            chan = std::max(0L, std::min(chan, static_cast<long>(mBuffer.get_num_chans() - 1)));
+            mBuffer.read(output, positions, size, 1.0, chan, interp, edges, bound);
         }
         
         FrameLib_Read::Proxy *clone() const override
@@ -395,6 +388,55 @@ public:
     
     FrameLib_PDClass_Read(t_object *x, t_symbol *s, long argc, t_atom *argv)
     : FrameLib_PDClass(x, s, argc, argv, new ReadProxy(x)) {}
+};
+
+// PD Info Class
+
+class FrameLib_PDClass_Info : public FrameLib_PDClass_Expand<FrameLib_Info>
+{
+    struct InfoProxy : public FrameLib_Info::Proxy, public FrameLib_PDProxy
+    {
+        InfoProxy(t_object *x)
+        : FrameLib_PDProxy(x)
+        , mBuffer(nullptr)
+        {}
+        
+        void update(const char *name) override
+        {
+            mBufferName = gensym(name);
+        }
+        
+        void acquire(unsigned long& length, double& samplingRate, unsigned long& chans) override
+        {
+            // Leave the sampling rate as it is (pd provides no sr for tables)
+
+            mBuffer = pd_buffer(mBufferName);
+            length = static_cast<unsigned long>(mBuffer.get_length());
+            chans = static_cast<unsigned long>(mBuffer.get_num_chans());
+        }
+        
+        void release() override
+        {
+            mBuffer = pd_buffer();
+        };
+        
+        FrameLib_Info::Proxy *clone() const override
+        {
+            return new InfoProxy(*this);
+        }
+        
+    private:
+        
+        pd_buffer mBuffer;
+        t_symbol *mBufferName;
+    };
+    
+public:
+    
+    // Constructor
+    
+    FrameLib_PDClass_Info(t_object *x, t_symbol *s, long argc, t_atom *argv)
+    : FrameLib_PDClass(x, s, argc, argv, new InfoProxy(x)) {}
 };
 
 // PD Expression Classes
@@ -769,9 +811,7 @@ PD_API void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_Complex_Pow, kAllInputs>::makeClass("fl.complex.pow~");
 
     // Buffer
-    
-    // FIX - info is not correct
-    
-    FrameLib_PDClass_Expand<FrameLib_Info, kAllInputs>::makeClass("fl.info~");
+        
+    FrameLib_PDClass_Info::makeClass<FrameLib_PDClass_Info>("fl.info~");
     FrameLib_PDClass_Read::makeClass<FrameLib_PDClass_Read>("fl.read~");
 }
