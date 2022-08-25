@@ -339,6 +339,46 @@ private:
     FromHostProxy *mHostProxy;
 };
 
+// PD Sink Class
+
+class FrameLib_PDClass_Sink : public FrameLib_PDClass_Expand<FrameLib_Sink>
+{
+    struct SinkProxy : public FrameLib_Sink::Proxy, public FrameLib_PDProxy
+    {
+        SinkProxy(t_object *x) : FrameLib_PDProxy(x) {}
+    };
+    
+public:
+    
+    // Class Initialisation
+    
+    static void classInit(t_class *c, const char *classname)
+    {
+        FrameLib_PDClass::classInit(c, classname);
+        
+        addMethod<FrameLib_PDClass_Sink, &FrameLib_PDClass_Sink::clear>(c, "clear");
+    }
+    
+    // Constructor
+    
+    FrameLib_PDClass_Sink(t_object *x, t_symbol *s, long argc, t_atom *argv)
+    : FrameLib_PDClass(x, s, argc, argv, new SinkProxy(x))
+    {
+        mSinkProxy = static_cast<SinkProxy *>(mProxy.get());
+    }
+    
+    // Additional handler
+    
+    void clear()
+    {
+        mSinkProxy->clear();
+    }
+
+private:
+    
+    SinkProxy *mSinkProxy;
+};
+
 // PD Read Class
 
 class FrameLib_PDClass_Read : public FrameLib_PDClass_Expand<FrameLib_Read>
