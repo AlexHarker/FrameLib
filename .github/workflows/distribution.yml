@@ -151,7 +151,7 @@ jobs:
           path: build/*.dll
   deploy:
     runs-on: macos-latest
-    needs: [ max-mac, max-win, pd-mac, pd-linux-intel, pd-linux-arm, pd-win ]
+    needs: [ max-mac, max-win, pd-mac, pd-linux-intel, pd-win ]
     steps:
       - name: Checkout main repo
         uses: actions/checkout@v3
@@ -167,12 +167,13 @@ jobs:
         with:
           path: ../build/
       - name: Move max externals into place
-        run: | 
+        run: |
+             mkdir Packaging/Max/FrameLib/externals
              mv ../build/build-mac/* Packaging/Max/FrameLib/externals
              mv ../build/build-win/* Packaging/Max/FrameLib/externals
              rm -d ../build/build-mac/
-             rm -d ../build/build-win/           
-      - name: Sign and notarize max extnerals
+             rm -d ../build/build-win/
+      - name: Sign and notarize max externals
         uses: ./.github/actions/mac-notarization
         with:
           glob: '-e mxo'
@@ -206,6 +207,6 @@ jobs:
           fail_on_unmatched_files: true
           files: ../build/*/*.zip
           target_commitish: ${{ github.sha }}
-          tag_name: pd-latest-${{ steps.date.outputs.date }}
+          tag_name: framelib-latest-${{ github.ref_name }}- ${{ steps.date.outputs.date }}
           body: This is an automated build of FrameLib for max/pd.
           generate_release_notes: true
