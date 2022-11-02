@@ -94,7 +94,7 @@ OUTPUT_NAME = $(BUILD_DIR)/framelib_pd-$(NAME_SUFFIX).$(EXTENSION)
 # Targets and pattern rules
 
 framelib_pd: build_directory $(FL_OBJ) $(MAIN_OBJ);
-				cc $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -o $(OUTPUT_NAME) $(FL_OBJ_OUT) $(MAIN_OBJ_OUT) $(LINK_FLAGS)
+				g++ $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -o $(OUTPUT_NAME) $(FL_OBJ_OUT) $(MAIN_OBJ_OUT) $(LINK_FLAGS)
 
 build_directory:
 				mkdir -p $(BUILD_DIR)
@@ -103,10 +103,10 @@ intermediate_directory:
 				mkdir -p $(INTERMEDIATE_DIR)
 	
 %.o : %.cpp intermediate_directory
-				g++ $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) -std=c++11 -fPIC $(INCLUDE_PATHS) -c $< -o $(INTERMEDIATE_DIR)/$(@F)
+				g++ $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -std=c++11 -fPIC $(INCLUDE_PATHS) -c $< -o $(INTERMEDIATE_DIR)/$(@F)
 
 %.o : %.c intermediate_directory
-				cc $(CPPFLAGS) $(CFLAGS) $(ARCH_FLAGS) -fPIC $(INCLUDE_PATHS) -c $< -o $(INTERMEDIATE_DIR)/$(@F)
+				cc $(CPPFLAGS) $(CFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -fPIC $(INCLUDE_PATHS) -c $< -o $(INTERMEDIATE_DIR)/$(@F)
 		
 .PHONY: clean
 		
