@@ -79,7 +79,6 @@ jobs:
           name: ${{ format('build-linux-intel-{0}', matrix.type) }}
           path: build/*.pd_linux
   pd-linux-arm:
-    if: ${{ false }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -151,7 +150,7 @@ jobs:
           path: build/*.dll
   deploy:
     runs-on: macos-latest
-    needs: [ max-mac, max-win, pd-mac, pd-linux-intel, pd-win ]
+    needs: [ max-mac, max-win, pd-mac, pd-linux-intel, pd-linux-arm, pd-win ]
     steps:
       - name: Checkout main repo
         uses: actions/checkout@v3
