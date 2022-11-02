@@ -28,7 +28,6 @@ private:
     // Data
     
     AutoArray<double> mLastInput;
-    
 };
 
 #endif
