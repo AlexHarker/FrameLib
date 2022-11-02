@@ -18,7 +18,7 @@
         Controls how the output length is determined:<p /><bullet>[0] - <m>requested</m> - the output length is set by the length parameter.</bullet><bullet>[1] - <m>input</m> - the output length follows the length of the trigger input.</bullet><p /><i>(default: <m>requested</m>)</i>
       </description>
     </entry>
-    <entry name="/length [int]">
+    <entry name="/length [double]">
       <description>
         Sets the requested output length in the units specified by the units parameter.<p /><i>(default: 1, min: 0)</i>
       </description>
@@ -59,7 +59,7 @@
         This argument sets the mode parameter:<p /><p />Controls how the output length is determined:<p /><bullet>[0] - <m>requested</m> - the output length is set by the length parameter.</bullet><bullet>[1] - <m>input</m> - the output length follows the length of the trigger input.</bullet><p /><i>(default: <m>requested</m>)</i>
       </description>
     </objarg>
-    <objarg name="length" optional="1" type="int">
+    <objarg name="length" optional="1" type="number">
       <digest>
         Sets the requested output length in the units specified by the units parameter
       </digest>

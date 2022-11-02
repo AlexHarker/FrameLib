@@ -13,7 +13,7 @@ FrameLib_Uniform::FrameLib_Uniform(FrameLib_Context context, const FrameLib_Para
     mParameters.addEnumItem(kRequestedLength, "requested");
     mParameters.addEnumItem(kInLength, "input");
     
-    mParameters.addInt(kLength, "length", 1, 2);
+    mParameters.addDouble(kLength, "length", 1, 2);
     mParameters.setMin(0);
 
     mParameters.addEnum(kUnits, "units", 3);

@@ -10,7 +10,7 @@ FrameLib_Gaussian::FrameLib_Gaussian(FrameLib_Context context, const FrameLib_Pa
     mParameters.addEnumItem(kRequestedLength, "requested");
     mParameters.addEnumItem(kInLength, "input");
     
-    mParameters.addInt(kLength, "length", 1, 1);
+    mParameters.addDouble(kLength, "length", 1, 1);
     mParameters.setMin(0);
     
     mParameters.addEnum(kUnits, "units", 2);
