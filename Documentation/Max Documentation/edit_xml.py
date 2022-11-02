@@ -45,6 +45,8 @@ def main(docs):
             for obj in category_object_list:
                 if obj == obj_string:
                     return key
+                 
+        raise RuntimeError(f"{obj_string} has no category entry")
 
     raw_xml_list = [x for x in docs.raw_xml_dir.rglob("fl.*.xml")]
     manual_xml_list = [x for x in docs.manual_xml_dir.rglob("fl.*.xml")]
