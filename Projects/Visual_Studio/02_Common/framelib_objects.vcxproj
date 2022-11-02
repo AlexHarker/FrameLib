@@ -67,6 +67,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_ParamAlias.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_Tag.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_Untag.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Change.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Dispatch.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Route.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Select.h" />
@@ -117,6 +118,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_NanFilter.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_NonZero.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Pad.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Paste.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Pattern.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Peaks.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Percentile.h" />
@@ -163,6 +165,7 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_ParamAlias.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_Tag.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_Untag.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Change.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Dispatch.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Route.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Select.cpp" />
@@ -204,6 +207,7 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_NanFilter.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_NonZero.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Pad.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Paste.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Pattern.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Peaks.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Percentile.cpp" />
