@@ -209,4 +209,3 @@ jobs:
           tag_name: pd-latest-${{ steps.date.outputs.date }}
           body: This is an automated build of FrameLib for max/pd.
           generate_release_notes: true
-      
