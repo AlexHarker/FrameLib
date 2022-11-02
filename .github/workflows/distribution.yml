@@ -167,12 +167,12 @@ jobs:
         with:
           path: ../build/
       - name: Move max externals into place
-        run: | 
+        run: |
              mkdir Packaging/Max/FrameLib/externals
              mv ../build/build-mac/* Packaging/Max/FrameLib/externals
              mv ../build/build-win/* Packaging/Max/FrameLib/externals
              rm -d ../build/build-mac/
-             rm -d ../build/build-win/           
+             rm -d ../build/build-win/
       - name: Sign and notarize max externals
         uses: ./.github/actions/mac-notarization
         with:
