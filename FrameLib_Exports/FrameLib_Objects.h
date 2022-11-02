@@ -121,6 +121,7 @@
 #include "../FrameLib_Objects/Vector/FrameLib_NanFilter.h"
 #include "../FrameLib_Objects/Vector/FrameLib_NonZero.h"
 #include "../FrameLib_Objects/Vector/FrameLib_Pad.h"
+#include "../FrameLib_Objects/Vector/FrameLib_Paste.h"
 #include "../FrameLib_Objects/Vector/FrameLib_Pattern.h"
 #include "../FrameLib_Objects/Vector/FrameLib_Peaks.h"
 #include "../FrameLib_Objects/Vector/FrameLib_Percentile.h"

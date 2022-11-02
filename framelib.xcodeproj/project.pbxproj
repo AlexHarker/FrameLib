@@ -277,6 +277,9 @@
 		B83F046A223A85A400AF1F8E /* ibuffer_access.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8AD883619C7C2B500FFA238 /* ibuffer_access.cpp */; };
 		B840883B2912A11900D82983 /* FrameLib_Paste.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84088392912A11900D82983 /* FrameLib_Paste.cpp */; };
 		B840883C2912A11900D82983 /* FrameLib_Paste.h in Headers */ = {isa = PBXBuildFile; fileRef = B840883A2912A11900D82983 /* FrameLib_Paste.h */; };
+		B84088462912B1D500D82983 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		B840884E2912B20700D82983 /* fl.paste~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B840884D2912B20700D82983 /* fl.paste~.cpp */; };
+		B840884F2912B21800D82983 /* FrameLib_Paste.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84088392912A11900D82983 /* FrameLib_Paste.cpp */; };
 		B843AAB519C070A1000D3476 /* fl.sink~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B843AAB419C070A1000D3476 /* fl.sink~.cpp */; };
 		B844029327D6BD6C0095D416 /* FrameLib_Recursive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B3F78227D6B50A008886BA /* FrameLib_Recursive.cpp */; };
 		B844029427D6BD780095D416 /* FrameLib_SortMultiple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B3F78527D6B536008886BA /* FrameLib_SortMultiple.cpp */; };
@@ -834,6 +837,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = B8BA6FD12078D49200D3DB3D;
 			remoteInfo = framelib_objects;
+		};
+		B840883F2912B1D500D82983 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
+			remoteInfo = framelib;
 		};
 		B8454406230DC266000E42DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -3369,6 +3379,8 @@
 		B83F0469223A82A600AF1F8E /* FrameLib_TypeList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_TypeList.h; sourceTree = "<group>"; };
 		B84088392912A11900D82983 /* FrameLib_Paste.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Paste.cpp; sourceTree = "<group>"; };
 		B840883A2912A11900D82983 /* FrameLib_Paste.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Paste.h; sourceTree = "<group>"; };
+		B840884B2912B1D500D82983 /* fl.paste~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.paste~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B840884D2912B20700D82983 /* fl.paste~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.paste~.cpp"; sourceTree = "<group>"; };
 		B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Context.h; sourceTree = "<group>"; };
 		B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Global.cpp; sourceTree = "<group>"; };
 		B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Global.h; sourceTree = "<group>"; };
@@ -4288,6 +4300,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B83F0456223A762800AF1F8E /* libframelib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B84088452912B1D500D82983 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B84088462912B1D500D82983 /* libframelib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5500,6 +5520,7 @@
 				B8B3F7A827D6B58E008886BA /* fl.nexttime~.mxo */,
 				B8B3F7B827D6B591008886BA /* fl.sortmultiple~.mxo */,
 				B8ED8BA62892F7F000AE30A2 /* fl.change~.mxo */,
+				B840884B2912B1D500D82983 /* fl.paste~.mxo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -6432,6 +6453,7 @@
 				B8B3F7BD27D6B61D008886BA /* fl.sortmultiple~.cpp */,
 				B8F83E3019C78E0000230CD4 /* fl.length~.cpp */,
 				B85B68E419F28F27002D6F1D /* fl.pad~.cpp */,
+				B840884D2912B20700D82983 /* fl.paste~.cpp */,
 				B84943C91B837B3C0037DFF1 /* fl.chop~.cpp */,
 				B8C8563A19F2957F006358DA /* fl.split~.cpp */,
 				B8C8563B19F2957F006358DA /* fl.subframe~.cpp */,
@@ -6833,6 +6855,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B83F0450223A762800AF1F8E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B84088402912B1D500D82983 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -8780,6 +8809,26 @@
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B83F045C223A762800AF1F8E /* fl.info~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		B840883D2912B1D500D82983 /* fl.paste~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B84088472912B1D500D82983 /* Build configuration list for PBXNativeTarget "fl.paste~" */;
+			buildPhases = (
+				B84088402912B1D500D82983 /* Headers */,
+				B84088412912B1D500D82983 /* Resources */,
+				B84088422912B1D500D82983 /* Sources */,
+				B84088452912B1D500D82983 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B840883E2912B1D500D82983 /* PBXTargetDependency */,
+			);
+			name = "fl.paste~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = B840884B2912B1D500D82983 /* fl.paste~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B843AAA319C07046000D3476 /* fl.sink~ */ = {
@@ -11451,6 +11500,7 @@
 				B8B3F79A27D6B58E008886BA /* fl.nexttime~ */,
 				B8B3F7AA27D6B591008886BA /* fl.sortmultiple~ */,
 				B8ED8B982892F7F000AE30A2 /* fl.change~ */,
+				B840883D2912B1D500D82983 /* fl.paste~ */,
 			);
 		};
 /* End PBXProject section */
@@ -11835,6 +11885,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B83F0451223A762800AF1F8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B84088412912B1D500D82983 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -13179,6 +13236,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B84088422912B1D500D82983 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B840884E2912B20700D82983 /* fl.paste~.cpp in Sources */,
+				B840884F2912B21800D82983 /* FrameLib_Paste.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B843AAA619C07046000D3476 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -14404,6 +14470,11 @@
 			isa = PBXTargetDependency;
 			target = B8BA6FD12078D49200D3DB3D /* framelib_objects */;
 			targetProxy = B83FCCEF222FEC3D00B52C0D /* PBXContainerItemProxy */;
+		};
+		B840883E2912B1D500D82983 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = B840883F2912B1D500D82983 /* PBXContainerItemProxy */;
 		};
 		B8454405230DC266000E42DE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -18719,6 +18790,73 @@
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "AHarker.${TARGET_NAME:rfc1034identifier}";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = "Public Testing";
+		};
+		B84088482912B1D500D82983 /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "fl.change~ copy-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "AHarker.${TARGET_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Development;
+		};
+		B84088492912B1D500D82983 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "fl.change~ copy-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "AHarker.${TARGET_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Deployment;
+		};
+		B840884A2912B1D500D82983 /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "fl.change~ copy-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "AHarker.${TARGET_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -28326,6 +28464,16 @@
 				B83F0459223A762800AF1F8E /* Development */,
 				B83F045A223A762800AF1F8E /* Deployment */,
 				B83F045B223A762800AF1F8E /* Public Testing */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		B84088472912B1D500D82983 /* Build configuration list for PBXNativeTarget "fl.paste~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B84088482912B1D500D82983 /* Development */,
+				B84088492912B1D500D82983 /* Deployment */,
+				B840884A2912B1D500D82983 /* Public Testing */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;

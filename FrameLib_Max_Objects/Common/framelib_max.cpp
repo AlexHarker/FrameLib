@@ -144,6 +144,7 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_MedianFilter>::makeClass("fl.medianfilter~");
     FrameLib_MaxClass_Expand<FrameLib_NonZero>::makeClass("fl.nonzero~");
     FrameLib_MaxClass_Expand<FrameLib_Pad>::makeClass("fl.pad~");
+    FrameLib_MaxClass_Expand<FrameLib_Paste>::makeClass("fl.paste~");
     FrameLib_MaxClass_Expand<FrameLib_Peaks>::makeClass("fl.pattern~");
     FrameLib_MaxClass_Expand<FrameLib_Peaks>::makeClass("fl.peaks~");
     FrameLib_MaxClass_Expand<FrameLib_Percentile>::makeClass("fl.percentile~");
