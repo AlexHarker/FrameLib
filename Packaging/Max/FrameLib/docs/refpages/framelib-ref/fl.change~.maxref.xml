@@ -1,21 +1,16 @@
 <?xml version='1.0' encoding='utf-8' standalone='yes'?>
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
-<c74object name="fl.route~" module="FrameLib" category="FrameLib Routing">
+<c74object name="fl.change~" module="FrameLib" category="FrameLib Routing">
   <digest>
-    Routes the input to one of a number of outputs
+    Only outputs input frames which differ from the previous input
   </digest>
   <description>
-    The number of outputs is variable. The selected output can be changed with a parameter.
+    Output is the same length as the input. This object can be used to remove repeat frames from a stream.
   </description>
   <misc name="Parameters">
-    <entry name="/num_outs [double]">
+    <entry>
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the number of outputs.<p /><i>(default: 2, clipped: 2-32)</i>
-      </description>
-    </entry>
-    <entry name="/output [int]">
-      <description>
-        Sets the current output counting from 1 (off if out of range).<p /><i>(default: 0)</i>
+        <o>fl.change~</o> has no parameters.
       </description>
     </entry>
   </misc>
@@ -33,22 +28,6 @@
         Optionally, the first argument may be used to explicitly specify the number of streams. This is done using a symbol starting with the character <m>=</m> followed by the required number of streams (without a space). For example, an argument of <m>=4</m> will set the number of streams to 4.
       </description>
     </objarg>
-    <objarg name="num_outs" optional="1" type="number">
-      <digest>
-        Sets the number of outputs
-      </digest>
-      <description>
-        This argument sets the num_outs parameter:<p /><p />Sets the number of outputs.<p /><i>(default: 2, clipped: 2-32)</i>
-      </description>
-    </objarg>
-    <objarg name="output" optional="1" type="int">
-      <digest>
-        Sets the current output counting from 1 (off if out of range)
-      </digest>
-      <description>
-        This argument sets the output parameter:<p /><p />Sets the current output counting from 1 (off if out of range).<p /><i>(default: 0)</i>
-      </description>
-    </objarg>
   </objarglist>
   <methodlist>
     <method name="info">
@@ -59,7 +38,7 @@
         Get Object Info
       </digest>
       <description>
-        Print info about <o>fl.route~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+        Print info about <o>fl.change~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">
@@ -87,7 +66,7 @@
         Realtime Flag
       </digest>
       <description>
-        Sets the realtime state for <o>fl.route~</o>. When set to <m>0</m> <o>fl.route~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+        Sets the realtime state for <o>fl.change~</o>. When set to <m>0</m> <o>fl.change~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -99,7 +78,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for <o>fl.route~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+        Sets the context name for <o>fl.change~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -108,8 +87,8 @@
     </attribute>
   </attributelist>
   <seealsolist>
-    <seealso name="fl.change~" />
     <seealso name="fl.dispatch~" />
+    <seealso name="fl.route~" />
     <seealso name="fl.select~" />
   </seealsolist>
   <misc name="Discussion">

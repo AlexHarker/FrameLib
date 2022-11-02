@@ -28,6 +28,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -36,6 +37,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.split~",
             "fl.spread~",
             "fl.stddev~",
@@ -98,6 +100,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -105,6 +108,7 @@
             "fl.reverse~",
             "fl.rms~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -203,6 +207,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -211,6 +216,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -247,6 +253,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -255,6 +262,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -588,6 +596,8 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -596,6 +606,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -632,6 +643,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -640,6 +652,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -805,6 +818,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.product~",
@@ -812,6 +826,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -939,6 +954,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -947,6 +963,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -986,6 +1003,27 @@
             "fl.min~",
             "fl.pow~",
             "fl.||~"
+        ]
+    },
+    "fl.nexttime~": {
+        "digest": "Stores times for a connected recursive scheduler",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "FrameLib Schedulers"
+        ],
+        "keywords": [
+            "timing",
+            "schedulers",
+            "triggers"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.chain~",
+            "fl.interval~",
+            "fl.once~",
+            "fl.perblock~",
+            "fl.recursive~"
         ]
     },
     "fl.-~": {
@@ -1198,6 +1236,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -1206,6 +1245,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -1278,7 +1318,9 @@
             "fl.audiotrigger~",
             "fl.chain~",
             "fl.interval~",
-            "fl.once~"
+            "fl.nexttime~",
+            "fl.once~",
+            "fl.recursive~"
         ]
     },
     "fl.complex.pow~": {
@@ -1353,6 +1395,7 @@
             "fl.minpos~",
             "fl.nanfilter~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -1361,6 +1404,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -1462,6 +1506,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -1470,6 +1515,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -1542,7 +1588,9 @@
             "fl.audiotrigger~",
             "fl.chain~",
             "fl.interval~",
-            "fl.perblock~"
+            "fl.nexttime~",
+            "fl.perblock~",
+            "fl.recursive~"
         ]
     },
     "fl.exp~": {
@@ -1600,8 +1648,10 @@
         "seealso": [
             "fl.chain~",
             "fl.interval~",
+            "fl.nexttime~",
             "fl.once~",
-            "fl.perblock~"
+            "fl.perblock~",
+            "fl.recursive~"
         ]
     },
     "fl.sin~": {
@@ -1718,6 +1768,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -1726,6 +1777,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -1913,6 +1965,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -1920,6 +1973,7 @@
             "fl.reverse~",
             "fl.rms~",
             "fl.shift~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -1943,8 +1997,10 @@
         "seealso": [
             "fl.audiotrigger~",
             "fl.chain~",
+            "fl.nexttime~",
             "fl.once~",
-            "fl.perblock~"
+            "fl.perblock~",
+            "fl.recursive~"
         ]
     },
     "fl.acos~": {
@@ -2150,6 +2206,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -2158,6 +2215,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -2210,6 +2268,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -2218,6 +2277,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -2441,6 +2501,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -2449,6 +2510,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -2632,6 +2694,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -2640,6 +2703,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -2677,6 +2741,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -2684,6 +2749,7 @@
             "fl.reverse~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -2763,6 +2829,7 @@
             "routing"
         ],
         "seealso": [
+            "fl.change~",
             "fl.route~",
             "fl.select~"
         ]
@@ -2779,6 +2846,52 @@
         ],
         "seealso": [
             "fl.biquad~"
+        ]
+    },
+    "fl.paste~": {
+        "digest": "Pastes values into a output frame according to a provided ordering map",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "FrameLib Vector"
+        ],
+        "keywords": [
+            "vector"
+        ],
+        "seealso": [
+            "fl.accumpos~",
+            "fl.centroid~",
+            "fl.chop~",
+            "fl.crest~",
+            "fl.flatness~",
+            "fl.framemax~",
+            "fl.framemin~",
+            "fl.geomean~",
+            "fl.join~",
+            "fl.kurtosis~",
+            "fl.length~",
+            "fl.maxpos~",
+            "fl.mean~",
+            "fl.medianfilter~",
+            "fl.minpos~",
+            "fl.nanfilter~",
+            "fl.nonzero~",
+            "fl.pad~",
+            "fl.pattern~",
+            "fl.peaks~",
+            "fl.percentile~",
+            "fl.product~",
+            "fl.reverse~",
+            "fl.rms~",
+            "fl.shift~",
+            "fl.skewness~",
+            "fl.sortmultiple~",
+            "fl.sort~",
+            "fl.split~",
+            "fl.spread~",
+            "fl.stddev~",
+            "fl.subframe~",
+            "fl.sum~"
         ]
     },
     "fl.source~": {
@@ -2857,6 +2970,7 @@
             "fl.minpos~",
             "fl.nanfilter~",
             "fl.nonzero~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -2865,6 +2979,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -2884,8 +2999,55 @@
             "routing"
         ],
         "seealso": [
+            "fl.change~",
             "fl.dispatch~",
             "fl.select~"
+        ]
+    },
+    "fl.sortmultiple~": {
+        "digest": "Sorts multiple input frames together based on one input",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "FrameLib Vector"
+        ],
+        "keywords": [
+            "vector"
+        ],
+        "seealso": [
+            "fl.accumpos~",
+            "fl.centroid~",
+            "fl.chop~",
+            "fl.crest~",
+            "fl.flatness~",
+            "fl.framemax~",
+            "fl.framemin~",
+            "fl.geomean~",
+            "fl.join~",
+            "fl.kurtosis~",
+            "fl.length~",
+            "fl.maxpos~",
+            "fl.mean~",
+            "fl.medianfilter~",
+            "fl.minpos~",
+            "fl.nanfilter~",
+            "fl.nonzero~",
+            "fl.pad~",
+            "fl.paste~",
+            "fl.pattern~",
+            "fl.peaks~",
+            "fl.percentile~",
+            "fl.product~",
+            "fl.reverse~",
+            "fl.rms~",
+            "fl.shift~",
+            "fl.skewness~",
+            "fl.sort~",
+            "fl.split~",
+            "fl.spread~",
+            "fl.stddev~",
+            "fl.subframe~",
+            "fl.sum~"
         ]
     },
     "fl.fold~": {
@@ -2992,6 +3154,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -2999,6 +3162,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -3122,6 +3286,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.peaks~",
             "fl.percentile~",
             "fl.product~",
@@ -3129,12 +3294,34 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
             "fl.stddev~",
             "fl.subframe~",
             "fl.sum~"
+        ]
+    },
+    "fl.recursive~": {
+        "digest": "Schedules frames based on downstream calculations",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "FrameLib Schedulers"
+        ],
+        "keywords": [
+            "timing",
+            "schedulers",
+            "triggers"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.chain~",
+            "fl.interval~",
+            "fl.nexttime~",
+            "fl.once~",
+            "fl.perblock~"
         ]
     },
     "fl.diff~": {
@@ -3296,6 +3483,7 @@
             "routing"
         ],
         "seealso": [
+            "fl.change~",
             "fl.dispatch~",
             "fl.route~"
         ]
@@ -3369,6 +3557,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -3377,6 +3566,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -3581,6 +3771,7 @@
             "fl.minpos~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -3589,6 +3780,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -3696,6 +3888,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -3704,6 +3897,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -3800,6 +3994,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -3808,6 +4003,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.spread~",
             "fl.stddev~",
@@ -3935,6 +4131,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -3943,6 +4140,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -3978,6 +4176,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -3986,6 +4185,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -4089,6 +4289,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -4096,6 +4297,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -4132,6 +4334,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -4140,6 +4343,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -4176,6 +4380,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -4184,6 +4389,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -4323,6 +4529,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.percentile~",
             "fl.product~",
@@ -4330,6 +4537,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.spread~",
@@ -4480,6 +4688,22 @@
             "fl.chain~"
         ]
     },
+    "fl.change~": {
+        "digest": "Only outputs input frames which differ from the previous input",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "FrameLib Routing"
+        ],
+        "keywords": [
+            "routing"
+        ],
+        "seealso": [
+            "fl.dispatch~",
+            "fl.route~",
+            "fl.select~"
+        ]
+    },
     "fl.cosh~": {
         "digest": "Calculates the hyperbolic cosine of each value in the input frame",
         "module": "FrameLib",
@@ -4549,6 +4773,7 @@
             "fl.nanfilter~",
             "fl.nonzero~",
             "fl.pad~",
+            "fl.paste~",
             "fl.pattern~",
             "fl.peaks~",
             "fl.percentile~",
@@ -4557,6 +4782,7 @@
             "fl.rms~",
             "fl.shift~",
             "fl.skewness~",
+            "fl.sortmultiple~",
             "fl.sort~",
             "fl.split~",
             "fl.stddev~",
@@ -4637,8 +4863,10 @@
         "seealso": [
             "fl.audiotrigger~",
             "fl.interval~",
+            "fl.nexttime~",
             "fl.once~",
-            "fl.perblock~"
+            "fl.perblock~",
+            "fl.recursive~"
         ]
     },
     "fl.info~": {

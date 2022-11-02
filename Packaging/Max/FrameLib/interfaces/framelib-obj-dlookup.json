@@ -101,6 +101,9 @@
     "fl./~": {
         "digest": "Divides the left input frame values by the right input frame values"
     },
+    "fl.nexttime~": {
+        "digest": "Stores times for a connected recursive scheduler"
+    },
     "fl.-~": {
         "digest": "Subtracts the right input frame values from the left input frame values"
     },
@@ -290,6 +293,9 @@
     "fl.biquadcoeff~": {
         "digest": "Calculates biquad filter coefficients"
     },
+    "fl.paste~": {
+        "digest": "Pastes values into a output frame according to a provided ordering map"
+    },
     "fl.source~": {
         "digest": "Captures audio from the host environment and outputs the most recent values as frames"
     },
@@ -301,6 +307,9 @@
     },
     "fl.route~": {
         "digest": "Routes the input to one of a number of outputs"
+    },
+    "fl.sortmultiple~": {
+        "digest": "Sorts multiple input frames together based on one input"
     },
     "fl.fold~": {
         "digest": "Folds the incoming frame into the range delimited by the two parameters"
@@ -328,6 +337,9 @@
     },
     "fl.pattern~": {
         "digest": "Step through a frame of values (or pattern) one at a time"
+    },
+    "fl.recursive~": {
+        "digest": "Schedules frames based on downstream calculations"
     },
     "fl.diff~": {
         "digest": "Calculates the absolute differences between values in the two input frames"
@@ -466,6 +478,9 @@
     },
     "fl.prioritise~": {
         "digest": "Apply a fixed priority ranking to synchronous input frames"
+    },
+    "fl.change~": {
+        "digest": "Only outputs input frames which differ from the previous input"
     },
     "fl.cosh~": {
         "digest": "Calculates the hyperbolic cosine of each value in the input frame"

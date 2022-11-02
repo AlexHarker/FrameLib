@@ -1,26 +1,21 @@
 <?xml version='1.0' encoding='utf-8' standalone='yes'?>
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
-<c74object name="fl.accumpos~" module="FrameLib" category="FrameLib Vector">
+<c74object name="fl.paste~" module="FrameLib" category="FrameLib Vector">
   <digest>
-    Finds the index where the cumulative sum reaches a specified percentage of its total
+    Pastes values into a output frame according to a provided ordering map
   </digest>
   <description>
-    The output is a single value. When the input frame is empty then the output is determined by the empty parameter.
+    Values at the input are pasted to the output index specified by the map input. Where two or more values are pasted to the same output index they will be summed. Values for which no map is provided, or for which the map is out of range are ignored. Output indices to which no values are pasted will be set to zero. The length of the output is dependent on the mode parameter. Output length may be set by parameter or based on that of the trigger input. 
   </description>
   <misc name="Parameters">
-    <entry name="/percentage [double]">
+    <entry name="/mode [enum]">
       <description>
-        Sets the percentage of the sum used for calculation [0-100].<p /><i>(default: 50, clipped: 0-100)</i>
+        Controls how the output length is determined:<p /><bullet>[0] - <m>requested</m> - the output length is set by the length parameter.</bullet><bullet>[1] - <m>input</m> - the output length follows the length of the trigger input.</bullet><p /><i>(default: <m>requested</m>)</i>
       </description>
     </entry>
-    <entry name="/empty [enum]">
+    <entry name="/length [int]">
       <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the output to use when an empty input frame is received:<p /><bullet>[0] - <m>empty</m> - output an empty frame.</bullet><bullet>[1] - <m>default</m> - output the default value (see the default parameter).</bullet><p /><i>(default: <m>empty</m>)</i>
-      </description>
-    </entry>
-    <entry name="/default [double]">
-      <description>
-        <h6><i>INSTANTIATION ONLY</i></h6>Sets the default output value.<p /><i>(default: 0)</i>
+        Sets the requested output length in the units specified by the units parameter.<p /><i>(default: 1, min: 0)</i>
       </description>
     </entry>
   </misc>
@@ -38,28 +33,20 @@
         Optionally, the first argument may be used to explicitly specify the number of streams. This is done using a symbol starting with the character <m>=</m> followed by the required number of streams (without a space). For example, an argument of <m>=4</m> will set the number of streams to 4.
       </description>
     </objarg>
-    <objarg name="percentage" optional="1" type="number">
+    <objarg name="mode" optional="1" type="symbol">
       <digest>
-        Sets the percentage of the sum used for calculation [0-100]
+        Controls how the output length is determined
       </digest>
       <description>
-        This argument sets the percentage parameter:<p /><p />Sets the percentage of the sum used for calculation [0-100].<p /><i>(default: 50, clipped: 0-100)</i>
+        This argument sets the mode parameter:<p /><p />Controls how the output length is determined:<p /><bullet>[0] - <m>requested</m> - the output length is set by the length parameter.</bullet><bullet>[1] - <m>input</m> - the output length follows the length of the trigger input.</bullet><p /><i>(default: <m>requested</m>)</i>
       </description>
     </objarg>
-    <objarg name="empty" optional="1" type="symbol">
+    <objarg name="length" optional="1" type="int">
       <digest>
-        Sets the output to use when an empty input frame is received
+        Sets the requested output length in the units specified by the units parameter
       </digest>
       <description>
-        This argument sets the empty parameter:<p /><p />Sets the output to use when an empty input frame is received:<p /><bullet>[0] - <m>empty</m> - output an empty frame.</bullet><bullet>[1] - <m>default</m> - output the default value (see the default parameter).</bullet><p /><i>(default: <m>empty</m>)</i>
-      </description>
-    </objarg>
-    <objarg name="default" optional="1" type="number">
-      <digest>
-        Sets the default output value
-      </digest>
-      <description>
-        This argument sets the default parameter:<p /><p />Sets the default output value.<p /><i>(default: 0)</i>
+        This argument sets the length parameter:<p /><p />Sets the requested output length in the units specified by the units parameter.<p /><i>(default: 1, min: 0)</i>
       </description>
     </objarg>
   </objarglist>
@@ -72,7 +59,7 @@
         Get Object Info
       </digest>
       <description>
-        Print info about <o>fl.accumpos~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+        Print info about <o>fl.paste~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="frame">
@@ -100,7 +87,7 @@
         Realtime Flag
       </digest>
       <description>
-        Sets the realtime state for <o>fl.accumpos~</o>. When set to <m>0</m> <o>fl.accumpos~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+        Sets the realtime state for <o>fl.paste~</o>. When set to <m>0</m> <o>fl.paste~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -112,7 +99,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for <o>fl.accumpos~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+        Sets the context name for <o>fl.paste~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -121,6 +108,7 @@
     </attribute>
   </attributelist>
   <seealsolist>
+    <seealso name="fl.accumpos~" />
     <seealso name="fl.centroid~" />
     <seealso name="fl.chop~" />
     <seealso name="fl.crest~" />
@@ -138,7 +126,6 @@
     <seealso name="fl.nanfilter~" />
     <seealso name="fl.nonzero~" />
     <seealso name="fl.pad~" />
-    <seealso name="fl.paste~" />
     <seealso name="fl.pattern~" />
     <seealso name="fl.peaks~" />
     <seealso name="fl.percentile~" />

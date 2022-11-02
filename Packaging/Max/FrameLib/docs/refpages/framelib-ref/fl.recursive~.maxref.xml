@@ -1,16 +1,21 @@
 <?xml version='1.0' encoding='utf-8' standalone='yes'?>
 <?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?>
-<c74object name="fl.audiotrigger~" module="FrameLib" category="FrameLib Schedulers">
+<c74object name="fl.recursive~" module="FrameLib" category="FrameLib Schedulers">
   <digest>
-    Schedules frames based on non-zero audio input
+    Schedules frames based on downstream calculations
   </digest>
   <description>
-    The output is an empty trigger frame. Non-zero input samples trigger frames.
+    A connected next time object is required to store time values downstream. The output is an empty trigger frame. Trigger frames at the input create output. Values sent to the connected object set the time for the next frame.
   </description>
   <misc name="Parameters">
-    <entry>
+    <entry name="/units [enum]">
       <description>
-        <o>fl.audiotrigger~</o> has no parameters.
+        Sets the time units used for setting the interval.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><bullet>[3] - <m>hz</m></bullet><p /><i>(default: <m>samples</m>)</i>
+      </description>
+    </entry>
+    <entry name="/auto_start [bool]">
+      <description>
+        Sets whether a frame is scheduled when DSP is started.<p /><i>(default: false)</i>
       </description>
     </entry>
   </misc>
@@ -28,6 +33,22 @@
         Optionally, the first argument may be used to explicitly specify the number of streams. This is done using a symbol starting with the character <m>=</m> followed by the required number of streams (without a space). For example, an argument of <m>=4</m> will set the number of streams to 4.
       </description>
     </objarg>
+    <objarg name="units" optional="1" type="symbol">
+      <digest>
+        Sets the time units used for setting the interval
+      </digest>
+      <description>
+        This argument sets the units parameter:<p /><p />Sets the time units used for setting the interval.<p /><bullet>[0] - <m>samples</m></bullet><bullet>[1] - <m>ms</m></bullet><bullet>[2] - <m>seconds</m></bullet><bullet>[3] - <m>hz</m></bullet><p /><i>(default: <m>samples</m>)</i>
+      </description>
+    </objarg>
+    <objarg name="auto_start" optional="1" type="number">
+      <digest>
+        Sets whether a frame is scheduled when DSP is started
+      </digest>
+      <description>
+        This argument sets the auto_start parameter:<p /><p />Sets whether a frame is scheduled when DSP is started.<p /><i>(default: false)</i>
+      </description>
+    </objarg>
   </objarglist>
   <methodlist>
     <method name="info">
@@ -38,7 +59,7 @@
         Get Object Info
       </digest>
       <description>
-        Print info about <o>fl.audiotrigger~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
+        Print info about <o>fl.recursive~</o> to the max window for reference purposes. If no arguments are provided then all information is posted to the Max window. Else a set of flags is used to select which sections of the reference to display, and whether or not the information should be provided in a shortened form.<br /> <br />The following flags are available:<br /><br /><bullet><m>description</m> - display the object description.</bullet><bullet><m>inputs</m> - display info on inputs.</bullet><bullet><m>outputs</m> - display info on outputs.</bullet><bullet><m>io</m> - display info on both inputs and outputs.</bullet><bullet><m>parameters</m> - display info on the object parameters.</bullet><bullet><m>quick</m> - display shorten versions of any info displayed.</bullet>
       </description>
     </method>
     <method name="process">
@@ -60,7 +81,7 @@
         Reset a non-realtime network
       </digest>
       <description>
-        Resets a non-realtime network to the start of time ready for processing, optionally setting the sample rate. If the <m>samplerate</m> argument is omitted the network will be set to the global sample rate.<br /><br />This will only take effect if <o>fl.audiotrigger~</o> has its <m>rt</m> attribute set to <m>0</m>. More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+        Resets a non-realtime network to the start of time ready for processing, optionally setting the sample rate. If the <m>samplerate</m> argument is omitted the network will be set to the global sample rate.<br /><br />This will only take effect if <o>fl.recursive~</o> has its <m>rt</m> attribute set to <m>0</m>. More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
     </method>
     <method name="signal">
@@ -69,7 +90,7 @@
         Synchronise with audio or accept signal IO
       </digest>
       <description>
-        Audio Inputs are as follows:<br /><br /><bullet>Audio Input - non-zero values trigger frames [N].</bullet><br />There are N audio inputs, as set by the number of explicitly set streams.
+        Synchonises FrameLib objects with Max's audio processing.
       </description>
     </method>
     <method name="frame">
@@ -97,7 +118,7 @@
         Non-realtime Buffer
       </digest>
       <description>
-        Sets the non-realtime <o>buffer~</o> for <o>fl.audiotrigger~</o>. This is the <o>buffer~</o> used for IO in a non-realtime setting.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+        Sets the non-realtime <o>buffer~</o> for <o>fl.recursive~</o>. This is the <o>buffer~</o> used for IO in a non-realtime setting.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -109,7 +130,7 @@
         Realtime Flag
       </digest>
       <description>
-        Sets the realtime state for <o>fl.audiotrigger~</o>. When set to <m>0</m> <o>fl.audiotrigger~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
+        Sets the realtime state for <o>fl.recursive~</o>. When set to <m>0</m> <o>fl.recursive~</o> forms part of a non-realtime network for performing offline processing in Max message threads. This mode of operation uses <o>buffer~</o> objects for audio IO.<br /><br />More info on non-realtime processing with FrameLib can be found in <link name="11_fl_nrt" module="framelib" type="tutorial">Tutorial 11</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -121,7 +142,7 @@
         Context ID
       </digest>
       <description>
-        Sets the context name for <o>fl.audiotrigger~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
+        Sets the context name for <o>fl.recursive~</o> in order to determine distinct processing contexts.<br /><br />More info on FrameLib contexts can be found in <link name="10_fl_contexts" module="framelib" type="tutorial">Tutorial 10</link>.
       </description>
       <attributelist>
         <attribute name="basic" get="1" set="1" type="int" size="1" value="1" />
@@ -130,12 +151,12 @@
     </attribute>
   </attributelist>
   <seealsolist>
+    <seealso name="fl.audiotrigger~" />
     <seealso name="fl.chain~" />
     <seealso name="fl.interval~" />
     <seealso name="fl.nexttime~" />
     <seealso name="fl.once~" />
     <seealso name="fl.perblock~" />
-    <seealso name="fl.recursive~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">
