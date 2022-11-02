@@ -207,6 +207,6 @@ jobs:
           fail_on_unmatched_files: true
           files: ../build/*/*.zip
           target_commitish: ${{ github.sha }}
-          tag_name: framelib-latest-${{ github.ref_name }}- ${{ steps.date.outputs.date }}
+          tag_name: framelib-latest-${{ github.ref_name }}-${{ steps.date.outputs.date }}
           body: This is an automated build of FrameLib for max/pd.
           generate_release_notes: true
