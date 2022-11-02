@@ -5,7 +5,7 @@
 
 #include "FrameLib_DSP.h"
 #include "Framelib_IO_Helper.h"
-#include "Framelib_HostProxy.h"
+#include "../Host_Communication/FrameLib_HostProxy.h"
 #include <vector>
 
 class FrameLib_Sink final : public FrameLib_AudioOutput, private FrameLib_IO_Helper
