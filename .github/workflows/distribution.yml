@@ -1,6 +1,46 @@
-name: pd-github
+name: distribution-github
 on: [ workflow_dispatch ]
 jobs:
+  max-mac:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v3
+        with:
+          path: "framelib"
+      - name: Checkout max-sdk-base
+        uses: actions/checkout@v3
+        with:
+          repository: 'Cycling74/max-sdk-base'
+          path: "max-sdk-base"
+      - name: Build mac max externals
+        run: xcodebuild -project 'framelib/framelib.xcodeproj' -scheme 'framelib Max (objects build)' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
+      - name: Upload mac build
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-mac
+          path: framelib/Packaging/Max/FrameLib/externals
+  max-win:
+    runs-on: windows-2019
+    steps:
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+      - name: Checkout main repo
+        uses: actions/checkout@v3
+        with:
+          path: "framelib"
+      - name: Checkout max-sdk-base
+        uses: actions/checkout@v3
+        with:
+          repository: 'Cycling74/max-sdk-base'
+          path: "max-sdk-base"
+      - name: Build win max externals
+        run:  msbuild "framelib/framelib.sln" /p:configuration="Release" /p:platform=x64 /t:framelib_objects_max /v:q /clp:ErrorsOnly /nologo /m
+      - name: Upload win build
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-win
+          path: framelib/Packaging/Max/FrameLib/externals
   pd-mac:
     runs-on: macos-latest
     steps:
@@ -39,6 +79,7 @@ jobs:
           name: ${{ format('build-linux-intel-{0}', matrix.type) }}
           path: build/*.pd_linux
   pd-linux-arm:
+    if: ${{ false }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -108,22 +149,40 @@ jobs:
         with:
           name: ${{ format('build-win-{0}', matrix.type) }}
           path: build/*.dll
-  deploy-pd:
+  deploy:
     runs-on: macos-latest
-    needs: [ pd-mac, pd-linux-intel, pd-linux-arm, pd-win ]
+    needs: [ max-mac, max-win, pd-mac, pd-linux-intel, pd-linux-arm, pd-win ]
     steps:
-      - name: Prepare local actions
-        uses: actions/checkout@v1
+      - name: Checkout main repo
+        uses: actions/checkout@v3
       - name: Get current date / make build folder
         id: date
         run: | 
              echo "::set-output name=date::$(date +'%Y-%m-%d')"
              mkdir ../build
+      - name: Build max documentation
+        run: xcodebuild -project 'framelib.xcodeproj' -scheme 'framelib Max Documentation' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
       - name: Download builds
         uses: actions/download-artifact@v3
         with:
           path: ../build/
-      - name: Sign and notarize
+      - name: Move max externals into place
+        run: | 
+             mv ../build/build-mac/* Packaging/Max/FrameLib/externals
+             mv ../build/build-win/* Packaging/Max/FrameLib/externals
+             rm -d ../build/build-mac/
+             rm -d ../build/build-win/           
+      - name: Sign and notarize max extnerals
+        uses: ./.github/actions/mac-notarization
+        with:
+          glob: '-e mxo'
+          folder: Packaging/Max/FrameLib/externals
+          team_id: ${{ secrets.TEAM_ID }}
+          apple_id: ${{ secrets.APPLE_ID }}
+          app_specific_pwd: ${{ secrets.APP_SPECIFIC_PWD }}
+          cert_pwd: ${{ secrets.CERT_PWD }}
+          cert_base64: ${{ secrets.CERT_BASE64}}  
+      - name: Sign and notarize pd code
         if: ${{ false }}  # disable for now
         uses: ./.github/actions/mac-notarization
         with:
@@ -133,8 +192,10 @@ jobs:
           apple_id: ${{ secrets.APPLE_ID }}
           app_specific_pwd: ${{ secrets.APP_SPECIFIC_PWD }}
           cert_pwd: ${{ secrets.CERT_PWD }}
-          cert_base64: ${{ secrets.CERT_BASE64}}    
-      - name: Zip files
+          cert_base64: ${{ secrets.CERT_BASE64}} 
+      - name: Zip max package
+        run: /usr/bin/ditto -c -k --norsrc --keepParent Packaging/Max/FrameLib/ ../build/FrameLib_Max_Package.zip
+      - name: Zip pd files
         run: |
              cd ../build/
              find . -type f -execdir zip '{}.zip' '{}' \;
@@ -146,5 +207,6 @@ jobs:
           files: ../build/*/*.zip
           target_commitish: ${{ github.sha }}
           tag_name: pd-latest-${{ steps.date.outputs.date }}
-          body: This is an automated build of FrameLib for pd.
+          body: This is an automated build of FrameLib for max/pd.
           generate_release_notes: true
+      
