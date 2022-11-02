@@ -275,6 +275,8 @@
 		B83F0467223A778E00AF1F8E /* FrameLib_Info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B83F0462223A76CF00AF1F8E /* FrameLib_Info.cpp */; };
 		B83F0468223A77B700AF1F8E /* FrameLib_Pattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EA6BA92203B07800D23A86 /* FrameLib_Pattern.cpp */; };
 		B83F046A223A85A400AF1F8E /* ibuffer_access.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8AD883619C7C2B500FFA238 /* ibuffer_access.cpp */; };
+		B840883B2912A11900D82983 /* FrameLib_Paste.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84088392912A11900D82983 /* FrameLib_Paste.cpp */; };
+		B840883C2912A11900D82983 /* FrameLib_Paste.h in Headers */ = {isa = PBXBuildFile; fileRef = B840883A2912A11900D82983 /* FrameLib_Paste.h */; };
 		B843AAB519C070A1000D3476 /* fl.sink~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B843AAB419C070A1000D3476 /* fl.sink~.cpp */; };
 		B844029327D6BD6C0095D416 /* FrameLib_Recursive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B3F78227D6B50A008886BA /* FrameLib_Recursive.cpp */; };
 		B844029427D6BD780095D416 /* FrameLib_SortMultiple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B3F78527D6B536008886BA /* FrameLib_SortMultiple.cpp */; };
@@ -3365,6 +3367,8 @@
 		B83F0462223A76CF00AF1F8E /* FrameLib_Info.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Info.cpp; sourceTree = "<group>"; };
 		B83F0465223A772300AF1F8E /* fl.info~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.info~.cpp"; sourceTree = "<group>"; };
 		B83F0469223A82A600AF1F8E /* FrameLib_TypeList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_TypeList.h; sourceTree = "<group>"; };
+		B84088392912A11900D82983 /* FrameLib_Paste.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Paste.cpp; sourceTree = "<group>"; };
+		B840883A2912A11900D82983 /* FrameLib_Paste.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Paste.h; sourceTree = "<group>"; };
 		B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Context.h; sourceTree = "<group>"; };
 		B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Global.cpp; sourceTree = "<group>"; };
 		B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Global.h; sourceTree = "<group>"; };
@@ -5800,6 +5804,8 @@
 				B8213A451FA88F5D0013E31F /* FrameLib_NonZero.cpp */,
 				B85B68E319F28EE5002D6F1D /* FrameLib_Pad.h */,
 				B8891CD91F2C8D6900C5C4F0 /* FrameLib_Pad.cpp */,
+				B840883A2912A11900D82983 /* FrameLib_Paste.h */,
+				B84088392912A11900D82983 /* FrameLib_Paste.cpp */,
 				B8EA6B942203AEC700D23A86 /* FrameLib_Pattern.h */,
 				B8EA6BA92203B07800D23A86 /* FrameLib_Pattern.cpp */,
 				B8C5EBD91E5F9E5A0086E8B6 /* FrameLib_Peaks.h */,
@@ -7349,6 +7355,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B840883C2912A11900D82983 /* FrameLib_Paste.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13902,6 +13909,7 @@
 				B8BA6FE02078D54B00D3DB3D /* FrameLib_TimeDelta.cpp in Sources */,
 				B8BA6FE12078D54E00D3DB3D /* FrameLib_Timer.cpp in Sources */,
 				B8BA6FE22078D55200D3DB3D /* FrameLib_Ticks.cpp in Sources */,
+				B840883B2912A11900D82983 /* FrameLib_Paste.cpp in Sources */,
 				B8BA6FE32078D55D00D3DB3D /* FrameLib_TimeMean.cpp in Sources */,
 				B8BA6FE42078D56100D3DB3D /* FrameLib_TimeMedian.cpp in Sources */,
 				B8BA6FE52078D56700D3DB3D /* FrameLib_TimeStdDev.cpp in Sources */,
