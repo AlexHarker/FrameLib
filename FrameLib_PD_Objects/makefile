@@ -81,7 +81,7 @@ CXXFLAGS += -Wno-ignored-attributes -Wno-stringop-overflow
 EXTENSION = dll
 LINK_FLAGS = -lm -lstdc++ -latomic
 DLL = ../../pd-0.52-2/bin/pd.dll
-PLATFORM_FLAGS = -static -static-libgcc -static-libstdc++ -Wl,--enable-auto-import "$(DLL)" -shared
+PLATFORM_FLAGS = -static -static-libgcc -static-libstdc++ -Wl,--enable-auto-import -Wa,-mbig-obj "$(DLL)" -shared
 ARCH_FLAGS = 
 ifeq ($(BUILD_TYPE), i386)
 DLL = ../../pd-0.52-2-i386/bin/pd.dll
