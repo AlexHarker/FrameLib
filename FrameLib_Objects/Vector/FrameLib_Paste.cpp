@@ -34,10 +34,21 @@ std::string FrameLib_Paste::objectInfo(bool verbose)
 
 std::string FrameLib_Paste::inputInfo(unsigned long idx, bool verbose)
 {
-    if (idx)
-        return parameterInputInfo(verbose);
-    else
-        return "Input";
+    switch (idx)
+    {
+        case 0:
+            return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
+            break;
+        case 1:
+            return formatInfo("Values Input - values to paste", "Values Input", verbose);
+            break;
+        case 2:
+            return formatInfo("Map Input - map for ordering", "Map Input", verbose);
+            break;
+            
+        default:
+            return parameterInputInfo(verbose);
+    }
 }
 
 std::string FrameLib_Paste::outputInfo(unsigned long idx, bool verbose)
