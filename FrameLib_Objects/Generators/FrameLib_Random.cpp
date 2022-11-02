@@ -10,7 +10,7 @@ FrameLib_Random::FrameLib_Random(FrameLib_Context context, const FrameLib_Parame
     mParameters.addEnumItem(kRequestedLength, "requested");
     mParameters.addEnumItem(kInLength, "input");
     
-    mParameters.addInt(kLength, "length", 1, 1);
+    mParameters.addDouble(kLength, "length", 1, 1);
     mParameters.setMin(0);
     
     mParameters.addEnum(kUnits, "units", 2);
