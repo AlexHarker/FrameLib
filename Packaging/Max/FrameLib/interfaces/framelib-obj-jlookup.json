@@ -850,7 +850,7 @@
             "description": "Controls how the output length is determined:\n\nParameter Options:\n[0] - requested - the output length is set by the length parameter.\n[1] - input - the output length follows the length of the trigger input.\n\n(default: requested)"
         },
         "3": {
-            "name": "/length [int]",
+            "name": "/length [double]",
             "description": "Sets the requested output length in the units specified by the units parameter.\n\n(default: 1, min: 0)"
         },
         "4": {
@@ -1072,7 +1072,7 @@
             "description": "Controls how the output length is determined:\n\nParameter Options:\n[0] - requested - the output length is set by the length parameter.\n[1] - input - the output length follows the length of the trigger input.\n\n(default: requested)"
         },
         "2": {
-            "name": "/length [int]",
+            "name": "/length [double]",
             "description": "Sets the requested output length in the units specified by the units parameter.\n\n(default: 1, min: 0)"
         },
         "3": {
@@ -1306,7 +1306,7 @@
             "description": "Controls how the output length is determined:\n\nParameter Options:\n[0] - requested - the output length is set by the length parameter.\n[1] - input - the output length follows the length of the trigger input.\n\n(default: requested)"
         },
         "2": {
-            "name": "/length [int]",
+            "name": "/length [double]",
             "description": "Sets the requested output length in the units specified by the units parameter.\n\n(default: 1, min: 0)"
         },
         "3": {
@@ -1374,7 +1374,7 @@
             "description": "Controls how the output length is determined:\n\nParameter Options:\n[0] - requested - the output length is set by the length parameter.\n[1] - input - the output length follows the length of the trigger input.\n\n(default: requested)"
         },
         "2": {
-            "name": "/length [int]",
+            "name": "/length [double]",
             "description": "Sets the requested output length in the units specified by the units parameter.\n\n(default: 512, min: 0)"
         },
         "3": {
@@ -1482,7 +1482,7 @@
             "description": "Controls how the output length is determined:\n\nParameter Options:\n[0] - requested - the output length is set by the length parameter.\n[1] - input - the output length follows the length of the trigger input.\n\n(default: requested)"
         },
         "2": {
-            "name": "/length [int]",
+            "name": "/length [double]",
             "description": "Sets the requested output length in the units specified by the units parameter.\n\n(default: 1, min: 0)"
         },
         "3": {

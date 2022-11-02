@@ -186,7 +186,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 3,
-                            "revision": 0,
+                            "revision": 1,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -257,7 +257,7 @@
                         "appversion": {
                             "major": 8,
                             "minor": 3,
-                            "revision": 0,
+                            "revision": 1,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -508,7 +508,7 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [
-                                        336.5,
+                                        312.75,
                                         195.0,
                                         138.0,
                                         25.0
@@ -610,7 +610,7 @@
                                     ],
                                     "parameter_enable": 0,
                                     "patching_rect": [
-                                        263.5,
+                                        239.75,
                                         195.0,
                                         66.5,
                                         23.0
@@ -899,7 +899,7 @@
                                     ],
                                     "source": [
                                         "obj-31",
-                                        0
+                                        1
                                     ]
                                 }
                             },
