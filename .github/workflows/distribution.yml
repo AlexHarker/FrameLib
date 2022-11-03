@@ -157,7 +157,7 @@ jobs:
       - name: Get current date / make build folder
         id: date
         run: | 
-             echo "::set-output name=date::$(date +'%Y-%m-%d')"
+             echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
              mkdir ../build
       - name: Build max documentation
         run: xcodebuild -project 'framelib.xcodeproj' -scheme 'framelib Max Documentation' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
