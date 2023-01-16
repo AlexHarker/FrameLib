@@ -652,7 +652,7 @@ PD_API void framelib_pd_setup(void)
     // Storage
     
     FrameLib_PDClass_Expand<FrameLib_Recall>::makeClass("fl.recall~");
-    FrameLib_PDClass_Expand<FrameLib_Register>::makeClass("fl.register~");
+    FrameLib_PDClass_Expand<FrameLib_Register, kAllInputs>::makeClass("fl.register~");
     FrameLib_PDClass_Expand<FrameLib_Store>::makeClass("fl.store~");
     
     // Streaming
