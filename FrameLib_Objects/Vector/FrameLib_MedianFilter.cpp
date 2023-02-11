@@ -75,6 +75,8 @@ FrameLib_MedianFilter::ParameterInfo::ParameterInfo()
 
 double insert(double *data, unsigned long *indices, double value, long index, long width, unsigned long pos)
 {
+    unsigned long uIndex = static_cast<unsigned long>(index);
+
     long current = -1, insert = 0, gap = 0;
     
     // Insert actual data
@@ -83,7 +85,7 @@ double insert(double *data, unsigned long *indices, double value, long index, lo
     
     // Find sort position for the index
     
-    for (current = 0; (current < width) && (indices[current] != index); current++);
+    for (current = 0; (current < width) && (indices[current] != uIndex); current++);
     
     // Search right
     
@@ -94,7 +96,7 @@ double insert(double *data, unsigned long *indices, double value, long index, lo
     // Swaps
     
     std::copy(indices + current + 1, indices + insert + 1, indices + current);
-    indices[insert] = index;
+    indices[insert] = uIndex;
     
     // Search left
     
@@ -105,7 +107,7 @@ double insert(double *data, unsigned long *indices, double value, long index, lo
     // Swaps
 
     std::copy_backward(indices + insert, indices + current, indices + current + 1);
-    indices[insert] = index;
+    indices[insert] = uIndex;
     
     return data[indices[pos]];
 }

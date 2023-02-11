@@ -112,7 +112,7 @@ std::string FrameLib_Dispatch::objectInfo(bool verbose)
 
 std::string FrameLib_Dispatch::inputInfo(unsigned long idx, bool verbose)
 {
-    if (idx == mNumIns)
+    if (idx == static_cast<unsigned long>(mNumIns))
         return parameterInputInfo(verbose);
     else
         return formatInfo("Input #", idx);
