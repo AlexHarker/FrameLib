@@ -3,7 +3,7 @@
 #define FRAMELIB_PADDEDVECTOR_H
 
 // A class to temporarily wrap a vector and access with end padding (extending the last value)
-// A detault value will be used if the input vector is empty
+// A default value will be used if the input vector is empty
 // The class does not own the memory of the vector
 
 class PaddedVector
