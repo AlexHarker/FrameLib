@@ -12,7 +12,7 @@ class PaddedVector
 public:
     
     PaddedVector(const double *input, unsigned long size, double defaultValue)
-    : mVector(input ? input : &mDefault), mLimit(size ? size - 1 : 0), mDefault(defaultValue)
+    : mVector(size ? input : &mDefault), mLimit(size ? size - 1 : 0), mDefault(defaultValue)
     {}
     
     double operator[](unsigned long pos) const
