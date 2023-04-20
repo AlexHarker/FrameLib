@@ -125,6 +125,7 @@
     <seealso name="fl.nanfilter~" />
     <seealso name="fl.nonzero~" />
     <seealso name="fl.pad~" />
+    <seealso name="fl.paste~" />
     <seealso name="fl.pattern~" />
     <seealso name="fl.peaks~" />
     <seealso name="fl.percentile~" />
@@ -133,6 +134,7 @@
     <seealso name="fl.rms~" />
     <seealso name="fl.shift~" />
     <seealso name="fl.skewness~" />
+    <seealso name="fl.sortmultiple~" />
     <seealso name="fl.sort~" />
     <seealso name="fl.split~" />
     <seealso name="fl.spread~" />

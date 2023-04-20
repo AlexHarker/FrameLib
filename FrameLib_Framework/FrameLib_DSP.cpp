@@ -50,7 +50,7 @@ void FrameLib_DSP::setFixedInput(unsigned long idx, const double *input, unsigne
     if (mInputs[idx].mFixedInput)
         delete[] mInputs[idx].mFixedInput;
     
-    mInputs[idx].mFixedInput = new double[size];
+    mInputs[idx].mFixedInput = size ? new double[size] : nullptr;
     
     if (mInputs[idx].mFixedInput)
     {

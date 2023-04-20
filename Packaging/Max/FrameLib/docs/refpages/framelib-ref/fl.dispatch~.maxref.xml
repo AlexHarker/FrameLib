@@ -113,6 +113,7 @@
     </attribute>
   </attributelist>
   <seealsolist>
+    <seealso name="fl.change~" />
     <seealso name="fl.route~" />
     <seealso name="fl.select~" />
   </seealsolist>

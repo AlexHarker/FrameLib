@@ -418,6 +418,12 @@
             "description": "INSTANTIATION ONLY\n\nSets the value used for padding (for either pad_in or pad_out modes).\n\n(default: 0)"
         }
     },
+    "fl.nexttime~": {
+        "1": {
+            "name": null,
+            "description": "fl.nexttime~ has no parameters."
+        }
+    },
     "fl.minus~": {
         "1": {
             "name": "/mismatch [enum]",
@@ -1136,6 +1142,16 @@
             "description": "INSTANTIATION ONLY\n\nSets the coefficients input and output modes:\n\nParameter Options:\n[0] - static - settings are made via parameters with single value outputs.\n[1] - dynamic - settings are made via inputs or parameters with output as vectors.\n[2] - tagged - settings are made via parameters with output as a tagged frame.\n\n(default: static)"
         }
     },
+    "fl.paste~": {
+        "1": {
+            "name": "/mode [enum]",
+            "description": "Controls how the output length is determined:\n\nParameter Options:\n[0] - requested - the output length is set by the length parameter.\n[1] - input - the output length follows the length of the trigger input.\n\n(default: requested)"
+        },
+        "2": {
+            "name": "/length [int]",
+            "description": "Sets the requested output length in the units specified by the units parameter.\n\n(default: 1, min: 0)"
+        }
+    },
     "fl.source~": {
         "1": {
             "name": "/buffer_size [double]",
@@ -1198,6 +1214,28 @@
         "2": {
             "name": "/output [int]",
             "description": "Sets the current output counting from 1 (off if out of range).\n\n(default: 0)"
+        }
+    },
+    "fl.sortmultiple~": {
+        "1": {
+            "name": "/num_io [int]",
+            "description": "INSTANTIATION ONLY\n\nSets the number of inputs and outputs.\n\n(default: 2, clipped: 1-10)"
+        },
+        "2": {
+            "name": "/input [int]",
+            "description": "Sets the input to sort on.\n\n(default: 1, min: 1)"
+        },
+        "3": {
+            "name": "/order [enum]",
+            "description": "Sets the ordering of the sort.\n\nParameter Options:\n[0] - up\n[1] - down\n\n(default: up)"
+        },
+        "4": {
+            "name": "/mismatch [enum]",
+            "description": "Sets the mode used when dealing with mismatched input lengths:\n\nParameter Options:\n[0] - pad - inputs smaller than the sorting input are padded with the padding value.\n[1] - shrink - all inputs are treated as if the same length as the shortest input.\n[2] - extend - inputs smaller than the sorting input are extended by repeating their final value.\n\n(default: pad)"
+        },
+        "5": {
+            "name": "/pad [double]",
+            "description": "Sets the padding value.\n\n(default: 0)"
         }
     },
     "fl.fold~": {
@@ -1284,6 +1322,16 @@
         "4": {
             "name": "/idle [enum]",
             "description": "Sets the idle output (the output when stopped, paused or out of bounds):\n\nParameter Options:\n[0] - repeat - repeat the current value.\n[1] - empty - output an empty frame.\n\n(default: repeat)"
+        }
+    },
+    "fl.recursive~": {
+        "1": {
+            "name": "/units [enum]",
+            "description": "Sets the time units used for setting the interval.\n\nParameter Options:\n[0] - samples\n[1] - ms\n[2] - seconds\n[3] - hz\n\n(default: samples)"
+        },
+        "2": {
+            "name": "/auto_start [bool]",
+            "description": "Sets whether a frame is scheduled when DSP is started.\n\n(default: false)"
         }
     },
     "fl.diff~": {
@@ -1888,6 +1936,12 @@
         "2": {
             "name": "/order [enum]",
             "description": "INSTANTIATION ONLY\n\nSet whether to prioritise lower or higher numbered inputs.\n\nParameter Options:\n[0] - low\n[1] - high\n\n(default: low)"
+        }
+    },
+    "fl.change~": {
+        "1": {
+            "name": null,
+            "description": "fl.change~ has no parameters."
         }
     },
     "fl.cosh~": {

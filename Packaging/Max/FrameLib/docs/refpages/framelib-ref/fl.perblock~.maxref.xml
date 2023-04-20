@@ -133,7 +133,9 @@
     <seealso name="fl.audiotrigger~" />
     <seealso name="fl.chain~" />
     <seealso name="fl.interval~" />
+    <seealso name="fl.nexttime~" />
     <seealso name="fl.once~" />
+    <seealso name="fl.recursive~" />
   </seealsolist>
   <misc name="Discussion">
     <entry name="Keywords">

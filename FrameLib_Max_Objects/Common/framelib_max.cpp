@@ -76,6 +76,7 @@ extern "C" int C74_EXPORT main(void)
     
     // Routing
     
+    FrameLib_MaxClass_Expand<FrameLib_Change>::makeClass("fl.change~");
     FrameLib_MaxClass_Expand<FrameLib_Dispatch>::makeClass("fl.dispatch~");
     FrameLib_MaxClass_Expand<FrameLib_Route>::makeClass("fl.route~");
     FrameLib_MaxClass_Expand<FrameLib_Select>::makeClass("fl.select~");
@@ -87,6 +88,8 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_Interval>::makeClass("fl.interval~");
     FrameLib_MaxClass_Expand<FrameLib_Once>::makeClass("fl.once~");
     FrameLib_MaxClass_Expand<FrameLib_PerBlock>::makeClass("fl.perblock~");
+    FrameLib_MaxClass_Expand<FrameLib_Recursive>::makeClass("fl.recusivescheduler~");
+    FrameLib_MaxClass_Expand<FrameLib_Recursive::Time>::makeClass("fl.nexttime~");
     
     // Spatial
     
@@ -141,6 +144,7 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_MedianFilter>::makeClass("fl.medianfilter~");
     FrameLib_MaxClass_Expand<FrameLib_NonZero>::makeClass("fl.nonzero~");
     FrameLib_MaxClass_Expand<FrameLib_Pad>::makeClass("fl.pad~");
+    FrameLib_MaxClass_Expand<FrameLib_Paste>::makeClass("fl.paste~");
     FrameLib_MaxClass_Expand<FrameLib_Peaks>::makeClass("fl.pattern~");
     FrameLib_MaxClass_Expand<FrameLib_Peaks>::makeClass("fl.peaks~");
     FrameLib_MaxClass_Expand<FrameLib_Percentile>::makeClass("fl.percentile~");
@@ -148,6 +152,7 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_Reverse>::makeClass("fl.reverse~");
     FrameLib_MaxClass_Expand<FrameLib_Shift>::makeClass("fl.shift~");
     FrameLib_MaxClass_Expand<FrameLib_Sort>::makeClass("fl.sort~");
+    FrameLib_MaxClass_Expand<FrameLib_SortMultiple>::makeClass("fl.sortmultiple~");
     FrameLib_MaxClass_Expand<FrameLib_Split>::makeClass("fl.split~");
     FrameLib_MaxClass_Expand<FrameLib_Subframe>::makeClass("fl.subframe~");
 
@@ -230,7 +235,7 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_Diff, kAllInputs>::makeClass("fl.diff~");
     FrameLib_MaxClass_Expand<FrameLib_Modulo, kAllInputs>::makeClass("fl.modulo~");
 
-    // Ternary  Operators
+    // Ternary Operators
     
     FrameLib_MaxClass_Expand<FrameLib_Clip, kDistribute>::makeClass("fl.clip~");
     FrameLib_MaxClass_Expand<FrameLib_Fold, kDistribute>::makeClass("fl.fold~");

@@ -54,18 +54,20 @@ CXXFLAGS = $(OPTIMISATION)
 
 # Platform Options
 
+PLATFORM_FLAGS = 
+
 ifeq ($(PLATFORM_TYPE), apple)
 EXTENSION = d_fat
 ARCH_FLAGS = -arch arm64 -arch x86_64
 LINK_FLAGS = $(shell sed 's/\./-Wl,-U,/g' Common/pd_symbols.txt) -lstdc++ -lpthread -framework Accelerate 
-PLATFORM_FLAGS = -bundle -flat_namespace -fPIC
+PLATFORM_LINK_FLAGS = -bundle -flat_namespace -fPIC
 endif
 
 ifeq ($(PLATFORM_TYPE), linux)
 CXXFLAGS += -Wno-ignored-attributes -Wno-stringop-overflow
 EXTENSION = pd_linux
 LINK_FLAGS = $(shell sed 's/\./-Wl,-u,/g' Common/pd_symbols.txt) -lm -lstdc++ -lpthread -latomic
-PLATFORM_FLAGS = -no-pie -rdynamic -fPIC -shared
+PLATFORM_LINK_FLAGS = -no-pie -rdynamic -fPIC -shared
 ARCH_FLAGS = 
 ifeq ($(BUILD_TYPE), i386)
 ARCH_FLAGS = -m32 -march=i386
@@ -81,7 +83,8 @@ CXXFLAGS += -Wno-ignored-attributes -Wno-stringop-overflow
 EXTENSION = dll
 LINK_FLAGS = -lm -lstdc++ -latomic
 DLL = ../../pd-0.52-2/bin/pd.dll
-PLATFORM_FLAGS = -static -static-libgcc -static-libstdc++ -Wl,--enable-auto-import "$(DLL)" -shared
+PLATFORM_LINK_FLAGS = -static -static-libgcc -static-libstdc++ -Wl,--enable-auto-import "$(DLL)" -shared
+PLATFORM_FLAGS = -Wa,-mbig-obj
 ARCH_FLAGS = 
 ifeq ($(BUILD_TYPE), i386)
 DLL = ../../pd-0.52-2-i386/bin/pd.dll
@@ -94,7 +97,7 @@ OUTPUT_NAME = $(BUILD_DIR)/framelib_pd-$(NAME_SUFFIX).$(EXTENSION)
 # Targets and pattern rules
 
 framelib_pd: build_directory $(FL_OBJ) $(MAIN_OBJ);
-				cc $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -o $(OUTPUT_NAME) $(FL_OBJ_OUT) $(MAIN_OBJ_OUT) $(LINK_FLAGS)
+				cc $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_LINK_FLAGS) -o $(OUTPUT_NAME) $(FL_OBJ_OUT) $(MAIN_OBJ_OUT) $(LINK_FLAGS)
 
 build_directory:
 				mkdir -p $(BUILD_DIR)
@@ -103,10 +106,10 @@ intermediate_directory:
 				mkdir -p $(INTERMEDIATE_DIR)
 	
 %.o : %.cpp intermediate_directory
-				g++ $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) -std=c++11 -fPIC $(INCLUDE_PATHS) -c $< -o $(INTERMEDIATE_DIR)/$(@F)
+				g++ $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -std=c++11 -fPIC $(INCLUDE_PATHS) -c $< -o $(INTERMEDIATE_DIR)/$(@F)
 
 %.o : %.c intermediate_directory
-				cc $(CPPFLAGS) $(CFLAGS) $(ARCH_FLAGS) -fPIC $(INCLUDE_PATHS) -c $< -o $(INTERMEDIATE_DIR)/$(@F)
+				cc $(CPPFLAGS) $(CFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -fPIC $(INCLUDE_PATHS) -c $< -o $(INTERMEDIATE_DIR)/$(@F)
 		
 .PHONY: clean
 		

@@ -75,6 +75,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_ParamAlias.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_Tag.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_Untag.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Change.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Dispatch.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Route.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Select.h" />
@@ -83,6 +84,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Interval.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Once.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_PerBlock.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Recursive.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_Cartopol.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_Poltocar.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_Spatial.h" />
@@ -124,6 +126,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_NanFilter.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_NonZero.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Pad.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Paste.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Pattern.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Peaks.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Percentile.h" />
@@ -131,6 +134,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Reverse.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Shift.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Sort.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_SortMultiple.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Split.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Subframe.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Vector_Objects.h" />
@@ -169,6 +173,7 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_ParamAlias.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_Tag.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_Untag.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Change.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Dispatch.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Route.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Select.cpp" />
@@ -177,6 +182,7 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Interval.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Once.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_PerBlock.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Recursive.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_Spatial.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Convolve.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Correlate.cpp" />
@@ -209,6 +215,7 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_NanFilter.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_NonZero.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Pad.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Paste.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Pattern.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Peaks.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Percentile.cpp" />
@@ -216,6 +223,7 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Reverse.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Shift.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Sort.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_SortMultiple.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Split.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Subframe.cpp" />
   </ItemGroup>
@@ -340,6 +348,7 @@
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile />
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Framework\;$(SolutionDir)FrameLib_Objects\Common_Utilities\;$(SolutionDir)FrameLib_Objects\Host_Communication\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -379,6 +388,7 @@
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile />
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Framework\;$(SolutionDir)FrameLib_Objects\Common_Utilities\;$(SolutionDir)FrameLib_Objects\Host_Communication\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
