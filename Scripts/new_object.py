@@ -204,7 +204,7 @@ def update_vs_solution(object_class: str, class_name: str, category: str, guid: 
     
 def main():
 
-    category = "ZNominal_Category"
+    category = "Test_Category"
     object_class = "FrameLib_Object"
     class_name = "fl.testclass~"
 
