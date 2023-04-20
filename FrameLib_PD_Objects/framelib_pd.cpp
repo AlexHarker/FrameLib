@@ -611,15 +611,6 @@ struct FrameLib_PDClass_ComplexExpression : public FrameLib_PDClass_ComplexExpre
 
 PD_API void framelib_pd_setup(void)
 {
-    // Context Control
-    
-    FrameLib_PDClass_ContextControl::makeClass<FrameLib_PDClass_ContextControl>("fl.contextcontrol~");
-
-    // Host Communication
-    
-    FrameLib_PDClass_ToPD::makeClass<FrameLib_PDClass_ToPD>("fl.topd~");
-    FrameLib_PDClass_ToPD::makeClass<FrameLib_PDClass_FromPD>("fl.frompd~");
-
     // Filters
     
     FrameLib_PDClass_Expand<FrameLib_Biquad>::makeClass("fl.biquad~");
@@ -820,16 +811,11 @@ PD_API void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_Diff, kAllInputs>::makeClass("fl.diff~");
     FrameLib_PDClass_Expand<FrameLib_Modulo, kAllInputs>::makeClass("fl.%~");
 
-    // Ternary  Operators
+    // Ternary Operators
     
     FrameLib_PDClass_Expand<FrameLib_Clip, kDistribute>::makeClass("fl.clip~");
     FrameLib_PDClass_Expand<FrameLib_Fold, kDistribute>::makeClass("fl.fold~");
     FrameLib_PDClass_Expand<FrameLib_Wrap, kDistribute>::makeClass("fl.wrap~");
-    
-    // Expressions
-    
-    FrameLib_PDClass_Expression::makeClass("fl.expr~");
-    FrameLib_PDClass_ComplexExpression::makeClass("fl.complex.expr~");
     
     // Complex Unary Operators
     
@@ -859,4 +845,18 @@ PD_API void framelib_pd_setup(void)
         
     FrameLib_PDClass_Info::makeClass<FrameLib_PDClass_Info>("fl.info~");
     FrameLib_PDClass_Read::makeClass<FrameLib_PDClass_Read>("fl.read~");
+    
+    // Expressions
+    
+    FrameLib_PDClass_Expression::makeClass("fl.expr~");
+    FrameLib_PDClass_ComplexExpression::makeClass("fl.complex.expr~");
+
+    // Host Communication
+    
+    FrameLib_PDClass_ToPD::makeClass<FrameLib_PDClass_ToPD>("fl.topd~");
+    FrameLib_PDClass_ToPD::makeClass<FrameLib_PDClass_FromPD>("fl.frompd~");
+
+    // Context
+    
+    FrameLib_PDClass_ContextControl::makeClass<FrameLib_PDClass_ContextControl>("fl.contextcontrol~");
 }

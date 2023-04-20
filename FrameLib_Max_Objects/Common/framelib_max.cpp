@@ -235,7 +235,7 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_Diff, kAllInputs>::makeClass("fl.diff~");
     FrameLib_MaxClass_Expand<FrameLib_Modulo, kAllInputs>::makeClass("fl.modulo~");
 
-    // Ternary  Operators
+    // Ternary Operators
     
     FrameLib_MaxClass_Expand<FrameLib_Clip, kDistribute>::makeClass("fl.clip~");
     FrameLib_MaxClass_Expand<FrameLib_Fold, kDistribute>::makeClass("fl.fold~");
