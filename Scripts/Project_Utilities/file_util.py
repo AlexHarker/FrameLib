@@ -1,6 +1,5 @@
-import os
+
 import re
-from pathlib import Path
 
 def item_regex(path: str, exp: str):
 
