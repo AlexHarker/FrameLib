@@ -29,10 +29,11 @@ def create_guid():
     return str(guid).upper()
     
     
-def get_guid_regex(exp: str):
+def get_item_regex(path: str, exp: str):
+
     regex = re.compile(exp)
     
-    with open(get_framelib_dir() + "framelib.sln") as f:
+    with open(path) as f:
         data = f.read()
         match = regex.search(data)
         
@@ -40,6 +41,10 @@ def get_guid_regex(exp: str):
             return match.group(1)
 
     return ""
+    
+    
+def get_guid_regex(exp: str):
+    return get_item_regex(get_framelib_dir() + "framelib.sln", exp)
 
 
 def get_file_lines_regex(path: str, exp: str, start: str, end: str):
@@ -102,6 +107,23 @@ def file_insert(path: str, contents: str, start: str, end: str):
         f.write(data[:index] + contents + data[index:])
 
 
+def file_remove(path: str, contents: str, start: str, end: str):
+    
+    data = ""
+    
+    with open(path, "r") as f:
+        data = f.read()
+        index_start = data.find(start)
+        index_end = data.find(end, index_start + len(start))
+        index = data.find(contents, index_start, index_end)
+        
+    if index < 0:
+        return
+        
+    with open(path, "w") as f:
+        f.write(data[:index] + data[index + len(contents):])
+
+
 def single_build_cpp(base_class: str, object_class: str, class_name: str):
     return "    " + base_class + "<" + object_class + ">::makeClass(\"" + class_name + "\");\n"
     
@@ -148,7 +170,6 @@ def add_xcode_target(object_class: str, class_name: str, category: str):
 
 
 def make_vs_project(object_class: str, class_name: str, category: str, guid: str):
-
     file_create(get_template("fl.class_name~.vcxproj"), get_vs_project_path(class_name), object_class, class_name, category, guid)
     
 
@@ -156,69 +177,110 @@ def vs_solution_insert(contents: str, start: str, end: str):
     file_insert(get_framelib_dir() + "framelib.sln", contents, start, end)
 
 
-def vs_object_project_insert(contents: str, start: str, end: str):
-    file_insert(get_vs_project_dir() + "02_Common/framelib_objects.vcxproj", contents, start, end)
+def vs_solution_insert_remove(contents: str, start: str, end: str, insert: bool):
+    if insert:
+        file_insert(get_framelib_dir() + "framelib.sln", contents, start, end)
+    else:
+        file_remove(get_framelib_dir() + "framelib.sln", contents, start, end)
     
 
-def vs_solution_add_project(class_name: str, guid: str, fl_guid: str, fl_objects_guid: str):
-
-    contents = "Project(\"{" + get_main_guid() + "}\") = \"" + class_name + "\", \"" + get_vs_project_path(class_name) + "\", \"{" + guid + "}\"\n\tProjectSection(ProjectDependencies) = postProject\n\t\t{" + fl_guid + "} = {" + fl_guid + "}\n\t\t{" + fl_objects_guid + "} = {" + fl_objects_guid + "}\n\tEndProjectSection\nEndProject\n"
+def vs_solution_relation(guid: str, guid2: str):
+    return "\t\t{" + guid + "} = {" + guid2 + "}\n"
         
-    vs_solution_insert(contents, "MinimumVisualStudioVersion", "Global")
+ 
+def vs_object_project_insert_remove(contents: str, start: str, end: str, insert: bool):
+    if insert:
+        file_insert(get_vs_project_dir() + "02_Common/framelib_objects.vcxproj", contents, start, end)
+    else:
+        file_remove(get_vs_project_dir() + "02_Common/framelib_objects.vcxproj", contents, start, end)
 
 
-def vs_solution_add_configurations(guid: str):
+def vs_solution_add_rm_project(class_name: str, guid: str, fl_guid: str, fl_objects_guid: str, insert: bool):
+
+    contents = "Project(\"{" + get_main_guid() + "}\") = \"" + class_name + "\", \"" + "Projects\Visual_Studio\\03_Max_Objects\\" + class_name + ".vcxproj\", \"{" + guid + "}\"\n\tProjectSection(ProjectDependencies) = postProject\n\t\t{" + fl_guid + "} = {" + fl_guid + "}\n\t\t{" + fl_objects_guid + "} = {" + fl_objects_guid + "}\n\tEndProjectSection\nEndProject\n"
+        
+    vs_solution_insert_remove(contents, "MinimumVisualStudioVersion", "Global", insert)
+  
+
+def vs_solution_add_rm_configurations(guid: str, insert: bool):
 
     contents = "\t\t{GUID}.Debug|x64.ActiveCfg = Debug|x64\n\t\t{GUID}.Debug|x64.Build.0 = Debug|x64\n\t\t{GUID}.Debug|x86.ActiveCfg = Debug|x64\n\t\t{GUID}.Release|x64.ActiveCfg = Release|x64\n\t\t{GUID}.Release|x64.Build.0 = Release|x64\n\t\t{GUID}.Release|x86.ActiveCfg = Release|x64\n\t\t{GUID}.Static|x64.ActiveCfg = Release|x64\n\t\t{GUID}.Static|x64.Build.0 = Release|x64\n\t\t{GUID}.Static|x86.ActiveCfg = Release|x64\n\t\t{GUID}.Static|x86.Build.0 = Release|x64\n"
         
     contents = contents.replace("GUID", guid)
     
-    vs_solution_insert(contents, "GlobalSection(ProjectConfigurationPlatforms) = postSolution", "\tEndGlobalSection")
-   
-   
-def vs_solution_relation(guid: str, guid2: str):
-    return "\t\t{" + guid + "} = {" + guid2 + "}\n"
-        
-        
-def vs_solution_add_nesting(guid: str):
-
-    contents = vs_solution_relation(guid, guid)
-    vs_solution_insert(contents, "GlobalSection(NestedProjects) = preSolution", "\tEndGlobalSection")
+    vs_solution_insert_remove(contents, "GlobalSection(ProjectConfigurationPlatforms) = postSolution", "\tEndGlobalSection", insert)
 
 
-def vs_solution_add_dependency(guid: str, fl_max_objects_guid: str):
+def vs_solution_add_rm_nesting(guid: str, fl_max_objects_guid: str, insert: bool):
 
     contents = vs_solution_relation(guid, fl_max_objects_guid)
-    vs_solution_insert(contents, "\"framelib_objects_max\"", "\tEndProjectSection")
+    vs_solution_insert_remove(contents, "GlobalSection(NestedProjects) = preSolution", "\tEndGlobalSection", insert)
 
 
-def update_vs_object_project(object_class: str, class_name: str, category: str, guid: str):
+def vs_solution_add_rm_dependency(guid: str, insert: bool):
 
-    header = "    <ClInclude Include=\"..\..\..\FrameLib_Objects\\" + category + "\\" + object_class + ".h\" />\n"
-    cplusplus = "    <ClCompile Include=\"..\..\..\FrameLib_Objects\\" + category + "\\" + object_class + ".cpp\" />\n"
+    contents = vs_solution_relation(guid, guid)
+    vs_solution_insert_remove(contents, "\"framelib_objects_max\"", "\tEndProjectSection", insert)
+
+
+def vs_object_project_add_rm(object_class: str, class_name: str, category: str, guid: str, insert: bool):
+
+    base_path = get_framelib_dir() + "FrameLib_Objects\\" + category + "\\" + object_class;
+
+    if os.path.exists(base_path + ".h"):
+        header = "    <ClInclude Include=\"..\..\..\FrameLib_Objects\\" + category + "\\" + object_class + ".h\" />\n"
+        vs_object_project_insert_remove(header, "<ClInclude Include", "  </ItemGroup>", insert)
     
-    vs_object_project_insert(header, "<ClInclude Include", "  </ItemGroup>")
-    vs_object_project_insert(cplusplus, "<ClCompile Include", "  </ItemGroup>")
+    if os.path.exists(base_path + ".cpp"):
+        cplusplus = "    <ClCompile Include=\"..\..\..\FrameLib_Objects\\" + category + "\\" + object_class + ".cpp\" />\n"
+        vs_object_project_insert_remove(cplusplus, "<ClCompile Include", "  </ItemGroup>", insert)
+
     
-    
-def update_vs_solution(object_class: str, class_name: str, category: str, guid: str):
+def update_vs_solution(class_name: str, guid: str, add: bool):
 
     fl_guid = get_guid("framelib")
     fl_objects_guid = get_guid("framelib_objects")
     fl_max_objects_guid = get_guid("Max Object Projects")
     
-    vs_solution_add_project(class_name, guid, fl_guid, fl_objects_guid)
-    vs_solution_add_configurations(guid)
-    vs_solution_add_nesting(guid)
-    vs_solution_add_dependency(guid, fl_max_objects_guid)
+    vs_solution_add_rm_project(class_name, guid, fl_guid, fl_objects_guid, add)
+    vs_solution_add_rm_configurations(guid, add)
+    vs_solution_add_rm_nesting(guid, fl_max_objects_guid, add)
+    vs_solution_add_rm_dependency(guid, add)
     
+    
+def add_rm_vs_project(path: str, add: bool):
+
+    class_name = path.rsplit("/", 1)[1].replace(".vcxproj", "")
+    category = get_item_regex(path, "FrameLib_Max_Objects\\\\(.*)\\\\fl")
+    guid = get_item_regex(path, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
+
+    max_object_path = get_framelib_dir() + "FrameLib_Max_Objects/" + category + "/" + class_name + ".cpp"
+    object_class = get_item_regex(max_object_path, "FrameLib_MaxClass_Expand<(.*)>").split(",")[0]
+
+    if object_class == "":
+        object_class = get_item_regex(max_object_path, "FrameLib_MaxClass<(.*)>")
+
+    if object_class == "":
+        object_class = get_item_regex(max_object_path, "FrameLib_MaxClass_ExprParsed<(.*)>")
+    
+    if object_class != "":
+        vs_object_project_add_rm(object_class, class_name, category, guid, add)
+        
+    update_vs_solution(class_name, guid, add)
+
+
+def add_rm_all_vs_projects(add: bool):
+
+    projects = Path(get_vs_project_dir() + "03_Max_Objects/").glob('fl.*.vcxproj')
+    for project in projects:
+        add_rm_vs_project(project.as_posix(), add)
+        
     
 def main():
 
     category = "Test_Category"
     object_class = "FrameLib_Object"
     class_name = "fl.testclass~"
-
     guid = create_guid()
     
     base_path = get_framelib_dir()
@@ -240,9 +302,15 @@ def main():
     insert_object_list_include(object_class, category)
 
     make_vs_project(object_class, class_name, category, guid)
-    update_vs_object_project(object_class, class_name, category, guid)
-    update_vs_solution(object_class, class_name, category, guid)
+    
+    vs_object_project_add_rm(object_class, class_name, category, guid, True)
+    update_vs_solution(class_name, guid, True)
+    
     add_xcode_target(object_class, class_name, category)
+    
+    #add_rm_vs_project(get_vs_project_path(class_name), False)
+    #add_rm_all_vs_projects(False)
+    
     
 if __name__ == "__main__":
     main()
