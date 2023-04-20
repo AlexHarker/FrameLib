@@ -42,6 +42,28 @@ def get_guid_regex(exp: str):
     return ""
 
 
+def get_file_lines_regex(path: str, exp: str, start: str, end: str):
+    
+    regex = re.compile(exp)
+    list = []
+    started = False;
+    
+    with open(path) as f:
+        for line in f:
+            match = regex.search(line)
+            
+            if start in line:
+                started = True
+                
+            if started and end in line:
+                return list
+            
+            if started and match is not None:
+                list.append(match.group(1))
+
+    return list
+    
+    
 def get_main_guid():
     return get_guid_regex("Project\(\"\{(.*)\}\"\) = \"framelib\"")
 
@@ -50,18 +72,6 @@ def get_guid(item: str):
     return get_guid_regex("\"" + item + "\".*\{(.*)\}")
     
     
-def single_build_cpp(base_class: str, object_class: str, class_name: str):
-    return "    " + base_class + "<" + object_class + ">::makeClass(\"" + class_name + "\");"
-    
-    
-def add_xcode_target(object_class: str, class_name: str, category: str):
-    #add target
-    #setup coorectly for path
-    #change/set source files
-    #add target as a dependecy for the max objects build
-    return ""
-
-
 def file_create(template_path: str, output_path: str, object_class: str, class_name: str, category: str, guid: str):
 
     f = open(template_path, "r")
@@ -79,12 +89,7 @@ def file_create(template_path: str, output_path: str, object_class: str, class_n
     f.close()
 
 
-def make_vs_project(object_class: str, class_name: str, category: str, guid: str):
-
-    file_create(get_template("fl.class_name~.vcxproj"), get_vs_project_path(class_name), object_class, class_name, category, guid)
-
-
-def vs_file_insert(path: str, contents: str, start: str, end: str):
+def file_insert(path: str, contents: str, start: str, end: str):
     
     data = ""
     end = end + "\n"
@@ -98,12 +103,50 @@ def vs_file_insert(path: str, contents: str, start: str, end: str):
         f.write(data[:index] + contents + data[index:])
 
 
+def single_build_cpp(base_class: str, object_class: str, class_name: str):
+    return "    " + base_class + "<" + object_class + ">::makeClass(\"" + class_name + "\");\n"
+    
+    
+def insert_cpp_single_build(contents: str, category: str, path: str, start: str, end: str):
+
+    category_compare = category.replace("_", " ")
+    categories = get_file_lines_regex(path, "// (.*)", start, end)
+    
+    for c in categories:
+        if c == category_compare:
+            print("Exists " + c)
+#get_file_lines_regex(path, ".*(fl.*~)", start, end)
+            return
+            
+    contents = "    // " + category_compare + "\n\n" + contents + "\n"
+
+    for c in categories:
+        if c > category_compare:
+            file_insert(path, contents, start, "    // " + c)
+            return
+    
+    file_insert(path, contents, start, "    // Unary Operators")
+    
+    
+def add_xcode_target(object_class: str, class_name: str, category: str):
+    #add target
+    #setup coorectly for path
+    #change/set source files
+    #add target as a dependecy for the max objects build
+    return ""
+
+
+def make_vs_project(object_class: str, class_name: str, category: str, guid: str):
+
+    file_create(get_template("fl.class_name~.vcxproj"), get_vs_project_path(class_name), object_class, class_name, category, guid)
+    
+
 def vs_solution_insert(contents: str, start: str, end: str):
-    vs_file_insert(get_framelib_dir() + "framelib.sln", contents, start, end)
+    file_insert(get_framelib_dir() + "framelib.sln", contents, start, end)
 
 
 def vs_object_project_insert(contents: str, start: str, end: str):
-    vs_file_insert(get_vs_project_dir() + "02_Common/framelib_objects.vcxproj", contents, start, end)
+    file_insert(get_vs_project_dir() + "02_Common/framelib_objects.vcxproj", contents, start, end)
     
 
 def vs_solution_add_project(class_name: str, guid: str, fl_guid: str, fl_objects_guid: str):
@@ -161,7 +204,7 @@ def update_vs_solution(object_class: str, class_name: str, category: str, guid: 
     
 def main():
 
-    category = "TestCategory"
+    category = "ZNominal_Category"
     object_class = "FrameLib_Object"
     class_name = "fl.testclass~"
 
@@ -178,8 +221,11 @@ def main():
     file_create(get_template("FrameLib_Class.h"), object_dir + object_class + ".h", object_class, class_name, category, guid)
     file_create(get_template("FrameLib_Class.cpp"), object_dir + object_class + ".cpp", object_class, class_name, category, guid)
     
-    print(single_build_cpp("FrameLib_MaxClass_Expand", object_class, class_name))
-    print(single_build_cpp("FrameLib_PDClass_Expand", object_class, class_name))
+    max_cpp = single_build_cpp("FrameLib_MaxClass_Expand", object_class, class_name)
+    pd_cpp = single_build_cpp("FrameLib_PDClass_Expand", object_class, class_name)
+    
+    insert_cpp_single_build(max_cpp, category, base_path + "FrameLib_Max_Objects/Common/framelib_max.cpp", "main(", "}")
+    insert_cpp_single_build(pd_cpp, category, base_path + "FrameLib_PD_Objects/framelib_pd.cpp", "framelib_pd_setup(", "}")
     
     make_vs_project(object_class, class_name, category, guid)
     update_vs_object_project(object_class, class_name, category, guid)
