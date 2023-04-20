@@ -1,4 +1,4 @@
-FrameLib Ñ License
+FrameLib License
 ========
 
 Copyright (c) 2017-2022 Alex Harker

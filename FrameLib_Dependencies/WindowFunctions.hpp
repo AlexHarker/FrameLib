@@ -25,7 +25,7 @@ namespace window_functions
     
     struct params
     {
-        constexpr params(double A0 = 0.0, double A1 = 0.0, double A2 = 0.0, double A3 = 0.0, double A4 = 0.0, double exp = 1.0)
+        constexpr params(double A0 = 0, double A1 = 0, double A2 = 0, double A3 = 0, double A4 = 0, double exp = 1)
         : a0(A0), a1(A1), a2(A2), a3(A3), a4(A4), exponent(exp) {}
         
         constexpr params(const double *param_array, int N, double exp)
@@ -350,6 +350,8 @@ namespace window_functions
         template <window_func Func, bool symmetric, class T>
         void inline generate(T *window, uint32_t N, uint32_t begin, uint32_t end, const params& p)
         {
+            constexpr int max_int = std::numeric_limits<int>().max();
+            
             auto sq = [&](double x) { return x * x; };
             auto cb = [&](double x) { return x * x * x; };
             auto qb = [&](double x) { return sq(sq(x)); };
@@ -414,7 +416,7 @@ namespace window_functions
                 for (uint32_t i = begin; i < end; i++)
                     *window++ = toType(qb(Func(i, N, p)));
             }
-            else if (p.exponent > 0 && p.exponent <= std::numeric_limits<int>().max() && p.exponent == std::floor(p.exponent))
+            else if (p.exponent > 0 && p.exponent <= max_int && p.exponent == std::floor(p.exponent))
             {
                 int exponent = static_cast<int>(p.exponent);
                 

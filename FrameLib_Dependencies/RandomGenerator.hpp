@@ -12,7 +12,8 @@ namespace random_generators
     // Basic CMWC Generator
 
     // A complementary modulo with carry algorithm (proposed by George Marsaglia)
-    // Details can be found in Marsaglia, G. (2003). "Random number generators". Journal of Modern Applied Statistical Methods 2
+    // Details can be found in:
+    // Marsaglia, G. (2003). "Random number generators". Journal of Modern Applied Statistical Methods 2
     // See - http://digitalcommons.wayne.edu/cgi/viewcontent.cgi?article=1725&context=jmasm
 
     // The memory requirement is 34 unsigned 32 bit integers (can be altered using cmwc_lag_size)

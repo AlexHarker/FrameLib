@@ -17,7 +17,7 @@ public:
     {}
     
     // N.B. Valid frames are those written since the last resize or reset
-    // This allows for code to avoid needing to clear on resize, thus
+    // This allows for code to avoid needing to clear on resize, thus saving CPU
     
     // Getters
     
