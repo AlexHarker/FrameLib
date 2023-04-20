@@ -92,7 +92,6 @@ def file_create(template_path: str, output_path: str, object_class: str, class_n
 def file_insert(path: str, contents: str, start: str, end: str):
     
     data = ""
-    end = end + "\n"
     
     with open(path, "r") as f:
         data = f.read()
@@ -107,7 +106,7 @@ def single_build_cpp(base_class: str, object_class: str, class_name: str):
     return "    " + base_class + "<" + object_class + ">::makeClass(\"" + class_name + "\");\n"
     
     
-def insert_cpp_single_build(contents: str, category: str, path: str, start: str, end: str):
+def insert_code(contents: str, category: str, path: str, start: str, end: str, insert_end: str, layout: str = ""):
 
     category_compare = category.replace("_", " ")
     categories = get_file_lines_regex(path, "// (.*)", start, end)
@@ -118,15 +117,27 @@ def insert_cpp_single_build(contents: str, category: str, path: str, start: str,
 #get_file_lines_regex(path, ".*(fl.*~)", start, end)
             return
             
-    contents = "    // " + category_compare + "\n\n" + contents + "\n"
+    contents = layout + "// " + category_compare + "\n\n" + contents + "\n"
 
     for c in categories:
         if c > category_compare:
-            file_insert(path, contents, start, "    // " + c)
+            file_insert(path, contents, start, layout + "// " + c)
             return
     
-    file_insert(path, contents, start, "    // Unary Operators")
+    file_insert(path, contents, start, insert_end)
     
+
+def insert_cpp_single_build(contents: str, category: str, path: str, start: str, end: str):
+    insert_code(contents, category, path, start, end, "    // Unary Operators", "    ")
+    
+
+def insert_object_list_include(object_class: str, category: str):
+
+    path = get_framelib_dir() + "FrameLib_Exports/FrameLib_Objects.h"
+    contents = "#include \"../FrameLib_Objects/" + category + "/" + object_class + ".h\"\n"
+
+    insert_code(contents, category, path, "#ifndef", "#endif", "#endif")
+
     
 def add_xcode_target(object_class: str, class_name: str, category: str):
     #add target
@@ -226,7 +237,8 @@ def main():
     
     insert_cpp_single_build(max_cpp, category, base_path + "FrameLib_Max_Objects/Common/framelib_max.cpp", "main(", "}")
     insert_cpp_single_build(pd_cpp, category, base_path + "FrameLib_PD_Objects/framelib_pd.cpp", "framelib_pd_setup(", "}")
-    
+    insert_object_list_include(object_class, category)
+
     make_vs_project(object_class, class_name, category, guid)
     update_vs_object_project(object_class, class_name, category, guid)
     update_vs_solution(object_class, class_name, category, guid)
