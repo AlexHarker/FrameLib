@@ -140,8 +140,8 @@ def vs_solution_add_dependency(guid: str, fl_max_objects_guid: str):
 
 def update_vs_object_project(object_class: str, class_name: str, category: str, guid: str):
 
-    header = "    <ClInclude Include=\"..\..\..\FrameLib_Objects\\" + category + "\"" + object_class + ".h\" />\n"
-    cplusplus = "    <ClCompile Include=\"..\..\..\FrameLib_Objects\\" + category + "\"" + object_class + ".cpp\" />\n"
+    header = "    <ClInclude Include=\"..\..\..\FrameLib_Objects\\" + category + "\\" + object_class + ".h\" />\n"
+    cplusplus = "    <ClCompile Include=\"..\..\..\FrameLib_Objects\\" + category + "\\" + object_class + ".cpp\" />\n"
     
     vs_object_project_insert(header, "<ClInclude Include", "  </ItemGroup>")
     vs_object_project_insert(cplusplus, "<ClCompile Include", "  </ItemGroup>")
