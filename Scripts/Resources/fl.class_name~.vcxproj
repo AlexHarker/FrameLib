@@ -11,11 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\FrameLib_Max_Objects\##CATEGORY##\fl.##CLASSNAME##~.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Max_Objects\_##CATEGORY##_\_##CLASSNAME##_.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{##GUID##}</ProjectGuid>
+    <ProjectGuid>{_##GUID##_}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>framelib</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
@@ -61,7 +61,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeaderFile />
-      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Objects\##CATEGORY##\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Objects\_##CATEGORY##_\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalOptions>
@@ -72,7 +72,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeaderFile />
-      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Objects\##CATEGORY##\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Objects\_##CATEGORY##_\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link />
   </ItemDefinitionGroup>

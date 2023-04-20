@@ -13,7 +13,7 @@ def get_vs_project_dir():
     
     
 def get_vs_project_path(class_name: str):
-    return get_vs_project_dir() + "03_Max_Objects/" + "fl." + class_name + "~.vcxproj"
+    return get_vs_project_dir() + "03_Max_Objects/" + class_name + ".vcxproj"
 
 
 def get_template_dir():
@@ -50,6 +50,10 @@ def get_guid(item: str):
     return get_guid_regex("\"" + item + "\".*\{(.*)\}")
     
     
+def single_build_cpp(base_class: str, object_class: str, class_name: str):
+    return "    " + base_class + "<" + object_class + ">::makeClass(\"" + class_name + "\");"
+    
+    
 def add_xcode_target(object_class: str, class_name: str, category: str):
     #add target
     #setup coorectly for path
@@ -64,11 +68,11 @@ def file_create(template_path: str, output_path: str, object_class: str, class_n
     template = f.read()
     f.close()
 
-    template = template.replace("##CLASS##", object_class)
-    template = template.replace("##CLASS_UPPER##", object_class.upper())
-    template = template.replace("##CLASSNAME##", class_name)
-    template = template.replace("##CATEGORY##", category)
-    template = template.replace("##GUID##", guid)
+    template = template.replace("_##CLASS##_", object_class)
+    template = template.replace("_##CLASS_UPPER##_", object_class.upper())
+    template = template.replace("_##CLASSNAME##_", class_name)
+    template = template.replace("_##CATEGORY##_", category)
+    template = template.replace("_##GUID##_", guid)
     
     f = open(output_path, "x")
     f.write(template)
@@ -111,9 +115,9 @@ def vs_solution_add_project(class_name: str, guid: str, fl_guid: str, fl_objects
 
 def vs_solution_add_configurations(guid: str):
 
-    contents = "\t\t{##GUID##}.Debug|x64.ActiveCfg = Debug|x64\n\t\t{##GUID##}.Debug|x64.Build.0 = Debug|x64\n\t\t{##GUID##}.Debug|x86.ActiveCfg = Debug|x64\n\t\t{##GUID##}.Release|x64.ActiveCfg = Release|x64\n\t\t{##GUID##}.Release|x64.Build.0 = Release|x64\n\t\t{##GUID##}.Release|x86.ActiveCfg = Release|x64\n\t\t{##GUID##}.Static|x64.ActiveCfg = Release|x64\n\t\t{##GUID##}.Static|x64.Build.0 = Release|x64\n\t\t{##GUID##}.Static|x86.ActiveCfg = Release|x64\n\t\t{##GUID##}.Static|x86.Build.0 = Release|x64\n"
+    contents = "\t\t{GUID}.Debug|x64.ActiveCfg = Debug|x64\n\t\t{GUID}.Debug|x64.Build.0 = Debug|x64\n\t\t{GUID}.Debug|x86.ActiveCfg = Debug|x64\n\t\t{GUID}.Release|x64.ActiveCfg = Release|x64\n\t\t{GUID}.Release|x64.Build.0 = Release|x64\n\t\t{GUID}.Release|x86.ActiveCfg = Release|x64\n\t\t{GUID}.Static|x64.ActiveCfg = Release|x64\n\t\t{GUID}.Static|x64.Build.0 = Release|x64\n\t\t{GUID}.Static|x86.ActiveCfg = Release|x64\n\t\t{GUID}.Static|x86.Build.0 = Release|x64\n"
         
-    contents = contents.replace("##GUID##", guid)
+    contents = contents.replace("GUID", guid)
     
     vs_solution_insert(contents, "GlobalSection(ProjectConfigurationPlatforms) = postSolution", "\tEndGlobalSection")
    
@@ -136,8 +140,8 @@ def vs_solution_add_dependency(guid: str, fl_max_objects_guid: str):
 
 def update_vs_object_project(object_class: str, class_name: str, category: str, guid: str):
 
-    header = "    <ClInclude Include=\"..\..\..\FrameLib_Objects\\" + category + "\FrameLib_" + object_class + ".h\" />\n"
-    cplusplus = "    <ClCompile Include=\"..\..\..\FrameLib_Objects\\" + category + "\FrameLib_" + object_class + ".cpp\" />\n"
+    header = "    <ClInclude Include=\"..\..\..\FrameLib_Objects\\" + category + "\" + object_class + ".h\" />\n"
+    cplusplus = "    <ClCompile Include=\"..\..\..\FrameLib_Objects\\" + category + "\" + object_class + ".cpp\" />\n"
     
     vs_object_project_insert(header, "<ClInclude Include", "  </ItemGroup>")
     vs_object_project_insert(cplusplus, "<ClCompile Include", "  </ItemGroup>")
@@ -158,9 +162,9 @@ def update_vs_solution(object_class: str, class_name: str, category: str, guid: 
 def main():
 
     category = "TestCategory"
-    object_class = "Object"
-    class_name = "testclass"
-    
+    object_class = "FrameLib_Object"
+    class_name = "fl.testclass~"
+
     guid = create_guid()
     
     base_path = get_framelib_dir()
@@ -170,9 +174,12 @@ def main():
     os.makedirs(object_dir, exist_ok = True)
     os.makedirs(max_object_dir, exist_ok = True)
     
-    file_create(get_template("fl.class_name~.cpp"), max_object_dir + "fl." + class_name + "~.cpp", object_class, class_name, category, guid)
-    file_create(get_template("FrameLib_Class.h"), object_dir + "FrameLib_" + object_class + ".h", object_class, class_name, category, guid)
-    file_create(get_template("FrameLib_Class.cpp"), object_dir + "FrameLib_" + object_class + ".cpp", object_class, class_name, category, guid)
+    file_create(get_template("fl.class_name~.cpp"), max_object_dir + class_name + ".cpp", object_class, class_name, category, guid)
+    file_create(get_template("FrameLib_Class.h"), object_dir + object_class + ".h", object_class, class_name, category, guid)
+    file_create(get_template("FrameLib_Class.cpp"), object_dir + object_class + ".cpp", object_class, class_name, category, guid)
+    
+    print(single_build_cpp("FrameLib_MaxClass_Expand", object_class, class_name))
+    print(single_build_cpp("FrameLib_PDClass_Expand", object_class, class_name))
     
     make_vs_project(object_class, class_name, category, guid)
     update_vs_object_project(object_class, class_name, category, guid)
