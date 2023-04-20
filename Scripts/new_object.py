@@ -2,6 +2,7 @@ import os
 import uuid
 import re
 from pathlib import Path
+from Project_Utilities import file_util
 
 
 def get_framelib_dir():
@@ -29,46 +30,10 @@ def create_guid():
     return str(guid).upper()
     
     
-def get_item_regex(path: str, exp: str):
-
-    regex = re.compile(exp)
-    
-    with open(path) as f:
-        data = f.read()
-        match = regex.search(data)
-        
-        if match is not None:
-            return match.group(1)
-
-    return ""
-    
-    
 def get_guid_regex(exp: str):
-    return get_item_regex(get_framelib_dir() + "framelib.sln", exp)
+    return file_util.item_regex(get_framelib_dir() + "framelib.sln", exp)
 
 
-def get_file_lines_regex(path: str, exp: str, start: str, end: str):
-    
-    regex = re.compile(exp)
-    list = []
-    started = False;
-    
-    with open(path) as f:
-        for line in f:
-            match = regex.search(line)
-            
-            if start in line:
-                started = True
-                
-            if started and end in line:
-                return list
-            
-            if started and match is not None:
-                list.append(match.group(1))
-
-    return list
-    
-    
 def get_main_guid():
     return get_guid_regex("Project\(\"\{(.*)\}\"\) = \"framelib\"")
 
@@ -77,53 +42,6 @@ def get_guid(item: str):
     return get_guid_regex("\"" + item + "\".*\{(.*)\}")
     
     
-def file_create(template_path: str, output_path: str, object_class: str, class_name: str, category: str, guid: str):
-
-    f = open(template_path, "r")
-    template = f.read()
-    f.close()
-
-    template = template.replace("_##CLASS##_", object_class)
-    template = template.replace("_##CLASS_UPPER##_", object_class.upper())
-    template = template.replace("_##CLASSNAME##_", class_name)
-    template = template.replace("_##CATEGORY##_", category)
-    template = template.replace("_##GUID##_", guid)
-    
-    f = open(output_path, "x")
-    f.write(template)
-    f.close()
-
-
-def file_insert(path: str, contents: str, start: str, end: str):
-    
-    data = ""
-    
-    with open(path, "r") as f:
-        data = f.read()
-        index = data.find(start) + len(start)
-        index = data.find(end, index)
-        
-    with open(path, "w") as f:
-        f.write(data[:index] + contents + data[index:])
-
-
-def file_remove(path: str, contents: str, start: str, end: str):
-    
-    data = ""
-    
-    with open(path, "r") as f:
-        data = f.read()
-        index_start = data.find(start)
-        index_end = data.find(end, index_start + len(start))
-        index = data.find(contents, index_start, index_end)
-        
-    if index < 0:
-        return
-        
-    with open(path, "w") as f:
-        f.write(data[:index] + data[index + len(contents):])
-
-
 def single_build_cpp(base_class: str, object_class: str, class_name: str):
     return "    " + base_class + "<" + object_class + ">::makeClass(\"" + class_name + "\");\n"
     
@@ -131,22 +49,22 @@ def single_build_cpp(base_class: str, object_class: str, class_name: str):
 def insert_code(contents: str, category: str, path: str, start: str, end: str, insert_end: str, layout: str = ""):
 
     category_compare = category.replace("_", " ")
-    categories = get_file_lines_regex(path, "// (.*)", start, end)
+    categories = file_util.lines_regex(path, "// (.*)", start, end)
     
     for c in categories:
         if c == category_compare:
             print("Exists " + c)
-#get_file_lines_regex(path, ".*(fl.*~)", start, end)
+            #file_util.lines_regex(path, ".*(fl.*~)", start, end)
             return
             
     contents = layout + "// " + category_compare + "\n\n" + contents + "\n"
 
     for c in categories:
         if c > category_compare:
-            file_insert(path, contents, start, layout + "// " + c)
+            file_util.insert(path, contents, start, layout + "// " + c)
             return
     
-    file_insert(path, contents, start, insert_end)
+    file_util.insert(path, contents, start, insert_end)
     
 
 def insert_cpp_single_build(contents: str, category: str, path: str, start: str, end: str):
@@ -170,18 +88,14 @@ def add_xcode_target(object_class: str, class_name: str, category: str):
 
 
 def make_vs_project(object_class: str, class_name: str, category: str, guid: str):
-    file_create(get_template("fl.class_name~.vcxproj"), get_vs_project_path(class_name), object_class, class_name, category, guid)
+    file_util.create(get_template("fl.class_name~.vcxproj"), get_vs_project_path(class_name), object_class, class_name, category, guid)
     
-
-def vs_solution_insert(contents: str, start: str, end: str):
-    file_insert(get_framelib_dir() + "framelib.sln", contents, start, end)
-
 
 def vs_solution_insert_remove(contents: str, start: str, end: str, insert: bool):
     if insert:
-        file_insert(get_framelib_dir() + "framelib.sln", contents, start, end)
+        file_util.insert(get_framelib_dir() + "framelib.sln", contents, start, end)
     else:
-        file_remove(get_framelib_dir() + "framelib.sln", contents, start, end)
+        file_util.remove(get_framelib_dir() + "framelib.sln", contents, start, end)
     
 
 def vs_solution_relation(guid: str, guid2: str):
@@ -190,9 +104,9 @@ def vs_solution_relation(guid: str, guid2: str):
  
 def vs_object_project_insert_remove(contents: str, start: str, end: str, insert: bool):
     if insert:
-        file_insert(get_vs_project_dir() + "02_Common/framelib_objects.vcxproj", contents, start, end)
+        file_util.insert(get_vs_project_dir() + "02_Common/framelib_objects.vcxproj", contents, start, end)
     else:
-        file_remove(get_vs_project_dir() + "02_Common/framelib_objects.vcxproj", contents, start, end)
+        file_util.remove(get_vs_project_dir() + "02_Common/framelib_objects.vcxproj", contents, start, end)
 
 
 def vs_solution_add_rm_project(class_name: str, guid: str, fl_guid: str, fl_objects_guid: str, insert: bool):
@@ -251,17 +165,17 @@ def update_vs_solution(class_name: str, guid: str, add: bool):
 def add_rm_vs_project(path: str, add: bool):
 
     class_name = path.rsplit("/", 1)[1].replace(".vcxproj", "")
-    category = get_item_regex(path, "FrameLib_Max_Objects\\\\(.*)\\\\fl")
-    guid = get_item_regex(path, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
+    category = file_util.item_regex(path, "FrameLib_Max_Objects\\\\(.*)\\\\fl")
+    guid = file_util.item_regex(path, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
 
     max_object_path = get_framelib_dir() + "FrameLib_Max_Objects/" + category + "/" + class_name + ".cpp"
-    object_class = get_item_regex(max_object_path, "FrameLib_MaxClass_Expand<(.*)>").split(",")[0]
+    object_class = file_util.item_regex(max_object_path, "FrameLib_MaxClass_Expand<(.*)>").split(",")[0]
 
     if object_class == "":
-        object_class = get_item_regex(max_object_path, "FrameLib_MaxClass<(.*)>")
+        object_class = file_util.item_regex(max_object_path, "FrameLib_MaxClass<(.*)>")
 
     if object_class == "":
-        object_class = get_item_regex(max_object_path, "FrameLib_MaxClass_ExprParsed<(.*)>")
+        object_class = file_util.item_regex(max_object_path, "FrameLib_MaxClass_ExprParsed<(.*)>")
     
     if object_class != "":
         vs_object_project_add_rm(object_class, class_name, category, guid, add)
@@ -290,9 +204,9 @@ def main():
     os.makedirs(object_dir, exist_ok = True)
     os.makedirs(max_object_dir, exist_ok = True)
     
-    file_create(get_template("fl.class_name~.cpp"), max_object_dir + class_name + ".cpp", object_class, class_name, category, guid)
-    file_create(get_template("FrameLib_Class.h"), object_dir + object_class + ".h", object_class, class_name, category, guid)
-    file_create(get_template("FrameLib_Class.cpp"), object_dir + object_class + ".cpp", object_class, class_name, category, guid)
+    file_util.create(get_template("fl.class_name~.cpp"), max_object_dir + class_name + ".cpp", object_class, class_name, category, guid)
+    file_util.create(get_template("FrameLib_Class.h"), object_dir + object_class + ".h", object_class, class_name, category, guid)
+    file_util.create(get_template("FrameLib_Class.cpp"), object_dir + object_class + ".cpp", object_class, class_name, category, guid)
     
     max_cpp = single_build_cpp("FrameLib_MaxClass_Expand", object_class, class_name)
     pd_cpp = single_build_cpp("FrameLib_PDClass_Expand", object_class, class_name)
