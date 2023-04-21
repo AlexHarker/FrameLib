@@ -15,24 +15,30 @@ def item_regex(path: str, exp: str):
     return ""
     
 
-def lines_regex(path: str, exp: str, start: str, end: str):
+def lines_regex(path: str, exp: str, start: str, end: str, inner_start: str, inner_end: str):
     
     regex = re.compile(exp)
     list = []
-    started = False;
+    started1 = False
+    started2 = False
+    started = False
     
     with open(path) as f:
         for line in f:
             match = regex.search(line)
             
             if start in line:
-                started = True
-                
-            if started and end in line:
+                started1 = True
+            if inner_start in line:
+                started2 = True
+              
+            if started and (end in line or inner_end in line):
                 return list
+                
+            started = started1 and started2
             
             if started and match is not None:
-                list.append(match.group(1))
+                list.append([match.group(1), match.group(0)])
 
     return list
     
@@ -54,7 +60,18 @@ def create(template_path: str, output_path: str, object_class: str, class_name: 
     f.close()
 
 
-def insert(path: str, contents: str, start: str, end: str):
+def find_next_blankline(data: str, index: int):
+    while True:
+        next = data.find("\n", index)
+        if next >= 0:
+            next = data.find("\n", next + 1)
+        if data[index:next].isspace():
+            return index + 1
+        if next < 0:
+            return index
+        index = next
+            
+def insert(path: str, contents: str, start: str, end: str, next_blank: bool = False):
     
     data = ""
     
@@ -63,6 +80,11 @@ def insert(path: str, contents: str, start: str, end: str):
         index = data.find(start) + len(start)
         index = data.find(end, index)
         
+        # Look for next whitespace line (skipping the first which will be immediate)
+        
+        if next_blank:
+            index = find_next_blankline(data, index)
+            
     with open(path, "w") as f:
         f.write(data[:index] + contents + data[index:])
 
