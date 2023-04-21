@@ -25,7 +25,15 @@ class fl_solution:
 
     def create_guid(self):
         guid = uuid.uuid4()
-        return str(guid).upper()
+        guid = str(guid).upper()
+        
+        # Ensure that the GUID is not in use already
+        
+        if file_util.item_regex(fl_paths("").vs_solution(), "(" + guid + ")") != "":
+            return self.create_guid()
+        
+        return guid
+        
 
     def insert_remove(self, path:str, contents: str, start: str, end: str, insert: bool):
         if insert:
