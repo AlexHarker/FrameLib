@@ -1,5 +1,7 @@
 
 import re
+from pathlib import Path
+
 
 def item_regex(path: str, exp: str):
 
@@ -55,7 +57,15 @@ def create(template_path: str, output_path: str, object_class: str, class_name: 
     template = template.replace("_##CATEGORY##_", category)
     template = template.replace("_##GUID##_", guid)
     
-    f = open(output_path, "x")
+    # Use window line endings for vcxproj files
+    
+    posix_path = Path(output_path)
+    nl = None;
+    
+    if posix_path.suffix == ".vcxproj":
+        nl = '\r\n'
+        
+    f = open(output_path, "x", newline=nl)
     f.write(template)
     f.close()
 
