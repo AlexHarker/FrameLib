@@ -127,5 +127,9 @@ class fl_solution:
     def update_all_projects(self, add: bool):
 
         projects = Path(fl_paths("").vs_max_projects()).glob('fl.*.vcxproj')
-        for project in projects:
+        project_list = list(projects)
+        project_list.sort()
+        
+        for project in project_list:
+            print(project)
             self.update_project(project.as_posix(), add)
