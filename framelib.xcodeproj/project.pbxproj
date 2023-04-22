@@ -194,7 +194,6 @@
 		5AB54BE72052EB4400325C14 /* fl.clip~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AB54BE62052EB4400325C14 /* fl.clip~.cpp */; };
 		5AB54BE92052EB6100325C14 /* fl.fold~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AB54BE82052EB6100325C14 /* fl.fold~.cpp */; };
 		B802047C231BDCB80062447A /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
-		B802047E231BDCB80062447A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F558E207AB15C007774AD /* Accelerate.framework */; };
 		B8020488231BDD0F0062447A /* framelib_max.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8020487231BDD0A0062447A /* framelib_max.cpp */; };
 		B802048B231BDD650062447A /* libframelib_objects.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8BA6FD22078D49200D3DB3D /* libframelib_objects.a */; };
 		B805E34019C3AF73007D8D8B /* fl.plus~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B805E33D19C3AF69007D8D8B /* fl.plus~.cpp */; };
@@ -269,7 +268,6 @@
 		B83E02A0206674D4005925DD /* m_pd.h in Headers */ = {isa = PBXBuildFile; fileRef = B83E0296206674CD005925DD /* m_pd.h */; };
 		B83E02A1206674D4005925DD /* FrameLib_PDClass.h in Headers */ = {isa = PBXBuildFile; fileRef = B83E0295206674CD005925DD /* FrameLib_PDClass.h */; };
 		B83F0456223A762800AF1F8E /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
-		B83F045E223A769800AF1F8E /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F558E207AB15C007774AD /* Accelerate.framework */; };
 		B83F0464223A76CF00AF1F8E /* FrameLib_Info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B83F0462223A76CF00AF1F8E /* FrameLib_Info.cpp */; };
 		B83F0466223A772300AF1F8E /* fl.info~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B83F0465223A772300AF1F8E /* fl.info~.cpp */; };
 		B83F0467223A778E00AF1F8E /* FrameLib_Info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B83F0462223A76CF00AF1F8E /* FrameLib_Info.cpp */; };
@@ -301,7 +299,6 @@
 		B84BE88A1C1F641500A55F8C /* fl.medianfilter~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84BE8891C1F641500A55F8C /* fl.medianfilter~.cpp */; };
 		B85211C9259F4E69002ABDAF /* Build_Max_Docs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85211C8259F4E68002ABDAF /* Build_Max_Docs.cpp */; };
 		B85211CB259F4EC5002ABDAF /* libframelib_objects.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8BA6FD22078D49200D3DB3D /* libframelib_objects.a */; };
-		B85211CC259F4FAC002ABDAF /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F558E207AB15C007774AD /* Accelerate.framework */; };
 		B85211CD259F4FF5002ABDAF /* FrameLib_KernelSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85536D622FEB74E00D10495 /* FrameLib_KernelSmooth.cpp */; };
 		B85211CE259F5043002ABDAF /* FrameLib_FIRPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A2100322FCD88E00DF86D8 /* FrameLib_FIRPhase.cpp */; };
 		B85426AA2173717A007FA185 /* libframelib_objects.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8BA6FD22078D49200D3DB3D /* libframelib_objects.a */; };
@@ -310,7 +307,6 @@
 		B854357A1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
 		B854357B1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
 		B854357C1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
-		B85536E722FEB88100D10495 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F558E207AB15C007774AD /* Accelerate.framework */; };
 		B85536E822FEB88100D10495 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B85536F022FEB8F600D10495 /* FrameLib_KernelSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85536D622FEB74E00D10495 /* FrameLib_KernelSmooth.cpp */; };
 		B85536F222FEC0E800D10495 /* fl.kernelsmooth~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85536F122FEB91F00D10495 /* fl.kernelsmooth~.cpp */; };
@@ -385,11 +381,9 @@
 		B88A482B2067DCC400CEB3AC /* FrameLib_SerialiseGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88A48292067DCC400CEB3AC /* FrameLib_SerialiseGraph.cpp */; };
 		B88B4842272967E000D33BBE /* FrameLib_MakeString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88B4840272967E000D33BBE /* FrameLib_MakeString.cpp */; };
 		B88B484D2729683200D33BBE /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
-		B88B484E2729683200D33BBE /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		B88B48562729689D00D33BBE /* fl.makestring~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88B48552729689C00D33BBE /* fl.makestring~.cpp */; };
 		B88C0A3921733CA6007A65C0 /* FrameLib_SC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88C0A1E21732710007A65C0 /* FrameLib_SC.cpp */; };
 		B88EBA1028942FD40030DEC0 /* FrameLib_Change.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8ED8BA82892F83A00AE30A2 /* FrameLib_Change.cpp */; };
-		B88EBA112894681A0030DEC0 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F558E207AB15C007774AD /* Accelerate.framework */; };
 		B88F5559207A58DA007774AD /* FrameLib_Reverse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88F5558207A5873007774AD /* FrameLib_Reverse.cpp */; };
 		B88F555A207A58F2007774AD /* framelib_pd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B83E029220667499005925DD /* framelib_pd.cpp */; };
 		B88F5564207A5903007774AD /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
@@ -424,7 +418,6 @@
 		B8A20FFF22FCD82700DF86D8 /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
 		B8A2100222FCD84500DF86D8 /* fl.firphase~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A2100022FCD84500DF86D8 /* fl.firphase~.cpp */; };
 		B8A2100622FCD88F00DF86D8 /* FrameLib_FIRPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A2100322FCD88E00DF86D8 /* FrameLib_FIRPhase.cpp */; };
-		B8A2100822FCDC8800DF86D8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F558E207AB15C007774AD /* Accelerate.framework */; };
 		B8A46E041F6EB3770032F831 /* MemoryTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A46E031F6EB3770032F831 /* MemoryTests.cpp */; };
 		B8A46E051F6EB39E0032F831 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
 		B8A46E061F6EB3A10032F831 /* FrameLib_Memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D272F11DA6629A00E0E566 /* FrameLib_Memory.cpp */; };
@@ -711,18 +704,15 @@
 		B8D679E71B847A3300519310 /* fl.map~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D679E11B847A1E00519310 /* fl.map~.cpp */; };
 		B8D67A071B8499D900519310 /* fl.samplerate~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D67A051B84999800519310 /* fl.samplerate~.cpp */; };
 		B8D67A191B84A04D00519310 /* fl.frommax~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D67A081B849F4000519310 /* fl.frommax~.cpp */; };
-		B8D8423C24716D8600B83576 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F558E207AB15C007774AD /* Accelerate.framework */; };
 		B8D8423D24716D8600B83576 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8D8424724716DDA00B83576 /* FrameLib_Biquad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D8424524716DDA00B83576 /* FrameLib_Biquad.cpp */; };
 		B8D8424924716E7C00B83576 /* FrameLib_Biquad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D8424524716DDA00B83576 /* FrameLib_Biquad.cpp */; };
 		B8D8424B24716E9D00B83576 /* fl.biquad~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D8424A24716E9C00B83576 /* fl.biquad~.cpp */; };
-		B8D842552471E53B00B83576 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F558E207AB15C007774AD /* Accelerate.framework */; };
 		B8D842562471E53B00B83576 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8D8425F2471E5BB00B83576 /* fl.biquadcoeff~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D8425E2471E5BB00B83576 /* fl.biquadcoeff~.cpp */; };
 		B8D842622471E65500B83576 /* FrameLib_BiquadCoeff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D842602471E65500B83576 /* FrameLib_BiquadCoeff.cpp */; };
 		B8D842632471E65500B83576 /* FrameLib_BiquadCoeff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D842602471E65500B83576 /* FrameLib_BiquadCoeff.cpp */; };
 		B8D8DB8F1B89D76A000203E5 /* fl.select~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D8DB7E1B89D72A000203E5 /* fl.select~.cpp */; };
-		B8DA053723C5F05E00D0894F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F558E207AB15C007774AD /* Accelerate.framework */; };
 		B8DA053823C5F05E00D0894F /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8DA054223C5F0E400D0894F /* FrameLib_Prioritise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DA054023C5F0E400D0894F /* FrameLib_Prioritise.cpp */; };
 		B8DA054423C5F0FD00D0894F /* FrameLib_Prioritise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DA054023C5F0E400D0894F /* FrameLib_Prioritise.cpp */; };
@@ -3852,7 +3842,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B802048B231BDD650062447A /* libframelib_objects.a in Frameworks */,
-				B802047E231BDCB80062447A /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4252,7 +4241,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B88EBA112894681A0030DEC0 /* Accelerate.framework in Frameworks */,
 				B8E6E9DF207904F7004AB73F /* libframelib_objects.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4357,7 +4345,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B85211CC259F4FAC002ABDAF /* Accelerate.framework in Frameworks */,
 				B85211CB259F4EC5002ABDAF /* libframelib_objects.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4366,7 +4353,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B85536E722FEB88100D10495 /* Accelerate.framework in Frameworks */,
 				B85536E822FEB88100D10495 /* libframelib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4576,7 +4562,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B88B484D2729683200D33BBE /* libframelib.a in Frameworks */,
-				B88B484E2729683200D33BBE /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4646,7 +4631,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8A2100822FCDC8800DF86D8 /* Accelerate.framework in Frameworks */,
 				B8A20FF622FCD7E300DF86D8 /* libframelib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4911,7 +4895,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B822CE3B27590D5100A02141 /* libframelib.a in Frameworks */,
-				B83F045E223A769800AF1F8E /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5119,7 +5102,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8D8423C24716D8600B83576 /* Accelerate.framework in Frameworks */,
 				B8D8423D24716D8600B83576 /* libframelib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5128,7 +5110,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8D842552471E53B00B83576 /* Accelerate.framework in Frameworks */,
 				B8D842562471E53B00B83576 /* libframelib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5145,7 +5126,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8DA053723C5F05E00D0894F /* Accelerate.framework in Frameworks */,
 				B8DA053823C5F05E00D0894F /* libframelib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
