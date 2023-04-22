@@ -418,7 +418,6 @@
 		B89C46B820777F1000579BE7 /* FrameLib_Read.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B89C46B620777F0F00579BE7 /* FrameLib_Read.cpp */; };
 		B89F14EC1F829FA800315736 /* fl.modulo~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B89F14EB1F829FA800315736 /* fl.modulo~.cpp */; };
 		B8A1128F2076CDEA000C74FC /* FrameLib_ToHost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A1128D2076CDEA000C74FC /* FrameLib_ToHost.cpp */; };
-		B8A112902076CDEA000C74FC /* FrameLib_ToHost.h in Headers */ = {isa = PBXBuildFile; fileRef = B8A1128E2076CDEA000C74FC /* FrameLib_ToHost.h */; };
 		B8A112922076DFAE000C74FC /* fl.tomax~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A82AA21F75104E005CC75A /* fl.tomax~.cpp */; };
 		B8A1F5BE1D5370DE00FA5FFC /* NumericTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A1F5BD1D5370DE00FA5FFC /* NumericTests.cpp */; };
 		B8A20FF622FCD7E300DF86D8 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
@@ -733,7 +732,6 @@
 		B8DF114E1FBF97B600C6229D /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8DF11591FBF987700C6229D /* FrameLib_Correlate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DF11421FBF972200C6229D /* FrameLib_Correlate.cpp */; };
 		B8DF115A1FBF987C00C6229D /* fl.correlate~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DF11401FBF970800C6229D /* fl.correlate~.cpp */; };
-		B8E41B0820C41A6B003BBD86 /* FrameLib_ExprParser.h in Headers */ = {isa = PBXBuildFile; fileRef = B8E41B0720C36599003BBD86 /* FrameLib_ExprParser.h */; };
 		B8E41B1620C5E71C003BBD86 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8E41B2120C5E765003BBD86 /* FrameLib_Expression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8E41B1F20C5E764003BBD86 /* FrameLib_Expression.cpp */; };
 		B8E41B2320C5EACE003BBD86 /* fl.expr~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8E41B2220C5EACD003BBD86 /* fl.expr~.cpp */; };
@@ -3179,15 +3177,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B855954F27D249D8007CA145 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 		B88C0A2F21733BF9007A65C0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
@@ -3197,33 +3186,6 @@
 				B85426AC2175CA0C007FA185 /* FrameLib.sc in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B8A1F5B91D5370DE00FA5FFC /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-		B8A46DFB1F6EB3060032F831 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-		B8B3F77A27D65696008886BA /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -6532,7 +6494,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8E41B0820C41A6B003BBD86 /* FrameLib_ExprParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7180,7 +7141,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8A112902076CDEA000C74FC /* FrameLib_ToHost.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8775,10 +8735,8 @@
 			buildConfigurationList = B83E02AB206674D4005925DD /* Build configuration list for PBXNativeTarget "framelib_pd" */;
 			buildPhases = (
 				B83E029E206674D4005925DD /* Headers */,
-				B83E02A2206674D4005925DD /* Resources */,
 				B83E02A3206674D4005925DD /* Sources */,
 				B83E02A6206674D4005925DD /* Frameworks */,
-				B83E02AA206674D4005925DD /* Rez */,
 			);
 			buildRules = (
 			);
@@ -8859,7 +8817,6 @@
 				B843AAB819C08452000D3476 /* Resources */,
 				B843AAB919C08452000D3476 /* Sources */,
 				B843AABC19C08452000D3476 /* Frameworks */,
-				B843AAC019C08452000D3476 /* Rez */,
 			);
 			buildRules = (
 			);
@@ -9077,7 +9034,6 @@
 			buildPhases = (
 				B855954B27D249D8007CA145 /* Sources */,
 				B855954E27D249D8007CA145 /* Frameworks */,
-				B855954F27D249D8007CA145 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -9731,7 +9687,6 @@
 			buildPhases = (
 				B8A1F5B71D5370DE00FA5FFC /* Sources */,
 				B8A1F5B81D5370DE00FA5FFC /* Frameworks */,
-				B8A1F5B91D5370DE00FA5FFC /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -9768,7 +9723,6 @@
 			buildPhases = (
 				B8A46DF61F6EB3060032F831 /* Sources */,
 				B8A46DFA1F6EB3060032F831 /* Frameworks */,
-				B8A46DFB1F6EB3060032F831 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -9925,7 +9879,6 @@
 			buildPhases = (
 				B8B3F77527D65696008886BA /* Sources */,
 				B8B3F77827D65696008886BA /* Frameworks */,
-				B8B3F77A27D65696008886BA /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -11877,13 +11830,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B83E02A2206674D4005925DD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B83F0451223A762800AF1F8E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -12704,23 +12650,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXRezBuildPhase section */
-		B83E02AA206674D4005925DD /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B843AAC019C08452000D3476 /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXRezBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		B8B350F5259F4D4D00A99C19 /* ShellScript */ = {
