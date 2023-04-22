@@ -6476,216 +6476,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B805E2AE19C3AD23007D8D8B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B805E2BF19C3AD25007D8D8B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B805E2D019C3ADF5007D8D8B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B805E2E019C3ADF7007D8D8B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B805E2F019C3ADF9007D8D8B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B805E30019C3ADFC007D8D8B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B805E31019C3ADFE007D8D8B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B805E32019C3AE00007D8D8B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BDE119C42CDA00BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BDF219C42CEB00BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BE0219C42CEF00BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BF3319C42D5100BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BF4219C42D5400BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BF5119C42D5800BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BF6019C42D5A00BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BF6F19C42D5C00BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BF7E19C42D6400BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BF8D19C42D6400BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BF9C19C42D6500BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BFAB19C42D6600BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BFBA19C42D6800BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BFC919C42D6800BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BFD819C42D6900BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BFE719C42D7000BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BFF619C42D7100BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809C00519C42D7100BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809C01419C42D7200BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809C02319C42D7200BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809C03219C42D7300BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809C04119C42D7300BA41F4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B826E4901F3148AB00B920C8 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -7032,8 +6822,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B805E2B819C3AD23007D8D8B /* Build configuration list for PBXNativeTarget "fl.lessthaneq~" */;
 			buildPhases = (
-				B805E2AE19C3AD23007D8D8B /* Headers */,
-				B805E2AF19C3AD23007D8D8B /* Resources */,
 				B805E2B019C3AD23007D8D8B /* Sources */,
 				B805E2B319C3AD23007D8D8B /* Frameworks */,
 			);
@@ -7052,8 +6840,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B805E2C919C3AD25007D8D8B /* Build configuration list for PBXNativeTarget "fl.pow~" */;
 			buildPhases = (
-				B805E2BF19C3AD25007D8D8B /* Headers */,
-				B805E2C019C3AD25007D8D8B /* Resources */,
 				B805E2C119C3AD25007D8D8B /* Sources */,
 				B805E2C419C3AD25007D8D8B /* Frameworks */,
 			);
@@ -7072,8 +6858,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B805E2DA19C3ADF5007D8D8B /* Build configuration list for PBXNativeTarget "fl.atan2~" */;
 			buildPhases = (
-				B805E2D019C3ADF5007D8D8B /* Headers */,
-				B805E2D119C3ADF5007D8D8B /* Resources */,
 				B805E2D219C3ADF5007D8D8B /* Sources */,
 				B805E2D519C3ADF5007D8D8B /* Frameworks */,
 			);
@@ -7092,8 +6876,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B805E2EA19C3ADF7007D8D8B /* Build configuration list for PBXNativeTarget "fl.hypot~" */;
 			buildPhases = (
-				B805E2E019C3ADF7007D8D8B /* Headers */,
-				B805E2E119C3ADF7007D8D8B /* Resources */,
 				B805E2E219C3ADF7007D8D8B /* Sources */,
 				B805E2E519C3ADF7007D8D8B /* Frameworks */,
 			);
@@ -7112,8 +6894,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B805E2FA19C3ADF9007D8D8B /* Build configuration list for PBXNativeTarget "fl.copysign~" */;
 			buildPhases = (
-				B805E2F019C3ADF9007D8D8B /* Headers */,
-				B805E2F119C3ADF9007D8D8B /* Resources */,
 				B805E2F219C3ADF9007D8D8B /* Sources */,
 				B805E2F519C3ADF9007D8D8B /* Frameworks */,
 			);
@@ -7132,8 +6912,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B805E30A19C3ADFC007D8D8B /* Build configuration list for PBXNativeTarget "fl.min~" */;
 			buildPhases = (
-				B805E30019C3ADFC007D8D8B /* Headers */,
-				B805E30119C3ADFC007D8D8B /* Resources */,
 				B805E30219C3ADFC007D8D8B /* Sources */,
 				B805E30519C3ADFC007D8D8B /* Frameworks */,
 			);
@@ -7152,8 +6930,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B805E31A19C3ADFE007D8D8B /* Build configuration list for PBXNativeTarget "fl.max~" */;
 			buildPhases = (
-				B805E31019C3ADFE007D8D8B /* Headers */,
-				B805E31119C3ADFE007D8D8B /* Resources */,
 				B805E31219C3ADFE007D8D8B /* Sources */,
 				B805E31519C3ADFE007D8D8B /* Frameworks */,
 			);
@@ -7172,8 +6948,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B805E32A19C3AE00007D8D8B /* Build configuration list for PBXNativeTarget "fl.diff~" */;
 			buildPhases = (
-				B805E32019C3AE00007D8D8B /* Headers */,
-				B805E32119C3AE00007D8D8B /* Resources */,
 				B805E32219C3AE00007D8D8B /* Sources */,
 				B805E32519C3AE00007D8D8B /* Frameworks */,
 			);
@@ -7192,8 +6966,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BDEB19C42CDA00BA41F4 /* Build configuration list for PBXNativeTarget "fl.abs~" */;
 			buildPhases = (
-				B809BDE119C42CDA00BA41F4 /* Headers */,
-				B809BDE219C42CDA00BA41F4 /* Resources */,
 				B809BDE319C42CDA00BA41F4 /* Sources */,
 				B809BDE619C42CDA00BA41F4 /* Frameworks */,
 			);
@@ -7212,8 +6984,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BDFC19C42CEB00BA41F4 /* Build configuration list for PBXNativeTarget "fl.acos~" */;
 			buildPhases = (
-				B809BDF219C42CEB00BA41F4 /* Headers */,
-				B809BDF319C42CEB00BA41F4 /* Resources */,
 				B809BDF419C42CEB00BA41F4 /* Sources */,
 				B809BDF719C42CEB00BA41F4 /* Frameworks */,
 			);
@@ -7232,8 +7002,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BE0C19C42CEF00BA41F4 /* Build configuration list for PBXNativeTarget "fl.cosh~" */;
 			buildPhases = (
-				B809BE0219C42CEF00BA41F4 /* Headers */,
-				B809BE0319C42CEF00BA41F4 /* Resources */,
 				B809BE0419C42CEF00BA41F4 /* Sources */,
 				B809BE0719C42CEF00BA41F4 /* Frameworks */,
 			);
@@ -7252,8 +7020,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BF3C19C42D5100BA41F4 /* Build configuration list for PBXNativeTarget "fl.asin~" */;
 			buildPhases = (
-				B809BF3319C42D5100BA41F4 /* Headers */,
-				B809BF3419C42D5100BA41F4 /* Resources */,
 				B809BF3519C42D5100BA41F4 /* Sources */,
 				B809BF3719C42D5100BA41F4 /* Frameworks */,
 			);
@@ -7272,8 +7038,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BF4B19C42D5400BA41F4 /* Build configuration list for PBXNativeTarget "fl.sinh~" */;
 			buildPhases = (
-				B809BF4219C42D5400BA41F4 /* Headers */,
-				B809BF4319C42D5400BA41F4 /* Resources */,
 				B809BF4419C42D5400BA41F4 /* Sources */,
 				B809BF4619C42D5400BA41F4 /* Frameworks */,
 			);
@@ -7292,8 +7056,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BF5A19C42D5800BA41F4 /* Build configuration list for PBXNativeTarget "fl.atan~" */;
 			buildPhases = (
-				B809BF5119C42D5800BA41F4 /* Headers */,
-				B809BF5219C42D5800BA41F4 /* Resources */,
 				B809BF5319C42D5800BA41F4 /* Sources */,
 				B809BF5519C42D5800BA41F4 /* Frameworks */,
 			);
@@ -7312,8 +7074,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BF6919C42D5A00BA41F4 /* Build configuration list for PBXNativeTarget "fl.atanh~" */;
 			buildPhases = (
-				B809BF6019C42D5A00BA41F4 /* Headers */,
-				B809BF6119C42D5A00BA41F4 /* Resources */,
 				B809BF6219C42D5A00BA41F4 /* Sources */,
 				B809BF6419C42D5A00BA41F4 /* Frameworks */,
 			);
@@ -7332,8 +7092,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BF7819C42D5C00BA41F4 /* Build configuration list for PBXNativeTarget "fl.cbrt~" */;
 			buildPhases = (
-				B809BF6F19C42D5C00BA41F4 /* Headers */,
-				B809BF7019C42D5C00BA41F4 /* Resources */,
 				B809BF7119C42D5C00BA41F4 /* Sources */,
 				B809BF7319C42D5C00BA41F4 /* Frameworks */,
 			);
@@ -7352,8 +7110,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BF8719C42D6400BA41F4 /* Build configuration list for PBXNativeTarget "fl.ceil~" */;
 			buildPhases = (
-				B809BF7E19C42D6400BA41F4 /* Headers */,
-				B809BF7F19C42D6400BA41F4 /* Resources */,
 				B809BF8019C42D6400BA41F4 /* Sources */,
 				B809BF8219C42D6400BA41F4 /* Frameworks */,
 			);
@@ -7372,8 +7128,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BF9619C42D6400BA41F4 /* Build configuration list for PBXNativeTarget "fl.cos~" */;
 			buildPhases = (
-				B809BF8D19C42D6400BA41F4 /* Headers */,
-				B809BF8E19C42D6400BA41F4 /* Resources */,
 				B809BF8F19C42D6400BA41F4 /* Sources */,
 				B809BF9119C42D6400BA41F4 /* Frameworks */,
 			);
@@ -7392,8 +7146,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BFA519C42D6500BA41F4 /* Build configuration list for PBXNativeTarget "fl.acosh~" */;
 			buildPhases = (
-				B809BF9C19C42D6500BA41F4 /* Headers */,
-				B809BF9D19C42D6500BA41F4 /* Resources */,
 				B809BF9E19C42D6500BA41F4 /* Sources */,
 				B809BFA019C42D6500BA41F4 /* Frameworks */,
 			);
@@ -7412,8 +7164,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BFB419C42D6600BA41F4 /* Build configuration list for PBXNativeTarget "fl.erf~" */;
 			buildPhases = (
-				B809BFAB19C42D6600BA41F4 /* Headers */,
-				B809BFAC19C42D6600BA41F4 /* Resources */,
 				B809BFAD19C42D6600BA41F4 /* Sources */,
 				B809BFAF19C42D6600BA41F4 /* Frameworks */,
 			);
@@ -7432,8 +7182,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BFC319C42D6800BA41F4 /* Build configuration list for PBXNativeTarget "fl.erfc~" */;
 			buildPhases = (
-				B809BFBA19C42D6800BA41F4 /* Headers */,
-				B809BFBB19C42D6800BA41F4 /* Resources */,
 				B809BFBC19C42D6800BA41F4 /* Sources */,
 				B809BFBE19C42D6800BA41F4 /* Frameworks */,
 			);
@@ -7452,8 +7200,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BFD219C42D6800BA41F4 /* Build configuration list for PBXNativeTarget "fl.exp~" */;
 			buildPhases = (
-				B809BFC919C42D6800BA41F4 /* Headers */,
-				B809BFCA19C42D6800BA41F4 /* Resources */,
 				B809BFCB19C42D6800BA41F4 /* Sources */,
 				B809BFCD19C42D6800BA41F4 /* Frameworks */,
 			);
@@ -7472,8 +7218,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BFE119C42D6900BA41F4 /* Build configuration list for PBXNativeTarget "fl.exp2~" */;
 			buildPhases = (
-				B809BFD819C42D6900BA41F4 /* Headers */,
-				B809BFD919C42D6900BA41F4 /* Resources */,
 				B809BFDA19C42D6900BA41F4 /* Sources */,
 				B809BFDC19C42D6900BA41F4 /* Frameworks */,
 			);
@@ -7492,8 +7236,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BFF019C42D7000BA41F4 /* Build configuration list for PBXNativeTarget "fl.floor~" */;
 			buildPhases = (
-				B809BFE719C42D7000BA41F4 /* Headers */,
-				B809BFE819C42D7000BA41F4 /* Resources */,
 				B809BFE919C42D7000BA41F4 /* Sources */,
 				B809BFEB19C42D7000BA41F4 /* Frameworks */,
 			);
@@ -7512,8 +7254,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809BFFF19C42D7100BA41F4 /* Build configuration list for PBXNativeTarget "fl.log~" */;
 			buildPhases = (
-				B809BFF619C42D7100BA41F4 /* Headers */,
-				B809BFF719C42D7100BA41F4 /* Resources */,
 				B809BFF819C42D7100BA41F4 /* Sources */,
 				B809BFFA19C42D7100BA41F4 /* Frameworks */,
 			);
@@ -7532,8 +7272,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809C00E19C42D7100BA41F4 /* Build configuration list for PBXNativeTarget "fl.log2~" */;
 			buildPhases = (
-				B809C00519C42D7100BA41F4 /* Headers */,
-				B809C00619C42D7100BA41F4 /* Resources */,
 				B809C00719C42D7100BA41F4 /* Sources */,
 				B809C00919C42D7100BA41F4 /* Frameworks */,
 			);
@@ -7552,8 +7290,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809C01D19C42D7200BA41F4 /* Build configuration list for PBXNativeTarget "fl.log10~" */;
 			buildPhases = (
-				B809C01419C42D7200BA41F4 /* Headers */,
-				B809C01519C42D7200BA41F4 /* Resources */,
 				B809C01619C42D7200BA41F4 /* Sources */,
 				B809C01819C42D7200BA41F4 /* Frameworks */,
 			);
@@ -7572,8 +7308,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809C02C19C42D7200BA41F4 /* Build configuration list for PBXNativeTarget "fl.round~" */;
 			buildPhases = (
-				B809C02319C42D7200BA41F4 /* Headers */,
-				B809C02419C42D7200BA41F4 /* Resources */,
 				B809C02519C42D7200BA41F4 /* Sources */,
 				B809C02719C42D7200BA41F4 /* Frameworks */,
 			);
@@ -7592,8 +7326,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809C03B19C42D7300BA41F4 /* Build configuration list for PBXNativeTarget "fl.sin~" */;
 			buildPhases = (
-				B809C03219C42D7300BA41F4 /* Headers */,
-				B809C03319C42D7300BA41F4 /* Resources */,
 				B809C03419C42D7300BA41F4 /* Sources */,
 				B809C03619C42D7300BA41F4 /* Frameworks */,
 			);
@@ -7612,8 +7344,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B809C04A19C42D7300BA41F4 /* Build configuration list for PBXNativeTarget "fl.asinh~" */;
 			buildPhases = (
-				B809C04119C42D7300BA41F4 /* Headers */,
-				B809C04219C42D7300BA41F4 /* Resources */,
 				B809C04319C42D7300BA41F4 /* Sources */,
 				B809C04519C42D7300BA41F4 /* Frameworks */,
 			);
@@ -10398,216 +10128,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B805E29E19C3AD22007D8D8B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B805E2AF19C3AD23007D8D8B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B805E2C019C3AD25007D8D8B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B805E2D119C3ADF5007D8D8B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B805E2E119C3ADF7007D8D8B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B805E2F119C3ADF9007D8D8B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B805E30119C3ADFC007D8D8B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B805E31119C3ADFE007D8D8B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B805E32119C3AE00007D8D8B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BDE219C42CDA00BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BDF319C42CEB00BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BE0319C42CEF00BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BF3419C42D5100BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BF4319C42D5400BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BF5219C42D5800BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BF6119C42D5A00BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BF7019C42D5C00BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BF7F19C42D6400BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BF8E19C42D6400BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BF9D19C42D6500BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BFAC19C42D6600BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BFBB19C42D6800BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BFCA19C42D6800BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BFD919C42D6900BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BFE819C42D7000BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809BFF719C42D7100BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809C00619C42D7100BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809C01519C42D7200BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809C02419C42D7200BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809C03319C42D7300BA41F4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B809C04219C42D7300BA41F4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
