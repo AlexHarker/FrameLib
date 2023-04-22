@@ -1,0 +1,7 @@
+		_##XCODE_OBJ_TARGET_PROXY_GUID##_ /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = _##XCODE_MAIN_GUID##_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = _##XCODE_OBJ_TARGET_GUID##_;
+			remoteInfo = "_##CLASSNAME##_";
+		};

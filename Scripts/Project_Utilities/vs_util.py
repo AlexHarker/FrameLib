@@ -1,25 +1,12 @@
 
 from . import file_util
-from .path_util import fl_paths
+from . path_util import fl_paths
+from . object_info import fl_object
 
 import os
 import uuid
 from pathlib import Path
 
-def relation(guid: str, guid2: str):
-        return "\t\t{" + guid + "} = {" + guid2 + "}\n"
-
-def get_guid_regex(exp: str):
-    return file_util.item_regex(fl_paths("").vs_solution(), exp)
-
-
-def get_main_guid():
-    return get_guid_regex("Project\(\"\{(.*)\}\"\) = \"framelib\"")
-
-
-def get_guid(item: str):
-    return get_guid_regex("\"" + item + "\".*\{(.*)\}")
-    
     
 class fl_solution:
 
@@ -29,7 +16,7 @@ class fl_solution:
         
         # Ensure that the GUID is not in use already
         
-        if file_util.item_regex(fl_paths("").vs_solution(), "(" + guid + ")") != "":
+        if file_util.item_regex(fl_paths().vs_solution(), "(" + guid + ")") != "":
             return self.create_guid()
         
         return guid
@@ -42,68 +29,32 @@ class fl_solution:
             file_util.remove(path, contents, start, end)
 
 
-    def solution_insert_remove(self, contents: str, start: str, end: str, insert: bool):
-        self.insert_remove(fl_paths("").vs_solution(), contents, start, end, insert)
+    def solution_modify(self, object_info: fl_object, template: str, start: str, end: str, insert: bool):
+    
+        contents = file_util.templated_string(fl_paths().template("vs_templates/" + template), object_info)
+        self.insert_remove(fl_paths().vs_solution(), contents, start, end, insert)
         
         
-    def object_project_insert_remove(self, contents: str, start: str, end: str, insert: bool):
-        self.insert_remove(fl_paths("").vs_objects_project(), contents, start, end, insert)
-
-
-    def solution_add_rm_project(self, class_name: str, guid: str, fl_guid: str, fl_objects_guid: str, insert: bool):
-
-        contents = "Project(\"{" + get_main_guid() + "}\") = \"" + class_name + "\", \"" + "Projects\Visual_Studio\\03_Max_Objects\\" + class_name + ".vcxproj\", \"{" + guid + "}\"\n\tProjectSection(ProjectDependencies) = postProject\n\t\t{" + fl_guid + "} = {" + fl_guid + "}\n\t\t{" + fl_objects_guid + "} = {" + fl_objects_guid + "}\n\tEndProjectSection\nEndProject\n"
-            
-        self.solution_insert_remove(contents, "MinimumVisualStudioVersion", "Global", insert)
-      
-
-    def solution_add_rm_configurations(self, guid: str, insert: bool):
-
-        contents = "\t\t{GUID}.Debug|x64.ActiveCfg = Debug|x64\n\t\t{GUID}.Debug|x64.Build.0 = Debug|x64\n\t\t{GUID}.Debug|x86.ActiveCfg = Debug|x64\n\t\t{GUID}.Release|x64.ActiveCfg = Release|x64\n\t\t{GUID}.Release|x64.Build.0 = Release|x64\n\t\t{GUID}.Release|x86.ActiveCfg = Release|x64\n\t\t{GUID}.Static|x64.ActiveCfg = Release|x64\n\t\t{GUID}.Static|x64.Build.0 = Release|x64\n\t\t{GUID}.Static|x86.ActiveCfg = Release|x64\n\t\t{GUID}.Static|x86.Build.0 = Release|x64\n"
-            
-        contents = contents.replace("GUID", guid)
-        
-        self.solution_insert_remove(contents, "GlobalSection(ProjectConfigurationPlatforms) = postSolution", "\tEndGlobalSection", insert)
-
-
-    def solution_add_rm_nesting(self, guid: str, fl_max_objects_guid: str, insert: bool):
-
-        contents = relation(guid, fl_max_objects_guid)
-        self.solution_insert_remove(contents, "GlobalSection(NestedProjects) = preSolution", "\tEndGlobalSection", insert)
-
-
-    def solution_add_rm_dependency(self, guid: str, insert: bool):
-
-        contents = relation(guid, guid)
-        self.solution_insert_remove(contents, "\"framelib_objects_max\"", "\tEndProjectSection", insert)
-
-
-    def object_project_add_rm(self, object_class: str, class_name: str, category: str, guid: str, insert: bool):
-
-        paths = fl_paths(category)
-        
-        if os.path.exists(paths.object_header(object_class)):
-            header = "    <ClInclude Include=\"..\..\..\FrameLib_Objects\\" + category + "\\" + object_class + ".h\" />\n"
-            self.object_project_insert_remove(header, "<ClInclude Include", "  </ItemGroup>", insert)
-        
-        if os.path.exists(paths.object_source(object_class)):
-            cplusplus = "    <ClCompile Include=\"..\..\..\FrameLib_Objects\\" + category + "\\" + object_class + ".cpp\" />\n"
-            self.object_project_insert_remove(cplusplus, "<ClCompile Include", "  </ItemGroup>", insert)
+    def object_project_modify(self, object_info: fl_object, template: str, start: str, end: str, insert: bool):
+    
+        contents = file_util.templated_string(fl_paths().template("vs_templates/" + template), object_info)
+        self.insert_remove(fl_paths().vs_objects_project(), contents, start, end, insert)
 
         
-    def update(self, object_class: str, class_name: str, category: str, guid: str, add: bool):
+    def update(self, object_info: fl_object, add: bool):
 
-        fl_guid = get_guid("framelib")
-        fl_objects_guid = get_guid("framelib_objects")
-        fl_max_objects_guid = get_guid("Max Object Projects")
+        if object_info.object_class != "":
         
-        if object_class != "":
-            self.object_project_add_rm(object_class, class_name, category, guid, add)
+            if os.path.exists(fl_paths().object_header(object_info)):
+                self.object_project_modify(object_info, "header", "<ClInclude Include", "  </ItemGroup>", add)
         
-        self.solution_add_rm_project(class_name, guid, fl_guid, fl_objects_guid, add)
-        self.solution_add_rm_configurations(guid, add)
-        self.solution_add_rm_nesting(guid, fl_max_objects_guid, add)
-        self.solution_add_rm_dependency(guid, add)
+            if os.path.exists(fl_paths().object_source(object_info)):
+                self.object_project_modify(object_info, "source", "<ClCompile Include", "  </ItemGroup>", add)
+        
+        self.solution_modify(object_info, "project", "MinimumVisualStudioVersion", "Global", add)
+        self.solution_modify(object_info, "configurations", "GlobalSection(ProjectConfigurationPlatforms)", "\tEndGlobalSection", add)
+        self.solution_modify(object_info, "nested", "GlobalSection(NestedProjects)", "\tEndGlobalSection", add)
+        self.solution_modify(object_info, "dependency", "\"framelib_objects_max\"", "\tEndProjectSection", add)
         
         
     def update_project(self, path: str, add: bool):
@@ -112,21 +63,27 @@ class fl_solution:
         category = file_util.item_regex(path, "FrameLib_Max_Objects\\\\(.*)\\\\fl")
         guid = file_util.item_regex(path, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
 
-        max_object_path = fl_paths(category).max_source(class_name)
-        object_class = file_util.item_regex(max_object_path, "FrameLib_MaxClass_Expand<(.*)>").split(",")[0]
+        object_info = fl_object("", class_name, category)
+        object_info.guid = guid
 
-        if object_class == "":
-            object_class = file_util.item_regex(max_object_path, "FrameLib_MaxClass<(.*)>")
+        paths = fl_paths()
+        max_object_path = paths.max_source(object_info)
+        object_info.object_class = file_util.item_regex(max_object_path, "FrameLib_MaxClass_Expand<(.*)>").split(",")[0]
 
-        if object_class == "":
-            object_class = file_util.item_regex(max_object_path, "FrameLib_MaxClass_ExprParsed<(.*)>")
-   
-        self.update(object_class, class_name, category, guid, add)
+        if object_info.object_class == "":
+            object_info.object_class = file_util.item_regex(max_object_path, "FrameLib_MaxClass<(.*)>")
+
+        if object_info.object_class == "":
+            object_info.object_class = file_util.item_regex(max_object_path, "FrameLib_MaxClass_ExprParsed<(.*)>")
+           
+        self.update(object_info, add)
+        
+        file_util.create(paths.vs_max_project(object_info), paths.template("fl.class_name~.vcxproj"), object_info)
 
 
     def update_all_projects(self, add: bool):
 
-        projects = Path(fl_paths("").vs_max_projects()).glob('fl.*.vcxproj')
+        projects = Path(fl_paths().vs_max_projects()).glob('fl.*.vcxproj')
         project_list = list(projects)
         project_list.sort()
         

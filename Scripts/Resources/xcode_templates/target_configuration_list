@@ -1,0 +1,10 @@
+		_##XCODE_OBJ_CONFIG_LIST_GUID##_ /* Build configuration list for PBXNativeTarget "_##CLASSNAME##_" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				_##XCODE_OBJ_CONFIG_DVMT_GUID##_ /* Development */,
+				_##XCODE_OBJ_CONFIG_DPLT_GUID##_ /* Deployment */,
+				_##XCODE_OBJ_CONFIG_TEST_GUID##_ /* Public Testing */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};

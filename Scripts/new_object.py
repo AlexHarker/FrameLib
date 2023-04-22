@@ -1,13 +1,10 @@
 
 from Project_Utilities import file_util
+from Project_Utilities.object_info import fl_object
 from Project_Utilities.vs_util import fl_solution
 from Project_Utilities.path_util import fl_paths
 
 import os
-
-    
-def single_build_cpp(base_class: str, object_class: str, class_name: str):
-    return "    " + base_class + "<" + object_class + ">::makeClass(\"" + class_name + "\");\n"
     
     
 def insert_code(contents: str, class_name: str, category: str, path: str, start: str, end: str, insert_end: str, exp: str, layout: str = ""):
@@ -36,11 +33,12 @@ def insert_code(contents: str, class_name: str, category: str, path: str, start:
     
     file_util.insert(path, contents, start, insert_end)
     
-
-def insert_cpp_single_build(class_name: str, contents: str, category: str, path: str, start: str, end: str):
-    insert_code(contents, class_name, category, path, start, end, "    // Unary Operators", "^.*?(fl.*~).*", "    ")
     
-
+def insert_cpp_single_build(base_class: str, class_name: str, object_info: fl_object, path: str, start: str, end: str):
+    contents = "    " + base_class + "<" + object_info.object_class + ">::makeClass(\"" + class_name + "\");\n"
+    insert_code(contents, class_name, object_info.category, path, start, end, "    // Unary Operators", "^.*?(fl.*~).*", "    ")
+    
+    
 def insert_object_list_include(paths: fl_paths, object_class: str, category: str):
 
     path = paths.objects_export_header()
@@ -50,7 +48,7 @@ def insert_object_list_include(paths: fl_paths, object_class: str, category: str
     insert_code(contents, object_class, category, path, "#ifndef", "#endif", "// Operators", exp)
     
     
-def add_xcode_target(object_class: str, class_name: str, category: str):
+def add_xcode_target(object_info: fl_object):
     #add target
     #setup coorectly for path
     #change/set source files
@@ -60,35 +58,31 @@ def add_xcode_target(object_class: str, class_name: str, category: str):
 
 def main():
 
-    category = "Test_Category"
-    object_class = "FrameLib_Object"
-    class_name = "fl.testclass~"
+    object_info =  fl_object("FrameLib_Object", "fl.testclass~", "Test_Category")
     
-    paths = fl_paths(category)
+    paths = fl_paths()
     vs_solution = fl_solution()
-    guid = vs_solution.create_guid()
+    object_info.guid = vs_solution.create_guid()
 
-    os.makedirs(paths.object_dir, exist_ok = True)
-    os.makedirs(paths.max_object_dir, exist_ok = True)
+    os.makedirs(paths.object_dir(object_info), exist_ok = True)
+    os.makedirs(paths.max_object_dir(object_info), exist_ok = True)
     
-    file_util.create(paths.template("fl.class_name~.cpp"), paths.max_source(class_name), object_class, class_name, category, guid)
-    file_util.create(paths.template("FrameLib_Class.h"), paths.object_header(object_class), object_class, class_name, category, guid)
-    file_util.create(paths.template("FrameLib_Class.cpp"), paths.object_source(object_class), object_class, class_name, category, guid)
-    file_util.create(paths.template("fl.class_name~.vcxproj"), paths.vs_max_project(class_name), object_class, class_name, category, guid)
-
-    max_cpp = single_build_cpp("FrameLib_MaxClass_Expand", object_class, class_name)
-    pd_cpp = single_build_cpp("FrameLib_PDClass_Expand", object_class, class_name)
+    file_util.create(paths.max_source(object_info), paths.template("fl.class_name~.cpp"), object_info)
+    file_util.create(paths.object_header(object_info), paths.template("FrameLib_Class.h"), object_info)
+    file_util.create(paths.object_source(object_info), paths.template("FrameLib_Class.cpp"), object_info)
+    file_util.create(paths.vs_max_project(object_info), paths.template("fl.class_name~.vcxproj"), object_info)
     
-    insert_cpp_single_build(class_name, max_cpp, category, paths.max_framelib(), "main(", "}")
-    insert_cpp_single_build(class_name, pd_cpp, category, paths.pd_framelib(), "framelib_pd_setup(", "}")
-    insert_object_list_include(paths, object_class, category)
+    insert_cpp_single_build("FrameLib_MaxClass_Expand", object_info.max_class_name, object_info, paths.max_framelib(), "main(", "}")
+    insert_cpp_single_build("FrameLib_PDClass_Expand", object_info.pd_class_name, object_info, paths.pd_framelib(), "framelib_pd_setup(", "}")
+    insert_object_list_include(paths, object_info.object_class, object_info.category)
     
-    vs_solution.update(object_class, class_name, category, guid, True)
+    vs_solution.update(object_info, True)
     
-    add_xcode_target(object_class, class_name, category)
+    add_xcode_target(object_info)
     
-    #vs_solution.update_project(paths.vs_max_project(class_name), False)
+    #vs_solution.update_project(paths.vs_max_project(object_info), False)
     #vs_solution.update_all_projects(False)
+    #vs_solution.update_all_projects(True)
     
     
 if __name__ == "__main__":

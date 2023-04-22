@@ -1,26 +1,37 @@
-import os
+
+from . object_info import fl_object
 
 class fl_paths:
 
-    def __init__(self, category: str):
+    def __init__(self):
+
+        import os
+
         self.base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) + "/"
         self.vs_project_dir = self.base_dir + "Projects/Visual_Studio/"
         self.template_dir = self.base_dir + "Scripts/Resources/"
-        self.object_dir = self.base_dir + "FrameLib_Objects/" + category + "/"
         self.max_dir = self.base_dir + "FrameLib_Max_Objects/"
-        self.max_object_dir = self.max_dir + category + "/"
-        
+
     def template(self, file_name: str):
         return self.template_dir + file_name
         
-    def max_source(self, class_name: str):
-        return self.max_object_dir + class_name + ".cpp"
+    def max_object_dir(self, object_info: fl_object):
+        return self.max_dir + object_info.category + "/"
     
-    def object_source(self, object_class: str):
-        return self.object_dir + object_class + ".cpp"
+    def object_dir(self, object_info: fl_object):
+        return self.base_dir + "FrameLib_Objects/" + object_info.category + "/"
+        
+    def max_source(self, object_info: fl_object):
+        return self.max_object_dir(object_info) + object_info.max_class_name + ".cpp"
+    
+    def object_source(self, object_info: fl_object):
+        return self.object_dir(object_info) + object_info.object_class + ".cpp"
 
-    def object_header(self, object_class: str):
-        return self.object_dir + object_class + ".h"
+    def object_header(self, object_info: fl_object):
+        return self.object_dir(object_info) + object_info.object_class + ".h"
+        
+    def xcode_pbxproj(self):
+        return self.base_dir + "framelib.xcodeproj/project.pbxproj"
         
     def vs_solution(self):
         return self.base_dir + "framelib.sln"
@@ -31,8 +42,8 @@ class fl_paths:
     def vs_max_projects(self):
         return self.vs_project_dir + "03_Max_Objects/"
         
-    def vs_max_project(self, class_name: str):
-        return self.vs_max_projects() + class_name + ".vcxproj"
+    def vs_max_project(self, object_info: fl_object):
+        return self.vs_max_projects() + object_info.max_class_name + ".vcxproj"
 
     def objects_export_header(self):
         return self.base_dir + "FrameLib_Exports/FrameLib_Objects.h"
