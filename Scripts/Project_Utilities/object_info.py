@@ -1,6 +1,18 @@
 
 class fl_object:
 
+    vs_fl_guid = ""
+    vs_fl_objects_guid = ""
+    vs_fl_max_objects_guid = ""
+    vs_main_guid = ""
+            
+    xcode_main_guid = ""
+    xcode_framelib_guid = ""
+    xcode_max_config_guid = ""
+    xcode_fileref_lib_guid = ""
+    
+    initialised = False
+    
     def __init__(self, object_class: str, class_name: str, category: str):
         
         from . file_util import get_vs_guid
@@ -14,15 +26,20 @@ class fl_object:
         self.pd_class_name = class_name
         self.category = category
         self.guid = ""
-        self.vs_fl_guid = get_vs_guid(fl_paths().vs_solution(), "framelib")
-        self.vs_fl_objects_guid = get_vs_guid(fl_paths().vs_solution(), "framelib_objects")
-        self.vs_fl_max_objects_guid = get_vs_guid(fl_paths().vs_solution(),  "Max Object Projects")
-        self.vs_main_guid = get_guid_regex(fl_paths().vs_solution(), "Project\(\"\{(.*)\}\"\) = \"framelib\"")
+        
+        if fl_object.initialised == False:
+        
+            fl_object.vs_fl_guid = get_vs_guid(fl_paths().vs_solution(), "framelib")
+            fl_object.vs_fl_objects_guid = get_vs_guid(fl_paths().vs_solution(), "framelib_objects")
+            fl_object.vs_fl_max_objects_guid = get_vs_guid(fl_paths().vs_solution(),  "Max Object Projects")
+            fl_object.vs_main_guid = get_guid_regex(fl_paths().vs_solution(), "Project\(\"\{(.*)\}\"\) = \"framelib\"")
                 
-        self.xcode_main_guid = get_xcode_guid(fl_paths().xcode_pbxproj(), "Project object")
-        self.xcode_framelib_guid = get_xcode_guid(fl_paths().xcode_pbxproj(), "framelib")
-        self.xcode_max_config_guid = get_xcode_guid(fl_paths().xcode_pbxproj(), "Config_FrameLib_Max.xcconfig")
-        self.xcode_fileref_lib_guid = get_xcode_guid(fl_paths().xcode_pbxproj(), "libframelib.a")
+            fl_object.xcode_main_guid = get_xcode_guid(fl_paths().xcode_pbxproj(), "Project object")
+            fl_object.xcode_framelib_guid = get_xcode_guid(fl_paths().xcode_pbxproj(), "framelib")
+            fl_object.xcode_max_config_guid = get_xcode_guid(fl_paths().xcode_pbxproj(), "Config_FrameLib_Max.xcconfig")
+            fl_object.xcode_fileref_lib_guid = get_xcode_guid(fl_paths().xcode_pbxproj(), "libframelib.a")
+            
+            fl_object.initialised = True
 
         self.xcode_obj_target_guid = create_xcode_guid()
         self.xcode_obj_package_dep_guid = create_xcode_guid()
