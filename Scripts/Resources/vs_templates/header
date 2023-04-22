@@ -1,1 +1,1 @@
-    <ClInclude Include="..\..\..\FrameLib_Objects\_##CATEGORY##_\_##CLASSNAME##_.h\" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\_##CATEGORY##_\_##CLASS##_.h" />
