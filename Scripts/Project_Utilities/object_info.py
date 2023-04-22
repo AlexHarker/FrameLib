@@ -57,6 +57,7 @@ class fl_object:
         self.xcode_obj_fileref_object_guid = create_xcode_guid()
         self.xcode_obj_file_lib_guid = create_xcode_guid()
         self.xcode_obj_fileref_mxo_guid = create_xcode_guid()
+        self.xcode_obj_file_object_for_lib_guid = create_xcode_guid()
         
         self.xcode_obj_config_list_guid = create_xcode_guid()
         self.xcode_obj_config_dvmt_guid = create_xcode_guid()

@@ -23,6 +23,7 @@ class fl_pbxproj:
         self.project_modify(object_info, "file_class", "PBXBuildFile", add)
         self.project_modify(object_info, "file_object", "PBXBuildFile", add)
         self.project_modify(object_info, "file_lib", "PBXBuildFile", add)
+        self.project_modify(object_info, "file_object_for_lib", "PBXBuildFile", add)
         
         self.project_modify(object_info, "fileref_class", "PBXFileReference", add)
         self.project_modify(object_info, "fileref_object", "PBXFileReference", add)
