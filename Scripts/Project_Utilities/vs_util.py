@@ -22,23 +22,16 @@ class fl_solution:
         return guid
         
 
-    def insert_remove(self, path:str, contents: str, start: str, end: str, insert: bool):
-        if insert:
-            file_util.insert(path, contents, start, end)
-        else:
-            file_util.remove(path, contents, start, end)
-
-
     def solution_modify(self, object_info: fl_object, template: str, start: str, end: str, insert: bool):
     
         contents = file_util.templated_string(fl_paths().template("vs_templates/" + template), object_info)
-        self.insert_remove(fl_paths().vs_solution(), contents, start, end, insert)
+        file_util.insert_remove(fl_paths().vs_solution(), contents, start, end, insert)
         
         
     def object_project_modify(self, object_info: fl_object, template: str, start: str, end: str, insert: bool):
     
         contents = file_util.templated_string(fl_paths().template("vs_templates/" + template), object_info)
-        self.insert_remove(fl_paths().vs_objects_project(), contents, start, end, insert)
+        file_util.insert_remove(fl_paths().vs_objects_project(), contents, start, end, insert)
 
         
     def update(self, object_info: fl_object, add: bool):

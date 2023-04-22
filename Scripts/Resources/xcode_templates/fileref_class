@@ -1,0 +1,1 @@
+  		_##XCODE_OBJ_FILEREF_CLASS_GUID##_ /* _##CLASSNAME##_.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "_##CLASSNAME##_.cpp"; sourceTree = "<group>"; };

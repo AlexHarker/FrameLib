@@ -2,6 +2,7 @@
 from Project_Utilities import file_util
 from Project_Utilities.object_info import fl_object
 from Project_Utilities.vs_util import fl_solution
+from Project_Utilities.xcode_util import fl_pbxproj
 from Project_Utilities.path_util import fl_paths
 
 import os
@@ -47,14 +48,6 @@ def insert_object_list_include(paths: fl_paths, object_class: str, category: str
 
     insert_code(contents, object_class, category, path, "#ifndef", "#endif", "// Operators", exp)
     
-    
-def add_xcode_target(object_info: fl_object):
-    #add target
-    #setup coorectly for path
-    #change/set source files
-    #add target as a dependecy for the max objects build
-    return ""
-
 
 def main():
 
@@ -62,6 +55,8 @@ def main():
     
     paths = fl_paths()
     vs_solution = fl_solution()
+    pbxproj = fl_pbxproj()
+    
     object_info.guid = vs_solution.create_guid()
 
     os.makedirs(paths.object_dir(object_info), exist_ok = True)
@@ -77,8 +72,7 @@ def main():
     insert_object_list_include(paths, object_info.object_class, object_info.category)
     
     vs_solution.update(object_info, True)
-    
-    add_xcode_target(object_info)
+    pbxproj.update(object_info, True)
     
     #vs_solution.update_project(paths.vs_max_project(object_info), False)
     #vs_solution.update_all_projects(False)
