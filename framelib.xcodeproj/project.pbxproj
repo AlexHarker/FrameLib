@@ -274,7 +274,6 @@
 		B83F0468223A77B700AF1F8E /* FrameLib_Pattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EA6BA92203B07800D23A86 /* FrameLib_Pattern.cpp */; };
 		B83F046A223A85A400AF1F8E /* ibuffer_access.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8AD883619C7C2B500FFA238 /* ibuffer_access.cpp */; };
 		B840883B2912A11900D82983 /* FrameLib_Paste.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84088392912A11900D82983 /* FrameLib_Paste.cpp */; };
-		B840883C2912A11900D82983 /* FrameLib_Paste.h in Headers */ = {isa = PBXBuildFile; fileRef = B840883A2912A11900D82983 /* FrameLib_Paste.h */; };
 		B84088462912B1D500D82983 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B840884E2912B20700D82983 /* fl.paste~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B840884D2912B20700D82983 /* fl.paste~.cpp */; };
 		B840884F2912B21800D82983 /* FrameLib_Paste.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84088392912A11900D82983 /* FrameLib_Paste.cpp */; };
@@ -7089,13 +7088,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B89ABA8E1FA73483006DAD53 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B89F14D01F829F3C00315736 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -7317,14 +7309,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B8BA6FD02078D49200D3DB3D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B840883C2912A11900D82983 /* FrameLib_Paste.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9630,7 +9614,6 @@
 			buildPhases = (
 				B89ABA8C1FA73483006DAD53 /* Sources */,
 				B89ABA8D1FA73483006DAD53 /* Frameworks */,
-				B89ABA8E1FA73483006DAD53 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -10337,7 +10320,6 @@
 			buildPhases = (
 				B8BA6FCE2078D49200D3DB3D /* Sources */,
 				B8BA6FCF2078D49200D3DB3D /* Frameworks */,
-				B8BA6FD02078D49200D3DB3D /* Headers */,
 			);
 			buildRules = (
 			);
