@@ -10695,8 +10695,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8891CF21F2C99F700C5C4F0 /* FrameLib_FFT.cpp in Sources */,
 				B87E877519C8EEEB00B1D0CD /* fl.fft~.cpp in Sources */,
+				B8891CF21F2C99F700C5C4F0 /* FrameLib_FFT.cpp in Sources */,
 				B85435791F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -10897,8 +10897,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8891CF81F2C9A4600C5C4F0 /* FrameLib_Convolve.cpp in Sources */,
 				B8A4758519C9DDEA0043DC65 /* fl.convolve~.cpp in Sources */,
+				B8891CF81F2C9A4600C5C4F0 /* FrameLib_Convolve.cpp in Sources */,
 				B854357B1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -11503,9 +11503,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8DF114B1FBF97B600C6229D /* HISSTools_FFT.cpp in Sources */,
-				B8DF11591FBF987700C6229D /* FrameLib_Correlate.cpp in Sources */,
 				B8DF115A1FBF987C00C6229D /* fl.correlate~.cpp in Sources */,
+				B8DF11591FBF987700C6229D /* FrameLib_Correlate.cpp in Sources */,
+				B8DF114B1FBF97B600C6229D /* HISSTools_FFT.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

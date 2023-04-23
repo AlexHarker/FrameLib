@@ -58,6 +58,10 @@ class fl_pbxproj:
         else:
             sources_phase = "phase_sources_single"
             
+        if object_info.xcode_obj_file_fft_guid != "":
+            project_modify_section(object_info, "file_fft", "PBXBuildFile", add)
+            sources_phase = "phase_sources_fft"
+
         project_modify_section(object_info, sources_phase, "PBXSourcesBuildPhase", add)
         project_modify_section(object_info, "phase_frameworks", "PBXFrameworksBuildPhase", add)
 

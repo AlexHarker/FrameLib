@@ -1,0 +1,10 @@
+		_##XCODE_OBJ_SOURCES_GUID##_ /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				_##XCODE_OBJ_FILE_CLASS_GUID##_ /* _##CLASSNAME##_.cpp in Sources */,
+				_##XCODE_OBJ_FILE_OBJECT_GUID##_ /* _##CLASS##_.cpp in Sources */,
+				_##XCODE_OBJ_FILE_FFT_GUID##_ /* HISSTools_FFT.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};

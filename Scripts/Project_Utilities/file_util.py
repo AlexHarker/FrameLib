@@ -76,6 +76,7 @@ def templated_string(template_path: str, object_info: fl_object):
     template = template.replace("_##XCODE_FRAMELIB_GUID##_", object_info.xcode_framelib_guid)
     template = template.replace("_##XCODE_MAX_CONFIG_GUID##_", object_info.xcode_max_config_guid)
     template = template.replace("_##XCODE_FILEREF_LIB_GUID##_", object_info.xcode_fileref_lib_guid)
+    template = template.replace("_##XCODE_FILEREF_FFT_GUID##_", object_info.xcode_fileref_fft_guid)
 
     template = template.replace("_##XCODE_OBJ_TARGET_GUID##_", object_info.xcode_obj_target_guid)
     template = template.replace("_##XCODE_OBJ_PACKAGE_DEP_GUID##_", object_info.xcode_obj_package_dep_guid)
@@ -91,7 +92,8 @@ def templated_string(template_path: str, object_info: fl_object):
     template = template.replace("_##XCODE_OBJ_FILE_OBJECT_GUID##_", object_info.xcode_obj_file_object_guid)
     template = template.replace("_##XCODE_OBJ_FILE_LIB_GUID##_", object_info.xcode_obj_file_lib_guid)
     template = template.replace("_##XCODE_OBJ_FILE_OBJECT_FOR_LIB_GUID##_", object_info.xcode_obj_file_object_for_lib_guid)
-
+    template = template.replace("_##XCODE_OBJ_FILE_FFT_GUID##_", object_info.xcode_obj_file_fft_guid)
+    
     template = template.replace("_##XCODE_OBJ_FILEREF_CLASS_GUID##_", object_info.xcode_obj_fileref_class_guid)
     template = template.replace("_##XCODE_OBJ_FILEREF_HEADER_GUID##_", object_info.xcode_obj_fileref_header_guid)
     template = template.replace("_##XCODE_OBJ_FILEREF_OBJECT_GUID##_", object_info.xcode_obj_fileref_object_guid)
