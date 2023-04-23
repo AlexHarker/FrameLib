@@ -190,6 +190,8 @@ def remove(path: str, contents: str, bounds: list):
         index = data.find(contents, index_lo, index_hi)
         
     if index < 0:
+        print("WARNING - FAILED TO REMOVE\n")
+        print(contents)
         return
         
     with open(path, "w") as f:
