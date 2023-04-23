@@ -17,8 +17,11 @@ def update_all(add: bool):
     project_list.sort()
         
     for project in project_list:
-        print(project)
         name = project.as_posix().rsplit("/", 1)[1].replace(".vcxproj", "")
+        if add:
+            print("add " + name)
+        else:
+            print("remove " + name)
         object_info = fl_object.create_from_name(name)
         fl_solution().update(object_info, add)
         fl_solution().update_project(object_info, add)
@@ -53,8 +56,12 @@ def new_object(object_info : fl_object):
     
 def main():
 
+    import time
+    t1 = time.perf_counter_ns()
     new_object(fl_object("FrameLib_Test", "fl.test~", "Schedulers"))
     rebuild()
+    td = time.perf_counter_ns() - t1;
+    print("Time is " + str(td/1000000000.) + " seconds")
     
     
 if __name__ == "__main__":

@@ -18,7 +18,9 @@ def get_xcode_guid(section: str, item: str):
     from . xcode_util import section_bounds
      
     bounds = section_bounds(section)
-    return file_util.section_regex(get_xcode_path(), bounds, "([^\s]+) /\* " + item + " \*/ = \{")
+    exp = "([^\s]+) /\* " + item + " \*/ = \{"
+    hint = "/* " + item + " */"
+    return file_util.section_regex(get_xcode_path(), bounds, exp, hint)
 
 
 def get_xcode_component_guid(section: str, item: str, list: str, component: str, guid: str = None):
@@ -28,7 +30,9 @@ def get_xcode_component_guid(section: str, item: str, list: str, component: str,
     from . xcode_util import list_bounds
      
     bounds = section_bounds(section) + item_bounds(item, guid) + list_bounds(list)
-    return file_util.section_regex(get_xcode_path(), bounds, "([^\s]+) /\* " + component + " \*/")
+    exp = "([^\s]+) /\* " + component + " \*/"
+    hint = "/* " + component + " */"
+    return file_util.section_regex(get_xcode_path(), bounds, exp, hint)
     
     
 def get_xcode_field_guid(section: str, guid: str, field: str):
@@ -37,7 +41,9 @@ def get_xcode_field_guid(section: str, guid: str, field: str):
     from . xcode_util import item_bounds
      
     bounds = section_bounds(section) + item_bounds(section, guid)
-    return file_util.section_regex(get_xcode_path(), bounds, field + " = ([^\s]+) /\*.*?\*/")
+    exp = field + " = ([^\s]+) /\*.*?\*/"
+    hint = field + " = "
+    return file_util.section_regex(get_xcode_path(), bounds, exp, hint)
     
     
 def guid_check_duplicate(path: str, guid: str):

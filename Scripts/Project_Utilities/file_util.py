@@ -14,6 +14,15 @@ def do_regex(data: str, exp: str):
         return match.group(1)
 
     return ""
+
+
+def do_regex_with_hint(data: str, exp: str, hint: str):
+
+    hi = data.find(hint)
+    hi = data.find("\n", hi)
+    lo = data.rfind("\n", 0, hi)
+    
+    return do_regex(data[lo:hi], exp)
     
 
 def item_regex(path: str, exp: str):
@@ -159,10 +168,14 @@ def get_section(path: str, bounds: list):
     return ""
    
 
-def section_regex(path: str, bounds: list, exp: str):
+def section_regex(path: str, bounds: list, exp: str, hint: str = ""):
     
     data = get_section(path, bounds)
-    return do_regex(data, exp)
+    
+    if hint != "":
+        return do_regex_with_hint(data, exp, hint)
+    else:
+        return do_regex(data, exp)
         
         
 def insert(path: str, contents: str, bounds: list, next_blank: bool = False):
