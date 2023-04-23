@@ -28,8 +28,11 @@ def main():
     
     fl_solution().update(object_info, True)
     fl_pbxproj().update(object_info, True)
-    
-    #fl_solution().update_project(paths.vs_max_project(object_info), False)
+
+    rework_info =  fl_object("FrameLib_Test", "fl.test~", "Schedulers")
+
+    fl_solution().update(rework_info, False)
+    fl_pbxproj().update(rework_info, False)
     #fl_solution().update_all_projects(False)
     #fl_solution().update_all_projects(True)
     
