@@ -25,9 +25,13 @@ def update_all(add: bool):
         fl_pbxproj().update(object_info, add)
 
 
-def main():
+def rebuild():
 
-    object_info =  fl_object("FrameLib_Test", "fl.test~", "Schedulers")
+    update_all(False)
+    update_all(True)
+
+
+def new_object(object_info : fl_object):
     
     paths = fl_paths()
 
@@ -45,9 +49,12 @@ def main():
     
     fl_solution().update(object_info, True)
     fl_pbxproj().update(object_info, True)
+    
+    
+def main():
 
-    update_all(False)
-    update_all(True)
+    new_object(fl_object("FrameLib_Test", "fl.test~", "Schedulers"))
+    rebuild()
     
     
 if __name__ == "__main__":
