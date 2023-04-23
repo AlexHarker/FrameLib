@@ -13,10 +13,6 @@ def main():
     object_info =  fl_object("FrameLib_Test", "fl.test~", "Schedulers")
     
     paths = fl_paths()
-    vs_solution = fl_solution()
-    xcode_pbxproj = fl_pbxproj()
-    
-    object_info.guid = vs_solution.create_guid()
 
     os.makedirs(paths.object_dir(object_info), exist_ok = True)
     os.makedirs(paths.max_object_dir(object_info), exist_ok = True)
@@ -30,12 +26,12 @@ def main():
     code_util.insert_cpp_single_build("FrameLib_PDClass_Expand", object_info.pd_class_name, object_info, paths.pd_framelib(), "framelib_pd_setup(", "}")
     code_util.insert_object_list_include(object_info)
     
-    vs_solution.update(object_info, True)
-    xcode_pbxproj.update(object_info, True)
+    fl_solution().update(object_info, True)
+    fl_pbxproj().update(object_info, True)
     
-    #vs_solution.update_project(paths.vs_max_project(object_info), False)
-    #vs_solution.update_all_projects(False)
-    #vs_solution.update_all_projects(True)
+    #fl_solution().update_project(paths.vs_max_project(object_info), False)
+    #fl_solution().update_all_projects(False)
+    #fl_solution().update_all_projects(True)
     
     
 if __name__ == "__main__":

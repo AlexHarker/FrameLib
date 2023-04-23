@@ -22,13 +22,14 @@ class fl_object:
         from . guid_util import get_guid_regex
         from . guid_util import get_vs_guid
         from . guid_util import get_xcode_guid
+        from . guid_util import create_vs_guid
         from . guid_util import create_xcode_guid
 
         self.object_class = object_class
         self.max_class_name = class_name
         self.pd_class_name = class_name
         self.category = category
-        self.guid = ""
+        self.guid = create_vs_guid()
         
         if fl_object.initialised == False:
         

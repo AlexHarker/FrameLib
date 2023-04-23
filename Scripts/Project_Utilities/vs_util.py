@@ -4,23 +4,10 @@ from . path_util import fl_paths
 from . object_info import fl_object
 
 import os
-import uuid
 from pathlib import Path
 
     
 class fl_solution:
-
-    def create_guid(self):
-        guid = uuid.uuid4()
-        guid = str(guid).upper()
-        
-        # Ensure that the GUID is not in use already
-        
-        if file_util.item_regex(fl_paths().vs_solution(), "(" + guid + ")") != "":
-            return self.create_guid()
-        
-        return guid
-        
 
     def solution_modify(self, object_info: fl_object, template: str, bounds: list, add: bool):
     
