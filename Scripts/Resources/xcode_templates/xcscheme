@@ -1,0 +1,14 @@
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "_##XCODE_OBJ_TARGET_GUID##_"
+               BuildableName = "_##CLASSNAME##_.mxo"
+               BlueprintName = "_##CLASSNAME##_"
+               ReferencedContainer = "container:framelib.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>

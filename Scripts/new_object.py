@@ -66,7 +66,7 @@ def main():
     new_object(fl_object("FrameLib_Test", "fl.test~", "Schedulers"))
     rebuild()
     td = time.perf_counter_ns() - t1;
-    print("Time is " + str(td/1000000000.) + " seconds")
+    print("Completed in " + str(td/1000000000.) + " seconds")
     
     
 if __name__ == "__main__":

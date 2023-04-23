@@ -19,6 +19,10 @@ def list_bounds(name: str):
     return [name + " = (", "\t\t\t);"]
 
 
+def scheme_bounds():
+    return ["      <BuildActionEntries>", "      </BuildActionEntries>"]
+
+
 def project_modify(object_info: fl_object, template: str, bounds: list, add: bool):
     
     contents = file_util.templated_string(fl_paths().template("xcode_templates/" + template), object_info)
@@ -29,6 +33,12 @@ def project_modify_section(object_info: fl_object, template: str, section: str, 
     project_modify(object_info, template, section_bounds(section), add)
        
     
+def scheme_modify(object_info: fl_object, add: bool):
+    
+    contents = file_util.templated_string(fl_paths().template("xcode_templates/xcscheme"), object_info)
+    file_util.modify(fl_paths().xcode_scheme(), contents, scheme_bounds(), add)
+    
+
 class fl_pbxproj:
 
     def update(self, object_info: fl_object, add: bool):
@@ -112,3 +122,5 @@ class fl_pbxproj:
         
         bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, max_guid) + list_bounds("children")
         project_modify(object_info, "group_item_class", bounds, add)
+        
+        scheme_modify(object_info, add)

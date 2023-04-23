@@ -41,6 +41,9 @@ class fl_paths:
     def xcode_pbxproj(self):
         return self.base_dir + "framelib.xcodeproj/project.pbxproj"
         
+    def xcode_scheme(self):
+        return self.base_dir + "framelib.xcodeproj/xcshareddata/xcschemes/framelib Max (objects build).xcscheme"
+        
     def vs_solution(self):
         return self.base_dir + "framelib.sln"
     
