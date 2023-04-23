@@ -9,8 +9,12 @@ def get_xcode_path():
     return fl_paths().xcode_pbxproj()
     
 
+def get_vs_path():
+    return fl_paths().vs_solution()
+
+
 def get_vs_guid(item: str):
-    return file_util.item_regex(fl_paths().vs_solution(), "\"" + item + "\".*\{(.*)\}")
+    return file_util.item_regex(get_vs_path(), "\"" + item + "\".*\{(.*)\}")
     
     
 def get_xcode_guid(section: str, item: str):
@@ -47,20 +51,27 @@ def get_xcode_field_guid(section: str, guid: str, field: str):
     
     
 def guid_check_duplicate(path: str, guid: str):
+
+    # Ensure that the GUID is not in use already
+
     return file_util.item_regex(path, "(" + guid + ")") != ""
 
 
 def create_vs_guid():
+
     guid = str(uuid.uuid4()).upper()
         
-    # Ensure that the GUID is not in use already
-        
-    if guid_check_duplicate(fl_paths().vs_solution(), guid):
+    if guid_check_duplicate(get_vs_path(), guid):
         return create_vs_guid()
         
     return guid
     
     
 def create_xcode_guid():
-    return ''.join(str(uuid.uuid4()).upper().split('-')[1:])
     
+    guid = ''.join(str(uuid.uuid4()).upper().split('-')[1:])
+    
+    if guid_check_duplicate(get_xcode_path(), guid):
+        return create_vs_guid()
+        
+    return guid
