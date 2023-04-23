@@ -1,6 +1,8 @@
 
 from . object_info import fl_object
 
+import os
+
 class fl_paths:
 
     def __init__(self):
@@ -27,9 +29,15 @@ class fl_paths:
     def object_source(self, object_info: fl_object):
         return self.object_dir(object_info) + object_info.object_class + ".cpp"
 
+    def object_source_exists(self, object_info: fl_object):
+        return os.path.exists(self.object_source(object_info))
+        
     def object_header(self, object_info: fl_object):
         return self.object_dir(object_info) + object_info.object_class + ".h"
         
+    def object_header_exists(self, object_info: fl_object):
+        return os.path.exists(self.object_header(object_info))
+    
     def xcode_pbxproj(self):
         return self.base_dir + "framelib.xcodeproj/project.pbxproj"
         
