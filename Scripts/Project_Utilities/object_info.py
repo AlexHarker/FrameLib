@@ -10,6 +10,7 @@ class fl_object:
     xcode_framelib_guid = ""
     xcode_max_config_guid = ""
     xcode_fileref_lib_guid = ""
+    xcode_lib_sources_guid = ""
     
     initialised = False
     
@@ -19,6 +20,7 @@ class fl_object:
         from . file_util import get_xcode_guid
         from . file_util import get_guid_regex
         from . file_util import create_xcode_guid
+        from . file_util import section_regex
         from . path_util import fl_paths
 
         self.object_class = object_class
@@ -38,6 +40,8 @@ class fl_object:
             fl_object.xcode_framelib_guid = get_xcode_guid(fl_paths().xcode_pbxproj(), "framelib")
             fl_object.xcode_max_config_guid = get_xcode_guid(fl_paths().xcode_pbxproj(), "Config_FrameLib_Max.xcconfig")
             fl_object.xcode_fileref_lib_guid = get_xcode_guid(fl_paths().xcode_pbxproj(), "libframelib.a")
+            
+            fl_object.xcode_lib_sources_guid = section_regex(fl_paths().xcode_pbxproj(), ["/* framelib_objects */ = {", "};"], "([^\s].*) /\* Sources \*/")
             
             fl_object.initialised = True
 

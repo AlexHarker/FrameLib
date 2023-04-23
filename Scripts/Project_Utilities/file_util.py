@@ -5,17 +5,23 @@ import uuid
 from pathlib import Path
 from . object_info import fl_object
 
-    
-def item_regex(path: str, exp: str):
+
+def do_regex(data: str, exp: str):
 
     regex = re.compile(exp)
+    match = regex.search(data)
+        
+    if match is not None:
+        return match.group(1)
+
+    return ""
+    
+
+def item_regex(path: str, exp: str):
     
     with open(path) as f:
         data = f.read()
-        match = regex.search(data)
-        
-        if match is not None:
-            return match.group(1)
+        return do_regex(data, exp)
 
     return ""
     
@@ -153,6 +159,22 @@ def find_section(data: str, bounds: list):
     return index_lo, index_hi
     
     
+def get_section(path: str, bounds: list):
+        
+    with open(path, "r") as f:
+        data = f.read()
+        index_lo, index_hi = find_section(data, bounds)
+        return data[index_lo:index_hi]
+                
+    return ""
+   
+
+def section_regex(path: str, bounds: list, exp: str):
+    
+    data = get_section(path, bounds)
+    return do_regex(data, exp)
+        
+        
 def insert(path: str, contents: str, bounds: list, next_blank: bool = False):
     
     data = ""

@@ -5,47 +5,61 @@ from . object_info import fl_object
 
 from pathlib import Path
 
-    
-class fl_pbxproj:
 
-    def section_bounds(self, section: str):
+def section_bounds(section: str):
         return ["/* Begin " + section + " section */", "/* End " + section + " section */"]
     
     
-    def project_modify(self, object_info: fl_object, template: str, section: str, add: bool):
+def project_modify(object_info: fl_object, template: str, bounds: list, add: bool):
     
-        contents = file_util.templated_string(fl_paths().template("xcode_templates/" + template), object_info)
-        file_util.modify(fl_paths().xcode_pbxproj(), contents, self.section_bounds(section), add)
-        
-        
+    contents = file_util.templated_string(fl_paths().template("xcode_templates/" + template), object_info)
+    file_util.modify(fl_paths().xcode_pbxproj(), contents, bounds, add)
+      
+      
+def project_modify_section(object_info: fl_object, template: str, section: str, add: bool):
+    project_modify(object_info, template, section_bounds(section), add)
+       
+    
+class fl_pbxproj:
+
     def update(self, object_info: fl_object, add: bool):
 
-        self.project_modify(object_info, "file_class", "PBXBuildFile", add)
-        self.project_modify(object_info, "file_object", "PBXBuildFile", add)
-        self.project_modify(object_info, "file_lib", "PBXBuildFile", add)
-        self.project_modify(object_info, "file_object_for_lib", "PBXBuildFile", add)
+        project_modify_section(object_info, "file_class", "PBXBuildFile", add)
+        project_modify_section(object_info, "file_object", "PBXBuildFile", add)
+        project_modify_section(object_info, "file_lib", "PBXBuildFile", add)
+        project_modify_section(object_info, "file_object_for_lib", "PBXBuildFile", add)
         
-        self.project_modify(object_info, "fileref_class", "PBXFileReference", add)
-        self.project_modify(object_info, "fileref_object", "PBXFileReference", add)
-        self.project_modify(object_info, "fileref_product", "PBXFileReference", add)
+        project_modify_section(object_info, "fileref_class", "PBXFileReference", add)
+        project_modify_section(object_info, "fileref_object", "PBXFileReference", add)
+        project_modify_section(object_info, "fileref_product", "PBXFileReference", add)
 
-        self.project_modify(object_info, "proxy_lib", "PBXContainerItemProxy", add)
-        self.project_modify(object_info, "proxy_target", "PBXContainerItemProxy", add)
+        project_modify_section(object_info, "proxy_lib", "PBXContainerItemProxy", add)
+        project_modify_section(object_info, "proxy_target", "PBXContainerItemProxy", add)
 
-        self.project_modify(object_info, "phase_sources", "PBXSourcesBuildPhase", add)
-        self.project_modify(object_info, "phase_frameworks", "PBXFrameworksBuildPhase", add)
+        project_modify_section(object_info, "phase_sources", "PBXSourcesBuildPhase", add)
+        project_modify_section(object_info, "phase_frameworks", "PBXFrameworksBuildPhase", add)
 
-        self.project_modify(object_info, "target", "PBXNativeTarget", add)
+        project_modify_section(object_info, "target", "PBXNativeTarget", add)
 
-        self.project_modify(object_info, "dependency_target", "PBXTargetDependency", add)
-        self.project_modify(object_info, "dependency_package", "PBXTargetDependency", add)
+        project_modify_section(object_info, "dependency_target", "PBXTargetDependency", add)
+        project_modify_section(object_info, "dependency_package", "PBXTargetDependency", add)
 
-        self.project_modify(object_info, "build_config_develop", "XCBuildConfiguration", add)
-        self.project_modify(object_info, "build_config_deploy", "XCBuildConfiguration", add)
-        self.project_modify(object_info, "build_config_test", "XCBuildConfiguration", add)
+        project_modify_section(object_info, "build_config_develop", "XCBuildConfiguration", add)
+        project_modify_section(object_info, "build_config_deploy", "XCBuildConfiguration", add)
+        project_modify_section(object_info, "build_config_test", "XCBuildConfiguration", add)
 
-        self.project_modify(object_info, "config_list", "XCConfigurationList", add)
-
+        project_modify_section(object_info, "config_list", "XCConfigurationList", add)
+        
+        bounds = section_bounds("PBXAggregateTarget") + ["/* framelib_max_package */ = {", "};", "dependencies = (", "\t\t\t);"]
+        project_modify(object_info, "ref_dep_package", bounds, add)
+        
+        bounds = section_bounds("PBXProject") + ["targets = (", "\t\t\t);"]
+        project_modify(object_info, "ref_target", bounds, add)
+        
+        tag = object_info.xcode_lib_sources_guid + " /* Sources */ = {"
+        bounds = section_bounds("PBXSourcesBuildPhase") + [tag, "};", "files = (", "\t\t\t);"]
+        project_modify(object_info, "ref_object_for_lib", bounds, add)
+        
         
     def update_project(self, path: str, add: bool):
 
