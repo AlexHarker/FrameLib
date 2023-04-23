@@ -112,13 +112,13 @@ class fl_pbxproj:
         bounds = section_bounds("PBXGroup") + item_bounds("Objects Max") + list_bounds("children")
         max_guid = file_util.section_regex(fl_paths().xcode_pbxproj(), bounds, exp)
         
-        if fl_paths().object_source_exists(object_info):
-            bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, object_guid) + list_bounds("children")
-            project_modify(object_info, "group_item_object", bounds, add)
-        
         if fl_paths().object_header_exists(object_info):
             bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, object_guid) + list_bounds("children")
             project_modify(object_info, "group_item_header", bounds, add)
+       
+        if fl_paths().object_source_exists(object_info):
+            bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, object_guid) + list_bounds("children")
+            project_modify(object_info, "group_item_object", bounds, add)
         
         bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, max_guid) + list_bounds("children")
         project_modify(object_info, "group_item_class", bounds, add)
