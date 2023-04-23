@@ -2393,15 +2393,6 @@
       selectedDebuggerIdentifier = ""
       selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D01CCC60486CAD60068D4B7"
-            BuildableName = "fl.unpack~.mxo"
-            BlueprintName = "fl.unpack~"
-            ReferencedContainer = "container:framelib.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
       </Testables>
    </TestAction>
@@ -2420,15 +2411,6 @@
          BundleIdentifier = "com.cycling74.Max"
          FilePath = "/Applications/Max.app">
       </PathRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D01CCC60486CAD60068D4B7"
-            BuildableName = "fl.unpack~.mxo"
-            BlueprintName = "fl.unpack~"
-            ReferencedContainer = "container:framelib.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Deployment"
@@ -2436,15 +2418,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D01CCC60486CAD60068D4B7"
-            BuildableName = "fl.unpack~.mxo"
-            BlueprintName = "fl.unpack~"
-            ReferencedContainer = "container:framelib.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Development">
