@@ -14,7 +14,11 @@ def get_vs_guid(item: str):
     
     
 def get_xcode_guid(section: str, item: str):
-    return file_util.item_regex(get_xcode_path(), "([^\s]+) /\* " + item + " \*/ = \{")
+
+    from . xcode_util import section_bounds
+     
+    bounds = section_bounds(section)
+    return file_util.section_regex(get_xcode_path(), bounds, "([^\s]+) /\* " + item + " \*/ = \{")
 
 
 def get_xcode_component_guid(section: str, item: str, list: str, component: str, guid: str = None):
