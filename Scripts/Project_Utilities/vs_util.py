@@ -22,16 +22,16 @@ class fl_solution:
         return guid
         
 
-    def solution_modify(self, object_info: fl_object, template: str, start: str, end: str, insert: bool):
+    def solution_modify(self, object_info: fl_object, template: str, bounds: list, add: bool):
     
         contents = file_util.templated_string(fl_paths().template("vs_templates/" + template), object_info)
-        file_util.insert_remove(fl_paths().vs_solution(), contents, start, end, insert)
+        file_util.modify(fl_paths().vs_solution(), contents, bounds, add)
         
         
-    def object_project_modify(self, object_info: fl_object, template: str, start: str, end: str, insert: bool):
+    def object_project_modify(self, object_info: fl_object, template: str, bounds: list, add: bool):
     
         contents = file_util.templated_string(fl_paths().template("vs_templates/" + template), object_info)
-        file_util.insert_remove(fl_paths().vs_objects_project(), contents, start, end, insert)
+        file_util.modify(fl_paths().vs_objects_project(), contents, bounds, add)
 
         
     def update(self, object_info: fl_object, add: bool):
@@ -39,15 +39,15 @@ class fl_solution:
         if object_info.object_class != "":
         
             if os.path.exists(fl_paths().object_header(object_info)):
-                self.object_project_modify(object_info, "header", "<ClInclude Include", "  </ItemGroup>", add)
+                self.object_project_modify(object_info, "header", ["<ClInclude Include", "  </ItemGroup>"], add)
         
             if os.path.exists(fl_paths().object_source(object_info)):
-                self.object_project_modify(object_info, "source", "<ClCompile Include", "  </ItemGroup>", add)
+                self.object_project_modify(object_info, "source", ["<ClCompile Include", "  </ItemGroup>"], add)
         
-        self.solution_modify(object_info, "project", "MinimumVisualStudioVersion", "Global", add)
-        self.solution_modify(object_info, "configurations", "GlobalSection(ProjectConfigurationPlatforms)", "\tEndGlobalSection", add)
-        self.solution_modify(object_info, "nested", "GlobalSection(NestedProjects)", "\tEndGlobalSection", add)
-        self.solution_modify(object_info, "dependency", "\"framelib_objects_max\"", "\tEndProjectSection", add)
+        self.solution_modify(object_info, "project", ["MinimumVisualStudioVersion", "Global"], add)
+        self.solution_modify(object_info, "configurations", ["GlobalSection(ProjectConfigurationPlatforms)", "\tEndGlobalSection"], add)
+        self.solution_modify(object_info, "nested", ["GlobalSection(NestedProjects)", "\tEndGlobalSection"], add)
+        self.solution_modify(object_info, "dependency", ["\"framelib_objects_max\"", "\tEndProjectSection"], add)
         
         
     def update_project(self, path: str, add: bool):

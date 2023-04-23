@@ -3,19 +3,19 @@ from . import file_util
 from . path_util import fl_paths
 from . object_info import fl_object
 
-import os
-import uuid
 from pathlib import Path
 
     
 class fl_pbxproj:
 
-    def project_modify(self, object_info: fl_object, template: str, section: str, insert: bool):
+    def section_bounds(self, section: str):
+        return ["/* Begin " + section + " section */", "/* End " + section + " section */"]
     
-        start = "/* Begin " + section + " section */"
-        end = "/* End " + section + " section */"
+    
+    def project_modify(self, object_info: fl_object, template: str, section: str, add: bool):
+    
         contents = file_util.templated_string(fl_paths().template("xcode_templates/" + template), object_info)
-        file_util.insert_remove(fl_paths().xcode_pbxproj(), contents, start, end, insert)
+        file_util.modify(fl_paths().xcode_pbxproj(), contents, self.section_bounds(section), add)
         
         
     def update(self, object_info: fl_object, add: bool):

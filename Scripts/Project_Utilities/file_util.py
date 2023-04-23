@@ -141,21 +141,25 @@ def find_next_blankline(data: str, index: int):
         index = next
             
             
-def find_section(data: str, start: str, end: str):
+def find_section(data: str, bounds: list):
 
-    index_start = data.find(start)
-    index_end = data.find(end, index_start + len(start))
+    index_lo = 0
+    index_hi = len(data)
+    
+    for idx in range(int(len(bounds) / 2)):
+        index_lo = data.find(bounds[idx * 2 + 0], index_lo, index_hi)
+        index_hi = data.find(bounds[idx * 2 + 1], index_lo + len(bounds[idx * 2 + 0]), index_hi)
 
-    return index_start, index_end
+    return index_lo, index_hi
     
     
-def insert(path: str, contents: str, start: str, end: str, next_blank: bool = False):
+def insert(path: str, contents: str, bounds: list, next_blank: bool = False):
     
     data = ""
     
     with open(path, "r") as f:
         data = f.read()
-        index_start, index = find_section(data, start, end)
+        index_lo, index = find_section(data, bounds)
                 
         # Look for next whitespace line (skipping the first which will be immediate)
         
@@ -166,14 +170,14 @@ def insert(path: str, contents: str, start: str, end: str, next_blank: bool = Fa
         f.write(data[:index] + contents + data[index:])
 
 
-def remove(path: str, contents: str, start: str, end: str):
+def remove(path: str, contents: str, bounds: list):
     
     data = ""
     
     with open(path, "r") as f:
         data = f.read()
-        index_start, index_end = find_section(data, start, end)
-        index = data.find(contents, index_start, index_end)
+        index_lo, index_hi = find_section(data, bounds)
+        index = data.find(contents, index_lo, index_hi)
         
     if index < 0:
         return
@@ -182,8 +186,8 @@ def remove(path: str, contents: str, start: str, end: str):
         f.write(data[:index] + data[index + len(contents):])
 
 
-def insert_remove(path:str, contents: str, start: str, end: str, add: bool):
+def modify(path:str, contents: str, bounds: list, add: bool):
     if add:
-        insert(path, contents, start, end)
+        insert(path, contents, bounds)
     else:
-        remove(path, contents, start, end)
+        remove(path, contents, bounds)
