@@ -13,6 +13,6 @@
 			name = "_##CLASSNAME##_";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = _##XCODE_OBJ_FILE_MXO_GUID##_ /* _##CLASSNAME##_.mxo */;
+			productReference = _##XCODE_OBJ_FILEREF_MXO_GUID##_ /* _##CLASSNAME##_.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};

@@ -7,9 +7,17 @@ from pathlib import Path
 
 
 def section_bounds(section: str):
-        return ["/* Begin " + section + " section */", "/* End " + section + " section */"]
-    
-    
+    return ["/* Begin " + section + " section */", "/* End " + section + " section */"]
+
+
+def item_bounds(name: str):
+    return ["/* " + name + " */ = {", "};"]
+
+
+def list_bounds(name: str):
+    return [name + " = (", "\t\t\t);"]
+
+
 def project_modify(object_info: fl_object, template: str, bounds: list, add: bool):
     
     contents = file_util.templated_string(fl_paths().template("xcode_templates/" + template), object_info)
@@ -26,12 +34,12 @@ class fl_pbxproj:
 
         project_modify_section(object_info, "file_class", "PBXBuildFile", add)
         project_modify_section(object_info, "file_object", "PBXBuildFile", add)
-        project_modify_section(object_info, "file_lib", "PBXBuildFile", add)
         project_modify_section(object_info, "file_object_for_lib", "PBXBuildFile", add)
+        project_modify_section(object_info, "file_lib", "PBXBuildFile", add)
         
+        project_modify_section(object_info, "fileref_product", "PBXFileReference", add)
         project_modify_section(object_info, "fileref_class", "PBXFileReference", add)
         project_modify_section(object_info, "fileref_object", "PBXFileReference", add)
-        project_modify_section(object_info, "fileref_product", "PBXFileReference", add)
 
         project_modify_section(object_info, "proxy_lib", "PBXContainerItemProxy", add)
         project_modify_section(object_info, "proxy_target", "PBXContainerItemProxy", add)
@@ -50,15 +58,26 @@ class fl_pbxproj:
 
         project_modify_section(object_info, "config_list", "XCConfigurationList", add)
         
-        bounds = section_bounds("PBXAggregateTarget") + ["/* framelib_max_package */ = {", "};", "dependencies = (", "\t\t\t);"]
+        bounds = section_bounds("PBXAggregateTarget") + item_bounds("framelib_max_package") + list_bounds("dependencies")
         project_modify(object_info, "ref_dep_package", bounds, add)
         
-        bounds = section_bounds("PBXProject") + ["targets = (", "\t\t\t);"]
+        bounds = section_bounds("PBXProject") + list_bounds("targets")
         project_modify(object_info, "ref_target", bounds, add)
         
         tag = object_info.xcode_lib_sources_guid + " /* Sources */ = {"
-        bounds = section_bounds("PBXSourcesBuildPhase") + [tag, "};", "files = (", "\t\t\t);"]
+        bounds = section_bounds("PBXSourcesBuildPhase") + [tag, "};"] + list_bounds("files")
         project_modify(object_info, "ref_object_for_lib", bounds, add)
+        
+        bounds = section_bounds("PBXGroup") + item_bounds("Products") + list_bounds("children")
+        project_modify(object_info, "group_item_product", bounds, add)
+        
+        # FIX - move to the category folders (and add a header also)
+        
+        bounds = section_bounds("PBXGroup") + item_bounds("Objects FrameLib") + list_bounds("children")
+        project_modify(object_info, "group_item_object", bounds, add)
+        
+        bounds = section_bounds("PBXGroup") + item_bounds("Objects Max") + list_bounds("children")
+        project_modify(object_info, "group_item_class", bounds, add)
         
         
     def update_project(self, path: str, add: bool):
