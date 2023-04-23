@@ -4,7 +4,6 @@ from . path_util import fl_paths
 from . object_info import fl_object
 
 import os
-from pathlib import Path
 
     
 class fl_solution:
@@ -37,36 +36,5 @@ class fl_solution:
         self.solution_modify(object_info, "dependency", ["\"framelib_objects_max\"", "\tEndProjectSection"], add)
         
         
-    def update_project(self, path: str, add: bool):
-
-        class_name = path.rsplit("/", 1)[1].replace(".vcxproj", "")
-        category = file_util.item_regex(path, "FrameLib_Max_Objects\\\\(.*)\\\\fl")
-        guid = file_util.item_regex(path, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
-
-        object_info = fl_object("", class_name, category)
-        object_info.guid = guid
-
-        paths = fl_paths()
-        max_object_path = paths.max_source(object_info)
-        object_info.object_class = file_util.item_regex(max_object_path, "FrameLib_MaxClass_Expand<(.*)>").split(",")[0]
-
-        if object_info.object_class == "":
-            object_info.object_class = file_util.item_regex(max_object_path, "FrameLib_MaxClass<(.*)>")
-
-        if object_info.object_class == "":
-            object_info.object_class = file_util.item_regex(max_object_path, "FrameLib_MaxClass_ExprParsed<(.*)>")
-           
-        self.update(object_info, add)
-        
-        file_util.create(paths.vs_max_project(object_info), paths.template("fl.class_name~.vcxproj"), object_info)
-
-
-    def update_all_projects(self, add: bool):
-
-        projects = Path(fl_paths().vs_max_projects()).glob('fl.*.vcxproj')
-        project_list = list(projects)
-        project_list.sort()
-        
-        for project in project_list:
-            print(project)
-            self.update_project(project.as_posix(), add)
+    def update_project(self, object_info: fl_object, add: bool):
+        file_util.create(fl_paths().vs_max_project(object_info), fl_paths().template("fl.class_name~.vcxproj"), object_info)

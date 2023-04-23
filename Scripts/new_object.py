@@ -7,7 +7,24 @@ from Project_Utilities.xcode_util import fl_pbxproj
 from Project_Utilities.path_util import fl_paths
 
 import os
+from pathlib import Path
     
+
+def update_all(add: bool):
+
+    projects = Path(fl_paths().vs_max_projects()).glob('fl.*.vcxproj')
+    project_list = list(projects)
+    project_list.sort()
+        
+    for project in project_list:
+        print(project)
+        name = project.as_posix().rsplit("/", 1)[1].replace(".vcxproj", "")
+        object_info = fl_object.create_from_name(name)
+        fl_solution().update(object_info, add)
+        fl_solution().update_project(object_info, add)
+        fl_pbxproj().update(object_info, add)
+
+
 def main():
 
     object_info =  fl_object("FrameLib_Test", "fl.test~", "Schedulers")
@@ -29,12 +46,8 @@ def main():
     fl_solution().update(object_info, True)
     fl_pbxproj().update(object_info, True)
 
-    rework_info =  fl_object("FrameLib_Test", "fl.test~", "Schedulers")
-
-    fl_solution().update(rework_info, False)
-    fl_pbxproj().update(rework_info, False)
-    #fl_solution().update_all_projects(False)
-    #fl_solution().update_all_projects(True)
+    update_all(False)
+    update_all(True)
     
     
 if __name__ == "__main__":
