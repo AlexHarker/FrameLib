@@ -10,7 +10,7 @@ import os
     
 def main():
 
-    object_info =  fl_object("FrameLib_Object", "fl.testclass~", "Test_Category")
+    object_info =  fl_object("FrameLib_Test", "fl.test~", "Schedulers")
     
     paths = fl_paths()
     vs_solution = fl_solution()

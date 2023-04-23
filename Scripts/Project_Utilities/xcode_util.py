@@ -10,9 +10,12 @@ def section_bounds(section: str):
     return ["/* Begin " + section + " section */", "/* End " + section + " section */"]
 
 
-def item_bounds(name: str):
-    return ["/* " + name + " */ = {", "};"]
-
+def item_bounds(name: str, guid: str = None):
+    if guid is None:
+        return ["/* " + name + " */ = {", "};"]
+    else:
+        return [guid + " /* " + name + " */ = {", "};"]
+        
 
 def list_bounds(name: str):
     return [name + " = (", "\t\t\t);"]
@@ -65,22 +68,29 @@ class fl_pbxproj:
         bounds = section_bounds("PBXProject") + list_bounds("targets")
         project_modify(object_info, "ref_target", bounds, add)
         
-        tag = object_info.xcode_lib_sources_guid + " /* Sources */ = {"
-        bounds = section_bounds("PBXSourcesBuildPhase") + [tag, "};"] + list_bounds("files")
+        bounds = section_bounds("PBXSourcesBuildPhase") + item_bounds("Sources", object_info.xcode_lib_sources_guid) + list_bounds("files")
         project_modify(object_info, "ref_object_for_lib", bounds, add)
         
         bounds = section_bounds("PBXGroup") + item_bounds("Products") + list_bounds("children")
         project_modify(object_info, "group_item_product", bounds, add)
         
-        # FIX - move to the category folders
+        # FIX - we assume that the categories exist - so we'll need to make them if not
+        
+        exp = "([^\s].*) /\* " + object_info.category + " \*/"
         
         bounds = section_bounds("PBXGroup") + item_bounds("Objects FrameLib") + list_bounds("children")
-        project_modify(object_info, "group_item_object", bounds, add)
-        
-        bounds = section_bounds("PBXGroup") + item_bounds("Objects FrameLib") + list_bounds("children")
-        project_modify(object_info, "group_item_header", bounds, add)
+        object_guid = file_util.section_regex(fl_paths().xcode_pbxproj(), bounds, exp)
         
         bounds = section_bounds("PBXGroup") + item_bounds("Objects Max") + list_bounds("children")
+        max_guid = file_util.section_regex(fl_paths().xcode_pbxproj(), bounds, exp)
+        
+        bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, object_guid) + list_bounds("children")
+        project_modify(object_info, "group_item_object", bounds, add)
+        
+        bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, object_guid) + list_bounds("children")
+        project_modify(object_info, "group_item_header", bounds, add)
+        
+        bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, max_guid) + list_bounds("children")
         project_modify(object_info, "group_item_class", bounds, add)
         
         

@@ -1,13 +1,12 @@
 
-import re
-import uuid
-
 from pathlib import Path
 from . object_info import fl_object
 
 
 def do_regex(data: str, exp: str):
 
+    import re
+    
     regex = re.compile(exp)
     match = regex.search(data)
         
@@ -24,25 +23,11 @@ def item_regex(path: str, exp: str):
         return do_regex(data, exp)
 
     return ""
-    
-    
-def get_guid_regex(path: str, exp: str):
-    return item_regex(path, exp)
-
-
-def get_vs_guid(path: str, item: str):
-    return get_guid_regex(path, "\"" + item + "\".*\{(.*)\}")
-
-
-def get_xcode_guid(path: str, item: str):
-    return get_guid_regex(path, "([^\s].*) /\* " + item + " \*/ =")
-
-
-def create_xcode_guid():
-    return ''.join(str(uuid.uuid4()).upper().split('-')[1:])
-    
+ 
     
 def lines_regex(path: str, exp: str, start: str, end: str, inner_start: str, inner_end: str):
+    
+    import re
     
     regex = re.compile(exp)
     list = []
