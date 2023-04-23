@@ -18,13 +18,18 @@ def update_all(add: bool):
         
     for project in project_list:
         name = project.as_posix().rsplit("/", 1)[1].replace(".vcxproj", "")
+        
         if add:
             print("add " + name)
         else:
             print("remove " + name)
+        
         object_info = fl_object.create_from_name(name)
+
+        if add:
+            fl_solution().update_project(object_info)
+        
         fl_solution().update(object_info, add)
-        fl_solution().update_project(object_info, add)
         fl_pbxproj().update(object_info, add)
 
 
@@ -44,7 +49,7 @@ def new_object(object_info : fl_object):
     file_util.create(paths.max_source(object_info), paths.template("fl.class_name~.cpp"), object_info)
     file_util.create(paths.object_header(object_info), paths.template("FrameLib_Class.h"), object_info)
     file_util.create(paths.object_source(object_info), paths.template("FrameLib_Class.cpp"), object_info)
-    file_util.create(paths.vs_max_project(object_info), paths.template("fl.class_name~.vcxproj"), object_info)
+    fl_solution().update_project(object_info)
     
     code_util.insert_cpp_single_build("FrameLib_MaxClass_Expand", object_info.max_class_name, object_info, paths.max_framelib(), "main(", "}")
     code_util.insert_cpp_single_build("FrameLib_PDClass_Expand", object_info.pd_class_name, object_info, paths.pd_framelib(), "framelib_pd_setup(", "}")

@@ -34,5 +34,6 @@ class fl_solution:
         self.solution_modify(object_info, "dependency", ["\"framelib_objects_max\"", "\tEndProjectSection"], add)
         
         
-    def update_project(self, object_info: fl_object, add: bool):
+    def update_project(self, object_info: fl_object):
+    
         file_util.create(fl_paths().vs_max_project(object_info), fl_paths().template("fl.class_name~.vcxproj"), object_info)
