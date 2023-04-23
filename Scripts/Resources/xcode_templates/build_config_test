@@ -3,5 +3,5 @@
 			baseConfigurationReference = _##XCODE_MAX_CONFIG_GUID##_ /* Config_FrameLib_Max.xcconfig */;
 			buildSettings = {
 			};
-			name = Public Testing;
+			name = "Public Testing";
 		};

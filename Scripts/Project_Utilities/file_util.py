@@ -105,6 +105,7 @@ def templated_string(template_path: str, object_info: fl_object):
     template = template.replace("_##XCODE_OBJ_FILE_CLASS_GUID##_", object_info.xcode_obj_file_class_guid)
     template = template.replace("_##XCODE_OBJ_FILEREF_CLASS_GUID##_", object_info.xcode_obj_fileref_class_guid)
     template = template.replace("_##XCODE_OBJ_FILE_OBJECT_GUID##_", object_info.xcode_obj_file_object_guid)
+    template = template.replace("_##XCODE_OBJ_FILEREF_HEADER_GUID##_", object_info.xcode_obj_fileref_header_guid)
     template = template.replace("_##XCODE_OBJ_FILEREF_OBJECT_GUID##_", object_info.xcode_obj_fileref_object_guid)
     template = template.replace("_##XCODE_OBJ_FILE_LIB_GUID##_", object_info.xcode_obj_file_lib_guid)
     template = template.replace("_##XCODE_OBJ_FILEREF_MXO_GUID##_", object_info.xcode_obj_fileref_mxo_guid)

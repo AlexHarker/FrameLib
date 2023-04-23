@@ -40,6 +40,7 @@ class fl_pbxproj:
         project_modify_section(object_info, "fileref_product", "PBXFileReference", add)
         project_modify_section(object_info, "fileref_class", "PBXFileReference", add)
         project_modify_section(object_info, "fileref_object", "PBXFileReference", add)
+        project_modify_section(object_info, "fileref_header", "PBXFileReference", add)
 
         project_modify_section(object_info, "proxy_lib", "PBXContainerItemProxy", add)
         project_modify_section(object_info, "proxy_target", "PBXContainerItemProxy", add)
@@ -71,10 +72,13 @@ class fl_pbxproj:
         bounds = section_bounds("PBXGroup") + item_bounds("Products") + list_bounds("children")
         project_modify(object_info, "group_item_product", bounds, add)
         
-        # FIX - move to the category folders (and add a header also)
+        # FIX - move to the category folders
         
         bounds = section_bounds("PBXGroup") + item_bounds("Objects FrameLib") + list_bounds("children")
         project_modify(object_info, "group_item_object", bounds, add)
+        
+        bounds = section_bounds("PBXGroup") + item_bounds("Objects FrameLib") + list_bounds("children")
+        project_modify(object_info, "group_item_header", bounds, add)
         
         bounds = section_bounds("PBXGroup") + item_bounds("Objects Max") + list_bounds("children")
         project_modify(object_info, "group_item_class", bounds, add)

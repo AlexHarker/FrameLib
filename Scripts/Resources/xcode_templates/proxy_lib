@@ -2,6 +2,6 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = _##XCODE_MAIN_GUID##_ /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = _##XCODE_OBJ_LIB_DEP_GUID##_;
+			remoteGlobalIDString = _##XCODE_FRAMELIB_GUID##_;
 			remoteInfo = framelib;
 		};
