@@ -1,6 +1,8 @@
 
 class fl_object:
-
+    
+    object_cache = {}
+    
     vs_fl_guid = ""
     vs_fl_objects_guid = ""
     vs_fl_max_objects_guid = ""
@@ -27,6 +29,7 @@ class fl_object:
         from . guid_util import create_xcode_guid
         from . xcode_util import section_bounds
 
+        import copy
         import os
         
         self.object_class = object_class
@@ -36,20 +39,7 @@ class fl_object:
         
         project_path = fl_paths().vs_max_project(self)
         project_exists = os.path.exists(project_path)
-        
-        if project_exists:
-        
-            self.category = item_regex(project_path, "FrameLib_Max_Objects\\\\(.*)\\\\fl")
-
-            max_object_path = fl_paths().max_source(self)
-            self.object_class = item_regex(max_object_path, "FrameLib_MaxClass_Expand<(.*)>").split(",")[0]
-
-            if self.object_class == "":
-                self.object_class = item_regex(max_object_path, "FrameLib_MaxClass<(.*)>")
-
-            if self.object_class == "":
-                self.object_class = item_regex(max_object_path, "FrameLib_MaxClass_ExprParsed<(.*)>")
-        
+                
         if fl_object.initialised == False:
                     
             fl_object.vs_fl_guid = get_vs_guid("framelib")
@@ -67,9 +57,25 @@ class fl_object:
             
             fl_object.initialised = True
 
-        if project_exists:
+        if class_name in fl_object.object_cache:
+        
+            self.__dict__ = copy.deepcopy(fl_object.object_cache[class_name].__dict__)
+            return
+            
+        elif project_exists:
         
             import re
+
+            self.category = item_regex(project_path, "FrameLib_Max_Objects\\\\(.*)\\\\fl")
+
+            max_object_path = fl_paths().max_source(self)
+            self.object_class = item_regex(max_object_path, "FrameLib_MaxClass_Expand<(.*)>").split(",")[0]
+
+            if self.object_class == "":
+                self.object_class = item_regex(max_object_path, "FrameLib_MaxClass<(.*)>")
+
+            if self.object_class == "":
+                self.object_class = item_regex(max_object_path, "FrameLib_MaxClass_ExprParsed<(.*)>")
 
             self.guid = item_regex(project_path, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
 
@@ -147,6 +153,8 @@ class fl_object:
             self.xcode_obj_config_dvmt_guid = create_xcode_guid()
             self.xcode_obj_config_dplt_guid = create_xcode_guid()
             self.xcode_obj_config_test_guid = create_xcode_guid()
+        
+        fl_object.object_cache[class_name] = self
         
         
     @staticmethod
