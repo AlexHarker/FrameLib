@@ -34,19 +34,31 @@ class fl_pbxproj:
     def update(self, object_info: fl_object, add: bool):
 
         project_modify_section(object_info, "file_class", "PBXBuildFile", add)
-        project_modify_section(object_info, "file_object", "PBXBuildFile", add)
-        project_modify_section(object_info, "file_object_for_lib", "PBXBuildFile", add)
+        
+        if fl_paths().object_source_exists(object_info):
+            project_modify_section(object_info, "file_object", "PBXBuildFile", add)
+            project_modify_section(object_info, "file_object_for_lib", "PBXBuildFile", add)
+        
         project_modify_section(object_info, "file_lib", "PBXBuildFile", add)
         
         project_modify_section(object_info, "fileref_product", "PBXFileReference", add)
         project_modify_section(object_info, "fileref_class", "PBXFileReference", add)
-        project_modify_section(object_info, "fileref_object", "PBXFileReference", add)
-        project_modify_section(object_info, "fileref_header", "PBXFileReference", add)
-
+        
+        if fl_paths().object_source_exists(object_info):
+            project_modify_section(object_info, "fileref_object", "PBXFileReference", add)
+    
+        if fl_paths().object_header_exists(object_info):
+            project_modify_section(object_info, "fileref_header", "PBXFileReference", add)
+        
         project_modify_section(object_info, "proxy_lib", "PBXContainerItemProxy", add)
         project_modify_section(object_info, "proxy_target", "PBXContainerItemProxy", add)
 
-        project_modify_section(object_info, "phase_sources", "PBXSourcesBuildPhase", add)
+        if fl_paths().object_source_exists(object_info):
+            sources_phase = "phase_sources"
+        else:
+            sources_phase = "phase_sources_single"
+            
+        project_modify_section(object_info, sources_phase, "PBXSourcesBuildPhase", add)
         project_modify_section(object_info, "phase_frameworks", "PBXFrameworksBuildPhase", add)
 
         project_modify_section(object_info, "target", "PBXNativeTarget", add)
@@ -66,8 +78,9 @@ class fl_pbxproj:
         bounds = section_bounds("PBXProject") + list_bounds("targets")
         project_modify(object_info, "ref_target", bounds, add)
         
-        bounds = section_bounds("PBXSourcesBuildPhase") + item_bounds("Sources", object_info.xcode_lib_sources_guid) + list_bounds("files")
-        project_modify(object_info, "ref_object_for_lib", bounds, add)
+        if fl_paths().object_source_exists(object_info):
+            bounds = section_bounds("PBXSourcesBuildPhase") + item_bounds("Sources", object_info.xcode_lib_sources_guid) + list_bounds("files")
+            project_modify(object_info, "ref_object_for_lib", bounds, add)
         
         bounds = section_bounds("PBXGroup") + item_bounds("Products") + list_bounds("children")
         project_modify(object_info, "group_item_product", bounds, add)
@@ -82,11 +95,13 @@ class fl_pbxproj:
         bounds = section_bounds("PBXGroup") + item_bounds("Objects Max") + list_bounds("children")
         max_guid = file_util.section_regex(fl_paths().xcode_pbxproj(), bounds, exp)
         
-        bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, object_guid) + list_bounds("children")
-        project_modify(object_info, "group_item_object", bounds, add)
+        if fl_paths().object_source_exists(object_info):
+            bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, object_guid) + list_bounds("children")
+            project_modify(object_info, "group_item_object", bounds, add)
         
-        bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, object_guid) + list_bounds("children")
-        project_modify(object_info, "group_item_header", bounds, add)
+        if fl_paths().object_header_exists(object_info):
+            bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, object_guid) + list_bounds("children")
+            project_modify(object_info, "group_item_header", bounds, add)
         
         bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, max_guid) + list_bounds("children")
         project_modify(object_info, "group_item_class", bounds, add)

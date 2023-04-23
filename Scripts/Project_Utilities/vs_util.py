@@ -3,8 +3,6 @@ from . import file_util
 from . path_util import fl_paths
 from . object_info import fl_object
 
-import os
-
     
 class fl_solution:
 
@@ -24,10 +22,10 @@ class fl_solution:
 
         if object_info.object_class != "":
         
-            if os.path.exists(fl_paths().object_header(object_info)):
+            if fl_paths().object_header_exists(object_info):
                 self.object_project_modify(object_info, "header", ["<ClInclude Include", "  </ItemGroup>"], add)
         
-            if os.path.exists(fl_paths().object_source(object_info)):
+            if fl_paths().object_source_exists(object_info):
                 self.object_project_modify(object_info, "source", ["<ClCompile Include", "  </ItemGroup>"], add)
         
         self.solution_modify(object_info, "project", ["MinimumVisualStudioVersion", "Global"], add)
