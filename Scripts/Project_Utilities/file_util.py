@@ -141,15 +141,22 @@ def find_next_blankline(data: str, index: int):
         index = next
             
             
+def find_section(data: str, start: str, end: str):
+
+    index_start = data.find(start)
+    index_end = data.find(end, index_start + len(start))
+
+    return index_start, index_end
+    
+    
 def insert(path: str, contents: str, start: str, end: str, next_blank: bool = False):
     
     data = ""
     
     with open(path, "r") as f:
         data = f.read()
-        index = data.find(start) + len(start)
-        index = data.find(end, index)
-        
+        index_start, index = find_section(data, start, end)
+                
         # Look for next whitespace line (skipping the first which will be immediate)
         
         if next_blank:
@@ -165,8 +172,7 @@ def remove(path: str, contents: str, start: str, end: str):
     
     with open(path, "r") as f:
         data = f.read()
-        index_start = data.find(start)
-        index_end = data.find(end, index_start + len(start))
+        index_start, index_end = find_section(data, start, end)
         index = data.find(contents, index_start, index_end)
         
     if index < 0:
