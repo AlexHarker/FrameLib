@@ -86,7 +86,8 @@ def templated_string(template_path: str, object_info: fl_object):
     template = template.replace("_##XCODE_MAX_CONFIG_GUID##_", object_info.xcode_max_config_guid)
     template = template.replace("_##XCODE_FILEREF_LIB_GUID##_", object_info.xcode_fileref_lib_guid)
     template = template.replace("_##XCODE_FILEREF_FFT_GUID##_", object_info.xcode_fileref_fft_guid)
-
+    template = template.replace("_##XCODE_FILEREF_IBUFFER_GUID##_", object_info.xcode_fileref_ibuffer_guid)
+    
     template = template.replace("_##XCODE_OBJ_TARGET_GUID##_", object_info.xcode_obj_target_guid)
     template = template.replace("_##XCODE_OBJ_PACKAGE_DEP_GUID##_", object_info.xcode_obj_package_dep_guid)
     template = template.replace("_##XCODE_OBJ_LIB_DEP_GUID##_", object_info.xcode_obj_lib_dep_guid)
@@ -102,6 +103,7 @@ def templated_string(template_path: str, object_info: fl_object):
     template = template.replace("_##XCODE_OBJ_FILE_LIB_GUID##_", object_info.xcode_obj_file_lib_guid)
     template = template.replace("_##XCODE_OBJ_FILE_OBJECT_FOR_LIB_GUID##_", object_info.xcode_obj_file_object_for_lib_guid)
     template = template.replace("_##XCODE_OBJ_FILE_FFT_GUID##_", object_info.xcode_obj_file_fft_guid)
+    template = template.replace("_##XCODE_OBJ_FILE_IBUFFER_GUID##_", object_info.xcode_obj_file_ibuffer_guid)
     
     template = template.replace("_##XCODE_OBJ_FILEREF_CLASS_GUID##_", object_info.xcode_obj_fileref_class_guid)
     template = template.replace("_##XCODE_OBJ_FILEREF_HEADER_GUID##_", object_info.xcode_obj_fileref_header_guid)
@@ -116,19 +118,21 @@ def templated_string(template_path: str, object_info: fl_object):
     return template
     
 
+def newline_setting(output_path: str):
+    
+    # Use window line endings for vcxproj files
+        
+    if Path(output_path).suffix == ".vcxproj":
+        return '\r\n'
+        
+    return None
+    
+    
 def create(output_path: str, template_path: str, object_info: fl_object):
 
     contents = templated_string(template_path, object_info)
     
-    # Use window line endings for vcxproj files
-    
-    posix_path = Path(output_path)
-    nl = None;
-    
-    if posix_path.suffix == ".vcxproj":
-        nl = '\r\n'
-        
-    f = open(output_path, "w", newline=nl)
+    f = open(output_path, "w", newline = newline_setting(output_path))
     f.write(contents)
     f.close()
 
@@ -191,7 +195,7 @@ def insert(path: str, contents: str, bounds: list, next_blank: bool = False):
         if next_blank:
             index = find_next_blankline(data, index)
             
-    with open(path, "w") as f:
+    with open(path, "w", newline = newline_setting(path)) as f:
         f.write(data[:index] + contents + data[index:])
 
 
@@ -209,7 +213,7 @@ def remove(path: str, contents: str, bounds: list):
         print(contents)
         return
         
-    with open(path, "w") as f:
+    with open(path, "w", newline = newline_setting(path)) as f:
         f.write(data[:index] + data[index + len(contents):])
 
 

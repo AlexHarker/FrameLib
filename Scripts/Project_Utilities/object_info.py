@@ -16,7 +16,7 @@ class fl_object:
     
     initialised = False
     
-    def __init__(self, object_class: str, class_name: str, category: str, add_fft: bool = False):
+    def __init__(self, object_class: str, class_name: str, category: str, source_type: str = ""):
         
         from . path_util import fl_paths
         from . file_util import item_regex
@@ -52,6 +52,7 @@ class fl_object:
             fl_object.xcode_max_config_guid = get_xcode_guid("PBXFileReference", "Config_FrameLib_Max.xcconfig")
             fl_object.xcode_fileref_lib_guid = get_xcode_guid("PBXFileReference", "libframelib.a")
             fl_object.xcode_fileref_fft_guid = get_xcode_guid("PBXFileReference", "HISSTools_FFT.cpp")
+            fl_object.xcode_fileref_ibuffer_guid = get_xcode_guid("PBXFileReference", "ibuffer_access.cpp")
     
             fl_object.xcode_lib_sources_guid = get_xcode_component_guid("PBXNativeTarget", "framelib_objects", "buildPhases", "Sources")
             
@@ -96,6 +97,7 @@ class fl_object:
             class_str = self.max_class_name + ".cpp in Sources"
             object_str = self.object_class + ".cpp in Sources"
             fft_str = "HISSTools_FFT.cpp in Sources"
+            ibuffer_str = "ibuffer_access.cpp in Sources"
             lib_str = "libframelib.a in Frameworks"
             
             sources_guid = self.xcode_obj_sources_guid
@@ -107,6 +109,7 @@ class fl_object:
             self.xcode_obj_file_lib_guid = get_xcode_component_guid("PBXFrameworksBuildPhase", "Frameworks", "files", lib_str, frameworks_guid)
             self.xcode_obj_file_object_for_lib_guid = get_xcode_component_guid("PBXSourcesBuildPhase", "Sources", "files", object_str, lib_guid)
             self.xcode_obj_file_fft_guid = get_xcode_component_guid("PBXSourcesBuildPhase", "Sources", "files", fft_str, sources_guid)
+            self.xcode_obj_file_ibuffer_guid = get_xcode_component_guid("PBXSourcesBuildPhase", "Sources", "files", ibuffer_str, sources_guid)
 
             self.xcode_obj_fileref_class_guid = get_xcode_guid("PBXFileReference", self.max_class_name + ".cpp")
             self.xcode_obj_fileref_object_guid = get_xcode_guid("PBXFileReference", self.object_class + ".cpp")
@@ -139,10 +142,15 @@ class fl_object:
             self.xcode_obj_file_lib_guid = create_xcode_guid()
             self.xcode_obj_file_object_for_lib_guid = create_xcode_guid()
             
-            if add_fft:
+            if source_type == "fft":
                 self.xcode_obj_file_fft_guid = create_xcode_guid()
+                self.xcode_obj_file_ibuffer_guid = ""
+            elif source_type == "ibuffer":
+                self.xcode_obj_file_fft_guid = ""
+                self.xcode_obj_file_ibuffer_guid = create_xcode_guid()
             else:
                 self.xcode_obj_file_fft_guid = ""
+                self.xcode_obj_file_ibuffer_guid = ""
                 
             self.xcode_obj_fileref_class_guid = create_xcode_guid()
             self.xcode_obj_fileref_object_guid = create_xcode_guid()
