@@ -21,17 +21,7 @@ def list_bounds(name: str):
 
 def scheme_bounds():
     return ["      <BuildActionEntries>", "      </BuildActionEntries>"]
-
-
-def project_modify(object_info: fl_object, template: str, bounds: list, add: bool):
     
-    contents = file_util.templated_string(fl_paths().template("xcode_templates/" + template), object_info)
-    file_util.modify(fl_paths().xcode_pbxproj(), contents, bounds, add)
-      
-      
-def project_modify_section(object_info: fl_object, template: str, section: str, add: bool):
-    project_modify(object_info, template, section_bounds(section), add)
-       
     
 def scheme_modify(object_info: fl_object, add: bool):
     
@@ -41,27 +31,40 @@ def scheme_modify(object_info: fl_object, add: bool):
 
 class fl_pbxproj:
 
+    def project_modify(self, object_info: fl_object, template: str, bounds: list, add: bool):
+    
+        contents = file_util.templated_string(fl_paths().template("xcode_templates/" + template), object_info)
+        self.pbxproj = file_util.modify_string(self.pbxproj, contents, bounds, add)
+      
+      
+    def project_modify_section(self, object_info: fl_object, template: str, section: str, add: bool):
+        self.project_modify(object_info, template, section_bounds(section), add)
+   
+   
     def update(self, object_info: fl_object, add: bool):
 
-        project_modify_section(object_info, "file_class", "PBXBuildFile", add)
+        with open(fl_paths().xcode_pbxproj(), "r") as f:
+            self.pbxproj = f.read()
+        
+        self.project_modify_section(object_info, "file_class", "PBXBuildFile", add)
         
         if fl_paths().object_source_exists(object_info):
-            project_modify_section(object_info, "file_object", "PBXBuildFile", add)
-            project_modify_section(object_info, "file_object_for_lib", "PBXBuildFile", add)
+            self.project_modify_section(object_info, "file_object", "PBXBuildFile", add)
+            self.project_modify_section(object_info, "file_object_for_lib", "PBXBuildFile", add)
         
-        project_modify_section(object_info, "file_lib", "PBXBuildFile", add)
+        self.project_modify_section(object_info, "file_lib", "PBXBuildFile", add)
         
-        project_modify_section(object_info, "fileref_product", "PBXFileReference", add)
-        project_modify_section(object_info, "fileref_class", "PBXFileReference", add)
+        self.project_modify_section(object_info, "fileref_product", "PBXFileReference", add)
+        self.project_modify_section(object_info, "fileref_class", "PBXFileReference", add)
         
         if fl_paths().object_source_exists(object_info):
-            project_modify_section(object_info, "fileref_object", "PBXFileReference", add)
+            self.project_modify_section(object_info, "fileref_object", "PBXFileReference", add)
     
         if fl_paths().object_header_exists(object_info):
-            project_modify_section(object_info, "fileref_header", "PBXFileReference", add)
+            self.project_modify_section(object_info, "fileref_header", "PBXFileReference", add)
         
-        project_modify_section(object_info, "proxy_lib", "PBXContainerItemProxy", add)
-        project_modify_section(object_info, "proxy_target", "PBXContainerItemProxy", add)
+        self.project_modify_section(object_info, "proxy_lib", "PBXContainerItemProxy", add)
+        self.project_modify_section(object_info, "proxy_target", "PBXContainerItemProxy", add)
 
         if fl_paths().object_source_exists(object_info):
             sources_phase = "phase_sources"
@@ -69,38 +72,38 @@ class fl_pbxproj:
             sources_phase = "phase_sources_single"
             
         if object_info.xcode_obj_file_fft_guid != "":
-            project_modify_section(object_info, "file_fft", "PBXBuildFile", add)
+            self.project_modify_section(object_info, "file_fft", "PBXBuildFile", add)
             sources_phase = "phase_sources_fft"
         elif object_info.xcode_obj_file_ibuffer_guid != "":
-            project_modify_section(object_info, "file_ibuffer", "PBXBuildFile", add)
+            self.project_modify_section(object_info, "file_ibuffer", "PBXBuildFile", add)
             sources_phase = "phase_sources_ibuffer"
 
-        project_modify_section(object_info, sources_phase, "PBXSourcesBuildPhase", add)
-        project_modify_section(object_info, "phase_frameworks", "PBXFrameworksBuildPhase", add)
+        self.project_modify_section(object_info, sources_phase, "PBXSourcesBuildPhase", add)
+        self.project_modify_section(object_info, "phase_frameworks", "PBXFrameworksBuildPhase", add)
 
-        project_modify_section(object_info, "target", "PBXNativeTarget", add)
+        self.project_modify_section(object_info, "target", "PBXNativeTarget", add)
 
-        project_modify_section(object_info, "dependency_target", "PBXTargetDependency", add)
-        project_modify_section(object_info, "dependency_package", "PBXTargetDependency", add)
+        self.project_modify_section(object_info, "dependency_target", "PBXTargetDependency", add)
+        self.project_modify_section(object_info, "dependency_package", "PBXTargetDependency", add)
 
-        project_modify_section(object_info, "build_config_develop", "XCBuildConfiguration", add)
-        project_modify_section(object_info, "build_config_deploy", "XCBuildConfiguration", add)
-        project_modify_section(object_info, "build_config_test", "XCBuildConfiguration", add)
+        self.project_modify_section(object_info, "build_config_develop", "XCBuildConfiguration", add)
+        self.project_modify_section(object_info, "build_config_deploy", "XCBuildConfiguration", add)
+        self.project_modify_section(object_info, "build_config_test", "XCBuildConfiguration", add)
 
-        project_modify_section(object_info, "config_list", "XCConfigurationList", add)
+        self.project_modify_section(object_info, "config_list", "XCConfigurationList", add)
         
         bounds = section_bounds("PBXAggregateTarget") + item_bounds("framelib_max_package") + list_bounds("dependencies")
-        project_modify(object_info, "ref_dep_package", bounds, add)
+        self.project_modify(object_info, "ref_dep_package", bounds, add)
         
         bounds = section_bounds("PBXProject") + list_bounds("targets")
-        project_modify(object_info, "ref_target", bounds, add)
+        self.project_modify(object_info, "ref_target", bounds, add)
         
         if fl_paths().object_source_exists(object_info):
             bounds = section_bounds("PBXSourcesBuildPhase") + item_bounds("Sources", object_info.xcode_lib_sources_guid) + list_bounds("files")
-            project_modify(object_info, "ref_object_for_lib", bounds, add)
+            self.project_modify(object_info, "ref_object_for_lib", bounds, add)
         
         bounds = section_bounds("PBXGroup") + item_bounds("Products") + list_bounds("children")
-        project_modify(object_info, "group_item_product", bounds, add)
+        self.project_modify(object_info, "group_item_product", bounds, add)
         
         # FIX - we assume that the categories exist - so we'll need to make them if not
         
@@ -114,13 +117,16 @@ class fl_pbxproj:
         
         if fl_paths().object_header_exists(object_info):
             bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, object_guid) + list_bounds("children")
-            project_modify(object_info, "group_item_header", bounds, add)
+            self.project_modify(object_info, "group_item_header", bounds, add)
        
         if fl_paths().object_source_exists(object_info):
             bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, object_guid) + list_bounds("children")
-            project_modify(object_info, "group_item_object", bounds, add)
+            self.project_modify(object_info, "group_item_object", bounds, add)
         
         bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, max_guid) + list_bounds("children")
-        project_modify(object_info, "group_item_class", bounds, add)
+        self.project_modify(object_info, "group_item_class", bounds, add)
         
         scheme_modify(object_info, add)
+        
+        with open(fl_paths().xcode_pbxproj(), "w") as f:
+            f.write(self.pbxproj)

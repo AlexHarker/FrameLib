@@ -128,21 +128,48 @@ def section_regex(path: str, bounds: list, exp: str, hint: str = ""):
         return do_regex(data, exp)
         
         
+def insert_string(data: str, contents: str, bounds: list, next_blank: bool = False):
+    
+    index_lo, index = find_section(data, bounds)
+                
+    # Look for next whitespace line (skipping the first which will be immediate)
+        
+    if next_blank:
+        index = find_next_blankline(data, index)
+            
+    return data[:index] + contents + data[index:]
+
+
+def remove_string(data: str, contents: str, bounds: list):
+        
+    index_lo, index_hi = find_section(data, bounds)
+    index = data.find(contents, index_lo, index_hi)
+        
+    if index < 0:
+        print("WARNING - FAILED TO REMOVE\n")
+        print(contents)
+        return False, data
+        
+    return True, data[:index] + data[index + len(contents):]
+    
+    
+def modify_string(data: str, contents: str, bounds: list, add: bool):
+    if add:
+        return insert_string(data, contents, bounds)
+    else:
+        success, data = remove_string(data, contents, bounds)
+        return data
+        
+        
 def insert(path: str, contents: str, bounds: list, next_blank: bool = False):
     
     data = ""
     
     with open(path, "r") as f:
         data = f.read()
-        index_lo, index = find_section(data, bounds)
-                
-        # Look for next whitespace line (skipping the first which will be immediate)
-        
-        if next_blank:
-            index = find_next_blankline(data, index)
-            
+
     with open(path, "w", newline = newline_setting(path)) as f:
-        f.write(data[:index] + contents + data[index:])
+        f.write(insert_string(data, contents, bounds, next_blank))
 
 
 def remove(path: str, contents: str, bounds: list):
@@ -151,19 +178,15 @@ def remove(path: str, contents: str, bounds: list):
     
     with open(path, "r") as f:
         data = f.read()
-        index_lo, index_hi = find_section(data, bounds)
-        index = data.find(contents, index_lo, index_hi)
         
-    if index < 0:
-        print("WARNING - FAILED TO REMOVE\n")
-        print(contents)
-        return
-        
-    with open(path, "w", newline = newline_setting(path)) as f:
-        f.write(data[:index] + data[index + len(contents):])
+    success, data = remove_string(data, contents, bounds)
+    
+    if success:
+        with open(path, "w", newline = newline_setting(path)) as f:
+            f.write(data)
 
 
-def modify(path:str, contents: str, bounds: list, add: bool):
+def modify(path: str, contents: str, bounds: list, add: bool):
     if add:
         insert(path, contents, bounds)
     else:
