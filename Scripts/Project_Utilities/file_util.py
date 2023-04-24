@@ -129,16 +129,30 @@ def find_section(data: str, bounds: list):
     return index_lo, index_hi
     
     
+def get_section_string(data: str, bounds: list):
+        
+    index_lo, index_hi = find_section(data, bounds)
+    return data[index_lo:index_hi]
+    
+
 def get_section(path: str, bounds: list):
         
     with open(path, "r") as f:
-        data = f.read()
-        index_lo, index_hi = find_section(data, bounds)
-        return data[index_lo:index_hi]
+        return get_section_string(f.read(), bounds)
                 
     return ""
    
 
+def section_regex_string(data: str, bounds: list, exp: str, hint: str = ""):
+    
+    data = get_section_string(data, bounds)
+    
+    if hint != "":
+        return do_regex_with_hint(data, exp, hint)
+    else:
+        return do_regex(data, exp)
+        
+        
 def section_regex(path: str, bounds: list, exp: str, hint: str = ""):
     
     data = get_section(path, bounds)
