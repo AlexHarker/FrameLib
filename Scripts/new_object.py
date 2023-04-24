@@ -35,8 +35,17 @@ def update_all(add: bool):
 
 def rebuild():
 
+    import time
+    
+    t1 = time.perf_counter_ns()
     update_all(False)
+    t2 = time.perf_counter_ns()
     update_all(True)
+    
+    t3 = time.perf_counter_ns()
+    print("Completed removal in " + str((t2 - t1)/1000000000.) + " seconds")
+    print("Completed additions in " + str((t3 - t2)/1000000000.) + " seconds")
+    print("Completed rebuild in " + str((t3 - t1)/1000000000.) + " seconds")
 
 
 def new_object(object_info : fl_object):
@@ -61,12 +70,8 @@ def new_object(object_info : fl_object):
     
 def main():
 
-    import time
-    t1 = time.perf_counter_ns()
     new_object(fl_object("FrameLib_Test", "fl.test~", "Schedulers"))
     rebuild()
-    td = time.perf_counter_ns() - t1;
-    print("Completed in " + str(td/1000000000.) + " seconds")
     
     
 if __name__ == "__main__":
