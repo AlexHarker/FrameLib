@@ -31,6 +31,12 @@ def scheme_modify(object_info: fl_object, add: bool):
 
 class fl_pbxproj:
 
+    def __init__(self):
+    
+         with open(fl_paths().xcode_pbxproj(), "r") as f:
+            self.pbxproj = f.read()
+       
+       
     def project_modify(self, object_info: fl_object, template: str, bounds: list, add: bool):
     
         contents = file_util.templated_string(fl_paths().template("xcode_templates/" + template), object_info)
@@ -43,9 +49,6 @@ class fl_pbxproj:
    
     def update(self, object_info: fl_object, add: bool):
 
-        with open(fl_paths().xcode_pbxproj(), "r") as f:
-            self.pbxproj = f.read()
-        
         self.project_modify_section(object_info, "file_class", "PBXBuildFile", add)
         
         if fl_paths().object_source_exists(object_info):
