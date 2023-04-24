@@ -3,9 +3,9 @@ class fl_object:
     
     object_cache = {}
     
-    vs_fl_guid = ""
-    vs_fl_objects_guid = ""
-    vs_fl_max_objects_guid = ""
+    vs_framelib_guid = ""
+    vs_framelib_obj_guid = ""
+    vs_max_objects_guid = ""
     vs_main_guid = ""
             
     xcode_main_guid = ""
@@ -34,6 +34,7 @@ class fl_object:
         
         self.object_class = object_class
         self.max_class_name = class_name
+        self.max_class_name_upper = class_name.upper()
         self.pd_class_name = class_name
         self.category = category
         
@@ -42,9 +43,9 @@ class fl_object:
                 
         if fl_object.initialised == False:
                     
-            fl_object.vs_fl_guid = get_vs_guid("framelib")
-            fl_object.vs_fl_objects_guid = get_vs_guid("framelib_objects")
-            fl_object.vs_fl_max_objects_guid = get_vs_guid("Max Object Projects")
+            fl_object.vs_framelib_guid = get_vs_guid("framelib")
+            fl_object.vs_framelib_obj_guid = get_vs_guid("framelib_objects")
+            fl_object.vs_max_objects_guid = get_vs_guid("Max Object Projects")
             fl_object.vs_main_guid = item_regex(fl_paths().vs_solution(), "Project\(\"\{(.*)\}\"\) = \"framelib\"")
                             
             fl_object.xcode_main_guid = get_xcode_guid("PBXProject", "Project object")

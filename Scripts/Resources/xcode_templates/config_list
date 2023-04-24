@@ -1,4 +1,4 @@
-		_##XCODE_OBJ_CONFIG_LIST_GUID##_ /* Build configuration list for PBXNativeTarget "_##CLASSNAME##_" */ = {
+		_##XCODE_OBJ_CONFIG_LIST_GUID##_ /* Build configuration list for PBXNativeTarget "_##MAX_CLASS_NAME##_" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				_##XCODE_OBJ_CONFIG_DVMT_GUID##_ /* Development */,

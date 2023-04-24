@@ -1,13 +1,13 @@
 
-#include "_##CLASS##_.h"
+#include "_##OBJECT_CLASS##_.h"
 
-_##CLASS##_::_##CLASS##_(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+_##OBJECT_CLASS##_::_##OBJECT_CLASS##_(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.set(serialisedParameters);
 }
 
-std::string _##CLASS##_::objectInfo(bool verbose)
+std::string _##OBJECT_CLASS##_::objectInfo(bool verbose)
 {
     return formatInfo("Long Info: "
                       "Details line 1. "
@@ -15,7 +15,7 @@ std::string _##CLASS##_::objectInfo(bool verbose)
                       "Short Info.", verbose);
 }
 
-std::string _##CLASS##_::inputInfo(unsigned long idx, bool verbose)
+std::string _##OBJECT_CLASS##_::inputInfo(unsigned long idx, bool verbose)
 {
     switch (idx)
     {
@@ -27,21 +27,21 @@ std::string _##CLASS##_::inputInfo(unsigned long idx, bool verbose)
     }
 }
 
-std::string _##CLASS##_::outputInfo(unsigned long idx, bool verbose)
+std::string _##OBJECT_CLASS##_::outputInfo(unsigned long idx, bool verbose)
 {
     return "Output";
 }
 
 // Parameter Info
 
-_##CLASS##_::ParameterInfo _##CLASS##_::sParamInfo;
+_##OBJECT_CLASS##_::ParameterInfo _##OBJECT_CLASS##_::sParamInfo;
 
-_##CLASS##_::ParameterInfo::ParameterInfo()
+_##OBJECT_CLASS##_::ParameterInfo::ParameterInfo()
 {
     //add("Parameter Info.");
 }
 
-void _##CLASS##_::process()
+void _##OBJECT_CLASS##_::process()
 {
     unsigned long sizeOut = 0;
     

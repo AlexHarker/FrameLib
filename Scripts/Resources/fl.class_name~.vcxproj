@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\FrameLib_Max_Objects\_##CATEGORY##_\_##CLASSNAME##_.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Max_Objects\_##CATEGORY##_\_##MAX_CLASS_NAME##_.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

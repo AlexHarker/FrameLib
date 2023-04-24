@@ -63,60 +63,6 @@ def lines_regex(path: str, exp: str, start: str, end: str, inner_start: str, inn
 
     return list
     
-    
-def templated_string(template_path: str, object_info: fl_object):
-
-    f = open(template_path, "r")
-    template = f.read()
-    f.close()
-
-    template = template.replace("_##CLASS##_", object_info.object_class)
-    template = template.replace("_##CLASS_UPPER##_", object_info.object_class.upper())
-    template = template.replace("_##CLASSNAME##_", object_info.max_class_name)
-    template = template.replace("_##CATEGORY##_", object_info.category)
-    template = template.replace("_##GUID##_", object_info.guid)
-    
-    template = template.replace("_##VS_FRAMELIB_GUID##_", object_info.vs_fl_guid)
-    template = template.replace("_##VS_FRAMELIB_OBJ_GUID##_", object_info.vs_fl_objects_guid)
-    template = template.replace("_##VS_MAX_OBJECTS_GUID##_", object_info.vs_fl_max_objects_guid)
-    template = template.replace("_##VS_MAIN_GUID##_", object_info.vs_main_guid)
-    
-    template = template.replace("_##XCODE_MAIN_GUID##_", object_info.xcode_main_guid)
-    template = template.replace("_##XCODE_FRAMELIB_GUID##_", object_info.xcode_framelib_guid)
-    template = template.replace("_##XCODE_MAX_CONFIG_GUID##_", object_info.xcode_max_config_guid)
-    template = template.replace("_##XCODE_FILEREF_LIB_GUID##_", object_info.xcode_fileref_lib_guid)
-    template = template.replace("_##XCODE_FILEREF_FFT_GUID##_", object_info.xcode_fileref_fft_guid)
-    template = template.replace("_##XCODE_FILEREF_IBUFFER_GUID##_", object_info.xcode_fileref_ibuffer_guid)
-    
-    template = template.replace("_##XCODE_OBJ_TARGET_GUID##_", object_info.xcode_obj_target_guid)
-    template = template.replace("_##XCODE_OBJ_PACKAGE_DEP_GUID##_", object_info.xcode_obj_package_dep_guid)
-    template = template.replace("_##XCODE_OBJ_LIB_DEP_GUID##_", object_info.xcode_obj_lib_dep_guid)
-
-    template = template.replace("_##XCODE_OBJ_LIB_PROXY_GUID##_", object_info.xcode_obj_lib_proxy_guid)
-    template = template.replace("_##XCODE_OBJ_TARGET_PROXY_GUID##_", object_info.xcode_obj_target_proxy_guid)
-    
-    template = template.replace("_##XCODE_OBJ_SOURCES_GUID##_", object_info.xcode_obj_sources_guid)
-    template = template.replace("_##XCODE_OBJ_FRAMEWORKS_GUID##_", object_info.xcode_obj_frameworks_guid)
-
-    template = template.replace("_##XCODE_OBJ_FILE_CLASS_GUID##_", object_info.xcode_obj_file_class_guid)
-    template = template.replace("_##XCODE_OBJ_FILE_OBJECT_GUID##_", object_info.xcode_obj_file_object_guid)
-    template = template.replace("_##XCODE_OBJ_FILE_LIB_GUID##_", object_info.xcode_obj_file_lib_guid)
-    template = template.replace("_##XCODE_OBJ_FILE_OBJECT_FOR_LIB_GUID##_", object_info.xcode_obj_file_object_for_lib_guid)
-    template = template.replace("_##XCODE_OBJ_FILE_FFT_GUID##_", object_info.xcode_obj_file_fft_guid)
-    template = template.replace("_##XCODE_OBJ_FILE_IBUFFER_GUID##_", object_info.xcode_obj_file_ibuffer_guid)
-    
-    template = template.replace("_##XCODE_OBJ_FILEREF_CLASS_GUID##_", object_info.xcode_obj_fileref_class_guid)
-    template = template.replace("_##XCODE_OBJ_FILEREF_HEADER_GUID##_", object_info.xcode_obj_fileref_header_guid)
-    template = template.replace("_##XCODE_OBJ_FILEREF_OBJECT_GUID##_", object_info.xcode_obj_fileref_object_guid)
-    template = template.replace("_##XCODE_OBJ_FILEREF_MXO_GUID##_", object_info.xcode_obj_fileref_mxo_guid)
-    
-    template = template.replace("_##XCODE_OBJ_CONFIG_LIST_GUID##_", object_info.xcode_obj_config_list_guid)
-    template = template.replace("_##XCODE_OBJ_CONFIG_DVMT_GUID##_", object_info.xcode_obj_config_dvmt_guid)
-    template = template.replace("_##XCODE_OBJ_CONFIG_DPLT_GUID##_", object_info.xcode_obj_config_dplt_guid)
-    template = template.replace("_##XCODE_OBJ_CONFIG_TEST_GUID##_", object_info.xcode_obj_config_test_guid)
-
-    return template
-    
 
 def newline_setting(output_path: str):
     
@@ -222,3 +168,33 @@ def modify(path:str, contents: str, bounds: list, add: bool):
         insert(path, contents, bounds)
     else:
         remove(path, contents, bounds)
+        
+
+def replace_next_key(data: str, object_info: fl_object):
+
+    lo, hi = find_section(data, ["_##", "##_"])
+    
+    if lo < 0 or hi < 0:
+        return False, data
+
+    key = data[lo+3:hi]
+    
+    if key.lower() in object_info.__dict__:
+        value = object_info.__dict__[key.lower()]
+    else:
+        value = fl_object.__dict__[key.lower()]
+            
+    return True, data.replace("_##" + key + "##_", value)
+    
+    
+def templated_string(template_path: str, object_info: fl_object):
+
+    with open(template_path, "r") as f:
+        template = f.read()
+
+    condition = True;
+    
+    while condition:
+        condition, template = replace_next_key(template, object_info)
+        
+    return template

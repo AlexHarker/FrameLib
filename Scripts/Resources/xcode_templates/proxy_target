@@ -3,5 +3,5 @@
 			containerPortal = _##XCODE_MAIN_GUID##_ /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = _##XCODE_OBJ_TARGET_GUID##_;
-			remoteInfo = "_##CLASSNAME##_";
+			remoteInfo = "_##MAX_CLASS_NAME##_";
 		};

@@ -1,4 +1,4 @@
-Project("{_##VS_MAIN_GUID##_}") = "_##CLASSNAME##_", "Projects\Visual_Studio\03_Max_Objects\_##CLASSNAME##_.vcxproj", "{_##GUID##_}"
+Project("{_##VS_MAIN_GUID##_}") = "_##MAX_CLASS_NAME##_", "Projects\Visual_Studio\03_Max_Objects\_##MAX_CLASS_NAME##_.vcxproj", "{_##GUID##_}"
 	ProjectSection(ProjectDependencies) = postProject
 		{_##VS_FRAMELIB_GUID##_} = {_##VS_FRAMELIB_GUID##_}
 		{_##VS_FRAMELIB_OBJ_GUID##_} = {_##VS_FRAMELIB_OBJ_GUID##_}

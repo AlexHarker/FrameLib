@@ -1,10 +1,10 @@
 
-#ifndef _##CLASS_UPPER##__H
-#define _##CLASS_UPPER##__H
+#ifndef _##MAX_CLASS_NAME_UPPER##__H
+#define _##MAX_CLASS_NAME_UPPER##__H
 
 #include "FrameLib_DSP.h"
 
-class _##CLASS##_ final : public FrameLib_Processor
+class _##OBJECT_CLASS##_ final : public FrameLib_Processor
 {
     enum ParameterList { };
 
@@ -14,7 +14,7 @@ public:
     
     // Constructor
     
-    _##CLASS##_(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    _##OBJECT_CLASS##_(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     

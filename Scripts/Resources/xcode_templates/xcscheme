@@ -7,8 +7,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "_##XCODE_OBJ_TARGET_GUID##_"
-               BuildableName = "_##CLASSNAME##_.mxo"
-               BlueprintName = "_##CLASSNAME##_"
+               BuildableName = "_##MAX_CLASS_NAME##_.mxo"
+               BlueprintName = "_##MAX_CLASS_NAME##_"
                ReferencedContainer = "container:framelib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

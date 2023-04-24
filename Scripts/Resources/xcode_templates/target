@@ -1,6 +1,6 @@
-		_##XCODE_OBJ_TARGET_GUID##_ /* _##CLASSNAME##_ */ = {
+		_##XCODE_OBJ_TARGET_GUID##_ /* _##MAX_CLASS_NAME##_ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = _##XCODE_OBJ_CONFIG_LIST_GUID##_ /* Build configuration list for PBXNativeTarget "_##CLASSNAME##_" */;
+			buildConfigurationList = _##XCODE_OBJ_CONFIG_LIST_GUID##_ /* Build configuration list for PBXNativeTarget "_##MAX_CLASS_NAME##_" */;
 			buildPhases = (
 				_##XCODE_OBJ_SOURCES_GUID##_ /* Sources */,
 				_##XCODE_OBJ_FRAMEWORKS_GUID##_ /* Frameworks */,
@@ -10,9 +10,9 @@
 			dependencies = (
 				_##XCODE_OBJ_LIB_DEP_GUID##_ /* PBXTargetDependency */,
 			);
-			name = "_##CLASSNAME##_";
+			name = "_##MAX_CLASS_NAME##_";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = _##XCODE_OBJ_FILEREF_MXO_GUID##_ /* _##CLASSNAME##_.mxo */;
+			productReference = _##XCODE_OBJ_FILEREF_MXO_GUID##_ /* _##MAX_CLASS_NAME##_.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};

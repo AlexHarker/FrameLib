@@ -1,1 +1,1 @@
-		_##XCODE_OBJ_FILEREF_CLASS_GUID##_ /* _##CLASSNAME##_.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "_##CLASSNAME##_.cpp"; sourceTree = "<group>"; };
+		_##XCODE_OBJ_FILEREF_CLASS_GUID##_ /* _##MAX_CLASS_NAME##_.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "_##MAX_CLASS_NAME##_.cpp"; sourceTree = "<group>"; };
