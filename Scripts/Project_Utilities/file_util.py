@@ -119,16 +119,11 @@ def find_section(data: str, bounds: list):
 
     return index_lo, index_hi
     
-    
-def get_section_string(data: str, bounds: list):
-        
-    index_lo, index_hi = find_section(data, bounds)
-    return data[index_lo:index_hi]
-   
 
-def section_regex_string(data: str, bounds: list, exp: str, hint: str = ""):
+def section_regex(data: str, bounds: list, exp: str, hint: str = ""):
     
-    data = get_section_string(data, bounds)
+    index_lo, index_hi = find_section(data, bounds)
+    data = data[index_lo:index_hi]
     
     if hint != "":
         return do_regex_with_hint(data, exp, hint)
@@ -161,7 +156,7 @@ def remove_string(data: str, contents: str, bounds: list):
     return data[:index] + data[index + len(contents):]
     
     
-def modify_string(data: str, contents: str, bounds: list, add: bool):
+def modify(data: str, contents: str, bounds: list, add: bool):
     if add:
         return insert_string(data, contents, bounds)
     else:

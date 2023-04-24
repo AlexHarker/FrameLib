@@ -34,13 +34,13 @@ class fl_pbxproj:
     def project_modify(self, object_info: fl_object, template: str, bounds: list, add: bool):
     
         contents = file_util.templated_string(fl_paths().template("xcode_templates/" + template), object_info)
-        self.pbxproj.data = file_util.modify_string(self.pbxproj.data, contents, bounds, add)
+        self.pbxproj.data = file_util.modify(self.pbxproj.data, contents, bounds, add)
     
     
     def scheme_modify(self, object_info: fl_object, add: bool):
     
         contents = file_util.templated_string(fl_paths().template("xcode_templates/xcscheme"), object_info)
-        self.scheme.data = file_util.modify_string(self.scheme.data, contents, scheme_bounds(), add)
+        self.scheme.data = file_util.modify(self.scheme.data, contents, scheme_bounds(), add)
 
       
     def project_modify_section(self, object_info: fl_object, template: str, section: str, add: bool):
@@ -115,10 +115,10 @@ class fl_pbxproj:
         exp = "([^\s].*) /\* " + object_info.category + " \*/"
         
         bounds = section_bounds("PBXGroup") + item_bounds("Objects FrameLib") + list_bounds("children")
-        object_guid = file_util.section_regex_string(self.pbxproj.data, bounds, exp)
+        object_guid = file_util.section_regex(self.pbxproj.data, bounds, exp)
         
         bounds = section_bounds("PBXGroup") + item_bounds("Objects Max") + list_bounds("children")
-        max_guid = file_util.section_regex_string(self.pbxproj.data, bounds, exp)
+        max_guid = file_util.section_regex(self.pbxproj.data, bounds, exp)
         
         # We need to make the category groups if they don't exist
 

@@ -15,13 +15,13 @@ class fl_solution:
     def solution_modify(self, object_info: fl_object, template: str, bounds: list, add: bool):
     
         contents = file_util.templated_string(fl_paths().template("vs_templates/" + template), object_info)
-        self.solution.data = file_util.modify_string(self.solution.data, contents, bounds, add)
+        self.solution.data = file_util.modify(self.solution.data, contents, bounds, add)
         
         
     def object_project_modify(self, object_info: fl_object, template: str, bounds: list, add: bool):
     
         contents = file_util.templated_string(fl_paths().template("vs_templates/" + template), object_info)
-        self.project.data = file_util.modify_string(self.project.data, contents, bounds, add)
+        self.project.data = file_util.modify(self.project.data, contents, bounds, add)
 
         
     def update(self, object_info: fl_object, add: bool):

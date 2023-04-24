@@ -2,7 +2,7 @@
 from . path_util import fl_paths
 from . file_util import rw_file
 from . file_util import do_regex
-from . file_util import section_regex_string
+from . file_util import section_regex
 
 import uuid
 
@@ -29,7 +29,7 @@ class guid_manager:
         bounds = section_bounds(section)
         exp = "([^\s]+) /\* " + item + " \*/ = \{"
         hint = "/* " + item + " */"
-        return section_regex_string(self.pbxproj.data, bounds, exp, hint)
+        return section_regex(self.pbxproj.data, bounds, exp, hint)
 
 
     def xc_component(self, section: str, item: str, list: str, component: str, guid: str = None):
@@ -41,7 +41,7 @@ class guid_manager:
         bounds = section_bounds(section) + item_bounds(item, guid) + list_bounds(list)
         exp = "([^\s]+) /\* " + component + " \*/"
         hint = "/* " + component + " */"
-        return section_regex_string(self.pbxproj.data, bounds, exp, hint)
+        return section_regex(self.pbxproj.data, bounds, exp, hint)
         
         
     def xc_field(self, section: str, guid: str, field: str):
@@ -52,11 +52,11 @@ class guid_manager:
         bounds = section_bounds(section) + item_bounds(section, guid)
         exp = field + " = ([^\s]+) /\*.*?\*/"
         hint = field + " = "
-        return section_regex_string(self.pbxproj.data, bounds, exp, hint)
+        return section_regex(self.pbxproj.data, bounds, exp, hint)
         
     
     def xc_custom(self, bounds: str, exp: str):
-        return section_regex_string(self.pbxproj.data, bounds, exp)
+        return section_regex(self.pbxproj.data, bounds, exp)
         
         
     def __check_duplicate(self, data: str, guid: str):
