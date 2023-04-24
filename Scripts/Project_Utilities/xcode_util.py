@@ -66,7 +66,7 @@ class fl_pbxproj:
         if source_exists:
             self.project_modify_section(object_info, "fileref_object", "PBXFileReference", add)
     
-        if fl_paths().object_header_exists(object_info):
+        if header_exists:
             self.project_modify_section(object_info, "fileref_header", "PBXFileReference", add)
         
         self.project_modify_section(object_info, "proxy_lib", "PBXContainerItemProxy", add)
