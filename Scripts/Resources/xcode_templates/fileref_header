@@ -1,1 +1,1 @@
-		_##XCODE_OBJ_FILEREF_HEADER_GUID##_ /* _##OBJECT_CLASS##_.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _##OBJECT_CLASS##_.h; sourceTree = "<group>"; };
+		_##XCODE_OBJ_FILEREF_HEADER_GUID##_ /* _##OBJECT_CLASS_FILE##_.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _##OBJECT_CLASS_FILE##_.h; sourceTree = "<group>"; };

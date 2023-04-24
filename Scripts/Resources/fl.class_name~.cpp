@@ -1,5 +1,5 @@
 
-#include "_##OBJECT_CLASS##_.h"
+#include "_##OBJECT_CLASS_FILE##_.h"
 #include "FrameLib_MaxClass.h"
 
 extern "C" int C74_EXPORT main(void)

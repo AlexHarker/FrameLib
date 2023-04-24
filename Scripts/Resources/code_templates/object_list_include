@@ -1,1 +1,1 @@
-#include "../FrameLib_Objects/_##CATEGORY##_/_##OBJECT_CLASS##_.h"
+#include "../FrameLib_Objects/_##CATEGORY##_/_##OBJECT_CLASS_FILE##_.h"

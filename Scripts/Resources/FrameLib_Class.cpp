@@ -1,5 +1,5 @@
 
-#include "_##OBJECT_CLASS##_.h"
+#include "_##OBJECT_CLASS_FILE##_.h"
 
 _##OBJECT_CLASS##_::_##OBJECT_CLASS##_(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)

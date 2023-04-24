@@ -27,6 +27,7 @@ class fl_object:
         import os
         
         self.object_class = object_class
+        self.object_class_file = object_class
         self.max_class_name = class_name
         self.max_class_name_upper = class_name.upper()
         self.pd_class_name = class_name
@@ -74,6 +75,8 @@ class fl_object:
             if self.object_class == "":
                 self.object_class = item_regex(max_object_path, "FrameLib_MaxClass_ExprParsed<(.*)>")
 
+            self.object_class_file = self.object_class
+            
             self.vs_project_guid = item_regex(project_path, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
 
             self.xcode_obj_target_guid = guids.xc("PBXNativeTarget", self.max_class_name)
@@ -91,7 +94,7 @@ class fl_object:
             self.xcode_obj_frameworks_guid = guids.xc_component("PBXNativeTarget", self.max_class_name, "buildPhases", "Frameworks")
 
             class_str = self.max_class_name + ".cpp in Sources"
-            object_str = self.object_class + ".cpp in Sources"
+            object_str = self.object_class_file + ".cpp in Sources"
             fft_str = "HISSTools_FFT.cpp in Sources"
             ibuffer_str = "ibuffer_access.cpp in Sources"
             lib_str = "libframelib.a in Frameworks"
@@ -108,8 +111,8 @@ class fl_object:
             self.xcode_obj_file_ibuffer_guid = guids.xc_component("PBXSourcesBuildPhase", "Sources", "files", ibuffer_str, sources_guid)
 
             self.xcode_obj_fileref_class_guid = guids.xc("PBXFileReference", self.max_class_name + ".cpp")
-            self.xcode_obj_fileref_object_guid = guids.xc("PBXFileReference", self.object_class + ".cpp")
-            self.xcode_obj_fileref_header_guid = guids.xc("PBXFileReference", self.object_class + ".h")
+            self.xcode_obj_fileref_object_guid = guids.xc("PBXFileReference", self.object_class_file + ".cpp")
+            self.xcode_obj_fileref_header_guid = guids.xc("PBXFileReference", self.object_class_file + ".h")
             self.xcode_obj_fileref_mxo_guid = guids.xc("PBXFileReference", self.max_class_name + ".mxo")
             
             config_list = "Build configuration list for PBXNativeTarget \"" + self.max_class_name + "\""
