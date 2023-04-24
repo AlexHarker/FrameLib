@@ -51,7 +51,7 @@ class fl_pbxproj:
 
         source_exists = fl_paths().object_source_exists(object_info)
         header_exists = fl_paths().object_header_exists(object_info)
-        external_object = object_info.object_file_external
+        external_object = object_info.object_file_external()
         
         self.project_modify_section(object_info, "file_class", "PBXBuildFile", add)
         
