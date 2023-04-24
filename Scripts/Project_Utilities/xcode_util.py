@@ -23,25 +23,28 @@ def scheme_bounds():
     return ["      <BuildActionEntries>", "      </BuildActionEntries>"]
     
     
-def scheme_modify(object_info: fl_object, add: bool):
-    
-    contents = file_util.templated_string(fl_paths().template("xcode_templates/xcscheme"), object_info)
-    file_util.modify(fl_paths().xcode_scheme(), contents, scheme_bounds(), add)
-    
-
 class fl_pbxproj:
 
     def __init__(self):
     
-         with open(fl_paths().xcode_pbxproj(), "r") as f:
+        with open(fl_paths().xcode_pbxproj(), "r") as f:
             self.pbxproj = f.read()
+            
+        with open(fl_paths().xcode_scheme(), "r") as f:
+            self.scheme = f.read()
        
        
     def project_modify(self, object_info: fl_object, template: str, bounds: list, add: bool):
     
         contents = file_util.templated_string(fl_paths().template("xcode_templates/" + template), object_info)
         self.pbxproj = file_util.modify_string(self.pbxproj, contents, bounds, add)
-      
+    
+    
+    def scheme_modify(self, object_info: fl_object, add: bool):
+    
+        contents = file_util.templated_string(fl_paths().template("xcode_templates/xcscheme"), object_info)
+        self.scheme = file_util.modify_string(self.scheme, contents, scheme_bounds(), add)
+
       
     def project_modify_section(self, object_info: fl_object, template: str, section: str, add: bool):
         self.project_modify(object_info, template, section_bounds(section), add)
@@ -129,7 +132,10 @@ class fl_pbxproj:
         bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, max_guid) + list_bounds("children")
         self.project_modify(object_info, "group_item_class", bounds, add)
         
-        scheme_modify(object_info, add)
+        self.scheme_modify(object_info, add)
         
         with open(fl_paths().xcode_pbxproj(), "w") as f:
             f.write(self.pbxproj)
+            
+        with open(fl_paths().xcode_scheme(), "w") as f:
+            f.write(self.scheme)

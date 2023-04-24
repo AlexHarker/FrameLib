@@ -172,27 +172,6 @@ def insert(path: str, contents: str, bounds: list, next_blank: bool = False):
         f.write(insert_string(data, contents, bounds, next_blank))
 
 
-def remove(path: str, contents: str, bounds: list):
-    
-    data = ""
-    
-    with open(path, "r") as f:
-        data = f.read()
-        
-    success, data = remove_string(data, contents, bounds)
-    
-    if success:
-        with open(path, "w", newline = newline_setting(path)) as f:
-            f.write(data)
-
-
-def modify(path: str, contents: str, bounds: list, add: bool):
-    if add:
-        insert(path, contents, bounds)
-    else:
-        remove(path, contents, bounds)
-        
-
 def replace_next_key(data: str, object_info: fl_object):
 
     lo, hi = find_section(data, ["_##", "##_"])

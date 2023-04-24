@@ -6,16 +6,25 @@ from . object_info import fl_object
     
 class fl_solution:
 
+    def __init__(self):
+    
+        with open(fl_paths().vs_solution(), "r") as f:
+            self.solution = f.read()
+            
+        with open(fl_paths().vs_objects_project(), "r") as f:
+            self.project = f.read()
+
+
     def solution_modify(self, object_info: fl_object, template: str, bounds: list, add: bool):
     
         contents = file_util.templated_string(fl_paths().template("vs_templates/" + template), object_info)
-        file_util.modify(fl_paths().vs_solution(), contents, bounds, add)
+        self.solution = file_util.modify_string(self.solution, contents, bounds, add)
         
         
     def object_project_modify(self, object_info: fl_object, template: str, bounds: list, add: bool):
     
         contents = file_util.templated_string(fl_paths().template("vs_templates/" + template), object_info)
-        file_util.modify(fl_paths().vs_objects_project(), contents, bounds, add)
+        self.project = file_util.modify_string(self.project, contents, bounds, add)
 
         
     def update(self, object_info: fl_object, add: bool):
@@ -32,6 +41,12 @@ class fl_solution:
         self.solution_modify(object_info, "configurations", ["GlobalSection(ProjectConfigurationPlatforms)", "\tEndGlobalSection"], add)
         self.solution_modify(object_info, "nested", ["GlobalSection(NestedProjects)", "\tEndGlobalSection"], add)
         self.solution_modify(object_info, "dependency", ["\"framelib_objects_max\"", "\tEndProjectSection"], add)
+        
+        with open(fl_paths().vs_solution(), "w") as f:
+            f.write(self.solution)
+            
+        with open(fl_paths().vs_objects_project(), "w") as f:
+            f.write(self.project)
         
         
     def update_project(self, object_info: fl_object):
