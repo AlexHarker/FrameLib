@@ -28,10 +28,10 @@ class fl_solution:
 
         if object_info.object_class != "":
         
-            if fl_paths().object_header_exists(object_info):
+            if fl_paths().object_header_exists(object_info) and not object_info.object_file_external:
                 self.object_project_modify(object_info, "header", ["<ClInclude Include", "  </ItemGroup>"], add)
         
-            if fl_paths().object_source_exists(object_info):
+            if fl_paths().object_source_exists(object_info) and not object_info.object_file_external:
                 self.object_project_modify(object_info, "source", ["<ClCompile Include", "  </ItemGroup>"], add)
         
         self.solution_modify(object_info, "project", ["MinimumVisualStudioVersion", "Global"], add)

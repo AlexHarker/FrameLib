@@ -27,13 +27,13 @@ class fl_paths:
         return self.max_object_dir(object_info) + object_info.max_class_name + ".cpp"
     
     def object_source(self, object_info: fl_object):
-        return self.object_dir(object_info) + object_info.object_class + ".cpp"
+        return self.object_dir(object_info) + object_info.object_class_file + ".cpp"
 
     def object_source_exists(self, object_info: fl_object):
         return os.path.exists(self.object_source(object_info))
         
     def object_header(self, object_info: fl_object):
-        return self.object_dir(object_info) + object_info.object_class + ".h"
+        return self.object_dir(object_info) + object_info.object_class_file + ".h"
         
     def object_header_exists(self, object_info: fl_object):
         return os.path.exists(self.object_header(object_info))

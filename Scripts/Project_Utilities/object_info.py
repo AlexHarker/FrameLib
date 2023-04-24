@@ -19,6 +19,7 @@ class fl_object:
     def __init__(self, object_class: str, class_name: str, category: str, source_type: str = ""):
         
         from . path_util import fl_paths
+        from . file_util import do_regex
         from . file_util import item_regex
         from . guid_util import guid_manager
         from . xcode_util import section_bounds
@@ -27,7 +28,7 @@ class fl_object:
         import os
         
         self.object_class = object_class
-        self.object_class_file = object_class
+        self.object_class_file = do_regex(object_class, "([^:]*)")
         self.max_class_name = class_name
         self.max_class_name_upper = class_name.upper()
         self.pd_class_name = class_name
@@ -75,7 +76,7 @@ class fl_object:
             if self.object_class == "":
                 self.object_class = item_regex(max_object_path, "FrameLib_MaxClass_ExprParsed<(.*)>")
 
-            self.object_class_file = self.object_class
+            self.object_class_file = do_regex(self.object_class, "([^:]*)")
             
             self.vs_project_guid = item_regex(project_path, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
 
@@ -163,7 +164,11 @@ class fl_object:
         
         fl_object.object_cache[class_name] = self
         
-        
+    
+    def object_file_external(self):
+        return self.object_class != self.object_class_file
+    
+    
     @staticmethod
     def create_from_name(class_name: str):
         return fl_object("", class_name, "")
