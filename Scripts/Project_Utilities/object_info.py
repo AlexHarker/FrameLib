@@ -79,7 +79,7 @@ class fl_object:
             if self.object_class == "":
                 self.object_class = item_regex(max_object_path, "FrameLib_MaxClass_ExprParsed<(.*)>")
 
-            self.guid = item_regex(project_path, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
+            self.vs_project_guid = item_regex(project_path, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
 
             self.xcode_obj_target_guid = get_xcode_guid("PBXNativeTarget", self.max_class_name)
 
@@ -126,7 +126,7 @@ class fl_object:
             
         else:
         
-            self.guid = create_vs_guid()
+            self.vs_project_guid = create_vs_guid()
             
             self.xcode_obj_target_guid = create_xcode_guid()
             self.xcode_obj_package_dep_guid = create_xcode_guid()
