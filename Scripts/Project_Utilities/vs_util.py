@@ -43,9 +43,9 @@ class fl_solution:
         self.project.flush()
         
         
-    def update_project(self, object_info: fl_object):
+    def update_project(self, object_info: fl_object, overwrite: bool = False):
     
-        file_util.create(fl_paths().vs_max_project(object_info), fl_paths().template("fl.class_name~.vcxproj"), object_info)
+        file_util.create(fl_paths().vs_max_project(object_info), fl_paths().template("fl.class_name~.vcxproj"), object_info, overwrite)
         
         if object_info.xcode_obj_file_ibuffer_guid != "":
         

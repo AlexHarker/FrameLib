@@ -89,15 +89,17 @@ def lines_regex(path: str, exp: str, start: str, end: str, inner_start: str, inn
 
     return list
     
-
-
     
-    
-def create(output_path: str, template_path: str, object_info: fl_object):
+def create(output_path: str, template_path: str, object_info: fl_object, overwrite: bool = False):
 
     contents = templated_string(template_path, object_info)
     
-    f = open(output_path, "w", newline = newline_setting(output_path))
+    if overwrite:
+        mode = "w"
+    else:
+        mode = "x"
+        
+    f = open(output_path, mode, newline = newline_setting(output_path))
     f.write(contents)
     f.close()
 
@@ -167,28 +169,23 @@ def remove_string(data: str, contents: str, bounds: list):
     if index < 0:
         print("WARNING - FAILED TO REMOVE\n")
         print(contents)
-        return False, data
+        return data
         
-    return True, data[:index] + data[index + len(contents):]
+    return data[:index] + data[index + len(contents):]
     
     
 def modify_string(data: str, contents: str, bounds: list, add: bool):
     if add:
         return insert_string(data, contents, bounds)
     else:
-        success, data = remove_string(data, contents, bounds)
-        return data
+        return remove_string(data, contents, bounds)
         
         
 def insert(path: str, contents: str, bounds: list, next_blank: bool = False):
     
-    data = ""
-    
-    with open(path, "r") as f:
-        data = f.read()
-
-    with open(path, "w", newline = newline_setting(path)) as f:
-        f.write(insert_string(data, contents, bounds, next_blank))
+    file = rw_file(path)
+    file.data = insert_string(file.data, contents, bounds, next_blank)
+    file.flush()
 
 
 def replace_next_key(data: str, object_info: fl_object):

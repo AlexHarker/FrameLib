@@ -27,7 +27,7 @@ def update_all(add: bool):
         object_info = fl_object.create_from_name(name)
 
         if add:
-            fl_solution().update_project(object_info)
+            fl_solution().update_project(object_info, True)
         
         fl_solution().update(object_info, add)
         fl_pbxproj().update(object_info, add)
