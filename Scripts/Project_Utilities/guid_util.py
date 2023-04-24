@@ -1,77 +1,86 @@
 
 from . path_util import fl_paths
-from . import file_util
+from . file_util import rw_file
+from . file_util import do_regex
+from . file_util import section_regex_string
 
 import uuid
 
+class guid_manager:
 
-def get_xcode_path():
-    return fl_paths().xcode_pbxproj()
+    def __init__(self):
     
-
-def get_vs_path():
-    return fl_paths().vs_solution()
-
-
-def get_vs_guid(item: str):
-    return file_util.item_regex(get_vs_path(), "\"" + item + "\".*\{(.*)\}")
-    
-    
-def get_xcode_guid(section: str, item: str):
-
-    from . xcode_util import section_bounds
-     
-    bounds = section_bounds(section)
-    exp = "([^\s]+) /\* " + item + " \*/ = \{"
-    hint = "/* " + item + " */"
-    return file_util.section_regex(get_xcode_path(), bounds, exp, hint)
-
-
-def get_xcode_component_guid(section: str, item: str, list: str, component: str, guid: str = None):
-    
-    from . xcode_util import section_bounds
-    from . xcode_util import item_bounds
-    from . xcode_util import list_bounds
-     
-    bounds = section_bounds(section) + item_bounds(item, guid) + list_bounds(list)
-    exp = "([^\s]+) /\* " + component + " \*/"
-    hint = "/* " + component + " */"
-    return file_util.section_regex(get_xcode_path(), bounds, exp, hint)
-    
-    
-def get_xcode_field_guid(section: str, guid: str, field: str):
-    
-    from . xcode_util import section_bounds
-    from . xcode_util import item_bounds
-     
-    bounds = section_bounds(section) + item_bounds(section, guid)
-    exp = field + " = ([^\s]+) /\*.*?\*/"
-    hint = field + " = "
-    return file_util.section_regex(get_xcode_path(), bounds, exp, hint)
-    
-    
-def guid_check_duplicate(path: str, guid: str):
-
-    # Ensure that the GUID is not in use already
-
-    return file_util.item_regex(path, "(" + guid + ")") != ""
-
-
-def create_vs_guid():
-
-    guid = str(uuid.uuid4()).upper()
+        self.pbxproj = rw_file(fl_paths().xcode_pbxproj())
+        self.solution = rw_file(fl_paths().vs_solution())
+       
+       
+    def vs(self, item: str):
+        return do_regex(self.solution.data, "\"" + item + "\".*\{(.*)\}")
         
-    if guid_check_duplicate(get_vs_path(), guid):
-        return create_vs_guid()
         
-    return guid
-    
-    
-def create_xcode_guid():
-    
-    guid = ''.join(str(uuid.uuid4()).upper().split('-')[1:])
-    
-    if guid_check_duplicate(get_xcode_path(), guid):
-        return create_vs_guid()
+    def vs_main(self):
+        return do_regex(self.solution.data, "Project\(\"\{(.*)\}\"\) = \"framelib\"")
+
         
-    return guid
+    def xc(self, section: str, item: str):
+
+        from . xcode_util import section_bounds
+         
+        bounds = section_bounds(section)
+        exp = "([^\s]+) /\* " + item + " \*/ = \{"
+        hint = "/* " + item + " */"
+        return section_regex_string(self.pbxproj.data, bounds, exp, hint)
+
+
+    def xc_component(self, section: str, item: str, list: str, component: str, guid: str = None):
+        
+        from . xcode_util import section_bounds
+        from . xcode_util import item_bounds
+        from . xcode_util import list_bounds
+         
+        bounds = section_bounds(section) + item_bounds(item, guid) + list_bounds(list)
+        exp = "([^\s]+) /\* " + component + " \*/"
+        hint = "/* " + component + " */"
+        return section_regex_string(self.pbxproj.data, bounds, exp, hint)
+        
+        
+    def xc_field(self, section: str, guid: str, field: str):
+        
+        from . xcode_util import section_bounds
+        from . xcode_util import item_bounds
+         
+        bounds = section_bounds(section) + item_bounds(section, guid)
+        exp = field + " = ([^\s]+) /\*.*?\*/"
+        hint = field + " = "
+        return section_regex_string(self.pbxproj.data, bounds, exp, hint)
+        
+    
+    def xc_custom(self, bounds: str, exp: str):
+        return section_regex_string(self.pbxproj.data, bounds, exp)
+        
+        
+    def __check_duplicate(self, data: str, guid: str):
+
+        # Ensure that the GUID is not in use already
+
+        return do_regex(data, "(" + guid + ")") != ""
+
+
+    def create_vs(self):
+
+        guid = str(uuid.uuid4()).upper()
+            
+        if self.__check_duplicate(self.solution.data, guid):
+            return create_vs()
+            
+        return guid
+        
+        
+    def create_xc(self):
+        
+        guid = ''.join(str(uuid.uuid4()).upper().split('-')[1:])
+        
+        if self.__check_duplicate(self.pbxproj.data, guid):
+            return create_xc()
+            
+        return guid

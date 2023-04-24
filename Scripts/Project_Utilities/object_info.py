@@ -20,13 +20,7 @@ class fl_object:
         
         from . path_util import fl_paths
         from . file_util import item_regex
-        from . file_util import section_regex
-        from . guid_util import get_vs_guid
-        from . guid_util import get_xcode_guid
-        from . guid_util import get_xcode_component_guid
-        from . guid_util import get_xcode_field_guid
-        from . guid_util import create_vs_guid
-        from . guid_util import create_xcode_guid
+        from . guid_util import guid_manager
         from . xcode_util import section_bounds
 
         import copy
@@ -40,22 +34,23 @@ class fl_object:
         
         project_path = fl_paths().vs_max_project(self)
         project_exists = os.path.exists(project_path)
-                
+        guids = guid_manager()
+        
         if fl_object.initialised == False:
                     
-            fl_object.vs_framelib_guid = get_vs_guid("framelib")
-            fl_object.vs_framelib_obj_guid = get_vs_guid("framelib_objects")
-            fl_object.vs_max_objects_guid = get_vs_guid("Max Object Projects")
-            fl_object.vs_main_guid = item_regex(fl_paths().vs_solution(), "Project\(\"\{(.*)\}\"\) = \"framelib\"")
+            fl_object.vs_framelib_guid = guids.vs("framelib")
+            fl_object.vs_framelib_obj_guid = guids.vs("framelib_objects")
+            fl_object.vs_max_objects_guid = guids.vs("Max Object Projects")
+            fl_object.vs_main_guid = guids.vs_main()
                             
-            fl_object.xcode_main_guid = get_xcode_guid("PBXProject", "Project object")
-            fl_object.xcode_framelib_guid = get_xcode_guid("PBXNativeTarget", "framelib")
-            fl_object.xcode_max_config_guid = get_xcode_guid("PBXFileReference", "Config_FrameLib_Max.xcconfig")
-            fl_object.xcode_fileref_lib_guid = get_xcode_guid("PBXFileReference", "libframelib.a")
-            fl_object.xcode_fileref_fft_guid = get_xcode_guid("PBXFileReference", "HISSTools_FFT.cpp")
-            fl_object.xcode_fileref_ibuffer_guid = get_xcode_guid("PBXFileReference", "ibuffer_access.cpp")
+            fl_object.xcode_main_guid = guids.xc("PBXProject", "Project object")
+            fl_object.xcode_framelib_guid = guids.xc("PBXNativeTarget", "framelib")
+            fl_object.xcode_max_config_guid = guids.xc("PBXFileReference", "Config_FrameLib_Max.xcconfig")
+            fl_object.xcode_fileref_lib_guid = guids.xc("PBXFileReference", "libframelib.a")
+            fl_object.xcode_fileref_fft_guid = guids.xc("PBXFileReference", "HISSTools_FFT.cpp")
+            fl_object.xcode_fileref_ibuffer_guid = guids.xc("PBXFileReference", "ibuffer_access.cpp")
     
-            fl_object.xcode_lib_sources_guid = get_xcode_component_guid("PBXNativeTarget", "framelib_objects", "buildPhases", "Sources")
+            fl_object.xcode_lib_sources_guid = guids.xc_component("PBXNativeTarget", "framelib_objects", "buildPhases", "Sources")
             
             fl_object.initialised = True
 
@@ -81,19 +76,19 @@ class fl_object:
 
             self.vs_project_guid = item_regex(project_path, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
 
-            self.xcode_obj_target_guid = get_xcode_guid("PBXNativeTarget", self.max_class_name)
+            self.xcode_obj_target_guid = guids.xc("PBXNativeTarget", self.max_class_name)
 
             bounds = section_bounds("PBXTargetDependency") + ["/* Begin PBXTargetDependency", "target = " + self.xcode_obj_target_guid]
             exp = "[\S\s]*\s([^\s]+) /\* PBXTargetDependency \*/ = \{[\S\s]*?\Z"
-            self.xcode_obj_package_dep_guid = section_regex(fl_paths().xcode_pbxproj(), bounds, exp)
+            self.xcode_obj_package_dep_guid = guids.xc_custom(bounds, exp)
             
-            self.xcode_obj_lib_dep_guid = get_xcode_component_guid("PBXNativeTarget", self.max_class_name, "dependencies", "PBXTargetDependency")
+            self.xcode_obj_lib_dep_guid = guids.xc_component("PBXNativeTarget", self.max_class_name, "dependencies", "PBXTargetDependency")
 
-            self.xcode_obj_lib_proxy_guid = get_xcode_field_guid("PBXTargetDependency", self.xcode_obj_lib_dep_guid, "targetProxy")
-            self.xcode_obj_target_proxy_guid = get_xcode_field_guid("PBXTargetDependency", self.xcode_obj_package_dep_guid, "targetProxy")
+            self.xcode_obj_lib_proxy_guid = guids.xc_field("PBXTargetDependency", self.xcode_obj_lib_dep_guid, "targetProxy")
+            self.xcode_obj_target_proxy_guid = guids.xc_field("PBXTargetDependency", self.xcode_obj_package_dep_guid, "targetProxy")
             
-            self.xcode_obj_sources_guid = get_xcode_component_guid("PBXNativeTarget", self.max_class_name, "buildPhases", "Sources")
-            self.xcode_obj_frameworks_guid = get_xcode_component_guid("PBXNativeTarget", self.max_class_name, "buildPhases", "Frameworks")
+            self.xcode_obj_sources_guid = guids.xc_component("PBXNativeTarget", self.max_class_name, "buildPhases", "Sources")
+            self.xcode_obj_frameworks_guid = guids.xc_component("PBXNativeTarget", self.max_class_name, "buildPhases", "Frameworks")
 
             class_str = self.max_class_name + ".cpp in Sources"
             object_str = self.object_class + ".cpp in Sources"
@@ -105,63 +100,63 @@ class fl_object:
             frameworks_guid = self.xcode_obj_frameworks_guid
             lib_guid = self.xcode_lib_sources_guid
 
-            self.xcode_obj_file_class_guid = get_xcode_component_guid("PBXSourcesBuildPhase", "Sources", "files", class_str, sources_guid)
-            self.xcode_obj_file_object_guid = get_xcode_component_guid("PBXSourcesBuildPhase", "Sources", "files", object_str, sources_guid)
-            self.xcode_obj_file_lib_guid = get_xcode_component_guid("PBXFrameworksBuildPhase", "Frameworks", "files", lib_str, frameworks_guid)
-            self.xcode_obj_file_object_for_lib_guid = get_xcode_component_guid("PBXSourcesBuildPhase", "Sources", "files", object_str, lib_guid)
-            self.xcode_obj_file_fft_guid = get_xcode_component_guid("PBXSourcesBuildPhase", "Sources", "files", fft_str, sources_guid)
-            self.xcode_obj_file_ibuffer_guid = get_xcode_component_guid("PBXSourcesBuildPhase", "Sources", "files", ibuffer_str, sources_guid)
+            self.xcode_obj_file_class_guid = guids.xc_component("PBXSourcesBuildPhase", "Sources", "files", class_str, sources_guid)
+            self.xcode_obj_file_object_guid = guids.xc_component("PBXSourcesBuildPhase", "Sources", "files", object_str, sources_guid)
+            self.xcode_obj_file_lib_guid = guids.xc_component("PBXFrameworksBuildPhase", "Frameworks", "files", lib_str, frameworks_guid)
+            self.xcode_obj_file_object_for_lib_guid = guids.xc_component("PBXSourcesBuildPhase", "Sources", "files", object_str, lib_guid)
+            self.xcode_obj_file_fft_guid = guids.xc_component("PBXSourcesBuildPhase", "Sources", "files", fft_str, sources_guid)
+            self.xcode_obj_file_ibuffer_guid = guids.xc_component("PBXSourcesBuildPhase", "Sources", "files", ibuffer_str, sources_guid)
 
-            self.xcode_obj_fileref_class_guid = get_xcode_guid("PBXFileReference", self.max_class_name + ".cpp")
-            self.xcode_obj_fileref_object_guid = get_xcode_guid("PBXFileReference", self.object_class + ".cpp")
-            self.xcode_obj_fileref_header_guid = get_xcode_guid("PBXFileReference", self.object_class + ".h")
-            self.xcode_obj_fileref_mxo_guid = get_xcode_guid("PBXFileReference", self.max_class_name + ".mxo")
+            self.xcode_obj_fileref_class_guid = guids.xc("PBXFileReference", self.max_class_name + ".cpp")
+            self.xcode_obj_fileref_object_guid = guids.xc("PBXFileReference", self.object_class + ".cpp")
+            self.xcode_obj_fileref_header_guid = guids.xc("PBXFileReference", self.object_class + ".h")
+            self.xcode_obj_fileref_mxo_guid = guids.xc("PBXFileReference", self.max_class_name + ".mxo")
             
             config_list = "Build configuration list for PBXNativeTarget \"" + self.max_class_name + "\""
             
-            self.xcode_obj_config_list_guid = get_xcode_guid("XCConfigurationList", config_list)
-            self.xcode_obj_config_dvmt_guid = get_xcode_component_guid("XCConfigurationList", config_list, "buildConfigurations", "Development")
-            self.xcode_obj_config_dplt_guid = get_xcode_component_guid("XCConfigurationList", config_list, "buildConfigurations", "Deployment")
-            self.xcode_obj_config_test_guid = get_xcode_component_guid("XCConfigurationList", config_list, "buildConfigurations", "Public Testing")
+            self.xcode_obj_config_list_guid = guids.xc("XCConfigurationList", config_list)
+            self.xcode_obj_config_dvmt_guid = guids.xc_component("XCConfigurationList", config_list, "buildConfigurations", "Development")
+            self.xcode_obj_config_dplt_guid = guids.xc_component("XCConfigurationList", config_list, "buildConfigurations", "Deployment")
+            self.xcode_obj_config_test_guid = guids.xc_component("XCConfigurationList", config_list, "buildConfigurations", "Public Testing")
             
         else:
         
-            self.vs_project_guid = create_vs_guid()
+            self.vs_project_guid = guids.create_vs()
             
-            self.xcode_obj_target_guid = create_xcode_guid()
-            self.xcode_obj_package_dep_guid = create_xcode_guid()
-            self.xcode_obj_lib_dep_guid = create_xcode_guid()
+            self.xcode_obj_target_guid = guids.create_xc()
+            self.xcode_obj_package_dep_guid = guids.create_xc()
+            self.xcode_obj_lib_dep_guid = guids.create_xc()
 
-            self.xcode_obj_lib_proxy_guid = create_xcode_guid()
-            self.xcode_obj_target_proxy_guid = create_xcode_guid()
+            self.xcode_obj_lib_proxy_guid = guids.create_xc()
+            self.xcode_obj_target_proxy_guid = guids.create_xc()
             
-            self.xcode_obj_sources_guid = create_xcode_guid()
-            self.xcode_obj_frameworks_guid = create_xcode_guid()
+            self.xcode_obj_sources_guid = guids.create_xc()
+            self.xcode_obj_frameworks_guid = guids.create_xc()
 
-            self.xcode_obj_file_class_guid = create_xcode_guid()
-            self.xcode_obj_file_object_guid = create_xcode_guid()
-            self.xcode_obj_file_lib_guid = create_xcode_guid()
-            self.xcode_obj_file_object_for_lib_guid = create_xcode_guid()
+            self.xcode_obj_file_class_guid = guids.create_xc()
+            self.xcode_obj_file_object_guid = guids.create_xc()
+            self.xcode_obj_file_lib_guid = guids.create_xc()
+            self.xcode_obj_file_object_for_lib_guid = guids.create_xc()
             
             if source_type == "fft":
-                self.xcode_obj_file_fft_guid = create_xcode_guid()
+                self.xcode_obj_file_fft_guid = guids.create_xc()
                 self.xcode_obj_file_ibuffer_guid = ""
             elif source_type == "ibuffer":
                 self.xcode_obj_file_fft_guid = ""
-                self.xcode_obj_file_ibuffer_guid = create_xcode_guid()
+                self.xcode_obj_file_ibuffer_guid = guids.create_xc()
             else:
                 self.xcode_obj_file_fft_guid = ""
                 self.xcode_obj_file_ibuffer_guid = ""
                 
-            self.xcode_obj_fileref_class_guid = create_xcode_guid()
-            self.xcode_obj_fileref_object_guid = create_xcode_guid()
-            self.xcode_obj_fileref_header_guid = create_xcode_guid()
-            self.xcode_obj_fileref_mxo_guid = create_xcode_guid()
+            self.xcode_obj_fileref_class_guid = guids.create_xc()
+            self.xcode_obj_fileref_object_guid = guids.create_xc()
+            self.xcode_obj_fileref_header_guid = guids.create_xc()
+            self.xcode_obj_fileref_mxo_guid = guids.create_xc()
             
-            self.xcode_obj_config_list_guid = create_xcode_guid()
-            self.xcode_obj_config_dvmt_guid = create_xcode_guid()
-            self.xcode_obj_config_dplt_guid = create_xcode_guid()
-            self.xcode_obj_config_test_guid = create_xcode_guid()
+            self.xcode_obj_config_list_guid = guids.create_xc()
+            self.xcode_obj_config_dvmt_guid = guids.create_xc()
+            self.xcode_obj_config_dplt_guid = guids.create_xc()
+            self.xcode_obj_config_test_guid = guids.create_xc()
         
         fl_object.object_cache[class_name] = self
         
