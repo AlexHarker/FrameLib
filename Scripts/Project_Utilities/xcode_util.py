@@ -49,9 +49,12 @@ class fl_pbxproj:
    
     def update(self, object_info: fl_object, add: bool):
 
+        source_exists = fl_paths().object_source_exists(object_info)
+        header_exists = fl_paths().object_header_exists(object_info)
+        
         self.project_modify_section(object_info, "file_class", "PBXBuildFile", add)
         
-        if fl_paths().object_source_exists(object_info):
+        if source_exists:
             self.project_modify_section(object_info, "file_object", "PBXBuildFile", add)
             self.project_modify_section(object_info, "file_object_for_lib", "PBXBuildFile", add)
         
@@ -60,7 +63,7 @@ class fl_pbxproj:
         self.project_modify_section(object_info, "fileref_product", "PBXFileReference", add)
         self.project_modify_section(object_info, "fileref_class", "PBXFileReference", add)
         
-        if fl_paths().object_source_exists(object_info):
+        if source_exists:
             self.project_modify_section(object_info, "fileref_object", "PBXFileReference", add)
     
         if fl_paths().object_header_exists(object_info):
@@ -69,7 +72,7 @@ class fl_pbxproj:
         self.project_modify_section(object_info, "proxy_lib", "PBXContainerItemProxy", add)
         self.project_modify_section(object_info, "proxy_target", "PBXContainerItemProxy", add)
 
-        if fl_paths().object_source_exists(object_info):
+        if source_exists:
             sources_phase = "phase_sources"
         else:
             sources_phase = "phase_sources_single"
@@ -101,15 +104,14 @@ class fl_pbxproj:
         bounds = section_bounds("PBXProject") + list_bounds("targets")
         self.project_modify(object_info, "ref_target", bounds, add)
         
-        if fl_paths().object_source_exists(object_info):
+        if source_exists:
             bounds = section_bounds("PBXSourcesBuildPhase") + item_bounds("Sources", object_info.xcode_lib_sources_guid) + list_bounds("files")
             self.project_modify(object_info, "ref_object_for_lib", bounds, add)
         
         bounds = section_bounds("PBXGroup") + item_bounds("Products") + list_bounds("children")
+
         self.project_modify(object_info, "group_item_product", bounds, add)
-        
-        # FIX - we assume that the categories exist - so we'll need to make them if not
-        
+                
         exp = "([^\s].*) /\* " + object_info.category + " \*/"
         
         bounds = section_bounds("PBXGroup") + item_bounds("Objects FrameLib") + list_bounds("children")
@@ -118,11 +120,19 @@ class fl_pbxproj:
         bounds = section_bounds("PBXGroup") + item_bounds("Objects Max") + list_bounds("children")
         max_guid = file_util.section_regex(fl_paths().xcode_pbxproj(), bounds, exp)
         
-        if fl_paths().object_header_exists(object_info):
+        # We need to make the category groups if they don't exist
+
+        if max_guid == "":
+            print("DOESN'T EXIST")
+            
+        if object_guid == "" and (header_exists or source_exists):
+            print("DOESN'T EXIST")
+
+        if header_exists:
             bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, object_guid) + list_bounds("children")
             self.project_modify(object_info, "group_item_header", bounds, add)
        
-        if fl_paths().object_source_exists(object_info):
+        if source_exists:
             bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, object_guid) + list_bounds("children")
             self.project_modify(object_info, "group_item_object", bounds, add)
         
