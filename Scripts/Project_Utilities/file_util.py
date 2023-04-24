@@ -49,16 +49,7 @@ def do_regex_with_hint(data: str, exp: str, hint: str):
     lo = data.rfind("\n", 0, hi)
     
     return do_regex(data[lo:hi], exp)
-    
 
-def item_regex(path: str, exp: str):
-    
-    with open(path) as f:
-        data = f.read()
-        return do_regex(data, exp)
-
-    return ""
- 
     
 def lines_regex(path: str, exp: str, start: str, end: str, inner_start: str, inner_end: str):
     
@@ -133,29 +124,11 @@ def get_section_string(data: str, bounds: list):
         
     index_lo, index_hi = find_section(data, bounds)
     return data[index_lo:index_hi]
-    
-
-def get_section(path: str, bounds: list):
-        
-    with open(path, "r") as f:
-        return get_section_string(f.read(), bounds)
-                
-    return ""
    
 
 def section_regex_string(data: str, bounds: list, exp: str, hint: str = ""):
     
     data = get_section_string(data, bounds)
-    
-    if hint != "":
-        return do_regex_with_hint(data, exp, hint)
-    else:
-        return do_regex(data, exp)
-        
-        
-def section_regex(path: str, bounds: list, exp: str, hint: str = ""):
-    
-    data = get_section(path, bounds)
     
     if hint != "":
         return do_regex_with_hint(data, exp, hint)
@@ -194,6 +167,12 @@ def modify_string(data: str, contents: str, bounds: list, add: bool):
     else:
         return remove_string(data, contents, bounds)
         
+       
+def item_regex(path: str, exp: str):
+    
+    file = rw_file(path)
+    return do_regex(file.data, exp)
+      
         
 def insert(path: str, contents: str, bounds: list, next_blank: bool = False):
     
