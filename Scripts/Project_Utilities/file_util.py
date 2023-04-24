@@ -3,6 +3,32 @@ from pathlib import Path
 from . object_info import fl_object
 
 
+def newline_setting(path: str):
+    
+    # Use window line endings for vcxproj files
+        
+    if Path(path).suffix == ".vcxproj":
+        return '\r\n'
+        
+    return None
+    
+    
+class rw_file:
+
+    def __init__(self, path: str):
+    
+        self.path = path
+        
+        with open(path, "r") as f:
+            self.data = f.read()
+            
+    def flush(self):
+        
+         with open(self.path, "w", newline = newline_setting(self.path)) as f:
+            f.write(self.data)
+        
+            
+
 def do_regex(data: str, exp: str):
 
     import re
@@ -64,14 +90,7 @@ def lines_regex(path: str, exp: str, start: str, end: str, inner_start: str, inn
     return list
     
 
-def newline_setting(output_path: str):
-    
-    # Use window line endings for vcxproj files
-        
-    if Path(output_path).suffix == ".vcxproj":
-        return '\r\n'
-        
-    return None
+
     
     
 def create(output_path: str, template_path: str, object_info: fl_object):
