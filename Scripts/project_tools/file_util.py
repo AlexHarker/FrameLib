@@ -119,6 +119,16 @@ def modify(data: str, contents: str, bounds: list, add: bool):
         return remove(data, contents, bounds)
 
 
+def sort_section(data: str, bounds: list, exp: str):
+    
+    lo, hi = find_section(data, bounds)
+
+    lines = data[lo:hi].splitlines(True)
+    lines.sort(key = lambda a : regex_search(a, exp))
+ 
+    return data[:lo-1] + "".join(lines) + data[hi:]
+
+
 def replace_next_key(data: str, object_info: fl_object):
 
     lo, hi = find_section(data, ["_##", "##_"])

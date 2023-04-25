@@ -52,3 +52,11 @@ class fl_solution:
             contents = file_util.templated_string(fl_paths().vs_template("ibuffer"), object_info)
             file_util.insert_file(fl_paths().vs_max_project(object_info), contents, ["<ClCompile Include", "  </ItemGroup>"])
         
+
+    def sort_project(self):
+    
+        exp = "\"(.*)\""
+        self.project.data = file_util.sort_section(self.project.data, ["<ClInclude Include", "  </ItemGroup>"], exp)
+        self.project.data = file_util.sort_section(self.project.data, ["<ClCompile Include", "  </ItemGroup>"], exp)
+   
+        self.project.flush()

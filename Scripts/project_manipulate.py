@@ -111,6 +111,8 @@ def main():
     elif args.action == "rebuild":
         rebuild()
 
+    fl_solution().sort_project()
+    
     fl_object.save_cache()
     
     
