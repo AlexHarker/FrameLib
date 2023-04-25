@@ -1,5 +1,6 @@
 
 import json
+from pathlib import Path
 
 class fl_object:
     
@@ -22,8 +23,6 @@ class fl_object:
         from . file_util import regex_search_file
         from . guid_util import guid_manager
         from . xc_util import section_bounds
-
-        import os
         
         self.info = {}
         info = self.info
@@ -36,7 +35,7 @@ class fl_object:
         info["category"] = category
         
         project_path = fl_paths().vs_max_project(self)
-        project_exists = os.path.exists(project_path)
+        project_exists = Path(project_path).exists()
         guids = guid_manager()
         
         if fl_object.initialised == False:
@@ -182,13 +181,11 @@ class fl_object:
     def save_cache():
 
         from . path_util import fl_paths
-        from pathlib import Path
-        import os
         
-        path = Path(fl_paths().cache_path()).parent
-        os.makedirs(path.as_posix(), exist_ok = True)
+        path = Path(fl_paths().cache_path())
+        path.parent.mkdir(parents = True, exist_ok = True)
 
-        with open(fl_paths().cache_path(), "w+") as f:
+        with open(path.as_posix(), "w+") as f:
             json.dump(fl_object.object_cache, f, indent=4)
         
         
@@ -196,9 +193,8 @@ class fl_object:
     def load_cache():
     
         from . path_util import fl_paths
-        import os
 
-        if os.path.exists(fl_paths().cache_path()):
+        if Path(fl_paths().cache_path()).exists():
             with open(fl_paths().cache_path(), "r") as f:
                 fl_object.object_cache = json.load(f)
 

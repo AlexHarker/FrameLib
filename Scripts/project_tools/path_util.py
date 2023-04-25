@@ -1,7 +1,7 @@
 
 from . object_info import fl_object
+from pathlib import Path
 
-import os
 
 class fl_paths:
 
@@ -9,7 +9,8 @@ class fl_paths:
 
         import os
 
-        self.base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) + "/"
+        file_path = Path(__file__)
+        self.base_dir = file_path.absolute().parent.parent.parent.as_posix() + "/"
         self.vs_project_dir = self.base_dir + "Projects/Visual_Studio/"
         self.template_dir = self.base_dir + "Scripts/project_tools/base_templates/"
         self.max_dir = self.base_dir + "FrameLib_Max_Objects/"
@@ -36,13 +37,13 @@ class fl_paths:
         return self.object_dir(object_info) + object_info["object_class_file"] + ".cpp"
 
     def object_source_exists(self, object_info: fl_object):
-        return os.path.exists(self.object_source(object_info))
+        return Path(self.object_source(object_info)).exists()
         
     def object_header(self, object_info: fl_object):
         return self.object_dir(object_info) + object_info["object_class_file"] + ".h"
         
     def object_header_exists(self, object_info: fl_object):
-        return os.path.exists(self.object_header(object_info))
+        return Path(self.object_header(object_info)).exists()
     
     def xc_pbxproj(self):
         return self.base_dir + "framelib.xcodeproj/project.pbxproj"

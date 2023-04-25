@@ -7,7 +7,6 @@ from project_tools.path_util import fl_paths
 from project_tools.object_info import fl_object
 
 import argparse
-import os
 import time
 from pathlib import Path
     
@@ -73,8 +72,8 @@ def new_object(object_info : fl_object):
     
     paths = fl_paths()
 
-    os.makedirs(paths.object_dir(object_info), exist_ok = True)
-    os.makedirs(paths.max_object_dir(object_info), exist_ok = True)
+    Path(paths.object_dir(object_info)).mkdir(parents = True, exist_ok = True)
+    Path(paths.max_object_dir(object_info)).mkdir(parents = True, exist_ok = True)
     
     file_util.create(paths.max_source(object_info), paths.code_template("fl.class_name~.cpp"), object_info)
     file_util.create(paths.object_header(object_info), paths.code_template("FrameLib_Class.h"), object_info)
