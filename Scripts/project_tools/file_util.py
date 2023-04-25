@@ -124,7 +124,7 @@ def sort_section(data: str, bounds: list, exp: str):
     lo, hi = find_section(data, bounds)
 
     lines = data[lo:hi].splitlines(True)
-    lines.sort(key = lambda a : regex_search(a, exp))
+    lines.sort(key = lambda a : regex_search(a.upper(), exp))
  
     return data[:lo-1] + "".join(lines) + data[hi:]
 
