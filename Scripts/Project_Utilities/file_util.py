@@ -184,11 +184,7 @@ def replace_next_key(data: str, object_info: fl_object):
         return False, data
 
     key = data[lo+3:hi]
-    
-    if key.lower() in object_info.__dict__:
-        value = object_info.__dict__[key.lower()]
-    else:
-        value = fl_object.static_guids[key.lower()]
+    value = object_info[key.lower()]
             
     return True, data.replace("_##" + key + "##_", value)
     

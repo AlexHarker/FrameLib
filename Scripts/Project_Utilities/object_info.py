@@ -8,6 +8,13 @@ class fl_object:
     
     initialised = False
     
+    def __getitem__(self, key):
+        if key.lower() in self.info:
+            return self.info[key]
+        else:
+            return fl_object.static_guids[key]
+        
+    
     def __init__(self, object_class: str, class_name: str, category: str, source_type: str = ""):
         
         from . path_util import fl_paths
@@ -19,12 +26,15 @@ class fl_object:
         import copy
         import os
         
-        self.object_class = object_class
-        self.object_class_name_upper = object_class.upper()
-        self.object_class_file = do_regex(object_class, "([^:]*)")
-        self.max_class_name = class_name
-        self.pd_class_name = class_name
-        self.category = category
+        self.info = {}
+        info = self.info
+        
+        info["object_class"] = object_class
+        info["object_class_name_upper"] = object_class.upper()
+        info["object_class_file"] = do_regex(object_class, "([^:]*)")
+        info["max_class_name"] = class_name
+        info["pd_class_name"] = class_name
+        info["category"] = category
         
         project_path = fl_paths().vs_max_project(self)
         project_exists = os.path.exists(project_path)
@@ -32,7 +42,7 @@ class fl_object:
         
         if fl_object.initialised == False:
                     
-            static_guids = {}
+            static_guids = fl_object.static_guids
             
             static_guids["vs_framelib_guid"] = guids.vs("framelib")
             static_guids["vs_framelib_obj_guid"] = guids.vs("framelib_objects")
@@ -48,121 +58,120 @@ class fl_object:
     
             static_guids["xc_lib_sources_guid"] = guids.xc_component("PBXNativeTarget", "framelib_objects", "buildPhases", "Sources")
             
-            fl_object.static_guids = static_guids
             fl_object.initialised = True
 
         if class_name in fl_object.object_cache:
         
-            self.__dict__ = copy.deepcopy(fl_object.object_cache[class_name])
+            self.info = fl_object.object_cache[class_name]
             return
             
         elif project_exists:
         
             import re
 
-            self.category = item_regex(project_path, "FrameLib_Max_Objects\\\\(.*)\\\\fl")
+            info["category"] = item_regex(project_path, "FrameLib_Max_Objects\\\\(.*)\\\\fl")
 
             max_object_path = fl_paths().max_source(self)
-            self.object_class = item_regex(max_object_path, "FrameLib_MaxClass_Expand<(.*)>").split(",")[0]
+            info["object_class"] = item_regex(max_object_path, "FrameLib_MaxClass_Expand<(.*)>").split(",")[0]
 
-            if self.object_class == "":
-                self.object_class = item_regex(max_object_path, "FrameLib_MaxClass<(.*)>")
+            if info["object_class"] == "":
+                info["object_class"] = item_regex(max_object_path, "FrameLib_MaxClass<(.*)>")
 
-            if self.object_class == "":
-                self.object_class = item_regex(max_object_path, "FrameLib_MaxClass_ExprParsed<(.*)>")
+            if info["object_class"] == "":
+                info["object_class"] = item_regex(max_object_path, "FrameLib_MaxClass_ExprParsed<(.*)>")
 
-            self.object_class_name_upper = self.object_class.upper()
-            self.object_class_file = do_regex(self.object_class, "([^:]*)")
+            info["object_class_name_upper"] = info["object_class"].upper()
+            info["object_class_file"] = do_regex(info["object_class"], "([^:]*)")
             
-            self.vs_project_guid = item_regex(project_path, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
+            info["vs_project_guid"] = item_regex(project_path, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
 
-            self.xc_obj_target_guid = guids.xc("PBXNativeTarget", self.max_class_name)
+            info["xc_obj_target_guid"] = guids.xc("PBXNativeTarget", info["max_class_name"])
 
-            bounds = section_bounds("PBXTargetDependency") + ["/* Begin PBXTargetDependency", "target = " + self.xc_obj_target_guid]
+            bounds = section_bounds("PBXTargetDependency") + ["/* Begin PBXTargetDependency", "target = " + info["xc_obj_target_guid"]]
             exp = "[\S\s]*\s([^\s]+) /\* PBXTargetDependency \*/ = \{[\S\s]*?\Z"
-            self.xc_obj_package_dep_guid = guids.xc_custom(bounds, exp)
+            info["xc_obj_package_dep_guid"] = guids.xc_custom(bounds, exp)
             
-            self.xc_obj_lib_dep_guid = guids.xc_component("PBXNativeTarget", self.max_class_name, "dependencies", "PBXTargetDependency")
+            info["xc_obj_lib_dep_guid"] = guids.xc_component("PBXNativeTarget", info["max_class_name"], "dependencies", "PBXTargetDependency")
 
-            self.xc_obj_lib_proxy_guid = guids.xc_field("PBXTargetDependency", self.xc_obj_lib_dep_guid, "targetProxy")
-            self.xc_obj_target_proxy_guid = guids.xc_field("PBXTargetDependency", self.xc_obj_package_dep_guid, "targetProxy")
+            info["xc_obj_lib_proxy_guid"] = guids.xc_field("PBXTargetDependency", info["xc_obj_lib_dep_guid"], "targetProxy")
+            info["xc_obj_target_proxy_guid"] = guids.xc_field("PBXTargetDependency", info["xc_obj_package_dep_guid"], "targetProxy")
             
-            self.xc_obj_sources_guid = guids.xc_component("PBXNativeTarget", self.max_class_name, "buildPhases", "Sources")
-            self.xc_obj_frameworks_guid = guids.xc_component("PBXNativeTarget", self.max_class_name, "buildPhases", "Frameworks")
+            info["xc_obj_sources_guid"] = guids.xc_component("PBXNativeTarget", info["max_class_name"], "buildPhases", "Sources")
+            info["xc_obj_frameworks_guid"] = guids.xc_component("PBXNativeTarget", info["max_class_name"], "buildPhases", "Frameworks")
 
-            class_str = self.max_class_name + ".cpp in Sources"
-            object_str = self.object_class_file + ".cpp in Sources"
+            class_str = info["max_class_name"] + ".cpp in Sources"
+            object_str = info["object_class_file"] + ".cpp in Sources"
             fft_str = "HISSTools_FFT.cpp in Sources"
             ibuffer_str = "ibuffer_access.cpp in Sources"
             lib_str = "libframelib.a in Frameworks"
             
-            sources_guid = self.xc_obj_sources_guid
-            frameworks_guid = self.xc_obj_frameworks_guid
+            sources_guid = info["xc_obj_sources_guid"]
+            frameworks_guid = info["xc_obj_frameworks_guid"]
             lib_guid = fl_object.static_guids["xc_lib_sources_guid"]
 
-            self.xc_obj_file_class_guid = guids.xc_component("PBXSourcesBuildPhase", "Sources", "files", class_str, sources_guid)
-            self.xc_obj_file_object_guid = guids.xc_component("PBXSourcesBuildPhase", "Sources", "files", object_str, sources_guid)
-            self.xc_obj_file_lib_guid = guids.xc_component("PBXFrameworksBuildPhase", "Frameworks", "files", lib_str, frameworks_guid)
-            self.xc_obj_file_object_for_lib_guid = guids.xc_component("PBXSourcesBuildPhase", "Sources", "files", object_str, lib_guid)
-            self.xc_obj_file_fft_guid = guids.xc_component("PBXSourcesBuildPhase", "Sources", "files", fft_str, sources_guid)
-            self.xc_obj_file_ibuffer_guid = guids.xc_component("PBXSourcesBuildPhase", "Sources", "files", ibuffer_str, sources_guid)
+            info["xc_obj_file_class_guid"] = guids.xc_component("PBXSourcesBuildPhase", "Sources", "files", class_str, sources_guid)
+            info["xc_obj_file_object_guid"] = guids.xc_component("PBXSourcesBuildPhase", "Sources", "files", object_str, sources_guid)
+            info["xc_obj_file_lib_guid"] = guids.xc_component("PBXFrameworksBuildPhase", "Frameworks", "files", lib_str, frameworks_guid)
+            info["xc_obj_file_object_for_lib_guid"] = guids.xc_component("PBXSourcesBuildPhase", "Sources", "files", object_str, lib_guid)
+            info["xc_obj_file_fft_guid"] = guids.xc_component("PBXSourcesBuildPhase", "Sources", "files", fft_str, sources_guid)
+            info["xc_obj_file_ibuffer_guid"] = guids.xc_component("PBXSourcesBuildPhase", "Sources", "files", ibuffer_str, sources_guid)
 
-            self.xc_obj_fileref_class_guid = guids.xc("PBXFileReference", self.max_class_name + ".cpp")
-            self.xc_obj_fileref_object_guid = guids.xc("PBXFileReference", self.object_class_file + ".cpp")
-            self.xc_obj_fileref_header_guid = guids.xc("PBXFileReference", self.object_class_file + ".h")
-            self.xc_obj_fileref_mxo_guid = guids.xc("PBXFileReference", self.max_class_name + ".mxo")
+            info["xc_obj_fileref_class_guid"] = guids.xc("PBXFileReference", info["max_class_name"] + ".cpp")
+            info["xc_obj_fileref_object_guid"] = guids.xc("PBXFileReference", info["object_class_file"] + ".cpp")
+            info["xc_obj_fileref_header_guid"] = guids.xc("PBXFileReference", info["object_class_file"] + ".h")
+            info["xc_obj_fileref_mxo_guid"] = guids.xc("PBXFileReference", info["max_class_name"] + ".mxo")
             
-            config_list = "Build configuration list for PBXNativeTarget \"" + self.max_class_name + "\""
+            config_list = "Build configuration list for PBXNativeTarget \"" + info["max_class_name"] + "\""
             
-            self.xc_obj_config_list_guid = guids.xc("XCConfigurationList", config_list)
-            self.xc_obj_config_dvmt_guid = guids.xc_component("XCConfigurationList", config_list, "buildConfigurations", "Development")
-            self.xc_obj_config_dplt_guid = guids.xc_component("XCConfigurationList", config_list, "buildConfigurations", "Deployment")
-            self.xc_obj_config_test_guid = guids.xc_component("XCConfigurationList", config_list, "buildConfigurations", "Public Testing")
+            info["xc_obj_config_list_guid"] = guids.xc("XCConfigurationList", config_list)
+            info["xc_obj_config_dvmt_guid"] = guids.xc_component("XCConfigurationList", config_list, "buildConfigurations", "Development")
+            info["xc_obj_config_dplt_guid"] = guids.xc_component("XCConfigurationList", config_list, "buildConfigurations", "Deployment")
+            info["xc_obj_config_test_guid"] = guids.xc_component("XCConfigurationList", config_list, "buildConfigurations", "Public Testing")
             
         else:
         
-            self.vs_project_guid = guids.create_vs()
+            info["vs_project_guid"] = guids.create_vs()
             
-            self.xc_obj_target_guid = guids.create_xc()
-            self.xc_obj_package_dep_guid = guids.create_xc()
-            self.xc_obj_lib_dep_guid = guids.create_xc()
+            info["xc_obj_target_guid"] = guids.create_xc()
+            info["xc_obj_package_dep_guid"] = guids.create_xc()
+            info["xc_obj_lib_dep_guid"] = guids.create_xc()
 
-            self.xc_obj_lib_proxy_guid = guids.create_xc()
-            self.xc_obj_target_proxy_guid = guids.create_xc()
+            info["xc_obj_lib_proxy_guid"] = guids.create_xc()
+            info["xc_obj_target_proxy_guid"] = guids.create_xc()
             
-            self.xc_obj_sources_guid = guids.create_xc()
-            self.xc_obj_frameworks_guid = guids.create_xc()
+            info["xc_obj_sources_guid"] = guids.create_xc()
+            info["xc_obj_frameworks_guid"] = guids.create_xc()
 
-            self.xc_obj_file_class_guid = guids.create_xc()
-            self.xc_obj_file_object_guid = guids.create_xc()
-            self.xc_obj_file_lib_guid = guids.create_xc()
-            self.xc_obj_file_object_for_lib_guid = guids.create_xc()
+            info["xc_obj_file_class_guid"] = guids.create_xc()
+            info["xc_obj_file_object_guid"] = guids.create_xc()
+            info["xc_obj_file_lib_guid"] = guids.create_xc()
+            info["xc_obj_file_object_for_lib_guid"] = guids.create_xc()
             
             if source_type == "fft":
-                self.xc_obj_file_fft_guid = guids.create_xc()
-                self.xc_obj_file_ibuffer_guid = ""
+                info["xc_obj_file_fft_guid"] = guids.create_xc()
+                info["xc_obj_file_ibuffer_guid"] = ""
             elif source_type == "ibuffer":
-                self.xc_obj_file_fft_guid = ""
-                self.xc_obj_file_ibuffer_guid = guids.create_xc()
+                info["xc_obj_file_fft_guid"] = ""
+                info["xc_obj_file_ibuffer_guid"] = guids.create_xc()
             else:
-                self.xc_obj_file_fft_guid = ""
-                self.xc_obj_file_ibuffer_guid = ""
+                info["xc_obj_file_fft_guid"] = ""
+                info["xc_obj_file_ibuffer_guid"] = ""
                 
-            self.xc_obj_fileref_class_guid = guids.create_xc()
-            self.xc_obj_fileref_object_guid = guids.create_xc()
-            self.xc_obj_fileref_header_guid = guids.create_xc()
-            self.xc_obj_fileref_mxo_guid = guids.create_xc()
+            info["xc_obj_fileref_class_guid"] = guids.create_xc()
+            info["xc_obj_fileref_object_guid"] = guids.create_xc()
+            info["xc_obj_fileref_header_guid"] = guids.create_xc()
+            info["xc_obj_fileref_mxo_guid"] = guids.create_xc()
             
-            self.xc_obj_config_list_guid = guids.create_xc()
-            self.xc_obj_config_dvmt_guid = guids.create_xc()
-            self.xc_obj_config_dplt_guid = guids.create_xc()
-            self.xc_obj_config_test_guid = guids.create_xc()
+            info["xc_obj_config_list_guid"] = guids.create_xc()
+            info["xc_obj_config_dvmt_guid"] = guids.create_xc()
+            info["xc_obj_config_dplt_guid"] = guids.create_xc()
+            info["xc_obj_config_test_guid"] = guids.create_xc()
         
-        fl_object.object_cache[class_name] = self.__dict__
+        fl_object.object_cache[class_name] = info
         
     
     def object_file_external(self):
-        return self.object_class != self.object_class_file
+        return self["object_class"] != self["object_class_file"]
     
     
     @staticmethod

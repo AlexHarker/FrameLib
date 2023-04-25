@@ -24,22 +24,22 @@ class fl_paths:
         return self.template_dir + "code_templates/" +  file_name
         
     def max_object_dir(self, object_info: fl_object):
-        return self.max_dir + object_info.category + "/"
+        return self.max_dir + object_info["category"] + "/"
     
     def object_dir(self, object_info: fl_object):
-        return self.base_dir + "FrameLib_Objects/" + object_info.category + "/"
+        return self.base_dir + "FrameLib_Objects/" + object_info["category"] + "/"
         
     def max_source(self, object_info: fl_object):
-        return self.max_object_dir(object_info) + object_info.max_class_name + ".cpp"
+        return self.max_object_dir(object_info) + object_info["max_class_name"] + ".cpp"
     
     def object_source(self, object_info: fl_object):
-        return self.object_dir(object_info) + object_info.object_class_file + ".cpp"
+        return self.object_dir(object_info) + object_info["object_class_file"] + ".cpp"
 
     def object_source_exists(self, object_info: fl_object):
         return os.path.exists(self.object_source(object_info))
         
     def object_header(self, object_info: fl_object):
-        return self.object_dir(object_info) + object_info.object_class_file + ".h"
+        return self.object_dir(object_info) + object_info["object_class_file"] + ".h"
         
     def object_header_exists(self, object_info: fl_object):
         return os.path.exists(self.object_header(object_info))
@@ -60,7 +60,7 @@ class fl_paths:
         return self.vs_project_dir + "03_Max_Objects/"
         
     def vs_max_project(self, object_info: fl_object):
-        return self.vs_max_projects() + object_info.max_class_name + ".vcxproj"
+        return self.vs_max_projects() + object_info["max_class_name"] + ".vcxproj"
 
     def objects_export_header(self):
         return self.base_dir + "FrameLib_Exports/FrameLib_Objects.h"

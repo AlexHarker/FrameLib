@@ -52,6 +52,7 @@ class fl_pbxproj:
         source_exists = fl_paths().object_source_exists(object_info)
         header_exists = fl_paths().object_header_exists(object_info)
         external_object = object_info.object_file_external()
+        category = object_info["category"]
         
         self.project_modify_section(object_info, "file_class", "PBXBuildFile", add)
         
@@ -80,10 +81,10 @@ class fl_pbxproj:
         else:
             sources_phase = "phase_sources_single"
             
-        if object_info.xc_obj_file_fft_guid != "":
+        if object_info["xc_obj_file_fft_guid"] != "":
             self.project_modify_section(object_info, "file_fft", "PBXBuildFile", add)
             sources_phase = "phase_sources_fft"
-        elif object_info.xc_obj_file_ibuffer_guid != "":
+        elif object_info["xc_obj_file_ibuffer_guid"] != "":
             self.project_modify_section(object_info, "file_ibuffer", "PBXBuildFile", add)
             sources_phase = "phase_sources_ibuffer"
 
@@ -108,7 +109,7 @@ class fl_pbxproj:
         self.project_modify(object_info, "ref_target", bounds, add)
         
         if source_exists and not external_object:
-            lib_sources_guid = object_info.static_guids["xc_lib_sources_guid"]
+            lib_sources_guid = object_info["xc_lib_sources_guid"]
             bounds = section_bounds("PBXSourcesBuildPhase") + item_bounds("Sources", lib_sources_guid) + list_bounds("files")
             self.project_modify(object_info, "ref_object_for_lib", bounds, add)
         
@@ -116,7 +117,7 @@ class fl_pbxproj:
 
         self.project_modify(object_info, "group_item_product", bounds, add)
                 
-        exp = "([^\s].*) /\* " + object_info.category + " \*/"
+        exp = "([^\s].*) /\* " + category + " \*/"
         
         bounds = section_bounds("PBXGroup") + item_bounds("Objects FrameLib") + list_bounds("children")
         object_guid = file_util.section_regex(self.pbxproj.data, bounds, exp)
@@ -133,14 +134,14 @@ class fl_pbxproj:
             print("DOESN'T EXIST")
 
         if header_exists and not external_object:
-            bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, object_guid) + list_bounds("children")
+            bounds = section_bounds("PBXGroup") + item_bounds(category, object_guid) + list_bounds("children")
             self.project_modify(object_info, "group_item_header", bounds, add)
        
         if source_exists and not external_object:
-            bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, object_guid) + list_bounds("children")
+            bounds = section_bounds("PBXGroup") + item_bounds(category, object_guid) + list_bounds("children")
             self.project_modify(object_info, "group_item_object", bounds, add)
         
-        bounds = section_bounds("PBXGroup") + item_bounds(object_info.category, max_guid) + list_bounds("children")
+        bounds = section_bounds("PBXGroup") + item_bounds(category, max_guid) + list_bounds("children")
         self.project_modify(object_info, "group_item_class", bounds, add)
         
         self.scheme_modify(object_info, add)

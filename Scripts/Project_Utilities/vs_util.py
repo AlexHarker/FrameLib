@@ -26,12 +26,12 @@ class fl_solution:
         
     def update(self, object_info: fl_object, add: bool):
 
-        if object_info.object_class != "":
+        if object_info["object_class"] != "":
         
-            if fl_paths().object_header_exists(object_info) and not object_info.object_file_external:
+            if fl_paths().object_header_exists(object_info) and not object_info.object_file_external():
                 self.object_project_modify(object_info, "header", ["<ClInclude Include", "  </ItemGroup>"], add)
         
-            if fl_paths().object_source_exists(object_info) and not object_info.object_file_external:
+            if fl_paths().object_source_exists(object_info) and not object_info.object_file_external():
                 self.object_project_modify(object_info, "source", ["<ClCompile Include", "  </ItemGroup>"], add)
         
         self.solution_modify(object_info, "project", ["MinimumVisualStudioVersion", "Global"], add)
@@ -47,7 +47,7 @@ class fl_solution:
     
         file_util.create(fl_paths().vs_max_project(object_info), fl_paths().vs_template("_class_name~.vcxproj"), object_info, overwrite)
         
-        if object_info.xc_obj_file_ibuffer_guid != "":
+        if object_info["xc_obj_file_ibuffer_guid"] != "":
         
             contents = file_util.templated_string(fl_paths().vs_template("ibuffer"), object_info)
             file_util.insert(fl_paths().vs_max_project(object_info), contents, ["<ClCompile Include", "  </ItemGroup>"])
