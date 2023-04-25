@@ -50,9 +50,6 @@ class fl_object:
             
             fl_object.static_guids = static_guids
             fl_object.initialised = True
-            import json
-            print(json.dumps(fl_object.static_guids, indent=4))
-
 
         if class_name in fl_object.object_cache:
         
