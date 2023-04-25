@@ -1,11 +1,12 @@
 
-from Project_Utilities import file_util
-from Project_Utilities import code_util
-from Project_Utilities.object_info import fl_object
-from Project_Utilities.vs_util import fl_solution
-from Project_Utilities.xc_util import fl_pbxproj
-from Project_Utilities.path_util import fl_paths
+from project_tools import file_util
+from project_tools import code_util
+from project_tools.vs_util import fl_solution
+from project_tools.xc_util import fl_pbxproj
+from project_tools.path_util import fl_paths
+from project_tools.object_info import fl_object
 
+import argparse
 import os
 import time
 from pathlib import Path
@@ -88,10 +89,29 @@ def new_object(object_info : fl_object):
     
 def main():
 
-    fl_object.load_cache()
-    new_object(fl_object("FrameLib_Test", "fl.test~", "Schedulers"))
-    #rebuild()
-    #remove_all()
+    parser = argparse.ArgumentParser(description="Manipulate and update framelib projects")
+    parser.add_argument("-o", "--object", default="FrameLib_Test", help="The framelib class")
+    parser.add_argument("-n", "--name", help="The max object name")
+    parser.add_argument("-c", "--category", default="Schedulers", help="The object category")
+    parser.add_argument("-a", "--action", default="new", help="Sets the action (new / remove / add / rebuild")
+    parser.add_argument("--cache", default=True, help="Read from the object cache (if present)")
+    args = parser.parse_args()
+    
+    if args.cache:
+        fl_object.load_cache()
+    
+    if args.name is None:
+        args.name = "fl." + file_util.regex_search(args.object, ".*?([^_]*)$").lower() + "~"
+            
+    if args.action == "new":
+        new_object(fl_object(args.object, args.name, args.category))
+    elif args.action == "remove":
+        remove_all()
+    elif args.action == "add":
+        add_all()
+    elif args.action == "rebuild":
+        rebuild()
+
     fl_object.save_cache()
     
     

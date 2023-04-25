@@ -11,7 +11,7 @@ class fl_paths:
 
         self.base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) + "/"
         self.vs_project_dir = self.base_dir + "Projects/Visual_Studio/"
-        self.template_dir = self.base_dir + "Scripts/Resources/"
+        self.template_dir = self.base_dir + "Scripts/project_tools/base_templates/"
         self.max_dir = self.base_dir + "FrameLib_Max_Objects/"
 
     def vs_template(self, file_name: str):
@@ -72,6 +72,6 @@ class fl_paths:
         return self.max_dir + "Common/framelib_max.cpp"
         
     def cache_path(self):
-        return self.template_dir + "object_cache.json"
+        return self.template_dir + "cache/object_cache.json"
         
 
