@@ -29,7 +29,7 @@ class rw_file:
         
             
 
-def do_regex(data: str, exp: str):
+def regex_search(data: str, exp: str):
 
     import re
     
@@ -42,15 +42,109 @@ def do_regex(data: str, exp: str):
     return ""
 
 
-def do_regex_with_hint(data: str, exp: str, hint: str):
+def regex_search_with_hint(data: str, exp: str, hint: str):
 
     hi = data.find(hint)
     hi = data.find("\n", hi)
     lo = data.rfind("\n", 0, hi)
     
-    return do_regex(data[lo:hi], exp)
+    return regex_search(data[lo:hi], exp)
 
+
+def find_next_blankline(data: str, index: int):
+
+    while True:
+        next = data.find("\n", index)
+        if next >= 0:
+            next = data.find("\n", next + 1)
+        if data[index:next].isspace():
+            return index + 1
+        if next < 0:
+            return index
+        index = next
+            
+            
+def find_section(data: str, bounds: list):
+
+    index_lo = 0
+    index_hi = len(data)
     
+    for idx in range(int(len(bounds) / 2)):
+        index_lo = data.find(bounds[idx * 2 + 0], index_lo, index_hi)
+        index_hi = data.find(bounds[idx * 2 + 1], index_lo + len(bounds[idx * 2 + 0]), index_hi)
+
+    return index_lo, index_hi
+    
+
+def regex_search_section(data: str, bounds: list, exp: str, hint: str = ""):
+    
+    index_lo, index_hi = find_section(data, bounds)
+    data = data[index_lo:index_hi]
+    
+    if hint != "":
+        return regex_search_with_hint(data, exp, hint)
+    else:
+        return regex_search(data, exp)
+        
+        
+def insert(data: str, contents: str, bounds: list, next_blank: bool = False):
+    
+    index_lo, index = find_section(data, bounds)
+                
+    # Look for next whitespace line (skipping the first which will be immediate)
+        
+    if next_blank:
+        index = find_next_blankline(data, index)
+            
+    return data[:index] + contents + data[index:]
+
+
+def remove(data: str, contents: str, bounds: list):
+        
+    index_lo, index_hi = find_section(data, bounds)
+    index = data.find(contents, index_lo, index_hi)
+        
+    if index < 0:
+        print("WARNING - FAILED TO REMOVE\n")
+        print(contents)
+        return data
+        
+    return data[:index] + data[index + len(contents):]
+    
+    
+def modify(data: str, contents: str, bounds: list, add: bool):
+    if add:
+        return insert(data, contents, bounds)
+    else:
+        return remove(data, contents, bounds)
+
+
+def replace_next_key(data: str, object_info: fl_object):
+
+    lo, hi = find_section(data, ["_##", "##_"])
+    
+    if lo < 0 or hi < 0:
+        return False, data
+
+    key = data[lo+3:hi]
+    value = object_info[key.lower()]
+            
+    return True, data.replace("_##" + key + "##_", value)
+    
+    
+def templated_string(template_path: str, object_info: fl_object):
+
+    with open(template_path, "r") as f:
+        template = f.read()
+
+    condition = True;
+    
+    while condition:
+        condition, template = replace_next_key(template, object_info)
+        
+    return template
+
+       
 def lines_regex(path: str, exp: str, start: str, end: str, inner_start: str, inner_end: str):
     
     import re
@@ -93,110 +187,16 @@ def create(output_path: str, template_path: str, object_info: fl_object, overwri
     f = open(output_path, mode, newline = newline_setting(output_path))
     f.write(contents)
     f.close()
-
-
-def find_next_blankline(data: str, index: int):
-
-    while True:
-        next = data.find("\n", index)
-        if next >= 0:
-            next = data.find("\n", next + 1)
-        if data[index:next].isspace():
-            return index + 1
-        if next < 0:
-            return index
-        index = next
-            
-            
-def find_section(data: str, bounds: list):
-
-    index_lo = 0
-    index_hi = len(data)
-    
-    for idx in range(int(len(bounds) / 2)):
-        index_lo = data.find(bounds[idx * 2 + 0], index_lo, index_hi)
-        index_hi = data.find(bounds[idx * 2 + 1], index_lo + len(bounds[idx * 2 + 0]), index_hi)
-
-    return index_lo, index_hi
     
 
-def section_regex(data: str, bounds: list, exp: str, hint: str = ""):
-    
-    index_lo, index_hi = find_section(data, bounds)
-    data = data[index_lo:index_hi]
-    
-    if hint != "":
-        return do_regex_with_hint(data, exp, hint)
-    else:
-        return do_regex(data, exp)
-        
-        
-def insert_string(data: str, contents: str, bounds: list, next_blank: bool = False):
-    
-    index_lo, index = find_section(data, bounds)
-                
-    # Look for next whitespace line (skipping the first which will be immediate)
-        
-    if next_blank:
-        index = find_next_blankline(data, index)
-            
-    return data[:index] + contents + data[index:]
-
-
-def remove_string(data: str, contents: str, bounds: list):
-        
-    index_lo, index_hi = find_section(data, bounds)
-    index = data.find(contents, index_lo, index_hi)
-        
-    if index < 0:
-        print("WARNING - FAILED TO REMOVE\n")
-        print(contents)
-        return data
-        
-    return data[:index] + data[index + len(contents):]
-    
-    
-def modify(data: str, contents: str, bounds: list, add: bool):
-    if add:
-        return insert_string(data, contents, bounds)
-    else:
-        return remove_string(data, contents, bounds)
-        
-       
-def item_regex(path: str, exp: str):
+def regex_search_file(path: str, exp: str):
     
     file = rw_file(path)
-    return do_regex(file.data, exp)
+    return regex_search(file.data, exp)
       
         
-def insert(path: str, contents: str, bounds: list, next_blank: bool = False):
+def insert_file(path: str, contents: str, bounds: list, next_blank: bool = False):
     
     file = rw_file(path)
-    file.data = insert_string(file.data, contents, bounds, next_blank)
+    file.data = insert(file.data, contents, bounds, next_blank)
     file.flush()
-
-
-def replace_next_key(data: str, object_info: fl_object):
-
-    lo, hi = find_section(data, ["_##", "##_"])
-    
-    if lo < 0 or hi < 0:
-        return False, data
-
-    key = data[lo+3:hi]
-    value = object_info[key.lower()]
-            
-    return True, data.replace("_##" + key + "##_", value)
-    
-    
-def templated_string(template_path: str, object_info: fl_object):
-
-    with open(template_path, "r") as f:
-        template = f.read()
-
-    condition = True;
-    
-    while condition:
-        condition, template = replace_next_key(template, object_info)
-        
-    return template

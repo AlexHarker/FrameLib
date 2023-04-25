@@ -14,25 +14,25 @@ def insert_code(contents: str, class_name: str, category: str, path: str, start:
             
             for o in objects:
                 if o[0] > class_name:
-                    file_util.insert(path, contents, [start, o[1]])
+                    file_util.insert_file(path, contents, [start, o[1]])
                     return
             
-            file_util.insert(path, contents, [start, categories[index][1]], True)
+            file_util.insert_file(path, contents, [start, categories[index][1]], True)
             return
             
     contents = layout + "// " + category_compare + "\n\n" + contents + "\n"
 
     for c in categories:
         if c[0] > category_compare:
-            file_util.insert(path, contents, [start, layout + "// " + c[0]])
+            file_util.insert_file(path, contents, [start, layout + "// " + c[0]])
             return
     
-    file_util.insert(path, contents, [start, insert_end])
+    file_util.insert_file(path, contents, [start, insert_end])
     
     
 def insert_cpp_single_build(template: str, class_name: str, object_info: fl_object, path: str, start: str, end: str):
+   
     contents = file_util.templated_string(fl_paths().code_template(template), object_info)
-    print(contents)
     exp = "^.*?(fl.*~).*"
     insert_code(contents, class_name, object_info["category"], path, start, end, "    // Unary Operators", exp, "    ")
     

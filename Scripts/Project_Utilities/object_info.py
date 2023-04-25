@@ -18,8 +18,8 @@ class fl_object:
     def __init__(self, object_class: str, class_name: str, category: str, source_type: str = ""):
         
         from . path_util import fl_paths
-        from . file_util import do_regex
-        from . file_util import item_regex
+        from . file_util import regex_search
+        from . file_util import regex_search_file
         from . guid_util import guid_manager
         from . xc_util import section_bounds
 
@@ -31,7 +31,7 @@ class fl_object:
         
         info["object_class"] = object_class
         info["object_class_name_upper"] = object_class.upper()
-        info["object_class_file"] = do_regex(object_class, "([^:]*)")
+        info["object_class_file"] = regex_search(object_class, "([^:]*)")
         info["max_class_name"] = class_name
         info["pd_class_name"] = class_name
         info["category"] = category
@@ -69,21 +69,21 @@ class fl_object:
         
             import re
 
-            info["category"] = item_regex(project_path, "FrameLib_Max_Objects\\\\(.*)\\\\fl")
+            info["category"] = regex_search_file(project_path, "FrameLib_Max_Objects\\\\(.*)\\\\fl")
 
             max_object_path = fl_paths().max_source(self)
-            info["object_class"] = item_regex(max_object_path, "FrameLib_MaxClass_Expand<(.*)>").split(",")[0]
+            info["object_class"] = regex_search_file(max_object_path, "FrameLib_MaxClass_Expand<(.*)>").split(",")[0]
 
             if info["object_class"] == "":
-                info["object_class"] = item_regex(max_object_path, "FrameLib_MaxClass<(.*)>")
+                info["object_class"] = regex_search_file(max_object_path, "FrameLib_MaxClass<(.*)>")
 
             if info["object_class"] == "":
-                info["object_class"] = item_regex(max_object_path, "FrameLib_MaxClass_ExprParsed<(.*)>")
+                info["object_class"] = regex_search_file(max_object_path, "FrameLib_MaxClass_ExprParsed<(.*)>")
 
             info["object_class_name_upper"] = info["object_class"].upper()
-            info["object_class_file"] = do_regex(info["object_class"], "([^:]*)")
+            info["object_class_file"] = regex_search(info["object_class"], "([^:]*)")
             
-            info["vs_project_guid"] = item_regex(project_path, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
+            info["vs_project_guid"] = regex_search_file(project_path, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
 
             info["xc_obj_target_guid"] = guids.xc("PBXNativeTarget", info["max_class_name"])
 

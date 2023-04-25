@@ -120,10 +120,10 @@ class fl_pbxproj:
         exp = "([^\s].*) /\* " + category + " \*/"
         
         bounds = section_bounds("PBXGroup") + item_bounds("Objects FrameLib") + list_bounds("children")
-        object_guid = file_util.section_regex(self.pbxproj.data, bounds, exp)
+        object_guid = file_util.regex_search_section(self.pbxproj.data, bounds, exp)
         
         bounds = section_bounds("PBXGroup") + item_bounds("Objects Max") + list_bounds("children")
-        max_guid = file_util.section_regex(self.pbxproj.data, bounds, exp)
+        max_guid = file_util.regex_search_section(self.pbxproj.data, bounds, exp)
         
         # We need to make the category groups if they don't exist
 
