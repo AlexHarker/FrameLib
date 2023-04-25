@@ -10,7 +10,7 @@ class guid_manager:
 
     def __init__(self):
     
-        self.pbxproj = rw_file(fl_paths().xcode_pbxproj())
+        self.pbxproj = rw_file(fl_paths().xc_pbxproj())
         self.solution = rw_file(fl_paths().vs_solution())
        
        
@@ -24,7 +24,7 @@ class guid_manager:
         
     def xc(self, section: str, item: str):
 
-        from . xcode_util import section_bounds
+        from . xc_util import section_bounds
          
         bounds = section_bounds(section)
         exp = "([^\s]+) /\* " + item + " \*/ = \{"
@@ -34,9 +34,9 @@ class guid_manager:
 
     def xc_component(self, section: str, item: str, list: str, component: str, guid: str = None):
         
-        from . xcode_util import section_bounds
-        from . xcode_util import item_bounds
-        from . xcode_util import list_bounds
+        from . xc_util import section_bounds
+        from . xc_util import item_bounds
+        from . xc_util import list_bounds
          
         bounds = section_bounds(section) + item_bounds(item, guid) + list_bounds(list)
         exp = "([^\s]+) /\* " + component + " \*/"
@@ -46,8 +46,8 @@ class guid_manager:
         
     def xc_field(self, section: str, guid: str, field: str):
         
-        from . xcode_util import section_bounds
-        from . xcode_util import item_bounds
+        from . xc_util import section_bounds
+        from . xc_util import item_bounds
          
         bounds = section_bounds(section) + item_bounds(section, guid)
         exp = field + " = ([^\s]+) /\*.*?\*/"

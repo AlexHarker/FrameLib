@@ -14,8 +14,14 @@ class fl_paths:
         self.template_dir = self.base_dir + "Scripts/Resources/"
         self.max_dir = self.base_dir + "FrameLib_Max_Objects/"
 
-    def template(self, file_name: str):
-        return self.template_dir + file_name
+    def vs_template(self, file_name: str):
+        return self.template_dir + "vs_templates/" + file_name
+        
+    def xc_template(self, file_name: str):
+        return self.template_dir + "xc_templates/" +  file_name
+        
+    def code_template(self, file_name: str):
+        return self.template_dir + "code_templates/" +  file_name
         
     def max_object_dir(self, object_info: fl_object):
         return self.max_dir + object_info.category + "/"
@@ -38,10 +44,10 @@ class fl_paths:
     def object_header_exists(self, object_info: fl_object):
         return os.path.exists(self.object_header(object_info))
     
-    def xcode_pbxproj(self):
+    def xc_pbxproj(self):
         return self.base_dir + "framelib.xcodeproj/project.pbxproj"
         
-    def xcode_scheme(self):
+    def xc_scheme(self):
         return self.base_dir + "framelib.xcodeproj/xcshareddata/xcschemes/framelib Max (objects build).xcscheme"
         
     def vs_solution(self):

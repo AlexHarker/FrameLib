@@ -14,7 +14,7 @@ class fl_object:
         from . file_util import do_regex
         from . file_util import item_regex
         from . guid_util import guid_manager
-        from . xcode_util import section_bounds
+        from . xc_util import section_bounds
 
         import copy
         import os

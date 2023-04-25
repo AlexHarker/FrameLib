@@ -32,13 +32,14 @@ def insert_code(contents: str, class_name: str, category: str, path: str, start:
     
 def insert_cpp_single_build(base_class: str, class_name: str, object_info: fl_object, path: str, start: str, end: str):
     contents = "    " + base_class + "<" + object_info.object_class + ">::makeClass(\"" + class_name + "\");\n"
-    insert_code(contents, class_name, object_info.category, path, start, end, "    // Unary Operators", "^.*?(fl.*~).*", "    ")
+    exp = "^.*?(fl.*~).*"
+    insert_code(contents, class_name, object_info.category, path, start, end, "    // Unary Operators", exp, "    ")
     
     
 def insert_object_list_include(object_info: fl_object):
 
     path = fl_paths().objects_export_header()
-    contents = file_util.templated_string(fl_paths().template("code_templates/object_list_include"), object_info)
+    contents = file_util.templated_string(fl_paths().code_template("object_list_include"), object_info)
     exp = "^.*/FrameLib_Objects/" + object_info.category + "/(.*)\.h.*"
     insert_code(contents, object_info.object_class, object_info.category, path, "#ifndef", "#endif", "// Operators", exp)
     

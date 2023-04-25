@@ -27,19 +27,19 @@ class fl_pbxproj:
 
     def __init__(self):
     
-        self.pbxproj = file_util.rw_file(fl_paths().xcode_pbxproj())
-        self.scheme = file_util.rw_file(fl_paths().xcode_scheme())
+        self.pbxproj = file_util.rw_file(fl_paths().xc_pbxproj())
+        self.scheme = file_util.rw_file(fl_paths().xc_scheme())
        
        
     def project_modify(self, object_info: fl_object, template: str, bounds: list, add: bool):
     
-        contents = file_util.templated_string(fl_paths().template("xcode_templates/" + template), object_info)
+        contents = file_util.templated_string(fl_paths().xc_template(template), object_info)
         self.pbxproj.data = file_util.modify(self.pbxproj.data, contents, bounds, add)
     
     
     def scheme_modify(self, object_info: fl_object, add: bool):
     
-        contents = file_util.templated_string(fl_paths().template("xcode_templates/xcscheme"), object_info)
+        contents = file_util.templated_string(fl_paths().xc_template("xcscheme"), object_info)
         self.scheme.data = file_util.modify(self.scheme.data, contents, scheme_bounds(), add)
 
       
