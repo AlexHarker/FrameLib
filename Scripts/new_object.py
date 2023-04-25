@@ -7,8 +7,17 @@ from Project_Utilities.xcode_util import fl_pbxproj
 from Project_Utilities.path_util import fl_paths
 
 import os
+import time
 from pathlib import Path
     
+
+def time_result(name : str, t1, t2 = None):
+    
+    if t2 is None:
+        t2 = time.perf_counter_ns()
+        
+    print("Completed " + name + " in " + str((t2 - t1)/1000000000.) + " seconds")
+
 
 def update_all(add: bool):
 
@@ -33,20 +42,31 @@ def update_all(add: bool):
         fl_pbxproj().update(object_info, add)
 
 
-def rebuild():
+def add_all():
+    
+    t1 = time.perf_counter_ns()
+    update_all(True)
+    time_result("removal", t1)
 
-    import time
+
+def remove_all():
+
+    t1 = time.perf_counter_ns()
+    update_all(False)
+    time_result("removal", t1)
+    
+
+def rebuild():
     
     t1 = time.perf_counter_ns()
     update_all(False)
     t2 = time.perf_counter_ns()
     update_all(True)
     
-    t3 = time.perf_counter_ns()
-    print("Completed removal in " + str((t2 - t1)/1000000000.) + " seconds")
-    print("Completed additions in " + str((t3 - t2)/1000000000.) + " seconds")
-    print("Completed rebuild in " + str((t3 - t1)/1000000000.) + " seconds")
-
+    time_result("removal", t1, t2)
+    time_result("additions", t2)
+    time_result("rebuild", t1)
+    
 
 def new_object(object_info : fl_object):
     
@@ -66,12 +86,16 @@ def new_object(object_info : fl_object):
     
     fl_solution().update(object_info, True)
     fl_pbxproj().update(object_info, True)
+    rebuild()
     
     
 def main():
 
+    fl_object.load_cache()
     new_object(fl_object("FrameLib_Test", "fl.test~", "Schedulers"))
-    rebuild()
+    #rebuild()
+    #remove_all()
+    fl_object.save_cache()
     
     
 if __name__ == "__main__":

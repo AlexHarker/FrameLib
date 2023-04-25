@@ -108,7 +108,8 @@ class fl_pbxproj:
         self.project_modify(object_info, "ref_target", bounds, add)
         
         if source_exists and not external_object:
-            bounds = section_bounds("PBXSourcesBuildPhase") + item_bounds("Sources", object_info.xcode_lib_sources_guid) + list_bounds("files")
+            lib_sources_guid = object_info.static_guids["xcode_lib_sources_guid"]
+            bounds = section_bounds("PBXSourcesBuildPhase") + item_bounds("Sources", lib_sources_guid) + list_bounds("files")
             self.project_modify(object_info, "ref_object_for_lib", bounds, add)
         
         bounds = section_bounds("PBXGroup") + item_bounds("Products") + list_bounds("children")

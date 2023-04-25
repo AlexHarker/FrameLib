@@ -1,6 +1,6 @@
 
-#ifndef _##MAX_CLASS_NAME_UPPER##__H
-#define _##MAX_CLASS_NAME_UPPER##__H
+#ifndef _##OBJECT_CLASS_NAME_UPPER##__H
+#define _##OBJECT_CLASS_NAME_UPPER##__H
 
 #include "FrameLib_DSP.h"
 

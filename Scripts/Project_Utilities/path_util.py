@@ -64,4 +64,8 @@ class fl_paths:
     
     def max_framelib(self):
         return self.max_dir + "Common/framelib_max.cpp"
+        
+    def cache_path(self):
+        return self.template_dir + "object_cache.json"
+        
 
