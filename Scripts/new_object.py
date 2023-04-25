@@ -78,12 +78,9 @@ def new_object(object_info : fl_object):
     file_util.create(paths.max_source(object_info), paths.code_template("fl.class_name~.cpp"), object_info)
     file_util.create(paths.object_header(object_info), paths.code_template("FrameLib_Class.h"), object_info)
     file_util.create(paths.object_source(object_info), paths.code_template("FrameLib_Class.cpp"), object_info)
+    
+    code_util.update_code(object_info)    
     fl_solution().update_project(object_info)
-    
-    code_util.insert_cpp_single_build("FrameLib_MaxClass_Expand", object_info["max_class_name"], object_info, paths.max_framelib(), "main(", "}")
-    code_util.insert_cpp_single_build("FrameLib_PDClass_Expand", object_info["pd_class_name"], object_info, paths.pd_framelib(), "framelib_pd_setup(", "}")
-    code_util.insert_object_list_include(object_info)
-    
     fl_solution().update(object_info, True)
     fl_pbxproj().update(object_info, True)
     rebuild()

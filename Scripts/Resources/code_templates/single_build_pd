@@ -1,0 +1,1 @@
+    FrameLib_PDClass_Expand<_##OBJECT_CLASS##_>::makeClass("_##PD_CLASS_NAME##_");

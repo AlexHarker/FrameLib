@@ -30,8 +30,9 @@ def insert_code(contents: str, class_name: str, category: str, path: str, start:
     file_util.insert(path, contents, [start, insert_end])
     
     
-def insert_cpp_single_build(base_class: str, class_name: str, object_info: fl_object, path: str, start: str, end: str):
-    contents = "    " + base_class + "<" + object_info["object_class"] + ">::makeClass(\"" + class_name + "\");\n"
+def insert_cpp_single_build(template: str, class_name: str, object_info: fl_object, path: str, start: str, end: str):
+    contents = file_util.templated_string(fl_paths().code_template(template), object_info)
+    print(contents)
     exp = "^.*?(fl.*~).*"
     insert_code(contents, class_name, object_info["category"], path, start, end, "    // Unary Operators", exp, "    ")
     
@@ -42,5 +43,12 @@ def insert_object_list_include(object_info: fl_object):
     contents = file_util.templated_string(fl_paths().code_template("object_list_include"), object_info)
     exp = "^.*/FrameLib_Objects/" + object_info["category"] + "/(.*)\.h.*"
     insert_code(contents, object_info["object_class"], object_info["category"], path, "#ifndef", "#endif", "// Operators", exp)
+    
+    
+def update_code(object_info: fl_object):
+
+    insert_cpp_single_build("single_build_max", object_info["max_class_name"], object_info, fl_paths().max_framelib(), "main(", "}")
+    insert_cpp_single_build("single_build_pd", object_info["pd_class_name"], object_info, fl_paths().pd_framelib(), "framelib_pd_setup(", "}")
+    insert_object_list_include(object_info)
     
 
