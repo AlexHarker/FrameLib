@@ -196,12 +196,6 @@ def create(output_path: str, template_path: str, object_info: fl_object, overwri
     f = open(output_path, mode, newline = newline_setting(output_path))
     f.write(contents)
     f.close()
-    
-
-def regex_search_file(path: str, exp: str):
-    
-    file = rw_file(path)
-    return regex_search(file.data, exp)
       
         
 def insert_file(path: str, contents: str, bounds: list, next_blank: bool = False):

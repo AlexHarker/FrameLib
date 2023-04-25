@@ -20,7 +20,7 @@ class fl_object:
         
         from . path_util import fl_paths
         from . file_util import regex_search
-        from . file_util import regex_search_file
+        from . file_util import rw_file
         from . guid_util import guid_manager
         from . xc_util import section_bounds
         
@@ -65,23 +65,25 @@ class fl_object:
             
         elif project_exists:
         
-            import re
+            project = rw_file(project_path)
 
-            info["category"] = regex_search_file(project_path, "FrameLib_Max_Objects\\\\(.*)\\\\fl")
+            info["category"] = regex_search(project.data, "FrameLib_Max_Objects\\\\(.*)\\\\fl")
 
             max_object_path = fl_paths().max_source(self)
-            info["object_class"] = regex_search_file(max_object_path, "FrameLib_MaxClass_Expand<(.*)>").split(",")[0]
+            max_object = rw_file(max_object_path)
+            
+            info["object_class"] = regex_search(max_object.data, "FrameLib_MaxClass_Expand<(.*)>").split(",")[0]
 
             if info["object_class"] == "":
-                info["object_class"] = regex_search_file(max_object_path, "FrameLib_MaxClass<(.*)>")
+                info["object_class"] = regex_search(max_object.data, "FrameLib_MaxClass<(.*)>")
 
             if info["object_class"] == "":
-                info["object_class"] = regex_search_file(max_object_path, "FrameLib_MaxClass_ExprParsed<(.*)>")
+                info["object_class"] = regex_search(max_object.data, "FrameLib_MaxClass_ExprParsed<(.*)>")
 
             info["object_class_name_upper"] = info["object_class"].upper()
             info["object_class_file"] = regex_search(info["object_class"], "([^:]*)")
             
-            info["vs_project_guid"] = regex_search_file(project_path, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
+            info["vs_project_guid"] = regex_search(project.data, "<ProjectGuid>\{(.*)\}</ProjectGuid>")
 
             info["xc_obj_target_guid"] = guids.xc("PBXNativeTarget", info["max_class_name"])
 
