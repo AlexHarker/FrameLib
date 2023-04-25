@@ -125,8 +125,7 @@ def sort_section(data: str, bounds: list, exp: str):
 
     lines = data[lo:hi].splitlines(True)
     lines.sort(key = lambda a : regex_search(a.upper(), exp))
- 
-    return data[:lo-1] + "".join(lines) + data[hi:]
+    return data[:lo] + "".join(lines) + data[hi:]
 
 
 def replace_next_key(data: str, object_info: fl_object):

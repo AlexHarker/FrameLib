@@ -29,10 +29,10 @@ class fl_solution:
         if object_info["object_class"] != "":
         
             if fl_paths().object_header_exists(object_info) and not object_info.object_file_external():
-                self.object_project_modify(object_info, "header", ["<ClInclude Include", "  </ItemGroup>"], add)
+                self.object_project_modify(object_info, "header", ["    <ClInclude Include", "  </ItemGroup>"], add)
         
             if fl_paths().object_source_exists(object_info) and not object_info.object_file_external():
-                self.object_project_modify(object_info, "source", ["<ClCompile Include", "  </ItemGroup>"], add)
+                self.object_project_modify(object_info, "source", ["    <ClCompile Include", "  </ItemGroup>"], add)
         
         self.solution_modify(object_info, "project", ["MinimumVisualStudioVersion", "Global"], add)
         self.solution_modify(object_info, "configurations", ["GlobalSection(ProjectConfigurationPlatforms)", "\tEndGlobalSection"], add)
@@ -50,13 +50,13 @@ class fl_solution:
         if object_info["xc_obj_file_ibuffer_guid"] != "":
 
             contents = file_util.templated_string(fl_paths().vs_template("ibuffer"), object_info)
-            file_util.insert_file(fl_paths().vs_max_project(object_info), contents, ["<ClCompile Include", "  </ItemGroup>"])
+            file_util.insert_file(fl_paths().vs_max_project(object_info), contents, ["    <ClCompile Include", "  </ItemGroup>"])
         
 
     def sort_project(self):
     
         exp = "\"(.*)\""
-        self.project.data = file_util.sort_section(self.project.data, ["<ClInclude Include", "  </ItemGroup>"], exp)
-        self.project.data = file_util.sort_section(self.project.data, ["<ClCompile Include", "  </ItemGroup>"], exp)
+        self.project.data = file_util.sort_section(self.project.data, ["    <ClInclude Include", "  </ItemGroup>"], exp)
+        self.project.data = file_util.sort_section(self.project.data, ["    <ClCompile Include", "  </ItemGroup>"], exp)
    
         self.project.flush()
