@@ -1,1 +1,1 @@
-		_##XCODE_OBJ_FILE_LIB_GUID##_ /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = _##XCODE_FILEREF_LIB_GUID##_ /* libframelib.a */; };
+		_##XC_OBJ_FILE_LIB_GUID##_ /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = _##XC_FILEREF_LIB_GUID##_ /* libframelib.a */; };

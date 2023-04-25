@@ -1,1 +1,1 @@
-		_##XCODE_OBJ_FILE_IBUFFER_GUID##_ /* ibuffer_access.cpp in Sources */ = {isa = PBXBuildFile; fileRef = _##XCODE_FILEREF_IBUFFER_GUID##_ /* ibuffer_access.cpp */; };
+		_##XC_OBJ_FILE_IBUFFER_GUID##_ /* ibuffer_access.cpp in Sources */ = {isa = PBXBuildFile; fileRef = _##XC_FILEREF_IBUFFER_GUID##_ /* ibuffer_access.cpp */; };

@@ -1,1 +1,1 @@
-		_##XCODE_OBJ_FILE_CLASS_GUID##_ /* _##MAX_CLASS_NAME##_.cpp in Sources */ = {isa = PBXBuildFile; fileRef = _##XCODE_OBJ_FILEREF_CLASS_GUID##_ /* _##MAX_CLASS_NAME##_.cpp */; };
+		_##XC_OBJ_FILE_CLASS_GUID##_ /* _##MAX_CLASS_NAME##_.cpp in Sources */ = {isa = PBXBuildFile; fileRef = _##XC_OBJ_FILEREF_CLASS_GUID##_ /* _##MAX_CLASS_NAME##_.cpp */; };

@@ -6,7 +6,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "_##XCODE_OBJ_TARGET_GUID##_"
+               BlueprintIdentifier = "_##XC_OBJ_TARGET_GUID##_"
                BuildableName = "_##MAX_CLASS_NAME##_.mxo"
                BlueprintName = "_##MAX_CLASS_NAME##_"
                ReferencedContainer = "container:framelib.xcodeproj">

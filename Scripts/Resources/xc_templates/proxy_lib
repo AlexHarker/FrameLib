@@ -1,7 +1,7 @@
-		_##XCODE_OBJ_LIB_PROXY_GUID##_ /* PBXContainerItemProxy */ = {
+		_##XC_OBJ_LIB_PROXY_GUID##_ /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = _##XCODE_MAIN_GUID##_ /* Project object */;
+			containerPortal = _##XC_MAIN_GUID##_ /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = _##XCODE_FRAMELIB_GUID##_;
+			remoteGlobalIDString = _##XC_FRAMELIB_GUID##_;
 			remoteInfo = framelib;
 		};

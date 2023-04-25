@@ -1,6 +1,6 @@
-		_##XCODE_OBJ_CONFIG_DPLT_GUID##_ /* Deployment */ = {
+		_##XC_OBJ_CONFIG_DPLT_GUID##_ /* Deployment */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = _##XCODE_MAX_CONFIG_GUID##_ /* Config_FrameLib_Max.xcconfig */;
+			baseConfigurationReference = _##XC_MAX_CONFIG_GUID##_ /* Config_FrameLib_Max.xcconfig */;
 			buildSettings = {
 			};
 			name = Deployment;

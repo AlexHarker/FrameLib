@@ -80,10 +80,10 @@ class fl_pbxproj:
         else:
             sources_phase = "phase_sources_single"
             
-        if object_info.xcode_obj_file_fft_guid != "":
+        if object_info.xc_obj_file_fft_guid != "":
             self.project_modify_section(object_info, "file_fft", "PBXBuildFile", add)
             sources_phase = "phase_sources_fft"
-        elif object_info.xcode_obj_file_ibuffer_guid != "":
+        elif object_info.xc_obj_file_ibuffer_guid != "":
             self.project_modify_section(object_info, "file_ibuffer", "PBXBuildFile", add)
             sources_phase = "phase_sources_ibuffer"
 
@@ -108,7 +108,7 @@ class fl_pbxproj:
         self.project_modify(object_info, "ref_target", bounds, add)
         
         if source_exists and not external_object:
-            lib_sources_guid = object_info.static_guids["xcode_lib_sources_guid"]
+            lib_sources_guid = object_info.static_guids["xc_lib_sources_guid"]
             bounds = section_bounds("PBXSourcesBuildPhase") + item_bounds("Sources", lib_sources_guid) + list_bounds("files")
             self.project_modify(object_info, "ref_object_for_lib", bounds, add)
         

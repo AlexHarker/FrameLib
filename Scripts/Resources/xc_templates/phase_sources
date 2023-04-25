@@ -1,9 +1,9 @@
-		_##XCODE_OBJ_SOURCES_GUID##_ /* Sources */ = {
+		_##XC_OBJ_SOURCES_GUID##_ /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				_##XCODE_OBJ_FILE_CLASS_GUID##_ /* _##MAX_CLASS_NAME##_.cpp in Sources */,
-				_##XCODE_OBJ_FILE_OBJECT_GUID##_ /* _##OBJECT_CLASS_FILE##_.cpp in Sources */,
+				_##XC_OBJ_FILE_CLASS_GUID##_ /* _##MAX_CLASS_NAME##_.cpp in Sources */,
+				_##XC_OBJ_FILE_OBJECT_GUID##_ /* _##OBJECT_CLASS_FILE##_.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

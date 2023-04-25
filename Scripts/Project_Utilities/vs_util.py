@@ -47,7 +47,7 @@ class fl_solution:
     
         file_util.create(fl_paths().vs_max_project(object_info), fl_paths().vs_template("_class_name~.vcxproj"), object_info, overwrite)
         
-        if object_info.xcode_obj_file_ibuffer_guid != "":
+        if object_info.xc_obj_file_ibuffer_guid != "":
         
             contents = file_util.templated_string(fl_paths().vs_template("ibuffer"), object_info)
             file_util.insert(fl_paths().vs_max_project(object_info), contents, ["<ClCompile Include", "  </ItemGroup>"])
