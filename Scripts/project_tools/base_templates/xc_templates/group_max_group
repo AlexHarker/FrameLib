@@ -1,4 +1,4 @@
-		_##XC_NEW_GROUP##_ /* _##CATEGORY##_ */ = {
+		_##XC_GROUP_MAX_GUID##_ /* _##CATEGORY##_ */ = {
 			isa = PBXGroup;
 			children = (
 			);

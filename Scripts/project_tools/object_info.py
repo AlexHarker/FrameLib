@@ -167,19 +167,32 @@ class fl_object:
             info["xc_obj_config_dplt_guid"] = guids.create_xc()
             info["xc_obj_config_test_guid"] = guids.create_xc()
         
+        # Find the category groups
+                
+        info["xc_group_object_guid"] = guids.xc_component("PBXGroup", "Objects FrameLib", "children", info["category"])
+        info["xc_group_max_guid"] = guids.xc_component("PBXGroup", "Objects Max", "children", info["category"])
+      
         fl_object.object_cache[class_name] = info
         
     
-    def add_xc_new_group(self):
-    
+    def __set_xc(self, key: str):
+
         from . guid_util import guid_manager
         
         guid = guid_manager().create_xc()
-        self.info["xc_new_group"] = guid
+        self.info[key] = guid
         
         return guid
-    
-    
+        
+        
+    def add_xc_object_group(self):
+        return self.__set_xc("xc_group_object_guid")
+        
+        
+    def add_xc_max_group(self):
+        return self.__set_xc("xc_group_max_guid")
+
+
     def object_file_external(self):
         return self["object_class"] != self["object_class_file"]
     

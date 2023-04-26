@@ -3,8 +3,6 @@ from . import file_util
 from . path_util import fl_paths
 from . object_info import fl_object
 
-import copy
-
 
 def section_bounds(section: str):
     return ["/* Begin " + section + " section */", "/* End " + section + " section */"]
@@ -119,34 +117,26 @@ class fl_pbxproj:
 
         self.project_modify(object_info, "group_item_product", bounds, add)
               
-        # Find the object category group
-        
-        exp = "([^\s].*) /\* " + category + " \*/"
-        
-        bounds = section_bounds("PBXGroup") + item_bounds("Objects FrameLib") + list_bounds("children")
-        object_guid = file_util.regex_search_section(self.pbxproj.data, bounds, exp)
-        temp_info = copy.deepcopy(object_info)
-        
+        object_guid = object_info["xc_group_object_guid"]
+        max_guid = object_info["xc_group_max_guid"]
+
         # Make the object category group if it doesn't exist
 
         if add and object_guid == "" and (header_exists or source_exists):
-        
-            object_guid = temp_info.add_xc_new_group()
-            self.project_modify(temp_info, "group_group", section_bounds("PBXGroup"), add)
-            self.project_modify(temp_info, "ref_group", bounds, add)
-            
-        # Find the max category group
 
-        bounds = section_bounds("PBXGroup") + item_bounds("Objects Max") + list_bounds("children")
-        max_guid = file_util.regex_search_section(self.pbxproj.data, bounds, exp)
-        
+            object_guid = object_info.add_xc_object_group()
+            bounds = section_bounds("PBXGroup") + item_bounds("Objects FrameLib") + list_bounds("children")
+            self.project_modify(object_info, "group_object_group", section_bounds("PBXGroup"), add)
+            self.project_modify(object_info, "ref_object_group", bounds, add)
+            
         # Make the max category groups if it doesn't exist
 
         if add and max_guid == "":
 
-            max_guid = temp_info.add_xc_new_group()
-            self.project_modify(temp_info, "group_group", section_bounds("PBXGroup"), add)
-            self.project_modify(temp_info, "ref_group", bounds, add)
+            max_guid = object_info.add_xc_max_group()
+            bounds = section_bounds("PBXGroup") + item_bounds("Objects Max") + list_bounds("children")
+            self.project_modify(object_info, "group_max_group", section_bounds("PBXGroup"), add)
+            self.project_modify(object_info, "ref_max_group", bounds, add)
 
         # Add files to groups
         
