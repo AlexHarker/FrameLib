@@ -73,6 +73,9 @@ def find_section(data: str, bounds: list):
         index_lo = data.find(bounds[idx * 2 + 0], index_lo, index_hi)
         index_hi = data.find(bounds[idx * 2 + 1], index_lo + len(bounds[idx * 2 + 0]), index_hi)
 
+    if len(bounds) % 2:
+        index_lo = data.find(bounds[len(bounds) - 1], index_lo, index_hi)
+
     return index_lo, index_hi
     
 

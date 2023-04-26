@@ -38,6 +38,10 @@ class fl_pbxproj:
         self.pbxproj.data = file_util.modify(self.pbxproj.data, contents, bounds, add)
     
     
+    def project_category_sort(self, bounds: list):
+        self.pbxproj.data = file_util.sort_section(self.pbxproj.data, bounds + ["Complex_Binary"], "/\*(.*)\*/")
+        
+    
     def scheme_modify(self, object_info: fl_object, add: bool):
     
         contents = file_util.templated_string(fl_paths().xc_template("xcscheme"), object_info)
@@ -129,6 +133,7 @@ class fl_pbxproj:
             bounds = section_bounds("PBXGroup") + item_bounds("Objects FrameLib") + list_bounds("children")
             self.project_modify(object_info, "group_object_group", section_bounds("PBXGroup"), add)
             self.project_modify(object_info, "ref_object_group", bounds, add)
+            self.project_category_sort(bounds)
             
         # Make the max category groups if it doesn't exist
 
@@ -138,6 +143,7 @@ class fl_pbxproj:
             bounds = section_bounds("PBXGroup") + item_bounds("Objects Max") + list_bounds("children")
             self.project_modify(object_info, "group_max_group", section_bounds("PBXGroup"), add)
             self.project_modify(object_info, "ref_max_group", bounds, add)
+            self.project_category_sort(bounds)
 
         # Add files to groups
         
