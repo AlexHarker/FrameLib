@@ -3,6 +3,9 @@ from . path_util import fl_paths
 from . file_util import rw_file
 from . file_util import regex_search
 from . file_util import regex_search_section
+from . xc_util import section_bounds
+from . xc_util import item_bounds
+from . xc_util import list_bounds
 
 import uuid
 
@@ -23,8 +26,6 @@ class guid_manager:
 
         
     def xc(self, section: str, item: str):
-
-        from . xc_util import section_bounds
          
         bounds = section_bounds(section)
         exp = "([^\s]+) /\* " + item + " \*/ = \{"
@@ -34,10 +35,6 @@ class guid_manager:
 
     def xc_component(self, section: str, item: str, list: str, component: str, guid: str = None):
         
-        from . xc_util import section_bounds
-        from . xc_util import item_bounds
-        from . xc_util import list_bounds
-         
         bounds = section_bounds(section) + item_bounds(item, guid) + list_bounds(list)
         exp = "([^\s]+) /\* " + component + " \*/"
         hint = "/* " + component + " */"
@@ -45,9 +42,6 @@ class guid_manager:
         
         
     def xc_field(self, section: str, guid: str, field: str):
-        
-        from . xc_util import section_bounds
-        from . xc_util import item_bounds
          
         bounds = section_bounds(section) + item_bounds(section, guid)
         exp = field + " = ([^\s]+) /\*.*?\*/"
@@ -55,7 +49,11 @@ class guid_manager:
         return regex_search_section(self.pbxproj.data, bounds, exp, hint)
         
     
-    def xc_custom(self, bounds: str, exp: str):
+    def xc_target_dependency(self, guid: str):
+                        
+        bounds = section_bounds("PBXTargetDependency") + ["/* Begin PBXTargetDependency", "target = " + guid]
+        exp = "[\S\s]*\s([^\s]+) /\* PBXTargetDependency \*/ = \{[\S\s]*?\Z"
+            
         return regex_search_section(self.pbxproj.data, bounds, exp)
         
         

@@ -1,7 +1,8 @@
 
-from . import file_util
 from . path_util import fl_paths
 from . object_info import fl_object
+
+from . import file_util
 
 
 def section_bounds(section: str):

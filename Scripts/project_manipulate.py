@@ -1,14 +1,15 @@
 
-from project_tools import file_util
-from project_tools import code_util
 from project_tools.vs_util import fl_solution
 from project_tools.xc_util import fl_pbxproj
 from project_tools.path_util import fl_paths
 from project_tools.object_info import fl_object
+from project_tools import file_util
+from project_tools import code_util
+
+from pathlib import Path
 
 import argparse
 import time
-from pathlib import Path
     
 
 def time_result(name : str, t1, t2 = None):

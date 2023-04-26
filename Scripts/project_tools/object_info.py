@@ -22,7 +22,6 @@ class fl_object:
         from . file_util import regex_search
         from . file_util import rw_file
         from . guid_util import guid_manager
-        from . xc_util import section_bounds
         
         self.info = {}
         info = self.info
@@ -87,10 +86,7 @@ class fl_object:
 
             info["xc_obj_target_guid"] = guids.xc("PBXNativeTarget", info["max_class_name"])
 
-            bounds = section_bounds("PBXTargetDependency") + ["/* Begin PBXTargetDependency", "target = " + info["xc_obj_target_guid"]]
-            exp = "[\S\s]*\s([^\s]+) /\* PBXTargetDependency \*/ = \{[\S\s]*?\Z"
-            info["xc_obj_package_dep_guid"] = guids.xc_custom(bounds, exp)
-            
+            info["xc_obj_package_dep_guid"] = guids.xc_target_dependency(info["xc_obj_target_guid"])
             info["xc_obj_lib_dep_guid"] = guids.xc_component("PBXNativeTarget", info["max_class_name"], "dependencies", "PBXTargetDependency")
 
             info["xc_obj_lib_proxy_guid"] = guids.xc_field("PBXTargetDependency", info["xc_obj_lib_dep_guid"], "targetProxy")
