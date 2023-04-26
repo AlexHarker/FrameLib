@@ -8,8 +8,6 @@ class fl_paths:
 
     def __init__(self):
 
-        import os
-
         file_path = Path(__file__)
         self.base_dir = file_path.absolute().parent.parent.parent.as_posix() + "/"
         self.vs_project_dir = self.base_dir + "Projects/Visual_Studio/"
