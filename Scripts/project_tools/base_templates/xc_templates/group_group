@@ -1,0 +1,7 @@
+		_##XC_NEW_GROUP##_ /* _##CATEGORY##_ */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = _##CATEGORY##_;
+			sourceTree = "<group>";
+		};

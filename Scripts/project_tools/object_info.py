@@ -170,6 +170,16 @@ class fl_object:
         fl_object.object_cache[class_name] = info
         
     
+    def add_xc_new_group(self):
+    
+        from . guid_util import guid_manager
+        
+        guid = guid_manager().create_xc()
+        self.info["xc_new_group"] = guid
+        
+        return guid
+    
+    
     def object_file_external(self):
         return self["object_class"] != self["object_class_file"]
     
