@@ -205,35 +205,3 @@ def insert_file(path: str, contents: str, bounds: list, next_blank: bool = False
     file = rw_file(path)
     file.data = insert(file.data, contents, bounds, next_blank)
     file.flush()
-   
-   
-# Apply regex to each line of a file and return matched lines
-
-def lines_regex(path: str, exp: str, start: str, end: str, inner_start: str, inner_end: str):
-    
-    import re
-    
-    regex = re.compile(exp)
-    list = []
-    started1 = False
-    started2 = False
-    started = False
-    
-    with open(path) as f:
-        for line in f:
-            match = regex.search(line)
-            
-            if start in line:
-                started1 = True
-            if inner_start in line:
-                started2 = True
-              
-            if started and (end in line or inner_end in line):
-                return list
-                
-            started = started1 and started2
-            
-            if started and match is not None:
-                list.append([match.group(1), match.group(0)])
-
-    return list
