@@ -24,9 +24,9 @@ class rw_file:
 
 def newline_setting(path: str):
     
-    # Use window line endings for vcxproj files
+    # Use window line endings for vcxproj and sln files
         
-    if Path(path).suffix == ".vcxproj":
+    if Path(path).suffix == ".vcxproj" or Path(path).suffix == ".sln":
         return '\r\n'
         
     return None
