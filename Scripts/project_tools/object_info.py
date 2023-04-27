@@ -20,6 +20,7 @@ class fl_object:
         
         from . path_util import fl_paths
         from . file_util import regex_search
+        from . file_util import regex_search_with_hint
         from . file_util import rw_file
         from . guid_util import guid_manager
         
@@ -33,6 +34,9 @@ class fl_object:
         info["object_class_file"] = regex_search(object_class, "([^:]*)")
         info["max_class_name"] = class_name
         info["pd_class_name"] = class_name
+        info["max_host_class"] = "FrameLib_MaxClass_Expand"
+        info["pd_host_class"] = "FrameLib_PDClass_Expand"
+        info["args_str"] = ""
         info["category"] = category
         
         # Store the project path and see if it already exists
@@ -86,18 +90,44 @@ class fl_object:
             
             info["category"] = category = regex_search(project.data, "FrameLib_Max_Objects\\\\(.*)\\\\fl")
 
-            max_object_path = fl_paths().max_source(self)
-            max_object = rw_file(max_object_path)
+            max_object = rw_file(fl_paths().max_source(self))
             
             # Determine the object class
             
-            info["object_class"] = regex_search(max_object.data, "FrameLib_MaxClass_Expand<(.*)>").split(",")[0]
+            search = regex_search(max_object.data, "FrameLib_MaxClass_Expand<(.*)>")
+            
+            if search != "":
+                partition = search.partition(",")
+                info["object_class"] = partition[0]
+                info["args_str"] = partition[1] + partition[2]
 
             if info["object_class"] == "":
                 info["object_class"] = regex_search(max_object.data, "FrameLib_MaxClass<(.*)>")
 
             if info["object_class"] == "":
                 info["object_class"] = regex_search(max_object.data, "FrameLib_MaxClass_ExprParsed<(.*)>")
+
+            # Derive the pd class name
+            
+            if object_class != "void":
+            
+                pd_object = rw_file(fl_paths().pd_framelib())
+
+                exp = ".*<" + info["object_class"] + "(?:,.+?)?>::makeClass\(\"(.*)\"\)"
+                pd_class_name = regex_search_with_hint(pd_object.data, exp, info["object_class"])
+            
+                if pd_class_name != "":
+                    info["pd_class_name"] = pd_class_name
+                
+            if pd_class_name != class_name:
+                print("-----------------------", info["pd_class_name"], class_name, pd_class_name)
+                    
+            # Derive the host classes
+            
+            if info["object_class"] != "void":
+                exp = "([^\s]+)(<.+>::makeClass\(\"" + class_name + "|::makeClass<.+>\(\"" + class_name + ")"
+                info["max_host_class"] = regex_search(max_object.data, exp)
+                info["pd_host_class"] = info["max_host_class"].replace("FrameLib_Max", "FrameLib_PD")
 
             # Rework basic info
             
@@ -291,4 +321,3 @@ class fl_object:
         if Path(fl_paths().cache_path()).exists():
             with open(fl_paths().cache_path(), "r") as f:
                 fl_object.object_cache = json.load(f)
-

@@ -1,0 +1,1 @@
+    _##PD_HOST_CLASS##_::makeClass<_##PD_HOST_CLASS##_>("_##PD_CLASS_NAME##_");

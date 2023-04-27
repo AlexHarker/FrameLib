@@ -1,0 +1,1 @@
+    _##MAX_HOST_CLASS##_::makeClass<_##MAX_HOST_CLASS##_>("_##MAX_CLASS_NAME##_");

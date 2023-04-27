@@ -39,6 +39,11 @@ def update_all(add: bool):
         
         info = fl_object.create_from_name(name)
 
+        # Update the single object build source files
+    
+        if add:
+            code_util.update_code(info, True)
+    
         # Overwrite the max object VS project to ensure it is up to date if we are adding
         
         if add:
@@ -99,7 +104,7 @@ def new_object(info : fl_object):
     
     # Update the single object build source files
     
-    code_util.update_code(info)
+    code_util.update_code(info, False)
     
     # Update the VS solution / create a max object VS project and update the Xcode project
     

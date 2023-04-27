@@ -86,31 +86,58 @@ def insert_code(data: str, contents: str, class_name: str, info: fl_object, boun
     
 # Insert code into the cpp file for a single build version of framelib
     
-def insert_single_build(path: str, template: str, class_name: str, info: fl_object, bounds: list):
+def update_single_build(path: str, template: str, class_name: str, info: fl_object, bounds: list, warn: bool):
    
     file = rw_file(path)
     
     contents = file_util.templated_string(fl_paths().code_template(template), info)
     exp = "^.*?(fl.*~).*"
-    insert_code(path, contents, class_name, info, bounds + ["    // Unary Operators"], exp, "    ")
+    
+    if file.data.find(contents) < 0:
+        file.data = insert_code(file.data, contents, class_name, info, bounds + ["    // Unary Operators"], exp, "    ")
+        file.flush()
+        
+        if warn:
+            print("\nADDED CODE TO " + path.rsplit("/", 1)[1] + "\n")
     
     
 # Insert code into the header file that lists all framelib objects
 
 def update_object_list_include(info: fl_object, warn: bool):
 
+    object_class = info["object_class"]
     contents = file_util.templated_string(fl_paths().code_template("object_list_include"), info)
     exp = "^.*/FrameLib_Objects/" + info["category"] + "/(.*)\.h.*"
-    insert_code(path, contents, info["object_class"], info, ["#ifndef", "#endif", "// Operators"], exp)
+
+    file = rw_file(fl_paths().objects_export_header())
+
+    if file.data.find(contents) < 0:
+        file.data = insert_code(file.data, contents, object_class, info, ["#ifndef", "#endif", "// Operators"], exp)
+        file.flush()
+        
+        if warn:
+            print("\nADDED CODE TO " + path.rsplit("/", 1)[1] + "\n")
     
     
 # Update the code for the given object
 
-def update_code(info: fl_object):
+def update_code(info: fl_object, warn: bool):
 
     max_build_path = fl_paths().max_framelib()
     pd_build_path = fl_paths().pd_framelib()
 
-    insert_single_build(max_build_path, "single_build_max", info["max_class_name"], info, ["main(", "}"])
-    insert_single_build(pd_build_path, "single_build_pd", info["pd_class_name"], info, ["framelib_pd_setup(", "}"])
-    insert_object_list_include(info)
+    if info["object_class"] == "void":
+        return
+        
+    if info["max_host_class"] == "FrameLib_MaxClass_Expand" or info["max_host_class"] == "FrameLib_MaxClass":
+        max_template = "single_build_max"
+        pd_template = "single_build_pd"
+    else:
+        max_template = "single_build_max_custom"
+        pd_template = "single_build_pd_custom"
+    
+    update_single_build(max_build_path, max_template, info["max_class_name"], info, ["main(", "}"], warn)
+    update_single_build(pd_build_path, pd_template, info["pd_class_name"], info, ["framelib_pd_setup(", "}"], warn)
+    
+    if fl_paths().object_header_exists(info):
+        update_object_list_include(info, warn)
