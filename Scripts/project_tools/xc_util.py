@@ -38,20 +38,28 @@ class fl_pbxproj:
         self.pbxproj.data = file_util.modify(self.pbxproj.data, contents, bounds, add)
     
     
-    def project_category_sort(self, bounds: list):
-        self.pbxproj.data = file_util.sort_section(self.pbxproj.data, bounds + ["Complex_Binary"], "/\*(.*)\*/")
-        
-    
-    def scheme_modify(self, object_info: fl_object, add: bool):
-    
-        contents = file_util.templated_string(fl_paths().xc_template("xcscheme"), object_info)
-        self.scheme.data = file_util.modify(self.scheme.data, contents, scheme_bounds(), add)
+    def project_category_sort(self, section: str, item: str, list_name: str):
 
+        bounds = section_bounds(section) + item_bounds(item) + list_bounds(list_name) + ["Complex_Binary"]
+        self.pbxproj.data = file_util.sort_section(self.pbxproj.data, bounds, "/\*(.*)\*/")
+        
       
     def project_modify_section(self, object_info: fl_object, template: str, section: str, add: bool):
         self.project_modify(object_info, template, section_bounds(section), add)
+        
+    
+    def project_modify_nested(self, object_info: fl_object, template: str, section: str, item: str, list_name: str, add: bool, item_guid: str = None):
+    
+        bounds = section_bounds(section) + item_bounds(item, item_guid) + list_bounds(list_name)
+        self.project_modify(object_info, template, bounds, add)
    
    
+    def scheme_modify(self, object_info: fl_object, add: bool):
+
+        contents = file_util.templated_string(fl_paths().xc_template("xcscheme"), object_info)
+        self.scheme.data = file_util.modify(self.scheme.data, contents, scheme_bounds(), add)
+
+    
     def update(self, object_info: fl_object, add: bool):
 
         source_exists = fl_paths().object_source_exists(object_info)
@@ -107,21 +115,14 @@ class fl_pbxproj:
 
         self.project_modify_section(object_info, "config_list", "XCConfigurationList", add)
         
-        bounds = section_bounds("PBXAggregateTarget") + item_bounds("framelib_max_package") + list_bounds("dependencies")
-        self.project_modify(object_info, "ref_dep_package", bounds, add)
-        
-        bounds = section_bounds("PBXProject") + list_bounds("targets")
-        self.project_modify(object_info, "ref_target", bounds, add)
+        self.project_modify_nested(object_info, "ref_dep_package", "PBXAggregateTarget", "framelib_max_package", "dependencies", add)
+        self.project_modify(object_info, "ref_target", section_bounds("PBXProject") + list_bounds("targets"), add)
+        self.project_modify_nested(object_info, "group_item_product", "PBXGroup", "Products", "children", add)
         
         if source_exists and not external_object:
             lib_sources_guid = object_info["xc_lib_sources_guid"]
-            bounds = section_bounds("PBXSourcesBuildPhase") + item_bounds("Sources", lib_sources_guid) + list_bounds("files")
-            self.project_modify(object_info, "ref_object_for_lib", bounds, add)
+            self.project_modify_nested(object_info, "ref_object_for_lib", "PBXSourcesBuildPhase", "Sources", "files", add, lib_sources_guid)
         
-        bounds = section_bounds("PBXGroup") + item_bounds("Products") + list_bounds("children")
-
-        self.project_modify(object_info, "group_item_product", bounds, add)
-              
         object_guid = object_info["xc_group_object_guid"]
         max_guid = object_info["xc_group_max_guid"]
 
@@ -130,33 +131,29 @@ class fl_pbxproj:
         if add and object_guid == "" and (header_exists or source_exists):
 
             object_guid = object_info.add_xc_object_group()
-            bounds = section_bounds("PBXGroup") + item_bounds("Objects FrameLib") + list_bounds("children")
             self.project_modify(object_info, "group_object_group", section_bounds("PBXGroup"), add)
-            self.project_modify(object_info, "ref_object_group", bounds, add)
-            self.project_category_sort(bounds)
+            self.project_modify_nested(object_info, "ref_object_group", "PBXGroup", "Objects FrameLib", "children", add)
+            self.project_category_sort("PBXGroup", "Objects FrameLib", "children")
             
         # Make the max category groups if it doesn't exist
 
         if add and max_guid == "":
 
             max_guid = object_info.add_xc_max_group()
-            bounds = section_bounds("PBXGroup") + item_bounds("Objects Max") + list_bounds("children")
             self.project_modify(object_info, "group_max_group", section_bounds("PBXGroup"), add)
-            self.project_modify(object_info, "ref_max_group", bounds, add)
-            self.project_category_sort(bounds)
+            self.project_modify_nested(object_info, "ref_max_group", "PBXGroup", "Objects Max", "children", add)
+            self.project_category_sort("PBXGroup", "Objects Max", "children")
 
         # Add files to groups
         
         if header_exists and not external_object:
-            bounds = section_bounds("PBXGroup") + item_bounds(category, object_guid) + list_bounds("children")
-            self.project_modify(object_info, "group_item_header", bounds, add)
+            self.project_modify_nested(object_info, "group_item_header", "PBXGroup", category, "children", add, object_guid)
        
         if source_exists and not external_object:
-            bounds = section_bounds("PBXGroup") + item_bounds(category, object_guid) + list_bounds("children")
-            self.project_modify(object_info, "group_item_object", bounds, add)
+            self.project_modify_nested(object_info, "group_item_object", "PBXGroup", category, "children", add, object_guid)
         
-        bounds = section_bounds("PBXGroup") + item_bounds(category, max_guid) + list_bounds("children")
-        self.project_modify(object_info, "group_item_class", bounds, add)
+        self.project_modify_nested(object_info, "group_item_class", "PBXGroup", category, "children", add, max_guid)
+        
         
         self.scheme_modify(object_info, add)
         
