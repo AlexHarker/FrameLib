@@ -1,1 +1,9 @@
 *.pbxproj merge=union
+
+* text=auto
+*.h text
+*.c text
+*.cpp text
+*.hpp text
+*.vcxproj text eol=crlf
+*.sln text eol=crlf
