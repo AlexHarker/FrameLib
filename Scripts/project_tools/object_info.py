@@ -137,10 +137,7 @@ class fl_object:
 
                 if pd_class_name != "":
                     info["pd_class_name"] = pd_class_name
-                    
-                if pd_class_name != class_name:
-                    print("---------------------------", info["object_class"], pd_class_name)
-            
+   
             # Rework basic info
             
             info["object_class_name_upper"] = info["object_class"].upper()
