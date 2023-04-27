@@ -16,7 +16,7 @@ class fl_object:
             return fl_object.static_guids[key]
         
     
-    def __init__(self, object_class: str, class_name: str, category: str, source_type: str = ""):
+    def __init__(self, object_class: str, max_class_name: str, pd_class_name: str, category: str, args_type: str, source_type: str):
         
         from . path_util import fl_paths
         from . file_util import regex_search
@@ -32,13 +32,18 @@ class fl_object:
         info["object_class"] = object_class
         info["object_class_name_upper"] = object_class.upper()
         info["object_class_file"] = regex_search(object_class, "([^:]*)")
-        info["max_class_name"] = class_name
-        info["pd_class_name"] = class_name
+        info["max_class_name"] = max_class_name
+        info["pd_class_name"] = pd_class_name
         info["max_host_class"] = "FrameLib_MaxClass_Expand"
         info["pd_host_class"] = "FrameLib_PDClass_Expand"
         info["args_str"] = ""
         info["category"] = category
         
+        if args_type == "all":
+            info["args_str"] = ", kAllInputs"
+        elif args_type == "distribute":
+            info["args_str"] = ", kDistribute"
+            
         # Store the project path and see if it already exists
         
         project_path = fl_paths().vs_max_project(self)
@@ -75,11 +80,11 @@ class fl_object:
             
             fl_object.initialised = True
 
-        if class_name in fl_object.object_cache:
+        if max_class_name in fl_object.object_cache:
         
             # Retrieve info from the cache if it exists
             
-            self.info = fl_object.object_cache[class_name]
+            self.info = fl_object.object_cache[max_class_name]
             return
             
         elif project_exists:
@@ -110,7 +115,7 @@ class fl_object:
             # Derive the host classes
             
             if info["object_class"] != "void":
-                exp = "([^\s]+)(<.+>::makeClass\(\"" + class_name + "|::makeClass<.+>\(\"" + class_name + ")"
+                exp = "([^\s]+)(<.+>::makeClass\(\"" + max_class_name + "|::makeClass<.+>\(\"" + max_class_name + ")"
                 info["max_host_class"] = regex_search(max_object.data, exp)
                 info["pd_host_class"] = info["max_host_class"].replace("FrameLib_Max", "FrameLib_PD")
 
@@ -152,9 +157,9 @@ class fl_object:
             tgt_tag = "PBXNativeTarget"
             dep_tag = "PBXTargetDependency"
             
-            info["xc_obj_target_guid"] = gm.xc(tgt_tag, class_name)
+            info["xc_obj_target_guid"] = gm.xc(tgt_tag, max_class_name)
             info["xc_obj_package_dep_guid"] = gm.xc_target_dependency(info["xc_obj_target_guid"])
-            info["xc_obj_lib_dep_guid"] = gm.xc_component(tgt_tag, class_name, "dependencies", dep_tag)
+            info["xc_obj_lib_dep_guid"] = gm.xc_component(tgt_tag, max_class_name, "dependencies", dep_tag)
 
             # Xcode proxy guids
             
@@ -169,8 +174,8 @@ class fl_object:
             tgt_tag = "PBXNativeTarget"
             phs_tag = "buildPhases"
             
-            info["xc_obj_sources_guid"] = gm.xc_component(tgt_tag, class_name, phs_tag, "Sources")
-            info["xc_obj_frameworks_guid"] = gm.xc_component(tgt_tag, class_name, phs_tag, "Frameworks")
+            info["xc_obj_sources_guid"] = gm.xc_component(tgt_tag, max_class_name, phs_tag, "Sources")
+            info["xc_obj_frameworks_guid"] = gm.xc_component(tgt_tag, max_class_name, phs_tag, "Frameworks")
 
             # Xcode file guids
 
@@ -179,7 +184,7 @@ class fl_object:
             scn_tag = "Sources"
             fkn_tag = "Frameworks"
             
-            class_str = class_name + ".cpp in Sources"
+            class_str = max_class_name + ".cpp in Sources"
             object_str = info["object_class_file"] + ".cpp in Sources"
             fft_str = "HISSTools_FFT.cpp in Sources"
             ibuffer_str = "ibuffer_access.cpp in Sources"
@@ -200,15 +205,15 @@ class fl_object:
     
             fref_tag = "PBXFileReference"
             
-            info["xc_obj_fileref_class_guid"] = gm.xc(fref_tag, class_name + ".cpp")
+            info["xc_obj_fileref_class_guid"] = gm.xc(fref_tag, max_class_name + ".cpp")
             info["xc_obj_fileref_object_guid"] = gm.xc(fref_tag, info["object_class_file"] + ".cpp")
             info["xc_obj_fileref_header_guid"] = gm.xc(fref_tag, info["object_class_file"] + ".h")
-            info["xc_obj_fileref_mxo_guid"] = gm.xc(fref_tag, class_name + ".mxo")
+            info["xc_obj_fileref_mxo_guid"] = gm.xc(fref_tag, max_class_name + ".mxo")
             
             # Xcode config guids
 
             cnf_tag = "XCConfigurationList"
-            cnf_list = "Build configuration list for PBXNativeTarget \"" + class_name + "\""
+            cnf_list = "Build configuration list for PBXNativeTarget \"" + max_class_name + "\""
             cnf_build = "buildConfigurations"
             
             info["xc_obj_config_list_guid"] = gm.xc(cnf_tag, cnf_list)
@@ -274,7 +279,7 @@ class fl_object:
         info["xc_group_object_guid"] = gm.xc_component("PBXGroup", "Objects FrameLib", "children", category)
         info["xc_group_max_guid"] = gm.xc_component("PBXGroup", "Objects Max", "children", category)
       
-        fl_object.object_cache[class_name] = info
+        fl_object.object_cache[max_class_name] = info
         
         
     # Helper to add XC guids to a key
@@ -307,7 +312,7 @@ class fl_object:
     
     @staticmethod
     def create_from_name(class_name: str):
-        return fl_object("", class_name, "")
+        return fl_object("", class_name, class_name, "", "", "")
         
         
     @staticmethod

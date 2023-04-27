@@ -122,10 +122,13 @@ def main():
     # Argument parsing
     
     parser = argparse.ArgumentParser(description="Manipulate and update framelib projects")
-    parser.add_argument("-o", "--object", default="FrameLib_Test", help="The framelib class")
-    parser.add_argument("-n", "--name", help="The max object name")
-    parser.add_argument("-c", "--category", default="Schedulers", help="The object category")
     parser.add_argument("-a", "--action", default="new", help="Sets the action (new / remove / add / rebuild")
+    parser.add_argument("-o", "--object", help="The framelib class")
+    parser.add_argument("-m", "--max", help="The max object name")
+    parser.add_argument("-p", "--pd", help="The max object name")
+    parser.add_argument("-c", "--category", help="The object category")
+    parser.add_argument("--src", help="The optional source type (fft / ibuffer)")
+    parser.add_argument("--args", help="The args mode (params / all / distribute)")
     parser.add_argument("--cache", default=True, help="Read from the object cache (if present)")
     args = parser.parse_args()
     
@@ -136,13 +139,22 @@ def main():
     
     # Derive the max object name from the framelib class name if it isn't explictly specified
     
-    if args.name is None:
-        args.name = "fl." + file_util.regex_search(args.object, ".*?([^_]*)$").lower() + "~"
+    if args.max is None and args.object is not None:
+        args.max = "fl." + file_util.regex_search(args.object, ".*?([^_]*)$").lower() + "~"
+    
+    if args.pd is None:
+        args.pd = args.max
     
     # Call the appropriate method based on the specified action
     
     if args.action == "new":
-        new_object(fl_object(args.object, args.name, args.category))
+    
+        if args.object is None or args.category is None:
+            print("ERROR - You must specify at least object and category to create a new object")
+            return
+            
+        new_object(fl_object(args.object, args.max, args.pd, args.category, args.pd, args.src))
+        
     elif args.action == "remove":
         remove_all()
     elif args.action == "add":
