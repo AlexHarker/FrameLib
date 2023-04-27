@@ -106,18 +106,6 @@ class fl_object:
 
             if info["object_class"] == "":
                 info["object_class"] = regex_search(max_object.data, "FrameLib_MaxClass_ExprParsed<(.*)>")
-
-            # Derive the pd class name
-            
-            if object_class != "void":
-            
-                pd_object = rw_file(fl_paths().pd_framelib())
-
-                exp = ".*<" + info["object_class"] + "(?:,.+?)?>::makeClass\(\"(.*)\"\)"
-                pd_class_name = regex_search_with_hint(pd_object.data, exp, info["object_class"])
-            
-                if pd_class_name != "":
-                    info["pd_class_name"] = pd_class_name
   
             # Derive the host classes
             
@@ -126,6 +114,33 @@ class fl_object:
                 info["max_host_class"] = regex_search(max_object.data, exp)
                 info["pd_host_class"] = info["max_host_class"].replace("FrameLib_Max", "FrameLib_PD")
 
+            # Derive the pd class name
+            
+            if info["object_class"] != "void":
+            
+                pd_object = rw_file(fl_paths().pd_framelib())
+                host_class = info["max_host_class"]
+                
+                if host_class == "FrameLib_MaxClass_Expand" or host_class == "FrameLib_MaxClass":
+                    exp = ".*<" + info["object_class"] + "(?:,.+?)?>::makeClass\(\"(.*)\"\)"
+                    hint = info["object_class"]
+                else:
+                    exp = info["pd_host_class"] + "::makeClass<" + info["pd_host_class"] + ">\(\"(.*)\"\)"
+                    hint = info["pd_host_class"]  + "::makeClass"
+                
+                # Try with hint and then without if that fails (for names that match the first part of others)
+
+                pd_class_name = regex_search_with_hint(pd_object.data, exp, hint)
+                
+                if pd_class_name == "":
+                    pd_class_name = regex_search(pd_object.data, exp)
+
+                if pd_class_name != "":
+                    info["pd_class_name"] = pd_class_name
+                    
+                if pd_class_name != class_name:
+                    print("---------------------------", info["object_class"], pd_class_name)
+            
             # Rework basic info
             
             info["object_class_name_upper"] = info["object_class"].upper()
