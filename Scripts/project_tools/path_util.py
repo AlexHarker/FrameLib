@@ -44,11 +44,14 @@ class fl_paths:
     def object_header_exists(self, info: fl_object):
         return Path(self.object_header(info)).exists()
     
+    def xc_project_dir(self):
+        return self.base_dir + "framelib.xcodeproj/"
+        
     def xc_pbxproj(self):
-        return self.base_dir + "framelib.xcodeproj/project.pbxproj"
+        return self.xc_project_dir() + "project.pbxproj"
         
     def xc_scheme(self):
-        return self.base_dir + "framelib.xcodeproj/xcshareddata/xcschemes/framelib Max (objects build).xcscheme"
+        return self.xc_project_dir() + "xcshareddata/xcschemes/framelib Max (objects build).xcscheme"
         
     def vs_solution(self):
         return self.base_dir + "framelib.sln"

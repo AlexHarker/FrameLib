@@ -17,7 +17,7 @@ def time_result(name : str, t1, t2 = None):
     if t2 is None:
         t2 = time.perf_counter_ns()
         
-    print("Completed " + name + " in " + str((t2 - t1)/1000000000.) + " seconds")
+    print("Completed " + name + " in " + str((t2 - t1)/1e9) + " seconds")
 
 
 def update_all(add: bool):

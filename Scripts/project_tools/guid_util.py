@@ -52,7 +52,7 @@ class guid_manager:
     
     def xc_target_dependency(self, guid: str):
                         
-        bounds = section_bounds("PBXTargetDependency") + ["/* Begin PBXTargetDependency", "target = " + guid]
+        bounds = section_bounds("PBXTargetDependency") + ["/* Begin", "target = " + guid]
         exp = "[\S\s]*\s([^\s]+) /\* PBXTargetDependency \*/ = \{[\S\s]*?\Z"
         return regex_search_section(self.pbxproj.data, bounds, exp)
         

@@ -4,6 +4,24 @@ from . object_info import fl_object
 
 from . import file_util
 
+
+# Helper for global section bounds
+
+def bounds_global(name: str):
+    return ["GlobalSection(" + name + ")", "\tEndGlobalSection"]
+    
+
+# Helper for included file bounds
+
+def bounds_include():
+    return ["    <ClInclude Include", "  </ItemGroup>"]
+    
+
+# Helper for compiled file bounds
+
+def bounds_compiled():
+    return ["    <ClCompile Include", "  </ItemGroup>"]
+    
     
 class fl_solution:
 
@@ -44,8 +62,8 @@ class fl_solution:
         # Modify the relevant sections of the solution to add/remove the max object project
         
         self.solution_modify(info, "project", ["MinimumVisualStudioVersion", "Global"], add)
-        self.solution_modify(info, "configurations", ["GlobalSection(ProjectConfigurationPlatforms)", "\tEndGlobalSection"], add)
-        self.solution_modify(info, "nested", ["GlobalSection(NestedProjects)", "\tEndGlobalSection"], add)
+        self.solution_modify(info, "configurations", bounds_global("ProjectConfigurationPlatforms"), add)
+        self.solution_modify(info, "nested", bounds_global("NestedProjects"), add)
         self.solution_modify(info, "dependency", ["\"framelib_objects_max\"", "\tEndProjectSection"], add)
         
         # Flush to disk
@@ -58,14 +76,17 @@ class fl_solution:
     
         # Create a mx object VS project
         
-        file_util.create(fl_paths().vs_max_project(info), fl_paths().vs_template("_class_name~.vcxproj"), info, overwrite)
+        project_path = fl_paths().vs_max_project(info)
+        template_path = fl_paths().vs_template("_class_name~.vcxproj")
+
+        file_util.create(project_path, template_path, info, overwrite)
         
         # Add the ibuffer source to the project if required
         
         if info["xc_obj_file_ibuffer_guid"] != "":
 
             contents = file_util.templated_string(fl_paths().vs_template("ibuffer"), info)
-            file_util.insert_file(fl_paths().vs_max_project(info), contents, ["    <ClCompile Include", "  </ItemGroup>"])
+            file_util.insert_file(fl_paths().vs_max_project(info), contents, bounds_compiled())
         
 
     def sort_project(self):
@@ -73,7 +94,7 @@ class fl_solution:
         # Sort the framelib objects project sources and includes into lexicographical order
         
         exp = "\"(.*)\""
-        self.project.data = file_util.sort_section(self.project.data, ["    <ClInclude Include", "  </ItemGroup>"], exp)
-        self.project.data = file_util.sort_section(self.project.data, ["    <ClCompile Include", "  </ItemGroup>"], exp)
+        self.project.data = file_util.sort_section(self.project.data, bounds_include(), exp)
+        self.project.data = file_util.sort_section(self.project.data, bounds_compiled(), exp)
    
         self.project.flush()

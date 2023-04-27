@@ -59,7 +59,7 @@ class fl_pbxproj:
         self.project_modify(info, template, section_bounds(section), add)
         
     
-    def project_modify_nested(self, info: fl_object, template: str, section: str, item: str, list_name: str, add: bool, item_guid: str = None):
+    def project_modify_list(self, info: fl_object, template: str, section: str, item: str, list_name: str, add: bool, item_guid: str = None):
     
         # Modify a nested list in the Xcode project
             
@@ -150,13 +150,13 @@ class fl_pbxproj:
         
         # Modify references
         
-        self.project_modify_nested(info, "ref_dep_package", "PBXAggregateTarget", "framelib_max_package", "dependencies", add)
+        self.project_modify_list(info, "ref_dep_package", "PBXAggregateTarget", "framelib_max_package", "dependencies", add)
         self.project_modify(info, "ref_target", section_bounds("PBXProject") + list_bounds("targets"), add)
-        self.project_modify_nested(info, "group_item_product", "PBXGroup", "Products", "children", add)
+        self.project_modify_list(info, "group_item_product", "PBXGroup", "Products", "children", add)
         
         if source_exists and not external_object:
-            lib_sources_guid = info["xc_lib_sources_guid"]
-            self.project_modify_nested(info, "ref_object_for_lib", "PBXSourcesBuildPhase", "Sources", "files", add, lib_sources_guid)
+            guid = info["xc_lib_sources_guid"]
+            self.project_modify_list(info, "ref_object_for_lib", "PBXSourcesBuildPhase", "Sources", "files", add, guid)
         
         # Get the category guids
         
@@ -168,8 +168,8 @@ class fl_pbxproj:
         if add and object_guid == "" and (header_exists or source_exists):
 
             object_guid = info.add_xc_object_group()
-            self.project_modify(info, "group_object_group", section_bounds("PBXGroup"), add)
-            self.project_modify_nested(info, "ref_object_group", "PBXGroup", "Objects FrameLib", "children", add)
+            self.project_modify_section(info, "group_object_group", "PBXGroup", add)
+            self.project_modify_list(info, "ref_object_group", "PBXGroup", "Objects FrameLib", "children", add)
             self.project_category_sort("PBXGroup", "Objects FrameLib", "children")
             
         # Make the max category group if it doesn't exist
@@ -177,19 +177,19 @@ class fl_pbxproj:
         if add and max_guid == "":
 
             max_guid = info.add_xc_max_group()
-            self.project_modify(info, "group_max_group", section_bounds("PBXGroup"), add)
-            self.project_modify_nested(info, "ref_max_group", "PBXGroup", "Objects Max", "children", add)
+            self.project_modify_section(info, "group_max_group", "PBXGroup", add)
+            self.project_modify_list(info, "ref_max_group", "PBXGroup", "Objects Max", "children", add)
             self.project_category_sort("PBXGroup", "Objects Max", "children")
 
         # Modify files in groups
         
         if header_exists and not external_object:
-            self.project_modify_nested(info, "group_item_header", "PBXGroup", category, "children", add, object_guid)
+            self.project_modify_list(info, "group_item_header", "PBXGroup", category, "children", add, object_guid)
        
         if source_exists and not external_object:
-            self.project_modify_nested(info, "group_item_object", "PBXGroup", category, "children", add, object_guid)
+            self.project_modify_list(info, "group_item_object", "PBXGroup", category, "children", add, object_guid)
         
-        self.project_modify_nested(info, "group_item_class", "PBXGroup", category, "children", add, max_guid)
+        self.project_modify_list(info, "group_item_class", "PBXGroup", category, "children", add, max_guid)
         
         # Modify the scheme for the relevant target
         
