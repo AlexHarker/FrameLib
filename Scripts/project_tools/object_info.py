@@ -26,6 +26,8 @@ class fl_object:
         self.info = {}
         info = self.info
         
+        # Basic object info
+        
         info["object_class"] = object_class
         info["object_class_name_upper"] = object_class.upper()
         info["object_class_file"] = regex_search(object_class, "([^:]*)")
@@ -33,32 +35,44 @@ class fl_object:
         info["pd_class_name"] = class_name
         info["category"] = category
         
+        # Store the project path and see if it already exists
+        
         project_path = fl_paths().vs_max_project(self)
         project_exists = Path(project_path).exists()
+        
+        # The guid manager
+        
         guids = guid_manager()
+        
+        # Deal with static guids
         
         if fl_object.initialised == False:
                     
             static_guids = fl_object.static_guids
+            
+            # Static VS guids
             
             static_guids["vs_framelib_guid"] = guids.vs("framelib")
             static_guids["vs_framelib_obj_guid"] = guids.vs("framelib_objects")
             static_guids["vs_max_objects_guid"] = guids.vs("Max Object Projects")
             static_guids["vs_main_guid"] = guids.vs_main()
                             
+            # Static Xcode guids
+
             static_guids["xc_main_guid"] = guids.xc("PBXProject", "Project object")
             static_guids["xc_framelib_guid"] = guids.xc("PBXNativeTarget", "framelib")
             static_guids["xc_max_config_guid"] = guids.xc("PBXFileReference", "Config_FrameLib_Max.xcconfig")
             static_guids["xc_fileref_lib_guid"] = guids.xc("PBXFileReference", "libframelib.a")
             static_guids["xc_fileref_fft_guid"] = guids.xc("PBXFileReference", "HISSTools_FFT.cpp")
             static_guids["xc_fileref_ibuffer_guid"] = guids.xc("PBXFileReference", "ibuffer_access.cpp")
-    
             static_guids["xc_lib_sources_guid"] = guids.xc_component("PBXNativeTarget", "framelib_objects", "buildPhases", "Sources")
             
             fl_object.initialised = True
 
         if class_name in fl_object.object_cache:
         
+            # Retrieve info from the cache if it exists
+            
             self.info = fl_object.object_cache[class_name]
             return
             
@@ -126,18 +140,28 @@ class fl_object:
             
         else:
         
+            # VS project guid
+                    
             info["vs_project_guid"] = guids.create_vs()
             
+            # Xcode misc guids
+
             info["xc_obj_target_guid"] = guids.create_xc()
             info["xc_obj_package_dep_guid"] = guids.create_xc()
             info["xc_obj_lib_dep_guid"] = guids.create_xc()
 
+            # Xcode proxy guids
+
             info["xc_obj_lib_proxy_guid"] = guids.create_xc()
             info["xc_obj_target_proxy_guid"] = guids.create_xc()
             
+            # Xcode build phases guids
+
             info["xc_obj_sources_guid"] = guids.create_xc()
             info["xc_obj_frameworks_guid"] = guids.create_xc()
 
+            # Xcode file guids
+            
             info["xc_obj_file_class_guid"] = guids.create_xc()
             info["xc_obj_file_object_guid"] = guids.create_xc()
             info["xc_obj_file_lib_guid"] = guids.create_xc()
@@ -153,11 +177,15 @@ class fl_object:
                 info["xc_obj_file_fft_guid"] = ""
                 info["xc_obj_file_ibuffer_guid"] = ""
                 
+            # Xcode file reference guids
+
             info["xc_obj_fileref_class_guid"] = guids.create_xc()
             info["xc_obj_fileref_object_guid"] = guids.create_xc()
             info["xc_obj_fileref_header_guid"] = guids.create_xc()
             info["xc_obj_fileref_mxo_guid"] = guids.create_xc()
             
+            # Xcode config guids
+                        
             info["xc_obj_config_list_guid"] = guids.create_xc()
             info["xc_obj_config_dvmt_guid"] = guids.create_xc()
             info["xc_obj_config_dplt_guid"] = guids.create_xc()
@@ -170,6 +198,8 @@ class fl_object:
       
         fl_object.object_cache[class_name] = info
         
+        
+    # Helper to add XC guids to a key
     
     def __set_xc(self, key: str):
 
@@ -181,6 +211,8 @@ class fl_object:
         return guid
         
         
+    # Methods to add missing categories
+    
     def add_xc_object_group(self):
         return self.__set_xc("xc_group_object_guid")
         
@@ -188,7 +220,9 @@ class fl_object:
     def add_xc_max_group(self):
         return self.__set_xc("xc_group_max_guid")
 
-
+    
+    # Method to determine if this max class owns the file class file or not
+    
     def object_file_external(self):
         return self["object_class"] != self["object_class_file"]
     

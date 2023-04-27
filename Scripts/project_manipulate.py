@@ -26,6 +26,9 @@ def update_all(add: bool):
     project_list = list(projects)
     project_list.sort()
         
+
+    # Loop over all max object VS projects
+    
     for project in project_list:
         name = project.as_posix().rsplit("/", 1)[1].replace(".vcxproj", "")
         
@@ -36,14 +39,20 @@ def update_all(add: bool):
         
         object_info = fl_object.create_from_name(name)
 
+        # Overwrite the max object VS project to ensure it is up to date if we are adding
+        
         if add:
             fl_solution().update_project(object_info, True)
+        
+        # Update the VS solution and Xcode project
         
         fl_solution().update(object_info, add)
         fl_pbxproj().update(object_info, add)
 
 
 def add_all():
+    
+    # Update to add all projects with time reporting
     
     t1 = time.perf_counter_ns()
     update_all(True)
@@ -52,6 +61,8 @@ def add_all():
 
 def remove_all():
 
+    # Update to remove all projects with time reporting
+
     t1 = time.perf_counter_ns()
     update_all(False)
     time_result("removal", t1)
@@ -59,6 +70,8 @@ def remove_all():
 
 def rebuild():
     
+    # Update to remove and then add all projects with time reporting
+
     t1 = time.perf_counter_ns()
     update_all(False)
     t2 = time.perf_counter_ns()
@@ -73,22 +86,36 @@ def new_object(object_info : fl_object):
     
     paths = fl_paths()
 
+    # Ensure that the category folders exist for the framelib object
+    
     Path(paths.object_dir(object_info)).mkdir(parents = True, exist_ok = True)
     Path(paths.max_object_dir(object_info)).mkdir(parents = True, exist_ok = True)
+    
+    # Create a max oobject source file and source + header for the framelib object
     
     file_util.create(paths.max_source(object_info), paths.code_template("fl.class_name~.cpp"), object_info)
     file_util.create(paths.object_header(object_info), paths.code_template("FrameLib_Class.h"), object_info)
     file_util.create(paths.object_source(object_info), paths.code_template("FrameLib_Class.cpp"), object_info)
     
+    # Update the single object build source files
+    
     code_util.update_code(object_info)    
+    
+    # Update the VS solution / create a max object VS project and update the Xcode project
+    
     fl_solution().update_project(object_info)
     fl_solution().update(object_info, True)
     fl_pbxproj().update(object_info, True)
+    
+    # Rebuild the VS solution / max object VS project / Xcode project
+    
     rebuild()
     
     
 def main():
 
+    # Argument parsing
+    
     parser = argparse.ArgumentParser(description="Manipulate and update framelib projects")
     parser.add_argument("-o", "--object", default="FrameLib_Test", help="The framelib class")
     parser.add_argument("-n", "--name", help="The max object name")
@@ -97,12 +124,18 @@ def main():
     parser.add_argument("--cache", default=True, help="Read from the object cache (if present)")
     args = parser.parse_args()
     
+    # Reload the cache unless specified not to
+    
     if args.cache:
         fl_object.load_cache()
     
+    # Derive the max object name from the framelib class name if it isn't explictly specified
+    
     if args.name is None:
         args.name = "fl." + file_util.regex_search(args.object, ".*?([^_]*)$").lower() + "~"
-            
+    
+    # Call the appropriate method based on the specified action
+    
     if args.action == "new":
         new_object(fl_object(args.object, args.name, args.category))
     elif args.action == "remove":
@@ -112,7 +145,11 @@ def main():
     elif args.action == "rebuild":
         rebuild()
 
+    # Sort the max object VS project contents
+    
     fl_solution().sort_project()
+    
+    # Save the cache
     
     fl_object.save_cache()
     

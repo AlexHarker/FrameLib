@@ -9,6 +9,7 @@ from . xc_util import list_bounds
 
 import uuid
 
+
 class guid_manager:
 
     def __init__(self):
@@ -53,14 +54,12 @@ class guid_manager:
                         
         bounds = section_bounds("PBXTargetDependency") + ["/* Begin PBXTargetDependency", "target = " + guid]
         exp = "[\S\s]*\s([^\s]+) /\* PBXTargetDependency \*/ = \{[\S\s]*?\Z"
-            
         return regex_search_section(self.pbxproj.data, bounds, exp)
         
         
+    # Ensure that the GUID is not in use already
+
     def __check_duplicate(self, data: str, guid: str):
-
-        # Ensure that the GUID is not in use already
-
         return regex_search(data, "(" + guid + ")") != ""
 
 
