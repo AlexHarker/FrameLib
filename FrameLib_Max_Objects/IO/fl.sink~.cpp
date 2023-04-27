@@ -2,10 +2,6 @@
 #include "FrameLib_Sink.h"
 #include "FrameLib_MaxClass.h"
 
-
-#include "FrameLib_FromHost.h"
-#include "FrameLib_MaxClass.h"
-
 // Max Class
 
 class FrameLib_MaxClass_Sink : public FrameLib_MaxClass_Expand<FrameLib_Sink>
@@ -91,4 +87,3 @@ extern "C" int C74_EXPORT main(void)
 }
 
 #endif
-
