@@ -37,17 +37,17 @@ def update_all(add: bool):
         else:
             print("remove " + name)
         
-        object_info = fl_object.create_from_name(name)
+        info = fl_object.create_from_name(name)
 
         # Overwrite the max object VS project to ensure it is up to date if we are adding
         
         if add:
-            fl_solution().update_project(object_info, True)
+            fl_solution().update_project(info, True)
         
         # Update the VS solution and Xcode project
         
-        fl_solution().update(object_info, add)
-        fl_pbxproj().update(object_info, add)
+        fl_solution().update(info, add)
+        fl_pbxproj().update(info, add)
 
 
 def add_all():
@@ -82,30 +82,30 @@ def rebuild():
     time_result("rebuild", t1)
     
 
-def new_object(object_info : fl_object):
+def new_object(info : fl_object):
     
     paths = fl_paths()
 
     # Ensure that the category folders exist for the framelib object
     
-    Path(paths.object_dir(object_info)).mkdir(parents = True, exist_ok = True)
-    Path(paths.max_object_dir(object_info)).mkdir(parents = True, exist_ok = True)
+    Path(paths.object_dir(info)).mkdir(parents = True, exist_ok = True)
+    Path(paths.max_object_dir(info)).mkdir(parents = True, exist_ok = True)
     
     # Create a max oobject source file and source + header for the framelib object
     
-    file_util.create(paths.max_source(object_info), paths.code_template("fl.class_name~.cpp"), object_info)
-    file_util.create(paths.object_header(object_info), paths.code_template("FrameLib_Class.h"), object_info)
-    file_util.create(paths.object_source(object_info), paths.code_template("FrameLib_Class.cpp"), object_info)
+    file_util.create(paths.max_source(info), paths.code_template("fl.class_name~.cpp"), info)
+    file_util.create(paths.object_header(info), paths.code_template("FrameLib_Class.h"), info)
+    file_util.create(paths.object_source(info), paths.code_template("FrameLib_Class.cpp"), info)
     
     # Update the single object build source files
     
-    code_util.update_code(object_info)    
+    code_util.update_code(info)
     
     # Update the VS solution / create a max object VS project and update the Xcode project
     
-    fl_solution().update_project(object_info)
-    fl_solution().update(object_info, True)
-    fl_pbxproj().update(object_info, True)
+    fl_solution().update_project(info)
+    fl_solution().update(info, True)
+    fl_pbxproj().update(info, True)
     
     # Rebuild the VS solution / max object VS project / Xcode project
     
