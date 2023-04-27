@@ -629,7 +629,7 @@ PD_API void framelib_pd_setup(void)
 
     // IO
     
-    FrameLib_PDClass_Expand<FrameLib_Sink>::makeClass("fl.sink~");
+    FrameLib_PDClass_Sink::makeClass<FrameLib_PDClass_Sink>("fl.sink~");
     FrameLib_PDClass_Expand<FrameLib_Source>::makeClass("fl.source~");
     FrameLib_PDClass_Expand<FrameLib_Trace>::makeClass("fl.trace~");
 
@@ -664,7 +664,7 @@ PD_API void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_Interval>::makeClass("fl.interval~");
     FrameLib_PDClass_Expand<FrameLib_Once>::makeClass("fl.once~");
     FrameLib_PDClass_Expand<FrameLib_PerBlock>::makeClass("fl.perblock~");
-    FrameLib_PDClass_Expand<FrameLib_Recursive>::makeClass("fl.recusivescheduler~");
+    FrameLib_PDClass_Expand<FrameLib_Recursive>::makeClass("fl.recursive~");
     FrameLib_PDClass_Expand<FrameLib_Recursive::Time>::makeClass("fl.nexttime~");
     
     // Spatial
@@ -721,7 +721,7 @@ PD_API void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_NonZero>::makeClass("fl.nonzero~");
     FrameLib_PDClass_Expand<FrameLib_Pad>::makeClass("fl.pad~");
     FrameLib_PDClass_Expand<FrameLib_Paste>::makeClass("fl.paste~");
-    FrameLib_PDClass_Expand<FrameLib_Peaks>::makeClass("fl.pattern~");
+    FrameLib_PDClass_Expand<FrameLib_Pattern>::makeClass("fl.pattern~");
     FrameLib_PDClass_Expand<FrameLib_Peaks>::makeClass("fl.peaks~");
     FrameLib_PDClass_Expand<FrameLib_Percentile>::makeClass("fl.percentile~");
     FrameLib_PDClass_Expand<FrameLib_Prioritise>::makeClass("fl.prioritise~");
@@ -848,13 +848,13 @@ PD_API void framelib_pd_setup(void)
     
     // Expressions
     
-    FrameLib_PDClass_Expression::makeClass("fl.expr~");
-    FrameLib_PDClass_ComplexExpression::makeClass("fl.complex.expr~");
+    FrameLib_PDClass_Expression::makeClass<FrameLib_PDClass_Expression>("fl.expr~");
+    FrameLib_PDClass_ComplexExpression::makeClass<FrameLib_PDClass_ComplexExpression>("fl.complex.expr~");
 
     // Host Communication
     
     FrameLib_PDClass_ToPD::makeClass<FrameLib_PDClass_ToPD>("fl.topd~");
-    FrameLib_PDClass_ToPD::makeClass<FrameLib_PDClass_FromPD>("fl.frompd~");
+    FrameLib_PDClass_FromPD::makeClass<FrameLib_PDClass_FromPD>("fl.frompd~");
 
     // Context
     

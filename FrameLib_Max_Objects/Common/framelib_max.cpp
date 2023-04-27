@@ -53,7 +53,7 @@ extern "C" int C74_EXPORT main(void)
 
     // IO
     
-    FrameLib_MaxClass_Expand<FrameLib_Sink>::makeClass("fl.sink~");
+    FrameLib_MaxClass_Sink::makeClass<FrameLib_MaxClass_Sink>("fl.sink~");
     FrameLib_MaxClass_Expand<FrameLib_Source>::makeClass("fl.source~");
     FrameLib_MaxClass_Expand<FrameLib_Trace>::makeClass("fl.trace~");
 
@@ -88,7 +88,7 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_Interval>::makeClass("fl.interval~");
     FrameLib_MaxClass_Expand<FrameLib_Once>::makeClass("fl.once~");
     FrameLib_MaxClass_Expand<FrameLib_PerBlock>::makeClass("fl.perblock~");
-    FrameLib_MaxClass_Expand<FrameLib_Recursive>::makeClass("fl.recusivescheduler~");
+    FrameLib_MaxClass_Expand<FrameLib_Recursive>::makeClass("fl.recursive~");
     FrameLib_MaxClass_Expand<FrameLib_Recursive::Time>::makeClass("fl.nexttime~");
     
     // Spatial
@@ -145,7 +145,7 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_NonZero>::makeClass("fl.nonzero~");
     FrameLib_MaxClass_Expand<FrameLib_Pad>::makeClass("fl.pad~");
     FrameLib_MaxClass_Expand<FrameLib_Paste>::makeClass("fl.paste~");
-    FrameLib_MaxClass_Expand<FrameLib_Peaks>::makeClass("fl.pattern~");
+    FrameLib_MaxClass_Expand<FrameLib_Pattern>::makeClass("fl.pattern~");
     FrameLib_MaxClass_Expand<FrameLib_Peaks>::makeClass("fl.peaks~");
     FrameLib_MaxClass_Expand<FrameLib_Percentile>::makeClass("fl.percentile~");
     FrameLib_MaxClass_Expand<FrameLib_Prioritise>::makeClass("fl.prioritise~");
@@ -221,7 +221,7 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_NotEqual, kAllInputs>::makeClass("fl.notequals~");
     FrameLib_MaxClass_Expand<FrameLib_GreaterThan, kAllInputs>::makeClass("fl.greaterthan~");
     FrameLib_MaxClass_Expand<FrameLib_LessThan, kAllInputs>::makeClass("fl.lessthan~");
-    FrameLib_MaxClass_Expand<FrameLib_GreaterThanEqual, kAllInputs>::makeClass("fl.fl.greaterthaneq~");
+    FrameLib_MaxClass_Expand<FrameLib_GreaterThanEqual, kAllInputs>::makeClass("fl.greaterthaneq~");
     FrameLib_MaxClass_Expand<FrameLib_LessThanEqual, kAllInputs>::makeClass("fl.lessthaneq~");
     FrameLib_MaxClass_Expand<FrameLib_LogicalAnd, kAllInputs>::makeClass("fl.and~");
     FrameLib_MaxClass_Expand<FrameLib_LogicalOr, kAllInputs>::makeClass("fl.or~");
