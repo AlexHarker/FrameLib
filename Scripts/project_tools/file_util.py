@@ -2,17 +2,9 @@
 from pathlib import Path
 from . object_info import fl_object
 
+    
+# Class for file reading and writing
 
-def newline_setting(path: str):
-    
-    # Use window line endings for vcxproj files
-        
-    if Path(path).suffix == ".vcxproj":
-        return '\r\n'
-        
-    return None
-    
-    
 class rw_file:
 
     def __init__(self, path: str):
@@ -27,7 +19,20 @@ class rw_file:
          with open(self.path, "w", newline = newline_setting(self.path)) as f:
             f.write(self.data)
         
-            
+        
+# Determine the correct newline setting for file writing
+
+def newline_setting(path: str):
+    
+    # Use window line endings for vcxproj files
+        
+    if Path(path).suffix == ".vcxproj":
+        return '\r\n'
+        
+    return None
+    
+    
+# Apply a regex search to a string (returning the first capture group)
 
 def regex_search(data: str, exp: str):
 
@@ -42,6 +47,8 @@ def regex_search(data: str, exp: str):
     return ""
 
 
+# Apply a regex search to a string using a hint to speed up the search
+
 def regex_search_with_hint(data: str, exp: str, hint: str):
 
     hi = data.find(hint)
@@ -51,19 +58,21 @@ def regex_search_with_hint(data: str, exp: str, hint: str):
     return regex_search(data[lo:hi], exp)
 
 
-def find_next_blankline(data: str, index: int):
+# Apply a regex search to a section of a string, with an optional hint to speed up the search
 
-    while True:
-        next = data.find("\n", index)
-        if next >= 0:
-            next = data.find("\n", next + 1)
-        if data[index:next].isspace():
-            return index + 1
-        if next < 0:
-            return index
-        index = next
-            
-            
+def regex_search_section(data: str, bounds: list, exp: str, hint: str = ""):
+    
+    index_lo, index_hi = find_section(data, bounds)
+    data = data[index_lo:index_hi]
+    
+    if hint != "":
+        return regex_search_with_hint(data, exp, hint)
+    else:
+        return regex_search(data, exp)
+
+
+# Find a section of a string based on a list of pairs of bounds
+
 def find_section(data: str, bounds: list):
 
     index_lo = 0
@@ -78,18 +87,24 @@ def find_section(data: str, bounds: list):
 
     return index_lo, index_hi
     
+    
+# Find the next blank line in a string given an index to start from
 
-def regex_search_section(data: str, bounds: list, exp: str, hint: str = ""):
-    
-    index_lo, index_hi = find_section(data, bounds)
-    data = data[index_lo:index_hi]
-    
-    if hint != "":
-        return regex_search_with_hint(data, exp, hint)
-    else:
-        return regex_search(data, exp)
+def find_next_blankline(data: str, index: int):
+
+    while True:
+        next = data.find("\n", index)
+        if next >= 0:
+            next = data.find("\n", next + 1)
+        if data[index:next].isspace():
+            return index + 1
+        if next < 0:
+            return index
+        index = next
         
         
+# Insert one string into another with a section specified by bounds (with an optional
+
 def insert(data: str, contents: str, bounds: list, next_blank: bool = False):
     
     index_lo, index = find_section(data, bounds)
@@ -101,6 +116,8 @@ def insert(data: str, contents: str, bounds: list, next_blank: bool = False):
             
     return data[:index] + contents + data[index:]
 
+
+# Remove one string from another within a section specified with bounds
 
 def remove(data: str, contents: str, bounds: list):
         
@@ -115,12 +132,16 @@ def remove(data: str, contents: str, bounds: list):
     return data[:index] + data[index + len(contents):]
     
     
+# Insert or remove one string from another within a section specified with bounds
+
 def modify(data: str, contents: str, bounds: list, add: bool):
     if add:
         return insert(data, contents, bounds)
     else:
         return remove(data, contents, bounds)
 
+
+# Sort lines in a specificed section of a string using a regex to select the part of each line to sort on
 
 def sort_section(data: str, bounds: list, exp: str):
     
@@ -131,7 +152,9 @@ def sort_section(data: str, bounds: list, exp: str):
     return data[:lo] + "".join(lines) + data[hi:]
 
 
-def replace_next_key(data: str, object_info: fl_object):
+# Search a string for the next tag that need replacing and then replace all instances of the given key
+
+def replace_next_key(data: str, info: fl_object):
 
     lo, hi = find_section(data, ["_##", "##_"])
     
@@ -139,12 +162,14 @@ def replace_next_key(data: str, object_info: fl_object):
         return False, data
 
     key = data[lo+3:hi]
-    value = object_info[key.lower()]
+    value = info[key.lower()]
             
     return True, data.replace("_##" + key + "##_", value)
     
     
-def templated_string(template_path: str, object_info: fl_object):
+# Return a string based on a template, but with all tagged items replaced
+
+def templated_string(template_path: str, info: fl_object):
 
     with open(template_path, "r") as f:
         template = f.read()
@@ -152,11 +177,38 @@ def templated_string(template_path: str, object_info: fl_object):
     condition = True;
     
     while condition:
-        condition, template = replace_next_key(template, object_info)
+        condition, template = replace_next_key(template, info)
         
     return template
+    
 
-       
+# Create a file based on a template with an option as to whether pre-existing files should be overwritten
+
+def create(output_path: str, template_path: str, info: fl_object, overwrite: bool = False):
+
+    contents = templated_string(template_path, info)
+    
+    if overwrite:
+        mode = "w"
+    else:
+        mode = "x"
+        
+    f = open(output_path, mode, newline = newline_setting(output_path))
+    f.write(contents)
+    f.close()
+      
+    
+# Create a file based on a template with an option as to whether pre-existing files should be overwritten
+
+def insert_file(path: str, contents: str, bounds: list, next_blank: bool = False):
+    
+    file = rw_file(path)
+    file.data = insert(file.data, contents, bounds, next_blank)
+    file.flush()
+   
+   
+# Apply regex to each line of a file and return matched lines
+
 def lines_regex(path: str, exp: str, start: str, end: str, inner_start: str, inner_end: str):
     
     import re
@@ -185,24 +237,3 @@ def lines_regex(path: str, exp: str, start: str, end: str, inner_start: str, inn
                 list.append([match.group(1), match.group(0)])
 
     return list
-    
-    
-def create(output_path: str, template_path: str, object_info: fl_object, overwrite: bool = False):
-
-    contents = templated_string(template_path, object_info)
-    
-    if overwrite:
-        mode = "w"
-    else:
-        mode = "x"
-        
-    f = open(output_path, mode, newline = newline_setting(output_path))
-    f.write(contents)
-    f.close()
-      
-        
-def insert_file(path: str, contents: str, bounds: list, next_blank: bool = False):
-    
-    file = rw_file(path)
-    file.data = insert(file.data, contents, bounds, next_blank)
-    file.flush()
