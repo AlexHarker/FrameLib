@@ -629,7 +629,7 @@ PD_API void framelib_pd_setup(void)
 
     // IO
     
-    FrameLib_PDClass_Expand<FrameLib_Sink>::makeClass("fl.sink~");
+    FrameLib_PDClass_Sink::makeClass<FrameLib_PDClass_Sink>("fl.sink~");
     FrameLib_PDClass_Expand<FrameLib_Source>::makeClass("fl.source~");
     FrameLib_PDClass_Expand<FrameLib_Trace>::makeClass("fl.trace~");
 
@@ -848,8 +848,8 @@ PD_API void framelib_pd_setup(void)
     
     // Expressions
     
-    FrameLib_PDClass_Expression::makeClass("fl.expr~");
-    FrameLib_PDClass_ComplexExpression::makeClass("fl.complex.expr~");
+    FrameLib_PDClass_Expression::makeClass<FrameLib_PDClass_Expression>("fl.expr~");
+    FrameLib_PDClass_ComplexExpression::makeClass<FrameLib_PDClass_ComplexExpression>("fl.complex.expr~");
 
     // Host Communication
     
