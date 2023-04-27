@@ -38,8 +38,7 @@ def regex_search(data: str, exp: str):
 
     import re
     
-    regex = re.compile(exp)
-    match = regex.search(data)
+    match = re.search(exp, data)
         
     if match is not None:
         return match.group(1)

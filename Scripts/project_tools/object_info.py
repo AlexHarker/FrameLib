@@ -117,7 +117,7 @@ class fl_object:
             if info["object_class"] != "void":
                 exp = "([^\s]+)(<.+>::makeClass\(\"" + max_class_name + "|::makeClass<.+>\(\"" + max_class_name + ")"
                 info["max_host_class"] = regex_search(max_object.data, exp)
-                info["pd_host_class"] = info["max_host_class"].replace("FrameLib_Max", "FrameLib_PD")
+                info["pd_host_class"] = info["max_host_class"].replace("Max", "PD")
 
             # Derive the pd class name
             
