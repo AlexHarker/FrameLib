@@ -118,10 +118,7 @@ class fl_object:
             
                 if pd_class_name != "":
                     info["pd_class_name"] = pd_class_name
-                
-            if pd_class_name != class_name:
-                print("-----------------------", info["pd_class_name"], class_name, pd_class_name)
-                    
+  
             # Derive the host classes
             
             if info["object_class"] != "void":
