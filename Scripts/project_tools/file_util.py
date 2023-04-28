@@ -72,17 +72,25 @@ def regex_search_section(data: str, bounds: list, exp: str, hint: str = ""):
 
 # Find a section of a string based on a list of pairs of bounds
 
-def find_section(data: str, bounds: list):
+def find_section(data: str, bounds: list, exclude_start: bool = False):
 
     index_lo = 0
     index_hi = len(data)
     
     for idx in range(int(len(bounds) / 2)):
+       
         index_lo = data.find(bounds[idx * 2 + 0], index_lo, index_hi)
         index_hi = data.find(bounds[idx * 2 + 1], index_lo + len(bounds[idx * 2 + 0]), index_hi)
+        
+        if exclude_start:
+            index_lo = index_lo + len(bounds[idx * 2 + 0])
 
     if len(bounds) % 2:
+    
         index_lo = data.find(bounds[len(bounds) - 1], index_lo, index_hi)
+        
+        if exclude_start:
+            index_lo = index_lo + len(bounds[idx * 2 + 0])
 
     return index_lo, index_hi
     
@@ -140,7 +148,7 @@ def modify(data: str, contents: str, bounds: list, add: bool):
         return remove(data, contents, bounds)
 
 
-# Sort lines in a specificed section of a string using a regex to select the part of each line to sort on
+# Sort lines in a specified section of a string using a regex to select the part of each line to sort on
 
 def sort_section(data: str, bounds: list, exp: str):
     
@@ -149,6 +157,25 @@ def sort_section(data: str, bounds: list, exp: str):
     lines = data[lo:hi].splitlines(True)
     lines.sort(key = lambda a : regex_search(a.upper(), exp))
     return data[:lo] + "".join(lines) + data[hi:]
+    
+
+# Sort items in a specified section of a string using a regex to select the part of each item to sort on and another string to determine the item endings
+
+def sort_section_items(data: str, bounds: list, item_end: str, exp: str):
+    
+    lo, hi = find_section(data, bounds, True)
+    
+    items = data[lo:hi].split(item_end)
+    
+    if items[len(items) - 1] == "":
+        items.pop(len(items) - 1)
+    
+    for i in range(len(items) ):
+        items[i] = items[i] + item_end
+            
+    items.sort(key = lambda a : regex_search(a.upper(), exp))
+
+    return data[:lo] + "".join(items) + data[hi:]
 
 
 # Search a string for the next tag that need replacing and then replace all instances of the given key

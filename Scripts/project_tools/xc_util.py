@@ -8,7 +8,7 @@ from . import file_util
 # Helpers to generate bounds for sections / items / lists in the Xcode project
 
 def section_bounds(section: str):
-    return ["/* Begin " + section + " section */", "/* End " + section + " section */"]
+    return ["/* Begin " + section + " section */\n", "/* End " + section + " section */"]
 
 
 def item_bounds(name: str, guid: str = None):
@@ -199,3 +199,33 @@ class fl_pbxproj:
         
         self.pbxproj.flush()
         self.scheme.flush()
+        
+
+    def __sort_section(self, section: str, exp: str):
+        
+        bounds = section_bounds(section)
+        self.pbxproj.data = file_util.sort_section(self.pbxproj.data, bounds, exp)
+    
+    
+    def __sort_section_items(self, section: str, exp: str):
+        
+        bounds = section_bounds(section)
+        self.pbxproj.data = file_util.sort_section_items(self.pbxproj.data, bounds, "\n\t\t};\n", exp)
+        
+    
+    def sort_project(self):
+        
+        exp = "([^\s]+) /\* .+ \*/ = \{"
+        
+        self.__sort_section("PBXBuildFile", exp)
+        self.__sort_section("PBXFileReference", exp)
+        
+        self.__sort_section_items("PBXContainerItemProxy", exp)
+        self.__sort_section_items("PBXFrameworksBuildPhase", exp)
+        self.__sort_section_items("PBXNativeTarget", exp)
+        self.__sort_section_items("PBXSourcesBuildPhase", exp)
+        self.__sort_section_items("PBXTargetDependency", exp)
+        self.__sort_section_items("XCBuildConfiguration", exp)
+        self.__sort_section_items("XCConfigurationList", exp)
+        
+        self.pbxproj.flush()

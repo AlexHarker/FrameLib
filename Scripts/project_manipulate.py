@@ -165,7 +165,8 @@ def main():
     # Sort the max object VS project contents
     
     fl_solution().sort_project()
-    
+    fl_pbxproj().sort_project()
+        
     # Save the cache
     
     fl_object.save_cache()
