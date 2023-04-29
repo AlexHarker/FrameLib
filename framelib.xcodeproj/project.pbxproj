@@ -5283,7 +5283,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		089C166AFE841209C02AAC07 /* plus~ */ = {
+		089C166AFE841209C02AAC07 /* main_group */ = {
 			isa = PBXGroup;
 			children = (
 				B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */,
@@ -5293,7 +5293,7 @@
 				19C28FB4FE9D528D11CA2CBB /* Products */,
 				B89C1A4F2069A969009CA55B /* Frameworks */,
 			);
-			name = "plus~";
+			name = "main_group";
 			sourceTree = "<group>";
 		};
 		089C167CFE841241C02AAC07 /* Resources */ = {
@@ -9740,7 +9740,7 @@
 				en,
 				Base,
 			);
-			mainGroup = 089C166AFE841209C02AAC07 /* plus~ */;
+			mainGroup = 089C166AFE841209C02AAC07 /* main_group */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
