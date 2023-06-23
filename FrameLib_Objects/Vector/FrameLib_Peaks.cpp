@@ -114,7 +114,7 @@ void createEdges(double *output, T data, unsigned long size, int edgeSize)
 
 // Peak Finding
 
-template <bool Func(const double *, double, unsigned long)>
+template <bool Func(const double *, double, long)>
 unsigned long findPeaks(unsigned long *peaks, const double *data, unsigned long size, double threshold)
 {
     unsigned long nPeaks = 0;
@@ -127,13 +127,13 @@ unsigned long findPeaks(unsigned long *peaks, const double *data, unsigned long 
 }
 
 template <int N>
-bool checkPeak(const double *data, double threshold, unsigned long i)
+bool checkPeak(const double *data, double threshold, long i)
 {
     return checkPeak<N-1>(data, threshold, i) && data[i] > data[i-N] && data[i] > data[i+N];
 }
 
 template <>
-bool checkPeak<1>(const double *data, double threshold, unsigned long i)
+bool checkPeak<1>(const double *data, double threshold, long i)
 {
     return data[i] > threshold && data[i] > data[i-1] && data[i] > data[i+1];
 }
