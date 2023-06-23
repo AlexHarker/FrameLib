@@ -35,11 +35,11 @@ FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, const FrameLib_Paramete
     mParameters.addEnumItem(kParabolic, "parabolic", true);
     mParameters.addEnumItem(kParabolicLog, "parabolic_log");
     
-    mParameters.addEnum(kBoundaries, "boundaries", 4);
+    mParameters.addEnum(kBoundaries, "boundaries", 5);
     mParameters.addEnumItem(kMinimum, "minimum");
     mParameters.addEnumItem(kMidpoint, "midpoint");
     
-    mParameters.addBool(kAlwaysDetect, "always_detect", true, 5);
+    mParameters.addBool(kAlwaysDetect, "always_detect", true, 6);
     
     mParameters.set(serialisedParameters);
     
