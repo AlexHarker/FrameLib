@@ -90,6 +90,14 @@
         This argument sets the edges parameter:<p /><p />Sets the edge behaviour for peak detection:<p /><bullet>[0] - <m>pad</m> - values beyond the edges of the input are read as the padding value.</bullet><bullet>[1] - <m>extend</m> - the edge values are extended infinitely in either direction.</bullet><bullet>[2] - <m>wrap</m> - values are read as wrapped or cyclical.</bullet><bullet>[3] - <m>fold</m> - values are folded at edges without repetition of the edge values.</bullet><bullet>[4] - <m>mirror</m> - values are mirrored at edges with the edge values repeated.</bullet><p /><i>(default: <m>pad</m>)</i>
       </description>
     </objarg>
+    <objarg name="refine" optional="1" type="symbol">
+      <digest>
+        Sets the method for refining peak values
+      </digest>
+      <description>
+        This argument sets the refine parameter:<p /><p />Sets the method for refining peak values:<p /><bullet>[0] - <m>off</m> - return the peak value without refinement.</bullet><bullet>[1] - <m>parabolic</m> - apply parabolic interpolation to the three values around the peak.</bullet><bullet>[2] - <m>parabolic_log</m> - apply parabolic interpolation to the log of the three values around the peak.</bullet><p />Note that parabolic_log is suitable for interpolating linear amplitudes.<p /><i>(default: <m>parabolic</m>)</i>
+      </description>
+    </objarg>
     <objarg name="boundaries" optional="1" type="symbol">
       <digest>
         Sets the method for selecting the boundaries between peaks
