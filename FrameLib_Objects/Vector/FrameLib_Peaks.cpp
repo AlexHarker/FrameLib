@@ -140,11 +140,11 @@ bool checkPeak<1>(const double *data, double threshold, long i)
 
 // Refinement
 
-template <void Func(double *, double *, const double *, unsigned long, unsigned long)>
+template <void Func(double *, double *, const double *, unsigned long, long)>
 void refinePeaks(double *positions, double *values, const double *data, unsigned long *peaks, unsigned long nPeaks)
 {
     for (unsigned long i = 0; i < nPeaks; i++)
-        Func(positions, values, data, i, peaks[i]);
+        Func(positions, values, data, i, static_cast<long>(peaks[i]));
 }
 
 void parabolicInterp(double& position, double& value, double idx, double vm1, double v_0, double vp1)
@@ -156,18 +156,18 @@ void parabolicInterp(double& position, double& value, double idx, double vm1, do
     value = v_0 - (0.25 * (vm1 - vp1) * correction);
 }
 
-void refineNone(double *positions, double *values, const double *data, unsigned long peak, unsigned long idx)
+void refineNone(double *positions, double *values, const double *data, unsigned long peak, long idx)
 {
     positions[peak] = idx;
     values[peak] = data[idx];
 }
 
-void refineParabolic(double *positions, double *values, const double *data, unsigned long peak, unsigned long idx)
+void refineParabolic(double *positions, double *values, const double *data, unsigned long peak, long idx)
 {
     parabolicInterp(positions[peak], values[peak], idx, data[idx-1], data[idx], data[idx+1]);
 }
 
-void refineParabolicLog(double *positions, double *values, const double *data, unsigned long peak, unsigned long idx)
+void refineParabolicLog(double *positions, double *values, const double *data, unsigned long peak, long idx)
 {
     // Take log values (avoiding values that are too low) - doesn't work for negative values
     // N.B. we assume a max of -80dB difference between samples to prevent extreme overshoot
