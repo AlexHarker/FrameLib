@@ -561,7 +561,7 @@ bool writeInfo(FrameLib_Multistream* frameLibObject, std::string inputName, MaxO
         long paramIdx = -1;
         
         for (unsigned long i = 0; params && i < params->size(); i++)
-            if (params->getArgumentIdx(i) == idx)
+            if (params->getArgumentIdx(i) == static_cast<long>(idx))
                 paramIdx = static_cast<long>(i);
         
         if (paramIdx == -1)
