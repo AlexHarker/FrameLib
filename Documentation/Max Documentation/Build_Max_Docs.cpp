@@ -305,10 +305,6 @@ std::string processParamInfo(const std::string& objectName, const FrameLib_Param
         if (!numEnumItems)
             isEnumItem(pos);
         
-        std::string sub = info.substr(pos);
-        if (matchPartialString(info, "cosine_sum", pos))
-            newItem = newItem;
-        
         if (newItem)
         {
             addMessageTags(info, pos);
