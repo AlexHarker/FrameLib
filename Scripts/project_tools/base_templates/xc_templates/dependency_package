@@ -1,0 +1,5 @@
+		_##XC_OBJ_PACKAGE_DEP_GUID##_ /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = _##XC_OBJ_TARGET_GUID##_ /* _##MAX_CLASS_NAME##_ */;
+			targetProxy = _##XC_OBJ_TARGET_PROXY_GUID##_ /* PBXContainerItemProxy */;
+		};

@@ -1,0 +1,5 @@
+		_##XC_OBJ_LIB_DEP_GUID##_ /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = _##XC_FRAMELIB_GUID##_ /* framelib */;
+			targetProxy = _##XC_OBJ_LIB_PROXY_GUID##_ /* PBXContainerItemProxy */;
+		};

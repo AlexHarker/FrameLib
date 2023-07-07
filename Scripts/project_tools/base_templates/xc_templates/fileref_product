@@ -1,0 +1,1 @@
+		_##XC_OBJ_FILEREF_MXO_GUID##_ /* _##MAX_CLASS_NAME##_.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "_##MAX_CLASS_NAME##_.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };

@@ -1,0 +1,7 @@
+		_##XC_OBJ_CONFIG_DVMT_GUID##_ /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = _##XC_MAX_CONFIG_GUID##_ /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+			};
+			name = Development;
+		};

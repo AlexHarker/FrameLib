@@ -1,0 +1,6 @@
+Project("{_##VS_MAIN_GUID##_}") = "_##MAX_CLASS_NAME##_", "Projects\Visual_Studio\03_Max_Objects\_##MAX_CLASS_NAME##_.vcxproj", "{_##VS_PROJECT_GUID##_}"
+	ProjectSection(ProjectDependencies) = postProject
+		{_##VS_FRAMELIB_GUID##_} = {_##VS_FRAMELIB_GUID##_}
+		{_##VS_FRAMELIB_OBJ_GUID##_} = {_##VS_FRAMELIB_OBJ_GUID##_}
+	EndProjectSection
+EndProject

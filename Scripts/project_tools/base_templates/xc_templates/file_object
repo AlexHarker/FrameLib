@@ -1,0 +1,1 @@
+		_##XC_OBJ_FILE_OBJECT_GUID##_ /* _##OBJECT_CLASS_FILE##_.cpp in Sources */ = {isa = PBXBuildFile; fileRef = _##XC_OBJ_FILEREF_OBJECT_GUID##_ /* _##OBJECT_CLASS_FILE##_.cpp */; };
