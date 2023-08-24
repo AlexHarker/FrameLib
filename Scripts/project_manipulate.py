@@ -125,7 +125,7 @@ def main():
     parser.add_argument("-a", "--action", default="new", help="Sets the action (new / remove / add / rebuild")
     parser.add_argument("-o", "--object", help="The framelib class")
     parser.add_argument("-m", "--max", help="The max object name")
-    parser.add_argument("-p", "--pd", help="The max object name")
+    parser.add_argument("-p", "--pd", help="The pd object name")
     parser.add_argument("-c", "--category", help="The object category")
     parser.add_argument("--src", help="The optional source type (fft / ibuffer)")
     parser.add_argument("--args", help="The args mode (params / all / distribute)")
