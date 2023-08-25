@@ -6,10 +6,6 @@
 
 class FrameLib_CumulativeSum final : public FrameLib_Processor
 {
-    enum ParameterList { };
-
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-
 public:
     
     // Constructor
@@ -27,10 +23,6 @@ private:
     // Process
     
     void process() override;
-    
-    // Data
-    
-    static ParameterInfo sParamInfo;
 };
 
 #endif

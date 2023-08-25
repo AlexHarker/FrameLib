@@ -1,30 +1,27 @@
 
 #include "FrameLib_CumulativeSum.h"
+#include <numeric>
+
+// Constructor
 
 FrameLib_CumulativeSum::FrameLib_CumulativeSum(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+: FrameLib_Processor(context, proxy, nullptr, 1, 1)
 {
     mParameters.set(serialisedParameters);
 }
 
+// Info
+
 std::string FrameLib_CumulativeSum::objectInfo(bool verbose)
 {
-    return formatInfo("Long Info: "
-                      "Details line 1. "
-                      "Details line 2.",
-                      "Short Info.", verbose);
+    return formatInfo("Computes the cumulative sum of the input frame: "
+                      "The output is the same length as the input."
+                      "Computes the cumulative sum of the input frame.", verbose);
 }
 
 std::string FrameLib_CumulativeSum::inputInfo(unsigned long idx, bool verbose)
 {
-    switch (idx)
-    {
-        case 0:
-            return formatInfo("Input Info - details", "Input Info", verbose);
-    
-        default:
-            return parameterInputInfo(verbose);
-    }
+    return "Input";
 }
 
 std::string FrameLib_CumulativeSum::outputInfo(unsigned long idx, bool verbose)
@@ -32,14 +29,7 @@ std::string FrameLib_CumulativeSum::outputInfo(unsigned long idx, bool verbose)
     return "Output";
 }
 
-// Parameter Info
-
-FrameLib_CumulativeSum::ParameterInfo FrameLib_CumulativeSum::sParamInfo;
-
-FrameLib_CumulativeSum::ParameterInfo::ParameterInfo()
-{
-    //add("Parameter Info.");
-}
+// Process
 
 void FrameLib_CumulativeSum::process()
 {
