@@ -33,12 +33,16 @@ std::string FrameLib_CumulativeSum::outputInfo(unsigned long idx, bool verbose)
 
 void FrameLib_CumulativeSum::process()
 {
-    unsigned long sizeOut = 0;
-    
-    requestOutputSize(0, sizeOut);
-    
-    if (allocateOutputs())
+    unsigned long size;
+    const double *input = getInput(0, &size);
+
+    requestOutputSize(0, size);
+    allocateOutputs();
+
+    double *output = getOutput(0, &size);
+
+    if (output)
     {
-        // Create Outputs
+        std::partial_sum(input, input + size, output);
     }
 }
