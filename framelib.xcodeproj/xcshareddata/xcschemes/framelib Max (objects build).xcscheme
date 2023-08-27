@@ -686,6 +686,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B96F4817B81C02BB60093C22"
+               BuildableName = "fl.cumsum~.mxo"
+               BlueprintName = "fl.cumsum~"
+               ReferencedContainer = "container:framelib.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "B805E31F19C3AE00007D8D8B"
                BuildableName = "fl.diff~.mxo"
                BlueprintName = "fl.diff~"
