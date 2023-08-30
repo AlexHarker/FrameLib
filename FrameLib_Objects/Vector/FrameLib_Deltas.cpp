@@ -70,10 +70,8 @@ void FrameLib_Deltas::process()
 
     double *output = getOutput(0, &size);
 
-    if (!output)
-    {
+    if (size < 2)
         return;
-    }
 
     std::adjacent_difference(input, input + size, output);
 
