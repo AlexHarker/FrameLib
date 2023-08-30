@@ -2,9 +2,20 @@
 #include "FrameLib_Deltas.h"
 
 FrameLib_Deltas::FrameLib_Deltas(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+: FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
+    mParameters.addEnum(kInitial, "initial", 0);
+    mParameters.addEnumItem(kZeroDiff, "zerodiff");
+    mParameters.addEnumItem(kWrapDiff, "wrapdiff");
+    mParameters.addEnumItem(kZero, "zero");
+
+    mParameters.addEnum(kCompare, "compare", 1);
+    mParameters.addEnumItem(kRight, "right");
+    mParameters.addEnumItem(kLeft, "left");
+
     mParameters.set(serialisedParameters);
+
+    setParameterInput(1);
 }
 
 std::string FrameLib_Deltas::objectInfo(bool verbose)
@@ -38,7 +49,8 @@ FrameLib_Deltas::ParameterInfo FrameLib_Deltas::sParamInfo;
 
 FrameLib_Deltas::ParameterInfo::ParameterInfo()
 {
-    //add("Parameter Info.");
+    add("Sets the behaviour of the algorithm for the initial element.");
+    add("Sets the comparison direction of each element");
 }
 
 void FrameLib_Deltas::process()
