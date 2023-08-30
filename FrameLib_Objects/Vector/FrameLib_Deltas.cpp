@@ -1,5 +1,8 @@
 
 #include "FrameLib_Deltas.h"
+#include <numeric>
+
+// Constructor
 
 FrameLib_Deltas::FrameLib_Deltas(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
@@ -17,6 +20,8 @@ FrameLib_Deltas::FrameLib_Deltas(FrameLib_Context context, const FrameLib_Parame
 
     setParameterInput(1);
 }
+
+// Info
 
 std::string FrameLib_Deltas::objectInfo(bool verbose)
 {
@@ -53,14 +58,44 @@ FrameLib_Deltas::ParameterInfo::ParameterInfo()
     add("Sets the comparison direction of each element");
 }
 
+// Process
+
 void FrameLib_Deltas::process()
 {
-    unsigned long sizeOut = 0;
-    
-    requestOutputSize(0, sizeOut);
-    
-    if (allocateOutputs())
+    unsigned long size;
+    const double *input = getInput(0, &size);
+
+    requestOutputSize(0, size);
+    allocateOutputs();
+
+    double *output = getOutput(0, &size);
+
+    if (!output)
     {
-        // Create Outputs
+        return;
+    }
+
+    std::adjacent_difference(input, input + size, output);
+
+    //account for initial element
+    switch (mParameters.getEnum<Initials>(kInitial))
+    {
+    case kZeroDiff:     output[0] = input[0];                   break;
+    case kWrapDiff:     output[0] = input[0] - input[size - 1]; break;
+    case kZero:         output[0] = 0;                          break;
+    }
+
+    //invert difference order
+    if (mParameters.getEnum<Compares>(kCompare) == kLeft)
+    {
+        double temp = output[0];
+        for (unsigned long i = 0; i < size; ++i)
+        {
+            output[i] = output[i + 1] * -1;
+        }
+        output[size - 1] = temp * -1;
+
+        if (mParameters.getEnum<Initials>(kInitial) == kZeroDiff)
+            output[size - 1] = input[size - 1];
     }
 }
