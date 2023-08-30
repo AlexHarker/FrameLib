@@ -77,7 +77,7 @@ void FrameLib_Deltas::process()
 
     std::adjacent_difference(input, input + size, output);
 
-    //account for initial element
+    //initial element behaviour
     switch (mParameters.getEnum<Initials>(kInitial))
     {
     case kZeroDiff:     output[0] = input[0];                   break;
