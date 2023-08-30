@@ -9,7 +9,7 @@ class FrameLib_Deltas final : public FrameLib_Processor
     // Parameter Enums and Info
 
     enum ParameterList { kInitial, kCompare };
-    enum Initials { kZeroDiff, kWrapDiff, kZero };
+    enum Initials { kZeroDiff, kWrapDiff, kZeroFill };
     enum Compares { kRight, kLeft };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };

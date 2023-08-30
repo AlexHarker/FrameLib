@@ -10,7 +10,7 @@ FrameLib_Deltas::FrameLib_Deltas(FrameLib_Context context, const FrameLib_Parame
     mParameters.addEnum(kInitial, "initial", 0);
     mParameters.addEnumItem(kZeroDiff, "zerodiff");
     mParameters.addEnumItem(kWrapDiff, "wrapdiff");
-    mParameters.addEnumItem(kZero, "zero");
+    mParameters.addEnumItem(kZeroFill, "zerofill");
 
     mParameters.addEnum(kCompare, "compare", 1);
     mParameters.addEnumItem(kRight, "right");
@@ -82,7 +82,7 @@ void FrameLib_Deltas::process()
     {
     case kZeroDiff:     output[0] = input[0];                   break;
     case kWrapDiff:     output[0] = input[0] - input[size - 1]; break;
-    case kZero:         output[0] = 0;                          break;
+    case kZeroFill:     output[0] = 0;                          break;
     }
 
     //invert difference order
