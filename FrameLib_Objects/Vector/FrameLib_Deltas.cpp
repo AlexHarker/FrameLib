@@ -11,6 +11,7 @@ FrameLib_Deltas::FrameLib_Deltas(FrameLib_Context context, const FrameLib_Parame
     mParameters.addEnumItem(kZeroDiff, "zerodiff");
     mParameters.addEnumItem(kWrapDiff, "wrapdiff");
     mParameters.addEnumItem(kZeroFill, "zerofill");
+    mParameters.addEnumItem(kDrop, "drop");
 
     mParameters.addEnum(kCompare, "compare", 1);
     mParameters.addEnumItem(kRight, "right");
@@ -62,39 +63,44 @@ FrameLib_Deltas::ParameterInfo::ParameterInfo()
 
 void FrameLib_Deltas::process()
 {
-    unsigned long size;
-    const double *input = getInput(0, &size);
+    unsigned long inSize;
+    const double *input = getInput(0, &inSize);
+    if (!inSize) return;
 
-    requestOutputSize(0, size);
+    bool drop = mParameters.getEnum<Initials>(kInitial) == kDrop;
+    unsigned long outSize = inSize - drop;
+    if (!outSize) return;
+
+    requestOutputSize(0, outSize);
     allocateOutputs();
+    double *output = getOutput(0, &outSize);
 
-    double *output = getOutput(0, &size);
-
-    if (!size)
-        return;
-    if (size == 1)
+    if (inSize == 1)
     {
         switch (mParameters.getEnum<Initials>(kInitial))
         {
         case kZeroDiff:     output[0] = input[0];   break;
-        case kWrapDiff:     break;
-        case kZeroFill:     break;
+        case kWrapDiff:     break; //0
+        case kZeroFill:     break; //0
         }
         return;
     }
 
-    unsigned long initPos =
-        mParameters.getEnum<Compares>(kCompare) == kRight ? 0 : size - 1;
+    bool reverse = mParameters.getEnum<Compares>(kCompare) == kLeft;
+    unsigned long initPos = reverse ? inSize - 1 : 0;
 
-    if (mParameters.getEnum<Compares>(kCompare) == kRight)
-        std::adjacent_difference(input, input + size, output);
+    if (!reverse)
+    {
+        std::adjacent_difference(input + drop, input + inSize, output);
+        if (drop) output[0] = input[1] - input[0];
+    }
     else
     {
-        std::adjacent_difference(input + 1, input + size, output,
+        std::adjacent_difference(input + 1, input + inSize, output,
                                  [](const double& a, const double& b)
                                  { return b - a; });
         output[0] = input[0] - input[1];
-        output[size - 1] = input[size - 1];
+        if (!drop) output[outSize - 1] = input[outSize - 1];
     }
 
     //initial element behaviour
@@ -102,7 +108,8 @@ void FrameLib_Deltas::process()
     {
     case kZeroDiff:     break;
     case kWrapDiff:     output[initPos] = input[initPos] 
-                                        - input[initPos ? 0 : size - 1];    break;
+                                        - input[initPos ? 0 : outSize - 1]; break;
     case kZeroFill:     output[initPos] = 0;                                break;
+    case kDrop:         break;
     }
 }
