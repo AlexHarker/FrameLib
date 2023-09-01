@@ -73,29 +73,26 @@ void FrameLib_Deltas::process()
     if (size < 2)
         return;
 
-    std::adjacent_difference(input, input + size, output);
+    unsigned long initPos =
+        mParameters.getEnum<Compares>(kCompare) == kRight ? 0 : size - 1;
+
+    if (mParameters.getEnum<Compares>(kCompare) == kRight)
+        std::adjacent_difference(input, input + size, output);
+    else
+    {
+        std::adjacent_difference(input + 1, input + size, output,
+                                 [](const double& a, const double& b)
+                                 { return b - a; });
+        output[0] = input[0] - input[1];
+        output[size - 1] = input[size - 1];
+    }
 
     //initial element behaviour
     switch (mParameters.getEnum<Initials>(kInitial))
     {
-    case kZeroDiff:     output[0] = input[0];                   break;
-    case kWrapDiff:     output[0] = input[0] - input[size - 1]; break;
-    case kZeroFill:     output[0] = 0;                          break;
-    }
-
-    //invert difference order
-    if (mParameters.getEnum<Compares>(kCompare) == kLeft)
-    {
-        double temp = output[0];
-
-        for (unsigned long i = 0; i < size; ++i)
-        {
-            output[i] = -output[i + 1];
-        }
-
-        output[size - 1] = -temp;
-
-        if (mParameters.getEnum<Initials>(kInitial) == kZeroDiff)
-            output[size - 1] = input[size - 1];
+    case kZeroDiff:     break;
+    case kWrapDiff:     output[initPos] = input[initPos] 
+                                        - input[initPos ? 0 : size - 1];    break;
+    case kZeroFill:     output[initPos] = 0;                                break;
     }
 }
