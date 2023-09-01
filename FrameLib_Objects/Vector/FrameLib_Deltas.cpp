@@ -87,15 +87,13 @@ void FrameLib_Deltas::process()
     if (mParameters.getEnum<Compares>(kCompare) == kLeft)
     {
         double temp = output[0];
-        if (temp) { temp *= -1; }
 
         for (unsigned long i = 0; i < size; ++i)
         {
-            output[i] = output[i + 1];
-            if (output[i]) { output[i] *= -1; }
+            output[i] = -output[i + 1];
         }
 
-        output[size - 1] = temp;
+        output[size - 1] = -temp;
 
         if (mParameters.getEnum<Initials>(kInitial) == kZeroDiff)
             output[size - 1] = input[size - 1];
