@@ -70,8 +70,18 @@ void FrameLib_Deltas::process()
 
     double *output = getOutput(0, &size);
 
-    if (size < 2)
+    if (!size)
         return;
+    if (size == 1)
+    {
+        switch (mParameters.getEnum<Initials>(kInitial))
+        {
+        case kZeroDiff:     output[0] = input[0];   break;
+        case kWrapDiff:     break;
+        case kZeroFill:     break;
+        }
+        return;
+    }
 
     unsigned long initPos =
         mParameters.getEnum<Compares>(kCompare) == kRight ? 0 : size - 1;
