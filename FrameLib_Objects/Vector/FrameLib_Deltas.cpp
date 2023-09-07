@@ -84,6 +84,7 @@ void FrameLib_Deltas::process()
             case kZeroDiff:     output[0] = input[0];   break;
             case kWrapDiff:     output[0] = 0;          break;
             case kZeroFill:     output[0] = 0;          break;
+            case kDrop:         break;
         }
         return;
     }
