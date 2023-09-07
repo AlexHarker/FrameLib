@@ -82,8 +82,8 @@ void FrameLib_Deltas::process()
         switch (mParameters.getEnum<Initials>(kInitial))
         {
             case kZeroDiff:     output[0] = input[0];   break;
-            case kWrapDiff:     break; //0
-            case kZeroFill:     break; //0
+            case kWrapDiff:     output[0] = 0;          break;
+            case kZeroFill:     output[0] = 0;          break;
         }
         return;
     }
