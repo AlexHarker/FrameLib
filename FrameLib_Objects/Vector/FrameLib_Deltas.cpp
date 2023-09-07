@@ -65,11 +65,13 @@ void FrameLib_Deltas::process()
 {
     unsigned long inSize;
     const double *input = getInput(0, &inSize);
-    if (!inSize) return;
+    if (!inSize)
+        return;
 
     bool drop = mParameters.getEnum<Initials>(kInitial) == kDrop;
     unsigned long outSize = inSize - drop;
-    if (!outSize) return;
+    if (!outSize)
+        return;
 
     requestOutputSize(0, outSize);
     allocateOutputs();
@@ -92,7 +94,8 @@ void FrameLib_Deltas::process()
     if (!reverse)
     {
         std::adjacent_difference(input + drop, input + inSize, output);
-        if (drop) output[0] = input[1] - input[0];
+        if (drop)
+            output[0] = input[1] - input[0];
     }
     else
     {
@@ -100,7 +103,8 @@ void FrameLib_Deltas::process()
                                  [](const double& a, const double& b)
                                  { return b - a; });
         output[0] = input[0] - input[1];
-        if (!drop) output[outSize - 1] = input[outSize - 1];
+        if (!drop)
+            output[outSize - 1] = input[outSize - 1];
     }
 
     //initial element behaviour
