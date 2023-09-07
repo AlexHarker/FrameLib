@@ -79,9 +79,9 @@ void FrameLib_Deltas::process()
     {
         switch (mParameters.getEnum<Initials>(kInitial))
         {
-        case kZeroDiff:     output[0] = input[0];   break;
-        case kWrapDiff:     break; //0
-        case kZeroFill:     break; //0
+            case kZeroDiff:     output[0] = input[0];   break;
+            case kWrapDiff:     break; //0
+            case kZeroFill:     break; //0
         }
         return;
     }
@@ -106,10 +106,10 @@ void FrameLib_Deltas::process()
     //initial element behaviour
     switch (mParameters.getEnum<Initials>(kInitial))
     {
-    case kZeroDiff:     break;
-    case kWrapDiff:     output[initPos] = input[initPos] 
-                                        - input[initPos ? 0 : outSize - 1]; break;
-    case kZeroFill:     output[initPos] = 0;                                break;
-    case kDrop:         break;
+        case kZeroDiff:     break;
+        case kWrapDiff:     output[initPos] = input[initPos] 
+                                            - input[initPos ? 0 : outSize - 1]; break;
+        case kZeroFill:     output[initPos] = 0;                                break;
+        case kDrop:         break;
     }
 }
