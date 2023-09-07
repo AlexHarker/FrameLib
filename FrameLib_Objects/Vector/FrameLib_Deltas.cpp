@@ -107,7 +107,8 @@ void FrameLib_Deltas::process()
             output[outSize - 1] = input[outSize - 1];
     }
 
-    //initial element behaviour
+    // Initial element behaviour
+
     switch (mParameters.getEnum<Initials>(kInitial))
     {
         case kZeroDiff:     break;
