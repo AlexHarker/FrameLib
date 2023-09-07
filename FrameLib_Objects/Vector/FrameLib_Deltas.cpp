@@ -56,7 +56,7 @@ FrameLib_Deltas::ParameterInfo FrameLib_Deltas::sParamInfo;
 FrameLib_Deltas::ParameterInfo::ParameterInfo()
 {
     add("Sets the behaviour of the algorithm for the initial element.");
-    add("Sets the comparison direction of each element");
+    add("Sets the comparison direction of each element.");
 }
 
 // Process
