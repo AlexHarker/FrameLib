@@ -8,9 +8,10 @@ class FrameLib_Deltas final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kInitial, kCompare };
-    enum Initials { kZeroDiff, kWrapDiff, kZeroFill, kDrop };
-    enum Compares { kRight, kLeft };
+    enum ParameterList { kMode, kDirection, kPaddingLocation, kPaddingValue };
+    enum Modes { kPad_In, kPad_Out, kWrap, kDrop };
+    enum Directions { kForward, kBackward };
+    enum PaddingLocations { kStart, kEnd };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -31,7 +32,9 @@ private:
     // Process
     
     void process() override;
-    
+
+    void pad(const double* input, double* output, const unsigned long& initPos, const unsigned long& outSize, const double& padVal, bool reverse);
+
     // Data
     
     static ParameterInfo sParamInfo;
