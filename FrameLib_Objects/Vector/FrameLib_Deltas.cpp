@@ -21,7 +21,7 @@ FrameLib_Deltas::FrameLib_Deltas(FrameLib_Context context, const FrameLib_Parame
     mParameters.addEnumItem(kStart, "start");
     mParameters.addEnumItem(kEnd, "end");
 
-    mParameters.addDouble(kPaddingValue, "padding_value", 3);
+    mParameters.addDouble(kPaddingValue, "padding_value", 0, 3);
 
     mParameters.set(serialisedParameters);
 
