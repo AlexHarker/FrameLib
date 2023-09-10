@@ -33,8 +33,6 @@ private:
     
     void process() override;
 
-    void pad(const double* input, double* output, const unsigned long& initPos, const unsigned long& outSize, const double& padVal, bool reverse);
-
     // Data
     
     static ParameterInfo sParamInfo;

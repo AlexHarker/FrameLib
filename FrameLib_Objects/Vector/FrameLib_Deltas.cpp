@@ -86,85 +86,59 @@ void FrameLib_Deltas::process()
     allocateOutputs();
     double *output = getOutput(0, &outSize);
 
-    double padVal = mParameters.getValue(kPaddingValue);
+    double padValue = mParameters.getValue(kPaddingValue);
+
+    // Special handling of 1 element inputs
 
     if (inSize == 1)
     {
         switch (mParameters.getEnum<Modes>(kMode))
         {
-            case kPad_In:       output[0] = input[0] - padVal;  break;
-            case kPad_Out:      output[0] = padVal;             break;
-            case kWrap:         output[0] = 0;                  break;
+            case kPad_In:       output[0] = input[0] - padValue;    break;
+            case kPad_Out:      output[0] = padValue;               break;
+            case kWrap:         output[0] = 0;                      break;
             case kDrop:         break;
         }
         return;
     }
 
+    // Difference calculations for all parameter permutations
+
     bool reverse = mParameters.getEnum<Directions>(kDirection) == kBackward;
+    unsigned long padLocation = mParameters.getEnum<PaddingLocations>(kPaddingLocation) == kEnd ? inSize - 1 : 0;
+    bool nudgeInput = padLocation + drop;
 
-    if (drop)
-    {
-        if (!reverse)
-        {
-            std::adjacent_difference(input + 1, input + inSize, output);
-            output[0] = input[1] - input[0];
-        }
-        else if (reverse)
-        {
-            std::adjacent_difference(input + 1, input + inSize, output,
-                [](const double& a, const double& b)
-                { return b - a; });
-            output[0] = input[0] - input[1];
-        }
-        return;
-    }
+    if (!reverse)
+        std::adjacent_difference(input + nudgeInput, input + inSize, output);
+    else if (reverse)
+        std::adjacent_difference(input + nudgeInput, input + inSize, output,
+                                 [](const double& a, const double& b)
+                                 { return b - a; });
 
-    unsigned long padLoc = mParameters.getEnum<PaddingLocations>(kPaddingLocation) == kEnd ? inSize - 1 : 0;
+    if (nudgeInput)
+    {
+        output[0] = input[!reverse] - input[reverse];
 
-    if (!reverse && !padLoc)
-    {
-        std::adjacent_difference(input, input + inSize, output);
-        pad(input, output, padLoc, outSize, padVal, reverse);
+        if (drop)
+            return;
     }
-    else if (!reverse && padLoc)
-    {
-        std::adjacent_difference(input + 1, input + inSize, output);
-        output[0] = input[1] - input[0];
-        pad(input, output, padLoc, outSize, padVal, reverse);
-    }
-    else if (reverse && padLoc)
-    {
-        std::adjacent_difference(input + 1, input + inSize, output,
-            [](const double& a, const double& b)
-            { return b - a; });
-        output[0] = input[0] - input[1];
-        pad(input, output, padLoc, outSize, padVal, reverse);
-    }
-    else if (reverse && !padLoc)
-    {
-        std::adjacent_difference(input, input + inSize, output,
-            [](const double& a, const double& b)
-            { return b - a; });
-        pad(input, output, padLoc, outSize, padVal, reverse);
-    }
-}
+    
+    // Padding when mode is not set to drop
 
-void FrameLib_Deltas::pad(const double* input, double* output, const unsigned long& padLoc, const unsigned long& outSize, const double& padVal, bool reverse)
-{   
-    unsigned long wrapLoc = padLoc ? 0 : outSize - 1;
+    unsigned long wrapLocation = padLocation ? 0 : outSize - 1;
 
     switch (mParameters.getEnum<Modes>(kMode))
     {
         case kPad_In:
-            output[padLoc] = reverse == static_cast<bool>(padLoc) ?
-                input[padLoc] - padVal : padVal - input[padLoc];
+            output[padLocation] = reverse == static_cast<bool>(padLocation) ?
+                input[padLocation] - padValue : padValue - input[padLocation];
             break;
         case kWrap:
-            output[padLoc] = reverse != static_cast<bool>(padLoc) ?
-                input[wrapLoc] - input[padLoc] : input[padLoc] - input[wrapLoc];
+            output[padLocation] = reverse != static_cast<bool>(padLocation) ?
+                input[wrapLocation] - input[padLocation] : input[padLocation] - input[wrapLocation];
             break;
         case kPad_Out:
-            output[padLoc] = padVal;
+            output[padLocation] = padValue;
             break;
         default:
             break;
