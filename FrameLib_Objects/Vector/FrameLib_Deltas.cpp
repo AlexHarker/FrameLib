@@ -33,8 +33,7 @@ FrameLib_Deltas::FrameLib_Deltas(FrameLib_Context context, const FrameLib_Parame
 std::string FrameLib_Deltas::objectInfo(bool verbose)
 {
     return formatInfo("Calculates the differences between adjacent values within the frame: "
-                      "The direction of the comparison is set by the compare parameter."
-                      "The way the initial element is calculated is set by the initial parameter.",
+                      "Edge element behaviour can be changed with a combination of the mode and padding parameters."
                       "Calculates the differences between adjacent values within the frame.", verbose);
 }
 
