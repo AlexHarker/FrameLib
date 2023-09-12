@@ -57,11 +57,10 @@ FrameLib_Deltas::ParameterInfo FrameLib_Deltas::sParamInfo;
 
 FrameLib_Deltas::ParameterInfo::ParameterInfo()
 {
-    //TODO: FIX THESE
-    add("mode: Sets the behaviour of the algorithm for the initial element.");
-    add("direction: Sets the comparison direction of each element.");
-    add("padding_location: ");
-    add("padding_value: ");
+    add("Edge behaviour. Pad_in places the padding value outside the frame. Pad_out places the padding value inside the frame. Wrap compares the first and last elements. Drop outputs a frame with 1 less element.");
+    add("Sets the subtraction direction.");
+    add("Sets the position of padding value to the start or end of the frame.");
+    add("Sets the value used for padding.");
 }
 
 // Process
