@@ -40,14 +40,10 @@ std::string FrameLib_Deltas::objectInfo(bool verbose)
 
 std::string FrameLib_Deltas::inputInfo(unsigned long idx, bool verbose)
 {
-    switch (idx)
-    {
-        case 0:
-            return formatInfo("Input Info - details", "Input Info", verbose);
-    
-        default:
-            return parameterInputInfo(verbose);
-    }
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Input";
 }
 
 std::string FrameLib_Deltas::outputInfo(unsigned long idx, bool verbose)
