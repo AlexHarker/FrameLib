@@ -8,20 +8,20 @@ FrameLib_Deltas::FrameLib_Deltas(FrameLib_Context context, const FrameLib_Parame
 : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
-    mParameters.addEnumItem(kPad_In, "pad_in");
-    mParameters.addEnumItem(kPad_Out, "pad_out");
+    mParameters.addEnumItem(kPadIn, "pad_in", true);
+    mParameters.addEnumItem(kPadOut, "pad_out");
     mParameters.addEnumItem(kWrap, "wrap");
     mParameters.addEnumItem(kDrop, "drop");
 
     mParameters.addEnum(kDirection, "direction", 1);
-    mParameters.addEnumItem(kForward, "forward");
+    mParameters.addEnumItem(kForward, "forward", true);
     mParameters.addEnumItem(kBackward, "backward");
 
-    mParameters.addEnum(kPaddingLocation, "padding_location", 2);
-    mParameters.addEnumItem(kStart, "start");
+    mParameters.addEnum(kFillPosition, "fill_position", 2);
+    mParameters.addEnumItem(kStart, "start", true);
     mParameters.addEnumItem(kEnd, "end");
 
-    mParameters.addDouble(kPaddingValue, "padding_value", 0, 3);
+    mParameters.addDouble(kPadding, "padding", 0, 3);
 
     mParameters.set(serialisedParameters);
 
@@ -74,11 +74,13 @@ void FrameLib_Deltas::process()
 {
     unsigned long inSize;
     const double *input = getInput(0, &inSize);
+
     if (!inSize)
         return;
 
     bool drop = mParameters.getEnum<Modes>(kMode) == kDrop;
     unsigned long outSize = inSize - drop;
+
     if (!outSize)
         return;
 
@@ -86,7 +88,7 @@ void FrameLib_Deltas::process()
     allocateOutputs();
     double *output = getOutput(0, &outSize);
 
-    double padValue = mParameters.getValue(kPaddingValue);
+    double padding = mParameters.getValue(kPadding);
 
     // Special handling of 1 element inputs
 
@@ -94,8 +96,8 @@ void FrameLib_Deltas::process()
     {
         switch (mParameters.getEnum<Modes>(kMode))
         {
-            case kPad_In:       output[0] = input[0] - padValue;    break;
-            case kPad_Out:      output[0] = padValue;               break;
+            case kPadIn:        output[0] = input[0] - padding;     break;
+            case kPadOut:       output[0] = padding;                break;
             case kWrap:         output[0] = 0;                      break;
             case kDrop:         break;
         }
@@ -105,8 +107,8 @@ void FrameLib_Deltas::process()
     // Difference calculations for all parameter permutations
 
     bool reverse = mParameters.getEnum<Directions>(kDirection) == kBackward;
-    unsigned long padLocation = mParameters.getEnum<PaddingLocations>(kPaddingLocation) == kEnd ? inSize - 1 : 0;
-    bool nudgeInput = padLocation + drop;
+    unsigned long fillPosition = mParameters.getEnum<PaddingLocations>(kFillPosition) == kEnd ? inSize - 1 : 0;
+    bool nudgeInput = (mParameters.getEnum<PaddingLocations>(kFillPosition) == kEnd || drop);
 
     if (!reverse)
         std::adjacent_difference(input + nudgeInput, input + inSize, output);
@@ -125,20 +127,20 @@ void FrameLib_Deltas::process()
     
     // Padding when mode is not set to drop
 
-    unsigned long wrapLocation = padLocation ? 0 : outSize - 1;
+    unsigned long wrapPosition = fillPosition ? 0 : outSize - 1;
 
     switch (mParameters.getEnum<Modes>(kMode))
     {
-        case kPad_In:
-            output[padLocation] = reverse == static_cast<bool>(padLocation) ?
-                input[padLocation] - padValue : padValue - input[padLocation];
+        case kPadIn:
+            output[fillPosition] = reverse == static_cast<bool>(fillPosition) ?
+                input[fillPosition] - padding : padding - input[fillPosition];
             break;
         case kWrap:
-            output[padLocation] = reverse != static_cast<bool>(padLocation) ?
-                input[wrapLocation] - input[padLocation] : input[padLocation] - input[wrapLocation];
+            output[fillPosition] = reverse != static_cast<bool>(fillPosition) ?
+                input[wrapPosition] - input[fillPosition] : input[fillPosition] - input[wrapPosition];
             break;
-        case kPad_Out:
-            output[padLocation] = padValue;
+        case kPadOut:
+            output[fillPosition] = padding;
             break;
         default:
             break;

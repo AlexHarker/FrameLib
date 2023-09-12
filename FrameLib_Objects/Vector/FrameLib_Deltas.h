@@ -8,8 +8,8 @@ class FrameLib_Deltas final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kMode, kDirection, kPaddingLocation, kPaddingValue };
-    enum Modes { kPad_In, kPad_Out, kWrap, kDrop };
+    enum ParameterList { kMode, kDirection, kFillPosition, kPadding };
+    enum Modes { kPadIn, kPadOut, kWrap, kDrop };
     enum Directions { kForward, kBackward };
     enum PaddingLocations { kStart, kEnd };
 
