@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1150.0, 595.0, 835.0, 709.0 ],
+		"rect" : [ 849.0, 452.0, 835.0, 709.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -94,7 +94,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 652.0, 288.0, 167.0, 40.0 ],
+									"patching_rect" : [ 622.0, 288.0, 167.0, 40.0 ],
 									"text" : "Padding value used for pad_in and pad_out"
 								}
 
@@ -133,7 +133,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 600.0, 300.0, 50.0, 23.0 ]
+									"patching_rect" : [ 570.0, 300.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -144,8 +144,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 465.0, 330.0, 125.0, 23.0 ],
-									"text" : "padding_location $1"
+									"patching_rect" : [ 465.0, 330.0, 91.0, 23.0 ],
+									"text" : "fill_position $1"
 								}
 
 							}
@@ -156,8 +156,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 600.0, 330.0, 111.0, 23.0 ],
-									"text" : "padding_value $1"
+									"patching_rect" : [ 570.0, 330.0, 73.0, 23.0 ],
+									"text" : "padding $1"
 								}
 
 							}
@@ -885,7 +885,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
-									"midpoints" : [ 609.5, 366.0, 309.5, 366.0 ],
+									"midpoints" : [ 579.5, 366.0, 309.5, 366.0 ],
 									"source" : [ "obj-7", 0 ]
 								}
 
@@ -931,7 +931,6 @@
 					}
 ,
 					"patching_rect" : [ 271.0, 270.0, 101.0, 22.0 ],
-					"presentation_linecount" : 4,
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1023,7 +1022,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 1150.0, 621.0, 835.0, 683.0 ],
+						"rect" : [ 849.0, 478.0, 835.0, 683.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
@@ -1061,7 +1060,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 75.0, 235.75, 165.0, 55.0 ],
-									"presentation_linecount" : 5,
 									"text" : "Send an input 'frame' and try out different parameter combinations"
 								}
 
@@ -1098,8 +1096,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 652.0, 288.0, 167.0, 40.0 ],
-									"presentation_linecount" : 3,
+									"patching_rect" : [ 622.0, 288.0, 167.0, 40.0 ],
 									"text" : "Padding value used for pad_in and pad_out"
 								}
 
@@ -1113,7 +1110,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 503.75, 226.5, 134.0, 55.0 ],
-									"presentation_linecount" : 3,
 									"text" : "Placement of padding value for non-drop modes"
 								}
 
@@ -1126,7 +1122,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 412.75, 180.0, 159.0, 25.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Direction of subtraction"
 								}
 
@@ -1140,7 +1135,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 600.0, 300.0, 50.0, 23.0 ]
+									"patching_rect" : [ 570.0, 300.0, 50.0, 23.0 ]
 								}
 
 							}
@@ -1151,8 +1146,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 465.0, 330.0, 125.0, 23.0 ],
-									"text" : "padding_location $1"
+									"patching_rect" : [ 465.0, 330.0, 91.0, 23.0 ],
+									"text" : "fill_position $1"
 								}
 
 							}
@@ -1163,8 +1158,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 600.0, 330.0, 111.0, 23.0 ],
-									"text" : "padding_value $1"
+									"patching_rect" : [ 570.0, 330.0, 73.0, 23.0 ],
+									"text" : "padding $1"
 								}
 
 							}
@@ -1500,7 +1495,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
-									"midpoints" : [ 609.5, 366.0, 309.5, 366.0 ],
+									"midpoints" : [ 579.5, 366.0, 309.5, 366.0 ],
 									"source" : [ "obj-7", 0 ]
 								}
 
