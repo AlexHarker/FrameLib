@@ -116,6 +116,7 @@
 #include "../FrameLib_Objects/Vector/FrameLib_AccumPos.h"
 #include "../FrameLib_Objects/Vector/FrameLib_Chop.h"
 #include "../FrameLib_Objects/Vector/FrameLib_Cumulative.h"
+#include "../FrameLib_Objects/Vector/FrameLib_Deltas.h"
 #include "../FrameLib_Objects/Vector/FrameLib_Join.h"
 #include "../FrameLib_Objects/Vector/FrameLib_KernelSmooth.h"
 #include "../FrameLib_Objects/Vector/FrameLib_MedianFilter.h"

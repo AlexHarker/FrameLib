@@ -140,6 +140,7 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_AccumPos>::makeClass("fl.accumpos~");
     FrameLib_MaxClass_Expand<FrameLib_Chop>::makeClass("fl.chop~");
     FrameLib_MaxClass_Expand<FrameLib_Cumulative>::makeClass("fl.cumulative~");
+    FrameLib_MaxClass_Expand<FrameLib_Deltas>::makeClass("fl.deltas~");
     FrameLib_MaxClass_Expand<FrameLib_Join>::makeClass("fl.join~");
     FrameLib_MaxClass_Expand<FrameLib_KernelSmooth>::makeClass("fl.kernelsmooth~");
     FrameLib_MaxClass_Expand<FrameLib_MedianFilter>::makeClass("fl.medianfilter~");
