@@ -59,8 +59,18 @@ void FrameLib_Cumulative::process()
 
     double *output = getOutput(0, &size);
 
-    if (output)
+    if (!size)
+        return;
+
+    switch (mParameters.getEnum<Modes>(kMode))
     {
-        std::partial_sum(input, input + size, output);
+        case kSum:
+            std::partial_sum(input, input + size, output);
+            break;
+        case kProduct:
+            std::partial_sum(input, input + size, output,
+                             [](const double& a, const double& b)
+                             { return a * b; });
+            break;
     }
 }
