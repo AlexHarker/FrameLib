@@ -11,11 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\FrameLib_Max_Objects\Vector\fl.cumsum~.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Max_Objects\Vector\fl.cumulative~.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{74551166-1A22-4B18-B905-63D3DB83CB88}</ProjectGuid>
+    <ProjectGuid>{52B1E13C-6248-41B9-A4A2-17460246962E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>framelib</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>

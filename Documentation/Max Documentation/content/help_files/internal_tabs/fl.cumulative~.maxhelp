@@ -156,7 +156,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 351.0, 186.5, 189.0, 40.0 ],
+									"patching_rect" : [ 364.0, 186.5, 190.0, 40.0 ],
 									"text" : "Keeps a running cumulative sum of the current frame"
 								}
 
@@ -262,8 +262,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 274.0, 195.0, 75.0, 23.0 ],
-									"text" : "fl.cumsum~"
+									"patching_rect" : [ 274.0, 195.0, 88.0, 23.0 ],
+									"text" : "fl.cumulative~"
 								}
 
 							}
@@ -297,7 +297,7 @@
 									"filename" : "fl.helpname.js",
 									"id" : "obj-3",
 									"ignoreclick" : 1,
-									"jsarguments" : [ "fl.cumsum~" ],
+									"jsarguments" : [ "fl.cumulative~" ],
 									"maxclass" : "jsui",
 									"numinlets" : 1,
 									"numoutlets" : 1,

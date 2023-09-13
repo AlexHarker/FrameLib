@@ -715,7 +715,7 @@ PD_API void framelib_pd_setup(void)
     
     FrameLib_PDClass_Expand<FrameLib_AccumPos>::makeClass("fl.accumpos~");
     FrameLib_PDClass_Expand<FrameLib_Chop>::makeClass("fl.chop~");
-    FrameLib_PDClass_Expand<FrameLib_CumulativeSum>::makeClass("fl.cumsum~");
+    FrameLib_PDClass_Expand<FrameLib_Cumulative>::makeClass("fl.cumulative~");
     FrameLib_PDClass_Expand<FrameLib_Join>::makeClass("fl.join~");
     FrameLib_PDClass_Expand<FrameLib_KernelSmooth>::makeClass("fl.kernelsmooth~");
     FrameLib_PDClass_Expand<FrameLib_MedianFilter>::makeClass("fl.medianfilter~");
