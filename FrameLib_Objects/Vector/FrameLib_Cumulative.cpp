@@ -5,28 +5,46 @@
 // Constructor
 
 FrameLib_Cumulative::FrameLib_Cumulative(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-    : FrameLib_Processor(context, proxy, nullptr, 1, 1)
+    : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
+    mParameters.addEnum(kMode, "mode", 0);
+    mParameters.addEnumItem(kSum, "sum", true);
+    mParameters.addEnumItem(kProduct, "product");
+
     mParameters.set(serialisedParameters);
+
+    setParameterInput(1);
 }
 
 // Info
 
 std::string FrameLib_Cumulative::objectInfo(bool verbose)
 {
-    return formatInfo("Computes the cumulative sum of the input frame: "
+    return formatInfo("Performs a cumulative function on the input frame: "
                       "The output is the same length as the input."
-                      "Computes the cumulative sum of the input frame.", verbose);
+                      "Performs a cumulative function on the input frame.", verbose);
 }
 
 std::string FrameLib_Cumulative::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Input";
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Input";
 }
 
 std::string FrameLib_Cumulative::outputInfo(unsigned long idx, bool verbose)
 {
     return "Output";
+}
+
+// Parameter Info
+
+FrameLib_Cumulative::ParameterInfo FrameLib_Cumulative::sParamInfo;
+
+FrameLib_Cumulative::ParameterInfo::ParameterInfo()
+{
+    add("Set the cumulative function.");
 }
 
 // Process
