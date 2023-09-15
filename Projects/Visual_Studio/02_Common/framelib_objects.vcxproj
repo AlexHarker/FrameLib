@@ -120,7 +120,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Unary\FrameLib_Unary_Template.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_AccumPos.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Chop.h" />
-    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_CumulativeSum.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Cumulative.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Deltas.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Join.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_KernelSmooth.h" />
@@ -211,7 +211,7 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Timing\FrameLib_Timer.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_AccumPos.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Chop.cpp" />
-    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_CumulativeSum.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Cumulative.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Deltas.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Join.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_KernelSmooth.cpp" />
