@@ -194,18 +194,19 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		3E204927B975EF0BF815E4A0 /* fl.cumulative~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92AC4FB38B633018A603AD7A /* fl.cumulative~.cpp */; };
 		176E45DBA52E66BF3905F9D2 /* fl.deltas~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EC024926B1F68E73B86A1761 /* fl.deltas~.cpp */; };
 		2A674288B18211EF59777F1F /* FrameLib_Deltas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B64486187171B58B011DC7E /* FrameLib_Deltas.cpp */; };
+		3E204927B975EF0BF815E4A0 /* fl.cumulative~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92AC4FB38B633018A603AD7A /* fl.cumulative~.cpp */; };
 		44E0436C870F4D5A35FA4DEC /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		5A3CAB1E2052E7E8001082E3 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		5AB54BBF2052E96E00325C14 /* fl.wrap~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AB54BBE2052E96E00325C14 /* fl.wrap~.cpp */; };
-		5AB54BC92052EAD70325C14 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		5AB54BC92052EAD700325C14 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		5AB54BDC2052EAE900325C14 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		5AB54BE72052EB4400325C14 /* fl.clip~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AB54BE62052EB4400325C14 /* fl.clip~.cpp */; };
 		5AB54BE92052EB6100325C14 /* fl.fold~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AB54BE82052EB6100325C14 /* fl.fold~.cpp */; };
+		78674BA18D26ED1456625CA4 /* FrameLib_Deltas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B64486187171B58B011DC7E /* FrameLib_Deltas.cpp */; };
 		88A045CBB2614E3EE65E8062 /* FrameLib_Cumulative.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1DE34B63BCCD867B215E66C9 /* FrameLib_Cumulative.cpp */; };
 		AB6E4BEB99B7D9C3C9516BC5 /* FrameLib_Cumulative.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1DE34B63BCCD867B215E66C9 /* FrameLib_Cumulative.cpp */; };
-		78674BA18D26ED1456625CA4 /* FrameLib_Deltas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B64486187171B58B011DC7E /* FrameLib_Deltas.cpp */; };
 		B802047C231BDCB80062447A /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
 		B8020488231BDD0F0062447A /* framelib_max.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8020487231BDD0A0062447A /* framelib_max.cpp */; };
 		B802048B231BDD650062447A /* libframelib_objects.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8BA6FD22078D49200D3DB3D /* libframelib_objects.a */; };
@@ -761,19 +762,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1E684348BAB85C4AC13B489D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 97BE4FE7B88E80777DC03D98;
-			remoteInfo = "fl.cumulative~";
-    };
 		10FE4122A1EACC9C583AD041 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2B494B9DA720CDFAD7F0122D;
 			remoteInfo = "fl.deltas~";
+		};
+		1E684348BAB85C4AC13B489D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97BE4FE7B88E80777DC03D98;
+			remoteInfo = "fl.cumulative~";
 		};
 		5A3CAB172052E7E8001082E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -3265,10 +3266,10 @@
 		5AB54BE42052EAE900325C14 /* fl.fold~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.fold~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB54BE62052EB4400325C14 /* fl.clip~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.clip~.cpp"; sourceTree = "<group>"; };
 		5AB54BE82052EB6100325C14 /* fl.fold~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.fold~.cpp"; sourceTree = "<group>"; };
-		92AC4FB38B633018A603AD7A /* fl.cumulative~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.cumulative~.cpp"; sourceTree = "<group>"; };
-		A54843A2BD742E45FE4CE64C /* fl.cumulative~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.cumulative~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B64486187171B58B011DC7E /* FrameLib_Deltas.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Deltas.cpp; sourceTree = "<group>"; };
 		89E24B8A8D0559DA99617FA5 /* FrameLib_Deltas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Deltas.h; sourceTree = "<group>"; };
+		92AC4FB38B633018A603AD7A /* fl.cumulative~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.cumulative~.cpp"; sourceTree = "<group>"; };
+		A54843A2BD742E45FE4CE64C /* fl.cumulative~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.cumulative~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8020485231BDCB80062447A /* framelib_max.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = framelib_max.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8020487231BDD0A0062447A /* framelib_max.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framelib_max.cpp; sourceTree = "<group>"; };
 		B805E23419C3AD0A007D8D8B /* fl.minus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.minus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -6481,7 +6482,7 @@
 				B84943C91B837B3C0037DFF1 /* fl.chop~.cpp */,
 				B8C89CDF1F57217A00B4E700 /* fl.crest~.cpp */,
 				92AC4FB38B633018A603AD7A /* fl.cumulative~.cpp */,
-				EC024926B1F68E73B86A1761 /* fl.deltas~.cpp *,
+				EC024926B1F68E73B86A1761 /* fl.deltas~.cpp */,
 				B8C89CFE1F57242500B4E700 /* fl.flatness~.cpp */,
 				B8F83E2B19C78E0000230CD4 /* fl.framemax~.cpp */,
 				B8F83E2A19C78DF600230CD4 /* fl.framemin~.cpp */,
@@ -11752,17 +11753,17 @@
 		1A164CA69F8EA0D4C578C03B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B89ABA8F1FA73483006DAD53 /* framelib */;
-			targetProxy = 88924D1E88ACF284D31E79F5 /* PBXContainerItemProxy */;
-		};
-		4E954E62BB15D4E17BD28908 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B89ABA8F1FA73483006DAD53 /* framelib */;
 			targetProxy = 757F411A9FB6BCFC45915D5F /* PBXContainerItemProxy */;
 		};
 		276B428C99BD6D517070B914 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 97BE4FE7B88E80777DC03D98 /* fl.cumulative~ */;
 			targetProxy = 1E684348BAB85C4AC13B489D /* PBXContainerItemProxy */;
+		};
+		41434CF2A0EDA42531CC5D4B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = 88924D1E88ACF284D31E79F5 /* PBXContainerItemProxy */;
 		};
 		5A3CAB162052E7E8001082E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -13648,19 +13649,19 @@
 			};
 			name = Development;
 		};
-		3B67493CAA825692147A6067 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
-			buildSettings = {
-			};
-			name = Deployment;
-		};
 		2EC74B31BA9A4114CF50A038 /* Development */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
 			buildSettings = {
 			};
 			name = Development;
+		};
+		3B67493CAA825692147A6067 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+			};
+			name = Deployment;
 		};
 		5A3CAB222052E7E8001082E3 /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -18466,7 +18467,7 @@
 			};
 			name = "Public Testing";
 		};
-		F8D647B8AA4D2AE4AA38DCFB /* Deployment */ = {
+		F62C40FABE52832373451693 /* Public Testing */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
 			buildSettings = {
