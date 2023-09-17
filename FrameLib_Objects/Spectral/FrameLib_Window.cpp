@@ -144,10 +144,10 @@ double FrameLib_Window::linearInterp(double pos)
 
 void FrameLib_Window::process()
 {
-    const int vecSize = SIMDLimits<double>::max_size;
+    const int vecSize = htl::simd_limits<double>::max_size;
     const int workSize = vecSize * 8;
     
-    using VectorType = SIMDType<double, vecSize>;
+    using VectorType = htl::simd_type<double, vecSize>;
     
     // Get Input
     
@@ -187,7 +187,7 @@ void FrameLib_Window::process()
                 
                 // Interpolate from the window
                 
-                table_read(Fetch(mWindow, size + 2), output + i, output + i, workSize, gain, InterpType::Linear);
+                htl::table_read(Fetch(mWindow, size + 2), output + i, output + i, workSize, gain, htl::interp_type::linear);
                 
                 // Multiply
                 

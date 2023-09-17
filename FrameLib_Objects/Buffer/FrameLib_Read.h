@@ -3,7 +3,7 @@
 #define FRAMELIB_READ_H
 
 #include "FrameLib_DSP.h"
-#include "../../FrameLib_Dependencies/TableReader.hpp"
+#include "../../FrameLib_Dependencies/HISSTools_Library/include/table_reader.hpp"
 
 class FrameLib_Read final : public FrameLib_Processor
 {
@@ -32,7 +32,7 @@ public:
         
         // Read
         
-        virtual void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeMode edges, bool bound) = 0;
+        virtual void read(double *output, const double *positions, unsigned long size, long chan, htl::interp_type interp, htl::edge_mode edges, bool bound) = 0;
         
         // Clone (we need unique instances per object for threading reasons)
         

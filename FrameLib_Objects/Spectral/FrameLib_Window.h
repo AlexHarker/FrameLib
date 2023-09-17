@@ -4,7 +4,7 @@
 
 #include "FrameLib_DSP.h"
 #include "FrameLib_WindowGenerator.h"
-#include "../../FrameLib_Dependencies/TableReader.hpp"
+#include "../../FrameLib_Dependencies/HISSTools_Library/include/table_reader.hpp"
 
 class FrameLib_Window final : public FrameLib_Processor
 {
@@ -37,7 +37,7 @@ class FrameLib_Window final : public FrameLib_Processor
         unsigned long mSize;
     };
    
-    struct Fetch : table_fetcher<double>
+    struct Fetch : htl::table_fetcher<double>
     {
         Fetch(const double *data, intptr_t size) : table_fetcher(size, 1.0), mData(data) {}
         

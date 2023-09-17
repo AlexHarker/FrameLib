@@ -3,7 +3,7 @@
 #define FRAMELIB_LOOKUP_H
 
 #include "FrameLib_DSP.h"
-#include "../../FrameLib_Dependencies/TableReader.hpp"
+#include "../../FrameLib_Dependencies/HISSTools_Library/include/table_reader.hpp"
 
 class FrameLib_Lookup final : public FrameLib_Processor
 {
@@ -13,7 +13,7 @@ class FrameLib_Lookup final : public FrameLib_Processor
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
-    struct Fetcher : table_fetcher<double>
+    struct Fetcher : htl::table_fetcher<double>
     {
         Fetcher(const double *data, intptr_t size) : table_fetcher(size, 1.0), mData(data) {}
         

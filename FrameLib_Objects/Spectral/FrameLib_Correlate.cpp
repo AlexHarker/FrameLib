@@ -15,11 +15,11 @@ FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, const FrameLib_
     mParameters.setInstantiation();
     
     mParameters.addEnum(kEdges, "edges", 2);
-    mParameters.addEnumItem(static_cast<unsigned long>(Edges::Linear), "linear");
-    mParameters.addEnumItem(static_cast<unsigned long>(Edges::Wrap), "circular");
-    mParameters.addEnumItem(static_cast<unsigned long>(Edges::WrapCentre), "wrap");
-    mParameters.addEnumItem(static_cast<unsigned long>(Edges::Fold), "fold");
-    mParameters.addEnumItem(static_cast<unsigned long>(Edges::FoldRepeat), "mirror");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::linear), "linear");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::wrap), "circular");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::wrap_centre), "wrap");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::fold), "fold");
+    mParameters.addEnumItem(static_cast<unsigned long>(Edges::fold_repeat), "mirror");
     mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);

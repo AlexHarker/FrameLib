@@ -10,12 +10,12 @@ FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, const FrameLib_Parame
     mParameters.addEnumItem(kBipolar, "bipolar");
     
     mParameters.addEnum(kEdges, "edges", 1);
-    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::ZeroPad), "zero");
-    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Extend), "extend");
-    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Wrap), "wrap");
-    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Fold), "fold");
-    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Mirror), "mirror");
-    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Extrapolate), "extrapolate", true);
+    mParameters.addEnumItem(static_cast<unsigned long>(htl::edge_mode::zero_pad), "zero");
+    mParameters.addEnumItem(static_cast<unsigned long>(htl::edge_mode::extend), "extend");
+    mParameters.addEnumItem(static_cast<unsigned long>(htl::edge_mode::wrap), "wrap");
+    mParameters.addEnumItem(static_cast<unsigned long>(htl::edge_mode::fold), "fold");
+    mParameters.addEnumItem(static_cast<unsigned long>(htl::edge_mode::mirror), "mirror");
+    mParameters.addEnumItem(static_cast<unsigned long>(htl::edge_mode::extrapolate), "extrapolate", true);
 
     mParameters.addBool(kBound, "bound", true, 2);
     
@@ -95,11 +95,11 @@ void FrameLib_Lookup::process()
 {
     double scaleFactor;
     
-    EdgeMode edges = mParameters.getEnum<EdgeMode>(kEdges);
+    htl::edge_mode edges = mParameters.getEnum<htl::edge_mode>(kEdges);
     Scales scale = mParameters.getEnum<Scales>(kScale);
-    InterpType interp = InterpType::None;
+    htl::interp_type interp = htl::interp_type::none;
     bool bound = mParameters.getBool(kBound);
-    bool adjustScaling = edges == EdgeMode::Wrap || edges == EdgeMode::Mirror;
+    bool adjustScaling = edges == htl::edge_mode::wrap || edges == htl::edge_mode::mirror;
 
     unsigned long sizeIn1, sizeIn2, sizeOut;
     
@@ -120,11 +120,11 @@ void FrameLib_Lookup::process()
     
     switch (mParameters.getEnum<Interpolation>(kInterpolation))
     {
-        case kNone:         interp = InterpType::None;              break;
-        case kLinear:       interp = InterpType::Linear;            break;
-        case kHermite:      interp = InterpType::CubicHermite;      break;
-        case kBSpline:      interp = InterpType::CubicBSpline;      break;
-        case kLagrange:     interp = InterpType::CubicLagrange;     break;
+        case kNone:         interp = htl::interp_type::none;                break;
+        case kLinear:       interp = htl::interp_type::linear;              break;
+        case kHermite:      interp = htl::interp_type::cubic_hermite;       break;
+        case kBSpline:      interp = htl::interp_type::cubic_bspline;       break;
+        case kLagrange:     interp = htl::interp_type::cubic_lagrange;      break;
     }
     
     // Deal with scaling

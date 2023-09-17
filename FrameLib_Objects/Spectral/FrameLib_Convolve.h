@@ -3,11 +3,11 @@
 #define FRAMELIB_CONVOLVE_H
 
 #include "FrameLib_DSP.h"
-#include "../../FrameLib_Dependencies/SpectralProcessor.hpp"
+#include "../../FrameLib_Dependencies/HISSTools_Library/include/spectral_processor.hpp"
 
 class FrameLib_Convolve final : public FrameLib_Processor
 {
-    using Edges = spectral_processor<double, FrameLib_DSP::Allocator>::EdgeMode;
+    using Edges = htl::spectral_processor<double, FrameLib_DSP::Allocator>::edge_mode;
     
     // Parameter Enums and Info
 
@@ -44,7 +44,7 @@ private:
     
     // Processor
     
-    spectral_processor<double, FrameLib_DSP::Allocator> mProcessor;
+    htl::spectral_processor<double, FrameLib_DSP::Allocator> mProcessor;
 };
 
 #endif

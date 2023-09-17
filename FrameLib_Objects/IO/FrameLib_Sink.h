@@ -15,7 +15,7 @@ class FrameLib_Sink final : public FrameLib_AudioOutput, private FrameLib_IO_Hel
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     
-    struct Fetcher : table_fetcher<double>
+    struct Fetcher : htl::table_fetcher<double>
     {
         Fetcher(const double *data, intptr_t size) : table_fetcher(size, 1.0), mData(data) {}
         

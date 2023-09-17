@@ -6,13 +6,13 @@
 
 #include "FrameLib_Object.h"
 
-#include "../../FrameLib_Dependencies/WindowFunctions.hpp"
+#include "../../FrameLib_Dependencies/HISSTools_Library/include/window.hpp"
 
 template <unsigned long TypeIdx, unsigned long ParamsIdx, unsigned long ExponentIdx,
 unsigned long CompensateIdx, unsigned long EndpointsIdx>
 class FrameLib_WindowGenerator
 {
-    using Generator = window_functions::window_generator<double>;
+    using Generator = htl::window::window_generator<double>;
     
 public:
     
@@ -85,7 +85,7 @@ public:
     
     void generate(double *window, unsigned long N, unsigned long begin, unsigned long end, bool calcGains)
     {
-        window_functions::params p(mValidParams, static_cast<int>(mParamSize), getExponent());
+        htl::window::params p(mValidParams, static_cast<int>(mParamSize), getExponent());
         
         uint32_t typedN = static_cast<uint32_t>(N);
         uint32_t typedBegin = static_cast<uint32_t>(begin);
@@ -151,42 +151,40 @@ public:
     {
         unsigned long arraySize;
         const double *parameters = mParameters.getArray(ParamsIdx, &arraySize);
-        
-        using namespace window_functions;
-        
+                
         if (!mGenerator || mParameters.changed(TypeIdx) || mParameters.changed(ParamsIdx))
         {
             switch (getType())
             {
-                case kRectangle:            mGenerator = rect<double>;                      break;
-                case kTriangle:             mGenerator = triangle<double>;                  break;
-                case kTrapezoid:            mGenerator = trapezoid<double>;                 break;
-                case kWelch:                mGenerator = welch<double>;                    break;
-                case kParzen:               mGenerator = parzen<double>;                    break;
-                case kTukey:                mGenerator = tukey<double>;                     break;
-                case kSine:                 mGenerator = sine<double>;                      break;
-                case kHann:                 mGenerator = hann<double>;                      break;
-                case kHamming:              mGenerator = hamming<double>;                   break;
-                case kBlackman:             mGenerator = blackman<double>;                  break;
-                case kExactBlackman:        mGenerator = exact_blackman<double>;            break;
-                case kBlackmanHarris:       mGenerator = blackman_harris_92dB<double>;      break;
-                case kNuttallContinuous:    mGenerator = nuttall_1st_93dB<double>;          break;
-                case kNuttallMinimal:       mGenerator = nuttall_minimal_98dB<double>;      break;
-                case kFlatTop:              mGenerator = heinzel_flat_top_95dB<double>;     break;
+                case kRectangle:            mGenerator = htl::window::rect<double>;                     break;
+                case kTriangle:             mGenerator = htl::window::triangle<double>;                 break;
+                case kTrapezoid:            mGenerator = htl::window::trapezoid<double>;                break;
+                case kWelch:                mGenerator = htl::window::welch<double>;                    break;
+                case kParzen:               mGenerator = htl::window::parzen<double>;                   break;
+                case kTukey:                mGenerator = htl::window::tukey<double>;                    break;
+                case kSine:                 mGenerator = htl::window::sine<double>;                     break;
+                case kHann:                 mGenerator = htl::window::hann<double>;                     break;
+                case kHamming:              mGenerator = htl::window::hamming<double>;                  break;
+                case kBlackman:             mGenerator = htl::window::blackman<double>;                 break;
+                case kExactBlackman:        mGenerator = htl::window::exact_blackman<double>;           break;
+                case kBlackmanHarris:       mGenerator = htl::window::blackman_harris_92dB<double>;     break;
+                case kNuttallContinuous:    mGenerator = htl::window::nuttall_1st_93dB<double>;         break;
+                case kNuttallMinimal:       mGenerator = htl::window::nuttall_minimal_98dB<double>;     break;
+                case kFlatTop:              mGenerator = htl::window::heinzel_flat_top_95dB<double>;    break;
                 case kCosineSum:
                 {
                     if (arraySize <= 2)
-                        mGenerator = cosine_2_term<double>;
+                        mGenerator = htl::window::cosine_2_term<double>;
                     else if (arraySize == 3)
-                        mGenerator = cosine_3_term<double>;
+                        mGenerator = htl::window::cosine_3_term<double>;
                     else if (arraySize == 4)
-                        mGenerator = cosine_4_term<double>;
+                        mGenerator = htl::window::cosine_4_term<double>;
                     else
-                        mGenerator = cosine_5_term<double>;
+                        mGenerator = htl::window::cosine_5_term<double>;
                     break;
                 }
-                case kKaiser:               mGenerator = kaiser<double>;                    break;
-                case kSineTaper:            mGenerator = sine_taper<double>;                break;
+                case kKaiser:               mGenerator = htl::window::kaiser<double>;                   break;
+                case kSineTaper:            mGenerator = htl::window::sine_taper<double>;               break;
             }
             
             switch (getType())

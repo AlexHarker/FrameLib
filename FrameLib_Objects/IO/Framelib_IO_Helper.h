@@ -3,7 +3,7 @@
 #define FRAMELIB_IO_HELPERS_H
 
 #include "FrameLib_DSP.h"
-#include "../../FrameLib_Dependencies/TableReader.hpp"
+#include "../../FrameLib_Dependencies/HISSTools_Library/include/table_reader.hpp"
 
 class FrameLib_IO_Helper
 {
@@ -14,18 +14,18 @@ public:
     FrameLib_IO_Helper(FrameLib_DSP& owner) : mOwner(owner) {}
 
     template <class T>
-    static void interpolate(T fetch, double *output, unsigned long size, double offset, InterpType interpType)
+    static void interpolate(T fetch, double *output, unsigned long size, double offset, htl::interp_type interpType)
     {
         for (unsigned long i = 0; i < size; i++, offset += 1.0)
             output[i] = offset;
         
-        table_read(fetch, output, output, size, 1.0, interpType);
+        htl::table_read(fetch, output, output, size, 1.0, interpType);
     }
 
     template <class T>
-    static void interpolate_zeropad(T fetch, double *output, unsigned long size, double offset, InterpType interpType)
+    static void interpolate_zeropad(T fetch, double *output, unsigned long size, double offset, htl::interp_type interpType)
     {
-        interpolate(table_fetcher_zeropad<T>(fetch), output, size, offset, interpType);
+        interpolate(htl::table_fetcher_zeropad<T>(fetch), output, size, offset, interpType);
     }
     
     size_t limitBufferSize(size_t size, double samplingRate)

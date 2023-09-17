@@ -147,7 +147,7 @@ void FrameLib_Multitaper::process()
     
     if (temp && sizeOut && output)
     {
-        FFT_SPLIT_COMPLEX_D spectrum;
+        htl::split_type<double> spectrum;
         
         spectrum.realp = ((double *) temp);
         spectrum.imagp = ((double *) temp) + (FFTSize + 1);

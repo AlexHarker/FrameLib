@@ -2,7 +2,7 @@
 #ifndef FRAMELIB_EDGES_H
 #define FRAMELIB_EDGES_H
 
-#include "../../FrameLib_Dependencies/TableReader.hpp"
+#include "../../FrameLib_Dependencies/HISSTools_Library/include/table_reader.hpp"
 
 // Enum for options (if implementing all)
 
@@ -10,10 +10,10 @@ enum Edges { kEdgePad, kEdgeExtend, kEdgeWrap, kEdgeFold, kEdgeMirror };
 
 // Underlying fetch class
 
-struct EdgeFetch : table_fetcher<double>
+struct EdgeFetch : htl::table_fetcher<double>
 {
     EdgeFetch(const double *data, unsigned long size)
-    : table_fetcher<double>(static_cast<intptr_t>(size), 1.0), mData(data) {}
+    : htl::table_fetcher<double>(static_cast<intptr_t>(size), 1.0), mData(data) {}
     
     double operator()(intptr_t idx) { return mData[idx]; }
     
@@ -52,9 +52,9 @@ private:
     double mPadding;
 };
 
-using EdgesExtend   = EdgesBase<table_fetcher_extend>;
-using EdgesWrap     = EdgesBase<table_fetcher_wrap>;
-using EdgesFold     = EdgesBase<table_fetcher_fold>;
-using EdgesMirror   = EdgesBase<table_fetcher_mirror>;
+using EdgesExtend   = EdgesBase<htl::table_fetcher_extend>;
+using EdgesWrap     = EdgesBase<htl::table_fetcher_wrap>;
+using EdgesFold     = EdgesBase<htl::table_fetcher_fold>;
+using EdgesMirror   = EdgesBase<htl::table_fetcher_mirror>;
 
 #endif /* FRAMELIB_EDGES_H */

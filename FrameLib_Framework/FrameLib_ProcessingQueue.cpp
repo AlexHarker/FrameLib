@@ -3,7 +3,7 @@
 #include "FrameLib_Global.h"
 #include "FrameLib_DSP.h"
 
-#include "../FrameLib_Dependencies/SIMDSupport.hpp"
+#include "../FrameLib_Dependencies/HISSTools_Library/include/simd_support.hpp"
 
 #include <algorithm>
 
@@ -119,7 +119,7 @@ void FrameLib_ProcessingQueue::wakeWorkers()
 
 void FrameLib_ProcessingQueue::serviceQueue(FrameLib_LocalAllocator *allocator)
 {
-    SIMDDenormals denormHandler;
+    htl::simd_denormals denormHandler;
     
     unsigned long timedOutCount = 0;
     

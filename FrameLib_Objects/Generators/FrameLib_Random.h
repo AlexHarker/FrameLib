@@ -4,7 +4,7 @@
 
 #include "FrameLib_DSP.h"
 
-#include "../../FrameLib_Dependencies/RandomGenerator.hpp"
+#include "../../FrameLib_Dependencies/HISSTools_Library/include/random_generator.hpp"
 
 class FrameLib_Random final : public FrameLib_Processor
 {
@@ -40,7 +40,7 @@ private:
 
     // Data
     
-    random_generator<> mRandom;
+    htl::random_generator<> mRandom;
     
     static ParameterInfo sParamInfo;
 };

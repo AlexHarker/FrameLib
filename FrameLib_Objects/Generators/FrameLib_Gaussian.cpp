@@ -100,7 +100,7 @@ double get(double value, unsigned long i)           { return value; }
 double get(const double* values, unsigned long i)   { return values[i]; }
 
 template<typename T, typename U, typename V>
-void generate(random_generator<>& gen, double *output, T mean, U stddev, V& i, V loop)
+void generate(htl::random_generator<>& gen, double *output, T mean, U stddev, V& i, V loop)
 {
     for ( ; (i + 1) < loop; i += 2)
     {

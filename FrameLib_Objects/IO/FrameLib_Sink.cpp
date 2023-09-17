@@ -172,9 +172,12 @@ void FrameLib_Sink::blockProcess(const double * const *ins, double **outs, unsig
 
 void FrameLib_Sink::process()
 {
-    auto interpIsCubic = [](InterpType type) { return type != InterpType::None && type != InterpType::Linear; };
+    auto interpIsCubic = [](htl::interp_type type)
+    {
+        return type != htl::interp_type::none && type != htl::interp_type::linear;
+    };
     
-    InterpType interpType = InterpType::None;
+    htl::interp_type interpType = htl::interp_type::none;
     
     unsigned long sizeIn, sizeFrame, offset;
     
@@ -188,10 +191,10 @@ void FrameLib_Sink::process()
         switch (mParameters.getEnum<Interpolation>(kInterpolation))
         {
             case kNone:         break;
-            case kLinear:       interpType = InterpType::Linear;            break;
-            case kHermite:      interpType = InterpType::CubicHermite;      break;
-            case kBSpline:      interpType = InterpType::CubicBSpline;      break;
-            case kLagrange:     interpType = InterpType::CubicLagrange;     break;
+            case kLinear:       interpType = htl::interp_type::linear;              break;
+            case kHermite:      interpType = htl::interp_type::cubic_hermite;       break;
+            case kBSpline:      interpType = htl::interp_type::cubic_bspline;       break;
+            case kLagrange:     interpType = htl::interp_type::cubic_lagrange;      break;
         }
     }
     
@@ -215,7 +218,7 @@ void FrameLib_Sink::process()
         if (interpIsCubic(interpType) && !delayTime.intVal())
             timeOffset += FrameLib_TimeFormat(1, 0);
         
-        interpType = InterpType::None;
+        interpType = htl::interp_type::none;
     }
     
     // If interpolation is cubic reduce latency if not required (delay is 1 or greater)
@@ -225,12 +228,12 @@ void FrameLib_Sink::process()
     if (cubic && delayTime.intVal())
         timeOffset -= FrameLib_TimeFormat(1, 0);
         
-    unsigned long interpSize = interpType != InterpType::None ? (cubic ? 3 : 1) : 0;
+    unsigned long interpSize = interpType != htl::interp_type::none ? (cubic ? 3 : 1) : 0;
     auto interpolated = allocAutoArray<double>(sizeIn + interpSize);
 
     // Calculate time offset and interpolate if needed
 
-    if (interpType == InterpType::None)
+    if (interpType == htl::interp_type::none)
     {
         offset = roundToUInt(timeOffset);
         sizeFrame = sizeIn;

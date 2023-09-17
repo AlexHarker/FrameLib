@@ -27,12 +27,12 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters
     mParameters.addEnumItem(kLagrange, "lagrange");
     
     mParameters.addEnum(kEdges, "edges", 4);
-    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::ZeroPad), "zero");
-    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Extend), "extend");
-    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Wrap), "wrap");
-    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Fold), "fold");
-    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Mirror), "mirror");
-    mParameters.addEnumItem(static_cast<unsigned long>(EdgeMode::Extrapolate), "extrapolate");
+    mParameters.addEnumItem(static_cast<unsigned long>(htl::edge_mode::zero_pad), "zero");
+    mParameters.addEnumItem(static_cast<unsigned long>(htl::edge_mode::extend), "extend");
+    mParameters.addEnumItem(static_cast<unsigned long>(htl::edge_mode::wrap), "wrap");
+    mParameters.addEnumItem(static_cast<unsigned long>(htl::edge_mode::fold), "fold");
+    mParameters.addEnumItem(static_cast<unsigned long>(htl::edge_mode::mirror), "mirror");
+    mParameters.addEnumItem(static_cast<unsigned long>(htl::edge_mode::extrapolate), "extrapolate");
 
     mParameters.addBool(kBound, "bound", true, 5);
     
@@ -117,9 +117,9 @@ void FrameLib_Read::update()
 
 void FrameLib_Read::process()
 {
-    EdgeMode edges = mParameters.getEnum<EdgeMode>(kEdges);
+    htl::edge_mode edges = mParameters.getEnum<htl::edge_mode>(kEdges);
     Interpolation interpolation = mParameters.getEnum<Interpolation>(kInterpolation);
-    InterpType interpType = InterpType::None;
+    htl::interp_type interpType = htl::interp_type::none;
 
     unsigned long size;
     long chan = mParameters.getInt(kChannel);
@@ -149,7 +149,7 @@ void FrameLib_Read::process()
     {
         chan = chan < 0 ? mStream : chan;
         
-        bool adjustScaling = edges == EdgeMode::Wrap || edges == EdgeMode::Mirror;
+        bool adjustScaling = edges == htl::edge_mode::wrap || edges == htl::edge_mode::mirror;
         
         double scale = 1.0;
         double lengthM1 = length - 1.0;
@@ -171,15 +171,15 @@ void FrameLib_Read::process()
             doInterpolation |= ((positions[i] - ((int32_t) positions[i])) != 0.0);
         }
 
-        if (doInterpolation || interpolation == kBSpline || edges == EdgeMode::Extrapolate)
+        if (doInterpolation || interpolation == kBSpline || edges == htl::edge_mode::extrapolate)
         {
             switch (interpolation)
             {
                 case kNone:         break;
-                case kLinear:       interpType = InterpType::Linear;            break;
-                case kHermite:      interpType = InterpType::CubicHermite;      break;
-                case kBSpline:      interpType = InterpType::CubicBSpline;      break;
-                case kLagrange:     interpType = InterpType::CubicLagrange;     break;
+                case kLinear:       interpType = htl::interp_type::linear;              break;
+                case kHermite:      interpType = htl::interp_type::cubic_hermite;       break;
+                case kBSpline:      interpType = htl::interp_type::cubic_bspline;       break;
+                case kLagrange:     interpType = htl::interp_type::cubic_lagrange;      break;
             }
         }
                 

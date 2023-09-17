@@ -3,12 +3,12 @@
 #define FRAMELIB_KERNELSMOOTH_H
 
 #include "FrameLib_DSP.h"
-#include "../../FrameLib_Dependencies/KernelSmoother.hpp"
+#include "../../FrameLib_Dependencies/HISSTools_Library/include/kernel_smoother.hpp"
 
 class FrameLib_KernelSmooth final : public FrameLib_Processor
 {
-    using Smoother = kernel_smoother<double, FrameLib_DSP::Allocator>;
-    using Edges = Smoother::EdgeMode;
+    using Smoother = htl::kernel_smoother<double, FrameLib_DSP::Allocator>;
+    using Edges = Smoother::edge_mode;
     
     enum ParameterList { kSmooth, kScale, kSymmetric, kEdges, kMaxFFTSize };
     enum Scales { kSamples, kNormalised };

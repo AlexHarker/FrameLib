@@ -1,6 +1,6 @@
 
 #include "FrameLib_MovingAverage.h"
-#include "../../FrameLib_Dependencies/Interpolation.hpp"
+#include "../../FrameLib_Dependencies/HISSTools_Library/include/interpolation.hpp"
 
 // Constructor
 
@@ -171,7 +171,7 @@ void FrameLib_MovingAverage::process()
             double defaultAlpha = input[i] > mAverageFrame[i] ? alphaUp : alphaDown;
             double alpha = getAlpha(alphas, sizeAlphas, i, defaultAlpha);
             
-            mAverageFrame[i] = linear_interp<double>()(alpha, mAverageFrame[i], input[i]);
+            mAverageFrame[i] = htl::linear_interp<double>()(alpha, mAverageFrame[i], input[i]);
             
             avgOutput[i] = mAverageFrame[i];
             stdOutput[i] = sqrt(mVarianceFrame[i]);

@@ -3,7 +3,7 @@
 #define FRAMELIB_MULTITAPER_H
 
 #include "FrameLib_DSP.h"
-#include "../../FrameLib_Dependencies/SpectralProcessor.hpp"
+#include "../../FrameLib_Dependencies/HISSTools_Library/include/spectral_processor.hpp"
 
 class FrameLib_Multitaper final : public FrameLib_Processor
 {
@@ -42,7 +42,7 @@ private:
     
     // Processor
     
-    spectral_processor<double, FrameLib_DSP::Allocator> mProcessor;
+    htl::spectral_processor<double, FrameLib_DSP::Allocator> mProcessor;
 };
 
 #endif

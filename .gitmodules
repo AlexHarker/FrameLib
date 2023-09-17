@@ -1,0 +1,3 @@
+[submodule "FrameLib_Dependencies/HISSTools_Library"]
+	path = FrameLib_Dependencies/HISSTools_Library
+	url = https://github.com/AlexHarker/HISSTools_Library

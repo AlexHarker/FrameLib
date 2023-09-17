@@ -87,7 +87,7 @@ FrameLib_FFT::ParameterInfo::ParameterInfo()
 
 void FrameLib_FFT::process()
 {
-    FFT_SPLIT_COMPLEX_D spectrum;
+    htl::split_type<double> spectrum;
     
     // Get Input(s)
     

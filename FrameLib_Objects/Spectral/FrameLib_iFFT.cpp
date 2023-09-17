@@ -87,7 +87,7 @@ FrameLib_iFFT::ParameterInfo::ParameterInfo()
 
 void FrameLib_iFFT::process()
 {
-    FFT_SPLIT_COMPLEX_D spectrum;
+    htl::split_type<double> spectrum;
     
     unsigned long sizeInR, sizeInI, sizeIn, sizeOut, spectrumSize;
     unsigned long FFTSizeLog2 = 0;

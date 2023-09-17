@@ -6,7 +6,7 @@ MACOSX_DEPLOYMENT_TARGET = 10.11
 // Paths
 
 C74SUPPORT = $(SRCROOT)/../max-sdk-base/c74support
-HEADER_SEARCH_PATHS = "$(C74SUPPORT)/max-includes" "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes" "$(PROJECT_DIR)/FrameLib_Dependencies"
+HEADER_SEARCH_PATHS = "$(C74SUPPORT)/max-includes" "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes" "$(PROJECT_DIR)/FrameLib_Dependencies/HISSTools_Library/include"
 FRAMEWORK_SEARCH_PATHS = "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes"
 
 // Special Files
