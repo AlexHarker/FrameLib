@@ -9,7 +9,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Framework;$(SolutionDir)FrameLib_Objects\Common_Utilities;$(SolutionDir)FrameLib_Max_Objects\Common\;$(C74Support)max-includes\;$(C74Support)msp-includes\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Framework;$(SolutionDir)FrameLib_Objects\Common_Utilities;$(SolutionDir)FrameLib_Max_Objects\Common\;$(C74Support)max-includes\;$(C74Support)msp-includes\;%(AdditionalIncludeDirectories);$(SolutionDir)FrameLib_Dependencies\HISSTools_Library\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NO_TRANSLATION_SUPPORT;WIN_VERSION;WINDOWS;_USRDLL;WIN_EXT_VERSION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
