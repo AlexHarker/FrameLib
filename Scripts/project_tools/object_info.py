@@ -198,7 +198,6 @@ class fl_object:
             info["xc_obj_file_object_guid"] = gm.xc_component(src_tag, scn_tag, "files", object_str, src_guid)
             info["xc_obj_file_lib_guid"] = gm.xc_component(fwk_tag, fkn_tag, "files", lib_str, fwk_guid)
             info["xc_obj_file_object_lib_guid"] = gm.xc_component(src_tag, scn_tag, "files", object_str, lib_guid)
-            info["xc_obj_file_fft_guid"] = gm.xc_component(src_tag, scn_tag, "files", fft_str, src_guid)
             info["xc_obj_file_ibuffer_guid"] = gm.xc_component(src_tag, scn_tag, "files", ibuffer_str, src_guid)
 
             # Xcode file reference guids
@@ -250,14 +249,9 @@ class fl_object:
             info["xc_obj_file_lib_guid"] = gm.create_xc()
             info["xc_obj_file_object_lib_guid"] = gm.create_xc()
             
-            if source_type == "fft":
-                info["xc_obj_file_fft_guid"] = gm.create_xc()
-                info["xc_obj_file_ibuffer_guid"] = ""
-            elif source_type == "ibuffer":
-                info["xc_obj_file_fft_guid"] = ""
+            if source_type == "ibuffer":
                 info["xc_obj_file_ibuffer_guid"] = gm.create_xc()
             else:
-                info["xc_obj_file_fft_guid"] = ""
                 info["xc_obj_file_ibuffer_guid"] = ""
                 
             # Xcode file reference guids

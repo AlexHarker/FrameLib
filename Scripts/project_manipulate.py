@@ -127,7 +127,7 @@ def main():
     parser.add_argument("-m", "--max", help="The max object name")
     parser.add_argument("-p", "--pd", help="The pd object name")
     parser.add_argument("-c", "--category", help="The object category")
-    parser.add_argument("--src", help="The optional source type (fft / ibuffer)")
+    parser.add_argument("--src", help="The optional source type (ibuffer)")
     parser.add_argument("--args", help="The args mode (params / all / distribute)")
     parser.add_argument("--cache", default=True, help="Read from the object cache (if present)")
     args = parser.parse_args()

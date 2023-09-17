@@ -119,10 +119,7 @@ class fl_pbxproj:
             
         # Modify additional source file items if required and futher change the source phase template
         
-        if info["xc_obj_file_fft_guid"] != "":
-            self.project_modify_section(info, "file_fft", "PBXBuildFile", add)
-            sources_phase = "phase_sources_fft"
-        elif info["xc_obj_file_ibuffer_guid"] != "":
+        if info["xc_obj_file_ibuffer_guid"] != "":
             self.project_modify_section(info, "file_ibuffer", "PBXBuildFile", add)
             sources_phase = "phase_sources_ibuffer"
 
