@@ -16,7 +16,7 @@ jobs:
       - name: Build mac max externals
         run: xcodebuild -project 'framelib/framelib.xcodeproj' -scheme 'framelib Max (objects build)' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
       - name: Upload mac build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.4.0
         with:
           name: build-mac
           path: framelib/Packaging/Max/FrameLib/externals
@@ -37,7 +37,7 @@ jobs:
       - name: Build win max externals
         run:  msbuild "framelib/framelib.sln" /p:configuration="Release" /p:platform=x64 /t:framelib_objects_max /v:q /clp:ErrorsOnly /nologo /m
       - name: Upload win build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.4.0
         with:
           name: build-win
           path: framelib/Packaging/Max/FrameLib/externals
@@ -51,7 +51,7 @@ jobs:
              cd FrameLib_PD_Objects/
              make
       - name: Upload mac build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.4.0
         with:
           name: build-mac
           path: build/*.d_fat
@@ -74,7 +74,7 @@ jobs:
              cd FrameLib_PD_Objects/
              make BUILD_TYPE=${{ matrix.type }}
       - name: Upload linux intel build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.4.0
         with:
           name: ${{ format('build-linux-intel-{0}', matrix.type) }}
           path: build/*.pd_linux
@@ -107,7 +107,7 @@ jobs:
                     cd FrameLib_PD_Objects/
                     make NAME_SUFFIX=${{ matrix.type }}
       - name: Upload linux arm build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.4.0
         with:
           name: ${{ format('build-win-{0}', matrix.type) }}
           path: build/*.pd_linux
@@ -144,7 +144,7 @@ jobs:
              unzip pdzipped.zip -d ../../
              $MAKE_CMD BUILD_TYPE=${{ matrix.type }}
       - name: Upload win build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.4.0
         with:
           name: ${{ format('build-win-{0}', matrix.type) }}
           path: build/*.dll
