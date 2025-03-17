@@ -17,7 +17,7 @@ jobs:
       - name: Build mac max externals
         run: xcodebuild -project 'framelib/framelib.xcodeproj' -scheme 'framelib Max (objects build)' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
       - name: Upload mac build
-        uses: actions/upload-artifact@v4.4.0
+        uses: actions/upload-artifact@v4
         with:
           name: build-mac
           path: framelib/Packaging/Max/FrameLib/externals
@@ -39,7 +39,7 @@ jobs:
       - name: Build win max externals
         run:  msbuild "framelib/framelib.sln" /p:configuration="Release" /p:platform=x64 /t:framelib_objects_max /v:q /clp:ErrorsOnly /nologo /m
       - name: Upload win build
-        uses: actions/upload-artifact@v4.4.0
+        uses: actions/upload-artifact@v4
         with:
           name: build-win
           path: framelib/Packaging/Max/FrameLib/externals
@@ -55,7 +55,7 @@ jobs:
              cd FrameLib_PD_Objects/
              make
       - name: Upload mac build
-        uses: actions/upload-artifact@v4.4.0
+        uses: actions/upload-artifact@v4
         with:
           name: build-mac
           path: build/*.d_fat
@@ -80,7 +80,7 @@ jobs:
              cd FrameLib_PD_Objects/
              make BUILD_TYPE=${{ matrix.type }}
       - name: Upload linux intel build
-        uses: actions/upload-artifact@v4.4.0
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ format('build-linux-intel-{0}', matrix.type) }}
           path: build/*.pd_linux
@@ -115,7 +115,7 @@ jobs:
                     cd FrameLib_PD_Objects/
                     make NAME_SUFFIX=${{ matrix.type }}
       - name: Upload linux arm build
-        uses: actions/upload-artifact@v4.4.0
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ format('build-win-{0}', matrix.type) }}
           path: build/*.pd_linux
@@ -125,16 +125,6 @@ jobs:
       matrix:
          type: [ i386 , x86_64 ]
     steps:
-      - name: Set up MinGW
-        if: matrix.type == 'x86_64'
-        uses: egor-tensin/setup-mingw@v2
-        with:
-          platform: x64
-      - name: Set up MinGW 32bit
-        if: matrix.type == 'i386'
-        uses: egor-tensin/setup-mingw@v2
-        with:
-          platform: x86
       - name: Checkout main repo
         uses: actions/checkout@v3
         with:
@@ -154,7 +144,7 @@ jobs:
              unzip pdzipped.zip -d ../../
              $MAKE_CMD BUILD_TYPE=${{ matrix.type }}
       - name: Upload win build
-        uses: actions/upload-artifact@v4.4.0
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ format('build-win-{0}', matrix.type) }}
           path: build/*.dll
@@ -174,7 +164,7 @@ jobs:
       - name: Build max documentation
         run: xcodebuild -project 'framelib.xcodeproj' -scheme 'framelib Max Documentation' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
       - name: Download builds
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v4
         with:
           path: ../build/
       - name: Move max externals into place
