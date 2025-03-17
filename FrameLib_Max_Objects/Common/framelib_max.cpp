@@ -2,6 +2,10 @@
 #include "FrameLib_MaxClass.h"
 #include "../FrameLib_Exports/FrameLib_Objects.h"
 
+// IO
+
+#include "../IO/fl.sink~.cpp"
+
 // Buffer
 
 #include "../Buffer/fl.info~.cpp"
