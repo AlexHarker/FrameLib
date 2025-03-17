@@ -30,7 +30,6 @@ FL_OBJECTS = ../FrameLib_Objects
 VPATH = ../FrameLib_Dependencies/tlsf
 
 FL_CPP = \
-				$(FL_DEPENDENCIES)/HISSTools_FFT/HISSTools_FFT.cpp\
 				$(wildcard $(FL_FRAMEWORK)/FrameLib_*.cpp)\
 				$(wildcard $(FL_OBJECTS)/*/FrameLib_*.cpp)\
 
