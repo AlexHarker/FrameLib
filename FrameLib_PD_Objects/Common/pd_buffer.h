@@ -2,11 +2,11 @@
 #ifndef PD_BUFFER_H
 #define PD_BUFFER_H
 
-#include "../../FrameLib_Dependencies/TableReader.hpp"
+#include "../../FrameLib_Dependencies/HISSTools_Library/include/table_reader.hpp"
 
 class pd_buffer
 {
-    struct fetch : public table_fetcher<double>
+    struct fetch : public htl::table_fetcher<double>
     {
         fetch(t_word *data, intptr_t size)
         : table_fetcher(size, 1.0), mData(data) {}
@@ -32,12 +32,12 @@ public:
     int get_length() const { return m_length; }
     int get_num_chans() const { return m_num_chans; }
 
-    void read(double *output, const double *positions, unsigned long size, double amp, long chan, InterpType interp, EdgeMode edges, bool bound)
+    void read(double *output, const double *positions, unsigned long size, double amp, long chan, htl::interp_type interp, htl::edge_mode edges, bool bound)
     {
         t_word *table = get_array_data(static_cast<size_t>(chan));
         
         if (table)
-            table_read_edges(fetch(table, m_length), output, positions, size, amp, interp, edges, bound);
+            htl::table_read_edges(fetch(table, m_length), output, positions, size, amp, interp, edges, bound);
     }
     
     void read(double *output, size_t length, size_t offset, size_t chan)

@@ -405,7 +405,7 @@ class FrameLib_PDClass_Read : public FrameLib_PDClass_Expand<FrameLib_Read>
             mBuffer = pd_buffer();
         };
         
-        void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeMode edges, bool bound) override
+        void read(double *output, const double *positions, unsigned long size, long chan, htl::interp_type interp, htl::edge_mode edges, bool bound) override
         {
             chan = std::max(0L, std::min(chan, static_cast<long>(mBuffer.get_num_chans() - 1)));
             mBuffer.read(output, positions, size, 1.0, chan, interp, edges, bound);
