@@ -8,6 +8,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: "framelib"
+          submodules: "recursive"
       - name: Checkout max-sdk-base
         uses: actions/checkout@v3
         with:
@@ -29,6 +30,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: "framelib"
+          submodules: "recursive"
       - name: Checkout max-sdk-base
         uses: actions/checkout@v3
         with:
@@ -96,6 +98,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
       - name: ARM runner
         uses: pguyot/arm-runner-action@v2
         with:
@@ -129,6 +133,8 @@ jobs:
           platform: x86
       - name: Checkout main repo
         uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
       - name: Build win pd binary
         shell: bash
         run: |
@@ -154,6 +160,8 @@ jobs:
     steps:
       - name: Checkout main repo
         uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
       - name: Get current date / make build folder
         id: date
         run: | 
