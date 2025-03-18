@@ -123,7 +123,7 @@ jobs:
     runs-on: windows-latest
     strategy: 
       matrix:
-         type: [ i386 , x86_64 ]
+         type: [ x86_64 ]
     steps:
       - name: Checkout main repo
         uses: actions/checkout@v3
