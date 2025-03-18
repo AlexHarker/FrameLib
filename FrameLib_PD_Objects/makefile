@@ -7,6 +7,10 @@ PLATFORM_TYPE = $(MACHINE_TYPE)
  
 # Detect windows
 
+ifeq ($(MACHINE_TYPE), pc)
+PLATFORM_TYPE = win
+BUILD_TYPE ?= x86_64
+endif
 ifeq ($(MACHINE_TYPE), w64)
 PLATFORM_TYPE = win
 BUILD_TYPE ?= x86_64
@@ -87,7 +91,7 @@ PLATFORM_FLAGS = -Wa,-mbig-obj
 ARCH_FLAGS = 
 ifeq ($(BUILD_TYPE), i386)
 DLL = ../../pd-0.52-2-i386/bin/pd.dll
-ARCH_FLAGS = -march=i386
+ARCH_FLAGS = -m32 -march=i386
 endif
 endif
 

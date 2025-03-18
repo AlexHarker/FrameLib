@@ -120,7 +120,7 @@ jobs:
           name: ${{ format('build-pd-linux-arm-{0}', matrix.type) }}
           path: build/*.pd_linux
   pd-win:
-    runs-on: windows-2019
+    runs-on: windows-latest
     strategy: 
       matrix:
          type: [ i386 , x86_64 ]
@@ -129,20 +129,27 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: "recursive"
-      - name: Build win pd binary
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64  
+          install: mingw-w64-x86_64-gcc make
+      - name: Download PD
         shell: bash
         run: |
              if [[ ${{ matrix.type }} == i386 ]]; then
-               PD_PACKAGE=https://msp.puredata.info/Software/pd-0.52-2-i386.msw.zip
-               MAKE_CMD=mingw32-make.exe
+               PD_PACKAGE=https://msp.ucsd.edu/Software/pd-0.52-2-i386.msw.zip
              else
-               PD_PACKAGE=https://msp.puredata.info/Software/pd-0.52-2.msw.zip
-               MAKE_CMD=make
+               PD_PACKAGE=https://msp.ucsd.edu/Software/pd-0.52-2.msw.zip
              fi
              cd FrameLib_PD_Objects/
              curl $PD_PACKAGE --output pdzipped.zip
              unzip pdzipped.zip -d ../../
-             $MAKE_CMD BUILD_TYPE=${{ matrix.type }}
+      - name: Build win pd binary
+        shell: msys2 {0}
+        run: |
+             cd FrameLib_PD_Objects/
+             make BUILD_TYPE=${{ matrix.type }}
       - name: Upload win build
         uses: actions/upload-artifact@v4
         with:
