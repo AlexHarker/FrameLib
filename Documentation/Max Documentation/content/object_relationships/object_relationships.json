@@ -88,7 +88,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.acosh~": {
@@ -223,7 +225,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.minpos~": {
@@ -263,7 +267,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.asinh~": {
@@ -567,12 +573,13 @@
         "fl.crest~",
         "fl.pad~",
         "fl.paste~",
-        "fl.paste~",
         "fl.chop~",
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.chain~": {
@@ -627,7 +634,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.clip~": {
@@ -1133,6 +1142,92 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
+      ]
+    },
+    "fl.cumulative~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.deltas~",
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.sortmultiple~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.paste~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+      ]
+    },
+    "fl.deltas~": {
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.cumulative~",
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.sortmultiple~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.paste~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
         "fl.medianfilter~"
       ]
     },
@@ -1434,7 +1529,9 @@
         "fl.chop~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.floor~": {
@@ -1549,7 +1646,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.greaterthaneq~": {
@@ -1708,7 +1807,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.kurtosis~": {
@@ -1748,7 +1849,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.lag~": {
@@ -1800,7 +1903,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.lessthaneq~": {
@@ -2071,7 +2176,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.medianfilter~": {
@@ -2247,7 +2354,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.nonzero~": {
@@ -2287,7 +2396,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.notequals~": {
@@ -2469,7 +2580,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.paste~": {
@@ -2509,8 +2622,9 @@
             "fl.flatness~",
             "fl.rms~",
             "fl.split~",
-            "fl.medianfilter~"
-        ]
+            "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"        ]
     },
     "fl.pattern~": {
       "keywords": [
@@ -2549,7 +2663,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.peaks~": {
@@ -2589,7 +2705,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.perblock~": {
@@ -2644,7 +2762,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.plus~": {
@@ -2760,7 +2880,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.ramp~": {
@@ -2847,7 +2969,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.rms~": {
@@ -2887,7 +3011,9 @@
         "fl.chop~",
         "fl.flatness~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.round~": {
@@ -2993,7 +3119,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.sinh~": {
@@ -3110,7 +3238,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.sort~": {
@@ -3150,48 +3280,51 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.sortmultiple~": {
-        "keywords": [
-            "vector"
-        ],
-        "seealso": [
-            "fl.sort~",
-            "fl.minpos~",
-            "fl.percentile~",
-            "fl.stddev~",
-            "fl.centroid~",
-            "fl.accumpos~",
-            "fl.nonzero~",
-            "fl.maxpos~",
-            "fl.geomean~",
-            "fl.spread~",
-            "fl.framemax~",
-            "fl.kurtosis~",
-            "fl.mean~",
-            "fl.join~",
-            "fl.shift~",
-            "fl.framemin~",
-            "fl.sum~",
-            "fl.subframe~",
-            "fl.nanfilter~",
-            "fl.reverse~",
-            "fl.length~",
-            "fl.peaks~",
-            "fl.pattern~",
-            "fl.product~",
-            "fl.skewness~",
-            "fl.crest~",
-            "fl.pad~",
-            "fl.paste~",
-            "fl.chop~",
-            "fl.flatness~",
-            "fl.rms~",
-            "fl.split~",
-            "fl.medianfilter~"
-        ]
+      "keywords": [
+        "vector"
+      ],
+      "seealso": [
+        "fl.sort~",
+        "fl.minpos~",
+        "fl.percentile~",
+        "fl.stddev~",
+        "fl.centroid~",
+        "fl.accumpos~",
+        "fl.nonzero~",
+        "fl.maxpos~",
+        "fl.geomean~",
+        "fl.spread~",
+        "fl.framemax~",
+        "fl.kurtosis~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.framemin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.pattern~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.paste~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"        ]
     },
     "fl.source~": {
       "keywords": [
@@ -3249,7 +3382,9 @@
         "fl.chop~",
         "fl.flatness~",
         "fl.rms~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.spread~": {
@@ -3289,7 +3424,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.sqrt~": {
@@ -3363,7 +3500,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.store~": {
@@ -3423,7 +3562,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.sum~": {
@@ -3463,7 +3604,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.tag~": {
@@ -3761,7 +3904,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.framemin~": {
@@ -3801,7 +3946,9 @@
         "fl.flatness~",
         "fl.rms~",
         "fl.split~",
-        "fl.medianfilter~"
+        "fl.medianfilter~",
+        "fl.cumulative~",
+        "fl.deltas~"
       ]
     },
     "fl.window~": {
