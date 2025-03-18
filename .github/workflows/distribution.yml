@@ -19,7 +19,7 @@ jobs:
       - name: Upload mac build
         uses: actions/upload-artifact@v4
         with:
-          name: build-mac
+          name: build-max-mac
           path: framelib/Packaging/Max/FrameLib/externals
   max-win:
     runs-on: windows-2019
@@ -41,7 +41,7 @@ jobs:
       - name: Upload win build
         uses: actions/upload-artifact@v4
         with:
-          name: build-win
+          name: build-max-win
           path: framelib/Packaging/Max/FrameLib/externals
   pd-mac:
     runs-on: macos-latest
@@ -57,7 +57,7 @@ jobs:
       - name: Upload mac build
         uses: actions/upload-artifact@v4
         with:
-          name: build-mac
+          name: build-pd-mac
           path: build/*.d_fat
   pd-linux-intel:
     runs-on: ubuntu-latest
@@ -82,7 +82,7 @@ jobs:
       - name: Upload linux intel build
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ format('build-linux-intel-{0}', matrix.type) }}
+          name: ${{ format('build-pd-linux-intel-{0}', matrix.type) }}
           path: build/*.pd_linux
   pd-linux-arm:
     runs-on: ubuntu-latest
@@ -117,7 +117,7 @@ jobs:
       - name: Upload linux arm build
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ format('build-win-{0}', matrix.type) }}
+          name: ${{ format('build-pd-linux-arm-{0}', matrix.type) }}
           path: build/*.pd_linux
   pd-win:
     runs-on: windows-2019
@@ -146,7 +146,7 @@ jobs:
       - name: Upload win build
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ format('build-win-{0}', matrix.type) }}
+          name: ${{ format('build-pd-win-{0}', matrix.type) }}
           path: build/*.dll
   deploy:
     runs-on: macos-latest
@@ -172,8 +172,8 @@ jobs:
              mkdir Packaging/Max/FrameLib/externals
              mv ../build/build-mac/* Packaging/Max/FrameLib/externals
              mv ../build/build-win/* Packaging/Max/FrameLib/externals
-             rm -d ../build/build-mac/
-             rm -d ../build/build-win/           
+             rm -d ../build/build-max-mac/
+             rm -d ../build/build-max-win/           
       - name: Sign and notarize max externals
         uses: ./.github/actions/mac-notarization
         with:
