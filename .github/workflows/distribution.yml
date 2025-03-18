@@ -177,8 +177,8 @@ jobs:
       - name: Move max externals into place
         run: | 
              mkdir Packaging/Max/FrameLib/externals
-             mv ../build/build-mac/* Packaging/Max/FrameLib/externals
-             mv ../build/build-win/* Packaging/Max/FrameLib/externals
+             mv ../build/build-max-mac/* Packaging/Max/FrameLib/externals
+             mv ../build/build-max-win/* Packaging/Max/FrameLib/externals
              rm -d ../build/build-max-mac/
              rm -d ../build/build-max-win/           
       - name: Sign and notarize max externals
