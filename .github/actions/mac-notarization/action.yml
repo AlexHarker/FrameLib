@@ -60,7 +60,6 @@ runs:
       # install fd /cd to package make temp folder with mxos / sign mxos / copy to folder / zip / notarize upload / deleete temps / staple
       run: |
            brew install fd
-           cd ${{ inputs.folder }}
            mkdir -p Notarization
            fd ${{ inputs.glob }} -E .git -I
            fd ${{ inputs.glob }} -E .git -I -x codesign --force --timestamp --sign "Developer ID Application" {}
