@@ -1701,27 +1701,29 @@ public:
     
     void assist(void *b, long m, long a, char *s)
     {
+        static constexpr int maxAssist = 256;
+        
         if (m == ASSIST_OUTLET)
         {
             if (a == 0 && handlesAudio())
-                sprintf(s,"(signal) Audio Synchronisation Output" );
+                snprintf(s, maxAssist, "(signal) Audio Synchronisation Output" );
             else if (a < getNumAudioOuts())
-                sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
+                snprintf(s, maxAssist, "(signal) %s", mObject->audioInfo(a - 1).c_str());
             else
-                sprintf(s,"(frame) %s", mObject->outputInfo(a - getNumAudioOuts()).c_str());
+                snprintf(s, maxAssist, "(frame) %s", mObject->outputInfo(a - getNumAudioOuts()).c_str());
         }
         else
         {
             if (a == 0 && handlesAudio())
-                sprintf(s,"(signal) Audio Synchronisation Input");
+                snprintf(s, maxAssist, "(signal) Audio Synchronisation Input");
             else if (a < getNumAudioIns())
-                sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
+                snprintf(s, maxAssist, "(signal) %s", mObject->audioInfo(a - 1).c_str());
             else
             {
                 if (supportsOrderingConnections() && a == getNumAudioIns() + getNumIns())
-                    sprintf(s,"(frame) Ordering Input");
+                    snprintf(s, maxAssist, "(frame) Ordering Input");
                 else
-                    sprintf(s,"(frame) %s", mObject->inputInfo(a - getNumAudioIns()).c_str());
+                    snprintf(s, maxAssist, "(frame) %s", mObject->inputInfo(a - getNumAudioIns()).c_str());
             }
         }
     }
