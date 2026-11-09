@@ -1,13 +1,15 @@
 import sys
 import tempfile
 import unittest
+import io
+import json
+from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "Scripts"))
 
 from project_tools import file_util
-from project_tools.guid_util import guid_manager
 from project_tools.object_info import fl_object
 from project_tools.path_util import fl_paths
 from project_tools.vs_util import bounds_compiled, fl_solution
@@ -64,19 +66,6 @@ class ProjectTemplateTests(unittest.TestCase):
                     project.project_modify(info, template, section_bounds(section), True)
                     self.assertEqual(project.pbxproj.data.count(entry), 1)
 
-    def test_missing_object_configuration_is_reported(self):
-        for cache in ({"fl.yinfft~": self.yin.info.copy()}, {}):
-            original_xc = guid_manager.xc
-            def lookup(manager, section, name):
-                if name == self.paths.object_xc_config_name(self.yin):
-                    return ""
-                return original_xc(manager, section, name)
-            with self.subTest(cached=bool(cache)), \
-                 patch.object(fl_object, "object_cache", cache.copy()), \
-                 patch.object(guid_manager, "xc", autospec=True, side_effect=lookup):
-                with self.assertRaisesRegex(ValueError, "Missing Xcode configuration file reference"):
-                    fl_object.create_from_name("fl.yinfft~")
-
     def test_object_xcode_config_exists(self):
         with tempfile.TemporaryDirectory() as directory:
             paths = fl_paths()
@@ -112,19 +101,19 @@ class ProjectTemplateTests(unittest.TestCase):
             "xc_obj_config_dvmt_guid", "xc_obj_config_dplt_guid", "xc_obj_config_test_guid")])
         self.assertEqual(project.count("baseConfigurationReference = " + guid + " /* " + name + " */;"), 3)
 
-    def test_cached_config_guid_is_refreshed(self):
+    def test_cached_config_guid_is_preserved(self):
         cached = self.yin.info.copy()
         cached["xc_object_config_guid"] = "OLD"
         with patch.object(fl_object, "object_cache", {"fl.yinfft~": cached}):
             info = fl_object.create_from_name("fl.yinfft~")
-            self.assertEqual(info["xc_object_config_guid"], self.yin["xc_object_config_guid"])
+            self.assertEqual(info["xc_object_config_guid"], "OLD")
 
-    def test_absent_config_clears_cached_guid(self):
+    def test_absent_config_preserves_cached_guid(self):
         cached = self.fft.info.copy()
         cached["xc_object_config_guid"] = "OLD"
         with patch.object(fl_object, "object_cache", {"fl.fft~": cached}):
             info = fl_object.create_from_name("fl.fft~")
-            self.assertEqual(info["xc_object_config_guid"], "")
+            self.assertEqual(info["xc_object_config_guid"], "OLD")
 
     def test_uncached_object_config_guid(self):
         with patch.object(fl_object, "object_cache", {}):
@@ -132,6 +121,55 @@ class ProjectTemplateTests(unittest.TestCase):
             fft = fl_object.create_from_name("fl.fft~")
         self.assertEqual(yin["xc_object_config_guid"], self.yin["xc_object_config_guid"])
         self.assertEqual(fft["xc_object_config_guid"], "")
+
+    def test_removed_config_uses_cached_guid_for_removal(self):
+        project = fl_pbxproj()
+        names = ("build_config_develop", "build_config_deploy", "build_config_test")
+        cached = self.yin.info.copy()
+        with tempfile.TemporaryDirectory() as directory, \
+             patch.object(fl_object, "object_cache", {"fl.yinfft~": cached}), \
+             patch.object(fl_paths, "object_xc_config_exists", return_value=False), \
+             patch.object(fl_paths, "cache_path", return_value=str(Path(directory) / "cache.json")), \
+             patch.object(project.pbxproj, "flush"), patch.object(project.scheme, "flush"):
+            info = fl_object.create_from_name("fl.yinfft~")
+            special = [file_util.templated_string(self.paths.xc_template("object_specific_" + name), info)
+                       for name in names]
+            default = [file_util.templated_string(self.paths.xc_template(name), info) for name in names]
+            output = io.StringIO()
+            with redirect_stdout(output):
+                project.update(info, False)
+                self.assertEqual(info["xc_object_config_guid"], "")
+                for entry in special:
+                    self.assertNotIn(entry, project.pbxproj.data)
+                project.update(info, True)
+                for entry in default:
+                    self.assertEqual(project.pbxproj.data.count(entry), 1)
+                fl_object.save_cache()
+                with open(Path(directory) / "cache.json") as cache_file:
+                    self.assertEqual(json.load(cache_file)["fl.yinfft~"]["xc_object_config_guid"], "")
+                fl_object.object_cache = {}
+                fl_object.load_cache()
+                info = fl_object.create_from_name("fl.yinfft~")
+                project.update(info, False)
+                project.update(info, True)
+            self.assertNotIn("WARNING - FAILED TO REMOVE", output.getvalue())
+            for entry in default:
+                self.assertEqual(project.pbxproj.data.count(entry), 1)
+
+    def test_missing_config_file_reference_does_not_invalidate_cache(self):
+        project = fl_pbxproj()
+        guid = self.yin["xc_object_config_guid"]
+        name = self.paths.object_xc_config_name(self.yin)
+        reference = (guid + " /* " + name + " */ = {isa = PBXFileReference; "
+                     "lastKnownFileType = text.xcconfig; path = " + name + '; sourceTree = "<group>"; };')
+        self.assertIn(reference, project.pbxproj.data)
+        project.pbxproj.data = project.pbxproj.data.replace(reference, "")
+        with patch.object(project.pbxproj, "flush"), patch.object(project.scheme, "flush"):
+            project.update(self.yin, False)
+        for name in ("build_config_develop", "build_config_deploy", "build_config_test"):
+            entry = file_util.templated_string(self.paths.xc_template("object_specific_" + name), self.yin)
+            self.assertNotIn(entry, project.pbxproj.data)
+        self.assertEqual(self.yin["xc_object_config_guid"], guid)
 
     def test_build_configurations_can_be_removed_and_reinserted(self):
         names = ("build_config_develop", "build_config_deploy", "build_config_test")
@@ -151,23 +189,42 @@ class ProjectTemplateTests(unittest.TestCase):
                 for entry in entries:
                     self.assertEqual(project.pbxproj.data.count(entry), 1)
 
-    def test_update_selects_build_configs_from_config_file(self):
+    def test_update_selects_build_configs(self):
         names = ("build_config_develop", "build_config_deploy", "build_config_test")
-        for info, prefix in ((self.yin, "object_specific_"), (self.fft, "")):
+        for info in (self.yin, self.fft):
             for add in (False, True):
-                with self.subTest(object=info["object_class"], add=add):
-                    project = fl_pbxproj()
-                    with patch.object(project, "project_modify_section") as modify_section, \
-                         patch.object(project, "project_modify"), \
-                         patch.object(project, "project_modify_list"), \
-                         patch.object(project, "scheme_modify"), \
-                         patch.object(project.pbxproj, "flush"), \
-                         patch.object(project.scheme, "flush"):
-                        project.update(info, add)
-                    configs = [call.args for call in modify_section.call_args_list
-                               if call.args[2] == "XCBuildConfiguration"]
-                    self.assertEqual(configs, [(info, prefix + name, "XCBuildConfiguration", add)
-                                               for name in names])
+                for config_exists in (False, True):
+                    with self.subTest(object=info["object_class"], add=add, config_exists=config_exists):
+                        with patch.object(fl_object, "object_cache", {info["max_class_name"]: info.info.copy()}):
+                            current = fl_object.create_from_name(info["max_class_name"])
+                        project = fl_pbxproj()
+                        with patch.object(fl_paths, "object_xc_config_exists", return_value=config_exists), \
+                             patch.object(project, "project_modify_section") as modify_section, \
+                             patch.object(project, "project_modify"), \
+                             patch.object(project, "project_modify_list"), \
+                             patch.object(project, "scheme_modify"), \
+                             patch.object(project.pbxproj, "flush"), \
+                             patch.object(project.scheme, "flush"):
+                            previous_guid = current["xc_object_config_guid"]
+                            prefix = "object_specific_" if (config_exists if add else previous_guid) else ""
+                            project.update(current, add)
+                        configs = [call.args for call in modify_section.call_args_list
+                                   if call.args[2] == "XCBuildConfiguration"]
+                        self.assertEqual(configs, [(current, prefix + name, "XCBuildConfiguration", add)
+                                                   for name in names])
+                        expected_guid = "" if not add and not config_exists else previous_guid
+                        self.assertEqual(current["xc_object_config_guid"], expected_guid)
+
+    def test_failed_flush_preserves_cached_guid(self):
+        project = fl_pbxproj()
+        with patch.object(fl_object, "object_cache", {"fl.yinfft~": self.yin.info.copy()}):
+            info = fl_object.create_from_name("fl.yinfft~")
+        guid = info["xc_object_config_guid"]
+        with patch.object(fl_paths, "object_xc_config_exists", return_value=False), \
+             patch.object(project.pbxproj, "flush", side_effect=OSError("write failed")):
+            with self.assertRaisesRegex(OSError, "write failed"):
+                project.update(info, False)
+        self.assertEqual(info["xc_object_config_guid"], guid)
 
     def test_templates_work_without_object_cache(self):
         with patch.object(fl_object, "object_cache", {}):

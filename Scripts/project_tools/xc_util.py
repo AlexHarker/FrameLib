@@ -139,7 +139,10 @@ class fl_pbxproj:
 
         # Modify the build configs and config list for the target
         
-        prefix = "object_specific_" if fl_paths().object_xc_config_exists(info) else ""
+        if add:
+            prefix = "object_specific_" if fl_paths().object_xc_config_exists(info) else ""
+        else:
+            prefix = "object_specific_" if info["xc_object_config_guid"] else ""
         
         self.project_modify_section(info, prefix + "build_config_develop", "XCBuildConfiguration", add)
         self.project_modify_section(info, prefix + "build_config_deploy", "XCBuildConfiguration", add)
@@ -198,6 +201,11 @@ class fl_pbxproj:
         
         self.pbxproj.flush()
         self.scheme.flush()
+
+        # Clear the cached GUID after removal if the object-specific config no longer exists.
+        
+        if not add and info["xc_object_config_guid"] and not fl_paths().object_xc_config_exists(info):
+            info.info["xc_object_config_guid"] = ""
         
 
     def __sort_section(self, section: str, exp: str):
