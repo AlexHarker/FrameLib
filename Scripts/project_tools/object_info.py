@@ -302,7 +302,7 @@ class fl_object:
             name = paths.object_xc_config_name(self)
             guid = gm.xc("PBXFileReference", name)
             if not guid:
-                raise ValueError("Missing Xcode configuration file reference: " + name)
+                print("WARNING - Missing Xcode configuration file reference: " + name)
             return guid
         return ""
 
