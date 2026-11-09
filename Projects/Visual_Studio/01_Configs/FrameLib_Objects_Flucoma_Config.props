@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FlucomaMemoryConfiguration Condition="'$(Configuration)'=='Debug'">Debug</FlucomaMemoryConfiguration>
+    <FlucomaMemoryConfiguration Condition="'$(Configuration)'!='Debug'">Release</FlucomaMemoryConfiguration>
+    <FlucomaMemoryName Condition="'$(Configuration)'=='Debug'">foonathan_memory-0.7.4-dbg.lib</FlucomaMemoryName>
+    <FlucomaMemoryName Condition="'$(Configuration)'!='Debug'">foonathan_memory-0.7.4.lib</FlucomaMemoryName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Lib>
+      <AdditionalDependencies>$(SolutionDir)build\flucoma\windows-$(Platform)-$(Configuration)\src\$(FlucomaMemoryConfiguration)\$(FlucomaMemoryName);%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+</Project>

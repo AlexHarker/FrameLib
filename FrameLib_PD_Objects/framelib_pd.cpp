@@ -682,6 +682,7 @@ PD_API void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_FIRPhase>::makeClass("fl.firphase~");
     FrameLib_PDClass_Expand<FrameLib_Multitaper>::makeClass("fl.multitaper~");
     FrameLib_PDClass_Expand<FrameLib_Window>::makeClass("fl.window~");
+    FrameLib_PDClass_Expand<FrameLib_YINFFT>::makeClass("fl.yinfft~");
     
     // Storage
     

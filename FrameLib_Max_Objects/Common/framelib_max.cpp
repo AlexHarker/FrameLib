@@ -110,6 +110,7 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_FIRPhase>::makeClass("fl.firphase~");
     FrameLib_MaxClass_Expand<FrameLib_Multitaper>::makeClass("fl.multitaper~");
     FrameLib_MaxClass_Expand<FrameLib_Window>::makeClass("fl.window~");
+    FrameLib_MaxClass_Expand<FrameLib_YINFFT>::makeClass("fl.yinfft~");
     
     // Storage
     

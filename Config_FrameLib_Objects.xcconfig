@@ -1,0 +1,1 @@
+OTHER_LIBTOOLFLAGS = $(inherited) "$(SRCROOT)/build/flucoma/macos/src/libfoonathan_memory-0.7.4.a"

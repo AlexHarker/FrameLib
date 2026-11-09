@@ -97,6 +97,7 @@ FrameLib_Correlate,
 FrameLib_Convolve,
 FrameLib_Multitaper,
 FrameLib_Window,
+FrameLib_YINFFT,
 
 // Storage
 

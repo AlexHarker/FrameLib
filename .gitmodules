@@ -1,3 +1,12 @@
 [submodule "FrameLib_Dependencies/HISSTools_Library"]
 	path = FrameLib_Dependencies/HISSTools_Library
 	url = https://github.com/AlexHarker/HISSTools_Library
+[submodule "FrameLib_Dependencies/flucoma-core"]
+	path = FrameLib_Dependencies/flucoma-core
+	url = https://github.com/flucoma/flucoma-core.git
+[submodule "FrameLib_Dependencies/eigen"]
+	path = FrameLib_Dependencies/eigen
+	url = https://gitlab.com/libeigen/eigen.git
+[submodule "FrameLib_Dependencies/foonathan-memory"]
+	path = FrameLib_Dependencies/foonathan-memory
+	url = https://github.com/foonathan/memory.git

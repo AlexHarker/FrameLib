@@ -493,6 +493,7 @@ PluginLoad(FrameLib)
     
     DefineFrameLibExpUnit<FrameLib_Read>("FLRead");
     DefineFrameLibExpUnit<FrameLib_Window>("FLWindow");
+    DefineFrameLibExpUnit<FrameLib_YINFFT>("FLYINFFT");
     DefineFrameLibExpUnit<FrameLib_Map>("FLMap");
 
     // Schedulers

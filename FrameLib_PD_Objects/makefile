@@ -43,6 +43,13 @@ FL_OBJ_OUT = $(addprefix $(INTERMEDIATE_DIR)/, $(notdir $(FL_OBJ)))
 INCLUDE_PATHS = \
 				-I$(FL_FRAMEWORK)\
 				-I$(FL_OBJECTS)/Common_Utilities/
+
+FLUCOMA_BUILD = $(BUILD_DIR)/flucoma/$(NAME_SUFFIX)
+FLUCOMA_LIBRARY = $(FLUCOMA_BUILD)/src/libfoonathan_memory-0.7.4.a
+FLUCOMA_INCLUDES = -I$(FL_DEPENDENCIES)/flucoma-core/include -I$(FL_DEPENDENCIES)/eigen \
+				-I$(FL_DEPENDENCIES)/HISSTools_Library/include \
+				-I$(FL_DEPENDENCIES)/foonathan-memory/include \
+				-I$(FL_DEPENDENCIES)/foonathan-memory/include/foonathan -I$(FLUCOMA_BUILD)/src
 	
 MAIN_OBJ = framelib_pd.o
 MAIN_OBJ_OUT = $(INTERMEDIATE_DIR)/$(MAIN_OBJ)
@@ -99,8 +106,20 @@ OUTPUT_NAME = $(BUILD_DIR)/framelib_pd-$(NAME_SUFFIX).$(EXTENSION)
 
 # Targets and pattern rules
 
-framelib_pd: build_directory $(FL_OBJ) $(MAIN_OBJ);
-				cc $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_LINK_FLAGS) -o $(OUTPUT_NAME) $(FL_OBJ_OUT) $(MAIN_OBJ_OUT) $(LINK_FLAGS)
+framelib_pd: build_directory flucoma_dependency $(FL_OBJ) $(MAIN_OBJ);
+				cc $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_LINK_FLAGS) -o $(OUTPUT_NAME) $(FL_OBJ_OUT) $(MAIN_OBJ_OUT) $(FLUCOMA_LIBRARY) $(LINK_FLAGS)
+
+flucoma_dependency:
+				cmake -S $(FL_DEPENDENCIES)/foonathan-memory -B $(FLUCOMA_BUILD) -DCMAKE_BUILD_TYPE=Release -DFOONATHAN_MEMORY_BUILD_TESTS=OFF -DFOONATHAN_MEMORY_BUILD_EXAMPLES=OFF -DFOONATHAN_MEMORY_BUILD_TOOLS=OFF $(FLUCOMA_CMAKE_FLAGS)
+				cmake --build $(FLUCOMA_BUILD) --config Release
+
+ifeq ($(PLATFORM_TYPE), apple)
+FLUCOMA_CMAKE_FLAGS = -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9
+endif
+
+$(FL_OBJECTS)/Spectral/FrameLib_YINFFT.o: | flucoma_dependency
+$(FL_OBJECTS)/Spectral/FrameLib_YINFFT.o: $(FL_OBJECTS)/Spectral/FrameLib_YINFFT.cpp intermediate_directory
+				g++ $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -std=c++17 -fPIC $(INCLUDE_PATHS) $(FLUCOMA_INCLUDES) -c $< -o $(INTERMEDIATE_DIR)/$(@F)
 
 build_directory:
 				mkdir -p $(BUILD_DIR)
@@ -114,7 +133,7 @@ intermediate_directory:
 %.o : %.c intermediate_directory
 				cc $(CPPFLAGS) $(CFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -fPIC $(INCLUDE_PATHS) -c $< -o $(INTERMEDIATE_DIR)/$(@F)
 		
-.PHONY: clean
+.PHONY: clean flucoma_dependency
 		
 clean:
 				rm -f -r $(INTERMEDIATE_DIR) 

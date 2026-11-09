@@ -74,6 +74,16 @@ FLWindow : FLObject {
     }
 }
 
+FLYINFFT : MultiOutUGen {
+    *fr { arg in = 0.0, params = 0.0, initParams = "";
+        ^this.multiNew('control', FLParam.ir(initParams), in, params).init(2)
+    }
+
+    init { arg numOutputs;
+        ^this.initOutputs(numOutputs, rate)
+    }
+}
+
 // IO
 
 FLSource : FLObject {
