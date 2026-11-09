@@ -95,6 +95,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_iFFT.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Multitaper.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Window.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_YINFFT.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Storage\FrameLib_Recall.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Storage\FrameLib_Register.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Storage\FrameLib_Store.h" />
@@ -139,7 +140,6 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Subframe.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Vector_Objects.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Vector_Template.h" />
-    <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_YINFFT.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\FrameLib_Objects\Buffer\FrameLib_Info.cpp" />
@@ -191,6 +191,7 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_iFFT.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Multitaper.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Window.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_YINFFT.cpp"><LanguageStandard>stdcpp17</LanguageStandard><AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Dependencies\flucoma-core\include;$(SolutionDir)FrameLib_Dependencies\eigen;$(SolutionDir)FrameLib_Dependencies\HISSTools_Library\include;$(SolutionDir)FrameLib_Dependencies\foonathan-memory\include;$(SolutionDir)FrameLib_Dependencies\foonathan-memory\include\foonathan;$(SolutionDir)build\flucoma\windows-$(Platform)-$(Configuration)\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories></ClCompile>
     <ClCompile Include="..\..\..\FrameLib_Objects\Storage\FrameLib_Recall.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Storage\FrameLib_Register.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Storage\FrameLib_Store.cpp" />
@@ -228,7 +229,6 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_SortMultiple.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Split.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Subframe.cpp" />
-    <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_YINFFT.cpp"><LanguageStandard>stdcpp17</LanguageStandard><AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Dependencies\flucoma-core\include;$(SolutionDir)FrameLib_Dependencies\eigen;$(SolutionDir)FrameLib_Dependencies\HISSTools_Library\include;$(SolutionDir)FrameLib_Dependencies\foonathan-memory\include;$(SolutionDir)FrameLib_Dependencies\foonathan-memory\include\foonathan;$(SolutionDir)build\flucoma\windows-$(Platform)-$(Configuration)\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories></ClCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

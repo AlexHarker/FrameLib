@@ -205,7 +205,9 @@
 		5AB54BDC2052EAE900325C14 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		5AB54BE72052EB4400325C14 /* fl.clip~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AB54BE62052EB4400325C14 /* fl.clip~.cpp */; };
 		5AB54BE92052EB6100325C14 /* fl.fold~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AB54BE82052EB6100325C14 /* fl.fold~.cpp */; };
+		5E104121947A914F1731617A /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		78674BA18D26ED1456625CA4 /* FrameLib_Deltas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B64486187171B58B011DC7E /* FrameLib_Deltas.cpp */; };
+		7C1C4E7181A78C29964DAA0B /* FrameLib_YINFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51B84944B03BADC818F5CF12 /* FrameLib_YINFFT.cpp */; settings = {COMPILER_FLAGS = "-std=c++17 -I\"$(SRCROOT)/FrameLib_Dependencies/flucoma-core/include\" -I\"$(SRCROOT)/FrameLib_Dependencies/eigen\" -I\"$(SRCROOT)/FrameLib_Dependencies/HISSTools_Library/include\" -I\"$(SRCROOT)/FrameLib_Dependencies/foonathan-memory/include\" -I\"$(SRCROOT)/FrameLib_Dependencies/foonathan-memory/include/foonathan\" -I\"$(SRCROOT)/build/flucoma/macos/src\""; }; };
 		88A045CBB2614E3EE65E8062 /* FrameLib_Cumulative.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1DE34B63BCCD867B215E66C9 /* FrameLib_Cumulative.cpp */; };
 		AB6E4BEB99B7D9C3C9516BC5 /* FrameLib_Cumulative.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1DE34B63BCCD867B215E66C9 /* FrameLib_Cumulative.cpp */; };
 		B8020488231BDD0F0062447A /* framelib_max.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8020487231BDD0A0062447A /* framelib_max.cpp */; };
@@ -751,10 +753,8 @@
 		B8F83EA819C78F9800230CD4 /* fl.framemin~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83E2A19C78DF600230CD4 /* fl.framemin~.cpp */; };
 		B8F83EBD19C79D0200230CD4 /* fl.ramp~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83EBC19C79D0200230CD4 /* fl.ramp~.cpp */; };
 		CFFB43179CE406088D0BD70F /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
-		F5144EC59F6C942E1B4B7A88 /* fl.yinfft~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F68A41A58E8919633CCE4D07 /* fl.yinfft~.cpp */; };
-		7C1C4E7181A78C29964DAA0B /* FrameLib_YINFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51B84944B03BADC818F5CF12 /* FrameLib_YINFFT.cpp */; settings = {COMPILER_FLAGS = "-std=c++17 -I\"$(SRCROOT)/FrameLib_Dependencies/flucoma-core/include\" -I\"$(SRCROOT)/FrameLib_Dependencies/eigen\" -I\"$(SRCROOT)/FrameLib_Dependencies/HISSTools_Library/include\" -I\"$(SRCROOT)/FrameLib_Dependencies/foonathan-memory/include\" -I\"$(SRCROOT)/FrameLib_Dependencies/foonathan-memory/include/foonathan\" -I\"$(SRCROOT)/build/flucoma/macos/src\""; }; };
 		DDEA4AD9ACDB85B2DF52EA1D /* FrameLib_YINFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51B84944B03BADC818F5CF12 /* FrameLib_YINFFT.cpp */; settings = {COMPILER_FLAGS = "-std=c++17 -I\"$(SRCROOT)/FrameLib_Dependencies/flucoma-core/include\" -I\"$(SRCROOT)/FrameLib_Dependencies/eigen\" -I\"$(SRCROOT)/FrameLib_Dependencies/HISSTools_Library/include\" -I\"$(SRCROOT)/FrameLib_Dependencies/foonathan-memory/include\" -I\"$(SRCROOT)/FrameLib_Dependencies/foonathan-memory/include/foonathan\" -I\"$(SRCROOT)/build/flucoma/macos/src\""; }; };
-		5E104121947A914F1731617A /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		F5144EC59F6C942E1B4B7A88 /* fl.yinfft~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F68A41A58E8919633CCE4D07 /* fl.yinfft~.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -3268,6 +3268,7 @@
 /* Begin PBXFileReference section */
 		1DE34B63BCCD867B215E66C9 /* FrameLib_Cumulative.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Cumulative.cpp; sourceTree = "<group>"; };
 		24EF480F9CCA75D5F0DDA455 /* fl.deltas~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.deltas~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		51B84944B03BADC818F5CF12 /* FrameLib_YINFFT.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_YINFFT.cpp; sourceTree = "<group>"; };
 		5A3CAB132052E67E001082E3 /* FrameLib_Ternary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Objects.h; sourceTree = "<group>"; };
 		5A3CAB142052E67E001082E3 /* FrameLib_Ternary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Template.h; sourceTree = "<group>"; };
 		5A3CAB262052E7E8001082E3 /* fl.wrap~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.wrap~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3277,9 +3278,12 @@
 		5AB54BE62052EB4400325C14 /* fl.clip~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.clip~.cpp"; sourceTree = "<group>"; };
 		5AB54BE82052EB6100325C14 /* fl.fold~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.fold~.cpp"; sourceTree = "<group>"; };
 		5B64486187171B58B011DC7E /* FrameLib_Deltas.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Deltas.cpp; sourceTree = "<group>"; };
+		771C475186810D36EEA1ACF7 /* fl.yinfft~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.yinfft~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89E24B8A8D0559DA99617FA5 /* FrameLib_Deltas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Deltas.h; sourceTree = "<group>"; };
 		92AC4FB38B633018A603AD7A /* fl.cumulative~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.cumulative~.cpp"; sourceTree = "<group>"; };
 		A54843A2BD742E45FE4CE64C /* fl.cumulative~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.cumulative~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AABCE1000000000000000001 /* Config_FrameLib_Objects.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_FrameLib_Objects.xcconfig; sourceTree = "<group>"; };
+		AABCE1000000000000000002 /* Config_FrameLib_YINFFT_Max.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_FrameLib_YINFFT_Max.xcconfig; sourceTree = "<group>"; };
 		B8020485231BDCB80062447A /* framelib_max.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = framelib_max.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8020487231BDD0A0062447A /* framelib_max.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framelib_max.cpp; sourceTree = "<group>"; };
 		B805E23419C3AD0A007D8D8B /* fl.minus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.minus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3370,8 +3374,6 @@
 		B809C07B19C42D7400BA41F4 /* fl.tanh~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.tanh~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B809C08A19C42D7500BA41F4 /* fl.trunc~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.trunc~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_FrameLib.xcconfig; sourceTree = "<group>"; };
-		AABCE1000000000000000001 /* Config_FrameLib_Objects.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_FrameLib_Objects.xcconfig; sourceTree = "<group>"; };
-		AABCE1000000000000000002 /* Config_FrameLib_YINFFT_Max.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_FrameLib_YINFFT_Max.xcconfig; sourceTree = "<group>"; };
 		B812462219F475B8009833F1 /* fl.recall~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.recall~.cpp"; sourceTree = "<group>"; };
 		B812462419F475B8009833F1 /* fl.store~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.store~.cpp"; sourceTree = "<group>"; };
 		B812463C19F476CB009833F1 /* fl.recall~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.recall~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3883,15 +3885,21 @@
 		B8FAA16024F0831D00089391 /* FrameLib_Edges.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Edges.h; sourceTree = "<group>"; };
 		B8FD919D197F0F6C00437EB5 /* FrameLib_FixedPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_FixedPoint.h; sourceTree = "<group>"; };
 		B8FD919E197F40B200437EB5 /* FrameLib_Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Types.h; sourceTree = "<group>"; };
+		CC29438787E0A6BEC9948321 /* FrameLib_YINFFT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_YINFFT.h; sourceTree = "<group>"; };
 		D7534214A3C9EAF9659F2538 /* FrameLib_Cumulative.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Cumulative.h; sourceTree = "<group>"; };
 		EC024926B1F68E73B86A1761 /* fl.deltas~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.deltas~.cpp"; sourceTree = "<group>"; };
-		771C475186810D36EEA1ACF7 /* fl.yinfft~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.yinfft~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F68A41A58E8919633CCE4D07 /* fl.yinfft~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.yinfft~.cpp"; sourceTree = "<group>"; };
-		51B84944B03BADC818F5CF12 /* FrameLib_YINFFT.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_YINFFT.cpp; sourceTree = "<group>"; };
-		CC29438787E0A6BEC9948321 /* FrameLib_YINFFT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_YINFFT.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0C944BD78D2027C1DC24289F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E104121947A914F1731617A /* libframelib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3CAB48DE8E3CBD3C3E8B9A74 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -5345,14 +5353,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0C944BD78D2027C1DC24289F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5E104121947A914F1731617A /* libframelib.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -6601,6 +6601,24 @@
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = 5AB54BE42052EAE900325C14 /* fl.fold~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		5CBC4282A295E8CDFDA5D708 /* fl.yinfft~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF22425F873D647D6E6409BD /* Build configuration list for PBXNativeTarget "fl.yinfft~" */;
+			buildPhases = (
+				E94F48CAACAE357B54D5B47C /* Sources */,
+				0C944BD78D2027C1DC24289F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F9843709BC7CA8FF87AC9C4 /* PBXTargetDependency */,
+			);
+			name = "fl.yinfft~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = 771C475186810D36EEA1ACF7 /* fl.yinfft~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		8D01CCC60486CAD60068D4B7 /* fl.unpack~ */ = {
@@ -9802,24 +9820,6 @@
 			productReference = B8F83EBA19C79CC900230CD4 /* fl.ramp~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		5CBC4282A295E8CDFDA5D708 /* fl.yinfft~ */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FF22425F873D647D6E6409BD /* Build configuration list for PBXNativeTarget "fl.yinfft~" */;
-			buildPhases = (
-				E94F48CAACAE357B54D5B47C /* Sources */,
-				0C944BD78D2027C1DC24289F /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4F9843709BC7CA8FF87AC9C4 /* PBXTargetDependency */,
-			);
-			name = "fl.yinfft~";
-			productInstallPath = "$(HOME)/Library/Bundles";
-			productName = MSPExternal;
-			productReference = 771C475186810D36EEA1ACF7 /* fl.yinfft~.mxo */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -11781,6 +11781,11 @@
 			target = B89ABA8F1FA73483006DAD53 /* framelib */;
 			targetProxy = 88924D1E88ACF284D31E79F5 /* PBXContainerItemProxy */;
 		};
+		4F9843709BC7CA8FF87AC9C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = E4944DC0A1506BF6FA0FE93F /* PBXContainerItemProxy */;
+		};
 		5A3CAB162052E7E8001082E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B89ABA8F1FA73483006DAD53 /* framelib */;
@@ -11795,6 +11800,11 @@
 			isa = PBXTargetDependency;
 			target = B89ABA8F1FA73483006DAD53 /* framelib */;
 			targetProxy = 5AB54BD52052EAE900325C14 /* PBXContainerItemProxy */;
+		};
+		AA4B4EC38B40469C4720C1FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5CBC4282A295E8CDFDA5D708 /* fl.yinfft~ */;
+			targetProxy = ED7F411397F9547C950A0501 /* PBXContainerItemProxy */;
 		};
 		B802048A231BDD490062447A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -13536,16 +13546,6 @@
 			target = 2B494B9DA720CDFAD7F0122D /* fl.deltas~ */;
 			targetProxy = 10FE4122A1EACC9C583AD041 /* PBXContainerItemProxy */;
 		};
-		4F9843709BC7CA8FF87AC9C4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B89ABA8F1FA73483006DAD53 /* framelib */;
-			targetProxy = E4944DC0A1506BF6FA0FE93F /* PBXContainerItemProxy */;
-		};
-		AA4B4EC38B40469C4720C1FB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5CBC4282A295E8CDFDA5D708 /* fl.yinfft~ */;
-			targetProxy = ED7F411397F9547C950A0501 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -13689,6 +13689,13 @@
 			};
 			name = Deployment;
 		};
+		44D042CB85AF59D6EB755E02 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AABCE1000000000000000002 /* Config_FrameLib_YINFFT_Max.xcconfig */;
+			buildSettings = {
+			};
+			name = Deployment;
+		};
 		5A3CAB222052E7E8001082E3 /* Development */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
@@ -13758,6 +13765,13 @@
 			buildSettings = {
 			};
 			name = Deployment;
+		};
+		90D64ECD8EB1FA562F17AAC1 /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AABCE1000000000000000002 /* Config_FrameLib_YINFFT_Max.xcconfig */;
+			buildSettings = {
+			};
+			name = "Public Testing";
 		};
 		B8020482231BDCB80062447A /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -18496,13 +18510,6 @@
 			};
 			name = "Public Testing";
 		};
-		F62C40FABE52832373451693 /* Public Testing */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
-			buildSettings = {
-			};
-			name = "Public Testing";
-		};
 		E94F46379D2C8AE72037292C /* Development */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AABCE1000000000000000002 /* Config_FrameLib_YINFFT_Max.xcconfig */;
@@ -18510,16 +18517,9 @@
 			};
 			name = Development;
 		};
-		44D042CB85AF59D6EB755E02 /* Deployment */ = {
+		F62C40FABE52832373451693 /* Public Testing */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AABCE1000000000000000002 /* Config_FrameLib_YINFFT_Max.xcconfig */;
-			buildSettings = {
-			};
-			name = Deployment;
-		};
-		90D64ECD8EB1FA562F17AAC1 /* Public Testing */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AABCE1000000000000000002 /* Config_FrameLib_YINFFT_Max.xcconfig */;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
 			buildSettings = {
 			};
 			name = "Public Testing";
