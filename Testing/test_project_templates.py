@@ -164,12 +164,64 @@ class ProjectTemplateTests(unittest.TestCase):
                      "lastKnownFileType = text.xcconfig; path = " + name + '; sourceTree = "<group>"; };')
         self.assertIn(reference, project.pbxproj.data)
         project.pbxproj.data = project.pbxproj.data.replace(reference, "")
-        with patch.object(project.pbxproj, "flush"), patch.object(project.scheme, "flush"):
+        with patch.object(project.pbxproj, "flush"), patch.object(project.scheme, "flush"), \
+             redirect_stdout(io.StringIO()) as output:
             project.update(self.yin, False)
+        self.assertIn("WARNING - FAILED TO REMOVE", output.getvalue())
         for name in ("build_config_develop", "build_config_deploy", "build_config_test"):
             entry = file_util.templated_string(self.paths.xc_template("object_specific_" + name), self.yin)
             self.assertNotIn(entry, project.pbxproj.data)
         self.assertEqual(self.yin["xc_object_config_guid"], guid)
+
+    def test_removal_of_unused_config_reference(self):
+        project = fl_pbxproj()
+        with patch.object(fl_object, "object_cache", {"fl.yinfft~": self.yin.info.copy()}):
+            info = fl_object.create_from_name("fl.yinfft~")
+        guid = info["xc_object_config_guid"]
+        reference = file_util.templated_string(self.paths.xc_template("fileref_object_config"), info)
+        group = file_util.templated_string(self.paths.xc_template("group_item_object_config"), info)
+        self.assertIn(reference, project.pbxproj.data)
+        self.assertIn(group, project.pbxproj.data)
+        with patch.object(project.pbxproj, "flush"), patch.object(project.scheme, "flush"), \
+             redirect_stdout(io.StringIO()) as output:
+            project.update(info, False)
+        self.assertNotIn(reference, project.pbxproj.data)
+        self.assertNotIn(group, project.pbxproj.data)
+        self.assertEqual(info["xc_object_config_guid"], guid)
+        self.assertNotIn("WARNING - FAILED TO REMOVE", output.getvalue())
+
+    def test_removal_preserves_shared_config_reference(self):
+        project = fl_pbxproj()
+        with patch.object(fl_object, "object_cache", {"fl.yinfft~": self.yin.info.copy()}):
+            info = fl_object.create_from_name("fl.yinfft~")
+        reference = file_util.templated_string(self.paths.xc_template("fileref_object_config"), info)
+        group = file_util.templated_string(self.paths.xc_template("group_item_object_config"), info)
+        shared = "\t\t\tbaseConfigurationReference = " + info["xc_object_config_guid"] + " /* shared */;\n"
+        marker = "/* Begin XCBuildConfiguration section */\n"
+        project.pbxproj.data = project.pbxproj.data.replace(marker, marker + shared)
+        with patch.object(project.pbxproj, "flush"), patch.object(project.scheme, "flush"):
+            project.update(info, False)
+        self.assertIn(reference, project.pbxproj.data)
+        self.assertIn(group, project.pbxproj.data)
+
+    def test_rebuild_reuses_removed_config_guid(self):
+        project = fl_pbxproj()
+        with patch.object(fl_object, "object_cache", {"fl.yinfft~": self.yin.info.copy()}):
+            info = fl_object.create_from_name("fl.yinfft~")
+        guid = info["xc_object_config_guid"]
+        reference = file_util.templated_string(self.paths.xc_template("fileref_object_config"), info)
+        group = file_util.templated_string(self.paths.xc_template("group_item_object_config"), info)
+        with patch("project_tools.guid_util.guid_manager") as manager, \
+             patch.object(project.pbxproj, "flush"), patch.object(project.scheme, "flush"), \
+             redirect_stdout(io.StringIO()) as output:
+            manager.return_value.xc.return_value = ""
+            project.update(info, False)
+            project.update(info, True)
+        self.assertEqual(info["xc_object_config_guid"], guid)
+        manager.return_value.create_xc.assert_not_called()
+        self.assertEqual(project.pbxproj.data.count(reference), 1)
+        self.assertEqual(project.pbxproj.data.count(group), 1)
+        self.assertNotIn("WARNING - FAILED TO REMOVE", output.getvalue())
 
     def test_build_configurations_can_be_removed_and_reinserted(self):
         names = ("build_config_develop", "build_config_deploy", "build_config_test")
@@ -199,21 +251,66 @@ class ProjectTemplateTests(unittest.TestCase):
                             current = fl_object.create_from_name(info["max_class_name"])
                         project = fl_pbxproj()
                         with patch.object(fl_paths, "object_xc_config_exists", return_value=config_exists), \
+                             patch("project_tools.guid_util.guid_manager") as manager, \
                              patch.object(project, "project_modify_section") as modify_section, \
                              patch.object(project, "project_modify"), \
                              patch.object(project, "project_modify_list"), \
+                             patch.object(project, "project_add_object_config") as add_object_config, \
                              patch.object(project, "scheme_modify"), \
                              patch.object(project.pbxproj, "flush"), \
                              patch.object(project.scheme, "flush"):
                             previous_guid = current["xc_object_config_guid"]
+                            generated_guid = "1234567890ABCDEF12345678"
+                            manager.return_value.xc.return_value = previous_guid
+                            manager.return_value.create_xc.return_value = generated_guid
                             prefix = "object_specific_" if (config_exists if add else previous_guid) else ""
                             project.update(current, add)
                         configs = [call.args for call in modify_section.call_args_list
                                    if call.args[2] == "XCBuildConfiguration"]
                         self.assertEqual(configs, [(current, prefix + name, "XCBuildConfiguration", add)
                                                    for name in names])
-                        expected_guid = "" if not add and not config_exists else previous_guid
+                        expected_guid = previous_guid
+                        if add and config_exists and not previous_guid:
+                            expected_guid = generated_guid
+                            modify_section.assert_any_call(current, "fileref_object_config", "PBXFileReference", True)
+                            add_object_config.assert_called_once_with(current)
+                        elif not add and not config_exists:
+                            expected_guid = ""
                         self.assertEqual(current["xc_object_config_guid"], expected_guid)
+
+    def test_object_config_group_position(self):
+        project = fl_pbxproj()
+        info = self.fft.info.copy()
+        info["xc_object_config_guid"] = "1234567890ABCDEF12345678"
+        project.project_add_object_config(info)
+        shared = "/* Config_FrameLib_Objects.xcconfig */,\n"
+        added = file_util.templated_string(self.paths.xc_template("group_item_object_config"), info)
+        self.assertIn(shared + added, project.pbxproj.data)
+
+    def test_object_config_group_position_without_objects_config(self):
+        project = fl_pbxproj()
+        info = self.fft.info.copy()
+        info["xc_object_config_guid"] = "1234567890ABCDEF12345678"
+        shared = "\t\t\t\tAABCE1000000000000000001 /* Config_FrameLib_Objects.xcconfig */,\n"
+        self.assertIn(shared, project.pbxproj.data)
+        project.pbxproj.data = project.pbxproj.data.replace(shared, "")
+        project.project_add_object_config(info)
+        added = file_util.templated_string(self.paths.xc_template("group_item_object_config"), info)
+        self.assertIn("/* Config_FrameLib.xcconfig */,\n" + added, project.pbxproj.data)
+
+    def test_object_config_group_warns_without_shared_config(self):
+        project = fl_pbxproj()
+        info = self.fft.info.copy()
+        info["xc_object_config_guid"] = "1234567890ABCDEF12345678"
+        project.pbxproj.data = project.pbxproj.data.replace(
+            "/* Config_FrameLib_Objects.xcconfig */,", "/* missing objects config */,")
+        project.pbxproj.data = project.pbxproj.data.replace(
+            "/* Config_FrameLib.xcconfig */,", "/* missing main config */,")
+        with redirect_stdout(io.StringIO()) as output:
+            project.project_add_object_config(info)
+        self.assertIn("WARNING - Missing shared configuration entry", output.getvalue())
+        added = file_util.templated_string(self.paths.xc_template("group_item_object_config"), info)
+        self.assertIn(added, project.pbxproj.data)
 
     def test_failed_flush_preserves_cached_guid(self):
         project = fl_pbxproj()

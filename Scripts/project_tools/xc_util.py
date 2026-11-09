@@ -65,6 +65,89 @@ class fl_pbxproj:
             
         bounds = section_bounds(section) + item_bounds(item, item_guid) + list_bounds(list_name)
         self.project_modify(info, template, bounds, add)
+
+
+    def project_add_object_config(self, info: fl_object):
+
+        # Add the object-specific configuration to the main group after the shared configurations
+
+        bounds = section_bounds("PBXGroup") + item_bounds("main_group") + list_bounds("children")
+        for name in ("Config_FrameLib_Objects.xcconfig", "Config_FrameLib.xcconfig"):
+            exp = r"(?:^|\n)[ \t]*([A-F0-9]+) /\* " + name.replace(".", r"\.") + r" \*/,\n"
+            guid = file_util.regex_search_section(self.pbxproj.data, bounds, exp)
+            if guid:
+                anchor = guid + " /* " + name + " */,\n"
+                self.project_modify(info, "group_item_object_config", bounds + [anchor, ""], True)
+                return
+
+        print("WARNING - Missing shared configuration entry in Xcode main group")
+        self.project_modify_list(info, "group_item_object_config", "PBXGroup", "main_group", "children", True)
+
+
+    def project_modify_object_config(self, obj: fl_object, add: bool):
+
+        from . guid_util import guid_manager
+
+        if add:
+
+            # The object doesn't have an object-specific configuration file
+
+            if not fl_paths().object_xc_config_exists(obj):
+                return
+
+            # Attempt to retrieve the GUID from the Xcode project
+
+            gm = guid_manager()
+            name = fl_paths().object_xc_config_name(obj)
+            guid = gm.xc("PBXFileReference", name)
+
+            # If the GUID is present ensure it is stored in the object info
+
+            if guid:
+                obj.info["xc_object_config_guid"] = guid
+                return
+
+            # Reuse the cached GUID if available and unused, otherwise create a new one
+
+            guid = obj["xc_object_config_guid"]
+            if not guid or guid in self.pbxproj.data:
+                guid = gm.create_xc()
+            obj.info["xc_object_config_guid"] = guid
+
+            # Add the object-specific configuration to the main group
+
+            self.project_add_object_config(obj)
+
+        else:
+
+            guid = obj["xc_object_config_guid"]
+            if not guid:
+                return
+
+            bounds = section_bounds("XCBuildConfiguration")
+            start, end = file_util.find_section(self.pbxproj.data, bounds)
+            configs = self.pbxproj.data[start:end]
+
+            # Remove the configuration entries from a local copy of the configs section of the project
+            
+            for name in ("develop", "deploy", "test"):
+                template = fl_paths().object_xc_template("object_specific_build_config_" + name, obj)
+                contents = file_util.templated_string(template, obj)
+                configs = configs.replace(contents, "", 1)
+            exp = r"baseConfigurationReference = (" + guid + r")\s"
+            
+            # Keep the file reference if another build configuration still uses it
+
+            if file_util.regex_search(configs, exp):
+                return
+
+            # Remove the object-specific configuration from the main group
+
+            self.project_modify_list(obj, "group_item_object_config", "PBXGroup", "main_group", "children", False)
+
+        # Modify the object-specific configuration file reference in the Xcode project
+
+        self.project_modify_section(obj, "fileref_object_config", "PBXFileReference", add)
    
    
     def scheme_modify(self, info: fl_object, add: bool):
@@ -81,6 +164,10 @@ class fl_pbxproj:
         header_exists = fl_paths().object_header_exists(info)
         external_object = info.object_file_external()
         category = info["category"]
+
+        # Add or remove the object-specific configuration file reference if required.
+
+        self.project_modify_object_config(info, add)
         
         # Modify file items
         

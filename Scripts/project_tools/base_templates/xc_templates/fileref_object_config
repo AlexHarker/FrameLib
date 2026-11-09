@@ -1,0 +1,1 @@
+		_##XC_OBJECT_CONFIG_GUID##_ /* Config__##OBJECT_CLASS_FILE##__Max.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config__##OBJECT_CLASS_FILE##__Max.xcconfig; sourceTree = "<group>"; };
