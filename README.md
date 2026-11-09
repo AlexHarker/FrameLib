@@ -31,6 +31,22 @@ Where to start:
 - If you wish to code new objects read the (limited) doxygen documentation of the framework source code
 - FrameLib can be discussed at https://framelib.discourse.group
 
+Project generator templates:
+---------------------------------
+- To override an object-specific source entry, place a template named `<template>.<FrameLib_class_file>` next to the corresponding default template in `Scripts/project_tools/base_templates`. Entries without an override use the default template.
+- If `Config_<FrameLib_class_file>_Max.xcconfig` exists in the repository root, Xcode project generation uses the generic `object_specific_build_config_*` templates for that object's build configurations. Add the configuration file to the Xcode project before generating its entries. Remove existing object entries before adding or deleting the configuration file, so their removal uses the matching templates.
+
+Dependencies:
+---------------------------------
+- Initialise the repository dependencies with `git submodule update --init --recursive`.
+- The `fl.yinfft~` object uses FluCoMa core, Eigen and foonathan memory. For Xcode or Visual Studio builds, install CMake and run `python3 Scripts/setup_flucoma.py` from the repository root after initialising the submodules. On Windows, use `python Scripts/setup_flucoma.py --platform Win32` for 32-bit builds (the default is `x64`). Run the setup again if the platform or compiler changes. The PD makefile builds the dependency automatically.
+- In Xcode, the standalone `fl.yinfft~` target links foonathan memory directly, while the `framelib_objects` static library incorporates it for the single-binary Max, PD, SuperCollider and other object-library consumers.
+- In Visual Studio, `framelib_objects.lib` incorporates the configuration-matched foonathan memory library; individual Max projects do not link it separately.
+- `fl.yinfft~` accepts a non-negative magnitude spectrum including DC and Nyquist, with `N / 2 + 1` bins for a power-of-two FFT of length `N`. It outputs pitch in Hz and confidence as separate single-value frames. The `max_length` instantiation parameter sets the maximum FFT size; `min_frequency` and `max_frequency` set the pitch search bounds. Bounds must be positive, ordered and no higher than Nyquist. Silent spectra yield zero for both outputs.
+- FluCoMa core is distributed under the BSD 3-Clause license, Eigen under MPL2 (and other licenses for portions not used here), and foonathan memory under the zlib license. Include their license notices when distributing binaries.
+- After building the Xcode `framelib_objects` target, the focused YINFFT test can be run on macOS with:
+  `clang++ -std=c++11 -IFrameLib_Framework Testing/YINFFTTests.cpp build/Development/libframelib_objects.a build/Development/libframelib.a -framework Accelerate -o /tmp/framelib-yinfft-tests && /tmp/framelib-yinfft-tests`
+
 What is currently on the horizon:
 ---------------------------------
 - Full SuperCollider support (there are some key issues to address listed alongside the SC work)
