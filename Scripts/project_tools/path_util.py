@@ -16,9 +16,29 @@ class fl_paths:
 
     def vs_template(self, file_name: str):
         return self.template_dir + "vs_templates/" + file_name
+
+    def object_template_name(self, file_name: str, info: fl_object):
+        name = info["object_class_file"]
+        if name.startswith("FrameLib_"):
+            name = name[len("FrameLib_"):]
+        return name + "_" + file_name
+
+    def object_vs_template(self, file_name: str, info: fl_object):
+        template = self.vs_template(self.object_template_name(file_name, info))
+        return template if Path(template).is_file() else self.vs_template(file_name)
         
     def xc_template(self, file_name: str):
         return self.template_dir + "xc_templates/" +  file_name
+
+    def object_xc_config_name(self, info: fl_object):
+        return "Config_" + info["object_class_file"] + "_Max.xcconfig"
+
+    def object_xc_config_exists(self, info: fl_object):
+        return (Path(self.base_dir) / self.object_xc_config_name(info)).is_file()
+
+    def object_xc_template(self, file_name: str, info: fl_object):
+        template = self.xc_template(self.object_template_name(file_name, info))
+        return template if Path(template).is_file() else self.xc_template(file_name)
         
     def code_template(self, file_name: str):
         return self.template_dir + "code_templates/" +  file_name

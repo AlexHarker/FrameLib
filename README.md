@@ -33,7 +33,7 @@ Where to start:
 
 Project generator templates:
 ---------------------------------
-- To override an object-specific source entry, place a template named `<template>.<FrameLib_class_file>` next to the corresponding default template in `Scripts/project_tools/base_templates`. Entries without an override use the default template.
+- To override an object-specific source entry, place a template named `<class_file_without_FrameLib_>_<template>` next to the corresponding default template in `Scripts/project_tools/base_templates` (for example, `YINFFT_file_object`). Entries without an override use the default template.
 - If `Config_<FrameLib_class_file>_Max.xcconfig` exists in the repository root, Xcode project generation uses the generic `object_specific_build_config_*` templates for that object's build configurations. Add the configuration file to the Xcode project before generating its entries. Remove existing object entries before adding or deleting the configuration file, so their removal uses the matching templates.
 
 Dependencies:

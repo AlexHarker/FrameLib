@@ -40,7 +40,7 @@ class fl_pbxproj:
     
         # Add or remove templated contents from the Xcode project
         
-        contents = file_util.templated_string(fl_paths().xc_template(template), info)
+        contents = file_util.templated_string(fl_paths().object_xc_template(template, info), info)
         self.pbxproj.data = file_util.modify(self.pbxproj.data, contents, bounds, add)
     
     
@@ -139,9 +139,11 @@ class fl_pbxproj:
 
         # Modify the build configs and config list for the target
         
-        self.project_modify_section(info, "build_config_develop", "XCBuildConfiguration", add)
-        self.project_modify_section(info, "build_config_deploy", "XCBuildConfiguration", add)
-        self.project_modify_section(info, "build_config_test", "XCBuildConfiguration", add)
+        prefix = "object_specific_" if fl_paths().object_xc_config_exists(info) else ""
+        
+        self.project_modify_section(info, prefix + "build_config_develop", "XCBuildConfiguration", add)
+        self.project_modify_section(info, prefix + "build_config_deploy", "XCBuildConfiguration", add)
+        self.project_modify_section(info, prefix + "build_config_test", "XCBuildConfiguration", add)
 
         self.project_modify_section(info, "config_list", "XCConfigurationList", add)
         

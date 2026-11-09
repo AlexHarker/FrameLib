@@ -43,7 +43,7 @@ class fl_solution:
     
         # Add or remove templated contents from the max object VS project
             
-        contents = file_util.templated_string(fl_paths().vs_template(template), info)
+        contents = file_util.templated_string(fl_paths().object_vs_template(template, info), info)
         self.project.data = file_util.modify(self.project.data, contents, bounds, add)
 
         

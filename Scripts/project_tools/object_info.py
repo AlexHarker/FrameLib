@@ -272,9 +272,13 @@ class fl_object:
                 
         info["xc_group_object_guid"] = gm.xc_component("PBXGroup", "Objects FrameLib", "children", category)
         info["xc_group_max_guid"] = gm.xc_component("PBXGroup", "Objects Max", "children", category)
-      
+
+        # Find the object config guid if needed (otherwise "")
+
+        self.info["xc_object_config_guid"] = self.__object_xc_config_guid(gm)
+
         fl_object.object_cache[max_class_name] = info
-        
+
         
     # Helper to add XC guids to a key
     
@@ -287,6 +291,21 @@ class fl_object:
         
         return guid
         
+    # Helper to get the XC config guid for this object
+
+    def __object_xc_config_guid(self, gm):
+
+        from . path_util import fl_paths
+
+        paths = fl_paths()
+        if paths.object_xc_config_exists(self):
+            name = paths.object_xc_config_name(self)
+            guid = gm.xc("PBXFileReference", name)
+            if not guid:
+                raise ValueError("Missing Xcode configuration file reference: " + name)
+            return guid
+        return ""
+
         
     # Methods to add missing categories
     
