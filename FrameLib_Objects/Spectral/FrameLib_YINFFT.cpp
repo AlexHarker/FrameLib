@@ -7,30 +7,30 @@
 
 namespace
 {
-struct FluidAllocator
-{
-    using is_stateful = std::true_type;
-
-    explicit FluidAllocator(FrameLib_DSP::Allocator allocator) : mAllocator(allocator) {}
-
-    void *allocate_node(std::size_t size, std::size_t alignment)
+    struct FluidAllocator
     {
-        if (alignment > FrameLib_GlobalAllocator::getAlignment())
-            throw std::bad_alloc();
-        void *ptr = mAllocator.allocate<char>(size);
-        if (!ptr)
-            throw std::bad_alloc();
-        return ptr;
-    }
+        using is_stateful = std::true_type;
 
-    void deallocate_node(void *ptr, std::size_t, std::size_t) noexcept
-    {
-        char *memory = static_cast<char *>(ptr);
-        mAllocator.deallocate(memory);
-    }
+        explicit FluidAllocator(FrameLib_DSP::Allocator allocator) : mAllocator(allocator) {}
 
-    FrameLib_DSP::Allocator mAllocator;
-};
+        void *allocate_node(std::size_t size, std::size_t alignment)
+        {
+            if (alignment > FrameLib_GlobalAllocator::getAlignment())
+                throw std::bad_alloc();
+            void *ptr = mAllocator.allocate<char>(size);
+            if (!ptr)
+                throw std::bad_alloc();
+            return ptr;
+        }
+
+        void deallocate_node(void *ptr, std::size_t, std::size_t) noexcept
+        {
+            char *memory = static_cast<char *>(ptr);
+            mAllocator.deallocate(memory);
+        }
+
+        FrameLib_DSP::Allocator mAllocator;
+    };
 }
 
 struct FrameLib_YINFFT::Implementation
@@ -51,9 +51,9 @@ FrameLib_YINFFT::FrameLib_YINFFT(FrameLib_Context context, const FrameLib_Parame
     mParameters.setClip(16, 65536);
     mParameters.setInstantiation();
     mParameters.addDouble(kMinFrequency, "min_frequency", 20.0, 1);
-    mParameters.setMin(1.0);
+    mParameters.setMin(0.0);
     mParameters.addDouble(kMaxFrequency, "max_frequency", 10000.0, 2);
-    mParameters.setMin(1.0);
+    mParameters.setMin(0.0);
     mParameters.set(serialisedParameters);
     addParameterInput();
 
@@ -97,28 +97,13 @@ void FrameLib_YINFFT::process()
     const double minFrequency = mParameters.getValue(kMinFrequency);
     const double maxFrequency = mParameters.getValue(kMaxFrequency);
     const unsigned long fftSize = size > 1 ? 2 * (size - 1) : 0;
-    bool valid = input && size >= 9 && size <= mMaxLength / 2 + 1
+    const bool valid = input && size >= 9 && size <= mMaxLength / 2 + 1
         && fftSize && !(fftSize & (fftSize - 1))
-        && std::isfinite(mSamplingRate) && mSamplingRate > 0
         && std::isfinite(minFrequency) && std::isfinite(maxFrequency)
-        && minFrequency >= 1 && minFrequency < maxFrequency && maxFrequency <= mSamplingRate / 2;
-
-    double maximum = 0;
-    if (valid)
-    {
-        for (unsigned long i = 0; i < size; ++i)
-        {
-            if (!std::isfinite(input[i]) || input[i] < 0)
-            {
-                valid = false;
-                break;
-            }
-            maximum = std::max(maximum, input[i]);
-        }
-    }
+        && minFrequency < maxFrequency && maxFrequency <= mSamplingRate / 2;
 
     if (!valid)
-        getReporter()(ErrorSource::Object, getProxy(), "YINFFT requires a valid magnitude spectrum, sample rate, and ordered frequency bounds below Nyquist");
+        getReporter()(ErrorSource::Object, getProxy(), "YINFFT requires a valid magnitude spectrum, and ordered frequency bounds below Nyquist");
 
     requestOutputSize(0, valid ? 1 : 0);
     requestOutputSize(1, valid ? 1 : 0);
@@ -132,18 +117,13 @@ void FrameLib_YINFFT::process()
         return;
 
     *pitch = *confidence = 0;
-    if (!maximum)
-        return;
-
-    auto magnitudes = allocAutoArray<double>(size);
-    if (!magnitudes.data())
-        return;
-    for (unsigned long i = 0; i < size; ++i)
-        magnitudes.data()[i] = input[i] / maximum;
 
     double result[2] = { 0, 0 };
-    fluid::RealVectorView in(magnitudes.data(), 0, static_cast<fluid::index>(size));
+
+    // FluCoMa's input view requires a mutable pointer, but YINFFT only reads it.
+    fluid::RealVectorView in(const_cast<double *>(input), 0, static_cast<fluid::index>(size));
     fluid::RealVectorView out(result, 0, 2);
+
     try
     {
         mImplementation->mYin.processFrame(in, out, minFrequency, maxFrequency, mSamplingRate, mImplementation->mAllocator);
