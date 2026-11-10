@@ -24,21 +24,21 @@ struct FrameLib_MFCC::Implementation
 FrameLib_MFCC::FrameLib_MFCC(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), mMaxFFTSize(16)
 {
-    mParameters.addInt(kMaxBands, "max_bands", 128);
-    mParameters.setClip(2, 1024);
-    mParameters.setInstantiation();
-    mParameters.addInt(kMaxFFTSize, "max_fft_size", 8192);
+    mParameters.addInt(kMaxFFTSize, "max_fft_size", 16384, 0);
     mParameters.setClip(16, 65536);
     mParameters.setInstantiation();
-    mParameters.addInt(kCoefficients, "coefficients", 13, 0);
+    mParameters.addInt(kMaxBands, "max_bands", 128, 1);
+    mParameters.setClip(2, 1024);
+    mParameters.setInstantiation();
+    mParameters.addInt(kCoefficients, "coefficients", 13, 2);
     mParameters.setMin(1);
-    mParameters.addInt(kBands, "bands", 40, 1);
+    mParameters.addInt(kBands, "bands", 40, 3);
     mParameters.setMin(2);
-    mParameters.addDouble(kMinFrequency, "min_frequency", 20.0, 2);
+    mParameters.addDouble(kMinFrequency, "min_frequency", 20.0, 4);
     mParameters.setMin(0.0);
-    mParameters.addDouble(kMaxFrequency, "max_frequency", 20000.0, 3);
+    mParameters.addDouble(kMaxFrequency, "max_frequency", 20000.0, 5);
     mParameters.setMin(0.0);
-    mParameters.addBool(kDropZero, "drop_zero", false, 4);
+    mParameters.addBool(kDropZero, "drop_zero", false, 6);
     mParameters.set(serialisedParameters);
     addParameterInput();
 
@@ -76,8 +76,8 @@ FrameLib_MFCC::ParameterInfo FrameLib_MFCC::sParamInfo;
 
 FrameLib_MFCC::ParameterInfo::ParameterInfo()
 {
-    add("Sets the maximum number of mel bands.");
     add("Sets the maximum FFT size, rounded up to a power of two (16 to 65536).");
+    add("Sets the maximum number of mel bands.");
     add("Sets the number of coefficients output (limited by the number of bands).");
     add("Sets the number of mel bands (limited by the maximum number of bands).");
     add("Sets the lowest frequency in Hz.");

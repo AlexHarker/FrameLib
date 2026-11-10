@@ -6,7 +6,7 @@
 
 class FrameLib_MFCC final : public FrameLib_Processor
 {
-    enum ParameterList { kMaxBands, kMaxFFTSize, kCoefficients, kBands, kMinFrequency, kMaxFrequency, kDropZero };
+    enum ParameterList { kMaxFFTSize, kMaxBands, kCoefficients, kBands, kMinFrequency, kMaxFrequency, kDropZero };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
