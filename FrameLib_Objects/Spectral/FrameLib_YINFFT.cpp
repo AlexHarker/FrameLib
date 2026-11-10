@@ -32,6 +32,7 @@ FrameLib_YINFFT::FrameLib_YINFFT(FrameLib_Context context, const FrameLib_Parame
 
     while (mMaxLength < static_cast<unsigned long>(mParameters.getInt(kMaxLength)))
         mMaxLength <<= 1;
+    
     mImplementation.reset(new Implementation(Allocator(*this), mMaxLength));
 }
 

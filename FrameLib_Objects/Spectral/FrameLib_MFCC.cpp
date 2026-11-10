@@ -44,6 +44,7 @@ FrameLib_MFCC::FrameLib_MFCC(FrameLib_Context context, const FrameLib_Parameters
 
     while (mMaxFFTSize < static_cast<unsigned long>(mParameters.getInt(kMaxFFTSize)))
         mMaxFFTSize <<= 1;
+    
     mImplementation.reset(new Implementation(Allocator(*this), mParameters.getInt(kMaxBands), mMaxFFTSize));
     
     objectReset();
