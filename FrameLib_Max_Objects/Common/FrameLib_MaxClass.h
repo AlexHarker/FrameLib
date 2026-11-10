@@ -1952,6 +1952,7 @@ public:
         for (unsigned long i = 0; i < updateLength; i += maxBlockSize())
         {
             unsigned long blockSize = std::min(maxBlockSize(), updateLength - i);
+            t_ptr_int offset = static_cast<t_ptr_int>(time + i);
             
             // Process inputs and schedulers (block controls object lifetime)
             
@@ -1964,7 +1965,7 @@ public:
                     if (it->mObject->getType() == ObjectType::Output)
                         continue;
                     
-                    read(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioIns(), blockSize, time + i + it->mOffset);
+                    read(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioIns(), blockSize, offset + it->mOffset);
                     it->mObject->blockUpdate(ioBuffers.data(), nullptr, blockSize, queue);
                 }
             }
@@ -1977,7 +1978,7 @@ public:
                     continue;
                 
                 it->mObject->blockUpdate(nullptr, ioBuffers.data(), blockSize);
-                write(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioOuts(), blockSize, time + i + it->mOffset);
+                write(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioOuts(), blockSize, offset + it->mOffset);
             }
         }
         
@@ -2156,7 +2157,7 @@ public:
     
     static t_max_err offsetSet(FrameLib_MaxClass *x, t_object *attr, long argc, t_atom *argv)
     {
-        x->mOffset = argv ? std::max((t_atom_long)0, atom_getlong(argv)) : 0;
+        x->mOffset = argv ? atom_getlong(argv) : 0;
     
         return MAX_ERR_NONE;
     }
@@ -2817,7 +2818,7 @@ private:
 
     // Buffer access (read and write multichannel buffers)
     
-    void read(t_symbol *buffer, double **outs, size_t numChans, size_t size, size_t offset)
+    void read(t_symbol *buffer, double **outs, size_t numChans, size_t size, t_ptr_int offset)
     {
         MaxBufferAccess access(*this, buffer);
         
@@ -2825,7 +2826,7 @@ private:
             access.read(outs[i], size, offset, i);
     }
     
-    void write(t_symbol *buffer, const double * const *ins, size_t numChans, size_t size, size_t offset)
+    void write(t_symbol *buffer, const double * const *ins, size_t numChans, size_t size, t_ptr_int offset)
     {
         MaxBufferAccess access(*this, buffer);
         

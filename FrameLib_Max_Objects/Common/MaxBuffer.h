@@ -62,22 +62,30 @@ public:
     long chans() const              { return mChans; }
     double sampleRate() const       { return mSampleRate; }
     
-    void read(double *output, t_ptr_uint length, t_ptr_uint offset, t_ptr_uint chan)
+    void read(double *output, t_ptr_uint length, t_ptr_int offset, t_ptr_uint chan)
     {
         t_ptr_uint readLength = constrainLength(length, chan, offset);
+        t_ptr_uint offsetPad = std::min(handleNegativeOffset(offset), length);
+
+        // Zero remaining samples if needed
+                
+        std::fill_n(output, offsetPad, 0.0);
+        
         float *samples = mSamples + offset * mChans + chan;
         
         for (t_ptr_uint i = 0; i < readLength; i++, samples += mChans)
-            output[i] = *samples;
+            output[i + offsetPad] = *samples;
             
         // Zero remaining samples if needed
             
-        std::fill_n(output + readLength, length - readLength, 0.0);
+        std::fill_n(output + offsetPad + readLength, length - (offsetPad + readLength), 0.0);
     }
     
-    void write(const double *input, t_ptr_uint length, t_ptr_uint offset, t_ptr_uint chan)
+    void write(const double *input, t_ptr_uint length, t_ptr_int offset, t_ptr_uint chan)
     {
         length = constrainLength(length, chan, offset);
+        
+        handleNegativeOffset(offset);
         
         float *samples = mSamples + offset * mChans + chan;
         
@@ -108,19 +116,37 @@ private:
         mSampleRate = mSamples ? info.b_sr : 0.0;
     }
     
-    t_ptr_uint constrainLength(t_ptr_uint length, t_ptr_uint chan, t_ptr_uint offset)
+    t_ptr_uint constrainLength(t_ptr_uint length, t_ptr_uint chan, t_ptr_int offset)
     {
+        auto prior = handleNegativeOffset(offset);
+        
         // Request is entirely outside of the buffer's memory
         
-        if (chan >= static_cast<t_ptr_uint>(mChans) || offset >= static_cast<t_ptr_uint>(mLength))
+        if (chan >= static_cast<t_ptr_uint>(mChans) || offset >= mLength || length < prior)
             return 0;
         
-        // Request is partially outside of the buffer's memory
+        // Deal with negative offsets
+        
+        length -= prior;
+        
+        // Request is partially after the buffer's memory
         
         if ((offset + length) > static_cast<t_ptr_uint>(mLength))
             return mLength - offset;
         
         return length;
+    }
+    
+    t_ptr_uint handleNegativeOffset(t_ptr_int& offset)
+    {
+        if (offset < 0)
+        {
+            t_ptr_uint prior = static_cast<t_ptr_uint>(-offset);
+            offset = 0;
+            return prior;
+        }
+        
+        return 0;
     }
     
     t_object *mOwner;
