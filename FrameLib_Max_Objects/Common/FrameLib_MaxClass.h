@@ -358,7 +358,7 @@ public:
     void schedule()
     {
         ready();
-        schedule_delay(*this, (method)&service, 0, nullptr, 0, nullptr);
+        schedule_delay(*this, asMethod(&service), 0, nullptr, 0, nullptr);
     }
     
     void flush(FrameLib_MaxProxy *proxy)
@@ -510,7 +510,7 @@ public:
     struct ErrorNotifier : public FrameLib_ErrorReporter::HostNotifier
     {
         ErrorNotifier(FrameLib_Global **globalHandle)
-        : mQelem(globalHandle, (method) &flush) {}
+        : mQelem(globalHandle, asMethod(&flush)) {}
         
         bool notify(const FrameLib_ErrorReporter::ErrorReport& report) override
         {
@@ -638,7 +638,7 @@ public:
     , mNRTNotifier(&mNRTGlobal)
     , mRTGlobal(nullptr)
     , mNRTGlobal(nullptr)
-    , mQelem(*this, (method) &serviceContexts)
+    , mQelem(*this, asMethod(&serviceContexts))
     , mSyncCheck(nullptr)
     {}
     
@@ -938,12 +938,12 @@ public:
         *signalMethodCache() = class_method(c, gensym("signal"));
         addMethod<Wrapper<T>, &Wrapper<T>::signal>(c, "signal");
         
-        addMethod(c, (method) &dblclick, "dblclick");
-        addMethod(c, (method) &userConnect, "userconnect");
-        addMethod(c, (method) &patchLineUpdate, "patchlineupdate");
-        addMethod(c, (method) &connectionAccept, "connectionaccept");
-        addMethod(c, (method) &unwrap, FrameLib_MaxPrivate::messageUnwrap());
-        addMethod(c, (method) &isWrapper, FrameLib_MaxPrivate::messageIsWrapper());
+        addMethod(c, asMethod(&dblclick), "dblclick");
+        addMethod(c, asMethod(&userConnect), "userconnect");
+        addMethod(c, asMethod(&patchLineUpdate), "patchlineupdate");
+        addMethod(c, asMethod(&connectionAccept), "connectionaccept");
+        addMethod(c, asMethod(&unwrap), FrameLib_MaxPrivate::messageUnwrap());
+        addMethod(c, asMethod(&isWrapper), FrameLib_MaxPrivate::messageIsWrapper());
 
         // Make sure the mutator class exists
         
@@ -1413,8 +1413,8 @@ public:
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::reset>(c, "reset");
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::process>(c, "process");
 
-            addMethod(c, (method) &dblclick, "dblclick");
-            addMethod(c, (method) &extFindAudio, FrameLib_MaxPrivate::messageFindAudioObjects());
+            addMethod(c, asMethod(&dblclick), "dblclick");
+            addMethod(c, asMethod(&extFindAudio), FrameLib_MaxPrivate::messageFindAudioObjects());
 
             dspInit(c);
             
@@ -1444,22 +1444,22 @@ public:
 
         // External Methods
         
-        addMethod(c, (method) &extPatchLineUpdate, "patchlineupdate");
-        addMethod(c, (method) &extConnectionAccept, "connectionaccept");
-        addMethod(c, (method) &extResolveContext, FrameLib_MaxPrivate::messageResolveContext());
-        addMethod(c, (method) &extResolveConnections, FrameLib_MaxPrivate::messageResolveConnections());
-        addMethod(c, (method) &extMarkUnresolved, FrameLib_MaxPrivate::messageMarkUnresolved());
-        addMethod(c, (method) &extMakeAutoOrdering, FrameLib_MaxPrivate::messageMakeAutoOrdering());
-        addMethod(c, (method) &extClearAutoOrdering, FrameLib_MaxPrivate::messageClearAutoOrdering());
-        addMethod(c, (method) &extReset, FrameLib_MaxPrivate::messageReset());
-        addMethod(c, (method) &extIsDirectlyConnected, FrameLib_MaxPrivate::messageIsDirectlyConnected());
-        addMethod(c, (method) &extConnectionConfirm, FrameLib_MaxPrivate::messageConnectionConfirm());
-        addMethod(c, (method) &extConnectionUpdate, FrameLib_MaxPrivate::messageConnectionUpdate());
-        addMethod(c, (method) &extGetFLObject, FrameLib_MaxPrivate::messageGetFrameLibObject());
-        addMethod(c, (method) &extGetUserObject, FrameLib_MaxPrivate::messageGetUserObject());
-        addMethod(c, (method) &extGetNumAudioIns, FrameLib_MaxPrivate::messageGetNumAudioIns());
-        addMethod(c, (method) &extGetNumAudioOuts, FrameLib_MaxPrivate::messageGetNumAudioOuts());
-        addMethod(c, (method) &extLoadbang, "loadbang");
+        addMethod(c, asMethod(&extPatchLineUpdate), "patchlineupdate");
+        addMethod(c, asMethod(&extConnectionAccept), "connectionaccept");
+        addMethod(c, asMethod(&extResolveContext), FrameLib_MaxPrivate::messageResolveContext());
+        addMethod(c, asMethod(&extResolveConnections), FrameLib_MaxPrivate::messageResolveConnections());
+        addMethod(c, asMethod(&extMarkUnresolved), FrameLib_MaxPrivate::messageMarkUnresolved());
+        addMethod(c, asMethod(&extMakeAutoOrdering), FrameLib_MaxPrivate::messageMakeAutoOrdering());
+        addMethod(c, asMethod(&extClearAutoOrdering), FrameLib_MaxPrivate::messageClearAutoOrdering());
+        addMethod(c, asMethod(&extReset), FrameLib_MaxPrivate::messageReset());
+        addMethod(c, asMethod(&extIsDirectlyConnected), FrameLib_MaxPrivate::messageIsDirectlyConnected());
+        addMethod(c, asMethod(&extConnectionConfirm), FrameLib_MaxPrivate::messageConnectionConfirm());
+        addMethod(c, asMethod(&extConnectionUpdate), FrameLib_MaxPrivate::messageConnectionUpdate());
+        addMethod(c, asMethod(&extGetFLObject), FrameLib_MaxPrivate::messageGetFrameLibObject());
+        addMethod(c, asMethod(&extGetUserObject), FrameLib_MaxPrivate::messageGetUserObject());
+        addMethod(c, asMethod(&extGetNumAudioIns), FrameLib_MaxPrivate::messageGetNumAudioIns());
+        addMethod(c, asMethod(&extGetNumAudioOuts), FrameLib_MaxPrivate::messageGetNumAudioOuts());
+        addMethod(c, asMethod(&extLoadbang), "loadbang");
     }
 
     // Check if a patch in memory matches a symbol representing a path
@@ -1682,7 +1682,7 @@ public:
         
         // Ensure that the context patch is correct in case other methods fail
         
-        defer_low(x, (method) ensureContextPatch, nullptr, 0, nullptr);
+        defer_low(x, asMethod(ensureContextPatch), nullptr, 0, nullptr);
     }
 
     ~FrameLib_MaxClass()
