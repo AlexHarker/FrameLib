@@ -23,9 +23,9 @@ FrameLib_YINFFT::FrameLib_YINFFT(FrameLib_Context context, const FrameLib_Parame
     mParameters.addInt(kMaxLength, "max_length", 16384, 0);
     mParameters.setClip(16, 65536);
     mParameters.setInstantiation();
-    mParameters.addDouble(kMinFrequency, "min_frequency", 20.0, 1);
+    mParameters.addDouble(kMinFrequency, "min_freq", 20.0, 1);
     mParameters.setMin(0.0);
-    mParameters.addDouble(kMaxFrequency, "max_frequency", 10000.0, 2);
+    mParameters.addDouble(kMaxFrequency, "max_freq", 10000.0, 2);
     mParameters.setMin(0.0);
     mParameters.set(serialisedParameters);
     addParameterInput();

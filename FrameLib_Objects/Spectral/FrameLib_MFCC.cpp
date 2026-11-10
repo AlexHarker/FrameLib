@@ -36,9 +36,9 @@ FrameLib_MFCC::FrameLib_MFCC(FrameLib_Context context, const FrameLib_Parameters
     mParameters.setMin(1);
     mParameters.addInt(kBands, "bands", 40, 3);
     mParameters.setMin(2);
-    mParameters.addDouble(kMinFrequency, "min_frequency", 20.0, 4);
+    mParameters.addDouble(kMinFrequency, "min_freq", 20.0, 4);
     mParameters.setMin(0.0);
-    mParameters.addDouble(kMaxFrequency, "max_frequency", 20000.0, 5);
+    mParameters.addDouble(kMaxFrequency, "max_freq", 20000.0, 5);
     mParameters.setMin(0.0);
     mParameters.addBool(kDropZero, "drop_zero", false, 6);
     mParameters.addBool(kNormalise, "normalise", true, 7);
