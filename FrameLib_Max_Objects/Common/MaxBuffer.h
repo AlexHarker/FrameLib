@@ -4,6 +4,9 @@
 
 #include <ext_buffer.h>
 
+#include <algorithm>
+#include <limits>
+
 // Buffer Access via RAII
 
 class MaxBufferAccess
@@ -140,6 +143,11 @@ private:
     {
         if (offset < 0)
         {
+            // Clip so that the offset can always be negated safely
+            
+            if (offset == std::numeric_limits<t_ptr_int>::min())
+                offset++;
+            
             t_ptr_uint prior = static_cast<t_ptr_uint>(-offset);
             offset = 0;
             return prior;
