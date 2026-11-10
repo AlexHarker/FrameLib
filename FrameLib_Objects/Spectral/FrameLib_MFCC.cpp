@@ -1,11 +1,13 @@
 
 #include "FrameLib_MFCC.h"
 #include "../Common_Utilities/FrameLib_FluidAllocator.h"
+#include "../Common_Utilities/FrameLib_Scaling_Functions.h"
 
 #define EIGEN_MPL2_ONLY 1
 #include <flucoma/algorithms/public/DCT.hpp>
 #include <flucoma/algorithms/public/MelBands.hpp>
 #include <algorithm>
+#include <cmath>
 #include <new>
 
 struct FrameLib_MFCC::Implementation
@@ -39,6 +41,7 @@ FrameLib_MFCC::FrameLib_MFCC(FrameLib_Context context, const FrameLib_Parameters
     mParameters.addDouble(kMaxFrequency, "max_frequency", 20000.0, 5);
     mParameters.setMin(0.0);
     mParameters.addBool(kDropZero, "drop_zero", false, 6);
+    mParameters.addBool(kNormalise, "normalise", true, 7);
     mParameters.set(serialisedParameters);
     addParameterInput();
 
@@ -83,6 +86,7 @@ FrameLib_MFCC::ParameterInfo::ParameterInfo()
     add("Sets the lowest frequency in Hz.");
     add("Sets the highest frequency in Hz.");
     add("Drops the zeroth coefficient from the output.");
+    add("Sets whether the input is normalised (as by fl.fft~), such that values are scaled to match unnormalised FFT magnitudes.");
 }
 
 // Process
@@ -127,6 +131,8 @@ void FrameLib_MFCC::process()
     const bool initMelBands = changedMinFrequency || changedMaxFrequency || bins != mInitBins || bands != mInitBands || mSamplingRate != mInitSamplingRate;
     const bool initDCT = bands != mInitBands || dctSize != mInitCoefficients;
     
+    const double offset = (mParameters.getBool(kNormalise) && bins > 1) ? ampToDb(static_cast<double>(bins - 1) / dctSize) : 0.0;
+    
     // FluCoMa's views require mutable pointers, but the input is only read.
     
     fluid::RealVectorView in(const_cast<double *>(input), 0, bins);
@@ -148,7 +154,12 @@ void FrameLib_MFCC::process()
         mImplementation->mMelBands.processFrame(in, melBands, false, false, true, mImplementation->mAllocator);
         mImplementation->mDCT.processFrame(melBands, coefficients);
         
-        std::copy(temp.data() + bands + dropZero, temp.data() + bands + dctSize, output);
+        // Undoing normalisation scales the magnitudes, which is an offset in dB
+        
+        if (!dropZero && offset)
+            coefficients[0] += offset;
+        
+        copyVector(output, temp.data() + bands + dropZero, dctSize - dropZero);
     }
     catch (const std::bad_alloc&)
     {
