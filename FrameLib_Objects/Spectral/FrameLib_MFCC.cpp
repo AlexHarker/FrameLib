@@ -103,6 +103,16 @@ void FrameLib_MFCC::objectReset()
 
 void FrameLib_MFCC::process()
 {
+    auto offsetAmount = [](unsigned long binFactor)
+    {
+        return ampToDb(1.0 / static_cast<double>(std::max(binFactor, 1UL)));
+    };
+    
+    auto scalingFactor = [](unsigned long dctSize)
+    {
+        return 1.0 / static_cast<double>(dctSize);
+    };
+    
     unsigned long size;
     const double *input = getInput(0, &size);
     const double minFrequency = mParameters.getValue(kMinFrequency);
@@ -131,7 +141,7 @@ void FrameLib_MFCC::process()
     const bool initMelBands = changedMinFrequency || changedMaxFrequency || bins != mInitBins || bands != mInitBands || mSamplingRate != mInitSamplingRate;
     const bool initDCT = bands != mInitBands || dctSize != mInitCoefficients;
     
-    const double offset = (mParameters.getBool(kNormalise) && bins > 1) ? ampToDb(static_cast<double>(bins - 1) / dctSize) : 0.0;
+    const double offset = offsetAmount(mParameters.getBool(kNormalise) ? 1 : bins - 1);
     
     // FluCoMa's views require mutable pointers, but the input is only read.
     
@@ -152,12 +162,19 @@ void FrameLib_MFCC::process()
         mInitSamplingRate = mSamplingRate;
         
         mImplementation->mMelBands.processFrame(in, melBands, false, false, true, mImplementation->mAllocator);
+        
+        if (offset)
+        {
+            for (long i = 0; i < bands; i++)
+                melBands[i] += offset;
+        }
+        
         mImplementation->mDCT.processFrame(melBands, coefficients);
         
         // Undoing normalisation scales the magnitudes, which is an offset in dB
         
-        if (!dropZero && offset)
-            coefficients[0] += offset;
+        if (!dropZero)
+            coefficients[0] *= scalingFactor(dctSize);
         
         copyVector(output, temp.data() + bands + dropZero, dctSize - dropZero);
     }
