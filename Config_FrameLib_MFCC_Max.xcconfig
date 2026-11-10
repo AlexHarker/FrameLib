@@ -1,0 +1,4 @@
+
+#include "FrameLib_Max_Objects/Common/Config_FrameLib_Max.xcconfig"
+
+OTHER_LDFLAGS = $(inherited) "$(SRCROOT)/build/flucoma/macos/src/libfoonathan_memory-0.7.4.a"

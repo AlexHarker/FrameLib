@@ -76,6 +76,7 @@
 // Spectral
 
 #include "../FrameLib_Objects/Spectral/FrameLib_FFT.h"
+#include "../FrameLib_Objects/Spectral/FrameLib_MFCC.h"
 #include "../FrameLib_Objects/Spectral/FrameLib_YINFFT.h"
 #include "../FrameLib_Objects/Spectral/FrameLib_iFFT.h"
 #include "../FrameLib_Objects/Spectral/FrameLib_Correlate.h"

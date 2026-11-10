@@ -121,6 +121,10 @@ $(FL_OBJECTS)/Spectral/FrameLib_YINFFT.o: | flucoma_dependency
 $(FL_OBJECTS)/Spectral/FrameLib_YINFFT.o: $(FL_OBJECTS)/Spectral/FrameLib_YINFFT.cpp intermediate_directory
 				g++ $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -std=c++17 -fPIC $(INCLUDE_PATHS) $(FLUCOMA_INCLUDES) -c $< -o $(INTERMEDIATE_DIR)/$(@F)
 
+$(FL_OBJECTS)/Spectral/FrameLib_MFCC.o: | flucoma_dependency
+$(FL_OBJECTS)/Spectral/FrameLib_MFCC.o: $(FL_OBJECTS)/Spectral/FrameLib_MFCC.cpp intermediate_directory
+				g++ $(CPPFLAGS) $(CXXFLAGS) $(ARCH_FLAGS) $(PLATFORM_FLAGS) -std=c++17 -fPIC $(INCLUDE_PATHS) $(FLUCOMA_INCLUDES) -c $< -o $(INTERMEDIATE_DIR)/$(@F)
+
 build_directory:
 				mkdir -p $(BUILD_DIR)
 				

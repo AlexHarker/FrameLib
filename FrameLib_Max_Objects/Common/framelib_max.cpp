@@ -108,6 +108,7 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_Correlate>::makeClass("fl.correlate~");
     FrameLib_MaxClass_Expand<FrameLib_Convolve>::makeClass("fl.convolve~");
     FrameLib_MaxClass_Expand<FrameLib_FIRPhase>::makeClass("fl.firphase~");
+    FrameLib_MaxClass_Expand<FrameLib_MFCC>::makeClass("fl.mfcc~");
     FrameLib_MaxClass_Expand<FrameLib_Multitaper>::makeClass("fl.multitaper~");
     FrameLib_MaxClass_Expand<FrameLib_Window>::makeClass("fl.window~");
     FrameLib_MaxClass_Expand<FrameLib_YINFFT>::makeClass("fl.yinfft~");

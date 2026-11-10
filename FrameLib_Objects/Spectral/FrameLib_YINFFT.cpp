@@ -1,37 +1,10 @@
 #include "FrameLib_YINFFT.h"
+#include "../Common_Utilities/FrameLib_FluidAllocator.h"
 
 #define EIGEN_MPL2_ONLY 1
 #include <flucoma/algorithms/public/YINFFT.hpp>
 #include <cmath>
 #include <new>
-
-namespace
-{
-    struct FluidAllocator
-    {
-        using is_stateful = std::true_type;
-
-        explicit FluidAllocator(FrameLib_DSP::Allocator allocator) : mAllocator(allocator) {}
-
-        void *allocate_node(std::size_t size, std::size_t alignment)
-        {
-            if (alignment > FrameLib_GlobalAllocator::getAlignment())
-                throw std::bad_alloc();
-            void *ptr = mAllocator.allocate<char>(size);
-            if (!ptr)
-                throw std::bad_alloc();
-            return ptr;
-        }
-
-        void deallocate_node(void *ptr, std::size_t, std::size_t) noexcept
-        {
-            char *memory = static_cast<char *>(ptr);
-            mAllocator.deallocate(memory);
-        }
-
-        FrameLib_DSP::Allocator mAllocator;
-    };
-}
 
 struct FrameLib_YINFFT::Implementation
 {
@@ -39,7 +12,7 @@ struct FrameLib_YINFFT::Implementation
     : mRawAllocator(allocator), mAllocator(mRawAllocator),
       mYin(static_cast<fluid::index>(maxLength / 2 + 1), mAllocator) {}
 
-    FluidAllocator mRawAllocator;
+    FrameLib_FluidAllocator mRawAllocator;
     fluid::Allocator mAllocator;
     fluid::algorithm::YINFFT mYin;
 };

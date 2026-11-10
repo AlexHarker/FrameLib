@@ -1358,6 +1358,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D88A4FC09546E96534A915D1"
+               BuildableName = "fl.mfcc~.mxo"
+               BlueprintName = "fl.mfcc~"
+               ReferencedContainer = "container:framelib.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8CEFC0B2019EA2100F5F5A0"
                BuildableName = "fl.minpos~.mxo"
                BlueprintName = "fl.minpos~"
