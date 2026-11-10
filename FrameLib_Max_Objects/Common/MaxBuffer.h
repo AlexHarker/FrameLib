@@ -84,13 +84,12 @@ public:
     void write(const double *input, t_ptr_uint length, t_ptr_int offset, t_ptr_uint chan)
     {
         length = constrainLength(length, chan, offset);
-        
-        handleNegativeOffset(offset);
+        t_ptr_uint inputOffset = handleNegativeOffset(offset);
         
         float *samples = mSamples + offset * mChans + chan;
         
-        for (size_t i = 0; i < length; i++, samples += mChans)
-            *samples = static_cast<float>(input[i]);
+        for (t_ptr_uint i = 0; i < length; i++, samples += mChans)
+            *samples = static_cast<float>(input[i + inputOffset]);
         
         setDirty();
     }
